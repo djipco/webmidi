@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         files: [
           { src: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js', dest: '../dist/examples/js/<%= pkg.name %>.min.js' },
           { src: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js', dest: '../npm/<%= pkg.name %>.min.js' },
-          { src: '../README', dest: '../npm/README' }
+          { src: '../README.md', dest: '../npm/README.md' }
         ]
 
       }
