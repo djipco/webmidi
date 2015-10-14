@@ -34,6 +34,7 @@ Google Chrome does) or if the browser cannot connect to the host's MIDI subsyste
 
 Let's check if WebMidi can be enabled: 
 
+```javascript
     WebMidi.enable(onSuccess, onFailure);
 
     function onSuccess() {
@@ -43,13 +44,16 @@ Let's check if WebMidi can be enabled:
     function onFailure(err) {
         console.log("WebMidi could not be enabled.", err);
     }
+```
 
 To send MIDI messages with WebMidi, you simply need to pick the appropriate method and all
 the native MIDI communication will be handled for you. For example, let's say we want to
 send a 'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half
 velocity:
 
+```javascript
     WebMidi.playNote(2, 76, 0.5);
+```
 
 That's it.
 
@@ -60,10 +64,11 @@ Receiving messages is just as easy. You simply have to set a callback function t
 triggered when a specific MIDI message is received. For example, to listen for pitch bend
 events on any MIDI input channels:
 
+```javascript
     WebMidi.addEventListener('pitchbend', function(e) {
         console.log("Pitch value: " + e.value);
     });
-
+```
 
 ## Receiving messages
 
