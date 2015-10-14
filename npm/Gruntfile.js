@@ -21,7 +21,7 @@ module.exports = function (grunt) {
           pkg: 'package.json'
         }
       },
-      files: ['package.json', 'bower.json']
+      files: ['package.json']
     },
 
     // Minify and save in dist
@@ -85,7 +85,8 @@ module.exports = function (grunt) {
 
         files: [
           { src: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js', dest: '../dist/examples/js/<%= pkg.name %>.min.js' },
-          { src: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js', dest: '../build/<%= pkg.name %>.min.js' }
+          { src: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js', dest: '../npm/<%= pkg.name %>.min.js' },
+          { src: '../README', dest: '../npm/README' }
         ]
 
       }
@@ -124,8 +125,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-release');
 
-  grunt.registerTask('publish', ['publish:prerelease']);
+  grunt.registerTask('publish', ['publish:test']);
   grunt.registerTask("publish:prerelease", ['clean', 'bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'compress', 'release']);
+  grunt.registerTask("publish:test", ['clean', 'uglify', 'yuidoc', 'copy', 'compress']);
   grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
   grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
   grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
