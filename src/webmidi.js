@@ -31,8 +31,6 @@
    *
    * @class WebMidi
    * @static
-   * @version @@version
-   * @author @@author
    *
    * @todo  Allow triggering notes using usual name and octave
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!

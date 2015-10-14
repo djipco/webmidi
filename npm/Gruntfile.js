@@ -125,9 +125,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-release');
 
-  grunt.registerTask('publish', ['publish:test']);
+  grunt.registerTask('publish', ['publish:prerelease']);
   grunt.registerTask("publish:prerelease", ['clean', 'bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'compress', 'release']);
-  grunt.registerTask("publish:test", ['clean', 'uglify', 'yuidoc', 'copy', 'compress']);
   grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
   grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
   grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
