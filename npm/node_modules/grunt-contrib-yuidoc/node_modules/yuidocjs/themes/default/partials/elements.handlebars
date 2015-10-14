@@ -1,0 +1,80 @@
+<h1>&lt;{{name}}&gt;</h1>
+<div class="box meta">
+    {{#if foundAt}}
+        <div class="foundat">
+            Defined in: <a href="{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
+        </div>
+    {{/if}}
+
+    {{#if module}}
+        {{#if submodule}}
+            Module: {{#crossLinkModule submodule}}{{/crossLinkModule}}<br>
+            Parent Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+        {{else}}
+            Module: {{#crossLinkModule module}}{{/crossLinkModule}}
+        {{/if}}
+    {{/if}}
+
+    {{#if since}}
+        <p>Available since {{since}}</p>
+    {{/if}}
+</div>
+
+{{#if deprecated}}
+    <div class="box deprecated">
+        <p>
+        {{#if deprecationMessage}}
+            <strong>Deprecated:</strong> {{deprecationMessage}}
+        {{else}}
+            This element is deprecated.
+        {{/if}}
+        </p>
+    </div>
+{{/if}}
+
+<div class="box intro">
+    {{{elementDescription}}}
+
+    <ul class="definitions">
+        {{#if parents}}
+        <li>
+            <dfn>Permitted parent elements: </dfn> {{parents}}
+        </li>
+        {{/if}}
+
+        {{#if content}}
+        <li>
+            <dfn>Permitted content: </dfn> {{content}}
+        </li>
+        {{/if}}
+    </ul>
+</div>
+
+{{#example}}
+<div class="example">
+    <h2>Example</h2>
+
+    <div class="example-content">
+        {{{.}}}
+    </div>
+</div>
+{{/example}}
+
+{{#if interface}}
+<h2>Interface</h2>
+<p>This element implements the {{#crossLink interface}}{{/crossLink}} class.</p>
+{{/if}}
+
+<div class="index-section attrs">
+    <h2>Attributes</h2>
+
+    {{#if attributes}}
+    <div id="attributes">
+        {{#attributes}}
+            {{>attributes}}
+        {{/attributes}}
+    </div>
+    {{else}}
+    <p>This element has no defined attributes.</p>
+    {{/if}}
+</div>

@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/docparser.js - yuidoc-root</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/CLI.html">CLI</a></li>
+                                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
+                                <li><a href="../classes/DocParser.html">DocParser</a></li>
+                                <li><a href="../classes/DocView.html">DocView</a></li>
+                                <li><a href="../classes/Files.html">Files</a></li>
+                                <li><a href="../classes/Help.html">Help</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Options.html">Options</a></li>
+                                <li><a href="../classes/Server.html">Server</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: lib/docparser.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
+&#x27;use strict&#x27;;
+
+YUI.add(&#x27;docparser&#x27;, function (Y) {
+
+    var Lang = Y.Lang,
+        trim = Lang.trim,
+        fixType = Y.Lang.fixType,
+        /**
+         * Parses the JSON data and formats it into a nice log string for
+         * filename and line number: &#x60;/file/name.js:123&#x60;
+         * @method stringlog
+         * @private
+         * @param {Object} data The data block from the parser
+         * @return {String} The formatted string.
+         * @for DocParser
+         */
+        stringlog = function (data) {
+            var line, file;
+
+            if (data.file &amp;&amp; data.line) {
+                file = data.file;
+                line = data.line;
+            } else {
+                data.forEach(function (d) {
+                    if (d.tag === &#x27;file&#x27;) {
+                        file = d.value;
+                    }
+                    if (d.tag === &#x27;line&#x27;) {
+                        line = d.value;
+                    }
+                });
+            }
+            return &#x27; &#x27; + file + &#x27;:&#x27; + line;
+        },
+        /**
+         * Flatten a string, remove all line breaks and replace them with a token
+         * @method implodeString
+         * @private
+         * @param {String} str The string to operate on
+         * @return {String} The modified string
+         */
+        implodeString = function (str) {
+            return str.replace(REGEX_GLOBAL_LINES, &#x27;!~YUIDOC_LINE~!&#x27;);
+        },
+        /**
+         * Un-flatten a string, replace tokens injected with &#x60;implodeString&#x60;
+         * @method implodeString
+         * @private
+         * @param {String} str The string to operate on
+         * @return {String} The modified string
+         */
+        explodeString = function (str) {
+            return str.replace(/!~YUIDOC_LINE~!/g, &#x27;\n&#x27;);
+        },
+        CURRENT_NAMESPACE = &#x27;currentnamespace&#x27;,
+        CURRENT_MODULE = &#x27;currentmodule&#x27;,
+        MAIN_MODULE = &#x27;mainmodule&#x27;,
+        CURRENT_SUBMODULE = &#x27;currentsubmodule&#x27;,
+        CURRENT_FILE = &#x27;currentfile&#x27;,
+        CURRENT_CLASS = &#x27;currentclass&#x27;,
+        CURRENT_ELEMENT = &#x27;currentelement&#x27;,
+
+        REGEX_TYPE = /(.*?)\{(.*?)\}(.*)/,
+        REGEX_FIRSTWORD = /^\s*?(\[.+\]\*?|[^\s]+)(.*)/,
+        REGEX_OPTIONAL = /^\[(.*)\]$/,
+        REGEX_START_COMMENT = {
+            js: /^\s*\/\*\*/,
+            coffee: /^\s*###\*/
+        },
+        REGEX_END_COMMENT = {
+            js: /\*\/\s*$/,
+            coffee: /###\s*$/
+        },
+        REGEX_LINE_HEAD_CHAR = {
+            js: /^\s*\*/,
+            coffee: /^\s*[#\*]/
+        },
+        REGEX_LINES = /\r\n|\n/,
+        REGEX_GLOBAL_LINES = /\r\n|\n/g,
+
+        SHORT_TAGS = {
+            &#x27;async&#x27;: 1,
+            &#x27;beta&#x27;: 1,
+            &#x27;chainable&#x27;: 1,
+            &#x27;extends&#x27;: 1,
+            &#x27;final&#x27;: 1,
+            &#x27;static&#x27;: 1,
+            &#x27;optional&#x27;: 1,
+            &#x27;required&#x27;: 1
+        },
+
+        /**
+         * A list of known tags.  This populates a member variable
+         * during initialization, and will be updated if additional
+         * digesters are added.
+         * @property TAGLIST
+         * @type Array
+         * @final
+         * @for DocParser
+         */
+        TAGLIST = [
+            &#x27;async&#x27;,        // bool, custom events can fire the listeners in a setTimeout
+            &#x27;author&#x27;,       // author best for projects and modules, but can be used anywhere // multi
+            &#x27;attribute&#x27;,    // YUI attributes / custom element attributes
+            &#x27;beta&#x27;,         // module maturity identifier
+            &#x27;broadcast&#x27;,    // bool, events
+            &#x27;bubbles&#x27;,      // custom events that bubble
+            &#x27;category&#x27;,     // modules can be in multiple categories
+            &#x27;chainable&#x27;,    // methods that return the host object
+            &#x27;class&#x27;,        // pseudo class
+            &#x27;conditional&#x27;,  // conditional module
+            &#x27;config&#x27;,       // a config param (not an attribute, so no change events)
+            &#x27;const&#x27;,        // not standardized yet, converts to final property
+            &#x27;constructs&#x27;,   // factory methods (not yet used)
+            &#x27;constructor&#x27;,  // this is a constructor
+            &#x27;content&#x27;,      // permitted content for an @element
+            &#x27;contributor&#x27;,  // like author
+            &#x27;default&#x27;,      // property/attribute default value
+            &#x27;deprecated&#x27;,   // please specify what to use instead
+            &#x27;description&#x27;,  // can also be free text at the beginning of a comment is
+            &#x27;emitfacade&#x27;,   // bool, YUI custom event can have a dom-like event facade
+            &#x27;element&#x27;,      // Web Components custom element
+            &#x27;event&#x27;,        // YUI custom event
+            &#x27;evil&#x27;,         // uses eval
+            &#x27;extension&#x27;,    // this is an extension for [entity]
+            &#x27;extensionfor&#x27;, // this is an extension for [entity]
+            &#x27;extension_for&#x27;,// this is an extension for [entity]
+            &#x27;example&#x27;,      // 0..n code snippets.  snippets can also be embedded in the desc
+            &#x27;experimental&#x27;, // module maturity identifier
+            &#x27;extends&#x27;,      // pseudo inheritance
+            &#x27;file&#x27;,         // file name (used by the parser)
+            &#x27;final&#x27;,        // not meant to be changed
+            &#x27;fireonce&#x27;,     // bool, YUI custom event config allows
+            &#x27;for&#x27;,          // used to change class context
+            &#x27;global&#x27;,       // declare your globals
+            &#x27;icon&#x27;,         // project icon(s)
+            &#x27;implements&#x27;,   // Implements Interface
+            &#x27;in&#x27;,           // indicates module this lives in (obsolete now)
+            &#x27;initonly&#x27;,     // attribute writeonce value
+            &#x27;injects&#x27;,      // injects {HTML|script|CSS}
+            &#x27;interface&#x27;,    // Is Interface / Interface for an @element
+            &#x27;knownissue&#x27;,   // 0..n known issues for your consumption
+            &#x27;line&#x27;,         // line number for the comment block (used by the parser)
+            &#x27;method&#x27;,       // a method
+            &#x27;module&#x27;,       // YUI module name
+            &#x27;main&#x27;,         // Description for the module
+            &#x27;namespace&#x27;,    // Y.namespace, used to fully qualify class names
+            &#x27;optional&#x27;,     // For optional attributes
+            &#x27;required&#x27;,     // For required attributes
+            &#x27;param&#x27;,        // member param
+            &#x27;parents&#x27;,      // permitted parents for an @element
+            &#x27;plugin&#x27;,       // this is a plugin for [entityl]
+            &#x27;preventable&#x27;,  // YUI custom events can be preventable ala DOM events
+            &#x27;private&#x27;,      // &gt; access
+            &#x27;project&#x27;,      // project definition, one per source tree allowed
+            &#x27;property&#x27;,     // a regular-ole property
+            &#x27;protected&#x27;,    // &gt; access
+            &#x27;public&#x27;,       // &gt; access
+            &#x27;queuable&#x27;,     // bool, events
+            &#x27;readonly&#x27;,     // YUI attribute config
+            &#x27;requires&#x27;,     // YUI module requirements
+            &#x27;return&#x27;,       // {type} return desc -- returns is converted to this
+            &#x27;see&#x27;,          // 0..n things to look at
+            &#x27;since&#x27;,        // when it was introduced
+            &#x27;static&#x27;,       // static
+            &#x27;submodule&#x27;,    // YUI submodule
+            &#x27;throws&#x27;,       // {execption type} description
+            &#x27;title&#x27;,        // this should be something for the project description
+            &#x27;todo&#x27;,         // 0..n things to revisit eventually (hopefully)
+            &#x27;type&#x27;,         // the var type
+            &#x27;url&#x27;,          // project url(s)
+            &#x27;uses&#x27;,         // 0..n compents mixed (usually, via augment) into the prototype
+            &#x27;value&#x27;,        // the value of a constant
+            &#x27;writeonce&#x27;     // YUI attribute config
+        ],
+
+        /**
+         * A list of ignored tags. These tags should be ignored because there is
+         * likely to be used for purposes other than JSDoc tags in JavaScript comments.
+         * @property IGNORE_TAGLIST
+         * @type Array
+         * @final
+         * @for DocParser
+         */
+        IGNORE_TAGLIST = [
+            &#x27;media&#x27;
+        ],
+
+        /**
+         * Common errors will get scrubbed instead of being ignored.
+         * @property CORRECTIONS
+         * @type Object
+         * @final
+         * @for DocParser
+         */
+        CORRECTIONS = {
+            &#x27;augments&#x27;: &#x27;uses&#x27;, // YUI convention for prototype mixins
+            &#x27;depreciated&#x27;: &#x27;deprecated&#x27;, // subtle difference
+            &#x27;desciption&#x27;: &#x27;description&#x27;, // shouldn&#x27;t need the @description tag at all
+            &#x27;extend&#x27;: &#x27;extends&#x27;, // typo
+            &#x27;function&#x27;: &#x27;method&#x27;, // we may want standalone inner functions at some point
+            &#x27;member&#x27;: &#x27;method&#x27;, // probably meant method
+            &#x27;parm&#x27;: &#x27;param&#x27;, // typo
+            &#x27;params&#x27;: &#x27;param&#x27;, // typo
+            &#x27;pamra&#x27;: &#x27;param&#x27;, // typo
+            &#x27;parma&#x27;: &#x27;param&#x27;, // typo
+            &#x27;propery&#x27;: &#x27;property&#x27;, // typo
+            &#x27;prop&#x27;: &#x27;property&#x27;, // probably meant property
+            &#x27;returns&#x27;: &#x27;return&#x27; // need to standardize on one or the other
+        },
+
+        /**
+         * A map of the default tag processors, keyed by the
+         * tag name.  Multiple tags can use the same digester
+         * by supplying the string name that points to the
+         * implementation rather than a function.
+         * @property DIGESTERS
+         * @type Object
+         * @final
+         * @for DocParser
+         */
+        DIGESTERS = {
+            // &quot;params&quot;: [
+            // {
+            //   &quot;name&quot;: &quot;optionalandmultiple&quot;,
+            //   &quot;description&quot;: &quot;my desc&quot;,
+            //   &quot;type&quot;: &quot;string&quot;,
+            //   &quot;optional&quot;: true, // [surroundedbybrackets]
+            //   &quot;optdefault&quot;: &quot;if specified, this is always string to avoid syntax errors @TODO&quot;,
+            //   &quot;multiple&quot;: true // endswith* or ...startswith
+            // }
+            // ],
+            // @param {type} name description    -or-
+            // @param name {type} description
+            // #2173362 optional w/ or w/o default
+            // @param {type} [optvar=default] description
+            // #12 document config objects
+            // @param {object|config} config description
+            // @param {type} config.prop1 description
+            // @param {type} config.prop2 description
+            // #11 document callback argument signature
+            // @param {callback|function} callback description
+            // @param {type} callback.arg1 description
+            // @param {type} callback.arg2 description
+            // #2173362 document event facade decorations for custom events
+            // @param {event} event description
+            // @param {type}  event.child description
+            // @param {type}  event.index description
+            // @param name* {type} 1..n description
+            // @param [name]* {type} 0..n description
+            &#x27;param&#x27;: function (tagname, value, target, block) {
+                // Y.log(&#x27;param digester&#x27; + value);
+                target.params = target.params || [];
+
+                if (!value) {
+                    this.warnings.push({
+                        message: &#x27;param name/type/descript missing&#x27;,
+                        line: stringlog(block)
+                    });
+                    Y.log(&#x27;param name/type/descript missing: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                    return;
+                }
+
+                var type, name, parts, optional, optdefault, parent, multiple, len, result,
+                    desc = implodeString(trim(value)),
+                    match = REGEX_TYPE.exec(desc),
+                    host = target.params;
+
+                // Extract {type}
+                if (match) {
+                    type = fixType(trim(match[2]));
+                    desc = trim(match[1] + match[3]);
+                }
+
+                // extract the first word, this is the param name
+                match = REGEX_FIRSTWORD.exec(desc);
+                if (match) {
+                    name = trim(explodeString(match[1]));
+                    desc = trim(match[2]);
+                }
+
+                if (!name) {
+                    if (value &amp;&amp; value.match(/callback/i)) {
+                        this.warnings.push({
+                            message: &#x27;Fixing missing name for callback&#x27;,
+                            line: stringlog(block)
+                        });
+                        Y.log(&#x27;Fixing missing name for callback:&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                        name = &#x27;callback&#x27;;
+                        type = &#x27;Callback&#x27;;
+                    } else {
+                        this.warnings.push({
+                            message: &#x27;param name missing: &#x27; + value,
+                            line: stringlog(block)
+                        });
+                        Y.log(&#x27;param name missing: &#x27; + value + &#x27;:&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                        name = &#x27;UNKNOWN&#x27;;
+                    }
+                }
+
+                len = name.length - 1;
+
+                if (name.charAt(len) === &#x27;*&#x27;) {
+                    multiple = true;
+                    name = name.substr(0, len);
+                }
+
+                // extract [name], optional param
+                if (name.indexOf(&#x27;[&#x27;) &gt; -1) {
+                    match = REGEX_OPTIONAL.exec(name);
+                    if (match) {
+                        optional = true;
+                        name = trim(match[1]);
+                        // extract optional=defaultvalue
+                        parts = name.split(&#x27;=&#x27;);
+                        if (parts.length &gt; 1) {
+                            name = parts[0];
+                            optdefault = parts[1];
+                            //Add some shortcuts for object/array defaults
+                            if (optdefault.toLowerCase() === &#x27;object&#x27;) {
+                                optdefault = &#x27;{}&#x27;;
+                            }
+                            if (optdefault.toLowerCase() === &#x27;array&#x27;) {
+                                optdefault = &#x27;[]&#x27;;
+                            }
+                        }
+                    }
+                }
+
+                // This should run after the check for optional parameters
+                // and before the check for child parameters
+                // because the signature for 0..n params is [...args]
+                if (name.substr(0, 3) === &#x27;...&#x27;) {
+                    multiple = true;
+                    name = name.substr(3);
+                }
+
+                // parse object.prop, indicating a child property for object
+                if (name.indexOf(&#x27;.&#x27;) &gt; -1) {
+                    match = name.split(&#x27;.&#x27;);
+                    parent = trim(match[0]);
+                    Y.each(target.params, function (param) {
+                        if (param.name === parent) {
+                            param.props = param.props || [];
+                            host = param.props;
+                            match.shift();
+                            name = trim(match.join(&#x27;.&#x27;));
+                            if (match.length &gt; 1) {
+                                var pname = name.split(&#x27;.&#x27;)[0],
+                                    par;
+                                Y.each(param.props, function (o) {
+                                    if (o.name === pname) {
+                                        par = o;
+                                    }
+                                });
+                                if (par) {
+                                    match = name.split(&#x27;.&#x27;);
+                                    match.shift();
+                                    name = match.join(&#x27;.&#x27;);
+                                    par.props = par.props || [];
+                                    host = par.props;
+                                }
+                            }
+                        }
+                    });
+
+                }
+
+                result = {
+                    name: name,
+                    description: explodeString(desc)
+                };
+
+                if (type) {
+                    result.type = type;
+                }
+
+                if (optional) {
+                    result.optional = true;
+                    if (optdefault) {
+                        result.optdefault = optdefault;
+                    }
+                }
+
+                if (multiple) {
+                    result.multiple = true;
+                }
+
+                host.push(result);
+            },
+
+            // @return {type} description // methods
+            // @returns {type} description // methods
+            // @injects {HTML|CSS|script} description
+            // can be used by anthing that has an optional {type} and a description
+            &#x27;return&#x27;: function (tagname, value, target) {
+
+                var desc = implodeString(trim(value)),
+                    type,
+                    match = REGEX_TYPE.exec(desc),
+                    result = {};
+                if (match) {
+                    type = fixType(trim(match[2]));
+                    desc = trim(match[1] + match[3]);
+                }
+
+                result = {
+                    description: Y.unindent(explodeString(desc))
+                };
+
+                if (type) {
+                    result.type = type;
+                }
+
+                target[tagname] = result;
+
+            },
+
+            // @throws {type} description
+            &#x27;throws&#x27;: &#x27;return&#x27;,
+
+            &#x27;injects&#x27;: &#x27;return&#x27;,
+
+            // trying to overwrite the constructor value is a bad idea
+            &#x27;constructor&#x27;: function (tagname, value, target) {
+                target.is_constructor = 1;
+            },
+
+            // @author {twitter: @arthurdent | github: ArthurDent}
+            //    Arthur Dent adent@h2g2.earth #23, multiple // modules/class/method
+            // &#x27;author&#x27;: function(tagname, value, target, block) {
+            //     // Y.log(&#x27;author digester&#x27;);
+            // },
+
+            // A key bock type for declaring modules and submodules
+            // subsequent class and member blocks will be assigned
+            // to this module.
+            &#x27;module&#x27;: function (tagname, value, target, block) {
+                this.set(CURRENT_MODULE, value);
+                var go = true;
+                Y.some(block, function (o) {
+                    if (trim(o.tag) === &#x27;submodule&#x27;) {
+                        go = false;
+                        return true;
+                    }
+                });
+                if (go) {
+                    if (!this.get(MAIN_MODULE)) {
+                        this.set(MAIN_MODULE, {
+                            tag: tagname,
+                            name: value,
+                            file: target.file,
+                            line: target.line,
+                            description: target.description
+                        });
+                    }
+                    return this.modules[value];
+                }
+                return null;
+            },
+
+            //Setting the description for the module..
+            &#x27;main&#x27;: function (tagname, value, target) {
+                var o = target;
+                o.mainName = value;
+                o.tag = tagname;
+                o.itemtype = &#x27;main&#x27;;
+                o._main = true;
+                this.set(MAIN_MODULE, o);
+            },
+
+            // accepts a single project definition for the source tree
+            &#x27;project&#x27;: function () {
+                return this.project;
+            },
+
+            // A key bock type for declaring submodules.  subsequent class and
+            // member blocks will be assigned to this submodule.
+            &#x27;submodule&#x27;: function (tagname, value) {
+                //console.log(&#x27;Setting current submodule: &#x27;, value, &#x27;on class&#x27;);
+                this.set(CURRENT_SUBMODULE, value);
+                var host = this.modules[value],
+                    clazz = this.get(CURRENT_CLASS),
+                    parent = this.get(CURRENT_MODULE);
+                if (parent) {
+                    host.module = parent;
+                }
+                if (clazz &amp;&amp; this.classes[clazz]) {
+                    //console.log(&#x27;Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz, &#x27; it has submodule&#x27;, this.classes[clazz].submodule);
+                    //if (!this.classes[clazz].submodule) {
+                    //console.log(&#x27;REALLY Adding submodule&#x27;, value , &#x27;to class&#x27;, clazz);
+                    this.classes[clazz].submodule = value;
+                    //}
+                }
+                return host;
+            },
+
+            // A key bock type for declaring classes, subsequent
+            // member blocks will be assigned to this class
+            &#x27;class&#x27;: function (tagname, value, target, block) {
+                var namespace, fullname, host, parent;
+
+                block.forEach(function (def) {
+                    if (def.tag === &#x27;namespace&#x27;) {
+                        //We have a namespace, augment the name
+                        var name = trim(def.value) + &#x27;.&#x27; + value;
+                        if (value.indexOf(trim(def.value) + &#x27;.&#x27;) === -1) {
+                            value = name;
+                            namespace = trim(def.value);
+                        }
+                    }
+                });
+
+                if (namespace) {
+                    this.set(CURRENT_NAMESPACE, namespace);
+                }
+                this.set(CURRENT_CLASS, value);
+
+                fullname = this.get(CURRENT_CLASS);
+                host = this.classes[fullname];
+                parent = this.get(CURRENT_MODULE);
+
+                if (namespace) {
+                    host.namespace = namespace;
+                }
+                if (parent) {
+                    host.module = parent;
+                }
+
+                //Merge host and target in case the class was defined in a &quot;for&quot; tag
+                //before it was defined in a &quot;class&quot; tag
+                host = Y.merge(host, target);
+                this.classes[fullname] = host;
+                parent = this.get(CURRENT_SUBMODULE);
+                if (parent) {
+                    //this.set(CURRENT_SUBMODULE, parent);
+                    host.submodule = parent;
+                }
+                return host;
+            },
+
+            // A key bock type for declaring custom elements
+            &#x27;element&#x27;: function (tagname, value) {
+                var name, parent, host;
+
+                name = value.split(/\s+/)[0];
+                this.set(CURRENT_ELEMENT, name);
+                host = this.elements[name];
+
+                parent = this.get(CURRENT_MODULE);
+                if (parent) {
+                    host.module = parent;
+                }
+
+                parent = this.get(CURRENT_SUBMODULE);
+                if (parent) {
+                    host.submodule = parent;
+                }
+
+                return host;
+            },
+
+            // change &#x27;const&#x27; to final property
+            &#x27;const&#x27;: function (tagname, value, target) {
+                target.itemtype = &#x27;property&#x27;;
+                target.name = value;
+                target.final = &#x27;&#x27;;
+            },
+
+            // supported classitems
+            &#x27;property&#x27;: function (tagname, value, target, block) {
+                var match, name, desc, type;
+
+                target.itemtype = tagname;
+                target.name = value;
+                if (!target.type) {
+                    desc = implodeString(trim(value));
+                    match = REGEX_TYPE.exec(desc);
+
+                    // Extract {type}
+                    if (match) {
+                        type = fixType(trim(match[2]));
+                        name = trim(match[1] + match[3]);
+                        target.type = type;
+                        target.name = name;
+                    }
+
+                }
+                if (target.type &amp;&amp; target.type.toLowerCase() === &#x27;object&#x27;) {
+                    block.forEach(function (i, k) {
+                        if (i.tag === &#x27;property&#x27;) {
+                            i.value = trim(i.value);
+                            i.tag = &#x27;param&#x27;;
+                            block[k] = i;
+                        }
+                    });
+                }
+            },
+            &#x27;method&#x27;: &#x27;property&#x27;,
+            &#x27;config&#x27;: &#x27;property&#x27;,
+            &#x27;event&#x27;: &#x27;property&#x27;,
+
+            &#x27;attribute&#x27;: function (tagname, value, target) {
+                // Use &#x27;property&#x27; if not currently parsing an element
+                if (!this.get(CURRENT_ELEMENT)) {
+                    return DIGESTERS.property.apply(this, arguments);
+                }
+
+                var nameVal = value.split(/\s+([\s\S]*$)/),
+                    desc = nameVal[1] || target.description || &#x27;&#x27;;
+
+                if (!target.attributes) {
+                    target.attributes = [];
+                }
+                target.attributes.push({
+                    name: nameVal[0],
+                    description: desc
+                });
+            },
+
+            // access fields
+            &#x27;public&#x27;: function (tagname, value, target) {
+                target.access = tagname;
+                target.tagname = value;
+            },
+            &#x27;private&#x27;: &#x27;public&#x27;,
+            &#x27;protected&#x27;: &#x27;public&#x27;,
+            &#x27;inner&#x27;: &#x27;public&#x27;,
+
+            // tags that can have multiple occurances in a single block
+            &#x27;todo&#x27;: function (tagname, value, target) {
+                if (!Lang.isArray(target[tagname])) {
+                    target[tagname] = [];
+                }
+                //If the item is @tag one,two
+                if (value.indexOf(&#x27;,&#x27;) &gt; -1) {
+                    value = value.split(&#x27;,&#x27;);
+                } else {
+                    value = [value];
+                }
+
+                value.forEach(function (v) {
+                    v = trim(v);
+                    target[tagname].push(v);
+                });
+            },
+            &#x27;extension_for&#x27;: &#x27;extensionfor&#x27;,
+            &#x27;extensionfor&#x27;: function (tagname, value) {
+                if (this.classes[this.get(CURRENT_CLASS)]) {
+                    this.classes[this.get(CURRENT_CLASS)].extension_for.push(value);
+                }
+            },
+            &#x27;example&#x27;: function (tagname, value, target, block) {
+                if (!Lang.isArray(target[tagname])) {
+                    target[tagname] = [];
+                }
+
+                var e = value;
+                block.forEach(function (v) {
+                    if (v.tag === &#x27;example&#x27;) {
+                        if (v.value.indexOf(value) &gt; -1) {
+                            e = v.value;
+                        }
+                    }
+                });
+
+                target[tagname].push(e);
+            },
+            &#x27;url&#x27;: &#x27;todo&#x27;,
+            &#x27;icon&#x27;: &#x27;todo&#x27;,
+            &#x27;see&#x27;: &#x27;todo&#x27;,
+            &#x27;requires&#x27;: &#x27;todo&#x27;,
+            &#x27;knownissue&#x27;: &#x27;todo&#x27;,
+            &#x27;uses&#x27;: &#x27;todo&#x27;,
+            &#x27;category&#x27;: &#x27;todo&#x27;,
+            &#x27;unimplemented&#x27;: &#x27;todo&#x27;,
+
+            genericValueTag: function (tagname, value, target) {
+                target[tagname] = value;
+            },
+
+            &#x27;author&#x27;: &#x27;genericValueTag&#x27;,
+            &#x27;contributor&#x27;: &#x27;genericValueTag&#x27;,
+            &#x27;since&#x27;: &#x27;genericValueTag&#x27;,
+
+            &#x27;deprecated&#x27;: function (tagname, value, target) {
+                target.deprecated = true;
+
+                if (typeof value === &#x27;string&#x27; &amp;&amp; value.length) {
+                    target.deprecationMessage = value;
+                }
+            },
+
+            // updates the current namespace
+            &#x27;namespace&#x27;: function (tagname, value) {
+                this.set(CURRENT_NAMESPACE, value);
+                if (value === &#x27;&#x27;) {
+                    //Shortcut this if namespace is an empty string.
+                    return;
+                }
+                var m,
+                    mod,
+                    name,
+                    lastNS,
+                    file = this.get(CURRENT_FILE);
+                if (file) {
+                    this.files[file].namespaces[value] = 1;
+                }
+                mod = this.get(CURRENT_MODULE);
+                if (mod) {
+                    this.modules[mod].namespaces[value] = 1;
+                }
+
+                mod = this.get(CURRENT_SUBMODULE);
+                if (mod) {
+                    this.modules[mod].namespaces[value] = 1;
+                }
+
+                mod = this.get(CURRENT_CLASS);
+                if (mod) {
+                    lastNS = this.get(&#x27;lastnamespace&#x27;);
+                    if (lastNS &amp;&amp; lastNS !== value &amp;&amp; (value.indexOf(lastNS + &#x27;.&#x27;) !== 0)) {
+                        if (this.classes[mod]) {
+                            m = this.classes[mod];
+                            delete this.classes[mod];
+                            mod = value + &#x27;.&#x27; + mod.replace(lastNS + &#x27;.&#x27;, &#x27;&#x27;);
+                            m.name = mod;
+                            m.namespace = value;
+                            this.classes[mod] = m;
+                            this.set(CURRENT_CLASS, m.name);
+                        }
+                    }
+                    if (this.classes[mod]) {
+                        this.classes[mod].namespace = value;
+                        if (mod === value) {
+                            return;
+                        }
+                        if (mod.indexOf(value + &#x27;.&#x27;) === -1) {
+                            if (mod.indexOf(&#x27;.&#x27;) === -1) {
+                                m = this.classes[mod];
+                                delete this.classes[mod];
+                                name = m.namespace + &#x27;.&#x27; + m.name;
+                                m.name = name;
+                                this.classes[name] = m;
+                                this.set(CURRENT_CLASS, name);
+                            } else {
+                                if (mod.indexOf(this.classes[mod].namespace + &#x27;.&#x27;) === -1) {
+                                    m = this.classes[mod];
+                                    delete this.classes[mod];
+                                    name = m.namespace + &#x27;.&#x27; + m.shortname;
+                                    m.name = name;
+                                    this.classes[name] = m;
+                                    this.set(CURRENT_CLASS, name);
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            // updates the current class only (doesn&#x27;t create
+            // a new class definition)
+            &#x27;for&#x27;: function (tagname, value) {
+                var ns, file, mod;
+
+                value = this._resolveFor(value);
+                this.set(CURRENT_CLASS, value);
+
+                ns = ((this.classes[value]) ? this.classes[value].namespace : &#x27;&#x27;);
+                this.set(CURRENT_NAMESPACE, ns);
+
+                file = this.get(CURRENT_FILE);
+                if (file) {
+                    this.files[file].fors[value] = 1;
+                }
+
+                mod = this.get(CURRENT_MODULE);
+                if (mod) {
+                    this.modules[mod].fors[value] = 1;
+                }
+
+                mod = this.get(CURRENT_SUBMODULE);
+                if (mod) {
+                    this.modules[mod].fors[value] = 1;
+                }
+            }
+        },
+
+        /**
+         * The doc parser accepts a **map** of files to file content.
+         * Once &#x60;parse()&#x60; is called, various properties will be populated
+         * with the parsers data (aggregated in the &#x60;&#x27;data&#x27;&#x60; property).
+         * @class DocParser
+         * @extends Base
+         * @constructor
+         * @param {Object} o the config object
+         * @module yuidoc
+         */
+        DocParser = function () {
+            this.digesters = Y.merge(DocParser.DIGESTERS);
+            this.knowntags = Y.Array.hash(DocParser.TAGLIST);
+            DocParser.superclass.constructor.apply(this, arguments);
+        };
+
+    DocParser.NAME = &#x27;DocParser&#x27;;
+
+    DocParser.DIGESTERS = DIGESTERS;
+    DocParser.TAGLIST = TAGLIST;
+    DocParser.CORRECTIONS = CORRECTIONS;
+
+    DocParser.ATTRS = {
+
+        lint: {
+            value: false
+        },
+
+        /**
+         * Digesters process the tag/text pairs found in a
+         * comment block.  They are looked up by tag name.
+         * The digester gets the tagname, the value, the
+         * target object to apply values to, and the full
+         * block that is being processed.  Digesters can
+         * be declared as strings instead of a function --
+         * in that case, the program will try to look up
+         * the key listed and use the function there instead
+         * (it is an alias).  Digesters can return a host
+         * object in the case the tag defines a new key
+         * block type (modules/classes/methods/events/properties)
+         * @attribute digesters
+         */
+        digesters: {
+            setter: function (val) {
+                Y.mix(this.digesters, val, true);
+                Y.mix(this.knowntags, val, true);
+                return val;
+            }
+        },
+
+        /**
+         * Emitters will be schemas for the types of payloads
+         * the parser will emit.  Not implemented.
+         * @attribute emitters
+         */
+        emitters: {
+            setter: function (val) {
+                Y.mix(this.emitters, val, true);
+            }
+        },
+
+        /**
+         * Comment syntax type.
+         * @attribute syntaxtype
+         * @type String
+         */
+        syntaxtype: {
+            writeOnce: true
+        },
+
+        /**
+         * The map of file names to file content.
+         * @attribute filemap
+         */
+        filemap: {
+            writeOnce: true
+        },
+
+        /**
+         * A map of file names to directory name.  Provided in
+         * case this needs to be used to reset the module name
+         * appropriately -- currently not used
+         * @attribute dirmap
+         */
+        dirmap: {
+            writeOnce: true
+        },
+
+        /**
+         * The file currently being parsed
+         * @attribute currentfile
+         * @type String
+         */
+        currentfile: {
+            setter: function (val) {
+                val = trim(val);
+                // this.set(CURRENT_NAMESPACE, &#x27;&#x27;);
+                if (!(val in this.files)) {
+                    this.files[val] = {
+                        name: val,
+                        modules: {},
+                        classes: {},
+                        fors: {},
+                        namespaces: {}
+                    };
+                }
+                return val;
+            }
+        },
+        /**
+         * The main documentation block for the module itself.
+         * @attribute mainmodule
+         * @type String
+         */
+        mainmodule: {
+            setter: function (o) {
+                if (!o) {
+                    return;
+                }
+                //console.log(&#x27;Main Module Setter: &#x27;, o);
+                var write = true,
+                    name = o.mainName || o.name;
+                if (this.get(CURRENT_MODULE) === name) {
+
+                    if (name in this.modules) {
+                        //console.log(&#x27;In Global Modules&#x27;, this.modules[name]);
+                        if (this.modules[name].tag) {
+                            //The main module has already been added, don&#x27;t over write it.
+                            if (this.modules[name].tag === &#x27;main&#x27;) {
+                                write = false;
+                            }
+                        }
+                        if (write) {
+                            //console.log(&#x27;Writing&#x27;);
+                            this.modules[name] = Y.merge(this.modules[name], o);
+                        }
+                    } else {
+                        if (o._main) {
+                            //console.log(&#x27;Writing&#x27;);
+                            this.modules[name] = o;
+                        }
+                    }
+                }
+            }
+        },
+        /**
+         * The module currently being parsed
+         * @attribute currentmodule
+         * @type String
+         */
+        currentmodule: {
+            setter: function (val) {
+                if (!val) {
+                    return val;
+                }
+                val = trim(val);
+
+                var modMain, clazz;
+
+                this.set(CURRENT_SUBMODULE, &#x27;&#x27;);
+                this.set(CURRENT_NAMESPACE, &#x27;&#x27;);
+
+                modMain = this.get(MAIN_MODULE);
+                if (modMain &amp;&amp; modMain.name !== val) {
+                    this.set(MAIN_MODULE, &#x27;&#x27;);
+                }
+
+                clazz = this.classes[this.get(CURRENT_CLASS)];
+                if (clazz) {
+                    //Handles case where @module comes after @class in a new directory of files
+                    if (clazz.module !== val) {
+                        if (this.modules[clazz.module]) {
+                            delete this.modules[clazz.module].submodules[clazz.submodule];
+                            delete this.modules[clazz.module].classes[clazz.name];
+                        }
+                        if (clazz.submodule &amp;&amp; this.modules[clazz.submodule]) {
+                            delete this.modules[clazz.submodule].submodules[clazz.submodule];
+                            delete this.modules[clazz.submodule].classes[clazz.name];
+                        }
+                        clazz.module = val;
+                        if (this.modules[val]) {
+                            this.modules[val].submodules[clazz.submodule] = 1;
+                            this.modules[val].classes[clazz.name] = 1;
+                        }
+                        if (clazz.submodule &amp;&amp; this.modules[clazz.submodule]) {
+                            this.modules[clazz.submodule].module = val;
+                        }
+                    }
+                }
+
+                if (!(val in this.modules)) {
+                    this.modules[val] = {
+                        name: val,
+                        submodules: {},
+                        elements: {},
+                        classes: {},
+                        fors: {},
+                        namespaces: {}
+                    };
+                }
+
+                return val;
+            }
+        },
+
+        /**
+         * The submodule currently being parsed
+         * @attribute currentsubmodule
+         * @type String
+         */
+        currentsubmodule: {
+            setter: function (val) {
+                if (!val) {
+                    return val;
+                }
+                val = trim(val);
+                if (!(val in this.modules)) {
+                    var mod = this.modules[val] = {
+                        name: val,
+                        submodules: {},
+                        elements: {},
+                        classes: {},
+                        fors: {},
+                        is_submodule: 1,
+                        namespaces: {}
+                    };
+
+                    mod.module = this.get(CURRENT_MODULE);
+                    mod.namespace = this.get(CURRENT_NAMESPACE);
+                }
+                //console.log(&#x27;SETTING CURRENT SUBMODULE: &#x27;, val, &#x27;ON CLASS&#x27;, this.get(CURRENT_CLASS));
+                return val;
+            }
+        },
+        currentnamespace: {
+            setter: function (val) {
+                this.set(&#x27;lastnamespace&#x27;, this.get(CURRENT_NAMESPACE));
+                return val;
+            }
+        },
+        lastnamespace: {
+
+        },
+        lastclass: {
+
+        },
+        /**
+         * The class currently being parsed
+         * @attribute currentclass
+         * @type String
+         */
+        currentclass: {
+            setter: function (val) {
+                if (!val) {
+                    return val;
+                }
+                this.set(&#x27;lastclass&#x27;, this.get(CURRENT_CLASS));
+                val = trim(val);
+                var name = val,
+                    ns, clazz;
+                if (!(val in this.classes)) {
+                    ns = this.get(CURRENT_NAMESPACE);
+                    if (ns &amp;&amp; ns !== &#x27;&#x27; &amp;&amp; (val.indexOf(ns + &#x27;.&#x27;) !== 0)) {
+                        name = ns + &#x27;.&#x27; + val;
+                    }
+                    clazz = this.classes[name] = {
+                        name: name,
+                        shortname: val,
+                        classitems: [],
+                        plugins: [],
+                        extensions: [],
+                        plugin_for: [],
+                        extension_for: []
+                    };
+                    clazz.module = this.get(CURRENT_MODULE);
+                    if (this.get(CURRENT_SUBMODULE)) {
+                        clazz.submodule = this.get(CURRENT_SUBMODULE);
+                    }
+                    clazz.namespace = ns;
+                }
+                return name;
+            }
+        },
+        lastelement: {
+
+        },
+        /**
+         * The element currently being parsed
+         * @attribute currentelement
+         * @type String
+         */
+        currentelement: {
+            setter: function (val) {
+                if (!val) {
+                    return val;
+                }
+                this.set(&#x27;lastelement&#x27;, this.get(CURRENT_ELEMENT));
+                val = trim(val);
+                var name = val,
+                    el;
+                if (!(val in this.elements)) {
+                    el = this.elements[name] = {
+                        name: name,
+                        attributes: []
+                    };
+                    el.module = this.get(CURRENT_MODULE);
+                    if (this.get(CURRENT_SUBMODULE)) {
+                        el.submodule = this.get(CURRENT_SUBMODULE);
+                    }
+                }
+                return name;
+            }
+        }
+    };
+
+    Y.extend(DocParser, Y.Base, {
+        /**
+         * Takes a non-namespaced classname and resolves it to a namespace (to support &#x60;@for&#x60;)
+         * @private
+         * @method _resolveFor
+         * @param {String} value The classname to resolve
+         * @return {String} The resolved namespace + classname
+         */
+        _resolveFor: function (value) {
+            if (value.indexOf(&#x27;.&#x27;) === -1) {
+                Y.each(this.classes, function (i) {
+                    if (i.shortname === value) {
+                        if (i.namespace) {
+                            value = i.namespace + &#x27;.&#x27; + i.shortname;
+                        }
+                    }
+                });
+            }
+            return value;
+        },
+
+        initializer: function () {
+            this.warnings = [];
+
+            var self = this;
+            self.after(&#x27;currentfileChange&#x27;, function () {
+                /*
+                 * File changed, so we reset class and submodule.
+                 * You should use @for if you want to reference another class
+                 * in different file.
+                 */
+                self.set(CURRENT_SUBMODULE, &#x27;&#x27;);
+                self.set(CURRENT_CLASS, &#x27;&#x27;);
+                self.set(CURRENT_ELEMENT, &#x27;&#x27;);
+            });
+
+            self.after(&#x27;currentmoduleChange&#x27;, function (e) {
+                var mod = e.newVal,
+                    elements = self.elements,
+                    classes = self.classes,
+                    addModule = function (c) {
+                        if (!(c.module)) {
+                            c.module = mod;
+                        }
+                    };
+
+                Y.each(classes, addModule);
+                Y.each(elements, addModule);
+            });
+
+            self.after(&#x27;currentsubmoduleChange&#x27;, function (e) {
+                var mod = e.newVal,
+                    classes = self.classes,
+                    elements = self.elements,
+                    addModule = function (c) {
+                        if (!(c.submodule)) {
+                            if (!c.module) {
+                                c.submodule = mod;
+                            }
+                        }
+                    };
+
+                if (mod) {
+                    Y.each(classes, addModule);
+                    Y.each(elements, addModule);
+                }
+            });
+
+            self.after(&#x27;currentclassChange&#x27;, function (e) {
+                var clazz = e.newVal;
+                Y.each(self.classitems, function (item) {
+                    if (!(item.class)) {
+                        item.class = clazz;
+                    }
+                });
+                // Y.log(self.classitems);
+            });
+        },
+
+        /**
+        Normalizes the initial indentation of the given _content_ so that the first line
+        is unindented, and all other lines are unindented to the same degree as the
+        first line. So if the first line has four spaces at the beginning, then all
+        lines will be unindented four spaces. Ported from [Selleck](https://github.com/rgrove/selleck)
+
+        @method unindent
+        @param {String} content Text to unindent.
+        @return {String} Unindented text.
+        @private
+        **/
+        unindent: function (content) {
+            var indent = content.match(/^(\s+)/);
+
+            if (indent) {
+                content = content.replace(new RegExp(&#x27;^&#x27; + indent[1], &#x27;gm&#x27;), &#x27;&#x27;);
+            }
+
+            return content;
+        },
+
+        /**
+        Transforms a JavaDoc style comment block (less the start and end of it)
+        into a list of tag/text pairs. The leading space and &#x27;*&#x27; are removed,
+        but the remaining whitespace is preserved so that the output should be
+        friendly for both markdown and html parsers.
+
+        @method handlecomment
+        @param {String} comment The comment to parse
+        @param {String} file The file it was parsed from
+        @param {String} line The line number it was found on
+        **/
+        handlecomment: function (comment, file, line) {
+            var lines = comment.split(REGEX_LINES),
+                len = lines.length,
+                i,
+                regex,
+                parts, part, peek, skip,
+                tag, value,
+                results = [{
+                    tag: &#x27;file&#x27;,
+                    value: file
+                }, {
+                    tag: &#x27;line&#x27;,
+                    value: line
+                }],
+                syntaxtype = this.get(&#x27;syntaxtype&#x27;),
+                lineHeadCharRegex = REGEX_LINE_HEAD_CHAR[syntaxtype],
+                hasLineHeadChar = lines[0] &amp;&amp; lineHeadCharRegex.test(lines[0]);
+
+            // trim leading line head char(star or harp) if there are any
+            if (hasLineHeadChar) {
+                for (i = 0; i &lt; len; i++) {
+                    lines[i] = lines[i].replace(lineHeadCharRegex, &#x27;&#x27;);
+                }
+            }
+
+            // reconsitute and tokenize the comment block
+            comment = this.unindent(lines.join(&#x27;\n&#x27;));
+            regex = new RegExp(&#x27;(?:^|\\n)\\s*((?!@&#x27; + IGNORE_TAGLIST.join(&#x27;)(?!@&#x27;) + &#x27;)@\\w*)&#x27;);
+            parts = comment.split(regex);
+            len = parts.length;
+            for (i = 0; i &lt; len; i++) {
+                value = &#x27;&#x27;;
+                part = parts[i];
+                if (part === &#x27;&#x27;) {
+                    continue;
+                }
+                skip = false;
+
+                // the first token may be the description, otherwise it should be a tag
+                if (i === 0 &amp;&amp; part.substr(0, 1) !== &#x27;@&#x27;) {
+                    if (part) {
+                        tag = &#x27;@description&#x27;;
+                        value = part;
+                    } else {
+                        skip = true;
+                    }
+                } else {
+                    tag = part;
+                    // lookahead for the tag value
+                    peek = parts[i + 1];
+                    if (peek) {
+                        value = peek;
+                        i++;
+                    }
+                }
+
+                if (!skip &amp;&amp; tag) {
+                    results.push({
+                        tag: tag.substr(1).toLowerCase(),
+                        value: value
+                    });
+                }
+            }
+
+            return results;
+        },
+
+        /**
+         * Accepts a map of filenames to file content.  Returns
+         * a map of filenames to an array of API comment block
+         * text.  This expects the comment to start with / **
+         * on its own line, and end with * / on its own
+         * line.  Override this function to provide an
+         * alternative comment parser.
+         * @method extract
+         * @param {Object} filemap A map of filenames to file content
+         * @param {Array} dirmap A map of file names to directory name
+         * @return {Object} A map of filenames to an array of extracted
+         * comment text.
+         */
+        extract: function (filemap, dirmap) {
+            filemap = filemap || this.get(&#x27;filemap&#x27;);
+            dirmap = dirmap || this.get(&#x27;dirmap&#x27;);
+            var syntaxtype = this.get(&#x27;syntaxtype&#x27;),
+                commentmap = {};
+            Y.each(filemap, function (code, filename) {
+
+                var commentlines, comment, line,
+                    lines = code.split(REGEX_LINES),
+                    len = lines.length,
+                    i, linenum;
+
+                for (i = 0; i &lt; len; i++) {
+                    line = lines[i];
+                    if (REGEX_START_COMMENT[syntaxtype].test(line)) {
+                        commentlines = [];
+
+                        linenum = i + 1;
+
+                        while (i &lt; len &amp;&amp; (!REGEX_END_COMMENT[syntaxtype].test(line))) {
+                            commentlines.push(line);
+                            i++;
+                            line = lines[i];
+                        }
+
+                        // we can look ahead here if we need to guess the
+                        // name/type like we do in the python version.
+
+                        // remove /**
+                        commentlines.shift();
+                        comment = commentlines.join(&#x27;\n&#x27;);
+                        commentmap[filename] = commentmap[filename] || [];
+                        commentmap[filename]
+                            .push(this.handlecomment(comment, filename, linenum));
+                    }
+                }
+            }, this);
+
+            this.commentmap = commentmap;
+            return commentmap;
+        },
+
+        /**
+         * Processes all the tags in a single comment block
+         * @method processblock
+         * @param {Array} an array of the tag/text pairs
+         */
+        processblock: function (block) {
+            var target = {},
+                digestname,
+                digester,
+                host;
+
+            // Y.log(block);
+            Y.each(block, function (tag) {
+                var name = trim(tag.tag),
+                    value = trim(tag.value),
+                    ret;
+
+                //Convert empty values to a 1 for JSON data parsing later
+                if (SHORT_TAGS[name] &amp;&amp; value === &#x27;&#x27;) {
+                    value = 1;
+                }
+
+                if (tag &amp;&amp; tag.tag) {
+                    if (!(name in this.knowntags)) {
+                        if (name in CORRECTIONS) {
+                            this.warnings.push({
+                                message: &#x27;replacing incorrect tag: &#x27; + name + &#x27; with &#x27; + CORRECTIONS[name],
+                                line: stringlog(block)
+                            });
+                            Y.log(&#x27;replacing incorrect tag: &#x27; + name + &#x27; with &#x27; + CORRECTIONS[name] + &#x27;: &#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                            name = CORRECTIONS[name];
+                        } else {
+                            this.warnings.push({
+                                message: &#x27;unknown tag: &#x27; + name,
+                                line: stringlog(block)
+                            });
+                            Y.log(&#x27;unknown tag: &#x27; + name + &#x27;,&#x27; + stringlog(block), &#x27;warn&#x27;, &#x27;docparser&#x27;);
+                        }
+                    }
+
+                    digestname = name;
+                    if (digestname in this.digesters) {
+                        digester = this.digesters[digestname];
+                        if (Lang.isString(digester)) {
+                            digester = this.digesters[digester];
+                        }
+                        ret = digester.call(this, name, value, target, block);
+                        host = host || ret;
+                    } else {
+                        target[name] = value;
+                    }
+                }
+            }, this);
+
+            if (host) {
+                Y.mix(host, target);
+
+                if (host.attributes &amp;&amp; target.attributes) {
+                    host.attributes.push.apply(host.attributes, target.attributes);
+                }
+            } else if (target.attributes) {
+                host = this.elements[this.get(CURRENT_ELEMENT)];
+                if (host) {
+                    if (target.deprecated) {
+                        target.attributes.forEach(function (a) {
+                            a.deprecated = target.deprecated;
+
+                            if (target.deprecationMessage) {
+                                a.deprecationMessage = target.deprecationMessage;
+                            }
+                        });
+                    }
+                    host.attributes.push.apply(host.attributes, target.attributes);
+                }
+            } else {
+                this.classitems.push(target);
+                target.class = this.get(CURRENT_CLASS);
+                target.module = this.get(CURRENT_MODULE);
+
+                host = this.get(CURRENT_SUBMODULE);
+                if (host) {
+                    target.submodule = host;
+                }
+
+                host = this.get(CURRENT_NAMESPACE);
+                if (host) {
+                    target.namespace = host;
+                }
+            }
+        },
+
+        /**
+         * Transforms a map of filenames to arrays of comment blocks into a
+         * JSON structure that represents the entire processed API doc info
+         * and relationships between elements for the entire project.
+         * @method transform
+         * @param {object} commentmap The hash of files and parsed comment blocks
+         * @return {object} The transformed data for the project
+         */
+        transform: function (commentmap) {
+            var self = this,
+                project = self.project = {},
+                files = self.files = {},
+                modules = self.modules = {},
+                classes = self.classes = {},
+                elements = self.elements = {},
+                classitems = self.classitems = [];
+
+            self.data = {
+                project: project,
+                files: files,
+                modules: modules,
+                classes: classes,
+                elements: elements,
+                classitems: classitems
+            };
+
+            commentmap = commentmap || self.commentmap;
+
+            // process
+            Y.each(commentmap, function (blocks, file) {
+                //Y.log(&#x27;transform: &#x27; + file, &#x27;info&#x27;, &#x27;docparser&#x27;);
+                self.set(CURRENT_FILE, file);
+                Y.each(blocks, function (block) {
+                    self.processblock(block);
+                });
+            });
+
+            // cross reference
+            Y.each(modules, function (module, name) {
+                if (module.file) {
+                    files[module.file].modules[name] = 1;
+                }
+                if (module.is_submodule) {
+                    modules[module.module].submodules[name] = 1;
+                }
+                //Clean up processors
+                delete module.mainName;
+                delete module._main;
+            });
+
+            Y.each(classes, function (clazz, name) {
+                if (clazz.module) {
+                    modules[clazz.module].classes[name] = 1;
+                }
+                //console.error(&#x27;------------------------------&#x27;);
+                //console.error(clazz);
+                //console.error(modules[clazz.submodule]);
+                //console.error(&#x27;------------------------------&#x27;);
+                if (clazz.submodule) {
+                    modules[clazz.submodule].classes[name] = 1;
+                    if (!modules[clazz.submodule].description) {
+                        modules[clazz.submodule].description = clazz.description;
+                    }
+                }
+
+                if (clazz.file) {
+                    files[clazz.file].classes[name] = 1;
+                    if (modules[clazz.module]) {
+                        modules[clazz.module].file = clazz.file;
+                        modules[clazz.module].line = clazz.line;
+                    }
+                    if (modules[clazz.submodule]) {
+                        modules[clazz.submodule].file = clazz.file;
+                        modules[clazz.submodule].line = clazz.line;
+                    }
+                }
+                if (clazz.uses &amp;&amp; clazz.uses.length) {
+                    clazz.uses.forEach(function (u) {
+                        var c = classes[u];
+                        if (c) {
+                            c.extension_for.push(clazz.name);
+                        }
+                    });
+                }
+            });
+
+            Y.each(elements, function (el, name) {
+                if (el.module) {
+                    modules[el.module].elements[name] = 1;
+                }
+
+                if (el.submodule) {
+                    modules[el.submodule].elements[name] = 1;
+                    if (!modules[el.submodule].description) {
+                        modules[el.submodule].description = el.description;
+                    }
+                }
+            });
+
+            Y.each(classitems, function (v) {
+                if (!v.itemtype) {
+                    self.warnings.push({
+                        message: &#x27;Missing item type&#x27; + (v.description ? &#x27;\n&#x27; + v.description : &#x27;&#x27;),
+                        line: stringlog(v)
+                    });
+                    Y.log(&#x27;Missing item type: &#x27; + stringlog(v), &#x27;warn&#x27;, &#x27;DocParser&#x27;);
+                    if (v.description) {
+                        Y.log(&#x27;\t\t&#x27; + v.description, &#x27;warn&#x27;, &#x27;DocParser&#x27;);
+                    }
+                }
+                if (v.itemtype === &#x27;property&#x27; &amp;&amp; v.params) {
+                    v.subprops = v.params;
+                    v.subprops.forEach(function (i) {
+                        //Remove top level prop name from sub props (should have been done in the @param parser
+                        i.name = i.name.replace(v.name + &#x27;.&#x27;, &#x27;&#x27;);
+                    });
+                    delete v.params;
+                }
+            });
+
+            Y.each(modules, function (mod) {
+                if (!mod.file || !mod.line || !mod.name) {
+                    console.log(&#x27;Failed to find lines for&#x27;, mod);
+                }
+            });
+
+            return self;
+        },
+
+        /**
+         * Extracts and transforms the filemap provided to constructor
+         * @method parse
+         * @param {Array} filemap A map of filenames to file content
+         * @param {Array} dirmap A map of file names to directory name
+         * @return {DocParser} this parser instance.  The total results
+         * are available in parser.data.
+         */
+        parse: function (filemap, dirmap) {
+            filemap = filemap || this.get(&#x27;filemap&#x27;);
+            dirmap = dirmap || this.get(&#x27;dirmap&#x27;);
+            return this.transform(this.extract(filemap, dirmap));
+        }
+    });
+
+    Y.DocParser = DocParser;
+
+}, &#x27;0.1.0&#x27;, {
+    requires: [&#x27;base-base&#x27;]
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

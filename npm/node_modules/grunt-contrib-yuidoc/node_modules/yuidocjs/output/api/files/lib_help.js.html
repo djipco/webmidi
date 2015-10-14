@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/help.js - yuidoc-root</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/CLI.html">CLI</a></li>
+                                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
+                                <li><a href="../classes/DocParser.html">DocParser</a></li>
+                                <li><a href="../classes/DocView.html">DocView</a></li>
+                                <li><a href="../classes/Files.html">Files</a></li>
+                                <li><a href="../classes/Help.html">Help</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Options.html">Options</a></li>
+                                <li><a href="../classes/Server.html">Server</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: lib/help.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
+&#x27;use strict&#x27;;
+
+YUI.add(&#x27;help&#x27;, function (Y) {
+
+    /**
+     * Shows the help text
+     * @module yuidoc
+     * @class Help
+     */
+
+    /**
+     * The help text to display
+     * @private
+     * @property help
+     * @type Array
+     */
+    var help = [
+        &#x27;&#x27;,
+        &#x27;YUI Doc generates API documentation from a modified JavaDoc syntax.&#x27;,
+        &#x27;&#x27;,
+        &#x27;Current version ({VERSION})&#x27;,
+        &#x27;&#x27;,
+        &#x27;Usage: yuidoc &lt;options&gt; &lt;input path&gt;&#x27;,
+        &#x27;&#x27;,
+        &#x27;Common Options:&#x27;,
+        &#x27;  -c, --config, --configfile &lt;filename&gt;  A JSON config file to provide configuration data.&#x27;,
+        &#x27;           You can also create a yuidoc.json file and place it&#x27;,
+        &#x27;           anywhere under your source tree and YUI Doc will find it&#x27;,
+        &#x27;           and use it.&#x27;,
+        &#x27;  -e, --extension &lt;comma sep list of file extensions&gt; The list of file extensions to parse &#x27;,
+        &#x27;           for api documentation. (defaults to .js)&#x27;,
+        &#x27;  -x, --exclude &lt;comma sep list of directories&gt; Directories to exclude from parsing &#x27;,
+        &#x27;           (defaults to \&#x27;.DS_Store,.svn,CVS,.git,build_rollup_tmp,build_tmp\&#x27;)&#x27;,
+        &#x27;  -v, --version Show the current YUIDoc version&#x27;,
+        &#x27;  --project-version Set the doc version for the template&#x27;,
+        &#x27;  -N, --no-color Turn off terminal colors (for automation)&#x27;,
+        &#x27;  -C, --no-code Turn off code generation (don\&#x27;t include source files in output)&#x27;,
+        &#x27;  -n, --norecurse Do not recurse directories (default is to recurse)&#x27;,
+        &#x27;  --no-sort Do not alphabetical sorting of attributes, events, methods, and properties&#x27;,
+        &#x27;  -S, --selleck Look for Selleck component data and attach to API meta data&#x27;,
+        &#x27;  -V, --view Dump the Handlebars.js view data instead of writing template files&#x27;,
+        &#x27;  -p, --parse-only Only parse the API docs and create the JSON data, do not render templates&#x27;,
+        &#x27;  -o, --outdir &lt;directory path&gt; Path to put the generated files (defaults to ./out)&#x27;,
+        &#x27;  -t, --themedir &lt;directory path&gt; Path to a custom theme directory containing Handlebars templates&#x27;,
+        &#x27;  -H, --helpers &lt;comma separated list of paths to files&gt; Require these file and add Handlebars helpers. See docs for more information&#x27;,
+        &#x27;  --charset CHARSET Use this as the default charset for all file operations. Defaults to \&#x27;utf8\&#x27;&#x27;,
+        &#x27;  -h, --help Show this help&#x27;,
+        &#x27;  -q, --quiet Supress logging output&#x27;,
+        &#x27;  -T, --theme &lt;simple|default&gt; Choose one of the built in themes (default is default)&#x27;,
+        &#x27;  --syntaxtype &lt;js|coffee&gt; Choose comment syntax type (default is js)&#x27;,
+        &#x27;  --server &lt;port&gt; Fire up the YUIDoc server for faster API doc developement. Pass optional port to listen on. (default is 3000)&#x27;,
+        &#x27;  --lint Lint your docs, will print parser warnings and exit code 1 if there are any&#x27;,
+        &#x27;&#x27;,
+        &#x27;  &lt;input path&gt; Supply a list of paths (shell globbing is handy here)&#x27;,
+        &#x27;&#x27;
+    ].join(&#x27;\n&#x27;);
+
+    /**
+     * Render the help message as a string
+     * @method renderHelp
+     * @return {String} The help screen to display
+     */
+    Y.renderHelp = function () {
+        return Y.Lang.sub(help, {
+            VERSION: Y.packageInfo.version
+        });
+    };
+    /**
+     * Display the help message, write it to the screen and exit
+     * @method showHelp
+     */
+    Y.showHelp = function () {
+        console.error(Y.renderHelp());
+        process.exit(0); //Shouldn&#x27;t exit one on help
+    };
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

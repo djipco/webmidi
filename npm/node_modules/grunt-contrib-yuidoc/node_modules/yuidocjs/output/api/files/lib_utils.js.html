@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/utils.js - yuidoc-root</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/CLI.html">CLI</a></li>
+                                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
+                                <li><a href="../classes/DocParser.html">DocParser</a></li>
+                                <li><a href="../classes/DocView.html">DocView</a></li>
+                                <li><a href="../classes/Files.html">Files</a></li>
+                                <li><a href="../classes/Help.html">Help</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Options.html">Options</a></li>
+                                <li><a href="../classes/Server.html">Server</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: lib/utils.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
+&#x27;use strict&#x27;;
+
+var path = require(&#x27;path&#x27;),
+    minimatch = require(&#x27;minimatch&#x27;),
+    fs = require(&#x27;graceful-fs&#x27;);
+
+/**
+ * Utilities Class
+ * @class Utils
+ * @module yuidoc
+ */
+
+YUI.add(&#x27;utils&#x27;, function (Y) {
+
+    Y.charset = &#x27;utf8&#x27;;
+
+    var HTML_CHARS = {
+        &#x27;&amp;&#x27;: &#x27;&amp;amp;&#x27;,
+        &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;,
+        &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;,
+        &#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27;,
+        &#x27;\&#x27;&#x27;: &#x27;&amp;#x27;&#x27;,
+        &#x27;/&#x27;: &#x27;&amp;#x2F;&#x27;,
+        &#x27;&#x60;&#x27;: &#x27;&amp;#x60;&#x27;
+    };
+
+    /**
+    Escapes HTML characters in _html_.
+
+    @method escapeHTML
+    @param {String} html String to escape.
+    @return {String} Escaped string.
+    **/
+    Y.escapeHTML = function (html) {
+        return html.replace(/[&amp;&lt;&gt;&quot;&#x27;\/&#x60;]/g, function (match) {
+            return HTML_CHARS[match];
+        });
+    };
+
+    /**
+    Normalizes the initial indentation of the given _content_ so that the first line
+    is unindented, and all other lines are unindented to the same degree as the
+    first line. So if the first line has four spaces at the beginning, then all
+    lines will be unindented four spaces.
+
+    @method unindent
+    @param {String} content Text to unindent.
+    @return {String} Unindented text.
+    @private
+    **/
+    Y.unindent = function (content) {
+        var indent = content.match(/^(\s+)/);
+
+        if (indent) {
+            content = content.replace(new RegExp(&#x27;^&#x27; + indent[1], &#x27;gm&#x27;), &#x27;&#x27;);
+        }
+
+        return content;
+    };
+
+    /**
+    Like &#x60;getPages()&#x60;, but returns only the files under the &#x60;layout/&#x60; subdirectory
+    of the specified _dir_.
+
+    @method getLayouts
+    @param {String} dir Directory path.
+    @return {Object} Mapping of layout names to layout content.
+    **/
+    function getLayouts(dir) {
+        return getPages(path.join(dir, &#x27;layouts&#x27;));
+    }
+    Y.getLayouts = getLayouts;
+
+    /**
+    Loads and returns the content of the specified page file.
+
+    @method getPage
+    @param {String} pagePath Path to a single &#x60;.handlebars&#x60; page.
+    @return {String|null} Page content, or &#x60;null&#x60; if not found.
+    **/
+    function getPage(pagePath) {
+        if (!Y.Files.isFile(pagePath)) {
+            return null;
+        }
+        return fs.readFileSync(pagePath, Y.charset);
+    }
+    Y.getPage = getPage;
+
+    /**
+    Loads pages (files with a &#x60;.handlebars&#x60; extension) in the specified directory and
+    returns an object containing a mapping of page names (the part of the filename)
+    preceding the &#x60;.handlebars&#x60; extension) to page content.
+
+    @method getPages
+    @param {String} dir Directory path.
+    @return {Object} Mapping of page names to page content.
+    **/
+    var cache = {};
+    function getPages(dir) {
+        if (cache[dir]) {
+            return cache[dir];
+        }
+        var pages = {};
+
+        if (!Y.Files.isDirectory(dir)) {
+            return pages;
+        }
+
+        fs.readdirSync(dir).forEach(function (filename) {
+            var filePath = path.join(dir, filename);
+
+            if (path.extname(filename) === &#x27;.handlebars&#x27; &amp;&amp; Y.Files.isFile(filePath)) {
+                pages[path.basename(filename, &#x27;.handlebars&#x27;)] = fs.readFileSync(filePath, Y.charset);
+            }
+        });
+        cache[dir] = pages;
+
+        return pages;
+    }
+    Y.getPages = getPages;
+
+    /**
+    Like &#x60;getPages()&#x60;, but returns only the files under the &#x60;partial/&#x60; subdirectory
+    of the specified _dir_.
+
+    @method getPartials
+    @param {String} dir Directory path.
+    @return {Object} Mapping of partial names to partial content.
+    **/
+    function getPartials(dir) {
+        return getPages(path.join(dir, &#x27;partials&#x27;));
+    }
+    Y.getPartials = getPartials;
+
+
+    /**
+    Mix/merge/munge data into the template.
+
+    @method prepare
+    @param {String} inDir The starting directory
+    @param {Object} options The &#x60;options&#x60; for the meta data.
+    @param {callback} callback The callback to excecute when complete
+    @param {Error} callback.err
+    @param {Object} callback.options Merged options.
+    **/
+    function prepare(inDirs, options, callback) {
+        var layouts,
+            partials,
+            type = &#x27;project&#x27;;
+
+        if (options &amp;&amp; options.skipLoad) {
+            // Skip loading layouts, metadata, pages, and partials and assume that
+            // the caller has provided them if they want them.
+            options = Y.merge({
+                layouts: {},
+                meta: {},
+                pages: {},
+                partials: {},
+                viewClass: Y.DocView
+            }, options);
+        } else {
+            // Gather layouts, metadata, pages, and partials from the specified
+            // input directory, then merge them into the provided options (if any).
+            //
+            // Gathered data will override provided data if there are conflicts, in
+            // order to support a use case where global data are provided by the
+            // caller and overridden by more specific component-level data gathered
+            // from the input directory.
+            //
+            // The metadata inheritance chain looks like this:
+            //
+            //   - override metadata specified via CLI (highest precedence)
+            //   - component metadata (if this is a component)
+            //   - project-level component default metadata (if specified and this is a component)
+            //   - theme-level component default metadata (if specified and this is a component)
+            //   - project metadata
+            //   - theme metadata (lowest precedence)
+            try {
+                if (inDirs[0] === inDirs[1]) {
+                    layouts = getLayouts(inDirs[0]);
+                    partials = getPartials(inDirs[0]);
+                } else {
+                    layouts = Y.merge(getLayouts(inDirs[0]), getLayouts(inDirs[1]));
+                    partials = Y.merge(getPartials(inDirs[0]), getPartials(inDirs[1]));
+                }
+                options = Y.merge({
+                        viewClass: Y.DocView
+                    },
+                    options || {}, {
+                        layouts: layouts,
+                        meta: options.meta,
+                        partials: partials
+                    }
+                );
+            } catch (ex) {
+                return callback(ex);
+            }
+        }
+
+        // Mix in the override metadata, if any. It takes precedence over everything
+        // else.
+        Y.mix(options.meta, options.overrideMeta);
+
+        // Set a default asset path if one isn&#x27;t specified in the metadata.
+        if (!options.meta.projectAssets) {
+            options.meta.projectAssets = options.component ? &#x27;../assets&#x27; : &#x27;assets&#x27;;
+        }
+
+        if (!options.meta.componentAssets &amp;&amp; options.component) {
+            options.meta.componentAssets = &#x27;../assets/&#x27; + options.meta.name;
+        }
+
+        if (typeof options.meta.layout === &#x27;undefined&#x27;) {
+            options.meta.layout = options.layouts[type] ? type : &#x27;main&#x27;;
+        }
+
+        callback(null, options);
+    }
+
+    Y.prepare = prepare;
+
+    /**
+     * Walk the directory tree to locate the yuidoc.json file.
+     * @method getProjectData
+     * @param {Path} [directory=process.cwd()] The directory to start from
+     */
+    var getProjectData = function (directory) {
+        var dirs = [directory || process.cwd()];
+        var projectData, packageData;
+        var dirCount = 0;
+        // keep looping until
+        //  * data is found
+        //  * there are no more dirs to process
+        //  * we abort due to failsafe
+        while (dirs.length &amp;&amp; !projectData) {
+            if (dirCount++ &gt; 5000) {
+                Y.log(&#x27;Scanned &#x27; + dirCount + &#x27; directories looking for a yuidoc.json file, something is probably wrong here..&#x27;, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                process.exit(1);
+            }
+            // accumulator for directories at this level
+            var childDirs = [];
+            // for each directory at the previous level
+            dirs.forEach(function (dir) {
+                // abort iterating if we have project data
+                if (projectData) {
+                    return;
+                }
+                // squelch (but log) any complaints about this particular directory
+                try {
+                    // for each item in this directory
+                    var names = fs.readdirSync(dir);
+                    names.forEach(function (name) {
+                        // abort iterating a folder if we have found both data
+                        if (projectData &amp;&amp; packageData) {
+                            return;
+                        }
+                        // build a full path
+                        var p = path.join(dir, name);
+                        // acquire project data from this item if possible
+                        if (Y.Files.isFile(p)) {
+                            projectData = getFileData(p, name, &#x27;yuidoc.json&#x27;);
+                            // &#x27;package.json&#x27; is used for auxilliary configuration
+                            // if it&#x27;s found. Formerly, it was only found if it
+                            // came _before_&#x27;yuidoc.json&#x27; in the folder tree
+                            // (never in the same folder).
+                            // This code will find &#x27;package.json&#x27; in the same
+                            // folder as &#x27;yuidoc.json&#x27;.
+                            // If there is no &#x27;yuidoc.json&#x27;, former algorithm would
+                            // use the deepest &#x27;package.json&#x27; it can find, this one
+                            // will use the first (most shallow) one.
+                            packageData = packageData || getFileData(p, name, &#x27;package.json&#x27;);
+                        }
+                        // if we are a folder, but not ., .., or node_modules,
+                        // then add to directory accumulator
+                        if (Y.Files.isDirectory(p)) {
+                            if (name.indexOf(&#x27;.&#x27;) === 0) {
+                                return;
+                            }
+                            if (name === &#x27;node_modules&#x27;) {
+                                Y.log(&#x27;Skipping node_modules directory while scanning for yuidoc.json&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                                return;
+                            }
+                            childDirs.push(p);
+                        }
+                    });
+                } catch (dirPerm) {
+                    Y.log(&#x27;Accessing dir (&#x27; + dir + &#x27;) threw an error&#x27;, &#x27;warn&#x27;, &#x27;yuidoc&#x27;);
+                }
+            });
+            // iterate over new set of folders
+            dirs = childDirs;
+        }
+        if ((packageData &amp;&amp; projectData) || (packageData &amp;&amp; packageData.yuidoc)) {
+            projectData = mergeData(packageData, projectData);
+        }
+        return projectData;
+    };
+
+    var getFileData = function (p, name, file) {
+        if (name === file) {
+            Y.log(&#x27;Loading &#x27; + name + &#x27; data from: &#x27; + p, &#x27;info&#x27;, &#x27;yuidoc&#x27;);
+            try {
+                return Y.Files.getJSON(p);
+            } catch (e) {
+                var err = &#x27;Failed to parse &#x27; + name + &#x27; file, please make sure it is valid JSON&#x27;;
+                Y.log(err, &#x27;error&#x27;, &#x27;yuidoc&#x27;);
+                throw (e + &#x27;&#x27;);
+            }
+        }
+    };
+
+    var mergeData = function (pack, project) {
+        project = project || {};
+
+        if (pack.yuidoc) {
+            Object.keys(pack.yuidoc).forEach(function (key) {
+                if (!project[key]) {
+                    project[key] = pack.yuidoc[key];
+                }
+            });
+        }
+
+        [&#x27;name&#x27;, &#x27;description&#x27;, &#x27;version&#x27;, &#x27;url&#x27;].forEach(function (key) {
+            if (pack[key] &amp;&amp; !project[key]) {
+                project[key] = pack[key];
+            }
+        });
+
+        return project;
+    };
+
+    Y.getProjectData = getProjectData;
+
+
+    /**
+     * Walks the tree from this dir and returns all the subdirs
+     * @method getDirs
+     * @param {String} dir The dir to begin at
+     * @return {Array} The array of directories..
+     */
+    var getDirs = function (dir) {
+        var dirs = fs.readdirSync(dir),
+            paths = [];
+
+        dirs.forEach(function (d) {
+            var _dir = path.join(dir, d),
+                stat = fs.lstatSync(_dir);
+
+            if (stat.isDirectory()) {
+                if (_dir.indexOf(&#x27;.&#x27;) !== 0) {
+                    paths = [].concat(paths, _dir, getDirs(_dir));
+                }
+            }
+        });
+
+        return paths;
+    };
+
+    Y.getDirs = getDirs;
+
+    /**
+     * Make sure all the paths passed are directories and that they are not in the ignore list.
+     * @method validatePaths
+     * @param {Array} paths The array of paths to validate
+     * @param {String} [ignore=false] A string to call &#x60;.indexOf&#x60; on a path to determine if it should be ignored
+     */
+    var validatePaths = function (paths, ignore) {
+        var newpaths = [];
+        //Shortcut the *, . &amp; ./ shortcuts that shall globbing fixes for us
+        if (paths === &#x27;*&#x27; || paths === &#x27;.&#x27; || paths === &#x27;./&#x27;) {
+            paths = [process.cwd()];
+        }
+
+        // Ensure that we always have an array of some kind.
+        paths = paths || [];
+        if (!Y.Lang.isArray(paths)) {
+            paths = [paths];
+        }
+        paths.forEach(function (validatePath) {
+            var glob = validatePath || &#x27;&#x27;;
+
+            if (process.platform === &#x27;win32&#x27;) {
+                glob = validatePath.replace(/\//g, &#x27;\\\\&#x27;);
+            }
+
+            var glob_paths = getDirs(&#x27;.&#x27;),
+                is_globbed = false;
+
+            glob_paths.forEach(function (dir) {
+                //Don&#x27;t scan things in node_modules
+                if (dir.indexOf(&#x27;node_modules&#x27;) &gt; -1) {
+                    return;
+                }
+                if (minimatch(dir, glob, {
+                    period: true
+                })) {
+                    newpaths.push(dir);
+                    is_globbed = true;
+                }
+            });
+
+            if (!is_globbed &amp;&amp; (Y.Files.isDirectory(glob))) {
+                //If minimatch fails, check to see if it&#x27;s a relative directory
+                // if it is, add it directly
+                newpaths.push(glob);
+            }
+        });
+
+        paths = newpaths;
+        paths.forEach(function (newPath) {
+            try {
+                if (!Y.Files.isDirectory(newPath)) {
+                    throw (&#x27;Path not a directory: &#x27; + newPath);
+                }
+            } catch (e) {
+                throw new Error(e.message);
+            }
+        });
+
+        if (!paths || !paths.forEach) {
+            throw (&#x27;Paths should be an array of paths&#x27;);
+        }
+
+        if (ignore) {
+            if (!(ignore instanceof Array)) {
+                ignore = [ignore];
+            }
+            var p = [],
+                shouldIgnore = false;
+
+            paths.forEach(function (v) {
+                shouldIgnore = false;
+                ignore.forEach(function (i) {
+                    if (!shouldIgnore &amp;&amp; v.indexOf(i) !== -1) {
+                        shouldIgnore = true;
+                    }
+                });
+                if (!shouldIgnore) {
+                    p.push(v);
+                }
+            });
+            paths = p;
+        }
+
+        paths = paths.sort();
+        return paths;
+    };
+
+    Y.validatePaths = validatePaths;
+
+    /**
+     * Takes a type string and converts it to a &quot;First letter upper cased&quot; type. e.g. &#x60;(string -&gt; String, object -&gt; Object)&#x60;
+     * @method fixType
+     * @param {String} t The type string to convert
+     * @return {String} The fixed string
+     */
+    var fixType = function (t) {
+        if (t &amp;&amp; t.indexOf(&#x27;.&#x27;) === -1) {
+            t = t.replace(/{/g, &#x27;&#x27;).replace(/}/g, &#x27;&#x27;);
+            var firstChar = t.charAt(0),
+                upperFirstChar = firstChar.toUpperCase();
+
+            if (firstChar !== upperFirstChar) {
+                return upperFirstChar + t.substring(1);
+            }
+        }
+
+        return t;
+    };
+
+    Y.Lang.fixType = fixType;
+
+    /**
+     * Produces a normalized web path by joining all the parts and normalizing the
+     * filesystem-like path into web compatible url.
+     * Supports relative and absolute paths.
+     * Courtesy of [Mojito&#x27;s utils](https://github.com/yahoo/mojito/)
+     *
+     * @method webpath
+     * @param {Array|String*} url the list of parts to be joined and normalized
+     * @return {String} The joined and normalized url
+     **/
+    function webpath() {
+        var args = [].concat.apply([], arguments),
+            parts = path.join.apply(path, args).split(/[\\\/]/);
+        return parts.join(&#x27;/&#x27;);
+    }
+
+    Y.webpath = webpath;
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

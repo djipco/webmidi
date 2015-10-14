@@ -1,22 +1,22 @@
 {
   "name": "webmidi",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "A library to simplify working with the Web MIDI API.",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
-  "main": "./web-midi.min.js",
+  "main": "./webmidi.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cotejp/WebMidi.git"
+    "url": "git://github.com/cotejp/webmidi.git"
   },
   "bugs": {
-    "url": "https://github.com/cotejp/WebMidi/issues"
+    "url": "https://github.com/cotejp/webmidi/issues"
   },
   "keywords": [
     "midi",
     "message",
     "web"
   ],
-  "homepage": "https://github.com/cotejp/WebMidi",
+  "homepage": "https://github.com/cotejp/webmidi",
   "engines": {
     "node": ">0.6.x"
   },

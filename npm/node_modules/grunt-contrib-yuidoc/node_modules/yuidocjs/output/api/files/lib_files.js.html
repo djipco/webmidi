@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/files.js - yuidoc-root</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="yuidoc-root" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.9.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/CLI.html">CLI</a></li>
+                                <li><a href="../classes/DocBuilder.html">DocBuilder</a></li>
+                                <li><a href="../classes/DocParser.html">DocParser</a></li>
+                                <li><a href="../classes/DocView.html">DocView</a></li>
+                                <li><a href="../classes/Files.html">Files</a></li>
+                                <li><a href="../classes/Help.html">Help</a></li>
+                                <li><a href="../classes/Main.html">Main</a></li>
+                                <li><a href="../classes/Options.html">Options</a></li>
+                                <li><a href="../classes/Server.html">Server</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/YUIDoc.html">YUIDoc</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/yuidoc.html">yuidoc</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: lib/files.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/yui/yuidoc/blob/master/LICENSE
+ */
+&#x27;use strict&#x27;;
+
+YUI.add(&#x27;files&#x27;, function (Y) {
+
+    /**
+     * Ported fileutils methods from [Selleck](http://github.com/rgrove/selleck)
+     * @class Files
+     * @module yuidoc
+     */
+
+    Y.Files = {};
+
+    /*
+    Selleck
+    Copyright (c) 2011 Yahoo! Inc.
+    Licensed under the BSD License.
+    */
+
+    var fs = require(&#x27;graceful-fs&#x27;);
+    var fsPath = require(&#x27;path&#x27;);
+    var useFS = (fs.exists) ? fs : fsPath;
+
+
+    function exists(file, cb) {
+        if (cb) {
+            useFS.exists(file, cb);
+        } else {
+            return useFS.existsSync(file);
+        }
+    }
+    Y.Files.exists = exists;
+
+
+    /**
+    Copy a directory from one location to another
+    @method copyDirectory
+    @param {Path} source The source directory
+    @param {Path} dest The destination directory
+    @param {Boolean} [overwrite=false] Whether or not to overwrite destination files
+        if they already exist.
+    @param {Function} callback The callback to be executed when complete.
+    **/
+    function copyDirectory(source, dest, overwrite, callback) {
+        // Allow callback as third arg.
+        if (typeof overwrite === &#x27;function&#x27;) {
+            callback = overwrite;
+            overwrite = null;
+        }
+
+        fs.stat(source, afterSourceStat);
+
+        function afterSourceStat(err, stats) {
+            if (err) {
+                return callback(err);
+            }
+
+            if (!stats.isDirectory()) {
+                return callback(new Error(&#x27;Source is not a directory: &#x27; + source));
+            }
+
+            fs.lstat(dest, afterDestStat);
+        }
+
+        function afterDestStat(err, stats) {
+            if (err &amp;&amp; err.code !== &#x27;ENOENT&#x27;) {
+                return callback(err);
+            }
+
+            if (stats) {
+                // If the destination is a file or a link, either delete it or
+                // bubble an error if overwrite isn&#x27;t true.
+                if (stats.isFile() || stats.isSymbolicLink()) {
+                    if (overwrite) {
+                        deletePath(dest); // TODO: make this async
+                    } else {
+                        callback(new Error(&#x27;Destination already exists: &#x27; + dest));
+                        return undefined;
+                    }
+                }
+
+                afterMkDir();
+            } else {
+                fs.mkdir(dest, &#x27;0755&#x27;, afterMkDir);
+            }
+        }
+
+        function afterMkDir(err) {
+            if (err &amp;&amp; err.code !== &#x27;EEXIST&#x27;) {
+                return callback(err);
+            }
+            fs.readdir(source, afterReadDir);
+        }
+
+        function afterReadDir(err, files) {
+            if (err) {
+                return callback(err);
+            }
+
+            var pending = files.length,
+                filename;
+
+            if (!pending) {
+                return callback();
+            }
+
+            while ((filename = files.shift())) {
+                copyPath(fsPath.join(source, filename), fsPath.join(dest, filename), overwrite, function (copyPathErr) {
+                    if (copyPathErr) {
+                        return callback(copyPathErr);
+                    }
+
+                    pending -= 1;
+
+                    if (!pending) {
+                        callback();
+                    }
+                });
+            }
+        }
+    }
+    Y.Files.copyDirectory = copyDirectory;
+
+    /**
+    Copy a file from one location to another
+    @method copyFile
+    @param {Path} source The source file
+    @param {Path} dest The destination file
+    @param {Boolean} [overwrite=false] Whether or not to overwrite destination files
+        if they already exist.
+    @param {Callback} callback The callback to be executed when complete.
+    @param {Error} callback.err The Error returned from Node
+    **/
+    function copyFile(source, dest, overwrite, callback) {
+        // Allow callback as third arg.
+        if (typeof overwrite === &#x27;function&#x27;) {
+            callback = overwrite;
+            overwrite = null;
+        }
+
+        fs.lstat(source, function (err, sourceStats) {
+            if (err) {
+                return callback(err);
+            }
+
+            if (!sourceStats.isFile()) {
+                return callback(new Error(&#x27;Source is not a file: &#x27; + source));
+            }
+
+            fs.lstat(dest, function (destStatsErr, destStats) {
+                var rs;
+
+                if (destStatsErr &amp;&amp; destStatsErr.code !== &#x27;ENOENT&#x27;) {
+                    return callback(destStatsErr);
+                }
+
+                if (destStats) {
+                    if (overwrite) {
+                        deletePath(dest); // TODO: make this async
+                    } else {
+                        callback(new Error(&#x27;Destination already exists: &#x27; + dest));
+                        return undefined;
+                    }
+                }
+
+                rs = fs.createReadStream(source);
+                rs.pipe(fs.createWriteStream(dest, {
+                    mode: &#x27;0655&#x27;
+                }));
+                rs.on(&#x27;end&#x27;, callback);
+            });
+        });
+    }
+    Y.Files.copyFile = copyFile;
+
+
+    /**
+    If _source_ is a file, copies it to _dest_. If it&#x27;s a directory, recursively
+    copies it and all files and directories it contains to _dest_.
+
+    Note that when attempting to copy a file into a directory, you should specify
+    the full path to the new file (including the new filename). Otherwise, it will
+    be interpreted as an attempt to copy the _source_ file *over* the _dest_
+    directory instead of *into* it.
+
+    Known issues:
+    - Doesn&#x27;t preserve ownership or permissions on copied files/directories.
+
+    @method copyPath
+    @param {String} source Source path.
+    @param {String} dest Destination path.
+    @param {Boolean} [overwrite=false] Whether or not to overwrite destination files
+    if they already exist.
+    @param {Callback} callback The callback to execute when completed.
+    @param {Error} callback.err
+    **/
+    function copyPath(source, dest, overwrite, callback) {
+        var sourceStats = statSync(source);
+
+        // Allow callback as third arg.
+        if (typeof overwrite === &#x27;function&#x27;) {
+            callback = overwrite;
+            overwrite = null;
+        }
+
+        if (!sourceStats) {
+            callback(new Error(&#x27;Source not found: &#x27; + source));
+            return;
+        }
+
+        if (sourceStats.isFile()) {
+            copyFile(source, dest, overwrite, callback);
+        } else if (sourceStats.isDirectory()) {
+            copyDirectory(source, dest, overwrite, callback);
+        } else {
+            callback(new Error(&#x27;Source is neither a file nor a directory: &#x27; + source));
+        }
+    }
+    Y.Files.copyPath = copyPath;
+
+    // TODO: copySymbolicLink()?
+
+    /**
+    If _path_ is a file, deletes it. If _path_ is a directory, recursively deletes
+    it and all files and directories it contains.
+
+    This method is synchronous.
+
+    @method deletePath
+    @param {String} path File or directory to delete.
+    **/
+    function deletePath(path) {
+        var stats = fs.lstatSync(path);
+
+        if (stats.isFile() || stats.isSymbolicLink()) {
+            fs.unlinkSync(path);
+        } else if (stats.isDirectory()) {
+            fs.readdirSync(path).forEach(function (filename) {
+                deletePath(fsPath.join(path, filename));
+            });
+
+            fs.rmdirSync(path);
+        }
+    }
+    Y.Files.deletePath = deletePath;
+
+
+    /**
+    Check to see if this is a directory
+
+    @method isDirectory
+    @param {Path} path The path to check
+    @param {Boolean} [link=false] Also validate a symlink
+    @return {Boolean} True if it is a directory
+    **/
+    function isDirectory(path, link) {
+        var stat,
+            result = false;
+
+        link = (link === false) ? false : true;
+
+        try {
+            stat = fs.lstatSync(path);
+            if (stat) {
+                if (stat.isSymbolicLink() &amp;&amp; link) {
+                    stat = fs.statSync(path);
+                }
+                result = stat.isDirectory();
+            }
+        } catch (e) {
+            result = false;
+        }
+
+        return result;
+    }
+    Y.Files.isDirectory = isDirectory;
+
+
+    /**
+    Check to see if this is a File
+
+    @method isFile
+    @param {Path} path The path to check
+    @param {Boolean} [link=false] Also validate a symlink
+    @return {Boolean} True if it is a file
+    **/
+    function isFile(path, link) {
+        var stat,
+            result = false;
+
+        try {
+            stat = fs.lstatSync(path);
+            if (stat) {
+                if (stat.isSymbolicLink() &amp;&amp; link) {
+                    stat = fs.statSync(path);
+                }
+                result = stat.isFile();
+            }
+        } catch (e) {
+            result = false;
+        }
+
+        return result;
+    }
+    Y.Files.isFile = isFile;
+
+
+    /**
+    Check to see if this is a SymLink
+
+    @method isSymbolicLink
+    @param {Path} path The path to check
+    @return {Boolean} True if it is a link
+    **/
+    function isSymbolicLink(path) {
+        var stats = lstatSync(path);
+        return stats ? stats.isSymbolicLink() : false;
+    }
+    Y.Files.isSymbolicLink = isSymbolicLink;
+
+
+    /**
+    Like &#x60;fs.lstatSync()&#x60;, but returns &#x60;null&#x60; instead of throwing when _path_
+    doesn&#x27;t exist. Will still throw on other types of errors.
+
+    @method lstatSync
+    @param {String} path Path to stat.
+    @return {fs.Stats|null} &#x60;fs.Stats&#x60; object, or &#x60;null&#x60; if _path_ doesn&#x27;t exist.
+    **/
+    function lstatSync(path) {
+        try {
+            return fs.lstatSync(path);
+        } catch (ex) {
+            if (ex.code === &#x27;ENOENT&#x27;) {
+                return null;
+            }
+
+            throw ex;
+        }
+    }
+    Y.Files.lstatSync = lstatSync;
+
+
+    /**
+    Like &#x60;fs.statSync()&#x60;, but returns &#x60;null&#x60; instead of throwing when _path_
+    doesn&#x27;t exist. Will still throw on other types of errors.
+
+    @method statSync
+    @param {String} path Path to stat.
+    @return {fs.Stats|null} &#x60;fs.Stats&#x60; object, or &#x60;null&#x60; if _path_ doesn&#x27;t exist.
+    **/
+    function statSync(path) {
+        try {
+            return fs.statSync(path);
+        } catch (ex) {
+            if (ex.code === &#x27;ENOENT&#x27;) {
+                return null;
+            }
+
+            throw ex;
+        }
+    }
+    Y.Files.statSync = statSync;
+
+    /**
+    Copy the theme assets directory
+
+    @method copyAssets
+    @param {Path} from The source directory
+    @param {Path} dest The destination directory
+    @param {Boolean} deleteFirst Should the directory be deleted if it exists
+    @param {Function} callback The callback to be executed
+    */
+    function copyAssets() {
+        var args = Array.prototype.slice.call(arguments),
+            callback = args.pop(),
+            from = args.shift(),
+            to = args.shift(),
+            deleteFirst = args.shift();
+
+        if (from[0] === from[1]) {
+            if (isDirectory(from[0])) {
+                if (deleteFirst &amp;&amp; isDirectory(to)) {
+                    deletePath(to);
+                }
+
+                copyPath(from[0], to, true, callback);
+            } else {
+                callback();
+            }
+        } else {
+            if (isDirectory(from[0])) {
+                if (deleteFirst &amp;&amp; isDirectory(to)) {
+                    deletePath(to);
+                }
+
+                copyPath(from[0], to, true, function () {
+                    if (isDirectory(from[1])) {
+                        copyPath(from[1], to, true, callback);
+                    } else {
+                        callback();
+                    }
+                });
+            } else {
+                callback();
+            }
+
+        }
+    }
+    Y.Files.copyAssets = copyAssets;
+
+
+    /**
+    Helper method for getting JSON data from a local file
+
+    @method getJSON
+    @param {Path} filename The filename to parse JSON from
+    @return {Object} The JSON data
+    **/
+    Y.Files.getJSON = function (filename) {
+        var data = {};
+        if (exists(filename)) {
+            data = JSON.parse(fs.readFileSync(filename, &#x27;utf8&#x27;));
+        }
+        return data;
+    };
+
+    /**
+    Helper method for writing files to disk. It wraps the NodeJS file API
+
+    @method writeFile
+    @param {Path} file The filename to write to
+    @param {String} data The data to write
+    @param {Callback} callback*
+    **/
+    function writeFile(file, data, cb) {
+        var out,
+            args = arguments,
+            flags = {
+                flags: &#x27;w&#x27;,
+                encoding: Y.charset,
+                mode: &#x27;0644&#x27;
+            };
+
+        if (cb) {
+            fs.writeFile(file, data, flags, function (err) {
+                if (err &amp;&amp; err.message.match(/^EMFILE, Too many open files/)) {
+                    Y.log(&#x27;Writefile failed, too many open files (&#x27; + args[0] + &#x27;). Trying again.&#x27;, &#x27;warn&#x27;, &#x27;files&#x27;);
+                    writeFile.timer++;
+                    Y.later(writeFile.timer, Y, writeFile, args);
+                    return;
+                }
+                cb();
+            });
+        } else {
+            out = fs.createWriteStream(file, flags);
+            out.write(data);
+            out.end();
+        }
+    }
+    writeFile.timer = 100;
+
+    Y.Files.writeFile = writeFile;
+
+
+    function readFile(file, enc, cb) {
+        var args = arguments;
+        fs.readFile(file, enc, function (err, data) {
+            if (err &amp;&amp; err.message.match(/^EMFILE, Too many open files/)) {
+                Y.log(&#x27;Readfile failed, too many open files (&#x27; + args[0] + &#x27;). Trying again.&#x27;, &#x27;warn&#x27;, &#x27;files&#x27;);
+                readFile.timer++;
+                Y.later(readFile.timer, Y, readFile, args);
+                return;
+            }
+            cb(err, data);
+        });
+    }
+    readFile.timer = 100;
+
+    Y.Files.readFile = readFile;
+
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

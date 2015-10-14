@@ -1,0 +1,5 @@
+{
+  "projectName": "YUIDoc - JavaScript Documentation Tool",
+  "version": "0.9.0",
+  "yuiSeedUrl": "http://yui.yahooapis.com/3.5.1/build/yui/yui.js"
+}
