@@ -1,6 +1,6 @@
 {
   "name": "webmidi",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "A browser library making it easier to develop with the Web MIDI API.",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "./webmidi.min.js",
@@ -17,7 +17,7 @@
     "web"
   ],
   "homepage": "https://github.com/cotejp/webmidi",
-  "license" : "MIT",
+  "license": "MIT",
   "engines": {
     "node": ">0.6.x"
   },
