@@ -77,7 +77,7 @@ WebMidi.addEventListener('pitchbend', function(e) {
 // indicating if you want to use system exclusive messages (defaults to false).
 WebMidi.enable(
 
-  function() {
+  function() { 
 
     // Viewing available inputs and outputs
     console.log(WebMidi.inputs);
