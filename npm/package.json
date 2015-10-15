@@ -17,6 +17,7 @@
     "web"
   ],
   "homepage": "https://github.com/cotejp/webmidi",
+  "license" : "MIT",
   "engines": {
     "node": ">0.6.x"
   },
