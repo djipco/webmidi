@@ -14,15 +14,17 @@ The goal behind WebMidi is to makes these things much easier.
 ## Installation
 
 Even though it's a front-end library, you can nevertheless install WebMidi by using NPM.
-If you already have Node.js installed, you also have NPM installed. This means you can
-install the `webmidi` package by issuing the following command in the Terminal (Mac, 
-Linux) or the Command Prompt (Windows):
+If you already have [Node.js](https://nodejs.org/) installed, you also have NPM installed. 
+This means you can install the `webmidi` package by issuing the following command in the 
+Terminal (Mac, Linux) or the Command Prompt (Windows):
 
     npm install webmidi
 
-Otherwise, just grab the `webmidi-x.x.x.min.js` file from the packaged zip or from the
-[GitHub Repo](https://github.com/cotejp/webmidi). You can find it in the `dist` folder. 
-Save it to your project and link it to your HTML page as usual.
+If you prefer to do it the old fashioned way, you can 
+[download the latest release](https://github.com/cotejp/webmidi/releases) packaged as a 
+zip file. Uncompress it and then simply grab the `webmidi-x.x.x.min.js` file from the 
+`dist` folder. Copy it to your project and link it to your HTML page as usual. By the way,
+you will find the full API documentation in the `dist/docs` folder.
 
 ## Quick Start
 
@@ -86,7 +88,7 @@ WebMidi.enable(
     // Getting the current time
     console.log(WebMidi.time);
 
-    // Playing a note (note number 59 on the 1st channel [0] at half velocity)
+    // Playing a note (note number 60 on the 1st channel [0] at half velocity)
     WebMidi.playNote(0, 60, 0.5);
     WebMidi.playNote(0, 60, 0.5, 1000);           // send a noteoff after 1 sec.
     WebMidi.playNote(0, 60, 0.5, 1000, 1000);     // wait 1 sec. before playing
