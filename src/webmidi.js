@@ -206,7 +206,7 @@
      * @event statechange
      */
     _userHandlers.system.statechange.forEach(function(handler){
-        handler(e);
+      handler(e);
     });
 
   }
@@ -1254,6 +1254,8 @@
    *
    * @throws {Error}                WebMidi must be enabled before stopping notes.
    * @throws {RangeError}           The note number must be between 0 and 127.
+   * @throws {RangeError}           The release velocity must be a decimal number between
+   *                                0 and 1.
    *
    * @return {WebMidi}              Returns the `WebMidi` object so methods can be
    *                                chained.
@@ -1267,6 +1269,13 @@
     if (note === undefined || note < 0 || note > 127) {
       throw new RangeError("The note number must be between 0 and 127.");
     }
+
+    if (velocity < 0 || velocity > 1) {
+      throw new RangeError(
+        "The release velocity must be a decimal number between 0 and 1."
+      );
+    }
+
     if (velocity === undefined) { velocity = 0.5; }
     if (delay === undefined) { delay = 0; }
 
@@ -1310,6 +1319,8 @@
    *
    * @throws {Error}                    WebMidi must be enabled before playing notes.
    * @throws {RangeError}               The note number must be between 0 and 127.
+   * @throws {RangeError}               The velocity must be a decimal number between 0
+   *                                    and 1.
    *
    * @return {WebMidi}                  Returns the `WebMidi` object so methods can be
    *                                    chained.
@@ -1322,6 +1333,10 @@
 
     if (note === undefined || note < 0 || note > 127) {
       throw new RangeError("The note number must be between 0 and 127.");
+    }
+
+    if (velocity < 0 || velocity > 1) {
+      throw new RangeError("The velocity must be a decimal number between 0 and 1.");
     }
 
     // Set defaults
