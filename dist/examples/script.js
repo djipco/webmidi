@@ -1,163 +1,98 @@
-//var midi, data;
-//
-//// Check if MIDI is supported by the browser
-//if (navigator.requestMIDIAccess) {
-//  navigator.requestMIDIAccess({ sysex: false}).then(onMIDISuccess, onMIDIFailure);
-//} else {
-//  alert("No MIDI support in your browser.");
-//}
-//
-//// midi functions
-//function onMIDISuccess(midiAccess) {
-//  // when we get a succesful response, run this code
-//  midi = midiAccess; // this is our raw MIDI data, inputs, outputs, and sysex status
-//
-//  var inputs = midi.inputs.values();
-//  // loop over all available inputs and listen for any MIDI input
-//  for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-//    // each time there is a midi message call the onMIDIMessage function
-//    input.value.onmidimessage = onMIDIMessage;
-//  }
-//}
-//
-//function onMIDIFailure(error) {
-//  // when we get a failed response, run this code
-//  console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. Please use WebMIDIAPIShim " + error);
-//}
-//
-//function onMIDIMessage(message) {
-//  data = message.data; // this gives us our [command/channel, note, velocity] data.
-//  console.log('MIDI data', data); // MIDI data [144, 63, 73]
-//}
-
-
-
+// Enable WebMidi. 3 parameters: onSuccess handler, onFailure handler and boolean
+// indicating if you want to use system exclusive messages (defaults to false).
 WebMidi.enable(
+
   function() {
 
-    //console.log(WebMidi);
-    //console.log(WebMidi.inputs);
-    //console.log(WebMidi.outputs);
-    //console.log(WebMidi.time);
+    // Viewing available inputs and outputs
+    console.log(WebMidi.inputs);
+    console.log(WebMidi.outputs);
 
-    //WebMidi.stopNote(2, 76, 1);
-    //WebMidi.stopNote(2, 76, 0.5, 2000);
+    // Getting the current time
+    console.log(WebMidi.time);
 
-    //WebMidi.playNote(2, 59, 0.5);
-    //WebMidi.playNote(2, 59, 0.75, 1000);
-    //WebMidi.playNote(2, 59, 0.75, 1000, 1000);
+    // Playing a note (note number 59 on the 1st channel [0] at half velocity)
+    WebMidi.playNote(0, 60, 0.5);
+    WebMidi.playNote(0, 60, 0.5, 1000);           // send a noteoff after 1 sec.
+    WebMidi.playNote(0, 60, 0.5, 1000, 1000);     // wait 1 sec. before playing
 
-    //WebMidi.sendKeyAftertouch(2, 84, 1);
-    //WebMidi.sendKeyAftertouch(2, 84, 0.5, 1000);
+    // Stopping a playing note
+    WebMidi.stopNote(0, 60, 1);
+    WebMidi.stopNote(0, 60, 0.5, 2000);           // wait 2 sec. before stopping
 
-    //WebMidi.sendControlChange(2, 34, 127);
-    //WebMidi.sendControlChange(2, 23, 0, 1000);
+    // Send polyphonic aftertouch message
+    WebMidi.sendKeyAftertouch(0, 60, 0.5);
+    WebMidi.sendKeyAftertouch(0, 60, 0.5, 1000);  // wait 1 sec. before sending
 
-    //WebMidi.sendChannelMode(2, 123, 0);
-    //WebMidi.sendChannelMode(2, 56, 0);
-    //WebMidi.sendChannelMode(2, 125, 0);
-    //WebMidi.sendChannelMode(2, 126, 10);
+    // Send control change value 127 to controller 1 (modulation) on channel 0
+    WebMidi.sendControlChange(0, 1, 127);
+    WebMidi.sendControlChange(0, 1, 127, 1000);     // wait 1 sec. before sending
 
-    //WebMidi.sendProgramChange(2, 32);
+    // Send channel aftertouch
+    WebMidi.sendChannelAftertouch(0, 0.5);
 
-    //WebMidi.sendChannelAftertouch(2, 0.5);
+    // Send pitch bend (between -1 and 1)
+    WebMidi.sendPitchBend(0, -1);
 
-    //WebMidi.sendPitchBend(2, -1);       // -8192
-    //WebMidi.sendPitchBend(2, 1);        // 8191
-    //WebMidi.sendPitchBend(2, 0.5);      // 4095
-    //WebMidi.sendPitchBend(2, 0);        // 0
-    //WebMidi.sendPitchBend(2, 0, 2000);  // 0
+    // Chaining method calls
+    WebMidi.sendPitchBend(0, -1)
+      .sendPitchBend(0, -0.5, 200)
+      .sendPitchBend(0, 0, 400)
+      .sendPitchBend(0, 0.5, 800)
+      .sendPitchBend(0, 1, 1000);
 
-    //WebMidi.sendSystemMessage("start", []);
-    //WebMidi.sendSystemMessage("start", [], WebMidi.time + 3000);
+    // Listening for a 'note on' message (on all channels)
+    WebMidi.addEventListener(
+      'noteon',
+      function(e){ console.log(e); },
+      'all'
+    );
 
-    //WebMidi.sendSystemMessage("sysex", [1, 2, 0xF7])
-    //  .sendSystemMessage("timecode", [123])
-    //  .sendSystemMessage("songposition", [123, 123])
-    //  .sendSystemMessage("songselect", [123]);
-      //.sendSystemMessage("tuningrequest");
-      //.sendSystemMessage("sysexend");
+    // Listening for a 'note on' message (on channel 0 only)
+    WebMidi.addEventListener(
+      'noteon',
+      function(e){ console.log(e); },
+      0
+    );
 
+    // Listening to other messages works the same way (defaults to 'all' channels)
+    WebMidi.addEventListener(
+      'noteoff',
+      function(e){ console.log(e); }
+    );
 
-    //WebMidi.sendSystemMessage("clock")
-    //  .sendSystemMessage("start")
-    //  .sendSystemMessage("continue")
-    //  .sendSystemMessage("stop")
-    //  .sendSystemMessage("activesensing")
-    //  .sendSystemMessage("reset");
-
-    //WebMidi.sendSysexMessage([0x41], [1, 2, 3]);
-
-
-
-    //WebMidi.addEventListener("statechange", function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('noteoff', "all", function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('noteon', function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('keyaftertouch', 0, function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('controlchange', 0, function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('channelmode', 0, function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('programchange', function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('channelaftertouch', 0, function(e){
-    //  console.log(e);
-    //});
-
-    //WebMidi.addEventListener('pitchbend', "all", function(e){
-    //  console.log(e);
-    //});
+    WebMidi.addEventListener(
+      'pitchbend',
+      function(e){ console.log(e); }
+    );
 
 
+    // The special 'statechange' event tells you that a device has been plugged or
+    // unplugged. For system-wide events, you do not need to specify a channel.
+    WebMidi.addEventListener(
+      'statechange',
+      function(e){ console.log(e); }
+    );
 
 
-    function test(e){
-      console.log(e);
-      console.log("a");
-    }
-
-    function test1(e){
-      console.log(e);
-      console.log("b");
-    }
-
-    //WebMidi.addEventListener('noteon', test, 'all');
-    //WebMidi.removeEventListener('noteon', test, 2);
-    //console.log("result:",  WebMidi.hasEventListener('noteon', test, 'all') );
-    //WebMidi.addEventListener('noteon', test, 'all');
-    ////WebMidi.removeEventListener('noteon', test, "all");
-    //console.log("result:",  WebMidi.hasEventListener('noteon', test, 'all') );
-
+    // You can also check and remove event listeners (in this case, you shouldn't use
+    // anonymous methods).
     WebMidi.addEventListener('statechange', test);
+    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
     WebMidi.removeEventListener('statechange', test);
-    console.log("result:",  WebMidi.hasEventListener('statechange', test) );
-    WebMidi.addEventListener('statechange', test);
-    WebMidi.removeEventListener('statechange', test);
-    console.log("result:",  WebMidi.hasEventListener('statechange', test) );
+    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
 
-
+    function test(e) {
+      console.log(e);
+    }
 
   },
+
   function(m) {
-    console.log("Fuck. " + m);
+    console.log("Could not enable MIDI interface: " + m);
   },
-  true
+
+  true      // Whether to enable sysex or not. When set to 'true', it might trigger an
+            // authorization prompt to the user. If you do not need it, leave it to false.
+
 );

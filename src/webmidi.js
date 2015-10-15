@@ -890,9 +890,6 @@
    */
   WebMidi.prototype.addEventListener = function(type, listener, channel) {
 
-
-    //console.log("add, debut", _userHandlers.channel[type]);
-
     if (!this.connected || !this.supported) {
       throw new Error("WebMidi must be enabled before adding event listeners.");
     }
@@ -935,8 +932,6 @@
       throw new TypeError("The specified event type is not supported.");
     }
 
-    //console.log("add, fin", _userHandlers.channel[type]);
-
     return this;
 
   };
@@ -964,8 +959,6 @@
    *                                    channel(s) already have this listener defined.
    */
   WebMidi.prototype.hasEventListener = function(type, listener, channel) {
-
-    //console.log("has, debut", _userHandlers.channel[type]);
 
     if (!this.connected || !this.supported) {
       throw new Error("WebMidi must be enabled before checking event listeners.");
@@ -1030,8 +1023,6 @@
    */
   WebMidi.prototype.removeEventListener = function(type, listener, channel) {
 
-    //console.log("remove, debut", _userHandlers.channel[type]);
-
     if (!this.connected || !this.supported) {
       throw new Error("WebMidi must be enabled before removing event listeners.");
     }
@@ -1065,8 +1056,6 @@
       }
 
     }
-
-    //console.log("remove, fin", _userHandlers.channel[type]);
 
   };
 
