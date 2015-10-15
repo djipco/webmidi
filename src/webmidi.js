@@ -1312,13 +1312,12 @@
    *                                    127).
    * @param [velocity=0.5] {Number}     The velocity at which to play the note (between 0
    *                                    and 1).
+   * @param [duration=undefined] {int}  The number of milliseconds to wait before sending
+   *                                    a matching note off event. If left undefined, only
+   *                                    a note on is sent.
    * @param [delay=0] {int}             The number of milliseconds to wait before actually
    *                                    sending the `note on` command (using a negative
    *                                    number or 0 will send the command immediately).
-   * @param [duration=undefined] {int}  The duration to play the note for (in
-   *                                    milliseconds). If left undefined, the note will
-   *                                    play until a matching `note off` command is
-   *                                    received.
    *
    * @throws {Error}                    WebMidi must be enabled before playing notes.
    * @throws {RangeError}               The note number must be between 0 and 127.
@@ -1326,7 +1325,7 @@
    * @return {WebMidi}                  Returns the `WebMidi` object so methods can be
    *                                    chained.
    */
-  WebMidi.prototype.playNote = function(channel, note, velocity, delay, duration) {
+  WebMidi.prototype.playNote = function(channel, note, velocity, duration, delay) {
 
     if (!this.connected || !this.supported) {
       throw new Error("WebMidi must be enabled before playing notes.");
