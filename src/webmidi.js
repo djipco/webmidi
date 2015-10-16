@@ -890,8 +890,8 @@
    */
   WebMidi.prototype.addEventListener = function(type, listener, channel) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before adding event listeners.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before adding event listeners.");
     }
 
     if (channel === undefined) { channel = "all"; }
@@ -960,8 +960,8 @@
    */
   WebMidi.prototype.hasEventListener = function(type, listener, channel) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before checking event listeners.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before checking event listeners.");
     }
 
     if (channel === undefined) { channel = "all"; }
@@ -1023,8 +1023,8 @@
    */
   WebMidi.prototype.removeEventListener = function(type, listener, channel) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before removing event listeners.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before removing event listeners.");
     }
 
     if (channel === undefined) { channel = "all"; }
@@ -1090,8 +1090,8 @@
    */
   WebMidi.prototype.send = function(channel, command, data, timestamp) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     // Check channel availability
@@ -1175,8 +1175,8 @@
    */
   WebMidi.prototype.sendSystemMessage = function(command, data, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected sending messages.");
     }
 
     if (!_systemMessages[command]) {
@@ -1218,8 +1218,8 @@
    */
   WebMidi.prototype.sendSysexMessage = function(manufacturer, data, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (manufacturer.prototype !== Array) { manufacturer = [manufacturer]; }
@@ -1262,8 +1262,8 @@
    */
   WebMidi.prototype.stopNote = function(channel, note, velocity, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before stopping notes.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before stopping notes.");
     }
 
     if (note === undefined || note < 0 || note > 127) {
@@ -1303,13 +1303,18 @@
    * @static
    * @chainable
    *
-   * @param channel {uint}              The MIDI channel number (between 0 and 15). You
-   *                                    can view available channels in the
-   *                                    `WebMidi.outputs` array.
-   * @param note {uint}                 The MIDI number of the note to play (between 0 and
-   *                                    127).
-   * @param [velocity=0.5] {Number}     The velocity at which to play the note (between 0
-   *                                    and 1).
+   * @param channel {uint}                The MIDI channel number (between 0 and 15). You
+   *                                      can view available channels in the
+   *                                      `WebMidi.outputs` array.
+   * @param [note=60] {Array|uint|String} The note to play or an array of notes to play.
+   *                                      The notes can be specified in one of two ways.
+   *                                      The first way is by using the MIDI note number
+   *                                      (an integer between 0 and 127). The second way
+   *                                      is by using the note name followed by the octave
+   *                                      (C3, G#4, F-1). The octave range should be
+   *                                      between -3 and 5.
+   * @param [velocity=0.5] {Number}       The velocity at which to play the note (between
+   *                                      0 and 1).
    * @param [duration=undefined] {int}  The number of milliseconds to wait before sending
    *                                    a matching note off event. If left undefined, only
    *                                    a note on is sent.
@@ -1318,7 +1323,6 @@
    *                                    number or 0 will send the command immediately).
    *
    * @throws {Error}                    WebMidi must be enabled before playing notes.
-   * @throws {RangeError}               The note number must be between 0 and 127.
    * @throws {RangeError}               The velocity must be a decimal number between 0
    *                                    and 1.
    *
@@ -1327,13 +1331,36 @@
    */
   WebMidi.prototype.playNote = function(channel, note, velocity, duration, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before playing notes.");
+    var that = this,
+        numbers = [];
+
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before playing notes.");
     }
 
-    if (note === undefined || note < 0 || note > 127) {
-      throw new RangeError("The note number must be between 0 and 127.");
+    // Assign default to note parameter
+    if (note === undefined || note === null) {
+      note = [60];
+    } else if (!Array.isArray(note)) {
+      note = [note];
     }
+
+    // Verify all notes in the array
+    note.forEach(function(item){
+
+      if (item.substring) {
+        // string
+      } else if (item.toFixed && item >= 0 && item <= 127) {
+        numbers.push(item);
+      } else {
+        throw new Error("Invalid note:" + item + ".");
+      }
+
+    });
+
+
+
+
 
     if (velocity < 0 || velocity > 1) {
       throw new RangeError("The velocity must be a decimal number between 0 and 1.");
@@ -1344,16 +1371,24 @@
     if (delay === undefined) { delay = 0; }
     var nVelocity = Math.round(velocity * 127);
 
-    // Send note on
+    // Send note on messages
     var timestamp = this.time + delay;
-    this.send(channel, _channelMessages.noteon, [note, nVelocity], timestamp);
+    numbers.forEach(function(item) {
+      that.send(channel, _channelMessages.noteon, [item, nVelocity], timestamp);
+    });
 
-    // Send note off (only if a duration has been defined)
+    // Send note off messages (only if a duration has been defined)
     if (duration !== undefined) {
-      this.send(channel, _channelMessages.noteoff, [note, 64], timestamp + duration);
+      numbers.forEach(function(item) {
+        that.send(channel, _channelMessages.noteoff, [item, 64], timestamp + duration);
+      });
     }
 
     return this;
+
+  };
+
+  WebMidi.prototype.noteNameToMidiNoteNumber = function(name) {
 
   };
 
@@ -1382,8 +1417,8 @@
    */
   WebMidi.prototype.sendKeyAftertouch = function(channel, note, pressure, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (note === undefined || note < 0 || note > 127) {
@@ -1423,8 +1458,8 @@
    */
   WebMidi.prototype.sendControlChange = function(channel, controller, value, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (controller === undefined || controller < 0 || controller > 119) {
@@ -1466,8 +1501,8 @@
    */
   WebMidi.prototype.sendChannelMode = function(channel, command, value, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages");
     }
 
     if (command === undefined || command < 120 || command > 127) {
@@ -1506,8 +1541,8 @@
    */
   WebMidi.prototype.sendProgramChange = function(channel, program, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (program === undefined || program < 0 || program > 127) {
@@ -1542,8 +1577,8 @@
    */
   WebMidi.prototype.sendChannelAftertouch = function(channel, pressure, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (delay === undefined) { delay = 0; }
@@ -1578,8 +1613,8 @@
    */
   WebMidi.prototype.sendPitchBend = function(channel, level, delay) {
 
-    if (!this.connected || !this.supported) {
-      throw new Error("WebMidi must be enabled before sending messages.");
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
     }
 
     if (delay === undefined) { delay = 0; }
