@@ -1241,34 +1241,63 @@
    * @static
    * @chainable
    *
-   * @param channel {uint}          The MIDI channel number (between 0 and 15). You can
-   *                                view available channels in the `WebMidi.outputs`
-   *                                array.
-   * @param note {uint}             The MIDI number of the note to stop (between 0 and
-   *                                127).
-   * @param [velocity=0.5] {Number} The velocity at which to release the note (between 0
-   *                                and 1).
-   * @param [delay=0] {int}         The number of milliseconds to wait before actually
-   *                                sending the `note off` message (using a negative
-   *                                number or 0 will stop the note immediately).
+   * @param channel {uint}                The MIDI channel number (between 0 and 15). You
+   *                                      can view available channels in the
+   *                                      `WebMidi.outputs` array.
    *
-   * @throws {Error}                WebMidi must be enabled before stopping notes.
-   * @throws {RangeError}           The note number must be between 0 and 127.
-   * @throws {RangeError}           The release velocity must be a decimal number between
-   *                                0 and 1.
+   * @param [note=60] {Array|uint|String} The note or an array of notes to stop. The notes
+   *                                      can be specified in one of two ways. The first
+   *                                      way is by using the MIDI note number (an integer
+   *                                      between 0 and 127). The second way is by using
+   *                                      the note name followed by the octave (C3, G#4,
+   *                                      F-1). The octave range should be between -3 and
+   *                                      5.
    *
-   * @return {WebMidi}              Returns the `WebMidi` object so methods can be
-   *                                chained.
+   * @param [velocity=0.5] {Number}       The velocity at which to release the note
+   *                                      (between 0 and 1).
+   * @param [delay=0] {int}               The number of milliseconds to wait before
+   *                                      actually sending the `note off` message (using a
+   *                                      negative number or 0 will stop the note
+   *                                      immediately).
+   *
+   * @throws {Error}                      WebMidi must be enabled before stopping notes.
+   * @throws {RangeError}                 The note number must be between 0 and 127.
+   * @throws {RangeError}                 The release velocity must be a decimal number
+   *                                      between 0 and 1.
+   *
+   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be
+   *                                      chained.
    */
   WebMidi.prototype.stopNote = function(channel, note, velocity, delay) {
+
+    var that = this,
+        numbers = [];
 
     if (!this.connected) {
       throw new Error("WebMidi must be connected before stopping notes.");
     }
 
-    if (note === undefined || note < 0 || note > 127) {
-      throw new RangeError("The note number must be between 0 and 127.");
+    // Assign default to note parameter
+    if (note === undefined || note === null) {
+      note = [60];
+    } else if (!Array.isArray(note)) {
+      note = [note];
     }
+
+    // Verify all notes in the array
+    note.forEach(function(item) {
+
+      if (item.toFixed && item >= 0 && item <= 127) {                   // uint
+        numbers.push(item);
+      } else if (parseInt(item) >= 0 && parseInt(item) <= 127) {        // uint as string
+        numbers.push(parseInt(item));
+      } else if (typeof item === 'string' || item instanceof String) {  // string
+        numbers.push(that.noteNameToNumber(item));
+      } else {
+        throw new Error("Invalid note:" + item + ".");
+      }
+
+    });
 
     if (velocity < 0 || velocity > 1) {
       throw new RangeError(
@@ -1280,7 +1309,11 @@
     if (delay === undefined) { delay = 0; }
 
     var nVelocity = Math.round(velocity * 127);
-    this.send(channel, _channelMessages.noteoff, [note, nVelocity], this.time + delay);
+
+    // Send note off messages
+    numbers.forEach(function(item) {
+      that.send(channel, _channelMessages.noteoff, [item, nVelocity], that.time + delay);
+    });
 
     return this;
 
@@ -1315,19 +1348,20 @@
    *                                      between -3 and 5.
    * @param [velocity=0.5] {Number}       The velocity at which to play the note (between
    *                                      0 and 1).
-   * @param [duration=undefined] {int}  The number of milliseconds to wait before sending
-   *                                    a matching note off event. If left undefined, only
-   *                                    a note on is sent.
-   * @param [delay=0] {int}             The number of milliseconds to wait before actually
-   *                                    sending the `note on` command (using a negative
-   *                                    number or 0 will send the command immediately).
+   * @param [duration=undefined] {int}    The number of milliseconds to wait before
+   *                                      sending a matching note off event. If left
+   *                                      undefined, only a note on is sent.
+   * @param [delay=0] {int}               The number of milliseconds to wait before
+   *                                      actually sending the `note on` command (using a
+   *                                      negative number or 0 will send the command
+   *                                      immediately).
    *
-   * @throws {Error}                    WebMidi must be enabled before playing notes.
-   * @throws {RangeError}               The velocity must be a decimal number between 0
-   *                                    and 1.
+   * @throws {Error}                      WebMidi must be enabled before playing notes.
+   * @throws {RangeError}                 The velocity must be a decimal number between 0
+   *                                      and 1.
    *
-   * @return {WebMidi}                  Returns the `WebMidi` object so methods can be
-   *                                    chained.
+   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be
+   *                                      chained.
    */
   WebMidi.prototype.playNote = function(channel, note, velocity, duration, delay) {
 
@@ -1346,21 +1380,19 @@
     }
 
     // Verify all notes in the array
-    note.forEach(function(item){
+    note.forEach(function(item) {
 
-      if (item.substring) {
-        // string
-      } else if (item.toFixed && item >= 0 && item <= 127) {
+      if (item.toFixed && item >= 0 && item <= 127) {                   // uint
         numbers.push(item);
+      } else if (parseInt(item) >= 0 && parseInt(item) <= 127) {        // uint as string
+        numbers.push(parseInt(item));
+      } else if (typeof item === 'string' || item instanceof String) {  // string
+        numbers.push(that.noteNameToNumber(item));
       } else {
         throw new Error("Invalid note:" + item + ".");
       }
 
     });
-
-
-
-
 
     if (velocity < 0 || velocity > 1) {
       throw new RangeError("The velocity must be a decimal number between 0 and 1.");
@@ -1388,8 +1420,21 @@
 
   };
 
-  WebMidi.prototype.noteNameToMidiNoteNumber = function(name) {
-
+  /**
+   * Returns a MIDI note number matching the note name passed in the form of a string
+   * parameter. The note name must include the octave number which should be between -2
+   * and 5: C5, G4, D#-1, F0, etc.
+   *
+   * @method noteNameToNumber
+   * @static
+   *
+   * @param name {String}   The name of the note in the form of a letter followed by an
+   *                        octave number (between -2 and 5).
+   * @return {uint}         The MIDI note number.
+   */
+  WebMidi.prototype.noteNameToNumber = function(name) {
+    var matches = name.match(/([CDEFGABC]#?)(-?\d+)/i);
+    return matches[2] * 12 + _notes.indexOf(matches[1].toUpperCase());
   };
 
   /**
