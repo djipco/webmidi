@@ -1233,9 +1233,9 @@
   };
 
   /**
-   * Sends a MIDI `note off` message to the specified channel. A `note off` message simply
-   * means to stop playing a note. You can delay the execution of the `note off` command
-   * by using the `delay` parameter (milliseconds).
+   * Sends a MIDI `note off` message to the specified channel for a single note or
+   * multiple notes. You can delay the execution of the `note off` command by using the
+   * `delay` parameter (milliseconds).
    *
    * @method stopNote
    * @static
@@ -1320,9 +1320,9 @@
   };
 
   /**
-   * Sends a MIDI `note on` message to the specified channel. A `note on` message simply
-   * means to play a note. You can delay the execution of the `note on` command
-   * by using the `delay` parameter (milliseconds).
+   * Requests the playback of a single note or multiple notes on the specified channel.
+   * You can delay the execution of the `note on` command by using the `delay` parameter
+   * (milliseconds).
    *
    * If no duration is specified, the note will play until a matching `note off` is sent.
    * If a duration is specified, a `note off` will be automatically executed after said
