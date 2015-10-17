@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="webmidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-alpha.3</em>
+            <em>API Docs for: 1.0.0-alpha.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -143,6 +143,11 @@ manually craft or decode binary MIDI messages anymore!</p>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_hasEventListener">hasEventListener</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_noteNameToNumber">noteNameToNumber</a>
 
                                     <span class="flag static">static</span>
                             </li>
@@ -606,7 +611,7 @@ will be passed a string describing the error.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l944"><code>..&#x2F;src&#x2F;webmidi.js:944</code></a>
+        <a href="../files/.._src_webmidi.js.html#l939"><code>..&#x2F;src&#x2F;webmidi.js:939</code></a>
         </p>
 
 
@@ -688,6 +693,76 @@ listeners.</p>
         </div>
 
 </div>
+<div id="method_noteNameToNumber" class="method item">
+    <h3 class="name"><code>noteNameToNumber</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Uint</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._src_webmidi.js.html#l1424"><code>..&#x2F;src&#x2F;webmidi.js:1424</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns a MIDI note number matching the note name passed in the form of a string
+parameter. The note name must include the octave number which should be between -2
+and 5: C5, G4, D#-1, F0, etc.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>The name of the note in the form of a letter followed by an
+octave number (between -2 and 5).</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Uint</span>:
+                    <p>The MIDI note number.</p>
+
+            </div>
+        </div>
+
+
+</div>
 <div id="method_playNote" class="method item">
     <h3 class="name"><code>playNote</code></h3>
 
@@ -697,16 +772,16 @@ listeners.</p>
                         <code>channel</code>
                 </li>
                 <li class="arg">
-                        <code>note</code>
+                        <code class="optional">[note=60]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[velocity=0.5]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[delay=0]</code>
+                        <code class="optional">[duration=undefined]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[duration=undefined]</code>
+                        <code class="optional">[delay=0]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -726,7 +801,7 @@ listeners.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1291"><code>..&#x2F;src&#x2F;webmidi.js:1291</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1322"><code>..&#x2F;src&#x2F;webmidi.js:1322</code></a>
         </p>
 
 
@@ -764,13 +839,19 @@ can view available channels in the
 
                 </li>
                 <li class="param">
-                        <code class="param-name">note</code>
-                        <span class="type">Uint</span>
+                        <code class="param-name optional">[note=60]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The MIDI number of the note to play (between 0 and
-127).</p>
+                        <p>The note to play or an array of notes to play.
+The notes can be specified in one of two ways.
+The first way is by using the MIDI note number
+(an integer between 0 and 127). The second way
+is by using the note name followed by the octave
+(C3, G#4, F-1). The octave range should be
+between -3 and 5.</p>
 
                     </div>
 
@@ -782,22 +863,8 @@ can view available channels in the
 
 
                     <div class="param-description">
-                        <p>The velocity at which to play the note (between 0
-and 1).</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[delay=0]</code>
-                        <span class="type">Int</span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>The number of milliseconds to wait before actually
-sending the <code>note on</code> command (using a negative
-number or 0 will send the command immediately).</p>
+                        <p>The velocity at which to play the note (between
+0 and 1).</p>
 
                     </div>
 
@@ -809,10 +876,24 @@ number or 0 will send the command immediately).</p>
 
 
                     <div class="param-description">
-                        <p>The duration to play the note for (in
-milliseconds). If left undefined, the note will
-play until a matching <code>note off</code> command is
-received.</p>
+                        <p>The number of milliseconds to wait before
+sending a matching note off event. If left
+undefined, only a note on is sent.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[delay=0]</code>
+                        <span class="type">Int</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The number of milliseconds to wait before
+actually sending the <code>note on</code> command (using a
+negative number or 0 will send the command
+immediately).</p>
 
                     </div>
 
@@ -836,7 +917,8 @@ chained.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" class="crosslink external" target="_blank">RangeError</a></span>:
-                    <p>The note number must be between 0 and 127.</p>
+                    <p>The velocity must be a decimal number between 0
+and 1.</p>
 
             </div>
         </div>
@@ -870,7 +952,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1012"><code>..&#x2F;src&#x2F;webmidi.js:1012</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1005"><code>..&#x2F;src&#x2F;webmidi.js:1005</code></a>
         </p>
 
 
@@ -976,7 +1058,7 @@ listeners.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1073"><code>..&#x2F;src&#x2F;webmidi.js:1073</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1062"><code>..&#x2F;src&#x2F;webmidi.js:1062</code></a>
         </p>
 
 
@@ -1105,7 +1187,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1521"><code>..&#x2F;src&#x2F;webmidi.js:1521</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1605"><code>..&#x2F;src&#x2F;webmidi.js:1605</code></a>
         </p>
 
 
@@ -1219,7 +1301,7 @@ number or 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1440"><code>..&#x2F;src&#x2F;webmidi.js:1440</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1524"><code>..&#x2F;src&#x2F;webmidi.js:1524</code></a>
         </p>
 
 
@@ -1342,7 +1424,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1400"><code>..&#x2F;src&#x2F;webmidi.js:1400</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1484"><code>..&#x2F;src&#x2F;webmidi.js:1484</code></a>
         </p>
 
 
@@ -1465,7 +1547,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1357"><code>..&#x2F;src&#x2F;webmidi.js:1357</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1441"><code>..&#x2F;src&#x2F;webmidi.js:1441</code></a>
         </p>
 
 
@@ -1589,7 +1671,7 @@ number or 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1557"><code>..&#x2F;src&#x2F;webmidi.js:1557</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1641"><code>..&#x2F;src&#x2F;webmidi.js:1641</code></a>
         </p>
 
 
@@ -1699,7 +1781,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1484"><code>..&#x2F;src&#x2F;webmidi.js:1484</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1568"><code>..&#x2F;src&#x2F;webmidi.js:1568</code></a>
         </p>
 
 
@@ -1808,7 +1890,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1208"><code>..&#x2F;src&#x2F;webmidi.js:1208</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1197"><code>..&#x2F;src&#x2F;webmidi.js:1197</code></a>
         </p>
 
 
@@ -1921,7 +2003,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1145"><code>..&#x2F;src&#x2F;webmidi.js:1145</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1134"><code>..&#x2F;src&#x2F;webmidi.js:1134</code></a>
         </p>
 
 
@@ -2025,7 +2107,7 @@ the command (using 0 will send the command immediately).</p>
                         <code>channel</code>
                 </li>
                 <li class="arg">
-                        <code>note</code>
+                        <code class="optional">[note=60]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[velocity=0.5]</code>
@@ -2051,7 +2133,7 @@ the command (using 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1246"><code>..&#x2F;src&#x2F;webmidi.js:1246</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1235"><code>..&#x2F;src&#x2F;webmidi.js:1235</code></a>
         </p>
 
 
@@ -2075,21 +2157,27 @@ by using the <code>delay</code> parameter (milliseconds).</p>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel number (between 0 and 15). You can
-view available channels in the <code>WebMidi.outputs</code>
-array.</p>
+                        <p>The MIDI channel number (between 0 and 15). You
+can view available channels in the
+<code>WebMidi.outputs</code> array.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name">note</code>
-                        <span class="type">Uint</span>
+                        <code class="param-name optional">[note=60]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The MIDI number of the note to stop (between 0 and
-127).</p>
+                        <p>The note or an array of notes to stop. The notes
+can be specified in one of two ways. The first
+way is by using the MIDI note number (an integer
+between 0 and 127). The second way is by using
+the note name followed by the octave (C3, G#4,
+F-1). The octave range should be between -3 and
+5.</p>
 
                     </div>
 
@@ -2101,8 +2189,8 @@ array.</p>
 
 
                     <div class="param-description">
-                        <p>The velocity at which to release the note (between 0
-and 1).</p>
+                        <p>The velocity at which to release the note
+(between 0 and 1).</p>
 
                     </div>
 
@@ -2114,9 +2202,10 @@ and 1).</p>
 
 
                     <div class="param-description">
-                        <p>The number of milliseconds to wait before actually
-sending the <code>note off</code> message (using a negative
-number or 0 will stop the note immediately).</p>
+                        <p>The number of milliseconds to wait before
+actually sending the <code>note off</code> message (using a
+negative number or 0 will stop the note
+immediately).</p>
 
                     </div>
 
@@ -2140,7 +2229,8 @@ chained.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" class="crosslink external" target="_blank">RangeError</a></span>:
-                    <p>The note number must be between 0 and 127.</p>
+                    <p>The release velocity must be a decimal number
+between 0 and 1.</p>
 
             </div>
         </div>

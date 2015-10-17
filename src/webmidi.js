@@ -1406,6 +1406,7 @@
     // Send note on messages
     var timestamp = this.time + delay;
     numbers.forEach(function(item) {
+      console.log(item);
       that.send(channel, _channelMessages.noteon, [item, nVelocity], timestamp);
     });
 
