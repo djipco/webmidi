@@ -21,7 +21,7 @@ module.exports = function (grunt) {
           pkg: 'package.json'
         }
       },
-      files: ['package.json', '../bower.json']
+      files: ['package.json']
     },
 
     // Minify and save in dist
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       },
       build: {
         src: '../src/<%= pkg.name %>.js',
-        dest: '../dist/<%= pkg.name %>.min.js'
+        dest: '../dist/<%= pkg.name %>-<%= pkg.version %>.min.js'
       }
     },
 
