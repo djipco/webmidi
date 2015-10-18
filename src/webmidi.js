@@ -214,17 +214,6 @@
   }
 
   /** @private */
-  function _onMidiMessage(e) {
-
-    if (e.data[0] < 240) {          // channel message
-      _parseChannelEvent(e);
-    } else if (e.data[0] <= 255) {  // system message
-      _parseSystemEvent(e);
-    }
-
-  }
-
-  /** @private */
   function _parseChannelEvent(e) {
 
     var command = e.data[0] >> 4;
@@ -780,7 +769,16 @@
 
   }
 
+  /** @private */
+  function _onMidiMessage(e) {
 
+    if (e.data[0] < 240) {          // channel message
+      _parseChannelEvent(e);
+    } else if (e.data[0] <= 255) {  // system message
+      _parseSystemEvent(e);
+    }
+
+  }
 
   /**
    * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI
@@ -1173,7 +1171,6 @@
    *
    * @return {WebMidi}          Returns the `WebMidi` object so methods can be chained.
    *
-   * @todo tuning request does not work ?!
    */
   WebMidi.prototype.sendSystemMessage = function(command, data, delay) {
 
@@ -1408,7 +1405,6 @@
     // Send note on messages
     var timestamp = this.time + delay;
     numbers.forEach(function(item) {
-      console.log(item);
       that.send(channel, _channelMessages.noteon, [item, nVelocity], timestamp);
     });
 
@@ -1439,14 +1435,14 @@
   WebMidi.prototype.noteNameToNumber = function(name) {
 
     var matches = name.match(/([CDEFGABC]#?)(-?\d+)/i);
-    if(!matches) { throw RangeError("Invalid note name."); }
+    if(!matches) { throw new RangeError("Invalid note name."); }
 
     var number = _notes.indexOf(matches[1].toUpperCase());
     var octave = parseInt(matches[2]);
     var result = ((octave + 2) * 12) + number;
 
     if (number < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
-      throw RangeError("Invalid note name or note outside valid range.");
+      throw new RangeError("Invalid note name or note outside valid range.");
     }
 
     return result;
@@ -1558,7 +1554,6 @@
    *
    * @return {WebMidi}          Returns the `WebMidi` object so methods can be chained.
    *
-   * @todo  il faut décortiquer les channel mode en fonctions distinctes
    */
   WebMidi.prototype.sendChannelMode = function(channel, command, value, delay) {
 
