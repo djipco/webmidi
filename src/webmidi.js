@@ -12,12 +12,12 @@
    * needs to be done is enable `WebMidi`. Here is an example:
    *
    *      WebMidi.enable(function() {
-   *        WebMidi.playNote(2, 76, 0.5);
+   *        WebMidi.playNote(2, "C3");
    *      });
    *
    * The code above, calls the `WebMidi.enable()` method. Upon success, this method
-   * executes the handler specified as a parameter. IThe handler, in this case, sends a
-   * 'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half
+   * executes the callback function specified as a parameter. In this case, the callback
+   * calls the `playnote()` function to play a 3rd octave C (note number 60) on channel 2.
    *
    * Receiving messages is just as easy. You simply have to set a callback function to be
    * triggered when a specific MIDI message is received. For example, to listen for pitch
@@ -33,11 +33,13 @@
    * @class WebMidi
    * @static
    *
-   * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
+   * @todo  Add a 'filter' parameter to addEventListener. This would allow to listen for a
+   *        specific controller on a controlchange event or a specific note on a event
+   *        message.
+   * @todo  Add more examples in method documentation (playNote namely).
+   * @todo  Find a way to autoupdate/upload the docs directory.
    * @todo  Add specific events for channel mode messages ?
-   * @todo  Add a 'filter' parameter to addEventListener. This would allow to listen for
-   *        a specific controller on a controlchange message or a specific note on a
-   *        noteon message.
+   * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    */
   function WebMidi() {
 

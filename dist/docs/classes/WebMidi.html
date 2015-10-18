@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="webmidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-alpha.6</em>
+            <em>API Docs for: 1.0.0-alpha.7</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -91,16 +91,17 @@
 <div class="box intro">
     <p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it
 simplifies two things: sending and receiving MIDI messages.</p>
-<p>To send MIDI messages, you simply need to pick the appropriate method and all the
+<p>To send MIDI messages, you simply need to call the desired method (<code>playNote()</code>,
+<code>sendPitchBend()</code>, <code>stopNote()</code>, etc.) with the appropriate parameters and all the
 native MIDI communication will be handled for you. The only additional thing that
 needs to be done is enable <code>WebMidi</code>. Here is an example:</p>
 <pre class="code prettyprint"><code> WebMidi.enable(function() {
-   WebMidi.playNote(2, 76, 0.5);
+   WebMidi.playNote(2, &quot;C3&quot;);
  });
 </code></pre>
 <p>The code above, calls the <code>WebMidi.enable()</code> method. Upon success, this method
-executes the handler specified as a parameter. IThe handler, in this case, sends a
-'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half</p>
+executes the callback function specified as a parameter. In this case, the callback
+calls the <code>playnote()</code> function to play a 3rd octave C (note number 60) on channel 2.</p>
 <p>Receiving messages is just as easy. You simply have to set a callback function to be
 triggered when a specific MIDI message is received. For example, to listen for pitch
 bend events on any input MIDI channels:</p>
@@ -374,7 +375,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l830"><code>..&#x2F;src&#x2F;webmidi.js:830</code></a>
+        <a href="../files/.._src_webmidi.js.html#l832"><code>..&#x2F;src&#x2F;webmidi.js:832</code></a>
         </p>
 
 
@@ -517,7 +518,7 @@ be chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l783"><code>..&#x2F;src&#x2F;webmidi.js:783</code></a>
+        <a href="../files/.._src_webmidi.js.html#l785"><code>..&#x2F;src&#x2F;webmidi.js:785</code></a>
         </p>
 
 
@@ -611,7 +612,7 @@ will be passed a string describing the error.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l939"><code>..&#x2F;src&#x2F;webmidi.js:939</code></a>
+        <a href="../files/.._src_webmidi.js.html#l941"><code>..&#x2F;src&#x2F;webmidi.js:941</code></a>
         </p>
 
 
@@ -728,7 +729,7 @@ listeners.</p>
     <div class="description">
         <p>Returns a MIDI note number matching the note name passed in the form of a string
 parameter. The note name must include the octave number which should be between -2
-and 5: C5, G4, D#-1, F0, etc.</p>
+and 8: C5, G4, D#-1, F0, etc.</p>
 
     </div>
 
@@ -742,8 +743,9 @@ and 5: C5, G4, D#-1, F0, etc.</p>
 
 
                     <div class="param-description">
-                        <p>The name of the note in the form of a letter followed by an
-octave number (between -2 and 5).</p>
+                        <p>The name of the note in the form of a letter, followed by an
+optional # symbol, followed by the octave number (between -2
+and 8).</p>
 
                     </div>
 
@@ -801,7 +803,7 @@ octave number (between -2 and 5).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1322"><code>..&#x2F;src&#x2F;webmidi.js:1322</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1323"><code>..&#x2F;src&#x2F;webmidi.js:1323</code></a>
         </p>
 
 
@@ -952,7 +954,7 @@ and 1.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1005"><code>..&#x2F;src&#x2F;webmidi.js:1005</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1007"><code>..&#x2F;src&#x2F;webmidi.js:1007</code></a>
         </p>
 
 
@@ -1058,7 +1060,7 @@ listeners.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1062"><code>..&#x2F;src&#x2F;webmidi.js:1062</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1064"><code>..&#x2F;src&#x2F;webmidi.js:1064</code></a>
         </p>
 
 
@@ -1187,7 +1189,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1605"><code>..&#x2F;src&#x2F;webmidi.js:1605</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1617"><code>..&#x2F;src&#x2F;webmidi.js:1617</code></a>
         </p>
 
 
@@ -1301,7 +1303,7 @@ number or 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1524"><code>..&#x2F;src&#x2F;webmidi.js:1524</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1537"><code>..&#x2F;src&#x2F;webmidi.js:1537</code></a>
         </p>
 
 
@@ -1424,7 +1426,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1484"><code>..&#x2F;src&#x2F;webmidi.js:1484</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1497"><code>..&#x2F;src&#x2F;webmidi.js:1497</code></a>
         </p>
 
 
@@ -1547,7 +1549,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1441"><code>..&#x2F;src&#x2F;webmidi.js:1441</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1454"><code>..&#x2F;src&#x2F;webmidi.js:1454</code></a>
         </p>
 
 
@@ -1671,7 +1673,7 @@ number or 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1641"><code>..&#x2F;src&#x2F;webmidi.js:1641</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1653"><code>..&#x2F;src&#x2F;webmidi.js:1653</code></a>
         </p>
 
 
@@ -1781,7 +1783,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1568"><code>..&#x2F;src&#x2F;webmidi.js:1568</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1580"><code>..&#x2F;src&#x2F;webmidi.js:1580</code></a>
         </p>
 
 
@@ -1890,7 +1892,7 @@ will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1197"><code>..&#x2F;src&#x2F;webmidi.js:1197</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1198"><code>..&#x2F;src&#x2F;webmidi.js:1198</code></a>
         </p>
 
 
@@ -2003,7 +2005,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1134"><code>..&#x2F;src&#x2F;webmidi.js:1134</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1136"><code>..&#x2F;src&#x2F;webmidi.js:1136</code></a>
         </p>
 
 
@@ -2133,7 +2135,7 @@ the command (using 0 will send the command immediately).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l1235"><code>..&#x2F;src&#x2F;webmidi.js:1235</code></a>
+        <a href="../files/.._src_webmidi.js.html#l1236"><code>..&#x2F;src&#x2F;webmidi.js:1236</code></a>
         </p>
 
 
@@ -2253,7 +2255,7 @@ between 0 and 1.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l58"><code>..&#x2F;src&#x2F;webmidi.js:58</code></a>
+        <a href="../files/.._src_webmidi.js.html#l62"><code>..&#x2F;src&#x2F;webmidi.js:62</code></a>
         </p>
 
 
@@ -2280,7 +2282,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l73"><code>..&#x2F;src&#x2F;webmidi.js:73</code></a>
+        <a href="../files/.._src_webmidi.js.html#l77"><code>..&#x2F;src&#x2F;webmidi.js:77</code></a>
         </p>
 
 
@@ -2306,7 +2308,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l94"><code>..&#x2F;src&#x2F;webmidi.js:94</code></a>
+        <a href="../files/.._src_webmidi.js.html#l98"><code>..&#x2F;src&#x2F;webmidi.js:98</code></a>
         </p>
 
 
@@ -2332,7 +2334,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l44"><code>..&#x2F;src&#x2F;webmidi.js:44</code></a>
+        <a href="../files/.._src_webmidi.js.html#l48"><code>..&#x2F;src&#x2F;webmidi.js:48</code></a>
         </p>
 
 
@@ -2358,7 +2360,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._src_webmidi.js.html#l115"><code>..&#x2F;src&#x2F;webmidi.js:115</code></a>
+        <a href="../files/.._src_webmidi.js.html#l119"><code>..&#x2F;src&#x2F;webmidi.js:119</code></a>
         </p>
 
 
@@ -2390,7 +2392,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l711"><code>..&#x2F;src&#x2F;webmidi.js:711</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l704"><code>..&#x2F;src&#x2F;webmidi.js:704</code></a>
                             </p>
                     
                     
@@ -2487,7 +2489,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l448"><code>..&#x2F;src&#x2F;webmidi.js:448</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l441"><code>..&#x2F;src&#x2F;webmidi.js:441</code></a>
                             </p>
                     
                     
@@ -2607,7 +2609,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l391"><code>..&#x2F;src&#x2F;webmidi.js:391</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l384"><code>..&#x2F;src&#x2F;webmidi.js:384</code></a>
                             </p>
                     
                     
@@ -2753,7 +2755,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l631"><code>..&#x2F;src&#x2F;webmidi.js:631</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l624"><code>..&#x2F;src&#x2F;webmidi.js:624</code></a>
                             </p>
                     
                     
@@ -2850,7 +2852,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l671"><code>..&#x2F;src&#x2F;webmidi.js:671</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l664"><code>..&#x2F;src&#x2F;webmidi.js:664</code></a>
                             </p>
                     
                     
@@ -2947,7 +2949,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l356"><code>..&#x2F;src&#x2F;webmidi.js:356</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l349"><code>..&#x2F;src&#x2F;webmidi.js:349</code></a>
                             </p>
                     
                     
@@ -3093,7 +3095,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l319"><code>..&#x2F;src&#x2F;webmidi.js:319</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l312"><code>..&#x2F;src&#x2F;webmidi.js:312</code></a>
                             </p>
                     
                     
@@ -3247,7 +3249,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l251"><code>..&#x2F;src&#x2F;webmidi.js:251</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l244"><code>..&#x2F;src&#x2F;webmidi.js:244</code></a>
                             </p>
                     
                     
@@ -3401,7 +3403,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l285"><code>..&#x2F;src&#x2F;webmidi.js:285</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l278"><code>..&#x2F;src&#x2F;webmidi.js:278</code></a>
                             </p>
                     
                     
@@ -3555,7 +3557,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l474"><code>..&#x2F;src&#x2F;webmidi.js:474</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l467"><code>..&#x2F;src&#x2F;webmidi.js:467</code></a>
                             </p>
                     
                     
@@ -3675,7 +3677,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l423"><code>..&#x2F;src&#x2F;webmidi.js:423</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l416"><code>..&#x2F;src&#x2F;webmidi.js:416</code></a>
                             </p>
                     
                     
@@ -3794,7 +3796,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l731"><code>..&#x2F;src&#x2F;webmidi.js:731</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l724"><code>..&#x2F;src&#x2F;webmidi.js:724</code></a>
                             </p>
                     
                     
@@ -3891,7 +3893,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l567"><code>..&#x2F;src&#x2F;webmidi.js:567</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l560"><code>..&#x2F;src&#x2F;webmidi.js:560</code></a>
                             </p>
                     
                     
@@ -3988,7 +3990,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l589"><code>..&#x2F;src&#x2F;webmidi.js:589</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l582"><code>..&#x2F;src&#x2F;webmidi.js:582</code></a>
                             </p>
                     
                     
@@ -4095,7 +4097,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l651"><code>..&#x2F;src&#x2F;webmidi.js:651</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l644"><code>..&#x2F;src&#x2F;webmidi.js:644</code></a>
                             </p>
                     
                     
@@ -4192,7 +4194,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l200"><code>..&#x2F;src&#x2F;webmidi.js:200</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l204"><code>..&#x2F;src&#x2F;webmidi.js:204</code></a>
                             </p>
                     
                     
@@ -4220,7 +4222,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l691"><code>..&#x2F;src&#x2F;webmidi.js:691</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l684"><code>..&#x2F;src&#x2F;webmidi.js:684</code></a>
                             </p>
                     
                     
@@ -4317,7 +4319,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l524"><code>..&#x2F;src&#x2F;webmidi.js:524</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l517"><code>..&#x2F;src&#x2F;webmidi.js:517</code></a>
                             </p>
                     
                     
@@ -4414,7 +4416,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l544"><code>..&#x2F;src&#x2F;webmidi.js:544</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l537"><code>..&#x2F;src&#x2F;webmidi.js:537</code></a>
                             </p>
                     
                     
@@ -4512,7 +4514,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l611"><code>..&#x2F;src&#x2F;webmidi.js:611</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l604"><code>..&#x2F;src&#x2F;webmidi.js:604</code></a>
                             </p>
                     
                     
@@ -4609,7 +4611,7 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/.._src_webmidi.js.html#l751"><code>..&#x2F;src&#x2F;webmidi.js:751</code></a>
+                            <a href="../files/.._src_webmidi.js.html#l744"><code>..&#x2F;src&#x2F;webmidi.js:744</code></a>
                             </p>
                     
                     

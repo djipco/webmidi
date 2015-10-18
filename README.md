@@ -1,30 +1,33 @@
 # WebMidi
-_A JavaScript browser library making it easier to develop with the Web MIDI API._
+_**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**_
 
 ## Background
 
-The Web MIDI API is a really exciting piece of software that allos developers to interact
-with MIDI musical devices. However, the Web MIDI API leaves it up to the developer to
-manually encode MIDI messages before sending them. Reading the MIDI spec in order to
-properly do that is not fun. Also the Web MIDI API makes it hard to react upon receiving 
-MIDI messages from external devices. For example, it only allows a single callback 
-function per channel and does not provide any help decoding the incoming binary messages. 
-The goal behind WebMidi is to makes these things much easier.
+The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
+to the web platform that allows web developers to interact with MIDI musical instruments 
+and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
+low-level for their needs. For example, sending and receiving MIDI messages involves 
+performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
+MIDI spec in order to properly do that is not fun. Also the *Web MIDI API* makes it hard 
+to react upon receiving MIDI messages from external devices. For example, it only allows a 
+single callback function per channel. The goal behind the **WebMidi** library is to make
+all these things much easier.
 
 ## Installation
 
-Even though it's a front-end library, you can nevertheless install WebMidi by using NPM.
-If you already have [Node.js](https://nodejs.org/) installed, you also have NPM installed. 
-This means you can install the `webmidi` package by issuing the following command in the 
-Terminal (Mac, Linux) or the Command Prompt (Windows):
+Even though it's a browser front-end library, you can nevertheless install **WebMidi** by 
+using NPM. If you already have [Node.js](https://nodejs.org/) installed, you also have NPM 
+installed. This means you can install the `webmidi` package by issuing the following 
+command in the Terminal (Mac, Linux) or the Command Prompt (Windows):
 
     npm install webmidi
 
 If you prefer to do it the old fashioned way, you can 
 [download the latest release](https://github.com/cotejp/webmidi/releases) packaged as a 
 zip file. Uncompress it and then simply grab the `webmidi-x.x.x.min.js` file from the 
-`dist` folder. Copy it to your project and link it to your HTML page as usual. By the way,
-you will find the full API documentation in the `dist/docs` folder.
+`dist` folder. Copy it to your project and link it to your HTML page as usual. 
+
+By the way, you will also find the full API documentation in the `dist/docs` folder.
 
 ## Quick Start
 
