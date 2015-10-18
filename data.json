@@ -1,0 +1,1800 @@
+{
+    "project": {
+        "name": "webmidi",
+        "version": "1.0.0-alpha.7",
+        "description": "A browser library making it easier to develop with the Web MIDI API.",
+        "url": ""
+    },
+    "files": {
+        "../src/webmidi.js": {
+            "name": "../src/webmidi.js",
+            "modules": {},
+            "classes": {
+                "WebMidi": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "WebMidi": {
+            "name": "WebMidi",
+            "shortname": "WebMidi",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "../src/webmidi.js",
+            "line": 5,
+            "description": "The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it\nsimplifies two things: sending and receiving MIDI messages.\n\nTo send MIDI messages, you simply need to call the desired method (`playNote()`,\n`sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the\nnative MIDI communication will be handled for you. The only additional thing that\nneeds to be done is enable `WebMidi`. Here is an example:\n\n     WebMidi.enable(function() {\n       WebMidi.playNote(2, 76, 0.5);\n     });\n\nThe code above, calls the `WebMidi.enable()` method. Upon success, this method\nexecutes the handler specified as a parameter. IThe handler, in this case, sends a\n'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half\n\nReceiving messages is just as easy. You simply have to set a callback function to be\ntriggered when a specific MIDI message is received. For example, to listen for pitch\nbend events on any input MIDI channels:\n\n     WebMidi.addEventListener('pitchbend', function(e) {\n       console.log(\"Pitch value: \" + e.value);\n     });\n\nAs you can see, this library makes it much easier to use the Web MIDI API. No need to\nmanually craft or decode binary MIDI messages anymore!",
+            "static": 1,
+            "todo": [
+                "Yuidoc does not allow multiple exceptions (@throws) for a single method ?!",
+                "Add specific events for channel mode messages ?",
+                "Add a 'filter' parameter to addEventListener. This would allow to listen for\n       a specific controller on a controlchange message or a specific note on a\n       noteon message."
+            ]
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "../src/webmidi.js",
+            "line": 46,
+            "description": "[read-only] Indicates whether the browser supports the Web MIDI API or not.",
+            "itemtype": "property",
+            "name": "supported",
+            "type": "Boolean",
+            "static": 1,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 60,
+            "description": "[read-only] Indicates whether the interface to the host's MIDI subsystem is still\nactive.",
+            "itemtype": "property",
+            "name": "connected",
+            "type": "Boolean",
+            "static": 1,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 75,
+            "description": "[read-only] An array of all currently available MIDI inputs.",
+            "itemtype": "property",
+            "name": "inputs",
+            "type": "MIDIInput[]",
+            "static": 1,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 96,
+            "description": "[read-only] An array of all currently available MIDI outputs.",
+            "itemtype": "property",
+            "name": "inputs",
+            "type": "MIDIOutput[]",
+            "static": 1,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 117,
+            "description": "[read-only] Current MIDI performance time in milliseconds. This can be used to\nqueue events in the future.",
+            "itemtype": "property",
+            "name": "time",
+            "type": "DOMHighResTimeStamp",
+            "static": 1,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 138,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 176,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 199,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 202,
+            "description": "Event emitted when the interface's state changes. Typically, this happens when a\nMIDI device is being plugged or unplugged. This event cannot be listened on a\nspecific MIDI channel, it is intended to be interface-wide. If a channel is\nspecified, it will be silently ignored.",
+            "itemtype": "event",
+            "name": "statechange",
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 216,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 227,
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 253,
+            "description": "Event emitted when a note off MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "noteoff",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "note",
+                            "description": "",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "number",
+                                    "description": "The MIDI note number.",
+                                    "type": "Uint"
+                                },
+                                {
+                                    "name": "name",
+                                    "description": "The usual note name (C, C#, D, D#, etc.).",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "octave",
+                                    "description": "The octave (between -3 and 5).",
+                                    "type": "Uint"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "velocity",
+                            "description": "The release velocity (between 0 and 1).",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 287,
+            "description": "Event emitted when a note on MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "noteon",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "note",
+                            "description": "",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "number",
+                                    "description": "The MIDI note number.",
+                                    "type": "Uint"
+                                },
+                                {
+                                    "name": "name",
+                                    "description": "The usual note name (C, C#, D, D#, etc.).",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "octave",
+                                    "description": "The octave (between -3 and 5).",
+                                    "type": "Uint"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "velocity",
+                            "description": "The attack velocity (between 0 and 1).",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 321,
+            "description": "Event emitted when a key-specific aftertouch MIDI message has been received on a\nspecific channel.",
+            "itemtype": "event",
+            "name": "keyaftertouch",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "note",
+                            "description": "",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "number",
+                                    "description": "The MIDI note number.",
+                                    "type": "Uint"
+                                },
+                                {
+                                    "name": "name",
+                                    "description": "The usual note name (C, C#, D, D#, etc.).",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "octave",
+                                    "description": "The octave (between -3 and 5).",
+                                    "type": "Uint"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "The aftertouch amount (between 0 and 1).",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 358,
+            "description": "Event emitted when a control change MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "controlchange",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "controller",
+                            "description": "",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "number",
+                                    "description": "The number of the controller.",
+                                    "type": "Uint"
+                                },
+                                {
+                                    "name": "name",
+                                    "description": "The number of the controller.",
+                                    "type": "String"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "The value received (between 0 and 127).",
+                            "type": "Uint"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 393,
+            "description": "Event emitted when a channel mode MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "channelmode",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "controller",
+                            "description": "",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "number",
+                                    "description": "The number of the controller.",
+                                    "type": "Uint"
+                                },
+                                {
+                                    "name": "name",
+                                    "description": "The number of the controller.",
+                                    "type": "String"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "description": "The value received (between 0 and 127).",
+                            "type": "Uint"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 425,
+            "description": "Event emitted when a program change MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "programchange",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "value",
+                            "description": "The value received (between 0 and 127).",
+                            "type": "Uint"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 450,
+            "description": "Event emitted when a channel-wide aftertouch MIDI message has been received on a\nspecific channel.",
+            "itemtype": "event",
+            "name": "channelaftertouch",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "value",
+                            "description": "The aftertouch value received (between 0 and\n                                   1).",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 476,
+            "description": "Event emitted when a pitch bend MIDI message has been received on a specific\nchannel.",
+            "itemtype": "event",
+            "name": "pitchbend",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "channel",
+                            "description": "The channel where the event occurred (between\n                                   0 and 15).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "value",
+                            "description": "The pitch bend value received (between -1 and\n                                   1).",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 526,
+            "description": "Event emitted when a system exclusive MIDI message has been received.",
+            "itemtype": "event",
+            "name": "sysex",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 546,
+            "description": "Event emitted when a system MIDI time code quarter frame message has been\nreceived.",
+            "itemtype": "event",
+            "name": "timecode",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 569,
+            "description": "Event emitted when a system song position pointer MIDI message has been received.",
+            "itemtype": "event",
+            "name": "songposition",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 591,
+            "description": "Event emitted when a system song select MIDI message has been received.",
+            "itemtype": "event",
+            "name": "songselect",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "song",
+                            "description": "Song (or sequence) number to select.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 613,
+            "description": "Event emitted when a system tune request MIDI message has been received.",
+            "itemtype": "event",
+            "name": "tuningrequest",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 633,
+            "description": "Event emitted when a system timing clock MIDI message has been received.",
+            "itemtype": "event",
+            "name": "clock",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 653,
+            "description": "Event emitted when a system start MIDI message has been received.",
+            "itemtype": "event",
+            "name": "start",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 673,
+            "description": "Event emitted when a system continue MIDI message has been received.",
+            "itemtype": "event",
+            "name": "continue",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 693,
+            "description": "Event emitted when a system stop MIDI message has been received.",
+            "itemtype": "event",
+            "name": "stop",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 713,
+            "description": "Event emitted when a system active sensing MIDI message has been received.",
+            "itemtype": "event",
+            "name": "activesensing",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 733,
+            "description": "Event emitted when a system reset MIDI message has been received.",
+            "itemtype": "event",
+            "name": "reset",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 753,
+            "description": "Event emitted when an unknown system MIDI message has been received. It could be,\nfor example, one of the undefined/reserved messages.",
+            "itemtype": "event",
+            "name": "unknownsystemmessage",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "target",
+                            "description": "The target MIDI input where the event\n                                   occurred.",
+                            "type": "MIDIInput"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "type": "Uint8Array"
+                        },
+                        {
+                            "name": "receivedTime",
+                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "timeStamp",
+                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "type": "Uint"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The type of event that occurred.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 785,
+            "description": "Checks if the Web MIDI API is available and then tries to connect to the host's MIDI\nsubsystem. If the operation succeeds, the `successHandler` callback is executed.\nIf not, the `errorHandler` callback is executed and passed a string describing the\nerror.\n\nDepending on the host environment, calling this method may prompt the user for\nauthorization.",
+            "itemtype": "method",
+            "name": "enable",
+            "static": 1,
+            "params": [
+                {
+                    "name": "successHandler",
+                    "description": "A function to execute upon success.",
+                    "type": "Function"
+                },
+                {
+                    "name": "errorHandler",
+                    "description": "A function to execute upon error. This function\n                                   will be passed a string describing the error.",
+                    "type": "Function",
+                    "optional": true
+                },
+                {
+                    "name": "sysex",
+                    "description": "Whether to enable sysex or not",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 832,
+            "description": "Adds an event listener that will trigger a function callback when the specified event\nhappens. By default, the listener is system-wide (it will listen on all MIDI\nchannels) but this can be changed by passing one or more specific channel(s) as the\n3rd parameter.\n\nHere is a list of events that are dispatched by the `WebMidi` object and that can be\nlistened to.\n\nChannel-specific MIDI events:\n\n   * noteoff\n   * noteon\n   * keyaftertouch\n   * controlchange\n   * channelmode\n   * programchange\n   * channelaftertouch\n   * pitchbend\n\nSystem-wide MIDI events:\n\n   * sysex\n   * timecode\n   * songposition\n   * songselect\n   * tuningrequest\n   * clock\n   * start\n   * continue\n   * stop\n   * activesensing\n   * reset\n   * unknownsystemmessage\n\nInterface event:\n\n   * statechange\n\nFor system-wide events, the specified channel (if any) will be silently ignored. The\nvalue \"all\" will be used instead.",
+            "itemtype": "method",
+            "name": "addEventListener",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The type of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "listener",
+                    "description": "A callback function to execute when the\n                                         specified event is detected.",
+                    "type": "Function"
+                },
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel or array of channels to\n                                         listen on. If set to 'all', all channels\n                                         will trigger the callback function.",
+                    "type": "Uint|Array|\"all\"",
+                    "optional": true,
+                    "optdefault": "all"
+                }
+            ],
+            "throws": {
+                "description": "The specified event type is not supported.",
+                "type": "TypeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can\n                                         be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 941,
+            "description": "Checks if the specified event type is already defined to trigger the listener\nfunction on the specified channel. If the special value \"all\" is used for the\nchannel, the function will return `true` only  if all channels have the listener\ndefined.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the channel\nparameter is silently ignored.",
+            "itemtype": "method",
+            "name": "hasEventListener",
+            "static": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The type of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "listener",
+                    "description": "The callback function to check for.",
+                    "type": "Function"
+                },
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel to check on. It can be a uint\n                                   (between 0 and 15) or the special value \"all\".",
+                    "type": "Uint|\"all\"",
+                    "optional": true,
+                    "optdefault": "all"
+                }
+            ],
+            "throws": {
+                "description": "WebMidi must be enabled before checking event\n                                   listeners.",
+                "type": "Error"
+            },
+            "return": {
+                "description": "Boolean value indicating whether or not the\n                                   channel(s) already have this listener defined.",
+                "type": "Boolean"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1007,
+            "description": "Removes the specified listener from the requested channel(s). If the special value\n\"all\" is used for the channel parameter, the function will remove the listener from\nall channels.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the channel\nparameter is silently ignored.",
+            "itemtype": "method",
+            "name": "removeEventListener",
+            "static": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The type of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "listener",
+                    "description": "The callback function to check for.",
+                    "type": "Function"
+                },
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel to check on. It can be a uint\n                                   (between 0 and 15) or the special value \"all\".",
+                    "type": "Uint|\"all\"",
+                    "optional": true,
+                    "optdefault": "all"
+                }
+            ],
+            "throws": {
+                "description": "WebMidi must be enabled before removing event\n                                   listeners.",
+                "type": "Error"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1064,
+            "description": "Sends a MIDI message to one or all channels at the specified timestamp. Unless, you\nare familiar with the details of the MIDI message format, you should not use this\nmethod directly. Instead, use one of the helper methods: `playNote()`, `stopNote()`,\n`sendControlChange()`, `sendSystemMessage()`, etc.",
+            "itemtype": "method",
+            "name": "send",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15) or the\n                                 string \"all\". You can view the available channels in\n                                 `WebMidi.outputs`.",
+                    "type": "\"all\"|uint"
+                },
+                {
+                    "name": "command",
+                    "description": "The command number. Check out the constants in the\n                                 WebMidi object for a list of available commands\n                                 (0-255).",
+                    "type": "Uint"
+                },
+                {
+                    "name": "data",
+                    "description": "Array of data bytes. The number of data bytes varies\n                                 depending on the command.",
+                    "type": "Array",
+                    "optional": true,
+                    "optdefault": "[]"
+                },
+                {
+                    "name": "timestamp",
+                    "description": "The timestamp at which to schedule\n                                 the event. You can use `WebMidi.time` to retrieve\n                                 the current timestamp.",
+                    "type": "DOMHighResTimeStamp",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "The command must be an integer between 0 and 255.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be\n                                 chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1136,
+            "description": "Sends a MIDI real-time or common system message to all available outputs. The\navailable messages are as follows:\n\nSystem common messages:\n\n   sysex\n   timecode\n   songposition\n   songselect\n   tuningrequest\n   sysexend\n\nSystem real-time messages:\n\n   clock\n   start\n   continue\n   stop\n   activesensing\n   reset",
+            "itemtype": "method",
+            "name": "sendSystemMessage",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "command",
+                    "description": "A string representing the command to send. The available\n                           system commands are: sysex, timecode, songposition,\n                           songselect, tuningrequest, sysexend, clock, start,\n                           continue, stop, activesensing and reset.",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "An array of data bytes to insert in the message. The\n                           number of data bytes varies depending on the command.",
+                    "type": "Array",
+                    "optional": true,
+                    "optdefault": "[]"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually sending\n                           the command (using 0 will send the command immediately).",
+                    "type": "Uint",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "The requested system command is not supported.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "todo": [
+                "tuning request does not work ?!"
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1199,
+            "description": "Sends a system exclusive message to all connected devices. The message will\nautomatically be properly terminated. It is generally suggested to keep system\nexclusive messages to 64Kb or less.",
+            "itemtype": "method",
+            "name": "sendSystemMessage",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "manufacturer",
+                    "description": "A uint or an array of three uints between 0 and 127\n                                 that identifies the targeted manufacturer.",
+                    "type": "Uint|Array"
+                },
+                {
+                    "name": "data",
+                    "description": "An array of uints between 0 and 127. This is the\n                                 data you wish to transfer.",
+                    "type": "Array",
+                    "optional": true,
+                    "optdefault": "[]"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually\n                                 sending the command (using 0 will send the command\n                                 immediately).",
+                    "type": "Uint",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "WebMidi must be enabled sending messages."
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be\n                                 chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1237,
+            "description": "Sends a MIDI `note off` message to the specified channel for a single note or\nmultiple notes. You can delay the execution of the `note off` command by using the\n`delay` parameter (milliseconds).",
+            "itemtype": "method",
+            "name": "stopNote",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You\n                                     can view available channels in the\n                                     `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "note",
+                    "description": "The note or an array of notes to stop. The notes\n                                     can be specified in one of two ways. The first\n                                     way is by using the MIDI note number (an integer\n                                     between 0 and 127). The second way is by using\n                                     the note name followed by the octave (C3, G#4,\n                                     F-1). The octave range should be between -3 and\n                                     5.",
+                    "type": "Array|uint|String",
+                    "optional": true,
+                    "optdefault": "60"
+                },
+                {
+                    "name": "velocity",
+                    "description": "The velocity at which to release the note\n                                     (between 0 and 1).",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "0.5"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before\n                                     actually sending the `note off` message (using a\n                                     negative number or 0 will stop the note\n                                     immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "The release velocity must be a decimal number\n                                     between 0 and 1.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be\n                                     chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1324,
+            "description": "Requests the playback of a single note or multiple notes on the specified channel.\nYou can delay the execution of the `note on` command by using the `delay` parameter\n(milliseconds).\n\nIf no duration is specified, the note will play until a matching `note off` is sent.\nIf a duration is specified, a `note off` will be automatically executed after said\nduration.\n\nPlease note that if you do use a duration, the release velocity will always be 64. If\nyou want to tailor the release velocity, you need to use separate `playNote()` and\n`stopNote()` calls.",
+            "itemtype": "method",
+            "name": "playNote",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You\n                                     can view available channels in the\n                                     `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "note",
+                    "description": "The note to play or an array of notes to play.\n                                     The notes can be specified in one of two ways.\n                                     The first way is by using the MIDI note number\n                                     (an integer between 0 and 127). The second way\n                                     is by using the note name followed by the octave\n                                     (C3, G#4, F-1). The octave range should be\n                                     between -3 and 5.",
+                    "type": "Array|uint|String",
+                    "optional": true,
+                    "optdefault": "60"
+                },
+                {
+                    "name": "velocity",
+                    "description": "The velocity at which to play the note (between\n                                     0 and 1).",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "0.5"
+                },
+                {
+                    "name": "duration",
+                    "description": "The number of milliseconds to wait before\n                                     sending a matching note off event. If left\n                                     undefined, only a note on is sent.",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before\n                                     actually sending the `note on` command (using a\n                                     negative number or 0 will send the command\n                                     immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "The velocity must be a decimal number between 0\n                                     and 1.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be\n                                     chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1426,
+            "description": "Returns a MIDI note number matching the note name passed in the form of a string\nparameter. The note name must include the octave number which should be between -2\nand 5: C5, G4, D#-1, F0, etc.",
+            "itemtype": "method",
+            "name": "noteNameToNumber",
+            "static": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the note in the form of a letter followed by an\n                       octave number (between -2 and 5).",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The MIDI note number.",
+                "type": "Uint"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1443,
+            "description": "Sends a MIDI `key aftertouch` message to the specified channel. This is a\nkey-specific aftertouch. For a channel-wide aftertouch message, use\n`sendChannelAftertouch()`.",
+            "itemtype": "method",
+            "name": "sendKeyAftertouch",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                             available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "note",
+                    "description": "The MIDI number of the note whose pressure data is being\n                             sent (0-127).",
+                    "type": "Uint"
+                },
+                {
+                    "name": "pressure",
+                    "description": "The pressure level to send (between 0 and 1)",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "0"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually\n                             sending the `key aftertouch` command (using a negative\n                             number or 0 will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "The note number must be between 0 and 127.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1486,
+            "description": "Sends a MIDI `control change` message to the specified channel.",
+            "itemtype": "method",
+            "name": "sendControlChange",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                           available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "controller",
+                    "description": "The MIDI controller number (0-119)",
+                    "type": "Uint"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to send (0-127).",
+                    "type": "Uint"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually sending\n                           the `key aftertouch` command (using a negative number or 0\n                           will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "Value must be between 0 and 127.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1526,
+            "description": "Sends a MIDI `channel mode` message to the specified channel.",
+            "itemtype": "method",
+            "name": "sendChannelMode",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                           available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "command",
+                    "description": "The MIDI channel mode command (120-127)",
+                    "type": "Uint"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to send (0-127)",
+                    "type": "Uint"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually sending\n                           the `key aftertouch` command (using a negative number or 0\n                           will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "Value must be between 0 and 127.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "todo": [
+                "il faut décortiquer les channel mode en fonctions distinctes"
+            ],
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1570,
+            "description": "Sends a MIDI `program change` message to the specified channel.",
+            "itemtype": "method",
+            "name": "sendProgramChange",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                           available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "program",
+                    "description": "The MIDI patch (program) number (0-127)",
+                    "type": "Uint"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually sending\n                           the `key aftertouch` command (using a negative number or 0\n                           will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "Program numbers must be between 0 and 127.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1607,
+            "description": "Sends a MIDI `channel aftertouch` message to the specified channel. For key-specific\naftertouch, instead use `sendKeyAftertouch()`.",
+            "itemtype": "method",
+            "name": "sendChannelAftertouch",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                             available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "pressure",
+                    "description": "The pressure level (between 0 and 1)",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "0"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually\n                             sending the `key aftertouch` command (using a negative\n                             number or 0 will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "WebMidi must be enabled before sending messages.",
+                "type": "Error"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "../src/webmidi.js",
+            "line": 1643,
+            "description": "Sends a MIDI `pitch bend` message to the specified channel.",
+            "itemtype": "method",
+            "name": "sendPitchBend",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "channel",
+                    "description": "The MIDI channel number (between 0 and 15). You can view\n                           available channels in the `WebMidi.outputs` array.",
+                    "type": "Uint"
+                },
+                {
+                    "name": "level",
+                    "description": "The intensity level of the bend (between -1 and 1)",
+                    "type": "Number",
+                    "optional": true,
+                    "optdefault": "-1"
+                },
+                {
+                    "name": "delay",
+                    "description": "The number of milliseconds to wait before actually sending\n                           the `key aftertouch` command (using a negative number or 0\n                           will send the command immediately).",
+                    "type": "Int",
+                    "optional": true,
+                    "optdefault": "0"
+                }
+            ],
+            "throws": {
+                "description": "Pitch bend value must be between -1 and 1.",
+                "type": "RangeError"
+            },
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " ../src/webmidi.js:941"
+        },
+        {
+            "message": "Missing item type",
+            "line": " ../src/webmidi.js:138"
+        },
+        {
+            "message": "Missing item type",
+            "line": " ../src/webmidi.js:176"
+        },
+        {
+            "message": "Missing item type",
+            "line": " ../src/webmidi.js:199"
+        },
+        {
+            "message": "Missing item type",
+            "line": " ../src/webmidi.js:216"
+        },
+        {
+            "message": "Missing item type",
+            "line": " ../src/webmidi.js:227"
+        }
+    ]
+}
