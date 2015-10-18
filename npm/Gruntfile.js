@@ -92,19 +92,24 @@ module.exports = function (grunt) {
       }
     },
 
-
-
-
-    // Package a zip file
+    // Create an archive package
     compress: {
       main: {
         options: {
-          archive: '../packaged/<%= pkg.name %>-<%= pkg.version %>.zip'
+          archive: '../archives/<%= pkg.name %>-<%= pkg.version %>.zip'
         },
         files: [
           {src: ['**'], cwd: "../dist/", expand: true}
         ]
       }
+    },
+
+    // Push documentation to GitHub pages
+    'gh-pages': {
+      options: {
+        base: '../dist/docs'
+      },
+      src: ['**/*']
     },
 
     release: {
@@ -124,6 +129,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('publish', ['publish:prerelease']);
   grunt.registerTask("publish:prerelease", ['clean', 'bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'compress', 'release']);
