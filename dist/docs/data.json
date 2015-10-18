@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "webmidi",
-        "version": "1.0.0-alpha.5",
+        "version": "1.0.0-alpha.6",
         "description": "A browser library making it easier to develop with the Web MIDI API.",
         "url": ""
     },
@@ -1409,7 +1409,7 @@
         {
             "file": "../src/webmidi.js",
             "line": 1235,
-            "description": "Sends a MIDI `note off` message to the specified channel. A `note off` message simply\nmeans to stop playing a note. You can delay the execution of the `note off` command\nby using the `delay` parameter (milliseconds).",
+            "description": "Sends a MIDI `note off` message to the specified channel for a single note or\nmultiple notes. You can delay the execution of the `note off` command by using the\n`delay` parameter (milliseconds).",
             "itemtype": "method",
             "name": "stopNote",
             "static": 1,
@@ -1455,7 +1455,7 @@
         {
             "file": "../src/webmidi.js",
             "line": 1322,
-            "description": "Sends a MIDI `note on` message to the specified channel. A `note on` message simply\nmeans to play a note. You can delay the execution of the `note on` command\nby using the `delay` parameter (milliseconds).\n\nIf no duration is specified, the note will play until a matching `note off` is sent.\nIf a duration is specified, a `note off` will be automatically executed after said\nduration.\n\nPlease note that if you do use a duration, the release velocity will always be 64. If\nyou want to tailor the release velocity, you need to use separate `playNote()` and\n`stopNote()` calls.",
+            "description": "Requests the playback of a single note or multiple notes on the specified channel.\nYou can delay the execution of the `note on` command by using the `delay` parameter\n(milliseconds).\n\nIf no duration is specified, the note will play until a matching `note off` is sent.\nIf a duration is specified, a `note off` will be automatically executed after said\nduration.\n\nPlease note that if you do use a duration, the release velocity will always be 64. If\nyou want to tailor the release velocity, you need to use separate `playNote()` and\n`stopNote()` calls.",
             "itemtype": "method",
             "name": "playNote",
             "static": 1,

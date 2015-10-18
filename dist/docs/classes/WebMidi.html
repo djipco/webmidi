@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="webmidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-alpha.5</em>
+            <em>API Docs for: 1.0.0-alpha.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -809,9 +809,9 @@ octave number (between -2 and 5).</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>note on</code> message to the specified channel. A <code>note on</code> message simply
-means to play a note. You can delay the execution of the <code>note on</code> command
-by using the <code>delay</code> parameter (milliseconds).</p>
+        <p>Requests the playback of a single note or multiple notes on the specified channel.
+You can delay the execution of the <code>note on</code> command by using the <code>delay</code> parameter
+(milliseconds).</p>
 <p>If no duration is specified, the note will play until a matching <code>note off</code> is sent.
 If a duration is specified, a <code>note off</code> will be automatically executed after said
 duration.</p>
@@ -2141,9 +2141,9 @@ the command (using 0 will send the command immediately).</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>note off</code> message to the specified channel. A <code>note off</code> message simply
-means to stop playing a note. You can delay the execution of the <code>note off</code> command
-by using the <code>delay</code> parameter (milliseconds).</p>
+        <p>Sends a MIDI <code>note off</code> message to the specified channel for a single note or
+multiple notes. You can delay the execution of the <code>note off</code> command by using the
+<code>delay</code> parameter (milliseconds).</p>
 
     </div>
 
