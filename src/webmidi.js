@@ -6,7 +6,8 @@
    * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it
    * simplifies two things: sending and receiving MIDI messages.
    *
-   * To send MIDI messages, you simply need to pick the appropriate method and all the
+   * To send MIDI messages, you simply need to call the desired method (`playNote()`,
+   * `sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the
    * native MIDI communication will be handled for you. The only additional thing that
    * needs to be done is enable `WebMidi`. Here is an example:
    *
@@ -32,10 +33,11 @@
    * @class WebMidi
    * @static
    *
-   * @todo  Allow triggering notes using usual name and octave
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Add specific events for channel mode messages ?
-   * @todo  Ability to listen to one controller in particular (by name or by number).
+   * @todo  Add a 'filter' parameter to addEventListener. This would allow to listen for
+   *        a specific controller on a controlchange message or a specific note on a
+   *        noteon message.
    */
   function WebMidi() {
 
@@ -1435,7 +1437,7 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
     var matches = name.match(/([CDEFGABC]#?)(-?\d+)/i);
-    return matches[2] * 12 + _notes.indexOf(matches[1].toUpperCase());
+    return ((parseInt(matches[2]) + 2) * 12) + _notes.indexOf(matches[1].toUpperCase());
   };
 
   /**
