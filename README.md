@@ -178,4 +178,4 @@ WebMidi.enable(
 ## Full API Documentation
 
 The full **API documentation** is available for download in the `dist/docs` folder. You
-can also **[view it online](http://cote.cc/w/wp-content/uploads/projects/webmidi/docs/classes/WebMidi.html)**.
+can also **[view it online](http://cotejp.github.io/webmidi/docs/classes/WebMidi.html)**.
