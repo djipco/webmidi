@@ -1,0 +1,29 @@
+{
+  "name": "webmidi",
+  "version": "1.0.0-alpha.7",
+  "homepage": "https://github.com/cotejp/webmidi",
+  "authors": [
+    "Jean-Philippe Côté <jp@cote.cc> (http://cote.cc"
+  ],
+  "description": "A browser library making it easier to develop with the Web MIDI API.",
+  "main": "dist/webmidi.min.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "midi",
+    "message",
+    "web",
+    "browser",
+    "front-end"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "archives",
+    "npm",
+    "src"
+  ]
+}
