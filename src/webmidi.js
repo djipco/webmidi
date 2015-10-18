@@ -1426,18 +1426,31 @@
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string
    * parameter. The note name must include the octave number which should be between -2
-   * and 5: C5, G4, D#-1, F0, etc.
+   * and 8: C5, G4, D#-1, F0, etc.
    *
    * @method noteNameToNumber
    * @static
    *
-   * @param name {String}   The name of the note in the form of a letter followed by an
-   *                        octave number (between -2 and 5).
+   * @param name {String}   The name of the note in the form of a letter, followed by an
+   *                        optional # symbol, followed by the octave number (between -2
+   *                        and 8).
    * @return {uint}         The MIDI note number.
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
+
     var matches = name.match(/([CDEFGABC]#?)(-?\d+)/i);
-    return ((parseInt(matches[2]) + 2) * 12) + _notes.indexOf(matches[1].toUpperCase());
+    if(!matches) { throw RangeError("Invalid note name."); }
+
+    var number = _notes.indexOf(matches[1].toUpperCase());
+    var octave = parseInt(matches[2]);
+    var result = ((octave + 2) * 12) + number;
+
+    if (number < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
+      throw RangeError("Invalid note name or note outside valid range.");
+    }
+
+    return result;
+
   };
 
   /**
