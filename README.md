@@ -15,25 +15,53 @@ all these things much easier.
 
 ## Installation
 
-Even though it's a browser front-end library, you can nevertheless install **WebMidi** by 
-using NPM. If you already have [Node.js](https://nodejs.org/) installed, you also have NPM 
-installed. This means you can install the `webmidi` package by issuing the following 
-command in the Terminal (Mac, Linux) or the Command Prompt (Windows):
+You can install the *WebMidi* library in various ways, depending on your needs, setup and 
+preferences.
+
+### Manual Install
+
+You can install *WebMidi* the old fashioned way by downloading the
+[latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file.
+Uncompress the package and simply grab the `webmidi-x.x.x.min.js` file from the `dist` 
+folder. Copy it to your project and link it to your HTML page as usual. 
+
+>By the way, you will also find the 
+[full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
+`dist/docs` folder.
+
+### Bower Install
+
+To install with bower
+
+
+### NPM Install
+
+If you prefer, you can install **WebMidi** with NPM. If you already have 
+[Node.js](https://nodejs.org/) installed, you also have NPM installed. This means you can 
+install the `webmidi` package by issuing the following command in the Terminal (Mac, 
+Linux) or the Command Prompt (Windows):
 
     npm install webmidi
+    
+    {
+      "name": "webmididemo",
+      "version": "1.0.0"
+    }
+    
+In order for NPM to install the library in its `node_modules` folder you should issue the 
+command from inside your projects root directory. Also, you need to have a `package.json`
+file in that same location. The `package.json` file can be as simple as:
 
-If you prefer to do it the old fashioned way, you can 
-[download the latest release](https://github.com/cotejp/webmidi/releases) packaged as a 
-zip file. Uncompress it and then simply grab the `webmidi-x.x.x.min.js` file from the 
-`dist` folder. Copy it to your project and link it to your HTML page as usual. 
-
-By the way, you will also find the full API documentation in the `dist/docs` folder.
+    {
+      "name": "webmididemo",
+      "version": "1.0.0"
+    }
 
 ## Quick Start
 
-Getting started is easy. The first thing to do is to enable WebMidi. When you call the
+Getting started is easy. The first thing to do is to enable **WebMidi**. When you call the
 `WebMidi.enable()` function, you need to pass a callback function to execute upon success
-and, optionnally, another callback function to execute upon failure. The `enable()` 
+and, optionally, another callback function to execute upon failure. The `enable()` 
 function will fail if the host browser does not suppport the Web MIDI API (currently, only 
 Google Chrome does) or if the browser cannot connect to the host's MIDI subsystem.
 
