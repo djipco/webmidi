@@ -1,6 +1,6 @@
 {
   "name": "webmidi",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "A browser library making it easier to develop with the Web MIDI API.",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "./webmidi.min.js",
@@ -32,7 +32,6 @@
     "grunt-contrib-uglify": "^0.9.2",
     "grunt-contrib-yuidoc": "^0.10.0",
     "grunt-gh-pages": "^0.10.0",
-    "grunt-git": "^0.3.5",
     "grunt-release": "^0.13.0",
     "grunt-replace": "^0.11.0"
   }
