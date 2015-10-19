@@ -6,13 +6,13 @@ module.exports = function (grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    // Empty the old minified file from the dist directory
-    clean: {
-      default: ["../dist/<%= pkg.name %>-*.min.js"],
-      options: {
-        force: true
-      }
-    },
+    //// Empty the old minified file from the dist directory
+    //clean: {
+    //  default: ["../dist/<%= pkg.name %>-*.min.js"],
+    //  options: {
+    //    force: true
+    //  }
+    //},
 
     // Bumpup version
     bumpup: {
@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         preserveComments: false
       },
       build: {
-        src: '../src/<%= pkg.name %>.js',
-        dest: '../dist/<%= pkg.name %>.min.js'
+        src: './src/<%= pkg.name %>.js',
+        dest: './dist/<%= pkg.name %>.min.js'
       }
     },
 
@@ -47,9 +47,9 @@ module.exports = function (grunt) {
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
         options: {
-          outdir: '../dist/docs',
+          outdir: './dist/docs',
           linkNatives: true,
-          paths: ['../src']
+          paths: ['./src']
         }
       }
     },
@@ -59,8 +59,8 @@ module.exports = function (grunt) {
       main: {
 
         files: [
-          { src: '../dist/<%= pkg.name %>.min.js', dest: '../dist/examples/js/<%= pkg.name %>.min.js' },
-          { src: '../README.md', dest: '../npm/README.md' }
+          { src: './dist/<%= pkg.name %>.min.js', dest: './dist/examples/js/<%= pkg.name %>.min.js' },
+          //{ src: '../README.md', dest: '../npm/README.md' }
         ]
 
       }
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
     // Push documentation to GitHub pages
     'gh-pages': {
       options: {
-        base: '../dist/docs'
+        base: './dist/docs'
       },
       src: ['**/*']
     },
