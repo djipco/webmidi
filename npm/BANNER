@@ -1,11 +1,14 @@
 /*
- * <%= pkg.name %> - <%= pkg.description %>
+ * <%= pkg.name %> v<%= pkg.version %> <%= pkg.name %>
+ * <%= pkg.description %>
  *
- * Copyright (c) 2014-2015, <%= pkg.author %>
+ * Copyright (c) 2015, <%= pkg.author %>
  *
- * For documentation, updates and examples, visit:
+ * For documentation, updates and examples, please visit:
  *
- *    <%= pkg.url %>
+ *    <%= pkg.homepage %>
+ *
+ * The MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software
