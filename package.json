@@ -1,6 +1,6 @@
 {
   "name": "webmidi",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "description": "A browser library making it easier to develop with the Web MIDI API.",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "webmidi.min.js",
