@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "webmidi",
-        "version": "1.0.0-alpha.18",
+        "version": "1.0.0-alpha.19",
         "description": "A browser library making it easier to develop with the Web MIDI API.",
         "url": ""
     },
