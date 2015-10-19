@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha.13",
   "description": "A browser library making it easier to develop with the Web MIDI API.",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
-  "main": "./dist/webmidi.min.js",
+  "main": "webmidi.min.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/cotejp/webmidi.git"

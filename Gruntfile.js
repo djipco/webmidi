@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         preserveComments: false
       },
       build: {
-        src: './src/<%= pkg.name %>.js',
-        dest: './dist/<%= pkg.name %>.min.js'
+        src: './<%= pkg.name %>.js',
+        dest: './<%= pkg.name %>.min.js'
       }
     },
 
@@ -47,9 +47,9 @@ module.exports = function (grunt) {
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
         options: {
-          outdir: './dist/docs',
+          outdir: './docs',
           linkNatives: true,
-          paths: ['./src']
+          paths: ['./webmidi.js']
         }
       }
     },
@@ -59,8 +59,7 @@ module.exports = function (grunt) {
       main: {
 
         files: [
-          { src: './dist/<%= pkg.name %>.min.js', dest: './dist/examples/js/<%= pkg.name %>.min.js' },
-          //{ src: '../README.md', dest: '../npm/README.md' }
+          { src: './<%= pkg.name %>.min.js', dest: './examples/js/<%= pkg.name %>.min.js' }
         ]
 
       }
@@ -69,7 +68,7 @@ module.exports = function (grunt) {
     // Push documentation to GitHub pages
     'gh-pages': {
       options: {
-        base: './dist/docs'
+        base: './docs'
       },
       src: ['**/*']
     },
