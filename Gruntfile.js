@@ -24,7 +24,6 @@ module.exports = function (grunt) {
       files: ['package.json']
     },
 
-    // Minify and save in dist
     uglify: {
       options: {
         banner: grunt.file.read('BANNER'),
@@ -34,7 +33,7 @@ module.exports = function (grunt) {
         preserveComments: false
       },
       build: {
-        src: './<%= pkg.name %>.js',
+        src: './src/<%= pkg.name %>.js',
         dest: './<%= pkg.name %>.min.js'
       }
     },
@@ -49,7 +48,7 @@ module.exports = function (grunt) {
         options: {
           outdir: './docs',
           linkNatives: true,
-          paths: ['./webmidi.js']
+          paths: ['./src/']
         }
       }
     },
@@ -92,7 +91,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('publish', ['publish:prerelease']);
-  grunt.registerTask("publish:prerelease", ['clean', 'bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'gh-pages', 'release']);
+  grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'gh-pages', 'release']);
   grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
   grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
   grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
