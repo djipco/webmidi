@@ -1,5 +1,5 @@
 # WebMidi
-_**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**_
+**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**
 
 ## Background
 
