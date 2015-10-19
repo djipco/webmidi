@@ -1,13 +1,13 @@
 {
     "project": {
         "name": "webmidi",
-        "version": "1.0.0-alpha.13",
+        "version": "1.0.0-alpha.15",
         "description": "A browser library making it easier to develop with the Web MIDI API.",
         "url": ""
     },
     "files": {
-        "../src/webmidi.js": {
-            "name": "../src/webmidi.js",
+        "src/webmidi.js": {
+            "name": "src/webmidi.js",
             "modules": {},
             "classes": {
                 "WebMidi": 1
@@ -26,7 +26,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 5,
             "description": "The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it\nsimplifies two things: sending and receiving MIDI messages.\n\nTo send MIDI messages, you simply need to call the desired method (`playNote()`,\n`sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the\nnative MIDI communication will be handled for you. The only additional thing that\nneeds to be done is enable `WebMidi`. Here is an example:\n\n     WebMidi.enable(function() {\n       WebMidi.playNote(2, \"C3\");\n     });\n\nThe code above, calls the `WebMidi.enable()` method. Upon success, this method\nexecutes the callback function specified as a parameter. In this case, the callback\ncalls the `playnote()` function to play a 3rd octave C (note number 60) on channel 2.\n\nReceiving messages is just as easy. You simply have to set a callback function to be\ntriggered when a specific MIDI message is received. For example, to listen for pitch\nbend events on any input MIDI channels:\n\n     WebMidi.addEventListener('pitchbend', function(e) {\n       console.log(\"Pitch value: \" + e.value);\n     });\n\nAs you can see, this library makes it much easier to use the Web MIDI API. No need to\nmanually craft or decode binary MIDI messages anymore!",
             "static": 1,
@@ -42,7 +42,7 @@
     "elements": {},
     "classitems": [
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 48,
             "description": "[read-only] Indicates whether the browser supports the Web MIDI API or not.",
             "itemtype": "property",
@@ -52,7 +52,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 62,
             "description": "[read-only] Indicates whether the interface to the host's MIDI subsystem is still\nactive.",
             "itemtype": "property",
@@ -62,7 +62,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 77,
             "description": "[read-only] An array of all currently available MIDI inputs.",
             "itemtype": "property",
@@ -72,7 +72,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 98,
             "description": "[read-only] An array of all currently available MIDI outputs.",
             "itemtype": "property",
@@ -82,7 +82,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 119,
             "description": "[read-only] Current MIDI performance time in milliseconds. This can be used to\nqueue events in the future.",
             "itemtype": "property",
@@ -92,22 +92,22 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 140,
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 178,
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 201,
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 204,
             "description": "Event emitted when the interface's state changes. Typically, this happens when a\nMIDI device is being plugged or unplugged. This event cannot be listened on a\nspecific MIDI channel, it is intended to be interface-wide. If a channel is\nspecified, it will be silently ignored.",
             "itemtype": "event",
@@ -115,12 +115,12 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 218,
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 244,
             "description": "Event emitted when a note off MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -194,7 +194,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 278,
             "description": "Event emitted when a note on MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -268,7 +268,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 312,
             "description": "Event emitted when a key-specific aftertouch MIDI message has been received on a\nspecific channel.",
             "itemtype": "event",
@@ -342,7 +342,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 349,
             "description": "Event emitted when a control change MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -411,7 +411,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 384,
             "description": "Event emitted when a channel mode MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -480,7 +480,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 416,
             "description": "Event emitted when a program change MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -532,7 +532,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 441,
             "description": "Event emitted when a channel-wide aftertouch MIDI message has been received on a\nspecific channel.",
             "itemtype": "event",
@@ -584,7 +584,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 467,
             "description": "Event emitted when a pitch bend MIDI message has been received on a specific\nchannel.",
             "itemtype": "event",
@@ -636,7 +636,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 517,
             "description": "Event emitted when a system exclusive MIDI message has been received.",
             "itemtype": "event",
@@ -678,7 +678,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 537,
             "description": "Event emitted when a system MIDI time code quarter frame message has been\nreceived.",
             "itemtype": "event",
@@ -720,7 +720,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 560,
             "description": "Event emitted when a system song position pointer MIDI message has been received.",
             "itemtype": "event",
@@ -762,7 +762,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 582,
             "description": "Event emitted when a system song select MIDI message has been received.",
             "itemtype": "event",
@@ -809,7 +809,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 604,
             "description": "Event emitted when a system tune request MIDI message has been received.",
             "itemtype": "event",
@@ -851,7 +851,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 624,
             "description": "Event emitted when a system timing clock MIDI message has been received.",
             "itemtype": "event",
@@ -893,7 +893,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 644,
             "description": "Event emitted when a system start MIDI message has been received.",
             "itemtype": "event",
@@ -935,7 +935,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 664,
             "description": "Event emitted when a system continue MIDI message has been received.",
             "itemtype": "event",
@@ -977,7 +977,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 684,
             "description": "Event emitted when a system stop MIDI message has been received.",
             "itemtype": "event",
@@ -1019,7 +1019,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 704,
             "description": "Event emitted when a system active sensing MIDI message has been received.",
             "itemtype": "event",
@@ -1061,7 +1061,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 724,
             "description": "Event emitted when a system reset MIDI message has been received.",
             "itemtype": "event",
@@ -1103,7 +1103,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 744,
             "description": "Event emitted when an unknown system MIDI message has been received. It could be,\nfor example, one of the undefined/reserved messages.",
             "itemtype": "event",
@@ -1145,12 +1145,12 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 774,
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 785,
             "description": "Checks if the Web MIDI API is available and then tries to connect to the host's MIDI\nsubsystem. If the operation succeeds, the `successHandler` callback is executed.\nIf not, the `errorHandler` callback is executed and passed a string describing the\nerror.\n\nDepending on the host environment, calling this method may prompt the user for\nauthorization.",
             "itemtype": "method",
@@ -1179,7 +1179,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 832,
             "description": "Adds an event listener that will trigger a function callback when the specified event\nhappens. By default, the listener is system-wide (it will listen on all MIDI\nchannels) but this can be changed by passing one or more specific channel(s) as the\n3rd parameter.\n\nHere is a list of events that are dispatched by the `WebMidi` object and that can be\nlistened to.\n\nChannel-specific MIDI events:\n\n   * noteoff\n   * noteon\n   * keyaftertouch\n   * controlchange\n   * channelmode\n   * programchange\n   * channelaftertouch\n   * pitchbend\n\nSystem-wide MIDI events:\n\n   * sysex\n   * timecode\n   * songposition\n   * songselect\n   * tuningrequest\n   * clock\n   * start\n   * continue\n   * stop\n   * activesensing\n   * reset\n   * unknownsystemmessage\n\nInterface event:\n\n   * statechange\n\nFor system-wide events, the specified channel (if any) will be silently ignored. The\nvalue \"all\" will be used instead.",
             "itemtype": "method",
@@ -1216,7 +1216,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 941,
             "description": "Checks if the specified event type is already defined to trigger the listener\nfunction on the specified channel. If the special value \"all\" is used for the\nchannel, the function will return `true` only  if all channels have the listener\ndefined.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the channel\nparameter is silently ignored.",
             "itemtype": "method",
@@ -1252,7 +1252,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1007,
             "description": "Removes the specified listener from the requested channel(s). If the special value\n\"all\" is used for the channel parameter, the function will remove the listener from\nall channels.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the channel\nparameter is silently ignored.",
             "itemtype": "method",
@@ -1284,7 +1284,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1064,
             "description": "Sends a MIDI message to one or all channels at the specified timestamp. Unless, you\nare familiar with the details of the MIDI message format, you should not use this\nmethod directly. Instead, use one of the helper methods: `playNote()`, `stopNote()`,\n`sendControlChange()`, `sendSystemMessage()`, etc.",
             "itemtype": "method",
@@ -1328,7 +1328,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1136,
             "description": "Sends a MIDI real-time or common system message to all available outputs. The\navailable messages are as follows:\n\nSystem common messages:\n\n   sysex\n   timecode\n   songposition\n   songselect\n   tuningrequest\n   sysexend\n\nSystem real-time messages:\n\n   clock\n   start\n   continue\n   stop\n   activesensing\n   reset",
             "itemtype": "method",
@@ -1367,7 +1367,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1198,
             "description": "Sends a system exclusive message to all connected devices. The message will\nautomatically be properly terminated. It is generally suggested to keep system\nexclusive messages to 64Kb or less.",
             "itemtype": "method",
@@ -1405,7 +1405,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1236,
             "description": "Sends a MIDI `note off` message to the specified channel for a single note or\nmultiple notes. You can delay the execution of the `note off` command by using the\n`delay` parameter (milliseconds).",
             "itemtype": "method",
@@ -1451,7 +1451,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1323,
             "description": "Requests the playback of a single note or multiple notes on the specified channel.\nYou can delay the execution of the `note on` command by using the `delay` parameter\n(milliseconds).\n\nIf no duration is specified, the note will play until a matching `note off` is sent.\nIf a duration is specified, a `note off` will be automatically executed after said\nduration.\n\nPlease note that if you do use a duration, the release velocity will always be 64. If\nyou want to tailor the release velocity, you need to use separate `playNote()` and\n`stopNote()` calls.",
             "itemtype": "method",
@@ -1504,7 +1504,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1424,
             "description": "Returns a MIDI note number matching the note name passed in the form of a string\nparameter. The note name must include the octave number which should be between -2\nand 8: C5, G4, D#-1, F0, etc.",
             "itemtype": "method",
@@ -1524,7 +1524,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1454,
             "description": "Sends a MIDI `key aftertouch` message to the specified channel. This is a\nkey-specific aftertouch. For a channel-wide aftertouch message, use\n`sendChannelAftertouch()`.",
             "itemtype": "method",
@@ -1568,7 +1568,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1497,
             "description": "Sends a MIDI `control change` message to the specified channel.",
             "itemtype": "method",
@@ -1610,7 +1610,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1537,
             "description": "Sends a MIDI `channel mode` message to the specified channel.",
             "itemtype": "method",
@@ -1652,7 +1652,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1580,
             "description": "Sends a MIDI `program change` message to the specified channel.",
             "itemtype": "method",
@@ -1689,7 +1689,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1617,
             "description": "Sends a MIDI `channel aftertouch` message to the specified channel. For key-specific\naftertouch, instead use `sendKeyAftertouch()`.",
             "itemtype": "method",
@@ -1728,7 +1728,7 @@
             "class": "WebMidi"
         },
         {
-            "file": "../src/webmidi.js",
+            "file": "src/webmidi.js",
             "line": 1653,
             "description": "Sends a MIDI `pitch bend` message to the specified channel.",
             "itemtype": "method",
@@ -1770,27 +1770,27 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " ../src/webmidi.js:941"
+            "line": " src/webmidi.js:941"
         },
         {
             "message": "Missing item type",
-            "line": " ../src/webmidi.js:140"
+            "line": " src/webmidi.js:140"
         },
         {
             "message": "Missing item type",
-            "line": " ../src/webmidi.js:178"
+            "line": " src/webmidi.js:178"
         },
         {
             "message": "Missing item type",
-            "line": " ../src/webmidi.js:201"
+            "line": " src/webmidi.js:201"
         },
         {
             "message": "Missing item type",
-            "line": " ../src/webmidi.js:218"
+            "line": " src/webmidi.js:218"
         },
         {
             "message": "Missing item type",
-            "line": " ../src/webmidi.js:774"
+            "line": " src/webmidi.js:774"
         }
     ]
 }
