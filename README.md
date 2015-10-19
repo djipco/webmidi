@@ -15,10 +15,9 @@ all these things much easier.
 
 ## Installation
 
-You can install the *WebMidi* library in various ways, depending on your needs, setup and 
-preferences.
+You can install the **WebMidi** library manually or through NPM.
 
-### Manual Install
+#### Manual Install
 
 You can install *WebMidi* the old fashioned way by downloading the
 [latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file.
@@ -29,12 +28,8 @@ folder. Copy it to your project and link it to your HTML page as usual.
 [full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
 `dist/docs` folder.
 
-### Bower Install
 
-To install with bower
-
-
-### NPM Install
+#### NPM Install
 
 If you prefer, you can install **WebMidi** with NPM. If you already have 
 [Node.js](https://nodejs.org/) installed, you also have NPM installed. This means you can 
@@ -43,14 +38,9 @@ Linux) or the Command Prompt (Windows):
 
     npm install webmidi
     
-    {
-      "name": "webmididemo",
-      "version": "1.0.0"
-    }
-    
-In order for NPM to install the library in its `node_modules` folder you should issue the 
-command from inside your projects root directory. Also, you need to have a `package.json`
-file in that same location. The `package.json` file can be as simple as:
+In order for NPM to install the library in the project's `node_modules` folder you should 
+issue the command from inside the project's root directory. Also, you need to have a 
+`package.json` file in that same location. The `package.json` file can be as simple as:
 
     {
       "name": "webmididemo",
@@ -65,7 +55,7 @@ and, optionally, another callback function to execute upon failure. The `enable(
 function will fail if the host browser does not suppport the Web MIDI API (currently, only 
 Google Chrome does) or if the browser cannot connect to the host's MIDI subsystem.
 
-Let's check if WebMidi can be enabled: 
+Let's check if **WebMidi** can be enabled: 
 
 ```javascript
 WebMidi.enable(onSuccess, onFailure);
@@ -79,7 +69,7 @@ function onFailure(err) {
 }
 ```
 
-To send MIDI messages with WebMidi, you simply need to pick the appropriate method and all
+To send MIDI messages with **WebMidi**, you simply need to pick the appropriate method and all
 the native MIDI communication will be handled for you. For example, let's say we want to
 send a 'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half
 velocity:
