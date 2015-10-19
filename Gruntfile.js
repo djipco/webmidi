@@ -58,7 +58,7 @@ module.exports = function (grunt) {
       main: {
 
         files: [
-          { src: './<%= pkg.name %>.min.js', dest: './examples/js/<%= pkg.name %>.min.js' }
+          { src: './<%= pkg.name %>.min.js', dest: './examples/<%= pkg.name %>.min.js' }
         ]
 
       }
