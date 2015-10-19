@@ -21,8 +21,8 @@ You can install the **WebMidi** library manually or through NPM.
 
 You can install *WebMidi* the old fashioned way by downloading the
 [latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file.
-Uncompress the package and simply grab the `webmidi-x.x.x.min.js` file from the `dist` 
-folder. Copy it to your project and link it to your HTML page as usual. 
+Uncompress the package, grab the `webmidi.min.js` file and copy it to your project. Link 
+it to your HTML page as usual. 
 
 >By the way, you will also find the 
 [full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
