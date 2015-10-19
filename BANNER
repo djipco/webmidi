@@ -1,6 +1,6 @@
 /*
  * <%= pkg.name %> v<%= pkg.version %>
- *   <%= pkg.description %>
+ * <%= pkg.description %>
  *
  * Copyright (c) 2015, <%= pkg.author %>
  *
