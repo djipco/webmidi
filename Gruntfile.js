@@ -6,14 +6,6 @@ module.exports = function (grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
-    //// Empty the old minified file from the dist directory
-    //clean: {
-    //  default: ["../dist/<%= pkg.name %>-*.min.js"],
-    //  options: {
-    //    force: true
-    //  }
-    //},
-
     // Bumpup version
     bumpup: {
       options: {
@@ -26,7 +18,7 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        banner: grunt.file.read('BANNER'),
+        banner: "/*\n\n" + grunt.file.read('BANNER') + "\n\n" + grunt.file.read('LICENSE.txt') + "*/\n\n",
         compress: {
           drop_console: true
         },
@@ -64,6 +56,20 @@ module.exports = function (grunt) {
       }
     },
 
+    // Files that are copied or written over must be re-committed.
+    gitcommit: {
+      "commitupdated": {
+        options: {
+          message: 'Release <%= pkg.version %>.',
+          noVerify: true,
+          noStatus: false
+        },
+        files: {
+          src: ['<%= pkg.name %>.min.js', 'examples/<%= pkg.name %>.min.js', 'docs']
+        }
+      }
+    },
+
     // Push documentation to GitHub pages
     'gh-pages': {
       options: {
@@ -88,10 +94,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-yuidoc");
   grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('publish', ['publish:prerelease']);
-  grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'gh-pages', 'release']);
+  grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'gitcommit:commitupdated', 'gh-pages', 'release']);
   grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
   grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
   grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
