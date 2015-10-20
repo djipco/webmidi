@@ -4,7 +4,7 @@
   "authors": [
     "Jean-Philippe Côté <jp@cote.cc> (http://cote.cc)"
   ],
-  "description": "A browser library making it easier to develop with the Web MIDI API.",
+  "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
   "main": "webmidi.min.js",
   "moduleType": [
     "amd",
