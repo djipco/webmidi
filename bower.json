@@ -25,6 +25,7 @@
     "src",
     "BANNER",
     "Gruntfile.js",
-    "Package.json"
+    "Package.json",
+    "README.md"
   ]
 }
