@@ -52,7 +52,7 @@ issue the command from inside the project's root directory. Also, you need to ha
 `package.json` file in that same location. The `package.json` file can be as simple as:
 
     {
-      "name": "webmididemo",
+      "name": "myproject",
       "version": "1.0.0"
     }
     
