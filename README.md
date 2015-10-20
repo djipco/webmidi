@@ -15,7 +15,8 @@ all these things much easier.
 
 ## Installation
 
-You can install the **WebMidi** library manually or through NPM.
+Depending on your needs and environment, you can install the **WebMidi** library in one of 
+three ways: manually, with Bower or with NPM.
 
 #### Manual Install
 
@@ -27,6 +28,13 @@ it to your HTML page as usual.
 >By the way, you will also find the 
 [full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
 `dist/docs` folder.
+
+#### Bower Install
+
+To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
+Command Prompt (Windows) from the root of your project:
+
+    bower install webmidi
 
 
 #### NPM Install
