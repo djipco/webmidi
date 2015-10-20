@@ -34,7 +34,7 @@ it to your HTML page as usual.
 To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
 Command Prompt (Windows) from the root of your project:
 
-    bower install webmidi
+    bower install WebMidi
 
 
 #### NPM Install
