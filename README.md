@@ -36,6 +36,7 @@ Command Prompt (Windows) from the root of your project:
 
     bower install WebMidi
 
+**Attention**: make sure to correctly capitalize the "W" and the "M" in WebMidi.
 
 #### NPM Install
 
