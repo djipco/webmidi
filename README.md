@@ -54,6 +54,10 @@ issue the command from inside the project's root directory. Also, you need to ha
       "name": "webmididemo",
       "version": "1.0.0"
     }
+    
+Be aware that you will need to manually link the `webmidi.min.js` through a `<script>` tag
+file or use an automation tool like Browserify. You will not be able to use Node's 
+`require()` function.
 
 ## Quick Start
 
