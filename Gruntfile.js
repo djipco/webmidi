@@ -5,6 +5,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
+    bower: grunt.file.readJSON('bower.json'),
 
     // Bumpup version
     bumpup: {
@@ -33,7 +34,7 @@ module.exports = function (grunt) {
     // Generate doc
     yuidoc: {
       compile: {
-        name: '<%= pkg.name %>',
+        name: '<%= bower.name %>',
         version: '<%= pkg.version %>',
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
