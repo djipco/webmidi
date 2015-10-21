@@ -116,14 +116,22 @@ WebMidi.enable(
     // Getting the current time
     console.log(WebMidi.time);
 
-    // Playing a note (note number 60 on the 1st channel [0] at half velocity)
+    // Playing a note by name (3rd octave F# on the 1st channel [0])
+    WebMidi.playNote(0, "F#3");
+    WebMidi.playNote(0, "F#3", 0.5);               // half velocity
+    WebMidi.playNote(0, "F#3", 0.5, 1000);         // duration of 1000 milliseconds
+
+    // Playing multiple notes simultaneously on the 4th MIDI channel [3]
+    WebMidi.playNote(3, ["C0", "D#0", "G0"]);
+
+    // Playing a note by MIDI number (on the 1st channel [0] at half velocity)
     WebMidi.playNote(0, 60, 0.5);
-    WebMidi.playNote(0, 60, 0.5, 1000);           // send a noteoff after 1 sec.
-    WebMidi.playNote(0, 60, 0.5, 1000, 1000);     // wait 1 sec. before playing
 
     // Stopping a playing note
-    WebMidi.stopNote(0, 60, 1);
-    WebMidi.stopNote(0, 60, 0.5, 2000);           // wait 2 sec. before stopping
+    WebMidi.stopNote(0, 60, 1);                   // by note number
+    WebMidi.stopNote(0, "C1", 1);                 // by name
+    WebMidi.stopNote(0, "F#3", 0.5);              // 0.5 release velocity
+    WebMidi.stopNote(0, "F#3", 0.5, 2000);        // wait 2 sec. before stopping
 
     // Send polyphonic aftertouch message
     WebMidi.sendKeyAftertouch(0, 60, 0.5);
@@ -131,7 +139,7 @@ WebMidi.enable(
 
     // Send control change value 127 to controller 1 (modulation) on channel 0
     WebMidi.sendControlChange(0, 1, 127);
-    WebMidi.sendControlChange(0, 1, 127, 1000);     // wait 1 sec. before sending
+    WebMidi.sendControlChange(0, 1, 127, 1000);   // wait 1 sec. before sending
 
     // Send channel aftertouch
     WebMidi.sendChannelAftertouch(0, 0.5);
@@ -139,7 +147,7 @@ WebMidi.enable(
     // Send pitch bend (between -1 and 1)
     WebMidi.sendPitchBend(0, -1);
 
-    // Chaining method calls
+    // Chaining multiple method calls
     WebMidi.sendPitchBend(0, -1)
       .sendPitchBend(0, -0.5, 200)
       .sendPitchBend(0, 0, 400)
