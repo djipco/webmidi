@@ -1,5 +1,5 @@
 # WebMidi
-**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**
+>**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**
 
 ## Background
 
@@ -23,7 +23,7 @@ three ways: manually, with Bower or with NPM.
 You can install *WebMidi* the old fashioned way by downloading the
 [latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file.
 Uncompress the package, grab the `webmidi.min.js` file and copy it to your project. Link 
-it to your HTML page as usual. 
+to it from your HTML page as usual. 
 
 >By the way, you will also find the 
 [full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
@@ -32,33 +32,27 @@ it to your HTML page as usual.
 #### Bower Install
 
 To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
-Command Prompt (Windows) from the root of your project:
+Command Prompt (Windows) from the root of your project (make sure to correctly capitalize 
+the "W" and the "M" in WebMidi):
 
     bower install WebMidi
 
-**Attention**: make sure to correctly capitalize the "W" and the "M" in WebMidi.
+Then, just add a `<script>` tag to your HTML page and make it point to:
+
+    bower_components/WebMidi/webmidi.min.js
 
 #### NPM Install
 
-If you prefer, you can install **WebMidi** with NPM. If you already have 
-[Node.js](https://nodejs.org/) installed, you also have NPM installed. This means you can 
-install the `webmidi` package by issuing the following command in the Terminal (Mac, 
-Linux) or the Command Prompt (Windows):
+If you prefer, you can install **WebMidi** with NPM. In order for this to work, you first
+need to create a `node_modules` folder in your project's root. Then, from the project's
+root, simply issue the following command in the Terminal (Mac, Linux) or the Command 
+Prompt (Windows):
 
     npm install webmidi
     
-In order for NPM to install the library in the project's `node_modules` folder you should 
-issue the command from inside the project's root directory. Also, you need to have a 
-`package.json` file in that same location. The `package.json` file can be as simple as:
+Finally, just add a `<script>` tag to your HTML page and make it point to:
 
-    {
-      "name": "myproject",
-      "version": "1.0.0"
-    }
-    
-Be aware that you will need to manually link the `webmidi.min.js` through a `<script>` tag
-file or use an automation tool like Browserify. You will not be able to use Node's 
-`require()` function.
+    node_modules/webmidi/webmidi.min.js
 
 ## Quick Start
 
