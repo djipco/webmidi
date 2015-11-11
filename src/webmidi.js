@@ -37,9 +37,10 @@
    *        specific controller on a controlchange event or a specific note on a event
    *        message.
    * @todo  Add more examples in method documentation (playNote namely).
-   * @todo  Find a way to autoupdate/upload the docs directory.
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
+   * @todo should the sendsysex method allow Uint8Array param ?
+   * @todo  Yuidoc seems to produce buggy documenation (when you click on a method name, you need to relaod the page)
    */
   function WebMidi() {
 
@@ -60,8 +61,8 @@
       },
 
       /**
-       * [read-only] Indicates whether the interface to the host's MIDI subsystem is still
-       * active.
+       * [read-only] Indicates whether the interface to the host's MIDI subsystem is
+       * currently active.
        *
        * @property connected
        * @type Boolean
@@ -78,7 +79,7 @@
        * [read-only] An array of all currently available MIDI inputs.
        *
        * @property inputs
-       * @type MIDIInput[]
+       * @type {MIDIInput[]}
        * @static
        */
       inputs: {
@@ -98,8 +99,8 @@
       /**
        * [read-only] An array of all currently available MIDI outputs.
        *
-       * @property inputs
-       * @type MIDIOutput[]
+       * @property outputs
+       * @type {MIDIOutput[]}
        * @static
        */
       outputs: {
@@ -137,7 +138,7 @@
 
   }
 
-  /******************************* PRIVATE PROPERTIES ***********************************/
+  //////////////////////////////// PRIVATE PROPERTIES ////////////////////////////////////
 
   // User-defined handlers list
   var _userHandlers = { "channel": {}, "system": {} };
@@ -163,7 +164,7 @@
     "songposition": 0xF2,     // 242
     "songselect": 0xF3,       // 243
     "tuningrequest": 0xF6,    // 246
-    //"sysexend": 0xF7,       // 247 (never actually received - simply ends a sysex)
+    "sysexend": 0xF7,       // 247 (never actually received - simply ends a sysex)
     "clock": 0xF8,            // 248
     "start": 0xFA,            // 250
     "continue": 0xFB,         // 251
@@ -175,8 +176,12 @@
 
   var _notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
-  /******************************** PRIVATE METHODS *************************************/
+  /////////////////////////////////// PRIVATE METHODS ////////////////////////////////////
 
+  /**
+   * @method _initializeUserHandlers
+   * @private
+   */
   function _initializeUserHandlers() {
 
     _userHandlers.system.statechange = [];
@@ -198,7 +203,10 @@
 
   }
 
-  /** @private */
+  /**
+   * @method _onInterfaceStateChange
+   * @private
+   */
   function _onInterfaceStateChange(e) {
 
     /**
@@ -208,6 +216,10 @@
      * specified, it will be silently ignored.
      *
      * @event statechange
+     *
+     * @param {Object} event
+     *
+     * @todo complete documentation
      */
     _userHandlers.system.statechange.forEach(function(handler){
       handler(e);
@@ -215,7 +227,10 @@
 
   }
 
-  /** @private */
+  /**
+   * @method _parseChannelEvent
+   * @private
+   */
   function _parseChannelEvent(e) {
 
     var command = e.data[0] >> 4;
@@ -500,6 +515,10 @@
 
   }
 
+  /**
+   * @method _parseSystemEvent
+   * @private
+   */
   function _parseSystemEvent(e) {
 
     var command = e.data[0];
@@ -771,7 +790,10 @@
 
   }
 
-  /** @private */
+  /**
+   * @method _onMidiMessage
+   * @private
+   */
   function _onMidiMessage(e) {
 
     if (e.data[0] < 240) {          // channel message
@@ -788,29 +810,33 @@
    * If not, the `errorHandler` callback is executed and passed a string describing the
    * error.
    *
-   * Depending on the host environment, calling this method may prompt the user for
-   * authorization.
-   *
    * @method enable
    * @static
    *
-   * @param successHandler {Function}   A function to execute upon success.
+   * @param [successHandler] {Function} A function to execute upon success.
    * @param [errorHandler] {Function}   A function to execute upon error. This function
    *                                    will be passed a string describing the error.
-   * @param [sysex=false] {Boolean}     Whether to enable sysex or not
+   * @param [sysex=false] {Boolean}     Whether to enable sysex or not. When this
+   *                                    parameter is set to true, the browser may prompt
+   *                                    the user for authorization.
    */
   WebMidi.prototype.enable = function(successHandler, errorHandler, sysex) {
 
     var that = this;
+
+    if (
+      (successHandler && typeof successHandler !== "function") ||
+      (errorHandler && typeof errorHandler !== "function")
+    ) {
+      throw new TypeError("The success and error handlers must be functions.");
+    }
 
     if (!this.supported && errorHandler) {
       errorHandler("The Web MIDI API is not supported by your browser.");
       return;
     }
 
-    var options = {"sysex": sysex};
-
-    navigator.requestMIDIAccess(options).then(
+    navigator.requestMIDIAccess({"sysex": sysex}).then(
 
       function(midiAccess) {
         that.interface = midiAccess;
@@ -821,7 +847,7 @@
           input.onmidimessage = _onMidiMessage;
         });
 
-        successHandler();
+        successHandler && successHandler();
 
       },
       errorHandler
@@ -838,35 +864,35 @@
    * Here is a list of events that are dispatched by the `WebMidi` object and that can be
    * listened to.
    *
+   * MIDI interface event:
+   *
+   *    * {{#crossLink "WebMidi/statechange:event"}}statechange{{/crossLink}}
+   *
    * Channel-specific MIDI events:
    *
-   *    * noteoff
-   *    * noteon
-   *    * keyaftertouch
-   *    * controlchange
-   *    * channelmode
-   *    * programchange
-   *    * channelaftertouch
-   *    * pitchbend
+   *    * {{#crossLink "WebMidi/noteoff:event"}}noteoff{{/crossLink}}
+   *    * {{#crossLink "WebMidi/noteon:event"}}noteon{{/crossLink}}
+   *    * {{#crossLink "WebMidi/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
+   *    * {{#crossLink "WebMidi/controlchange:event"}}controlchange{{/crossLink}}
+   *    * {{#crossLink "WebMidi/channelmode:event"}}channelmode{{/crossLink}}
+   *    * {{#crossLink "WebMidi/programchange:event"}}programchange{{/crossLink}}
+   *    * {{#crossLink "WebMidi/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
+   *    * {{#crossLink "WebMidi/pitchbend:event"}}pitchbend{{/crossLink}}
    *
    * System-wide MIDI events:
    *
-   *    * sysex
-   *    * timecode
-   *    * songposition
-   *    * songselect
-   *    * tuningrequest
-   *    * clock
-   *    * start
-   *    * continue
-   *    * stop
-   *    * activesensing
-   *    * reset
-   *    * unknownsystemmessage
-   *
-   * Interface event:
-   *
-   *    * statechange
+   *    * {{#crossLink "WebMidi/sysex:event"}}sysex{{/crossLink}}
+   *    * {{#crossLink "WebMidi/timecode:event"}}timecode{{/crossLink}}
+   *    * {{#crossLink "WebMidi/songposition:event"}}songposition{{/crossLink}}
+   *    * {{#crossLink "WebMidi/songselect:event"}}songselect{{/crossLink}}
+   *    * {{#crossLink "WebMidi/tuningrequest:event"}}tuningrequest{{/crossLink}}
+   *    * {{#crossLink "WebMidi/clock:event"}}clock{{/crossLink}}
+   *    * {{#crossLink "WebMidi/start:event"}}start{{/crossLink}}
+   *    * {{#crossLink "WebMidi/continue:event"}}continue{{/crossLink}}
+   *    * {{#crossLink "WebMidi/stop:event"}}stop{{/crossLink}}
+   *    * {{#crossLink "WebMidi/activesensing:event"}}activesensing{{/crossLink}}
+   *    * {{#crossLink "WebMidi/reset:event"}}reset{{/crossLink}}
+   *    * {{#crossLink "WebMidi/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
    *
    * For system-wide events, the specified channel (if any) will be silently ignored. The
    * value "all" will be used instead.
@@ -875,20 +901,24 @@
    * @static
    * @chainable
    *
-   * @param type {String}                     The type of the event.
-   * @param listener {Function}               A callback function to execute when the
-   *                                          specified event is detected.
-   * @param [channel=all] {uint|Array|"all"}  The MIDI channel or array of channels to
-   *                                          listen on. If set to 'all', all channels
-   *                                          will trigger the callback function.
-   * @throws {Error}                          WebMidi must be enabled before adding event
-   *                                          listeners.
-   * @throws {RangeError}                     The channel must be an integer between 0 and
-   *                                          15 or the value 'all'.
-   * @throws {TypeError}                      The specified event type is not supported.
+   * @param type {String}                       The type of the event.
+   * @param listener {Function}                 A callback function to execute when the
+   *                                            specified event is detected. This function
+   *                                            will receive an event parameter object.
+   *                                            For details on this object's properties,
+   *                                            check out the documentation for the various
+   *                                            events (links above).
+   * @param [channel=all] {uint|Array|"all"}    The MIDI channel or array of channels to
+   *                                            listen on. If set to 'all', all channels
+   *                                            will trigger the callback function.
+   * @throws {Error}                            WebMidi must be enabled before adding
+   *                                            event listeners.
+   * @throws {RangeError}                       The channel must be an integer between 0
+   *                                            and 15 or the value 'all'.
+   * @throws {TypeError}                        The specified event type is not supported.
    *
-   * @return {WebMidi}                        Returns the `WebMidi` object so methods can
-   *                                          be chained.
+   * @return {WebMidi}                          Returns the `WebMidi` object so methods
+   *                                            can be chained.
    */
   WebMidi.prototype.addEventListener = function(type, listener, channel) {
 
@@ -957,7 +987,7 @@
    * @throws {Error}                    WebMidi must be enabled before checking event
    *                                    listeners.
    *
-   * @returns {Boolean}                 Boolean value indicating whether or not the
+   * @return {Boolean}                  Boolean value indicating whether or not the
    *                                    channel(s) already have this listener defined.
    */
   WebMidi.prototype.hasEventListener = function(type, listener, channel) {
@@ -1014,6 +1044,7 @@
    *
    * @method removeEventListener
    * @static
+   * @chainable
    *
    * @param type {String}               The type of the event.
    * @param listener {Function}         The callback function to check for.
@@ -1022,6 +1053,8 @@
    *
    * @throws {Error}                    WebMidi must be enabled before removing event
    *                                    listeners.
+   *
+   * @return {WebMidi}                  The `WebMidi` object for easy method chaining.
    */
   WebMidi.prototype.removeEventListener = function(type, listener, channel) {
 
@@ -1045,7 +1078,6 @@
         var ch = _userHandlers.channel[type][k];
         for (var l = 0; l < ch.length; l++) {
           if (ch[l] === listener) { ch.splice(l, 1); }
-          //if (ch.length < 1) { ch = []; }
         }
       }
 
@@ -1058,6 +1090,8 @@
       }
 
     }
+
+    return this;
 
   };
 
@@ -1075,7 +1109,7 @@
    *                                  string "all". You can view the available channels in
    *                                  `WebMidi.outputs`.
    * @param command {uint}            The command number. Check out the constants in the
-   *                                  WebMidi object for a list of available commands
+   *                                  `WebMidi` object for a list of available commands
    *                                  (0-255).
    * @param [data=[]] {Array}         Array of data bytes. The number of data bytes varies
    *                                  depending on the command.
@@ -1188,7 +1222,8 @@
 
     if (!data || data.constructor !== Array) { data = []; }
 
-    if (delay === undefined) { delay = 0; }
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     this.send("all", _systemMessages[command], data, this.time + delay);
 
@@ -1224,7 +1259,9 @@
     }
 
     if (manufacturer.prototype !== Array) { manufacturer = [manufacturer]; }
-    if (delay === undefined) { delay = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     data = manufacturer.concat(data, _systemMessages.sysexend);
     this.send("all", _systemMessages.sysex, data, this.time + delay);
@@ -1235,8 +1272,8 @@
 
   /**
    * Sends a MIDI `note off` message to the specified channel for a single note or
-   * multiple notes. You can delay the execution of the `note off` command by using the
-   * `delay` parameter (milliseconds).
+   * multiple simultaneous notes. You can delay the execution of the `note off` command by
+   * using the `delay` parameter (milliseconds).
    *
    * @method stopNote
    * @static
@@ -1251,20 +1288,18 @@
    *                                      way is by using the MIDI note number (an integer
    *                                      between 0 and 127). The second way is by using
    *                                      the note name followed by the octave (C3, G#4,
-   *                                      F-1). The octave range should be between -3 and
-   *                                      5.
-   *
+   *                                      F-1). The octave range should be between -2 and
+   *                                      8. The lowest note is C0 (MIDI note number 0)
+   *                                      and the highest note is G8 (MIDI note number
+   *                                      127).
    * @param [velocity=0.5] {Number}       The velocity at which to release the note
    *                                      (between 0 and 1).
    * @param [delay=0] {int}               The number of milliseconds to wait before
-   *                                      actually sending the `note off` message (using a
-   *                                      negative number or 0 will stop the note
-   *                                      immediately).
+   *                                      actually sending the `note off` message (using 0
+   *                                      will stop the note immediately).
    *
    * @throws {Error}                      WebMidi must be enabled before stopping notes.
    * @throws {RangeError}                 The note number must be between 0 and 127.
-   * @throws {RangeError}                 The release velocity must be a decimal number
-   *                                      between 0 and 1.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be
    *                                      chained.
@@ -1300,14 +1335,11 @@
 
     });
 
-    if (velocity < 0 || velocity > 1) {
-      throw new RangeError(
-        "The release velocity must be a decimal number between 0 and 1."
-      );
-    }
+    velocity = parseFloat(velocity);
+    if (isNaN(velocity)) { velocity = 0.5; }
 
-    if (velocity === undefined) { velocity = 0.5; }
-    if (delay === undefined) { delay = 0; }
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     var nVelocity = Math.round(velocity * 127);
 
@@ -1346,14 +1378,15 @@
    *                                      (an integer between 0 and 127). The second way
    *                                      is by using the note name followed by the octave
    *                                      (C3, G#4, F-1). The octave range should be
-   *                                      between -3 and 5.
+   *                                      between -2 and 8. The lowest possible note is
+   *                                      C-2 and the highest is G8.
    * @param [velocity=0.5] {Number}       The velocity at which to play the note (between
    *                                      0 and 1).
    * @param [duration=undefined] {int}    The number of milliseconds to wait before
    *                                      sending a matching note off event. If left
-   *                                      undefined, only a note on is sent.
+   *                                      undefined, only a `note on` message is sent.
    * @param [delay=0] {int}               The number of milliseconds to wait before
-   *                                      actually sending the `note on` command (using a
+   *                                      actually sending the `note on` message (using a
    *                                      negative number or 0 will send the command
    *                                      immediately).
    *
@@ -1426,17 +1459,20 @@
    * parameter. The note name must include the octave number which should be between -2
    * and 8: C5, G4, D#-1, F0, etc.
    *
+   * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note
+   * number 127).
+   *
    * @method noteNameToNumber
    * @static
    *
    * @param name {String}   The name of the note in the form of a letter, followed by an
    *                        optional # symbol, followed by the octave number (between -2
    *                        and 8).
-   * @return {uint}         The MIDI note number.
+   * @return {uint}         The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    var matches = name.match(/([CDEFGABC]#?)(-?\d+)/i);
+    var matches = name.match(/([CDEFGAB]#?)(-?\d+)/i);
     if(!matches) { throw new RangeError("Invalid note name."); }
 
     var number = _notes.indexOf(matches[1].toUpperCase());
@@ -1454,7 +1490,7 @@
   /**
    * Sends a MIDI `key aftertouch` message to the specified channel. This is a
    * key-specific aftertouch. For a channel-wide aftertouch message, use
-   * `sendChannelAftertouch()`.
+   * {{#crossLink "WebMidi/sendChannelAftertouch:method"}}sendChannelAftertouch(){{/crossLink}}.
    *
    * @method sendKeyAftertouch
    * @static
@@ -1480,12 +1516,19 @@
       throw new Error("WebMidi must be connected before sending messages.");
     }
 
-    if (note === undefined || note < 0 || note > 127) {
+    note = parseFloat(note);
+    if (isNaN(note) || note < 0 || note > 127) {
       throw new RangeError("The note number must be between 0 and 127.");
     }
 
-    if (delay === undefined) { delay = 0; }
+    pressure = parseFloat(pressure);
+    if (isNaN(pressure)) { pressure = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
+
     var nPressure = Math.round(pressure * 127);
+
     this.send(
       channel, _channelMessages.keyaftertouch, [note, nPressure], this.time + delay
     );
@@ -1504,10 +1547,10 @@
    * @param channel {uint}      The MIDI channel number (between 0 and 15). You can view
    *                            available channels in the `WebMidi.outputs` array.
    * @param controller {uint}   The MIDI controller number (0-119)
-   * @param value {uint}        The value to send (0-127).
-   * @param [delay=0] {int}     The number of milliseconds to wait before actually sending
-   *                            the `key aftertouch` command (using a negative number or 0
-   *                            will send the command immediately).
+   * @param [value=0] {uint}    The value to send (0-127).
+   * @param [delay=0] {uint}    The number of milliseconds to wait before actually sending
+   *                            the `control change` message (using 0 will send the
+   *                            message immediately).
    *
    * @throws {Error}            WebMidi must be enabled before sending messages.
    * @throws {RangeError}       Controller numbers must be between 0 and 119.
@@ -1521,13 +1564,17 @@
       throw new Error("WebMidi must be connected before sending messages.");
     }
 
-    if (controller === undefined || controller < 0 || controller > 119) {
+    controller = parseInt(controller);
+    if (isNaN(controller) || controller < 0 || controller > 119) {
       throw new RangeError("Controller numbers must be between 0 and 119.");
     }
-    if (value === undefined || value < 0 || value > 127) {
-      throw new RangeError("Value must be between 0 and 127.");
-    }
-    if (delay === undefined) { delay = 0; }
+
+    value = parseInt(value);
+    if (isNaN(value) || value < 0 || value > 127) { value = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
+
     this.send(channel, _channelMessages.controlchange, [controller, value], this.time + delay);
 
     return this;
@@ -1546,8 +1593,8 @@
    * @param command {uint}      The MIDI channel mode command (120-127)
    * @param value {uint}        The value to send (0-127)
    * @param [delay=0] {int}     The number of milliseconds to wait before actually sending
-   *                            the `key aftertouch` command (using a negative number or 0
-   *                            will send the command immediately).
+   *                            the `channel mode` message (using 0 will send the message
+   *                            immediately).
    *
    * @throws {Error}            WebMidi must be enabled before sending messages.
    * @throws {RangeError}       Channel mode controller numbers must be between 120 and
@@ -1563,13 +1610,18 @@
       throw new Error("WebMidi must be connected before sending messages");
     }
 
-    if (command === undefined || command < 120 || command > 127) {
-      throw new RangeError("Channel mode controller numbers must be between 120 and 127.");
+    command = parseInt(command);
+    if (isNaN(command) || command < 120 || command > 127) {
+      throw new RangeError("Channel mode commands must be between 120 and 127.");
     }
-    if (value === undefined || value < 0 || value > 127) {
-      throw new RangeError("Value must be between 0 and 127.");
+
+    value = parseInt(value);
+    if (isNaN(value) || value < 0 || value > 127) {
+      throw new RangeError("Value must be integers between 0 and 127.");
     }
-    if (delay === undefined) { delay = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     this.send(channel, _channelMessages.channelmode, [command, value], this.time + delay);
 
@@ -1603,10 +1655,13 @@
       throw new Error("WebMidi must be connected before sending messages.");
     }
 
-    if (program === undefined || program < 0 || program > 127) {
+    program = parseInt(program);
+    if (isNaN(program) || program < 0 || program > 127) {
       throw new RangeError("Program numbers must be between 0 and 127.");
     }
-    if (delay === undefined) { delay = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     this.send(channel, _channelMessages.programchange, [program], this.time + delay);
 
@@ -1616,7 +1671,7 @@
 
   /**
    * Sends a MIDI `channel aftertouch` message to the specified channel. For key-specific
-   * aftertouch, instead use `sendKeyAftertouch()`.
+   * aftertouch, you should instead use `sendKeyAftertouch()`.
    *
    * @method sendChannelAftertouch
    * @static
@@ -1624,10 +1679,10 @@
    *
    * @param channel {uint}        The MIDI channel number (between 0 and 15). You can view
    *                              available channels in the `WebMidi.outputs` array.
-   * @param [pressure=0] {Number} The pressure level (between 0 and 1)
-   * @param [delay=0] {int}       The number of milliseconds to wait before actually
-   *                              sending the `key aftertouch` command (using a negative
-   *                              number or 0 will send the command immediately).
+   * @param [pressure=0] {Number} The pressure level (between 0 and 1).
+   * @param [delay=0] {uint}      The number of milliseconds to wait before actually
+   *                              sending the `key aftertouch` command (using 0 will send
+   *                              the command immediately).
    *
    * @throws {Error}              WebMidi must be enabled before sending messages.
    *
@@ -1639,9 +1694,14 @@
       throw new Error("WebMidi must be connected before sending messages.");
     }
 
-    if (delay === undefined) { delay = 0; }
+    pressure = parseFloat(pressure);
+    if (isNaN(pressure)) { pressure = 0; }
+
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
 
     var nPressure = Math.round(pressure * 127);
+
     this.send(
       channel, _channelMessages.channelaftertouch, [nPressure], this.time + delay
     );
@@ -1659,7 +1719,8 @@
    *
    * @param channel {uint}      The MIDI channel number (between 0 and 15). You can view
    *                            available channels in the `WebMidi.outputs` array.
-   * @param [level=-1] {Number} The intensity level of the bend (between -1 and 1)
+   * @param [level=0] {Number}  The intensity level of the bend (between -1 and 1). A
+   *                            value of zero means no bend.
    * @param [delay=0] {int}     The number of milliseconds to wait before actually sending
    *                            the `key aftertouch` command (using a negative number or 0
    *                            will send the command immediately).
@@ -1675,10 +1736,11 @@
       throw new Error("WebMidi must be connected before sending messages.");
     }
 
-    if (delay === undefined) { delay = 0; }
-    if (level < -1 || level > 1) {
-      throw new RangeError("Pitch bend value must be between -1 and 1.");
-    }
+    delay = parseInt(delay);
+    if (isNaN(delay)) { delay = 0; }
+
+    level = parseInt(level);
+    if (isNaN(level) || level < -1 || level > 1) { level = 0; }
 
     var nLevel = Math.round((level + 1) / 2 * 16383);
     var msb = (nLevel >> 7) & 0x7F;
