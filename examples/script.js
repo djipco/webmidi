@@ -34,6 +34,9 @@ WebMidi.enable(
     // Send pitch bend (between -1 and 1)
     WebMidi.sendPitchBend(0, -1);
 
+    WebMidi.sendSysexMessage(new Uint8Array([47]), new Uint8Array([1, 2, 3, 4]));
+    //WebMidi.sendSysexMessage([47], [1, 2, 3, 4]);
+
     // Chaining method calls
     WebMidi.sendPitchBend(0, -1)
       .sendPitchBend(0, -0.5, 200)
@@ -90,6 +93,8 @@ WebMidi.enable(
 
   function(m) {
     console.log("Could not enable MIDI interface: " + m);
-  }
+  },
+
+  true
 
 );
