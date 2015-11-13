@@ -11,79 +11,78 @@ WebMidi.enable(
     // Getting the current time
     console.log(WebMidi.time);
 
-    // Playing a note (note number 59 on the 1st channel [0] at half velocity)
-    WebMidi.playNote(0, 60, 0.5);
-    WebMidi.playNote(0, 60, 0.5, 1000);           // send a noteoff after 1 sec.
-    WebMidi.playNote(0, 60, 0.5, 1000, 1000);     // wait 1 sec. before playing
+    // Playing a note (C3 on all available devices/channels)
+    WebMidi.playNote("C3");
 
-    // Stopping a playing note
-    WebMidi.stopNote(0, 60, 1);
-    WebMidi.stopNote(0, 60, 0.5, 2000);           // wait 2 sec. before stopping
+    // Playing a chord (on all available devices/channels)
+    WebMidi.playNote(["C3", "D#3", "G3"]);
 
-    // Send polyphonic aftertouch message
-    WebMidi.sendKeyAftertouch(0, 60, 0.5);
-    WebMidi.sendKeyAftertouch(0, 60, 0.5, 1000);  // wait 1 sec. before sending
+    // Playing a note (F#-1, at full velocity on all available devices/channels)
+    WebMidi.playNote("F#-1", 1);
 
-    // Send control change value 127 to controller 1 (modulation) on channel 0
-    WebMidi.sendControlChange(0, 1, 127);
-    WebMidi.sendControlChange(0, 1, 127, 1000);     // wait 1 sec. before sending
+    // Playing a note for 1 sec. by MIDI number (on all channels of device with id 1135369092). The
+    // id can be viewed in WebMidi.outputs
+    WebMidi.playNote(60, 1, 1000, "1135369092");
+
+    // Playing a note (on channel 3 of a specific device)
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3);
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // send a noteoff after 1 sec.
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // wait 2 sec. before playing
+
+    // Stopping a playing note (with a release velocity at half)
+    WebMidi.stopNote("C0", 0.5);
+    WebMidi.stopNote("C0", 0.5, "1135369092", 12);          // For specific device and channel
+    WebMidi.stopNote("C0", 0.5, "1135369092", 12, 3000);    // After 3 sec. delay
+
+    // Send polyphonic aftertouch message (half value)
+    WebMidi.sendKeyAftertouch("C3", 0.5);
+    WebMidi.sendKeyAftertouch("C3", 0.5, "1135369092", 12); // For specific device and channel
 
     // Send channel aftertouch
-    WebMidi.sendChannelAftertouch(0, 0.5);
+    WebMidi.sendChannelAftertouch(0.5, "1135369092", 12);
 
     // Send pitch bend (between -1 and 1)
-    WebMidi.sendPitchBend(0, -1);
-
-    WebMidi.sendSysexMessage(new Uint8Array([47]), new Uint8Array([1, 2, 3, 4]));
-    //WebMidi.sendSysexMessage([47], [1, 2, 3, 4]);
+    WebMidi.sendPitchBend(-1, "1135369092", 12);
 
     // Chaining method calls
-    WebMidi.sendPitchBend(0, -1)
-      .sendPitchBend(0, -0.5, 200)
-      .sendPitchBend(0, 0, 400)
-      .sendPitchBend(0, 0.5, 800)
-      .sendPitchBend(0, 1, 1000);
+    WebMidi.sendPitchBend(-1, "1135369092", 12)
+      .sendPitchBend(-0.5, "1135369092", 12, 200)
+      .sendPitchBend(0, "1135369092", 12, 400)
+      .sendPitchBend(0.5, "1135369092", 12, 800)
+      .sendPitchBend(1, "1135369092", 12, 1000);
 
-    // Listening for a 'note on' message (on all channels)
-    WebMidi.addEventListener(
+    // Listening for a 'note on' message (on all devices and channels)
+    WebMidi.addListener(
       'noteon',
-      function(e){ console.log(e); },
-      'all'
-    );
-
-    // Listening for a 'note on' message (on channel 0 only)
-    WebMidi.addEventListener(
-      'noteon',
-      function(e){ console.log(e); },
-      0
-    );
-
-    // Listening to other messages works the same way (defaults to 'all' channels)
-    WebMidi.addEventListener(
-      'noteoff',
       function(e){ console.log(e); }
     );
 
-    WebMidi.addEventListener(
+    // Listening for a 'note off' message (on device with id 1135369092 and channel 3)
+    WebMidi.addListener(
+      'noteoff',
+      function(e){ console.log(e); },
+      {device: "1135369092", channel: 3}
+    );
+
+    // Listening to other messages works the same way
+    WebMidi.addListener(
       'pitchbend',
       function(e){ console.log(e); }
     );
 
-
-    // The special 'statechange' event tells you that a device has been plugged or
-    // unplugged. For system-wide events, you do not need to specify a channel.
-    WebMidi.addEventListener(
+    // The special 'statechange' event tells you that a device has been plugged or unplugged. For
+    // system-wide events, you do not need to specify a device or channel.
+    WebMidi.addListener(
       'statechange',
       function(e){ console.log(e); }
     );
 
-
     // You can also check and remove event listeners (in this case, you shouldn't use
     // anonymous methods).
-    WebMidi.addEventListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
-    WebMidi.removeEventListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
+    WebMidi.addListener('statechange', test);
+    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
+    WebMidi.removeListener('statechange', test);
+    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
 
     function test(e) {
       console.log(e);

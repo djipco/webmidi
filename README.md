@@ -78,24 +78,20 @@ function onFailure(err) {
 
 To send MIDI messages with **WebMidi**, you simply need to pick the appropriate method and all
 the native MIDI communication will be handled for you. For example, let's say we want to
-send a 'noteon' MIDI message to the device on channel 2 so it plays note number 76 at half
-velocity:
+send a 'noteon' MIDI message to all devices and channels so they play a 3rd octave C:
 
 ```javascript
-WebMidi.playNote(2, 76, 0.5);
+WebMidi.playNote("C3");
 ```
 
 That's it.
 
-By the way, you should note that, just like in the Web MIDI API, channel numbers are
-zero-indexed (from 0 to 15).
-
 Receiving messages is just as easy. You simply have to set a callback function to be
 triggered when a specific MIDI message is received. For example, to listen for pitch bend
-events on any MIDI input channels:
+events on any MIDI devices and channels:
 
 ```javascript
-WebMidi.addEventListener('pitchbend', function(e) {
+WebMidi.addListener('pitchbend', function(e) {
     console.log("Pitch value: " + e.value);
 });
 ```
@@ -103,11 +99,11 @@ WebMidi.addEventListener('pitchbend', function(e) {
 ## More code examples
 
 ```javascript
-// Enable WebMidi. 3 parameters: onSuccess handler, onFailure handler and boolean
-// indicating if you want to use system exclusive messages (defaults to false).
+// Enable WebMidi with onSuccess handler and onFailure handler.
 WebMidi.enable(
 
-  function() { 
+  // Success handler
+  function() {
 
     // Viewing available inputs and outputs
     console.log(WebMidi.inputs);
@@ -116,84 +112,78 @@ WebMidi.enable(
     // Getting the current time
     console.log(WebMidi.time);
 
-    // Playing a note by name (3rd octave F# on the 1st channel [0])
-    WebMidi.playNote(0, "F#3");
-    WebMidi.playNote(0, "F#3", 0.5);               // half velocity
-    WebMidi.playNote(0, "F#3", 0.5, 1000);         // duration of 1000 milliseconds
+    // Playing a note (C3 on all available devices/channels)
+    WebMidi.playNote("C3");
 
-    // Playing multiple notes simultaneously on the 4th MIDI channel [3]
-    WebMidi.playNote(3, ["C0", "D#0", "G0"]);
+    // Playing a chord (on all available devices/channels)
+    WebMidi.playNote(["C3", "D#3", "G3"]);
 
-    // Playing a note by MIDI number (on the 1st channel [0] at half velocity)
-    WebMidi.playNote(0, 60, 0.5);
+    // Playing a note (F#-1, at full velocity on all available devices/channels)
+    WebMidi.playNote("F#-1", 1);
 
-    // Stopping a playing note
-    WebMidi.stopNote(0, 60, 1);                   // by note number
-    WebMidi.stopNote(0, "C1", 1);                 // by name
-    WebMidi.stopNote(0, "F#3", 0.5);              // 0.5 release velocity
-    WebMidi.stopNote(0, "F#3", 0.5, 2000);        // wait 2 sec. before stopping
+    // Playing a note for 1 sec. by MIDI number (on all channels of device with id 1135369092). The
+    // id can be viewed in WebMidi.outputs
+    WebMidi.playNote(60, 1, 1000, "1135369092");
 
-    // Send polyphonic aftertouch message
-    WebMidi.sendKeyAftertouch(0, 60, 0.5);
-    WebMidi.sendKeyAftertouch(0, 60, 0.5, 1000);  // wait 1 sec. before sending
+    // Playing a note (on channel 3 of a specific device)
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3);
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // send a noteoff after 1 sec.
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // wait 2 sec. before playing
 
-    // Send control change value 127 to controller 1 (modulation) on channel 0
-    WebMidi.sendControlChange(0, 1, 127);
-    WebMidi.sendControlChange(0, 1, 127, 1000);   // wait 1 sec. before sending
+    // Stopping a playing note (with a release velocity at half)
+    WebMidi.stopNote("C0", 0.5);
+    WebMidi.stopNote("C0", 0.5, "1135369092", 12);          // For specific device and channel
+    WebMidi.stopNote("C0", 0.5, "1135369092", 12, 3000);    // After 3 sec. delay
+
+    // Send polyphonic aftertouch message (half value)
+    WebMidi.sendKeyAftertouch("C3", 0.5);
+    WebMidi.sendKeyAftertouch("C3", 0.5, "1135369092", 12); // For specific device and channel
 
     // Send channel aftertouch
-    WebMidi.sendChannelAftertouch(0, 0.5);
+    WebMidi.sendChannelAftertouch(0.5, "1135369092", 12);
 
     // Send pitch bend (between -1 and 1)
-    WebMidi.sendPitchBend(0, -1);
+    WebMidi.sendPitchBend(-1, "1135369092", 12);
 
-    // Chaining multiple method calls
-    WebMidi.sendPitchBend(0, -1)
-      .sendPitchBend(0, -0.5, 200)
-      .sendPitchBend(0, 0, 400)
-      .sendPitchBend(0, 0.5, 800)
-      .sendPitchBend(0, 1, 1000);
+    // Chaining method calls
+    WebMidi.sendPitchBend(-1, "1135369092", 12)
+      .sendPitchBend(-0.5, "1135369092", 12, 200)
+      .sendPitchBend(0, "1135369092", 12, 400)
+      .sendPitchBend(0.5, "1135369092", 12, 800)
+      .sendPitchBend(1, "1135369092", 12, 1000);
 
-    // Listening for a 'note on' message (on all channels)
-    WebMidi.addEventListener(
+    // Listening for a 'note on' message (on all devices and channels)
+    WebMidi.addListener(
       'noteon',
-      function(e){ console.log(e); },
-      'all'
-    );
-
-    // Listening for a 'note on' message (on channel 0 only)
-    WebMidi.addEventListener(
-      'noteon',
-      function(e){ console.log(e); },
-      0
-    );
-
-    // Listening to other messages works the same way (defaults to 'all' channels)
-    WebMidi.addEventListener(
-      'noteoff',
       function(e){ console.log(e); }
     );
 
-    WebMidi.addEventListener(
+    // Listening for a 'note off' message (on device with id 1135369092 and channel 3)
+    WebMidi.addListener(
+      'noteoff',
+      function(e){ console.log(e); },
+      {device: "1135369092", channel: 3}
+    );
+
+    // Listening to other messages works the same way
+    WebMidi.addListener(
       'pitchbend',
       function(e){ console.log(e); }
     );
 
-
-    // The special 'statechange' event tells you that a device has been plugged or
-    // unplugged. For system-wide events, you do not need to specify a channel.
-    WebMidi.addEventListener(
+    // The special 'statechange' event tells you that a device has been plugged or unplugged. For
+    // system-wide events, you do not need to specify a device or channel.
+    WebMidi.addListener(
       'statechange',
       function(e){ console.log(e); }
     );
 
-
     // You can also check and remove event listeners (in this case, you shouldn't use
     // anonymous methods).
-    WebMidi.addEventListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
-    WebMidi.removeEventListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasEventListener('statechange', test) );
+    WebMidi.addListener('statechange', test);
+    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
+    WebMidi.removeListener('statechange', test);
+    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
 
     function test(e) {
       console.log(e);
@@ -201,17 +191,15 @@ WebMidi.enable(
 
   },
 
+  // Failure handler
   function(m) {
     console.log("Could not enable MIDI interface: " + m);
-  },
-
-  true      // Whether to enable sysex or not. When set to 'true', it might trigger an
-            // authorization prompt to the user. If you do not need it, leave it to false.
+  }
 
 );
 ```
 
 ## Full API Documentation
 
-The full **API documentation** is available for download in the `dist/docs` folder. You
-can also **[view it online](http://cotejp.github.io/webmidi/classes/WebMidi.html)**.
+The full **API documentation** is available for download in the `dist/docs` folder. You can also 
+**[view it online](http://cotejp.github.io/webmidi/classes/WebMidi.html)**.
