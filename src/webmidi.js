@@ -38,15 +38,11 @@
    *        specific controller on a controlchange event or a specific note on a event
    *        message.
    *
-   * @todo stopNote, playNote, etc. should accept all and array for devices and channels.
-   * @todo sendkeyaftertouch should accept nusual note names
-   * @todo make it possible to pass arrays of devices or 'all' to outputs methods (playnote, etc.)
    * @todo  Add more examples in method documentation (playNote namely).
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
-   * @todo should the sendsysex method allow Uint8Array param ?
-   * @todo define textual versions of channel mode messages
-   * @todo  Yuidoc seems to produce buggy documenation (when you click on a method name, you need to relaod the page)
+   * @todo  Should the sendsysex method allow Uint8Array param ?
+   * @todo  Define textual versions of channel mode messages
    */
   function WebMidi() {
 
@@ -1439,16 +1435,22 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `note off` message (using 0 will stop the note
-   *                                      immediately). An invalid value will silently trigger the
-   *                                      default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before stopping notes.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.stopNote = function(note, velocity, device, channel, delay) {
+  WebMidi.prototype.stopNote = function(note, velocity, device, channel, time) {
 
     var that = this;
 
@@ -1456,9 +1458,6 @@
 
     velocity = parseFloat(velocity);
     if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
-
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
 
     var nVelocity = Math.round(velocity * 127);
 
@@ -1470,7 +1469,7 @@
             (_channelMessages.noteoff << 4) + (ch - 1),
             [item, nVelocity],
             device,
-            that.time + delay
+            that._parseTimeParameter(time)
         );
       });
 
@@ -1514,16 +1513,22 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `note on` message (using a negative number or 0 will
-   *                                      send the command immediately). An invalid value will
-   *                                      trigger the default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before playing notes.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.playNote = function(note, velocity, duration, device, channel, delay) {
+  WebMidi.prototype.playNote = function(note, velocity, duration, device, channel, time) {
 
     var that = this;
 
@@ -1532,12 +1537,9 @@
     velocity = parseFloat(velocity);
     if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     var nVelocity = Math.round(velocity * 127);
 
-    var timestamp = this.time + delay;
+    time = that._parseTimeParameter(time) || 0;
 
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
@@ -1547,7 +1549,7 @@
             (_channelMessages.noteon << 4) + (ch - 1),
             [item, nVelocity],
             device,
-            timestamp
+            time
         );
       });
 
@@ -1563,7 +1565,7 @@
               (_channelMessages.noteoff << 4) + (ch - 1),
               [item, 64],
               device,
-              timestamp + duration
+              time + duration
           );
         });
 
@@ -1599,17 +1601,23 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `key aftertouch` command (using a negative number or 0
-   *                                      will send the command immediately). An invalid value will
-   *                                      trigger the default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                  WebMidi must be enabled before sending messages.
    * @throws {RangeError}             The channel must be between 1 and 16.
    *
    * @return {WebMidi}                Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendKeyAftertouch = function(note, pressure, device, channel, delay) {
+  WebMidi.prototype.sendKeyAftertouch = function(note, pressure, device, channel, time) {
 
     var that = this;
 
@@ -1618,9 +1626,6 @@
 
     pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
-
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
 
     var nPressure = Math.round(pressure * 127);
 
@@ -1631,7 +1636,7 @@
             (_channelMessages.keyaftertouch << 4) + (ch - 1),
             [item, nPressure],
             device,
-            that.time + delay
+            that._parseTimeParameter(time)
         );
       });
 
@@ -1657,10 +1662,16 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {uint}              The number of milliseconds to wait before actually sending
-   *                                      the `control change` message (using 0 will send the
-   *                                      message immediately). An invalid value will trigger the
-   *                                      default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Controller numbers must be between 0 and 119.
@@ -1668,7 +1679,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendControlChange = function(controller, value, device, channel, delay) {
+  WebMidi.prototype.sendControlChange = function(controller, value, device, channel, time) {
 
     var that = this;
 
@@ -1684,15 +1695,12 @@
       throw new RangeError("Value must be between 0 and 127");
     }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
           (_channelMessages.controlchange << 4) + (ch - 1),
           [controller, value],
           device,
-          that.time + delay
+          that._parseTimeParameter(time)
       );
     });
 
@@ -1716,10 +1724,16 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `channel mode` message (using 0 will send the message
-   *                                      immediately). An invalid value will trigger the default
-   *                                      behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Channel mode controller numbers must be between 120 and
@@ -1729,7 +1743,7 @@
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendChannelMode = function(command, value, device, channel, delay) {
+  WebMidi.prototype.sendChannelMode = function(command, value, device, channel, time) {
 
     var that = this;
 
@@ -1745,16 +1759,13 @@
       throw new RangeError("Value must be integers between 0 and 127.");
     }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     this._convertChannelToArray(channel).forEach(function(ch) {
 
       that.send(
           (_channelMessages.channelmode << 4) + (ch - 1),
           [command, value],
           device,
-          that.time + delay
+          that._parseTimeParameter(time)
       );
 
     });
@@ -1778,10 +1789,16 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `key aftertouch` command (using a negative number or 0
-   *                                      will send the command immediately). An invalid value will
-   *                                      trigger the default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Program numbers must be between 0 and 127.
@@ -1789,7 +1806,7 @@
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendProgramChange = function(program, device, channel, delay) {
+  WebMidi.prototype.sendProgramChange = function(program, device, channel, time) {
 
     var that = this;
 
@@ -1800,15 +1817,12 @@
       throw new RangeError("Program numbers must be between 0 and 127.");
     }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
           (_channelMessages.programchange << 4) + (ch - 1),
           [program],
           device,
-          that.time + delay
+          that._parseTimeParameter(time)
       );
     });
 
@@ -1833,16 +1847,22 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {uint}              The number of milliseconds to wait before actually
-   *                                      sending the `key aftertouch` command (using 0 will send
-   *                                      the command immediately). An invalid value will trigger
-   *                                      the default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendChannelAftertouch = function(pressure, device, channel, delay) {
+  WebMidi.prototype.sendChannelAftertouch = function(pressure, device, channel, time) {
 
     var that = this;
 
@@ -1851,9 +1871,6 @@
     pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     var nPressure = Math.round(pressure * 127);
 
     this._convertChannelToArray(channel).forEach(function(ch) {
@@ -1861,7 +1878,7 @@
           (_channelMessages.channelaftertouch << 4) + (ch - 1),
           [nPressure],
           device,
-          that.time + delay
+          that._parseTimeParameter(time)
       );
     });
 
@@ -1885,17 +1902,23 @@
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
-   * @param [delay=0] {int}               The number of milliseconds to wait before actually sending
-   *                                      the `key aftertouch` command (using a negative number or 0
-   *                                      will send the command immediately). An invalid value will
-   *                                      silently trigger the default behaviour.
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   *                                      the value is a string starting with the + sign and
+   *                                      followed by a number, the request will be delayed by the
+   *                                      specified number (in milliseconds). Otherwise, the value
+   *                                      is considered a timestamp and the request will be
+   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
+   *                                      is relative to the navigation start of the document. To
+   *                                      retrieve the current time, you can use `WebMidi.time`. If
+   *                                      `time` is not present or is set to a time in the past,
+   *                                      the request is to be sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Pitch bend value must be between -1 and 1.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendPitchBend = function(bend, device, channel, delay) {
+  WebMidi.prototype.sendPitchBend = function(bend, device, channel, time) {
 
     var that = this;
 
@@ -1906,9 +1929,6 @@
       throw new RangeError("Pitch bend value must be between -1 and 1.");
     }
 
-    delay = parseInt(delay);
-    if (isNaN(delay)) { delay = 0; }
-
     var nLevel = Math.round((bend + 1) / 2 * 16383);
     var msb = (nLevel >> 7) & 0x7F;
     var lsb = nLevel & 0x7F;
@@ -1918,7 +1938,7 @@
           (_channelMessages.pitchbend << 4) + (ch - 1),
           [lsb, msb],
           device,
-          that.time + delay
+          that._parseTimeParameter(time)
       );
     });
 
@@ -2036,6 +2056,22 @@
     });
 
     return channel;
+
+  };
+
+  /**
+   *
+   * @method _parseTimeParameter
+   * @param [time=0] {Number|String}
+   * @private
+   */
+  WebMidi.prototype._parseTimeParameter = function(time) {
+
+    if (time && time.substring && time.substring(0, 1) === "+") {
+      return (parseFloat(time) + this.time) || undefined;
+    } else {
+      return parseFloat(time) || undefined;
+    }
 
   };
 

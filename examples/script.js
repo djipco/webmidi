@@ -25,14 +25,15 @@ WebMidi.enable(
     WebMidi.playNote(60, 1, 1000, "1135369092");
 
     // Playing a note (on channel 3 of a specific device)
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3);
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // send a noteoff after 1 sec.
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 1000);    // wait 2 sec. before playing
+    WebMidi.playNote(60, 1, undefined, "1135369092", 3);
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3);             // send a noteoff after 1 sec.
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, "+2000");    // wait 2 sec. before playing
+    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 50000.0);    // play 50 seconds after start
 
     // Stopping a playing note (with a release velocity at half)
     WebMidi.stopNote("C0", 0.5);
     WebMidi.stopNote("C0", 0.5, "1135369092", 12);          // For specific device and channel
-    WebMidi.stopNote("C0", 0.5, "1135369092", 12, 3000);    // After 3 sec. delay
+    WebMidi.stopNote("C0", 0.5, "1135369092", 12, "+3000");    // After 3 sec. delay
 
     // Send polyphonic aftertouch message (half value)
     WebMidi.sendKeyAftertouch("C3", 0.5);
