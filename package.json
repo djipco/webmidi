@@ -1,6 +1,6 @@
 {
   "name": "webmidi",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "webmidi.min.js",
