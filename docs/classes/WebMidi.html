@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-beta.3</em>
+            <em>API Docs for: 1.0.0-beta.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -89,28 +89,28 @@
 
 
 <div class="box intro">
-    <p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it
-simplifies two things: sending and receiving MIDI messages.</p>
+    <p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it simplifies
+two things: sending and receiving MIDI messages.</p>
 <p>To send MIDI messages, you simply need to call the desired method (<code>playNote()</code>,
-<code>sendPitchBend()</code>, <code>stopNote()</code>, etc.) with the appropriate parameters and all the
-native MIDI communication will be handled for you. The only additional thing that
-needs to be done is enable <code>WebMidi</code>. Here is an example:</p>
+<code>sendPitchBend()</code>, <code>stopNote()</code>, etc.) with the appropriate parameters and all the native MIDI
+communication will be handled for you. The only additional thing that needs to be done is
+enable <code>WebMidi</code>. Here is an example:</p>
 <pre class="code prettyprint"><code> WebMidi.enable(function() {
-   WebMidi.playNote(2, &quot;C3&quot;);
+   WebMidi.playNote(&quot;C3&quot;);
  });
 </code></pre>
-<p>The code above, calls the <code>WebMidi.enable()</code> method. Upon success, this method
-executes the callback function specified as a parameter. In this case, the callback
-calls the <code>playnote()</code> function to play a 3rd octave C (note number 60) on channel 2.</p>
-<p>Receiving messages is just as easy. You simply have to set a callback function to be
-triggered when a specific MIDI message is received. For example, to listen for pitch
-bend events on any input MIDI channels:</p>
+<p>The code above, calls the <code>WebMidi.enable()</code> method. Upon success, this method executes the
+callback function specified as a parameter. In this case, the callback calls the <code>playnote()</code>
+function to play a 3rd octave C on all devices and channels.</p>
+<p>Receiving messages is just as easy. You simply have to set a callback function to be triggered
+when a specific MIDI message is received. For example, to listen for pitch bend events on any
+input MIDI channels:</p>
 <pre class="code prettyprint"><code> WebMidi.addListener('pitchbend', function(e) {
    console.log(&quot;Pitch value: &quot; + e.value);
  });
 </code></pre>
-<p>As you can see, this library makes it much easier to use the Web MIDI API. No need to
-manually craft or decode binary MIDI messages anymore!</p>
+<p>As you can see, this library makes it much easier to use the Web MIDI API. No need to manually
+craft or decode binary MIDI messages anymore!</p>
 
 </div>
 
@@ -397,7 +397,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2032"><code>src&#x2F;webmidi.js:2032</code></a>
+        <a href="../files/src_webmidi.js.html#l2034"><code>src&#x2F;webmidi.js:2034</code></a>
         </p>
 
 
@@ -438,7 +438,7 @@ returned.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[channel]</code>
+                        <code class="optional">[note]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -454,7 +454,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2009"><code>src&#x2F;webmidi.js:2009</code></a>
+        <a href="../files/src_webmidi.js.html#l2011"><code>src&#x2F;webmidi.js:2011</code></a>
         </p>
 
 
@@ -472,8 +472,8 @@ MIDI note numbers.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[channel]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[note]</code>
+                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -504,7 +504,7 @@ MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l183"><code>src&#x2F;webmidi.js:183</code></a>
+        <a href="../files/src_webmidi.js.html#l185"><code>src&#x2F;webmidi.js:185</code></a>
         </p>
 
 
@@ -535,7 +535,7 @@ MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l205"><code>src&#x2F;webmidi.js:205</code></a>
+        <a href="../files/src_webmidi.js.html#l207"><code>src&#x2F;webmidi.js:207</code></a>
         </p>
 
 
@@ -584,7 +584,13 @@ MIDI note numbers.</p>
 <div id="method__parseChannelEvent" class="method item private">
     <h3 class="name"><code>_parseChannelEvent</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
@@ -597,7 +603,7 @@ MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l229"><code>src&#x2F;webmidi.js:229</code></a>
+        <a href="../files/src_webmidi.js.html#l228"><code>src&#x2F;webmidi.js:228</code></a>
         </p>
 
 
@@ -608,6 +614,23 @@ MIDI note numbers.</p>
         
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
 
 
 
@@ -665,7 +688,7 @@ MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2062"><code>src&#x2F;webmidi.js:2062</code></a>
+        <a href="../files/src_webmidi.js.html#l2064"><code>src&#x2F;webmidi.js:2064</code></a>
         </p>
 
 
@@ -737,13 +760,12 @@ MIDI note numbers.</p>
     </div>
 
     <div class="description">
-        <p>Adds an event listener that will trigger a function callback when the specified event
-happens. By default, the listener is system-wide (it will listen on all MIDI
-channels of all MIDI devices). To listen to a specific device or channel, you can use the
-<code>filter</code> parameter.</p>
+        <p>Adds an event listener that will trigger a function callback when the specified event happens.
+By default, the listener is system-wide (it will listen on all MIDI channels of all MIDI input
+devices). To listen to a specific device or channel, you can use the <code>filter</code> parameter.</p>
 <p>WebMidi must be enabled before adding event listeners.</p>
-<p>Here is a list of events that are dispatched by the <code>WebMidi</code> object and that can be
-listened to.</p>
+<p>Here is a list of events that are dispatched by the <code>WebMidi</code> object and that can be listened
+to.</p>
 <p>MIDI interface event:</p>
 <ul>
 <li><a href="../classes/WebMidi.html#event_statechange" class="crosslink">statechange</a></li>
@@ -833,6 +855,20 @@ to listen on several devices at once by
 passing in an array of ids. If set to
 'all' (default) all devices will trigger the
 callback function.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[input]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput" class="crosslink external" target="_blank">MIDIInput</a> | Array(MIDIInput)</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>A MIDI input device or an array of MIDI
+input devices to listen to. As a reference, all available <code>MIDIInput</code> objects are listed in the
+<code>WebMidi.inputs</code> array. When this parameter is left undefined, all input devices will trigger
+the callback function.</p>
 
                                 </div>
 
@@ -998,7 +1034,7 @@ the user for authorization.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l995"><code>src&#x2F;webmidi.js:995</code></a>
+        <a href="../files/src_webmidi.js.html#l988"><code>src&#x2F;webmidi.js:988</code></a>
         </p>
 
 
@@ -1084,7 +1120,7 @@ returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1022"><code>src&#x2F;webmidi.js:1022</code></a>
+        <a href="../files/src_webmidi.js.html#l1015"><code>src&#x2F;webmidi.js:1015</code></a>
         </p>
 
 
@@ -1172,7 +1208,7 @@ for the index of an input or output device.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1047"><code>src&#x2F;webmidi.js:1047</code></a>
+        <a href="../files/src_webmidi.js.html#l1040"><code>src&#x2F;webmidi.js:1040</code></a>
         </p>
 
 
@@ -1181,8 +1217,8 @@ for the index of an input or output device.</p>
 
     <div class="description">
         <p>Checks if the specified event type is already defined to trigger the listener function on the
-specified device and channel. If the special value &quot;all&quot; is used for the device/channel, the
-function will return <code>true</code> only if all devices/channels have the listener defined.</p>
+specified device and channel. If more than one device and/or channel is specified, the function
+will return <code>true</code> only if all devices/channels have the listener defined.</p>
 <p>For system-wide events (<code>onstatechange</code>, <code>sysex</code>, <code>start</code>, etc.), the <code>filters</code> parameter is
 silently ignored.</p>
 
@@ -1227,14 +1263,15 @@ silently ignored.</p>
 
                         <ul class="params-list">
                             <li class="param">
-                                    <code class="param-name optional">[device=&quot;all&quot;]</code>
-                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    <code class="param-name optional">[input]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput" class="crosslink external" target="_blank">MIDIInput</a> | Array(MIDIInput)</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The id of the MIDI device to check on (as
-reported by <code>WebMidi.inputs</code>) or the special
-value &quot;all&quot;.</p>
+                                    <p>A MIDI input device or an array of MIDI
+input devices to check on. As a reference, all available <code>MIDIInput</code> objects are listed in the
+<code>WebMidi.inputs</code> array. When this parameter is left undefined, all input devices will be
+checked.</p>
 
                                 </div>
 
@@ -1305,7 +1342,7 @@ defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1978"><code>src&#x2F;webmidi.js:1978</code></a>
+        <a href="../files/src_webmidi.js.html#l1980"><code>src&#x2F;webmidi.js:1980</code></a>
         </p>
 
 
@@ -1366,7 +1403,7 @@ symbol, followed by the octave number (between -2 and 8).</p>
                         <code class="optional">[duration=undefined]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -1392,7 +1429,7 @@ symbol, followed by the octave number (between -2 and 8).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1482"><code>src&#x2F;webmidi.js:1482</code></a>
+        <a href="../files/src_webmidi.js.html#l1462"><code>src&#x2F;webmidi.js:1462</code></a>
         </p>
 
 
@@ -1460,14 +1497,16 @@ matching note off event. If left undefined, only a
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device's id. You can view available devices in the
-<code>WebMidi.outputs</code> array.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -1564,7 +1603,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1139"><code>src&#x2F;webmidi.js:1139</code></a>
+        <a href="../files/src_webmidi.js.html#l1127"><code>src&#x2F;webmidi.js:1127</code></a>
         </p>
 
 
@@ -1572,9 +1611,9 @@ the request is to be sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Removes the specified listener from all requested devices and channel(s). If the special value
-&quot;all&quot; is used for the device or the channel parameter, the function will remove the listener
-from all devices/channels.</p>
+        <p>Removes the specified listener from all requested input devices and channel(s). If more than
+one devices and/or channels are specified, the function will remove the listener from all
+devices/channels.</p>
 <p>For system-wide events (<code>onstatechange</code>, <code>sysex</code>, <code>start</code>, etc.), the <code>filters</code> parameter is
 silently ignored.</p>
 
@@ -1619,13 +1658,15 @@ silently ignored.</p>
 
                         <ul class="params-list">
                             <li class="param">
-                                    <code class="param-name optional">[device=all]</code>
-                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <code class="param-name optional">[input]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput" class="crosslink external" target="_blank">MIDIInput</a> | Array(MIDIInput)</span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The id of the device(s) to check on or the special
-value &quot;all&quot;.</p>
+                                    <p>A MIDI input device or an array of MIDI
+input devices to remove from. As a reference, all available <code>MIDIInput</code> objects are listed in
+the <code>WebMidi.inputs</code> array. When this parameter is left undefined, removal will occur for all
+input devices.</p>
 
                                 </div>
 
@@ -1681,7 +1722,7 @@ listeners.</p>
                         <code class="optional">[data=[]]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all&quot;]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[timestamp=0]</code>
@@ -1704,7 +1745,7 @@ listeners.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1229"><code>src&#x2F;webmidi.js:1229</code></a>
+        <a href="../files/src_webmidi.js.html#l1213"><code>src&#x2F;webmidi.js:1213</code></a>
         </p>
 
 
@@ -1712,10 +1753,9 @@ listeners.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI message to the specified device(s) at the specified timestamp. The <code>device</code>
-parameter must be the id of an available device as reported by <code>WebMidi.outputs</code>. It can also
-be an array of such devices or the value &quot;all&quot;. By using &quot;all&quot;, the message will be sent to all
-currently available output devices.</p>
+        <p>Sends a MIDI message to the specified MIDI output device(s) at the specified timestamp. The
+<code>output</code> parameter must refer to an actual available output device or an array of output
+devices such as those listed in the <code>WebMidi.outputs</code> array.</p>
 <p>Unless, you are familiar with the details of the MIDI message format, you should not use this
 method directly. Instead, use one of the simpler helper methods: <code>playNote()</code>, <code>stopNote()</code>,
 <code>sendControlChange()</code>, <code>sendSystemMessage()</code>, etc.</p>
@@ -1742,28 +1782,29 @@ MIDI Manufacturers Association.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[data=[]]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <span class="type">Array(int)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>An array of data bytes for the message. The number
-of data bytes varies depending on the status byte.</p>
+                        <p>An array of data bytes for the message. The number of data bytes
+varies depending on the status byte. It is perfectly legal to send no data. Each byte must be
+between 0 and 255.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all&quot;]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The id of the device the message should be sent
-to. You can view the device ids by looking at
-<code>WebMidi.outputs</code>. If you leave out this parameter
-the message will be sent to all devices.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available <code>MIDIOutput</code> objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -1775,10 +1816,11 @@ the message will be sent to all devices.</p>
 
 
                     <div class="param-description">
-                        <p>The timestamp at which to send the message. You
-can use <code>WebMidi.time</code> to retrieve the current
-timestamp. To send immediately, leave blank or use
-0.</p>
+                        <p>The timestamp at which to send the message. You can
+use <code>WebMidi.time</code> to retrieve the current timestamp. To send immediately, leave blank or use</p>
+<ol start="0">
+<li></li>
+</ol>
 
                     </div>
 
@@ -1791,8 +1833,7 @@ timestamp. To send immediately, leave blank or use
 
             <div class="returns-description">
                         <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
-                    <p>Returns the <code>WebMidi</code> object so methods can be
-chained.</p>
+                    <p>Returns the <code>WebMidi</code> object so methods can be chained.</p>
 
             </div>
         </div>
@@ -1802,8 +1843,7 @@ chained.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" class="crosslink external" target="_blank">RangeError</a></span>:
-                    <p>The status byte must be an integer between 128
-(0x80) and 255 (0xFF).</p>
+                    <p>The data bytes must be integers between 0 (0x00) and 255 (0xFF).</p>
 
             </div>
         </div>
@@ -1818,7 +1858,7 @@ chained.</p>
                         <code class="optional">[pressure=0.5]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -1844,7 +1884,7 @@ chained.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1833"><code>src&#x2F;webmidi.js:1833</code></a>
+        <a href="../files/src_webmidi.js.html#l1829"><code>src&#x2F;webmidi.js:1829</code></a>
         </p>
 
 
@@ -1875,15 +1915,16 @@ value will silently trigger the default behaviour.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -1960,7 +2001,7 @@ the request is to be sent as soon as possible.</p>
                         <code>value</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -1986,7 +2027,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1711"><code>src&#x2F;webmidi.js:1711</code></a>
+        <a href="../files/src_webmidi.js.html#l1701"><code>src&#x2F;webmidi.js:1701</code></a>
         </p>
 
 
@@ -2025,15 +2066,16 @@ the request is to be sent as soon as possible.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2110,7 +2152,7 @@ the request is to be sent as soon as possible.</p>
                         <code class="optional">[value=0]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -2136,7 +2178,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1649"><code>src&#x2F;webmidi.js:1649</code></a>
+        <a href="../files/src_webmidi.js.html#l1636"><code>src&#x2F;webmidi.js:1636</code></a>
         </p>
 
 
@@ -2176,15 +2218,16 @@ the request is to be sent as soon as possible.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2261,7 +2304,7 @@ the request is to be sent as soon as possible.</p>
                         <code class="optional">[pressure=0.5]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -2287,7 +2330,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1580"><code>src&#x2F;webmidi.js:1580</code></a>
+        <a href="../files/src_webmidi.js.html#l1564"><code>src&#x2F;webmidi.js:1564</code></a>
         </p>
 
 
@@ -2335,15 +2378,16 @@ the highest note is G8 (MIDI note number 127).</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2417,7 +2461,7 @@ the request is to be sent as soon as possible.</p>
                         <code>bend</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -2443,7 +2487,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1889"><code>src&#x2F;webmidi.js:1889</code></a>
+        <a href="../files/src_webmidi.js.html#l1888"><code>src&#x2F;webmidi.js:1888</code></a>
         </p>
 
 
@@ -2465,22 +2509,23 @@ the request is to be sent as soon as possible.</p>
 
 
                     <div class="param-description">
-                        <p>The intensity level of the bend (between -1 and 1). A
-value of zero means no bend.</p>
+                        <p>The intensity level of the bend (between -1 and 1). A value of zero means
+no bend.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2554,7 +2599,7 @@ the request is to be sent as soon as possible.</p>
                         <code>program</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -2580,7 +2625,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1777"><code>src&#x2F;webmidi.js:1777</code></a>
+        <a href="../files/src_webmidi.js.html#l1770"><code>src&#x2F;webmidi.js:1770</code></a>
         </p>
 
 
@@ -2608,15 +2653,16 @@ the request is to be sent as soon as possible.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2693,7 +2739,7 @@ the request is to be sent as soon as possible.</p>
                         <code class="optional">[velocity=0.5]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[device=&quot;all]</code>
+                        <code class="optional">[output]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -2719,7 +2765,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1412"><code>src&#x2F;webmidi.js:1412</code></a>
+        <a href="../files/src_webmidi.js.html#l1389"><code>src&#x2F;webmidi.js:1389</code></a>
         </p>
 
 
@@ -2769,15 +2815,16 @@ default.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[device=&quot;all]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[output]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The device id or an array of device ids. You can view
-available devices in the <code>WebMidi.outputs</code> array. The
-special value &quot;all&quot; can also be used.</p>
+                        <p>A MIDI output device or an array of MIDI output
+devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
 
                     </div>
 
@@ -2859,7 +2906,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l65"><code>src&#x2F;webmidi.js:65</code></a>
+        <a href="../files/src_webmidi.js.html#l67"><code>src&#x2F;webmidi.js:67</code></a>
         </p>
 
 
@@ -2886,7 +2933,7 @@ currently active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l80"><code>src&#x2F;webmidi.js:80</code></a>
+        <a href="../files/src_webmidi.js.html#l82"><code>src&#x2F;webmidi.js:82</code></a>
         </p>
 
 
@@ -2912,7 +2959,7 @@ currently active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l101"><code>src&#x2F;webmidi.js:101</code></a>
+        <a href="../files/src_webmidi.js.html#l103"><code>src&#x2F;webmidi.js:103</code></a>
         </p>
 
 
@@ -2938,7 +2985,7 @@ currently active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l51"><code>src&#x2F;webmidi.js:51</code></a>
+        <a href="../files/src_webmidi.js.html#l53"><code>src&#x2F;webmidi.js:53</code></a>
         </p>
 
 
@@ -2964,15 +3011,15 @@ currently active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l122"><code>src&#x2F;webmidi.js:122</code></a>
+        <a href="../files/src_webmidi.js.html#l124"><code>src&#x2F;webmidi.js:124</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Current MIDI performance time in milliseconds. This can be used to
-queue events in the future.</p>
+        <p>[read-only] Current MIDI performance time in milliseconds. This can be used to queue events
+in the future.</p>
 
     </div>
 
@@ -4771,17 +4818,16 @@ queue events in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l211"><code>src&#x2F;webmidi.js:211</code></a>
+                            <a href="../files/src_webmidi.js.html#l213"><code>src&#x2F;webmidi.js:213</code></a>
                             </p>
                     
                     
                         </div>
                     
                         <div class="description">
-                            <p>Event emitted when the interface's state changes. Typically, this happens when a
-                    MIDI device is being plugged or unplugged. This event cannot be listened on a
-                    single specific MIDI device, it is intended to be interface-wide. If a device is
-                    specified, it will be silently ignored.</p>
+                            <p>Event emitted when the interface's state changes. Typically, this happens when a MIDI device
+                    is being plugged or unplugged. This event cannot be listened on a single specific MIDI
+                    device, it is intended to be interface-wide.</p>
                     
                         </div>
                     
@@ -4790,7 +4836,7 @@ queue events in the future.</p>
                     
                                 <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">event</code>
+                                            <code class="param-name">MIDIConnectionEvent</code>
                                             <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
                     
