@@ -3,46 +3,48 @@
   "use strict";
 
   /**
-   * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it
-   * simplifies two things: sending and receiving MIDI messages.
+   * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
+   * two things: sending and receiving MIDI messages.
    *
    * To send MIDI messages, you simply need to call the desired method (`playNote()`,
-   * `sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the
-   * native MIDI communication will be handled for you. The only additional thing that
-   * needs to be done is enable `WebMidi`. Here is an example:
+   * `sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the native MIDI
+   * communication will be handled for you. The only additional thing that needs to be done is
+   * enable `WebMidi`. Here is an example:
    *
    *      WebMidi.enable(function() {
-   *        WebMidi.playNote(2, "C3");
+   *        WebMidi.playNote("C3");
    *      });
    *
-   * The code above, calls the `WebMidi.enable()` method. Upon success, this method
-   * executes the callback function specified as a parameter. In this case, the callback
-   * calls the `playnote()` function to play a 3rd octave C (note number 60) on channel 2.
+   * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
+   * callback function specified as a parameter. In this case, the callback calls the `playnote()`
+   * function to play a 3rd octave C on all devices and channels.
    *
-   * Receiving messages is just as easy. You simply have to set a callback function to be
-   * triggered when a specific MIDI message is received. For example, to listen for pitch
-   * bend events on any input MIDI channels:
+   * Receiving messages is just as easy. You simply have to set a callback function to be triggered
+   * when a specific MIDI message is received. For example, to listen for pitch bend events on any
+   * input MIDI channels:
    *
    *      WebMidi.addListener('pitchbend', function(e) {
    *        console.log("Pitch value: " + e.value);
    *      });
    *
-   * As you can see, this library makes it much easier to use the Web MIDI API. No need to
-   * manually craft or decode binary MIDI messages anymore!
+   * As you can see, this library makes it much easier to use the Web MIDI API. No need to manually
+   * craft or decode binary MIDI messages anymore!
    *
    * @class WebMidi
    * @static
    *
    * @todo  Add removeAllEventListeners(), on() and once() functions
-   * @todo  Add a 'filter' parameter to addListener. This would allow to listen for a
-   *        specific controller on a controlchange event or a specific note on a event
-   *        message.
+   * @todo  Add a 'filter' parameter to addListener. This would allow to listen for a specific
+   *        controller on a controlchange event or a specific note on a event message.
    *
    * @todo  Add more examples in method documentation (playNote namely).
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
    * @todo  Define textual versions of channel mode messages
+   * @todo  State change events (MIDIConnectionEvent) are triggered for each device being connected
+   *        or disconnected. Therefore, we should add the ability to filter the statechange listener
+   *        by device.
    */
   function WebMidi() {
 
@@ -120,8 +122,8 @@
       },
 
       /**
-       * [read-only] Current MIDI performance time in milliseconds. This can be used to
-       * queue events in the future.
+       * [read-only] Current MIDI performance time in milliseconds. This can be used to queue events
+       * in the future.
        *
        * @property time
        * @type DOMHighResTimeStamp
@@ -145,7 +147,7 @@
   // User-defined handlers list
   var _userHandlers = { "channel": {}, "system": {} };
 
-  // List of valid channel MIDI messages and matching value
+  // List of valid MIDI channel data bytes (and matching value)
   var _channelMessages = {
     "noteoff": 0x8,           // 8
     "noteon": 0x9,            // 9
@@ -157,9 +159,9 @@
     "pitchbend": 0xE          // 14
   };
 
-  // List of valid system MIDI messages and matching value (249 and 253 are actually
-  // dispatched by the Web MIDI API but I do not know what they are for and they are not
-  // part of the online MIDI 1.0 spec. (http://www.midi.org/techspecs/midimessages.php)
+  // List of valid system MIDI messages and matching value (249 and 253 are actually dispatched by
+  // the Web MIDI API but I do not know what they are for and they are not part of the online MIDI
+  // 1.0 spec. (http://www.midi.org/techspecs/midimessages.php)
   var _systemMessages = {
     "sysex": 0xF0,            // 240
     "timecode": 0xF1,         // 241
@@ -178,7 +180,7 @@
 
   var _notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
-  /////////////////////////////////// PRIVATE METHODS ////////////////////////////////////
+  //////////////////////////////////////// PRIVATE METHODS /////////////////////////////////////////
 
   /**
    * @method _initializeUserHandlers
@@ -209,16 +211,13 @@
   function _onInterfaceStateChange(e) {
 
     /**
-     * Event emitted when the interface's state changes. Typically, this happens when a
-     * MIDI device is being plugged or unplugged. This event cannot be listened on a
-     * single specific MIDI device, it is intended to be interface-wide. If a device is
-     * specified, it will be silently ignored.
+     * Event emitted when the interface's state changes. Typically, this happens when a MIDI device
+     * is being plugged or unplugged. This event cannot be listened on a single specific MIDI
+     * device, it is intended to be interface-wide.
      *
      * @event statechange
      *
-     * @param {Object} event
-     *
-     * @todo complete documentation
+     * @param {Object} MIDIConnectionEvent
      */
     _userHandlers.system.statechange.forEach(function(handler){
       handler(e);
@@ -228,6 +227,7 @@
 
   /**
    * @method _parseChannelEvent
+   * @param e Event
    * @private
    */
   function _parseChannelEvent(e) {
@@ -824,15 +824,14 @@
   };
 
   /**
-   * Adds an event listener that will trigger a function callback when the specified event
-   * happens. By default, the listener is system-wide (it will listen on all MIDI
-   * channels of all MIDI devices). To listen to a specific device or channel, you can use the
-   * `filter` parameter.
+   * Adds an event listener that will trigger a function callback when the specified event happens.
+   * By default, the listener is system-wide (it will listen on all MIDI channels of all MIDI input
+   * devices). To listen to a specific device or channel, you can use the `filter` parameter.
    *
    * WebMidi must be enabled before adding event listeners.
    *
-   * Here is a list of events that are dispatched by the `WebMidi` object and that can be
-   * listened to.
+   * Here is a list of events that are dispatched by the `WebMidi` object and that can be listened
+   * to.
    *
    * MIDI interface event:
    *
@@ -886,6 +885,12 @@
    *                                                  passing in an array of ids. If set to
    *                                                  'all' (default) all devices will trigger the
    *                                                  callback function.
+   *
+   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
+   * input devices to listen to. As a reference, all available `MIDIInput` objects are listed in the
+   * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will trigger
+   * the callback function.
+   *
    * @param [filters.channel="all"] {uint|Array|String}  The MIDI channel to listen on (between 1 and
    *                                                  16). You can also specify an array of channels
    *                                                  to listen on. If set to 'all', all channels
@@ -893,7 +898,7 @@
    *
    * @throws {Error}                                  WebMidi must be connected before adding event
    *                                                  listeners.
-   * @throws {Error}                                  There is no device with the requested id.
+   * @throws {Error}                                  There is no such input device.
    * @throws {RangeError}                             The channel must be an integer between 1 and
    *                                                  16 or the value 'all'.
    * @throws {TypeError}                              The specified event type is not supported.
@@ -912,19 +917,16 @@
 
     filters = filters || {};
 
-    if (filters.device === undefined) { filters.device = "all"; }
-    if (filters.device.constructor !== Array) { filters.device = [filters.device]; }
-
     if (filters.channel === undefined) { filters.channel = "all"; }
     if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
 
-    // Check if device entries are valid
-    filters.device.forEach(function(item) {
+    filters.input = filters.input || this.inputs;
+    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
 
-      if (item !== "all" && !that.getDeviceById(item, 'input')) {
-        throw new Error(
-            "There is no device with the requested id."
-        );
+    // Check if input devices are valid
+    filters.input.forEach(function(item) {
+      if ( !(item instanceof MIDIInput) ) {
+        throw new ReferenceError("There is no such input device.");
       }
     });
 
@@ -947,38 +949,29 @@
 
     } else if (_channelMessages[type]) {
 
-      // If "all" is present anywhere in the device array, add all currently-available devices
-      if (filters.device.indexOf("all") > -1) {
-        filters.device = [];
-        for (var i = 0; i < that.inputs.length; i++) {
-          filters.device.push(that.inputs[i].id);
-        }
-      }
-
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (filters.channel.indexOf("all") > -1) {
         filters.channel = [];
         for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
       }
 
-
       if (!_userHandlers.channel[type]) { _userHandlers.channel[type] = []; }
 
       // Go through all specified devices
-      filters.device.forEach(function(dev) {
+      filters.input.forEach(function(dev) {
 
         // Create device array if non-existent (using the device's id)
-        if ( !_userHandlers.channel[type][dev] ) {
-          _userHandlers.channel[type][dev] = []; }
+        if ( !_userHandlers.channel[type][dev.id] ) {
+          _userHandlers.channel[type][dev.id] = []; }
 
         // Push all channel listeners in the device array
         filters.channel.forEach(function(ch){
 
-          if (!_userHandlers.channel[type][dev][ch]) {
-            _userHandlers.channel[type][dev][ch] = [];
+          if (!_userHandlers.channel[type][dev.id][ch]) {
+            _userHandlers.channel[type][dev.id][ch] = [];
           }
 
-          _userHandlers.channel[type][dev][ch].push(listener);
+          _userHandlers.channel[type][dev.id][ch].push(listener);
 
         });
 
@@ -1046,8 +1039,8 @@
 
   /**
    * Checks if the specified event type is already defined to trigger the listener function on the
-   * specified device and channel. If the special value "all" is used for the device/channel, the
-   * function will return `true` only if all devices/channels have the listener defined.
+   * specified device and channel. If more than one device and/or channel is specified, the function
+   * will return `true` only if all devices/channels have the listener defined.
    *
    * For system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is
    * silently ignored.
@@ -1058,9 +1051,12 @@
    * @param type {String}                               The type of the event.
    * @param listener {Function}                         The callback function to check for.
    * @param [filters={}] {Object}
-   * @param [filters.device="all"] {String|Array}       The id of the MIDI device to check on (as
-   *                                                    reported by `WebMidi.inputs`) or the special
-   *                                                    value "all".
+   *
+   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
+   * input devices to check on. As a reference, all available `MIDIInput` objects are listed in the
+   * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will be
+   * checked.
+   *
    * @param [filters.channel=all] {uint|Array|String}   The MIDI channel to check on. It can be a
    *                                                    uint (between 1 and 16) or the special value
    *                                                    "all".
@@ -1087,8 +1083,8 @@
 
     filters = filters || {};
 
-    if (filters.device === undefined) { filters.device = "all"; }
-    if (filters.device.constructor !== Array) { filters.device = [filters.device]; }
+    filters.input = filters.input || this.inputs;
+    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
 
     if (filters.channel === undefined) { filters.channel = "all"; }
     if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
@@ -1101,14 +1097,6 @@
 
     } else if (_channelMessages[type]) {
 
-      // If "all" is present anywhere in the device array, add all currently-available devices
-      if (filters.device.indexOf("all") > -1) {
-        filters.device = [];
-        for (var i = 0; i < that.inputs.length; i++) {
-          filters.device.push(that.inputs[i].id);
-        }
-      }
-
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (filters.channel.indexOf("all") > -1) {
         filters.channel = [];
@@ -1118,13 +1106,13 @@
       if (!_userHandlers.channel[type]) { return false; }
 
       // Go through all specified devices
-      return filters.device.every(function(devId) {
+      return filters.input.every(function(dev) {
 
-        if (!_userHandlers.channel[type][devId]) { return false; }
+        if (!_userHandlers.channel[type][dev.id]) { return false; }
 
         // Go through all specified channels
         return filters.channel.every(function(chNum) {
-          var listeners = _userHandlers.channel[type][devId][chNum];
+          var listeners = _userHandlers.channel[type][dev.id][chNum];
           return listeners && listeners.indexOf(listener) > -1;
         });
 
@@ -1137,9 +1125,9 @@
   };
 
   /**
-   * Removes the specified listener from all requested devices and channel(s). If the special value
-   * "all" is used for the device or the channel parameter, the function will remove the listener
-   * from all devices/channels.
+   * Removes the specified listener from all requested input devices and channel(s). If more than
+   * one devices and/or channels are specified, the function will remove the listener from all
+   * devices/channels.
    *
    * For system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is
    * silently ignored.
@@ -1151,8 +1139,12 @@
    * @param type {String}                         The type of the event.
    * @param listener {Function}                   The callback function to check for.
    * @param [filters={}] {Object}
-   * @param [filters.device=all] {String}         The id of the device(s) to check on or the special
-   *                                              value "all".
+   *
+   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
+   * input devices to remove from. As a reference, all available `MIDIInput` objects are listed in
+   * the `WebMidi.inputs` array. When this parameter is left undefined, removal will occur for all
+   * input devices.
+   *
    * @param [filters.channel=all] {uint|String}   The MIDI channel(s) to check on. It can be a uint
    *                                              (between 1 and 16) or the special value "all".
    *
@@ -1171,8 +1163,8 @@
 
     filters = filters || {};
 
-    if (filters.device === undefined) { filters.device = "all"; }
-    if (filters.device.constructor !== Array) { filters.device = [filters.device]; }
+    filters.input = filters.input || this.inputs;
+    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
 
     if (filters.channel === undefined) { filters.channel = "all"; }
     if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
@@ -1187,14 +1179,6 @@
 
     } else if (_channelMessages[type]) {
 
-      // If "all" is present anywhere in the device array, add all currently-available devices
-      if (filters.device.indexOf("all") > -1) {
-        filters.device = [];
-        for (var i = 0; i < that.inputs.length; i++) {
-          filters.device.push(that.inputs[i].id);
-        }
-      }
-
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (filters.channel.indexOf("all") > -1) {
         filters.channel = [];
@@ -1204,13 +1188,13 @@
       if (!_userHandlers.channel[type]) { return false; }
 
       // Go through all specified devices
-      filters.device.forEach(function(devId) {
+      filters.input.forEach(function(dev) {
 
-        if (!_userHandlers.channel[type][devId]) { return; }
+        if (!_userHandlers.channel[type][dev.id]) { return; }
 
         // Go through all specified channels
         filters.channel.forEach(function(chNum) {
-          var listeners = _userHandlers.channel[type][devId][chNum];
+          var listeners = _userHandlers.channel[type][dev.id][chNum];
           if (!listeners) { return; }
           for (var l = 0; l < listeners.length; l++) {
             if (listeners[l] === listener) { listeners.splice(l, 1); }
@@ -1227,10 +1211,9 @@
   };
 
   /**
-   * Sends a MIDI message to the specified device(s) at the specified timestamp. The `device`
-   * parameter must be the id of an available device as reported by `WebMidi.outputs`. It can also
-   * be an array of such devices or the value "all". By using "all", the message will be sent to all
-   * currently available output devices.
+   * Sends a MIDI message to the specified MIDI output device(s) at the specified timestamp. The
+   * `output` parameter must refer to an actual available output device or an array of output
+   * devices such as those listed in the `WebMidi.outputs` array.
    *
    * Unless, you are familiar with the details of the MIDI message format, you should not use this
    * method directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,
@@ -1244,29 +1227,29 @@
    * @static
    * @chainable
    *
-   * @param status {uint}                         The MIDI status byte of the message (128-255).
-   * @param [data=[]] {Array}                     An array of data bytes for the message. The number
-   *                                              of data bytes varies depending on the status byte.
-   * @param [device="all"] {String|Array}         The id of the device the message should be sent
-   *                                              to. You can view the device ids by looking at
-   *                                              `WebMidi.outputs`. If you leave out this parameter
-   *                                              the message will be sent to all devices.
-   * @param [timestamp=0] {DOMHighResTimeStamp}   The timestamp at which to send the message. You
-   *                                              can use `WebMidi.time` to retrieve the current
-   *                                              timestamp. To send immediately, leave blank or use
-   *                                              0.
+   * @param status {uint} The MIDI status byte of the message (128-255).
    *
-   * @throws {Error}                              WebMidi must be connected before sending messages.
-   * @throws {ReferenceError}                     There is no device matching the requested id.
-   * @throws {RangeError}                         The status byte must be an integer between 128
-   *                                              (0x80) and 255 (0xFF).
+   * @param [data=[]] {Array(int)} An array of data bytes for the message. The number of data bytes
+   * varies depending on the status byte. It is perfectly legal to send no data. Each byte must be
+   * between 0 and 255.
    *
-   * @return {WebMidi}                            Returns the `WebMidi` object so methods can be
-   *                                              chained.
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available `MIDIOutput` objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
+   * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
+   * 0.
+   *
+   * @throws {Error} WebMidi must be connected before sending messages.
+   * @throws {ReferenceError} There is no device matching the requested id.
+   * @throws {RangeError} The status byte must be an integer between 128 (0x80) and 255 (0xFF).
+   * @throws {RangeError} The data bytes must be integers between 0 (0x00) and 255 (0xFF).
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.send = function(status, data, device, timestamp) {
-
-    var that = this;
+  WebMidi.prototype.send = function(status, data, output, timestamp) {
 
     if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
 
@@ -1275,35 +1258,29 @@
     }
 
     if (data === undefined || data.constructor !== Array) { data = []; }
-    if (device === undefined) { device = ['all']; }
 
-    if (device.constructor !== Array) { device = [device]; }
+    output = output || this.outputs;
+    if (output.constructor !== Array) { output = [output]; }
 
-    // Check if device entries are valid
-    device.forEach(function(dev) {
-      if (dev !== "all" && !that.getDeviceById(dev, 'output')) {
-        throw new ReferenceError("There is no device matching the requested id (" + dev + ").");
+    // Check if all output devices are actually valid
+    output.forEach(function(dev) {
+      if ( !(dev instanceof MIDIOutput) ) {
+        throw new ReferenceError("There is no such output device.");
       }
     });
-
-    // If "all" is present anywhere, add all outputs to device array
-    if (device.indexOf("all") > -1) {
-      device = [];
-      this.outputs.forEach(function(output) {
-        device.push(output.id);
-      });
-    }
-
-    if (timestamp === undefined) { timestamp = 0; }
 
     var message = [status];
 
     data.forEach(function(item){
-      if (item !== undefined) { message.push(item); }
+      if (item >= 0 && item <= 255) {
+        message.push(item);
+      } else {
+        throw new RangeError("The data bytes must be integers between 0 (0x00) and 255 (0xFF).");
+      }
     });
 
-    device.forEach(function(dev) {
-      that.outputs[that.getDeviceIndexById(dev, 'output')].send(message, timestamp);
+    output.forEach(function(o) {
+      o.send(message, parseFloat(timestamp) || 0);
     });
 
     return this;
@@ -1428,9 +1405,12 @@
    * @param [velocity=0.5] {Number}       The velocity at which to play the note (between 0 and 1).
    *                                      An invalid velocity value will silently trigger the
    *                                      default.
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1450,7 +1430,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.stopNote = function(note, velocity, device, channel, time) {
+  WebMidi.prototype.stopNote = function(note, velocity, output, channel, time) {
 
     var that = this;
 
@@ -1468,7 +1448,7 @@
         that.send(
             (_channelMessages.noteoff << 4) + (ch - 1),
             [item, nVelocity],
-            device,
+            output,
             that._parseTimeParameter(time)
         );
       });
@@ -1507,8 +1487,12 @@
    * @param [duration=undefined] {int}    The number of milliseconds to wait before sending a
    *                                      matching note off event. If left undefined, only a
    *                                      `note on` message is sent.
-   * @param [device="all] {String|Array}  The device's id. You can view available devices in the
-   *                                      `WebMidi.outputs` array.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1528,7 +1512,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.playNote = function(note, velocity, duration, device, channel, time) {
+  WebMidi.prototype.playNote = function(note, velocity, duration, output, channel, time) {
 
     var that = this;
 
@@ -1548,7 +1532,7 @@
         that.send(
             (_channelMessages.noteon << 4) + (ch - 1),
             [item, nVelocity],
-            device,
+            output,
             time
         );
       });
@@ -1564,7 +1548,7 @@
           that.send(
               (_channelMessages.noteoff << 4) + (ch - 1),
               [item, 64],
-              device,
+              output,
               time + duration
           );
         });
@@ -1594,9 +1578,12 @@
    *                                  -2 and 8. The lowest note is C-2 (MIDI note number 0) and
    *                                  the highest note is G8 (MIDI note number 127).
    * @param [pressure=0.5] {Number}   The pressure level to send (between 0 and 1).
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1617,7 +1604,7 @@
    *
    * @return {WebMidi}                Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendKeyAftertouch = function(note, pressure, device, channel, time) {
+  WebMidi.prototype.sendKeyAftertouch = function(note, pressure, output, channel, time) {
 
     var that = this;
 
@@ -1635,7 +1622,7 @@
         that.send(
             (_channelMessages.keyaftertouch << 4) + (ch - 1),
             [item, nPressure],
-            device,
+            output,
             that._parseTimeParameter(time)
         );
       });
@@ -1655,9 +1642,12 @@
    *
    * @param controller {uint}             The MIDI controller number (0-119)
    * @param [value=0] {uint}              The value to send (0-127).
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1679,7 +1669,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendControlChange = function(controller, value, device, channel, time) {
+  WebMidi.prototype.sendControlChange = function(controller, value, output, channel, time) {
 
     var that = this;
 
@@ -1699,7 +1689,7 @@
       that.send(
           (_channelMessages.controlchange << 4) + (ch - 1),
           [controller, value],
-          device,
+          output,
           that._parseTimeParameter(time)
       );
     });
@@ -1717,9 +1707,12 @@
    *
    * @param command {uint}                The MIDI channel mode command (120-127).
    * @param value {uint}                  The value to send (0-127)
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1743,7 +1736,7 @@
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendChannelMode = function(command, value, device, channel, time) {
+  WebMidi.prototype.sendChannelMode = function(command, value, output, channel, time) {
 
     var that = this;
 
@@ -1764,7 +1757,7 @@
       that.send(
           (_channelMessages.channelmode << 4) + (ch - 1),
           [command, value],
-          device,
+          output,
           that._parseTimeParameter(time)
       );
 
@@ -1782,9 +1775,12 @@
    * @chainable
    *
    * @param program {uint}                The MIDI patch (program) number (0-127)
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1806,7 +1802,7 @@
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendProgramChange = function(program, device, channel, time) {
+  WebMidi.prototype.sendProgramChange = function(program, output, channel, time) {
 
     var that = this;
 
@@ -1821,7 +1817,7 @@
       that.send(
           (_channelMessages.programchange << 4) + (ch - 1),
           [program],
-          device,
+          output,
           that._parseTimeParameter(time)
       );
     });
@@ -1840,9 +1836,12 @@
    *
    * @param [pressure=0.5] {Number}       The pressure level (between 0 and 1). An invalid pressure
    *                                      value will silently trigger the default behaviour.
-   * @param [device="all] {String|Array}  The device id or an array of device ids. You can view
-   *                                      available devices in the `WebMidi.outputs` array. The
-   *                                      special value "all" can also be used.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1862,7 +1861,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendChannelAftertouch = function(pressure, device, channel, time) {
+  WebMidi.prototype.sendChannelAftertouch = function(pressure, output, channel, time) {
 
     var that = this;
 
@@ -1877,7 +1876,7 @@
       that.send(
           (_channelMessages.channelaftertouch << 4) + (ch - 1),
           [nPressure],
-          device,
+          output,
           that._parseTimeParameter(time)
       );
     });
@@ -1893,11 +1892,14 @@
    * @static
    * @chainable
    *
-   * @param bend {Number}                   The intensity level of the bend (between -1 and 1). A
-   *                                        value of zero means no bend.
-   * @param [device="all] {String|Array}    The device id or an array of device ids. You can view
-   *                                        available devices in the `WebMidi.outputs` array. The
-   *                                        special value "all" can also be used.
+   * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
+   * no bend.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
@@ -1918,7 +1920,7 @@
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendPitchBend = function(bend, device, channel, time) {
+  WebMidi.prototype.sendPitchBend = function(bend, output, channel, time) {
 
     var that = this;
 
@@ -1937,7 +1939,7 @@
       that.send(
           (_channelMessages.pitchbend << 4) + (ch - 1),
           [lsb, msb],
-          device,
+          output,
           that._parseTimeParameter(time)
       );
     });
@@ -2011,7 +2013,7 @@
    * MIDI note numbers.
    *
    * @method _convertNoteToArray
-   * @param [channel] {uint|Array}
+   * @param [note] {uint|Array|String}
    * @private
    */
   WebMidi.prototype._convertNoteToArray = function(note) {

@@ -20,37 +20,33 @@ WebMidi.enable(
     // Playing a note (F#-1, at full velocity on all available devices/channels)
     WebMidi.playNote("F#-1", 1);
 
-    // Playing a note for 1 sec. by MIDI number (on all channels of device with id 1135369092). The
-    // id can be viewed in WebMidi.outputs
-    WebMidi.playNote(60, 1, 1000, "1135369092");
-
-    // Playing a note (on channel 3 of a specific device)
-    WebMidi.playNote(60, 1, undefined, "1135369092", 3);
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3);             // send a noteoff after 1 sec.
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3, "+2000");    // wait 2 sec. before playing
-    WebMidi.playNote(60, 1, 1000, "1135369092", 3, 50000.0);    // play 50 seconds after start
+    // Playing a note (on channel 3 of the first output device)
+    WebMidi.playNote(60, 1, undefined, WebMidi.outputs[0], 3);
+    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3);             // send a noteoff after 1 sec.
+    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3, "+2000");    // wait 2 sec. before playing
+    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3, 50000.0);    // play 50 seconds after start
 
     // Stopping a playing note (with a release velocity at half)
     WebMidi.stopNote("C0", 0.5);
-    WebMidi.stopNote("C0", 0.5, "1135369092", 12);          // For specific device and channel
-    WebMidi.stopNote("C0", 0.5, "1135369092", 12, "+3000");    // After 3 sec. delay
+    WebMidi.stopNote("C0", 0.5, WebMidi.outputs[0], 12);          // For specific device and channel
+    WebMidi.stopNote("C0", 0.5, WebMidi.outputs[0], 12, "+3000");    // After 3 sec. delay
 
     // Send polyphonic aftertouch message (half value)
     WebMidi.sendKeyAftertouch("C3", 0.5);
-    WebMidi.sendKeyAftertouch("C3", 0.5, "1135369092", 12); // For specific device and channel
+    WebMidi.sendKeyAftertouch("C3", 0.5, WebMidi.outputs[0], 12); // For specific device and channel
 
     // Send channel aftertouch
-    WebMidi.sendChannelAftertouch(0.5, "1135369092", 12);
+    WebMidi.sendChannelAftertouch(0.5, WebMidi.outputs[0], 12);
 
     // Send pitch bend (between -1 and 1)
-    WebMidi.sendPitchBend(-1, "1135369092", 12);
+    WebMidi.sendPitchBend(-1, WebMidi.outputs[0], 12);
 
     // Chaining method calls
-    WebMidi.sendPitchBend(-1, "1135369092", 12)
-      .sendPitchBend(-0.5, "1135369092", 12, 200)
-      .sendPitchBend(0, "1135369092", 12, 400)
-      .sendPitchBend(0.5, "1135369092", 12, 800)
-      .sendPitchBend(1, "1135369092", 12, 1000);
+    WebMidi.sendPitchBend(-1, WebMidi.outputs[0], 12)
+      .sendPitchBend(-0.5, WebMidi.outputs[0], 12, 200)
+      .sendPitchBend(0, WebMidi.outputs[0], 12, 400)
+      .sendPitchBend(0.5, WebMidi.outputs[0], 12, 800)
+      .sendPitchBend(1, WebMidi.outputs[0], 12, 1000);
 
     // Listening for a 'note on' message (on all devices and channels)
     WebMidi.addListener(
@@ -62,7 +58,7 @@ WebMidi.enable(
     WebMidi.addListener(
       'noteoff',
       function(e){ console.log(e); },
-      {device: "1135369092", channel: 3}
+      {input: WebMidi.inputs[0], channel: 3}
     );
 
     // Listening to other messages works the same way

@@ -82,7 +82,7 @@ module.exports = function (grunt) {
     release: {
       options: {
         bump: false,
-        commitMessage: 'Release <%= version %>',
+        commitMessage: 'Release <%= version %>'
       }
     }
 
