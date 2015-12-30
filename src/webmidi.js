@@ -33,6 +33,7 @@
    * @class WebMidi
    * @static
    *
+   * @todo  Add RPN and NRPM message sending capability (http://www.2writers.com/eddie/TutNrpn.htm)
    * @todo  Add removeAllEventListeners(), on() and once() functions
    * @todo  Add a 'filter' parameter to addListener. This would allow to listen for a specific
    *        controller on a controlchange event or a specific note on a event message.
@@ -1699,6 +1700,235 @@
   };
 
   /**
+   * Sends a series of MIDI RPN message (registered parameter number) to the specified device(s) and
+   * channel(s) so that they adjust their pitch bend range. The range can be specified with the
+   * semitones parameter, the cents parameter or by specifying both parameters at the same time.
+   *
+   * @method setPitchBendRange
+   * @static
+   * @chainable
+   *
+   * @param [semitones] {uint} The desired adjustment value in semitones (0-127). While nothing
+   * imposes that in the specification, it is very common for manufacturers to limit the range to 2
+   * octaves (-12 semitones to 12 semitones).
+   *
+   * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throws {Error} WebMidi must be enabled before sending messages.
+   * @throws {RangeError} The semitones value must be between 0 and 127.
+   * @throws {RangeError} The cents value must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setPitchBendRange = function(semitones, cents, output, channel, time) {
+
+    var that = this;
+
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
+    }
+
+    semitones = parseInt(semitones);
+    if (isNaN(semitones) || semitones < 0 || semitones > 127) {
+      throw new RangeError("The semitones value must be between 0 and 127");
+    }
+
+    cents = parseInt(cents);
+    if (isNaN(cents) || cents < 0 || cents > 127) {
+      throw new RangeError("The cents value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x65, 0x0, output, channel, time); // MSB
+      that.sendControlChange(0x64, 0x0, output, channel, time); // LSB
+      that.sendControlChange(0x06, semitones, output, channel, time); // Data Entry Coarse
+      that.sendControlChange(0x26, cents, output, channel, time); // Data Entry Fine
+      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
+      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sends a series of MIDI RPN message (registered parameter number) to the specified device(s) and
+   * channel(s) so that they adjust the depth of the modulation wheel's range. The range can be
+   * specified with the semitones parameter, the cents parameter or by specifying both parameters at
+   * the same time.
+   *
+   * @method setModulationRange
+   * @static
+   * @chainable
+   *
+   * @param [semitones] {uint} The desired adjustment value in semitones (0-127).
+   *
+   * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throws {Error} WebMidi must be enabled before sending messages.
+   * @throws {RangeError} The semitones value must be between 0 and 127.
+   * @throws {RangeError} The cents value must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setModulationRange = function(semitones, cents, output, channel, time) {
+
+    var that = this;
+
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
+    }
+
+    semitones = parseInt(semitones);
+    if (isNaN(semitones) || semitones < 0 || semitones > 127) {
+      throw new RangeError("The semitones value must be between 0 and 127");
+    }
+
+    cents = parseInt(cents);
+    if (isNaN(cents) || cents < 0 || cents > 127) {
+      throw new RangeError("The cents value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x65, 0x5, output, channel, time); // MSB
+      that.sendControlChange(0x64, 0x0, output, channel, time); // LSB
+      that.sendControlChange(0x06, semitones, output, channel, time); // Data Entry Coarse
+      that.sendControlChange(0x26, cents, output, channel, time); // Data Entry Fine
+      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
+      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sends a series of MIDI RPN messages (registered parameter number) to the specified device(s)
+   * and channel(s) so that they adjust their master tuning setting. The value can be decimal and
+   * must be larger than -65 semitones and smaller than 64 semitones.
+   *
+   * Because of the way the MIDI specification works, the decimal portion of the value will be
+   * encoded with a resolution of 14bit. The integer portion must be between -64 and 63 (inclusive).
+   * For those familiar with the MIDI protocol, this function generates Master Coarse Tuning and
+   * Master Fine Tuning RPN messages.
+   *
+   * @method setMasterTuning
+   * @static
+   * @chainable
+   *
+   * @param [value] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throws {Error} WebMidi must be enabled before sending messages.
+   *
+   * @throws {RangeError} The value must be a decimal number between larger than -128 and smaller
+   * than 128.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setMasterTuning = function(value, output, channel, time) {
+
+    var that = this;
+
+    if (!this.connected) {
+      throw new Error("WebMidi must be connected before sending messages.");
+    }
+
+    value = parseFloat(value) || 0;
+
+    if (value <= -65 || value >= 64) {
+      throw new RangeError(
+          "The value must be a decimal number larger than -65 and smaller than 64."
+      );
+    }
+
+    var coarse = parseInt(value) + 64;
+    var fine = value - parseInt(value);
+
+    // Calculate MSB and LSB for fine adjustment (14bit resolution)
+    fine = Math.round((fine + 1) / 2 * 16383);
+    var msb = (fine >> 7) & 0x7F;
+    var lsb = fine & 0x7F;
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+
+      // Send "coarse" adjustment
+      that.sendControlChange(0x65, 0x0, output, channel, time); // CC MSB
+      that.sendControlChange(0x64, 0x2, output, channel, time); // CC LSB
+      that.sendControlChange(0x06, coarse, output, channel, time); // Data Entry Coarse
+      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
+      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+
+      // Send "fine" adjustment
+      that.sendControlChange(0x65, 0x0, output, channel, time); // CC MSB
+      that.sendControlChange(0x64, 0x1, output, channel, time); // CC LSB
+      that.sendControlChange(0x06, msb, output, channel, time); // Data Entry Coarse
+      that.sendControlChange(0x26, lsb, output, channel, time); // Data Entry Fine
+      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
+      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+
+    });
+
+    return this;
+
+  };
+
+  // tuning program change setTuningProgram()
+  // tuning bank select setTuningBank()
+  // resetRpn()
+  // setRegisteredParameter(cc65, cc64, msb, lsb, output, channel, time);
+
+  /**
    * Sends a MIDI `channel mode` message to the specified device(s) and channel(s).
    *
    * @method sendChannelMode
@@ -1901,19 +2131,16 @@
    * currently available output MIDI devices.
    *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
    * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Pitch bend value must be between -1 and 1.
@@ -1988,7 +2215,8 @@
    * @static
    *
    * @param name {String}   The name of the note in the form of a letter, followed by an optional #
-   *                        symbol, followed by the octave number (between -2 and 8).
+   * symbol, followed by the octave number (between -2 and 8).
+   *
    * @return {uint}         The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
