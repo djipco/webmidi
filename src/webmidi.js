@@ -2111,9 +2111,9 @@
   };
 
   /**
-   * Sends a series of MIDI RPN message (registered parameter number) to the specified device(s) and
-   * channel(s) so that they adjust their pitch bend range. The range can be specified with the
-   * semitones parameter, the cents parameter or by specifying both parameters at the same time.
+   * Sends a pitch bend range message to the specified device(s) and channel(s) so that they adjust
+   * the range used by their pitch bend lever. The range can be specified with the `semitones`
+   * parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setPitchBendRange
    * @static
@@ -2170,10 +2170,9 @@
   };
 
   /**
-   * Sends a series of MIDI RPN message (registered parameter number) to the specified device(s) and
-   * channel(s) so that they adjust the depth of the modulation wheel's range. The range can be
-   * specified with the semitones parameter, the cents parameter or by specifying both parameters at
-   * the same time.
+   * Sends a modulation depth range message to the specified output(s) and channel(s) so that they
+   * adjust the depth of their modulation wheel's range. The range can be specified with the
+   * `semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setModulationRange
    * @static
@@ -2228,14 +2227,13 @@
   };
 
   /**
-   * Sends a series of MIDI RPN messages (registered parameter number) to the specified device(s)
-   * and channel(s) so that they adjust their master tuning setting. The value can be decimal and
-   * must be larger than -65 semitones and smaller than 64 semitones.
+   * Sends a master tuning message to the specified output(s) and channel(s). The value is decimal
+   * and must be larger than -65 semitones and smaller than 64 semitones.
    *
-   * Because of the way the MIDI specification works, the decimal portion of the value will be
-   * encoded with a resolution of 14bit. The integer portion must be between -64 and 63 (inclusive).
-   * For those familiar with the MIDI protocol, this function generates Master Coarse Tuning and
-   * Master Fine Tuning RPN messages.
+   * >Because of the way the MIDI specification works, the decimal portion of the value will be
+   * >encoded with a resolution of 14bit. The integer portion must be between -64 and 63
+   * >inclusively. For those familiar with the MIDI protocol, this function actually generates
+   * >**Master Coarse Tuning** and **Master Fine Tuning** RPN messages.
    *
    * @method setMasterTuning
    * @static
@@ -2260,8 +2258,8 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {RangeError} The value must be a decimal number between larger than -128 and smaller
-   * than 128.
+   * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
+   * than 64.
    *
    * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
