@@ -4,7 +4,7 @@
 
   /**
    * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
-   * two things: sending and receiving MIDI messages.
+   * two things: sending and reacting upon receiving MIDI messages.
    *
    * To send MIDI messages, you simply need to call the desired method (`playNote()`,
    * `sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the native MIDI
@@ -66,8 +66,8 @@
       },
 
       /**
-       * [read-only] Indicates whether the interface to the host's MIDI subsystem is
-       * currently active.
+       * [read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+       * active.
        *
        * @property connected
        * @type Boolean
@@ -143,7 +143,7 @@
 
   }
 
-  //////////////////////////////// PRIVATE PROPERTIES ////////////////////////////////////
+  /////////////////////////////////////// PRIVATE PROPERTIES ///////////////////////////////////////
 
   // User-defined handlers list
   var _userHandlers = { "channel": {}, "system": {} };
@@ -181,6 +181,25 @@
 
   var _notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
+  var _registeredParameterNumbers = {
+    'pitchbendrange': [0x00, 0x00],
+    'channelfinetuning': [0x00, 0x01],
+    'channelcoarsetuning': [0x00, 0x02],
+    'tuningprogram': [0x00, 0x03],
+    'tuningbank': [0x00, 0x04],
+    'modulationrange': [0x00, 0x05],
+
+    'azimuthangle': [0x3D, 0x00],
+    'elevationangle': [0x3D, 0x01],
+    'gain': [0x3D, 0x02],
+    'distanceratio': [0x3D, 0x03],
+    'maximumdistance': [0x3D, 0x04],
+    'maximumdistancegain': [0x3D, 0x05],
+    'referencedistanceratio': [0x3D, 0x06],
+    'panspreadangle': [0x3D, 0x07],
+    'rollangle': [0x3D, 0x08]
+  };
+
   //////////////////////////////////////// PRIVATE METHODS /////////////////////////////////////////
 
   /**
@@ -217,7 +236,6 @@
      * device, it is intended to be interface-wide.
      *
      * @event statechange
-     *
      * @param {Object} MIDIConnectionEvent
      */
     _userHandlers.system.statechange.forEach(function(handler){
@@ -263,19 +281,30 @@
        * @event noteoff
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
        * @param {Object} event.note
-       * @param {uint} event.note.number    The MIDI note number.
-       * @param {String} event.note.name    The usual note name (C, C#, D, D#, etc.).
-       * @param {uint} event.note.octave    The octave (between -2 and 8).
-       * @param {Number} event.velocity     The release velocity (between 0 and 1).
+       *
+       * @param {uint} event.note.number The MIDI note number.
+       *
+       * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
+       *
+       * @param {uint} event.note.octave The octave (between -2 and 8).
+       *
+       * @param {Number} event.velocity The release velocity (between 0 and 1).
        */
       event.type = 'noteoff';
       event.note = {
@@ -294,19 +323,29 @@
        * @event noteon
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
+       * start).
+       *
        * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
+       * since the epoch).
+       *
        * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
+       *
        * @param {String} event.type         The type of event that occurred.
+       *
        * @param {Object} event.note
+       *
        * @param {uint} event.note.number    The MIDI note number.
+       *
        * @param {String} event.note.name    The usual note name (C, C#, D, D#, etc.).
+       *
        * @param {uint} event.note.octave    The octave (between -2 and 8).
+       *
        * @param {Number} event.velocity     The attack velocity (between 0 and 1).
        */
       event.type = 'noteon';
@@ -326,19 +365,29 @@
        * @event keyaftertouch
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
+       * start).
+       *
        * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
+       * since the epoch).
+       *
        * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
+       *
        * @param {String} event.type         The type of event that occurred.
+       *
        * @param {Object} event.note
+       *
        * @param {uint} event.note.number    The MIDI note number.
+       *
        * @param {String} event.note.name    The usual note name (C, C#, D, D#, etc.).
+       *
        * @param {uint} event.note.octave    The octave (between -2 and 8).
+       *
        * @param {Number} event.value        The aftertouch amount (between 0 and 1).
        */
       event.type = 'keyaftertouch';
@@ -361,19 +410,28 @@
        * @event controlchange
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
        * @param {Object} event.controller
-       * @param {uint} event.controller.number     The number of the controller.
-       * @param {String} event.controller.name     The number of the controller.
-       * @param {uint} event.value          The value received (between 0 and 127).
+       *
+       * @param {uint} event.controller.number The number of the controller.
+       *
+       * @param {String} event.controller.name The number of the controller.
+       *
+       * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'controlchange';
       event.controller = {
@@ -394,19 +452,28 @@
        * @event channelmode
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds
+       * since the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
        * @param {Object} event.controller
-       * @param {uint} event.controller.number     The number of the controller.
-       * @param {String} event.controller.name     The number of the controller.
-       * @param {uint} event.value          The value received (between 0 and 127).
+       *
+       * @param {uint} event.controller.number The number of the controller.
+       *
+       * @param {String} event.controller.name The number of the controller.
+       *
+       * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'channelmode';
       event.controller = {
@@ -424,16 +491,22 @@
        * @event programchange
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
-       * @param {uint} event.value          The value received (between 0 and 127).
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
+       * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'programchange';
       event.value = data1;
@@ -447,16 +520,22 @@
        * @event channelaftertouch
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
-       * @param {Number} event.value        The aftertouch value received (between 0 and 1).
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
+       * @param {Number} event.value The aftertouch value received (between 0 and 1).
        */
       event.type = 'channelaftertouch';
       event.value = data1 / 127;
@@ -470,16 +549,22 @@
        * @event pitchbend
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       *                                    start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       *                                    since the epoch).
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
-       * @param {String} event.type         The type of event that occurred.
-       * @param {Number} event.value        The pitch bend value received (between -1 and
-       *                                    1).
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
+       *
+       * @param {String} event.type The type of event that occurred.
+       *
+       * @param {Number} event.value The pitch bend value received (between -1 and 1).
        */
       event.type = 'pitchbend';
       event.value = ((data2 << 7) + data1 - 8192) / 8192;
@@ -523,14 +608,18 @@
        * @event sysex
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
-       * @param {String} event.type         The type of event that occurred.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {String} event.type The type of event that occurred.
        */
       event.type = 'sysex';
 
@@ -774,20 +863,20 @@
   }
 
   /**
-   * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI
-   * subsystem. If the operation succeeds, the `successHandler` callback is executed.
-   * If not, the `errorHandler` callback is executed and passed a string describing the
-   * error.
+   * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
+   * If the operation succeeds, the `successHandler` callback is executed. If not, the
+   * `errorHandler` callback is executed and passed a string describing the error.
    *
    * @method enable
    * @static
    *
    * @param [successHandler] {Function} A function to execute upon success.
-   * @param [errorHandler] {Function}   A function to execute upon error. This function
-   *                                    will be passed a string describing the error.
-   * @param [sysex=false] {Boolean}     Whether to enable sysex or not. When this
-   *                                    parameter is set to true, the browser may prompt
-   *                                    the user for authorization.
+   *
+   * @param [errorHandler] {Function} A function to execute upon error. This function will be passed
+   * a string describing the error.
+   *
+   * @param [sysex=false] {Boolean} Whether to enable sysex or not. When this parameter is set to
+   * true, the browser may prompt the user for authorization.
    */
   WebMidi.prototype.enable = function(successHandler, errorHandler, sysex) {
 
@@ -870,43 +959,35 @@
    * @static
    * @chainable
    *
-   * @param type {String}                             The type of the event.
-   * @param listener {Function}                       A callback function to execute when the
-   *                                                  specified event is detected. This function
-   *                                                  will receive an event parameter object.
-   *                                                  For details on this object's properties,
-   *                                                  check out the documentation for the various
-   *                                                  events (links above).
+   * @param type {String} The type of the event.
+   *
+   * @param listener {Function} A callback function to execute when the specified event is detected.
+   * This function will receive an event parameter object. For details on this object's properties,
+   * check out the documentation for the various events (links above).
    *
    * @param [filters={}]
-   * @param [filters.device="all"] {String|Array}     The id of the MIDI device to listen on. The
-   *                                                  device id can be retrieved in the
-   *                                                  `WebMidi.inputs` array. It is also possible
-   *                                                  to listen on several devices at once by
-   *                                                  passing in an array of ids. If set to
-   *                                                  'all' (default) all devices will trigger the
-   *                                                  callback function.
+   *
+   * @param [filters.device="all"] {String|Array} The id of the MIDI device to listen on. The
+   * device id can be retrieved in the `WebMidi.inputs` array. It is also possible to listen on
+   * several devices at once by passing in an array of ids. If set to 'all' (default) all devices
+   * will trigger the callback function.
    *
    * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
    * input devices to listen to. As a reference, all available `MIDIInput` objects are listed in the
    * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will trigger
    * the callback function.
    *
-   * @param [filters.channel="all"] {uint|Array|String}  The MIDI channel to listen on (between 1 and
-   *                                                  16). You can also specify an array of channels
-   *                                                  to listen on. If set to 'all', all channels
-   *                                                  will trigger the callback function.
+   * @param [filters.channel="all"] {uint|Array|String} The MIDI channel to listen on (between 1
+   * and 16). You can also specify an array of channels to listen on. If set to 'all', all channels
+   * will trigger the callback function.
    *
-   * @throws {Error}                                  WebMidi must be connected before adding event
-   *                                                  listeners.
-   * @throws {Error}                                  There is no such input device.
-   * @throws {RangeError}                             The channel must be an integer between 1 and
-   *                                                  16 or the value 'all'.
-   * @throws {TypeError}                              The specified event type is not supported.
-   * @throws {TypeError}                              The 'listener' parameter must be a function.
+   * @throws {Error} WebMidi must be connected before adding event listeners.
+   * @throws {Error} There is no such input device.
+   * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
+   * @throws {TypeError} The specified event type is not supported.
+   * @throws {TypeError} The 'listener' parameter must be a function.
    *
-   * @return {WebMidi}                                Returns the `WebMidi` object so methods
-   *                                                  can be chained.
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.addListener = function(type, listener, filters) {
 
@@ -993,13 +1074,14 @@
    * @method getDeviceById
    * @static
    *
-   * @param id {String}                     The id of the device. Ids can be retrieved by looking at
-   *                                        the `WebMidi.inputs` or `WebMidi.outputs` arrays.
-   * @param [type=input] {String}           One of 'input' or 'output' to indicate whether your are
-   *                                        looking for an input or an output device.
-   * @returns {MIDIOutput|MIDIInput|False}  A MIDIOutput or MIDIInput device matching the specified
-   *                                        id. If no matching device can be found, the method
-   *                                        returns `false`.
+   * @param id {String} The id of the device. Ids can be retrieved by looking at the
+   * `WebMidi.inputs` or `WebMidi.outputs` arrays.
+   *
+   * @param [type=input] {String} One of 'input' or 'output' to indicate whether your are looking
+   * for an input or an output device.
+   *
+   * @returns {MIDIOutput|MIDIInput|False} A MIDIOutput or MIDIInput device matching the specified
+   * id. If no matching device can be found, the method returns `false`.
    */
   WebMidi.prototype.getDeviceById = function(id, type) {
 
@@ -1020,11 +1102,13 @@
    * @method getDeviceIndexById
    * @static
    *
-   * @param id {String}             The id of the device such as it is presented in the
-   *                                `WebMidi.inputs` or `WebMidi.outputs` arrays.
-   * @param [type=input] {String}   One of 'input' or 'output' to indicate whether your are looking
-   *                                for the index of an input or output device.
-   * @returns {uint|False}          If no matching device can be found, the method returns `false`.
+   * @param id {String} The id of the device such as it is presented in the `WebMidi.inputs` or
+   * `WebMidi.outputs` arrays.
+   *
+   * @param [type=input] {String} One of 'input' or 'output' to indicate whether your are looking
+   * for the index of an input or output device.
+   *
+   * @returns {uint|False} If no matching device can be found, the method returns `false`.
    */
   WebMidi.prototype.getDeviceIndexById = function(id, type) {
 
@@ -1049,8 +1133,8 @@
    * @method hasListener
    * @static
    *
-   * @param type {String}                               The type of the event.
-   * @param listener {Function}                         The callback function to check for.
+   * @param type {String} The type of the event.
+   * @param listener {Function} The callback function to check for.
    * @param [filters={}] {Object}
    *
    * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
@@ -1427,15 +1511,11 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before stopping notes.
-   *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.stopNote = function(note, velocity, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before stopping notes."); }
 
     velocity = parseFloat(velocity);
     if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
@@ -1509,15 +1589,11 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before playing notes.
-   *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.playNote = function(note, velocity, duration, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before playing notes."); }
 
     velocity = parseFloat(velocity);
     if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
@@ -1600,7 +1676,6 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                  WebMidi must be enabled before sending messages.
    * @throws {RangeError}             The channel must be between 1 and 16.
    *
    * @return {WebMidi}                Returns the `WebMidi` object so methods can be chained.
@@ -1609,7 +1684,6 @@
 
     var that = this;
 
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
     if (channel < 1 || channel > 16) { throw new RangeError("The channel must be between 1 and 16."); }
 
     pressure = parseFloat(pressure);
@@ -1635,14 +1709,20 @@
   };
 
   /**
-   * Sends a MIDI `control change` message to the specified device(s) and channel(s).
+   * Sends a MIDI `control change` message to the specified device(s) and channel(s). The message
+   * can also be scheduled to be sent at a specific time via the `time` parameter.
+   *
+   * To view a list of all available `control change` messages, please consult "Table 3 - Control
+   * Change Messages" from the [MIDI Messages](http://www.midi.org/techspecs/midimessages.php)
+   * specification.
    *
    * @method sendControlChange
    * @static
    * @chainable
    *
-   * @param controller {uint}             The MIDI controller number (0-119)
-   * @param [value=0] {uint}              The value to send (0-127).
+   * @param controller {uint} The MIDI controller number (0-119)
+   *
+   * @param [value=0] {uint} The value to send (0-127).
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available MIDIOutput objects are listed in the
@@ -1650,40 +1730,34 @@
    * currently available output MIDI devices.
    *
    * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
    * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before sending messages.
-   * @throws {RangeError}                 Controller numbers must be between 0 and 119.
-   * @throws {RangeError}                 Value must be between 0 and 127.
+   * @throws {RangeError} Controller numbers must be between 0 and 119.
+   * @throws {RangeError} Value must be between 0 and 127.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.sendControlChange = function(controller, value, output, channel, time) {
 
     var that = this;
 
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
-
     controller = parseInt(controller);
-    if (isNaN(controller) || controller < 0 || controller > 119) {
+    if ( !(controller >= 0 && controller <= 119) ) {
       throw new RangeError("Controller numbers must be between 0 and 119.");
     }
 
-    value = parseInt(value);
-    if (isNaN(value) || value < 0 || value > 127) {
-      throw new RangeError("Value must be between 0 and 127");
+    value = parseInt(value) || 0;
+    if ( !(value >= 0 && value <= 127) ) {
+      throw new RangeError("Controller value must be between 0 and 127.");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
@@ -1700,6 +1774,343 @@
   };
 
   /**
+   * Selects a MIDI registered parameter so it is affected by data entry, data increment and data
+   * decrement messages.
+   *
+   * @method _selectRegisteredParameter
+   * @protected
+   *
+   * @param control65
+   * @param control64
+   * @param output
+   * @param channel
+   * @param time
+   *
+   * @returns {WebMidi}
+   */
+  WebMidi.prototype._selectRegisteredParameter = function(control65, control64, output, channel, time) {
+
+    var that = this;
+
+    control65 = parseInt(control65);
+    if ( !(control65 >= 0 && control65 <= 127) ) {
+      throw new RangeError("The control65 value must be between 0 and 127");
+    }
+
+    control64 = parseInt(control64);
+    if ( !(control64 >= 0 && control64 <= 127) ) {
+      throw new RangeError("The control64 value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x65, control65, output, channel, time);
+      that.sendControlChange(0x64, control64, output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sets the value of the currently selected MIDI registered parameter.
+   *
+   * @method _setCurrentRegisteredParameter
+   * @protected
+   *
+   * @param msb
+   * @param lsb
+   * @param output
+   * @param channel
+   * @param time
+   *
+   * @returns {WebMidi}
+   */
+  WebMidi.prototype._setCurrentRegisteredParameter = function(msb, lsb, output, channel, time) {
+
+    var that = this;
+
+    msb = parseInt(msb);
+    if ( !(msb >= 0 && msb <= 127) ) {
+      throw new RangeError("The msb value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x06, msb, output, channel, time);
+    });
+
+    lsb = parseInt(lsb);
+    if(lsb >= 0 && lsb <= 127) {
+      this._convertChannelToArray(channel).forEach(function(ch) {
+        that.sendControlChange(0x26, lsb, output, channel, time);
+      });
+    }
+
+    return this;
+
+  };
+
+  /**
+   * Deselects the currently active MIDI registered parameter so it is no longer affected by data
+   * entry, data increment and data decrement messages.
+   *
+   * Current best practice recommends doing that after each call to
+   * `_setCurrentRegisteredParameter()`.
+   *
+   * @method _deselectRegisteredParameter
+   * @protected
+   *
+   * @param output
+   * @param channel
+   * @param time
+   *
+   * @returns {WebMidi}
+   */
+  WebMidi.prototype._deselectRegisteredParameter = function(output, channel, time) {
+
+    var that = this;
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x65, 0x7F, output, channel, time);
+      that.sendControlChange(0x64, 0x7F, output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sets the specified MIDI registered parameter to the desired value. The value is defined with
+   * up to two bytes of data that each can go from 0 to 127.
+   *
+   * >Unless you are very familiar with the MIDI standard you probably should favour one of the
+   * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
+   * >`setMasterTuning()`, etc.
+   *
+   * MIDI registered parameters extend the original list of control change messages. Currently,
+   * there are only a limited number of them. Here are the original registered parameters with the
+   * identifier that can be used as the first parameter of this function:
+   *
+   *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
+   *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
+   *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
+   *  * Tuning Program (0x00, 0x03): `tuningprogram`
+   *  * Tuning Bank (0x00, 0x04): `tuningbank`
+   *  * Modulation Range (0x00, 0x05): `modulationrange`
+   *
+   * Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
+   * Standard*, which is not widely implemented.
+   *
+   * Another set of extra parameters have been later added for 3D sound controllers. They are:
+   *
+   *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
+   *  * Elevation Angle (0x3D, 0x01): `elevationangle`
+   *  * Gain (0x3D, 0x02): `gain`
+   *  * Distance Ratio (0x3D, 0x03): `distanceratio`
+   *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
+   *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
+   *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
+   *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
+   *  * Roll Angle (0x3D, 0x08): `rollangle`
+   *
+   * For more information on 3D sound controllers, please consult the
+   * [RP-49 specification](http://www.midi.org/techspecs/rp49public.pdf) on *Three Dimensional
+   * Sound Controllers*.
+   *
+   * @method setRegisteredParameter
+   * @static
+   * @chainable
+   *
+   * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * parameter.
+   *
+   * @param msb {int} The most significant byte (7bit, 0-127) of the data.
+   *
+   * @param [lsb=0] {int} The least significant byte (7bit, 0-127) of the data.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setRegisteredParameter = function(parameter, msb, lsb, output, channel, time) {
+
+    var that = this;
+
+    if ( !Array.isArray(parameter) ) {
+      if ( !_registeredParameterNumbers[parameter]) {
+        throw new Error("The specified parameter is not available.");
+      }
+      parameter = _registeredParameterNumbers[parameter];
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
+      that._setCurrentRegisteredParameter(msb, lsb, output, channel, time);
+      that._deselectRegisteredParameter(output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
+   * information, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of
+   * increment and decrement controllers.
+   *
+   * >Unless you are very familiar with the MIDI standard you probably should favour one of the
+   * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
+   * >`setMasterTuning()`, etc.
+   *
+   * Here is the full list of parameter names that can be used with this function:
+   *
+   *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
+   *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
+   *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
+   *  * Tuning Program (0x00, 0x03): `tuningprogram`
+   *  * Tuning Bank (0x00, 0x04): `tuningbank`
+   *  * Modulation Range (0x00, 0x05): `modulationrange`
+   *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
+   *  * Elevation Angle (0x3D, 0x01): `elevationangle`
+   *  * Gain (0x3D, 0x02): `gain`
+   *  * Distance Ratio (0x3D, 0x03): `distanceratio`
+   *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
+   *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
+   *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
+   *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
+   *  * Roll Angle (0x3D, 0x08): `rollangle`
+   *
+   * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * parameter.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.incrementRegisteredParameter = function(parameter, output, channel, time) {
+
+    var that = this;
+
+    if ( !Array.isArray(parameter) ) {
+      if ( !_registeredParameterNumbers[parameter]) {
+        throw new Error("The specified parameter is not available.");
+      }
+      parameter = _registeredParameterNumbers[parameter];
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
+      that.sendControlChange(0x60, 0, output, channel, time);
+      that._deselectRegisteredParameter(output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
+   * information, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of
+   * increment and decrement controllers.
+   *
+   * >Unless you are very familiar with the MIDI standard you probably should favour one of the
+   * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
+   * >`setMasterTuning()`, etc.
+   *
+   * Here is the full list of parameter names that can be used with this function:
+   *
+   *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
+   *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
+   *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
+   *  * Tuning Program (0x00, 0x03): `tuningprogram`
+   *  * Tuning Bank (0x00, 0x04): `tuningbank`
+   *  * Modulation Range (0x00, 0x05): `modulationrange`
+   *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
+   *  * Elevation Angle (0x3D, 0x01): `elevationangle`
+   *  * Gain (0x3D, 0x02): `gain`
+   *  * Distance Ratio (0x3D, 0x03): `distanceratio`
+   *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
+   *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
+   *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
+   *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
+   *  * Roll Angle (0x3D, 0x08): `rollangle`
+   *
+   * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * parameter.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.decrementRegisteredParameter = function(parameter, output, channel, time) {
+
+    var that = this;
+
+    if ( !Array.isArray(parameter) ) {
+      if ( !_registeredParameterNumbers[parameter]) {
+        throw new Error("The specified parameter is not available.");
+      }
+      parameter = _registeredParameterNumbers[parameter];
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      hat._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
+      that.sendControlChange(0x61, 0, output, channel, time);
+      that._deselectRegisteredParameter(output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
    * Sends a series of MIDI RPN message (registered parameter number) to the specified device(s) and
    * channel(s) so that they adjust their pitch bend range. The range can be specified with the
    * semitones parameter, the cents parameter or by specifying both parameters at the same time.
@@ -1708,14 +2119,14 @@
    * @static
    * @chainable
    *
-   * @param [semitones] {uint} The desired adjustment value in semitones (0-127). While nothing
+   * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127). While nothing
    * imposes that in the specification, it is very common for manufacturers to limit the range to 2
    * octaves (-12 semitones to 12 semitones).
    *
    * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
@@ -1731,7 +2142,6 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {Error} WebMidi must be enabled before sending messages.
    * @throws {RangeError} The semitones value must be between 0 and 127.
    * @throws {RangeError} The cents value must be between 0 and 127.
    *
@@ -1741,27 +2151,18 @@
 
     var that = this;
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before sending messages.");
-    }
-
-    semitones = parseInt(semitones);
-    if (isNaN(semitones) || semitones < 0 || semitones > 127) {
+    semitones = parseInt(semitones) || 0;
+    if ( !(semitones >= 0 && semitones <= 127) ) {
       throw new RangeError("The semitones value must be between 0 and 127");
     }
 
-    cents = parseInt(cents);
-    if (isNaN(cents) || cents < 0 || cents > 127) {
+    cents = parseInt(cents) || 0;
+    if ( !(cents >= 0 && cents <= 127) ) {
       throw new RangeError("The cents value must be between 0 and 127");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x65, 0x0, output, channel, time); // MSB
-      that.sendControlChange(0x64, 0x0, output, channel, time); // LSB
-      that.sendControlChange(0x06, semitones, output, channel, time); // Data Entry Coarse
-      that.sendControlChange(0x26, cents, output, channel, time); // Data Entry Fine
-      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
-      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+      that.setRegisteredParameter("pitchbendrange", semitones, cents, output, channel, time);
     });
 
     return this;
@@ -1778,12 +2179,12 @@
    * @static
    * @chainable
    *
-   * @param [semitones] {uint} The desired adjustment value in semitones (0-127).
+   * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127).
    *
    * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
@@ -1799,7 +2200,6 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {Error} WebMidi must be enabled before sending messages.
    * @throws {RangeError} The semitones value must be between 0 and 127.
    * @throws {RangeError} The cents value must be between 0 and 127.
    *
@@ -1809,27 +2209,18 @@
 
     var that = this;
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before sending messages.");
-    }
-
-    semitones = parseInt(semitones);
-    if (isNaN(semitones) || semitones < 0 || semitones > 127) {
+    semitones = parseInt(semitones) || 0;
+    if ( !(semitones >= 0 && semitones <= 127) ) {
       throw new RangeError("The semitones value must be between 0 and 127");
     }
 
-    cents = parseInt(cents);
-    if (isNaN(cents) || cents < 0 || cents > 127) {
+    cents = parseInt(cents) || 0;
+    if ( !(cents >= 0 && cents <= 127) ) {
       throw new RangeError("The cents value must be between 0 and 127");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x65, 0x5, output, channel, time); // MSB
-      that.sendControlChange(0x64, 0x0, output, channel, time); // LSB
-      that.sendControlChange(0x06, semitones, output, channel, time); // Data Entry Coarse
-      that.sendControlChange(0x26, cents, output, channel, time); // Data Entry Fine
-      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
-      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
+      that.setRegisteredParameter("modulationrange", semitones, cents, output, channel, time);
     });
 
     return this;
@@ -1850,10 +2241,10 @@
    * @static
    * @chainable
    *
-   * @param [value] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
+   * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
@@ -1869,8 +2260,6 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {Error} WebMidi must be enabled before sending messages.
-   *
    * @throws {RangeError} The value must be a decimal number between larger than -128 and smaller
    * than 128.
    *
@@ -1880,11 +2269,7 @@
 
     var that = this;
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before sending messages.");
-    }
-
-    value = parseFloat(value) || 0;
+    value = parseFloat(value) || 0.0;
 
     if (value <= -65 || value >= 64) {
       throw new RangeError(
@@ -1901,32 +2286,109 @@
     var lsb = fine & 0x7F;
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-
-      // Send "coarse" adjustment
-      that.sendControlChange(0x65, 0x0, output, channel, time); // CC MSB
-      that.sendControlChange(0x64, 0x2, output, channel, time); // CC LSB
-      that.sendControlChange(0x06, coarse, output, channel, time); // Data Entry Coarse
-      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
-      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
-
-      // Send "fine" adjustment
-      that.sendControlChange(0x65, 0x0, output, channel, time); // CC MSB
-      that.sendControlChange(0x64, 0x1, output, channel, time); // CC LSB
-      that.sendControlChange(0x06, msb, output, channel, time); // Data Entry Coarse
-      that.sendControlChange(0x26, lsb, output, channel, time); // Data Entry Fine
-      that.sendControlChange(0x65, 0x7F, output, channel, time); // Nulling the active parameter
-      that.sendControlChange(0x64, 0x7F, output, channel, time); // Nulling the active parameter
-
+      that.setRegisteredParameter("channelcoarsetuning", coarse, undefined, output, channel, time);
+      that.setRegisteredParameter("channelfinetuning", msb, lsb, output, channel, time);
     });
 
     return this;
 
   };
 
-  // tuning program change setTuningProgram()
-  // tuning bank select setTuningBank()
-  // resetRpn()
-  // setRegisteredParameter(cc65, cc64, msb, lsb, output, channel, time);
+  /**
+   * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
+   * *MIDI Tuning Standard*, which is not widely implemented.
+   *
+   * @method setTuningProgram
+   * @static
+   * @chainable
+   *
+   * @param value {int} The desired tuning program (0-127).
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throws {RangeError} The program value must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setTuningProgram = function(value, output, channel, time) {
+
+    var that = this;
+
+    value = parseInt(value) || 0;
+    if ( !(value >= 0 && value <= 127) ) {
+      throw new RangeError("The program value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.setRegisteredParameter("tuningprogram", value, undefined, output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
+   * *MIDI Tuning Standard*, which is not widely implemented.
+   *
+   * @method setTuningBank
+   * @static
+   * @chainable
+   *
+   * @param value {int} The desired tuning bank (0-127).
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throws {RangeError} The bank value must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setTuningBank = function(value, output, channel, time) {
+
+    var that = this;
+
+    value = parseInt(value) || 0;
+    if ( !(value >= 0 && value <= 127) ) {
+      throw new RangeError("The bank value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.setRegisteredParameter("tuningbank", value, undefined, output, channel, time);
+    });
+
+    return this;
+
+  };
 
   /**
    * Sends a MIDI `channel mode` message to the specified device(s) and channel(s).
@@ -1958,7 +2420,6 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Channel mode controller numbers must be between 120 and
    *                                      127.
    * @throws {RangeError}                 Value must be between 0 and 127.
@@ -1969,8 +2430,6 @@
   WebMidi.prototype.sendChannelMode = function(command, value, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages"); }
 
     command = parseInt(command);
     if (isNaN(command) || command < 120 || command > 127) {
@@ -2026,7 +2485,6 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Program numbers must be between 0 and 127.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
@@ -2035,8 +2493,6 @@
   WebMidi.prototype.sendProgramChange = function(program, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
 
     program = parseInt(program);
     if (isNaN(program) || program < 0 || program > 127) {
@@ -2087,15 +2543,11 @@
    *                                      `time` is not present or is set to a time in the past,
    *                                      the request is to be sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before sending messages.
-   *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.sendChannelAftertouch = function(pressure, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
 
     pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
@@ -2142,7 +2594,6 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {Error}                      WebMidi must be enabled before sending messages.
    * @throws {RangeError}                 Pitch bend value must be between -1 and 1.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
@@ -2150,8 +2601,6 @@
   WebMidi.prototype.sendPitchBend = function(bend, output, channel, time) {
 
     var that = this;
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
 
     bend = parseFloat(bend);
     if (isNaN(bend) || bend < -1 || bend > 1) {
