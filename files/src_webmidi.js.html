@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-beta.7</em>
+            <em>API Docs for: 1.0.0-beta.8</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -2601,18 +2601,16 @@
    * 16 channels.
    *
    * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   * the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use &#x60;WebMidi.time&#x60;. If
-   *                                      &#x60;time&#x60; is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * &#x60;WebMidi.time&#x60;. If &#x60;time&#x60; is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
    * @throws {RangeError}                 Channel mode controller numbers must be between 120 and
    *                                      127.
+   *
    * @throws {RangeError}                 Value must be between 0 and 127.
    *
    * @return {WebMidi}                    Returns the &#x60;WebMidi&#x60; object so methods can be chained.

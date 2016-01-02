@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "1.0.0-beta.7",
+        "version": "1.0.0-beta.8",
         "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": ""
     },
@@ -2261,7 +2261,7 @@
                 },
                 {
                     "name": "time",
-                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and\n                                     followed by a number, the request will be delayed by the\n                                     specified number (in milliseconds). Otherwise, the value\n                                     is considered a timestamp and the request will be\n                                     scheduled at that timestamp. The DOMHighResTimeStamp value\n                                     is relative to the navigation start of the document. To\n                                     retrieve the current time, you can use `WebMidi.time`. If\n                                     `time` is not present or is set to a time in the past,\n                                     the request is to be sent as soon as possible.",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
                     "type": "DOMHighResTimeStamp|String",
                     "optional": true,
                     "optdefault": "undefined"
@@ -2279,7 +2279,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2568,
+            "line": 2566,
             "description": "Sends a MIDI `program change` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendProgramChange",
@@ -2324,7 +2324,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2624,
+            "line": 2622,
             "description": "Sends a MIDI `channel aftertouch` message to the specified device(s) and channel(s). For\nkey-specific aftertouch, you should instead use `sendKeyAftertouch()`.",
             "itemtype": "method",
             "name": "sendChannelAftertouch",
@@ -2367,7 +2367,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2679,
+            "line": 2677,
             "description": "Sends a MIDI `pitch bend` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendPitchBend",
@@ -2412,7 +2412,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2736,
+            "line": 2734,
             "description": "Returns a valid MIDI note number given the specified input. The input can be an integer\nrepresented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and\n127.",
             "params": [
                 {
@@ -2432,7 +2432,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2765,
+            "line": 2763,
             "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The\nnote name must include the octave number which should be between -2 and 8: C5, G4, D#-1, F0,\netc.\n\nThe lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).",
             "itemtype": "method",
             "name": "noteNameToNumber",
@@ -2452,7 +2452,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2797,
+            "line": 2795,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI note numbers.",
             "itemtype": "method",
             "name": "_convertNoteToArray",
@@ -2470,7 +2470,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2820,
+            "line": 2818,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI channels. If \"undefined\" is provided as the channel, an array of all channels will be\nreturned.",
             "itemtype": "method",
             "name": "_convertChannelToArray",
@@ -2488,7 +2488,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2850,
+            "line": 2848,
             "itemtype": "method",
             "name": "_parseTimeParameter",
             "params": [
@@ -2548,7 +2548,7 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2736"
+            "line": " src/webmidi.js:2734"
         },
         {
             "message": "Missing item type\nIncrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
@@ -2560,7 +2560,7 @@
         },
         {
             "message": "Missing item type\nReturns a valid MIDI note number given the specified input. The input can be an integer\nrepresented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and\n127.",
-            "line": " src/webmidi.js:2736"
+            "line": " src/webmidi.js:2734"
         }
     ]
 }
