@@ -631,12 +631,17 @@
        * @event timecode
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       *
+       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
+       * since the epoch).
+       *
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'timecode';
@@ -651,13 +656,18 @@
        * @event songposition
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
-       * @param {String} event.type         The type of event that occurred.
+       *
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds
+       * since the epoch).
+       *
+       * @param {String} event.type The type of event that occurred.
        */
       event.type = 'songposition';
 
@@ -1142,17 +1152,14 @@
    * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will be
    * checked.
    *
-   * @param [filters.channel=all] {uint|Array|String}   The MIDI channel to check on. It can be a
-   *                                                    uint (between 1 and 16) or the special value
-   *                                                    "all".
+   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to check on. It can be a uint
+   * (between 1 and 16) or the special value "all".
    *
-   * @throws {Error}                                    WebMidi must be enabled before checking
-   *                                                    event listeners.
-   * @throws {TypeError}                                The 'listener' parameter must be a function.
+   * @throws {Error} WebMidi must be enabled before checking event listeners.
+   * @throws {TypeError} The 'listener' parameter must be a function.
    *
-   * @return {Boolean}                                  Boolean value indicating whether or not the
-   *                                                    channel(s) already have this listener
-   *                                                    defined.
+   * @return {Boolean} Boolean value indicating whether or not the channel(s) already have this
+   * listener defined.
    */
   WebMidi.prototype.hasListener = function(type, listener, filters) {
 
@@ -1221,8 +1228,8 @@
    * @static
    * @chainable
    *
-   * @param type {String}                         The type of the event.
-   * @param listener {Function}                   The callback function to check for.
+   * @param type {String} The type of the event.
+   * @param listener {Function} The callback function to check for.
    * @param [filters={}] {Object}
    *
    * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
@@ -1230,13 +1237,12 @@
    * the `WebMidi.inputs` array. When this parameter is left undefined, removal will occur for all
    * input devices.
    *
-   * @param [filters.channel=all] {uint|String}   The MIDI channel(s) to check on. It can be a uint
-   *                                              (between 1 and 16) or the special value "all".
+   * @param [filters.channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint
+   * (between 1 and 16) or the special value "all".
    *
-   * @throws {Error}                              WebMidi must be enabled before removing event
-   *                                              listeners.
+   * @throws {Error} WebMidi must be enabled before removing event listeners.
    *
-   * @return {WebMidi}                            The `WebMidi` object for easy method chaining.
+   * @return {WebMidi} The `WebMidi` object for easy method chaining.
    */
   WebMidi.prototype.removeListener = function(type, listener, filters) {
 
@@ -1480,38 +1486,33 @@
    * @static
    * @chainable
    *
-   * @param note {Array|uint|String}      The note or an array of notes to stop. The notes can be
-   *                                      specified in one of two ways. The first way is by using
-   *                                      the MIDI note number (an integer between 0 and 127). The
-   *                                      second way is by using the note name followed by the
-   *                                      octave (C3, G#4, F-1). The octave range should be between
-   *                                      -2 and 8. The lowest note is C-2 (MIDI note number 0) and
-   *                                      the highest note is G8 (MIDI note number 127).
-   * @param [velocity=0.5] {Number}       The velocity at which to play the note (between 0 and 1).
-   *                                      An invalid velocity value will silently trigger the
-   *                                      default.
+   * @param note {Array|uint|String} The note or an array of notes to stop. The notes can be
+   * specified in one of two ways. The first way is by using the MIDI note number (an integer
+   * between 0 and 127). The second way is by using the note name followed by the octave (C3, G#4,
+   * F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
+   * and the highest note is G8 (MIDI note number 127).
+   *
+   * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
+   * invalid velocity value will silently trigger the default.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.stopNote = function(note, velocity, output, channel, time) {
 
@@ -1780,31 +1781,71 @@
    * @method _selectRegisteredParameter
    * @protected
    *
-   * @param control65
-   * @param control64
+   * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
+   * that identify the registered parameter.
+   *
    * @param output
    * @param channel
    * @param time
    *
    * @returns {WebMidi}
    */
-  WebMidi.prototype._selectRegisteredParameter = function(control65, control64, output, channel, time) {
+  WebMidi.prototype._selectRegisteredParameter = function(parameter, output, channel, time) {
 
     var that = this;
 
-    control65 = parseInt(control65);
-    if ( !(control65 >= 0 && control65 <= 127) ) {
+    parameter[0] = parseInt(parameter[0]);
+    if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
       throw new RangeError("The control65 value must be between 0 and 127");
     }
 
-    control64 = parseInt(control64);
-    if ( !(control64 >= 0 && control64 <= 127) ) {
+    parameter[1] = parseInt(parameter[1]);
+    if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
       throw new RangeError("The control64 value must be between 0 and 127");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x65, control65, output, channel, time);
-      that.sendControlChange(0x64, control64, output, channel, time);
+      that.sendControlChange(0x65, parameter[0], output, channel, time);
+      that.sendControlChange(0x64, parameter[1], output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Selects a MIDI non-registered parameter so it is affected by data entry, data increment and
+   * data decrement messages.
+   *
+   * @method _selectNonRegisteredParameter
+   * @protected
+   *
+   * @param parameter {Array} A two-position array specifying the two control bytes (0x63, 0x62)
+   * that identify the registered parameter.
+   *
+   * @param output
+   * @param channel
+   * @param time
+   *
+   * @returns {WebMidi}
+   */
+  WebMidi.prototype._selectNonRegisteredParameter = function(parameter, output, channel, time) {
+
+    var that = this;
+
+    parameter[0] = parseInt(parameter[0]);
+    if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
+      throw new RangeError("The control63 value must be between 0 and 127");
+    }
+
+    parameter[1] = parseInt(parameter[1]);
+    if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
+      throw new RangeError("The control62 value must be between 0 and 127");
+    }
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that.sendControlChange(0x63, parameter[0], output, channel, time);
+      that.sendControlChange(0x62, parameter[1], output, channel, time);
     });
 
     return this;
@@ -1817,31 +1858,32 @@
    * @method _setCurrentRegisteredParameter
    * @protected
    *
-   * @param msb
-   * @param lsb
+   * @param data {int|Array}
    * @param output
    * @param channel
    * @param time
    *
    * @returns {WebMidi}
    */
-  WebMidi.prototype._setCurrentRegisteredParameter = function(msb, lsb, output, channel, time) {
+  WebMidi.prototype._setCurrentRegisteredParameter = function(data, output, channel, time) {
 
     var that = this;
 
-    msb = parseInt(msb);
-    if ( !(msb >= 0 && msb <= 127) ) {
+    data = [].concat(data);
+
+    data[0] = parseInt(data[0]);
+    if ( !(data[0] >= 0 && data[0] <= 127) ) {
       throw new RangeError("The msb value must be between 0 and 127");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x06, msb, output, channel, time);
+      that.sendControlChange(0x06, data[0], output, channel, time);
     });
 
-    lsb = parseInt(lsb);
-    if(lsb >= 0 && lsb <= 127) {
+    data[1] = parseInt(data[1]);
+    if(data[1] >= 0 && data[1] <= 127) {
       this._convertChannelToArray(channel).forEach(function(ch) {
-        that.sendControlChange(0x26, lsb, output, channel, time);
+        that.sendControlChange(0x26, data[1], output, channel, time);
       });
     }
 
@@ -1921,12 +1963,11 @@
    * @chainable
    *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
-   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param msb {int} The most significant byte (7bit, 0-127) of the data.
-   *
-   * @param [lsb=0] {int} The least significant byte (7bit, 0-127) of the data.
+   * @param [data=[]] {int|Array} An single integer or an array of integers with a maximum length of
+   * 2 specifying the desired data.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available MIDIOutput objects are listed in the
@@ -1947,7 +1988,7 @@
    *
    * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.setRegisteredParameter = function(parameter, msb, lsb, output, channel, time) {
+  WebMidi.prototype.setRegisteredParameter = function(parameter, data, output, channel, time) {
 
     var that = this;
 
@@ -1959,8 +2000,78 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
-      that._setCurrentRegisteredParameter(msb, lsb, output, channel, time);
+      that._selectRegisteredParameter(parameter, output, channel, time);
+      that._setCurrentRegisteredParameter(data, output, channel, time);
+      that._deselectRegisteredParameter(output, channel, time);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sets the non-registered MIDI parameter to the specified value. The value is defined with
+   * up to two bytes of data (msb and lsb) that each can go from 0 to 127. Non-registered Parameter
+   * Numbers are not standardized in any way and are left to manufacturer-specific implementations.
+   *
+   * For example, according to the Roland GS specification, you can control the vibrato rate using
+   * NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you would use:
+   *
+   *     WebMidi.setNonRegisteredParameter([1, 8], 123);
+   *
+   * Obviously, you should select an output device and channel so the message is not sent to all
+   * channels of all devices. For instance, to send to channel 1 of the first device, you would use:
+   *
+   *     WebMidi.setNonRegisteredParameter([1, 8], 123, undefined, WebMidi.outputs[0], 1);
+   *
+   * @method setNonRegisteredParameter
+   * @static
+   * @chainable
+   *
+   * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (0x63, 0x62) identifying the non-registered
+   * parameter.
+   *
+   * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
+   * specifying the desired data.
+   *
+   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
+   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.setNonRegisteredParameter = function(parameter, data, output, channel, time) {
+
+    var that = this;
+
+    if (
+        !(parameter[0] >= 0 && parameter[0] <= 127) ||
+        !(parameter[1] >= 0 && parameter[1] <= 127)
+    ) {
+      throw new Error(
+          "Position 0 and 1 of the 2-position parameter array must both be between 0 and 127."
+      );
+    }
+
+    data = [].concat(data);
+
+    this._convertChannelToArray(channel).forEach(function(ch) {
+      that._selectNonRegisteredParameter(parameter, output, channel, time);
+      that._setCurrentRegisteredParameter(data, output, channel, time);
       that._deselectRegisteredParameter(output, channel, time);
     });
 
@@ -1996,7 +2107,7 @@
    *  * Roll Angle (0x3D, 0x08): `rollangle`
    *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
-   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
@@ -2030,7 +2141,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
+      that._selectRegisteredParameter(parameter, output, channel, time);
       that.sendControlChange(0x60, 0, output, channel, time);
       that._deselectRegisteredParameter(output, channel, time);
     });
@@ -2067,7 +2178,7 @@
    *  * Roll Angle (0x3D, 0x08): `rollangle`
    *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
-   * two-position array specifying the two control bytes (0x65, 0x64) identifying the registered
+   * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
@@ -2101,7 +2212,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      hat._selectRegisteredParameter(parameter[0], parameter[1], output, channel, time);
+      that._selectRegisteredParameter(parameter, output, channel, time);
       that.sendControlChange(0x61, 0, output, channel, time);
       that._deselectRegisteredParameter(output, channel, time);
     });
@@ -2162,7 +2273,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("pitchbendrange", semitones, cents, output, channel, time);
+      that.setRegisteredParameter("pitchbendrange", [semitones, cents], output, channel, time);
     });
 
     return this;
@@ -2219,7 +2330,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("modulationrange", semitones, cents, output, channel, time);
+      that.setRegisteredParameter("modulationrange", [semitones, cents], output, channel, time);
     });
 
     return this;
@@ -2284,8 +2395,8 @@
     var lsb = fine & 0x7F;
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("channelcoarsetuning", coarse, undefined, output, channel, time);
-      that.setRegisteredParameter("channelfinetuning", msb, lsb, output, channel, time);
+      that.setRegisteredParameter("channelcoarsetuning", coarse, output, channel, time);
+      that.setRegisteredParameter("channelfinetuning", [msb, lsb], output, channel, time);
     });
 
     return this;
@@ -2333,7 +2444,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningprogram", value, undefined, output, channel, time);
+      that.setRegisteredParameter("tuningprogram", value, output, channel, time);
     });
 
     return this;
@@ -2381,7 +2492,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningbank", value, undefined, output, channel, time);
+      that.setRegisteredParameter("tuningbank", value, output, channel, time);
     });
 
     return this;
@@ -2395,20 +2506,20 @@
    * @static
    * @chainable
    *
-   * @param command {uint}                The MIDI channel mode command (120-127).
-   * @param value {uint}                  The value to send (0-127)
+   * @param command {uint} The MIDI channel mode command (120-127).
+   * @param value {uint} The value to send (0-127)
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
+   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
    * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
+   * the value is a string starting with the + sign and
    *                                      followed by a number, the request will be delayed by the
    *                                      specified number (in milliseconds). Otherwise, the value
    *                                      is considered a timestamp and the request will be
