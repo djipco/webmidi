@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-beta.5</em>
+            <em>API Docs for: 1.0.0-beta.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -140,6 +140,10 @@ craft or decode binary MIDI messages anymore!</p>
                                 <a href="#method__convertNoteToArray">_convertNoteToArray</a>
 
                             </li>
+                            <li class="index-item method protected">
+                                <a href="#method__deselectRegisteredParameter">_deselectRegisteredParameter</a>
+
+                            </li>
                             <li class="index-item method private">
                                 <a href="#method__initializeUserHandlers">_initializeUserHandlers</a>
 
@@ -162,6 +166,14 @@ craft or decode binary MIDI messages anymore!</p>
                             </li>
                             <li class="index-item method private">
                                 <a href="#method__parseTimeParameter">_parseTimeParameter</a>
+
+                            </li>
+                            <li class="index-item method protected">
+                                <a href="#method__selectRegisteredParameter">_selectRegisteredParameter</a>
+
+                            </li>
+                            <li class="index-item method protected">
+                                <a href="#method__setCurrentRegisteredParameter">_setCurrentRegisteredParameter</a>
 
                             </li>
                             <li class="index-item method">
@@ -256,6 +268,16 @@ craft or decode binary MIDI messages anymore!</p>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_setRegisteredParameter">setRegisteredParameter</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setTuningBank">setTuningBank</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setTuningProgram">setTuningProgram</a>
 
                                     <span class="flag static">static</span>
                             </li>
@@ -417,7 +439,7 @@ craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2485"><code>src&#x2F;webmidi.js:2485</code></a>
+        <a href="../files/src_webmidi.js.html#l2711"><code>src&#x2F;webmidi.js:2711</code></a>
         </p>
 
 
@@ -474,7 +496,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2462"><code>src&#x2F;webmidi.js:2462</code></a>
+        <a href="../files/src_webmidi.js.html#l2688"><code>src&#x2F;webmidi.js:2688</code></a>
         </p>
 
 
@@ -505,6 +527,99 @@ MIDI note numbers.</p>
             </ul>
         </div>
 
+
+
+</div>
+<div id="method__deselectRegisteredParameter" class="method item protected">
+    <h3 class="name"><code>_deselectRegisteredParameter</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>output</code>
+                </li>
+                <li class="arg">
+                        <code>channel</code>
+                </li>
+                <li class="arg">
+                        <code>time</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+        </span>
+
+
+        <span class="flag protected">protected</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1852"><code>src&#x2F;webmidi.js:1852</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Deselects the currently active MIDI registered parameter so it is no longer affected by data
+entry, data increment and data decrement messages.</p>
+<p>Current best practice recommends doing that after each call to
+<code>_setCurrentRegisteredParameter()</code>.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">output</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">channel</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
+            </div>
+        </div>
 
 
 </div>
@@ -708,7 +823,7 @@ MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2515"><code>src&#x2F;webmidi.js:2515</code></a>
+        <a href="../files/src_webmidi.js.html#l2741"><code>src&#x2F;webmidi.js:2741</code></a>
         </p>
 
 
@@ -737,6 +852,239 @@ MIDI note numbers.</p>
             </ul>
         </div>
 
+
+
+</div>
+<div id="method__selectRegisteredParameter" class="method item protected">
+    <h3 class="name"><code>_selectRegisteredParameter</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>control65</code>
+                </li>
+                <li class="arg">
+                        <code>control64</code>
+                </li>
+                <li class="arg">
+                        <code>output</code>
+                </li>
+                <li class="arg">
+                        <code>channel</code>
+                </li>
+                <li class="arg">
+                        <code>time</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+        </span>
+
+
+        <span class="flag protected">protected</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1776"><code>src&#x2F;webmidi.js:1776</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Selects a MIDI registered parameter so it is affected by data entry, data increment and data
+decrement messages.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">control65</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">control64</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">output</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">channel</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method__setCurrentRegisteredParameter" class="method item protected">
+    <h3 class="name"><code>_setCurrentRegisteredParameter</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>msb</code>
+                </li>
+                <li class="arg">
+                        <code>lsb</code>
+                </li>
+                <li class="arg">
+                        <code>output</code>
+                </li>
+                <li class="arg">
+                        <code>channel</code>
+                </li>
+                <li class="arg">
+                        <code>time</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+        </span>
+
+
+        <span class="flag protected">protected</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1814"><code>src&#x2F;webmidi.js:1814</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the value of the currently selected MIDI registered parameter.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">msb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">lsb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">output</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">channel</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">time</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
+            </div>
+        </div>
 
 
 </div>
@@ -841,12 +1189,9 @@ to.</p>
 
 
                     <div class="param-description">
-                        <p>A callback function to execute when the
-specified event is detected. This function
-will receive an event parameter object.
-For details on this object's properties,
-check out the documentation for the various
-events (links above).</p>
+                        <p>A callback function to execute when the specified event is detected.
+This function will receive an event parameter object. For details on this object's properties,
+check out the documentation for the various events (links above).</p>
 
                     </div>
 
@@ -1008,7 +1353,7 @@ a string describing the error.</p>
 
                     <div class="param-description">
                         <p>Whether to enable sysex or not. When this parameter is set to
-true, the browser may prompt                                   the user for authorization.</p>
+true, the browser may prompt the user for authorization.</p>
 
                     </div>
 
@@ -1047,7 +1392,7 @@ true, the browser may prompt                                   the user for auth
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1072"><code>src&#x2F;webmidi.js:1072</code></a>
+        <a href="../files/src_webmidi.js.html#l1070"><code>src&#x2F;webmidi.js:1070</code></a>
         </p>
 
 
@@ -1069,8 +1414,8 @@ true, the browser may prompt                                   the user for auth
 
 
                     <div class="param-description">
-                        <p>The id of the device. Ids can be retrieved by looking at
-the <code>WebMidi.inputs</code> or <code>WebMidi.outputs</code> arrays.</p>
+                        <p>The id of the device. Ids can be retrieved by looking at the
+<code>WebMidi.inputs</code> or <code>WebMidi.outputs</code> arrays.</p>
 
                     </div>
 
@@ -1082,8 +1427,8 @@ the <code>WebMidi.inputs</code> or <code>WebMidi.outputs</code> arrays.</p>
 
 
                     <div class="param-description">
-                        <p>One of 'input' or 'output' to indicate whether your are
-looking for an input or an output device.</p>
+                        <p>One of 'input' or 'output' to indicate whether your are looking
+for an input or an output device.</p>
 
                     </div>
 
@@ -1097,8 +1442,7 @@ looking for an input or an output device.</p>
             <div class="returns-description">
                         <span class="type">MIDIOutput | <a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput" class="crosslink external" target="_blank">MIDIInput</a> | False</span>:
                     <p>A MIDIOutput or MIDIInput device matching the specified
-id. If no matching device can be found, the method
-returns <code>false</code>.</p>
+id. If no matching device can be found, the method returns <code>false</code>.</p>
 
             </div>
         </div>
@@ -1133,7 +1477,7 @@ returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1099"><code>src&#x2F;webmidi.js:1099</code></a>
+        <a href="../files/src_webmidi.js.html#l1098"><code>src&#x2F;webmidi.js:1098</code></a>
         </p>
 
 
@@ -1156,8 +1500,8 @@ must be specified by using its id.</p>
 
 
                     <div class="param-description">
-                        <p>The id of the device such as it is presented in the
-<code>WebMidi.inputs</code> or <code>WebMidi.outputs</code> arrays.</p>
+                        <p>The id of the device such as it is presented in the <code>WebMidi.inputs</code> or
+<code>WebMidi.outputs</code> arrays.</p>
 
                     </div>
 
@@ -1221,7 +1565,7 @@ for the index of an input or output device.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1124"><code>src&#x2F;webmidi.js:1124</code></a>
+        <a href="../files/src_webmidi.js.html#l1125"><code>src&#x2F;webmidi.js:1125</code></a>
         </p>
 
 
@@ -1355,7 +1699,7 @@ defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2430"><code>src&#x2F;webmidi.js:2430</code></a>
+        <a href="../files/src_webmidi.js.html#l2656"><code>src&#x2F;webmidi.js:2656</code></a>
         </p>
 
 
@@ -1442,7 +1786,7 @@ symbol, followed by the octave number (between -2 and 8).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1542"><code>src&#x2F;webmidi.js:1542</code></a>
+        <a href="../files/src_webmidi.js.html#l1543"><code>src&#x2F;webmidi.js:1543</code></a>
         </p>
 
 
@@ -1607,7 +1951,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1211"><code>src&#x2F;webmidi.js:1211</code></a>
+        <a href="../files/src_webmidi.js.html#l1212"><code>src&#x2F;webmidi.js:1212</code></a>
         </p>
 
 
@@ -1749,7 +2093,7 @@ listeners.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1297"><code>src&#x2F;webmidi.js:1297</code></a>
+        <a href="../files/src_webmidi.js.html#l1298"><code>src&#x2F;webmidi.js:1298</code></a>
         </p>
 
 
@@ -1888,7 +2232,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2289"><code>src&#x2F;webmidi.js:2289</code></a>
+        <a href="../files/src_webmidi.js.html#l2515"><code>src&#x2F;webmidi.js:2515</code></a>
         </p>
 
 
@@ -2022,7 +2366,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2167"><code>src&#x2F;webmidi.js:2167</code></a>
+        <a href="../files/src_webmidi.js.html#l2393"><code>src&#x2F;webmidi.js:2393</code></a>
         </p>
 
 
@@ -2173,7 +2517,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1710"><code>src&#x2F;webmidi.js:1710</code></a>
+        <a href="../files/src_webmidi.js.html#l1711"><code>src&#x2F;webmidi.js:1711</code></a>
         </p>
 
 
@@ -2325,7 +2669,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1640"><code>src&#x2F;webmidi.js:1640</code></a>
+        <a href="../files/src_webmidi.js.html#l1641"><code>src&#x2F;webmidi.js:1641</code></a>
         </p>
 
 
@@ -2482,7 +2826,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2344"><code>src&#x2F;webmidi.js:2344</code></a>
+        <a href="../files/src_webmidi.js.html#l2570"><code>src&#x2F;webmidi.js:2570</code></a>
         </p>
 
 
@@ -2616,7 +2960,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2233"><code>src&#x2F;webmidi.js:2233</code></a>
+        <a href="../files/src_webmidi.js.html#l2459"><code>src&#x2F;webmidi.js:2459</code></a>
         </p>
 
 
@@ -2753,7 +3097,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2066"><code>src&#x2F;webmidi.js:2066</code></a>
+        <a href="../files/src_webmidi.js.html#l2230"><code>src&#x2F;webmidi.js:2230</code></a>
         </p>
 
 
@@ -2897,7 +3241,7 @@ than 128.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2008"><code>src&#x2F;webmidi.js:2008</code></a>
+        <a href="../files/src_webmidi.js.html#l2172"><code>src&#x2F;webmidi.js:2172</code></a>
         </p>
 
 
@@ -3049,7 +3393,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1949"><code>src&#x2F;webmidi.js:1949</code></a>
+        <a href="../files/src_webmidi.js.html#l2113"><code>src&#x2F;webmidi.js:2113</code></a>
         </p>
 
 
@@ -3205,7 +3549,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1859"><code>src&#x2F;webmidi.js:1859</code></a>
+        <a href="../files/src_webmidi.js.html#l1881"><code>src&#x2F;webmidi.js:1881</code></a>
         </p>
 
 
@@ -3353,6 +3697,274 @@ sent as soon as possible.</p>
 
 
 </div>
+<div id="method_setTuningBank" class="method item">
+    <h3 class="name"><code>setTuningBank</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>value</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[output=undefined]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[channel=&quot;all]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[time=undefined]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+        <span class="flag chainable">chainable</span>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l2345"><code>src&#x2F;webmidi.js:2345</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the MIDI tuning bank to use. Note that the <strong>Tuning Bank</strong> parameter is part of the
+<em>MIDI Tuning Standard</em>, which is not widely implemented.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">value</code>
+                        <span class="type">Int</span>
+
+
+                    <div class="param-description">
+                        <p>The desired tuning bank (0-127).</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[output=undefined]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>A MIDI output device or an array of
+MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[channel=&quot;all]</code>
+                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The MIDI channel number (between 1 and 16) or an
+array of channel numbers. If the special value &quot;all&quot; is used, the message will be sent to all
+16 channels.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[time=undefined]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp" class="crosslink external" target="_blank">DOMHighResTimeStamp</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>This value can be one of two things. If
+the value is a string starting with the + sign and followed by a number, the request will be
+delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+relative to the navigation start of the document. To retrieve the current time, you can use
+<code>WebMidi.time</code>. If <code>time</code> is not present or is set to a time in the past, the request is to be
+sent as soon as possible.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
+                    <p>Returns the <code>WebMidi</code> object so methods can be chained.</p>
+
+            </div>
+        </div>
+
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" class="crosslink external" target="_blank">RangeError</a></span>:
+                    <p>The bank value must be between 0 and 127.</p>
+
+            </div>
+        </div>
+
+</div>
+<div id="method_setTuningProgram" class="method item">
+    <h3 class="name"><code>setTuningProgram</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>value</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[output=undefined]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[channel=&quot;all]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[time=undefined]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+        <span class="flag chainable">chainable</span>
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l2297"><code>src&#x2F;webmidi.js:2297</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the MIDI tuning program to use. Note that the <strong>Tuning Program</strong> parameter is part of the
+<em>MIDI Tuning Standard</em>, which is not widely implemented.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">value</code>
+                        <span class="type">Int</span>
+
+
+                    <div class="param-description">
+                        <p>The desired tuning program (0-127).</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[output=undefined]</code>
+                        <span class="type">MIDIOutput | Array(MIDIOutput)</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>A MIDI output device or an array of
+MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+<code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
+currently available output MIDI devices.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[channel=&quot;all]</code>
+                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>The MIDI channel number (between 1 and 16) or an
+array of channel numbers. If the special value &quot;all&quot; is used, the message will be sent to all
+16 channels.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[time=undefined]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp" class="crosslink external" target="_blank">DOMHighResTimeStamp</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>This value can be one of two things. If
+the value is a string starting with the + sign and followed by a number, the request will be
+delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+relative to the navigation start of the document. To retrieve the current time, you can use
+<code>WebMidi.time</code>. If <code>time</code> is not present or is set to a time in the past, the request is to be
+sent as soon as possible.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
+                    <p>Returns the <code>WebMidi</code> object so methods can be chained.</p>
+
+            </div>
+        </div>
+
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" class="crosslink external" target="_blank">RangeError</a></span>:
+                    <p>The program value must be between 0 and 127.</p>
+
+            </div>
+        </div>
+
+</div>
 <div id="method_stopNote" class="method item">
     <h3 class="name"><code>stopNote</code></h3>
 
@@ -3391,7 +4003,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1473"><code>src&#x2F;webmidi.js:1473</code></a>
+        <a href="../files/src_webmidi.js.html#l1474"><code>src&#x2F;webmidi.js:1474</code></a>
         </p>
 
 
