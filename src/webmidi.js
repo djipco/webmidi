@@ -33,11 +33,10 @@
    * @class WebMidi
    * @static
    *
-   * @todo  Add RPN and NRPM message sending capability (http://www.2writers.com/eddie/TutNrpn.htm)
    * @todo  Add removeAllEventListeners(), on() and once() functions
    * @todo  Add a 'filter' parameter to addListener. This would allow to listen for a specific
    *        controller on a controlchange event or a specific note on a event message.
-   *
+   * @todo  Add methods for system common messages and system realtime messages
    * @todo  Add more examples in method documentation (playNote namely).
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
@@ -119,6 +118,21 @@
             }
           }
           return outputs;
+        }
+      },
+
+      /**
+       * [read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+       * active.
+       *
+       * @property sysexEnabled
+       * @type Boolean
+       * @static
+       */
+      sysexEnabled: {
+        enumerable: true,
+        get: function() {
+          return this.interface && this.interface.sysexEnabled;
         }
       },
 
@@ -639,10 +653,10 @@
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        *
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
        *
-       * @param {String} event.type         The type of event that occurred.
+       * @param {String} event.type The type of event that occurred.
        */
       event.type = 'timecode';
 
@@ -987,7 +1001,7 @@
    * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will trigger
    * the callback function.
    *
-   * @param [filters.channel="all"] {uint|Array|String} The MIDI channel to listen on (between 1
+   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to listen on (between 1
    * and 16). You can also specify an array of channels to listen on. If set to 'all', all channels
    * will trigger the callback function.
    *
@@ -1437,45 +1451,78 @@
   //  return this;
   //};
 
-  ///**
-  // * Sends a system exclusive message to all connected devices. The message will
-  // * automatically be properly terminated. It is generally suggested to keep system
-  // * exclusive messages to 64Kb or less.
-  // *
-  // * @method sendSystemMessage
-  // * @static
-  // * @chainable
-  // *
-  // * @param manufacturer {uint|Array} A uint or an array of three uints between 0 and 127
-  // *                                  that identifies the targeted manufacturer.
-  // * @param [data=[]] {Array}         An array of uints between 0 and 127. This is the
-  // *                                  data you wish to transfer.
-  // * @param [delay=0] {uint}          The number of milliseconds to wait before actually
-  // *                                  sending the command (using 0 will send the command
-  // *                                  immediately).
-  // *
-  // * @throws                          WebMidi must be enabled sending messages.
-  // *
-  // * @return {WebMidi}                Returns the `WebMidi` object so methods can be
-  // *                                  chained.
-  // */
-  //WebMidi.prototype.sendSysexMessage = function(manufacturer, data, delay) {
-  //
-  //  if (!this.connected) {
-  //    throw new Error("WebMidi must be connected before sending messages.");
-  //  }
-  //
-  //  if (manufacturer.prototype !== Array) { manufacturer = [manufacturer]; }
-  //
-  //  delay = parseInt(delay);
-  //  if (isNaN(delay)) { delay = 0; }
-  //
-  //  data = manufacturer.concat(data, _systemMessages.sysexend);
-  //  this.send("all", _systemMessages.sysex, data, this.time + delay);
-  //
-  //  return this;
-  //
-  //};
+  /**
+   * Sends a MIDI *system exclusive* message to the specified device(s). The generated message will
+   * automatically be prepended with the *SysEx* byte (0xF0) and terminated with the *End of SysEx*
+   * byte (0xF7).
+   *
+   * For example, if you want to send a SysEx message to a Korg device connected to the first
+   * output, you would use the following code:
+   *
+   *     WebMidi.sendSysex(0x42, [1, 2, 3, 4, 5], WebMidi.outputs[0]);
+   *
+   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (ID 0x42). Some
+   * manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
+   * the first parameter. For example, to send the same SysEx message to a *Native Instruments*
+   * device:
+   *
+   *     WebMidi.sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5], WebMidi.outputs[0]);
+   *
+   * There is no limit for the length of the data array. However, it is generally suggested to keep
+   * system exclusive messages to 64Kb or less.
+   *
+   * @method sendSysex
+   * @static
+   * @chainable
+   *
+   * @param manufacturer {uint|Array} A uint or an array of three uints between 0 and 127 that
+   * identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list
+   * of [Manufacturer ID Numbers](http://www.midi.org/techspecs/manid.php).
+   *
+   * @param [data=[]] {Array} An array of uints between 0 and 127. This is the data you wish to
+   * transfer.
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throw System exclusive message support must first be activated.
+   *
+   * @throw The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.sendSysex = function(manufacturer, data, output, time) {
+
+    if (!this.sysexEnabled) {
+      throw new Error("System exclusive message support must first be activated.");
+    }
+
+    manufacturer = [].concat(manufacturer);
+
+    data.forEach(function(item){
+      if (item < 0 || item > 127) {
+        throw new RangeError(
+            "The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F)."
+        );
+      }
+    });
+
+    data = manufacturer.concat(data, _systemMessages.sysexend);
+    this.send(_systemMessages.sysex, data, output, time);
+
+    return this;
+
+  };
 
   /**
    * Sends a MIDI `note off` message to the specified device(s) and channel(s) for a single note or
@@ -1495,12 +1542,12 @@
    * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
    * invalid velocity value will silently trigger the default.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -1575,7 +1622,7 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    *                                            array of channel numbers. If the special value "all"
    *                                            is used, the message will be sent to all 16
    *                                            channels.
@@ -1649,12 +1696,11 @@
    * @chainable
    *
    * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
-   *                                  notes can be specified in one of two ways. The first way is by
-   *                                  using the MIDI note number (an integer between 0 and 127). The
-   *                                  second way is by using the note name followed by the
-   *                                  octave (C3, G#4, F-1). The octave range should be between
-   *                                  -2 and 8. The lowest note is C-2 (MIDI note number 0) and
-   *                                  the highest note is G8 (MIDI note number 127).
+   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
+   * integer between 0 and 127). The second way is by using the note name followed by the octave
+   * (C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note
+   * number 0) and the highest note is G8 (MIDI note number 127).
+   *
    * @param [pressure=0.5] {Number}   The pressure level to send (between 0 and 1).
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
@@ -1662,24 +1708,21 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
    *
-   * @throws {RangeError}             The channel must be between 1 and 16.
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
-   * @return {WebMidi}                Returns the `WebMidi` object so methods can be chained.
+   * @throws {RangeError} The channel must be between 1 and 16.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.sendKeyAftertouch = function(note, pressure, output, channel, time) {
 
@@ -1730,11 +1773,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -1779,6 +1822,7 @@
    * decrement messages.
    *
    * @method _selectRegisteredParameter
+   * @static
    * @protected
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
@@ -1818,6 +1862,7 @@
    * data decrement messages.
    *
    * @method _selectNonRegisteredParameter
+   * @static
    * @protected
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x63, 0x62)
@@ -1856,6 +1901,7 @@
    * Sets the value of the currently selected MIDI registered parameter.
    *
    * @method _setCurrentRegisteredParameter
+   * @static
    * @protected
    *
    * @param data {int|Array}
@@ -1899,6 +1945,7 @@
    * `_setCurrentRegisteredParameter()`.
    *
    * @method _deselectRegisteredParameter
+   * @static
    * @protected
    *
    * @param output
@@ -1969,12 +2016,12 @@
    * @param [data=[]] {int|Array} An single integer or an array of integers with a maximum length of
    * 2 specifying the desired data.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2010,26 +2057,37 @@
   };
 
   /**
-   * Sets the non-registered MIDI parameter to the specified value. The value is defined with
-   * up to two bytes of data (msb and lsb) that each can go from 0 to 127. Non-registered Parameter
-   * Numbers are not standardized in any way and are left to manufacturer-specific implementations.
+   * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+   * two-position array specifying the values of the two control bytes. The value is specified by
+   * passing in an single integer (most cases) or an array of two integers.
    *
-   * For example, according to the Roland GS specification, you can control the vibrato rate using
-   * NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you would use:
+   * NRPNs are not standardized in any way. Each manufacturer is free to implement them in any way
+   * they see fit. For example, according to the Roland GS specification, you can control the
+   * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
+   * would use:
    *
    *     WebMidi.setNonRegisteredParameter([1, 8], 123);
    *
    * Obviously, you should select an output device and channel so the message is not sent to all
-   * channels of all devices. For instance, to send to channel 1 of the first device, you would use:
+   * channels on all devices. For instance, to send to channel 1 of the first device, you would use:
    *
    *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
+   *
+   * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
+   * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
+   * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
+   * value to send was 10, you could use:
+   *
+   *     WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);
+   *
+   * For further implementation details, refer to the manufacturer's documentation.
    *
    * @method setNonRegisteredParameter
    * @static
    * @chainable
    *
    * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
-   * 0x62) identifying the non-registered parameter.
+   * 0x62) that identify the non-registered parameter.
    *
    * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
@@ -2039,7 +2097,7 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2114,7 +2172,7 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2185,7 +2243,7 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2240,11 +2298,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -2297,11 +2355,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -2356,11 +2414,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -2417,11 +2475,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -2465,11 +2523,11 @@
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
    * the value is a string starting with the + sign and followed by a number, the request will be
    * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
    * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
@@ -2508,12 +2566,12 @@
    * @param command {uint} The MIDI channel mode command (120-127).
    * @param value {uint} The value to send (0-127)
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2525,12 +2583,11 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {RangeError}                 Channel mode controller numbers must be between 120 and
-   *                                      127.
+   * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
    *
-   * @throws {RangeError}                 Value must be between 0 and 127.
+   * @throws {RangeError} Value must be between 0 and 127.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    *
    */
   WebMidi.prototype.sendChannelMode = function(command, value, output, channel, time) {
@@ -2569,31 +2626,28 @@
    * @static
    * @chainable
    *
-   * @param program {uint}                The MIDI patch (program) number (0-127)
+   * @param program {uint} The MIDI patch (program) number (0-127)
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
    *
-   * @throws {RangeError}                 Program numbers must be between 0 and 127.
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @throws {RangeError} Program numbers must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    *
    */
   WebMidi.prototype.sendProgramChange = function(program, output, channel, time) {
@@ -2626,30 +2680,27 @@
    * @static
    * @chainable
    *
-   * @param [pressure=0.5] {Number}       The pressure level (between 0 and 1). An invalid pressure
-   *                                      value will silently trigger the default behaviour.
+   * @param [pressure=0.5] {Number} The pressure level (between 0 and 1). An invalid pressure value
+   * will silently trigger the default behaviour.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.sendChannelAftertouch = function(pressure, output, channel, time) {
 
@@ -2683,12 +2734,12 @@
    * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
    * no bend.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel="all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
@@ -2700,9 +2751,9 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throws {RangeError}                 Pitch bend value must be between -1 and 1.
+   * @throws {RangeError} Pitch bend value must be between -1 and 1.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   WebMidi.prototype.sendPitchBend = function(bend, output, channel, time) {
 
@@ -2735,9 +2786,12 @@
    * represented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and
    * 127.
    *
-   * @param input         A integer, float or string to extract the note number from.
-   * @throws {Error}      Invalid note number.
-   * @returns {uint}      A valid MIDI note number (0-127).
+   * @method guessNoteNumber
+   * @static
+   *
+   * @param input A integer, float or string to extract the note number from.
+   * @throws {Error} Invalid note number.
+   * @returns {uint} A valid MIDI note number (0-127).
    */
   WebMidi.prototype.guessNoteNumber = function(input) {
 
@@ -2769,10 +2823,10 @@
    * @method noteNameToNumber
    * @static
    *
-   * @param name {String}   The name of the note in the form of a letter, followed by an optional #
+   * @param name {String} The name of the note in the form of a letter, followed by an optional #
    * symbol, followed by the octave number (between -2 and 8).
    *
-   * @return {uint}         The MIDI note number (between 0 and 127)
+   * @return {uint} The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
@@ -2797,7 +2851,7 @@
    *
    * @method _convertNoteToArray
    * @param [note] {uint|Array|String}
-   * @private
+   * @protected
    */
   WebMidi.prototype._convertNoteToArray = function(note) {
 
@@ -2816,12 +2870,12 @@
 
   /**
    * Converts an input value (which can be an int, an array or the value "all" to an array of valid
-   * MIDI channels. If "undefined" is provided as the channel, an array of all channels will be
+   * MIDI channels. If `undefined` is provided as the channel, an array of all channels will be
    * returned.
    *
    * @method _convertChannelToArray
    * @param [channel] {uint|Array}
-   * @private
+   * @protected
    */
   WebMidi.prototype._convertChannelToArray = function(channel) {
 
@@ -2848,7 +2902,7 @@
    *
    * @method _parseTimeParameter
    * @param [time=0] {Number|String}
-   * @private
+   * @protected
    */
   WebMidi.prototype._parseTimeParameter = function(time) {
 
