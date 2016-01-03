@@ -2110,15 +2110,14 @@
    * @static
    * @chainable
    *
-   * @param parameter {String|Array} A string identifying the parameter&#x27;s name (see above) or a
-   * two-position array specifying the two control bytes (0x63, 0x62) identifying the non-registered
-   * parameter.
+   * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
+   * 0x62) identifying the non-registered parameter.
    *
    * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * &#x60;WebMidi.outputs&#x60; array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *

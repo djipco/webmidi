@@ -1866,7 +1866,7 @@
             "params": [
                 {
                     "name": "parameter",
-                    "description": "A string identifying the parameter's name (see above) or a\ntwo-position array specifying the two control bytes (0x63, 0x62) identifying the non-registered\nparameter.",
+                    "description": "A two-position array specifying the two control bytes (0x63,\n0x62) identifying the non-registered parameter.",
                     "type": "String|Array"
                 },
                 {
@@ -1878,9 +1878,10 @@
                 },
                 {
                     "name": "output",
-                    "description": "A MIDI output device or an array of MIDI output\ndevices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
                     "type": "MIDIOutput|Array(MIDIOutput)",
-                    "optional": true
+                    "optional": true,
+                    "optdefault": "undefined"
                 },
                 {
                     "name": "channel",
@@ -1905,7 +1906,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2082,
+            "line": 2081,
             "description": "Increments the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
             "params": [
                 {
@@ -1942,7 +1943,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2153,
+            "line": 2152,
             "description": "Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
             "params": [
                 {
@@ -1979,7 +1980,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2224,
+            "line": 2223,
             "description": "Sends a pitch bend range message to the specified device(s) and channel(s) so that they adjust\nthe range used by their pitch bend lever. The range can be specified with the `semitones`\nparameter, the `cents` parameter or by specifying both parameters at the same time.",
             "itemtype": "method",
             "name": "setPitchBendRange",
@@ -2034,7 +2035,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2283,
+            "line": 2282,
             "description": "Sends a modulation depth range message to the specified output(s) and channel(s) so that they\nadjust the depth of their modulation wheel's range. The range can be specified with the\n`semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.",
             "itemtype": "method",
             "name": "setModulationRange",
@@ -2089,7 +2090,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2340,
+            "line": 2339,
             "description": "Sends a master tuning message to the specified output(s) and channel(s). The value is decimal\nand must be larger than -65 semitones and smaller than 64 semitones.\n\n>Because of the way the MIDI specification works, the decimal portion of the value will be\n>encoded with a resolution of 14bit. The integer portion must be between -64 and 63\n>inclusively. For those familiar with the MIDI protocol, this function actually generates\n>**Master Coarse Tuning** and **Master Fine Tuning** RPN messages.",
             "itemtype": "method",
             "name": "setMasterTuning",
@@ -2137,7 +2138,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2406,
+            "line": 2405,
             "description": "Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the\n*MIDI Tuning Standard*, which is not widely implemented.",
             "itemtype": "method",
             "name": "setTuningProgram",
@@ -2183,7 +2184,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2454,
+            "line": 2453,
             "description": "Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the\n*MIDI Tuning Standard*, which is not widely implemented.",
             "itemtype": "method",
             "name": "setTuningBank",
@@ -2229,7 +2230,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2502,
+            "line": 2501,
             "description": "Sends a MIDI `channel mode` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendChannelMode",
@@ -2279,7 +2280,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2566,
+            "line": 2565,
             "description": "Sends a MIDI `program change` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendProgramChange",
@@ -2324,7 +2325,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2622,
+            "line": 2621,
             "description": "Sends a MIDI `channel aftertouch` message to the specified device(s) and channel(s). For\nkey-specific aftertouch, you should instead use `sendKeyAftertouch()`.",
             "itemtype": "method",
             "name": "sendChannelAftertouch",
@@ -2367,7 +2368,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2677,
+            "line": 2676,
             "description": "Sends a MIDI `pitch bend` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendPitchBend",
@@ -2412,7 +2413,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2734,
+            "line": 2733,
             "description": "Returns a valid MIDI note number given the specified input. The input can be an integer\nrepresented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and\n127.",
             "params": [
                 {
@@ -2432,7 +2433,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2763,
+            "line": 2762,
             "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The\nnote name must include the octave number which should be between -2 and 8: C5, G4, D#-1, F0,\netc.\n\nThe lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).",
             "itemtype": "method",
             "name": "noteNameToNumber",
@@ -2452,7 +2453,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2795,
+            "line": 2794,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI note numbers.",
             "itemtype": "method",
             "name": "_convertNoteToArray",
@@ -2470,7 +2471,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2818,
+            "line": 2817,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI channels. If \"undefined\" is provided as the channel, an array of all channels will be\nreturned.",
             "itemtype": "method",
             "name": "_convertChannelToArray",
@@ -2488,7 +2489,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2848,
+            "line": 2847,
             "itemtype": "method",
             "name": "_parseTimeParameter",
             "params": [
@@ -2540,27 +2541,27 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2082"
+            "line": " src/webmidi.js:2081"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2153"
+            "line": " src/webmidi.js:2152"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2734"
+            "line": " src/webmidi.js:2733"
         },
         {
             "message": "Missing item type\nIncrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
-            "line": " src/webmidi.js:2082"
+            "line": " src/webmidi.js:2081"
         },
         {
             "message": "Missing item type\nDecrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
-            "line": " src/webmidi.js:2153"
+            "line": " src/webmidi.js:2152"
         },
         {
             "message": "Missing item type\nReturns a valid MIDI note number given the specified input. The input can be an integer\nrepresented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and\n127.",
-            "line": " src/webmidi.js:2734"
+            "line": " src/webmidi.js:2733"
         }
     ]
 }

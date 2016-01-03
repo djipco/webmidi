@@ -448,7 +448,7 @@ craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2818"><code>src&#x2F;webmidi.js:2818</code></a>
+        <a href="../files/src_webmidi.js.html#l2817"><code>src&#x2F;webmidi.js:2817</code></a>
         </p>
 
 
@@ -505,7 +505,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2795"><code>src&#x2F;webmidi.js:2795</code></a>
+        <a href="../files/src_webmidi.js.html#l2794"><code>src&#x2F;webmidi.js:2794</code></a>
         </p>
 
 
@@ -832,7 +832,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2848"><code>src&#x2F;webmidi.js:2848</code></a>
+        <a href="../files/src_webmidi.js.html#l2847"><code>src&#x2F;webmidi.js:2847</code></a>
         </p>
 
 
@@ -1788,7 +1788,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2763"><code>src&#x2F;webmidi.js:2763</code></a>
+        <a href="../files/src_webmidi.js.html#l2762"><code>src&#x2F;webmidi.js:2762</code></a>
         </p>
 
 
@@ -2320,7 +2320,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2622"><code>src&#x2F;webmidi.js:2622</code></a>
+        <a href="../files/src_webmidi.js.html#l2621"><code>src&#x2F;webmidi.js:2621</code></a>
         </p>
 
 
@@ -2454,7 +2454,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2502"><code>src&#x2F;webmidi.js:2502</code></a>
+        <a href="../files/src_webmidi.js.html#l2501"><code>src&#x2F;webmidi.js:2501</code></a>
         </p>
 
 
@@ -2910,7 +2910,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2677"><code>src&#x2F;webmidi.js:2677</code></a>
+        <a href="../files/src_webmidi.js.html#l2676"><code>src&#x2F;webmidi.js:2676</code></a>
         </p>
 
 
@@ -3044,7 +3044,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2566"><code>src&#x2F;webmidi.js:2566</code></a>
+        <a href="../files/src_webmidi.js.html#l2565"><code>src&#x2F;webmidi.js:2565</code></a>
         </p>
 
 
@@ -3181,7 +3181,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2340"><code>src&#x2F;webmidi.js:2340</code></a>
+        <a href="../files/src_webmidi.js.html#l2339"><code>src&#x2F;webmidi.js:2339</code></a>
         </p>
 
 
@@ -3326,7 +3326,7 @@ than 64.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2283"><code>src&#x2F;webmidi.js:2283</code></a>
+        <a href="../files/src_webmidi.js.html#l2282"><code>src&#x2F;webmidi.js:2282</code></a>
         </p>
 
 
@@ -3451,7 +3451,7 @@ sent as soon as possible.</p>
                         <code class="optional">[data=[]]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[output]</code>
+                        <code class="optional">[output=undefined]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[channel=&quot;all]</code>
@@ -3508,9 +3508,8 @@ channels of all devices. For instance, to send to channel 1 of the first device,
 
 
                     <div class="param-description">
-                        <p>A string identifying the parameter's name (see above) or a
-two-position array specifying the two control bytes (0x63, 0x62) identifying the non-registered
-parameter.</p>
+                        <p>A two-position array specifying the two control bytes (0x63,
+0x62) identifying the non-registered parameter.</p>
 
                     </div>
 
@@ -3529,14 +3528,14 @@ specifying the desired data.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[output]</code>
+                        <code class="param-name optional">[output=undefined]</code>
                         <span class="type">MIDIOutput | Array(MIDIOutput)</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>A MIDI output device or an array of MIDI output
-devices to send the message to. All available MIDIOutput objects are listed in the
+                        <p>A MIDI output device or an array of
+MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
 <code>WebMidi.outputs</code> array. When this parameter is left undefined, the message is sent to all
 currently available output MIDI devices.</p>
 
@@ -3628,7 +3627,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2224"><code>src&#x2F;webmidi.js:2224</code></a>
+        <a href="../files/src_webmidi.js.html#l2223"><code>src&#x2F;webmidi.js:2223</code></a>
         </p>
 
 
@@ -3954,7 +3953,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2454"><code>src&#x2F;webmidi.js:2454</code></a>
+        <a href="../files/src_webmidi.js.html#l2453"><code>src&#x2F;webmidi.js:2453</code></a>
         </p>
 
 
@@ -4088,7 +4087,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2406"><code>src&#x2F;webmidi.js:2406</code></a>
+        <a href="../files/src_webmidi.js.html#l2405"><code>src&#x2F;webmidi.js:2405</code></a>
         </p>
 
 
