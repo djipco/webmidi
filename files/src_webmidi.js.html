@@ -2109,10 +2109,11 @@
    *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-   * would use a 2-position array. For example, for its **ClockBPM** parameter, Novation uses a
-   * 14-bit value by combining MSB and LSB 7-bit values. If the value to send was 10, you could use:
+   * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
+   * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
+   * value to send was 10, you could use:
    *
-   *     WebMidi.setNonRegisteredParameter([1, 8], [0, 10]);
+   *     WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);
    *
    * For further implementation details, refer to the manufacturer&#x27;s documentation.
    *

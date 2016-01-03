@@ -448,7 +448,7 @@ craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2827"><code>src&#x2F;webmidi.js:2827</code></a>
+        <a href="../files/src_webmidi.js.html#l2828"><code>src&#x2F;webmidi.js:2828</code></a>
         </p>
 
 
@@ -505,7 +505,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2804"><code>src&#x2F;webmidi.js:2804</code></a>
+        <a href="../files/src_webmidi.js.html#l2805"><code>src&#x2F;webmidi.js:2805</code></a>
         </p>
 
 
@@ -832,7 +832,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2857"><code>src&#x2F;webmidi.js:2857</code></a>
+        <a href="../files/src_webmidi.js.html#l2858"><code>src&#x2F;webmidi.js:2858</code></a>
         </p>
 
 
@@ -1788,7 +1788,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2772"><code>src&#x2F;webmidi.js:2772</code></a>
+        <a href="../files/src_webmidi.js.html#l2773"><code>src&#x2F;webmidi.js:2773</code></a>
         </p>
 
 
@@ -2320,7 +2320,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2631"><code>src&#x2F;webmidi.js:2631</code></a>
+        <a href="../files/src_webmidi.js.html#l2632"><code>src&#x2F;webmidi.js:2632</code></a>
         </p>
 
 
@@ -2454,7 +2454,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2511"><code>src&#x2F;webmidi.js:2511</code></a>
+        <a href="../files/src_webmidi.js.html#l2512"><code>src&#x2F;webmidi.js:2512</code></a>
         </p>
 
 
@@ -2910,7 +2910,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2686"><code>src&#x2F;webmidi.js:2686</code></a>
+        <a href="../files/src_webmidi.js.html#l2687"><code>src&#x2F;webmidi.js:2687</code></a>
         </p>
 
 
@@ -3044,7 +3044,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2575"><code>src&#x2F;webmidi.js:2575</code></a>
+        <a href="../files/src_webmidi.js.html#l2576"><code>src&#x2F;webmidi.js:2576</code></a>
         </p>
 
 
@@ -3181,7 +3181,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2349"><code>src&#x2F;webmidi.js:2349</code></a>
+        <a href="../files/src_webmidi.js.html#l2350"><code>src&#x2F;webmidi.js:2350</code></a>
         </p>
 
 
@@ -3326,7 +3326,7 @@ than 64.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2292"><code>src&#x2F;webmidi.js:2292</code></a>
+        <a href="../files/src_webmidi.js.html#l2293"><code>src&#x2F;webmidi.js:2293</code></a>
         </p>
 
 
@@ -3499,9 +3499,10 @@ channels on all devices. For instance, to send to channel 1 of the first device,
 <pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
 </code></pre>
 <p>In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter, Novation uses a
-14-bit value by combining MSB and LSB 7-bit values. If the value to send was 10, you could use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], [0, 10]);
+would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter (2, 63), Novation
+uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
+value to send was 10, you could use:</p>
+<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);
 </code></pre>
 <p>For further implementation details, refer to the manufacturer's documentation.</p>
 
@@ -3636,7 +3637,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2233"><code>src&#x2F;webmidi.js:2233</code></a>
+        <a href="../files/src_webmidi.js.html#l2234"><code>src&#x2F;webmidi.js:2234</code></a>
         </p>
 
 
@@ -3962,7 +3963,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2463"><code>src&#x2F;webmidi.js:2463</code></a>
+        <a href="../files/src_webmidi.js.html#l2464"><code>src&#x2F;webmidi.js:2464</code></a>
         </p>
 
 
@@ -4096,7 +4097,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2415"><code>src&#x2F;webmidi.js:2415</code></a>
+        <a href="../files/src_webmidi.js.html#l2416"><code>src&#x2F;webmidi.js:2416</code></a>
         </p>
 
 
