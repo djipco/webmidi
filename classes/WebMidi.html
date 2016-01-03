@@ -448,7 +448,7 @@ craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2817"><code>src&#x2F;webmidi.js:2817</code></a>
+        <a href="../files/src_webmidi.js.html#l2827"><code>src&#x2F;webmidi.js:2827</code></a>
         </p>
 
 
@@ -505,7 +505,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2794"><code>src&#x2F;webmidi.js:2794</code></a>
+        <a href="../files/src_webmidi.js.html#l2804"><code>src&#x2F;webmidi.js:2804</code></a>
         </p>
 
 
@@ -832,7 +832,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2847"><code>src&#x2F;webmidi.js:2847</code></a>
+        <a href="../files/src_webmidi.js.html#l2857"><code>src&#x2F;webmidi.js:2857</code></a>
         </p>
 
 
@@ -1788,7 +1788,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2762"><code>src&#x2F;webmidi.js:2762</code></a>
+        <a href="../files/src_webmidi.js.html#l2772"><code>src&#x2F;webmidi.js:2772</code></a>
         </p>
 
 
@@ -2320,7 +2320,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2621"><code>src&#x2F;webmidi.js:2621</code></a>
+        <a href="../files/src_webmidi.js.html#l2631"><code>src&#x2F;webmidi.js:2631</code></a>
         </p>
 
 
@@ -2454,7 +2454,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2501"><code>src&#x2F;webmidi.js:2501</code></a>
+        <a href="../files/src_webmidi.js.html#l2511"><code>src&#x2F;webmidi.js:2511</code></a>
         </p>
 
 
@@ -2910,7 +2910,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2676"><code>src&#x2F;webmidi.js:2676</code></a>
+        <a href="../files/src_webmidi.js.html#l2686"><code>src&#x2F;webmidi.js:2686</code></a>
         </p>
 
 
@@ -3044,7 +3044,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2565"><code>src&#x2F;webmidi.js:2565</code></a>
+        <a href="../files/src_webmidi.js.html#l2575"><code>src&#x2F;webmidi.js:2575</code></a>
         </p>
 
 
@@ -3181,7 +3181,7 @@ the request is to be sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2339"><code>src&#x2F;webmidi.js:2339</code></a>
+        <a href="../files/src_webmidi.js.html#l2349"><code>src&#x2F;webmidi.js:2349</code></a>
         </p>
 
 
@@ -3326,7 +3326,7 @@ than 64.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2282"><code>src&#x2F;webmidi.js:2282</code></a>
+        <a href="../files/src_webmidi.js.html#l2292"><code>src&#x2F;webmidi.js:2292</code></a>
         </p>
 
 
@@ -3485,16 +3485,24 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sets the non-registered MIDI parameter to the specified value. The value is defined with
-up to two bytes of data (msb and lsb) that each can go from 0 to 127. Non-registered Parameter
-Numbers are not standardized in any way and are left to manufacturer-specific implementations.</p>
-<p>For example, according to the Roland GS specification, you can control the vibrato rate using
-NRPN (1, 8). Therefore, to set the <strong>vibrato rate</strong> value to <strong>123</strong> you would use:</p>
+        <p>Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+two-position array specifying the values of the two control bytes. The value is specified by
+passing in an single integer (most cases) or an array of two integers.</p>
+<p>NRPNs are not standardized in any way. Each manufacturer is free to implement them in any way
+they see fit. For example, according to the Roland GS specification, you can control the
+<strong>vibrato rate</strong> using NRPN (1, 8). Therefore, to set the <strong>vibrato rate</strong> value to <strong>123</strong> you
+would use:</p>
 <pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123);
 </code></pre>
 <p>Obviously, you should select an output device and channel so the message is not sent to all
-channels of all devices. For instance, to send to channel 1 of the first device, you would use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);</code></pre>
+channels on all devices. For instance, to send to channel 1 of the first device, you would use:</p>
+<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
+</code></pre>
+<p>In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
+would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter, Novation uses a
+14-bit value by combining MSB and LSB 7-bit values. If the value to send was 10, you could use:</p>
+<p>WebMidi.setNonRegisteredParameter([1, 8], [0, 10]);</p>
+<p>For further implementation details, refer to the manufacturer's documentation.</p>
 
     </div>
 
@@ -3509,7 +3517,7 @@ channels of all devices. For instance, to send to channel 1 of the first device,
 
                     <div class="param-description">
                         <p>A two-position array specifying the two control bytes (0x63,
-0x62) identifying the non-registered parameter.</p>
+0x62) that identify the non-registered parameter.</p>
 
                     </div>
 
@@ -3627,7 +3635,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2223"><code>src&#x2F;webmidi.js:2223</code></a>
+        <a href="../files/src_webmidi.js.html#l2233"><code>src&#x2F;webmidi.js:2233</code></a>
         </p>
 
 
@@ -3953,7 +3961,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2453"><code>src&#x2F;webmidi.js:2453</code></a>
+        <a href="../files/src_webmidi.js.html#l2463"><code>src&#x2F;webmidi.js:2463</code></a>
         </p>
 
 
@@ -4087,7 +4095,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2405"><code>src&#x2F;webmidi.js:2405</code></a>
+        <a href="../files/src_webmidi.js.html#l2415"><code>src&#x2F;webmidi.js:2415</code></a>
         </p>
 
 

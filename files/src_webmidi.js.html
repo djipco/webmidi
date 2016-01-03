@@ -2092,26 +2092,36 @@
   };
 
   /**
-   * Sets the non-registered MIDI parameter to the specified value. The value is defined with
-   * up to two bytes of data (msb and lsb) that each can go from 0 to 127. Non-registered Parameter
-   * Numbers are not standardized in any way and are left to manufacturer-specific implementations.
+   * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+   * two-position array specifying the values of the two control bytes. The value is specified by
+   * passing in an single integer (most cases) or an array of two integers.
    *
-   * For example, according to the Roland GS specification, you can control the vibrato rate using
-   * NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you would use:
+   * NRPNs are not standardized in any way. Each manufacturer is free to implement them in any way
+   * they see fit. For example, according to the Roland GS specification, you can control the
+   * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
+   * would use:
    *
    *     WebMidi.setNonRegisteredParameter([1, 8], 123);
    *
    * Obviously, you should select an output device and channel so the message is not sent to all
-   * channels of all devices. For instance, to send to channel 1 of the first device, you would use:
+   * channels on all devices. For instance, to send to channel 1 of the first device, you would use:
    *
    *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
+   *
+   * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
+   * would use a 2-position array. For example, for its **ClockBPM** parameter, Novation uses a
+   * 14-bit value by combining MSB and LSB 7-bit values. If the value to send was 10, you could use:
+   *
+   *    WebMidi.setNonRegisteredParameter([1, 8], [0, 10]);
+   *
+   * For further implementation details, refer to the manufacturer&#x27;s documentation.
    *
    * @method setNonRegisteredParameter
    * @static
    * @chainable
    *
    * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
-   * 0x62) identifying the non-registered parameter.
+   * 0x62) that identify the non-registered parameter.
    *
    * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
