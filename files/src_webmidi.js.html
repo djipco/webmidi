@@ -2104,7 +2104,7 @@
    * Obviously, you should select an output device and channel so the message is not sent to all
    * channels of all devices. For instance, to send to channel 1 of the first device, you would use:
    *
-   *     WebMidi.setNonRegisteredParameter([1, 8], 123, undefined, WebMidi.outputs[0], 1);
+   *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
    *
    * @method setNonRegisteredParameter
    * @static

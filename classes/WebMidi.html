@@ -3494,7 +3494,7 @@ NRPN (1, 8). Therefore, to set the <strong>vibrato rate</strong> value to <stron
 </code></pre>
 <p>Obviously, you should select an output device and channel so the message is not sent to all
 channels of all devices. For instance, to send to channel 1 of the first device, you would use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, undefined, WebMidi.outputs[0], 1);</code></pre>
+<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);</code></pre>
 
     </div>
 
