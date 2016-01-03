@@ -34,8 +34,7 @@
    * @static
    *
    * @todo  Add removeAllEventListeners(), on() and once() functions
-   * @todo  Add a 'filter' parameter to addListener. This would allow to listen for a specific
-   *        controller on a controlchange event or a specific note on a event message.
+   * @todo  Refine the "filter" param of addListener. Allow to listen for a specific controller or specific note.
    * @todo  Add methods for system common messages and system realtime messages
    * @todo  Add more examples in method documentation (playNote namely).
    * @todo  Add specific events for channel mode messages ?
@@ -345,22 +344,22 @@
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        *
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
        *
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        *
-       * @param {String} event.type         The type of event that occurred.
+       * @param {String} event.type The type of event that occurred.
        *
        * @param {Object} event.note
        *
-       * @param {uint} event.note.number    The MIDI note number.
+       * @param {uint} event.note.number The MIDI note number.
        *
-       * @param {String} event.note.name    The usual note name (C, C#, D, D#, etc.).
+       * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
        *
-       * @param {uint} event.note.octave    The octave (between -2 and 8).
+       * @param {uint} event.note.octave The octave (between -2 and 8).
        *
-       * @param {Number} event.velocity     The attack velocity (between 0 and 1).
+       * @param {Number} event.velocity The attack velocity (between 0 and 1).
        */
       event.type = 'noteon';
       event.note = {
@@ -387,22 +386,22 @@
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        *
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
        *
-       * @param {uint} event.channel        The channel where the event occurred (between 1 and 16).
+       * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        *
-       * @param {String} event.type         The type of event that occurred.
+       * @param {String} event.type The type of event that occurred.
        *
        * @param {Object} event.note
        *
-       * @param {uint} event.note.number    The MIDI note number.
+       * @param {uint} event.note.number The MIDI note number.
        *
-       * @param {String} event.note.name    The usual note name (C, C#, D, D#, etc.).
+       * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
        *
-       * @param {uint} event.note.octave    The octave (between -2 and 8).
+       * @param {uint} event.note.octave The octave (between -2 and 8).
        *
-       * @param {Number} event.value        The aftertouch amount (between 0 and 1).
+       * @param {Number} event.value The aftertouch amount (between 0 and 1).
        */
       event.type = 'keyaftertouch';
       event.note = {
@@ -830,13 +829,17 @@
        * @event reset
        *
        * @param {Object} event
+       *
        * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       *
+       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       *
+       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
+       * since the epoch).
+       *
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'reset';
@@ -844,20 +847,23 @@
     } else {
 
       /**
-       * Event emitted when an unknown system MIDI message has been received. It could be,
-       * for example, one of the undefined/reserved messages.
+       * Event emitted when an unknown system MIDI message has been received. It could be, for
+       * example, one of the undefined/reserved messages.
        *
        * @event unknownsystemmessage
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
-       * @param {String} event.type         The type of event that occurred.
+       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
+       *
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       *
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       *
+       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       *
+       * @param {String} event.type The type of event that occurred.
        */
       event.type = 'unknownsystemmessage';
 
@@ -1334,9 +1340,9 @@
    *
    * @param status {uint} The MIDI status byte of the message (128-255).
    *
-   * @param [data=[]] {Array(int)} An array of data bytes for the message. The number of data bytes
-   * varies depending on the status byte. It is perfectly legal to send no data. Each byte must be
-   * between 0 and 255.
+   * @param [data=[]] {Array(uint)} An array of uints for the message. The
+   * number of data bytes varies depending on the status byte. It is perfectly legal to send no
+   * data. Each byte must be between 0 and 255.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available `MIDIOutput` objects are listed in the
@@ -1358,11 +1364,17 @@
 
     if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
 
-    if (status === undefined || status < 128 || status > 255) {
+    if ( !(status >= 128 && status <= 255) ) {
       throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
     }
 
-    if (data === undefined || data.constructor !== Array) { data = []; }
+    if ( !Array.isArray(data) ) {
+      if ( parseInt(data) >= 0 && parseInt(data) <= 127 ) {
+        data = [parseInt(data)];
+      } else {
+        data = [];
+      }
+    }
 
     output = output || this.outputs;
     if (output.constructor !== Array) { output = [output]; }
@@ -1391,65 +1403,6 @@
     return this;
 
   };
-
-  ///**
-  // * Sends a MIDI real-time or common system message to all available outputs. The available
-  // * messages are as follows:
-  // *
-  // * System common messages:
-  // *
-  // *    sysex
-  // *    timecode
-  // *    songposition
-  // *    songselect
-  // *    tuningrequest
-  // *    sysexend
-  // *
-  // * System real-time messages:
-  // *
-  // *    clock
-  // *    start
-  // *    continue
-  // *    stop
-  // *    activesensing
-  // *    reset
-  // *
-  // * @method sendSystemMessage
-  // * @static
-  // * @chainable
-  // *
-  // * @param command {String}    A string representing the command to send. The available system
-  // *                            commands are: `sysex`, `timecode`, `songposition`, `songselect`,
-  // *                            `tuningrequest`, `sysexend`, `clock`, `start`, `continue`, `stop`,
-  // *                            `activesensing` and `reset`.
-  // * @param [data=[]] {Array}   An array of data bytes to insert in the message. The number of data
-  // *                            bytes varies depending on the command.
-  // * @param [delay=0] {uint}    The number of milliseconds to wait before actually sending the
-  // *                            message (using 0 will send the message immediately).
-  // *
-  // * @throws {Error}            WebMidi must be enabled sending messages.
-  // * @throws {RangeError}       The requested system command is not supported.
-  // *
-  // * @return {WebMidi}          Returns the `WebMidi` object so methods can be chained.
-  // *
-  // */
-  //WebMidi.prototype.sendSystemMessage = function(command, data, delay) {
-  //
-  //  if (!this.connected) { throw new Error("WebMidi must be connected sending messages."); }
-  //
-  //  if (!_systemMessages[command]) {
-  //    throw new RangeError("The requested system command (" + command + ") is not supported");
-  //  }
-  //
-  //  if (!data || data.constructor !== Array) { data = []; }
-  //
-  //  delay = parseInt(delay);
-  //  if (isNaN(delay)) { delay = 0; }
-  //
-  //  this.send("all", _systemMessages[command], data, this.time + delay);
-  //
-  //  return this;
-  //};
 
   /**
    * Sends a MIDI *system exclusive* message to the specified device(s). The generated message will
@@ -1523,6 +1476,89 @@
     return this;
 
   };
+
+  /**
+   * To complete!!
+   *
+   * @param data
+   * @param output
+   * @param time
+   * @returns {WebMidi}
+     */
+  WebMidi.prototype.sendTimecodeQuarterFrame = function(data, output, time) {
+    this.send(_systemMessages.timecode, data, output, time);
+    return this;
+  };
+
+  /**
+   *
+   * @param [beat=0] {uint} An integer between 0 and 16383 that represents the desired song
+   * position (in beats).
+   *
+   * @param output
+   * @param time
+   * @returns {WebMidi}
+   */
+  WebMidi.prototype.sendSongPosition = function(beat, output, time) {
+
+    beat = parseInt(beat) || 0;
+
+    var msb = (beat >> 7) & 0x7F;
+    var lsb = beat & 0x7F;
+
+    this.send(_systemMessages.songposition, [msb, lsb], output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendSongSelect = function(number, output, time) {
+
+    number = parseInt(number);
+
+    if ( !(number >= 0 && number <= 127) ) {
+      throw new Error("The song number must be between 0 and 127.");
+    }
+
+    this.send(_systemMessages.songselect, [number], output, time);
+
+    return this;
+
+  };
+
+  WebMidi.prototype.sendTuningRequest = function(output, time) {
+    this.send(_systemMessages.tuningrequest, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendClock = function(output, time) {
+    this.send(_systemMessages.clock, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendStart = function(output, time) {
+    this.send(_systemMessages.start, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendContinue = function(output, time) {
+    this.send(_systemMessages.continue, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendStop = function(output, time) {
+    this.send(_systemMessages.stop, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendActiveSensing = function(output, time) {
+    this.send(_systemMessages.activesensing, undefined, output, time);
+    return this;
+  };
+
+  WebMidi.prototype.sendReset = function(output, time) {
+    this.send(_systemMessages.reset, undefined, output, time);
+    return this;
+  };
+
 
   /**
    * Sends a MIDI `note off` message to the specified device(s) and channel(s) for a single note or
@@ -1603,39 +1639,34 @@
    * @static
    * @chainable
    *
-   * @param note {Array|uint|String}      The note to play or an array of notes to play. The notes
-   *                                      can be specified in one of two ways. The first way is by
-   *                                      using the MIDI note number (an integer between 0 and 127).
-   *                                      The second way is by using the note name followed by the
-   *                                      octave (C3, G#4, F-1). The octave range should be between
-   *                                      -2 and 8. The lowest possible note is C-2 and the highest
-   *                                      is G8.
-   * @param [velocity=0.5] {Number}       The velocity at which to play the note (between 0 and 1).
-   *                                      An invalid velocity value will silently trigger the
-   *                                      default.
+   * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
+   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
+   * integer between 0 and 127). The second way is by using the note name followed by the octave
+   * (C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note
+   * number 0) and the highest note is G8 (MIDI note number 127).
+   *
+   * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
+   * invalid velocity value will silently trigger the default.
+   *
    * @param [duration=undefined] {int}    The number of milliseconds to wait before sending a
-   *                                      matching note off event. If left undefined, only a
-   *                                      `note on` message is sent.
+   * matching note off event. If left undefined, only a `note on` message is sent.
    *
    * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
    * devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
-   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   *                                            array of channel numbers. If the special value "all"
-   *                                            is used, the message will be sent to all 16
-   *                                            channels.
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   *                                      the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
    */
