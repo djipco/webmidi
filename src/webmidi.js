@@ -2022,21 +2022,20 @@
    * Obviously, you should select an output device and channel so the message is not sent to all
    * channels of all devices. For instance, to send to channel 1 of the first device, you would use:
    *
-   *     WebMidi.setNonRegisteredParameter([1, 8], 123, undefined, WebMidi.outputs[0], 1);
+   *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
    *
    * @method setNonRegisteredParameter
    * @static
    * @chainable
    *
-   * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
-   * two-position array specifying the two control bytes (0x63, 0x62) identifying the non-registered
-   * parameter.
+   * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
+   * 0x62) identifying the non-registered parameter.
    *
    * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
    * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
    * currently available output MIDI devices.
    *
@@ -2519,18 +2518,16 @@
    * 16 channels.
    *
    * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   * the value is a string starting with the + sign and
-   *                                      followed by a number, the request will be delayed by the
-   *                                      specified number (in milliseconds). Otherwise, the value
-   *                                      is considered a timestamp and the request will be
-   *                                      scheduled at that timestamp. The DOMHighResTimeStamp value
-   *                                      is relative to the navigation start of the document. To
-   *                                      retrieve the current time, you can use `WebMidi.time`. If
-   *                                      `time` is not present or is set to a time in the past,
-   *                                      the request is to be sent as soon as possible.
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
    * @throws {RangeError}                 Channel mode controller numbers must be between 120 and
    *                                      127.
+   *
    * @throws {RangeError}                 Value must be between 0 and 127.
    *
    * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
