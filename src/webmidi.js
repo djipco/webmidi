@@ -1448,7 +1448,7 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throw System exclusive message support must first be activated.
+   * @throw SysEx message support must first be activated.
    *
    * @throw The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).
    *
@@ -1457,7 +1457,7 @@
   WebMidi.prototype.sendSysex = function(manufacturer, data, output, time) {
 
     if (!this.sysexEnabled) {
-      throw new Error("System exclusive message support must first be activated.");
+      throw new Error("SysEx message support must first be activated.");
     }
 
     manufacturer = [].concat(manufacturer);
@@ -1478,47 +1478,109 @@
   };
 
   /**
-   * To complete!!
+   * Sends a *MIDI Timecode Quarter Frame* message to the specified output device(s). Please note
+   * that no processing is being done on the data. It is up to the developer to format the data
+   * according to the [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
    *
-   * @param data
-   * @param output
-   * @param time
-   * @returns {WebMidi}
-     */
-  WebMidi.prototype.sendTimecodeQuarterFrame = function(data, output, time) {
-    this.send(_systemMessages.timecode, data, output, time);
+   * @method sendTimecodeQuarterFrame
+   * @static
+   * @chainable
+   *
+   * @param value {uint} The quarter frame message content (unsigned int between 0 and 127).
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.sendTimecodeQuarterFrame = function(value, output, time) {
+    this.send(_systemMessages.timecode, value, output, time);
     return this;
   };
 
   /**
+   * Sends a *Song Position* MIDI message to the specified output device(s). The value is expressed
+   * in MIDI beats (between 0 and 16383) which are 16th note. Position 0 is always the start of the
+   * song.
    *
-   * @param [beat=0] {uint} An integer between 0 and 16383 that represents the desired song
-   * position (in beats).
+   * @method sendSongPosition
+   * @static
+   * @chainable
    *
-   * @param output
-   * @param time
-   * @returns {WebMidi}
+   * @param [value=0] {uint} The MIDI beat to cue to (int between 0 and 16383).
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendSongPosition = function(beat, output, time) {
+  WebMidi.prototype.sendSongPosition = function(value, output, time) {
 
-    beat = parseInt(beat) || 0;
+    value = parseInt(value) || 0;
 
-    var msb = (beat >> 7) & 0x7F;
-    var lsb = beat & 0x7F;
+    var msb = (value >> 7) & 0x7F;
+    var lsb = value & 0x7F;
 
     this.send(_systemMessages.songposition, [msb, lsb], output, time);
     return this;
   };
 
-  WebMidi.prototype.sendSongSelect = function(number, output, time) {
+  /**
+   * Sends a *Song Select* MIDI message to the specified output device(s). Beware that some devices
+   * will display position 0 as position for user-friendlyness.
+   *
+   * @method sendSongSelect
+   * @static
+   * @chainable
+   *
+   * @param value {uint} The number of the song to select (int between 0 and 127).
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @throw The song number must be between 0 and 127.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.sendSongSelect = function(value, output, time) {
 
-    number = parseInt(number);
+    value = parseInt(value);
 
-    if ( !(number >= 0 && number <= 127) ) {
-      throw new Error("The song number must be between 0 and 127.");
+    if ( !(value >= 0 && value <= 127) ) {
+      throw new RangeError("The song number must be between 0 and 127.");
     }
 
-    this.send(_systemMessages.songselect, [number], output, time);
+    this.send(_systemMessages.songselect, [value], output, time);
 
     return this;
 
@@ -1529,36 +1591,176 @@
     return this;
   };
 
+  /**
+   * Sends a *MIDI Clock* real-time message to the specified output device(s). According to the
+   * standard, there are 24 MIDI Clocks for every quarter note.
+   *
+   * @method sendClock
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendClock = function(output, time) {
     this.send(_systemMessages.clock, undefined, output, time);
     return this;
   };
 
+  /**
+   * Sends a *Start* real-time message to the specified output device(s). A MIDI Start message
+   * starts the playback of the current song at beat 0. To start playback elsewhere in the song, use
+   * the `sendContinue()` function.
+   *
+   * @method sendStart
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendStart = function(output, time) {
     this.send(_systemMessages.start, undefined, output, time);
     return this;
   };
 
+  /**
+   * Sends a *Continue* real-time message to the specified output device(s). This resumes song
+   * playback where it was previously stopped or where it was last cued with a song position
+   * message. To start playback from the start, use the `sendStart()` function.
+   *
+   * @method sendContinue
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendContinue = function(output, time) {
     this.send(_systemMessages.continue, undefined, output, time);
     return this;
   };
 
+  /**
+   * Sends a *Stop* real-time message to the specified output device(s). This tells the remote
+   * device to stop playback immediately.
+   *
+   * @method sendStop
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendStop = function(output, time) {
     this.send(_systemMessages.stop, undefined, output, time);
     return this;
   };
 
+  /**
+   * Sends an *Active Sensing* real-time message to the specified output device(s). This tells the
+   * remote device that the connection is still good. Active sensing messages should be sent every
+   * 300 ms if there was no other activity on the MIDI port.
+   *
+   * @method sendActiveSensing
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendActiveSensing = function(output, time) {
     this.send(_systemMessages.activesensing, undefined, output, time);
     return this;
   };
 
+  /**
+   * Sends an *Reset* real-time message to the specified output device(s). This tells the
+   * remote device that is should reset itself to a default state.
+   *
+   * @method sendReset
+   * @static
+   * @chainable
+   *
+   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
+   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
+   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
+   * currently available output MIDI devices.
+   *
+   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
+   * the value is a string starting with the + sign and followed by a number, the request will be
+   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
+   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
   WebMidi.prototype.sendReset = function(output, time) {
     this.send(_systemMessages.reset, undefined, output, time);
     return this;
   };
-
 
   /**
    * Sends a MIDI `note off` message to the specified device(s) and channel(s) for a single note or
