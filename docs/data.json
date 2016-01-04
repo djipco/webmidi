@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "1.0.0-beta.9",
+        "version": "1.0.0-beta.10",
         "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": ""
     },
@@ -33,7 +33,7 @@
             "todo": [
                 "Add removeAllEventListeners()",
                 "on() and once() functions",
-                "Add a 'filter' parameter to addListener. This would allow to listen for a specific\n       controller on a controlchange event or a specific note on a event message.",
+                "Refine the \"filter\" param of addListener. Allow to listen for a specific controller or specific note.",
                 "Add methods for system common messages and system realtime messages",
                 "Add more examples in method documentation (playNote namely).",
                 "Add specific events for channel mode messages ?",
@@ -49,7 +49,7 @@
     "classitems": [
         {
             "file": "src/webmidi.js",
-            "line": 53,
+            "line": 52,
             "description": "[read-only] Indicates whether the browser supports the Web MIDI API or not.",
             "itemtype": "property",
             "name": "supported",
@@ -59,7 +59,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 67,
+            "line": 66,
             "description": "[read-only] Indicates whether the interface to the host's MIDI subsystem is currently\nactive.",
             "itemtype": "property",
             "name": "connected",
@@ -69,7 +69,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 82,
+            "line": 81,
             "description": "[read-only] An array of all currently available MIDI input devices.",
             "itemtype": "property",
             "name": "inputs",
@@ -79,7 +79,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 103,
+            "line": 102,
             "description": "[read-only] An array of all currently available MIDI output devices.",
             "itemtype": "property",
             "name": "outputs",
@@ -89,7 +89,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 124,
+            "line": 123,
             "description": "[read-only] Indicates whether the interface to the host's MIDI subsystem is currently\nactive.",
             "itemtype": "property",
             "name": "sysexEnabled",
@@ -99,7 +99,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 139,
+            "line": 138,
             "description": "[read-only] Current MIDI performance time in milliseconds. This can be used to queue events\nin the future.",
             "itemtype": "property",
             "name": "time",
@@ -109,7 +109,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 219,
+            "line": 218,
             "itemtype": "method",
             "name": "_initializeUserHandlers",
             "access": "private",
@@ -118,7 +118,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 241,
+            "line": 240,
             "itemtype": "method",
             "name": "_onInterfaceStateChange",
             "access": "private",
@@ -127,7 +127,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 247,
+            "line": 246,
             "description": "Event emitted when the interface's state changes. Typically, this happens when a MIDI device\nis being plugged or unplugged. This event cannot be listened on a single specific MIDI\ndevice, it is intended to be interface-wide.",
             "itemtype": "event",
             "name": "statechange",
@@ -142,7 +142,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 261,
+            "line": 260,
             "itemtype": "method",
             "name": "_parseChannelEvent",
             "params": [
@@ -157,7 +157,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 291,
+            "line": 290,
             "description": "Event emitted when a note off MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "noteoff",
@@ -231,7 +231,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 333,
+            "line": 332,
             "description": "Event emitted when a note on MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "noteon",
@@ -258,7 +258,7 @@
                         },
                         {
                             "name": "timeStamp",
-                            "description": "The timestamp when the event occurred (in milliseconds\nsince the epoch).",
+                            "description": "The timestamp when the event occurred (in milliseconds since\nthe epoch).",
                             "type": "Uint"
                         },
                         {
@@ -305,7 +305,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 375,
+            "line": 374,
             "description": "Event emitted when a key-specific aftertouch MIDI message has been received on a specific\ndevice and channel.",
             "itemtype": "event",
             "name": "keyaftertouch",
@@ -332,7 +332,7 @@
                         },
                         {
                             "name": "timeStamp",
-                            "description": "The timestamp when the event occurred (in milliseconds\nsince the epoch).",
+                            "description": "The timestamp when the event occurred (in milliseconds since\nthe epoch).",
                             "type": "Uint"
                         },
                         {
@@ -379,7 +379,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 420,
+            "line": 419,
             "description": "Event emitted when a control change MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "controlchange",
@@ -448,7 +448,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 462,
+            "line": 461,
             "description": "Event emitted when a channel mode MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "channelmode",
@@ -517,7 +517,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 501,
+            "line": 500,
             "description": "Event emitted when a program change MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "programchange",
@@ -569,7 +569,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 530,
+            "line": 529,
             "description": "Event emitted when a channel-wide aftertouch MIDI message has been received on a specific\ndevice and channel.",
             "itemtype": "event",
             "name": "channelaftertouch",
@@ -621,7 +621,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 559,
+            "line": 558,
             "description": "Event emitted when a pitch bend MIDI message has been received on a specific device and\nchannel.",
             "itemtype": "event",
             "name": "pitchbend",
@@ -673,7 +673,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 601,
+            "line": 600,
             "itemtype": "method",
             "name": "_parseSystemEvent",
             "access": "private",
@@ -682,7 +682,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 619,
+            "line": 618,
             "description": "Event emitted when a system exclusive MIDI message has been received.",
             "itemtype": "event",
             "name": "sysex",
@@ -724,7 +724,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 642,
+            "line": 641,
             "description": "Event emitted when a system MIDI time code quarter frame message has been received.",
             "itemtype": "event",
             "name": "timecode",
@@ -766,7 +766,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 667,
+            "line": 666,
             "description": "Event emitted when a system song position pointer MIDI message has been received.",
             "itemtype": "event",
             "name": "songposition",
@@ -808,7 +808,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 692,
+            "line": 691,
             "description": "Event emitted when a system song select MIDI message has been received.",
             "itemtype": "event",
             "name": "songselect",
@@ -855,7 +855,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 713,
+            "line": 712,
             "description": "Event emitted when a system tune request MIDI message has been received.",
             "itemtype": "event",
             "name": "tuningrequest",
@@ -897,7 +897,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 732,
+            "line": 731,
             "description": "Event emitted when a system timing clock MIDI message has been received.",
             "itemtype": "event",
             "name": "clock",
@@ -939,7 +939,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 751,
+            "line": 750,
             "description": "Event emitted when a system start MIDI message has been received.",
             "itemtype": "event",
             "name": "start",
@@ -981,7 +981,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 770,
+            "line": 769,
             "description": "Event emitted when a system continue MIDI message has been received.",
             "itemtype": "event",
             "name": "continue",
@@ -1023,7 +1023,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 789,
+            "line": 788,
             "description": "Event emitted when a system stop MIDI message has been received.",
             "itemtype": "event",
             "name": "stop",
@@ -1065,7 +1065,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 808,
+            "line": 807,
             "description": "Event emitted when a system active sensing MIDI message has been received.",
             "itemtype": "event",
             "name": "activesensing",
@@ -1107,7 +1107,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 827,
+            "line": 826,
             "description": "Event emitted when a system reset MIDI message has been received.",
             "itemtype": "event",
             "name": "reset",
@@ -1124,17 +1124,17 @@
                         },
                         {
                             "name": "data",
-                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "description": "The raw MIDI message as an array of 8 bit values.",
                             "type": "Uint8Array"
                         },
                         {
                             "name": "receivedTime",
-                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "description": "The time when the event occurred (in milliseconds since\nstart).",
                             "type": "Number"
                         },
                         {
                             "name": "timeStamp",
-                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "description": "The timestamp when the event occurred (in milliseconds\nsince the epoch).",
                             "type": "Uint"
                         },
                         {
@@ -1149,8 +1149,8 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 846,
-            "description": "Event emitted when an unknown system MIDI message has been received. It could be,\nfor example, one of the undefined/reserved messages.",
+            "line": 849,
+            "description": "Event emitted when an unknown system MIDI message has been received. It could be, for\nexample, one of the undefined/reserved messages.",
             "itemtype": "event",
             "name": "unknownsystemmessage",
             "params": [
@@ -1166,17 +1166,17 @@
                         },
                         {
                             "name": "data",
-                            "description": "The raw MIDI message as an array of 8 bit\n                                   values.",
+                            "description": "The raw MIDI message as an array of 8 bit values.",
                             "type": "Uint8Array"
                         },
                         {
                             "name": "receivedTime",
-                            "description": "The time when the event occurred (in\n                                   milliseconds since start).",
+                            "description": "The time when the event occurred (in milliseconds since\nstart).",
                             "type": "Number"
                         },
                         {
                             "name": "timeStamp",
-                            "description": "The timestamp when the event occurred\n                                   (in milliseconds since the epoch).",
+                            "description": "The timestamp when the event occurred (in milliseconds since\nthe epoch).",
                             "type": "Uint"
                         },
                         {
@@ -1191,7 +1191,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 875,
+            "line": 881,
             "itemtype": "method",
             "name": "_onMidiMessage",
             "access": "private",
@@ -1200,7 +1200,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 889,
+            "line": 895,
             "description": "Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.\nIf the operation succeeds, the `successHandler` callback is executed. If not, the\n`errorHandler` callback is executed and passed a string describing the error.",
             "itemtype": "method",
             "name": "enable",
@@ -1230,7 +1230,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 940,
+            "line": 946,
             "description": "Adds an event listener that will trigger a function callback when the specified event happens.\nBy default, the listener is system-wide (it will listen on all MIDI channels of all MIDI input\ndevices). To listen to a specific device or channel, you can use the `filter` parameter.\n\nWebMidi must be enabled before adding event listeners.\n\nHere is a list of events that are dispatched by the `WebMidi` object and that can be listened\nto.\n\nMIDI interface event:\n\n   * {{#crossLink \"WebMidi/statechange:event\"}}statechange{{/crossLink}}\n\nDevice and channel-specific MIDI events:\n\n   * {{#crossLink \"WebMidi/noteoff:event\"}}noteoff{{/crossLink}}\n   * {{#crossLink \"WebMidi/noteon:event\"}}noteon{{/crossLink}}\n   * {{#crossLink \"WebMidi/keyaftertouch:event\"}}keyaftertouch{{/crossLink}}\n   * {{#crossLink \"WebMidi/controlchange:event\"}}controlchange{{/crossLink}}\n   * {{#crossLink \"WebMidi/channelmode:event\"}}channelmode{{/crossLink}}\n   * {{#crossLink \"WebMidi/programchange:event\"}}programchange{{/crossLink}}\n   * {{#crossLink \"WebMidi/channelaftertouch:event\"}}channelaftertouch{{/crossLink}}\n   * {{#crossLink \"WebMidi/pitchbend:event\"}}pitchbend{{/crossLink}}\n\nSystem-wide MIDI events:\n\n   * {{#crossLink \"WebMidi/sysex:event\"}}sysex{{/crossLink}}\n   * {{#crossLink \"WebMidi/timecode:event\"}}timecode{{/crossLink}}\n   * {{#crossLink \"WebMidi/songposition:event\"}}songposition{{/crossLink}}\n   * {{#crossLink \"WebMidi/songselect:event\"}}songselect{{/crossLink}}\n   * {{#crossLink \"WebMidi/tuningrequest:event\"}}tuningrequest{{/crossLink}}\n   * {{#crossLink \"WebMidi/clock:event\"}}clock{{/crossLink}}\n   * {{#crossLink \"WebMidi/start:event\"}}start{{/crossLink}}\n   * {{#crossLink \"WebMidi/continue:event\"}}continue{{/crossLink}}\n   * {{#crossLink \"WebMidi/stop:event\"}}stop{{/crossLink}}\n   * {{#crossLink \"WebMidi/activesensing:event\"}}activesensing{{/crossLink}}\n   * {{#crossLink \"WebMidi/reset:event\"}}reset{{/crossLink}}\n   * {{#crossLink \"WebMidi/unknownsystemmessage:event\"}}unknownsystemmessage{{/crossLink}}\n\nFor system-wide events, the `filters` parameter (if any) will be silently ignored.",
             "itemtype": "method",
             "name": "addListener",
@@ -1287,7 +1287,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1094,
+            "line": 1100,
             "description": "Returns a MIDIOutput or MIDIInput device matching the specified id and device type.",
             "itemtype": "method",
             "name": "getDeviceById",
@@ -1314,7 +1314,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1122,
+            "line": 1128,
             "description": "Return the index of a device in the `WebMidi.outputs` or `WebMidi.inputs` arrays. The device\nmust be specified by using its id.",
             "itemtype": "method",
             "name": "getDeviceIndexById",
@@ -1341,7 +1341,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1149,
+            "line": 1155,
             "description": "Checks if the specified event type is already defined to trigger the listener function on the\nspecified device and channel. If more than one device and/or channel is specified, the function\nwill return `true` only if all devices/channels have the listener defined.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is\nsilently ignored.",
             "itemtype": "method",
             "name": "hasListener",
@@ -1390,7 +1390,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1233,
+            "line": 1239,
             "description": "Removes the specified listener from all requested input devices and channel(s). If more than\none devices and/or channels are specified, the function will remove the listener from all\ndevices/channels.\n\nFor system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is\nsilently ignored.",
             "itemtype": "method",
             "name": "removeListener",
@@ -1440,7 +1440,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1318,
+            "line": 1324,
             "description": "Sends a MIDI message to the specified MIDI output device(s) at the specified timestamp. The\n`output` parameter must refer to an actual available output device or an array of output\ndevices such as those listed in the `WebMidi.outputs` array.\n\nUnless, you are familiar with the details of the MIDI message format, you should not use this\nmethod directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,\n`sendControlChange()`, `sendSystemMessage()`, etc.\n\nDetails on the format of MIDI messages are available in the\n<a href=\"http://www.midi.org/techspecs/midimessages.php\">summary of MIDI messages</a> of the\nMIDI Manufacturers Association.",
             "itemtype": "method",
             "name": "send",
@@ -1454,8 +1454,8 @@
                 },
                 {
                     "name": "data",
-                    "description": "An array of data bytes for the message. The number of data bytes\nvaries depending on the status byte. It is perfectly legal to send no data. Each byte must be\nbetween 0 and 255.",
-                    "type": "Array(int)",
+                    "description": "An array of uints for the message. The\nnumber of data bytes varies depending on the status byte. It is perfectly legal to send no\ndata. Each byte must be between 0 and 255.",
+                    "type": "Array(uint)",
                     "optional": true,
                     "optdefault": "[]"
                 },
@@ -1485,7 +1485,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1454,
+            "line": 1407,
             "description": "Sends a MIDI *system exclusive* message to the specified device(s). The generated message will\nautomatically be prepended with the *SysEx* byte (0xF0) and terminated with the *End of SysEx*\nbyte (0xF7).\n\nFor example, if you want to send a SysEx message to a Korg device connected to the first\noutput, you would use the following code:\n\n    WebMidi.sendSysex(0x42, [1, 2, 3, 4, 5], WebMidi.outputs[0]);\n\nThe above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (ID 0x42). Some\nmanufacturers are identified using 3 bytes. In this case, you would use a 3-position array as\nthe first parameter. For example, to send the same SysEx message to a *Native Instruments*\ndevice:\n\n    WebMidi.sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5], WebMidi.outputs[0]);\n\nThere is no limit for the length of the data array. However, it is generally suggested to keep\nsystem exclusive messages to 64Kb or less.",
             "itemtype": "method",
             "name": "sendSysex",
@@ -1528,7 +1528,295 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1527,
+            "line": 1480,
+            "description": "Sends a *MIDI Timecode Quarter Frame* message to the specified output device(s). Please note\nthat no processing is being done on the data. It is up to the developer to format the data\naccording to the [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.",
+            "itemtype": "method",
+            "name": "sendTimecodeQuarterFrame",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The quarter frame message content (unsigned int between 0 and 127).",
+                    "type": "Uint"
+                },
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1511,
+            "description": "Sends a *Song Position* MIDI message to the specified output device(s). The value is expressed\nin MIDI beats (between 0 and 16383) which are 16th note. Position 0 is always the start of the\nsong.",
+            "itemtype": "method",
+            "name": "sendSongPosition",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The MIDI beat to cue to (int between 0 and 16383).",
+                    "type": "Uint",
+                    "optional": true,
+                    "optdefault": "0"
+                },
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1548,
+            "description": "Sends a *Song Select* MIDI message to the specified output device(s). Beware that some devices\nwill display position 0 as position for user-friendlyness.",
+            "itemtype": "method",
+            "name": "sendSongSelect",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The number of the song to select (int between 0 and 127).",
+                    "type": "Uint"
+                },
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "throw": "The song number must be between 0 and 127.",
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1594,
+            "description": "Sends a *MIDI Clock* real-time message to the specified output device(s). According to the\nstandard, there are 24 MIDI Clocks for every quarter note.",
+            "itemtype": "method",
+            "name": "sendClock",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1622,
+            "description": "Sends a *Start* real-time message to the specified output device(s). A MIDI Start message\nstarts the playback of the current song at beat 0. To start playback elsewhere in the song, use\nthe `sendContinue()` function.",
+            "itemtype": "method",
+            "name": "sendStart",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1651,
+            "description": "Sends a *Continue* real-time message to the specified output device(s). This resumes song\nplayback where it was previously stopped or where it was last cued with a song position\nmessage. To start playback from the start, use the `sendStart()` function.",
+            "itemtype": "method",
+            "name": "sendContinue",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1680,
+            "description": "Sends a *Stop* real-time message to the specified output device(s). This tells the remote\ndevice to stop playback immediately.",
+            "itemtype": "method",
+            "name": "sendStop",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1708,
+            "description": "Sends an *Active Sensing* real-time message to the specified output device(s). This tells the\nremote device that the connection is still good. Active sensing messages should be sent every\n300 ms if there was no other activity on the MIDI port.",
+            "itemtype": "method",
+            "name": "sendActiveSensing",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1737,
+            "description": "Sends an *Reset* real-time message to the specified output device(s). This tells the\nremote device that is should reset itself to a default state.",
+            "itemtype": "method",
+            "name": "sendReset",
+            "static": 1,
+            "chainable": 1,
+            "params": [
+                {
+                    "name": "output",
+                    "description": "A MIDI output device or an array of\nMIDI output devices to send the message to. All available MIDIOutput objects are listed in the\n`WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all\ncurrently available output MIDI devices.",
+                    "type": "MIDIOutput|Array(MIDIOutput)",
+                    "optional": true,
+                    "optdefault": "undefined"
+                },
+                {
+                    "name": "time",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
+                    "type": "DOMHighResTimeStamp|String",
+                    "optional": true,
+                    "optdefault": "undefined"
+                }
+            ],
+            "return": {
+                "description": "Returns the `WebMidi` object so methods can be chained.",
+                "type": "WebMidi"
+            },
+            "class": "WebMidi"
+        },
+        {
+            "file": "src/webmidi.js",
+            "line": 1765,
             "description": "Sends a MIDI `note off` message to the specified device(s) and channel(s) for a single note or\nmultiple simultaneous notes (chord). You can delay the execution of the `note off` command by\nusing the `delay` parameter (milliseconds).",
             "itemtype": "method",
             "name": "stopNote",
@@ -1577,7 +1865,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1591,
+            "line": 1829,
             "description": "Requests the playback of a single note or multiple notes on the specified device(s) and\nchannel(s). You can delay the execution of the `note on` command by using the `delay` parameter\n(milliseconds).\n\nIf no duration is specified, the note will play until a matching `note off` is sent. If a\nduration is specified, a `note off` will be automatically executed after said duration.\n\nPlease note that if you do use a duration, the release velocity will always be 64. If you want\nto tailor the release velocity, you need to use separate `playNote()` and `stopNote()` calls.",
             "itemtype": "method",
             "name": "playNote",
@@ -1586,19 +1874,19 @@
             "params": [
                 {
                     "name": "note",
-                    "description": "The note to play or an array of notes to play. The notes\n                                     can be specified in one of two ways. The first way is by\n                                     using the MIDI note number (an integer between 0 and 127).\n                                     The second way is by using the note name followed by the\n                                     octave (C3, G#4, F-1). The octave range should be between\n                                     -2 and 8. The lowest possible note is C-2 and the highest\n                                     is G8.",
+                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note\nnumber 0) and the highest note is G8 (MIDI note number 127).",
                     "type": "Array|uint|String"
                 },
                 {
                     "name": "velocity",
-                    "description": "The velocity at which to play the note (between 0 and 1).\n                                     An invalid velocity value will silently trigger the\n                                     default.",
+                    "description": "The velocity at which to play the note (between 0 and 1). An\ninvalid velocity value will silently trigger the default.",
                     "type": "Number",
                     "optional": true,
                     "optdefault": "0.5"
                 },
                 {
                     "name": "duration",
-                    "description": "The number of milliseconds to wait before sending a\n                                     matching note off event. If left undefined, only a\n                                     `note on` message is sent.",
+                    "description": "The number of milliseconds to wait before sending a\nmatching note off event. If left undefined, only a `note on` message is sent.",
                     "type": "Int",
                     "optional": true,
                     "optdefault": "undefined"
@@ -1611,14 +1899,14 @@
                 },
                 {
                     "name": "channel",
-                    "description": "The MIDI channel number (between 1 and 16) or an\n                                           array of channel numbers. If the special value \"all\"\n                                           is used, the message will be sent to all 16\n                                           channels.",
+                    "description": "The MIDI channel number (between 1 and 16) or an\narray of channel numbers. If the special value \"all\" is used, the message will be sent to all\n16 channels.",
                     "type": "Uint|Array|String",
                     "optional": true,
                     "optdefault": "all"
                 },
                 {
                     "name": "time",
-                    "description": "This value can be one of two things. If\n                                     the value is a string starting with the + sign and\n                                     followed by a number, the request will be delayed by the\n                                     specified number (in milliseconds). Otherwise, the value\n                                     is considered a timestamp and the request will be\n                                     scheduled at that timestamp. The DOMHighResTimeStamp value\n                                     is relative to the navigation start of the document. To\n                                     retrieve the current time, you can use `WebMidi.time`. If\n                                     `time` is not present or is set to a time in the past,\n                                     the request is to be sent as soon as possible.",
+                    "description": "This value can be one of two things. If\nthe value is a string starting with the + sign and followed by a number, the request will be\ndelayed by the specified number (in milliseconds). Otherwise, the value is considered a\ntimestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is\nrelative to the navigation start of the document. To retrieve the current time, you can use\n`WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be\nsent as soon as possible.",
                     "type": "DOMHighResTimeStamp|String",
                     "optional": true,
                     "optdefault": "undefined"
@@ -1632,7 +1920,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1689,
+            "line": 1922,
             "description": "Sends a MIDI `key aftertouch` message to the specified device(s) and channel(s). This is a\nkey-specific aftertouch. For a channel-wide aftertouch message, use\n{{#crossLink \"WebMidi/sendChannelAftertouch:method\"}}sendChannelAftertouch(){{/crossLink}}.",
             "itemtype": "method",
             "name": "sendKeyAftertouch",
@@ -1641,7 +1929,7 @@
             "params": [
                 {
                     "name": "note",
-                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the\n  octave (C3, G#4, F-1). The octave range should be between\n                                 -2 and 8. The lowest note is C-2 (MIDI note number 0) and\n                                 the highest note is G8 (MIDI note number 127).",
+                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note\nnumber 0) and the highest note is G8 (MIDI note number 127).",
                     "type": "Array|uint|String"
                 },
                 {
@@ -1684,7 +1972,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1755,
+            "line": 1988,
             "description": "Sends a MIDI `control change` message to the specified device(s) and channel(s). The message\ncan also be scheduled to be sent at a specific time via the `time` parameter.\n\nTo view a list of all available `control change` messages, please consult \"Table 3 - Control\nChange Messages\" from the [MIDI Messages](http://www.midi.org/techspecs/midimessages.php)\nspecification.",
             "itemtype": "method",
             "name": "sendControlChange",
@@ -1736,7 +2024,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1820,
+            "line": 2053,
             "description": "Selects a MIDI registered parameter so it is affected by data entry, data increment and data\ndecrement messages.",
             "itemtype": "method",
             "name": "_selectRegisteredParameter",
@@ -1770,7 +2058,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1860,
+            "line": 2093,
             "description": "Selects a MIDI non-registered parameter so it is affected by data entry, data increment and\ndata decrement messages.",
             "itemtype": "method",
             "name": "_selectNonRegisteredParameter",
@@ -1804,7 +2092,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1900,
+            "line": 2133,
             "description": "Sets the value of the currently selected MIDI registered parameter.",
             "itemtype": "method",
             "name": "_setCurrentRegisteredParameter",
@@ -1838,7 +2126,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1940,
+            "line": 2173,
             "description": "Deselects the currently active MIDI registered parameter so it is no longer affected by data\nentry, data increment and data decrement messages.\n\nCurrent best practice recommends doing that after each call to\n`_setCurrentRegisteredParameter()`.",
             "itemtype": "method",
             "name": "_deselectRegisteredParameter",
@@ -1867,7 +2155,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 1970,
+            "line": 2203,
             "description": "Sets the specified MIDI registered parameter to the desired value. The value is defined with\nup to two bytes of data that each can go from 0 to 127.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nMIDI registered parameters extend the original list of control change messages. Currently,\nthere are only a limited number of them. Here are the original registered parameters with the\nidentifier that can be used as the first parameter of this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n\nNote that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning\nStandard*, which is not widely implemented.\n\nAnother set of extra parameters have been later added for 3D sound controllers. They are:\n\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`\n\nFor more information on 3D sound controllers, please consult the\n[RP-49 specification](http://www.midi.org/techspecs/rp49public.pdf) on *Three Dimensional\nSound Controllers*.",
             "itemtype": "method",
             "name": "setRegisteredParameter",
@@ -1916,7 +2204,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2059,
+            "line": 2292,
             "description": "Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a\ntwo-position array specifying the values of the two control bytes. The value is specified by\npassing in an single integer (most cases) or an array of two integers.\n\nNRPNs are not standardized in any way. Each manufacturer is free to implement them in any way\nthey see fit. For example, according to the Roland GS specification, you can control the\n**vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you\nwould use:\n\n    WebMidi.setNonRegisteredParameter([1, 8], 123);\n\nObviously, you should select an output device and channel so the message is not sent to all\nchannels on all devices. For instance, to send to channel 1 of the first device, you would use:\n\n    WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);\n\nIn some rarer cases, you need to send two values with your NRPN messages. In such cases, you\nwould use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation\nuses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the\nvalue to send was 10, you could use:\n\n    WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);\n\nFor further implementation details, refer to the manufacturer's documentation.",
             "itemtype": "method",
             "name": "setNonRegisteredParameter",
@@ -1965,7 +2253,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2139,
+            "line": 2372,
             "description": "Increments the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
             "params": [
                 {
@@ -2002,7 +2290,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2210,
+            "line": 2443,
             "description": "Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
             "params": [
                 {
@@ -2039,7 +2327,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2281,
+            "line": 2514,
             "description": "Sends a pitch bend range message to the specified device(s) and channel(s) so that they adjust\nthe range used by their pitch bend lever. The range can be specified with the `semitones`\nparameter, the `cents` parameter or by specifying both parameters at the same time.",
             "itemtype": "method",
             "name": "setPitchBendRange",
@@ -2094,7 +2382,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2340,
+            "line": 2573,
             "description": "Sends a modulation depth range message to the specified output(s) and channel(s) so that they\nadjust the depth of their modulation wheel's range. The range can be specified with the\n`semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.",
             "itemtype": "method",
             "name": "setModulationRange",
@@ -2149,7 +2437,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2397,
+            "line": 2630,
             "description": "Sends a master tuning message to the specified output(s) and channel(s). The value is decimal\nand must be larger than -65 semitones and smaller than 64 semitones.\n\n>Because of the way the MIDI specification works, the decimal portion of the value will be\n>encoded with a resolution of 14bit. The integer portion must be between -64 and 63\n>inclusively. For those familiar with the MIDI protocol, this function actually generates\n>**Master Coarse Tuning** and **Master Fine Tuning** RPN messages.",
             "itemtype": "method",
             "name": "setMasterTuning",
@@ -2197,7 +2485,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2463,
+            "line": 2696,
             "description": "Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the\n*MIDI Tuning Standard*, which is not widely implemented.",
             "itemtype": "method",
             "name": "setTuningProgram",
@@ -2243,7 +2531,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2511,
+            "line": 2744,
             "description": "Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the\n*MIDI Tuning Standard*, which is not widely implemented.",
             "itemtype": "method",
             "name": "setTuningBank",
@@ -2289,7 +2577,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2559,
+            "line": 2792,
             "description": "Sends a MIDI `channel mode` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendChannelMode",
@@ -2340,7 +2628,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2622,
+            "line": 2855,
             "description": "Sends a MIDI `program change` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendProgramChange",
@@ -2386,7 +2674,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2675,
+            "line": 2908,
             "description": "Sends a MIDI `channel aftertouch` message to the specified device(s) and channel(s). For\nkey-specific aftertouch, you should instead use `sendKeyAftertouch()`.",
             "itemtype": "method",
             "name": "sendChannelAftertouch",
@@ -2430,7 +2718,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2727,
+            "line": 2960,
             "description": "Sends a MIDI `pitch bend` message to the specified device(s) and channel(s).",
             "itemtype": "method",
             "name": "sendPitchBend",
@@ -2476,7 +2764,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2784,
+            "line": 3017,
             "description": "Returns a valid MIDI note number given the specified input. The input can be an integer\nrepresented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and\n127.",
             "itemtype": "method",
             "name": "guessNoteNumber",
@@ -2499,7 +2787,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2816,
+            "line": 3049,
             "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The\nnote name must include the octave number which should be between -2 and 8: C5, G4, D#-1, F0,\netc.\n\nThe lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).",
             "itemtype": "method",
             "name": "noteNameToNumber",
@@ -2519,7 +2807,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2848,
+            "line": 3081,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI note numbers.",
             "itemtype": "method",
             "name": "_convertNoteToArray",
@@ -2537,7 +2825,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2871,
+            "line": 3104,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI channels. If `undefined` is provided as the channel, an array of all channels will be\nreturned.",
             "itemtype": "method",
             "name": "_convertChannelToArray",
@@ -2555,7 +2843,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 2901,
+            "line": 3134,
             "itemtype": "method",
             "name": "_parseTimeParameter",
             "params": [
@@ -2575,63 +2863,67 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1094"
+            "line": " src/webmidi.js:1100"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1122"
+            "line": " src/webmidi.js:1128"
         },
         {
             "message": "unknown tag: throw",
-            "line": " src/webmidi.js:1454"
+            "line": " src/webmidi.js:1407"
         },
         {
             "message": "unknown tag: throw",
-            "line": " src/webmidi.js:1454"
+            "line": " src/webmidi.js:1407"
+        },
+        {
+            "message": "unknown tag: throw",
+            "line": " src/webmidi.js:1548"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1820"
+            "line": " src/webmidi.js:2053"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1860"
+            "line": " src/webmidi.js:2093"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1900"
+            "line": " src/webmidi.js:2133"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1940"
+            "line": " src/webmidi.js:2173"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:1970"
+            "line": " src/webmidi.js:2203"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2059"
+            "line": " src/webmidi.js:2292"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2139"
+            "line": " src/webmidi.js:2372"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2210"
+            "line": " src/webmidi.js:2443"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/webmidi.js:2784"
+            "line": " src/webmidi.js:3017"
         },
         {
             "message": "Missing item type\nIncrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
-            "line": " src/webmidi.js:2139"
+            "line": " src/webmidi.js:2372"
         },
         {
             "message": "Missing item type\nDecrements the specified MIDI registered parameter by 1. For more specific MIDI usage\ninformation, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of\nincrement and decrement controllers.\n\n>Unless you are very familiar with the MIDI standard you probably should favour one of the\n>simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,\n>`setMasterTuning()`, etc.\n\nHere is the full list of parameter names that can be used with this function:\n\n * Pitchbend Range (0x00, 0x00): `pitchbendrange`\n * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`\n * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`\n * Tuning Program (0x00, 0x03): `tuningprogram`\n * Tuning Bank (0x00, 0x04): `tuningbank`\n * Modulation Range (0x00, 0x05): `modulationrange`\n * Azimuth Angle (0x3D, 0x00): `azimuthangle`\n * Elevation Angle (0x3D, 0x01): `elevationangle`\n * Gain (0x3D, 0x02): `gain`\n * Distance Ratio (0x3D, 0x03): `distanceratio`\n * Maximum Distance (0x3D, 0x04): `maximumdistance`\n * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`\n * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`\n * Pan Spread Angle (0x3D, 0x07): `panspreadangle`\n * Roll Angle (0x3D, 0x08): `rollangle`",
-            "line": " src/webmidi.js:2210"
+            "line": " src/webmidi.js:2443"
         }
     ]
 }
