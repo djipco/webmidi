@@ -193,6 +193,7 @@
   };
 
   var _notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  var _semitones = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11 };
 
   var _registeredParameterNumbers = {
     'pitchbendrange': [0x00, 0x00],
@@ -1021,8 +1022,6 @@
    */
   WebMidi.prototype.addListener = function(type, listener, filters) {
 
-    var that = this;
-
     if (!this.connected) {
       throw new Error("WebMidi must be connected before adding event listeners.");
     }
@@ -1183,8 +1182,6 @@
    */
   WebMidi.prototype.hasListener = function(type, listener, filters) {
 
-    var that = this;
-
     if (!this.connected) {
       throw new Error("WebMidi must be connected before checking event listeners.");
     }
@@ -1265,8 +1262,6 @@
    * @return {WebMidi} The `WebMidi` object for easy method chaining.
    */
   WebMidi.prototype.removeListener = function(type, listener, filters) {
-
-    var that = this;
 
     if (!this.connected) {
       throw new Error("WebMidi must be connected before removing event listeners.");
@@ -3048,29 +3043,35 @@
 
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number which should be between -2 and 8: C5, G4, D#-1, F0,
-   * etc.
+   * note name must include the octave number which should be between -2 and 8. The name can also
+   * optionnaly inlude a "#" for sharps and a "b" for flats: C5, G4, D#-1, F0, Gb7, Eb-1, etc.
    *
    * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
    *
    * @method noteNameToNumber
    * @static
    *
-   * @param name {String} The name of the note in the form of a letter, followed by an optional #
-   * symbol, followed by the octave number (between -2 and 8).
+   * @param name {String} The name of the note in the form of a letter, followed by an optional "#"
+   * or "b", followed by the octave number (between -2 and 8).
    *
    * @return {uint} The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    var matches = name.match(/([CDEFGAB]#?)(-?\d+)/i);
+    var matches = name.match(/([CDEFGAB])([b#]?)(-?\d+)/i);
     if(!matches) { throw new RangeError("Invalid note name."); }
 
-    var number = _notes.indexOf(matches[1].toUpperCase());
-    var octave = parseInt(matches[2]);
-    var result = ((octave + 2) * 12) + number;
+    var semitones = _semitones[matches[1].toUpperCase()];
+    var octave = parseInt(matches[3]);
+    var result = ((octave + 2) * 12) + semitones;
 
-    if (number < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
+    if (matches[2].toLowerCase() === 'b') {
+      result--;
+    } else if (matches[2] === "#") {
+      result++;
+    }
+
+    if (semitones < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
       throw new RangeError("Invalid note name or note outside valid range.");
     }
 
