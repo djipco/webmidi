@@ -3058,17 +3058,17 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    var matches = name.match(/([CDEFGAB])([b#]?)(-?\d+)/i);
+    var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if(!matches) { throw new RangeError("Invalid note name."); }
 
     var semitones = _semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
     var result = ((octave + 2) * 12) + semitones;
 
-    if (matches[2].toLowerCase() === 'b') {
-      result--;
-    } else if (matches[2] === "#") {
-      result++;
+    if (matches[2].toLowerCase().indexOf("b") > -1) {
+      result -= matches[2].length;
+    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+      result += matches[2].length;
     }
 
     if (semitones < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
