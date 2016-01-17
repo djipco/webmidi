@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-beta.10</em>
+            <em>API Docs for: 1.0.0-beta.11</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -275,6 +275,7 @@
   };
 
   var _notes = [&quot;C&quot;, &quot;C#&quot;, &quot;D&quot;, &quot;D#&quot;, &quot;E&quot;, &quot;F&quot;, &quot;F#&quot;, &quot;G&quot;, &quot;G#&quot;, &quot;A&quot;, &quot;A#&quot;, &quot;B&quot;];
+  var _semitones = {&quot;C&quot;: 0, &quot;D&quot;: 2, &quot;E&quot;: 4, &quot;F&quot;: 5, &quot;G&quot;: 7, &quot;A&quot;: 9, &quot;B&quot;: 11 };
 
   var _registeredParameterNumbers = {
     &#x27;pitchbendrange&#x27;: [0x00, 0x00],
@@ -1103,8 +1104,6 @@
    */
   WebMidi.prototype.addListener = function(type, listener, filters) {
 
-    var that = this;
-
     if (!this.connected) {
       throw new Error(&quot;WebMidi must be connected before adding event listeners.&quot;);
     }
@@ -1265,8 +1264,6 @@
    */
   WebMidi.prototype.hasListener = function(type, listener, filters) {
 
-    var that = this;
-
     if (!this.connected) {
       throw new Error(&quot;WebMidi must be connected before checking event listeners.&quot;);
     }
@@ -1347,8 +1344,6 @@
    * @return {WebMidi} The &#x60;WebMidi&#x60; object for easy method chaining.
    */
   WebMidi.prototype.removeListener = function(type, listener, filters) {
-
-    var that = this;
 
     if (!this.connected) {
       throw new Error(&quot;WebMidi must be connected before removing event listeners.&quot;);
@@ -3130,29 +3125,35 @@
 
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number which should be between -2 and 8: C5, G4, D#-1, F0,
-   * etc.
+   * note name must include the octave number which should be between -2 and 8. The name can also
+   * optionnaly inlude a &quot;#&quot; for sharps and a &quot;b&quot; for flats: C5, G4, D#-1, F0, Gb7, Eb-1, etc.
    *
    * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
    *
    * @method noteNameToNumber
    * @static
    *
-   * @param name {String} The name of the note in the form of a letter, followed by an optional #
-   * symbol, followed by the octave number (between -2 and 8).
+   * @param name {String} The name of the note in the form of a letter, followed by an optional &quot;#&quot;
+   * or &quot;b&quot;, followed by the octave number (between -2 and 8).
    *
    * @return {uint} The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    var matches = name.match(/([CDEFGAB]#?)(-?\d+)/i);
+    var matches = name.match(/([CDEFGAB])([b#]?)(-?\d+)/i);
     if(!matches) { throw new RangeError(&quot;Invalid note name.&quot;); }
 
-    var number = _notes.indexOf(matches[1].toUpperCase());
-    var octave = parseInt(matches[2]);
-    var result = ((octave + 2) * 12) + number;
+    var semitones = _semitones[matches[1].toUpperCase()];
+    var octave = parseInt(matches[3]);
+    var result = ((octave + 2) * 12) + semitones;
 
-    if (number &lt; 0 || octave &lt; -2 || octave &gt; 8 || result &lt; 0 || result &gt; 127) {
+    if (matches[2].toLowerCase() === &#x27;b&#x27;) {
+      result--;
+    } else if (matches[2] === &quot;#&quot;) {
+      result++;
+    }
+
+    if (semitones &lt; 0 || octave &lt; -2 || octave &gt; 8 || result &lt; 0 || result &gt; 127) {
       throw new RangeError(&quot;Invalid note name or note outside valid range.&quot;);
     }
 
