@@ -1766,11 +1766,11 @@
    * @static
    * @chainable
    *
-   * @param note {Array|uint|String} The note or an array of notes to stop. The notes can be
-   * specified in one of two ways. The first way is by using the MIDI note number (an integer
-   * between 0 and 127). The second way is by using the note name followed by the octave (C3, G#4,
-   * F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
-   * and the highest note is G8 (MIDI note number 127).
+   * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
+   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
+   * integer between 0 and 127). The second way is by using the note name followed by the octave
+   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
+   * note number 0) and the highest note is G8 (MIDI note number 127).
    *
    * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
    * invalid velocity value will silently trigger the default.
@@ -1839,8 +1839,8 @@
    * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note
-   * number 0) and the highest note is G8 (MIDI note number 127).
+   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
+   * note number 0) and the highest note is G8 (MIDI note number 127).
    *
    * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
    * invalid velocity value will silently trigger the default.
@@ -1926,8 +1926,8 @@
    * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note
-   * number 0) and the highest note is G8 (MIDI note number 127).
+   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
+   * note number 0) and the highest note is G8 (MIDI note number 127).
    *
    * @param [pressure=0.5] {Number}   The pressure level to send (between 0 and 1).
    *
