@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "1.0.0-beta.11",
+        "version": "1.0.0-beta.12",
         "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": ""
     },
@@ -1825,7 +1825,7 @@
             "params": [
                 {
                     "name": "note",
-                    "description": "The note or an array of notes to stop. The notes can be\nspecified in one of two ways. The first way is by using the MIDI note number (an integer\nbetween 0 and 127). The second way is by using the note name followed by the octave (C3, G#4,\nF-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)\nand the highest note is G8 (MIDI note number 127).",
+                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI\nnote number 0) and the highest note is G8 (MIDI note number 127).",
                     "type": "Array|uint|String"
                 },
                 {
@@ -1874,7 +1874,7 @@
             "params": [
                 {
                     "name": "note",
-                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note\nnumber 0) and the highest note is G8 (MIDI note number 127).",
+                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI\nnote number 0) and the highest note is G8 (MIDI note number 127).",
                     "type": "Array|uint|String"
                 },
                 {
@@ -1929,7 +1929,7 @@
             "params": [
                 {
                     "name": "note",
-                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note\nnumber 0) and the highest note is G8 (MIDI note number 127).",
+                    "description": "The note for which you are sending an aftertouch value. The\nnotes can be specified in one of two ways. The first way is by using the MIDI note number (an\ninteger between 0 and 127). The second way is by using the note name followed by the octave\n(C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI\nnote number 0) and the highest note is G8 (MIDI note number 127).",
                     "type": "Array|uint|String"
                 },
                 {
