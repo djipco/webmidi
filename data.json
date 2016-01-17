@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "1.0.0-beta.12",
+        "version": "1.0.0-beta.13",
         "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": ""
     },
@@ -2788,7 +2788,7 @@
         {
             "file": "src/webmidi.js",
             "line": 3044,
-            "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The\nnote name must include the octave number which should be between -2 and 8. The name can also\noptionnaly inlude a \"#\" for sharps and a \"b\" for flats: C5, G4, D#-1, F0, Gb7, Eb-1, etc.\n\nThe lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).",
+            "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The\nnote name must include the octave number which should be between -2 and 8. The name can also\noptionally include a sharp \"#\" or double sharp \"##\" symbol and a flat \"b\" or double flat \"bb\"\nsymbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.\n\nThe lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).",
             "itemtype": "method",
             "name": "noteNameToNumber",
             "static": 1,
@@ -2807,7 +2807,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 3082,
+            "line": 3083,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI note numbers.",
             "itemtype": "method",
             "name": "_convertNoteToArray",
@@ -2825,7 +2825,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 3105,
+            "line": 3106,
             "description": "Converts an input value (which can be an int, an array or the value \"all\" to an array of valid\nMIDI channels. If `undefined` is provided as the channel, an array of all channels will be\nreturned.",
             "itemtype": "method",
             "name": "_convertChannelToArray",
@@ -2843,7 +2843,7 @@
         },
         {
             "file": "src/webmidi.js",
-            "line": 3135,
+            "line": 3136,
             "itemtype": "method",
             "name": "_parseTimeParameter",
             "params": [

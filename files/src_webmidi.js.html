@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 1.0.0-beta.12</em>
+            <em>API Docs for: 1.0.0-beta.13</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -3126,7 +3126,8 @@
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
    * note name must include the octave number which should be between -2 and 8. The name can also
-   * optionnaly inlude a &quot;#&quot; for sharps and a &quot;b&quot; for flats: C5, G4, D#-1, F0, Gb7, Eb-1, etc.
+   * optionally include a sharp &quot;#&quot; or double sharp &quot;##&quot; symbol and a flat &quot;b&quot; or double flat &quot;bb&quot;
+   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
    *
    * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
    *
@@ -3140,17 +3141,17 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    var matches = name.match(/([CDEFGAB])([b#]?)(-?\d+)/i);
+    var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if(!matches) { throw new RangeError(&quot;Invalid note name.&quot;); }
 
     var semitones = _semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
     var result = ((octave + 2) * 12) + semitones;
 
-    if (matches[2].toLowerCase() === &#x27;b&#x27;) {
-      result--;
-    } else if (matches[2] === &quot;#&quot;) {
-      result++;
+    if (matches[2].toLowerCase().indexOf(&quot;b&quot;) &gt; -1) {
+      result -= matches[2].length;
+    } else if (matches[2].toLowerCase().indexOf(&quot;#&quot;) &gt; -1) {
+      result += matches[2].length;
     }
 
     if (semitones &lt; 0 || octave &lt; -2 || octave &gt; 8 || result &lt; 0 || result &gt; 127) {
