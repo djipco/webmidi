@@ -3044,7 +3044,8 @@
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
    * note name must include the octave number which should be between -2 and 8. The name can also
-   * optionnaly inlude a "#" for sharps and a "b" for flats: C5, G4, D#-1, F0, Gb7, Eb-1, etc.
+   * optionally include a sharp "#" or double sharp "##" symbol and a flat "b" or double flat "bb"
+   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
    *
    * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
    *
