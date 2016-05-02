@@ -66,13 +66,13 @@
 
       /**
        * [read-only] Indicates whether the interface to the host's MIDI subsystem is currently
-       * active.
+       * enabled.
        *
-       * @property connected
+       * @property enabled
        * @type Boolean
        * @static
        */
-      connected: {
+      enabled: {
         enumerable: true,
         get: function() {
           return this.interface !== undefined;
@@ -90,7 +90,7 @@
         enumerable: true,
         get: function() {
           var inputs = [];
-          if (this.connected) {
+          if (this.enabled) {
             var ins = this.interface.inputs.values();
             for (var input = ins.next(); input && !input.done; input = ins.next()) {
               inputs.push(input.value);
@@ -111,7 +111,7 @@
         enumerable: true,
         get: function() {
           var outputs = [];
-          if (this.connected) {
+          if (this.enabled) {
             var outs = this.interface.outputs.values();
             for (var input = outs.next(); input && !input.done; input = outs.next()) {
               outputs.push(input.value);
@@ -911,6 +911,8 @@
    */
   WebMidi.prototype.enable = function(callback, sysex) {
 
+    if (this.enabled) return;
+
     var that = this;
 
     if ( !callback || typeof callback !== "function" ) {
@@ -936,11 +938,28 @@
         callback();
       },
 
-      function () {
-        callback(new Error());
+      function (err) {
+        callback(err);
       }
-      
+
     );
+
+  };
+
+  /**
+   * If enabled, this function will completely disable `WebMidi` and close any connection to the MIDI
+   * subsystem.
+   *
+   * @method disable
+   * @static
+   */
+  WebMidi.prototype.disable = function() {
+
+    if ( !this.supported ) {
+      throw new Error("The Web MIDI API is not supported by your browser.");
+    }
+
+    this.interface = undefined; // also resets enabled, inputs, outputs, sysexEnabled
 
   };
 
@@ -1012,7 +1031,7 @@
    * and 16). You can also specify an array of channels to listen on. If set to 'all', all channels
    * will trigger the callback function.
    *
-   * @throws {Error} WebMidi must be connected before adding event listeners.
+   * @throws {Error} WebMidi must be enabled before adding event listeners.
    * @throws {Error} There is no such input device.
    * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
    * @throws {TypeError} The specified event type is not supported.
@@ -1022,8 +1041,8 @@
    */
   WebMidi.prototype.addListener = function(type, listener, filters) {
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before adding event listeners.");
+    if (!this.enabled) {
+      throw new Error("WebMidi must be enabled before adding event listeners.");
     }
 
     filters = filters || {};
@@ -1182,8 +1201,8 @@
    */
   WebMidi.prototype.hasListener = function(type, listener, filters) {
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before checking event listeners.");
+    if (!this.enabled) {
+      throw new Error("WebMidi must be enabled before checking event listeners.");
     }
 
     if (typeof listener !== "function") {
@@ -1263,8 +1282,8 @@
    */
   WebMidi.prototype.removeListener = function(type, listener, filters) {
 
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before removing event listeners.");
+    if (!this.enabled) {
+      throw new Error("WebMidi must be enabled before removing event listeners.");
     }
 
     filters = filters || {};
@@ -1348,7 +1367,7 @@
    * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
    * 0.
    *
-   * @throws {Error} WebMidi must be connected before sending messages.
+   * @throws {Error} WebMidi must be enabled before sending messages.
    * @throws {ReferenceError} There is no device matching the requested id.
    * @throws {RangeError} The status byte must be an integer between 128 (0x80) and 255 (0xFF).
    * @throws {RangeError} The data bytes must be integers between 0 (0x00) and 255 (0xFF).
@@ -1357,7 +1376,7 @@
    */
   WebMidi.prototype.send = function(status, data, output, timestamp) {
 
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
+    if (!this.enabled) { throw new Error("WebMidi must be enabled before sending messages."); }
 
     if ( !(status >= 128 && status <= 255) ) {
       throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
