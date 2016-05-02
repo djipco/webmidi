@@ -132,7 +132,7 @@
       sysexEnabled: {
         enumerable: true,
         get: function() {
-          return this.interface && this.interface.sysexEnabled;
+          return !!(this.interface && this.interface.sysexEnabled);
         }
       },
 
