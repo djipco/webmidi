@@ -44,6 +44,7 @@
    * @todo  State change events (MIDIConnectionEvent) are triggered for each device being connected
    *        or disconnected. Therefore, we should add the ability to filter the statechange listener
    *        by device.
+   * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See: https://en.wikipedia.org/wiki/Scientific_pitch_notation
    */
   function WebMidi() {
 
@@ -895,51 +896,50 @@
 
   /**
    * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
-   * If the operation succeeds, the `successHandler` callback is executed. If not, the
-   * `errorHandler` callback is executed and passed a string describing the error.
+   * This is an asynchronous operation. When it's done, the specified handler callback will be
+   * executed. If an error occurred, the callback function will receive an `Error` object as its
+   * sole parameter.
    *
    * @method enable
    * @static
    *
-   * @param [successHandler] {Function} A function to execute upon success.
+   * @param callback {Function} A function to execute upon success. This function will receive an
+   * `Error` object upon failure to enable the Web MIDI API.
    *
-   * @param [errorHandler] {Function} A function to execute upon error. This function will be passed
-   * a string describing the error.
-   *
-   * @param [sysex=false] {Boolean} Whether to enable sysex or not. When this parameter is set to
-   * true, the browser may prompt the user for authorization.
+   * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not. When
+   * this parameter is set to true, the browser may prompt the user for authorization.
    */
-  WebMidi.prototype.enable = function(successHandler, errorHandler, sysex) {
+  WebMidi.prototype.enable = function(callback, sysex) {
 
     var that = this;
 
-    if (
-        (successHandler && typeof successHandler !== "function") ||
-        (errorHandler && typeof errorHandler !== "function")
-    ) {
-      throw new TypeError("The success and error handlers must be functions.");
+    if ( !callback || typeof callback !== "function" ) {
+      throw new TypeError("The callback parameter is mandatory and must be a function.");
     }
 
-    if (!this.supported && errorHandler) {
-      errorHandler("The Web MIDI API is not supported by your browser.");
+    if ( !this.supported ) {
+      callback( new Error("The Web MIDI API is not supported by your browser.") );
       return;
     }
 
     navigator.requestMIDIAccess({"sysex": sysex}).then(
 
-        function(midiAccess) {
-          that.interface = midiAccess;
+      function(midiAccess) {
+        that.interface = midiAccess;
 
-          that.interface.onstatechange = _onInterfaceStateChange;
+        that.interface.onstatechange = _onInterfaceStateChange;
 
-          that.inputs.forEach(function(input) {
-            input.onmidimessage = _onMidiMessage;
-          });
+        that.inputs.forEach(function(input) {
+          input.onmidimessage = _onMidiMessage;
+        });
 
-          if (successHandler) { successHandler(); }
+        callback();
+      },
 
-        },
-        errorHandler
+      function () {
+        callback(new Error());
+      }
+      
     );
 
   };
