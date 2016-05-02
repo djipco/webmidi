@@ -1117,26 +1117,52 @@
 
   /**
    *
-   * Returns a MIDIOutput or MIDIInput device matching the specified id and device type.
+   * Returns a `MIDIInput` device matching the specified id.
    *
-   * @method getDeviceById
+   * @method getInputById
    * @static
    *
-   * @param id {String} The id of the device. Ids can be retrieved by looking at the
-   * `WebMidi.inputs` or `WebMidi.outputs` arrays.
+   * @param id {String} The id of the device. Ids can be viewed by looking at the `WebMidi.inputs`
+   * array.
    *
-   * @param [type=input] {String} One of 'input' or 'output' to indicate whether your are looking
-   * for an input or an output device.
-   *
-   * @returns {MIDIOutput|MIDIInput|False} A MIDIOutput or MIDIInput device matching the specified
-   * id. If no matching device can be found, the method returns `false`.
+   * @returns {MIDIInput|false} A MIDIInput device matching the specified id. If no matching device
+   * can be found, the method returns `false`.
    */
-  WebMidi.prototype.getDeviceById = function(id, type) {
+  WebMidi.prototype.getInputById = function(id) {
 
-    var devices = (type === "output") ? this.outputs : this.inputs;
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
 
-    for (var i = 0; i < devices.length; i++) {
-      if (devices[i].id === id) { return devices[i]; }
+    for (var i = 0; i < this.inputs.length; i++) {
+      if (this.inputs[i].id === id) { return this.inputs[i]; }
+    }
+
+    return false;
+
+  };
+
+  /**
+   *
+   * Returns a `MIDIOutput` device matching the specified id.
+   *
+   * @method getOutputById
+   * @static
+   *
+   * @param id {String} The id of the device. Ids can be viewed by looking at the `WebMidi.outputs`
+   * array.
+   *
+   * @returns {MIDIOutput|false} A MIDIOutput device matching the specified id. If no matching
+   * device can be found, the method returns `false`.
+   */
+  WebMidi.prototype.getOutputById = function(id) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
+
+    for (var i = 0; i < this.outputs.length; i++) {
+      if (this.outputs[i].id === id) { return this.outputs[i]; }
     }
 
     return false;
