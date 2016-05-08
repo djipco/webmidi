@@ -4,39 +4,54 @@
 
   /**
    * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
-   * two things: sending and reacting upon receiving MIDI messages.
+   * two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.
+   *
+   * Sending MIDI messages is done via an `Output` object. All available outputs can be accessed in
+   * the `WebMidi.outputs` array. There is one `Output` object for each device (or port) available
+   * on your system.
+   *
+   * Similarly, reacting to MIDI messages as they are coming is simply a matter of adding a listener
+   * to an `Input` object. All inputs can be found in the `WebMidi.inputs` array.
    *
    * To send MIDI messages, you simply need to call the desired method (`playNote()`,
-   * `sendPitchBend()`, `stopNote()`, etc.) with the appropriate parameters and all the native MIDI
-   * communication will be handled for you. The only additional thing that needs to be done is
-   * enable `WebMidi`. Here is an example:
+   * `sendPitchBend()`, `stopNote()`, etc.) from an `Output` object and pass in the appropriate
+   * parameters. All the native MIDI communication will be handled for you. The only additional
+   * thing that needs to be done is to first enable `WebMidi`. Here is an example:
    *
-   *      WebMidi.enable(function() {
-   *        WebMidi.playNote("C3");
+   *      WebMidi.enable(function(err) {
+   *        if (err) console.log("An error occurred", err);
+   *        WebMidi.outputs[0].playNote("C3");
    *      });
    *
    * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
    * callback function specified as a parameter. In this case, the callback calls the `playnote()`
-   * function to play a 3rd octave C on all devices and channels.
+   * function to play a 3rd octave C on the first output device.
    *
    * Receiving messages is just as easy. You simply have to set a callback function to be triggered
-   * when a specific MIDI message is received. For example, to listen for pitch bend events on any
-   * input MIDI channels:
+   * when a specific MIDI message is received. For example, here's how to listen for pitch bend
+   * events on the first input device:
    *
-   *      WebMidi.addListener('pitchbend', function(e) {
-   *        console.log("Pitch value: " + e.value);
+   *      WebMidi.enable(function(err) {
+   *        if (err) console.log("An error occurred", err);
+   *
+   *        WebMidi.inputs[0].addListener('pitchbend', function(e) {
+   *          console.log("Pitch value: " + e.value);
+   *        });
+   *
    *      });
    *
-   * As you can see, this library makes it much easier to use the Web MIDI API. No need to manually
-   * craft or decode binary MIDI messages anymore!
+   * As you can see, this library makes is much easier that the native Web MIDI API. No need to
+   * manually craft or decode binary MIDI messages anymore!
    *
    * @class WebMidi
    * @static
    *
-   * @todo  Add removeAllEventListeners(), on() and once() functions
-   * @todo  Refine the "filter" param of addListener. Allow to listen for a specific controller or specific note.
-   * @todo  Add methods for system common messages and system realtime messages
-   * @todo  Add more examples in method documentation (playNote namely).
+   * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
+   *
+   * @todo  interface-level statechange events DO NOT work for now. Need to fix this!!!!
+   * @todo  Implement port statechange events.
+   * @todo  Add on() alias and once() functions.
+   * @todo  Refine "options" param of addListener. Allow listening for specific controller note.
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
@@ -44,9 +59,139 @@
    * @todo  State change events (MIDIConnectionEvent) are triggered for each device being connected
    *        or disconnected. Therefore, we should add the ability to filter the statechange listener
    *        by device.
+   * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
+   *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
+   *
    */
   function WebMidi() {
 
+    // Singleton. Prevent instantiation through WebMidi.__proto__.constructor()
+    if (WebMidi.prototype._singleton) {
+      throw new Error("WebMidi is a singleton, it cannot be instantiated directly.");
+    }
+    WebMidi.prototype._singleton = this;
+
+    // MIDI inputs and outputs
+    this._inputs = [];
+    this._outputs = [];
+
+    // Object to hold all user-defined handlers for interface-wide events (connected, disconnected,
+    // etc.)
+    this._userHandlers = {};
+
+    // Array of statechange events to process. These events must be parsed synchronously so they do
+    // not override each other.
+    this._stateChangeQueue = [];
+
+    // Indicates whether we are currently processing a statechange event (in which case new events
+    // are to be queued).
+    this._processingStateChange = false;
+
+    // Events triggered at the interface level (WebMidi)
+    this._midiInterfaceEvents = ["connected", "disconnected"];
+
+    // Notes and semitones for note guessing
+    this._notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    this._semitones = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11 };
+
+    // Define some "static" properties
+    Object.defineProperties(this, {
+
+      /**
+       * [read-only] List of valid MIDI system messages and matching hexadecimal values.
+       *
+       * Note: values 249 and 253 are actually dispatched by the Web MIDI API but I do not know what
+       * they are used for. They are not part of the online
+       * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
+       *
+       * @property MIDI_SYSTEM_MESSAGES
+       * @type Object
+       * @static
+       */
+      MIDI_SYSTEM_MESSAGES: {
+        value: {
+
+          // System common messages
+          "sysex": 0xF0,            // 240
+          "timecode": 0xF1,         // 241
+          "songposition": 0xF2,     // 242
+          "songselect": 0xF3,       // 243
+          "tuningrequest": 0xF6,    // 246
+          "sysexend": 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+          // System real-time messages
+          "clock": 0xF8,            // 248
+          "start": 0xFA,            // 250
+          "continue": 0xFB,         // 251
+          "stop": 0xFC,             // 252
+          "activesensing": 0xFE,    // 254
+          "reset": 0xFF,            // 255
+          "unknownsystemmessage": -1
+        },
+        writable: false,
+        enumerable: true,
+        configurable: false
+      },
+
+      /**
+       * [read-only] List of valid MIDI channel messages and matching hexadecimal values.
+       *
+       * @property MIDI_CHANNEL_MESSAGES
+       * @type Object
+       * @static
+       */
+      MIDI_CHANNEL_MESSAGES: {
+        value: {
+          "noteoff": 0x8,           // 8
+          "noteon": 0x9,            // 9
+          "keyaftertouch": 0xA,     // 10
+          "controlchange": 0xB,     // 11
+          "channelmode": 0xB,       // 11
+          "programchange": 0xC,     // 12
+          "channelaftertouch": 0xD, // 13
+          "pitchbend": 0xE          // 14
+        },
+        writable: false,
+        enumerable: true,
+        configurable: false
+      },
+
+      /**
+       * [read-only] List of valid MIDI registered parameterS and their matching pair of hexadecimal
+       * values. MIDI registered parameters extend the original list of control change messages.
+       * Currently, there are only a limited number of them.
+       *
+       * @property MIDI_REGISTERED_PARAMETER
+       * @type Object
+       * @static
+       */
+      MIDI_REGISTERED_PARAMETER: {
+        value: {
+          'pitchbendrange': [0x00, 0x00],
+          'channelfinetuning': [0x00, 0x01],
+          'channelcoarsetuning': [0x00, 0x02],
+          'tuningprogram': [0x00, 0x03],
+          'tuningbank': [0x00, 0x04],
+          'modulationrange': [0x00, 0x05],
+
+          'azimuthangle': [0x3D, 0x00],
+          'elevationangle': [0x3D, 0x01],
+          'gain': [0x3D, 0x02],
+          'distanceratio': [0x3D, 0x03],
+          'maximumdistance': [0x3D, 0x04],
+          'maximumdistancegain': [0x3D, 0x05],
+          'referencedistanceratio': [0x3D, 0x06],
+          'panspreadangle': [0x3D, 0x07],
+          'rollangle': [0x3D, 0x08]
+        },
+        writable: false,
+        enumerable: true,
+        configurable: false
+      }
+
+    });
+
+    // Define getters
     Object.defineProperties(this, {
 
       /**
@@ -65,59 +210,45 @@
 
       /**
        * [read-only] Indicates whether the interface to the host's MIDI subsystem is currently
-       * active.
+       * enabled.
        *
-       * @property connected
+       * @property enabled
        * @type Boolean
        * @static
        */
-      connected: {
+      enabled: {
         enumerable: true,
         get: function() {
           return this.interface !== undefined;
-        }
+        }.bind(this)
       },
 
       /**
-       * [read-only] An array of all currently available MIDI input devices.
+       * [read-only] An array of all currently available MIDI input ports.
        *
        * @property inputs
-       * @type {MIDIInput[]}
+       * @type {Input[]}
        * @static
        */
       inputs: {
         enumerable: true,
         get: function() {
-          var inputs = [];
-          if (this.connected) {
-            var ins = this.interface.inputs.values();
-            for (var input = ins.next(); input && !input.done; input = ins.next()) {
-              inputs.push(input.value);
-            }
-          }
-          return inputs;
-        }
+          return this._inputs;
+        }.bind(this)
       },
 
       /**
-       * [read-only] An array of all currently available MIDI output devices.
+       * [read-only] An array of all currently available MIDI output ports.
        *
        * @property outputs
-       * @type {MIDIOutput[]}
+       * @type {Output[]}
        * @static
        */
       outputs: {
         enumerable: true,
         get: function() {
-          var outputs = [];
-          if (this.connected) {
-            var outs = this.interface.outputs.values();
-            for (var input = outs.next(); input && !input.done; input = outs.next()) {
-              outputs.push(input.value);
-            }
-          }
-          return outputs;
-        }
+          return this._outputs;
+        }.bind(this)
       },
 
       /**
@@ -131,8 +262,8 @@
       sysexEnabled: {
         enumerable: true,
         get: function() {
-          return this.interface && this.interface.sysexEnabled;
-        }
+          return !!(this.interface && this.interface.sysexEnabled);
+        }.bind(this)
       },
 
       /**
@@ -152,118 +283,1003 @@
 
     });
 
-    _initializeUserHandlers();
-
   }
 
-  /////////////////////////////////////// PRIVATE PROPERTIES ///////////////////////////////////////
-
-  // User-defined handlers list
-  var _userHandlers = { "channel": {}, "system": {} };
-
-  // List of valid MIDI channel data bytes (and matching value)
-  var _channelMessages = {
-    "noteoff": 0x8,           // 8
-    "noteon": 0x9,            // 9
-    "keyaftertouch": 0xA,     // 10
-    "controlchange": 0xB,     // 11
-    "channelmode": 0xB,       // 11
-    "programchange": 0xC,     // 12
-    "channelaftertouch": 0xD, // 13
-    "pitchbend": 0xE          // 14
-  };
-
-  // List of valid system MIDI messages and matching value (249 and 253 are actually dispatched by
-  // the Web MIDI API but I do not know what they are for and they are not part of the online MIDI
-  // 1.0 spec. (http://www.midi.org/techspecs/midimessages.php)
-  var _systemMessages = {
-    "sysex": 0xF0,            // 240
-    "timecode": 0xF1,         // 241
-    "songposition": 0xF2,     // 242
-    "songselect": 0xF3,       // 243
-    "tuningrequest": 0xF6,    // 246
-    "sysexend": 0xF7,         // 247 (never actually received - simply ends a sysex)
-    "clock": 0xF8,            // 248
-    "start": 0xFA,            // 250
-    "continue": 0xFB,         // 251
-    "stop": 0xFC,             // 252
-    "activesensing": 0xFE,    // 254
-    "reset": 0xFF,            // 255
-    "unknownsystemmessage": -1
-  };
-
-  var _notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-  var _semitones = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11 };
-
-  var _registeredParameterNumbers = {
-    'pitchbendrange': [0x00, 0x00],
-    'channelfinetuning': [0x00, 0x01],
-    'channelcoarsetuning': [0x00, 0x02],
-    'tuningprogram': [0x00, 0x03],
-    'tuningbank': [0x00, 0x04],
-    'modulationrange': [0x00, 0x05],
-
-    'azimuthangle': [0x3D, 0x00],
-    'elevationangle': [0x3D, 0x01],
-    'gain': [0x3D, 0x02],
-    'distanceratio': [0x3D, 0x03],
-    'maximumdistance': [0x3D, 0x04],
-    'maximumdistancegain': [0x3D, 0x05],
-    'referencedistanceratio': [0x3D, 0x06],
-    'panspreadangle': [0x3D, 0x07],
-    'rollangle': [0x3D, 0x08]
-  };
-
-  //////////////////////////////////////// PRIVATE METHODS /////////////////////////////////////////
+  // WebMidi is a singleton so we instantiate it ourselves and keep it in a var for internal
+  // reference.
+  var wm = new WebMidi();
 
   /**
-   * @method _initializeUserHandlers
-   * @private
+   * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
+   * This is an asynchronous operation. When it's done, the specified handler callback will be
+   * executed. If an error occurred, the callback function will receive an `Error` object as its
+   * sole parameter.
+   *
+   * @method enable
+   * @static
+   *
+   * @param callback {Function} A function to execute upon success. This function will receive an
+   * `Error` object upon failure to enable the Web MIDI API.
+   * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not. When
+   * this parameter is set to true, the browser may prompt the user for authorization.
    */
-  function _initializeUserHandlers() {
+  WebMidi.prototype.enable = function(callback, sysex) {
 
-    _userHandlers.system.statechange = [];
+    if (this.enabled) { return; }
 
-    for (var prop1 in _channelMessages) {
-      if (_channelMessages.hasOwnProperty(prop1)) {
-        _userHandlers.channel[prop1] = {};
-      }
+    if ( !callback || typeof callback !== "function" ) {
+      throw new TypeError("The callback parameter is mandatory and must be a function.");
     }
 
-    for (var prop2 in _systemMessages) {
-      if (_systemMessages.hasOwnProperty(prop2)) {
-        _userHandlers.system[prop2] = [];
-      }
+    if ( !this.supported ) {
+      callback( new Error("The Web MIDI API is not supported by your browser.") );
+      return;
     }
 
-  }
+    navigator.requestMIDIAccess({"sysex": sysex}).then(
+
+      function(midiAccess) {
+        this.interface = midiAccess;
+        this._resetInterfaceUserHandlers();
+
+        // THIS NEEDS TO BE FIXED !!!!!
+        // that.interface.onstatechange = function(e) {
+        //   that._onInterfaceStateChange(e); // Must be done this way otherwise this = midiAccess
+        // };
+
+        this._onInterfaceStateChange(null); // to manually update the inputs and outputs
+        callback();
+      }.bind(this),
+
+      function (err) {
+        callback(err);
+      }
+
+    );
+
+  };
+
+  /**
+   * Completely disables `WebMidi` by unlinking the MIDI subsystem's interface and destroying all
+   * `Input` and `Output` objects that may be available. This also means that any listener that may
+   * have been defined on `Input` objects are also destroyed.
+   *
+   * @method disable
+   * @static
+   */
+  WebMidi.prototype.disable = function() {
+
+    if ( !this.supported ) {
+      throw new Error("The Web MIDI API is not supported by your browser.");
+    }
+
+    this.interface = undefined; // also resets enabled, sysexEnabled
+    this._inputs = [];
+    this._outputs = [];
+    this._resetInterfaceUserHandlers();
+
+  };
+
+  /**
+   * Adds an event listener on the `WebMidi` object that will trigger a function callback when the
+   * specified event happens.
+   *
+   * WebMidi must be enabled before adding event listeners.
+   *
+   * Currently, only one event is being dispatched by the `WebMidi` object:
+   *
+   *    * {{#crossLink "WebMidi/statechange:event"}}statechange{{/crossLink}}
+   *
+   * @method addListener
+   * @static
+   * @chainable
+   *
+   * @param type {String} The type of the event.
+   *
+   * @param listener {Function} A callback function to execute when the specified event is detected.
+   * This function will receive an event parameter object. For details on this object's properties,
+   * check out the documentation for the various events (links above).
+   *
+   * @throws {Error} WebMidi must be enabled before adding event listeners.
+   * @throws {TypeError} The specified event type is not supported.
+   * @throws {TypeError} The 'listener' parameter must be a function.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  WebMidi.prototype.addListener = function(type, listener) {
+
+      if (!this.enabled) {
+        throw new Error("WebMidi must be enabled before adding event listeners.");
+      }
+
+      if (typeof listener !== "function") {
+        throw new TypeError("The 'listener' parameter must be a function.");
+      }
+
+      if (this._midiInterfaceEvents.indexOf(type) >= 0) {
+        this._userHandlers[type].push(listener);
+      } else {
+        throw new TypeError("The specified event type is not supported.");
+      }
+
+      return this;
+
+  };
+
+  /**
+   * Checks if the specified event type is already defined to trigger the specified listener
+   * function.
+   *
+   * @method hasListener
+   * @static
+   *
+   * @param {String} type The type of the event.
+   * @param {Function} listener The callback function to check for.
+   *
+   * @throws {Error} WebMidi must be enabled before checking event listeners.
+   * @throws {TypeError} The 'listener' parameter must be a function.
+   * @throws {TypeError} The specified event type is not supported.
+   *
+   * @return {Boolean} Boolean value indicating whether or not a callback is already defined for
+   * this event type.
+   */
+  WebMidi.prototype.hasListener = function(type, listener) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi must be enabled before checking event listeners.");
+    }
+
+    if (typeof listener !== "function") {
+      throw new TypeError("The 'listener' parameter must be a function.");
+    }
+
+    if (this._midiInterfaceEvents.indexOf(type) >= 0) {
+
+      for (var o = 0; o < this._userHandlers[type].length; o++) {
+        if (this._userHandlers[type][o] === listener) {
+          return true;
+        }
+      }
+
+    } else {
+      throw new TypeError("The specified event type is not supported.");
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Removes the specified listener(s). If the `listener` parameter is left undefined, all listeners
+   * for the specified `type` will be removed. If both the `listener` and the `type` parameters are
+   * omitted, all listeners attached to the `WebMidi` object will be removed.
+   *
+   * @method removeListener
+   * @static
+   * @chainable
+   *
+   * @param {String} [type] The type of the event.
+   * @param {Function} [listener] The callback function to check for.
+   *
+   * @throws {Error} WebMidi must be enabled before removing event listeners.
+   * @throws {TypeError} The 'listener' parameter must be a function.
+   * @throws {TypeError} The specified event type is not supported.
+   *
+   * @return {WebMidi} The `WebMidi` object for easy method chaining.
+   */
+  WebMidi.prototype.removeListener = function(type, listener) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi must be enabled before removing event listeners.");
+    }
+
+    if (listener !== undefined && typeof listener !== "function") {
+      throw new TypeError("The 'listener' parameter must be a function.");
+    }
+
+    if (this._midiInterfaceEvents.indexOf(type) >= 0) {
+
+      if (listener) {
+
+        for (var o = 0; o < this._userHandlers[type].length; o++) {
+          if (this._userHandlers[type][o] === listener) {
+            this._userHandlers[type].splice(o, 1);
+          }
+        }
+
+      } else {
+        this._userHandlers[type] = [];
+      }
+
+    } else if (type === undefined) {
+
+      this._resetInterfaceUserHandlers();
+
+    } else {
+      throw new TypeError("The specified event type is not supported.");
+    }
+
+    return this;
+
+  };
+
+  /**
+   *
+   * Returns an `Input` object representing the input port with the specified id.
+   *
+   * @method getInputById
+   * @static
+   *
+   * @param id {String} The id of the port. Ids can be viewed by looking at the `WebMidi.inputs`
+   * array.
+   *
+   * @returns {Input|false} A MIDIInput port matching the specified id. If no matching port
+   * can be found, the method returns `false`.
+   */
+  WebMidi.prototype.getInputById = function(id) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
+
+    for (var i = 0; i < this.inputs.length; i++) {
+      if (this.inputs[i].id === id) { return this.inputs[i]; }
+    }
+
+    return false;
+
+  };
+
+  /**
+   *
+   * Returns an `Output` object representing the output port matching the specified id.
+   *
+   * @method getOutputById
+   * @static
+   *
+   * @param id {String} The id of the port. Ids can be viewed by looking at the `WebMidi.outputs`
+   * array.
+   *
+   * @returns {Output|false} A MIDIOutput port matching the specified id. If no matching
+   * port can be found, the method returns `false`.
+   */
+  WebMidi.prototype.getOutputById = function(id) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
+
+    for (var i = 0; i < this.outputs.length; i++) {
+      if (this.outputs[i].id === id) { return this.outputs[i]; }
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Returns the first MIDI `Input` that matches the specified name.
+   *
+   * @method getInputByName
+   * @static
+   *
+   * @param name {String} The name of a MIDI input port such as those visible in the
+   * `WebMidi.inputs` array.
+   *
+   * @returns {Input|False} The `Input` that was found or `false` if no input matched the specified
+   * name.
+   */
+  WebMidi.prototype.getInputByName = function(name) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
+
+    for (var i = 0; i < this.inputs.length; i++) {
+      if (this.inputs[i].name === name) { return this.inputs[i]; }
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Returns the first MIDI `Output` that matches the specified name.
+   *
+   * @method getOutputByName
+   * @static
+   *
+   * @param name {String} The name of a MIDI output port such as those visible in the
+   * `WebMidi.outputs` array.
+   *
+   * @returns {Output|False} The `Output` that was found or `false` if no output matched the
+   * specified name.
+   */
+  WebMidi.prototype.getOutputByName = function(name) {
+
+    if (!this.enabled) {
+      throw new Error("WebMidi is not enabled.");
+    }
+
+    for (var i = 0; i < this.outputs.length; i++) {
+      if (this.outputs[i].name === name) { return this.outputs[i]; }
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Returns a valid MIDI note number given the specified input. The input can be an integer
+   * represented as a string, a note name (C3, F#4, D-2, G8, etc.) or an int between 0 and 127.
+   *
+   * @method guessNoteNumber
+   * @static
+   *
+   * @param input A integer or string to extract the note number from.
+   * @throws {Error} Invalid note number.
+   * @returns {uint} A valid MIDI note number (0-127).
+   */
+  WebMidi.prototype.guessNoteNumber = function(input) {
+  
+    var output = false;
+  
+    if (input && input.toFixed && input >= 0 && input <= 127) {         // uint
+      output = Math.round(input);
+    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // uint as string
+      output = parseInt(input);
+    } else if (typeof input === 'string' || input instanceof String) {  // string
+      output = this.noteNameToNumber(input);
+    }
+  
+    if (output === false) {
+      throw new Error("Invalid note number (" + input + ").");
+    } else {
+      return output;
+    }
+  
+  };
+
+  /**
+   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
+   * note name must include the octave number which should be between -2 and 8. The name can also
+   * optionally include a sharp "#" or double sharp "##" symbol and a flat "b" or double flat "bb"
+   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   *
+   * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
+   *
+   * @method noteNameToNumber
+   * @static
+   *
+   * @param name {String} The name of the note in the form of a letter, followed by an optional "#",
+   * "##", "b" or "bb" followed by the octave number (between -2 and 8).
+   *
+   * @throws {Error} The name parameter is mandatory and cannot be empty.
+   * @throws {RangeError} Invalid note name.
+   * @throws {RangeError} Invalid note name or note outside valid range.
+   * @return {uint} The MIDI note number (between 0 and 127)
+   */
+  WebMidi.prototype.noteNameToNumber = function(name) {
+
+    if (!name) { throw new Error("The name parameter is mandatory and cannot be empty."); }
+
+    var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+    if(!matches) { throw new RangeError("Invalid note name."); }
+
+    var semitones = wm._semitones[matches[1].toUpperCase()];
+    var octave = parseInt(matches[3]);
+    var result = ((octave + 2) * 12) + semitones;
+
+    if (matches[2].toLowerCase().indexOf("b") > -1) {
+      result -= matches[2].length;
+    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+      result += matches[2].length;
+    }
+
+    if (semitones < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
+      throw new RangeError("Invalid note name or note outside valid range.");
+    }
+
+    return result;
+
+  };
+
+  /**
+   * @method _updateInputsAndOutputs
+   * @static
+   * @protected
+   */
+  WebMidi.prototype._updateInputsAndOutputs = function() {
+
+    var that = this;
+
+    // var i, j;
+    var newInputs = [];
+    var newOutputs = [];
+
+    if (!this.interface) {
+      throw new Error("The MIDI interface is not available.");
+    }
+
+    // Create our own Input objects
+    this.interface.inputs.forEach(function (input) {
+      newInputs.push( that._createInput(input) );
+    });
+
+    // THIS NEEDS TO BE FIXED TOGETHER WITH STATECHANGE EVENTS !!!!
+    // // Re-use old Input objects if any are still there
+    // for (i = 0; i < newInputs.length; i++) {
+    //
+    //   for (j = 0; j < this._inputs.length; j++) {
+    //     if (newInputs[i]._midiInput === this._inputs[j]._midiInput) {
+    //       console.log("match");
+    //       newInputs[i] = this._inputs[j];
+    //       break;
+    //     }
+    //   }
+    //
+    // }
+
+    this._inputs = newInputs;
+
+
+    // Create our own Output objects
+    this.interface.outputs.forEach(function (output) {
+      newOutputs.push( that._createOutput(output) );
+    });
+
+    // // Re-use old Output objects if any are still there
+    // for (i = 0; i < newOutputs.length; i++) {
+    //
+    //   for (j = 0; j < this._outputs.length; j++) {
+    //     if (newOutputs[i]._midiOutput === this._outputs[j]._midiOutput) {
+    //       newOutputs[i] = this._outputs[j];
+    //       break;
+    //     }
+    //   }
+    //
+    // }
+
+    this._outputs = newOutputs;
+
+  };
+
+  /**
+   * @method _createInput
+   * @static
+   * @protected
+   */
+  WebMidi.prototype._createInput = function (midiInput) {
+
+    var input = new Input(midiInput);
+
+    input._midiInput.onmidimessage = function(e) {
+      input._onMidiMessage(e); // to make this = Input
+    };
+
+    return input;
+
+  };
+
+  /**
+   * @method _createOutput
+   * @static
+   * @protected
+   */
+  WebMidi.prototype._createOutput = function (midiOutput) {
+
+    var output = new Output(midiOutput);
+
+    // output._midiInput.onmidimessage = function(e) {
+    //   output._onMidiMessage(e); // to make this = Output
+    // };
+
+    return output;
+
+  };
 
   /**
    * @method _onInterfaceStateChange
-   * @private
+   * @static
+   * @protected
    */
-  function _onInterfaceStateChange(e) {
+  WebMidi.prototype._onInterfaceStateChange = function(e) {
+
+    // To prevent conflicts, statechange events are queued and parsed synchronously
+    this._stateChangeQueue.push(e);
+
+    // Check if we are already currently processing a state change
+    if (this._processingStateChange) {
+      return;
+    }
+
+    this._processingStateChange = true;
+
+    while(this._stateChangeQueue.length > 0) {
+      this._processStateChange(this._stateChangeQueue.shift());
+    }
+
+    this._processingStateChange = false;
+
+  };
+
+  /**
+   * @method _processStateChange
+   * @static
+   * @protected
+   */
+  WebMidi.prototype._processStateChange = function(e) {
+
+    this._updateInputsAndOutputs();
+
+    // This is required because we need to manually update the inputs/outputs at the very beginning.
+    // In this scenario, we should not trigger an event.
+    if (e === null) { return; }
 
     /**
-     * Event emitted when the interface's state changes. Typically, this happens when a MIDI device
-     * is being plugged or unplugged. This event cannot be listened on a single specific MIDI
-     * device, it is intended to be interface-wide.
+     * Event emitted when a MIDI port becomes available. This event is typically fired whenever a
+     * MIDI device is plugged in.
      *
-     * @event statechange
-     * @param {Object} MIDIConnectionEvent
+     * @event connected
+     * @param {Object} An `Object` describing the `connected` event
      */
-    _userHandlers.system.statechange.forEach(function(handler){
-      handler(e);
+    /**
+     * Event emitted when a MIDI port becomes unavailable. This event is typically fired whenever a
+     * MIDI device is unplugged.
+     *
+     * @event disconnected
+     * @param {Object} An `Object` describing the `disconnected` event
+     */
+    var event = {
+      timestamp: e.timeStamp,
+      type: e.port.state,
+      id: e.port.id,
+      manufacturer: e.port.manufacturer,
+      name: e.port.name
+    };
+
+    if (e.port.state === "connected") {
+
+      if (e.port.type === "output") {
+        event.output = this.getOutputById(e.port.id);
+      } else if (e.port.type === "input") {
+        event.input = this.getInputById(e.port.id);
+      }
+
+    }
+
+    this._userHandlers[e.port.state].forEach(function (handler) {
+      handler(event);
     });
 
+  };
+
+  /**
+   * @method _resetInterfaceUserHandlers
+   * @static
+   * @protected
+   */
+  WebMidi.prototype._resetInterfaceUserHandlers = function() {
+
+    for (var i = 0; i < this._midiInterfaceEvents.length; i++) {
+      this._userHandlers[this._midiInterfaceEvents[i]] = [];
+    }
+
+  };
+
+  /**
+   * The `Input` object represents an available MIDI input port. This object is created by the MIDI
+   * subsystem and cannot be instantiated directly.
+   *
+   * @class Input
+   * @param {MIDIInput} midiInput `MIDIInput` object
+   */
+  function Input(midiInput) {
+
+    var that = this;
+
+    // User-defined handlers list
+    this._userHandlers = { "channel": {}, "system": {} };
+
+    // Reference to the actual MIDIInput object
+    this._midiInput = midiInput;
+
+    Object.defineProperties(this, {
+
+      /**
+       * [read-only] Status of the MIDI port's connection
+       *
+       * @property connection
+       * @type String
+       */
+      connection: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.connection;
+        }
+      },
+
+      /**
+       * [read-only] ID string of the MIDI port
+       *
+       * @property id
+       * @type String
+       */
+      id: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.id;
+        }
+      },
+
+      /**
+       * [read-only] Manufacturer of the device to which this port belongs
+       *
+       * @property manufacturer
+       * @type String
+       */
+      manufacturer: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.manufacturer;
+        }
+      },
+
+      /**
+       * [read-only] Name of the MIDI port
+       *
+       * @property name
+       * @type String
+       */
+      name: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.name;
+        }
+      },
+
+      /**
+       * [read-only] State of the MIDI port
+       *
+       * @property state
+       * @type String
+       */
+      state: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.state;
+        }
+      }
+
+    });
+
+    this._initializeUserHandlers();
+
   }
+
+  /**
+   * Adds an event listener to the `Input` that will trigger a function callback when the specified
+   * event happens. By default, the listener will listen on all MIDI channels. To listen on a
+   * specific channel, you can use the `filter` parameter.
+   *
+   * WebMidi must be enabled before adding event listeners.
+   *
+   * Here is a list of events that are dispatched by `Input` objects and that can be listened
+   * to.
+   *
+   * Channel-specific MIDI events:
+   *
+   *    * {{#crossLink "WebMidi/noteoff:event"}}noteoff{{/crossLink}}
+   *    * {{#crossLink "WebMidi/noteon:event"}}noteon{{/crossLink}}
+   *    * {{#crossLink "WebMidi/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
+   *    * {{#crossLink "WebMidi/controlchange:event"}}controlchange{{/crossLink}}
+   *    * {{#crossLink "WebMidi/channelmode:event"}}channelmode{{/crossLink}}
+   *    * {{#crossLink "WebMidi/programchange:event"}}programchange{{/crossLink}}
+   *    * {{#crossLink "WebMidi/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
+   *    * {{#crossLink "WebMidi/pitchbend:event"}}pitchbend{{/crossLink}}
+   *
+   * Device-wide MIDI events:
+   *
+   *    * {{#crossLink "WebMidi/sysex:event"}}sysex{{/crossLink}}
+   *    * {{#crossLink "WebMidi/timecode:event"}}timecode{{/crossLink}}
+   *    * {{#crossLink "WebMidi/songposition:event"}}songposition{{/crossLink}}
+   *    * {{#crossLink "WebMidi/songselect:event"}}songselect{{/crossLink}}
+   *    * {{#crossLink "WebMidi/tuningrequest:event"}}tuningrequest{{/crossLink}}
+   *    * {{#crossLink "WebMidi/clock:event"}}clock{{/crossLink}}
+   *    * {{#crossLink "WebMidi/start:event"}}start{{/crossLink}}
+   *    * {{#crossLink "WebMidi/continue:event"}}continue{{/crossLink}}
+   *    * {{#crossLink "WebMidi/stop:event"}}stop{{/crossLink}}
+   *    * {{#crossLink "WebMidi/activesensing:event"}}activesensing{{/crossLink}}
+   *    * {{#crossLink "WebMidi/reset:event"}}reset{{/crossLink}}
+   *    * {{#crossLink "WebMidi/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
+   *
+   * For device-wide events, the `filters` parameter (if any) will be silently ignored.
+   *
+   * @method addListener
+   * @chainable
+   *
+   * @param type {String} The type of the event.
+   *
+   * @param listener {Function} A callback function to execute when the specified event is detected.
+   * This function will receive an event parameter object. For details on this object's properties,
+   * check out the documentation for the various events (links above).
+   *
+   * @param [filters={}]
+   *
+   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to listen on (between 1
+   * and 16). You can also specify an array of channels to listen on. If set to 'all' (default),
+   * all channels will trigger the callback function.
+   *
+   * @throws {TypeError} The 'filters' parameter must be an object.
+   * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
+   * @throws {TypeError} The 'listener' parameter must be a function.
+   * @throws {TypeError} The specified event type is not supported.
+   *
+   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   */
+  Input.prototype.addListener = function(type, listener, filters) {
+
+    var that = this;
+
+    filters = filters || {};
+
+    if (typeof filters !== 'object') {
+      throw new TypeError("The 'filters' parameter must be an object.");
+    }
+
+    if (filters.channel === undefined) { filters.channel = "all"; }
+    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+
+    // Check if channel entries are valid
+    filters.channel.forEach(function(item){
+      if (item !== "all" && !(item >= 1 && item <= 16)) {
+        throw new RangeError(
+            "The channel must be an integer between 1 and 16 or the value 'all'."
+        );
+      }
+    });
+
+    if (typeof listener !== "function") {
+      throw new TypeError("The 'listener' parameter must be a function.");
+    }
+
+    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+
+      if (!this._userHandlers.system[type]) {
+        this._userHandlers.system[type] = [];
+      }
+
+      this._userHandlers.system[type].push(listener);
+
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+
+      // If "all" is present anywhere in the channel array, use all 16 channels
+      if (filters.channel.indexOf("all") > -1) {
+        filters.channel = [];
+        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      }
+
+      if (!this._userHandlers.channel[type]) { this._userHandlers.channel[type] = []; }
+
+      // Push all channel listeners in the array
+      filters.channel.forEach(function(ch){
+
+        if (!that._userHandlers.channel[type][ch]) {
+          that._userHandlers.channel[type][ch] = [];
+        }
+
+        that._userHandlers.channel[type][ch].push(listener);
+
+      });
+
+    } else {
+      throw new TypeError("The specified event type is not supported.");
+    }
+
+    return this;
+
+  };
+
+  /**
+   * Checks if the specified event type is already defined to trigger the listener function. If
+   * more than one channel is specified, the function will return `true` only if all channels have
+   * the listener defined.
+   *
+   * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
+   *
+   * @method hasListener
+   * @static
+   *
+   * @param type {String} The type of the event.
+   * @param listener {Function} The callback function to check for.
+   * @param [filters={}] {Object}
+   *
+   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to check on. It can be a uint
+   * (between 1 and 16), an array of channels or the special value "all".
+   *
+   * @throws {TypeError} The 'listener' parameter must be a function.
+   * @throws {TypeError} The 'filters' parameter must be an object.
+   *
+   * @return {Boolean} Boolean value indicating whether or not the channel(s) already have this
+   * listener defined.
+   */
+  Input.prototype.hasListener = function(type, listener, filters) {
+
+    var that = this;
+
+    if (typeof listener !== "function") {
+      throw new TypeError("The 'listener' parameter must be a function.");
+    }
+
+    filters = filters || {};
+
+    if (typeof filters !== 'object') {
+      throw new TypeError("The 'filters' parameter must be an object.");
+    }
+
+    if (filters.channel === undefined) { filters.channel = "all"; }
+    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+
+    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+
+      for (var o = 0; o < this._userHandlers.system[type].length; o++) {
+        if (this._userHandlers.system[type][o] === listener) { return true; }
+      }
+
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+
+      // If "all" is present anywhere in the channel array, use all 16 channels
+      if (filters.channel.indexOf("all") > -1) {
+        filters.channel = [];
+        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      }
+
+      if (!this._userHandlers.channel[type]) { return false; }
+
+      // Go through all specified channels
+      return filters.channel.every(function(chNum) {
+        var listeners = that._userHandlers.channel[type][chNum];
+        return listeners && listeners.indexOf(listener) > -1;
+      });
+
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Removes the specified listener. If the `filters` parameter is omitted, the listener will be
+   * removed from all channels. If the listener` parameter is left undefined, all listeners
+   * for the specified `type` will be removed from all channels. If the `filter`, the `listener` and
+   * the `type` parameters are omitted, all listeners attached to the `Input` will be removed.
+   *
+   * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
+   *
+   * @method removeListener
+   * @static
+   * @chainable
+   *
+   * @param [type] {String} The type of the event.
+   * @param [listener] {Function} The callback function to check for.
+   * @param [filters={}] {Object}
+   *
+   * @param [filters.channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint
+   * (between 1 and 16) or the special value "all".
+   *
+   * @throws {TypeError} The specified event type is not supported.
+   * @throws {TypeError} The 'listener' parameter must be a function..
+   *
+   * @return {WebMidi} The `WebMidi` object for easy method chaining.
+   */
+  Input.prototype.removeListener = function(type, listener, filters) {
+
+    var that = this;
+
+    if (listener !== undefined && typeof listener !== "function") {
+      throw new TypeError("The 'listener' parameter must be a function.");
+    }
+
+    filters = filters || {};
+
+    if (typeof filters !== 'object') {
+      throw new TypeError("The 'filters' parameter must be an object.");
+    }
+
+    if (filters.channel === undefined) { filters.channel = "all"; }
+    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+
+    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+
+      if (listener === undefined) {
+
+        this._userHandlers.system[type] = [];
+
+      } else {
+
+        for (var o = 0; o < this._userHandlers.system[type].length; o++) {
+          if (this._userHandlers.system[type][o] === listener) {
+            this._userHandlers.system[type].splice(o, 1);
+          }
+        }
+
+      }
+
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+
+      // If "all" is present anywhere in the channel array, use all 16 channels
+      if (filters.channel.indexOf("all") > -1) {
+        filters.channel = [];
+        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      }
+
+      if (!this._userHandlers.channel[type]) { return this; }
+
+      // Go through all specified channels
+      filters.channel.forEach(function(chNum) {
+        var listeners = that._userHandlers.channel[type][chNum];
+        if (!listeners) { return; }
+
+        if (listener === undefined) {
+          that._userHandlers.channel[type][chNum] = [];
+        } else {
+          for (var l = 0; l < listeners.length; l++) {
+            if (listeners[l] === listener) { listeners.splice(l, 1); }
+          }
+        }
+
+      });
+
+    } else if (type === undefined) {
+      this._initializeUserHandlers();
+    } else {
+      throw new TypeError("The specified event type is not supported.");
+    }
+
+    return this;
+
+  };
+
+  /**
+   * @method _initializeUserHandlers
+   * @protected
+   */
+  Input.prototype._initializeUserHandlers = function() {
+
+    for (var prop1 in wm.MIDI_CHANNEL_MESSAGES) {
+      if (wm.MIDI_CHANNEL_MESSAGES.hasOwnProperty(prop1)) {
+        this._userHandlers.channel[prop1] = {};
+      }
+    }
+
+    for (var prop2 in wm.MIDI_SYSTEM_MESSAGES) {
+      if (wm.MIDI_SYSTEM_MESSAGES.hasOwnProperty(prop2)) {
+        this._userHandlers.system[prop2] = [];
+      }
+    }
+
+  };
+
+  /**
+   * @method _onMidiMessage
+   * @protected
+   */
+  Input.prototype._onMidiMessage = function(e) {
+
+    if (e.data[0] < 240) {          // channel-specific message
+      this._parseChannelEvent(e);
+    } else if (e.data[0] <= 255) {  // system message
+      this._parseSystemEvent(e);
+    }
+
+  };
 
   /**
    * @method _parseChannelEvent
    * @param e Event
-   * @private
+   * @protected
    */
-  function _parseChannelEvent(e) {
+  Input.prototype._parseChannelEvent = function(e) {
 
     var command = e.data[0] >> 4;
     var channel = (e.data[0] & 0xf) + 1;
@@ -276,16 +1292,16 @@
 
     // Returned event
     var event = {
-      "device": e.currentTarget,
+      "target": this,
       "data": e.data,
       "receivedTime": e.receivedTime,
-      "timeStamp": e.timeStamp,
+      "timestamp": e.timeStamp,
       "channel": channel
     };
 
     if (
-        command === _channelMessages.noteoff ||
-        (command === _channelMessages.noteon && data2 === 0)
+        command === wm.MIDI_CHANNEL_MESSAGES.noteoff ||
+        (command === wm.MIDI_CHANNEL_MESSAGES.noteon && data2 === 0)
     ) {
 
       /**
@@ -323,12 +1339,12 @@
       event.type = 'noteoff';
       event.note = {
         "number": data1,
-        "name": _notes[data1 % 12],
+        "name": wm._notes[data1 % 12],
         "octave": Math.floor(data1 / 12 - 1) - 3
       };
       event.velocity = data2 / 127;
 
-    } else if (command === _channelMessages.noteon) {
+    } else if (command === wm.MIDI_CHANNEL_MESSAGES.noteon) {
 
       /**
        * Event emitted when a note on MIDI message has been received on a specific device and
@@ -365,12 +1381,12 @@
       event.type = 'noteon';
       event.note = {
         "number": data1,
-        "name": _notes[data1 % 12],
+        "name": wm._notes[data1 % 12],
         "octave": Math.floor(data1 / 12 - 1) - 3
       };
       event.velocity = data2 / 127;
 
-    } else if (command === _channelMessages.keyaftertouch) {
+    } else if (command === wm.MIDI_CHANNEL_MESSAGES.keyaftertouch) {
 
       /**
        * Event emitted when a key-specific aftertouch MIDI message has been received on a specific
@@ -407,13 +1423,13 @@
       event.type = 'keyaftertouch';
       event.note = {
         "number": data1,
-        "name": _notes[data1 % 12],
+        "name": wm._notes[data1 % 12],
         "octave": Math.floor(data1 / 12 - 1) - 3
       };
       event.value = data2 / 127;
 
     } else if (
-        command === _channelMessages.controlchange &&
+        command === wm.MIDI_CHANNEL_MESSAGES.controlchange &&
         data1 >= 0 && data1 <= 119
     ) {
 
@@ -455,7 +1471,7 @@
       event.value = data2;
 
     } else if (
-        command === _channelMessages.channelmode &&
+        command === wm.MIDI_CHANNEL_MESSAGES.channelmode &&
         data1 >= 120 && data1 <= 127
     ) {
 
@@ -496,7 +1512,7 @@
       };
       event.value = data2;
 
-    } else if (command === _channelMessages.programchange) {
+    } else if (command === wm.MIDI_CHANNEL_MESSAGES.programchange) {
 
       /**
        * Event emitted when a program change MIDI message has been received on a specific device and
@@ -525,7 +1541,7 @@
       event.type = 'programchange';
       event.value = data1;
 
-    } else if (command === _channelMessages.channelaftertouch) {
+    } else if (command === wm.MIDI_CHANNEL_MESSAGES.channelaftertouch) {
 
       /**
        * Event emitted when a channel-wide aftertouch MIDI message has been received on a specific
@@ -554,7 +1570,7 @@
       event.type = 'channelaftertouch';
       event.value = data1 / 127;
 
-    } else if (command === _channelMessages.pitchbend) {
+    } else if (command === wm.MIDI_CHANNEL_MESSAGES.pitchbend) {
 
       /**
        * Event emitted when a pitch bend MIDI message has been received on a specific device and
@@ -588,33 +1604,35 @@
 
     // If some callbacks have been defined for this event, on that device and channel, execute them.
     if (
-        _userHandlers.channel[event.type][event.device.id] &&
-        _userHandlers.channel[event.type][event.device.id][channel]
+        this._userHandlers.channel[event.type] &&
+        this._userHandlers.channel[event.type][channel]
     ) {
-      _userHandlers.channel[event.type][event.device.id][channel].forEach(
+
+      this._userHandlers.channel[event.type][channel].forEach(
           function(callback) { callback(event); }
       );
     }
 
-  }
+  };
 
   /**
    * @method _parseSystemEvent
-   * @private
+   * @protected
    */
-  function _parseSystemEvent(e) {
+  Input.prototype._parseSystemEvent = function(e) {
 
     var command = e.data[0];
 
     // Returned event
     var event = {
+      "target": this,
       "device": e.currentTarget,
       "data": e.data,
       "receivedTime": e.receivedTime,
-      "timeStamp": e.timeStamp
+      "timestamp": e.timeStamp
     };
 
-    if (command === _systemMessages.sysex) {
+    if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
 
       /**
        * Event emitted when a system exclusive MIDI message has been received.
@@ -637,7 +1655,7 @@
        */
       event.type = 'sysex';
 
-    } else if (command === _systemMessages.timecode) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
 
       /**
        * Event emitted when a system MIDI time code quarter frame message has been received.
@@ -662,7 +1680,7 @@
 
       //@todo calculate time values and make them directly available
 
-    } else if (command === _systemMessages.songposition) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
 
       /**
        * Event emitted when a system song position pointer MIDI message has been received.
@@ -687,7 +1705,7 @@
 
       //@todo calculate position value and make it directly available
 
-    } else if (command === _systemMessages.songselect) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
 
       /**
        * Event emitted when a system song select MIDI message has been received.
@@ -708,7 +1726,7 @@
       event.type = 'songselect';
       event.song = e.data[1];
 
-    } else if (command === _systemMessages.tuningrequest) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.tuningrequest) {
 
       /**
        * Event emitted when a system tune request MIDI message has been received.
@@ -727,7 +1745,7 @@
        */
       event.type = 'tuningrequest';
 
-    } else if (command === _systemMessages.clock) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.clock) {
 
       /**
        * Event emitted when a system timing clock MIDI message has been received.
@@ -746,7 +1764,7 @@
        */
       event.type = 'clock';
 
-    } else if (command === _systemMessages.start) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.start) {
 
       /**
        * Event emitted when a system start MIDI message has been received.
@@ -765,7 +1783,7 @@
        */
       event.type = 'start';
 
-    } else if (command === _systemMessages.continue) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.continue) {
 
       /**
        * Event emitted when a system continue MIDI message has been received.
@@ -784,7 +1802,7 @@
        */
       event.type = 'continue';
 
-    } else if (command === _systemMessages.stop) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.stop) {
 
       /**
        * Event emitted when a system stop MIDI message has been received.
@@ -803,7 +1821,7 @@
        */
       event.type = 'stop';
 
-    } else if (command === _systemMessages.activesensing) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.activesensing) {
 
       /**
        * Event emitted when a system active sensing MIDI message has been received.
@@ -822,7 +1840,7 @@
        */
       event.type = 'activesensing';
 
-    } else if (command === _systemMessages.reset) {
+    } else if (command === wm.MIDI_SYSTEM_MESSAGES.reset) {
 
       /**
        * Event emitted when a system reset MIDI message has been received.
@@ -871,455 +1889,100 @@
     }
 
     // If some callbacks have been defined for this event, execute them.
-    if (_userHandlers.system[event.type]) {
-      _userHandlers.system[event.type].forEach(
-          function(callback) { callback(event); }
+    if (this._userHandlers.system[event.type]) {
+      this._userHandlers.system[event.type].forEach(
+        function(callback) { callback(event); }
       );
     }
 
-  }
+  };
 
   /**
-   * @method _onMidiMessage
-   * @private
+   * The `Output` object represents an available MIDI output port. This object is created by the
+   * MIDI subsystem and cannot be instantiated directly.
+   *
+   * @class Output
+   * @param {MIDIOutput} midiOutput Actual `MIDIOutput` object as defined by the MIDI subsystem
    */
-  function _onMidiMessage(e) {
-
-    if (e.data[0] < 240) {          // device and channel-specific message
-      _parseChannelEvent(e);
-    } else if (e.data[0] <= 255) {  // system message
-      _parseSystemEvent(e);
-    }
-
-  }
-
-  /**
-   * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
-   * If the operation succeeds, the `successHandler` callback is executed. If not, the
-   * `errorHandler` callback is executed and passed a string describing the error.
-   *
-   * @method enable
-   * @static
-   *
-   * @param [successHandler] {Function} A function to execute upon success.
-   *
-   * @param [errorHandler] {Function} A function to execute upon error. This function will be passed
-   * a string describing the error.
-   *
-   * @param [sysex=false] {Boolean} Whether to enable sysex or not. When this parameter is set to
-   * true, the browser may prompt the user for authorization.
-   */
-  WebMidi.prototype.enable = function(successHandler, errorHandler, sysex) {
+  function Output(midiOutput) {
 
     var that = this;
 
-    if (
-        (successHandler && typeof successHandler !== "function") ||
-        (errorHandler && typeof errorHandler !== "function")
-    ) {
-      throw new TypeError("The success and error handlers must be functions.");
-    }
-
-    if (!this.supported && errorHandler) {
-      errorHandler("The Web MIDI API is not supported by your browser.");
-      return;
-    }
-
-    navigator.requestMIDIAccess({"sysex": sysex}).then(
-
-        function(midiAccess) {
-          that.interface = midiAccess;
-
-          that.interface.onstatechange = _onInterfaceStateChange;
-
-          that.inputs.forEach(function(input) {
-            input.onmidimessage = _onMidiMessage;
-          });
-
-          if (successHandler) { successHandler(); }
-
-        },
-        errorHandler
-    );
-
-  };
-
-  /**
-   * Adds an event listener that will trigger a function callback when the specified event happens.
-   * By default, the listener is system-wide (it will listen on all MIDI channels of all MIDI input
-   * devices). To listen to a specific device or channel, you can use the `filter` parameter.
-   *
-   * WebMidi must be enabled before adding event listeners.
-   *
-   * Here is a list of events that are dispatched by the `WebMidi` object and that can be listened
-   * to.
-   *
-   * MIDI interface event:
-   *
-   *    * {{#crossLink "WebMidi/statechange:event"}}statechange{{/crossLink}}
-   *
-   * Device and channel-specific MIDI events:
-   *
-   *    * {{#crossLink "WebMidi/noteoff:event"}}noteoff{{/crossLink}}
-   *    * {{#crossLink "WebMidi/noteon:event"}}noteon{{/crossLink}}
-   *    * {{#crossLink "WebMidi/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
-   *    * {{#crossLink "WebMidi/controlchange:event"}}controlchange{{/crossLink}}
-   *    * {{#crossLink "WebMidi/channelmode:event"}}channelmode{{/crossLink}}
-   *    * {{#crossLink "WebMidi/programchange:event"}}programchange{{/crossLink}}
-   *    * {{#crossLink "WebMidi/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
-   *    * {{#crossLink "WebMidi/pitchbend:event"}}pitchbend{{/crossLink}}
-   *
-   * System-wide MIDI events:
-   *
-   *    * {{#crossLink "WebMidi/sysex:event"}}sysex{{/crossLink}}
-   *    * {{#crossLink "WebMidi/timecode:event"}}timecode{{/crossLink}}
-   *    * {{#crossLink "WebMidi/songposition:event"}}songposition{{/crossLink}}
-   *    * {{#crossLink "WebMidi/songselect:event"}}songselect{{/crossLink}}
-   *    * {{#crossLink "WebMidi/tuningrequest:event"}}tuningrequest{{/crossLink}}
-   *    * {{#crossLink "WebMidi/clock:event"}}clock{{/crossLink}}
-   *    * {{#crossLink "WebMidi/start:event"}}start{{/crossLink}}
-   *    * {{#crossLink "WebMidi/continue:event"}}continue{{/crossLink}}
-   *    * {{#crossLink "WebMidi/stop:event"}}stop{{/crossLink}}
-   *    * {{#crossLink "WebMidi/activesensing:event"}}activesensing{{/crossLink}}
-   *    * {{#crossLink "WebMidi/reset:event"}}reset{{/crossLink}}
-   *    * {{#crossLink "WebMidi/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
-   *
-   * For system-wide events, the `filters` parameter (if any) will be silently ignored.
-   *
-   * @method addListener
-   * @static
-   * @chainable
-   *
-   * @param type {String} The type of the event.
-   *
-   * @param listener {Function} A callback function to execute when the specified event is detected.
-   * This function will receive an event parameter object. For details on this object's properties,
-   * check out the documentation for the various events (links above).
-   *
-   * @param [filters={}]
-   *
-   * @param [filters.device="all"] {String|Array} The id of the MIDI device to listen on. The
-   * device id can be retrieved in the `WebMidi.inputs` array. It is also possible to listen on
-   * several devices at once by passing in an array of ids. If set to 'all' (default) all devices
-   * will trigger the callback function.
-   *
-   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
-   * input devices to listen to. As a reference, all available `MIDIInput` objects are listed in the
-   * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will trigger
-   * the callback function.
-   *
-   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to listen on (between 1
-   * and 16). You can also specify an array of channels to listen on. If set to 'all', all channels
-   * will trigger the callback function.
-   *
-   * @throws {Error} WebMidi must be connected before adding event listeners.
-   * @throws {Error} There is no such input device.
-   * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
-   * @throws {TypeError} The specified event type is not supported.
-   * @throws {TypeError} The 'listener' parameter must be a function.
-   *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
-   */
-  WebMidi.prototype.addListener = function(type, listener, filters) {
-
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before adding event listeners.");
-    }
-
-    filters = filters || {};
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
-
-    filters.input = filters.input || this.inputs;
-    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
-
-    // Check if input devices are valid
-    filters.input.forEach(function(item) {
-      if ( !(item instanceof MIDIInput) ) {
-        throw new ReferenceError("There is no such input device.");
-      }
-    });
-
-    // Check if channel entries are valid
-    filters.channel.forEach(function(item){
-      if (item !== "all" && !(item >= 1 && item <= 16)) {
-        throw new RangeError(
-            "The channel must be an integer between 1 and 16 or the value 'all'."
-        );
-      }
-    });
-
-    if (typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
-    }
-
-    if (type === "statechange" || _systemMessages[type]) {
-
-      _userHandlers.system[type].push(listener);
-
-    } else if (_channelMessages[type]) {
-
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
-      }
-
-      if (!_userHandlers.channel[type]) { _userHandlers.channel[type] = []; }
-
-      // Go through all specified devices
-      filters.input.forEach(function(dev) {
-
-        // Create device array if non-existent (using the device's id)
-        if ( !_userHandlers.channel[type][dev.id] ) {
-          _userHandlers.channel[type][dev.id] = []; }
-
-        // Push all channel listeners in the device array
-        filters.channel.forEach(function(ch){
-
-          if (!_userHandlers.channel[type][dev.id][ch]) {
-            _userHandlers.channel[type][dev.id][ch] = [];
-          }
-
-          _userHandlers.channel[type][dev.id][ch].push(listener);
-
-        });
-
-      });
-
-    } else {
-      throw new TypeError("The specified event type is not supported.");
-    }
-
-    return this;
-
-  };
-
-  /**
-   *
-   * Returns a MIDIOutput or MIDIInput device matching the specified id and device type.
-   *
-   * @method getDeviceById
-   * @static
-   *
-   * @param id {String} The id of the device. Ids can be retrieved by looking at the
-   * `WebMidi.inputs` or `WebMidi.outputs` arrays.
-   *
-   * @param [type=input] {String} One of 'input' or 'output' to indicate whether your are looking
-   * for an input or an output device.
-   *
-   * @returns {MIDIOutput|MIDIInput|False} A MIDIOutput or MIDIInput device matching the specified
-   * id. If no matching device can be found, the method returns `false`.
-   */
-  WebMidi.prototype.getDeviceById = function(id, type) {
-
-    var devices = (type === "output") ? this.outputs : this.inputs;
-
-    for (var i = 0; i < devices.length; i++) {
-      if (devices[i].id === id) { return devices[i]; }
-    }
-
-    return false;
-
-  };
-
-  /**
-   * Return the index of a device in the `WebMidi.outputs` or `WebMidi.inputs` arrays. The device
-   * must be specified by using its id.
-   *
-   * @method getDeviceIndexById
-   * @static
-   *
-   * @param id {String} The id of the device such as it is presented in the `WebMidi.inputs` or
-   * `WebMidi.outputs` arrays.
-   *
-   * @param [type=input] {String} One of 'input' or 'output' to indicate whether your are looking
-   * for the index of an input or output device.
-   *
-   * @returns {uint|False} If no matching device can be found, the method returns `false`.
-   */
-  WebMidi.prototype.getDeviceIndexById = function(id, type) {
-
-    var devices = (type === "output") ? this.outputs : this.inputs;
-
-    for (var i = 0; i < devices.length; i++) {
-      if (devices[i].id === id) { return i; }
-    }
-
-    return false;
-
-  };
-
-  /**
-   * Checks if the specified event type is already defined to trigger the listener function on the
-   * specified device and channel. If more than one device and/or channel is specified, the function
-   * will return `true` only if all devices/channels have the listener defined.
-   *
-   * For system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is
-   * silently ignored.
-   *
-   * @method hasListener
-   * @static
-   *
-   * @param type {String} The type of the event.
-   * @param listener {Function} The callback function to check for.
-   * @param [filters={}] {Object}
-   *
-   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
-   * input devices to check on. As a reference, all available `MIDIInput` objects are listed in the
-   * `WebMidi.inputs` array. When this parameter is left undefined, all input devices will be
-   * checked.
-   *
-   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to check on. It can be a uint
-   * (between 1 and 16) or the special value "all".
-   *
-   * @throws {Error} WebMidi must be enabled before checking event listeners.
-   * @throws {TypeError} The 'listener' parameter must be a function.
-   *
-   * @return {Boolean} Boolean value indicating whether or not the channel(s) already have this
-   * listener defined.
-   */
-  WebMidi.prototype.hasListener = function(type, listener, filters) {
-
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before checking event listeners.");
-    }
-
-    if (typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
-    }
-
-    filters = filters || {};
-
-    filters.input = filters.input || this.inputs;
-    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
-
-    if (type === "statechange" || _systemMessages[type]) {
-
-      for (var o = 0; o < _userHandlers.system[type].length; o++) {
-        if (_userHandlers.system[type][o] === listener) { return true; }
-      }
-
-    } else if (_channelMessages[type]) {
-
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
-      }
-
-      if (!_userHandlers.channel[type]) { return false; }
-
-      // Go through all specified devices
-      return filters.input.every(function(dev) {
-
-        if (!_userHandlers.channel[type][dev.id]) { return false; }
-
-        // Go through all specified channels
-        return filters.channel.every(function(chNum) {
-          var listeners = _userHandlers.channel[type][dev.id][chNum];
-          return listeners && listeners.indexOf(listener) > -1;
-        });
-
-      });
-
-    }
-
-    return false;
-
-  };
-
-  /**
-   * Removes the specified listener from all requested input devices and channel(s). If more than
-   * one devices and/or channels are specified, the function will remove the listener from all
-   * devices/channels.
-   *
-   * For system-wide events (`onstatechange`, `sysex`, `start`, etc.), the `filters` parameter is
-   * silently ignored.
-   *
-   * @method removeListener
-   * @static
-   * @chainable
-   *
-   * @param type {String} The type of the event.
-   * @param listener {Function} The callback function to check for.
-   * @param [filters={}] {Object}
-   *
-   * @param [filters.input] {MIDIInput|Array(MIDIInput)} A MIDI input device or an array of MIDI
-   * input devices to remove from. As a reference, all available `MIDIInput` objects are listed in
-   * the `WebMidi.inputs` array. When this parameter is left undefined, removal will occur for all
-   * input devices.
-   *
-   * @param [filters.channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint
-   * (between 1 and 16) or the special value "all".
-   *
-   * @throws {Error} WebMidi must be enabled before removing event listeners.
-   *
-   * @return {WebMidi} The `WebMidi` object for easy method chaining.
-   */
-  WebMidi.prototype.removeListener = function(type, listener, filters) {
-
-    if (!this.connected) {
-      throw new Error("WebMidi must be connected before removing event listeners.");
-    }
-
-    filters = filters || {};
-
-    filters.input = filters.input || this.inputs;
-    if (filters.input.constructor !== Array) { filters.input = [filters.input]; }
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
-
-    if (type === "statechange" || _systemMessages[type]) {
-
-      for (var o = 0; o < _userHandlers.system[type].length; o++) {
-        if (_userHandlers.system[type][o] === listener) {
-          _userHandlers.system[type].splice(o, 1);
+    this._midiOutput = midiOutput;
+
+    Object.defineProperties(this, {
+
+      /**
+       * [read-only] Status of the MIDI port's connection
+       *
+       * @property connection
+       * @type String
+       */
+      connection: {
+        enumerable: true,
+        get: function () {
+          return that._midiOutput.connection;
+        }
+      },
+
+      /**
+       * [read-only] ID string of the MIDI port
+       *
+       * @property id
+       * @type String
+       */
+      id: {
+        enumerable: true,
+        get: function () {
+          return that._midiOutput.id;
+        }
+      },
+
+      /**
+       * [read-only] Manufacturer of the device to which this port belongs
+       *
+       * @property manufacturer
+       * @type String
+       */
+      manufacturer: {
+        enumerable: true,
+        get: function () {
+          return that._midiOutput.manufacturer;
+        }
+      },
+
+      /**
+       * [read-only] Name of the MIDI port
+       *
+       * @property name
+       * @type String
+       */
+      name: {
+        enumerable: true,
+        get: function () {
+          return that._midiOutput.name;
+        }
+      },
+
+      /**
+       * [read-only] State of the MIDI port
+       *
+       * @property state
+       * @type String
+       */
+      state: {
+        enumerable: true,
+        get: function () {
+          return that._midiOutput.state;
         }
       }
 
-    } else if (_channelMessages[type]) {
+    });
 
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
-      }
-
-      if (!_userHandlers.channel[type]) { return false; }
-
-      // Go through all specified devices
-      filters.input.forEach(function(dev) {
-
-        if (!_userHandlers.channel[type][dev.id]) { return; }
-
-        // Go through all specified channels
-        filters.channel.forEach(function(chNum) {
-          var listeners = _userHandlers.channel[type][dev.id][chNum];
-          if (!listeners) { return; }
-          for (var l = 0; l < listeners.length; l++) {
-            if (listeners[l] === listener) { listeners.splice(l, 1); }
-          }
-
-        });
-
-      });
-
-    }
-
-    return this;
-
-  };
+  }
 
   /**
-   * Sends a MIDI message to the specified MIDI output device(s) at the specified timestamp. The
-   * `output` parameter must refer to an actual available output device or an array of output
-   * devices such as those listed in the `WebMidi.outputs` array.
+   * Sends a MIDI message to the MIDI output port, at the scheduled timestamp.
    *
    * Unless, you are familiar with the details of the MIDI message format, you should not use this
    * method directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,
@@ -1339,25 +2002,16 @@
    * number of data bytes varies depending on the status byte. It is perfectly legal to send no
    * data. Each byte must be between 0 and 255.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available `MIDIOutput` objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
    * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
    * 0.
    *
-   * @throws {Error} WebMidi must be connected before sending messages.
-   * @throws {ReferenceError} There is no device matching the requested id.
    * @throws {RangeError} The status byte must be an integer between 128 (0x80) and 255 (0xFF).
    * @throws {RangeError} The data bytes must be integers between 0 (0x00) and 255 (0xFF).
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.send = function(status, data, output, timestamp) {
-
-    if (!this.connected) { throw new Error("WebMidi must be connected before sending messages."); }
+  Output.prototype.send = function(status, data, timestamp) {
 
     if ( !(status >= 128 && status <= 255) ) {
       throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
@@ -1371,16 +2025,6 @@
       }
     }
 
-    output = output || this.outputs;
-    if (output.constructor !== Array) { output = [output]; }
-
-    // Check if all output devices are actually valid
-    output.forEach(function(dev) {
-      if ( !(dev instanceof MIDIOutput) ) {
-        throw new ReferenceError("There is no such output device.");
-      }
-    });
-
     var message = [status];
 
     data.forEach(function(item){
@@ -1391,30 +2035,27 @@
       }
     });
 
-    output.forEach(function(o) {
-      o.send(message, parseFloat(timestamp) || 0);
-    });
+    this._midiOutput.send(message, parseFloat(timestamp) || 0);
 
     return this;
 
   };
 
   /**
-   * Sends a MIDI *system exclusive* message to the specified device(s). The generated message will
-   * automatically be prepended with the *SysEx* byte (0xF0) and terminated with the *End of SysEx*
-   * byte (0xF7).
+   * Sends a MIDI *system exclusive* message. The generated message will automatically be prepended
+   * with the *SysEx* byte (0xF0) and terminated with the *End of SysEx* byte (0xF7).
    *
    * For example, if you want to send a SysEx message to a Korg device connected to the first
    * output, you would use the following code:
    *
-   *     WebMidi.sendSysex(0x42, [1, 2, 3, 4, 5], WebMidi.outputs[0]);
+   *     WebMidi.outputs[0].sendSysex(0x42, [1, 2, 3, 4, 5]);
    *
    * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (ID 0x42). Some
    * manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
    * the first parameter. For example, to send the same SysEx message to a *Native Instruments*
    * device:
    *
-   *     WebMidi.sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5], WebMidi.outputs[0]);
+   *     WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5]);
    *
    * There is no limit for the length of the data array. However, it is generally suggested to keep
    * system exclusive messages to 64Kb or less.
@@ -1430,30 +2071,28 @@
    * @param [data=[]] {Array} An array of uints between 0 and 127. This is the data you wish to
    * transfer.
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throw SysEx message support must first be activated.
-   *
    * @throw The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendSysex = function(manufacturer, data, output, time) {
+  Output.prototype.sendSysex = function(manufacturer, data, options) {
 
-    if (!this.sysexEnabled) {
+    if (!wm.sysexEnabled) {
       throw new Error("SysEx message support must first be activated.");
     }
+
+    options = options || {};
 
     manufacturer = [].concat(manufacturer);
 
@@ -1465,17 +2104,17 @@
       }
     });
 
-    data = manufacturer.concat(data, _systemMessages.sysexend);
-    this.send(_systemMessages.sysex, data, output, time);
+    data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.sysex, data, options.time);
 
     return this;
 
   };
 
   /**
-   * Sends a *MIDI Timecode Quarter Frame* message to the specified output device(s). Please note
-   * that no processing is being done on the data. It is up to the developer to format the data
-   * according to the [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
+   * Sends a *MIDI Timecode Quarter Frame* message. Please note that no processing is being done on
+   * the data. It is up to the developer to format the data according to the
+   * [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
    *
    * @method sendTimecodeQuarterFrame
    * @static
@@ -1483,30 +2122,27 @@
    *
    * @param value {uint} The quarter frame message content (unsigned int between 0 and 127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendTimecodeQuarterFrame = function(value, output, time) {
-    this.send(_systemMessages.timecode, value, output, time);
+  Output.prototype.sendTimecodeQuarterFrame = function(value, options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, value, options.time);
     return this;
   };
 
   /**
-   * Sends a *Song Position* MIDI message to the specified output device(s). The value is expressed
-   * in MIDI beats (between 0 and 16383) which are 16th note. Position 0 is always the start of the
-   * song.
+   * Sends a *Song Position* MIDI message. The value is expressed in MIDI beats (between 0 and
+   * 16383) which are 16th note. Position 0 is always the start of the song.
    *
    * @method sendSongPosition
    * @static
@@ -1514,35 +2150,34 @@
    *
    * @param [value=0] {uint} The MIDI beat to cue to (int between 0 and 16383).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendSongPosition = function(value, output, time) {
+  Output.prototype.sendSongPosition = function(value, options) {
 
     value = parseInt(value) || 0;
+
+    options = options || {};
 
     var msb = (value >> 7) & 0x7F;
     var lsb = value & 0x7F;
 
-    this.send(_systemMessages.songposition, [msb, lsb], output, time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.songposition, [msb, lsb], options.time);
     return this;
   };
 
   /**
-   * Sends a *Song Select* MIDI message to the specified output device(s). Beware that some devices
-   * will display position 0 as position for user-friendlyness.
+   * Sends a *Song Select* MIDI message. Beware that some devices will display position 0 as
+   * position for user-friendlyness.
    *
    * @method sendSongSelect
    * @static
@@ -1550,268 +2185,286 @@
    *
    * @param value {uint} The number of the song to select (int between 0 and 127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throw The song number must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendSongSelect = function(value, output, time) {
+  Output.prototype.sendSongSelect = function(value,  options) {
 
     value = parseInt(value);
+
+    options = options || {};
 
     if ( !(value >= 0 && value <= 127) ) {
       throw new RangeError("The song number must be between 0 and 127.");
     }
 
-    this.send(_systemMessages.songselect, [value], output, time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], options.time);
 
     return this;
 
-  };
-
-  WebMidi.prototype.sendTuningRequest = function(output, time) {
-    this.send(_systemMessages.tuningrequest, undefined, output, time);
-    return this;
   };
 
   /**
-   * Sends a *MIDI Clock* real-time message to the specified output device(s). According to the
-   * standard, there are 24 MIDI Clocks for every quarter note.
+   * Sends a *MIDI tuning request* real-time message. Note: there seems to be a bug in Chrome's MIDI
+   * implementation. If you try to use this function, Chrome throws a "Message is incomplete" error.
+   * I'm fairly sure it should work as is. I reported the issue and I'm waiting for feedback from
+   * Chrome team:
+   *
+   *    https://bugs.chromium.org/p/chromium/issues/detail?id=610116
+   *
+   * Until this is resolved, calling `Output.sendTuningRequest` will throw an error.
+   *
+   * @method sendTuningRequest
+   * @static
+   * @chainable
+   *
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  Output.prototype.sendTuningRequest = function(options) {
+    throw new Error(
+      "The 'tuning request' message does not seem to be supported by Chrome's Web MIDI API..."
+    );
+    // options = options || {};
+    // this.send(wm.MIDI_SYSTEM_MESSAGES.tuningrequest, undefined, options.time);
+    // return this;
+  };
+
+  /**
+   * Sends a *MIDI Clock* real-time message. According to the standard, there are 24 MIDI Clocks
+   * for every quarter note.
    *
    * @method sendClock
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendClock = function(output, time) {
-    this.send(_systemMessages.clock, undefined, output, time);
+  Output.prototype.sendClock = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.clock, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends a *Start* real-time message to the specified output device(s). A MIDI Start message
-   * starts the playback of the current song at beat 0. To start playback elsewhere in the song, use
-   * the `sendContinue()` function.
+   * Sends a *Start* real-time message. A MIDI Start message starts the playback of the current
+   * song at beat 0. To start playback elsewhere in the song, use the `sendContinue()` function.
    *
    * @method sendStart
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendStart = function(output, time) {
-    this.send(_systemMessages.start, undefined, output, time);
+  Output.prototype.sendStart = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends a *Continue* real-time message to the specified output device(s). This resumes song
-   * playback where it was previously stopped or where it was last cued with a song position
-   * message. To start playback from the start, use the `sendStart()` function.
+   * Sends a *Continue* real-time message. This resumes song playback where it was previously
+   * stopped or where it was last cued with a song position message. To start playback from the
+   * start, use the `sendStart()` function.
    *
    * @method sendContinue
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  WebMidi.prototype.sendContinue = function(output, time) {
-    this.send(_systemMessages.continue, undefined, output, time);
+  Output.prototype.sendContinue = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends a *Stop* real-time message to the specified output device(s). This tells the remote
-   * device to stop playback immediately.
+   * Sends a *Stop* real-time message. This tells the device connected to this port to stop playback
+   * immediately (or at the scheduled time).
    *
    * @method sendStop
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendStop = function(output, time) {
-    this.send(_systemMessages.stop, undefined, output, time);
+  Output.prototype.sendStop = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends an *Active Sensing* real-time message to the specified output device(s). This tells the
-   * remote device that the connection is still good. Active sensing messages should be sent every
-   * 300 ms if there was no other activity on the MIDI port.
+   * Sends an *Active Sensing* real-time message. This tells the device connected to this port that
+   * the connection is still good. Active sensing messages should be sent every 300 ms if there was
+   * no other activity on the MIDI port.
    *
    * @method sendActiveSensing
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendActiveSensing = function(output, time) {
-    this.send(_systemMessages.activesensing, undefined, output, time);
+  Output.prototype.sendActiveSensing = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.activesensing, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends an *Reset* real-time message to the specified output device(s). This tells the
-   * remote device that is should reset itself to a default state.
+   * Sends *Reset* real-time message. This tells the device connected to this port that is should
+   * reset itself to a default state.
    *
    * @method sendReset
    * @static
    * @chainable
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param {Object} [options]
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendReset = function(output, time) {
-    this.send(_systemMessages.reset, undefined, output, time);
+  Output.prototype.sendReset = function(options) {
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, options.time);
     return this;
   };
 
   /**
-   * Sends a MIDI `note off` message to the specified device(s) and channel(s) for a single note or
-   * multiple simultaneous notes (chord). You can delay the execution of the `note off` command by
-   * using the `delay` parameter (milliseconds).
+   * Sends a MIDI `note off` message to the channel(s) for a single note or multiple simultaneous
+   * notes (chord). You can delay the execution of the `note off` command by using the `delay`
+   * parameter (milliseconds).
    *
    * @method stopNote
    * @static
    * @chainable
    *
-   * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
-   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-   * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127).
-   *
-   * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
-   * invalid velocity value will silently trigger the default.
-   *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param note {Array|uint|String}  The note(s) you wish to stop. The notes can be specified in
+   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
+   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
+   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
+   * note is G8 (MIDI note number 127).
    *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * array of channel numbers. If the special value "all" is used (default), the message will be
+   * sent to all 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between 0 and
+   * 1). An invalid velocity value will silently trigger the default.
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.stopNote = function(note, velocity, output, channel, time) {
+  Output.prototype.stopNote = function(note, channel, options) {
+
 
     var that = this;
 
-    velocity = parseFloat(velocity);
-    if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
+    options = options || {};
 
-    var nVelocity = Math.round(velocity * 127);
+    options.velocity = parseFloat(options.velocity);
+    if (isNaN(options.velocity) || options.velocity < 0 || options.velocity > 1) {
+      options.velocity = 0.5;
+    }
+
+    var nVelocity = Math.round(options.velocity * 127);
 
     // Send note off messages
     this._convertNoteToArray(note).forEach(function(item) {
 
       that._convertChannelToArray(channel).forEach(function(ch) {
+
         that.send(
-            (_channelMessages.noteoff << 4) + (ch - 1),
+            (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
             [item, nVelocity],
-            output,
-            that._parseTimeParameter(time)
+            that._parseTimeParameter(options.time)
         );
       });
 
@@ -1822,12 +2475,11 @@
   };
 
   /**
-   * Requests the playback of a single note or multiple notes on the specified device(s) and
-   * channel(s). You can delay the execution of the `note on` command by using the `delay` parameter
-   * (milliseconds).
+   * Requests the playback of a single note or multiple notes on the specified channel(s). You can
+   * delay the execution of the `note on` command by using the `delay` parameter (milliseconds).
    *
    * If no duration is specified, the note will play until a matching `note off` is sent. If a
-   * duration is specified, a `note off` will be automatically executed after said duration.
+   * duration is specified, a `note off` will be automatically sent after said duration.
    *
    * Please note that if you do use a duration, the release velocity will always be 64. If you want
    * to tailor the release velocity, you need to use separate `playNote()` and `stopNote()` calls.
@@ -1836,73 +2488,72 @@
    * @static
    * @chainable
    *
-   * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
-   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-   * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127).
-   *
-   * @param [velocity=0.5] {Number} The velocity at which to play the note (between 0 and 1). An
-   * invalid velocity value will silently trigger the default.
-   *
-   * @param [duration=undefined] {int}    The number of milliseconds to wait before sending a
-   * matching note off event. If left undefined, only a `note on` message is sent.
-   *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
+   * @param note {Array|uint|String}  The note(s) you wish to play. The notes can be specified in
+   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
+   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
+   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
+   * note is G8 (MIDI note number 127).
    *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * array of channel numbers. If the special value "all" is used (default), the message will be
+   * sent to all 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {Number} [options.velocity=0.5] The velocity at which to play the note (between 0 and
+   * 1). An invalid velocity value will silently trigger the default.
+   *
+   * @param {int} [options.duration=undefined]  The number of milliseconds to wait before sending a
+   * matching note off event. If left undefined, only a `note on` message is sent.
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi}                    Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.playNote = function(note, velocity, duration, output, channel, time) {
+  Output.prototype.playNote = function(note, channel, options) {
 
     var that = this;
 
-    velocity = parseFloat(velocity);
-    if (isNaN(velocity) || velocity < 0 || velocity > 1) { velocity = 0.5; }
+    options = options || {};
 
-    var nVelocity = Math.round(velocity * 127);
+    options.velocity = parseFloat(options.velocity);
+    if (isNaN(options.velocity) || options.velocity < 0 || options.velocity > 1) {
+      options.velocity = 0.5;
+    }
 
-    time = that._parseTimeParameter(time) || 0;
+    var nVelocity = Math.round(options.velocity * 127);
+
+    options.time = that._parseTimeParameter(options.time) || 0;
 
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
       that._convertChannelToArray(channel).forEach(function(ch) {
         that.send(
-            (_channelMessages.noteon << 4) + (ch - 1),
+            (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
             [item, nVelocity],
-            output,
-            time
+          options.time
         );
       });
 
     });
 
     // Send note off messages (only if a duration has been defined)
-    if (duration !== undefined) {
+    if (options.duration !== undefined) {
 
       this._convertNoteToArray(note).forEach(function(item) {
 
         that._convertChannelToArray(channel).forEach(function(ch) {
           that.send(
-              (_channelMessages.noteoff << 4) + (ch - 1),
+              (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
               [item, 64],
-              output,
-              time + duration
+              options.time + options.duration
           );
         });
 
@@ -1915,8 +2566,8 @@
   };
 
   /**
-   * Sends a MIDI `key aftertouch` message to the specified device(s) and channel(s). This is a
-   * key-specific aftertouch. For a channel-wide aftertouch message, use
+   * Sends a MIDI `key aftertouch` message to the specified and channel(s) at the scheduled time.
+   * This is a key-specific aftertouch. For a channel-wide aftertouch message, use
    * {{#crossLink "WebMidi/sendChannelAftertouch:method"}}sendChannelAftertouch(){{/crossLink}}.
    *
    * @method sendKeyAftertouch
@@ -1929,48 +2580,48 @@
    * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
    * note number 0) and the highest note is G8 (MIDI note number 127).
    *
-   * @param [pressure=0.5] {Number}   The pressure level to send (between 0 and 1).
-   *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {Number} [options.pressure=0.5] The pressure level to send (between 0 and 1).
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The channel must be between 1 and 16.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendKeyAftertouch = function(note, pressure, output, channel, time) {
+  Output.prototype.sendKeyAftertouch = function(note, channel, options) {
 
     var that = this;
 
+    options = options || {};
+
     if (channel < 1 || channel > 16) { throw new RangeError("The channel must be between 1 and 16."); }
 
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
+    options.pressure = parseFloat(options.pressure);
+    if (isNaN(options.pressure) || options.pressure < 0 || options.pressure > 1) {
+      options.pressure = 0.5;
+    }
 
-    var nPressure = Math.round(pressure * 127);
+    var nPressure = Math.round(options.pressure * 127);
 
     this._convertNoteToArray(note).forEach(function(item) {
 
       that._convertChannelToArray(channel).forEach(function(ch) {
         that.send(
-            (_channelMessages.keyaftertouch << 4) + (ch - 1),
+            (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (ch - 1),
             [item, nPressure],
-            output,
-            that._parseTimeParameter(time)
+            that._parseTimeParameter(options.time)
         );
       });
 
@@ -1981,8 +2632,7 @@
   };
 
   /**
-   * Sends a MIDI `control change` message to the specified device(s) and channel(s). The message
-   * can also be scheduled to be sent at a specific time via the `time` parameter.
+   * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time.
    *
    * To view a list of all available `control change` messages, please consult "Table 3 - Control
    * Change Messages" from the [MIDI Messages](http://www.midi.org/techspecs/midimessages.php)
@@ -1996,31 +2646,30 @@
    *
    * @param [value=0] {uint} The value to send (0-127).
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} Controller numbers must be between 0 and 119.
    * @throws {RangeError} Value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendControlChange = function(controller, value, output, channel, time) {
+  Output.prototype.sendControlChange = function(controller, value, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     controller = parseInt(controller);
     if ( !(controller >= 0 && controller <= 119) ) {
@@ -2034,10 +2683,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (_channelMessages.controlchange << 4) + (ch - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (ch - 1),
           [controller, value],
-          output,
-          that._parseTimeParameter(time)
+          that._parseTimeParameter(options.time)
       );
     });
 
@@ -2055,14 +2703,12 @@
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
    * that identify the registered parameter.
-   *
-   * @param output
    * @param channel
    * @param time
    *
-   * @returns {WebMidi}
+   * @returns {Output}
    */
-  WebMidi.prototype._selectRegisteredParameter = function(parameter, output, channel, time) {
+  Output.prototype._selectRegisteredParameter = function(parameter, channel, time) {
 
     var that = this;
 
@@ -2077,8 +2723,8 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x65, parameter[0], output, channel, time);
-      that.sendControlChange(0x64, parameter[1], output, channel, time);
+      that.sendControlChange(0x65, parameter[0], channel, {time: time});
+      that.sendControlChange(0x64, parameter[1], channel, {time: time});
     });
 
     return this;
@@ -2095,14 +2741,12 @@
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x63, 0x62)
    * that identify the registered parameter.
-   *
-   * @param output
    * @param channel
    * @param time
    *
-   * @returns {WebMidi}
+   * @returns {Output}
    */
-  WebMidi.prototype._selectNonRegisteredParameter = function(parameter, output, channel, time) {
+  Output.prototype._selectNonRegisteredParameter = function(parameter, channel, time) {
 
     var that = this;
 
@@ -2117,8 +2761,8 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x63, parameter[0], output, channel, time);
-      that.sendControlChange(0x62, parameter[1], output, channel, time);
+      that.sendControlChange(0x63, parameter[0], channel, {time: time});
+      that.sendControlChange(0x62, parameter[1], channel, {time: time});
     });
 
     return this;
@@ -2133,13 +2777,12 @@
    * @protected
    *
    * @param data {int|Array}
-   * @param output
    * @param channel
    * @param time
    *
-   * @returns {WebMidi}
+   * @returns {Output}
    */
-  WebMidi.prototype._setCurrentRegisteredParameter = function(data, output, channel, time) {
+  Output.prototype._setCurrentRegisteredParameter = function(data, channel, time) {
 
     var that = this;
 
@@ -2151,13 +2794,13 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x06, data[0], output, channel, time);
+      that.sendControlChange(0x06, data[0], channel, {time: time});
     });
 
     data[1] = parseInt(data[1]);
     if(data[1] >= 0 && data[1] <= 127) {
       this._convertChannelToArray(channel).forEach(function(ch) {
-        that.sendControlChange(0x26, data[1], output, channel, time);
+        that.sendControlChange(0x26, data[1], channel, {time: time});
       });
     }
 
@@ -2176,19 +2819,18 @@
    * @static
    * @protected
    *
-   * @param output
    * @param channel
    * @param time
    *
-   * @returns {WebMidi}
+   * @returns {Output}
    */
-  WebMidi.prototype._deselectRegisteredParameter = function(output, channel, time) {
+  Output.prototype._deselectRegisteredParameter = function(channel, time) {
 
     var that = this;
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.sendControlChange(0x65, 0x7F, output, channel, time);
-      that.sendControlChange(0x64, 0x7F, output, channel, time);
+      that.sendControlChange(0x65, 0x7F, channel, {time: time});
+      that.sendControlChange(0x64, 0x7F, channel, {time: time});
     });
 
     return this;
@@ -2244,40 +2886,39 @@
    * @param [data=[]] {int|Array} An single integer or an array of integers with a maximum length of
    * 2 specifying the desired data.
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setRegisteredParameter = function(parameter, data, output, channel, time) {
+  Output.prototype.setRegisteredParameter = function(parameter, data, channel, options) {
 
     var that = this;
 
+    options = options || {};
+
     if ( !Array.isArray(parameter) ) {
-      if ( !_registeredParameterNumbers[parameter]) {
+      if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
         throw new Error("The specified parameter is not available.");
       }
-      parameter = _registeredParameterNumbers[parameter];
+      parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectRegisteredParameter(parameter, output, channel, time);
-      that._setCurrentRegisteredParameter(data, output, channel, time);
-      that._deselectRegisteredParameter(output, channel, time);
+      that._selectRegisteredParameter(parameter, channel, options.time);
+      that._setCurrentRegisteredParameter(data, channel, options.time);
+      that._deselectRegisteredParameter(channel, options.time);
     });
 
     return this;
@@ -2320,28 +2961,27 @@
    * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setNonRegisteredParameter = function(parameter, data, output, channel, time) {
+  Output.prototype.setNonRegisteredParameter = function(parameter, data, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     if (
         !(parameter[0] >= 0 && parameter[0] <= 127) ||
@@ -2355,9 +2995,9 @@
     data = [].concat(data);
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectNonRegisteredParameter(parameter, output, channel, time);
-      that._setCurrentRegisteredParameter(data, output, channel, time);
-      that._deselectRegisteredParameter(output, channel, time);
+      that._selectNonRegisteredParameter(parameter, channel, options.time);
+      that._setCurrentRegisteredParameter(data, channel, options.time);
+      that._deselectRegisteredParameter(channel, options.time);
     });
 
     return this;
@@ -2395,40 +3035,39 @@
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.incrementRegisteredParameter = function(parameter, output, channel, time) {
+  Output.prototype.incrementRegisteredParameter = function(parameter, channel, options) {
 
     var that = this;
 
+    options = options || {};
+
     if ( !Array.isArray(parameter) ) {
-      if ( !_registeredParameterNumbers[parameter]) {
+      if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
         throw new Error("The specified parameter is not available.");
       }
-      parameter = _registeredParameterNumbers[parameter];
+      parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectRegisteredParameter(parameter, output, channel, time);
-      that.sendControlChange(0x60, 0, output, channel, time);
-      that._deselectRegisteredParameter(output, channel, time);
+      that._selectRegisteredParameter(parameter, channel, options.time);
+      that.sendControlChange(0x60, 0, channel, {time: options.time});
+      that._deselectRegisteredParameter(channel, options.time);
     });
 
     return this;
@@ -2466,49 +3105,48 @@
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [output] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of MIDI output
-   * devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @throws TypeError The specified parameter is not available.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.decrementRegisteredParameter = function(parameter, output, channel, time) {
+  Output.prototype.decrementRegisteredParameter = function(parameter, channel, options) {
 
-    var that = this;
+    options = options || {};
 
     if ( !Array.isArray(parameter) ) {
-      if ( !_registeredParameterNumbers[parameter]) {
-        throw new Error("The specified parameter is not available.");
+      if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
+        throw new TypeError("The specified parameter is not available.");
       }
-      parameter = _registeredParameterNumbers[parameter];
+      parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that._selectRegisteredParameter(parameter, output, channel, time);
-      that.sendControlChange(0x61, 0, output, channel, time);
-      that._deselectRegisteredParameter(output, channel, time);
-    });
+      this._selectRegisteredParameter(parameter, channel, options.time);
+      this.sendControlChange(0x61, 0, channel, {time: options.time});
+      this._deselectRegisteredParameter(channel, options.time);
+    }.bind(this));
 
     return this;
 
   };
 
   /**
-   * Sends a pitch bend range message to the specified device(s) and channel(s) so that they adjust
-   * the range used by their pitch bend lever. The range can be specified with the `semitones`
+   * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
+   * adjust the range used by their pitch bend lever. The range can be specified with the `semitones`
    * parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setPitchBendRange
@@ -2521,31 +3159,30 @@
    *
    * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The semitones value must be between 0 and 127.
    * @throws {RangeError} The cents value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setPitchBendRange = function(semitones, cents, output, channel, time) {
+  Output.prototype.setPitchBendRange = function(semitones, cents, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     semitones = parseInt(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
@@ -2558,7 +3195,9 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("pitchbendrange", [semitones, cents], output, channel, time);
+      that.setRegisteredParameter(
+        "pitchbendrange", [semitones, cents], channel, {time: options.time}
+      );
     });
 
     return this;
@@ -2566,9 +3205,9 @@
   };
 
   /**
-   * Sends a modulation depth range message to the specified output(s) and channel(s) so that they
-   * adjust the depth of their modulation wheel's range. The range can be specified with the
-   * `semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.
+   * Sends a modulation depth range message to the specified channel(s) so that they adjust the
+   * depth of their modulation wheel's range. The range can be specified with the `semitones`
+   * parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setModulationRange
    * @static
@@ -2578,31 +3217,30 @@
    *
    * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The semitones value must be between 0 and 127.
    * @throws {RangeError} The cents value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setModulationRange = function(semitones, cents, output, channel, time) {
+  Output.prototype.setModulationRange = function(semitones, cents, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     semitones = parseInt(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
@@ -2615,7 +3253,9 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("modulationrange", [semitones, cents], output, channel, time);
+      that.setRegisteredParameter(
+        "modulationrange", [semitones, cents], channel, {time: options.time}
+      );
     });
 
     return this;
@@ -2637,31 +3277,30 @@
    *
    * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
    * than 64.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setMasterTuning = function(value, output, channel, time) {
+  Output.prototype.setMasterTuning = function(value, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     value = parseFloat(value) || 0.0;
 
@@ -2680,8 +3319,8 @@
     var lsb = fine & 0x7F;
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("channelcoarsetuning", coarse, output, channel, time);
-      that.setRegisteredParameter("channelfinetuning", [msb, lsb], output, channel, time);
+      that.setRegisteredParameter("channelcoarsetuning", coarse, channel, {time: options.time});
+      that.setRegisteredParameter("channelfinetuning", [msb, lsb], channel, {time: options.time});
     });
 
     return this;
@@ -2698,30 +3337,29 @@
    *
    * @param value {int} The desired tuning program (0-127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The program value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setTuningProgram = function(value, output, channel, time) {
+  Output.prototype.setTuningProgram = function(value, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     value = parseInt(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
@@ -2729,7 +3367,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningprogram", value, output, channel, time);
+      that.setRegisteredParameter("tuningprogram", value, channel, {time: options.time});
     });
 
     return this;
@@ -2746,30 +3384,29 @@
    *
    * @param value {int} The desired tuning bank (0-127).
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} The bank value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.setTuningBank = function(value, output, channel, time) {
+  Output.prototype.setTuningBank = function(value, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     value = parseInt(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
@@ -2777,7 +3414,7 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningbank", value, output, channel, time);
+      that.setRegisteredParameter("tuningbank", value, channel, {time: options.time});
     });
 
     return this;
@@ -2785,7 +3422,7 @@
   };
 
   /**
-   * Sends a MIDI `channel mode` message to the specified device(s) and channel(s).
+   * Sends a MIDI `channel mode` message to the specified channel(s).
    *
    * @method sendChannelMode
    * @static
@@ -2794,33 +3431,31 @@
    * @param command {uint} The MIDI channel mode command (120-127).
    * @param value {uint} The value to send (0-127)
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String}   This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-   *
    * @throws {RangeError} Value must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendChannelMode = function(command, value, output, channel, time) {
+  Output.prototype.sendChannelMode = function(command, value, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     command = parseInt(command);
     if (isNaN(command) || command < 120 || command > 127) {
@@ -2835,10 +3470,9 @@
     this._convertChannelToArray(channel).forEach(function(ch) {
 
       that.send(
-          (_channelMessages.channelmode << 4) + (ch - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (ch - 1),
           [command, value],
-          output,
-          that._parseTimeParameter(time)
+          that._parseTimeParameter(options.time)
       );
 
     });
@@ -2848,7 +3482,7 @@
   };
 
   /**
-   * Sends a MIDI `program change` message to the specified device(s) and channel(s).
+   * Sends a MIDI `program change` message to the specified channel(s) at the scheduled time.
    *
    * @method sendProgramChange
    * @static
@@ -2856,31 +3490,30 @@
    *
    * @param program {uint} The MIDI patch (program) number (0-127)
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} Program numbers must be between 0 and 127.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
-  WebMidi.prototype.sendProgramChange = function(program, output, channel, time) {
+  Output.prototype.sendProgramChange = function(program, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     program = parseInt(program);
     if (isNaN(program) || program < 0 || program > 127) {
@@ -2889,10 +3522,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (_channelMessages.programchange << 4) + (ch - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (ch - 1),
           [program],
-          output,
-          that._parseTimeParameter(time)
+          that._parseTimeParameter(options.time)
       );
     });
 
@@ -2901,8 +3533,8 @@
   };
 
   /**
-   * Sends a MIDI `channel aftertouch` message to the specified device(s) and channel(s). For
-   * key-specific aftertouch, you should instead use `sendKeyAftertouch()`.
+   * Sends a MIDI `channel aftertouch` message to the specified channel(s). For key-specific
+   * aftertouch, you should instead use `sendKeyAftertouch()`.
    *
    * @method sendChannelAftertouch
    * @static
@@ -2911,28 +3543,27 @@
    * @param [pressure=0.5] {Number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour.
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendChannelAftertouch = function(pressure, output, channel, time) {
+  Output.prototype.sendChannelAftertouch = function(pressure, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
@@ -2941,10 +3572,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (_channelMessages.channelaftertouch << 4) + (ch - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (ch - 1),
           [nPressure],
-          output,
-          that._parseTimeParameter(time)
+          that._parseTimeParameter(options.time)
       );
     });
 
@@ -2953,7 +3583,7 @@
   };
 
   /**
-   * Sends a MIDI `pitch bend` message to the specified device(s) and channel(s).
+   * Sends a MIDI `pitch bend` message to the specified channel(s) at the scheduled time.
    *
    * @method sendPitchBend
    * @static
@@ -2962,30 +3592,29 @@
    * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
    * no bend.
    *
-   * @param [output=undefined] {MIDIOutput|Array(MIDIOutput)} A MIDI output device or an array of
-   * MIDI output devices to send the message to. All available MIDIOutput objects are listed in the
-   * `WebMidi.outputs` array. When this parameter is left undefined, the message is sent to all
-   * currently available output MIDI devices.
-   *
    * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param [time=undefined] {DOMHighResTimeStamp|String} This value can be one of two things. If
-   * the value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The DOMHighResTimeStamp value is
-   * relative to the navigation start of the document. To retrieve the current time, you can use
+   * @param {Object} [options]
+   *
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
    * @throws {RangeError} Pitch bend value must be between -1 and 1.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  WebMidi.prototype.sendPitchBend = function(bend, output, channel, time) {
+  Output.prototype.sendPitchBend = function(bend, channel, options) {
 
     var that = this;
+
+    options = options || {};
 
     bend = parseFloat(bend);
     if (isNaN(bend) || bend < -1 || bend > 1) {
@@ -2998,10 +3627,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (_channelMessages.pitchbend << 4) + (ch - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (ch - 1),
           [lsb, msb],
-          output,
-          that._parseTimeParameter(time)
+          that._parseTimeParameter(options.time)
       );
     });
 
@@ -3010,93 +3638,48 @@
   };
 
   /**
-   * Returns a valid MIDI note number given the specified input. The input can be an integer
-   * represented as a string, a note name (C3, F#4, D-2, G8, etc.), a float or an int between 0 and
-   * 127.
    *
-   * @method guessNoteNumber
-   * @static
-   *
-   * @param input A integer, float or string to extract the note number from.
-   * @throws {Error} Invalid note number.
-   * @returns {uint} A valid MIDI note number (0-127).
+   * @method _parseTimeParameter
+   * @param [time=0] {Number|String}
+   * @protected
    */
-  WebMidi.prototype.guessNoteNumber = function(input) {
+  Output.prototype._parseTimeParameter = function(time) {
 
-    var output = false;
+    var parsed;
 
-    if (input && input.toFixed && input >= 0 && input <= 127) {         // uint
-      output = input;
-    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // uint as string
-      output = parseInt(input);
-    } else if (typeof input === 'string' || input instanceof String) {  // string
-      output = this.noteNameToNumber(input);
-    }
+    if (time && time.substring && time.substring(0, 1) === "+") {
 
-    if (output === false) {
-      throw new Error("Invalid note number (" + input + ").");
+      parsed = parseFloat(time);
+      if (!parsed) { throw new TypeError("Invalid relative time format."); }
+      return (parsed + this.time);
+
     } else {
-      return output;
+
+      parsed = parseFloat(time);
+      if (!parsed) { throw new TypeError("Invalid absolute time format."); }
+      return parsed;
+
     }
 
   };
 
   /**
-   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number which should be between -2 and 8. The name can also
-   * optionally include a sharp "#" or double sharp "##" symbol and a flat "b" or double flat "bb"
-   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-   *
-   * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
-   *
-   * @method noteNameToNumber
-   * @static
-   *
-   * @param name {String} The name of the note in the form of a letter, followed by an optional "#"
-   * or "b", followed by the octave number (between -2 and 8).
-   *
-   * @return {uint} The MIDI note number (between 0 and 127)
-   */
-  WebMidi.prototype.noteNameToNumber = function(name) {
-
-    var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) { throw new RangeError("Invalid note name."); }
-
-    var semitones = _semitones[matches[1].toUpperCase()];
-    var octave = parseInt(matches[3]);
-    var result = ((octave + 2) * 12) + semitones;
-
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
-    }
-
-    if (semitones < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
-      throw new RangeError("Invalid note name or note outside valid range.");
-    }
-
-    return result;
-
-  };
-
-  /**
-   * Converts an input value (which can be an int, an array or the value "all" to an array of valid
-   * MIDI note numbers.
+   * Converts an input value (which can be a uint, a string or an array of the previous two) to an
+   * array of MIDI note numbers.
    *
    * @method _convertNoteToArray
+   * @static
    * @param [note] {uint|Array|String}
    * @protected
    */
-  WebMidi.prototype._convertNoteToArray = function(note) {
+  Output.prototype._convertNoteToArray = function(note) {
 
-    var that = this,
-        notes = [];
+    var notes = [];
 
     if ( !Array.isArray(note) ) { note = [note]; }
 
     note.forEach(function(item) {
-      notes.push(that.guessNoteNumber(item));
+      notes.push(wm.guessNoteNumber(item));
     });
 
     return notes;
@@ -3112,7 +3695,7 @@
    * @param [channel] {uint|Array}
    * @protected
    */
-  WebMidi.prototype._convertChannelToArray = function(channel) {
+  Output.prototype._convertChannelToArray = function(channel) {
 
     if (channel === 'all' || channel === undefined) { channel = ['all']; }
 
@@ -3133,32 +3716,16 @@
 
   };
 
-  /**
-   *
-   * @method _parseTimeParameter
-   * @param [time=0] {Number|String}
-   * @protected
-   */
-  WebMidi.prototype._parseTimeParameter = function(time) {
-
-    if (time && time.substring && time.substring(0, 1) === "+") {
-      return (parseFloat(time) + this.time) || undefined;
-    } else {
-      return parseFloat(time) || undefined;
-    }
-
-  };
-
   // Check if RequireJS/AMD is used. If it is, use it to define our module instead of
   // polluting the global space.
   if ( typeof define === "function" && typeof define.amd === "object") {
     define([], function () {
-      return new WebMidi();
+      return wm;
     });
   } else if (typeof module !== "undefined" && module.exports) {
-    module.exports = WebMidi;
+    module.exports = wm;
   } else {
-    if (!scope.WebMidi) { scope.WebMidi = new WebMidi(); }
+    if (!scope.WebMidi) { scope.WebMidi = wm; }
   }
 
 }(this));
