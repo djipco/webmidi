@@ -959,41 +959,39 @@
 
   /**
    * Adds an event listener to the `Input` that will trigger a function callback when the specified
-   * event happens. By default, the listener will listen on all MIDI channels. To listen on a
-   * specific channel, you can use the `filter` parameter.
+   * event happens.
    *
    * WebMidi must be enabled before adding event listeners.
    *
-   * Here is a list of events that are dispatched by `Input` objects and that can be listened
-   * to.
+   * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
    *
    * Channel-specific MIDI events:
    *
-   *    * {{#crossLink "WebMidi/noteoff:event"}}noteoff{{/crossLink}}
-   *    * {{#crossLink "WebMidi/noteon:event"}}noteon{{/crossLink}}
-   *    * {{#crossLink "WebMidi/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
-   *    * {{#crossLink "WebMidi/controlchange:event"}}controlchange{{/crossLink}}
-   *    * {{#crossLink "WebMidi/channelmode:event"}}channelmode{{/crossLink}}
-   *    * {{#crossLink "WebMidi/programchange:event"}}programchange{{/crossLink}}
-   *    * {{#crossLink "WebMidi/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
-   *    * {{#crossLink "WebMidi/pitchbend:event"}}pitchbend{{/crossLink}}
+   *    * {{#crossLink "Input/noteoff:event"}}noteoff{{/crossLink}}
+   *    * {{#crossLink "Input/noteon:event"}}noteon{{/crossLink}}
+   *    * {{#crossLink "Input/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
+   *    * {{#crossLink "Input/controlchange:event"}}controlchange{{/crossLink}}
+   *    * {{#crossLink "Input/channelmode:event"}}channelmode{{/crossLink}}
+   *    * {{#crossLink "Input/programchange:event"}}programchange{{/crossLink}}
+   *    * {{#crossLink "Input/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
+   *    * {{#crossLink "Input/pitchbend:event"}}pitchbend{{/crossLink}}
    *
    * Device-wide MIDI events:
    *
-   *    * {{#crossLink "WebMidi/sysex:event"}}sysex{{/crossLink}}
-   *    * {{#crossLink "WebMidi/timecode:event"}}timecode{{/crossLink}}
-   *    * {{#crossLink "WebMidi/songposition:event"}}songposition{{/crossLink}}
-   *    * {{#crossLink "WebMidi/songselect:event"}}songselect{{/crossLink}}
-   *    * {{#crossLink "WebMidi/tuningrequest:event"}}tuningrequest{{/crossLink}}
-   *    * {{#crossLink "WebMidi/clock:event"}}clock{{/crossLink}}
-   *    * {{#crossLink "WebMidi/start:event"}}start{{/crossLink}}
-   *    * {{#crossLink "WebMidi/continue:event"}}continue{{/crossLink}}
-   *    * {{#crossLink "WebMidi/stop:event"}}stop{{/crossLink}}
-   *    * {{#crossLink "WebMidi/activesensing:event"}}activesensing{{/crossLink}}
-   *    * {{#crossLink "WebMidi/reset:event"}}reset{{/crossLink}}
-   *    * {{#crossLink "WebMidi/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
+   *    * {{#crossLink "Input/sysex:event"}}sysex{{/crossLink}}
+   *    * {{#crossLink "Input/timecode:event"}}timecode{{/crossLink}}
+   *    * {{#crossLink "Input/songposition:event"}}songposition{{/crossLink}}
+   *    * {{#crossLink "Input/songselect:event"}}songselect{{/crossLink}}
+   *    * {{#crossLink "Input/tuningrequest:event"}}tuningrequest{{/crossLink}}
+   *    * {{#crossLink "Input/clock:event"}}clock{{/crossLink}}
+   *    * {{#crossLink "Input/start:event"}}start{{/crossLink}}
+   *    * {{#crossLink "Input/continue:event"}}continue{{/crossLink}}
+   *    * {{#crossLink "Input/stop:event"}}stop{{/crossLink}}
+   *    * {{#crossLink "Input/activesensing:event"}}activesensing{{/crossLink}}
+   *    * {{#crossLink "Input/reset:event"}}reset{{/crossLink}}
+   *    * {{#crossLink "Input/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
    *
-   * For device-wide events, the `filters` parameter (if any) will be silently ignored.
+   * For device-wide events, the `filters.channel` parameter (if any) will be silently ignored.
    *
    * @method addListener
    * @chainable
@@ -1004,34 +1002,25 @@
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
-   * @param [filters={}]
+   * @param [channel=all] {uint|Array|String} The MIDI channel to listen on (between 1 and 16). You
+   * can also specify an array of channels to listen on. If set to 'all' (default), all channels
+   * will trigger the callback function.
    *
-   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to listen on (between 1
-   * and 16). You can also specify an array of channels to listen on. If set to 'all' (default),
-   * all channels will trigger the callback function.
-   *
-   * @throws {TypeError} The 'filters' parameter must be an object.
    * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
    * @throws {TypeError} The 'listener' parameter must be a function.
    * @throws {TypeError} The specified event type is not supported.
    *
    * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
-  Input.prototype.addListener = function(type, listener, filters) {
+  Input.prototype.addListener = function(type, channel, listener) {
 
     var that = this;
 
-    filters = filters || {};
-
-    if (typeof filters !== 'object') {
-      throw new TypeError("The 'filters' parameter must be an object.");
-    }
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+    if (channel === undefined) { channel = "all"; }
+    if (!Array.isArray(channel)) { channel = [channel]; }
 
     // Check if channel entries are valid
-    filters.channel.forEach(function(item){
+    channel.forEach(function(item){
       if (item !== "all" && !(item >= 1 && item <= 16)) {
         throw new RangeError(
             "The channel must be an integer between 1 and 16 or the value 'all'."
@@ -1054,15 +1043,15 @@
     } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      if (channel.indexOf("all") > -1) {
+        channel = [];
+        for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
 
       if (!this._userHandlers.channel[type]) { this._userHandlers.channel[type] = []; }
 
       // Push all channel listeners in the array
-      filters.channel.forEach(function(ch){
+      channel.forEach(function(ch){
 
         if (!that._userHandlers.channel[type][ch]) {
           that._userHandlers.channel[type][ch] = [];
@@ -1088,7 +1077,6 @@
    * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
    *
    * @method hasListener
-   * @static
    *
    * @param type {String} The type of the event.
    * @param listener {Function} The callback function to check for.
@@ -1157,7 +1145,6 @@
    * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
    *
    * @method removeListener
-   * @static
    * @chainable
    *
    * @param [type] {String} The type of the event.
@@ -1311,29 +1298,18 @@
        * @event noteoff
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Object} event.note
-       *
        * @param {uint} event.note.number The MIDI note number.
-       *
        * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
-       *
        * @param {uint} event.note.octave The octave (between -2 and 8).
-       *
        * @param {Number} event.velocity The release velocity (between 0 and 1).
        */
       event.type = 'noteoff';
@@ -1353,29 +1329,18 @@
        * @event noteon
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Object} event.note
-       *
        * @param {uint} event.note.number The MIDI note number.
-       *
        * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
-       *
        * @param {uint} event.note.octave The octave (between -2 and 8).
-       *
        * @param {Number} event.velocity The attack velocity (between 0 and 1).
        */
       event.type = 'noteon';
@@ -1395,29 +1360,18 @@
        * @event keyaftertouch
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Object} event.note
-       *
        * @param {uint} event.note.number The MIDI note number.
-       *
        * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
-       *
        * @param {uint} event.note.octave The octave (between -2 and 8).
-       *
        * @param {Number} event.value The aftertouch amount (between 0 and 1).
        */
       event.type = 'keyaftertouch';
@@ -1440,27 +1394,17 @@
        * @event controlchange
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Object} event.controller
-       *
        * @param {uint} event.controller.number The number of the controller.
-       *
        * @param {String} event.controller.name The number of the controller.
-       *
        * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'controlchange';
@@ -1482,27 +1426,17 @@
        * @event channelmode
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds
        * since the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Object} event.controller
-       *
        * @param {uint} event.controller.number The number of the controller.
-       *
        * @param {String} event.controller.name The number of the controller.
-       *
        * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'channelmode';
@@ -1521,21 +1455,14 @@
        * @event programchange
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = 'programchange';
@@ -1550,21 +1477,14 @@
        * @event channelaftertouch
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Number} event.value The aftertouch value received (between 0 and 1).
        */
       event.type = 'channelaftertouch';
@@ -1579,21 +1499,14 @@
        * @event pitchbend
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
-       *
        * @param {String} event.type The type of event that occurred.
-       *
        * @param {Number} event.value The pitch bend value received (between -1 and 1).
        */
       event.type = 'pitchbend';
@@ -1626,7 +1539,6 @@
     // Returned event
     var event = {
       "target": this,
-      "device": e.currentTarget,
       "data": e.data,
       "receivedTime": e.receivedTime,
       "timestamp": e.timeStamp
@@ -1640,17 +1552,12 @@
        * @event sysex
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'sysex';
@@ -1663,17 +1570,12 @@
        * @event timecode
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
-       *
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'timecode';
@@ -1688,17 +1590,12 @@
        * @event songposition
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds
        * since the epoch).
-       *
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'songposition';
@@ -1713,15 +1610,14 @@
        * @event songselect
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
-       * @param {String} event.type         The type of event that occurred.
-       * @param {String} event.song         Song (or sequence) number to select.
+       * @param {Input} event.target The `Input` that triggered the event.
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       * @param {String} event.type The type of event that occurred.
+       * @param {String} event.song Song (or sequence) number to select.
        */
       event.type = 'songselect';
       event.song = e.data[1];
@@ -1734,12 +1630,12 @@
        * @event tuningrequest
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
        * @param {Number} event.receivedTime The time when the event occurred (in
        *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
+       * @param {uint} event.timestamp      The timestamp when the event occurred
        *                                    (in milliseconds since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
@@ -1753,12 +1649,12 @@
        * @event clock
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
        * @param {Number} event.receivedTime The time when the event occurred (in
        *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
+       * @param {uint} event.timestamp      The timestamp when the event occurred
        *                                    (in milliseconds since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
@@ -1772,12 +1668,12 @@
        * @event start
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
        * @param {Number} event.receivedTime The time when the event occurred (in
        *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
+       * @param {uint} event.timestamp      The timestamp when the event occurred
        *                                    (in milliseconds since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
@@ -1791,12 +1687,12 @@
        * @event continue
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
        * @param {Number} event.receivedTime The time when the event occurred (in
        *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
+       * @param {uint} event.timestamp      The timestamp when the event occurred
        *                                    (in milliseconds since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
@@ -1810,12 +1706,12 @@
        * @event stop
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
        * @param {Number} event.receivedTime The time when the event occurred (in
        *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
+       * @param {uint} event.timestamp      The timestamp when the event occurred
        *                                    (in milliseconds since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
@@ -1829,13 +1725,12 @@
        * @event activesensing
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
-       *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timeStamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Input} event.target The `Input` that triggered the event.
+       * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
+       * since the epoch).
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'activesensing';
@@ -1848,17 +1743,12 @@
        * @event reset
        *
        * @param {Object} event
-       *
-       * @param {MIDIInput} event.device    The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp      The timestamp when the event occurred (in milliseconds
+       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
        * since the epoch).
-       *
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'reset';
@@ -1872,14 +1762,11 @@
        * @event unknownsystemmessage
        *
        * @param {Object} event
-       * @param {MIDIInput} event.device The MIDI input device that triggered the event.
-       *
+       * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       *
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       *
-       * @param {uint} event.timeStamp The timestamp when the event occurred (in milliseconds since
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
        *
        * @param {String} event.type The type of event that occurred.
@@ -1993,7 +1880,6 @@
    * MIDI Manufacturers Association.
    *
    * @method send
-   * @static
    * @chainable
    *
    * @param status {uint} The MIDI status byte of the message (128-255).
@@ -2061,7 +1947,6 @@
    * system exclusive messages to 64Kb or less.
    *
    * @method sendSysex
-   * @static
    * @chainable
    *
    * @param manufacturer {uint|Array} A uint or an array of three uints between 0 and 127 that
@@ -2117,7 +2002,6 @@
    * [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
    *
    * @method sendTimecodeQuarterFrame
-   * @static
    * @chainable
    *
    * @param value {uint} The quarter frame message content (unsigned int between 0 and 127).
@@ -2145,7 +2029,6 @@
    * 16383) which are 16th note. Position 0 is always the start of the song.
    *
    * @method sendSongPosition
-   * @static
    * @chainable
    *
    * @param [value=0] {uint} The MIDI beat to cue to (int between 0 and 16383).
@@ -2180,7 +2063,6 @@
    * position for user-friendlyness.
    *
    * @method sendSongSelect
-   * @static
    * @chainable
    *
    * @param value {uint} The number of the song to select (int between 0 and 127).
@@ -2226,7 +2108,6 @@
    * Until this is resolved, calling `Output.sendTuningRequest` will throw an error.
    *
    * @method sendTuningRequest
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2255,7 +2136,6 @@
    * for every quarter note.
    *
    * @method sendClock
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2281,7 +2161,6 @@
    * song at beat 0. To start playback elsewhere in the song, use the `sendContinue()` function.
    *
    * @method sendStart
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2308,7 +2187,6 @@
    * start, use the `sendStart()` function.
    *
    * @method sendContinue
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2334,7 +2212,6 @@
    * immediately (or at the scheduled time).
    *
    * @method sendStop
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2361,7 +2238,6 @@
    * no other activity on the MIDI port.
    *
    * @method sendActiveSensing
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2387,7 +2263,6 @@
    * reset itself to a default state.
    *
    * @method sendReset
-   * @static
    * @chainable
    *
    * @param {Object} [options]
@@ -2414,7 +2289,6 @@
    * parameter (milliseconds).
    *
    * @method stopNote
-   * @static
    * @chainable
    *
    * @param note {Array|uint|String}  The note(s) you wish to stop. The notes can be specified in
@@ -2485,7 +2359,6 @@
    * to tailor the release velocity, you need to use separate `playNote()` and `stopNote()` calls.
    *
    * @method playNote
-   * @static
    * @chainable
    *
    * @param note {Array|uint|String}  The note(s) you wish to play. The notes can be specified in
@@ -2571,7 +2444,6 @@
    * {{#crossLink "WebMidi/sendChannelAftertouch:method"}}sendChannelAftertouch(){{/crossLink}}.
    *
    * @method sendKeyAftertouch
-   * @static
    * @chainable
    *
    * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
@@ -2584,9 +2456,9 @@
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Number} [pressure=0.5] The pressure level to send (between 0 and 1).
    *
-   * @param {Number} [options.pressure=0.5] The pressure level to send (between 0 and 1).
+   * @param {Object} [options]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2600,7 +2472,7 @@
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  Output.prototype.sendKeyAftertouch = function(note, channel, options) {
+  Output.prototype.sendKeyAftertouch = function(note, channel, pressure, options) {
 
     var that = this;
 
@@ -2608,12 +2480,12 @@
 
     if (channel < 1 || channel > 16) { throw new RangeError("The channel must be between 1 and 16."); }
 
-    options.pressure = parseFloat(options.pressure);
-    if (isNaN(options.pressure) || options.pressure < 0 || options.pressure > 1) {
-      options.pressure = 0.5;
+    pressure = parseFloat(pressure);
+    if (isNaN(pressure) || pressure < 0 || pressure > 1) {
+      pressure = 0.5;
     }
 
-    var nPressure = Math.round(options.pressure * 127);
+    var nPressure = Math.round(pressure * 127);
 
     this._convertNoteToArray(note).forEach(function(item) {
 
@@ -2639,7 +2511,6 @@
    * specification.
    *
    * @method sendControlChange
-   * @static
    * @chainable
    *
    * @param controller {uint} The MIDI controller number (0-119)
@@ -2698,7 +2569,6 @@
    * decrement messages.
    *
    * @method _selectRegisteredParameter
-   * @static
    * @protected
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
@@ -2736,7 +2606,6 @@
    * data decrement messages.
    *
    * @method _selectNonRegisteredParameter
-   * @static
    * @protected
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x63, 0x62)
@@ -2773,7 +2642,6 @@
    * Sets the value of the currently selected MIDI registered parameter.
    *
    * @method _setCurrentRegisteredParameter
-   * @static
    * @protected
    *
    * @param data {int|Array}
@@ -2816,7 +2684,6 @@
    * `_setCurrentRegisteredParameter()`.
    *
    * @method _deselectRegisteredParameter
-   * @static
    * @protected
    *
    * @param channel
@@ -2876,7 +2743,6 @@
    * Sound Controllers*.
    *
    * @method setRegisteredParameter
-   * @static
    * @chainable
    *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
@@ -2952,7 +2818,6 @@
    * For further implementation details, refer to the manufacturer's documentation.
    *
    * @method setNonRegisteredParameter
-   * @static
    * @chainable
    *
    * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
@@ -3031,6 +2896,9 @@
    *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
    *  * Roll Angle (0x3D, 0x08): `rollangle`
    *
+   * @method incrementRegisteredParameter
+   * @chainable
+   *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
@@ -3101,6 +2969,9 @@
    *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
    *  * Roll Angle (0x3D, 0x08): `rollangle`
    *
+   * @method decrementRegisteredParameter
+   * @chainable
+   *
    * @param parameter {String|Array} A string identifying the parameter's name (see above) or a
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
@@ -3150,7 +3021,6 @@
    * parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setPitchBendRange
-   * @static
    * @chainable
    *
    * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127). While nothing
@@ -3210,7 +3080,6 @@
    * parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setModulationRange
-   * @static
    * @chainable
    *
    * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127).
@@ -3272,7 +3141,6 @@
    * >**Master Coarse Tuning** and **Master Fine Tuning** RPN messages.
    *
    * @method setMasterTuning
-   * @static
    * @chainable
    *
    * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
@@ -3332,7 +3200,6 @@
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
    * @method setTuningProgram
-   * @static
    * @chainable
    *
    * @param value {int} The desired tuning program (0-127).
@@ -3379,7 +3246,6 @@
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
    * @method setTuningBank
-   * @static
    * @chainable
    *
    * @param value {int} The desired tuning bank (0-127).
@@ -3425,7 +3291,6 @@
    * Sends a MIDI `channel mode` message to the specified channel(s).
    *
    * @method sendChannelMode
-   * @static
    * @chainable
    *
    * @param command {uint} The MIDI channel mode command (120-127).
@@ -3485,7 +3350,6 @@
    * Sends a MIDI `program change` message to the specified channel(s) at the scheduled time.
    *
    * @method sendProgramChange
-   * @static
    * @chainable
    *
    * @param program {uint} The MIDI patch (program) number (0-127)
@@ -3537,7 +3401,6 @@
    * aftertouch, you should instead use `sendKeyAftertouch()`.
    *
    * @method sendChannelAftertouch
-   * @static
    * @chainable
    *
    * @param [pressure=0.5] {Number} The pressure level (between 0 and 1). An invalid pressure value
@@ -3586,7 +3449,6 @@
    * Sends a MIDI `pitch bend` message to the specified channel(s) at the scheduled time.
    *
    * @method sendPitchBend
-   * @static
    * @chainable
    *
    * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
@@ -3638,7 +3500,6 @@
   };
 
   /**
-   *
    * @method _parseTimeParameter
    * @param [time=0] {Number|String}
    * @protected
@@ -3647,11 +3508,13 @@
 
     var parsed;
 
+    if (time === undefined) { return 0; }
+
     if (time && time.substring && time.substring(0, 1) === "+") {
 
       parsed = parseFloat(time);
       if (!parsed) { throw new TypeError("Invalid relative time format."); }
-      return (parsed + this.time);
+      return (parsed + wm.time);
 
     } else {
 
@@ -3668,7 +3531,6 @@
    * array of MIDI note numbers.
    *
    * @method _convertNoteToArray
-   * @static
    * @param [note] {uint|Array|String}
    * @protected
    */
