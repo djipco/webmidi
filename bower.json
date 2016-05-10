@@ -27,6 +27,7 @@
     "Gruntfile.js",
     "package.json",
     "README.md",
+    "test",
     "wedmidi.min.js"
   ]
 }
