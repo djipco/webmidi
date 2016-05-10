@@ -19,8 +19,8 @@ all these things much easier.
 
 ## Caveat Emptor
 
-WebMidi is currently in alpha stage. It might still contain bugs and its features and API may change
-(however, this is relatively unlikely). In any case, this software cannot yet be considered 
+WebMidi v2.x is currently in alpha stage. It might still contain bugs and its features and API may 
+change (however, this is relatively unlikely). In any case, this software cannot yet be considered 
 production-ready. If you find a bug, please [open an issue](https://github.com/cotejp/webmidi/issues) 
 and I will do my best to address it in a timely fashion.
 
@@ -58,9 +58,11 @@ Then, just add a `<script>` tag to your HTML page and make it point to:
 #### NPM Install
 
 If you prefer, you can install **WebMidi** with NPM. In order for this to work, you first
-need to create a `node_modules` folder in your project's root. Then, from the project's
-root, simply issue the following command in the Terminal (Mac, Linux) or the Command 
-Prompt (Windows):
+need to create a `node_modules` folder in your project's root. Then, you also need to create the 
+usual `package.json` file (you can do that by running `npm init`).
+
+When you are ready, from the project's root, simply issue the following command in the Terminal 
+(Mac, Linux) or the Command Prompt (Windows):
 
     npm install webmidi
     
