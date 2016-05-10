@@ -14,7 +14,7 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind the **WebMidi** library is to make
 all these things much easier.
 
->#### Warning to users of version <= 1.x
+>### Warning to users of version <= 1.x
 >The API in version 2.x has changed and is not backwards-compatible. Please check the 
 >[Migration Notes](#migration-notes) below for more information.
 
@@ -31,7 +31,7 @@ Uncompress the package, grab the `webmidi.min.js` file and copy it to your proje
 to it from your HTML page as usual. 
 
 >By the way, you will also find the 
-[full API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html) in the 
+[full API documentation](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html) in the 
 `dist/docs` folder.
 
 #### Bower Install
@@ -259,7 +259,7 @@ WebMidi.enable(function (err) {
 ## Full API Documentation
 
 The full **API documentation** is available for download in the `docs` folder. You can also 
-**[view it online](http://cotejp.github.io/webmidi/latest/)**.
+**[view it online](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
 [Documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidiv1.0.0-beta.15/classes/WebMidi.html) 
 will also remain available as long as necessary.
