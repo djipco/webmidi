@@ -23,6 +23,7 @@ module.exports = function (grunt) {
         compress: {
           drop_console: true
         },
+        mangle: false,
         preserveComments: false
       },
       build: {
@@ -39,7 +40,7 @@ module.exports = function (grunt) {
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
         options: {
-          outdir: './docs',
+          outdir: './docs/latest',
           linkNatives: true,
           paths: ['./src/']
         }
