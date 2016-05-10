@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-alpha.1</em>
+            <em>API Docs for: 2.0.0-alpha.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -242,7 +242,7 @@
       },
 
       /**
-       * [read-only] List of valid MIDI registered parameterS and their matching pair of hexadecimal
+       * [read-only] List of valid MIDI registered parameters and their matching pair of hexadecimal
        * values. MIDI registered parameters extend the original list of control change messages.
        * Currently, there are only a limited number of them.
        *
@@ -268,6 +268,169 @@
           &#x27;referencedistanceratio&#x27;: [0x3D, 0x06],
           &#x27;panspreadangle&#x27;: [0x3D, 0x07],
           &#x27;rollangle&#x27;: [0x3D, 0x08]
+        },
+        writable: false,
+        enumerable: true,
+        configurable: false
+      },
+
+      /**
+       * [read-only] List of MIDI control change messages
+       *
+       * valid MIDI registered parameterS and their matching pair of hexadecimal
+       * values. MIDI registered parameters extend the original list of control change messages.
+       * Currently, there are only a limited number of them.
+       *
+       * @property MIDI_CONTROL_CHANGE_MESSAGES
+       * @type Object
+       * @static
+       */
+      MIDI_CONTROL_CHANGE_MESSAGES: {
+        value: {
+          0: &quot;Bank Select (Coarse)&quot;,
+          1: &quot;Modulation Wheel (Coarse)&quot;,
+          2: &quot;Breath Controller (Coarse)&quot;,
+          3: undefined,
+          4: &quot;Foot Controller (Coarse)&quot;,
+          5: &quot;Portamento Time (Coarse)&quot;,
+          6: &quot;Data Entry (Coarse)&quot;,
+          7: &quot;Volume (Coarse)&quot;,
+          8: &quot;Balance (Coarse)&quot;,
+          9: undefined,
+          10: &quot;Pan (Coarse)&quot;,
+          11: &quot;Expression (Coarse)&quot;,
+          12: &quot;Effect Control 1 (Coarse)&quot;,
+          13: &quot;Effect Control 2 (Coarse)&quot;,
+          14: undefined,
+          15: undefined,
+          16: &quot;General Purpose Slider 1&quot;,
+          17: &quot;General Purpose Slider 2&quot;,
+          18: &quot;General Purpose Slider 3&quot;,
+          19: &quot;General Purpose Slider 4&quot;,
+          20: undefined,
+          21: undefined,
+          22: undefined,
+          23: undefined,
+          24: undefined,
+          25: undefined,
+          26: undefined,
+          27: undefined,
+          28: undefined,
+          29: undefined,
+          30: undefined,
+          31: undefined,
+          32: &quot;Bank Select (Fine)&quot;,
+          33: &quot;Modulation Wheel (Fine)&quot;,
+          34: &quot;Breath Controller (Fine)&quot;,
+          35: undefined,
+          36: &quot;Foot Controller (Fine)&quot;,
+          37: &quot;Portamento Time (Fine)&quot;,
+          38: &quot;Data Entry (Fine)&quot;,
+          39: &quot;Volume (Fine)&quot;,
+          40: &quot;Balance (Fine)&quot;,
+          41: undefined,
+          42: &quot;Pan (Fine)&quot;,
+          43: &quot;Expression (Fine)&quot;,
+          44: &quot;Effect Control 1 (Fine)&quot;,
+          45: &quot;Effect Control 2 (Fine)&quot;,
+          46: undefined,
+          47: undefined,
+          48: undefined,
+          49: undefined,
+          50: undefined,
+          51: undefined,
+          52: undefined,
+          53: undefined,
+          54: undefined,
+          55: undefined,
+          56: undefined,
+          57: undefined,
+          58: undefined,
+          59: undefined,
+          60: undefined,
+          61: undefined,
+          62: undefined,
+          63: undefined,
+          64: &quot;Hold Pedal&quot;,
+          65: &quot;Portamento&quot;,
+          66: &quot;Sustenuto Pedal&quot;,
+          67: &quot;Soft Pedal&quot;,
+          68: &quot;Legato Pedal&quot;,
+          69: &quot;Hold 2 Pedal&quot;,
+          70: &quot;Sound Variation&quot;,
+          71: &quot;Resonance&quot;,
+          72: &quot;Sound Release Time&quot;,
+          73: &quot;Sound Attack Time&quot;,
+          74: &quot;Brightness&quot;,
+          75: &quot;Sound Control 6&quot;,
+          76: &quot;Sound Control 7&quot;,
+          77: &quot;Sound Control 8&quot;,
+          78: &quot;Sound Control 9&quot;,
+          79: &quot;Sound Control 10&quot;,
+          80: &quot;General Purpose Button 1&quot;,
+          81: &quot;General Purpose Button 2&quot;,
+          82: &quot;General Purpose Button 3&quot;,
+          83: &quot;General Purpose Button 4&quot;,
+          84: undefined,
+          85: undefined,
+          86: undefined,
+          87: undefined,
+          88: undefined,
+          89: undefined,
+          90: undefined,
+          91: &quot;Reverb Level&quot;,
+          92: &quot;Tremolo Level&quot;,
+          93: &quot;Chorus Level&quot;,
+          94: &quot;Celeste Level&quot;,
+          95: &quot;Phaser Level&quot;,
+          96: &quot;Data Button Increment&quot;,
+          97: &quot;Data Button Decrement&quot;,
+          98: &quot;Non-registered Parameter (Coarse)&quot;,
+          99: &quot;Non-registered Parameter (Fine)&quot;,
+          100: &quot;Registered Parameter (Coarse)&quot;,
+          101: &quot;Registered Parameter (Fine)&quot;,
+          102: undefined,
+          103: undefined,
+          104: undefined,
+          105: undefined,
+          106: undefined,
+          107: undefined,
+          108: undefined,
+          109: undefined,
+          110: undefined,
+          111: undefined,
+          112: undefined,
+          113: undefined,
+          114: undefined,
+          115: undefined,
+          116: undefined,
+          117: undefined,
+          118: undefined,
+          119: undefined
+        },
+        writable: false,
+        enumerable: true,
+        configurable: false
+      },
+
+      /**
+       * [read-only] List of MIDI channel mode messages as defined in the official MIDI
+       * specification.
+       *
+       * @property MIDI_CHANNEL_MODE_MESSAGES
+       * @type Object
+       * @static
+       */
+      MIDI_CHANNEL_MODE_MESSAGES: {
+        value: {
+          120: &quot;All Sound Off&quot;,
+          121: &quot;Reset All Controllers&quot;,
+          122: &quot;Local Control&quot;,
+          123: &quot;All Notes Off&quot;,
+          124: &quot;Omni Mode Off&quot;,
+          125: &quot;Omni Mode On&quot;,
+          126: &quot;Mono Mode On&quot;,
+          127: &quot;Poly Mode On&quot;
         },
         writable: false,
         enumerable: true,
@@ -1472,13 +1635,13 @@
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
        * @param {uint} event.controller.number The number of the controller.
-       * @param {String} event.controller.name The number of the controller.
+       * @param {String} event.controller.name The usual name or function of the controller.
        * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = &#x27;controlchange&#x27;;
       event.controller = {
-        &quot;number&quot;: data1//,
-        // &quot;name&quot;: &quot;&quot;
+        &quot;number&quot;: data1,
+        &quot;name&quot;: wm.MIDI_CONTROL_CHANGE_MESSAGES[data1]
       };
       event.value = data2;
 
@@ -1504,13 +1667,13 @@
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
        * @param {uint} event.controller.number The number of the controller.
-       * @param {String} event.controller.name The number of the controller.
+       * @param {String} event.controller.name The usual name or function of the controller.
        * @param {uint} event.value The value received (between 0 and 127).
        */
       event.type = &#x27;channelmode&#x27;;
       event.controller = {
         &quot;number&quot;: data1,
-        &quot;name&quot;: &quot;&quot;
+        &quot;name&quot;: wm.MIDI_CHANNEL_MODE_MESSAGES[data1]
       };
       event.value = data2;
 
