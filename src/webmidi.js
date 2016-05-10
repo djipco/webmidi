@@ -48,6 +48,7 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
+   * @todo  add control change message name when receiving cc
    * @todo  interface-level statechange events DO NOT work for now. Need to fix this!!!!
    * @todo  Implement port statechange events.
    * @todo  Add on() alias and once() functions.
@@ -959,9 +960,7 @@
 
   /**
    * Adds an event listener to the `Input` that will trigger a function callback when the specified
-   * event happens.
-   *
-   * WebMidi must be enabled before adding event listeners.
+   * event happens on the specified channel(s).
    *
    * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
    *
@@ -991,7 +990,7 @@
    *    * {{#crossLink "Input/reset:event"}}reset{{/crossLink}}
    *    * {{#crossLink "Input/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
    *
-   * For device-wide events, the `filters.channel` parameter (if any) will be silently ignored.
+   * For device-wide events, the `channel` parameter will be silently ignored.
    *
    * @method addListener
    * @chainable
@@ -1003,10 +1002,9 @@
    * check out the documentation for the various events (links above).
    *
    * @param [channel=all] {uint|Array|String} The MIDI channel to listen on (between 1 and 16). You
-   * can also specify an array of channels to listen on. If set to 'all' (default), all channels
-   * will trigger the callback function.
+   * can also specify an array of channels or the value 'all'.
    *
-   * @throws {RangeError} The channel must be an integer between 1 and 16 or the value 'all'.
+   * @throws {RangeError} The 'channel' parameter is invalid.
    * @throws {TypeError} The 'listener' parameter must be a function.
    * @throws {TypeError} The specified event type is not supported.
    *
@@ -1023,7 +1021,7 @@
     channel.forEach(function(item){
       if (item !== "all" && !(item >= 1 && item <= 16)) {
         throw new RangeError(
-            "The channel must be an integer between 1 and 16 or the value 'all'."
+            "The 'channel' parameter is invalid."
         );
       }
     });
@@ -1070,28 +1068,26 @@
   };
 
   /**
-   * Checks if the specified event type is already defined to trigger the listener function. If
-   * more than one channel is specified, the function will return `true` only if all channels have
-   * the listener defined.
+   * Checks if the specified event type is already defined to trigger the listener function on the
+   * specified channel(s). If more than one channel is specified, the function will return `true`
+   * only if all channels have the listener defined.
    *
-   * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
+   * For device-wide events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
+   * We suggest you use `undefined` in such cases.
    *
    * @method hasListener
    *
    * @param type {String} The type of the event.
+   * @param [channel=all] {uint|Array|String} The MIDI channel to check on (between 1 and 16). You
+   * can also specify an array of channels to check on or the string 'all' (default).
    * @param listener {Function} The callback function to check for.
-   * @param [filters={}] {Object}
-   *
-   * @param [filters.channel=all] {uint|Array|String} The MIDI channel to check on. It can be a uint
-   * (between 1 and 16), an array of channels or the special value "all".
    *
    * @throws {TypeError} The 'listener' parameter must be a function.
-   * @throws {TypeError} The 'filters' parameter must be an object.
    *
    * @return {Boolean} Boolean value indicating whether or not the channel(s) already have this
    * listener defined.
    */
-  Input.prototype.hasListener = function(type, listener, filters) {
+  Input.prototype.hasListener = function(type, channel, listener) {
 
     var that = this;
 
@@ -1099,14 +1095,9 @@
       throw new TypeError("The 'listener' parameter must be a function.");
     }
 
-    filters = filters || {};
 
-    if (typeof filters !== 'object') {
-      throw new TypeError("The 'filters' parameter must be an object.");
-    }
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+    if (channel === undefined) { channel = "all"; }
+    if (channel.constructor !== Array) { channel = [channel]; }
 
     if (wm.MIDI_SYSTEM_MESSAGES[type]) {
 
@@ -1117,15 +1108,15 @@
     } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      if (channel.indexOf("all") > -1) {
+        channel = [];
+        for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
 
       if (!this._userHandlers.channel[type]) { return false; }
 
       // Go through all specified channels
-      return filters.channel.every(function(chNum) {
+      return channel.every(function(chNum) {
         var listeners = that._userHandlers.channel[type][chNum];
         return listeners && listeners.indexOf(listener) > -1;
       });
@@ -1137,29 +1128,28 @@
   };
 
   /**
-   * Removes the specified listener. If the `filters` parameter is omitted, the listener will be
-   * removed from all channels. If the listener` parameter is left undefined, all listeners
-   * for the specified `type` will be removed from all channels. If the `filter`, the `listener` and
-   * the `type` parameters are omitted, all listeners attached to the `Input` will be removed.
+   * Removes the specified listener from the specified channel(s). If the listener` parameter is
+   * left undefined, all listeners for the specified `type` will be removed from all channels. If
+   * the `channel` is also omitted, all listeners of the specified type will be removed from all
+   * channels. If no parameters are defined, all listeners attached to any channel of the `Input`
+   * will be removed.
    *
-   * For device-wide events (`sysex`, `start`, etc.), the `filters` parameter is silently ignored.
+   * For device-wide events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
    *
    * @method removeListener
    * @chainable
    *
    * @param [type] {String} The type of the event.
+   * @param [channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint (between
+   * 1 and 16) or the special value "all".
    * @param [listener] {Function} The callback function to check for.
-   * @param [filters={}] {Object}
-   *
-   * @param [filters.channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint
-   * (between 1 and 16) or the special value "all".
    *
    * @throws {TypeError} The specified event type is not supported.
    * @throws {TypeError} The 'listener' parameter must be a function..
    *
-   * @return {WebMidi} The `WebMidi` object for easy method chaining.
+   * @return {Input} The `Input` object for easy method chaining.
    */
-  Input.prototype.removeListener = function(type, listener, filters) {
+  Input.prototype.removeListener = function(type, channel, listener) {
 
     var that = this;
 
@@ -1167,14 +1157,8 @@
       throw new TypeError("The 'listener' parameter must be a function.");
     }
 
-    filters = filters || {};
-
-    if (typeof filters !== 'object') {
-      throw new TypeError("The 'filters' parameter must be an object.");
-    }
-
-    if (filters.channel === undefined) { filters.channel = "all"; }
-    if (filters.channel.constructor !== Array) { filters.channel = [filters.channel]; }
+    if (channel === undefined) { channel = "all"; }
+    if (channel.constructor !== Array) { channel = [channel]; }
 
     if (wm.MIDI_SYSTEM_MESSAGES[type]) {
 
@@ -1195,15 +1179,15 @@
     } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
-      if (filters.channel.indexOf("all") > -1) {
-        filters.channel = [];
-        for (var j = 1; j <= 16; j++) { filters.channel.push(j); }
+      if (channel.indexOf("all") > -1) {
+        channel = [];
+        for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
 
       if (!this._userHandlers.channel[type]) { return this; }
 
       // Go through all specified channels
-      filters.channel.forEach(function(chNum) {
+      channel.forEach(function(chNum) {
         var listeners = that._userHandlers.channel[type][chNum];
         if (!listeners) { return; }
 
@@ -1409,8 +1393,8 @@
        */
       event.type = 'controlchange';
       event.controller = {
-        "number": data1,
-        "name": ""
+        "number": data1//,
+        // "name": ""
       };
       event.value = data2;
 
