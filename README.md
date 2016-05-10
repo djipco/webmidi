@@ -1,6 +1,5 @@
 # WebMidi
->**A JavaScript browser library making it easier to use Chrome's implementation of the 
->*Web MIDI API*.**
+>**A JavaScript browser library making it easier to use the *Web MIDI API*.**
 
 ## Background
 
@@ -17,6 +16,16 @@ all these things much easier.
 >### Warning to users of version <= 1.x
 >The API in version 2.x has changed and is not backwards-compatible. Please check the 
 >[Migration Notes](#migration-notes) below for more information.
+
+## Caveat Emptor
+
+WebMidi is currently in alpha stage. It might still contain bugs and its features and API may change
+(however, this is relatively unlikely). In any case, this software cannot yet be considered 
+production-ready. If you find a bug, please [open an issue](https://github.com/cotejp/webmidi/issues) 
+and I will do my best to address it in a timely fashion.
+
+Having confirmation that the software works well is also valid information. If that's the case for 
+you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
 
 ## Installation
 
