@@ -47,17 +47,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Copy file to the example folder
-    copy: {
-      main: {
-
-        files: [
-          { src: './<%= pkg.name %>.min.js', dest: './examples/<%= pkg.name %>.min.js' }
-        ]
-
-      }
-    },
-
     // Files that are copied or written over must be re-committed.
     gitcommit: {
       "commitupdated": {
@@ -67,7 +56,7 @@ module.exports = function (grunt) {
           noStatus: false
         },
         files: {
-          src: ['<%= pkg.name %>.min.js', 'examples/<%= pkg.name %>.min.js', 'docs']
+          src: ['<%= pkg.name %>.min.js', 'docs']
         }
       }
     },
