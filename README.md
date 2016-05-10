@@ -24,8 +24,8 @@ change (however, this is relatively unlikely). In any case, this software cannot
 production-ready. If you find a bug, please [open an issue](https://github.com/cotejp/webmidi/issues) 
 and I will do my best to address it in a timely fashion.
 
-Having confirmation that the software works well is also valid information. If that's the case for 
-you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
+Having confirmation that the software works well is also valuable information. If that's the case 
+for you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
 
 ## Installation
 
@@ -46,29 +46,26 @@ to it from your HTML page as usual.
 #### Bower Install
 
 To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
-Command Prompt (Windows) from the root of your project (make sure to correctly capitalize 
-the "W" and the "M" in WebMidi):
+Command Prompt (Windows) from the root of your project. Just make sure to correctly capitalize 
+the "W" and the "M" in WebMidi:
 
     bower install WebMidi
 
 Then, just add a `<script>` tag to your HTML page and make it point to:
 
-    bower_components/WebMidi/src/webmidi.js
+    <script src="bower_components/WebMidi/src/webmidi.js"></script>
 
 #### NPM Install
 
 If you prefer, you can install **WebMidi** with NPM. In order for this to work, you first
-need to create a `node_modules` folder in your project's root. Then, you also need to create the 
-usual `package.json` file (you can do that by running `npm init`).
-
-When you are ready, from the project's root, simply issue the following command in the Terminal 
-(Mac, Linux) or the Command Prompt (Windows):
+need to create the usual `package.json` file. This is easily done by issuing `npm init` from your 
+project's root. Then, simply issue the following command to perform the actual install:
 
     npm install webmidi
     
 Finally, just add a `<script>` tag to your HTML page and make it point to:
 
-    node_modules/webmidi/webmidi.min.js
+    <script src="node_modules/webmidi/webmidi.min.js"></script>
 
 ## Quick Start
 
@@ -88,11 +85,11 @@ WebMidi.enable(function (err) {
 }
 ```
 
->If you need `sysex` support, you need to pass `true` as the second parameter to the `enable()` 
->function (this may request authorizaton from the user).
+>If you need `sysex` support, you will have to pass `true` as the second parameter to the `enable()` 
+>function.
 
 To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
-device. To view the available `Input` and `Output` ports, you can use the matching arrays:
+device. To view all the available `Input` and `Output` ports, you can use the matching arrays:
 
 ```javascript
 WebMidi.enable(function (err) {
@@ -272,15 +269,15 @@ WebMidi.enable(function (err) {
 The full **API documentation** is available for download in the `docs` folder. You can also 
 **[view it online](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
-[Documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
-will also remain available as long as necessary.
+Legacy [documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
+will also remain available online as long as necessary.
 
 
 ## Migration Notes
 
 If you are upgrading from version 1.x to 2.x, you should know that v2.x is not backwards compatible.
-Some important changes were made to the API to make it easier to use, more versatile and 
-future-proof.
+Some important changes were made to the API to make it easier to use, more versatile and to better
+future-proof it.
 
 Here is a summary of the changes:
 
