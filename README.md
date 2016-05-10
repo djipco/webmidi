@@ -129,7 +129,7 @@ listen for pitch bend events on all channels of the device:
 
 var input = WebMidi.getInputByName("Axiom Pro 25 USB A In");
 
-input.addListener('pitchbend', function(e) {
+input.addListener('pitchbend', "all", function(e) {
     console.log("Pitch value: " + e.value);
 });
 ```
@@ -138,7 +138,7 @@ input.addListener('pitchbend', function(e) {
 
 Here are various other examples to give you an idea of what is possible with `WebMidi`. For all 
 details, please consult the full 
-**[API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html)**.
+**[API documentation](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
 ```javascript
 // Enable WebMidi
@@ -189,16 +189,16 @@ WebMidi.enable(function (err) {
   output.stopNote("C-1");
 
   // Stopping a playing note on channel 11
-  output.stopNote("C-1", 11);
+  output.stopNote("F3", 11);
 
   // Stop a playing note on channel 11 and use a high release velocity
-  output.stopNote("C-1", 11, {velocity: 0.9});
+  output.stopNote("G8", 11, {velocity: 0.9});
 
   // Stopping a playing note in 2.5 seconds
-  output.stopNote("C-1", 11, {time: "+2500"});
+  output.stopNote("Bb2", 11, {time: "+2500"});
 
   // Send polyphonic aftertouch message to channel 8
-  output.sendKeyAftertouch("C3", 8, 0.25);
+  output.sendKeyAftertouch("C#3", 8, 0.25);
 
   // Send pitch bend (between -1 and 1) to channel 12
   output.sendPitchBend(-1, 12);
@@ -261,7 +261,7 @@ WebMidi.enable(function (err) {
 The full **API documentation** is available for download in the `docs` folder. You can also 
 **[view it online](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
-[Documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidiv1.0.0-beta.15/classes/WebMidi.html) 
+[Documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
 will also remain available as long as necessary.
 
 
@@ -273,13 +273,13 @@ future-proof.
 
 Here is a summary of the changes:
 
-    * All the "output" functions (`playNote()`, `sendPitchBend()`, etc.) have been moved to the 
-    `Output` object. A list of all available `Output` objects is available in `WebMidi.outputs` 
-    (like before).
+* All the "output" functions (`playNote()`, `sendPitchBend()`, etc.) have been moved to the 
+`Output` object. A list of all available `Output` objects is available in `WebMidi.outputs` 
+(like before).
     
-    * All the "input" functions (`addListener`, `removeListener()` and `hasListener()` have been 
-    moved to the `Input` object. A list of all available `Input` objects is available in 
-    `WebMidi.inputs` (also like before).
+* All the "input" functions (`addListener`, `removeListener()` and `hasListener()` have been 
+moved to the `Input` object. A list of all available `Input` objects is available in 
+`WebMidi.inputs` (also like before).
 
 There might be a few other minor changes here and there but the refactoring mostly concerns the
 introduction of `Input` and `Output` objects.
