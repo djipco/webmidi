@@ -53,7 +53,7 @@ the "W" and the "M" in WebMidi):
 
 Then, just add a `<script>` tag to your HTML page and make it point to:
 
-    bower_components/WebMidi/webmidi.min.js
+    bower_components/WebMidi/src/webmidi.js
 
 #### NPM Install
 
