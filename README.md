@@ -1,5 +1,6 @@
 # WebMidi
->**A JavaScript browser library making it easier to develop with the *Web MIDI API*.**
+>**A JavaScript browser library making it easier to use Chrome's implementation of the 
+>*Web MIDI API*.**
 
 ## Background
 
@@ -12,6 +13,10 @@ MIDI spec in order to properly do that is not fun. Also the *Web MIDI API* makes
 to react upon receiving MIDI messages from external devices. For example, it only allows a 
 single callback function per channel. The goal behind the **WebMidi** library is to make
 all these things much easier.
+
+>#### Warning to users of version <= 1.x
+>The API in version 2.x has changed and is not backwards-compatible. Please check the 
+>[Migration Notes](#migration-notes) below for more information.
 
 ## Installation
 
@@ -56,150 +61,225 @@ Finally, just add a `<script>` tag to your HTML page and make it point to:
 
 ## Quick Start
 
-Getting started is easy. The first thing to do is to enable **WebMidi**. When you call the
-`WebMidi.enable()` function, you need to pass a callback function to execute upon success
-and, optionally, another callback function to execute upon failure. The `enable()` 
-function will fail if the host browser does not suppport the Web MIDI API (currently, only 
-Google Chrome does) or if the browser cannot connect to the host's MIDI subsystem.
-
-Let's check if **WebMidi** can be enabled: 
+Getting started is easy. The first thing to do is to enable **WebMidi**. To do that, you call
+`WebMidi.enable()` and pass it a function to execute when done. This function will receive an 
+`Error` object if enabling `WebMidi` fails. Let's check if **WebMidi** can be enabled: 
 
 ```javascript
-WebMidi.enable(onSuccess, onFailure);
+WebMidi.enable(function (err) {
 
-function onSuccess() {
-    console.log("WebMidi enabled.");
-}
-
-function onFailure(err) {
+  if (err) {
     console.log("WebMidi could not be enabled.", err);
+  } else {
+    console.log("WebMidi enabled!");
+  }
+  
 }
 ```
 
-To send MIDI messages with **WebMidi**, you simply need to pick the appropriate method and all
-the native MIDI communication will be handled for you. For example, let's say we want to
-send a 'noteon' MIDI message to all devices and channels so they play a 3rd octave C:
+If you need `sysex` support, you need to pass `true` as the second parameter to the `enable()` 
+function (this may request authorizaton from the user).
+
+To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
+device. To view the available `Input` and `Output` ports, you can use the matching arrays:
 
 ```javascript
-WebMidi.playNote("C3");
+WebMidi.enable(function (err) {
+    console.log(WebMidi.inputs);
+    console.log(WebMidi.outputs);
+}
+```
+
+To send MIDI messages to a device, you simply need to grab that device and call one of its output
+method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can can use
+its position in the `WebMidi.outputs` array. For instance, to grab the first output device, you 
+could use:
+
+```javascript
+var output = WebMidi.outputs[0];
+```
+
+However, this is not very safe as the position of devices in the array could change. An alternative
+is to use the device's ID:
+
+```javascript
+var output = WebMidi.getOutputById("1584982307");
+```
+
+You could also use the device's name (as displayed in the `WebMidi.outputs` array:
+
+```javascript
+var output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+```
+ 
+Then, you can call any of the output methods and all native MIDI communications will be handled for 
+you. For example, to play a "C" on the 3rd octave, you simply do:
+
+```javascript
+output.playNote("C3");
 ```
 
 That's it.
 
-Receiving messages is just as easy. You simply have to set a callback function to be
-triggered when a specific MIDI message is received. For example, to listen for pitch bend
-events on any MIDI devices and channels:
+Receiving messages works in a similar way: you retrieve the `Input` device you want to use, and then
+add a callback function to be triggered when a specific MIDI message is received. For example, to 
+listen for pitch bend events on all channels of the device:
 
 ```javascript
-WebMidi.addListener('pitchbend', function(e) {
+
+var input = WebMidi.getInputByName("Axiom Pro 25 USB A In");
+
+input.addListener('pitchbend', function(e) {
     console.log("Pitch value: " + e.value);
 });
 ```
 
 ## More code examples
 
+Here are various other examples to give you an idea of what is possible with `WebMidi`. For all 
+details, please consult the full 
+**[API documentation](http://cotejp.github.io/webmidi/classes/WebMidi.html)**.
+
 ```javascript
-// Enable WebMidi with onSuccess handler and onFailure handler.
-WebMidi.enable(
+// Enable WebMidi
+WebMidi.enable(function (err) {
 
-  // Success handler
-  function() {
-
-    // Viewing available inputs and outputs
-    console.log(WebMidi.inputs);
-    console.log(WebMidi.outputs);
-
-    // Getting the current time
-    console.log(WebMidi.time);
-
-    // Playing a note (C3 on all available devices/channels)
-    WebMidi.playNote("C3");
-
-    // Playing a chord (on all available devices/channels)
-    WebMidi.playNote(["C3", "D#3", "G3"]);
-
-    // Playing a note (F#-1, at full velocity on all available devices/channels)
-    WebMidi.playNote("F#-1", 1);
-
-    // Playing a note for 1 sec. by MIDI number (on all channels of first output device). An array
-    // of all output devices is available in WebMidi.outputs
-    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0]);
-
-    // Playing a note for 1 sec. (on channel 3 of a specific device)
-    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3);
-    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3, "+2000");    // wait 2 sec. before playing
-    WebMidi.playNote(60, 1, 1000, WebMidi.outputs[0], 3, 50000);      // schedule 50 sec. after start
-
-    // Stopping a playing note (with a release velocity at half)
-    WebMidi.stopNote("C0", 0.5);
-    WebMidi.stopNote("C0", 0.5, WebMidi.outputs[0], 12);             // For specific device and channel
-    WebMidi.stopNote("C0", 0.5, WebMidi.outputs[0], 12, "+3000");    // After 3 sec. delay
-
-    // Send polyphonic aftertouch message (half value)
-    WebMidi.sendKeyAftertouch("C3", 0.5);
-    WebMidi.sendKeyAftertouch("C3", 0.5, WebMidi.outputs[0], 12); // For specific device and channel
-
-    // Send channel aftertouch
-    WebMidi.sendChannelAftertouch(0.5, WebMidi.outputs[0], 12);
-
-    // Send pitch bend (between -1 and 1)
-    WebMidi.sendPitchBend(-1, WebMidi.outputs[0], 12);
-
-    // Chaining method calls
-    WebMidi.sendPitchBend(-1, WebMidi.outputs[0], 12)
-      .sendPitchBend(-0.5, WebMidi.outputs[0], 12, "+200")
-      .sendPitchBend(0, WebMidi.outputs[0], 12, "+400")
-      .sendPitchBend(0.5, WebMidi.outputs[0], 12, "+800")
-      .sendPitchBend(1, WebMidi.outputs[0], 12, "+1000");
-
-    // Listening for a 'note on' message (on all devices and channels)
-    WebMidi.addListener(
-      'noteon',
-      function(e){ console.log(e); }
-    );
-
-    // Listening for a 'note off' message (on 1st input device's channel 3)
-    WebMidi.addListener(
-      'noteoff',
-      function(e){ console.log(e); },
-      {input: WebMidi.outputs[0], channel: 3}
-    );
-
-    // Listening to other messages works the same way
-    WebMidi.addListener(
-      'pitchbend',
-      function(e){ console.log(e); }
-    );
-
-    // The special 'statechange' event tells you that a device has been plugged or unplugged. For
-    // system-wide events, you do not need to specify a device or channel.
-    WebMidi.addListener(
-      'statechange',
-      function(e){ console.log(e); }
-    );
-
-    // You can also check and remove event listeners (in this case, you shouldn't use
-    // anonymous methods).
-    WebMidi.addListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
-    WebMidi.removeListener('statechange', test);
-    console.log("Has event listener: ",  WebMidi.hasListener('statechange', test) );
-
-    function test(e) {
-      console.log(e);
-    }
-
-  },
-
-  // Failure handler
-  function(m) {
-    console.log("Could not enable MIDI interface: " + m);
+  if (err) {
+    console.log("WebMidi could not be enabled.", err);
   }
 
-);
+  // Viewing available inputs and outputs
+  console.log(WebMidi.inputs);
+  console.log(WebMidi.outputs);
+
+  // Display the current time
+  console.log(WebMidi.time);
+
+  // Retrieving an output port/device using its id, name or index
+  var output = WebMidi.getOutputById("123456789");
+  output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+  output = WebMidi.outputs[0];
+
+  // Play a note on all channels of the selected output
+  output.playNote("C3");
+
+  // Play a note on channel 3
+  output.playNote("Gb4", 3);
+
+  // Play a chord on all available channels
+  output.playNote(["C3", "D#3", "G3"]);
+
+  // Play a chord on channel 7
+  output.playNote(["C3", "D#3", "G3"], 7);
+
+  // Play a note at full velocity on all channels)
+  output.playNote("F#-1", "all", {velocity: 1});
+
+  // Play a note on channel 16 in 2 seconds (relative time)
+  output.playNote("F5", 16, {time: "+2000"});
+
+  // Play a note on channel 1 at an absolute time in the future
+  output.playNote("F5", 16, {time: WebMidi.time + 3000});
+
+  // Play a note for a duration of 2 seconds (will send a note off message in 2 seconds). Also use
+  // a low attack velocity
+  output.playNote("Gb2", 10, {duration: 2000, velocity: 0.25});
+
+  // Stop a playing note on all channels
+  output.stopNote("C-1");
+
+  // Stopping a playing note on channel 11
+  output.stopNote("C-1", 11);
+
+  // Stop a playing note on channel 11 and use a high release velocity
+  output.stopNote("C-1", 11, {velocity: 0.9});
+
+  // Stopping a playing note in 2.5 seconds
+  output.stopNote("C-1", 11, {time: "+2500"});
+
+  // Send polyphonic aftertouch message to channel 8
+  output.sendKeyAftertouch("C3", 8, 0.25);
+
+  // Send pitch bend (between -1 and 1) to channel 12
+  output.sendPitchBend(-1, 12);
+
+  // You can chain most method calls
+  output.playNote("G5", 12)
+    .sendPitchBend(-0.5, 12, {time: 400}) // After 400 ms.
+    .sendPitchBend(0.5, 12, {time: 800})  // After 800 ms.
+    .stopNote("G5", 12, {time: 1200});    // After 1.2 s.
+
+  // Retrieve an input by name, id or index
+  var input = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
+  input = WebMidi.getInputById("1809568182");
+  input = WebMidi.inputs[0];
+
+  // Listen for a 'note on' message on all channels
+  input.addListener('noteon', "all",
+    function (e) {
+      console.log("Received 'noteon' message (" + e.note.name + e.note.octave + ").");
+    }
+  );
+
+  // Listen to pitch bend message on channel 3
+  input.addListener('pitchbend', 3,
+    function (e) {
+      console.log("Received 'pitchbend' message.", e);
+    }
+  );
+
+  // Listen to control change message on all channels
+  input.addListener('controlchange', "all",
+    function (e) {
+      console.log("Received 'controlchange' message.", e);
+    }
+  );
+
+  // Check for the presence of an event listener (n such cases, you cannot use anonymous functions).
+  function test(e) { console.log(e); }
+  input.addListener('programchange', 12, test);
+  console.log("Has event listener: ", input.hasListener('programchange', 12, test));
+
+  // Remove a specific listener
+  input.removeListener('programchange', 12, test);
+  console.log("Has event listener: ", input.hasListener('programchange', 12, test));
+
+  // Remove all listeners of a specific type on a specific channel
+  input.removeListener('noteoff', 12);
+
+  // Remove all listeners for 'noteoff' on all channels
+  input.removeListener('noteoff');
+
+  // Remove all listeners on the input
+  input.removeListener();
+
+});
 ```
 
 ## Full API Documentation
 
 The full **API documentation** is available for download in the `docs` folder. You can also 
-**[view it online](http://cotejp.github.io/webmidi/classes/WebMidi.html)**.
+**[view it online](http://cotejp.github.io/webmidi/latest/)**.
+
+[Documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidiv1.0.0-beta.15/classes/WebMidi.html) 
+will also remain available as long as necessary.
+
+
+## Migration Notes
+
+If you are upgrading from version 1.x to 2.x, you should know that v2.x is not backwards compatible.
+Some important changes were made to the API to make it easier to use, more versatile and 
+future-proof.
+
+Here is a summary of the changes:
+
+    * All the "output" functions (`playNote()`, `sendPitchBend()`, etc.) have been moved to the 
+    `Output` object. A list of all available `Output` objects is available in `WebMidi.outputs` 
+    (like before).
+    
+    * All the "input" functions (`addListener`, `removeListener()` and `hasListener()` have been 
+    moved to the `Input` object. A list of all available `Input` objects is available in 
+    `WebMidi.inputs` (also like before).
+
+There might be a few other minor changes here and there but the refactoring mostly concerns the
+introduction of `Input` and `Output` objects.
