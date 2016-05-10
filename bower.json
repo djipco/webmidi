@@ -28,6 +28,6 @@
     "package.json",
     "README.md",
     "test",
-    "wedmidi.min.js"
+    "webmidi.min.js"
   ]
 }
