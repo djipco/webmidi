@@ -77,8 +77,8 @@ WebMidi.enable(function (err) {
 }
 ```
 
-If you need `sysex` support, you need to pass `true` as the second parameter to the `enable()` 
-function (this may request authorizaton from the user).
+>If you need `sysex` support, you need to pass `true` as the second parameter to the `enable()` 
+>function (this may request authorizaton from the user).
 
 To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
 device. To view the available `Input` and `Output` ports, you can use the matching arrays:
