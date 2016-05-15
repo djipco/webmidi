@@ -89,7 +89,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('publish', ['publish:prerelease']);
-  grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'copy', 'gitcommit:commitupdated', 'gh-pages', 'release']);
+  grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
   grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
   grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
   grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
