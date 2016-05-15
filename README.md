@@ -8,7 +8,7 @@ to the web platform that allows web developers to interact with MIDI musical ins
 and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
 low-level for their needs. For example, sending and receiving MIDI messages involves 
 performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
-MIDI spec in order to properly do that is not fun. Also the *Web MIDI API* makes it hard 
+MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
 to react upon receiving MIDI messages from external devices. For example, it only allows a 
 single callback function per channel. The goal behind the **WebMidi** library is to make
 all these things much easier.
@@ -16,6 +16,28 @@ all these things much easier.
 >### Warning to users of version <= 1.x
 >The API in version 2.x has changed and is not backwards-compatible. Please check the 
 >[Migration Notes](#migration-notes) below for more information.
+
+## Browser Support
+
+This library works in all browsers that support the 
+[Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
+built-in support: 
+
+* Chrome (Mac, GNU/Linux, Android & Windows)
+* Opera (Mac GNU/Linux, Windows)
+* Android WebView component (KitKat and above) 
+
+It is possible to use this library in other browsers if you install version 1.4+ of  
+[Jazz-Plugin](http://jazz-soft.net/) together with the 
+[WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
+support for the following additional browsers:
+
+* Firefox (Mac, GNU/Linux & Windows)
+* Safari (Mac)
+* Internet Explorer (Windows)
+
+For details on how to use the `WebMidi` library with the Jazz-Plugin (and WebMIDIAPIShim, please 
+skip ahead to the [Using WebMidi with the Jazz-Plugin](#using-webmidi-with-the-jazz-plugin) section.
 
 ## Caveat Emptor
 
@@ -269,9 +291,9 @@ WebMidi.enable(function (err) {
 The full **API documentation** is available for download in the `docs` folder. You can also 
 **[view it online](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
-Legacy [documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
+Legacy 
+[documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
 will also remain available online as long as necessary.
-
 
 ## Migration Notes
 
@@ -291,3 +313,31 @@ moved to the `Input` object. A list of all available `Input` objects is availabl
 
 There might be a few other minor changes here and there but the refactoring mostly concerns the
 introduction of `Input` and `Output` objects.
+
+## Using WebMidi with the Jazz-Plugin
+
+To use `WebMidi` on Safari, Firefox and Internet Explorer, you will first need to install 
+Jazz-Plugin. Simply [download the plugin](http://jazz-soft.net/download/Jazz-Plugin/) and run the 
+installer.
+
+Then, you will need to add the plugin to the page with the following HTML code:
+
+    <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
+      <object id="Jazz2" type="audio/x-jazz" class="hidden">
+        <p><a href=http://jazz-soft.net>Jazz-Plugin</a> required!</p>
+      </object>
+    </object>
+    
+To support recent versions of Internet Explorer, you also need to add a `meta` tag to the `<head>` 
+of the page:
+
+    <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"/>
+
+Since Jazz-Plugin does not use the same syntax as the native Web MIDI API, it is necessary to also
+install the [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. You can do that by 
+including the following in your page:
+
+    <script src='http://cwilso.github.com/WebMIDIAPIShim/WebMIDIAPI.js'></script>
+    
+Obviously, you can also 
+[download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
