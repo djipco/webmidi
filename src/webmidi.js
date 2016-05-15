@@ -48,21 +48,20 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  Implement port statechange events.
+   * @todo  we should wait for all statechange events to have been parsed before triggering the
+   *        enable() callback. Is this an issue? Must test with many devices.
+   * @todo  Add ability to use control change name when sending
    * @todo  Check if it works with WebMIDIAPIShim/Jazz plugin
-   * @todo  add control change message name when receiving cc
-   * @todo  Add on() alias and once() functions.
+   * @todo  Implement port statechange events.
    * @todo  Refine "options" param of addListener. Allow listening for specific controller note.
+   * @todo  Add on() alias and once() functions.
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  Define textual versions of channel mode messages
-   * @todo  State change events (MIDIConnectionEvent) are triggered for each device being connected
-   *        or disconnected. Therefore, we should add the ability to filter the statechange listener
-   *        by device.
+   * @todo  Allow sending channel mode messages by name
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
-   * @todo  inmplement the show control protocole
+   * @todo  inmplement the show control protocol
    *
    */
   function WebMidi() {
@@ -465,8 +464,11 @@
    *
    * @param callback {Function} A function to execute upon success. This function will receive an
    * `Error` object upon failure to enable the Web MIDI API.
-   * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not. When
-   * this parameter is set to true, the browser may prompt the user for authorization.
+   * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not.
+   *
+   * @throws TypeError The callback parameter is mandatory and must be a function.
+   * @throws Error The Web MIDI API is not supported by your browser.
+   * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   WebMidi.prototype.enable = function(callback, sysex) {
 
@@ -486,20 +488,17 @@
       function(midiAccess) {
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
-
-        // THIS NEEDS TO BE FIXED !!!!!
-        // that.interface.onstatechange = function(e) {
-        //   that._onInterfaceStateChange(e); // Must be done this way otherwise this = midiAccess
-        // };
-        this.interface.onstatechange = function(e) {
-          this._onInterfaceStateChange(e); // Must be done this way otherwise this = midiAccess
-        }.bind(this);
-
+        this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
         callback();
       }.bind(this),
 
       function (err) {
+
+        if (err && err.message && err.message.indexOf("Jazz plugin is not installed") > -1) {
+          throw new Error("Jazz-Plugin must be installed to use WebMIDIAPIShim.");
+        }
+
         callback(err);
       }
 
@@ -675,6 +674,9 @@
    *
    * Returns an `Input` object representing the input port with the specified id.
    *
+   * Please note that the IDs change from one host to another. For example, Chrome does not use the
+   * same kind of IDs as the Jazz-Plugin.
+   *
    * @method getInputById
    * @static
    *
@@ -702,6 +704,9 @@
    *
    * Returns an `Output` object representing the output port matching the specified id.
    *
+   * Please note that the IDs change from one host to another. For example, Chrome does not use the
+   * same kind of IDs as the Jazz-Plugin.
+   *
    * @method getOutputById
    * @static
    *
@@ -726,7 +731,10 @@
   };
 
   /**
-   * Returns the first MIDI `Input` that matches the specified name.
+   * Returns the first MIDI `Input` whose name *contains* the specified string.
+   *
+   * Please note that the port names change from one host to another. For example, Chrome does
+   * not report port names in the same way as the Jazz-Plugin does.
    *
    * @method getInputByName
    * @static
@@ -744,7 +752,7 @@
     }
 
     for (var i = 0; i < this.inputs.length; i++) {
-      if (this.inputs[i].name === name) { return this.inputs[i]; }
+      if (~this.inputs[i].name.indexOf(name)) { return this.inputs[i]; }
     }
 
     return false;
@@ -753,6 +761,9 @@
 
   /**
    * Returns the first MIDI `Output` that matches the specified name.
+   *
+   * Please note that the port names change from one host to another. For example, Chrome does
+   * not report port names in the same way as the Jazz-Plugin does.
    *
    * @method getOutputByName
    * @static
@@ -770,7 +781,7 @@
     }
 
     for (var i = 0; i < this.outputs.length; i++) {
-      if (this.outputs[i].name === name) { return this.outputs[i]; }
+      if (~this.outputs[i].name.indexOf(name)) { return this.outputs[i]; }
     }
 
     return false;
@@ -852,82 +863,6 @@
 
   };
 
-  // /**
-  //  *
-  //  *  THIS METHOD IS AWFUL!!! WE SHOULD REMOVE WHAT'S GONE AND THEN ADD WHATEVER IS NEW INSTEAD
-  //  *  OF RECREATING EVERYTHING AND REMOVING WHAT ALREADY EXISTS....
-  //  *
-  //  * @method _updateInputsAndOutputs
-  //  * @static
-  //  * @protected
-  //  */
-  // WebMidi.prototype._updateInputsAndOutputs = function() {
-  //
-  //   var i, j;
-  //   var newInputs = [];
-  //   var newOutputs = [];
-  //
-  //   if (!this.interface) {
-  //     throw new Error("The MIDI interface is not available.");
-  //   }
-  //
-  //   // Create brand new Input objects that exactly match what the back-end MIDI interface reports.
-  //   this.interface.inputs.forEach(function (input) {
-  //     newInputs.push( this._createInput(input) );
-  //   }.bind(this));
-  //
-  //   // From the newInputs array, remove all inputs that already are in the WebMidi.inputs array.
-  //   // This is important in order for listeners to conitnue working even if unrelated devices are
-  //   // plugged or unplugged.
-  //   for (i = 0; i < newInputs.length; i++) {
-  //
-  //     for (j = 0; j < this._inputs.length; j++) {
-  //       if (newInputs[i]._midiInput === this._inputs[j]._midiInput) {
-  //
-  //         // There's a catch here!!! When we create the newInputs array, we are creating a bunch of
-  //         // new Input objects from the interface's list of midiInputs. This means that the new
-  //         // Input objects share their _midiInput property with existing Input objects that use the
-  //         // same _midiInput. Therefore, when we change the _midiInput.onmidimessage property, we
-  //         // are, by the same token, overwriting the .onmidimessage property of the old Input object
-  //         // that share the same _midiInput. This means that when we create a new Input we are
-  //         // assigning its _onMidiMessage function to all other Inputs that use the same _midiInput.
-  //         // TO UNDO THAT: we set the onmidimessage back to itself.
-  //         this._inputs[j]._midiInput.onmidimessage = this._inputs[j]._onMidiMessage.bind(this._inputs[j]);
-  //         newInputs[i] = this._inputs[j];
-  //
-  //         break;
-  //       }
-  //     }
-  //
-  //   }
-  //
-  //   this._inputs = newInputs;
-  //
-  //
-  //   // Create our own Output objects
-  //   this.interface.outputs.forEach(function (output) {
-  //     newOutputs.push( this._createOutput(output) );
-  //   }.bind(this));
-  //
-  //   // Re-use old Output objects if any are still there
-  //   for (i = 0; i < newOutputs.length; i++) {
-  //
-  //     for (j = 0; j < this._outputs.length; j++) {
-  //       if (newOutputs[i]._midiOutput === this._outputs[j]._midiOutput) {
-  //         this._outputs[j]._midiOutput.onmidimessage = this._outputs[j]._onMidiMessage.bind(this._outputs[j]);
-  //         newOutputs[i] = this._outputs[j];
-  //         break;
-  //       }
-  //     }
-  //
-  //   }
-  //
-  //   this._outputs = newOutputs;
-  //
-  //
-  //
-  // };
-
   /**
    * @method _updateInputsAndOutputs
    * @static
@@ -938,6 +873,11 @@
     this._updateOutputs();
   };
 
+  /**
+   * @method _updateInputs
+   * @static
+   * @protected
+   */
   WebMidi.prototype._updateInputs = function() {
 
     // Check for items to remove from the existing array (because they are no longer being reported
@@ -980,6 +920,11 @@
 
   };
 
+  /**
+   * @method _updateOutputs
+   * @static
+   * @protected
+   */
   WebMidi.prototype._updateOutputs = function() {
 
     // Check for items to remove from the existing array (because they are no longer being reported
@@ -1073,7 +1018,7 @@
    * @protected
    */
   WebMidi.prototype._processStateChange = function(e) {
-
+    
     this._updateInputsAndOutputs();
 
     // This is required because we need to manually update the inputs/outputs at the very beginning.
