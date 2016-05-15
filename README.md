@@ -27,7 +27,7 @@ built-in support:
 * Opera (Mac GNU/Linux, Windows)
 * Android WebView component (KitKat and above) 
 
-It is possible to use this library in other browsers if you install version 1.4+ of  
+It is possible to use this library in other browsers if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
 [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
 support for the following additional browsers:
