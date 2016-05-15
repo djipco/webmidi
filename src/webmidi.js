@@ -48,17 +48,13 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  we should wait for all statechange events to have been parsed before triggering the
-   *        enable() callback. Is this an issue? Must test with many devices.
-   * @todo  Add ability to use control change name when sending
-   * @todo  Check if it works with WebMIDIAPIShim/Jazz plugin
+   * @todo  Allow sending channel mode messages by name
    * @todo  Implement port statechange events.
-   * @todo  Refine "options" param of addListener. Allow listening for specific controller note.
+   * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
    * @todo  Add on() alias and once() functions.
    * @todo  Add specific events for channel mode messages ?
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  Allow sending channel mode messages by name
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
    * @todo  inmplement the show control protocol
@@ -203,126 +199,65 @@
        */
       MIDI_CONTROL_CHANGE_MESSAGES: {
         value: {
-          0: "Bank Select (Coarse)",
-          1: "Modulation Wheel (Coarse)",
-          2: "Breath Controller (Coarse)",
-          3: undefined,
-          4: "Foot Controller (Coarse)",
-          5: "Portamento Time (Coarse)",
-          6: "Data Entry (Coarse)",
-          7: "Volume (Coarse)",
-          8: "Balance (Coarse)",
-          9: undefined,
-          10: "Pan (Coarse)",
-          11: "Expression (Coarse)",
-          12: "Effect Control 1 (Coarse)",
-          13: "Effect Control 2 (Coarse)",
-          14: undefined,
-          15: undefined,
-          16: "General Purpose Slider 1",
-          17: "General Purpose Slider 2",
-          18: "General Purpose Slider 3",
-          19: "General Purpose Slider 4",
-          20: undefined,
-          21: undefined,
-          22: undefined,
-          23: undefined,
-          24: undefined,
-          25: undefined,
-          26: undefined,
-          27: undefined,
-          28: undefined,
-          29: undefined,
-          30: undefined,
-          31: undefined,
-          32: "Bank Select (Fine)",
-          33: "Modulation Wheel (Fine)",
-          34: "Breath Controller (Fine)",
-          35: undefined,
-          36: "Foot Controller (Fine)",
-          37: "Portamento Time (Fine)",
-          38: "Data Entry (Fine)",
-          39: "Volume (Fine)",
-          40: "Balance (Fine)",
-          41: undefined,
-          42: "Pan (Fine)",
-          43: "Expression (Fine)",
-          44: "Effect Control 1 (Fine)",
-          45: "Effect Control 2 (Fine)",
-          46: undefined,
-          47: undefined,
-          48: undefined,
-          49: undefined,
-          50: undefined,
-          51: undefined,
-          52: undefined,
-          53: undefined,
-          54: undefined,
-          55: undefined,
-          56: undefined,
-          57: undefined,
-          58: undefined,
-          59: undefined,
-          60: undefined,
-          61: undefined,
-          62: undefined,
-          63: undefined,
-          64: "Hold Pedal",
-          65: "Portamento",
-          66: "Sustenuto Pedal",
-          67: "Soft Pedal",
-          68: "Legato Pedal",
-          69: "Hold 2 Pedal",
-          70: "Sound Variation",
-          71: "Resonance",
-          72: "Sound Release Time",
-          73: "Sound Attack Time",
-          74: "Brightness",
-          75: "Sound Control 6",
-          76: "Sound Control 7",
-          77: "Sound Control 8",
-          78: "Sound Control 9",
-          79: "Sound Control 10",
-          80: "General Purpose Button 1",
-          81: "General Purpose Button 2",
-          82: "General Purpose Button 3",
-          83: "General Purpose Button 4",
-          84: undefined,
-          85: undefined,
-          86: undefined,
-          87: undefined,
-          88: undefined,
-          89: undefined,
-          90: undefined,
-          91: "Reverb Level",
-          92: "Tremolo Level",
-          93: "Chorus Level",
-          94: "Celeste Level",
-          95: "Phaser Level",
-          96: "Data Button Increment",
-          97: "Data Button Decrement",
-          98: "Non-registered Parameter (Coarse)",
-          99: "Non-registered Parameter (Fine)",
-          100: "Registered Parameter (Coarse)",
-          101: "Registered Parameter (Fine)",
-          102: undefined,
-          103: undefined,
-          104: undefined,
-          105: undefined,
-          106: undefined,
-          107: undefined,
-          108: undefined,
-          109: undefined,
-          110: undefined,
-          111: undefined,
-          112: undefined,
-          113: undefined,
-          114: undefined,
-          115: undefined,
-          116: undefined,
-          117: undefined,
-          118: undefined,
-          119: undefined
+          'bank-select-coarse': 0,
+          'modulation-wheel-coarse': 1,
+          'breath-controller-coarse': 2,
+          'foot-controller-coarse': 4,
+          'portamento-time-coarse': 5,
+          'data-entry-coarse': 6,
+          'volume-coarse': 7,
+          'balance-coarse': 8,
+          'pan-coarse': 10,
+          'expression-coarse': 11,
+          'effect-control-1-coarse': 12,
+          'effect-control-2-coarse': 13,
+          'general-purpose-slider-1': 16,
+          'general-purpose-slider-2': 17,
+          'general-purpose-slider-3': 18,
+          'general-purpose-slider-4': 19,
+          'bank-select-fine': 32,
+          'modulation-wheel-fine': 33,
+          'breath-controller-fine': 34,
+          'foot-controller-fine': 36,
+          'portamento-time-fine': 37,
+          'data-entry-fine': 38,
+          'volume-fine': 39,
+          'balance-fine': 40,
+          'pan-fine': 42,
+          'expression-fine': 43,
+          'effect-control-1-fine': 44,
+          'effect-control-2-fine': 45,
+          'hold-pedal': 64,
+          'portamento': 65,
+          'sustenuto-pedal': 66,
+          'soft-pedal': 67,
+          'legato-pedal': 68,
+          'hold-2-pedal': 69,
+          'sound-variation': 70,
+          'resonance': 71,
+          'sound-release-time': 72,
+          'sound-attack-time': 73,
+          'brightness': 74,
+          'sound-control-6': 75,
+          'sound-control-7': 76,
+          'sound-control-8': 77,
+          'sound-control-9': 78,
+          'sound-control-10': 79,
+          'general-purpose-button-1': 80,
+          'general-purpose-button-2': 81,
+          'general-purpose-button-3': 82,
+          'general-purpose-button-4': 83,
+          'reverb-level': 91,
+          'tremolo-level': 92,
+          'chorus-level': 93,
+          'celeste-level': 94,
+          'phaser-level': 95,
+          'data-button-increment': 96,
+          'data-button-decrement': 97,
+          'non-registered-parameter-coarse': 98,
+          'non-registered-parameter-fine': 99,
+          'registered-parameter-coarse': 100,
+          'registered-parameter-fine': 101
         },
         writable: false,
         enumerable: true,
@@ -490,6 +425,7 @@
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
+console.log("callback");
         callback();
       }.bind(this),
 
@@ -498,7 +434,6 @@
         if (err && err.message && err.message.indexOf("Jazz plugin is not installed") > -1) {
           throw new Error("Jazz-Plugin must be installed to use WebMIDIAPIShim.");
         }
-
         callback(err);
       }
 
@@ -1002,6 +937,7 @@
     // Check if we are already currently processing a state change. If so, return.
     if (this._processingStateChange) { return; }
 
+    console.log("processing: true");
     this._processingStateChange = true;
 
     while(this._stateChangeQueue.length > 0) {
@@ -1009,6 +945,7 @@
     }
 
     this._processingStateChange = false;
+    console.log("processing: false");
 
   };
 
@@ -1018,7 +955,7 @@
    * @protected
    */
   WebMidi.prototype._processStateChange = function(e) {
-    
+    console.log("process");
     this._updateInputsAndOutputs();
 
     // This is required because we need to manually update the inputs/outputs at the very beginning.
@@ -1602,7 +1539,8 @@
       event.type = 'controlchange';
       event.controller = {
         "number": data1,
-        "name": wm.MIDI_CONTROL_CHANGE_MESSAGES[data1]
+        // "name": wm.MIDI_CONTROL_CHANGE_MESSAGES[data1]
+        "name": this.getCcNameByNumber(data1)
       };
       event.value = data2;
 
@@ -1717,6 +1655,21 @@
           function(callback) { callback(event); }
       );
     }
+
+  };
+
+  /**
+   * @method getCcNameByNumber
+   */
+  Input.prototype.getCcNameByNumber = function(number) {
+
+    for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
+      if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
+        return cc;
+      }
+    }
+
+    return undefined;
 
   };
 
@@ -2697,8 +2650,76 @@
   /**
    * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time.
    *
+   * The control change message to send can be specified numerically or by using one of the
+   * following common names:
+   *
+   *  * bank-select-coarse (#0)
+   *  * modulation-wheel-coarse (#1)
+   *  * breath-controller-coarse (#2)
+   *  * foot-controller-coarse (#4)
+   *  * portamento-time-coarse (#5)
+   *  * data-entry-coarse (#6)
+   *  * volume-coarse (#7)
+   *  * balance-coarse (#8)
+   *  * pan-coarse (#10)
+   *  * expression-coarse (#11)
+   *  * effect-control-1-coarse (#12)
+   *  * effect-control-2-coarse (#13)
+   *  * general-purpose-slider-1 (#16)
+   *  * general-purpose-slider-2 (#17)
+   *  * general-purpose-slider-3 (#18)
+   *  * general-purpose-slider-4 (#19)
+   *  * bank-select-fine (#32)
+   *  * modulation-wheel-fine (#33)
+   *  * breath-controller-fine (#34)
+   *  * foot-controller-fine (#36)
+   *  * portamento-time-fine (#37)
+   *  * data-entry-fine (#38)
+   *  * volume-fine (#39)
+   *  * balance-fine (#40)
+   *  * pan-fine (#42)
+   *  * expression-fine (#43)
+   *  * effect-control-1-fine (#44)
+   *  * effect-control-2-fine (#45)
+   *  * hold-pedal (#64)
+   *  * portamento (#65)
+   *  * sustenuto-pedal (#66)
+   *  * soft-pedal (#67)
+   *  * legato-pedal (#68)
+   *  * hold-2-pedal (#69)
+   *  * sound-variation (#70)
+   *  * resonance (#71)
+   *  * sound-release-time (#72)
+   *  * sound-attack-time (#73)
+   *  * brightness (#74)
+   *  * sound-control-6 (#75)
+   *  * sound-control-7 (#76)
+   *  * sound-control-8 (#77)
+   *  * sound-control-9 (#78)
+   *  * sound-control-10 (#79)
+   *  * general-purpose-button-1 (#80)
+   *  * general-purpose-button-2 (#81)
+   *  * general-purpose-button-3 (#82)
+   *  * general-purpose-button-4 (#83)
+   *  * reverb-level (#91)
+   *  * tremolo-level (#92)
+   *  * chorus-level (#93)
+   *  * celeste-level (#94)
+   *  * phaser-level (#95)
+   *  * data-button-increment (#96)
+   *  * data-button-decrement (#97)
+   *  * non-registered-parameter-coarse (#98)
+   *  * non-registered-parameter-fine (#99)
+   *  * registered-parameter-coarse (#100)
+   *  * registered-parameter-fine (#101)
+   *
+   * Note: as you can see above, not all control change message have a matching common name. This
+   * does not mean you cannot use the others. It simply means you will need to use their number
+   * instead of their name.
+   *
    * To view a list of all available `control change` messages, please consult "Table 3 - Control
-   * Change Messages" from the [MIDI Messages](http://www.midi.org/techspecs/midimessages.php)
+   * Change Messages" from the
+   * [MIDI Messages](https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
    * @method sendControlChange
@@ -2729,13 +2750,22 @@
    */
   Output.prototype.sendControlChange = function(controller, value, channel, options) {
 
-    var that = this;
-
     options = options || {};
 
-    controller = parseInt(controller);
-    if ( !(controller >= 0 && controller <= 119) ) {
-      throw new RangeError("Controller numbers must be between 0 and 119.");
+    if (typeof controller === "string") {
+
+      controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      if (!controller) {
+        throw new TypeError("Invalid controller name.");
+      }
+
+    } else {
+
+      controller = parseInt(controller);
+      if ( !(controller >= 0 && controller <= 119) ) {
+        throw new RangeError("Controller numbers must be between 0 and 119.");
+      }
+
     }
 
     value = parseInt(value) || 0;
@@ -2744,12 +2774,12 @@
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
-      that.send(
+      this.send(
           (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (ch - 1),
           [controller, value],
-          that._parseTimeParameter(options.time)
+          this._parseTimeParameter(options.time)
       );
-    });
+    }.bind(this));
 
     return this;
 
