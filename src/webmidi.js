@@ -48,9 +48,9 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  add control change message name when receiving cc
-   * @todo  interface-level statechange events DO NOT work for now. Need to fix this!!!!
    * @todo  Implement port statechange events.
+   * @todo  Check if it works with WebMIDIAPIShim/Jazz plugin
+   * @todo  add control change message name when receiving cc
    * @todo  Add on() alias and once() functions.
    * @todo  Refine "options" param of addListener. Allow listening for specific controller note.
    * @todo  Add specific events for channel mode messages ?
@@ -62,6 +62,7 @@
    *        by device.
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
+   * @todo  inmplement the show control protocole
    *
    */
   function WebMidi() {
@@ -490,8 +491,11 @@
         // that.interface.onstatechange = function(e) {
         //   that._onInterfaceStateChange(e); // Must be done this way otherwise this = midiAccess
         // };
+        this.interface.onstatechange = function(e) {
+          this._onInterfaceStateChange(e); // Must be done this way otherwise this = midiAccess
+        }.bind(this);
 
-        this._onInterfaceStateChange(null); // to manually update the inputs and outputs
+        this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
         callback();
       }.bind(this),
 
@@ -848,63 +852,173 @@
 
   };
 
+  // /**
+  //  *
+  //  *  THIS METHOD IS AWFUL!!! WE SHOULD REMOVE WHAT'S GONE AND THEN ADD WHATEVER IS NEW INSTEAD
+  //  *  OF RECREATING EVERYTHING AND REMOVING WHAT ALREADY EXISTS....
+  //  *
+  //  * @method _updateInputsAndOutputs
+  //  * @static
+  //  * @protected
+  //  */
+  // WebMidi.prototype._updateInputsAndOutputs = function() {
+  //
+  //   var i, j;
+  //   var newInputs = [];
+  //   var newOutputs = [];
+  //
+  //   if (!this.interface) {
+  //     throw new Error("The MIDI interface is not available.");
+  //   }
+  //
+  //   // Create brand new Input objects that exactly match what the back-end MIDI interface reports.
+  //   this.interface.inputs.forEach(function (input) {
+  //     newInputs.push( this._createInput(input) );
+  //   }.bind(this));
+  //
+  //   // From the newInputs array, remove all inputs that already are in the WebMidi.inputs array.
+  //   // This is important in order for listeners to conitnue working even if unrelated devices are
+  //   // plugged or unplugged.
+  //   for (i = 0; i < newInputs.length; i++) {
+  //
+  //     for (j = 0; j < this._inputs.length; j++) {
+  //       if (newInputs[i]._midiInput === this._inputs[j]._midiInput) {
+  //
+  //         // There's a catch here!!! When we create the newInputs array, we are creating a bunch of
+  //         // new Input objects from the interface's list of midiInputs. This means that the new
+  //         // Input objects share their _midiInput property with existing Input objects that use the
+  //         // same _midiInput. Therefore, when we change the _midiInput.onmidimessage property, we
+  //         // are, by the same token, overwriting the .onmidimessage property of the old Input object
+  //         // that share the same _midiInput. This means that when we create a new Input we are
+  //         // assigning its _onMidiMessage function to all other Inputs that use the same _midiInput.
+  //         // TO UNDO THAT: we set the onmidimessage back to itself.
+  //         this._inputs[j]._midiInput.onmidimessage = this._inputs[j]._onMidiMessage.bind(this._inputs[j]);
+  //         newInputs[i] = this._inputs[j];
+  //
+  //         break;
+  //       }
+  //     }
+  //
+  //   }
+  //
+  //   this._inputs = newInputs;
+  //
+  //
+  //   // Create our own Output objects
+  //   this.interface.outputs.forEach(function (output) {
+  //     newOutputs.push( this._createOutput(output) );
+  //   }.bind(this));
+  //
+  //   // Re-use old Output objects if any are still there
+  //   for (i = 0; i < newOutputs.length; i++) {
+  //
+  //     for (j = 0; j < this._outputs.length; j++) {
+  //       if (newOutputs[i]._midiOutput === this._outputs[j]._midiOutput) {
+  //         this._outputs[j]._midiOutput.onmidimessage = this._outputs[j]._onMidiMessage.bind(this._outputs[j]);
+  //         newOutputs[i] = this._outputs[j];
+  //         break;
+  //       }
+  //     }
+  //
+  //   }
+  //
+  //   this._outputs = newOutputs;
+  //
+  //
+  //
+  // };
+
   /**
    * @method _updateInputsAndOutputs
    * @static
    * @protected
    */
   WebMidi.prototype._updateInputsAndOutputs = function() {
+    this._updateInputs();
+    this._updateOutputs();
+  };
 
-    var that = this;
+  WebMidi.prototype._updateInputs = function() {
 
-    // var i, j;
-    var newInputs = [];
-    var newOutputs = [];
+    // Check for items to remove from the existing array (because they are no longer being reported
+    // by the MIDI back-end).
+    for (var i = 0; i < this._inputs.length; i++) {
 
-    if (!this.interface) {
-      throw new Error("The MIDI interface is not available.");
+      var remove = true;
+
+      var updated = this.interface.inputs.values();
+      for (var input = updated.next(); input && !input.done; input = updated.next()) {
+        if (this._inputs[i]._midiInput === input.value) {
+          remove = false;
+          break;
+        }
+      }
+
+      if (remove) {
+        this._inputs.splice(i, 1);
+      }
+
     }
 
-    // Create our own Input objects
-    this.interface.inputs.forEach(function (input) {
-      newInputs.push( that._createInput(input) );
-    });
+    // Check for items to add in the existing inputs array because they jsut appeared in the MIDI
+    // back-end inputs list.
+    this.interface.inputs.forEach(function (nInput) {
 
-    // THIS NEEDS TO BE FIXED TOGETHER WITH STATECHANGE EVENTS !!!!
-    // // Re-use old Input objects if any are still there
-    // for (i = 0; i < newInputs.length; i++) {
-    //
-    //   for (j = 0; j < this._inputs.length; j++) {
-    //     if (newInputs[i]._midiInput === this._inputs[j]._midiInput) {
-    //       console.log("match");
-    //       newInputs[i] = this._inputs[j];
-    //       break;
-    //     }
-    //   }
-    //
-    // }
+      var add = true;
 
-    this._inputs = newInputs;
+      for (var j = 0; j < this._inputs.length; j++) {
+        if (this._inputs[j]._midiInput === nInput) {
+          add = false;
+        }
+      }
 
+      if (add) {
+        this._inputs.push( this._createInput(nInput) );
+      }
 
-    // Create our own Output objects
-    this.interface.outputs.forEach(function (output) {
-      newOutputs.push( that._createOutput(output) );
-    });
+    }.bind(this));
 
-    // // Re-use old Output objects if any are still there
-    // for (i = 0; i < newOutputs.length; i++) {
-    //
-    //   for (j = 0; j < this._outputs.length; j++) {
-    //     if (newOutputs[i]._midiOutput === this._outputs[j]._midiOutput) {
-    //       newOutputs[i] = this._outputs[j];
-    //       break;
-    //     }
-    //   }
-    //
-    // }
+  };
 
-    this._outputs = newOutputs;
+  WebMidi.prototype._updateOutputs = function() {
+
+    // Check for items to remove from the existing array (because they are no longer being reported
+    // by the MIDI back-end).
+    for (var i = 0; i < this._outputs.length; i++) {
+
+      var remove = true;
+
+      var updated = this.interface.outputs.values();
+      for (var output = updated.next(); output && !output.done; output = updated.next()) {
+        if (this._outputs[i]._midiOutput === output.value) {
+          remove = false;
+          break;
+        }
+      }
+
+      if (remove) {
+        this._outputs.splice(i, 1);
+      }
+
+    }
+
+    // Check for items to add in the existing inputs array because they just appeared in the MIDI
+    // back-end outputs list.
+    this.interface.outputs.forEach(function (nOutput) {
+
+      var add = true;
+
+      for (var j = 0; j < this._outputs.length; j++) {
+        if (this._outputs[j]._midiOutput === nOutput) {
+          add = false;
+        }
+      }
+
+      if (add) {
+        this._outputs.push( this._createOutput(nOutput) );
+      }
+
+    }.bind(this));
 
   };
 
@@ -914,15 +1028,9 @@
    * @protected
    */
   WebMidi.prototype._createInput = function (midiInput) {
-
     var input = new Input(midiInput);
-
-    input._midiInput.onmidimessage = function(e) {
-      input._onMidiMessage(e); // to make this = Input
-    };
-
+    input._midiInput.onmidimessage = input._onMidiMessage.bind(input);
     return input;
-
   };
 
   /**
@@ -931,15 +1039,9 @@
    * @protected
    */
   WebMidi.prototype._createOutput = function (midiOutput) {
-
     var output = new Output(midiOutput);
-
-    // output._midiInput.onmidimessage = function(e) {
-    //   output._onMidiMessage(e); // to make this = Output
-    // };
-
+    output._midiOutput.onmidimessage = output._onMidiMessage.bind(output);
     return output;
-
   };
 
   /**
@@ -952,10 +1054,8 @@
     // To prevent conflicts, statechange events are queued and parsed synchronously
     this._stateChangeQueue.push(e);
 
-    // Check if we are already currently processing a state change
-    if (this._processingStateChange) {
-      return;
-    }
+    // Check if we are already currently processing a state change. If so, return.
+    if (this._processingStateChange) { return; }
 
     this._processingStateChange = true;
 
@@ -2245,14 +2345,13 @@
   };
 
   /**
-   * Sends a *MIDI tuning request* real-time message. Note: there seems to be a bug in Chrome's MIDI
-   * implementation. If you try to use this function, Chrome throws a "Message is incomplete" error.
-   * I'm fairly sure it should work as is. I reported the issue and I'm waiting for feedback from
-   * Chrome team:
+   * Sends a *MIDI tuning request* real-time message.
    *
-   *    https://bugs.chromium.org/p/chromium/issues/detail?id=610116
-   *
-   * Until this is resolved, calling `Output.sendTuningRequest` will throw an error.
+   * Note: there is currently a bug in Chrome's MIDI implementation. If you try to use this
+   * function, Chrome will actually throw an error. The bug is
+   * [scheduled to be fixed](https://bugs.chromium.org/p/chromium/issues/detail?id=610116) but,
+   * until it is, WebMidi will catch Chrome's error and throw its own if you try to use it.
+   * Hopefully, this will be resolved soon.
    *
    * @method sendTuningRequest
    * @chainable
@@ -3723,6 +3822,14 @@
 
     return channel;
 
+  };
+
+  /**
+   * @method _onMidiMessage
+   * @protected
+   */
+  Output.prototype._onMidiMessage = function(e) {
+    // Not implemented.
   };
 
   // Check if RequireJS/AMD is used. If it is, use it to define our module instead of

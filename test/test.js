@@ -8,6 +8,10 @@
   // WEBMIDI
   describe('WebMidi', function() {
 
+    // TEST SINGLETON
+    // TEST TIMING
+    // TEST INPUT/OUTPUT CREATION ?
+
     /************************************************************************************************/
     describe('enable()', function() {
 
@@ -662,19 +666,6 @@
         WebMidi.disable();
       });
 
-      it("should throw error if filters is not an object", function(done) {
-
-        WebMidi.enable(function() {
-
-          expect(function () {
-            WebMidi.inputs[0].addListener('noteon', function(){}, 12);
-          }).to.throw(TypeError);
-
-          done();
-        });
-
-      });
-
       it("should throw error if listener is not a function", function(done) {
 
         WebMidi.enable(function() {
@@ -693,11 +684,11 @@
         WebMidi.enable(function() {
 
           expect(function () {
-            WebMidi.inputs[0].addListener('prout', function() {});
+            WebMidi.inputs[0].addListener('prout', 1, function() {});
           }).to.throw(TypeError);
 
           expect(function () {
-            WebMidi.inputs[0].addListener('', function() {});
+            WebMidi.inputs[0].addListener('', 1, function() {});
           }).to.throw(TypeError);
 
           done();
@@ -710,11 +701,11 @@
         WebMidi.enable(function() {
 
           expect(function () {
-            WebMidi.inputs[0].addListener('noteon', function() {}, {channel: 22});
+            WebMidi.inputs[0].addListener('noteon', "abc", function() {});
           }).to.throw(RangeError);
 
           expect(function () {
-            WebMidi.inputs[0].addListener('noteon', function() {}, {channel: 0});
+            WebMidi.inputs[0].addListener('noteon', 123, function() {});
           }).to.throw(RangeError);
 
           done();
@@ -729,26 +720,26 @@
           function a() {}
           function b() {}
 
-          WebMidi.inputs[0].addListener('noteoff', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('noteoff', a, {channel: 10})).to.equal(true);
+          WebMidi.inputs[0].addListener('noteoff', 10, a);
+          expect(WebMidi.inputs[0].hasListener('noteoff', 10, a)).to.equal(true);
 
-          WebMidi.inputs[0].addListener('noteon', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('noteon', b, {channel: 10})).to.equal(false);
+          WebMidi.inputs[0].addListener('noteon', 10, a);
+          expect(WebMidi.inputs[0].hasListener('noteon', 10, b)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('keyaftertouch', a);
-          expect(WebMidi.inputs[0].hasListener('keyaftertouch', a, {channel: 3})).to.equal(true);
+          WebMidi.inputs[0].addListener('keyaftertouch', "all", a);
+          expect(WebMidi.inputs[0].hasListener('keyaftertouch', 3, a)).to.equal(true);
 
-          WebMidi.inputs[0].addListener('controlchange', a, {channel: [1, 2, 3]});
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: 3})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: [1, 3]})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: [1, 2, 3]})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: "all"})).to.equal(false);
+          WebMidi.inputs[0].addListener('controlchange', [1, 2, 3], a);
+          expect(WebMidi.inputs[0].hasListener('controlchange', 3, a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', [1, 3], a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', [1, 2, 3], a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', "all", a)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('channelmode', a, {channel: "all"});
-          expect(WebMidi.inputs[0].hasListener('channelmode', a, {channel: 3})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('channelmode', a, {channel: "all"})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('channelmode', b, {channel: "all"})).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('channelmode', a)).to.equal(true);
+          WebMidi.inputs[0].addListener('channelmode', "all", a);
+          expect(WebMidi.inputs[0].hasListener('channelmode', 3, a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('channelmode', "all", a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('channelmode', "all", b)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('channelmode', 5, a)).to.equal(true);
 
           done();
         });
@@ -777,19 +768,6 @@
 
       });
 
-      it("should throw error if filters is not an object", function(done) {
-
-        WebMidi.enable(function() {
-
-          expect(function () {
-            WebMidi.inputs[0].hasListener('noteon', function(){}, 12);
-          }).to.throw(TypeError);
-
-          done();
-        });
-
-      });
-
       it("should correctly check for listeners", function(done) {
 
         WebMidi.enable(function() {
@@ -797,26 +775,26 @@
           function a() {}
           function b() {}
 
-          WebMidi.inputs[0].addListener('noteoff', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('noteoff', a, {channel: 10})).to.equal(true);
+          WebMidi.inputs[0].addListener('noteoff', 10, a);
+          expect(WebMidi.inputs[0].hasListener('noteoff', 10, a)).to.equal(true);
 
-          WebMidi.inputs[0].addListener('noteon', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('noteon', b, {channel: 10})).to.equal(false);
+          WebMidi.inputs[0].addListener('noteon', 10, a);
+          expect(WebMidi.inputs[0].hasListener('noteon', 10, b)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('keyaftertouch', a);
-          expect(WebMidi.inputs[0].hasListener('keyaftertouch', a, {channel: 3})).to.equal(true);
+          WebMidi.inputs[0].addListener('keyaftertouch', "all", a);
+          expect(WebMidi.inputs[0].hasListener('keyaftertouch', 3, a)).to.equal(true);
 
-          WebMidi.inputs[0].addListener('controlchange', a, {channel: [1, 2, 3]});
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: 3})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: [1, 3]})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: [1, 2, 3]})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('controlchange', a, {channel: "all"})).to.equal(false);
+          WebMidi.inputs[0].addListener('controlchange', [1, 2, 3], a);
+          expect(WebMidi.inputs[0].hasListener('controlchange', 3, a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', [1, 3], a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', [1, 2, 3], a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('controlchange', "all", a)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('channelmode', a, {channel: "all"});
-          expect(WebMidi.inputs[0].hasListener('channelmode', a, {channel: 3})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('channelmode', a, {channel: "all"})).to.equal(true);
-          expect(WebMidi.inputs[0].hasListener('channelmode', b, {channel: "all"})).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('channelmode', a)).to.equal(true);
+          WebMidi.inputs[0].addListener('channelmode', "all", a);
+          expect(WebMidi.inputs[0].hasListener('channelmode', 3, a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('channelmode', "all", a)).to.equal(true);
+          expect(WebMidi.inputs[0].hasListener('channelmode', "all", b)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('channelmode', "all", a)).to.equal(true);
 
           done();
         });
@@ -852,7 +830,7 @@
         WebMidi.enable(function() {
 
           expect(function () {
-            WebMidi.inputs[0].removeListener("start", {});
+            WebMidi.inputs[0].removeListener("start", "all", {});
           }).to.throw(TypeError);
 
           done();
@@ -882,40 +860,40 @@
           function a() {}
           function b() {}
 
-          WebMidi.inputs[0].addListener('programchange', a, {channel: 10});
-          WebMidi.inputs[0].removeListener('programchange', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('programchange', a, {channel: 10})).to.equal(false);
+          WebMidi.inputs[0].addListener('programchange', 10, a);
+          WebMidi.inputs[0].removeListener('programchange', 10, a);
+          expect(WebMidi.inputs[0].hasListener('programchange', 10, a)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('sysex', a);
-          WebMidi.inputs[0].removeListener('sysex', a);
-          expect(WebMidi.inputs[0].hasListener('sysex', a)).to.equal(false);
+          WebMidi.inputs[0].addListener('sysex', undefined, a);
+          WebMidi.inputs[0].removeListener('sysex', undefined, a);
+          expect(WebMidi.inputs[0].hasListener('sysex', undefined, a)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('channelaftertouch', a, {channel: 10});
-          WebMidi.inputs[0].removeListener('channelaftertouch', a);
-          expect(WebMidi.inputs[0].hasListener('channelaftertouch', a, {channel: 10})).to.equal(false);
+          WebMidi.inputs[0].addListener('channelaftertouch', 10, a);
+          WebMidi.inputs[0].removeListener('channelaftertouch', "all", a);
+          expect(WebMidi.inputs[0].hasListener('channelaftertouch', 10, a)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('pitchbend', a);
-          WebMidi.inputs[0].removeListener('pitchbend', a, {channel: 10});
-          expect(WebMidi.inputs[0].hasListener('pitchbend', a, {channel: 10})).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('pitchbend', a, {channel: 11})).to.equal(true);
+          WebMidi.inputs[0].addListener('pitchbend', "all", a);
+          WebMidi.inputs[0].removeListener('pitchbend', 10, a);
+          expect(WebMidi.inputs[0].hasListener('pitchbend', 10, a)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('pitchbend', 11, a)).to.equal(true);
 
-          WebMidi.inputs[0].addListener('noteoff', a);
-          WebMidi.inputs[0].addListener('noteoff', b);
+          WebMidi.inputs[0].addListener('noteoff', 'all', a);
+          WebMidi.inputs[0].addListener('noteoff', "all", b);
           WebMidi.inputs[0].removeListener('noteoff');
-          expect(WebMidi.inputs[0].hasListener('noteoff', a, {channel: 10})).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('noteoff', b, {channel: 11})).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('noteoff', 10, a)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('noteoff', 11, b)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('keyaftertouch', a);
-          WebMidi.inputs[0].addListener('keyaftertouch', b);
+          WebMidi.inputs[0].addListener('keyaftertouch', "all", a);
+          WebMidi.inputs[0].addListener('keyaftertouch', "all", b);
           WebMidi.inputs[0].removeListener();
-          expect(WebMidi.inputs[0].hasListener('keyaftertouch', a, {channel: 10})).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('keyaftertouch', b)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('keyaftertouch', 10, a)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('keyaftertouch', "all", b)).to.equal(false);
 
-          WebMidi.inputs[0].addListener('stop', a);
-          WebMidi.inputs[0].addListener('stop', b);
+          WebMidi.inputs[0].addListener('stop', "all", a);
+          WebMidi.inputs[0].addListener('stop', "all", b);
           WebMidi.inputs[0].removeListener('stop');
-          expect(WebMidi.inputs[0].hasListener('stop', a)).to.equal(false);
-          expect(WebMidi.inputs[0].hasListener('stop', b)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('stop', "all", a)).to.equal(false);
+          expect(WebMidi.inputs[0].hasListener('stop', "all", b)).to.equal(false);
 
           done();
         });
