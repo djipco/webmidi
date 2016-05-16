@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-alpha.5</em>
+            <em>API Docs for: 2.0.0-alpha.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_webmidi.js.html#l1932"><code>src&#x2F;webmidi.js:1932</code></a>
+            Defined in: <a href="../files/src_webmidi.js.html#l2016"><code>src&#x2F;webmidi.js:2016</code></a>
         </div>
 
 
@@ -91,8 +91,9 @@
 
 
 <div class="box intro">
-    <p>The <code>Output</code> object represents an available MIDI output port. This object is created by the
-MIDI subsystem and cannot be instantiated directly.</p>
+    <p>The <code>Output</code> object represents a MIDI output port on the host system. This object is created by
+the MIDI subsystem and cannot be instantiated directly.</p>
+<p>You will find all available <code>Output</code> objects in the <code>WebMidi.outputs</code> array.</p>
 
 </div>
 
@@ -319,7 +320,7 @@ MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3772"><code>src&#x2F;webmidi.js:3772</code></a>
+        <a href="../files/src_webmidi.js.html#l3887"><code>src&#x2F;webmidi.js:3887</code></a>
         </p>
 
 
@@ -376,7 +377,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3750"><code>src&#x2F;webmidi.js:3750</code></a>
+        <a href="../files/src_webmidi.js.html#l3865"><code>src&#x2F;webmidi.js:3865</code></a>
         </p>
 
 
@@ -395,7 +396,7 @@ array of MIDI note numbers.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name optional">[note]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -438,7 +439,7 @@ array of MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2900"><code>src&#x2F;webmidi.js:2900</code></a>
+        <a href="../files/src_webmidi.js.html#l2995"><code>src&#x2F;webmidi.js:2995</code></a>
         </p>
 
 
@@ -506,7 +507,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3802"><code>src&#x2F;webmidi.js:3802</code></a>
+        <a href="../files/src_webmidi.js.html#l3917"><code>src&#x2F;webmidi.js:3917</code></a>
         </p>
 
 
@@ -543,7 +544,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3723"><code>src&#x2F;webmidi.js:3723</code></a>
+        <a href="../files/src_webmidi.js.html#l3838"><code>src&#x2F;webmidi.js:3838</code></a>
         </p>
 
 
@@ -606,7 +607,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2825"><code>src&#x2F;webmidi.js:2825</code></a>
+        <a href="../files/src_webmidi.js.html#l2920"><code>src&#x2F;webmidi.js:2920</code></a>
         </p>
 
 
@@ -699,7 +700,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2788"><code>src&#x2F;webmidi.js:2788</code></a>
+        <a href="../files/src_webmidi.js.html#l2883"><code>src&#x2F;webmidi.js:2883</code></a>
         </p>
 
 
@@ -792,7 +793,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2862"><code>src&#x2F;webmidi.js:2862</code></a>
+        <a href="../files/src_webmidi.js.html#l2957"><code>src&#x2F;webmidi.js:2957</code></a>
         </p>
 
 
@@ -863,7 +864,7 @@ that identify the registered parameter.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -882,7 +883,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3166"><code>src&#x2F;webmidi.js:3166</code></a>
+        <a href="../files/src_webmidi.js.html#l3257"><code>src&#x2F;webmidi.js:3257</code></a>
         </p>
 
 
@@ -891,7 +892,7 @@ that identify the registered parameter.</p>
 
     <div class="description">
         <p>Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
-information, check out <a href="http://www.midi.org/techspecs/rp18.php">RP-18</a> regarding the usage of
+information, check out <a href="http://dev.midi.org/techspecs/rp18.php">RP-18</a> regarding the usage of
 increment and decrement controllers.</p>
 <blockquote>
 <p>Unless you are very familiar with the MIDI standard you probably should favour one of the
@@ -938,7 +939,7 @@ parameter.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -951,7 +952,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1015,7 +1016,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1034,7 +1035,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3093"><code>src&#x2F;webmidi.js:3093</code></a>
+        <a href="../files/src_webmidi.js.html#l3184"><code>src&#x2F;webmidi.js:3184</code></a>
         </p>
 
 
@@ -1043,7 +1044,7 @@ sent as soon as possible.</p>
 
     <div class="description">
         <p>Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
-information, check out <a href="http://www.midi.org/techspecs/rp18.php">RP-18</a> regarding the usage of
+information, check out <a href="http://dev.midi.org/techspecs/rp18.php">RP-18</a> regarding the usage of
 increment and decrement controllers.</p>
 <blockquote>
 <p>Unless you are very familiar with the MIDI standard you probably should favour one of the
@@ -1103,7 +1104,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1159,7 +1160,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1178,7 +1179,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2495"><code>src&#x2F;webmidi.js:2495</code></a>
+        <a href="../files/src_webmidi.js.html#l2578"><code>src&#x2F;webmidi.js:2578</code></a>
         </p>
 
 
@@ -1187,11 +1188,11 @@ sent as soon as possible.</p>
 
     <div class="description">
         <p>Requests the playback of a single note or multiple notes on the specified channel(s). You can
-delay the execution of the <code>note on</code> command by using the <code>delay</code> parameter (milliseconds).</p>
-<p>If no duration is specified, the note will play until a matching <code>note off</code> is sent. If a
-duration is specified, a <code>note off</code> will be automatically sent after said duration.</p>
-<p>Please note that if you do use a duration, the release velocity will always be 64. If you want
-to tailor the release velocity, you need to use separate <code>playNote()</code> and <code>stopNote()</code> calls.</p>
+delay the execution of the <code>note on</code> command by using the <code>time</code> property of the <code>options</code>
+parameter (milliseconds).</p>
+<p>If no duration is specified in the <code>options</code>, the note will play until a matching <code>note off</code>
+is sent. If a duration is specified, a <code>note off</code> will be automatically sent after said
+duration.</p>
 
     </div>
 
@@ -1201,7 +1202,7 @@ to tailor the release velocity, you need to use separate <code>playNote()</code>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">note</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
 
                     <div class="param-description">
@@ -1209,14 +1210,15 @@ to tailor the release velocity, you need to use separate <code>playNote()</code>
 one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
 The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
 range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-note is G8 (MIDI note number 127).</p>
+note is G8 (MIDI note number 127). It is also possible to specify and array of note numbers
+and/or names.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -1229,7 +1231,7 @@ sent to all 16 channels.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1259,6 +1261,19 @@ sent to all 16 channels.</p>
                                 <div class="param-description">
                                     <p>The number of milliseconds to wait before sending a
 matching note off event. If left undefined, only a <code>note on</code> message is sent.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[release=0.5]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The velocity at which to release the note (between 0 and
+1). This is only used when a duration has been specified. An invalid release value will
+silently trigger the default.</p>
 
                                 </div>
 
@@ -1328,7 +1343,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2016"><code>src&#x2F;webmidi.js:2016</code></a>
+        <a href="../files/src_webmidi.js.html#l2102"><code>src&#x2F;webmidi.js:2102</code></a>
         </p>
 
 
@@ -1336,7 +1351,7 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI message to the MIDI output port, at the scheduled timestamp.</p>
+        <p>Sends a MIDI message on the MIDI output port, at the scheduled timestamp.</p>
 <p>Unless, you are familiar with the details of the MIDI message format, you should not use this
 method directly. Instead, use one of the simpler helper methods: <code>playNote()</code>, <code>stopNote()</code>,
 <code>sendControlChange()</code>, <code>sendSystemMessage()</code>, etc.</p>
@@ -1352,7 +1367,7 @@ MIDI Manufacturers Association.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">status</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
@@ -1363,14 +1378,14 @@ MIDI Manufacturers Association.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[data=[]]</code>
-                        <span class="type">Array(uint)</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>An array of uints for the message. The
-number of data bytes varies depending on the status byte. It is perfectly legal to send no
-data. Each byte must be between 0 and 255.</p>
+                        <p>An array of uints for the message. The number of data bytes varies
+depending on the status byte. It is perfectly legal to send no data for some message types.
+Each byte must be between 0 and 255.</p>
 
                     </div>
 
@@ -1421,7 +1436,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1440,7 +1455,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2379"><code>src&#x2F;webmidi.js:2379</code></a>
+        <a href="../files/src_webmidi.js.html#l2462"><code>src&#x2F;webmidi.js:2462</code></a>
         </p>
 
 
@@ -1459,7 +1474,7 @@ no other activity on the MIDI port.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1515,7 +1530,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1534,7 +1549,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3620"><code>src&#x2F;webmidi.js:3620</code></a>
+        <a href="../files/src_webmidi.js.html#l3735"><code>src&#x2F;webmidi.js:3735</code></a>
         </p>
 
 
@@ -1566,20 +1581,20 @@ will silently trigger the default behaviour.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel number (between 1 and 16) or an
-array of channel numbers. If the special value &quot;all&quot; is used, the message will be sent to all
-16 channels.</p>
+                        <p>The MIDI channel number (between 1 and 16) or
+an array of channel numbers. If the special value &quot;all&quot; is used, the message will be sent to
+all 16 channels.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1638,7 +1653,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1657,7 +1672,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3511"><code>src&#x2F;webmidi.js:3511</code></a>
+        <a href="../files/src_webmidi.js.html#l3603"><code>src&#x2F;webmidi.js:3603</code></a>
         </p>
 
 
@@ -1666,6 +1681,18 @@ sent as soon as possible.</p>
 
     <div class="description">
         <p>Sends a MIDI <code>channel mode</code> message to the specified channel(s).</p>
+<p>The channel mode message to send can be specified numerically or by using one of the following
+common names:</p>
+<ul>
+<li><code>allsoundoff</code> (#120)</li>
+<li><code>resetallcontrollers</code> (#121)</li>
+<li><code>localcontrol</code> (#122)</li>
+<li><code>allnotesoff</code> (#123)</li>
+<li><code>omnimodeoff</code> (#124)</li>
+<li><code>omnimodeon</code> (#125)</li>
+<li><code>monomodeon</code> (#126)</li>
+<li><code>polymodeon</code> (#127)</li>
+</ul>
 
     </div>
 
@@ -1675,29 +1702,30 @@ sent as soon as possible.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">command</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel mode command (120-127).</p>
+                        <p>The numerical identifier of the MIDI channel mode message
+(integer between 120-127) or its name as a string.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name">value</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
-                        <p>The value to send (0-127)</p>
+                        <p>The value to send (integer between 0-127)</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -1710,7 +1738,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1769,7 +1797,7 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1788,7 +1816,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2278"><code>src&#x2F;webmidi.js:2278</code></a>
+        <a href="../files/src_webmidi.js.html#l2361"><code>src&#x2F;webmidi.js:2361</code></a>
         </p>
 
 
@@ -1806,7 +1834,7 @@ for every quarter note.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1856,7 +1884,7 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1875,7 +1903,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2328"><code>src&#x2F;webmidi.js:2328</code></a>
+        <a href="../files/src_webmidi.js.html#l2411"><code>src&#x2F;webmidi.js:2411</code></a>
         </p>
 
 
@@ -1894,7 +1922,7 @@ start, use the <code>sendStart()</code> function.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -1953,7 +1981,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1972,7 +2000,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2650"><code>src&#x2F;webmidi.js:2650</code></a>
+        <a href="../files/src_webmidi.js.html#l2746"><code>src&#x2F;webmidi.js:2746</code></a>
         </p>
 
 
@@ -1980,69 +2008,69 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>control change</code> message to the specified channel(s) at the scheduled time.</p>
-<p>The control change message to send can be specified numerically or by using one of the
-following common names:</p>
+        <p>Sends a MIDI <code>control change</code> message to the specified channel(s) at the scheduled time. The
+control change message to send can be specified numerically or by using one of the following
+common names:</p>
 <ul>
-<li>bank-select-coarse (#0)</li>
-<li>modulation-wheel-coarse (#1)</li>
-<li>breath-controller-coarse (#2)</li>
-<li>foot-controller-coarse (#4)</li>
-<li>portamento-time-coarse (#5)</li>
-<li>data-entry-coarse (#6)</li>
-<li>volume-coarse (#7)</li>
-<li>balance-coarse (#8)</li>
-<li>pan-coarse (#10)</li>
-<li>expression-coarse (#11)</li>
-<li>effect-control-1-coarse (#12)</li>
-<li>effect-control-2-coarse (#13)</li>
-<li>general-purpose-slider-1 (#16)</li>
-<li>general-purpose-slider-2 (#17)</li>
-<li>general-purpose-slider-3 (#18)</li>
-<li>general-purpose-slider-4 (#19)</li>
-<li>bank-select-fine (#32)</li>
-<li>modulation-wheel-fine (#33)</li>
-<li>breath-controller-fine (#34)</li>
-<li>foot-controller-fine (#36)</li>
-<li>portamento-time-fine (#37)</li>
-<li>data-entry-fine (#38)</li>
-<li>volume-fine (#39)</li>
-<li>balance-fine (#40)</li>
-<li>pan-fine (#42)</li>
-<li>expression-fine (#43)</li>
-<li>effect-control-1-fine (#44)</li>
-<li>effect-control-2-fine (#45)</li>
-<li>hold-pedal (#64)</li>
-<li>portamento (#65)</li>
-<li>sustenuto-pedal (#66)</li>
-<li>soft-pedal (#67)</li>
-<li>legato-pedal (#68)</li>
-<li>hold-2-pedal (#69)</li>
-<li>sound-variation (#70)</li>
-<li>resonance (#71)</li>
-<li>sound-release-time (#72)</li>
-<li>sound-attack-time (#73)</li>
-<li>brightness (#74)</li>
-<li>sound-control-6 (#75)</li>
-<li>sound-control-7 (#76)</li>
-<li>sound-control-8 (#77)</li>
-<li>sound-control-9 (#78)</li>
-<li>sound-control-10 (#79)</li>
-<li>general-purpose-button-1 (#80)</li>
-<li>general-purpose-button-2 (#81)</li>
-<li>general-purpose-button-3 (#82)</li>
-<li>general-purpose-button-4 (#83)</li>
-<li>reverb-level (#91)</li>
-<li>tremolo-level (#92)</li>
-<li>chorus-level (#93)</li>
-<li>celeste-level (#94)</li>
-<li>phaser-level (#95)</li>
-<li>data-button-increment (#96)</li>
-<li>data-button-decrement (#97)</li>
-<li>non-registered-parameter-coarse (#98)</li>
-<li>non-registered-parameter-fine (#99)</li>
-<li>registered-parameter-coarse (#100)</li>
-<li>registered-parameter-fine (#101)</li>
+<li><code>bankselectcoarse</code> (#0)</li>
+<li><code>modulationwheelcoarse</code> (#1)</li>
+<li><code>breathcontrollercoarse</code> (#2)</li>
+<li><code>footcontrollercoarse</code> (#4)</li>
+<li><code>portamentotimecoarse</code> (#5)</li>
+<li><code>dataentrycoarse</code> (#6)</li>
+<li><code>volumecoarse</code> (#7)</li>
+<li><code>balancecoarse</code> (#8)</li>
+<li><code>pancoarse</code> (#10)</li>
+<li><code>expressioncoarse</code> (#11)</li>
+<li><code>effectcontrol1coarse</code> (#12)</li>
+<li><code>effectcontrol2coarse</code> (#13)</li>
+<li><code>generalpurposeslider1</code> (#16)</li>
+<li><code>generalpurposeslider2</code> (#17)</li>
+<li><code>generalpurposeslider3</code> (#18)</li>
+<li><code>generalpurposeslider4</code> (#19)</li>
+<li><code>bankselectfine</code> (#32)</li>
+<li><code>modulationwheelfine</code> (#33)</li>
+<li><code>breathcontrollerfine</code> (#34)</li>
+<li><code>footcontrollerfine</code> (#36)</li>
+<li><code>portamentotimefine</code> (#37)</li>
+<li><code>dataentryfine</code> (#38)</li>
+<li><code>volumefine</code> (#39)</li>
+<li><code>balancefine</code> (#40)</li>
+<li><code>panfine</code> (#42)</li>
+<li><code>expressionfine</code> (#43)</li>
+<li><code>effectcontrol1fine</code> (#44)</li>
+<li><code>effectcontrol2fine</code> (#45)</li>
+<li><code>holdpedal</code> (#64)</li>
+<li><code>portamento</code> (#65)</li>
+<li><code>sustenutopedal</code> (#66)</li>
+<li><code>softpedal</code> (#67)</li>
+<li><code>legatopedal</code> (#68)</li>
+<li><code>hold2pedal</code> (#69)</li>
+<li><code>soundvariation</code> (#70)</li>
+<li><code>resonance</code> (#71)</li>
+<li><code>soundreleasetime</code> (#72)</li>
+<li><code>soundattacktime</code> (#73)</li>
+<li><code>brightness</code> (#74)</li>
+<li><code>soundcontrol6</code> (#75)</li>
+<li><code>soundcontrol7</code> (#76)</li>
+<li><code>soundcontrol8</code> (#77)</li>
+<li><code>soundcontrol9</code> (#78)</li>
+<li><code>soundcontrol10</code> (#79)</li>
+<li><code>generalpurposebutton1</code> (#80)</li>
+<li><code>generalpurposebutton2</code> (#81)</li>
+<li><code>generalpurposebutton3</code> (#82)</li>
+<li><code>generalpurposebutton4</code> (#83)</li>
+<li><code>reverblevel</code> (#91)</li>
+<li><code>tremololevel</code> (#92)</li>
+<li><code>choruslevel</code> (#93)</li>
+<li><code>celestelevel</code> (#94)</li>
+<li><code>phaserlevel</code> (#95)</li>
+<li><code>databuttonincrement</code> (#96)</li>
+<li><code>databuttondecrement</code> (#97)</li>
+<li><code>nonregisteredparametercoarse</code> (#98)</li>
+<li><code>nonregisteredparameterfine</code> (#99)</li>
+<li><code>registeredparametercoarse</code> (#100)</li>
+<li><code>registeredparameterfine</code> (#101)</li>
 </ul>
 <p>Note: as you can see above, not all control change message have a matching common name. This
 does not mean you cannot use the others. It simply means you will need to use their number
@@ -2060,18 +2088,18 @@ specification.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">controller</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
 
                     <div class="param-description">
-                        <p>The MIDI controller number (0-119)</p>
+                        <p>The MIDI controller number (0-119) or name.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[value=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2083,7 +2111,7 @@ specification.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2096,7 +2124,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2164,7 +2192,7 @@ sent as soon as possible.</p>
                         <code class="optional">[pressure=0.5]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2183,7 +2211,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2585"><code>src&#x2F;webmidi.js:2585</code></a>
+        <a href="../files/src_webmidi.js.html#l2678"><code>src&#x2F;webmidi.js:2678</code></a>
         </p>
 
 
@@ -2191,8 +2219,8 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>key aftertouch</code> message to the specified and channel(s) at the scheduled time.
-This is a key-specific aftertouch. For a channel-wide aftertouch message, use
+        <p>Sends a MIDI <code>key aftertouch</code> message to the specified channel(s) at the scheduled time. This
+is a key-specific aftertouch. For a channel-wide aftertouch message, use
 WebMidi/sendChannelAftertouch:method.</p>
 
     </div>
@@ -2203,7 +2231,7 @@ WebMidi/sendChannelAftertouch:method.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">note</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
 
                     <div class="param-description">
@@ -2211,14 +2239,15 @@ WebMidi/sendChannelAftertouch:method.</p>
 notes can be specified in one of two ways. The first way is by using the MIDI note number (an
 integer between 0 and 127). The second way is by using the note name followed by the octave
 (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-note number 0) and the highest note is G8 (MIDI note number 127).</p>
+note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+an array of note names and/or numbers.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2243,7 +2272,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2308,7 +2337,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2327,7 +2356,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3669"><code>src&#x2F;webmidi.js:3669</code></a>
+        <a href="../files/src_webmidi.js.html#l3784"><code>src&#x2F;webmidi.js:3784</code></a>
         </p>
 
 
@@ -2357,7 +2386,7 @@ no bend.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2370,7 +2399,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2435,7 +2464,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2454,7 +2483,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3570"><code>src&#x2F;webmidi.js:3570</code></a>
+        <a href="../files/src_webmidi.js.html#l3685"><code>src&#x2F;webmidi.js:3685</code></a>
         </p>
 
 
@@ -2472,7 +2501,7 @@ sent as soon as possible.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">program</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
@@ -2483,7 +2512,7 @@ sent as soon as possible.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2496,7 +2525,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2555,7 +2584,7 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2574,7 +2603,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2405"><code>src&#x2F;webmidi.js:2405</code></a>
+        <a href="../files/src_webmidi.js.html#l2488"><code>src&#x2F;webmidi.js:2488</code></a>
         </p>
 
 
@@ -2592,7 +2621,7 @@ reset itself to a default state.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2645,7 +2674,7 @@ sent as soon as possible.</p>
                         <code class="optional">[value=0]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2664,7 +2693,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2172"><code>src&#x2F;webmidi.js:2172</code></a>
+        <a href="../files/src_webmidi.js.html#l2259"><code>src&#x2F;webmidi.js:2259</code></a>
         </p>
 
 
@@ -2685,7 +2714,7 @@ sent as soon as possible.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name optional">[value=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -2696,7 +2725,7 @@ sent as soon as possible.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2749,7 +2778,7 @@ sent as soon as possible.</p>
                         <code>value</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2768,7 +2797,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2206"><code>src&#x2F;webmidi.js:2206</code></a>
+        <a href="../files/src_webmidi.js.html#l2294"><code>src&#x2F;webmidi.js:2294</code></a>
         </p>
 
 
@@ -2777,7 +2806,7 @@ sent as soon as possible.</p>
 
     <div class="description">
         <p>Sends a <em>Song Select</em> MIDI message. Beware that some devices will display position 0 as
-position for user-friendlyness.</p>
+position 1 for user-friendlyness.</p>
 
     </div>
 
@@ -2787,17 +2816,17 @@ position for user-friendlyness.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">value</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
-                        <p>The number of the song to select (int between 0 and 127).</p>
+                        <p>The number of the song to select (integer between 0 and 127).</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2847,13 +2876,13 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
 
         <span class="returns-inline">
-            <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>
+            <span class="type"><a href="../classes/Output.html" class="crosslink">Output</a></span>
         </span>
 
 
@@ -2866,7 +2895,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2303"><code>src&#x2F;webmidi.js:2303</code></a>
+        <a href="../files/src_webmidi.js.html#l2386"><code>src&#x2F;webmidi.js:2386</code></a>
         </p>
 
 
@@ -2884,7 +2913,7 @@ song at beat 0. To start playback elsewhere in the song, use the <code>sendConti
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -2920,8 +2949,8 @@ sent as soon as possible.</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type"><a href="../classes/WebMidi.html" class="crosslink">WebMidi</a></span>:
-                    <p>Returns the <code>WebMidi</code> object so methods can be chained.</p>
+                        <span class="type"><a href="../classes/Output.html" class="crosslink">Output</a></span>:
+                    <p>Returns the <code>Output</code> object so methods can be chained.</p>
 
             </div>
         </div>
@@ -2934,7 +2963,7 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -2953,7 +2982,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2354"><code>src&#x2F;webmidi.js:2354</code></a>
+        <a href="../files/src_webmidi.js.html#l2437"><code>src&#x2F;webmidi.js:2437</code></a>
         </p>
 
 
@@ -2971,7 +3000,7 @@ immediately (or at the scheduled time).</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3027,7 +3056,7 @@ sent as soon as possible.</p>
                         <code class="optional">[data=[]]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3046,7 +3075,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2075"><code>src&#x2F;webmidi.js:2075</code></a>
+        <a href="../files/src_webmidi.js.html#l2161"><code>src&#x2F;webmidi.js:2161</code></a>
         </p>
 
 
@@ -3060,7 +3089,7 @@ with the <em>SysEx</em> byte (0xF0) and terminated with the <em>End of SysEx</em
 output, you would use the following code:</p>
 <pre class="code prettyprint"><code>WebMidi.outputs[0].sendSysex(0x42, [1, 2, 3, 4, 5]);
 </code></pre>
-<p>The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (ID 0x42). Some
+<p>The above code sends the byte values 1, 2, 3, 4 and 5 to Korg (ID 0x42) devices. Some
 manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
 the first parameter. For example, to send the same SysEx message to a <em>Native Instruments</em>
 device:</p>
@@ -3077,13 +3106,14 @@ system exclusive messages to 64Kb or less.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">manufacturer</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
 
                     <div class="param-description">
-                        <p>A uint or an array of three uints between 0 and 127 that
-identify the targeted manufacturer. The <em>MIDI Manufacturers Association</em> maintains a full list
-of <a href="http://www.midi.org/techspecs/manid.php">Manufacturer ID Numbers</a>.</p>
+                        <p>An unsigned integer or an array of three unsigned integers
+between 0 and 127 that identify the targeted manufacturer. The <em>MIDI Manufacturers Association</em>
+maintains a full list of
+<a href="https://www.midi.org/specifications/item/manufacturer-id-numbers">Manufacturer ID Numbers</a>.</p>
 
                     </div>
 
@@ -3102,7 +3132,7 @@ transfer.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3155,7 +3185,7 @@ sent as soon as possible.</p>
                         <code>value</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3174,7 +3204,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2144"><code>src&#x2F;webmidi.js:2144</code></a>
+        <a href="../files/src_webmidi.js.html#l2231"><code>src&#x2F;webmidi.js:2231</code></a>
         </p>
 
 
@@ -3194,17 +3224,17 @@ the data. It is up to the developer to format the data according to the
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">value</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
-                        <p>The quarter frame message content (unsigned int between 0 and 127).</p>
+                        <p>The quarter frame message content (integer between 0 and 127).</p>
 
                     </div>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3254,7 +3284,7 @@ sent as soon as possible.</p>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3273,7 +3303,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2245"><code>src&#x2F;webmidi.js:2245</code></a>
+        <a href="../files/src_webmidi.js.html#l2333"><code>src&#x2F;webmidi.js:2333</code></a>
         </p>
 
 
@@ -3283,10 +3313,8 @@ sent as soon as possible.</p>
     <div class="description">
         <p>Sends a <em>MIDI tuning request</em> real-time message.</p>
 <p>Note: there is currently a bug in Chrome's MIDI implementation. If you try to use this
-function, Chrome will actually throw an error. The bug is
-<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=610116">scheduled to be fixed</a> but,
-until it is, WebMidi will catch Chrome's error and throw its own if you try to use it.
-Hopefully, this will be resolved soon.</p>
+function, Chrome will actually throw a &quot;Message is incomplete&quot; error. The bug is
+<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=610116">scheduled to be fixed</a>.</p>
 
     </div>
 
@@ -3295,7 +3323,7 @@ Hopefully, this will be resolved soon.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3351,7 +3379,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3370,7 +3398,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3355"><code>src&#x2F;webmidi.js:3355</code></a>
+        <a href="../files/src_webmidi.js.html#l3447"><code>src&#x2F;webmidi.js:3447</code></a>
         </p>
 
 
@@ -3378,8 +3406,8 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a master tuning message to the specified output(s) and channel(s). The value is decimal
-and must be larger than -65 semitones and smaller than 64 semitones.</p>
+        <p>Sends a master tuning message to the specified channel(s). The value is decimal and must be
+larger than -65 semitones and smaller than 64 semitones.</p>
 <blockquote>
 <p>Because of the way the MIDI specification works, the decimal portion of the value will be
 encoded with a resolution of 14bit. The integer portion must be between -64 and 63
@@ -3407,7 +3435,7 @@ inclusively. For those familiar with the MIDI protocol, this function actually g
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3420,7 +3448,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3489,7 +3517,7 @@ than 64.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3508,7 +3536,7 @@ than 64.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3298"><code>src&#x2F;webmidi.js:3298</code></a>
+        <a href="../files/src_webmidi.js.html#l3389"><code>src&#x2F;webmidi.js:3389</code></a>
         </p>
 
 
@@ -3528,19 +3556,20 @@ parameter, the <code>cents</code> parameter or by specifying both parameters at 
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name optional">[semitones=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The desired adjustment value in semitones (0-127).</p>
+                        <p>The desired adjustment value in semitones (integer between
+0-127).</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[cents=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3552,7 +3581,7 @@ parameter, the <code>cents</code> parameter or by specifying both parameters at 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3565,7 +3594,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3633,7 +3662,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3652,7 +3681,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3015"><code>src&#x2F;webmidi.js:3015</code></a>
+        <a href="../files/src_webmidi.js.html#l3106"><code>src&#x2F;webmidi.js:3106</code></a>
         </p>
 
 
@@ -3663,21 +3692,21 @@ sent as soon as possible.</p>
         <p>Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
 two-position array specifying the values of the two control bytes. The value is specified by
 passing in an single integer (most cases) or an array of two integers.</p>
-<p>NRPNs are not standardized in any way. Each manufacturer is free to implement them in any way
+<p>NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
 they see fit. For example, according to the Roland GS specification, you can control the
 <strong>vibrato rate</strong> using NRPN (1, 8). Therefore, to set the <strong>vibrato rate</strong> value to <strong>123</strong> you
 would use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123);
+<pre class="code prettyprint"><code>WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
 </code></pre>
-<p>Obviously, you should select an output device and channel so the message is not sent to all
-channels on all devices. For instance, to send to channel 1 of the first device, you would use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
+<p>Obviously, you should select a channel so the message is not sent to all channels. For
+instance, to send to channel 1 of the first output port, you would use:</p>
+<pre class="code prettyprint"><code>WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
 </code></pre>
 <p>In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
 would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter (2, 63), Novation
 uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
 value to send was 10, you could use:</p>
-<pre class="code prettyprint"><code>WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);
+<pre class="code prettyprint"><code>WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
 </code></pre>
 <p>For further implementation details, refer to the manufacturer's documentation.</p>
 
@@ -3689,7 +3718,7 @@ value to send was 10, you could use:</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">parameter</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
 
                     <div class="param-description">
@@ -3701,7 +3730,7 @@ value to send was 10, you could use:</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[data=[]]</code>
-                        <span class="type">Int | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3714,7 +3743,7 @@ specifying the desired data.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3727,7 +3756,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3786,7 +3815,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3805,7 +3834,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3239"><code>src&#x2F;webmidi.js:3239</code></a>
+        <a href="../files/src_webmidi.js.html#l3330"><code>src&#x2F;webmidi.js:3330</code></a>
         </p>
 
 
@@ -3825,33 +3854,33 @@ parameter, the <code>cents</code> parameter or by specifying both parameters at 
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name optional">[semitones=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The desired adjustment value in semitones (0-127). While nothing
-imposes that in the specification, it is very common for manufacturers to limit the range to 2
-octaves (-12 semitones to 12 semitones).</p>
+                        <p>The desired adjustment value in semitones (integer between
+0-127). While nothing imposes that in the specification, it is very common for manufacturers to
+limit the range to 2 octaves (-12 semitones to 12 semitones).</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[cents=0]</code>
-                        <span class="type">Uint</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The desired adjustment value in cents (0-127).</p>
+                        <p>The desired adjustment value in cents (integer between 0-127).</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -3864,7 +3893,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -3932,7 +3961,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -3951,7 +3980,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2928"><code>src&#x2F;webmidi.js:2928</code></a>
+        <a href="../files/src_webmidi.js.html#l3023"><code>src&#x2F;webmidi.js:3023</code></a>
         </p>
 
 
@@ -3991,9 +4020,6 @@ Standard</em>, which is not widely implemented.</p>
 <li>Pan Spread Angle (0x3D, 0x07): <code>panspreadangle</code></li>
 <li>Roll Angle (0x3D, 0x08): <code>rollangle</code></li>
 </ul>
-<p>For more information on 3D sound controllers, please consult the
-<a href="http://www.midi.org/techspecs/rp49public.pdf">RP-49 specification</a> on <em>Three Dimensional
-Sound Controllers</em>.</p>
 
     </div>
 
@@ -4016,20 +4042,20 @@ parameter.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[data=[]]</code>
-                        <span class="type">Int | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>An single integer or an array of integers with a maximum length of
-2 specifying the desired data.</p>
+                        <p>An single integer or an array of integers with a maximum length
+of 2 specifying the desired data.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -4042,7 +4068,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -4098,7 +4124,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -4117,7 +4143,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3465"><code>src&#x2F;webmidi.js:3465</code></a>
+        <a href="../files/src_webmidi.js.html#l3557"><code>src&#x2F;webmidi.js:3557</code></a>
         </p>
 
 
@@ -4136,7 +4162,7 @@ sent as soon as possible.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">value</code>
-                        <span class="type">Int</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
@@ -4147,7 +4173,7 @@ sent as soon as possible.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -4160,7 +4186,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -4225,7 +4251,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -4244,7 +4270,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3419"><code>src&#x2F;webmidi.js:3419</code></a>
+        <a href="../files/src_webmidi.js.html#l3511"><code>src&#x2F;webmidi.js:3511</code></a>
         </p>
 
 
@@ -4263,7 +4289,7 @@ sent as soon as possible.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">value</code>
-                        <span class="type">Int</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
 
                     <div class="param-description">
@@ -4274,7 +4300,7 @@ sent as soon as possible.</p>
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -4287,7 +4313,7 @@ array of channel numbers. If the special value &quot;all&quot; is used, the mess
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -4352,7 +4378,7 @@ sent as soon as possible.</p>
                         <code class="optional">[channel=all]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[options]</code>
+                        <code class="optional">[options={}]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -4371,7 +4397,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2430"><code>src&#x2F;webmidi.js:2430</code></a>
+        <a href="../files/src_webmidi.js.html#l2513"><code>src&#x2F;webmidi.js:2513</code></a>
         </p>
 
 
@@ -4379,9 +4405,9 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>note off</code> message to the channel(s) for a single note or multiple simultaneous
-notes (chord). You can delay the execution of the <code>note off</code> command by using the <code>delay</code>
-parameter (milliseconds).</p>
+        <p>Sends a MIDI <code>note off</code> message to the specified channel(s) for a single note or multiple
+simultaneous notes (chord). You can delay the execution of the <code>note off</code> command by using the
+<code>time</code> property of the <code>options</code> parameter (milliseconds).</p>
 
     </div>
 
@@ -4391,7 +4417,7 @@ parameter (milliseconds).</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">note</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
 
                     <div class="param-description">
@@ -4399,14 +4425,15 @@ parameter (milliseconds).</p>
 one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
 The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
 range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-note is G8 (MIDI note number 127).</p>
+note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
+and/or names.</p>
 
                     </div>
 
                 </li>
                 <li class="param">
                         <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -4419,7 +4446,7 @@ sent to all 16 channels.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[options]</code>
+                        <code class="param-name optional">[options={}]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
@@ -4491,7 +4518,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1947"><code>src&#x2F;webmidi.js:1947</code></a>
+        <a href="../files/src_webmidi.js.html#l2033"><code>src&#x2F;webmidi.js:2033</code></a>
         </p>
 
 
@@ -4516,7 +4543,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1960"><code>src&#x2F;webmidi.js:1960</code></a>
+        <a href="../files/src_webmidi.js.html#l2046"><code>src&#x2F;webmidi.js:2046</code></a>
         </p>
 
 
@@ -4541,7 +4568,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1973"><code>src&#x2F;webmidi.js:1973</code></a>
+        <a href="../files/src_webmidi.js.html#l2059"><code>src&#x2F;webmidi.js:2059</code></a>
         </p>
 
 
@@ -4566,7 +4593,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1986"><code>src&#x2F;webmidi.js:1986</code></a>
+        <a href="../files/src_webmidi.js.html#l2072"><code>src&#x2F;webmidi.js:2072</code></a>
         </p>
 
 
@@ -4591,7 +4618,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1999"><code>src&#x2F;webmidi.js:1999</code></a>
+        <a href="../files/src_webmidi.js.html#l2085"><code>src&#x2F;webmidi.js:2085</code></a>
         </p>
 
 

@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-alpha.5</em>
+            <em>API Docs for: 2.0.0-alpha.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_webmidi.js.html#l1016"><code>src&#x2F;webmidi.js:1016</code></a>
+            Defined in: <a href="../files/src_webmidi.js.html#l1054"><code>src&#x2F;webmidi.js:1054</code></a>
         </div>
 
 
@@ -91,8 +91,9 @@
 
 
 <div class="box intro">
-    <p>The <code>Input</code> object represents an available MIDI input port. This object is created by the MIDI
-subsystem and cannot be instantiated directly.</p>
+    <p>The <code>Input</code> object represents a MIDI input port on the host system. This object is created by
+the MIDI subsystem and cannot be instantiated directly.</p>
+<p>You will find all available <code>Input</code> objects in the <code>WebMidi.inputs</code> array.</p>
 
 </div>
 
@@ -139,7 +140,15 @@ subsystem and cannot be instantiated directly.</p>
 
                             </li>
                             <li class="index-item method">
+                                <a href="#method_getChannelModeByNumber">getChannelModeByNumber</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_hasListener">hasListener</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_on">on</a>
 
                             </li>
                             <li class="index-item method">
@@ -284,7 +293,7 @@ subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1359"><code>src&#x2F;webmidi.js:1359</code></a>
+        <a href="../files/src_webmidi.js.html#l1413"><code>src&#x2F;webmidi.js:1413</code></a>
         </p>
 
 
@@ -315,7 +324,7 @@ subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1379"><code>src&#x2F;webmidi.js:1379</code></a>
+        <a href="../files/src_webmidi.js.html#l1433"><code>src&#x2F;webmidi.js:1433</code></a>
         </p>
 
 
@@ -352,7 +361,7 @@ subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1393"><code>src&#x2F;webmidi.js:1393</code></a>
+        <a href="../files/src_webmidi.js.html#l1447"><code>src&#x2F;webmidi.js:1447</code></a>
         </p>
 
 
@@ -400,7 +409,7 @@ subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1676"><code>src&#x2F;webmidi.js:1676</code></a>
+        <a href="../files/src_webmidi.js.html#l1760"><code>src&#x2F;webmidi.js:1760</code></a>
         </p>
 
 
@@ -424,10 +433,10 @@ subsystem and cannot be instantiated directly.</p>
                         <code>type</code>
                 </li>
                 <li class="arg">
-                        <code>listener</code>
+                        <code>channel</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[channel=all]</code>
+                        <code>listener</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -446,7 +455,7 @@ subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1106"><code>src&#x2F;webmidi.js:1106</code></a>
+        <a href="../files/src_webmidi.js.html#l1148"><code>src&#x2F;webmidi.js:1148</code></a>
         </p>
 
 
@@ -455,8 +464,8 @@ subsystem and cannot be instantiated directly.</p>
 
     <div class="description">
         <p>Adds an event listener to the <code>Input</code> that will trigger a function callback when the specified
-event happens on the specified channel(s).</p>
-<p>Here is a list of events that are dispatched by <code>Input</code> objects and that can be listened to.</p>
+event happens on the specified channel(s). Here is a list of events that are dispatched by
+<code>Input</code> objects and that can be listened to.</p>
 <p>Channel-specific MIDI events:</p>
 <ul>
 <li><a href="../classes/Input.html#event_noteoff" class="crosslink">noteoff</a></li>
@@ -483,7 +492,8 @@ event happens on the specified channel(s).</p>
 <li><a href="../classes/Input.html#event_reset" class="crosslink">reset</a></li>
 <li><a href="../classes/Input.html#event_unknownsystemmessage" class="crosslink">unknownsystemmessage</a></li>
 </ul>
-<p>For device-wide events, the <code>channel</code> parameter will be silently ignored.</p>
+<p>For device-wide events, the <code>channel</code> parameter will be silently ignored. You can simply use
+<code>undefined</code> in that case.</p>
 
     </div>
 
@@ -503,6 +513,18 @@ event happens on the specified channel(s).</p>
 
                 </li>
                 <li class="param">
+                        <code class="param-name">channel</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>The MIDI channel to listen on (integer between 1 and 16).
+You can also specify an array of channel numbers or the value 'all'.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
                         <code class="param-name">listener</code>
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
@@ -511,19 +533,6 @@ event happens on the specified channel(s).</p>
                         <p>A callback function to execute when the specified event is detected.
 This function will receive an event parameter object. For details on this object's properties,
 check out the documentation for the various events (links above).</p>
-
-                    </div>
-
-                </li>
-                <li class="param">
-                        <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        <p>The MIDI channel to listen on (between 1 and 16). You
-can also specify an array of channels or the value 'all'.</p>
 
                     </div>
 
@@ -555,8 +564,17 @@ can also specify an array of channels or the value 'all'.</p>
 <div id="method_getCcNameByNumber" class="method item">
     <h3 class="name"><code>getCcNameByNumber</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>number</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>
+        </span>
 
 
 
@@ -567,18 +585,115 @@ can also specify an array of channels or the value 'all'.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1661"><code>src&#x2F;webmidi.js:1661</code></a>
+        <a href="../files/src_webmidi.js.html#l1714"><code>src&#x2F;webmidi.js:1714</code></a>
         </p>
 
 
 
+            <p>Available since 2.0.0</p>
     </div>
 
     <div class="description">
-        
+        <p>Returns the name of a control change message matching the specified number. If no match is
+found, the function returns <code>undefined</code>.</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">number</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+
+                    <div class="param-description">
+                        <p>The number of the control change message.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>:
+                    <p>The matching control change name or <code>undefined</code>.</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getChannelModeByNumber" class="method item">
+    <h3 class="name"><code>getChannelModeByNumber</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>number</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1737"><code>src&#x2F;webmidi.js:1737</code></a>
+        </p>
+
+
+
+            <p>Available since 2.0.0</p>
+    </div>
+
+    <div class="description">
+        <p>Returns the channel mode name matching the specified number. If no match is found, the function
+returns <code>undefined</code>.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">number</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+
+                    <div class="param-description">
+                        <p>The number of the channel mode message.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>:
+                    <p>The matching channel mode message's name or <code>undefined</code>;</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -591,7 +706,7 @@ can also specify an array of channels or the value 'all'.</p>
                         <code>type</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[channel=all]</code>
+                        <code>channel</code>
                 </li>
                 <li class="arg">
                         <code>listener</code>
@@ -612,7 +727,7 @@ can also specify an array of channels or the value 'all'.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1215"><code>src&#x2F;webmidi.js:1215</code></a>
+        <a href="../files/src_webmidi.js.html#l1268"><code>src&#x2F;webmidi.js:1268</code></a>
         </p>
 
 
@@ -644,14 +759,13 @@ We suggest you use <code>undefined</code> in such cases.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">channel</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
 
                     <div class="param-description">
                         <p>The MIDI channel to check on (between 1 and 16). You
-can also specify an array of channels to check on or the string 'all' (default).</p>
+can also specify an array of channel numbers or the string 'all'.</p>
 
                     </div>
 
@@ -692,6 +806,39 @@ listener defined.</p>
         </div>
 
 </div>
+<div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1259"><code>src&#x2F;webmidi.js:1259</code></a>
+        </p>
+
+
+
+            <p>Available since 2.0.0</p>
+    </div>
+
+    <div class="description">
+        <p>This is an alias to the <a href="../classes/Input.html#method_addListener" class="crosslink">Input.addListener()</a>
+function.</p>
+
+    </div>
+
+
+
+
+</div>
 <div id="method_removeListener" class="method item">
     <h3 class="name"><code>removeListener</code></h3>
 
@@ -701,7 +848,7 @@ listener defined.</p>
                         <code class="optional">[type]</code>
                 </li>
                 <li class="arg">
-                        <code class="optional">[channel=all]</code>
+                        <code class="optional">[channel]</code>
                 </li>
                 <li class="arg">
                         <code class="optional">[listener]</code>
@@ -723,7 +870,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1275"><code>src&#x2F;webmidi.js:1275</code></a>
+        <a href="../files/src_webmidi.js.html#l1328"><code>src&#x2F;webmidi.js:1328</code></a>
         </p>
 
 
@@ -731,9 +878,13 @@ listener defined.</p>
     </div>
 
     <div class="description">
-        <p>Removes the specified listener from the specified channel(s). If the listener<code>parameter is left undefined, all listeners for the specified</code>type<code>will be removed from all channels. If the</code>channel<code>is also omitted, all listeners of the specified type will be removed from all channels. If no parameters are defined, all listeners attached to any channel of the</code>Input`
+        <p>Removes the specified listener from the specified channel(s). If the <code>listener</code> parameter is
+left undefined, all listeners for the specified <code>type</code> will be removed from all channels. If
+the <code>channel</code> is also omitted, all listeners of the specified type will be removed from all
+channels. If no parameters are defined, all listeners attached to any channel of the <code>Input</code>
 will be removed.</p>
-<p>For device-wide events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.</p>
+<p>For device-wide events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
+You can use <code>undefined</code> in such cases.</p>
 
     </div>
 
@@ -754,14 +905,14 @@ will be removed.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name optional">[channel=all]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name optional">[channel]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel(s) to check on. It can be a uint (between
-1 and 16) or the special value &quot;all&quot;.</p>
+                        <p>The MIDI channel(s) to check on. It can be a uint
+(between 1 and 16) an array of channel numbers or the special value &quot;all&quot;.</p>
 
                     </div>
 
@@ -818,14 +969,14 @@ will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1035"><code>src&#x2F;webmidi.js:1035</code></a>
+        <a href="../files/src_webmidi.js.html#l1075"><code>src&#x2F;webmidi.js:1075</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Status of the MIDI port's connection</p>
+        <p>[read-only] Status of the MIDI port's connection (<code>pending</code>, <code>open</code> or <code>closed</code>)</p>
 
     </div>
 
@@ -843,14 +994,16 @@ will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1048"><code>src&#x2F;webmidi.js:1048</code></a>
+        <a href="../files/src_webmidi.js.html#l1088"><code>src&#x2F;webmidi.js:1088</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] ID string of the MIDI port</p>
+        <p>[read-only] ID string of the MIDI port. The ID is host-specific. Do not expect the same ID
+on different platforms. For example, Google Chrome and the Jazz-Plugin report completely
+different IDs for the same port.</p>
 
     </div>
 
@@ -868,14 +1021,14 @@ will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1061"><code>src&#x2F;webmidi.js:1061</code></a>
+        <a href="../files/src_webmidi.js.html#l1103"><code>src&#x2F;webmidi.js:1103</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Manufacturer of the device to which this port belongs</p>
+        <p>[read-only] Name of the manufacturer of the device that makes this port available.</p>
 
     </div>
 
@@ -893,7 +1046,7 @@ will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1074"><code>src&#x2F;webmidi.js:1074</code></a>
+        <a href="../files/src_webmidi.js.html#l1116"><code>src&#x2F;webmidi.js:1116</code></a>
         </p>
 
 
@@ -918,14 +1071,14 @@ will be removed.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1087"><code>src&#x2F;webmidi.js:1087</code></a>
+        <a href="../files/src_webmidi.js.html#l1129"><code>src&#x2F;webmidi.js:1129</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] State of the MIDI port</p>
+        <p>[read-only] State of the MIDI port (<code>connected</code> or <code>disconnected</code>)</p>
 
     </div>
 
@@ -949,7 +1102,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1867"><code>src&#x2F;webmidi.js:1867</code></a>
+                            <a href="../files/src_webmidi.js.html#l1951"><code>src&#x2F;webmidi.js:1951</code></a>
                             </p>
                     
                     
@@ -1044,7 +1197,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1603"><code>src&#x2F;webmidi.js:1603</code></a>
+                            <a href="../files/src_webmidi.js.html#l1656"><code>src&#x2F;webmidi.js:1656</code></a>
                             </p>
                     
                     
@@ -1107,7 +1260,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -1160,7 +1313,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1552"><code>src&#x2F;webmidi.js:1552</code></a>
+                            <a href="../files/src_webmidi.js.html#l1605"><code>src&#x2F;webmidi.js:1605</code></a>
                             </p>
                     
                     
@@ -1222,8 +1375,8 @@ will be removed.</p>
                                                         <span class="type">Uint</span>
                     
                                                     <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds
-                    since the epoch).</p>
+                                                        <p>The timestamp when the event occurred (in milliseconds since
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -1303,7 +1456,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1791"><code>src&#x2F;webmidi.js:1791</code></a>
+                            <a href="../files/src_webmidi.js.html#l1875"><code>src&#x2F;webmidi.js:1875</code></a>
                             </p>
                     
                     
@@ -1399,7 +1552,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1829"><code>src&#x2F;webmidi.js:1829</code></a>
+                            <a href="../files/src_webmidi.js.html#l1913"><code>src&#x2F;webmidi.js:1913</code></a>
                             </p>
                     
                     
@@ -1495,7 +1648,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1519"><code>src&#x2F;webmidi.js:1519</code></a>
+                            <a href="../files/src_webmidi.js.html#l1573"><code>src&#x2F;webmidi.js:1573</code></a>
                             </p>
                     
                     
@@ -1558,7 +1711,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -1638,7 +1791,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1485"><code>src&#x2F;webmidi.js:1485</code></a>
+                            <a href="../files/src_webmidi.js.html#l1539"><code>src&#x2F;webmidi.js:1539</code></a>
                             </p>
                     
                     
@@ -1701,7 +1854,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -1789,7 +1942,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1423"><code>src&#x2F;webmidi.js:1423</code></a>
+                            <a href="../files/src_webmidi.js.html#l1477"><code>src&#x2F;webmidi.js:1477</code></a>
                             </p>
                     
                     
@@ -1852,7 +2005,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -1940,7 +2093,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1454"><code>src&#x2F;webmidi.js:1454</code></a>
+                            <a href="../files/src_webmidi.js.html#l1508"><code>src&#x2F;webmidi.js:1508</code></a>
                             </p>
                     
                     
@@ -2003,7 +2156,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -2091,7 +2244,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1625"><code>src&#x2F;webmidi.js:1625</code></a>
+                            <a href="../files/src_webmidi.js.html#l1678"><code>src&#x2F;webmidi.js:1678</code></a>
                             </p>
                     
                     
@@ -2154,7 +2307,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -2207,7 +2360,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1581"><code>src&#x2F;webmidi.js:1581</code></a>
+                            <a href="../files/src_webmidi.js.html#l1634"><code>src&#x2F;webmidi.js:1634</code></a>
                             </p>
                     
                     
@@ -2270,7 +2423,7 @@ will be removed.</p>
                     
                                                     <div class="param-description">
                                                         <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
                     
                                                     </div>
                     
@@ -2323,7 +2476,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1885"><code>src&#x2F;webmidi.js:1885</code></a>
+                            <a href="../files/src_webmidi.js.html#l1969"><code>src&#x2F;webmidi.js:1969</code></a>
                             </p>
                     
                     
@@ -2418,7 +2571,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1732"><code>src&#x2F;webmidi.js:1732</code></a>
+                            <a href="../files/src_webmidi.js.html#l1816"><code>src&#x2F;webmidi.js:1816</code></a>
                             </p>
                     
                     
@@ -2513,7 +2666,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1752"><code>src&#x2F;webmidi.js:1752</code></a>
+                            <a href="../files/src_webmidi.js.html#l1836"><code>src&#x2F;webmidi.js:1836</code></a>
                             </p>
                     
                     
@@ -2618,7 +2771,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1810"><code>src&#x2F;webmidi.js:1810</code></a>
+                            <a href="../files/src_webmidi.js.html#l1894"><code>src&#x2F;webmidi.js:1894</code></a>
                             </p>
                     
                     
@@ -2714,7 +2867,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1848"><code>src&#x2F;webmidi.js:1848</code></a>
+                            <a href="../files/src_webmidi.js.html#l1932"><code>src&#x2F;webmidi.js:1932</code></a>
                             </p>
                     
                     
@@ -2810,7 +2963,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1694"><code>src&#x2F;webmidi.js:1694</code></a>
+                            <a href="../files/src_webmidi.js.html#l1778"><code>src&#x2F;webmidi.js:1778</code></a>
                             </p>
                     
                     
@@ -2905,7 +3058,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1712"><code>src&#x2F;webmidi.js:1712</code></a>
+                            <a href="../files/src_webmidi.js.html#l1796"><code>src&#x2F;webmidi.js:1796</code></a>
                             </p>
                     
                     
@@ -3000,7 +3153,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1772"><code>src&#x2F;webmidi.js:1772</code></a>
+                            <a href="../files/src_webmidi.js.html#l1856"><code>src&#x2F;webmidi.js:1856</code></a>
                             </p>
                     
                     
@@ -3096,7 +3249,7 @@ will be removed.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1903"><code>src&#x2F;webmidi.js:1903</code></a>
+                            <a href="../files/src_webmidi.js.html#l1987"><code>src&#x2F;webmidi.js:1987</code></a>
                             </p>
                     
                     
