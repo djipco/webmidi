@@ -7,11 +7,14 @@
    * two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.
    *
    * Sending MIDI messages is done via an `Output` object. All available outputs can be accessed in
-   * the `WebMidi.outputs` array. There is one `Output` object for each device (or port) available
-   * on your system.
+   * the `WebMidi.outputs` array. There is one `Output` object for each output port available on
+   * your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of
+   * adding a listener to an `Input` object. Similarly, all inputs can be found in the
+   * `WebMidi.inputs` array.
    *
-   * Similarly, reacting to MIDI messages as they are coming is simply a matter of adding a listener
-   * to an `Input` object. All inputs can be found in the `WebMidi.inputs` array.
+   * Please note that a single hardware device might create more than one input and/or output ports.
+   *
+   * #### Sending messages
    *
    * To send MIDI messages, you simply need to call the desired method (`playNote()`,
    * `sendPitchBend()`, `stopNote()`, etc.) from an `Output` object and pass in the appropriate
@@ -25,22 +28,24 @@
    *
    * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
    * callback function specified as a parameter. In this case, the callback calls the `playnote()`
-   * function to play a 3rd octave C on the first output device.
+   * function to play a 3rd octave C on the first available output port.
+   *
+   * #### Receiving messages
    *
    * Receiving messages is just as easy. You simply have to set a callback function to be triggered
    * when a specific MIDI message is received. For example, here's how to listen for pitch bend
-   * events on the first input device:
+   * events on the first input port:
    *
    *      WebMidi.enable(function(err) {
    *        if (err) console.log("An error occurred", err);
    *
-   *        WebMidi.inputs[0].addListener('pitchbend', function(e) {
+   *        WebMidi.inputs[0].addListener('pitchbend', "all", function(e) {
    *          console.log("Pitch value: " + e.value);
    *        });
    *
    *      });
    *
-   * As you can see, this library makes is much easier that the native Web MIDI API. No need to
+   * As you can see, this library is much easier to use than the native Web MIDI API. No need to
    * manually craft or decode binary MIDI messages anymore!
    *
    * @class WebMidi
@@ -48,16 +53,14 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  Allow sending channel mode messages by name
    * @todo  Implement port statechange events.
    * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
-   * @todo  Add on() alias and once() functions.
-   * @todo  Add specific events for channel mode messages ?
+   * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
-   * @todo  inmplement the show control protocol
+   * @todo  Implement the show control protocol subset.
    *
    */
   function WebMidi() {
@@ -104,6 +107,8 @@
        * @property MIDI_SYSTEM_MESSAGES
        * @type Object
        * @static
+       *
+       * @since 2.0.0
        */
       MIDI_SYSTEM_MESSAGES: {
         value: {
@@ -136,6 +141,8 @@
        * @property MIDI_CHANNEL_MESSAGES
        * @type Object
        * @static
+       *
+       * @since 2.0.0
        */
       MIDI_CHANNEL_MESSAGES: {
         value: {
@@ -161,6 +168,8 @@
        * @property MIDI_REGISTERED_PARAMETER
        * @type Object
        * @static
+       *
+       * @since 2.0.0
        */
       MIDI_REGISTERED_PARAMETER: {
         value: {
@@ -196,68 +205,70 @@
        * @property MIDI_CONTROL_CHANGE_MESSAGES
        * @type Object
        * @static
+       *
+       * @since 2.0.0
        */
       MIDI_CONTROL_CHANGE_MESSAGES: {
         value: {
-          'bank-select-coarse': 0,
-          'modulation-wheel-coarse': 1,
-          'breath-controller-coarse': 2,
-          'foot-controller-coarse': 4,
-          'portamento-time-coarse': 5,
-          'data-entry-coarse': 6,
-          'volume-coarse': 7,
-          'balance-coarse': 8,
-          'pan-coarse': 10,
-          'expression-coarse': 11,
-          'effect-control-1-coarse': 12,
-          'effect-control-2-coarse': 13,
-          'general-purpose-slider-1': 16,
-          'general-purpose-slider-2': 17,
-          'general-purpose-slider-3': 18,
-          'general-purpose-slider-4': 19,
-          'bank-select-fine': 32,
-          'modulation-wheel-fine': 33,
-          'breath-controller-fine': 34,
-          'foot-controller-fine': 36,
-          'portamento-time-fine': 37,
-          'data-entry-fine': 38,
-          'volume-fine': 39,
-          'balance-fine': 40,
-          'pan-fine': 42,
-          'expression-fine': 43,
-          'effect-control-1-fine': 44,
-          'effect-control-2-fine': 45,
-          'hold-pedal': 64,
+          'bankselectcoarse': 0,
+          'modulationwheelcoarse': 1,
+          'breathcontrollercoarse': 2,
+          'footcontrollercoarse': 4,
+          'portamentotimecoarse': 5,
+          'dataentrycoarse': 6,
+          'volumecoarse': 7,
+          'balancecoarse': 8,
+          'pancoarse': 10,
+          'expressioncoarse': 11,
+          'effectcontrol1coarse': 12,
+          'effectcontrol2coarse': 13,
+          'generalpurposeslider1': 16,
+          'generalpurposeslider2': 17,
+          'generalpurposeslider3': 18,
+          'generalpurposeslider4': 19,
+          'bankselectfine': 32,
+          'modulationwheelfine': 33,
+          'breathcontrollerfine': 34,
+          'footcontrollerfine': 36,
+          'portamentotimefine': 37,
+          'dataentryfine': 38,
+          'volumefine': 39,
+          'balancefine': 40,
+          'panfine': 42,
+          'expressionfine': 43,
+          'effectcontrol1fine': 44,
+          'effectcontrol2fine': 45,
+          'holdpedal': 64,
           'portamento': 65,
-          'sustenuto-pedal': 66,
-          'soft-pedal': 67,
-          'legato-pedal': 68,
-          'hold-2-pedal': 69,
-          'sound-variation': 70,
+          'sustenutopedal': 66,
+          'softpedal': 67,
+          'legatopedal': 68,
+          'hold2pedal': 69,
+          'soundvariation': 70,
           'resonance': 71,
-          'sound-release-time': 72,
-          'sound-attack-time': 73,
+          'soundreleasetime': 72,
+          'soundattacktime': 73,
           'brightness': 74,
-          'sound-control-6': 75,
-          'sound-control-7': 76,
-          'sound-control-8': 77,
-          'sound-control-9': 78,
-          'sound-control-10': 79,
-          'general-purpose-button-1': 80,
-          'general-purpose-button-2': 81,
-          'general-purpose-button-3': 82,
-          'general-purpose-button-4': 83,
-          'reverb-level': 91,
-          'tremolo-level': 92,
-          'chorus-level': 93,
-          'celeste-level': 94,
-          'phaser-level': 95,
-          'data-button-increment': 96,
-          'data-button-decrement': 97,
-          'non-registered-parameter-coarse': 98,
-          'non-registered-parameter-fine': 99,
-          'registered-parameter-coarse': 100,
-          'registered-parameter-fine': 101
+          'soundcontrol6': 75,
+          'soundcontrol7': 76,
+          'soundcontrol8': 77,
+          'soundcontrol9': 78,
+          'soundcontrol10': 79,
+          'generalpurposebutton1': 80,
+          'generalpurposebutton2': 81,
+          'generalpurposebutton3': 82,
+          'generalpurposebutton4': 83,
+          'reverblevel': 91,
+          'tremololevel': 92,
+          'choruslevel': 93,
+          'celestelevel': 94,
+          'phaserlevel': 95,
+          'databuttonincrement': 96,
+          'databuttondecrement': 97,
+          'nonregisteredparametercoarse': 98,
+          'nonregisteredparameterfine': 99,
+          'registeredparametercoarse': 100,
+          'registeredparameterfine': 101
         },
         writable: false,
         enumerable: true,
@@ -271,17 +282,19 @@
        * @property MIDI_CHANNEL_MODE_MESSAGES
        * @type Object
        * @static
+       *
+       * @since 2.0.0
        */
       MIDI_CHANNEL_MODE_MESSAGES: {
         value: {
-          120: "All Sound Off",
-          121: "Reset All Controllers",
-          122: "Local Control",
-          123: "All Notes Off",
-          124: "Omni Mode Off",
-          125: "Omni Mode On",
-          126: "Mono Mode On",
-          127: "Poly Mode On"
+          "allsoundoff": 120,
+          "resetallcontrollers": 121,
+          "localcontrol": 122,
+          "allnotesoff": 123,
+          "omnimodeoff": 124,
+          "omnimodeon": 125,
+          "monomodeon": 126,
+          "polymodeon": 127
         },
         writable: false,
         enumerable: true,
@@ -326,7 +339,7 @@
        * [read-only] An array of all currently available MIDI input ports.
        *
        * @property inputs
-       * @type {Input[]}
+       * @type {Array}
        * @static
        */
       inputs: {
@@ -340,7 +353,7 @@
        * [read-only] An array of all currently available MIDI output ports.
        *
        * @property outputs
-       * @type {Output[]}
+       * @type {Array}
        * @static
        */
       outputs: {
@@ -425,7 +438,6 @@
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
-console.log("callback");
         callback();
       }.bind(this),
 
@@ -444,10 +456,12 @@ console.log("callback");
   /**
    * Completely disables `WebMidi` by unlinking the MIDI subsystem's interface and destroying all
    * `Input` and `Output` objects that may be available. This also means that any listener that may
-   * have been defined on `Input` objects are also destroyed.
+   * have been defined on `Input` or `Output` objects will be destroyed.
    *
    * @method disable
    * @static
+   *
+   * @since 2.0.0
    */
   WebMidi.prototype.disable = function() {
 
@@ -615,11 +629,13 @@ console.log("callback");
    * @method getInputById
    * @static
    *
-   * @param id {String} The id of the port. Ids can be viewed by looking at the `WebMidi.inputs`
+   * @param id {String} The id of the port. IDs can be viewed by looking at the `WebMidi.inputs`
    * array.
    *
    * @returns {Input|false} A MIDIInput port matching the specified id. If no matching port
    * can be found, the method returns `false`.
+   *
+   * @since 2.0.0
    */
   WebMidi.prototype.getInputById = function(id) {
 
@@ -650,6 +666,8 @@ console.log("callback");
    *
    * @returns {Output|false} A MIDIOutput port matching the specified id. If no matching
    * port can be found, the method returns `false`.
+   *
+   * @since 2.0.0
    */
   WebMidi.prototype.getOutputById = function(id) {
 
@@ -679,6 +697,8 @@ console.log("callback");
    *
    * @returns {Input|False} The `Input` that was found or `false` if no input matched the specified
    * name.
+   *
+   * @since 2.0.0
    */
   WebMidi.prototype.getInputByName = function(name) {
 
@@ -708,6 +728,8 @@ console.log("callback");
    *
    * @returns {Output|False} The `Output` that was found or `false` if no output matched the
    * specified name.
+   *
+   * @since 2.0.0
    */
   WebMidi.prototype.getOutputByName = function(name) {
 
@@ -724,15 +746,16 @@ console.log("callback");
   };
 
   /**
-   * Returns a valid MIDI note number given the specified input. The input can be an integer
-   * represented as a string, a note name (C3, F#4, D-2, G8, etc.) or an int between 0 and 127.
+   * Returns a valid MIDI note number given the specified input. The input can be a note name (C3,
+   * F#4, D-2, G8, etc.) or an int between 0 and 127.
    *
    * @method guessNoteNumber
    * @static
    *
-   * @param input A integer or string to extract the note number from.
+   * @param input {Number|String} A string to extract the note number from. An integer can also be
+   * used, in which case it will simply be returned (if between 0 and 127).
    * @throws {Error} Invalid note number.
-   * @returns {uint} A valid MIDI note number (0-127).
+   * @returns {Number} A valid MIDI note number (0-127).
    */
   WebMidi.prototype.guessNoteNumber = function(input) {
   
@@ -748,10 +771,10 @@ console.log("callback");
   
     if (output === false) {
       throw new Error("Invalid note number (" + input + ").");
-    } else {
-      return output;
     }
-  
+
+    return output;
+
   };
 
   /**
@@ -771,7 +794,7 @@ console.log("callback");
    * @throws {Error} The name parameter is mandatory and cannot be empty.
    * @throws {RangeError} Invalid note name.
    * @throws {RangeError} Invalid note name or note outside valid range.
-   * @return {uint} The MIDI note number (between 0 and 127)
+   * @return {Number} The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
@@ -937,7 +960,6 @@ console.log("callback");
     // Check if we are already currently processing a state change. If so, return.
     if (this._processingStateChange) { return; }
 
-    console.log("processing: true");
     this._processingStateChange = true;
 
     while(this._stateChangeQueue.length > 0) {
@@ -945,7 +967,6 @@ console.log("callback");
     }
 
     this._processingStateChange = false;
-    console.log("processing: false");
 
   };
 
@@ -964,17 +985,34 @@ console.log("callback");
 
     /**
      * Event emitted when a MIDI port becomes available. This event is typically fired whenever a
-     * MIDI device is plugged in.
+     * MIDI device is plugged in. Please note that it may fire several times if a device possesses
+     * multiple input/output ports.
      *
      * @event connected
-     * @param {Object} An `Object` describing the `connected` event
+     * @param {Object} event
+     * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds since
+     * the epoch).
+     * @param {String} event.type The type of event that occurred.
+     * @param {String} event.id The ID of the device that triggered the event.
+     * @param {String} event.manufacturer The manufacturer of the device that triggered the event.
+     * @param {String} event.name The name of the device that triggered the event.
+     * @param {String} event.output The `Input` or `Output` object that triggered the event.
      */
+
     /**
      * Event emitted when a MIDI port becomes unavailable. This event is typically fired whenever a
-     * MIDI device is unplugged.
+     * MIDI device is unplugged. Please note that it may fire several times if a device possesses
+     * multiple input/output ports.
      *
      * @event disconnected
-     * @param {Object} An `Object` describing the `disconnected` event
+     * @param {Object} event
+     * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds since
+     * the epoch).
+     * @param {String} event.type The type of event that occurred.
+     * @param {String} event.id The ID of the device that triggered the event.
+     * @param {String} event.manufacturer The manufacturer of the device that triggered the event.
+     * @param {String} event.name The name of the device that triggered the event.
+     * @param {String} event.output The `Input` or `Output` object that triggered the event.
      */
     var event = {
       timestamp: e.timeStamp,
@@ -1014,8 +1052,10 @@ console.log("callback");
   };
 
   /**
-   * The `Input` object represents an available MIDI input port. This object is created by the MIDI
-   * subsystem and cannot be instantiated directly.
+   * The `Input` object represents a MIDI input port on the host system. This object is created by
+   * the MIDI subsystem and cannot be instantiated directly.
+   *
+   * You will find all available `Input` objects in the `WebMidi.inputs` array.
    *
    * @class Input
    * @param {MIDIInput} midiInput `MIDIInput` object
@@ -1033,7 +1073,7 @@ console.log("callback");
     Object.defineProperties(this, {
 
       /**
-       * [read-only] Status of the MIDI port's connection
+       * [read-only] Status of the MIDI port's connection (`pending`, `open` or `closed`)
        *
        * @property connection
        * @type String
@@ -1046,7 +1086,9 @@ console.log("callback");
       },
 
       /**
-       * [read-only] ID string of the MIDI port
+       * [read-only] ID string of the MIDI port. The ID is host-specific. Do not expect the same ID
+       * on different platforms. For example, Google Chrome and the Jazz-Plugin report completely
+       * different IDs for the same port.
        *
        * @property id
        * @type String
@@ -1059,7 +1101,7 @@ console.log("callback");
       },
 
       /**
-       * [read-only] Manufacturer of the device to which this port belongs
+       * [read-only] Name of the manufacturer of the device that makes this port available.
        *
        * @property manufacturer
        * @type String
@@ -1085,7 +1127,7 @@ console.log("callback");
       },
 
       /**
-       * [read-only] State of the MIDI port
+       * [read-only] State of the MIDI port (`connected` or `disconnected`)
        *
        * @property state
        * @type String
@@ -1105,9 +1147,8 @@ console.log("callback");
 
   /**
    * Adds an event listener to the `Input` that will trigger a function callback when the specified
-   * event happens on the specified channel(s).
-   *
-   * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
+   * event happens on the specified channel(s). Here is a list of events that are dispatched by
+   * `Input` objects and that can be listened to.
    *
    * Channel-specific MIDI events:
    *
@@ -1135,19 +1176,20 @@ console.log("callback");
    *    * {{#crossLink "Input/reset:event"}}reset{{/crossLink}}
    *    * {{#crossLink "Input/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
    *
-   * For device-wide events, the `channel` parameter will be silently ignored.
+   * For device-wide events, the `channel` parameter will be silently ignored. You can simply use
+   * `undefined` in that case.
    *
    * @method addListener
    * @chainable
    *
    * @param type {String} The type of the event.
    *
+   * @param channel {Number|Array|String} The MIDI channel to listen on (integer between 1 and 16).
+   * You can also specify an array of channel numbers or the value 'all'.
+   *
    * @param listener {Function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
-   *
-   * @param [channel=all] {uint|Array|String} The MIDI channel to listen on (between 1 and 16). You
-   * can also specify an array of channels or the value 'all'.
    *
    * @throws {RangeError} The 'channel' parameter is invalid.
    * @throws {TypeError} The 'listener' parameter must be a function.
@@ -1212,6 +1254,17 @@ console.log("callback");
 
   };
 
+
+
+  /**
+   * This is an alias to the {{#crossLink "Input/addListener"}}Input.addListener(){{/crossLink}}
+   * function.
+   *
+   * @method on
+   * @since 2.0.0
+   */
+  Input.prototype.on = Input.prototype.addListener;
+
   /**
    * Checks if the specified event type is already defined to trigger the listener function on the
    * specified channel(s). If more than one channel is specified, the function will return `true`
@@ -1223,8 +1276,8 @@ console.log("callback");
    * @method hasListener
    *
    * @param type {String} The type of the event.
-   * @param [channel=all] {uint|Array|String} The MIDI channel to check on (between 1 and 16). You
-   * can also specify an array of channels to check on or the string 'all' (default).
+   * @param channel {Number|Array|String} The MIDI channel to check on (between 1 and 16). You
+   * can also specify an array of channel numbers or the string 'all'.
    * @param listener {Function} The callback function to check for.
    *
    * @throws {TypeError} The 'listener' parameter must be a function.
@@ -1273,20 +1326,21 @@ console.log("callback");
   };
 
   /**
-   * Removes the specified listener from the specified channel(s). If the listener` parameter is
+   * Removes the specified listener from the specified channel(s). If the `listener` parameter is
    * left undefined, all listeners for the specified `type` will be removed from all channels. If
    * the `channel` is also omitted, all listeners of the specified type will be removed from all
    * channels. If no parameters are defined, all listeners attached to any channel of the `Input`
    * will be removed.
    *
    * For device-wide events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
+   * You can use `undefined` in such cases.
    *
    * @method removeListener
    * @chainable
    *
    * @param [type] {String} The type of the event.
-   * @param [channel=all] {uint|String} The MIDI channel(s) to check on. It can be a uint (between
-   * 1 and 16) or the special value "all".
+   * @param [channel] {Number|String|Array} The MIDI channel(s) to check on. It can be a uint
+   * (between 1 and 16) an array of channel numbers or the special value "all".
    * @param [listener] {Function} The callback function to check for.
    *
    * @throws {TypeError} The specified event type is not supported.
@@ -1432,7 +1486,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1463,7 +1517,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1494,7 +1548,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1528,7 +1582,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1539,7 +1593,6 @@ console.log("callback");
       event.type = 'controlchange';
       event.controller = {
         "number": data1,
-        // "name": wm.MIDI_CONTROL_CHANGE_MESSAGES[data1]
         "name": this.getCcNameByNumber(data1)
       };
       event.value = data2;
@@ -1560,8 +1613,8 @@ console.log("callback");
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1572,7 +1625,7 @@ console.log("callback");
       event.type = 'channelmode';
       event.controller = {
         "number": data1,
-        "name": wm.MIDI_CHANNEL_MODE_MESSAGES[data1]
+        "name": this.getChannelModeByNumber(data1)
       };
       event.value = data2;
 
@@ -1590,7 +1643,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {uint} event.value The value received (between 0 and 127).
@@ -1612,7 +1665,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The aftertouch value received (between 0 and 1).
@@ -1634,7 +1687,7 @@ console.log("callback");
        * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
        * start).
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The pitch bend value received (between -1 and 1).
@@ -1659,13 +1712,44 @@ console.log("callback");
   };
 
   /**
+   * Returns the name of a control change message matching the specified number. If no match is
+   * found, the function returns `undefined`.
+   *
    * @method getCcNameByNumber
+   *
+   * @param number {Number} The number of the control change message.
+   * @returns {String|undefined} The matching control change name or `undefined`.
+   *
+   * @since 2.0.0
    */
   Input.prototype.getCcNameByNumber = function(number) {
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
       if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
         return cc;
+      }
+    }
+
+    return undefined;
+
+  };
+
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `undefined`.
+   *
+   * @method getChannelModeByNumber
+   *
+   * @param number {Number} The number of the channel mode message.
+   * @returns {String|undefined} The matching channel mode message's name or `undefined`;
+   *
+   * @since 2.0.0
+   */
+  Input.prototype.getChannelModeByNumber = function(number) {
+
+    for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
+      if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
+        return cm;
       }
     }
 
@@ -1930,8 +2014,10 @@ console.log("callback");
   };
 
   /**
-   * The `Output` object represents an available MIDI output port. This object is created by the
-   * MIDI subsystem and cannot be instantiated directly.
+   * The `Output` object represents a MIDI output port on the host system. This object is created by
+   * the MIDI subsystem and cannot be instantiated directly.
+   *
+   * You will find all available `Output` objects in the `WebMidi.outputs` array.
    *
    * @class Output
    * @param {MIDIOutput} midiOutput Actual `MIDIOutput` object as defined by the MIDI subsystem
@@ -2014,7 +2100,7 @@ console.log("callback");
   }
 
   /**
-   * Sends a MIDI message to the MIDI output port, at the scheduled timestamp.
+   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp.
    *
    * Unless, you are familiar with the details of the MIDI message format, you should not use this
    * method directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,
@@ -2027,11 +2113,11 @@ console.log("callback");
    * @method send
    * @chainable
    *
-   * @param status {uint} The MIDI status byte of the message (128-255).
+   * @param status {Number} The MIDI status byte of the message (128-255).
    *
-   * @param [data=[]] {Array(uint)} An array of uints for the message. The
-   * number of data bytes varies depending on the status byte. It is perfectly legal to send no
-   * data. Each byte must be between 0 and 255.
+   * @param [data=[]] {Array} An array of uints for the message. The number of data bytes varies
+   * depending on the status byte. It is perfectly legal to send no data for some message types.
+   * Each byte must be between 0 and 255.
    *
    * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
    * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
@@ -2081,7 +2167,7 @@ console.log("callback");
    *
    *     WebMidi.outputs[0].sendSysex(0x42, [1, 2, 3, 4, 5]);
    *
-   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (ID 0x42). Some
+   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg (ID 0x42) devices. Some
    * manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
    * the first parameter. For example, to send the same SysEx message to a *Native Instruments*
    * device:
@@ -2094,14 +2180,15 @@ console.log("callback");
    * @method sendSysex
    * @chainable
    *
-   * @param manufacturer {uint|Array} A uint or an array of three uints between 0 and 127 that
-   * identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list
-   * of [Manufacturer ID Numbers](http://www.midi.org/techspecs/manid.php).
+   * @param manufacturer {Number|Array} An unsigned integer or an array of three unsigned integers
+   * between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association*
+   * maintains a full list of
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications/item/manufacturer-id-numbers).
    *
    * @param [data=[]] {Array} An array of uints between 0 and 127. This is the data you wish to
    * transfer.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2149,9 +2236,9 @@ console.log("callback");
    * @method sendTimecodeQuarterFrame
    * @chainable
    *
-   * @param value {uint} The quarter frame message content (unsigned int between 0 and 127).
+   * @param value {Number} The quarter frame message content (integer between 0 and 127).
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2176,9 +2263,9 @@ console.log("callback");
    * @method sendSongPosition
    * @chainable
    *
-   * @param [value=0] {uint} The MIDI beat to cue to (int between 0 and 16383).
+   * @param [value=0] {Number} The MIDI beat to cue to (int between 0 and 16383).
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2201,18 +2288,19 @@ console.log("callback");
 
     this.send(wm.MIDI_SYSTEM_MESSAGES.songposition, [msb, lsb], options.time);
     return this;
+
   };
 
   /**
    * Sends a *Song Select* MIDI message. Beware that some devices will display position 0 as
-   * position for user-friendlyness.
+   * position 1 for user-friendlyness.
    *
    * @method sendSongSelect
    * @chainable
    *
-   * @param value {uint} The number of the song to select (int between 0 and 127).
+   * @param value {Number} The number of the song to select (integer between 0 and 127).
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2246,15 +2334,13 @@ console.log("callback");
    * Sends a *MIDI tuning request* real-time message.
    *
    * Note: there is currently a bug in Chrome's MIDI implementation. If you try to use this
-   * function, Chrome will actually throw an error. The bug is
-   * [scheduled to be fixed](https://bugs.chromium.org/p/chromium/issues/detail?id=610116) but,
-   * until it is, WebMidi will catch Chrome's error and throw its own if you try to use it.
-   * Hopefully, this will be resolved soon.
+   * function, Chrome will actually throw a "Message is incomplete" error. The bug is
+   * [scheduled to be fixed](https://bugs.chromium.org/p/chromium/issues/detail?id=610116).
    *
    * @method sendTuningRequest
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2267,12 +2353,9 @@ console.log("callback");
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.sendTuningRequest = function(options) {
-    throw new Error(
-      "The 'tuning request' message does not seem to be supported by Chrome's Web MIDI API..."
-    );
-    // options = options || {};
-    // this.send(wm.MIDI_SYSTEM_MESSAGES.tuningrequest, undefined, options.time);
-    // return this;
+    options = options || {};
+    this.send(wm.MIDI_SYSTEM_MESSAGES.tuningrequest, undefined, options.time);
+    return this;
   };
 
   /**
@@ -2282,7 +2365,7 @@ console.log("callback");
    * @method sendClock
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2307,7 +2390,7 @@ console.log("callback");
    * @method sendStart
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2317,7 +2400,7 @@ console.log("callback");
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.sendStart = function(options) {
     options = options || {};
@@ -2333,7 +2416,7 @@ console.log("callback");
    * @method sendContinue
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2358,7 +2441,7 @@ console.log("callback");
    * @method sendStop
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2384,7 +2467,7 @@ console.log("callback");
    * @method sendActiveSensing
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2409,7 +2492,7 @@ console.log("callback");
    * @method sendReset
    * @chainable
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2428,24 +2511,25 @@ console.log("callback");
   };
 
   /**
-   * Sends a MIDI `note off` message to the channel(s) for a single note or multiple simultaneous
-   * notes (chord). You can delay the execution of the `note off` command by using the `delay`
-   * parameter (milliseconds).
+   * Sends a MIDI `note off` message to the specified channel(s) for a single note or multiple
+   * simultaneous notes (chord). You can delay the execution of the `note off` command by using the
+   * `time` property of the `options` parameter (milliseconds).
    *
    * @method stopNote
    * @chainable
    *
-   * @param note {Array|uint|String}  The note(s) you wish to stop. The notes can be specified in
+   * @param note {Number|Array|String}  The note(s) you wish to stop. The notes can be specified in
    * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
    * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
    * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127).
+   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
+   * and/or names.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used (default), the message will be
    * sent to all 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between 0 and
    * 1). An invalid velocity value will silently trigger the default.
@@ -2461,7 +2545,6 @@ console.log("callback");
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.stopNote = function(note, channel, options) {
-
 
     var that = this;
 
@@ -2494,34 +2577,38 @@ console.log("callback");
 
   /**
    * Requests the playback of a single note or multiple notes on the specified channel(s). You can
-   * delay the execution of the `note on` command by using the `delay` parameter (milliseconds).
+   * delay the execution of the `note on` command by using the `time` property of the `options`
+   * parameter (milliseconds).
    *
-   * If no duration is specified, the note will play until a matching `note off` is sent. If a
-   * duration is specified, a `note off` will be automatically sent after said duration.
-   *
-   * Please note that if you do use a duration, the release velocity will always be 64. If you want
-   * to tailor the release velocity, you need to use separate `playNote()` and `stopNote()` calls.
+   * If no duration is specified in the `options`, the note will play until a matching `note off`
+   * is sent. If a duration is specified, a `note off` will be automatically sent after said
+   * duration.
    *
    * @method playNote
    * @chainable
    *
-   * @param note {Array|uint|String}  The note(s) you wish to play. The notes can be specified in
+   * @param note {Number|String|Array}  The note(s) you wish to play. The notes can be specified in
    * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
    * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
    * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127).
+   * note is G8 (MIDI note number 127). It is also possible to specify and array of note numbers
+   * and/or names.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used (default), the message will be
    * sent to all 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {Number} [options.velocity=0.5] The velocity at which to play the note (between 0 and
    * 1). An invalid velocity value will silently trigger the default.
    *
    * @param {int} [options.duration=undefined]  The number of milliseconds to wait before sending a
    * matching note off event. If left undefined, only a `note on` message is sent.
+   *
+   * @param {Number} [options.release=0.5] The velocity at which to release the note (between 0 and
+   * 1). This is only used when a duration has been specified. An invalid release value will
+   * silently trigger the default.
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2564,12 +2651,18 @@ console.log("callback");
     // Send note off messages (only if a duration has been defined)
     if (options.duration !== undefined) {
 
+      options.release = parseFloat(options.release);
+      if (isNaN(options.release) || options.release < 0 || options.release > 1) {
+        options.release = 0.5;
+      }
+      var nRelease = Math.round(options.release * 127);
+
       this._convertNoteToArray(note).forEach(function(item) {
 
         that._convertChannelToArray(channel).forEach(function(ch) {
           that.send(
               (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
-              [item, 64],
+              [item, nRelease],
               options.time + options.duration
           );
         });
@@ -2583,26 +2676,27 @@ console.log("callback");
   };
 
   /**
-   * Sends a MIDI `key aftertouch` message to the specified and channel(s) at the scheduled time.
-   * This is a key-specific aftertouch. For a channel-wide aftertouch message, use
+   * Sends a MIDI `key aftertouch` message to the specified channel(s) at the scheduled time. This
+   * is a key-specific aftertouch. For a channel-wide aftertouch message, use
    * {{#crossLink "WebMidi/sendChannelAftertouch:method"}}sendChannelAftertouch(){{/crossLink}}.
    *
    * @method sendKeyAftertouch
    * @chainable
    *
-   * @param note {Array|uint|String}  The note for which you are sending an aftertouch value. The
+   * @param note {Number|String|Array}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
    * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127).
+   * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+   * an array of note names and/or numbers.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Number} [pressure=0.5] The pressure level to send (between 0 and 1).
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2622,7 +2716,9 @@ console.log("callback");
 
     options = options || {};
 
-    if (channel < 1 || channel > 16) { throw new RangeError("The channel must be between 1 and 16."); }
+    if (channel < 1 || channel > 16) {
+      throw new RangeError("The channel must be between 1 and 16.");
+    }
 
     pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) {
@@ -2648,70 +2744,69 @@ console.log("callback");
   };
 
   /**
-   * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time.
+   * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time. The
+   * control change message to send can be specified numerically or by using one of the following
+   * common names:
    *
-   * The control change message to send can be specified numerically or by using one of the
-   * following common names:
-   *
-   *  * bank-select-coarse (#0)
-   *  * modulation-wheel-coarse (#1)
-   *  * breath-controller-coarse (#2)
-   *  * foot-controller-coarse (#4)
-   *  * portamento-time-coarse (#5)
-   *  * data-entry-coarse (#6)
-   *  * volume-coarse (#7)
-   *  * balance-coarse (#8)
-   *  * pan-coarse (#10)
-   *  * expression-coarse (#11)
-   *  * effect-control-1-coarse (#12)
-   *  * effect-control-2-coarse (#13)
-   *  * general-purpose-slider-1 (#16)
-   *  * general-purpose-slider-2 (#17)
-   *  * general-purpose-slider-3 (#18)
-   *  * general-purpose-slider-4 (#19)
-   *  * bank-select-fine (#32)
-   *  * modulation-wheel-fine (#33)
-   *  * breath-controller-fine (#34)
-   *  * foot-controller-fine (#36)
-   *  * portamento-time-fine (#37)
-   *  * data-entry-fine (#38)
-   *  * volume-fine (#39)
-   *  * balance-fine (#40)
-   *  * pan-fine (#42)
-   *  * expression-fine (#43)
-   *  * effect-control-1-fine (#44)
-   *  * effect-control-2-fine (#45)
-   *  * hold-pedal (#64)
-   *  * portamento (#65)
-   *  * sustenuto-pedal (#66)
-   *  * soft-pedal (#67)
-   *  * legato-pedal (#68)
-   *  * hold-2-pedal (#69)
-   *  * sound-variation (#70)
-   *  * resonance (#71)
-   *  * sound-release-time (#72)
-   *  * sound-attack-time (#73)
-   *  * brightness (#74)
-   *  * sound-control-6 (#75)
-   *  * sound-control-7 (#76)
-   *  * sound-control-8 (#77)
-   *  * sound-control-9 (#78)
-   *  * sound-control-10 (#79)
-   *  * general-purpose-button-1 (#80)
-   *  * general-purpose-button-2 (#81)
-   *  * general-purpose-button-3 (#82)
-   *  * general-purpose-button-4 (#83)
-   *  * reverb-level (#91)
-   *  * tremolo-level (#92)
-   *  * chorus-level (#93)
-   *  * celeste-level (#94)
-   *  * phaser-level (#95)
-   *  * data-button-increment (#96)
-   *  * data-button-decrement (#97)
-   *  * non-registered-parameter-coarse (#98)
-   *  * non-registered-parameter-fine (#99)
-   *  * registered-parameter-coarse (#100)
-   *  * registered-parameter-fine (#101)
+   *  * `bankselectcoarse` (#0)
+   *  * `modulationwheelcoarse` (#1)
+   *  * `breathcontrollercoarse` (#2)
+   *  * `footcontrollercoarse` (#4)
+   *  * `portamentotimecoarse` (#5)
+   *  * `dataentrycoarse` (#6)
+   *  * `volumecoarse` (#7)
+   *  * `balancecoarse` (#8)
+   *  * `pancoarse` (#10)
+   *  * `expressioncoarse` (#11)
+   *  * `effectcontrol1coarse` (#12)
+   *  * `effectcontrol2coarse` (#13)
+   *  * `generalpurposeslider1` (#16)
+   *  * `generalpurposeslider2` (#17)
+   *  * `generalpurposeslider3` (#18)
+   *  * `generalpurposeslider4` (#19)
+   *  * `bankselectfine` (#32)
+   *  * `modulationwheelfine` (#33)
+   *  * `breathcontrollerfine` (#34)
+   *  * `footcontrollerfine` (#36)
+   *  * `portamentotimefine` (#37)
+   *  * `dataentryfine` (#38)
+   *  * `volumefine` (#39)
+   *  * `balancefine` (#40)
+   *  * `panfine` (#42)
+   *  * `expressionfine` (#43)
+   *  * `effectcontrol1fine` (#44)
+   *  * `effectcontrol2fine` (#45)
+   *  * `holdpedal` (#64)
+   *  * `portamento` (#65)
+   *  * `sustenutopedal` (#66)
+   *  * `softpedal` (#67)
+   *  * `legatopedal` (#68)
+   *  * `hold2pedal` (#69)
+   *  * `soundvariation` (#70)
+   *  * `resonance` (#71)
+   *  * `soundreleasetime` (#72)
+   *  * `soundattacktime` (#73)
+   *  * `brightness` (#74)
+   *  * `soundcontrol6` (#75)
+   *  * `soundcontrol7` (#76)
+   *  * `soundcontrol8` (#77)
+   *  * `soundcontrol9` (#78)
+   *  * `soundcontrol10` (#79)
+   *  * `generalpurposebutton1` (#80)
+   *  * `generalpurposebutton2` (#81)
+   *  * `generalpurposebutton3` (#82)
+   *  * `generalpurposebutton4` (#83)
+   *  * `reverblevel` (#91)
+   *  * `tremololevel` (#92)
+   *  * `choruslevel` (#93)
+   *  * `celestelevel` (#94)
+   *  * `phaserlevel` (#95)
+   *  * `databuttonincrement` (#96)
+   *  * `databuttondecrement` (#97)
+   *  * `nonregisteredparametercoarse` (#98)
+   *  * `nonregisteredparameterfine` (#99)
+   *  * `registeredparametercoarse` (#100)
+   *  * `registeredparameterfine` (#101)
    *
    * Note: as you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
@@ -2725,15 +2820,15 @@ console.log("callback");
    * @method sendControlChange
    * @chainable
    *
-   * @param controller {uint} The MIDI controller number (0-119)
+   * @param controller {Number|String} The MIDI controller number (0-119) or name.
    *
-   * @param [value=0] {uint} The value to send (0-127).
+   * @param [value=0] {Number} The value to send (0-127).
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2959,10 +3054,6 @@ console.log("callback");
    *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
    *  * Roll Angle (0x3D, 0x08): `rollangle`
    *
-   * For more information on 3D sound controllers, please consult the
-   * [RP-49 specification](http://www.midi.org/techspecs/rp49public.pdf) on *Three Dimensional
-   * Sound Controllers*.
-   *
    * @method setRegisteredParameter
    * @chainable
    *
@@ -2970,14 +3061,14 @@ console.log("callback");
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [data=[]] {int|Array} An single integer or an array of integers with a maximum length of
-   * 2 specifying the desired data.
+   * @param [data=[]] {Number|Array} An single integer or an array of integers with a maximum length
+   * of 2 specifying the desired data.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3017,41 +3108,41 @@ console.log("callback");
    * two-position array specifying the values of the two control bytes. The value is specified by
    * passing in an single integer (most cases) or an array of two integers.
    *
-   * NRPNs are not standardized in any way. Each manufacturer is free to implement them in any way
+   * NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
    * they see fit. For example, according to the Roland GS specification, you can control the
    * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
    * would use:
    *
-   *     WebMidi.setNonRegisteredParameter([1, 8], 123);
+   *     WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
    *
-   * Obviously, you should select an output device and channel so the message is not sent to all
-   * channels on all devices. For instance, to send to channel 1 of the first device, you would use:
+   * Obviously, you should select a channel so the message is not sent to all channels. For
+   * instance, to send to channel 1 of the first output port, you would use:
    *
-   *     WebMidi.setNonRegisteredParameter([1, 8], 123, WebMidi.outputs[0], 1);
+   *     WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
    * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
    * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
    * value to send was 10, you could use:
    *
-   *     WebMidi.setNonRegisteredParameter([2, 63], [0, 10]);
+   *     WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
    *
    * For further implementation details, refer to the manufacturer's documentation.
    *
    * @method setNonRegisteredParameter
    * @chainable
    *
-   * @param parameter {String|Array} A two-position array specifying the two control bytes (0x63,
+   * @param parameter {Array} A two-position array specifying the two control bytes (0x63,
    * 0x62) that identify the non-registered parameter.
    *
-   * @param [data=[]] {int|Array} An integer or an array of integers with a length of 1 or 2
+   * @param [data=[]] {Number|Array} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3092,7 +3183,7 @@ console.log("callback");
 
   /**
    * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of
+   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
    * increment and decrement controllers.
    *
    * >Unless you are very familiar with the MIDI standard you probably should favour one of the
@@ -3128,7 +3219,7 @@ console.log("callback");
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3165,7 +3256,7 @@ console.log("callback");
 
   /**
    * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://www.midi.org/techspecs/rp18.php) regarding the usage of
+   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
    * increment and decrement controllers.
    *
    * >Unless you are very familiar with the MIDI standard you probably should favour one of the
@@ -3197,11 +3288,11 @@ console.log("callback");
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3244,17 +3335,17 @@ console.log("callback");
    * @method setPitchBendRange
    * @chainable
    *
-   * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127). While nothing
-   * imposes that in the specification, it is very common for manufacturers to limit the range to 2
-   * octaves (-12 semitones to 12 semitones).
+   * @param [semitones=0] {Number} The desired adjustment value in semitones (integer between
+   * 0-127). While nothing imposes that in the specification, it is very common for manufacturers to
+   * limit the range to 2 octaves (-12 semitones to 12 semitones).
    *
-   * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
+   * @param [cents=0] {Number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3303,15 +3394,16 @@ console.log("callback");
    * @method setModulationRange
    * @chainable
    *
-   * @param [semitones=0] {uint} The desired adjustment value in semitones (0-127).
+   * @param [semitones=0] {Number} The desired adjustment value in semitones (integer between
+   * 0-127).
    *
-   * @param [cents=0] {uint} The desired adjustment value in cents (0-127).
+   * @param [cents=0] {Number} The desired adjustment value in cents (0-127).
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3353,8 +3445,8 @@ console.log("callback");
   };
 
   /**
-   * Sends a master tuning message to the specified output(s) and channel(s). The value is decimal
-   * and must be larger than -65 semitones and smaller than 64 semitones.
+   * Sends a master tuning message to the specified channel(s). The value is decimal and must be
+   * larger than -65 semitones and smaller than 64 semitones.
    *
    * >Because of the way the MIDI specification works, the decimal portion of the value will be
    * >encoded with a resolution of 14bit. The integer portion must be between -64 and 63
@@ -3366,11 +3458,11 @@ console.log("callback");
    *
    * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3423,13 +3515,13 @@ console.log("callback");
    * @method setTuningProgram
    * @chainable
    *
-   * @param value {int} The desired tuning program (0-127).
+   * @param value {Number} The desired tuning program (0-127).
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3469,13 +3561,13 @@ console.log("callback");
    * @method setTuningBank
    * @chainable
    *
-   * @param value {int} The desired tuning bank (0-127).
+   * @param value {Number} The desired tuning bank (0-127).
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3511,18 +3603,28 @@ console.log("callback");
   /**
    * Sends a MIDI `channel mode` message to the specified channel(s).
    *
+   * The channel mode message to send can be specified numerically or by using one of the following
+   * common names:
+   *
+   *   * `allsoundoff` (#120)
+   *   * `resetallcontrollers` (#121)
+   *   * `localcontrol` (#122)
+   *   * `allnotesoff` (#123)
+   *   * `omnimodeoff` (#124)
+   *   * `omnimodeon` (#125)
+   *   * `monomodeon` (#126)
+   *   * `polymodeon` (#127)
+   *
    * @method sendChannelMode
    * @chainable
    *
-   * @param command {uint} The MIDI channel mode command (120-127).
-   * @param value {uint} The value to send (0-127)
-   *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param command {Number|String} The numerical identifier of the MIDI channel mode message
+   * (integer between 120-127) or its name as a string.
+   * @param value {Number} The value to send (integer between 0-127)
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
-   *
-   * @param {Object} [options]
-   *
+   * @param {Object} [options={}]
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
    * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
@@ -3543,10 +3645,23 @@ console.log("callback");
 
     options = options || {};
 
-    command = parseInt(command);
-    if (isNaN(command) || command < 120 || command > 127) {
-      throw new RangeError("Channel mode commands must be between 120 and 127.");
+    if (typeof command === "string") {
+
+      command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
+      if (!command) {
+        throw new TypeError("Invalid channel mode message name.");
+      }
+
+    } else {
+
+      command = parseInt(command);
+      if ( !(command >= 120 && command <= 127) ) {
+        throw new RangeError("Channel mode numerical identifiers must be between 120 and 127.");
+      }
+
     }
+
+
 
     value = parseInt(value);
     if (isNaN(value) || value < 0 || value > 127) {
@@ -3573,13 +3688,13 @@ console.log("callback");
    * @method sendProgramChange
    * @chainable
    *
-   * @param program {uint} The MIDI patch (program) number (0-127)
+   * @param program {Number} The MIDI patch (program) number (0-127)
    *
-   * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3627,11 +3742,11 @@ console.log("callback");
    * @param [pressure=0.5] {Number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour.
    *
-   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or
+   * an array of channel numbers. If the special value "all" is used, the message will be sent to
+   * all 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3675,11 +3790,11 @@ console.log("callback");
    * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
    * no bend.
    *
-   * @param [channel=all] {uint|Array|String}  The MIDI channel number (between 1 and 16) or an
+   * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or an
    * array of channel numbers. If the special value "all" is used, the message will be sent to all
    * 16 channels.
    *
-   * @param {Object} [options]
+   * @param {Object} [options={}]
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -3752,7 +3867,7 @@ console.log("callback");
    * array of MIDI note numbers.
    *
    * @method _convertNoteToArray
-   * @param [note] {uint|Array|String}
+   * @param [note] {Number|Array|String}
    * @protected
    */
   Output.prototype._convertNoteToArray = function(note) {
