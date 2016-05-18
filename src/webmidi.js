@@ -307,7 +307,12 @@
     Object.defineProperties(this, {
 
       /**
-       * [read-only] Indicates whether the browser supports the Web MIDI API or not.
+       * [read-only] Indicates whether the environment supports the Web MIDI API or not.
+       *
+       * Note: in environments that do not offer built-in MIDI support, this will report true if the
+       * `navigator.requestMIDIAccess` function is available. For example, if you have installed
+       * WebMIDIAPIShim but no plugin, this property will be true even though actual support might
+       * not be there.
        *
        * @property supported
        * @type Boolean
@@ -407,6 +412,8 @@
    * executed. If an error occurred, the callback function will receive an `Error` object as its
    * sole parameter.
    *
+   * To enable the use of system exclusive messages, the `sysex` parameter must be set to true.
+   *
    * @method enable
    * @static
    *
@@ -438,16 +445,12 @@
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
-        callback();
+        callback.bind(this)();
       }.bind(this),
 
       function (err) {
-
-        if (err && err.message && err.message.indexOf("Jazz plugin is not installed") > -1) {
-          throw new Error("Jazz-Plugin must be installed to use WebMIDIAPIShim.");
-        }
-        callback(err);
-      }
+        callback.bind(this)(err);
+      }.bind(this)
 
     );
 
@@ -976,7 +979,7 @@
    * @protected
    */
   WebMidi.prototype._processStateChange = function(e) {
-    console.log("process");
+
     this._updateInputsAndOutputs();
 
     // This is required because we need to manually update the inputs/outputs at the very beginning.
