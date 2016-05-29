@@ -24,7 +24,7 @@ This library works in all browsers that support the
 built-in support: 
 
 * Chrome (Mac, GNU/Linux, Android & Windows)
-* Opera (Mac GNU/Linux, Windows)
+* Opera (Mac, GNU/Linux, Windows)
 * Android WebView component (KitKat and above) 
 
 It is possible to use this library in other browsers if you install version 1.4+ of 
@@ -61,10 +61,6 @@ You can install *WebMidi* the old fashioned way by downloading the
 Uncompress the package, grab the `webmidi.min.js` file and copy it to your project. Link 
 to it from your HTML page as usual. 
 
->By the way, you will also find the 
-[full API documentation](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html) in the 
-`dist/docs` folder.
-
 #### Bower Install
 
 To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
@@ -93,7 +89,7 @@ Finally, just add a `<script>` tag to your HTML page and make it point to:
 
 Getting started is easy. The first thing to do is to enable **WebMidi**. To do that, you call
 `WebMidi.enable()` and pass it a function to execute when done. This function will receive an 
-`Error` object if enabling `WebMidi` fails. Let's check if **WebMidi** can be enabled: 
+`Error` object if enabling `WebMidi` failed: 
 
 ```javascript
 WebMidi.enable(function (err) {
@@ -135,8 +131,8 @@ is to use the device's ID:
 ```javascript
 var output = WebMidi.getOutputById("1584982307");
 ```
-
-You could also use the device's name (as displayed in the `WebMidi.outputs` array:
+Beware that device IDs are not the same accross browsers and platforms. You could also use the device's name (as
+displayed in the `WebMidi.outputs` array):
 
 ```javascript
 var output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
