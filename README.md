@@ -100,7 +100,7 @@ WebMidi.enable(function (err) {
     console.log("WebMidi enabled!");
   }
   
-}
+});
 ```
 
 >If you need `sysex` support, you will have to pass `true` as the second parameter to the `enable()` 
