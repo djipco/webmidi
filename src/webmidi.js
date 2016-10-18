@@ -412,7 +412,9 @@
    * executed. If an error occurred, the callback function will receive an `Error` object as its
    * sole parameter.
    *
-   * To enable the use of system exclusive messages, the `sysex` parameter must be set to true.
+   * To enable the use of system exclusive messages, the `sysex` parameter should be set to true.
+   * However, under some environments (e.g. Jazz-Plugin), the sysex parameter is ignored and sysex
+   * is always enabled.
    *
    * @method enable
    * @static
@@ -701,6 +703,9 @@
    * @returns {Input|False} The `Input` that was found or `false` if no input matched the specified
    * name.
    *
+   * @throws Error WebMidi is not enabled.
+   * @throws TypeError The name must be a string.
+   *
    * @since 2.0.0
    */
   WebMidi.prototype.getInputByName = function(name) {
@@ -731,6 +736,8 @@
    *
    * @returns {Output|False} The `Output` that was found or `false` if no output matched the
    * specified name.
+   *
+   * @throws Error WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -794,14 +801,13 @@
    * @param name {String} The name of the note in the form of a letter, followed by an optional "#",
    * "##", "b" or "bb" followed by the octave number (between -2 and 8).
    *
-   * @throws {Error} The name parameter is mandatory and cannot be empty.
    * @throws {RangeError} Invalid note name.
    * @throws {RangeError} Invalid note name or note outside valid range.
    * @return {Number} The MIDI note number (between 0 and 127)
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    if (!name) { throw new Error("The name parameter is mandatory and cannot be empty."); }
+    if (typeof name !== "string") { name = ''; }
 
     var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if(!matches) { throw new RangeError("Invalid note name."); }
@@ -1467,7 +1473,6 @@
     var event = {
       "target": this,
       "data": e.data,
-      "receivedTime": e.receivedTime,
       "timestamp": e.timeStamp,
       "channel": channel
     };
@@ -1723,9 +1728,17 @@
    * @param number {Number} The number of the control change message.
    * @returns {String|undefined} The matching control change name or `undefined`.
    *
+   * @throws RangeError The control change number must be between 0 and 119.
+   *
    * @since 2.0.0
    */
   Input.prototype.getCcNameByNumber = function(number) {
+
+    number = parseInt(number);
+
+    if ( !(number >= 0 && number <= 119) ) {
+      throw new RangeError("The control change number must be between 0 and 119.");
+    }
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
       if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
@@ -1746,17 +1759,23 @@
    * @param number {Number} The number of the channel mode message.
    * @returns {String|undefined} The matching channel mode message's name or `undefined`;
    *
+   * @throws RangeError The channel mode number must be between 120 and 127.
+   *
    * @since 2.0.0
    */
   Input.prototype.getChannelModeByNumber = function(number) {
+
+    number = parseInt(number);
+
+    if ( !(number >= 120 && status <= 127) ) {
+      throw new RangeError("The control change number must be between 120 and 127.");
+    }
 
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
       if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
         return cm;
       }
     }
-
-    return undefined;
 
   };
 
@@ -1772,7 +1791,6 @@
     var event = {
       "target": this,
       "data": e.data,
-      "receivedTime": e.receivedTime,
       "timestamp": e.timeStamp
     };
 
