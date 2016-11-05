@@ -1,9 +1,8 @@
 # WebMidi
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
-[![npm](https://img.shields.io/npm/l/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
-[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=flat)](https://beerpay.io/cotejp/webmidi)
+[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=flat)](https://beerpay.io/cotejp/webmidi) 
 
 ## Background
 
