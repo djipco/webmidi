@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-beta.1</em>
+            <em>API Docs for: 2.0.0-beta.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_webmidi.js.html#l2039"><code>src&#x2F;webmidi.js:2039</code></a>
+            Defined in: <a href="../files/src_webmidi.js.html#l2043"><code>src&#x2F;webmidi.js:2043</code></a>
         </div>
 
 
@@ -320,7 +320,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3910"><code>src&#x2F;webmidi.js:3910</code></a>
+        <a href="../files/src_webmidi.js.html#l3960"><code>src&#x2F;webmidi.js:3960</code></a>
         </p>
 
 
@@ -377,7 +377,7 @@ returned.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3888"><code>src&#x2F;webmidi.js:3888</code></a>
+        <a href="../files/src_webmidi.js.html#l3938"><code>src&#x2F;webmidi.js:3938</code></a>
         </p>
 
 
@@ -439,7 +439,7 @@ array of MIDI note numbers.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3018"><code>src&#x2F;webmidi.js:3018</code></a>
+        <a href="../files/src_webmidi.js.html#l3068"><code>src&#x2F;webmidi.js:3068</code></a>
         </p>
 
 
@@ -507,7 +507,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3940"><code>src&#x2F;webmidi.js:3940</code></a>
+        <a href="../files/src_webmidi.js.html#l3990"><code>src&#x2F;webmidi.js:3990</code></a>
         </p>
 
 
@@ -544,7 +544,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3861"><code>src&#x2F;webmidi.js:3861</code></a>
+        <a href="../files/src_webmidi.js.html#l3911"><code>src&#x2F;webmidi.js:3911</code></a>
         </p>
 
 
@@ -607,7 +607,7 @@ entry, data increment and data decrement messages.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2943"><code>src&#x2F;webmidi.js:2943</code></a>
+        <a href="../files/src_webmidi.js.html#l2993"><code>src&#x2F;webmidi.js:2993</code></a>
         </p>
 
 
@@ -700,7 +700,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2906"><code>src&#x2F;webmidi.js:2906</code></a>
+        <a href="../files/src_webmidi.js.html#l2956"><code>src&#x2F;webmidi.js:2956</code></a>
         </p>
 
 
@@ -793,7 +793,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2980"><code>src&#x2F;webmidi.js:2980</code></a>
+        <a href="../files/src_webmidi.js.html#l3030"><code>src&#x2F;webmidi.js:3030</code></a>
         </p>
 
 
@@ -883,7 +883,7 @@ that identify the registered parameter.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3280"><code>src&#x2F;webmidi.js:3280</code></a>
+        <a href="../files/src_webmidi.js.html#l3330"><code>src&#x2F;webmidi.js:3330</code></a>
         </p>
 
 
@@ -1035,7 +1035,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3207"><code>src&#x2F;webmidi.js:3207</code></a>
+        <a href="../files/src_webmidi.js.html#l3257"><code>src&#x2F;webmidi.js:3257</code></a>
         </p>
 
 
@@ -1179,7 +1179,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2601"><code>src&#x2F;webmidi.js:2601</code></a>
+        <a href="../files/src_webmidi.js.html#l2620"><code>src&#x2F;webmidi.js:2620</code></a>
         </p>
 
 
@@ -1188,11 +1188,13 @@ sent as soon as possible.</p>
 
     <div class="description">
         <p>Requests the playback of a single note or multiple notes on the specified channel(s). You can
-delay the execution of the <code>note on</code> command by using the <code>time</code> property of the <code>options</code>
+delay the execution of the <strong>note on</strong> command by using the <code>time</code> property of the <code>options</code>
 parameter (milliseconds).</p>
-<p>If no duration is specified in the <code>options</code>, the note will play until a matching <code>note off</code>
-is sent. If a duration is specified, a <code>note off</code> will be automatically sent after said
+<p>If no duration is specified in the <code>options</code>, the note will play until a matching <strong>note off</strong>
+is sent. If a duration is specified, a <strong>note off</strong> will be automatically sent after said
 duration.</p>
+<p>Note: As per the MIDI standard, a <strong>note on</strong> event with a velocity of <code>0</code> is considered to be
+a <strong>note off</strong>.</p>
 
     </div>
 
@@ -1210,7 +1212,7 @@ duration.</p>
 one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
 The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
 range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-note is G8 (MIDI note number 127). It is also possible to specify and array of note numbers
+note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
 and/or names.</p>
 
                     </div>
@@ -1223,8 +1225,8 @@ and/or names.</p>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel number (between 1 and 16) or an
-array of channel numbers. If the special value &quot;all&quot; is used (default), the message will be
+                        <p>The MIDI channel number (between <code>1</code> and <code>16</code>) or an
+array of channel numbers. If the special value <strong>all</strong> is used (default), the message will be
 sent to all 16 channels.</p>
 
                     </div>
@@ -1242,25 +1244,27 @@ sent to all 16 channels.</p>
 
                         <ul class="params-list">
                             <li class="param">
-                                    <code class="param-name optional">[velocity=0.5]</code>
+                                    <code class="param-name optional">[duration=undefined]</code>
                                     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The velocity at which to play the note (between 0 and
-1). An invalid velocity value will silently trigger the default.</p>
+                                    <p>The number of milliseconds (integer) to wait
+before sending a matching <strong>note off</strong> event. If left undefined, only a <strong>note on</strong> message is
+sent.</p>
 
                                 </div>
 
                             </li>
                             <li class="param">
-                                    <code class="param-name optional">[duration=undefined]</code>
-                                    <span class="type">Int</span>
+                                    <code class="param-name optional">[rawVelocity=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The number of milliseconds to wait before sending a
-matching note off event. If left undefined, only a <code>note on</code> message is sent.</p>
+                                    <p>Controls whether the attack and release velocities
+are set using integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code>
+(<code>false</code>, default).</p>
 
                                 </div>
 
@@ -1271,9 +1275,10 @@ matching note off event. If left undefined, only a <code>note on</code> message 
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The velocity at which to release the note (between 0 and
-1). This is only used when a duration has been specified. An invalid release value will
-silently trigger the default.</p>
+                                    <p>The velocity at which to release the note (between <code>0</code>
+and <code>1</code>). If the <code>rawVelocity</code> option is <code>true</code>, the value should be specified as an integer
+between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
+This is only used with the <strong>note off</strong> event triggered when <code>options.duration</code> is set.</p>
 
                                 </div>
 
@@ -1291,6 +1296,19 @@ timestamp and the request will be scheduled at that timestamp. The <code>DOMHigh
 is relative to the navigation start of the document. To retrieve the current time, you can use
 <code>WebMidi.time</code>. If <code>time</code> is not present or is set to a time in the past, the request is to be
 sent as soon as possible.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[velocity=0.5]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The velocity at which to play the note (between <code>0</code> and
+<code>1</code>). If the <code>rawVelocity</code> option is <code>true</code>, the value should be specified as an integer
+between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
 
                                 </div>
 
@@ -1343,7 +1361,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2125"><code>src&#x2F;webmidi.js:2125</code></a>
+        <a href="../files/src_webmidi.js.html#l2129"><code>src&#x2F;webmidi.js:2129</code></a>
         </p>
 
 
@@ -1455,7 +1473,7 @@ use <code>WebMidi.time</code> to retrieve the current timestamp. To send immedia
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2485"><code>src&#x2F;webmidi.js:2485</code></a>
+        <a href="../files/src_webmidi.js.html#l2489"><code>src&#x2F;webmidi.js:2489</code></a>
         </p>
 
 
@@ -1549,7 +1567,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3758"><code>src&#x2F;webmidi.js:3758</code></a>
+        <a href="../files/src_webmidi.js.html#l3808"><code>src&#x2F;webmidi.js:3808</code></a>
         </p>
 
 
@@ -1672,7 +1690,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3626"><code>src&#x2F;webmidi.js:3626</code></a>
+        <a href="../files/src_webmidi.js.html#l3676"><code>src&#x2F;webmidi.js:3676</code></a>
         </p>
 
 
@@ -1816,7 +1834,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2384"><code>src&#x2F;webmidi.js:2384</code></a>
+        <a href="../files/src_webmidi.js.html#l2388"><code>src&#x2F;webmidi.js:2388</code></a>
         </p>
 
 
@@ -1903,7 +1921,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2434"><code>src&#x2F;webmidi.js:2434</code></a>
+        <a href="../files/src_webmidi.js.html#l2438"><code>src&#x2F;webmidi.js:2438</code></a>
         </p>
 
 
@@ -2000,7 +2018,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2769"><code>src&#x2F;webmidi.js:2769</code></a>
+        <a href="../files/src_webmidi.js.html#l2819"><code>src&#x2F;webmidi.js:2819</code></a>
         </p>
 
 
@@ -2211,7 +2229,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2701"><code>src&#x2F;webmidi.js:2701</code></a>
+        <a href="../files/src_webmidi.js.html#l2751"><code>src&#x2F;webmidi.js:2751</code></a>
         </p>
 
 
@@ -2356,7 +2374,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3807"><code>src&#x2F;webmidi.js:3807</code></a>
+        <a href="../files/src_webmidi.js.html#l3857"><code>src&#x2F;webmidi.js:3857</code></a>
         </p>
 
 
@@ -2483,7 +2501,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3708"><code>src&#x2F;webmidi.js:3708</code></a>
+        <a href="../files/src_webmidi.js.html#l3758"><code>src&#x2F;webmidi.js:3758</code></a>
         </p>
 
 
@@ -2603,7 +2621,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2511"><code>src&#x2F;webmidi.js:2511</code></a>
+        <a href="../files/src_webmidi.js.html#l2515"><code>src&#x2F;webmidi.js:2515</code></a>
         </p>
 
 
@@ -2693,7 +2711,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2282"><code>src&#x2F;webmidi.js:2282</code></a>
+        <a href="../files/src_webmidi.js.html#l2286"><code>src&#x2F;webmidi.js:2286</code></a>
         </p>
 
 
@@ -2797,7 +2815,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2317"><code>src&#x2F;webmidi.js:2317</code></a>
+        <a href="../files/src_webmidi.js.html#l2321"><code>src&#x2F;webmidi.js:2321</code></a>
         </p>
 
 
@@ -2895,7 +2913,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2409"><code>src&#x2F;webmidi.js:2409</code></a>
+        <a href="../files/src_webmidi.js.html#l2413"><code>src&#x2F;webmidi.js:2413</code></a>
         </p>
 
 
@@ -2982,7 +3000,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2460"><code>src&#x2F;webmidi.js:2460</code></a>
+        <a href="../files/src_webmidi.js.html#l2464"><code>src&#x2F;webmidi.js:2464</code></a>
         </p>
 
 
@@ -3075,7 +3093,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2184"><code>src&#x2F;webmidi.js:2184</code></a>
+        <a href="../files/src_webmidi.js.html#l2188"><code>src&#x2F;webmidi.js:2188</code></a>
         </p>
 
 
@@ -3204,7 +3222,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2254"><code>src&#x2F;webmidi.js:2254</code></a>
+        <a href="../files/src_webmidi.js.html#l2258"><code>src&#x2F;webmidi.js:2258</code></a>
         </p>
 
 
@@ -3303,7 +3321,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2356"><code>src&#x2F;webmidi.js:2356</code></a>
+        <a href="../files/src_webmidi.js.html#l2360"><code>src&#x2F;webmidi.js:2360</code></a>
         </p>
 
 
@@ -3398,7 +3416,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3470"><code>src&#x2F;webmidi.js:3470</code></a>
+        <a href="../files/src_webmidi.js.html#l3520"><code>src&#x2F;webmidi.js:3520</code></a>
         </p>
 
 
@@ -3536,7 +3554,7 @@ than 64.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3412"><code>src&#x2F;webmidi.js:3412</code></a>
+        <a href="../files/src_webmidi.js.html#l3462"><code>src&#x2F;webmidi.js:3462</code></a>
         </p>
 
 
@@ -3681,7 +3699,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3129"><code>src&#x2F;webmidi.js:3129</code></a>
+        <a href="../files/src_webmidi.js.html#l3179"><code>src&#x2F;webmidi.js:3179</code></a>
         </p>
 
 
@@ -3834,7 +3852,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3353"><code>src&#x2F;webmidi.js:3353</code></a>
+        <a href="../files/src_webmidi.js.html#l3403"><code>src&#x2F;webmidi.js:3403</code></a>
         </p>
 
 
@@ -3980,7 +3998,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3046"><code>src&#x2F;webmidi.js:3046</code></a>
+        <a href="../files/src_webmidi.js.html#l3096"><code>src&#x2F;webmidi.js:3096</code></a>
         </p>
 
 
@@ -4143,7 +4161,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3580"><code>src&#x2F;webmidi.js:3580</code></a>
+        <a href="../files/src_webmidi.js.html#l3630"><code>src&#x2F;webmidi.js:3630</code></a>
         </p>
 
 
@@ -4270,7 +4288,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l3534"><code>src&#x2F;webmidi.js:3534</code></a>
+        <a href="../files/src_webmidi.js.html#l3584"><code>src&#x2F;webmidi.js:3584</code></a>
         </p>
 
 
@@ -4397,7 +4415,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2536"><code>src&#x2F;webmidi.js:2536</code></a>
+        <a href="../files/src_webmidi.js.html#l2540"><code>src&#x2F;webmidi.js:2540</code></a>
         </p>
 
 
@@ -4405,9 +4423,9 @@ sent as soon as possible.</p>
     </div>
 
     <div class="description">
-        <p>Sends a MIDI <code>note off</code> message to the specified channel(s) for a single note or multiple
-simultaneous notes (chord). You can delay the execution of the <code>note off</code> command by using the
-<code>time</code> property of the <code>options</code> parameter (milliseconds).</p>
+        <p>Sends a MIDI <strong>note off</strong> message to the specified channel(s) for a single note or multiple
+simultaneous notes (chord). You can delay the execution of the <strong>note off</strong> command by using
+the <code>time</code> property of the <code>options</code> parameter (in milliseconds).</p>
 
     </div>
 
@@ -4422,11 +4440,11 @@ simultaneous notes (chord). You can delay the execution of the <code>note off</c
 
                     <div class="param-description">
                         <p>The note(s) you wish to stop. The notes can be specified in
-one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-and/or names.</p>
+one of two ways. The first way is by using the MIDI note number (an integer between <code>0</code> and
+<code>127</code>). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7).
+The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and
+the highest note is G8 (MIDI note number 127). It is also possible to specify an array of note
+numbers and/or names.</p>
 
                     </div>
 
@@ -4438,8 +4456,8 @@ and/or names.</p>
 
 
                     <div class="param-description">
-                        <p>The MIDI channel number (between 1 and 16) or an
-array of channel numbers. If the special value &quot;all&quot; is used (default), the message will be
+                        <p>The MIDI channel number (between <code>1</code> and <code>16</code>) or an
+array of channel numbers. If the special value <code>all</code> is used (default), the message will be
 sent to all 16 channels.</p>
 
                     </div>
@@ -4457,13 +4475,14 @@ sent to all 16 channels.</p>
 
                         <ul class="params-list">
                             <li class="param">
-                                    <code class="param-name optional">[velocity=0.5]</code>
-                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    <code class="param-name optional">[rawVelocity=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                                     <span class="flag optional" title="This parameter is optional.">optional</span>
 
                                 <div class="param-description">
-                                    <p>The velocity at which to release the note (between 0 and
-1). An invalid velocity value will silently trigger the default.</p>
+                                    <p>Controls whether the release velocity is set using
+an integer between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
+default).</p>
 
                                 </div>
 
@@ -4481,6 +4500,19 @@ timestamp and the request will be scheduled at that timestamp. The <code>DOMHigh
 is relative to the navigation start of the document. To retrieve the current time, you can use
 <code>WebMidi.time</code>. If <code>time</code> is not present or is set to a time in the past, the request is to be
 sent as soon as possible.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[velocity=0.5]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The velocity at which to release the note (between <code>0</code>
+and <code>1</code>). If the <code>rawVelocity</code> option is <code>true</code>, the value should be specified as an integer
+between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
 
                                 </div>
 
@@ -4518,7 +4550,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2056"><code>src&#x2F;webmidi.js:2056</code></a>
+        <a href="../files/src_webmidi.js.html#l2060"><code>src&#x2F;webmidi.js:2060</code></a>
         </p>
 
 
@@ -4543,7 +4575,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2069"><code>src&#x2F;webmidi.js:2069</code></a>
+        <a href="../files/src_webmidi.js.html#l2073"><code>src&#x2F;webmidi.js:2073</code></a>
         </p>
 
 
@@ -4568,7 +4600,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2082"><code>src&#x2F;webmidi.js:2082</code></a>
+        <a href="../files/src_webmidi.js.html#l2086"><code>src&#x2F;webmidi.js:2086</code></a>
         </p>
 
 
@@ -4593,7 +4625,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2095"><code>src&#x2F;webmidi.js:2095</code></a>
+        <a href="../files/src_webmidi.js.html#l2099"><code>src&#x2F;webmidi.js:2099</code></a>
         </p>
 
 
@@ -4618,7 +4650,7 @@ sent as soon as possible.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l2108"><code>src&#x2F;webmidi.js:2108</code></a>
+        <a href="../files/src_webmidi.js.html#l2112"><code>src&#x2F;webmidi.js:2112</code></a>
         </p>
 
 
