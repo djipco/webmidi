@@ -1502,6 +1502,8 @@
        * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
        * @param {uint} event.note.octave The octave (between -2 and 8).
        * @param {Number} event.velocity The release velocity (between 0 and 1).
+       * @param {Number} event.rawVelocity The attack velocity expressed as a 7-bit integer (between
+       * 0 and 127).
        */
       event.type = 'noteoff';
       event.note = {
@@ -1510,6 +1512,7 @@
         "octave": Math.floor(data1 / 12 - 1) - 3
       };
       event.velocity = data2 / 127;
+      event.rawVelocity = data2;
 
     } else if (command === wm.MIDI_CHANNEL_MESSAGES.noteon) {
 
@@ -1533,6 +1536,8 @@
        * @param {String} event.note.name The usual note name (C, C#, D, D#, etc.).
        * @param {uint} event.note.octave The octave (between -2 and 8).
        * @param {Number} event.velocity The attack velocity (between 0 and 1).
+       * @param {Number} event.rawVelocity The attack velocity expressed as a 7-bit integer (between
+       * 0 and 127).
        */
       event.type = 'noteon';
       event.note = {
@@ -1541,6 +1546,7 @@
         "octave": Math.floor(data1 / 12 - 1) - 3
       };
       event.velocity = data2 / 127;
+      event.rawVelocity = data2;
 
     } else if (command === wm.MIDI_CHANNEL_MESSAGES.keyaftertouch) {
 
@@ -2532,28 +2538,29 @@
   };
 
   /**
-   * Sends a MIDI `note off` message to the specified channel(s) for a single note or multiple
-   * simultaneous notes (chord). You can delay the execution of the `note off` command by using the
-   * `time` property of the `options` parameter (milliseconds).
+   * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
+   * simultaneous notes (chord). You can delay the execution of the **note off** command by using
+   * the `time` property of the `options` parameter (in milliseconds).
    *
    * @method stopNote
    * @chainable
    *
    * @param note {Number|Array|String}  The note(s) you wish to stop. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-   * and/or names.
+   * one of two ways. The first way is by using the MIDI note number (an integer between `0` and
+   * `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7).
+   * The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and
+   * the highest note is G8 (MIDI note number 127). It is also possible to specify an array of note
+   * numbers and/or names.
    *
-   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used (default), the message will be
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between `1` and `16`) or an
+   * array of channel numbers. If the special value `all` is used (default), the message will be
    * sent to all 16 channels.
    *
    * @param {Object} [options={}]
    *
-   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between 0 and
-   * 1). An invalid velocity value will silently trigger the default.
+   * @param {Boolean} [options.rawVelocity=false] Controls whether the release velocity is set using
+   * an integer between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * default).
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2563,34 +2570,48 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
+   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.stopNote = function(note, channel, options) {
 
-    var that = this;
+    var nVelocity = 64;
 
     options = options || {};
 
     options.velocity = parseFloat(options.velocity);
-    if (isNaN(options.velocity) || options.velocity < 0 || options.velocity > 1) {
-      options.velocity = 0.5;
-    }
 
-    var nVelocity = Math.round(options.velocity * 127);
+    if (options.rawVelocity) {
+
+      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
+        nVelocity = options.velocity;
+      }
+
+    } else {
+
+      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
+        nVelocity = options.velocity * 127;
+      }
+
+    }
 
     // Send note off messages
     this._convertNoteToArray(note).forEach(function(item) {
 
-      that._convertChannelToArray(channel).forEach(function(ch) {
+      this._convertChannelToArray(channel).forEach(function(ch) {
 
-        that.send(
+        this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
-            [item, nVelocity],
-            that._parseTimeParameter(options.time)
+            [item, Math.round(nVelocity)],
+            this._parseTimeParameter(options.time)
         );
-      });
 
-    });
+      }.bind(this));
+
+    }.bind(this));
 
     return this;
 
@@ -2598,12 +2619,15 @@
 
   /**
    * Requests the playback of a single note or multiple notes on the specified channel(s). You can
-   * delay the execution of the `note on` command by using the `time` property of the `options`
+   * delay the execution of the **note on** command by using the `time` property of the `options`
    * parameter (milliseconds).
    *
-   * If no duration is specified in the `options`, the note will play until a matching `note off`
-   * is sent. If a duration is specified, a `note off` will be automatically sent after said
+   * If no duration is specified in the `options`, the note will play until a matching **note off**
+   * is sent. If a duration is specified, a **note off** will be automatically sent after said
    * duration.
+   *
+   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
+   * a **note off**.
    *
    * @method playNote
    * @chainable
@@ -2612,24 +2636,27 @@
    * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
    * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
    * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify and array of note numbers
+   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
    * and/or names.
    *
-   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used (default), the message will be
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between `1` and `16`) or an
+   * array of channel numbers. If the special value **all** is used (default), the message will be
    * sent to all 16 channels.
    *
    * @param {Object} [options={}]
    *
-   * @param {Number} [options.velocity=0.5] The velocity at which to play the note (between 0 and
-   * 1). An invalid velocity value will silently trigger the default.
+   * @param {Number} [options.duration=undefined] The number of milliseconds (integer) to wait
+   * before sending a matching **note off** event. If left undefined, only a **note on** message is
+   * sent.
    *
-   * @param {int} [options.duration=undefined]  The number of milliseconds to wait before sending a
-   * matching note off event. If left undefined, only a `note on` message is sent.
+   * @param {Boolean} [options.rawVelocity=false] Controls whether the attack and release velocities
+   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
+   * (`false`, default).
    *
-   * @param {Number} [options.release=0.5] The velocity at which to release the note (between 0 and
-   * 1). This is only used when a duration has been specified. An invalid release value will
-   * silently trigger the default.
+   * @param {Number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * This is only used with the **note off** event triggered when `options.duration` is set.
    *
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
    * things. If the value is a string starting with the + sign and followed by a number, the request
@@ -2639,56 +2666,81 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
+   * @param {Number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
+   * `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.playNote = function(note, channel, options) {
 
-    var that = this;
+    var nVelocity = 64;
 
     options = options || {};
 
     options.velocity = parseFloat(options.velocity);
-    if (isNaN(options.velocity) || options.velocity < 0 || options.velocity > 1) {
-      options.velocity = 0.5;
+
+    if (options.rawVelocity) {
+
+      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
+        nVelocity = options.velocity;
+      }
+
+    } else {
+
+      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
+        nVelocity = options.velocity * 127;
+      }
+
     }
 
-    var nVelocity = Math.round(options.velocity * 127);
-
-    options.time = that._parseTimeParameter(options.time) || 0;
+    options.time = this._parseTimeParameter(options.time) || 0;
 
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
-      that._convertChannelToArray(channel).forEach(function(ch) {
-        that.send(
+      this._convertChannelToArray(channel).forEach(function(ch) {
+        this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
-            [item, nVelocity],
+            [item, Math.round(nVelocity)],
           options.time
         );
-      });
+      }.bind(this));
 
-    });
+    }.bind(this));
 
     // Send note off messages (only if a duration has been defined)
     if (options.duration !== undefined) {
 
+      var nRelease = 64;
+
       options.release = parseFloat(options.release);
-      if (isNaN(options.release) || options.release < 0 || options.release > 1) {
-        options.release = 0.5;
+
+      if (options.rawVelocity) {
+
+        if (!isNaN(options.release) && options.release >= 0 && options.release <= 127) {
+          nRelease = options.release;
+        }
+
+      } else {
+
+        if (!isNaN(options.release) && options.release >= 0 && options.release <= 1) {
+          nRelease = options.release * 127;
+        }
+
       }
-      var nRelease = Math.round(options.release * 127);
 
       this._convertNoteToArray(note).forEach(function(item) {
 
-        that._convertChannelToArray(channel).forEach(function(ch) {
-          that.send(
+        this._convertChannelToArray(channel).forEach(function(ch) {
+          this.send(
               (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
-              [item, nRelease],
+              [item, Math.round(nRelease)],
               options.time + options.duration
           );
-        });
+        }.bind(this));
 
-      });
+      }.bind(this));
 
     }
 
