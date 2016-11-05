@@ -343,7 +343,7 @@ Obviously, you can also
 
 ## Support the Project
 
-If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as a token of your appreciation. This would automatically make you awesome.
+If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as a token of your appreciation. This would automatically make you even more awesome than you already are!
 
 [![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=beer-square)](https://beerpay.io/cotejp/webmidi)
 
