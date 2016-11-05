@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/l/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=flat)](https://beerpay.io/cotejp/webmidi)
 
 ## Background
 
@@ -341,7 +342,10 @@ including the following in your page:
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
 
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
+## Support the Project
 
-[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=beer-square)](https://beerpay.io/cotejp/webmidi)  [![Beerpay](https://beerpay.io/cotejp/webmidi/make-wish.svg?style=flat-square)](https://beerpay.io/cotejp/webmidi?focus=wish)
+If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as a token of your appreciation. This would automatically make you awesome.
+
+[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=beer-square)](https://beerpay.io/cotejp/webmidi)
+
+Cheers!
