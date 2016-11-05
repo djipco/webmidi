@@ -1,6 +1,10 @@
 # WebMidi
 >**A JavaScript browser library making it easier to use the *Web MIDI API*.**
 
+[![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![npm](https://img.shields.io/npm/l/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+
 ## Background
 
 The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
