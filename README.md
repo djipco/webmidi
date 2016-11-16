@@ -44,8 +44,8 @@ to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidi-with-the-jazz-plug
 
 ## Caveat Emptor
 
-**WebMidi.js** v2 is currently in beta stage. It might still contain bugs and its features and API 
-may change (however, this is relatively unlikely). In any case, this software cannot yet be 
+**WebMidi.js** v2 is currently in the *release candidate* stage. The API should now be stable and 
+most bugs should have been ironed out. However, until it reaches the *final* stage, it cannot be 
 considered production-ready. If you find a bug, please 
 [open an issue](https://github.com/cotejp/webmidi/issues) and I will do my best to address it in a 
 timely fashion.
