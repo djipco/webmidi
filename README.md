@@ -1,4 +1,4 @@
-# WebMidi
+# WebMidi.js
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
@@ -13,8 +13,8 @@ low-level for their needs. For example, sending and receiving MIDI messages invo
 performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
 MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
 to react upon receiving MIDI messages from external devices. For example, it only allows a 
-single callback function per channel. The goal behind the **WebMidi** library is to make
-all these things much easier.
+single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
+much easier.
 
 >### Warning to users of version <= 1.x
 >The API in version 2.x has changed and is not backwards-compatible. Please check the 
@@ -39,36 +39,37 @@ support for the following additional browsers:
 * Safari (Mac)
 * Internet Explorer (Windows)
 
-For details on how to use the `WebMidi` library with the Jazz-Plugin (and WebMIDIAPIShim, please 
-skip ahead to the [Using WebMidi with the Jazz-Plugin](#using-webmidi-with-the-jazz-plugin) section.
+For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
+to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidi-with-the-jazz-plugin) section.
 
 ## Caveat Emptor
 
-WebMidi v2.x is currently in alpha stage. It might still contain bugs and its features and API may 
-change (however, this is relatively unlikely). In any case, this software cannot yet be considered 
-production-ready. If you find a bug, please [open an issue](https://github.com/cotejp/webmidi/issues) 
-and I will do my best to address it in a timely fashion.
+**WebMidi.js** v2 is currently in beta stage. It might still contain bugs and its features and API 
+may change (however, this is relatively unlikely). In any case, this software cannot yet be 
+considered production-ready. If you find a bug, please 
+[open an issue](https://github.com/cotejp/webmidi/issues) and I will do my best to address it in a 
+timely fashion.
 
 Having confirmation that the software works well is also valuable information. If that's the case 
 for you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
 
 ## Installation
 
-Depending on your needs and environment, you can install the **WebMidi** library in one of 
-three ways: manually, with Bower or with NPM.
+Depending on your needs and environment, you can install **WebMidi.js** in one of three ways: 
+manually, with Bower or with NPM.
 
 #### Manual Install
 
-You can install *WebMidi* the old fashioned way by downloading the
-[latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file.
-Uncompress the package, grab the `webmidi.min.js` file and copy it to your project. Link 
-to it from your HTML page as usual. 
+You can install **WebMidi.js** the old fashioned way by downloading the
+[latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file. Uncompress the 
+package, grab the `webmidi.min.js` file and copy it to your project. Link to it from your HTML page 
+as usual. 
 
 #### Bower Install
 
 To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
 Command Prompt (Windows) from the root of your project. Just make sure to correctly capitalize 
-the "W" and the "M" in WebMidi:
+the "W" and the "M" in "WebMidi":
 
     bower install WebMidi
 
@@ -78,9 +79,8 @@ Then, just add a `<script>` tag to your HTML page and make it point to:
 
 #### NPM Install
 
-If you prefer, you can install **WebMidi** with NPM. In order for this to work, you first
-need to create the usual `package.json` file. This is easily done by issuing `npm init` from your 
-project's root. Then, simply issue the following command to perform the actual install:
+If you prefer, you can install **WebMidi.js** with NPM. Simply issue the following command to 
+perform the actual install:
 
     npm install webmidi
     
@@ -90,7 +90,7 @@ Finally, just add a `<script>` tag to your HTML page and make it point to:
 
 ## Quick Start
 
-Getting started is easy. The first thing to do is to enable **WebMidi**. To do that, you call
+Getting started is easy. The first thing to do is to enable **WebMidi.js**. To do that, you call
 `WebMidi.enable()` and pass it a function to execute when done. This function will receive an 
 `Error` object if enabling `WebMidi` failed: 
 
@@ -165,12 +165,12 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## More code examples
 
-Here are various other examples to give you an idea of what is possible with `WebMidi`. For all 
+Here are various other examples to give you an idea of what is possible with **WebMidi.js**. For all 
 details, please consult the full 
 **[API documentation](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
 
 ```javascript
-// Enable WebMidi
+// Enable WebMidi.js
 WebMidi.enable(function (err) {
 
   if (err) {
@@ -313,9 +313,9 @@ moved to the `Input` object. A list of all available `Input` objects is availabl
 There might be a few other minor changes here and there but the refactoring mostly concerns the
 introduction of `Input` and `Output` objects.
 
-## Using WebMidi with the Jazz-Plugin
+## Using WebMidi.js with the Jazz-Plugin
 
-To use `WebMidi` on Safari, Firefox and Internet Explorer, you will first need to install 
+To use **WebMidi.js** on Safari, Firefox and Internet Explorer, you will first need to install 
 Jazz-Plugin. Simply [download the plugin](http://jazz-soft.net/download/Jazz-Plugin/) and run the 
 installer.
 
@@ -343,7 +343,9 @@ Obviously, you can also
 
 ## Support the Project
 
-If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as a token of your appreciation. This would automatically make you even more awesome than you already are!
+If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as 
+a token of your appreciation. This would automatically make you even more awesome than you already 
+are!
 
 [![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=beer-square)](https://beerpay.io/cotejp/webmidi)
 
