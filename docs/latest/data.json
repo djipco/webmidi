@@ -1,8 +1,8 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "2.0.0-rc.1",
-        "description": "Tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
+        "version": "2.0.0-rc.2",
+        "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": ""
     },
     "files": {
