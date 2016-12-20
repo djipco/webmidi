@@ -420,11 +420,10 @@
    * @method enable
    * @static
    *
-   * @param callback {Function} A function to execute upon success. This function will receive an
+   * @param [callback] {Function} A function to execute upon success. This function will receive an
    * `Error` object upon failure to enable the Web MIDI API.
    * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not.
    *
-   * @throws TypeError The callback parameter is mandatory and must be a function.
    * @throws Error The Web MIDI API is not supported by your browser.
    * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
@@ -432,27 +431,31 @@
 
     if (this.enabled) { return; }
 
-    if ( !callback || typeof callback !== "function" ) {
-      throw new TypeError("The callback parameter is mandatory and must be a function.");
-    }
-
     if ( !this.supported ) {
-      callback( new Error("The Web MIDI API is not supported by your browser.") );
+
+      if (typeof callback === "function") {
+        callback( new Error("The Web MIDI API is not supported by your browser.") );
+      }
+
       return;
+
     }
 
     navigator.requestMIDIAccess({"sysex": sysex}).then(
 
       function(midiAccess) {
+
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
-        callback.bind(this)();
+
+        if (typeof callback === "function") { callback.call(this); }
+
       }.bind(this),
 
       function (err) {
-        callback.bind(this)(err);
+        if (typeof callback === "function") { callback.call(this, err); }
       }.bind(this)
 
     );
