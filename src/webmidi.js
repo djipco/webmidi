@@ -60,6 +60,8 @@
    * @todo  Should the sendsysex method allow Uint8Array param ?
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
+   * @todo  Add explicit support for universal system exclusive messages, real time (0x7F) and
+   *        non-real time (0x7E)
    * @todo  Implement the show control protocol subset.
    *
    */
@@ -419,25 +421,34 @@
    * @method enable
    * @static
    *
-   * @param callback {Function} A function to execute upon success. This function will receive an
-   * `Error` object upon failure to enable the Web MIDI API.
    * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not.
+   * @param callback {Function=undefined} A function to execute upon success. This function will
+   * receive an `Error` object upon failure to enable the Web MIDI API.
    *
-   * @throws TypeError The callback parameter is mandatory and must be a function.
    * @throws Error The Web MIDI API is not supported by your browser.
    * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
-  WebMidi.prototype.enable = function(callback, sysex) {
+  WebMidi.prototype.enable = function(sysex, callback) {
 
     if (this.enabled) { return; }
 
-    if ( !callback || typeof callback !== "function" ) {
-      throw new TypeError("The callback parameter is mandatory and must be a function.");
-    }
+    // Prepare default event for later
+    var event = { timestamp: this.time, type: "error" };
 
     if ( !this.supported ) {
-      callback( new Error("The Web MIDI API is not supported by your browser.") );
+
+      event.message = "The Web MIDI API is not supported by your browser.";
+
+      if (typeof callback === "function") {
+        callback( new Error(event.message) );
+      }
+
+      this._userHandlers[event.type].forEach(function (handler) {
+        handler.call(this, event);
+      });
+
       return;
+
     }
 
     navigator.requestMIDIAccess({"sysex": sysex}).then(
@@ -448,10 +459,47 @@
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
         callback.bind(this)();
+
+        /**
+         * Event emitted when the MIDI subsystem is enabled. This event follows a call to the
+         * `enable()` function.
+         *
+         * @event enabled
+         * @param {Object} event
+         * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds
+         * since the epoch).
+         * @param {String} event.type The type of event that occurred.
+         */
+        event.type = "enabled";
+
+        this._userHandlers[event.type].forEach(function (handler) {
+          handler.call(this, event);
+        });
+
       }.bind(this),
 
       function (err) {
+
         callback.bind(this)(err);
+
+        /**
+         * Event emitted when an error occurs. This event typically follows a call to the
+         * `enable()` function.
+         *
+         * @event error
+         * @param {Object} event
+         * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds
+         * since the epoch).
+         * @param {String} event.type The type of event that occurred.
+         * @param {String} event.error The error object
+         */
+        event.type = "error";
+        event.message = err;
+
+        this._userHandlers[event.type].forEach(function (handler) {
+          handler.call(this, event);
+        });
+
       }.bind(this)
 
     );
