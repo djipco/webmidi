@@ -70,16 +70,6 @@
 
       });
 
-      it("should throw error if callback is not a function", function () {
-
-        [undefined, null, {}, true, false, 'string', []].forEach(function (param) {
-          expect(function () {
-            WebMidi.enable(param);
-          }).to.throw(TypeError);
-        });
-
-      });
-
       it("should execute the callback", function (done) {
         WebMidi.enable(function () {
           done();
