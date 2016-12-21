@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="WebMidi" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-rc.2</em>
+            <em>API Docs for: 2.0.0-rc.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -144,6 +144,7 @@
    * @todo  Should the sendsysex method allow Uint8Array param ?
    * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
+   * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
    *
    */
@@ -503,11 +504,10 @@
    * @method enable
    * @static
    *
-   * @param callback {Function} A function to execute upon success. This function will receive an
+   * @param [callback] {Function} A function to execute upon success. This function will receive an
    * &#x60;Error&#x60; object upon failure to enable the Web MIDI API.
    * @param [sysex=false] {Boolean} Whether to enable MIDI system exclusive messages or not.
    *
-   * @throws TypeError The callback parameter is mandatory and must be a function.
    * @throws Error The Web MIDI API is not supported by your browser.
    * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
@@ -515,27 +515,31 @@
 
     if (this.enabled) { return; }
 
-    if ( !callback || typeof callback !== &quot;function&quot; ) {
-      throw new TypeError(&quot;The callback parameter is mandatory and must be a function.&quot;);
-    }
-
     if ( !this.supported ) {
-      callback( new Error(&quot;The Web MIDI API is not supported by your browser.&quot;) );
+
+      if (typeof callback === &quot;function&quot;) {
+        callback( new Error(&quot;The Web MIDI API is not supported by your browser.&quot;) );
+      }
+
       return;
+
     }
 
     navigator.requestMIDIAccess({&quot;sysex&quot;: sysex}).then(
 
       function(midiAccess) {
+
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
         this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
-        callback.bind(this)();
+
+        if (typeof callback === &quot;function&quot;) { callback.call(this); }
+
       }.bind(this),
 
       function (err) {
-        callback.bind(this)(err);
+        if (typeof callback === &quot;function&quot;) { callback.call(this, err); }
       }.bind(this)
 
     );
@@ -2630,11 +2634,12 @@
    * @chainable
    *
    * @param note {Number|Array|String}  The note(s) you wish to stop. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between &#x60;0&#x60; and
+   * one of three ways. The first way is by using the MIDI note number (an integer between &#x60;0&#x60; and
    * &#x60;127&#x60;). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7).
    * The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and
    * the highest note is G8 (MIDI note number 127). It is also possible to specify an array of note
-   * numbers and/or names.
+   * numbers and/or names. The final way is to use the special value &#x60;all&#x60; to send an &#x27;allnotesoff&#x27;
+   * channel message.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between &#x60;1&#x60; and &#x60;16&#x60;) or an
    * array of channel numbers. If the special value &#x60;all&#x60; is used (default), the message will be
@@ -2657,10 +2662,16 @@
    * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between &#x60;0&#x60;
    * and &#x60;1&#x60;). If the &#x60;rawVelocity&#x60; option is &#x60;true&#x60;, the value should be specified as an integer
    * between &#x60;0&#x60; and &#x60;127&#x60;. An invalid velocity value will silently trigger the default of &#x60;0.5&#x60;.
+   * Note that when the first parameter to &#x60;stopNote()&#x60; is &#x60;all&#x60;, the release velocity is silently
+   * ignored.
    *
    * @return {Output} Returns the &#x60;Output&#x60; object so methods can be chained.
    */
   Output.prototype.stopNote = function(note, channel, options) {
+
+    if (note === &#x27;all&#x27;) {
+      return this.sendChannelMode(&#x27;allnotesoff&#x27;, 0, channel, options);
+    }
 
     var nVelocity = 64;
 
