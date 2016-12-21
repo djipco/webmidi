@@ -1,4 +1,4 @@
-# WebMidi.js
+![WebMidi.js](http://cotejp.github.io/webmidi/images/webmidijs-logo.svg)
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
