@@ -2550,11 +2550,12 @@
    * @chainable
    *
    * @param note {Number|Array|String}  The note(s) you wish to stop. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between `0` and
+   * one of three ways. The first way is by using the MIDI note number (an integer between `0` and
    * `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7).
    * The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and
    * the highest note is G8 (MIDI note number 127). It is also possible to specify an array of note
-   * numbers and/or names.
+   * numbers and/or names. The final way is to use the special value `all` to send an 'allnotesoff'
+   * channel message.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between `1` and `16`) or an
    * array of channel numbers. If the special value `all` is used (default), the message will be
@@ -2581,6 +2582,10 @@
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.stopNote = function(note, channel, options) {
+
+    if (note === 'all') {
+      return this.sendChannelMode('allnotesoff', 0, channel, options);
+    }
 
     var nVelocity = 64;
 
