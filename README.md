@@ -40,7 +40,7 @@ support for the following additional browsers:
 * Internet Explorer (Windows)
 
 For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
-to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidi-with-the-jazz-plugin) section.
+to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
 
 ## Caveat Emptor
 
