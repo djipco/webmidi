@@ -116,7 +116,7 @@ device. To view all the available `Input` and `Output` ports, you can use the ma
 WebMidi.enable(function (err) {
     console.log(WebMidi.inputs);
     console.log(WebMidi.outputs);
-}
+});
 ```
 
 To send MIDI messages to a device, you simply need to grab that device and call one of its output
