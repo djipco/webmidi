@@ -1,6 +1,6 @@
 {
   "name": "webmidi",
-  "version": "2.0.0-rc.4",
+  "version": "2.0.0-rc.5",
   "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "webmidi.min.js",
@@ -16,7 +16,8 @@
     "message",
     "web",
     "browser",
-    "front-end"
+    "front-end",
+    "webmidi api"
   ],
   "homepage": "https://github.com/cotejp/webmidi",
   "license": "MIT",
