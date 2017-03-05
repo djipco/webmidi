@@ -54,6 +54,8 @@
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
    * @todo  Implement port statechange events.
+   * @todo  Test with the Node.js version of Jazz Plugin
+   * @todo  Complete tests
    * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
    * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
@@ -428,6 +430,54 @@
    * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   WebMidi.prototype.enable = function(callback, sysex) {
+
+    // Why are you not using a Promise-based API for the enable() method?
+    //
+    // Short answer: because of IE.
+    //
+    // Long answer:
+    //
+    // IE 11 and below still do not support promises. Therefore, WebMIDIAPIShim has to implement a
+    // simple Promise look-alike object to handle the call to requestMIDIAccess(). This look-alike
+    // is not a fully-fledged Promise object. It does not support using catch() for example. This
+    // means that, to provide a real Promise-based interface for the enable() method, we would need
+    // to add a dependency in the form of a Promise polyfill. So, to keep things simpler, we will
+    // stick to the good old callback based enable() function. If the situation changes, the
+    // Promise-based version is ready below. Stupid IE.
+
+    // return new Promise(function(resolve, reject) {
+    //
+    //   if (this.enabled) {
+    //
+    //     resolve(this);
+    //
+    //   } else if (!this.supported) {
+    //
+    //     reject(new Error("The Web MIDI API is not supported by your browser."));
+    //
+    //   } else {
+    //
+    //     navigator
+    //       .requestMIDIAccess({"sysex": sysex})
+    //       .then(function(midiAccess) {
+    //
+    //           this.interface = midiAccess;
+    //           this._resetInterfaceUserHandlers();
+    //           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
+    //           this._onInterfaceStateChange(null); // manually update inputs and outputs at beginning
+    //
+    //           resolve(this);
+    //
+    //         }.bind(this)
+    //
+    //       )
+    //       .catch(function(err) {
+    //         reject(err);
+    //       });
+    //
+    //   }
+    //
+    // }.bind(this));
 
     if (this.enabled) { return; }
 
@@ -2253,7 +2303,7 @@
     });
 
     data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(wm.MIDI_SYSTEM_MESSAGES.sysex, data, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.sysex, data, this._parseTimeParameter(options.time));
 
     return this;
 
@@ -2283,7 +2333,7 @@
    */
   Output.prototype.sendTimecodeQuarterFrame = function(value, options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, value, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, value, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2317,7 +2367,11 @@
     var msb = (value >> 7) & 0x7F;
     var lsb = value & 0x7F;
 
-    this.send(wm.MIDI_SYSTEM_MESSAGES.songposition, [msb, lsb], options.time);
+    this.send(
+      wm.MIDI_SYSTEM_MESSAGES.songposition,
+      [msb, lsb],
+      this._parseTimeParameter(options.time)
+    );
     return this;
 
   };
@@ -2355,7 +2409,7 @@
       throw new RangeError("The song number must be between 0 and 127.");
     }
 
-    this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], this._parseTimeParameter(options.time));
 
     return this;
 
@@ -2385,7 +2439,11 @@
    */
   Output.prototype.sendTuningRequest = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.tuningrequest, undefined, options.time);
+    this.send(
+      wm.MIDI_SYSTEM_MESSAGES.tuningrequest,
+      undefined,
+      this._parseTimeParameter(options.time)
+    );
     return this;
   };
 
@@ -2410,7 +2468,7 @@
    */
   Output.prototype.sendClock = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.clock, undefined, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.clock, undefined, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2435,7 +2493,7 @@
    */
   Output.prototype.sendStart = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2461,7 +2519,7 @@
    */
   Output.prototype.sendContinue = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2486,7 +2544,7 @@
    */
   Output.prototype.sendStop = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2512,7 +2570,11 @@
    */
   Output.prototype.sendActiveSensing = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.activesensing, undefined, options.time);
+    this.send(
+      wm.MIDI_SYSTEM_MESSAGES.activesensing,
+      undefined,
+      this._parseTimeParameter(options.time)
+    );
     return this;
   };
 
@@ -2537,7 +2599,7 @@
    */
   Output.prototype.sendReset = function(options) {
     options = options || {};
-    this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, options.time);
+    this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, this._parseTimeParameter(options.time));
     return this;
   };
 
@@ -2578,6 +2640,8 @@
    * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
    * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
+   * ignored.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
@@ -2703,23 +2767,28 @@
 
     }
 
-    options.time = this._parseTimeParameter(options.time) || 0;
+    options.time = this._parseTimeParameter(options.time);
 
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
       this._convertChannelToArray(channel).forEach(function(ch) {
         this.send(
-            (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
-            [item, Math.round(nVelocity)],
+          (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
+          [item, Math.round(nVelocity)],
           options.time
         );
       }.bind(this));
 
     }.bind(this));
 
-    // Send note off messages (only if a duration has been defined)
-    if (options.duration !== undefined) {
+
+    // Send note off messages (only if a valid duration has been defined)
+    options.duration = parseFloat(options.duration);
+
+    if (options.duration) {
+
+      if (options.duration <= 0) { options.duration = 0; }
 
       var nRelease = 64;
 
@@ -2743,9 +2812,9 @@
 
         this._convertChannelToArray(channel).forEach(function(ch) {
           this.send(
-              (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
-              [item, Math.round(nRelease)],
-              options.time + options.duration
+            (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
+            [item, Math.round(nRelease)],
+            (options.time || wm.time) + options.duration
           );
         }.bind(this));
 
@@ -2813,9 +2882,9 @@
 
       that._convertChannelToArray(channel).forEach(function(ch) {
         that.send(
-            (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (ch - 1),
-            [item, nPressure],
-            that._parseTimeParameter(options.time)
+          (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (ch - 1),
+          [item, nPressure],
+          that._parseTimeParameter(options.time)
         );
       });
 
@@ -2952,9 +3021,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       this.send(
-          (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (ch - 1),
-          [controller, value],
-          this._parseTimeParameter(options.time)
+        (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (ch - 1),
+        [controller, value],
+        this._parseTimeParameter(options.time)
       );
     }.bind(this));
 
@@ -3804,9 +3873,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (ch - 1),
-          [program],
-          that._parseTimeParameter(options.time)
+        (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (ch - 1),
+        [program],
+        that._parseTimeParameter(options.time)
       );
     });
 
@@ -3907,9 +3976,9 @@
 
     this._convertChannelToArray(channel).forEach(function(ch) {
       that.send(
-          (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (ch - 1),
-          [lsb, msb],
-          that._parseTimeParameter(options.time)
+        (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (ch - 1),
+        [lsb, msb],
+        that._parseTimeParameter(options.time)
       );
     });
 
@@ -3918,29 +3987,32 @@
   };
 
   /**
+   * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
+   * parameter. If the parameter is a string starting with the "+" sign and followed by a number,
+   * the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
+   * value will be returned as is.
+   *
+   * If the calculated return value is 0, less than zero or an otherwise invalid value, `undefined`
+   * will be returned.
+   *
    * @method _parseTimeParameter
-   * @param [time=0] {Number|String}
+   * @param [time] {Number|String}
+   * @return DOMHighResTimeStamp
    * @protected
    */
   Output.prototype._parseTimeParameter = function(time) {
 
-    var parsed;
+    var parsed, value;
 
-    if (time === undefined) { return 0; }
-
-    if (time && time.substring && time.substring(0, 1) === "+") {
-
+    if (typeof time === 'string' &&  time.substring(0, 1) === "+") {
       parsed = parseFloat(time);
-      if (!parsed) { throw new TypeError("Invalid relative time format."); }
-      return (parsed + wm.time);
-
+      if (parsed && parsed > 0) { value = wm.time + parsed; }
     } else {
-
       parsed = parseFloat(time);
-      if (!parsed) { throw new TypeError("Invalid absolute time format."); }
-      return parsed;
-
+      if (parsed > wm.time) { value = parsed; }
     }
+
+    return value;
 
   };
 
