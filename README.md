@@ -30,7 +30,7 @@ built-in support:
 * Opera (Mac, GNU/Linux, Windows)
 * Android WebView component (KitKat and above) 
 
-It is possible to use this library in other browsers if you install version 1.4+ of 
+It is possible to use this library in other browsers and in Node.js if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
 [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
 support for the following additional browsers:
@@ -38,6 +38,7 @@ support for the following additional browsers:
 * Firefox (Mac, GNU/Linux & Windows)
 * Safari (Mac)
 * Internet Explorer (Windows)
+* Node.js (untested)
 
 For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
 to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
