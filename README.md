@@ -320,6 +320,10 @@ To use **WebMidi.js** on Safari, Firefox and Internet Explorer, you will first n
 Jazz-Plugin. Simply [download the plugin](http://jazz-soft.net/download/Jazz-Plugin/) and run the 
 installer.
 
+>Users of Firefox v52+ will also need to install the 
+>[Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) which can be 
+>downloaded from the Mozilla Add-ons site.
+
 Then, you will need to add the plugin to the page with the following HTML code:
 
     <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
