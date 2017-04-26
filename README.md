@@ -45,8 +45,9 @@ to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-pl
 >Note: Firefox v52+ deactivated support for NPAPI plugins. This means the Jazz-MIDI plugin will not 
 >work in that version (and newer versions). An 
 >[extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) has been created by Jazz-Soft, 
->but this extension does not use the same API as their NPAPI plugin. You can watch 
->[this issue](https://github.com/cotejp/webmidi/issues/16) to be updated on progress.
+>to alleviate this problem but this extension does not use the same API as their NPAPI plugin. 
+>Therefore, WebMIDIApiShim will need to be [updated](https://github.com/cotejp/webmidi/issues/16) 
+>before full support for Firefox is restored.
 
 ## Node.js Support
 
