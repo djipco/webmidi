@@ -30,18 +30,24 @@ built-in support:
 * Opera (Mac, GNU/Linux, Windows)
 * Android WebView component (KitKat and above) 
 
-It is possible to use this library in other browsers and in Node.js if you install version 1.4+ of 
+It is possible to use this library in other browsers if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
 [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
 support for the following additional browsers:
 
-* Firefox (Mac, GNU/Linux & Windows)
+* Firefox v51 or less (Mac, GNU/Linux & Windows)
 * Safari (Mac)
 * Internet Explorer (Windows)
-* Node.js (untested)
 
 For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
 to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
+
+## Node.js Support
+
+WebMidi.js is currently not working in Node.js. It should be possible to make it work with the help
+of the [jazz-midi npm module](https://www.npmjs.com/package/jazz-midi) and of the 
+[web-midi-api npm module](https://www.npmjs.com/package/web-midi-api). If anyone is interested in 
+contributing, help would be more than welcome.
 
 ## Caveat Emptor
 
