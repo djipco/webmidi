@@ -42,11 +42,15 @@ support for the following additional browsers:
 For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
 to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
 
+Note: Firefox v52+ deactivated support for NPAPI plugins. This means the Jazz-MIDI plugin will not 
+work in that version (and newer versions). An [extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) has been created by Jazz-Soft, but this extension does not use the same API as their NPAPI plugin. You can watch 
+[this issue](https://github.com/cotejp/webmidi/issues/16) to be updated on progress.
+
 ## Node.js Support
 
 WebMidi.js is currently not working in Node.js. It should be possible to make it work with the help
-of the [jazz-midi npm module](https://www.npmjs.com/package/jazz-midi) and of the 
-[web-midi-api npm module](https://www.npmjs.com/package/web-midi-api). If anyone is interested in 
+of the [jazz-midi](https://www.npmjs.com/package/jazz-midi) npm module and of the 
+[web-midi-api](https://www.npmjs.com/package/web-midi-api) npm module. If anyone is interested in 
 contributing, help would be more than welcome.
 
 ## Caveat Emptor
