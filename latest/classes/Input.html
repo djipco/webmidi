@@ -1118,7 +1118,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2032"><code>src&#x2F;webmidi.js:2032</code></a>
+                            <a href="../files/src_webmidi.js.html#l2049"><code>src&#x2F;webmidi.js:2049</code></a>
                             </p>
                     
                     
@@ -1472,7 +1472,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1956"><code>src&#x2F;webmidi.js:1956</code></a>
+                            <a href="../files/src_webmidi.js.html#l1973"><code>src&#x2F;webmidi.js:1973</code></a>
                             </p>
                     
                     
@@ -1568,7 +1568,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1994"><code>src&#x2F;webmidi.js:1994</code></a>
+                            <a href="../files/src_webmidi.js.html#l2011"><code>src&#x2F;webmidi.js:2011</code></a>
                             </p>
                     
                     
@@ -2514,7 +2514,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2050"><code>src&#x2F;webmidi.js:2050</code></a>
+                            <a href="../files/src_webmidi.js.html#l2067"><code>src&#x2F;webmidi.js:2067</code></a>
                             </p>
                     
                     
@@ -2609,7 +2609,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1897"><code>src&#x2F;webmidi.js:1897</code></a>
+                            <a href="../files/src_webmidi.js.html#l1914"><code>src&#x2F;webmidi.js:1914</code></a>
                             </p>
                     
                     
@@ -2704,7 +2704,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1917"><code>src&#x2F;webmidi.js:1917</code></a>
+                            <a href="../files/src_webmidi.js.html#l1934"><code>src&#x2F;webmidi.js:1934</code></a>
                             </p>
                     
                     
@@ -2809,7 +2809,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1975"><code>src&#x2F;webmidi.js:1975</code></a>
+                            <a href="../files/src_webmidi.js.html#l1992"><code>src&#x2F;webmidi.js:1992</code></a>
                             </p>
                     
                     
@@ -2905,7 +2905,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2013"><code>src&#x2F;webmidi.js:2013</code></a>
+                            <a href="../files/src_webmidi.js.html#l2030"><code>src&#x2F;webmidi.js:2030</code></a>
                             </p>
                     
                     
@@ -3008,7 +3008,22 @@ different IDs for the same port.</p>
                         </div>
                     
                         <div class="description">
-                            <p>Event emitted when a system exclusive MIDI message has been received.</p>
+                            <p>Event emitted when a system exclusive MIDI message has been received. You should note that,
+                    to receive <code>sysex</code> events, you must call the <code>WebMidi.enable()</code> method with a second
+                    parameter set to <code>true</code>:</p>
+                    <pre class="code prettyprint"><code>WebMidi.enable(function(err) {
+                    
+                       if (err) {
+                         console.log(&quot;WebMidi could not be enabled.&quot;);
+                       }
+                    
+                       var input = WebMidi.inputs[0];
+                    
+                       input.addListener('sysex', &quot;all&quot;, function (e) {
+                         console.log(e);
+                       });
+                    
+                    }, true);</code></pre>
                     
                         </div>
                     
@@ -3096,7 +3111,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1877"><code>src&#x2F;webmidi.js:1877</code></a>
+                            <a href="../files/src_webmidi.js.html#l1894"><code>src&#x2F;webmidi.js:1894</code></a>
                             </p>
                     
                     
@@ -3191,7 +3206,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1937"><code>src&#x2F;webmidi.js:1937</code></a>
+                            <a href="../files/src_webmidi.js.html#l1954"><code>src&#x2F;webmidi.js:1954</code></a>
                             </p>
                     
                     
@@ -3287,7 +3302,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2068"><code>src&#x2F;webmidi.js:2068</code></a>
+                            <a href="../files/src_webmidi.js.html#l2085"><code>src&#x2F;webmidi.js:2085</code></a>
                             </p>
                     
                     
