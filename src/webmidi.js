@@ -1856,20 +1856,37 @@
 
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
 
-      /**
-       * Event emitted when a system exclusive MIDI message has been received.
-       *
-       * @event sysex
-       *
-       * @param {Object} event
-       * @param {Input} event.target The `Input` that triggered the event.
-       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
-       * @param {String} event.type The type of event that occurred.
-       */
+/**
+ * Event emitted when a system exclusive MIDI message has been received. You should note that,
+ * to receive `sysex` events, you must call the `WebMidi.enable()` method with a second
+ * parameter set to `true`:
+ *
+ *     WebMidi.enable(function(err) {
+ *
+ *        if (err) {
+ *          console.log("WebMidi could not be enabled.");
+ *        }
+ *
+ *        var input = WebMidi.inputs[0];
+ *
+ *        input.addListener('sysex', "all", function (e) {
+ *          console.log(e);
+ *        });
+ *
+ *     }, true);
+ *
+ * @event sysex
+ *
+ * @param {Object} event
+ * @param {Input} event.target The `Input` that triggered the event.
+ * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+ * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+ * start).
+ * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+ * the epoch).
+ * @param {String} event.type The type of event that occurred.
+ *
+ */
       event.type = 'sysex';
 
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
