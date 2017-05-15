@@ -101,6 +101,13 @@ perform the actual install:
 Finally, just add a `<script>` tag to your HTML page and make it point to:
 
     <script src="node_modules/webmidi/webmidi.min.js"></script>
+    
+#### ES6/ES2015 Modules and Bundlers
+
+If you are using a bundler such as WebPack or are using native module support (ES6/ES2015), you 
+can import **WebMidi.js** in your project in this way:
+
+    import WebMidi from 'path/to/webmidi';
 
 ## Quick Start
 
