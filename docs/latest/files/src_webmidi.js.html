@@ -17,7 +17,7 @@
                 <h1><img src="http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-rc.5</em>
+            <em>API Docs for: 2.0.0-rc.6</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -861,6 +861,28 @@
   };
 
   /**
+   * Returns the octave number for the specified MIDI note number. The returned value will be
+   * between -2 and 8.
+   *
+   * @method getOctave
+   * @static
+   *
+   * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
+   *
+   * @returns {Number} The octave as an integer between -2 and 8. If the note number passed to
+   * &#x60;getOctave()&#x60; is invalid, &#x60;undefined&#x60; will be returned.
+   *
+   * @since 2.0.0-rc.6
+   */
+  WebMidi.prototype.getOctave = function(number) {
+
+    if (number &gt;= 0 &amp;&amp; number &lt;= 127) {
+      return Math.floor(parseInt(number) / 12 - 1) - 1;
+    }
+
+  };
+
+  /**
    * Returns the first MIDI &#x60;Output&#x60; that matches the specified name.
    *
    * Please note that the port names change from one host to another. For example, Chrome does
@@ -1647,7 +1669,7 @@
       event.note = {
         &quot;number&quot;: data1,
         &quot;name&quot;: wm._notes[data1 % 12],
-        &quot;octave&quot;: Math.floor(data1 / 12 - 1) - 3
+        &quot;octave&quot;: wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1681,7 +1703,7 @@
       event.note = {
         &quot;number&quot;: data1,
         &quot;name&quot;: wm._notes[data1 % 12],
-        &quot;octave&quot;: Math.floor(data1 / 12 - 1) - 3
+        &quot;octave&quot;: wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1713,7 +1735,7 @@
       event.note = {
         &quot;number&quot;: data1,
         &quot;name&quot;: wm._notes[data1 % 12],
-        &quot;octave&quot;: Math.floor(data1 / 12 - 1) - 3
+        &quot;octave&quot;: wm.getOctave(data1)
       };
       event.value = data2 / 127;
 
@@ -1941,7 +1963,23 @@
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
 
       /**
-       * Event emitted when a system exclusive MIDI message has been received.
+       * Event emitted when a system exclusive MIDI message has been received. You should note that,
+       * to receive &#x60;sysex&#x60; events, you must call the &#x60;WebMidi.enable()&#x60; method with a second
+       * parameter set to &#x60;true&#x60;:
+       *
+       *     WebMidi.enable(function(err) {
+       *
+       *        if (err) {
+       *          console.log(&quot;WebMidi could not be enabled.&quot;);
+       *        }
+       *
+       *        var input = WebMidi.inputs[0];
+       *
+       *        input.addListener(&#x27;sysex&#x27;, &quot;all&quot;, function (e) {
+       *          console.log(e);
+       *        });
+       *
+       *     }, true);
        *
        * @event sysex
        *
@@ -1953,6 +1991,7 @@
        * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
        * the epoch).
        * @param {String} event.type The type of event that occurred.
+       *
        */
       event.type = &#x27;sysex&#x27;;
 
