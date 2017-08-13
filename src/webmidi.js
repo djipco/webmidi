@@ -397,7 +397,7 @@
       time: {
         enumerable: true,
         get: function() {
-          return window.performance.now();
+          return performance.now();
         }
       }
 
