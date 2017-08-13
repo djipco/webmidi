@@ -777,6 +777,28 @@
   };
 
   /**
+   * Returns the octave number for the specified MIDI note number. The returned value will be
+   * between -2 and 8.
+   *
+   * @method getOctave
+   * @static
+   *
+   * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
+   *
+   * @returns {Number} The octave as an integer between -2 and 8. If the note number passed to
+   * `getOctave()` is invalid, `undefined` will be returned.
+   *
+   * @since 2.0.0-rc.6
+   */
+  WebMidi.prototype.getOctave = function(number) {
+
+    if (number >= 0 && number <= 127) {
+      return Math.floor(parseInt(number) / 12 - 1) - 1;
+    }
+
+  };
+
+  /**
    * Returns the first MIDI `Output` that matches the specified name.
    *
    * Please note that the port names change from one host to another. For example, Chrome does
@@ -1563,7 +1585,7 @@
       event.note = {
         "number": data1,
         "name": wm._notes[data1 % 12],
-        "octave": Math.floor(data1 / 12 - 1) - 3
+        "octave": wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1597,7 +1619,7 @@
       event.note = {
         "number": data1,
         "name": wm._notes[data1 % 12],
-        "octave": Math.floor(data1 / 12 - 1) - 3
+        "octave": wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1629,7 +1651,7 @@
       event.note = {
         "number": data1,
         "name": wm._notes[data1 % 12],
-        "octave": Math.floor(data1 / 12 - 1) - 3
+        "octave": wm.getOctave(data1)
       };
       event.value = data2 / 127;
 
@@ -1856,37 +1878,37 @@
 
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
 
-/**
- * Event emitted when a system exclusive MIDI message has been received. You should note that,
- * to receive `sysex` events, you must call the `WebMidi.enable()` method with a second
- * parameter set to `true`:
- *
- *     WebMidi.enable(function(err) {
- *
- *        if (err) {
- *          console.log("WebMidi could not be enabled.");
- *        }
- *
- *        var input = WebMidi.inputs[0];
- *
- *        input.addListener('sysex', "all", function (e) {
- *          console.log(e);
- *        });
- *
- *     }, true);
- *
- * @event sysex
- *
- * @param {Object} event
- * @param {Input} event.target The `Input` that triggered the event.
- * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
- * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
- * start).
- * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
- * the epoch).
- * @param {String} event.type The type of event that occurred.
- *
- */
+      /**
+       * Event emitted when a system exclusive MIDI message has been received. You should note that,
+       * to receive `sysex` events, you must call the `WebMidi.enable()` method with a second
+       * parameter set to `true`:
+       *
+       *     WebMidi.enable(function(err) {
+       *
+       *        if (err) {
+       *          console.log("WebMidi could not be enabled.");
+       *        }
+       *
+       *        var input = WebMidi.inputs[0];
+       *
+       *        input.addListener('sysex', "all", function (e) {
+       *          console.log(e);
+       *        });
+       *
+       *     }, true);
+       *
+       * @event sysex
+       *
+       * @param {Object} event
+       * @param {Input} event.target The `Input` that triggered the event.
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
+       * start).
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+       * the epoch).
+       * @param {String} event.type The type of event that occurred.
+       *
+       */
       event.type = 'sysex';
 
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
