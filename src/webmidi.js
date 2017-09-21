@@ -54,7 +54,7 @@
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
    * @todo  Implement port statechange events.
-   * @todo  Test with the Node.js version of Jazz Plugin
+   * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
    * @todo  Complete tests
    * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
    * @todo  Add once() function.
@@ -64,6 +64,7 @@
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
+   * @todo  Add methods for channel mode messages
    *
    */
   function WebMidi() {
@@ -3791,10 +3792,8 @@
   };
 
   /**
-   * Sends a MIDI `channel mode` message to the specified channel(s).
-   *
-   * The channel mode message to send can be specified numerically or by using one of the following
-   * common names:
+   * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to send can be specified
+   * numerically or by using one of the following common names:
    *
    *   * `allsoundoff` (#120)
    *   * `resetallcontrollers` (#121)
@@ -3805,39 +3804,40 @@
    *   * `monomodeon` (#126)
    *   * `polymodeon` (#127)
    *
+   * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may require a value
+   * that's not zero. For that reason, the `value` parameter is optional and defaults to 0.
+   *
    * @method sendChannelMode
    * @chainable
    *
-   * @param command {Number|String} The numerical identifier of the MIDI channel mode message
-   * (integer between 120-127) or its name as a string.
-   * @param value {Number} The value to send (integer between 0-127)
-   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param command {Number|String} The numerical identifier of the channel mode message (integer between 120-127) or
+   * its name as a string.
+   * @param [value=0] {Number} The value to send (integer between 0-127).
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an array of channel
+   * numbers. If the special value "all" is used, the message will be sent to all 16 channels.
    * @param {Object} [options={}]
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two things. If the value is
+   * a string starting with the + sign and followed by a number, the request will be delayed by the specified number
+   * (in milliseconds). Otherwise, the value is considered a timestamp and the request will be scheduled at that
+   * timestamp. The `DOMHighResTimeStamp` value is relative to the navigation start of the document. To retrieve the
+   * current time, you can use `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is
+   * to be sent as soon as possible.
    *
+   * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-   * @throws {RangeError} Value must be between 0 and 127.
+   * @throws {RangeError} Value must be an integer between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
   Output.prototype.sendChannelMode = function(command, value, channel, options) {
 
-    var that = this;
-
     options = options || {};
 
     if (typeof command === "string") {
 
       command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
+
       if (!command) {
         throw new TypeError("Invalid channel mode message name.");
       }
@@ -3845,28 +3845,28 @@
     } else {
 
       command = parseInt(command);
+
       if ( !(command >= 120 && command <= 127) ) {
         throw new RangeError("Channel mode numerical identifiers must be between 120 and 127.");
       }
 
     }
 
+    value = parseInt(value) || 0;
 
-
-    value = parseInt(value);
-    if (isNaN(value) || value < 0 || value > 127) {
-      throw new RangeError("Value must be integers between 0 and 127.");
+    if (value < 0 || value > 127) {
+      throw new RangeError("Value must be an integer between 0 and 127.");
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
 
-      that.send(
+      this.send(
           (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (ch - 1),
           [command, value],
-          that._parseTimeParameter(options.time)
+          this._parseTimeParameter(options.time)
       );
 
-    });
+    }.bind(this));
 
     return this;
 
