@@ -51,10 +51,10 @@ to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-pl
 
 ## Node.js Support
 
-WebMidi.js is currently not working in Node.js. It should be possible to make it work with the help
-of the [jazz-midi](https://www.npmjs.com/package/jazz-midi) npm module and of the 
-[web-midi-api](https://www.npmjs.com/package/web-midi-api) npm module. If anyone is interested in 
-contributing, help would be more than welcome.
+WebMidi.js is not officially supported in Node.js. However, there is hope. I managed to get most 
+parts of it working by using the [web-midi-api](https://www.npmjs.com/package/web-midi-api) npm 
+module. Check out this [comment](https://github.com/cotejp/webmidi/issues/15#issuecomment-322020295) 
+for more information. If anyone is interested in contributing, help would be more than welcome. 
 
 ## Caveat Emptor
 
@@ -339,9 +339,13 @@ To use **WebMidi.js** on Safari, Firefox and Internet Explorer, you will first n
 Jazz-Plugin. Simply [download the plugin](http://jazz-soft.net/download/Jazz-Plugin/) and run the 
 installer.
 
->Users of Firefox v52+ will also need to install the 
->[Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) which can be 
->downloaded from the Mozilla Add-ons site.
+> Users of Firefox v52+ are currently out of luck because Mozilla deactivated support for NPAPI
+> plugins. There is an add-on version of 
+> [Jazz-Midi](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) but, unfortunately, the 
+> API is different and cannot be used as is. Firefox v52+ users will have to wait for native Web 
+> MIDI support to be finalized. 
+> [Reading from the comments on Bug 836897](https://bugzilla.mozilla.org/show_bug.cgi?id=836897), 
+> this might take a while...
 
 Then, you will need to add the plugin to the page with the following HTML code:
 
