@@ -17,7 +17,7 @@
                 <h1><img src="http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-rc.7</em>
+            <em>API Docs for: 2.0.0-rc.8</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -138,7 +138,7 @@
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
    * @todo  Implement port statechange events.
-   * @todo  Test with the Node.js version of Jazz Plugin
+   * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
    * @todo  Complete tests
    * @todo  Refine &quot;options&quot; param of addListener. Allow listening for specific controller change.
    * @todo  Add once() function.
@@ -148,6 +148,7 @@
    *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
+   * @todo  Add methods for channel mode messages
    *
    */
   function WebMidi() {
@@ -3875,10 +3876,8 @@
   };
 
   /**
-   * Sends a MIDI &#x60;channel mode&#x60; message to the specified channel(s).
-   *
-   * The channel mode message to send can be specified numerically or by using one of the following
-   * common names:
+   * Sends a MIDI &#x60;channel mode&#x60; message to the specified channel(s). The channel mode message to send can be specified
+   * numerically or by using one of the following common names:
    *
    *   * &#x60;allsoundoff&#x60; (#120)
    *   * &#x60;resetallcontrollers&#x60; (#121)
@@ -3889,39 +3888,40 @@
    *   * &#x60;monomodeon&#x60; (#126)
    *   * &#x60;polymodeon&#x60; (#127)
    *
+   * It should be noted that, per the MIDI specification, only &#x60;localcontrol&#x60; and &#x60;monomodeon&#x60; may require a value
+   * that&#x27;s not zero. For that reason, the &#x60;value&#x60; parameter is optional and defaults to 0.
+   *
    * @method sendChannelMode
    * @chainable
    *
-   * @param command {Number|String} The numerical identifier of the MIDI channel mode message
-   * (integer between 120-127) or its name as a string.
-   * @param value {Number} The value to send (integer between 0-127)
-   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value &quot;all&quot; is used, the message will be sent to all
-   * 16 channels.
+   * @param command {Number|String} The numerical identifier of the channel mode message (integer between 120-127) or
+   * its name as a string.
+   * @param [value=0] {Number} The value to send (integer between 0-127).
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an array of channel
+   * numbers. If the special value &quot;all&quot; is used, the message will be sent to all 16 channels.
    * @param {Object} [options={}]
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The &#x60;DOMHighResTimeStamp&#x60; value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * &#x60;WebMidi.time&#x60;. If &#x60;time&#x60; is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two things. If the value is
+   * a string starting with the + sign and followed by a number, the request will be delayed by the specified number
+   * (in milliseconds). Otherwise, the value is considered a timestamp and the request will be scheduled at that
+   * timestamp. The &#x60;DOMHighResTimeStamp&#x60; value is relative to the navigation start of the document. To retrieve the
+   * current time, you can use &#x60;WebMidi.time&#x60;. If &#x60;time&#x60; is not present or is set to a time in the past, the request is
+   * to be sent as soon as possible.
    *
+   * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-   * @throws {RangeError} Value must be between 0 and 127.
+   * @throws {RangeError} Value must be an integer between 0 and 127.
    *
    * @return {Output} Returns the &#x60;Output&#x60; object so methods can be chained.
    *
    */
   Output.prototype.sendChannelMode = function(command, value, channel, options) {
 
-    var that = this;
-
     options = options || {};
 
     if (typeof command === &quot;string&quot;) {
 
       command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
+
       if (!command) {
         throw new TypeError(&quot;Invalid channel mode message name.&quot;);
       }
@@ -3929,28 +3929,28 @@
     } else {
 
       command = parseInt(command);
+
       if ( !(command &gt;= 120 &amp;&amp; command &lt;= 127) ) {
         throw new RangeError(&quot;Channel mode numerical identifiers must be between 120 and 127.&quot;);
       }
 
     }
 
+    value = parseInt(value) || 0;
 
-
-    value = parseInt(value);
-    if (isNaN(value) || value &lt; 0 || value &gt; 127) {
-      throw new RangeError(&quot;Value must be integers between 0 and 127.&quot;);
+    if (value &lt; 0 || value &gt; 127) {
+      throw new RangeError(&quot;Value must be an integer between 0 and 127.&quot;);
     }
 
     this._convertChannelToArray(channel).forEach(function(ch) {
 
-      that.send(
+      this.send(
           (wm.MIDI_CHANNEL_MESSAGES.channelmode &lt;&lt; 4) + (ch - 1),
           [command, value],
-          that._parseTimeParameter(options.time)
+          this._parseTimeParameter(options.time)
       );
 
-    });
+    }.bind(this));
 
     return this;
 
