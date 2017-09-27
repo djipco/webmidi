@@ -529,6 +529,7 @@
       throw new Error("The Web MIDI API is not supported by your browser.");
     }
 
+    this.interface.onstatechange = undefined;
     this.interface = undefined; // also resets enabled, sysexEnabled
     this._inputs = [];
     this._outputs = [];
@@ -944,7 +945,7 @@
 
     }
 
-    // Check for items to add in the existing inputs array because they jsut appeared in the MIDI
+    // Check for items to add in the existing inputs array because they just appeared in the MIDI
     // back-end inputs list.
     this.interface.inputs.forEach(function (nInput) {
 
