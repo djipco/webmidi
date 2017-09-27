@@ -17,7 +17,7 @@
                 <h1><img src="http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.0-rc.8</em>
+            <em>API Docs for: 2.0.0-rc.9</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -613,6 +613,7 @@
       throw new Error(&quot;The Web MIDI API is not supported by your browser.&quot;);
     }
 
+    this.interface.onstatechange = undefined;
     this.interface = undefined; // also resets enabled, sysexEnabled
     this._inputs = [];
     this._outputs = [];
@@ -1028,7 +1029,7 @@
 
     }
 
-    // Check for items to add in the existing inputs array because they jsut appeared in the MIDI
+    // Check for items to add in the existing inputs array because they just appeared in the MIDI
     // back-end inputs list.
     this.interface.inputs.forEach(function (nInput) {
 
