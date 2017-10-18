@@ -499,9 +499,28 @@
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
         this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
-        this._onInterfaceStateChange(null); // manually update the inputs and outputs at beginning
 
-        if (typeof callback === "function") { callback.call(this); }
+        // When MIDI access is requested, all input and output ports have their "state" set to
+        // "connected". However, the value of their "connection" property will be "closed".
+        //
+        // A MIDIInput becomes "open" when you explicitely call its "open()" method or when you
+        // assign a listener to its onmidimessage property. A MIDIOutput becomes "open" when you use
+        // the "send()" method or when you can explicitely call its "open()" method.
+        //
+        // The call below attaches listeners to all inputs. As per the spec, this triggers
+        // statechange event on MIDIAccess. This makes WebMidi dispatch "connected" events for all
+        // inputs. To do the same for outputs, we must manually call open() on each of them.
+        this._updateInputsAndOutputs();
+
+        var promises = [];
+
+        this.outputs.forEach(function(output) {
+          promises.push(output._midiOutput.open());
+        });
+
+        Promise.all(promises).then(function () {
+          if (typeof callback === "function") { callback.call(this); }
+        }.bind(this));
 
       }.bind(this),
 
@@ -1039,36 +1058,9 @@
    * @static
    * @protected
    */
-  WebMidi.prototype._onInterfaceStateChange = function(e) {
-
-    // To prevent conflicts, statechange events are queued and parsed synchronously
-    this._stateChangeQueue.push(e);
-
-    // Check if we are already currently processing a state change. If so, return.
-    if (this._processingStateChange) { return; }
-
-    this._processingStateChange = true;
-
-    while(this._stateChangeQueue.length > 0) {
-      this._processStateChange(this._stateChangeQueue.shift());
-    }
-
-    this._processingStateChange = false;
-
-  };
-
-  /**
-   * @method _processStateChange
-   * @static
-   * @protected
-   */
-  WebMidi.prototype._processStateChange = function(e) {
+   WebMidi.prototype._onInterfaceStateChange = function(e) {
 
     this._updateInputsAndOutputs();
-
-    // This is required because we need to manually update the inputs/outputs at the very beginning.
-    // In this scenario, we should not trigger an event.
-    if (e === null) { return; }
 
     /**
      * Event emitted when a MIDI port becomes available. This event is typically fired whenever a
@@ -1080,10 +1072,7 @@
      * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds since
      * the epoch).
      * @param {String} event.type The type of event that occurred.
-     * @param {String} event.id The ID of the device that triggered the event.
-     * @param {String} event.manufacturer The manufacturer of the device that triggered the event.
-     * @param {String} event.name The name of the device that triggered the event.
-     * @param {String} event.output The `Input` or `Output` object that triggered the event.
+     * @param {String} event.port The actual `Input` or `Output` object associated to the event.
      */
 
     /**
@@ -1096,25 +1085,32 @@
      * @param {Number} event.timestamp The timestamp when the event occurred (in milliseconds since
      * the epoch).
      * @param {String} event.type The type of event that occurred.
-     * @param {String} event.id The ID of the device that triggered the event.
-     * @param {String} event.manufacturer The manufacturer of the device that triggered the event.
-     * @param {String} event.name The name of the device that triggered the event.
-     * @param {String} event.output The `Input` or `Output` object that triggered the event.
+     * @param {String} event.port An generic object containing details about the port that triggered
+     * the event.
      */
     var event = {
       timestamp: e.timeStamp,
       type: e.port.state,
-      id: e.port.id,
-      manufacturer: e.port.manufacturer,
-      name: e.port.name
+      port: {
+        type: e.port.type
+      }
     };
 
     if (e.port.state === "connected") {
 
       if (e.port.type === "output") {
-        event.output = this.getOutputById(e.port.id);
+        event.port.output = this.getOutputById(e.port.id);
       } else if (e.port.type === "input") {
-        event.input = this.getInputById(e.port.id);
+        event.port.input = this.getInputById(e.port.id);
+      }
+
+    } else {
+
+      event.port[e.port.type] = {
+        id: e.port.id,
+        manufacturer: e.port.manufacturer,
+        name: e.port.name,
+        state: e.port.state
       }
 
     }
