@@ -443,46 +443,11 @@
     // is not a fully-fledged Promise object. It does not support using catch() for example. This
     // means that, to provide a real Promise-based interface for the enable() method, we would need
     // to add a dependency in the form of a Promise polyfill. So, to keep things simpler, we will
-    // stick to the good old callback based enable() function. If the situation changes, the
-    // Promise-based version is ready below. Stupid IE.
+    // stick to the good old callback based enable() function.
 
-    // return new Promise(function(resolve, reject) {
-    //
-    //   if (this.enabled) {
-    //
-    //     resolve(this);
-    //
-    //   } else if (!this.supported) {
-    //
-    //     reject(new Error("The Web MIDI API is not supported by your browser."));
-    //
-    //   } else {
-    //
-    //     navigator
-    //       .requestMIDIAccess({"sysex": sysex})
-    //       .then(function(midiAccess) {
-    //
-    //           this.interface = midiAccess;
-    //           this._resetInterfaceUserHandlers();
-    //           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
-    //           this._onInterfaceStateChange(null); // manually update inputs and outputs at beginning
-    //
-    //           resolve(this);
-    //
-    //         }.bind(this)
-    //
-    //       )
-    //       .catch(function(err) {
-    //         reject(err);
-    //       });
-    //
-    //   }
-    //
-    // }.bind(this));
+    if (this.enabled) return;
 
-    if (this.enabled) { return; }
-
-    if ( !this.supported ) {
+    if ( !this.supported) {
 
       if (typeof callback === "function") {
         callback( new Error("The Web MIDI API is not supported by your browser.") );
@@ -496,31 +461,68 @@
 
       function(midiAccess) {
 
+        var events = [],
+            promises = [];
+
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
-        this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
+
+        // We setup a temporary `statechange` handler that will catch all events triggered while we
+        // setup. Those events will be re-triggered after calling the user's callback. This will
+        // allow the user to listen to "connected" events which can be very convenient.
+        this.interface.onstatechange = function (e) {
+          events.push(e);
+        };
+
+        // Here we manually open the inputs and outputs. Usually, this is optional. When the ports
+        // are not explicitely opened, they will be opened automatically (and asynchonously) by
+        // setting a listener on `midimessage` (MIDIInput) or calling `send()` (MIDIOutput).
+        // However, we do not want that here. We want to be sure that "connected" events will be
+        // available in the user's callback. So, what we do is open all input and output ports and
+        // wait until all promises are resolved. Then, we re-trigger the events after the user's
+        // callback has been executed. This seems like the most sensible and practical way.
+        var inputs = midiAccess.inputs.values();
+        for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+          promises.push(input.value.open());
+        }
+
+        var outputs = midiAccess.outputs.values();
+        for (var output = outputs.next(); output && !output.done; output = outputs.next()) {
+          promises.push(output.value.open());
+        }
+
+        // Since this library can be used with JazzMidi with no support for promises, we must make
+        // sure it still works. The workaround is to use a timer to wait a little. Once the Web MIDI
+        // API is well implanted, we'll get rid of that.
+        if (Promise) {
+          Promise.all(promises).then(onPortsOpen.bind(this));
+        } else {
+          setTimeout(onPortsOpen.bind(this), 200);
+        }
+
+        function onPortsOpen() {
+
+          this._updateInputsAndOutputs();
+          this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
+
+          // We execute the callback and then re-trigger the statechange events.
+          if (typeof callback === "function") { callback.call(this); }
+
+          events.forEach(function (event) {
+            this._onInterfaceStateChange(event);
+          }.bind(this));
+
+        }
 
         // When MIDI access is requested, all input and output ports have their "state" set to
-        // "connected". However, the value of their "connection" property will be "closed".
+        // "connected". However, the value of their "connection" property is "closed".
         //
-        // A MIDIInput becomes "open" when you explicitely call its "open()" method or when you
-        // assign a listener to its onmidimessage property. A MIDIOutput becomes "open" when you use
-        // the "send()" method or when you can explicitely call its "open()" method.
+        // A `MIDIInput` becomes `open` when you explicitely call its `open()` method or when you
+        // assign a listener to its `onmidimessage` property. A `MIDIOutput` becomes `open` when you
+        // use the `send()` method or when you can explicitely call its `open()` method.
         //
-        // The call below attaches listeners to all inputs. As per the spec, this triggers
-        // statechange event on MIDIAccess. This makes WebMidi dispatch "connected" events for all
-        // inputs. To do the same for outputs, we must manually call open() on each of them.
-        this._updateInputsAndOutputs();
-
-        var promises = [];
-
-        this.outputs.forEach(function(output) {
-          promises.push(output._midiOutput.open());
-        });
-
-        Promise.all(promises).then(function () {
-          if (typeof callback === "function") { callback.call(this); }
-        }.bind(this));
+        // Calling `_updateInputsAndOutputs()` attaches listeners to all inputs. As per the spec,
+        // this triggers a `statechange` event on MIDIAccess.
 
       }.bind(this),
 
@@ -1090,27 +1092,26 @@
      */
     var event = {
       timestamp: e.timeStamp,
-      type: e.port.state,
-      port: {
-        type: e.port.type
-      }
+      type: e.port.state
     };
 
     if (e.port.state === "connected") {
 
       if (e.port.type === "output") {
-        event.port.output = this.getOutputById(e.port.id);
+        event.port = this.getOutputById(e.port.id);
       } else if (e.port.type === "input") {
-        event.port.input = this.getInputById(e.port.id);
+        event.port = this.getInputById(e.port.id);
       }
 
     } else {
 
-      event.port[e.port.type] = {
+      event.port = {
+        connection: "closed",
         id: e.port.id,
         manufacturer: e.port.manufacturer,
         name: e.port.name,
-        state: e.port.state
+        state: e.port.state,
+        type: e.port.type
       }
 
     }
@@ -1219,6 +1220,19 @@
         enumerable: true,
         get: function () {
           return that._midiInput.state;
+        }
+      },
+
+      /**
+       * [read-only] Type of the MIDI port (`input`)
+       *
+       * @property state
+       * @type String
+       */
+      type: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.type;
         }
       }
 
@@ -2210,6 +2224,19 @@
         enumerable: true,
         get: function () {
           return that._midiOutput.state;
+        }
+      },
+
+      /**
+       * [read-only] Type of the MIDI port (`output`)
+       *
+       * @property state
+       * @type String
+       */
+      type: {
+        enumerable: true,
+        get: function () {
+          return that._midiInput.type;
         }
       }
 
