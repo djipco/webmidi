@@ -44,23 +44,23 @@
 
       });
 
-      it("should throw error if options.time is invalid", function(done) {
-
-        WebMidi.enable(function() {
-
-          expect(function () {
-            WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: 'abc'});
-          }).to.throw(TypeError);
-
-          expect(function () {
-            WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: '+abc'});
-          }).to.throw(TypeError);
-
-          done();
-
-        });
-
-      });
+      // it("should throw error if options.time is invalid", function(done) {
+      //
+      //   WebMidi.enable(function() {
+      //
+      //     expect(function () {
+      //       WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: 'abc'});
+      //     }).to.throw(TypeError);
+      //
+      //     expect(function () {
+      //       WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: '+abc'});
+      //     }).to.throw(TypeError);
+      //
+      //     done();
+      //
+      //   });
+      //
+      // });
 
     });
 
