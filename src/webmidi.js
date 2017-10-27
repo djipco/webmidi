@@ -815,7 +815,7 @@
    */
   WebMidi.prototype.getOctave = function(number) {
 
-    if (number >= 0 && number <= 127) {
+    if (number && number >= 0 && number <= 127) {
       return Math.floor(parseInt(number) / 12 - 1) - 1;
     }
 
@@ -967,8 +967,9 @@
     }
 
     // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end inputs list.
-    this.interface.inputs.forEach(function (nInput) {
+    // back-end inputs list. We must check for the existence of this.interface because it might
+    // have been closed via WebMidi.disable().
+    this.interface && this.interface.inputs.forEach(function (nInput) {
 
       var add = true;
 
@@ -1014,8 +1015,9 @@
     }
 
     // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end outputs list.
-    this.interface.outputs.forEach(function (nOutput) {
+    // back-end outputs list. We must check for the existence of this.interface because it might
+    // have been closed via WebMidi.disable().
+    this.interface && this.interface.outputs.forEach(function (nOutput) {
 
       var add = true;
 
@@ -1095,7 +1097,7 @@
       type: e.port.state
     };
 
-    if (e.port.state === "connected") {
+    if (this.interface && e.port.state === "connected") {
 
       if (e.port.type === "output") {
         event.port = this.getOutputById(e.port.id);
