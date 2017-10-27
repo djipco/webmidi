@@ -529,7 +529,7 @@
       throw new Error("The Web MIDI API is not supported by your browser.");
     }
 
-    this.interface.onstatechange = undefined;
+    if (this.interface) this.interface.onstatechange = undefined;
     this.interface = undefined; // also resets enabled, sysexEnabled
     this._inputs = [];
     this._outputs = [];
