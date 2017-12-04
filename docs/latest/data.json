@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi",
-        "version": "2.0.0-rc.10",
+        "version": "2.0.0-rc.11",
         "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": "",
         "logo": "http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png"
