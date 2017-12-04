@@ -2238,7 +2238,7 @@
       type: {
         enumerable: true,
         get: function () {
-          return that._midiInput.type;
+          return that._midiOutput.type;
         }
       }
 
