@@ -69,15 +69,39 @@ for you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
 
 ## Installation
 
-Depending on your needs and environment, you can install **WebMidi.js** in one of three ways: 
-manually, with Bower or with NPM.
+Depending on your needs and environment, you can install **WebMidi.js** in a variety of different 
+ways.
+
+#### CDN
+
+The easiest way to get started is to link the WebMidi.js library from the 
+[jsDelivr](https://www.jsdelivr.com/) CDN (content delivery network). To retrieve the latest 
+version, just add this `<script>` tag to your HTML page:
+
+    <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
+    
+In production, it might be a better idea to target a specific version. To do that, just append the 
+desired version at the end of the request:
+
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.0.0-rc.11"></script>
 
 #### Manual Install
 
-You can install **WebMidi.js** the old fashioned way by downloading the
+Obviously, you can also install **WebMidi.js** the old fashioned way by downloading the
 [latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file. Uncompress the 
 package, grab the `webmidi.min.js` file and copy it to your project. Link to it from your HTML page 
 as usual. 
+
+#### NPM Install
+
+If it's more convenient, you can install **WebMidi.js** with NPM. Simply issue the following command to 
+perform the actual install:
+
+    npm install webmidi
+    
+Then, just add a `<script>` tag to your HTML page and make it point to:
+
+    <script src="node_modules/webmidi/webmidi.min.js"></script>
 
 #### Bower Install
 
@@ -91,17 +115,6 @@ Then, just add a `<script>` tag to your HTML page and make it point to:
 
     <script src="bower_components/WebMidi/src/webmidi.js"></script>
 
-#### NPM Install
-
-If you prefer, you can install **WebMidi.js** with NPM. Simply issue the following command to 
-perform the actual install:
-
-    npm install webmidi
-    
-Finally, just add a `<script>` tag to your HTML page and make it point to:
-
-    <script src="node_modules/webmidi/webmidi.min.js"></script>
-    
 #### Using with a Bundler
 
 If you are using a bundler such as WebPack, you can import **WebMidi.js** in your project in this way:
