@@ -35,7 +35,7 @@ It is possible to use this library in other browsers if you install version 1.4+
 [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
 support for the following additional browsers:
 
-* Firefox v51 or less (Mac, GNU/Linux & Windows)
+* Firefox v51 **or less** (Mac, GNU/Linux & Windows)
 * Safari (Mac)
 * Internet Explorer (Windows)
 
@@ -56,17 +56,6 @@ parts of it working by using the [web-midi-api](https://www.npmjs.com/package/we
 module. Check out this [comment](https://github.com/cotejp/webmidi/issues/15#issuecomment-322020295) 
 for more information. If anyone is interested in contributing, help would be more than welcome. 
 
-## Caveat Emptor
-
-**WebMidi.js** v2 is currently in the *release candidate* stage. The API should now be stable and 
-most bugs should have been ironed out. However, until it reaches the *final* stage, it cannot be 
-considered production-ready. If you find a bug, please 
-[open an issue](https://github.com/cotejp/webmidi/issues) and I will do my best to address it in a 
-timely fashion.
-
-Having confirmation that the software works well is also valuable information. If that's the case 
-for you, please drop me a note at [@jpcote](https://twitter.com/jpcote).
-
 ## Installation
 
 Depending on your needs and environment, you can install **WebMidi.js** in a variety of different 
@@ -83,7 +72,7 @@ version, just add this `<script>` tag to your HTML page:
 In production, it might be a better idea to target a specific version. To do that, just append the 
 desired version at the end of the request:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.0.0-rc.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.0.0"></script>
 
 #### Manual Install
 
