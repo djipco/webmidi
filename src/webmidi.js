@@ -495,7 +495,9 @@
         // sure it still works. The workaround is to use a timer to wait a little. Once the Web MIDI
         // API is well implanted, we'll get rid of that.
         if (Promise) {
-          Promise.all(promises).then(onPortsOpen.bind(this));
+          Promise.all(promises)
+            .catch(function(err) { console.warn(err); })
+            .then(onPortsOpen.bind(this));
         } else {
           setTimeout(onPortsOpen.bind(this), 200);
         }
