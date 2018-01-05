@@ -1040,6 +1040,7 @@
   /**
    * @method _createInput
    * @static
+   * @returns {Input}
    * @protected
    */
   WebMidi.prototype._createInput = function (midiInput) {
@@ -1051,6 +1052,7 @@
   /**
    * @method _createOutput
    * @static
+   * @returns {Output}
    * @protected
    */
   WebMidi.prototype._createOutput = function (midiOutput) {
@@ -4089,6 +4091,7 @@
    *
    * @method _convertNoteToArray
    * @param [note] {Number|Array|String}
+   * @returns {Array}
    * @protected
    */
   Output.prototype._convertNoteToArray = function(note) {
@@ -4112,6 +4115,7 @@
    *
    * @method _convertChannelToArray
    * @param [channel] {uint|Array}
+   * @returns {Array}
    * @protected
    */
   Output.prototype._convertChannelToArray = function(channel) {
