@@ -1230,7 +1230,7 @@
       /**
        * [read-only] Type of the MIDI port (`input`)
        *
-       * @property state
+       * @property type
        * @type String
        */
       type: {
