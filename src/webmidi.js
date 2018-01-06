@@ -3450,6 +3450,8 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
+   * @throws Error The specified parameter is not available.
+   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.incrementRegisteredParameter = function(parameter, channel, options) {
