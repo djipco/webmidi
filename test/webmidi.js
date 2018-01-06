@@ -6,13 +6,15 @@
 
   describe('WebMidi', function() {
 
+    it("should check if current environment is supported");
+
     it("should be accessible in the global window scope (if running in a browser)", function () {
       if (typeof window === "object") {
         expect(WebMidi).to.be.instanceOf(WebMidi.constructor);
       }
     });
 
-    it("should adapt to Electron, NW.js environment or pure Node.js environments");
+    it("should adapt to Electron, NW.js or pure Node.js environments");
 
     it("should not allow direct user instantiation", function () {
       expect(function () {
@@ -276,10 +278,10 @@
 
         WebMidi.enable(function() {
 
-          // if (WebMidi.inputs.length > 0) {
+          if (WebMidi.inputs.length > 0) {
             expect(WebMidi.getInputById(WebMidi.inputs[0].id))
               .to.be.instanceOf(WebMidi.inputs[0].constructor);
-          // }
+          }
 
           done();
 
@@ -389,14 +391,16 @@
 
         WebMidi.enable(function() {
 
-          // if (WebMidi.outputs.length > 0) {
+          if (WebMidi.outputs.length > 0) {
             var id = WebMidi.outputs[0].id;
             expect(WebMidi.getOutputById(id)).to.equal(WebMidi.outputs[0]);
-          // }
+          } else {
+            this.skip();
+          }
 
           done();
 
-        });
+        }.bind(this));
 
       });
 
