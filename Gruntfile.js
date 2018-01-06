@@ -5,7 +5,6 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
-    bower: grunt.file.readJSON('bower.json'),
 
     // Bumpup version
     bumpup: {
@@ -35,7 +34,7 @@ module.exports = function (grunt) {
     // Generate doc
     yuidoc: {
       compile: {
-        name: '<%= bower.name %>',
+        name: 'WebMidi.js',
         version: '<%= pkg.version %>',
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
@@ -46,7 +45,7 @@ module.exports = function (grunt) {
           paths: ['./src/']
         }
       }
-    },gith
+    },
 
     // Files that are copied or written over must be re-committed.
     gitcommit: {
@@ -89,10 +88,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-git');
   grunt.loadNpmTasks('grunt-release');
 
-  grunt.registerTask('publish', ['publish:prerelease']);
   grunt.registerTask("publish:prerelease", ['bumpup:prerelease', 'uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
-  grunt.registerTask("publish:patch", ['bumpup:patch', 'yuidoc', 'release']);
-  grunt.registerTask('publish:minor', ['bumpup:minor', 'yuidoc', 'release']);
-  grunt.registerTask('publish:major', ['bumpup:major', 'yuidoc', 'release']);
+  grunt.registerTask("publish:patch", ['bumpup:patch', 'uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
+  grunt.registerTask("publish:minor", ['bumpup:minor', 'uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
+  grunt.registerTask("publish:major", ['bumpup:major', 'uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
+  grunt.registerTask("publish:manual", ['uglify', 'yuidoc', 'gitcommit:commitupdated', 'gh-pages', 'release']);
 
 };
