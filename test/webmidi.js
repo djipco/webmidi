@@ -1,21 +1,17 @@
-var expect = chai.expect;
-
 describe('WebMidi', function() {
-
-  it("should check if current environment is supported");
-
-  it("should be accessible in the global window scope (if running in a browser)", function () {
-    if (typeof window === "object") {
-      expect(WebMidi).to.be.instanceOf(WebMidi.constructor);
-    }
-  });
-
-  it("should adapt to Electron, NW.js or pure Node.js environments");
 
   it("should not allow direct user instantiation", function () {
     expect(function () {
       new WebMidi.constructor();
     }).to.throw(Error);
+  });
+
+  it("should adapt to Electron, NW.js or pure Node.js environments");
+
+  it("should be accessible in the global window scope (if running in a browser)", function () {
+    if (typeof window === "object") {
+      expect(WebMidi).to.be.instanceOf(WebMidi.constructor);
+    }
   });
 
   describe('addListener()', function() {
@@ -28,6 +24,7 @@ describe('WebMidi', function() {
     it("should throw error if WebMidi is disabled", function() {
 
       WebMidi.disable();
+
       expect(function () {
         WebMidi.addListener("disconnected", function() {});
       }).to.throw(Error);

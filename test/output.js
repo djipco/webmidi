@@ -1,5 +1,3 @@
-var expect = chai.expect;
-
 describe('Output', function() {
 
   beforeEach("Enable WebMidi.js", function (done) {
@@ -11,7 +9,14 @@ describe('Output', function() {
       if (WebMidi.outputs.length > 0) {
         done();
       } else {
-        this.skip();
+
+        // Calling this.skip() throws an error. We catch it so it does not show in the console
+        try {
+          this.skip();
+        } catch (err) {
+          // console.warn(err.message)
+        }
+
       }
 
     }.bind(this));
