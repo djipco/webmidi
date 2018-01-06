@@ -24,60 +24,49 @@
 
     describe('addListener()', function() {
 
-      beforeEach('Make sure WebMidi is not already enabled.', function() {
+      beforeEach("Enable WebMidi.js", function (done) {
         WebMidi.disable();
+        WebMidi.enable(function() { done(); });
       });
 
       it("should throw error if WebMidi is disabled", function() {
+
+        WebMidi.disable();
         expect(function () {
           WebMidi.addListener("disconnected", function() {});
         }).to.throw(Error);
 
       });
 
-      it("should throw error if event type is not supported", function(done) {
+      it("should throw error if event type is not supported", function() {
 
-        WebMidi.enable(function() {
+        ['', undefined, null, {}, 'abc', function () {}].forEach(function (param) {
 
-          ['', undefined, null, {}, 'abc', function () {}].forEach(function (param) {
-
-            expect(function() {
-              WebMidi.addListener(param, function() {});
-            }).to.throw(TypeError);
-
-          });
-
-          done();
+          expect(function() {
+            WebMidi.addListener(param, function() {});
+          }).to.throw(TypeError);
 
         });
 
       });
 
-      it("should throw error if listener is not a function", function(done) {
+      it("should throw error if listener is not a function", function() {
 
-        WebMidi.enable(function() {
+        ['', undefined, null, {}, 'abc'].forEach(function (param) {
 
-          ['', undefined, null, {}, 'abc'].forEach(function (param) {
+          expect(function() {
+            WebMidi.addListener('statechange', param);
+          }).to.throw(TypeError);
 
-            expect(function() {
-              WebMidi.addListener('statechange', param);
-            }).to.throw(TypeError);
-
-          });
-
-          done();
         });
 
       });
 
-      it("should actually add the listener", function(done) {
+      it("should actually add the listener", function() {
 
-        WebMidi.enable(function() {
-          function f() {}
-          WebMidi.addListener("connected", f);
-          expect(WebMidi.hasListener('connected', f)).to.equal(true);
-          done();
-        });
+        function f() {}
+        WebMidi.addListener("connected", f);
+        expect(WebMidi.hasListener('connected', f)).to.equal(true);
 
       });
 
@@ -85,51 +74,27 @@
 
     describe('disable()', function() {
 
-      beforeEach('Make sure WebMidi is not already enabled.', function() {
+      beforeEach("Enable WebMidi.js", function () {
         WebMidi.disable();
       });
 
-      it("should set the enabled property to false", function(done) {
-
-        WebMidi.enable(function() {
-          WebMidi.disable();
-          expect(WebMidi.enabled).to.equal(false);
-          done();
-        });
-
+      it("should set the enabled property to false", function() {
+        expect(WebMidi.enabled).to.equal(false);
       });
 
-      it("should set the sysexEnabled property to false", function(done) {
-
-        WebMidi.enable(function() {
-          WebMidi.disable();
-          expect(WebMidi.sysexEnabled).to.equal(false);
-          done();
-        });
-
+      it("should set the sysexEnabled property to false", function() {
+        expect(WebMidi.sysexEnabled).to.equal(false);
       });
 
-      it("should trim input and output array lengths to 0", function(done) {
-
-        WebMidi.enable(function() {
-          WebMidi.disable();
-          expect(WebMidi.inputs.length).to.equal(0);
-          expect(WebMidi.outputs.length).to.equal(0);
-          done();
-        });
-
+      it("should trim input and output array lengths to 0", function() {
+        expect(WebMidi.inputs.length).to.equal(0);
+        expect(WebMidi.outputs.length).to.equal(0);
       });
 
-      it("should remove all user handlers", function(done) {
-
-        WebMidi.enable(function() {
-          WebMidi.disable();
-          for (var i = 0; i < WebMidi._midiInterfaceEvents.length; i++) {
-            expect(WebMidi._userHandlers[WebMidi._midiInterfaceEvents[i]].length).to.equal(0);
-          }
-          done();
-        });
-
+      it("should remove all user handlers", function() {
+        for (var i = 0; i < WebMidi._midiInterfaceEvents.length; i++) {
+          expect(WebMidi._userHandlers[WebMidi._midiInterfaceEvents[i]].length).to.equal(0);
+        }
       });
 
       it("should throw error if Web MIDI API is not supported");
@@ -534,60 +499,48 @@
 
     describe('hasListener()', function() {
 
-      beforeEach('Make sure WebMidi is not already enabled.', function() {
+      beforeEach("Enable WebMidi.js", function (done) {
         WebMidi.disable();
+        WebMidi.enable(function() { done(); });
       });
 
       it("should throw error if WebMidi is disabled", function() {
+        WebMidi.disable();
         expect(function () {
           WebMidi.hasListener("abc", function() {});
         }).to.throw(Error);
 
       });
 
-      it("should throw error if event type is not supported", function(done) {
+      it("should throw error if event type is not supported", function() {
 
-        WebMidi.enable(function() {
-          expect(function() {
-            WebMidi.hasListener('abc', undefined);
-          }).to.throw(TypeError);
-          done();
-        });
+        expect(function() {
+          WebMidi.hasListener('abc', undefined);
+        }).to.throw(TypeError);
 
       });
 
-      it("should throw error if listener is not a function", function(done) {
+      it("should throw error if listener is not a function", function() {
 
-        WebMidi.enable(function() {
-          expect(function() {
-            WebMidi.hasListener('connected', undefined);
-          }).to.throw(TypeError);
-          done();
-        });
+        expect(function() {
+          WebMidi.hasListener('connected', undefined);
+        }).to.throw(TypeError);
 
       });
 
-      it("should report true if listener is present", function(done) {
+      it("should report true if listener is present", function() {
 
-        WebMidi.enable(function() {
-          function f() {}
-          WebMidi.addListener("connected", function() {});
-          WebMidi.addListener("connected", f);
-          WebMidi.addListener("connected", function() {});
-          expect(WebMidi.hasListener('connected', f)).to.equal(true);
-          done();
-        });
+        function f() {}
+        WebMidi.addListener("connected", function() {});
+        WebMidi.addListener("connected", f);
+        WebMidi.addListener("connected", function() {});
+        expect(WebMidi.hasListener('connected', f)).to.equal(true);
 
       });
 
-      it("should report false if listener is not present", function(done) {
-
-        WebMidi.enable(function() {
-          WebMidi.addListener("connected", function() {});
-          expect(WebMidi.hasListener('connected', function() {})).to.equal(false);
-          done();
-        });
-
+      it("should report false if listener is not present", function() {
+        WebMidi.addListener("connected", function() {});
+        expect(WebMidi.hasListener('connected', function() {})).to.equal(false);
       });
 
     });
@@ -613,84 +566,71 @@
 
     describe('removeListener()', function() {
 
-      beforeEach('Make sure WebMidi is not already enabled.', function() {
+      beforeEach("Enable WebMidi.js", function (done) {
         WebMidi.disable();
+        WebMidi.enable(function() { done(); });
       });
 
       it("should throw error if WebMidi is disabled", function() {
+        WebMidi.disable();
         expect(function () {
           WebMidi.removeListener("abc", function() {});
         }).to.throw(Error);
 
       });
 
-      it("should throw error if event type is defined but not supported", function(done) {
+      it("should throw error if event type is defined but not supported", function() {
 
-        WebMidi.enable(function() {
-          expect(function() {
-            WebMidi.removeListener('abc', function() {});
-          }).to.throw(TypeError);
-          done();
-        });
+        expect(function() {
+          WebMidi.removeListener('abc', function() {});
+        }).to.throw(TypeError);
 
       });
 
-      it("should throw error if listener is defined but not a function", function(done) {
+      it("should throw error if listener is defined but not a function", function() {
 
-        WebMidi.enable(function() {
-          expect(function() {
-            WebMidi.removeListener('connected', "abc");
-          }).to.throw(TypeError);
-          done();
-        });
+        expect(function() {
+          WebMidi.removeListener('connected', "abc");
+        }).to.throw(TypeError);
 
       });
 
-      it("should actually remove the listener", function(done) {
+      it("should actually remove the listener", function() {
 
-        WebMidi.enable(function() {
-          function f() {}
-          WebMidi.addListener("connected", f);
-          WebMidi.removeListener("connected", f);
-          expect(WebMidi.hasListener('connected', f)).to.equal(false);
-          done();
-        });
+        function f() {}
+        WebMidi.addListener("connected", f);
+        WebMidi.removeListener("connected", f);
+        expect(WebMidi.hasListener('connected', f)).to.equal(false);
 
       });
 
-      it("should remove all listeners of the type when no listener is specified", function(done) {
+      it("should remove all listeners of the type when no listener is specified", function() {
 
-        WebMidi.enable(function() {
-          function a() {}
-          function b() {}
-          function c() {}
-          WebMidi.addListener("connected", a);
-          WebMidi.addListener("connected", b);
-          WebMidi.addListener("connected", c);
-          WebMidi.removeListener("connected");
-          expect(WebMidi.hasListener('connected', a)).to.equal(false);
-          expect(WebMidi.hasListener('connected', b)).to.equal(false);
-          expect(WebMidi.hasListener('connected', c)).to.equal(false);
-          done();
-        });
+        function a() {}
+        function b() {}
+        function c() {}
+        WebMidi.addListener("connected", a);
+        WebMidi.addListener("connected", b);
+        WebMidi.addListener("connected", c);
+        WebMidi.removeListener("connected");
+        expect(WebMidi.hasListener('connected', a)).to.equal(false);
+        expect(WebMidi.hasListener('connected', b)).to.equal(false);
+        expect(WebMidi.hasListener('connected', c)).to.equal(false);
 
       });
 
-      it("should remove all listeners when no type and no listener is specified", function(done) {
+      it("should remove all listeners when no type and no listener is specified", function() {
 
-        WebMidi.enable(function() {
-          function a() {}
-          function b() {}
-          function c() {}
-          WebMidi.addListener("connected", a);
-          WebMidi.addListener("connected", b);
-          WebMidi.addListener("connected", c);
-          WebMidi.removeListener();
-          expect(WebMidi.hasListener('connected', a)).to.equal(false);
-          expect(WebMidi.hasListener('connected', b)).to.equal(false);
-          expect(WebMidi.hasListener('connected', c)).to.equal(false);
-          done();
-        });
+        function a() {}
+        function b() {}
+        function c() {}
+        WebMidi.addListener("connected", a);
+        WebMidi.addListener("connected", b);
+        WebMidi.addListener("connected", c);
+        WebMidi.removeListener();
+        expect(WebMidi.hasListener('connected', a)).to.equal(false);
+        expect(WebMidi.hasListener('connected', b)).to.equal(false);
+        expect(WebMidi.hasListener('connected', c)).to.equal(false);
 
       });
 
