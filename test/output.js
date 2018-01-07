@@ -10,7 +10,7 @@ describe('Output', function() {
         done();
       } else {
 
-        // Calling this.skip() throws an error. We catch it so it does not show in the console
+        // Calling this.skip() throws an error. We catch it so it does not show up in the console
         try {
           this.skip();
         } catch (err) {
@@ -45,6 +45,12 @@ describe('Output', function() {
 
     });
 
+    it("should return the Output object for method chaining", function() {
+      expect(
+        WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange")
+      ).to.equal(WebMidi.outputs[0]);
+    });
+
     // it("should throw error if options.time is invalid", function(done) {
     //
     // });
@@ -55,34 +61,28 @@ describe('Output', function() {
 
     it("should throw error if registered parameter is invalid", function() {
 
-      // if (WebMidi.outputs.length > 0) {
+      expect(function () {
+        WebMidi.outputs[0].incrementRegisteredParameter(0);
+      }).to.throw(Error);
 
-        expect(function () {
-          WebMidi.outputs[0].incrementRegisteredParameter(0);
-        }).to.throw(Error);
-
-        expect(function () {
-          WebMidi.outputs[0].incrementRegisteredParameter('xxx');
-        }).to.throw(Error);
-
-      // } else {
-      //   this.skip();
-      // }
+      expect(function () {
+        WebMidi.outputs[0].incrementRegisteredParameter('xxx');
+      }).to.throw(Error);
 
     });
 
     it("should throw error if channel is invalid", function() {
 
-      // if (WebMidi.outputs.length > 0) {
+      expect(function () {
+        WebMidi.outputs[0].incrementRegisteredParameter('pitchbendrange', 0);
+      }).to.throw(RangeError);
 
-        expect(function () {
-          WebMidi.outputs[0].incrementRegisteredParameter('pitchbendrange', 0);
-        }).to.throw(RangeError);
+    });
 
-      // } else {
-      //   this.skip();
-      // }
-
+    it("should return the Output object for method chaining", function() {
+      expect(
+        WebMidi.outputs[0].incrementRegisteredParameter("pitchbendrange")
+      ).to.equal(WebMidi.outputs[0]);
     });
 
     // it("should throw error if options.time is invalid", function(done) {
@@ -119,12 +119,18 @@ describe('Output', function() {
 
     it("should throw error if channel is invalid", function() {
 
-      [0, -1, 17, [], undefined, null, function() {}, "x", ["x"]].forEach(function (param) {
+      [0, -1, 17].forEach(function (param) {
         expect(function () {
-          WebMidi.inputs[0].playNote(64, param);
+          WebMidi.outputs[0].playNote(64, param);
         }).to.throw(Error);
       });
 
+    });
+
+    it("should return the Output object for method chaining", function() {
+      expect(
+        WebMidi.outputs[0].playNote(64)
+      ).to.equal(WebMidi.outputs[0]);
     });
 
     // it("should throw error if options.time is invalid", function(done) {
@@ -154,6 +160,46 @@ describe('Output', function() {
       });
 
     });
+
+    it("should throw error if no data is sent for a status requiring data", function() {
+      expect(function () {
+        WebMidi.outputs[0].send(128);
+      }).to.throw(TypeError);
+    });
+
+    it("should return the Output object for method chaining", function() {
+      expect(
+        WebMidi.outputs[0].send(144, [64, 64])
+      ).to.equal(WebMidi.outputs[0]);
+    });
+
+  });
+
+  describe('sendActiveSensing()', function () {
+
+    it("should return the Output object for method chaining", function() {
+      expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(WebMidi.outputs[0]);
+    });
+
+  });
+
+  describe('sendChannelAftertouch()', function () {
+
+    it("should return the Output object for method chaining", function() {
+      expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(WebMidi.outputs[0]);
+    });
+
+    it("should throw an error if channel is invalid", function() {
+
+      [0, -1, 17, "xxx", NaN, Infinity].forEach(function (param) {
+        expect(function () {
+          WebMidi.outputs[0].sendChannelAftertouch(64, param);
+        }).to.throw(Error);
+      });
+
+    });
+
+
 
   });
 
