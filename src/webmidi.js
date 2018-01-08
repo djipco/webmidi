@@ -65,6 +65,7 @@
    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
    * @todo  Add methods for channel mode messages
+   * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
    *
    */
   function WebMidi() {
@@ -2267,8 +2268,8 @@
    * @param status {Number} The MIDI status byte of the message (128-255).
    *
    * @param [data=[]] {Array} An array of uints for the message. The number of data bytes varies
-   * depending on the status byte. It is perfectly legal to send no data for some message types.
-   * Each byte must be between 0 and 255.
+   * depending on the status byte. It is perfectly legal to send no data for some message types (use
+   * undefined or an empty array in this case). Each byte must be between 0 and 127.
    *
    * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
    * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
@@ -2285,13 +2286,14 @@
       throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
     }
 
+    if (data === undefined) data = [];
     if ( !Array.isArray(data) ) data = [data];
 
     var message = [];
 
     data.forEach(function(item){
 
-      var parsed = parseInt(item);
+      var parsed = parseInt(item); // mandatory because of 'null'
 
       if (parsed >= 0 && parsed <= 127) {
         message.push(parsed);
@@ -2640,7 +2642,7 @@
     options = options || {};
     this.send(
       wm.MIDI_SYSTEM_MESSAGES.activesensing,
-      undefined,
+      [],
       this._parseTimeParameter(options.time)
     );
     return this;
@@ -3762,7 +3764,7 @@
 
     options = options || {};
 
-    value = parseInt(value) || 0;
+    value = parseInt(value);
     if ( !(value >= 0 && value <= 127) ) {
       throw new RangeError("The program value must be between 0 and 127");
     }
