@@ -2275,7 +2275,7 @@
    * 0.
    *
    * @throws {RangeError} The status byte must be an integer between 128 (0x80) and 255 (0xFF).
-   * @throws {RangeError} The data bytes must be integers between 0 (0x00) and 255 (0xFF).
+   * @throws {RangeError} Data bytes must be integers between 0 (0x00) and 127 (0x7F).
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
@@ -2285,25 +2285,23 @@
       throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
     }
 
-    if ( !Array.isArray(data) ) {
-      if ( parseInt(data) >= 0 && parseInt(data) <= 127 ) {
-        data = [parseInt(data)];
-      } else {
-        data = [];
-      }
-    }
+    if ( !Array.isArray(data) ) data = [data];
 
-    var message = [status];
+    var message = [];
 
     data.forEach(function(item){
-      if (item >= 0 && item <= 255) {
-        message.push(item);
+
+      var parsed = parseInt(item);
+
+      if (parsed >= 0 && parsed <= 127) {
+        message.push(parsed);
       } else {
-        throw new RangeError("The data bytes must be integers between 0 (0x00) and 255 (0xFF).");
+        throw new RangeError("Data bytes must be integers between 0 (0x00) and 127 (0x7F).");
       }
+
     });
 
-    this._midiOutput.send(message, parseFloat(timestamp) || 0);
+    this._midiOutput.send([status].concat(message), parseFloat(timestamp) || 0);
 
     return this;
 
