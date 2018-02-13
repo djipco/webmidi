@@ -45,7 +45,7 @@ to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-pl
 For **Firefox v52+ support**, you need to install two extensions made by 
 [Jazz-Soft](https://www.jazz-soft.net/):
 
-* [Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/)
+* [Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) v1.5.1+
 * [Web MIDI API extension](https://addons.mozilla.org/en-US/firefox/addon/web-midi-api/)
 
 Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
