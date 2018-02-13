@@ -39,8 +39,9 @@ support for the following additional browsers:
 * Safari (Mac)
 * Internet Explorer (Windows)
 
-For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
-to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
+>For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip 
+>ahead to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) 
+>section.
 
 For **Firefox v52+ support**, you need to install two extensions made by 
 [Jazz-Soft](https://www.jazz-soft.net/):
