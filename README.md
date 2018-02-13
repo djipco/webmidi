@@ -22,7 +22,7 @@ much easier.
 
 ## Browser Support
 
-This library works in all browsers that support the 
+This library works in all browsers that natively support the 
 [Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
 built-in support: 
 
@@ -30,7 +30,7 @@ built-in support:
 * Opera (Mac, GNU/Linux, Windows)
 * Android WebView component (KitKat and above) 
 
-It is possible to use this library in other browsers if you install version 1.4+ of 
+It is also possible to use this library in other browsers if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
 [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
 support for the following additional browsers:
@@ -42,12 +42,14 @@ support for the following additional browsers:
 For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip ahead 
 to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) section.
 
->Note: Firefox v52+ deactivated support for NPAPI plugins. This means the Jazz-MIDI plugin will not 
->work in that version (and newer versions). An 
->[extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) has been created by Jazz-Soft, 
->to alleviate this problem but this extension does not use the same API as their NPAPI plugin. 
->Therefore, WebMIDIApiShim will need to be [updated](https://github.com/cotejp/webmidi/issues/16) 
->before full support for Firefox is restored.
+For **Firefox v52+ support**, you need to install two extensions made by 
+[Jazz-Soft](https://www.jazz-soft.net/):
+
+* [Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/)
+* [Web MIDI API extension](https://addons.mozilla.org/en-US/firefox/addon/web-midi-api/)
+
+Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
+testing will need to be done but it looks very promising.
 
 ## Node.js Support
 
@@ -83,8 +85,8 @@ as usual.
 
 #### NPM Install
 
-If it's more convenient, you can install **WebMidi.js** with NPM. Simply issue the following command to 
-perform the actual install:
+If it's more convenient, you can install **WebMidi.js** with NPM. Simply issue the following command 
+to perform the actual install:
 
     npm install webmidi
     
