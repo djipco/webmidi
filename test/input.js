@@ -10,7 +10,7 @@ describe('Input', function() {
         done();
       } else {
 
-        // Calling this.skip() throws an error. We catch it so it does not show in the console
+        // Calling this.skip() throws an error. We catch it so it does not up show in the console
         try {
           this.skip();
         } catch (err) {
@@ -95,6 +95,8 @@ describe('Input', function() {
         }).to.throw(TypeError);
       });
 
+      done();
+
     });
 
     it("should correctly check for listeners", function(done) {
@@ -123,6 +125,8 @@ describe('Input', function() {
       expect(WebMidi.inputs[0].hasListener('channelmode', "all", b)).to.equal(false);
       expect(WebMidi.inputs[0].hasListener('channelmode', "all", a)).to.equal(true);
 
+      done();
+
     });
 
   });
@@ -131,7 +135,7 @@ describe('Input', function() {
 
     it("should throw error if type is not supported", function() {
 
-      ['xxx', undefined, null].forEach(function (param) {
+      ['xxx', null].forEach(function (param) {
         expect(function () {
           WebMidi.inputs[0].removeListener(param);
         }).to.throw(TypeError);
@@ -141,7 +145,7 @@ describe('Input', function() {
 
     it("should throw error if listener is defined but not a function", function() {
 
-      ['prout', undefined, null, {}].forEach(function (param) {
+      ['prout', null, {}].forEach(function (param) {
         expect(function () {
           WebMidi.inputs[0].removeListener("start", "all", param);
         }).to.throw(TypeError);
@@ -228,6 +232,8 @@ describe('Input', function() {
           ).to.equal(key);
         }
       }
+
+      done();
 
     });
 

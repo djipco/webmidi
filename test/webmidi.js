@@ -577,4 +577,27 @@ describe('WebMidi', function() {
 
   });
 
+  describe('toMIDIChannels()', function() {
+
+    it("should return only valid MIDI channel numbers", function() {
+
+      // Valid values are 1, 8 and 16
+      var channels = [
+        1, -1, -2.3, 0, 17, "x", NaN, null, Infinity, 8, -Infinity, {}, true, false, [undefined],
+        4e2, 16
+      ];
+      expect(WebMidi.toMIDIChannels(channels).length).to.equal(3);
+      expect(WebMidi.toMIDIChannels([]).length).to.equal(0);
+      expect(WebMidi.toMIDIChannels([9.7])[0]).to.equal(9);
+      expect(WebMidi.toMIDIChannels([1e1])[0]).to.equal(10);
+
+    });
+
+    it("should return all channels when 'all' or undefined is specified", function() {
+      expect(WebMidi.toMIDIChannels('all').length).to.equal(16);
+      expect(WebMidi.toMIDIChannels().length).to.equal(16);
+    });
+
+  });
+
 });
