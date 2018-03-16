@@ -705,6 +705,45 @@
   };
 
   /**
+   * Converts an input value (which should be an integer, an array of integers, `"all"` or
+   * `undefined`) to an array of valid MIDI channel numbers. Passing `"all"` or `undefined` to this
+   * function results in all channels being returned (1-16).
+   *
+   * Elements in the array that cannot successfully be parsed to integers between 1 and 16 (using
+   * `parseInt()`) are silently removed.
+   *
+   * @method toMIDIChannels
+   * @param [channel] {uint|Array}
+   * @returns {Array}
+   * @protected
+   */
+  WebMidi.prototype.toMIDIChannels = function(channel) {
+
+    var channels;
+
+    if (channel === 'all' || channel === undefined) {
+      channels = ['all'];
+    } else if (!Array.isArray(channel)) {
+      channels = [channel];
+    } else {
+      channels = channel;
+    }
+
+    if (channels.indexOf('all') > -1) {
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    }
+
+    return channels
+      .map(function(ch) {
+        return parseInt(ch);
+      })
+      .filter(function(ch) {
+        return ch >= 1 && ch <= 16
+      });
+
+  };
+
+  /**
    *
    * Returns an `Input` object representing the input port with the specified id.
    *
@@ -2269,14 +2308,14 @@
    *
    * @param [data=[]] {Array} An array of uints for the message. The number of data bytes varies
    * depending on the status byte. It is perfectly legal to send no data for some message types (use
-   * undefined or an empty array in this case). Each byte must be between 0 and 127.
+   * undefined or an empty array in this case). Each byte must be between 0 and 255.
    *
    * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
    * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
    * 0.
    *
    * @throws {RangeError} The status byte must be an integer between 128 (0x80) and 255 (0xFF).
-   * @throws {RangeError} Data bytes must be integers between 0 (0x00) and 127 (0x7F).
+   * @throws {RangeError} Data bytes must be integers between 0 (0x00) and 255 (0x7F).
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
@@ -2291,14 +2330,14 @@
 
     var message = [];
 
-    data.forEach(function(item){
+    data.forEach(function(item, index){
 
       var parsed = parseInt(item); // mandatory because of 'null'
 
-      if (parsed >= 0 && parsed <= 127) {
+      if (parsed >= 0 && parsed <= 255) {
         message.push(parsed);
       } else {
-        throw new RangeError("Data bytes must be integers between 0 (0x00) and 127 (0x7F).");
+        throw new RangeError("Data bytes must be integers between 0 (0x00) and 255 (0xFF).");
       }
 
     });
@@ -2744,7 +2783,7 @@
     // Send note off messages
     this._convertNoteToArray(note).forEach(function(item) {
 
-      this._convertChannelToArray(channel).forEach(function(ch) {
+      wm.toMIDIChannels(channel).forEach(function(ch) {
 
         this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
@@ -2842,7 +2881,7 @@
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
-      this._convertChannelToArray(channel).forEach(function(ch) {
+      wm.toMIDIChannels(channel).forEach(function(ch) {
         this.send(
           (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
           [item, Math.round(nVelocity)],
@@ -2880,7 +2919,7 @@
 
       this._convertNoteToArray(note).forEach(function(item) {
 
-        this._convertChannelToArray(channel).forEach(function(ch) {
+        wm.toMIDIChannels(channel).forEach(function(ch) {
           this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
             [item, Math.round(nRelease)],
@@ -2950,7 +2989,7 @@
 
     this._convertNoteToArray(note).forEach(function(item) {
 
-      that._convertChannelToArray(channel).forEach(function(ch) {
+      wm.toMIDIChannels(channel).forEach(function(ch) {
         that.send(
           (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (ch - 1),
           [item, nPressure],
@@ -3089,7 +3128,7 @@
       throw new RangeError("Controller value must be between 0 and 127.");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       this.send(
         (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (ch - 1),
         [controller, value],
@@ -3129,7 +3168,7 @@
       throw new RangeError("The control64 value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.sendControlChange(0x65, parameter[0], channel, {time: time});
       that.sendControlChange(0x64, parameter[1], channel, {time: time});
     });
@@ -3166,7 +3205,7 @@
       throw new RangeError("The control62 value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.sendControlChange(0x63, parameter[0], channel, {time: time});
       that.sendControlChange(0x62, parameter[1], channel, {time: time});
     });
@@ -3198,13 +3237,13 @@
       throw new RangeError("The msb value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.sendControlChange(0x06, data[0], channel, {time: time});
     });
 
     data[1] = parseInt(data[1]);
     if(data[1] >= 0 && data[1] <= 127) {
-      this._convertChannelToArray(channel).forEach(function(ch) {
+      wm.toMIDIChannels(channel).forEach(function(ch) {
         that.sendControlChange(0x26, data[1], channel, {time: time});
       });
     }
@@ -3232,7 +3271,7 @@
 
     var that = this;
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.sendControlChange(0x65, 0x7F, channel, {time: time});
       that.sendControlChange(0x64, 0x7F, channel, {time: time});
     });
@@ -3314,7 +3353,7 @@
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that._selectRegisteredParameter(parameter, channel, options.time);
       that._setCurrentRegisteredParameter(data, channel, options.time);
       that._deselectRegisteredParameter(channel, options.time);
@@ -3392,7 +3431,7 @@
 
     data = [].concat(data);
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that._selectNonRegisteredParameter(parameter, channel, options.time);
       that._setCurrentRegisteredParameter(data, channel, options.time);
       that._deselectRegisteredParameter(channel, options.time);
@@ -3467,7 +3506,7 @@
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that._selectRegisteredParameter(parameter, channel, options.time);
       that.sendControlChange(0x60, 0, channel, {time: options.time});
       that._deselectRegisteredParameter(channel, options.time);
@@ -3540,7 +3579,7 @@
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       this._selectRegisteredParameter(parameter, channel, options.time);
       this.sendControlChange(0x61, 0, channel, {time: options.time});
       this._deselectRegisteredParameter(channel, options.time);
@@ -3599,7 +3638,7 @@
       throw new RangeError("The cents value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.setRegisteredParameter(
         "pitchbendrange", [semitones, cents], channel, {time: options.time}
       );
@@ -3657,7 +3696,7 @@
       throw new RangeError("The cents value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.setRegisteredParameter(
         "modulationrange", [semitones, cents], channel, {time: options.time}
       );
@@ -3722,7 +3761,7 @@
     var msb = (fine >> 7) & 0x7F;
     var lsb = fine & 0x7F;
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.setRegisteredParameter("channelcoarsetuning", coarse, channel, {time: options.time});
       that.setRegisteredParameter("channelfinetuning", [msb, lsb], channel, {time: options.time});
     });
@@ -3769,7 +3808,7 @@
       throw new RangeError("The program value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.setRegisteredParameter("tuningprogram", value, channel, {time: options.time});
     });
 
@@ -3815,7 +3854,7 @@
       throw new RangeError("The bank value must be between 0 and 127");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.setRegisteredParameter("tuningbank", value, channel, {time: options.time});
     });
 
@@ -3890,7 +3929,7 @@
       throw new RangeError("Value must be an integer between 0 and 127.");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
 
       this.send(
           (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (ch - 1),
@@ -3942,7 +3981,7 @@
       throw new RangeError("Program numbers must be between 0 and 127.");
     }
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.send(
         (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (ch - 1),
         [program],
@@ -3991,7 +4030,7 @@
 
     var nPressure = Math.round(pressure * 127);
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.send(
           (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (ch - 1),
           [nPressure],
@@ -4045,7 +4084,7 @@
     var msb = (nLevel >> 7) & 0x7F;
     var lsb = nLevel & 0x7F;
 
-    this._convertChannelToArray(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function(ch) {
       that.send(
         (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (ch - 1),
         [lsb, msb],
@@ -4107,37 +4146,6 @@
     });
 
     return notes;
-
-  };
-
-  /**
-   * Converts an input value (which can be an int, an array or the value "all" to an array of valid
-   * MIDI channels. If `undefined` is provided as the channel, an array of all channels will be
-   * returned.
-   *
-   * @method _convertChannelToArray
-   * @param [channel] {uint|Array}
-   * @returns {Array}
-   * @protected
-   */
-  Output.prototype._convertChannelToArray = function(channel) {
-
-    if (channel === 'all' || channel === undefined) { channel = ['all']; }
-
-    if ( !Array.isArray(channel) ) { channel = [channel]; }
-
-    if (channel.indexOf('all') > -1) {
-      channel = [];
-      for (var i = 1; i <= 16; i++) { channel.push(i); }
-    }
-
-    channel.forEach(function(ch) {
-      if ( !(ch >= 1 && ch <= 16) ) {
-        throw new RangeError("MIDI channels must be between 1 and 16.");
-      }
-    });
-
-    return channel;
 
   };
 
