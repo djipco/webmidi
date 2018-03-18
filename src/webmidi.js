@@ -738,7 +738,7 @@
         return parseInt(ch);
       })
       .filter(function(ch) {
-        return ch >= 1 && ch <= 16
+        return (ch >= 1 && ch <= 16)
       });
 
   };
@@ -2349,17 +2349,33 @@
   };
 
   /**
-   * Sends a MIDI *system exclusive* message. The generated message will automatically be prepended
-   * with the *SysEx* byte (0xF0) and terminated with the *End of SysEx* byte (0xF7).
+   * Sends a MIDI *system exclusive* (sysex) message. The generated message will automatically be
+   * prepended with the *sysex* byte (0xF0) and terminated with the *end of sysex* byte (0xF7).
    *
-   * For example, if you want to send a SysEx message to a Korg device connected to the first
-   * output, you would use the following code:
+   * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
+   * do so, you must pass `true` as the second parameter to `WebMidi.enable()`:
+   *
+   *     WebMidi.enable(function (err) {
+   *         if (err) {
+   *             console.warn(err);
+   *         } else {
+   *             console.log("Sysex is enabled!");
+   *         }
+   *     }, true);
+   *
+   * Note that, depending on browser, version and platform, it may be necessary to serve the page
+   * over HTTPS to enable sysex support.
+   *
+   * #### Examples
+   *
+   * If you want to send a sysex message to a Korg device connected to the first output, you would
+   * use the following code:
    *
    *     WebMidi.outputs[0].sendSysex(0x42, [1, 2, 3, 4, 5]);
    *
    * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg (ID 0x42) devices. Some
    * manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
-   * the first parameter. For example, to send the same SysEx message to a *Native Instruments*
+   * the first parameter. For example, to send the same sysex message to a *Native Instruments*
    * device:
    *
    *     WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5]);
@@ -2388,15 +2404,15 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throw SysEx message support must first be activated.
-   * @throw The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).
+   * @throw Sysex message support must first be activated.
+   * @throw The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F).
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
   Output.prototype.sendSysex = function(manufacturer, data, options) {
 
     if (!wm.sysexEnabled) {
-      throw new Error("SysEx message support must first be activated.");
+      throw new Error("Sysex message support must first be activated.");
     }
 
     options = options || {};
@@ -2406,7 +2422,7 @@
     data.forEach(function(item){
       if (item < 0 || item > 127) {
         throw new RangeError(
-            "The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F)."
+            "The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F)."
         );
       }
     });
