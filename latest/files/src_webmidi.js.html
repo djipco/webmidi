@@ -17,7 +17,7 @@
                 <h1><img src="http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.3</em>
+            <em>API Docs for: 2.0.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -2488,15 +2488,15 @@
    * &#x60;WebMidi.time&#x60;. If &#x60;time&#x60; is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throw SysEx message support must first be activated.
-   * @throw The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).
+   * @throw Sysex message support must first be activated.
+   * @throw The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F).
    *
    * @return {Output} Returns the &#x60;Output&#x60; object so methods can be chained.
    */
   Output.prototype.sendSysex = function(manufacturer, data, options) {
 
     if (!wm.sysexEnabled) {
-      throw new Error(&quot;SysEx message support must first be activated.&quot;);
+      throw new Error(&quot;Sysex message support must first be activated.&quot;);
     }
 
     options = options || {};
@@ -2506,7 +2506,7 @@
     data.forEach(function(item){
       if (item &lt; 0 || item &gt; 127) {
         throw new RangeError(
-            &quot;The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).&quot;
+            &quot;The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F).&quot;
         );
       }
     });

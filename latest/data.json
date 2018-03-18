@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi.js",
-        "version": "2.0.3",
+        "version": "2.0.4",
         "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": "",
         "logo": "http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png"
@@ -2083,7 +2083,7 @@
                     ]
                 }
             ],
-            "throw": "The data bytes of a SysEx message must be integers between 0 (0x00) and 127 (0x7F).",
+            "throw": "The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F).",
             "return": {
                 "description": "Returns the `Output` object so methods can be chained.",
                 "type": "Output"
