@@ -131,9 +131,6 @@ WebMidi.enable(function (err) {
 });
 ```
 
->If you need `sysex` support, you will have to pass `true` as the second parameter to the `enable()` 
->function.
-
 To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
 device. To view all the available `Input` and `Output` ports, you can use the matching arrays:
 
@@ -187,6 +184,25 @@ input.addListener('pitchbend', "all", function(e) {
     console.log("Pitch value: " + e.value);
 });
 ```
+
+## About Sysex Support
+
+Per the 
+[Web MIDI API specification](https://webaudio.github.io/web-midi-api/#dom-navigator-requestmidiaccess), 
+system exclusice (sysex) support is disabled by default. If you need to use sysex messages, you will 
+need to pass `true` as the second parameter to `WebMidi.enable()`:
+
+```javascript
+WebMidi.enable(function (err) {
+  if (err) {
+    console.warn(err);
+  } else {
+    console.log("Sysex is enabled!");
+  }
+}, true);
+```
+**Important**: depending on the browser, version and platform, it may also be necessary to serve the 
+page over https if you want to enable sysex support.
 
 ## More code examples
 
