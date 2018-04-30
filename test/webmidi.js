@@ -275,16 +275,22 @@ describe('WebMidi', function() {
 
   describe('getOctave()', function() {
 
-    it("should return undefined if number is invalid", function() {
-
+    beforeEach("Enable WebMidi.js", function () {
       WebMidi.disable();
+    });
 
-      WebMidi.enable(function() {
-        ["abc", null, undefined, -1, 128, function () {}, {}, "555"].forEach(function (param) {
-          expect(WebMidi.getOctave(param)).to.equal(undefined);
-        });
+    it("should return undefined if number is invalid", function() {
+      ["abc", null, undefined, -1, 128, function () {}, {}, "555"].forEach(function (param) {
+        expect(WebMidi.getOctave(param)).to.equal(undefined);
       });
+    });
 
+    it("should return an integer between -2 and 8 if note is in range", function() {
+      for (var i = 0; i <= 127; i++) {
+        var result = WebMidi.getOctave(i);
+        expect(result).to.be.within(-2,8);
+        expect(result % 1).to.be.equal(0);
+      }
     });
 
   });
