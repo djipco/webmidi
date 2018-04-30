@@ -189,7 +189,7 @@ input.addListener('pitchbend', "all", function(e) {
 
 Per the 
 [Web MIDI API specification](https://webaudio.github.io/web-midi-api/#dom-navigator-requestmidiaccess), 
-system exclusice (sysex) support is disabled by default. If you need to use sysex messages, you will 
+system exclusive (sysex) support is disabled by default. If you need to use sysex messages, you will 
 need to pass `true` as the second parameter to `WebMidi.enable()`:
 
 ```javascript
