@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi.js",
-        "version": "2.0.4",
+        "version": "2.0.5",
         "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": "",
         "logo": "http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png"
@@ -432,7 +432,7 @@
         {
             "file": "src/webmidi.js",
             "line": 844,
-            "description": "Returns the octave number for the specified MIDI note number. The returned value will be\nbetween -2 and 8.",
+            "description": "Returns the octave number for the specified MIDI note number. The returned value will be\nbetween -2 and 8. If the note number passed to `getOctave()` is invalid, `undefined` will be\nreturned.",
             "itemtype": "method",
             "name": "getOctave",
             "static": 1,
@@ -444,7 +444,7 @@
                 }
             ],
             "return": {
-                "description": "The octave as an integer between -2 and 8. If the note number passed to\n`getOctave()` is invalid, `undefined` will be returned.",
+                "description": "The octave as an integer between -2 and 8 (or `undefined`).",
                 "type": "Number"
             },
             "since": "2.0.0-rc.6",
