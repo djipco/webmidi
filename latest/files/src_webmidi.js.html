@@ -17,7 +17,7 @@
                 <h1><img src="http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.4</em>
+            <em>API Docs for: 2.0.5</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -927,21 +927,21 @@
 
   /**
    * Returns the octave number for the specified MIDI note number. The returned value will be
-   * between -2 and 8.
+   * between -2 and 8. If the note number passed to &#x60;getOctave()&#x60; is invalid, &#x60;undefined&#x60; will be
+   * returned.
    *
    * @method getOctave
    * @static
    *
    * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
    *
-   * @returns {Number} The octave as an integer between -2 and 8. If the note number passed to
-   * &#x60;getOctave()&#x60; is invalid, &#x60;undefined&#x60; will be returned.
+   * @returns {Number} The octave as an integer between -2 and 8 (or &#x60;undefined&#x60;).
    *
    * @since 2.0.0-rc.6
    */
   WebMidi.prototype.getOctave = function(number) {
 
-    if (number &amp;&amp; number &gt;= 0 &amp;&amp; number &lt;= 127) {
+    if (number != null &amp;&amp; number &gt;= 0 &amp;&amp; number &lt;= 127) {
       return Math.floor(parseInt(number) / 12 - 1) - 1;
     }
 
