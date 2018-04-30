@@ -843,21 +843,21 @@
 
   /**
    * Returns the octave number for the specified MIDI note number. The returned value will be
-   * between -2 and 8.
+   * between -2 and 8. If the note number passed to `getOctave()` is invalid, `undefined` will be
+   * returned.
    *
    * @method getOctave
    * @static
    *
    * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
    *
-   * @returns {Number} The octave as an integer between -2 and 8. If the note number passed to
-   * `getOctave()` is invalid, `undefined` will be returned.
+   * @returns {Number} The octave as an integer between -2 and 8 (or `undefined`).
    *
    * @since 2.0.0-rc.6
    */
   WebMidi.prototype.getOctave = function(number) {
 
-    if (number && number >= 0 && number <= 127) {
+    if (number != null && number >= 0 && number <= 127) {
       return Math.floor(parseInt(number) / 12 - 1) - 1;
     }
 
