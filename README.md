@@ -1,4 +1,4 @@
-![WebMidi.js Logo](http://cotejp.github.io/webmidi/images/webmidijs-logo.svg "WebMidi.js")
+![WebMidi.js Logo](http://djipco.github.io/webmidi/images/webmidijs-logo.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
@@ -56,7 +56,7 @@ testing will need to be done but it looks very promising.
 
 WebMidi.js is not officially supported in Node.js. However, there is hope. I managed to get most 
 parts of it working by using the [web-midi-api](https://www.npmjs.com/package/web-midi-api) npm 
-module. Check out this [comment](https://github.com/cotejp/webmidi/issues/15#issuecomment-322020295) 
+module. Check out this [comment](https://github.com/djipco/webmidi/issues/15#issuecomment-322020295)
 for more information. If anyone is interested in contributing, help would be more than welcome. 
 
 ## Installation
@@ -80,7 +80,7 @@ desired version at the end of the request:
 #### Manual Install
 
 Obviously, you can also install **WebMidi.js** the old fashioned way by downloading the
-[latest release](https://github.com/cotejp/webmidi/releases) packaged as a zip file. Uncompress the 
+[latest release](https://github.com/djipco/webmidi/releases) packaged as a zip file. Uncompress the
 package, grab the `webmidi.min.js` file and copy it to your project. Link to it from your HTML page 
 as usual. 
 
@@ -208,7 +208,7 @@ page over https if you want to enable sysex support.
 
 Here are various other examples to give you an idea of what is possible with **WebMidi.js**. For all 
 details, please consult the full 
-**[API documentation](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
+**[API documentation](http://djipco.github.io/webmidi/latest/classes/WebMidi.html)**.
 
 ```javascript
 // Enable WebMidi.js
@@ -329,10 +329,10 @@ WebMidi.enable(function (err) {
 ## Full API Documentation
 
 The full **API documentation** is available for download in the `docs` folder. You can also 
-**[view it online](http://cotejp.github.io/webmidi/latest/classes/WebMidi.html)**.
+**[view it online](http://djipco.github.io/webmidi/latest/classes/WebMidi.html)**.
 
 Legacy 
-[documentation for version 1.0.0-beta.15](http://cotejp.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html) 
+[documentation for version 1.0.0-beta.15](http://djipco.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html)
 will also remain available online as long as necessary.
 
 ## Migration Notes
