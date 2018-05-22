@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
-[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=flat)](https://beerpay.io/cotejp/webmidi) 
+[![Beerpay](https://beerpay.io/djipco/webmidi/badge.svg?style=flat)](https://beerpay.io/djipco/webmidi)
 
 ## Background
 
@@ -392,10 +392,10 @@ Obviously, you can also
 
 ## Support the Project
 
-If you find this library useful, you can **[buy me a drink](https://beerpay.io/cotejp/webmidi)** as 
+If you find this library useful, you can **[buy me a drink](https://beerpay.io/djipco/webmidi)** as
 a token of your appreciation. This would automatically make you even more awesome than you already 
 are!
 
-[![Beerpay](https://beerpay.io/cotejp/webmidi/badge.svg?style=beer-square)](https://beerpay.io/cotejp/webmidi)
+[![Beerpay](https://beerpay.io/djipco/webmidi/badge.svg?style=beer-square)](https://beerpay.io/djipco/webmidi)
 
 Cheers!
