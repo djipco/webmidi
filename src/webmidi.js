@@ -1682,10 +1682,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1716,10 +1713,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1750,10 +1744,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1784,10 +1775,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1816,10 +1804,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1845,10 +1830,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {uint} event.value The value received (between 0 and 127).
@@ -1867,10 +1849,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The aftertouch value received (between 0 and 1).
@@ -1889,10 +1868,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The pitch bend value received (between -1 and 1).
@@ -2017,10 +1993,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        *
        */
@@ -2036,10 +2009,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'timecode';
@@ -2056,10 +2026,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'songposition';
@@ -2076,10 +2043,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        * @param {String} event.song Song (or sequence) number to select.
        */
@@ -2097,10 +2061,7 @@
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'tuningrequest';
@@ -2116,10 +2077,7 @@
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'clock';
@@ -2135,10 +2093,7 @@
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'start';
@@ -2154,10 +2109,7 @@
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'continue';
@@ -2173,10 +2125,7 @@
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'stop';
@@ -2191,10 +2140,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'activesensing';
@@ -2209,10 +2155,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = 'reset';
@@ -2228,11 +2171,7 @@
        * @param {Object} event
        * @param {Input} event.target The `Input` that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
-       *
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'unknownsystemmessage';
