@@ -60,8 +60,6 @@
    * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
-   *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
    * @todo  Add methods for channel mode messages
@@ -133,6 +131,9 @@
           "stop": 0xFC,             // 252
           "activesensing": 0xFE,    // 254
           "reset": 0xFF,            // 255
+
+          // Custom WebMidi.js messages
+          "midimessage": 0,
           "unknownsystemmessage": -1
         },
         writable: false,
@@ -1315,8 +1316,9 @@
 
   /**
    * Adds an event listener to the `Input` that will trigger a function callback when the specified
-   * event happens on the specified channel(s). Here is a list of events that are dispatched by
-   * `Input` objects and that can be listened to.
+   * event happens. The events that are dispatched can be channel-specific or Input-wide.
+   *
+   * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
    *
    * Channel-specific MIDI events:
    *
@@ -1329,7 +1331,7 @@
    *    * {{#crossLink "Input/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
    *    * {{#crossLink "Input/pitchbend:event"}}pitchbend{{/crossLink}}
    *
-   * Device-wide MIDI events:
+   * Input-wide MIDI events:
    *
    *    * {{#crossLink "Input/sysex:event"}}sysex{{/crossLink}}
    *    * {{#crossLink "Input/timecode:event"}}timecode{{/crossLink}}
@@ -1342,10 +1344,14 @@
    *    * {{#crossLink "Input/stop:event"}}stop{{/crossLink}}
    *    * {{#crossLink "Input/activesensing:event"}}activesensing{{/crossLink}}
    *    * {{#crossLink "Input/reset:event"}}reset{{/crossLink}}
+   *    * {{#crossLink "Input/midimessage:event"}}midimessage{{/crossLink}}
    *    * {{#crossLink "Input/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
    *
    * For device-wide events, the `channel` parameter will be silently ignored. You can simply use
    * `undefined` in that case.
+   *
+   * If you want to view all incoming MIDI traffic, you can listen to the input-wide `midimessage`
+   * event. This event is dispatched for every single message that is received on that input.
    *
    * @method addListener
    * @chainable
@@ -1353,7 +1359,8 @@
    * @param type {String} The type of the event.
    *
    * @param channel {Number|Array|String} The MIDI channel to listen on (integer between 1 and 16).
-   * You can also specify an array of channel numbers or the value 'all'.
+   * You can also specify an array of channel numbers or the value 'all' (or leave it undefined for
+   * input-wide events).
    *
    * @param listener {Function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object's properties,
@@ -1385,15 +1392,12 @@
       throw new TypeError("The 'listener' parameter must be a function.");
     }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
-      if (!this._userHandlers.system[type]) {
-        this._userHandlers.system[type] = [];
-      }
-
+      if (!this._userHandlers.system[type]) this._userHandlers.system[type] = [];
       this._userHandlers.system[type].push(listener);
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf("all") > -1) {
@@ -1421,8 +1425,6 @@
     return this;
 
   };
-
-
 
   /**
    * This is an alias to the {{#crossLink "Input/addListener"}}Input.addListener(){{/crossLink}}
@@ -1465,13 +1467,13 @@
     if (channel === undefined) { channel = "all"; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] != undefined) {
 
       for (var o = 0; o < this._userHandlers.system[type].length; o++) {
         if (this._userHandlers.system[type][o] === listener) { return true; }
       }
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] != undefined) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf("all") > -1) {
@@ -1527,7 +1529,7 @@
     if (channel === undefined) { channel = "all"; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
       if (listener === undefined) {
 
@@ -1543,7 +1545,7 @@
 
       }
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf("all") > -1) {
@@ -1596,6 +1598,8 @@
       }
     }
 
+    this._userHandlers
+
   };
 
   /**
@@ -1603,6 +1607,36 @@
    * @protected
    */
   Input.prototype._onMidiMessage = function(e) {
+
+    // Execute "midimessage" listeners (if any)
+    if (this._userHandlers.system["midimessage"].length() > 0) {
+
+      var event = {
+        "target": this,
+        "data": e.data,
+        "timestamp": e.timeStamp,
+        type: "midimessage"
+      };
+
+      /**
+       * Event emitted when a MIDI message is received. This should be used primarily for debugging
+       * purposes.
+       *
+       * @event midimessage
+       *
+       * @param {Object} event
+       * @param {Input} event.target The `Input` that triggered the event.
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {String} event.type The type of event that occurred.
+       * @since 2.1
+       */
+      this._userHandlers.system["midimessage"].forEach(
+        function(callback) { callback(event); }
+      );
+
+    }
 
     if (e.data[0] < 240) {          // channel-specific message
       this._parseChannelEvent(e);
