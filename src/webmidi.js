@@ -304,11 +304,31 @@
         writable: false,
         enumerable: true,
         configurable: false
+      },
+
+      /**
+       * An integer to offset the octave both in inbound and outbound messages. By default, middle C
+       * (MIDI note number 60) is placed on the 4th octave (C4).
+       *
+       * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+       * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+       *
+       * @property octaveOffset
+       * @type Number
+       * @static
+       *
+       * @since 2.1
+       */
+      octaveOffset: {
+        value: 0,
+        writable: true,
+        enumerable: true,
+        configurable: false
       }
 
     });
 
-    // Define getters
+    // Define getters/setters
     Object.defineProperties(this, {
 
       /**
@@ -842,23 +862,24 @@
   };
 
   /**
-   * Returns the octave number for the specified MIDI note number. The returned value will be
-   * between -2 and 8. If the note number passed to `getOctave()` is invalid, `undefined` will be
-   * returned.
+   * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
+   * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
+   * <a href="#property_octaveOffset">octaveOffset</a> property, you can offset the result as much
+   * as you want.
    *
    * @method getOctave
    * @static
    *
    * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
    *
-   * @returns {Number} The octave as an integer between -2 and 8 (or `undefined`).
+   * @returns {Number} The octave (as a signed integer) or `undefined`.
    *
    * @since 2.0.0-rc.6
    */
   WebMidi.prototype.getOctave = function(number) {
 
     if (number != null && number >= 0 && number <= 127) {
-      return Math.floor(parseInt(number) / 12 - 1) - 1;
+      return Math.floor(parseInt(number) / 12 - 1) + parseInt(wm.octaveOffset);
     }
 
   };
@@ -897,15 +918,16 @@
   };
 
   /**
-   * Returns a valid MIDI note number given the specified input. The input can be a note name (C3,
-   * F#4, D-2, G8, etc.) or an int between 0 and 127.
+   * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a note
+   * name (C3, F#4, D-2, G8, etc.). If an integer between 0 and 127, it will simply be returned as
+   * is.
    *
    * @method guessNoteNumber
    * @static
    *
    * @param input {Number|String} A string to extract the note number from. An integer can also be
    * used, in which case it will simply be returned (if between 0 and 127).
-   * @throws {Error} Invalid note number.
+   * @throws {Error} Invalid input value
    * @returns {Number} A valid MIDI note number (0-127).
    */
   WebMidi.prototype.guessNoteNumber = function(input) {
@@ -920,27 +942,29 @@
       output = this.noteNameToNumber(input);
     }
   
-    if (output === false) {
-      throw new Error("Invalid note number (" + input + ").");
-    }
-
+    if (output === false) throw new Error("Invalid input value (" + input + ").");
     return output;
 
   };
 
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number which should be between -2 and 8. The name can also
-   * optionally include a sharp "#" or double sharp "##" symbol and a flat "b" or double flat "bb"
-   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   * note name must include the octave number. The name can also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
    *
-   * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
+   * Note that, in converting note names to numbers, C4 is considered to be middle C (MIDI note
+   * number 60) as per the scientific pitch notation standard.
+   *
+   * Also note that the resulting note number is offset by the `octaveOffset` value (if not zero).
+   * For example, if you pass in "C4" and the `octaveOffset` value is 2 the resulting MIDI note
+   * number will be 36.
    *
    * @method noteNameToNumber
    * @static
    *
    * @param name {String} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number (between -2 and 8).
+   * "##", "b" or "bb" followed by the octave number.
    *
    * @throws {RangeError} Invalid note name.
    * @throws {RangeError} Invalid note name or note outside valid range.
@@ -948,14 +972,15 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    if (typeof name !== "string") { name = ''; }
+    if (typeof name !== "string") name = '';
 
     var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) { throw new RangeError("Invalid note name."); }
+    if(!matches) throw new RangeError("Invalid note name.");
 
     var semitones = wm._semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
-    var result = ((octave + 2) * 12) + semitones;
+    var result = ((octave + 1 - wm.octaveOffset) * 12) + semitones;
+
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
       result -= matches[2].length;
@@ -963,7 +988,7 @@
       result += matches[2].length;
     }
 
-    if (semitones < 0 || octave < -2 || octave > 8 || result < 0 || result > 127) {
+    if (result < 0 || result > 127) {
       throw new RangeError("Invalid note name or note outside valid range.");
     }
 
@@ -2913,6 +2938,7 @@
 
     if (options.duration) {
 
+
       if (options.duration <= 0) { options.duration = 0; }
 
       var nRelease = 64;
@@ -2936,6 +2962,7 @@
       this._convertNoteToArray(note).forEach(function(item) {
 
         wm.toMIDIChannels(channel).forEach(function(ch) {
+
           this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
             [item, Math.round(nRelease)],

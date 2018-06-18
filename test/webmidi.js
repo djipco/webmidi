@@ -285,12 +285,25 @@ describe('WebMidi', function() {
       });
     });
 
-    it("should return an integer between -2 and 8 if note is in range", function() {
+    it("should return an signed integer", function() {
       for (var i = 0; i <= 127; i++) {
         var result = WebMidi.getOctave(i);
-        expect(result).to.be.within(-2,8);
         expect(result % 1).to.be.equal(0);
       }
+    });
+
+    it("should place MIDI note number 60 (C4/middle C) at octave 4", function() {
+      expect(WebMidi.getOctave(60)).to.be.equal(4);
+    });
+
+    it("should take into account desired octaveOffset value", function() {
+      WebMidi.octaveOffset = 2;
+      expect(WebMidi.getOctave(60)).to.be.equal(6);
+      WebMidi.octaveOffset = -4;
+      expect(WebMidi.getOctave(60)).to.be.equal(0);
+      WebMidi.octaveOffset = -11;
+      expect(WebMidi.getOctave(60)).to.be.equal(-7);
+      WebMidi.octaveOffset = 0;
     });
 
   });
@@ -391,9 +404,7 @@ describe('WebMidi', function() {
     it("should throw error if invalid input is provided", function() {
 
       [
-        "abc", null, undefined, -1, 128, function () {
-      }, {}, "555", "C-3", "Cb-2", "H3",
-        "G#8"
+        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8"
       ].forEach(function (param) {
 
         expect(function () {
@@ -404,7 +415,7 @@ describe('WebMidi', function() {
 
     });
 
-    it("should provide the correct value", function() {
+    it("should provide the correct value for numerical values", function() {
 
       for (var i = 0; i <= 127; i++) {
         expect(WebMidi.guessNoteNumber(i)).to.equal(i);
@@ -413,32 +424,67 @@ describe('WebMidi', function() {
         expect(WebMidi.guessNoteNumber(i + 0.5)).to.equal(Math.min(i + 1, 127));
       }
 
+    });
+
+    it("should provide the correct value for note names with varying octave offsets", function() {
+
       var value = 0;
+      // var offset = 2;
 
-      // Sharps
-      for (var j = -2; j <= 8; j++) {
+      [-20, -15, -9, 0, 7, 13, 20].forEach(function (offset) {
 
-        for (var k = 0; k < WebMidi._notes.length; k++) {
-          if (value > 127) { break; } // because there is no G#8
-          expect(WebMidi.guessNoteNumber(WebMidi._notes[k] + j)).to.equal(value);
-          value++;
+        WebMidi.octaveOffset = offset;
+
+        // Sharps
+        for (var octave = -1 + offset; octave <= 9 + offset; octave++) {
+
+          for (var k = 0; k < WebMidi._notes.length; k++) {
+            if (value > 127) break;
+            expect(WebMidi.guessNoteNumber(WebMidi._notes[k] + octave)).to.equal(value);
+            value++;
+          }
+
         }
 
-      }
+        // Flats
+        var flats = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+        value = 0;
 
-      // Flats
-      var flats = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
-      value = 0;
+        for (octave = -1 + offset; octave <= 9 + offset; octave++) {
 
-      for (j = -2; j <= 8; j++) {
+          for (k = 0; k < flats.length; k++) {
+            if (value > 127) break;
+            expect(WebMidi.guessNoteNumber(flats[k] + octave)).to.equal(value);
+            value++;
+          }
 
-        for (k = 0; k < flats.length; k++) {
-          if (value > 127) { break; } // because there is no G#8
-          expect(WebMidi.guessNoteNumber(flats[k] + j)).to.equal(value);
-          value++;
         }
 
-      }
+      });
+
+      WebMidi.octaveOffset = 0;
+
+    });
+
+    it("should throw error if note number is outside range given the current octave offset", function() {
+
+      WebMidi.octaveOffset = 0;
+
+      expect(function () {
+        WebMidi.guessNoteNumber("C-2");
+        WebMidi.guessNoteNumber("G#9");
+        WebMidi.guessNoteNumber("C10");
+      }).to.throw(Error);
+
+      WebMidi.octaveOffset = -1;
+
+      expect(function () {
+        WebMidi.guessNoteNumber("C-3");
+        WebMidi.guessNoteNumber("G#8");
+        WebMidi.guessNoteNumber("C9");
+      }).to.throw(Error);
+
+      WebMidi.octaveOffset = 0;
 
     });
 
@@ -497,8 +543,8 @@ describe('WebMidi', function() {
     it("should throw error if invalid input is provided", function() {
 
       [
-        '', "abc", null, undefined, "G#8", "Cb-2", 'X2', "F20", function () {}, {}, "555", "C-3",
-        "Cb-2", "Cbb-2", "H3", "G#8", "G##8"
+        '', "abc", null, undefined, "G#9", "Cb-1", 'X2', function () {}, {}, "555", "C-3",
+        "Cbb-1/", "H3", "G##9"
       ].forEach(function (param) {
 
         expect(function() {
