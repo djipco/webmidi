@@ -1598,8 +1598,6 @@
       }
     }
 
-    this._userHandlers
-
   };
 
   /**
@@ -1609,7 +1607,7 @@
   Input.prototype._onMidiMessage = function(e) {
 
     // Execute "midimessage" listeners (if any)
-    if (this._userHandlers.system["midimessage"].length() > 0) {
+    if (this._userHandlers.system["midimessage"].length > 0) {
 
       var event = {
         "target": this,
