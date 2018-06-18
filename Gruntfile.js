@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         version: '<%= pkg.version %>',
         description: '<%= pkg.description %>',
         url: '<%= pkg.url %>',
-        logo: "http://cotejp.github.io/webmidi/images/webmidijs-logo-small.png",
+        logo: "http://djipco.github.io/webmidi/images/webmidijs-logo-small.png",
         options: {
           outdir: './docs/latest',
           linkNatives: true,

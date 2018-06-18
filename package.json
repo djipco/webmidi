@@ -6,10 +6,10 @@
   "main": "webmidi.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cotejp/webmidi.git"
+    "url": "git://github.com/djipco/webmidi.git"
   },
   "bugs": {
-    "url": "https://github.com/cotejp/webmidi/issues"
+    "url": "https://github.com/djipco/webmidi/issues"
   },
   "keywords": [
     "midi",
@@ -19,7 +19,7 @@
     "front-end",
     "webmidi api"
   ],
-  "homepage": "https://github.com/cotejp/webmidi",
+  "homepage": "https://github.com/djipco/webmidi",
   "license": "MIT",
   "engines": {
     "node": ">0.6.x"
