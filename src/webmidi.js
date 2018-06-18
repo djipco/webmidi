@@ -980,7 +980,7 @@
 
     var semitones = wm._semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
-    var result = ((octave + 1 - wm.octaveOffset) * 12) + semitones;
+    var result = ((octave + 1 - parseInt(wm.octaveOffset)) * 12) + semitones;
 
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
