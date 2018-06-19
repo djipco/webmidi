@@ -484,7 +484,8 @@
       function(midiAccess) {
 
         var events = [],
-            promises = [];
+            promises = [],
+            promiseTimeout;
 
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
@@ -513,18 +514,14 @@
           promises.push(output.value.open());
         }
 
-        // Since this library can be used with JazzMidi with no support for promises, we must make
-        // sure it still works. The workaround is to use a timer to wait a little. Once the Web MIDI
-        // API is well implanted, we'll get rid of that.
-        if (Promise) {
-          Promise.all(promises)
-            .catch(function(err) { console.warn(err); })
-            .then(onPortsOpen.bind(this));
-        } else {
-          setTimeout(onPortsOpen.bind(this), 200);
-        }
-
+        // Since this library might be used in environments without support for promises (such as
+        // Jazz-Midi) or in environments that are not properly opening the ports (such as Web MIDI
+        // Browser), we fall back to a timer-based approach if the promise-based approach fails.
         function onPortsOpen() {
+
+          clearTimeout(promiseTimeout);
+
+          console.log("ports open!");
 
           this._updateInputsAndOutputs();
           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
@@ -537,6 +534,11 @@
           }.bind(this));
 
         }
+
+        promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
+        if (Promise) Promise.all(promises).then(onPortsOpen.bind(this));
+
+
 
         // When MIDI access is requested, all input and output ports have their "state" set to
         // "connected". However, the value of their "connection" property is "closed".
