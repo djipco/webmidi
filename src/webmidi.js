@@ -538,8 +538,6 @@
         promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
         if (Promise) Promise.all(promises).then(onPortsOpen.bind(this));
 
-
-
         // When MIDI access is requested, all input and output ports have their "state" set to
         // "connected". However, the value of their "connection" property is "closed".
         //
@@ -882,7 +880,7 @@
   WebMidi.prototype.getOctave = function(number) {
 
     if (number != null && number >= 0 && number <= 127) {
-      return Math.floor(parseInt(number) / 12 - 1) + parseInt(wm.octaveOffset);
+      return Math.floor(Math.floor(number) / 12 - 1) + Math.floor(wm.octaveOffset);
     }
 
   };
@@ -982,7 +980,7 @@
 
     var semitones = wm._semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
-    var result = ((octave + 1 - parseInt(wm.octaveOffset)) * 12) + semitones;
+    var result = ((octave + 1 - Math.floor(wm.octaveOffset)) * 12) + semitones;
 
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
@@ -1909,16 +1907,14 @@
    */
   Input.prototype.getCcNameByNumber = function(number) {
 
-    number = parseInt(number);
+    number = Math.floor(number);
 
     if ( !(number >= 0 && number <= 119) ) {
       throw new RangeError("The control change number must be between 0 and 119.");
     }
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-      if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
-        return cc;
-      }
+      if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) return cc;
     }
 
     return undefined;
@@ -1940,16 +1936,14 @@
    */
   Input.prototype.getChannelModeByNumber = function(number) {
 
-    number = parseInt(number);
+    number = Math.floor(number);
 
     if ( !(number >= 120 && status <= 127) ) {
       throw new RangeError("The control change number must be between 120 and 127.");
     }
 
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
-        return cm;
-      }
+      if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) return cm;
     }
 
   };
@@ -2330,7 +2324,7 @@
 
     data.forEach(function(item, index){
 
-      var parsed = parseInt(item); // mandatory because of 'null'
+      var parsed = Math.floor(item); // mandatory because of 'null'
 
       if (parsed >= 0 && parsed <= 255) {
         message.push(parsed);
@@ -2483,7 +2477,7 @@
    */
   Output.prototype.sendSongPosition = function(value, options) {
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
 
     options = options || {};
 
@@ -2524,7 +2518,7 @@
    */
   Output.prototype.sendSongSelect = function(value,  options) {
 
-    value = parseInt(value);
+    value = Math.floor(value);
 
     options = options || {};
 
@@ -3132,14 +3126,14 @@
 
     } else {
 
-      controller = parseInt(controller);
+      controller = Math.floor(controller);
       if ( !(controller >= 0 && controller <= 119) ) {
         throw new RangeError("Controller numbers must be between 0 and 119.");
       }
 
     }
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
       throw new RangeError("Controller value must be between 0 and 127.");
     }
@@ -3174,12 +3168,12 @@
 
     var that = this;
 
-    parameter[0] = parseInt(parameter[0]);
+    parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
       throw new RangeError("The control65 value must be between 0 and 127");
     }
 
-    parameter[1] = parseInt(parameter[1]);
+    parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
       throw new RangeError("The control64 value must be between 0 and 127");
     }
@@ -3211,12 +3205,12 @@
 
     var that = this;
 
-    parameter[0] = parseInt(parameter[0]);
+    parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
       throw new RangeError("The control63 value must be between 0 and 127");
     }
 
-    parameter[1] = parseInt(parameter[1]);
+    parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
       throw new RangeError("The control62 value must be between 0 and 127");
     }
@@ -3248,7 +3242,7 @@
 
     data = [].concat(data);
 
-    data[0] = parseInt(data[0]);
+    data[0] = Math.floor(data[0]);
     if ( !(data[0] >= 0 && data[0] <= 127) ) {
       throw new RangeError("The msb value must be between 0 and 127");
     }
@@ -3257,7 +3251,7 @@
       that.sendControlChange(0x06, data[0], channel, {time: time});
     });
 
-    data[1] = parseInt(data[1]);
+    data[1] = Math.floor(data[1]);
     if(data[1] >= 0 && data[1] <= 127) {
       wm.toMIDIChannels(channel).forEach(function(ch) {
         that.sendControlChange(0x26, data[1], channel, {time: time});
@@ -3644,12 +3638,12 @@
 
     options = options || {};
 
-    semitones = parseInt(semitones) || 0;
+    semitones = Math.floor(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
       throw new RangeError("The semitones value must be between 0 and 127");
     }
 
-    cents = parseInt(cents) || 0;
+    cents = Math.floor(cents) || 0;
     if ( !(cents >= 0 && cents <= 127) ) {
       throw new RangeError("The cents value must be between 0 and 127");
     }
@@ -3702,12 +3696,12 @@
 
     options = options || {};
 
-    semitones = parseInt(semitones) || 0;
+    semitones = Math.floor(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
       throw new RangeError("The semitones value must be between 0 and 127");
     }
 
-    cents = parseInt(cents) || 0;
+    cents = Math.floor(cents) || 0;
     if ( !(cents >= 0 && cents <= 127) ) {
       throw new RangeError("The cents value must be between 0 and 127");
     }
@@ -3769,8 +3763,8 @@
       );
     }
 
-    var coarse = parseInt(value) + 64;
-    var fine = value - parseInt(value);
+    var coarse = Math.floor(value) + 64;
+    var fine = value - Math.floor(value);
 
     // Calculate MSB and LSB for fine adjustment (14bit resolution)
     fine = Math.round((fine + 1) / 2 * 16383);
@@ -3819,7 +3813,7 @@
 
     options = options || {};
 
-    value = parseInt(value);
+    value = Math.floor(value);
     if ( !(value >= 0 && value <= 127) ) {
       throw new RangeError("The program value must be between 0 and 127");
     }
@@ -3865,7 +3859,7 @@
 
     options = options || {};
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
       throw new RangeError("The bank value must be between 0 and 127");
     }
@@ -3931,7 +3925,7 @@
 
     } else {
 
-      command = parseInt(command);
+      command = Math.floor(command);
 
       if ( !(command >= 120 && command <= 127) ) {
         throw new RangeError("Channel mode numerical identifiers must be between 120 and 127.");
@@ -3939,7 +3933,7 @@
 
     }
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
 
     if (value < 0 || value > 127) {
       throw new RangeError("Value must be an integer between 0 and 127.");
@@ -3992,7 +3986,7 @@
 
     options = options || {};
 
-    program = parseInt(program);
+    program = Math.floor(program);
     if (isNaN(program) || program < 0 || program > 127) {
       throw new RangeError("Program numbers must be between 0 and 127.");
     }

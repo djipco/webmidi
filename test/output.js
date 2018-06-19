@@ -276,7 +276,7 @@ describe('Output', function() {
 
     it("should throw an error if value is out of bounds", function() {
 
-      [-1, 128, NaN, undefined, null, Infinity, -Infinity].forEach(function (param) {
+      [-1, 128, Infinity, NaN, -Infinity].forEach(function (param) {
         expect(function () {
           WebMidi.outputs[0].setTuningProgram(param, 1);
         }).to.throw(RangeError);

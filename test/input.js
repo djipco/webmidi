@@ -211,7 +211,7 @@ describe('Input', function() {
 
     it("should throw an error when an invalid CC number is provided", function () {
 
-      [-1, 120, undefined, null, function() {}].forEach(function (param) {
+      [-1, 120, function() {}].forEach(function (param) {
         expect(function () {
           WebMidi.inputs[0].getCcNameByNumber(param);
         }).to.throw(RangeError);
