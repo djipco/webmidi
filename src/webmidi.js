@@ -521,8 +521,6 @@
 
           clearTimeout(promiseTimeout);
 
-          console.log("ports open!");
-
           this._updateInputsAndOutputs();
           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
