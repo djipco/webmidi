@@ -65,6 +65,7 @@
    * @todo  Add methods for channel mode messages
    * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
    * @todo  Implement port statechange events (connected and disconnected)
+   * @todo  For the songposition and timecode message, we should calculate time values and make them directly available
    *
    */
   function WebMidi() {
@@ -2005,8 +2006,6 @@
        */
       event.type = 'timecode';
 
-      //@todo calculate time values and make them directly available
-
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
 
       /**
@@ -2021,8 +2020,6 @@
        * @param {String} event.type The type of event that occurred.
        */
       event.type = 'songposition';
-
-      //@todo calculate position value and make it directly available
 
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
 
