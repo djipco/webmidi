@@ -53,9 +53,9 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  Implement port statechange events.
    * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
-   * @todo  Complete tests
+   * @todo  Complete unit tests
+   * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
    * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
    * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
@@ -64,6 +64,7 @@
    * @todo  Implement the show control protocol subset.
    * @todo  Add methods for channel mode messages
    * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
+   * @todo  Implement port statechange events (connected and disconnected)
    *
    */
   function WebMidi() {
@@ -1444,17 +1445,16 @@
       throw new TypeError("The 'listener' parameter must be a function.");
     }
 
-
     if (channel === undefined) { channel = "all"; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type] != undefined) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
       for (var o = 0; o < this._userHandlers.system[type].length; o++) {
         if (this._userHandlers.system[type][o] === listener) { return true; }
       }
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type] != undefined) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If "all" is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf("all") > -1) {
@@ -1895,7 +1895,14 @@
     }
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-      if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) return cc;
+
+      if (
+        wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
+        number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]
+      ) {
+        return cc;
+      }
+
     }
 
     return undefined;
@@ -1924,7 +1931,14 @@
     }
 
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) return cm;
+
+      if (
+        wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
+        return cm;
+      }
+
     }
 
   };
@@ -2753,8 +2767,6 @@
 
     options = options || {};
 
-    options.velocity = parseFloat(options.velocity);
-
     if (options.rawVelocity) {
 
       if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
@@ -2849,8 +2861,6 @@
 
     options = options || {};
 
-    options.velocity = parseFloat(options.velocity);
-
     if (options.rawVelocity) {
 
       if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
@@ -2882,16 +2892,11 @@
 
 
     // Send note off messages (only if a valid duration has been defined)
-    options.duration = parseFloat(options.duration);
-
-    if (options.duration) {
-
+    if (!isNaN(options.duration)) {
 
       if (options.duration <= 0) { options.duration = 0; }
 
       var nRelease = 64;
-
-      options.release = parseFloat(options.release);
 
       if (options.rawVelocity) {
 
@@ -2971,7 +2976,6 @@
       throw new RangeError("The channel must be between 1 and 16.");
     }
 
-    pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure < 0 || pressure > 1) {
       pressure = 0.5;
     }
@@ -4066,7 +4070,6 @@
 
     options = options || {};
 
-    bend = parseFloat(bend);
     if (isNaN(bend) || bend < -1 || bend > 1) {
       throw new RangeError("Pitch bend value must be between -1 and 1.");
     }
