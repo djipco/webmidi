@@ -534,7 +534,13 @@
         }
 
         promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
-        if (Promise) Promise.all(promises).then(onPortsOpen.bind(this));
+
+        if (Promise) {
+          Promise
+            .all(promises)
+            .catch(function(err) { console.warn(err); })
+            .then(onPortsOpen.bind(this))
+        }
 
         // When MIDI access is requested, all input and output ports have their "state" set to
         // "connected". However, the value of their "connection" property is "closed".
