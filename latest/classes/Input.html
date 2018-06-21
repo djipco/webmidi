@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.5</em>
+            <em>API Docs for: 2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_webmidi.js.html#l1184"><code>src&#x2F;webmidi.js:1184</code></a>
+            Defined in: <a href="../files/src_webmidi.js.html#l1192"><code>src&#x2F;webmidi.js:1192</code></a>
         </div>
 
 
@@ -223,6 +223,10 @@ the MIDI subsystem and cannot be instantiated directly.</p>
 
                             </li>
                             <li class="index-item event">
+                                <a href="#event_midimessage">midimessage</a>
+
+                            </li>
+                            <li class="index-item event">
                                 <a href="#event_noteoff">noteoff</a>
 
                             </li>
@@ -297,7 +301,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1556"><code>src&#x2F;webmidi.js:1556</code></a>
+        <a href="../files/src_webmidi.js.html#l1565"><code>src&#x2F;webmidi.js:1565</code></a>
         </p>
 
 
@@ -328,7 +332,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1576"><code>src&#x2F;webmidi.js:1576</code></a>
+        <a href="../files/src_webmidi.js.html#l1585"><code>src&#x2F;webmidi.js:1585</code></a>
         </p>
 
 
@@ -365,7 +369,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1590"><code>src&#x2F;webmidi.js:1590</code></a>
+        <a href="../files/src_webmidi.js.html#l1629"><code>src&#x2F;webmidi.js:1629</code></a>
         </p>
 
 
@@ -413,7 +417,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1922"><code>src&#x2F;webmidi.js:1922</code></a>
+        <a href="../files/src_webmidi.js.html#l1947"><code>src&#x2F;webmidi.js:1947</code></a>
         </p>
 
 
@@ -459,7 +463,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1291"><code>src&#x2F;webmidi.js:1291</code></a>
+        <a href="../files/src_webmidi.js.html#l1300"><code>src&#x2F;webmidi.js:1300</code></a>
         </p>
 
 
@@ -468,8 +472,8 @@ the MIDI subsystem and cannot be instantiated directly.</p>
 
     <div class="description">
         <p>Adds an event listener to the <code>Input</code> that will trigger a function callback when the specified
-event happens on the specified channel(s). Here is a list of events that are dispatched by
-<code>Input</code> objects and that can be listened to.</p>
+event happens. The events that are dispatched can be channel-specific or Input-wide.</p>
+<p>Here is a list of events that are dispatched by <code>Input</code> objects and that can be listened to.</p>
 <p>Channel-specific MIDI events:</p>
 <ul>
 <li><a href="../classes/Input.html#event_noteoff" class="crosslink">noteoff</a></li>
@@ -481,7 +485,7 @@ event happens on the specified channel(s). Here is a list of events that are dis
 <li><a href="../classes/Input.html#event_channelaftertouch" class="crosslink">channelaftertouch</a></li>
 <li><a href="../classes/Input.html#event_pitchbend" class="crosslink">pitchbend</a></li>
 </ul>
-<p>Device-wide MIDI events:</p>
+<p>Input-wide MIDI events:</p>
 <ul>
 <li><a href="../classes/Input.html#event_sysex" class="crosslink">sysex</a></li>
 <li><a href="../classes/Input.html#event_timecode" class="crosslink">timecode</a></li>
@@ -494,10 +498,13 @@ event happens on the specified channel(s). Here is a list of events that are dis
 <li><a href="../classes/Input.html#event_stop" class="crosslink">stop</a></li>
 <li><a href="../classes/Input.html#event_activesensing" class="crosslink">activesensing</a></li>
 <li><a href="../classes/Input.html#event_reset" class="crosslink">reset</a></li>
+<li><a href="../classes/Input.html#event_midimessage" class="crosslink">midimessage</a></li>
 <li><a href="../classes/Input.html#event_unknownsystemmessage" class="crosslink">unknownsystemmessage</a></li>
 </ul>
 <p>For device-wide events, the <code>channel</code> parameter will be silently ignored. You can simply use
 <code>undefined</code> in that case.</p>
+<p>If you want to view all incoming MIDI traffic, you can listen to the input-wide <code>midimessage</code>
+event. This event is dispatched for every single message that is received on that input.</p>
 
     </div>
 
@@ -523,7 +530,8 @@ event happens on the specified channel(s). Here is a list of events that are dis
 
                     <div class="param-description">
                         <p>The MIDI channel to listen on (integer between 1 and 16).
-You can also specify an array of channel numbers or the value 'all'.</p>
+You can also specify an array of channel numbers or the value 'all' (or leave it undefined for
+input-wide events).</p>
 
                     </div>
 
@@ -589,7 +597,7 @@ check out the documentation for the various events (links above).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1862"><code>src&#x2F;webmidi.js:1862</code></a>
+        <a href="../files/src_webmidi.js.html#l1877"><code>src&#x2F;webmidi.js:1877</code></a>
         </p>
 
 
@@ -665,7 +673,7 @@ found, the function returns <code>undefined</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1893"><code>src&#x2F;webmidi.js:1893</code></a>
+        <a href="../files/src_webmidi.js.html#l1913"><code>src&#x2F;webmidi.js:1913</code></a>
         </p>
 
 
@@ -747,7 +755,7 @@ returns <code>undefined</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1411"><code>src&#x2F;webmidi.js:1411</code></a>
+        <a href="../files/src_webmidi.js.html#l1421"><code>src&#x2F;webmidi.js:1421</code></a>
         </p>
 
 
@@ -841,7 +849,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1402"><code>src&#x2F;webmidi.js:1402</code></a>
+        <a href="../files/src_webmidi.js.html#l1412"><code>src&#x2F;webmidi.js:1412</code></a>
         </p>
 
 
@@ -890,7 +898,7 @@ function.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1471"><code>src&#x2F;webmidi.js:1471</code></a>
+        <a href="../files/src_webmidi.js.html#l1480"><code>src&#x2F;webmidi.js:1480</code></a>
         </p>
 
 
@@ -989,7 +997,7 @@ You can use <code>undefined</code> in such cases.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1205"><code>src&#x2F;webmidi.js:1205</code></a>
+        <a href="../files/src_webmidi.js.html#l1213"><code>src&#x2F;webmidi.js:1213</code></a>
         </p>
 
 
@@ -1014,7 +1022,7 @@ You can use <code>undefined</code> in such cases.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1218"><code>src&#x2F;webmidi.js:1218</code></a>
+        <a href="../files/src_webmidi.js.html#l1226"><code>src&#x2F;webmidi.js:1226</code></a>
         </p>
 
 
@@ -1041,7 +1049,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1233"><code>src&#x2F;webmidi.js:1233</code></a>
+        <a href="../files/src_webmidi.js.html#l1241"><code>src&#x2F;webmidi.js:1241</code></a>
         </p>
 
 
@@ -1066,7 +1074,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1246"><code>src&#x2F;webmidi.js:1246</code></a>
+        <a href="../files/src_webmidi.js.html#l1254"><code>src&#x2F;webmidi.js:1254</code></a>
         </p>
 
 
@@ -1091,7 +1099,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1259"><code>src&#x2F;webmidi.js:1259</code></a>
+        <a href="../files/src_webmidi.js.html#l1267"><code>src&#x2F;webmidi.js:1267</code></a>
         </p>
 
 
@@ -1116,7 +1124,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1272"><code>src&#x2F;webmidi.js:1272</code></a>
+        <a href="../files/src_webmidi.js.html#l1280"><code>src&#x2F;webmidi.js:1280</code></a>
         </p>
 
 
@@ -1147,7 +1155,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2129"><code>src&#x2F;webmidi.js:2129</code></a>
+                            <a href="../files/src_webmidi.js.html#l2123"><code>src&#x2F;webmidi.js:2123</code></a>
                             </p>
                     
                     
@@ -1193,23 +1201,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds
-                    since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1242,7 +1238,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1804"><code>src&#x2F;webmidi.js:1804</code></a>
+                            <a href="../files/src_webmidi.js.html#l1825"><code>src&#x2F;webmidi.js:1825</code></a>
                             </p>
                     
                     
@@ -1289,23 +1285,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1358,7 +1342,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1753"><code>src&#x2F;webmidi.js:1753</code></a>
+                            <a href="../files/src_webmidi.js.html#l1780"><code>src&#x2F;webmidi.js:1780</code></a>
                             </p>
                     
                     
@@ -1405,23 +1389,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1501,7 +1473,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2053"><code>src&#x2F;webmidi.js:2053</code></a>
+                            <a href="../files/src_webmidi.js.html#l2059"><code>src&#x2F;webmidi.js:2059</code></a>
                             </p>
                     
                     
@@ -1548,23 +1520,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in
-                    milliseconds since start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred
-                    (in milliseconds since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1644,23 +1604,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in
-                    milliseconds since start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred
-                    (in milliseconds since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1693,7 +1641,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1721"><code>src&#x2F;webmidi.js:1721</code></a>
+                            <a href="../files/src_webmidi.js.html#l1751"><code>src&#x2F;webmidi.js:1751</code></a>
                             </p>
                     
                     
@@ -1740,23 +1688,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1836,7 +1772,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1687"><code>src&#x2F;webmidi.js:1687</code></a>
+                            <a href="../files/src_webmidi.js.html#l1720"><code>src&#x2F;webmidi.js:1720</code></a>
                             </p>
                     
                     
@@ -1883,23 +1819,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -1976,6 +1900,92 @@ different IDs for the same port.</p>
                     
                     
                     </div>
+                    <div id="event_midimessage" class="events item">
+                        <h3 class="name"><code>midimessage</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_webmidi.js.html#l1601"><code>src&#x2F;webmidi.js:1601</code></a>
+                            </p>
+                    
+                    
+                                <p>Available since 2.1</p>
+                        </div>
+                    
+                        <div class="description">
+                            <p>Event emitted when a MIDI message is received. This should be used primarily for debugging
+                    purposes.</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Event Payload:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">event</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                             
+                                        </div>
+                    
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">target</code>
+                                                        <span class="type"><a href="../classes/Input.html" class="crosslink">Input</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The <code>Input</code> that triggered the event.</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">data</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array" class="crosslink external" target="_blank">Uint8Array</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The raw MIDI message as an array of 8 bit values.</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">timestamp</code>
+                                                        <span class="type">Uint</span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The timestamp when the event occurred (in milliseconds since
+                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">type</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The type of event that occurred.</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
                     <div id="event_noteoff" class="events item">
                         <h3 class="name"><code>noteoff</code></h3>
                         <span class="type"></span>
@@ -1987,7 +1997,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1619"><code>src&#x2F;webmidi.js:1619</code></a>
+                            <a href="../files/src_webmidi.js.html#l1658"><code>src&#x2F;webmidi.js:1658</code></a>
                             </p>
                     
                     
@@ -2034,23 +2044,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2149,7 +2147,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1653"><code>src&#x2F;webmidi.js:1653</code></a>
+                            <a href="../files/src_webmidi.js.html#l1689"><code>src&#x2F;webmidi.js:1689</code></a>
                             </p>
                     
                     
@@ -2196,23 +2194,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2311,7 +2297,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1826"><code>src&#x2F;webmidi.js:1826</code></a>
+                            <a href="../files/src_webmidi.js.html#l1844"><code>src&#x2F;webmidi.js:1844</code></a>
                             </p>
                     
                     
@@ -2358,23 +2344,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2427,7 +2401,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1782"><code>src&#x2F;webmidi.js:1782</code></a>
+                            <a href="../files/src_webmidi.js.html#l1806"><code>src&#x2F;webmidi.js:1806</code></a>
                             </p>
                     
                     
@@ -2474,23 +2448,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch</a>).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2543,7 +2505,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2147"><code>src&#x2F;webmidi.js:2147</code></a>
+                            <a href="../files/src_webmidi.js.html#l2138"><code>src&#x2F;webmidi.js:2138</code></a>
                             </p>
                     
                     
@@ -2589,23 +2551,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds
-                    since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2638,7 +2588,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1994"><code>src&#x2F;webmidi.js:1994</code></a>
+                            <a href="../files/src_webmidi.js.html#l2011"><code>src&#x2F;webmidi.js:2011</code></a>
                             </p>
                     
                     
@@ -2684,23 +2634,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds
-                    since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2733,7 +2671,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2014"><code>src&#x2F;webmidi.js:2014</code></a>
+                            <a href="../files/src_webmidi.js.html#l2026"><code>src&#x2F;webmidi.js:2026</code></a>
                             </p>
                     
                     
@@ -2779,23 +2717,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2838,7 +2764,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2072"><code>src&#x2F;webmidi.js:2072</code></a>
+                            <a href="../files/src_webmidi.js.html#l2075"><code>src&#x2F;webmidi.js:2075</code></a>
                             </p>
                     
                     
@@ -2885,23 +2811,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in
-                    milliseconds since start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred
-                    (in milliseconds since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -2934,7 +2848,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2110"><code>src&#x2F;webmidi.js:2110</code></a>
+                            <a href="../files/src_webmidi.js.html#l2107"><code>src&#x2F;webmidi.js:2107</code></a>
                             </p>
                     
                     
@@ -2981,23 +2895,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in
-                    milliseconds since start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred
-                    (in milliseconds since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -3030,7 +2932,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1939"><code>src&#x2F;webmidi.js:1939</code></a>
+                            <a href="../files/src_webmidi.js.html#l1964"><code>src&#x2F;webmidi.js:1964</code></a>
                             </p>
                     
                     
@@ -3091,23 +2993,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -3140,7 +3030,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1974"><code>src&#x2F;webmidi.js:1974</code></a>
+                            <a href="../files/src_webmidi.js.html#l1996"><code>src&#x2F;webmidi.js:1996</code></a>
                             </p>
                     
                     
@@ -3186,23 +3076,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -3235,7 +3113,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2034"><code>src&#x2F;webmidi.js:2034</code></a>
+                            <a href="../files/src_webmidi.js.html#l2043"><code>src&#x2F;webmidi.js:2043</code></a>
                             </p>
                     
                     
@@ -3282,23 +3160,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in
-                    milliseconds since start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred
-                    (in milliseconds since the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     
@@ -3331,7 +3197,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2165"><code>src&#x2F;webmidi.js:2165</code></a>
+                            <a href="../files/src_webmidi.js.html#l2153"><code>src&#x2F;webmidi.js:2153</code></a>
                             </p>
                     
                     
@@ -3378,23 +3244,11 @@ different IDs for the same port.</p>
                     
                                                 </li>
                                                 <li class="param">
-                                                        <code class="param-name">receivedTime</code>
+                                                        <code class="param-name">timestamp</code>
                                                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                                                     <div class="param-description">
-                                                        <p>The time when the event occurred (in milliseconds since
-                    start).</p>
-                    
-                                                    </div>
-                    
-                                                </li>
-                                                <li class="param">
-                                                        <code class="param-name">timestamp</code>
-                                                        <span class="type">Uint</span>
-                    
-                                                    <div class="param-description">
-                                                        <p>The timestamp when the event occurred (in milliseconds since
-                    the epoch).</p>
+                                                        <p>The time when the event occurred (in milliseconds)</p>
                     
                                                     </div>
                     

@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.5</em>
+            <em>API Docs for: 2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -137,19 +137,19 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
-   * @todo  Implement port statechange events.
    * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
-   * @todo  Complete tests
+   * @todo  Complete unit tests
+   * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
    * @todo  Refine &quot;options&quot; param of addListener. Allow listening for specific controller change.
    * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
    * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  allow adjustment of the start point for octaves (-2, -1, 0, etc.). See:
-   *        https://en.wikipedia.org/wiki/Scientific_pitch_notation
    * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
    * @todo  Implement the show control protocol subset.
    * @todo  Add methods for channel mode messages
    * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
+   * @todo  Implement port statechange events (connected and disconnected)
+   * @todo  For the songposition and timecode message, we should calculate time values and make them directly available
    *
    */
   function WebMidi() {
@@ -217,6 +217,9 @@
           &quot;stop&quot;: 0xFC,             // 252
           &quot;activesensing&quot;: 0xFE,    // 254
           &quot;reset&quot;: 0xFF,            // 255
+
+          // Custom WebMidi.js messages
+          &quot;midimessage&quot;: 0,
           &quot;unknownsystemmessage&quot;: -1
         },
         writable: false,
@@ -388,11 +391,31 @@
         writable: false,
         enumerable: true,
         configurable: false
+      },
+
+      /**
+       * An integer to offset the octave both in inbound and outbound messages. By default, middle C
+       * (MIDI note number 60) is placed on the 4th octave (C4).
+       *
+       * If, for example, &#x60;octaveOffset&#x60; is set to 2, MIDI note number 60 will be reported as C6. If
+       * &#x60;octaveOffset&#x60; is set to -1, MIDI note number 60 will be reported as C3.
+       *
+       * @property octaveOffset
+       * @type Number
+       * @static
+       *
+       * @since 2.1
+       */
+      octaveOffset: {
+        value: 0,
+        writable: true,
+        enumerable: true,
+        configurable: false
       }
 
     });
 
-    // Define getters
+    // Define getters/setters
     Object.defineProperties(this, {
 
       /**
@@ -547,7 +570,8 @@
       function(midiAccess) {
 
         var events = [],
-            promises = [];
+            promises = [],
+            promiseTimeout;
 
         this.interface = midiAccess;
         this._resetInterfaceUserHandlers();
@@ -576,18 +600,12 @@
           promises.push(output.value.open());
         }
 
-        // Since this library can be used with JazzMidi with no support for promises, we must make
-        // sure it still works. The workaround is to use a timer to wait a little. Once the Web MIDI
-        // API is well implanted, we&#x27;ll get rid of that.
-        if (Promise) {
-          Promise.all(promises)
-            .catch(function(err) { console.warn(err); })
-            .then(onPortsOpen.bind(this));
-        } else {
-          setTimeout(onPortsOpen.bind(this), 200);
-        }
-
+        // Since this library might be used in environments without support for promises (such as
+        // Jazz-Midi) or in environments that are not properly opening the ports (such as Web MIDI
+        // Browser), we fall back to a timer-based approach if the promise-based approach fails.
         function onPortsOpen() {
+
+          clearTimeout(promiseTimeout);
 
           this._updateInputsAndOutputs();
           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
@@ -599,6 +617,15 @@
             this._onInterfaceStateChange(event);
           }.bind(this));
 
+        }
+
+        promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
+
+        if (Promise) {
+          Promise
+            .all(promises)
+            .catch(function(err) { console.warn(err); })
+            .then(onPortsOpen.bind(this))
         }
 
         // When MIDI access is requested, all input and output ports have their &quot;state&quot; set to
@@ -926,23 +953,24 @@
   };
 
   /**
-   * Returns the octave number for the specified MIDI note number. The returned value will be
-   * between -2 and 8. If the note number passed to &#x60;getOctave()&#x60; is invalid, &#x60;undefined&#x60; will be
-   * returned.
+   * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
+   * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
+   * &lt;a href=&quot;#property_octaveOffset&quot;&gt;octaveOffset&lt;/a&gt; property, you can offset the result as much
+   * as you want.
    *
    * @method getOctave
    * @static
    *
    * @param number {Number} An integer representing a valid MIDI note number (between 0 and 127).
    *
-   * @returns {Number} The octave as an integer between -2 and 8 (or &#x60;undefined&#x60;).
+   * @returns {Number} The octave (as a signed integer) or &#x60;undefined&#x60;.
    *
    * @since 2.0.0-rc.6
    */
   WebMidi.prototype.getOctave = function(number) {
 
     if (number != null &amp;&amp; number &gt;= 0 &amp;&amp; number &lt;= 127) {
-      return Math.floor(parseInt(number) / 12 - 1) - 1;
+      return Math.floor(Math.floor(number) / 12 - 1) + Math.floor(wm.octaveOffset);
     }
 
   };
@@ -981,15 +1009,16 @@
   };
 
   /**
-   * Returns a valid MIDI note number given the specified input. The input can be a note name (C3,
-   * F#4, D-2, G8, etc.) or an int between 0 and 127.
+   * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a note
+   * name (C3, F#4, D-2, G8, etc.). If an integer between 0 and 127, it will simply be returned as
+   * is.
    *
    * @method guessNoteNumber
    * @static
    *
    * @param input {Number|String} A string to extract the note number from. An integer can also be
    * used, in which case it will simply be returned (if between 0 and 127).
-   * @throws {Error} Invalid note number.
+   * @throws {Error} Invalid input value
    * @returns {Number} A valid MIDI note number (0-127).
    */
   WebMidi.prototype.guessNoteNumber = function(input) {
@@ -1004,27 +1033,29 @@
       output = this.noteNameToNumber(input);
     }
   
-    if (output === false) {
-      throw new Error(&quot;Invalid note number (&quot; + input + &quot;).&quot;);
-    }
-
+    if (output === false) throw new Error(&quot;Invalid input value (&quot; + input + &quot;).&quot;);
     return output;
 
   };
 
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number which should be between -2 and 8. The name can also
-   * optionally include a sharp &quot;#&quot; or double sharp &quot;##&quot; symbol and a flat &quot;b&quot; or double flat &quot;bb&quot;
-   * symbol: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   * note name must include the octave number. The name can also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
    *
-   * The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
+   * Note that, in converting note names to numbers, C4 is considered to be middle C (MIDI note
+   * number 60) as per the scientific pitch notation standard.
+   *
+   * Also note that the resulting note number is offset by the &#x60;octaveOffset&#x60; value (if not zero).
+   * For example, if you pass in &quot;C4&quot; and the &#x60;octaveOffset&#x60; value is 2 the resulting MIDI note
+   * number will be 36.
    *
    * @method noteNameToNumber
    * @static
    *
    * @param name {String} The name of the note in the form of a letter, followed by an optional &quot;#&quot;,
-   * &quot;##&quot;, &quot;b&quot; or &quot;bb&quot; followed by the octave number (between -2 and 8).
+   * &quot;##&quot;, &quot;b&quot; or &quot;bb&quot; followed by the octave number.
    *
    * @throws {RangeError} Invalid note name.
    * @throws {RangeError} Invalid note name or note outside valid range.
@@ -1032,14 +1063,15 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    if (typeof name !== &quot;string&quot;) { name = &#x27;&#x27;; }
+    if (typeof name !== &quot;string&quot;) name = &#x27;&#x27;;
 
     var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) { throw new RangeError(&quot;Invalid note name.&quot;); }
+    if(!matches) throw new RangeError(&quot;Invalid note name.&quot;);
 
     var semitones = wm._semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
-    var result = ((octave + 2) * 12) + semitones;
+    var result = ((octave + 1 - Math.floor(wm.octaveOffset)) * 12) + semitones;
+
 
     if (matches[2].toLowerCase().indexOf(&quot;b&quot;) &gt; -1) {
       result -= matches[2].length;
@@ -1047,7 +1079,7 @@
       result += matches[2].length;
     }
 
-    if (semitones &lt; 0 || octave &lt; -2 || octave &gt; 8 || result &lt; 0 || result &gt; 127) {
+    if (result &lt; 0 || result &gt; 127) {
       throw new RangeError(&quot;Invalid note name or note outside valid range.&quot;);
     }
 
@@ -1106,7 +1138,7 @@
       }
 
       if (add) {
-        this._inputs.push( this._createInput(nInput) );
+        this._inputs.push( new Input(nInput) );
       }
 
     }.bind(this));
@@ -1154,35 +1186,11 @@
       }
 
       if (add) {
-        this._outputs.push( this._createOutput(nOutput) );
+        this._outputs.push( new Output(nOutput) );
       }
 
     }.bind(this));
 
-  };
-
-  /**
-   * @method _createInput
-   * @static
-   * @returns {Input}
-   * @protected
-   */
-  WebMidi.prototype._createInput = function (midiInput) {
-    var input = new Input(midiInput);
-    input._midiInput.onmidimessage = input._onMidiMessage.bind(input);
-    return input;
-  };
-
-  /**
-   * @method _createOutput
-   * @static
-   * @returns {Output}
-   * @protected
-   */
-  WebMidi.prototype._createOutput = function (midiOutput) {
-    var output = new Output(midiOutput);
-    output._midiOutput.onmidimessage = output._onMidiMessage.bind(output);
-    return output;
   };
 
   /**
@@ -1369,13 +1377,15 @@
     });
 
     this._initializeUserHandlers();
+    this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
 
   }
 
   /**
    * Adds an event listener to the &#x60;Input&#x60; that will trigger a function callback when the specified
-   * event happens on the specified channel(s). Here is a list of events that are dispatched by
-   * &#x60;Input&#x60; objects and that can be listened to.
+   * event happens. The events that are dispatched can be channel-specific or Input-wide.
+   *
+   * Here is a list of events that are dispatched by &#x60;Input&#x60; objects and that can be listened to.
    *
    * Channel-specific MIDI events:
    *
@@ -1388,7 +1398,7 @@
    *    * {{#crossLink &quot;Input/channelaftertouch:event&quot;}}channelaftertouch{{/crossLink}}
    *    * {{#crossLink &quot;Input/pitchbend:event&quot;}}pitchbend{{/crossLink}}
    *
-   * Device-wide MIDI events:
+   * Input-wide MIDI events:
    *
    *    * {{#crossLink &quot;Input/sysex:event&quot;}}sysex{{/crossLink}}
    *    * {{#crossLink &quot;Input/timecode:event&quot;}}timecode{{/crossLink}}
@@ -1401,10 +1411,14 @@
    *    * {{#crossLink &quot;Input/stop:event&quot;}}stop{{/crossLink}}
    *    * {{#crossLink &quot;Input/activesensing:event&quot;}}activesensing{{/crossLink}}
    *    * {{#crossLink &quot;Input/reset:event&quot;}}reset{{/crossLink}}
+   *    * {{#crossLink &quot;Input/midimessage:event&quot;}}midimessage{{/crossLink}}
    *    * {{#crossLink &quot;Input/unknownsystemmessage:event&quot;}}unknownsystemmessage{{/crossLink}}
    *
    * For device-wide events, the &#x60;channel&#x60; parameter will be silently ignored. You can simply use
    * &#x60;undefined&#x60; in that case.
+   *
+   * If you want to view all incoming MIDI traffic, you can listen to the input-wide &#x60;midimessage&#x60;
+   * event. This event is dispatched for every single message that is received on that input.
    *
    * @method addListener
    * @chainable
@@ -1412,7 +1426,8 @@
    * @param type {String} The type of the event.
    *
    * @param channel {Number|Array|String} The MIDI channel to listen on (integer between 1 and 16).
-   * You can also specify an array of channel numbers or the value &#x27;all&#x27;.
+   * You can also specify an array of channel numbers or the value &#x27;all&#x27; (or leave it undefined for
+   * input-wide events).
    *
    * @param listener {Function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object&#x27;s properties,
@@ -1444,15 +1459,12 @@
       throw new TypeError(&quot;The &#x27;listener&#x27; parameter must be a function.&quot;);
     }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
-      if (!this._userHandlers.system[type]) {
-        this._userHandlers.system[type] = [];
-      }
-
+      if (!this._userHandlers.system[type]) this._userHandlers.system[type] = [];
       this._userHandlers.system[type].push(listener);
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If &quot;all&quot; is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf(&quot;all&quot;) &gt; -1) {
@@ -1480,8 +1492,6 @@
     return this;
 
   };
-
-
 
   /**
    * This is an alias to the {{#crossLink &quot;Input/addListener&quot;}}Input.addListener(){{/crossLink}}
@@ -1520,17 +1530,16 @@
       throw new TypeError(&quot;The &#x27;listener&#x27; parameter must be a function.&quot;);
     }
 
-
     if (channel === undefined) { channel = &quot;all&quot;; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
       for (var o = 0; o &lt; this._userHandlers.system[type].length; o++) {
         if (this._userHandlers.system[type][o] === listener) { return true; }
       }
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If &quot;all&quot; is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf(&quot;all&quot;) &gt; -1) {
@@ -1586,7 +1595,7 @@
     if (channel === undefined) { channel = &quot;all&quot;; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
-    if (wm.MIDI_SYSTEM_MESSAGES[type]) {
+    if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
 
       if (listener === undefined) {
 
@@ -1602,7 +1611,7 @@
 
       }
 
-    } else if (wm.MIDI_CHANNEL_MESSAGES[type]) {
+    } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
       // If &quot;all&quot; is present anywhere in the channel array, use all 16 channels
       if (channel.indexOf(&quot;all&quot;) &gt; -1) {
@@ -1663,6 +1672,36 @@
    */
   Input.prototype._onMidiMessage = function(e) {
 
+    // Execute &quot;midimessage&quot; listeners (if any)
+    if (this._userHandlers.system[&quot;midimessage&quot;].length &gt; 0) {
+
+      var event = {
+        &quot;target&quot;: this,
+        &quot;data&quot;: e.data,
+        &quot;timestamp&quot;: e.timeStamp,
+        type: &quot;midimessage&quot;
+      };
+
+      /**
+       * Event emitted when a MIDI message is received. This should be used primarily for debugging
+       * purposes.
+       *
+       * @event midimessage
+       *
+       * @param {Object} event
+       * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
+       * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
+       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {String} event.type The type of event that occurred.
+       * @since 2.1
+       */
+      this._userHandlers.system[&quot;midimessage&quot;].forEach(
+        function(callback) { callback(event); }
+      );
+
+    }
+
     if (e.data[0] &lt; 240) {          // channel-specific message
       this._parseChannelEvent(e);
     } else if (e.data[0] &lt;= 255) {  // system message
@@ -1709,10 +1748,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1743,10 +1779,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1777,10 +1810,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.note
@@ -1811,10 +1841,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1843,10 +1870,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Object} event.controller
@@ -1872,10 +1896,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {uint} event.value The value received (between 0 and 127).
@@ -1894,10 +1915,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The aftertouch value received (between 0 and 1).
@@ -1916,10 +1934,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
        * @param {String} event.type The type of event that occurred.
        * @param {Number} event.value The pitch bend value received (between -1 and 1).
@@ -1958,16 +1973,21 @@
    */
   Input.prototype.getCcNameByNumber = function(number) {
 
-    number = parseInt(number);
+    number = Math.floor(number);
 
     if ( !(number &gt;= 0 &amp;&amp; number &lt;= 119) ) {
       throw new RangeError(&quot;The control change number must be between 0 and 119.&quot;);
     }
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-      if (number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
+
+      if (
+        wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &amp;&amp;
+        number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]
+      ) {
         return cc;
       }
+
     }
 
     return undefined;
@@ -1989,16 +2009,21 @@
    */
   Input.prototype.getChannelModeByNumber = function(number) {
 
-    number = parseInt(number);
+    number = Math.floor(number);
 
     if ( !(number &gt;= 120 &amp;&amp; status &lt;= 127) ) {
       throw new RangeError(&quot;The control change number must be between 120 and 127.&quot;);
     }
 
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
+
+      if (
+        wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &amp;&amp;
+        number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
         return cm;
       }
+
     }
 
   };
@@ -2044,10 +2069,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        *
        */
@@ -2063,15 +2085,10 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = &#x27;timecode&#x27;;
-
-      //@todo calculate time values and make them directly available
 
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
 
@@ -2083,15 +2100,10 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = &#x27;songposition&#x27;;
-
-      //@todo calculate position value and make it directly available
 
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
 
@@ -2103,10 +2115,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        * @param {String} event.song Song (or sequence) number to select.
        */
@@ -2124,10 +2133,7 @@
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;tuningrequest&#x27;;
@@ -2143,10 +2149,7 @@
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;clock&#x27;;
@@ -2162,10 +2165,7 @@
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;start&#x27;;
@@ -2181,10 +2181,7 @@
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;continue&#x27;;
@@ -2200,10 +2197,7 @@
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
        *                                    values.
-       * @param {Number} event.receivedTime The time when the event occurred (in
-       *                                    milliseconds since start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred
-       *                                    (in milliseconds since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;stop&#x27;;
@@ -2218,10 +2212,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;activesensing&#x27;;
@@ -2236,10 +2227,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp      The timestamp when the event occurred (in milliseconds
-       * since the epoch).
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type         The type of event that occurred.
        */
       event.type = &#x27;reset&#x27;;
@@ -2255,11 +2243,7 @@
        * @param {Object} event
        * @param {Input} event.target The &#x60;Input&#x60; that triggered the event.
        * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-       * @param {Number} event.receivedTime The time when the event occurred (in milliseconds since
-       * start).
-       * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-       * the epoch).
-       *
+       * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
        * @param {String} event.type The type of event that occurred.
        */
       event.type = &#x27;unknownsystemmessage&#x27;;
@@ -2416,7 +2400,7 @@
 
     data.forEach(function(item, index){
 
-      var parsed = parseInt(item); // mandatory because of &#x27;null&#x27;
+      var parsed = Math.floor(item); // mandatory because of &#x27;null&#x27;
 
       if (parsed &gt;= 0 &amp;&amp; parsed &lt;= 255) {
         message.push(parsed);
@@ -2569,7 +2553,7 @@
    */
   Output.prototype.sendSongPosition = function(value, options) {
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
 
     options = options || {};
 
@@ -2610,7 +2594,7 @@
    */
   Output.prototype.sendSongSelect = function(value,  options) {
 
-    value = parseInt(value);
+    value = Math.floor(value);
 
     options = options || {};
 
@@ -2864,8 +2848,6 @@
 
     options = options || {};
 
-    options.velocity = parseFloat(options.velocity);
-
     if (options.rawVelocity) {
 
       if (!isNaN(options.velocity) &amp;&amp; options.velocity &gt;= 0 &amp;&amp; options.velocity &lt;= 127) {
@@ -2960,8 +2942,6 @@
 
     options = options || {};
 
-    options.velocity = parseFloat(options.velocity);
-
     if (options.rawVelocity) {
 
       if (!isNaN(options.velocity) &amp;&amp; options.velocity &gt;= 0 &amp;&amp; options.velocity &lt;= 127) {
@@ -2993,16 +2973,11 @@
 
 
     // Send note off messages (only if a valid duration has been defined)
-    options.duration = parseFloat(options.duration);
-
-    if (options.duration) {
-
+    if (!isNaN(options.duration)) {
 
       if (options.duration &lt;= 0) { options.duration = 0; }
 
       var nRelease = 64;
-
-      options.release = parseFloat(options.release);
 
       if (options.rawVelocity) {
 
@@ -3082,7 +3057,6 @@
       throw new RangeError(&quot;The channel must be between 1 and 16.&quot;);
     }
 
-    pressure = parseFloat(pressure);
     if (isNaN(pressure) || pressure &lt; 0 || pressure &gt; 1) {
       pressure = 0.5;
     }
@@ -3218,14 +3192,14 @@
 
     } else {
 
-      controller = parseInt(controller);
+      controller = Math.floor(controller);
       if ( !(controller &gt;= 0 &amp;&amp; controller &lt;= 119) ) {
         throw new RangeError(&quot;Controller numbers must be between 0 and 119.&quot;);
       }
 
     }
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
     if ( !(value &gt;= 0 &amp;&amp; value &lt;= 127) ) {
       throw new RangeError(&quot;Controller value must be between 0 and 127.&quot;);
     }
@@ -3260,12 +3234,12 @@
 
     var that = this;
 
-    parameter[0] = parseInt(parameter[0]);
+    parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] &gt;= 0 &amp;&amp; parameter[0] &lt;= 127) ) {
       throw new RangeError(&quot;The control65 value must be between 0 and 127&quot;);
     }
 
-    parameter[1] = parseInt(parameter[1]);
+    parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] &gt;= 0 &amp;&amp; parameter[1] &lt;= 127) ) {
       throw new RangeError(&quot;The control64 value must be between 0 and 127&quot;);
     }
@@ -3297,12 +3271,12 @@
 
     var that = this;
 
-    parameter[0] = parseInt(parameter[0]);
+    parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] &gt;= 0 &amp;&amp; parameter[0] &lt;= 127) ) {
       throw new RangeError(&quot;The control63 value must be between 0 and 127&quot;);
     }
 
-    parameter[1] = parseInt(parameter[1]);
+    parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] &gt;= 0 &amp;&amp; parameter[1] &lt;= 127) ) {
       throw new RangeError(&quot;The control62 value must be between 0 and 127&quot;);
     }
@@ -3334,7 +3308,7 @@
 
     data = [].concat(data);
 
-    data[0] = parseInt(data[0]);
+    data[0] = Math.floor(data[0]);
     if ( !(data[0] &gt;= 0 &amp;&amp; data[0] &lt;= 127) ) {
       throw new RangeError(&quot;The msb value must be between 0 and 127&quot;);
     }
@@ -3343,7 +3317,7 @@
       that.sendControlChange(0x06, data[0], channel, {time: time});
     });
 
-    data[1] = parseInt(data[1]);
+    data[1] = Math.floor(data[1]);
     if(data[1] &gt;= 0 &amp;&amp; data[1] &lt;= 127) {
       wm.toMIDIChannels(channel).forEach(function(ch) {
         that.sendControlChange(0x26, data[1], channel, {time: time});
@@ -3730,12 +3704,12 @@
 
     options = options || {};
 
-    semitones = parseInt(semitones) || 0;
+    semitones = Math.floor(semitones) || 0;
     if ( !(semitones &gt;= 0 &amp;&amp; semitones &lt;= 127) ) {
       throw new RangeError(&quot;The semitones value must be between 0 and 127&quot;);
     }
 
-    cents = parseInt(cents) || 0;
+    cents = Math.floor(cents) || 0;
     if ( !(cents &gt;= 0 &amp;&amp; cents &lt;= 127) ) {
       throw new RangeError(&quot;The cents value must be between 0 and 127&quot;);
     }
@@ -3788,12 +3762,12 @@
 
     options = options || {};
 
-    semitones = parseInt(semitones) || 0;
+    semitones = Math.floor(semitones) || 0;
     if ( !(semitones &gt;= 0 &amp;&amp; semitones &lt;= 127) ) {
       throw new RangeError(&quot;The semitones value must be between 0 and 127&quot;);
     }
 
-    cents = parseInt(cents) || 0;
+    cents = Math.floor(cents) || 0;
     if ( !(cents &gt;= 0 &amp;&amp; cents &lt;= 127) ) {
       throw new RangeError(&quot;The cents value must be between 0 and 127&quot;);
     }
@@ -3855,8 +3829,8 @@
       );
     }
 
-    var coarse = parseInt(value) + 64;
-    var fine = value - parseInt(value);
+    var coarse = Math.floor(value) + 64;
+    var fine = value - Math.floor(value);
 
     // Calculate MSB and LSB for fine adjustment (14bit resolution)
     fine = Math.round((fine + 1) / 2 * 16383);
@@ -3905,7 +3879,7 @@
 
     options = options || {};
 
-    value = parseInt(value);
+    value = Math.floor(value);
     if ( !(value &gt;= 0 &amp;&amp; value &lt;= 127) ) {
       throw new RangeError(&quot;The program value must be between 0 and 127&quot;);
     }
@@ -3951,7 +3925,7 @@
 
     options = options || {};
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
     if ( !(value &gt;= 0 &amp;&amp; value &lt;= 127) ) {
       throw new RangeError(&quot;The bank value must be between 0 and 127&quot;);
     }
@@ -4017,7 +3991,7 @@
 
     } else {
 
-      command = parseInt(command);
+      command = Math.floor(command);
 
       if ( !(command &gt;= 120 &amp;&amp; command &lt;= 127) ) {
         throw new RangeError(&quot;Channel mode numerical identifiers must be between 120 and 127.&quot;);
@@ -4025,7 +3999,7 @@
 
     }
 
-    value = parseInt(value) || 0;
+    value = Math.floor(value) || 0;
 
     if (value &lt; 0 || value &gt; 127) {
       throw new RangeError(&quot;Value must be an integer between 0 and 127.&quot;);
@@ -4078,7 +4052,7 @@
 
     options = options || {};
 
-    program = parseInt(program);
+    program = Math.floor(program);
     if (isNaN(program) || program &lt; 0 || program &gt; 127) {
       throw new RangeError(&quot;Program numbers must be between 0 and 127.&quot;);
     }
@@ -4177,7 +4151,6 @@
 
     options = options || {};
 
-    bend = parseFloat(bend);
     if (isNaN(bend) || bend &lt; -1 || bend &gt; 1) {
       throw new RangeError(&quot;Pitch bend value must be between -1 and 1.&quot;);
     }
@@ -4249,14 +4222,6 @@
 
     return notes;
 
-  };
-
-  /**
-   * @method _onMidiMessage
-   * @protected
-   */
-  Output.prototype._onMidiMessage = function(e) {
-    // Not implemented.
   };
 
   // Check if RequireJS/AMD is used. If it is, use it to define our module instead of
