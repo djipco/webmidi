@@ -64,7 +64,6 @@
    * @todo  Implement the show control protocol subset.
    * @todo  Add methods for channel mode messages
    * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
-   * @todo Make sure all handlers are properly disposed of when done with the library (onmidimessage, onstatechange, etc.)
    *
    */
   function WebMidi() {
@@ -480,83 +479,86 @@
 
     }
 
-    navigator
-      .requestMIDIAccess({"sysex": sysex})
-      .then(function(midiAccess) {
+    navigator.requestMIDIAccess({"sysex": sysex}).then(
 
-          var events = [],
-              promises = [],
-              promiseTimeout;
+      function(midiAccess) {
 
-          this.interface = midiAccess;
-          this._resetInterfaceUserHandlers();
+        var events = [],
+            promises = [],
+            promiseTimeout;
 
-          // We setup a temporary `statechange` handler that will catch all events triggered while
-          // we setup. Those events will be re-triggered after calling the user's callback. This
-          // will allow the user to listen to "connected" events which can be very convenient.
-          this.interface.onstatechange = function (e) {
-            events.push(e);
-          };
+        this.interface = midiAccess;
+        this._resetInterfaceUserHandlers();
 
-          // Here we manually open the inputs and outputs. Usually, this is optional. When the ports
-          // are not explicitly opened, they will be opened automatically (and asynchronously) by
-          // setting a listener on `midimessage` (MIDIInput) or calling `send()` (MIDIOutput).
-          // However, we do not want that here. We want to be sure that "connected" events will be
-          // available in the user's callback. So, what we do is open all input and output ports and
-          // wait until all promises are resolved. Then, we re-trigger the events after the user's
-          // callback has been executed. This seems like the most sensible and practical way.
-          var inputs = midiAccess.inputs.values();
-          for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
-            promises.push(input.value.open());
-          }
+        // We setup a temporary `statechange` handler that will catch all events triggered while we
+        // setup. Those events will be re-triggered after calling the user's callback. This will
+        // allow the user to listen to "connected" events which can be very convenient.
+        this.interface.onstatechange = function (e) {
+          events.push(e);
+        };
 
-          var outputs = midiAccess.outputs.values();
-          for (var output = outputs.next(); output && !output.done; output = outputs.next()) {
-            promises.push(output.value.open());
-          }
+        // Here we manually open the inputs and outputs. Usually, this is optional. When the ports
+        // are not explicitely opened, they will be opened automatically (and asynchonously) by
+        // setting a listener on `midimessage` (MIDIInput) or calling `send()` (MIDIOutput).
+        // However, we do not want that here. We want to be sure that "connected" events will be
+        // available in the user's callback. So, what we do is open all input and output ports and
+        // wait until all promises are resolved. Then, we re-trigger the events after the user's
+        // callback has been executed. This seems like the most sensible and practical way.
+        var inputs = midiAccess.inputs.values();
+        for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+          promises.push(input.value.open());
+        }
 
-          // Since this library might be used in environments without support for promises (such as
-          // Jazz-Midi) or in environments that are not properly opening the ports (such as Web MIDI
-          // Browser), we fall back to a timer-based approach if the promise-based approach fails.
-          function onPortsOpen() {
+        var outputs = midiAccess.outputs.values();
+        for (var output = outputs.next(); output && !output.done; output = outputs.next()) {
+          promises.push(output.value.open());
+        }
 
-            clearTimeout(promiseTimeout);
+        // Since this library might be used in environments without support for promises (such as
+        // Jazz-Midi) or in environments that are not properly opening the ports (such as Web MIDI
+        // Browser), we fall back to a timer-based approach if the promise-based approach fails.
+        function onPortsOpen() {
 
-            this._updateInputsAndOutputs();
-            this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
+          clearTimeout(promiseTimeout);
 
-            // We execute the callback and then re-trigger the statechange events.
-            if (typeof callback === "function") { callback.call(this); }
+          this._updateInputsAndOutputs();
+          this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
-            events.forEach(function (event) {
-              this._onInterfaceStateChange(event);
-            }.bind(this));
+          // We execute the callback and then re-trigger the statechange events.
+          if (typeof callback === "function") { callback.call(this); }
 
-          }
+          events.forEach(function (event) {
+            this._onInterfaceStateChange(event);
+          }.bind(this));
 
-          promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
+        }
 
-          if (Promise) {
-            Promise
-              .all(promises)
-              .catch(function(err) { console.warn(err); })
-              .then(onPortsOpen.bind(this))
-          }
+        promiseTimeout = setTimeout(onPortsOpen.bind(this), 200);
 
-          // When MIDI access is requested, all input and output ports have their "state" set to
-          // "connected". However, the value of their "connection" property is "closed".
-          //
-          // A `MIDIInput` becomes `open` when you explicitly call its `open()` method or when you
-          // assign a listener to its `onmidimessage` property. A `MIDIOutput` becomes `open` when
-          // you use the `send()` method or when you can explicitly call its `open()` method.
-          //
-          // Calling `_updateInputsAndOutputs()` attaches listeners to all inputs. As per the spec,
-          // this triggers a `statechange` event on MIDIAccess.
+        if (Promise) {
+          Promise
+            .all(promises)
+            .catch(function(err) { console.warn(err); })
+            .then(onPortsOpen.bind(this))
+        }
 
-      }.bind(this))
-      .catch(function (err) {
+        // When MIDI access is requested, all input and output ports have their "state" set to
+        // "connected". However, the value of their "connection" property is "closed".
+        //
+        // A `MIDIInput` becomes `open` when you explicitely call its `open()` method or when you
+        // assign a listener to its `onmidimessage` property. A `MIDIOutput` becomes `open` when you
+        // use the `send()` method or when you can explicitely call its `open()` method.
+        //
+        // Calling `_updateInputsAndOutputs()` attaches listeners to all inputs. As per the spec,
+        // this triggers a `statechange` event on MIDIAccess.
+
+      }.bind(this),
+
+      function (err) {
         if (typeof callback === "function") { callback.call(this, err); }
-      }.bind(this))
+      }.bind(this)
+
+    );
 
   };
 
