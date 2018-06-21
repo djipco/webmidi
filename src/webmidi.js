@@ -1052,7 +1052,7 @@
       }
 
       if (add) {
-        this._inputs.push( this._createInput(nInput) );
+        this._inputs.push( new Input(nInput) );
       }
 
     }.bind(this));
@@ -1100,35 +1100,11 @@
       }
 
       if (add) {
-        this._outputs.push( this._createOutput(nOutput) );
+        this._outputs.push( new Output(nOutput) );
       }
 
     }.bind(this));
 
-  };
-
-  /**
-   * @method _createInput
-   * @static
-   * @returns {Input}
-   * @protected
-   */
-  WebMidi.prototype._createInput = function (midiInput) {
-    var input = new Input(midiInput);
-    input._midiInput.onmidimessage = input._onMidiMessage.bind(input);
-    return input;
-  };
-
-  /**
-   * @method _createOutput
-   * @static
-   * @returns {Output}
-   * @protected
-   */
-  WebMidi.prototype._createOutput = function (midiOutput) {
-    var output = new Output(midiOutput);
-    output._midiOutput.onmidimessage = output._onMidiMessage.bind(output);
-    return output;
   };
 
   /**
@@ -1315,6 +1291,7 @@
     });
 
     this._initializeUserHandlers();
+    this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
 
   }
 
@@ -4161,14 +4138,6 @@
 
     return notes;
 
-  };
-
-  /**
-   * @method _onMidiMessage
-   * @protected
-   */
-  Output.prototype._onMidiMessage = function(e) {
-    // Not implemented.
   };
 
   // Check if RequireJS/AMD is used. If it is, use it to define our module instead of
