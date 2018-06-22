@@ -23,7 +23,8 @@ much easier.
 >```
 >WebMidi.octaveOffset = -1;
 >```
->Details about this change can be found in the [related issue](https://github.com/djipco/webmidi/issues/42).
+>Details about this change and the reasoning behind it can be found in
+[issue #42](https://github.com/djipco/webmidi/issues/42).
 
 ## Browser Support
 
