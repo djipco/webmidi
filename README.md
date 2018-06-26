@@ -17,7 +17,7 @@ single callback function per channel. The goal behind **WebMidi.js** is to make 
 much easier.
 
 >### Warning to users of version <= 2.0.5
->A small, but important, change has been introduced in version 2.1.0 Middle C is now positionned at
+>A small, but important, change has been introduced in version 2.1.0. Middle C is now positionned at
 >C4 (instead of C3). To maintain compatibility with existing project, please add the following code
 > to your project:
 >```
