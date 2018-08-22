@@ -161,7 +161,7 @@ is to use the device's ID:
 ```javascript
 var output = WebMidi.getOutputById("1584982307");
 ```
-Beware that device IDs are not the same accross browsers and platforms. You could also use the device's name (as
+Beware that device IDs are not the same across browsers and platforms. You could also use the device's name (as
 displayed in the `WebMidi.outputs` array):
 
 ```javascript
