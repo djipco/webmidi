@@ -511,14 +511,14 @@ interface Input extends MidiPort<"input"> {
    */
   addListener<T extends keyof InputEvents>(
     type: T,
-    channel?: IMidiChannel,
+    channel: IMidiChannel | undefined,
     listener: (event: InputEvents[T]) => void
   ): Input
 
   /** Alias for `addListener` */
   on<T extends keyof InputEvents>(
     type: T,
-    channel?: IMidiChannel,
+    channel: IMidiChannel | undefined,
     listener: (event: InputEvents[T]) => void
   ): Input
 
