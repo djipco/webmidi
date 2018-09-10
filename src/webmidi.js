@@ -2504,7 +2504,7 @@
    * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
    * sent as soon as possible.
    *
-   * @throw The song number must be between 0 and 127.
+   * @throws The song number must be between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */

@@ -4,6 +4,10 @@
   "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
   "author": "Jean-Philippe Côté <jp@cote.cc>",
   "main": "webmidi.min.js",
+  "types": "webmidi.d.ts",
+  "scripts": {
+    "test": "tsc --strict --noEmit ./webmidi.d.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/djipco/webmidi.git"
@@ -37,6 +41,7 @@
     "grunt-git": "^0.3.5",
     "grunt-release": "^0.13.0",
     "mocha": "^5.1.1",
-    "sinon-browser-only": "^1.12.1"
+    "sinon-browser-only": "^1.12.1",
+    "typescript": "^3.0.3"
   }
 }
