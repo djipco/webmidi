@@ -1,4 +1,4 @@
-// Type definitions for webmidi 2.2.0
+// Type definitions for WebMidi.js (available since v2.3.0)
 // Project: <https://github.com/djipco/webmidi>
 // Definitions by: mmmveggies <https://www.github.com/mmmveggies>
 //   Largely copied from original JSDoc comments
@@ -1147,7 +1147,7 @@ interface Output extends MidiPort<"output"> {
    */
   setNonRegisteredParameter(
     parameter: [number, number],
-    data?: number | [] | [number] | [number, number],
+    data?: number | [number] | [number, number],
     channel?: IMidiChannel,
     options?: OutputBaseOptions
   ): Output
@@ -1203,7 +1203,7 @@ interface Output extends MidiPort<"output"> {
    */
   setRegisteredParameter(
     parameter: keyof MidiRegisteredParameters | [number, number],
-    data?: number | [] | [number] | [number, number],
+    data?: number | [number] | [number, number],
     channel?: IMidiChannel,
     options?: OutputBaseOptions
   ): Output

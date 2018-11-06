@@ -62,7 +62,12 @@ testing will need to be done but it looks very promising.
 WebMidi.js is not officially supported in Node.js. However, there is hope. I managed to get most 
 parts of it working by using the [web-midi-api](https://www.npmjs.com/package/web-midi-api) npm 
 module. Check out this [comment](https://github.com/djipco/webmidi/issues/15#issuecomment-322020295)
-for more information. If anyone is interested in contributing, help would be more than welcome. 
+for more information. If anyone is interested in contributing, help would be more than welcome.
+
+## TypeScript Support
+
+TypeScript type definitions have been officially added to WebMidi.js with version 2.3 (thanks to
+[mmmveggies](https://www.github.com/mmmveggies)).
 
 ## Installation
 
