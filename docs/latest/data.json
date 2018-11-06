@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "WebMidi.js",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": "",
         "logo": "http://djipco.github.io/webmidi/images/webmidijs-logo-small.png"
@@ -2114,7 +2114,9 @@
                     ]
                 }
             ],
-            "throw": "The song number must be between 0 and 127.",
+            "throws": {
+                "description": "The song number must be between 0 and 127."
+            },
             "return": {
                 "description": "Returns the `Output` object so methods can be chained.",
                 "type": "Output"
@@ -3413,10 +3415,6 @@
         {
             "message": "unknown tag: throw",
             "line": " src/webmidi.js:2335"
-        },
-        {
-            "message": "unknown tag: throw",
-            "line": " src/webmidi.js:2488"
         },
         {
             "message": "replacing incorrect tag: returns with return",
