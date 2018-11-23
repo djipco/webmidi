@@ -144,7 +144,8 @@
       },
 
       /**
-       * [read-only] List of valid MIDI channel messages and matching hexadecimal values.
+       * [read-only] An object containing properties for each MIDI channel messages and their
+       * associated hexadecimal value.
        *
        * @property MIDI_CHANNEL_MESSAGES
        * @type Object
@@ -169,9 +170,10 @@
       },
 
       /**
-       * [read-only] List of valid MIDI registered parameters and their matching pair of hexadecimal
-       * values. MIDI registered parameters extend the original list of control change messages.
-       * Currently, there are only a limited number of them.
+       * [read-only] An object containing properties for each registered parameters and their
+       * associated pair of hexadecimal values. MIDI registered parameters extend the original list
+       * of control change messages (a.k.a. CC messages). Currently, there are only a limited number
+       * of them.
        *
        * @property MIDI_REGISTERED_PARAMETER
        * @type Object
@@ -204,11 +206,8 @@
       },
 
       /**
-       * [read-only] List of MIDI control change messages
-       *
-       * valid MIDI registered parameterS and their matching pair of hexadecimal
-       * values. MIDI registered parameters extend the original list of control change messages.
-       * Currently, there are only a limited number of them.
+       * [read-only] An object containing properties for each MIDI control change messages (a.k.a.
+       * CC messages) and their associated hexadecimal value.
        *
        * @property MIDI_CONTROL_CHANGE_MESSAGES
        * @type Object
@@ -2996,9 +2995,9 @@
   };
 
   /**
-   * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time. The
-   * control change message to send can be specified numerically or by using one of the following
-   * common names:
+   * Sends a MIDI `control change` message (a.k.a. CC message) to the specified channel(s) at the
+   * scheduled time. The control change message to send can be specified numerically or by using one
+   * of the following common names:
    *
    *  * `bankselectcoarse` (#0)
    *  * `modulationwheelcoarse` (#1)
