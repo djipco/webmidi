@@ -795,8 +795,10 @@
 
     if (!this.enabled) throw new Error("WebMidi is not enabled.");
 
+    id = String(id);
+
     for (var i = 0; i < this.inputs.length; i++) {
-      if (this.inputs[i].id === id.toString()) return this.inputs[i];
+      if (this.inputs[i].id === id) return this.inputs[i];
     }
 
     return false;
@@ -827,8 +829,10 @@
 
     if (!this.enabled) throw new Error("WebMidi is not enabled.");
 
+    id = String(id);
+
     for (var i = 0; i < this.outputs.length; i++) {
-      if (this.outputs[i].id === id.toString()) return this.outputs[i];
+      if (this.outputs[i].id === id) return this.outputs[i];
     }
 
     return false;
