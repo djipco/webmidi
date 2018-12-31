@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.3.0</em>
+            <em>API Docs for: 2.3.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -137,6 +137,7 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
+   * @todo  Switch away from yuidoc (deprecated) to be able to serve doc over https
    * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
    * @todo  Complete unit tests
    * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
@@ -855,30 +856,33 @@
 
   /**
    *
-   * Returns an &#x60;Input&#x60; object representing the input port with the specified id.
+   * Returns the &#x60;Input&#x60; object that matches the specified ID string or &#x60;false&#x60; if no matching input
+   * is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
-   * Please note that the IDs change from one host to another. For example, Chrome does not use the
-   * same kind of IDs as the Jazz-Plugin.
+   * Please note that IDs change from one host to another. For example, Chrome does not use the same
+   * kind of IDs as Jazz-Plugin.
    *
    * @method getInputById
    * @static
    *
-   * @param id {String} The id of the port. IDs can be viewed by looking at the &#x60;WebMidi.inputs&#x60;
-   * array.
+   * @param id {String} The ID string of the port. IDs can be viewed by looking at the
+   * &#x60;WebMidi.inputs&#x60; array.
    *
-   * @returns {Input|false} A MIDIInput port matching the specified id. If no matching port
+   * @returns {Input|false} A MIDIInput port matching the specified ID string. If no matching port
    * can be found, the method returns &#x60;false&#x60;.
+   *
+   * @throws Error WebMidi is not enabled.
    *
    * @since 2.0.0
    */
   WebMidi.prototype.getInputById = function(id) {
 
-    if (!this.enabled) {
-      throw new Error(&quot;WebMidi is not enabled.&quot;);
-    }
+    if (!this.enabled) throw new Error(&quot;WebMidi is not enabled.&quot;);
+
+    id = String(id);
 
     for (var i = 0; i &lt; this.inputs.length; i++) {
-      if (this.inputs[i].id === id) { return this.inputs[i]; }
+      if (this.inputs[i].id === id) return this.inputs[i];
     }
 
     return false;
@@ -886,31 +890,33 @@
   };
 
   /**
+   * Returns the &#x60;Output&#x60; object that matches the specified ID string or &#x60;false&#x60; if no matching
+   * output is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
-   * Returns an &#x60;Output&#x60; object representing the output port matching the specified id.
-   *
-   * Please note that the IDs change from one host to another. For example, Chrome does not use the
-   * same kind of IDs as the Jazz-Plugin.
+   * Please note that IDs change from one host to another. For example, Chrome does not use the same
+   * kind of IDs as Jazz-Plugin.
    *
    * @method getOutputById
    * @static
    *
-   * @param id {String} The id of the port. Ids can be viewed by looking at the &#x60;WebMidi.outputs&#x60;
-   * array.
+   * @param id {String} The ID string of the port. IDs can be viewed by looking at the
+   * &#x60;WebMidi.outputs&#x60; array.
    *
-   * @returns {Output|false} A MIDIOutput port matching the specified id. If no matching
-   * port can be found, the method returns &#x60;false&#x60;.
+   * @returns {Output|false} A MIDIOutput port matching the specified ID string. If no matching port
+   * can be found, the method returns &#x60;false&#x60;.
+   *
+   * @throws Error WebMidi is not enabled.
    *
    * @since 2.0.0
    */
   WebMidi.prototype.getOutputById = function(id) {
 
-    if (!this.enabled) {
-      throw new Error(&quot;WebMidi is not enabled.&quot;);
-    }
+    if (!this.enabled) throw new Error(&quot;WebMidi is not enabled.&quot;);
+
+    id = String(id);
 
     for (var i = 0; i &lt; this.outputs.length; i++) {
-      if (this.outputs[i].id === id) { return this.outputs[i]; }
+      if (this.outputs[i].id === id) return this.outputs[i];
     }
 
     return false;
