@@ -53,6 +53,7 @@
    *
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
+   * @todo  Switch away from yuidoc (deprecated) to be able to serve doc over https
    * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
    * @todo  Complete unit tests
    * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
@@ -771,30 +772,31 @@
 
   /**
    *
-   * Returns an `Input` object representing the input port with the specified id.
+   * Returns the `Input` object that matches the specified ID string or `false` if no matching input
+   * is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
-   * Please note that the IDs change from one host to another. For example, Chrome does not use the
-   * same kind of IDs as the Jazz-Plugin.
+   * Please note that IDs change from one host to another. For example, Chrome does not use the same
+   * kind of IDs as Jazz-Plugin.
    *
    * @method getInputById
    * @static
    *
-   * @param id {String} The id of the port. IDs can be viewed by looking at the `WebMidi.inputs`
-   * array.
+   * @param id {String} The ID string of the port. IDs can be viewed by looking at the
+   * `WebMidi.inputs` array.
    *
-   * @returns {Input|false} A MIDIInput port matching the specified id. If no matching port
+   * @returns {Input|false} A MIDIInput port matching the specified ID string. If no matching port
    * can be found, the method returns `false`.
+   *
+   * @throws Error WebMidi is not enabled.
    *
    * @since 2.0.0
    */
   WebMidi.prototype.getInputById = function(id) {
 
-    if (!this.enabled) {
-      throw new Error("WebMidi is not enabled.");
-    }
+    if (!this.enabled) throw new Error("WebMidi is not enabled.");
 
     for (var i = 0; i < this.inputs.length; i++) {
-      if (this.inputs[i].id === id) { return this.inputs[i]; }
+      if (this.inputs[i].id === id.toString()) return this.inputs[i];
     }
 
     return false;
@@ -802,31 +804,31 @@
   };
 
   /**
+   * Returns the `Output` object that matches the specified ID string or `false` if no matching
+   * output is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
-   * Returns an `Output` object representing the output port matching the specified id.
-   *
-   * Please note that the IDs change from one host to another. For example, Chrome does not use the
-   * same kind of IDs as the Jazz-Plugin.
+   * Please note that IDs change from one host to another. For example, Chrome does not use the same
+   * kind of IDs as Jazz-Plugin.
    *
    * @method getOutputById
    * @static
    *
-   * @param id {String} The id of the port. Ids can be viewed by looking at the `WebMidi.outputs`
-   * array.
+   * @param id {String} The ID string of the port. IDs can be viewed by looking at the
+   * `WebMidi.outputs` array.
    *
-   * @returns {Output|false} A MIDIOutput port matching the specified id. If no matching
-   * port can be found, the method returns `false`.
+   * @returns {Output|false} A MIDIOutput port matching the specified ID string. If no matching port
+   * can be found, the method returns `false`.
+   *
+   * @throws Error WebMidi is not enabled.
    *
    * @since 2.0.0
    */
   WebMidi.prototype.getOutputById = function(id) {
 
-    if (!this.enabled) {
-      throw new Error("WebMidi is not enabled.");
-    }
+    if (!this.enabled) throw new Error("WebMidi is not enabled.");
 
     for (var i = 0; i < this.outputs.length; i++) {
-      if (this.outputs[i].id === id) { return this.outputs[i]; }
+      if (this.outputs[i].id === id.toString()) return this.outputs[i];
     }
 
     return false;
