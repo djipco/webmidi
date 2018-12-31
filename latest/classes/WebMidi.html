@@ -344,7 +344,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1111"><code>src&#x2F;webmidi.js:1111</code></a>
+        <a href="../files/src_webmidi.js.html#l1117"><code>src&#x2F;webmidi.js:1117</code></a>
         </p>
 
 
@@ -376,7 +376,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1178"><code>src&#x2F;webmidi.js:1178</code></a>
+        <a href="../files/src_webmidi.js.html#l1184"><code>src&#x2F;webmidi.js:1184</code></a>
         </p>
 
 
@@ -408,7 +408,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1015"><code>src&#x2F;webmidi.js:1015</code></a>
+        <a href="../files/src_webmidi.js.html#l1021"><code>src&#x2F;webmidi.js:1021</code></a>
         </p>
 
 
@@ -440,7 +440,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1005"><code>src&#x2F;webmidi.js:1005</code></a>
+        <a href="../files/src_webmidi.js.html#l1011"><code>src&#x2F;webmidi.js:1011</code></a>
         </p>
 
 
@@ -472,7 +472,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1063"><code>src&#x2F;webmidi.js:1063</code></a>
+        <a href="../files/src_webmidi.js.html#l1069"><code>src&#x2F;webmidi.js:1069</code></a>
         </p>
 
 
@@ -516,7 +516,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l590"><code>src&#x2F;webmidi.js:590</code></a>
+        <a href="../files/src_webmidi.js.html#l591"><code>src&#x2F;webmidi.js:591</code></a>
         </p>
 
 
@@ -602,7 +602,7 @@ check out the documentation for the various events (links above).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l566"><code>src&#x2F;webmidi.js:566</code></a>
+        <a href="../files/src_webmidi.js.html#l567"><code>src&#x2F;webmidi.js:567</code></a>
         </p>
 
 
@@ -646,7 +646,7 @@ have been defined on <code>Input</code> or <code>Output</code> objects will be d
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l436"><code>src&#x2F;webmidi.js:436</code></a>
+        <a href="../files/src_webmidi.js.html#l437"><code>src&#x2F;webmidi.js:437</code></a>
         </p>
 
 
@@ -732,7 +732,7 @@ is always enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l772"><code>src&#x2F;webmidi.js:772</code></a>
+        <a href="../files/src_webmidi.js.html#l773"><code>src&#x2F;webmidi.js:773</code></a>
         </p>
 
 
@@ -741,9 +741,10 @@ is always enabled.</p>
     </div>
 
     <div class="description">
-        <p>Returns an <code>Input</code> object representing the input port with the specified id.
-Please note that the IDs change from one host to another. For example, Chrome does not use the
-same kind of IDs as the Jazz-Plugin.</p>
+        <p>Returns the <code>Input</code> object that matches the specified ID string or <code>false</code> if no matching input
+is found. As per the Web MIDI API specification, IDs are strings (not integers).
+Please note that IDs change from one host to another. For example, Chrome does not use the same
+kind of IDs as Jazz-Plugin.</p>
 
     </div>
 
@@ -757,8 +758,8 @@ same kind of IDs as the Jazz-Plugin.</p>
 
 
                     <div class="param-description">
-                        <p>The id of the port. IDs can be viewed by looking at the <code>WebMidi.inputs</code>
-array.</p>
+                        <p>The ID string of the port. IDs can be viewed by looking at the
+<code>WebMidi.inputs</code> array.</p>
 
                     </div>
 
@@ -771,12 +772,20 @@ array.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="../classes/Input.html" class="crosslink">Input</a> | False</span>:
-                    <p>A MIDIInput port matching the specified id. If no matching port
+                    <p>A MIDIInput port matching the specified ID string. If no matching port
 can be found, the method returns <code>false</code>.</p>
 
             </div>
         </div>
 
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                    <p>Error WebMidi is not enabled.</p>
+
+            </div>
+        </div>
 
 </div>
 <div id="method_getInputByName" class="method item">
@@ -804,7 +813,7 @@ can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l836"><code>src&#x2F;webmidi.js:836</code></a>
+        <a href="../files/src_webmidi.js.html#l842"><code>src&#x2F;webmidi.js:842</code></a>
         </p>
 
 
@@ -884,7 +893,7 @@ name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l870"><code>src&#x2F;webmidi.js:870</code></a>
+        <a href="../files/src_webmidi.js.html#l876"><code>src&#x2F;webmidi.js:876</code></a>
         </p>
 
 
@@ -955,7 +964,7 @@ as you want.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l804"><code>src&#x2F;webmidi.js:804</code></a>
+        <a href="../files/src_webmidi.js.html#l808"><code>src&#x2F;webmidi.js:808</code></a>
         </p>
 
 
@@ -964,9 +973,10 @@ as you want.</p>
     </div>
 
     <div class="description">
-        <p>Returns an <code>Output</code> object representing the output port matching the specified id.
-Please note that the IDs change from one host to another. For example, Chrome does not use the
-same kind of IDs as the Jazz-Plugin.</p>
+        <p>Returns the <code>Output</code> object that matches the specified ID string or <code>false</code> if no matching
+output is found. As per the Web MIDI API specification, IDs are strings (not integers).</p>
+<p>Please note that IDs change from one host to another. For example, Chrome does not use the same
+kind of IDs as Jazz-Plugin.</p>
 
     </div>
 
@@ -980,8 +990,8 @@ same kind of IDs as the Jazz-Plugin.</p>
 
 
                     <div class="param-description">
-                        <p>The id of the port. Ids can be viewed by looking at the <code>WebMidi.outputs</code>
-array.</p>
+                        <p>The ID string of the port. IDs can be viewed by looking at the
+<code>WebMidi.outputs</code> array.</p>
 
                     </div>
 
@@ -994,12 +1004,20 @@ array.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="../classes/Output.html" class="crosslink">Output</a> | False</span>:
-                    <p>A MIDIOutput port matching the specified id. If no matching
-port can be found, the method returns <code>false</code>.</p>
+                    <p>A MIDIOutput port matching the specified ID string. If no matching port
+can be found, the method returns <code>false</code>.</p>
 
             </div>
         </div>
 
+        <div class="throws">
+            <h4>Throws:</h4>
+
+            <div class="throws-description">
+                    <p>Error WebMidi is not enabled.</p>
+
+            </div>
+        </div>
 
 </div>
 <div id="method_getOutputByName" class="method item">
@@ -1027,7 +1045,7 @@ port can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l893"><code>src&#x2F;webmidi.js:893</code></a>
+        <a href="../files/src_webmidi.js.html#l899"><code>src&#x2F;webmidi.js:899</code></a>
         </p>
 
 
@@ -1107,7 +1125,7 @@ specified name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l926"><code>src&#x2F;webmidi.js:926</code></a>
+        <a href="../files/src_webmidi.js.html#l932"><code>src&#x2F;webmidi.js:932</code></a>
         </p>
 
 
@@ -1189,7 +1207,7 @@ used, in which case it will simply be returned (if between 0 and 127).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l636"><code>src&#x2F;webmidi.js:636</code></a>
+        <a href="../files/src_webmidi.js.html#l637"><code>src&#x2F;webmidi.js:637</code></a>
         </p>
 
 
@@ -1278,7 +1296,7 @@ this event type.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l956"><code>src&#x2F;webmidi.js:956</code></a>
+        <a href="../files/src_webmidi.js.html#l962"><code>src&#x2F;webmidi.js:962</code></a>
         </p>
 
 
@@ -1367,7 +1385,7 @@ number will be 36.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l679"><code>src&#x2F;webmidi.js:679</code></a>
+        <a href="../files/src_webmidi.js.html#l680"><code>src&#x2F;webmidi.js:680</code></a>
         </p>
 
 
@@ -1458,7 +1476,7 @@ omitted, all listeners attached to the <code>WebMidi</code> object will be remov
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l733"><code>src&#x2F;webmidi.js:733</code></a>
+        <a href="../files/src_webmidi.js.html#l734"><code>src&#x2F;webmidi.js:734</code></a>
         </p>
 
 
@@ -1519,7 +1537,7 @@ function results in all channels being returned (1-16).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l355"><code>src&#x2F;webmidi.js:355</code></a>
+        <a href="../files/src_webmidi.js.html#l356"><code>src&#x2F;webmidi.js:356</code></a>
         </p>
 
 
@@ -1546,7 +1564,7 @@ enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l370"><code>src&#x2F;webmidi.js:370</code></a>
+        <a href="../files/src_webmidi.js.html#l371"><code>src&#x2F;webmidi.js:371</code></a>
         </p>
 
 
@@ -1572,7 +1590,7 @@ enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l146"><code>src&#x2F;webmidi.js:146</code></a>
+        <a href="../files/src_webmidi.js.html#l147"><code>src&#x2F;webmidi.js:147</code></a>
         </p>
 
 
@@ -1600,7 +1618,7 @@ associated hexadecimal value.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l285"><code>src&#x2F;webmidi.js:285</code></a>
+        <a href="../files/src_webmidi.js.html#l286"><code>src&#x2F;webmidi.js:286</code></a>
         </p>
 
 
@@ -1628,7 +1646,7 @@ specification.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l208"><code>src&#x2F;webmidi.js:208</code></a>
+        <a href="../files/src_webmidi.js.html#l209"><code>src&#x2F;webmidi.js:209</code></a>
         </p>
 
 
@@ -1656,7 +1674,7 @@ CC messages) and their associated hexadecimal value.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l172"><code>src&#x2F;webmidi.js:172</code></a>
+        <a href="../files/src_webmidi.js.html#l173"><code>src&#x2F;webmidi.js:173</code></a>
         </p>
 
 
@@ -1686,7 +1704,7 @@ of them.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l105"><code>src&#x2F;webmidi.js:105</code></a>
+        <a href="../files/src_webmidi.js.html#l106"><code>src&#x2F;webmidi.js:106</code></a>
         </p>
 
 
@@ -1716,7 +1734,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l311"><code>src&#x2F;webmidi.js:311</code></a>
+        <a href="../files/src_webmidi.js.html#l312"><code>src&#x2F;webmidi.js:312</code></a>
         </p>
 
 
@@ -1746,7 +1764,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l384"><code>src&#x2F;webmidi.js:384</code></a>
+        <a href="../files/src_webmidi.js.html#l385"><code>src&#x2F;webmidi.js:385</code></a>
         </p>
 
 
@@ -1772,7 +1790,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l336"><code>src&#x2F;webmidi.js:336</code></a>
+        <a href="../files/src_webmidi.js.html#l337"><code>src&#x2F;webmidi.js:337</code></a>
         </p>
 
 
@@ -1802,7 +1820,7 @@ not be there.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l398"><code>src&#x2F;webmidi.js:398</code></a>
+        <a href="../files/src_webmidi.js.html#l399"><code>src&#x2F;webmidi.js:399</code></a>
         </p>
 
 
@@ -1829,7 +1847,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l413"><code>src&#x2F;webmidi.js:413</code></a>
+        <a href="../files/src_webmidi.js.html#l414"><code>src&#x2F;webmidi.js:414</code></a>
         </p>
 
 
@@ -1861,7 +1879,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1120"><code>src&#x2F;webmidi.js:1120</code></a>
+                            <a href="../files/src_webmidi.js.html#l1126"><code>src&#x2F;webmidi.js:1126</code></a>
                             </p>
                     
                     
@@ -1937,7 +1955,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1133"><code>src&#x2F;webmidi.js:1133</code></a>
+                            <a href="../files/src_webmidi.js.html#l1139"><code>src&#x2F;webmidi.js:1139</code></a>
                             </p>
                     
                     
