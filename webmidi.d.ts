@@ -5,44 +5,44 @@
 
 /** All Input events extend this base event. */
 export interface InputEventBase<T extends keyof InputEvents> {
-	/** The Input that triggered the event. */
-	target: Input
+  /** The Input that triggered the event. */
+  target: Input
 
-	/** The raw MIDI message as an array of 8 bit values. */
-	data: Uint8Array
+  /** The raw MIDI message as an array of 8 bit values. */
+  data: Uint8Array
 
-	/** The time when the event occurred (in milliseconds) */
-	timestamp: number
+  /** The time when the event occurred (in milliseconds) */
+  timestamp: number
 
-	/** The type of event that occured. */
-	type: T
+  /** The type of event that occured. */
+  type: T
 }
 
 /** All Input events that relate to a specific channel extend this event. */
 export interface InputEventChannelBase<T extends keyof InputEvents> extends InputEventBase<T> {
-	/** The channel where the event occurred (between 1 and 16). */
-	channel: number
+  /** The channel where the event occurred (between 1 and 16). */
+  channel: number
 }
 
 /** The controller `name` and `number` information. */
 export interface IEventController {
-	/** The usual name or function of the controller. */
-	name: string
+  /** The usual name or function of the controller. */
+  name: string
 
-	/** The number of the controller. */
-	number: number
+  /** The number of the controller. */
+  number: number
 }
 
 /** The note information for a given event. */
 export interface IEventNote {
-	/** The MIDI note number. */
-	number: number
+  /** The MIDI note number. */
+  number: number
 
-	/** The usual note name (C, C#, D, D#, etc.). */
-	name: string
+  /** The usual note name (C, C#, D, D#, etc.). */
+  name: string
 
-	/** The octave (between -2 and 8). */
-	octave: number
+  /** The octave (between -2 and 8). */
+  octave: number
 }
 
 /** Parameter describing 1-16 midi channels, "all" means all */
@@ -64,8 +64,8 @@ export type InputEventActivesensing = InputEventBase<"activesensing">
  * device and channel.
  */
 export interface InputEventChannelaftertouch extends InputEventChannelBase<"channelaftertouch"> {
-	/** The aftertouch value received (between 0 and 1). */
-	value: number
+  /** The aftertouch value received (between 0 and 1). */
+  value: number
 }
 
 /**
@@ -73,11 +73,11 @@ export interface InputEventChannelaftertouch extends InputEventChannelBase<"chan
  * specific device and channel.
  */
 export interface InputEventChannelmode extends InputEventChannelBase<"channelmode"> {
-	/** The controller `name` and `number` information. */
-	controller: IEventController
+  /** The controller `name` and `number` information. */
+  controller: IEventController
 
-	/** The value received (between 0 and 127). */
-	value: number
+  /** The value received (between 0 and 127). */
+  value: number
 }
 
 /** Event emitted when a system timing clock MIDI message has been received. */
@@ -91,21 +91,21 @@ export type InputEventContinue = InputEventBase<"continue">
  * on a specific device and channel.
  */
 export interface InputEventControlchange extends InputEventChannelBase<"controlchange"> {
-	/** The controller `name` and `number` information. */
-	controller: IEventController
+  /** The controller `name` and `number` information. */
+  controller: IEventController
 
-	/** The value received (between 0 and 127). */
-	value: number
+  /** The value received (between 0 and 127). */
+  value: number
 }
 
 /** Event emitted when a key-specific aftertouch MIDI message has been received on a specific
 					device and channel. */
 export interface InputEventKeyaftertouch extends InputEventChannelBase<"keyaftertouch"> {
-	/** The note information for a given event. */
-	note: IEventNote
+  /** The note information for a given event. */
+  note: IEventNote
 
-	/** The aftertouch amount (between 0 and 1). */
-	value: number
+  /** The aftertouch amount (between 0 and 1). */
+  value: number
 }
 
 /**
@@ -119,14 +119,14 @@ export type InputEventMidimessage = InputEventBase<"midimessage">
  * specific device and channel.
  */
 export interface InputEventNoteoff extends InputEventChannelBase<"noteoff"> {
-	/** The note information for a given event. */
-	note: IEventNote
+  /** The note information for a given event. */
+  note: IEventNote
 
-	/** The release velocity (between 0 and 1). */
-	velocity: number
+  /** The release velocity (between 0 and 1). */
+  velocity: number
 
-	/** The attack velocity expressed as a 7-bit integer (between 0 and 127). */
-	rawVelocity: number
+  /** The attack velocity expressed as a 7-bit integer (between 0 and 127). */
+  rawVelocity: number
 }
 
 /**
@@ -134,14 +134,14 @@ export interface InputEventNoteoff extends InputEventChannelBase<"noteoff"> {
  * specific device and channel.
  */
 export interface InputEventNoteon extends InputEventChannelBase<"noteon"> {
-	/** The note information for a given event. */
-	note: IEventNote
+  /** The note information for a given event. */
+  note: IEventNote
 
-	/** The attack velocity (between 0 and 1). */
-	velocity: number
+  /** The attack velocity (between 0 and 1). */
+  velocity: number
 
-	/** The attack velocity expressed as a 7-bit integer (between 0 and 127). */
-	rawVelocity: number
+  /** The attack velocity expressed as a 7-bit integer (between 0 and 127). */
+  rawVelocity: number
 }
 
 /**
@@ -149,8 +149,8 @@ export interface InputEventNoteon extends InputEventChannelBase<"noteon"> {
  * specific device and channel.
  */
 export interface InputEventPitchbend extends InputEventChannelBase<"pitchbend"> {
-	/** The pitch bend value received (between -1 and 1). */
-	value: number
+  /** The pitch bend value received (between -1 and 1). */
+  value: number
 }
 
 /**
@@ -158,8 +158,8 @@ export interface InputEventPitchbend extends InputEventChannelBase<"pitchbend"> 
  * specific device and channel.
  */
 export interface InputEventProgramchange extends InputEventChannelBase<"programchange"> {
-	/** The value received (between 0 and 127). */
-	value: number
+  /** The value received (between 0 and 127). */
+  value: number
 }
 
 /** Event emitted when a system reset MIDI message has been received. */
@@ -170,8 +170,8 @@ export type InputEventSongposition = InputEventBase<"songposition">
 
 /** Event emitted when a system song select MIDI message has been received. */
 export interface InputEventSongselect extends InputEventBase<"songselect"> {
-	/** Song (or sequence) number to select. */
-	song: string
+  /** Song (or sequence) number to select. */
+  song: string
 }
 
 /** Event emitted when a system start MIDI message has been received. */
@@ -211,35 +211,35 @@ export type InputEventUnknownsystemmessage = InputEventBase<"unknownsystemmessag
 
 /** All events one can listen to on an `Input`. */
 export interface InputEvents {
-	activesensing: InputEventActivesensing
-	channelaftertouch: InputEventChannelaftertouch
-	channelmode: InputEventChannelmode
-	clock: InputEventClock
-	continue: InputEventContinue
-	controlchange: InputEventControlchange
-	keyaftertouch: InputEventKeyaftertouch
-	midimessage: InputEventMidimessage
-	noteoff: InputEventNoteoff
-	noteon: InputEventNoteon
-	pitchbend: InputEventPitchbend
-	programchange: InputEventProgramchange
-	reset: InputEventReset
-	songposition: InputEventSongposition
-	songselect: InputEventSongselect
-	start: InputEventStart
-	stop: InputEventStop
-	sysex: InputEventSysex
-	timecode: InputEventTimecode
-	tuningrequest: InputEventTuningrequest
-	unknownsystemmessage: InputEventUnknownsystemmessage
+  activesensing: InputEventActivesensing
+  channelaftertouch: InputEventChannelaftertouch
+  channelmode: InputEventChannelmode
+  clock: InputEventClock
+  continue: InputEventContinue
+  controlchange: InputEventControlchange
+  keyaftertouch: InputEventKeyaftertouch
+  midimessage: InputEventMidimessage
+  noteoff: InputEventNoteoff
+  noteon: InputEventNoteon
+  pitchbend: InputEventPitchbend
+  programchange: InputEventProgramchange
+  reset: InputEventReset
+  songposition: InputEventSongposition
+  songselect: InputEventSongselect
+  start: InputEventStart
+  stop: InputEventStop
+  sysex: InputEventSysex
+  timecode: InputEventTimecode
+  tuningrequest: InputEventTuningrequest
+  unknownsystemmessage: InputEventUnknownsystemmessage
 }
 
 /**
  * Generic description of a MIDI port
  */
 export interface MidiPort<T extends "input" | "output" = "input" | "output"> {
-	/** Status of the MIDI port's connection */
-	readonly connection: "pending" | "open" | "closed"
+  /** Status of the MIDI port's connection */
+  readonly connection: "pending" | "open" | "closed"
 
 	/**
 	 * ID string of the MIDI port. The ID is host-specific.
@@ -247,21 +247,21 @@ export interface MidiPort<T extends "input" | "output" = "input" | "output"> {
 	 * For example, Google Chrome and the Jazz-Plugin report
 	 * completely different IDs for the same port.
 	 */
-	readonly id: string
+  readonly id: string
 
 	/**
 	 * Name of the manufacturer of the device that makes this port available.
 	 */
-	readonly manufacturer: string
+  readonly manufacturer: string
 
-	/** Name of the MIDI port */
-	readonly name: string
+  /** Name of the MIDI port */
+  readonly name: string
 
-	/** State of the MIDI port */
-	readonly state: "connected" | "disconnected"
+  /** State of the MIDI port */
+  readonly state: "connected" | "disconnected"
 
-	/** Type of the MIDI port */
-	readonly type: T
+  /** Type of the MIDI port */
+  readonly type: T
 }
 
 
@@ -269,14 +269,14 @@ export interface MidiPort<T extends "input" | "output" = "input" | "output"> {
  * List of valid MIDI channel messages and matching hexadecimal values.
  */
 export interface MidiChannelMessages {
-	noteoff: 0x8
-	noteon: 0x9
-	keyaftertouch: 0xA
-	controlchange: 0xB
-	channelmode: 0xB
-	programchange: 0xC
-	channelaftertouch: 0xD
-	pitchbend: 0xE
+  noteoff: 0x8
+  noteon: 0x9
+  keyaftertouch: 0xA
+  controlchange: 0xB
+  channelmode: 0xB
+  programchange: 0xC
+  channelaftertouch: 0xD
+  pitchbend: 0xE
 }
 
 /**
@@ -285,14 +285,14 @@ export interface MidiChannelMessages {
  * multiple input/output ports.
  */
 export interface WebMidiEventConnected {
-	/** The timestamp when the event occurred (in milliseconds since the epoch) */
-	timestamp: number
+  /** The timestamp when the event occurred (in milliseconds since the epoch) */
+  timestamp: number
 
-	/** The type of event that occurred */
-	type: "connected"
+  /** The type of event that occurred */
+  type: "connected"
 
-	/** The actual `Input` or `Output` object associated to the event. */
-	port: Input | Output
+  /** The actual `Input` or `Output` object associated to the event. */
+  port: Input | Output
 }
 
 /**
@@ -301,20 +301,20 @@ export interface WebMidiEventConnected {
  * multiple input/output ports.
  */
 export interface WebMidiEventDisconnected {
-	/** The timestamp when the event occurred (in milliseconds since the epoch) */
-	timestamp: number
+  /** The timestamp when the event occurred (in milliseconds since the epoch) */
+  timestamp: number
 
-	/** The type of event that occurred */
-	type: "disconnected"
+  /** The type of event that occurred */
+  type: "disconnected"
 
-	/** An generic object containing details about the port that triggered the event. */
-	port: MidiPort
+  /** An generic object containing details about the port that triggered the event. */
+  port: MidiPort
 }
 
 /** All possible events that `WebMidi` itself can be set up to listen for */
 export interface WebMidiEvents {
-	connected: WebMidiEventConnected
-	disconnected: WebMidiEventDisconnected
+  connected: WebMidiEventConnected
+  disconnected: WebMidiEventDisconnected
 }
 
 /**
@@ -323,21 +323,21 @@ export interface WebMidiEvents {
  * Currently, there are only a limited number of them.
  */
 export interface MidiRegisteredParameters {
-	pitchbendrange: [0x00, 0x00]
-	channelfinetuning: [0x00, 0x01]
-	channelcoarsetuning: [0x00, 0x02]
-	tuningprogram: [0x00, 0x03]
-	tuningbank: [0x00, 0x04]
-	modulationrange: [0x00, 0x05]
-	azimuthangle: [0x3D, 0x00]
-	elevationangle: [0x3D, 0x01]
-	gain: [0x3D, 0x02]
-	distanceratio: [0x3D, 0x03]
-	maximumdistance: [0x3D, 0x04]
-	maximumdistancegain: [0x3D, 0x05]
-	referencedistanceratio: [0x3D, 0x06]
-	panspreadangle: [0x3D, 0x07]
-	rollangle: [0x3D, 0x08]
+  pitchbendrange: [0x00, 0x00]
+  channelfinetuning: [0x00, 0x01]
+  channelcoarsetuning: [0x00, 0x02]
+  tuningprogram: [0x00, 0x03]
+  tuningbank: [0x00, 0x04]
+  modulationrange: [0x00, 0x05]
+  azimuthangle: [0x3D, 0x00]
+  elevationangle: [0x3D, 0x01]
+  gain: [0x3D, 0x02]
+  distanceratio: [0x3D, 0x03]
+  maximumdistance: [0x3D, 0x04]
+  maximumdistancegain: [0x3D, 0x05]
+  referencedistanceratio: [0x3D, 0x06]
+  panspreadangle: [0x3D, 0x07]
+  rollangle: [0x3D, 0x08]
 }
 
 /**
@@ -345,14 +345,14 @@ export interface MidiRegisteredParameters {
  * specification.
  */
 export interface MidiChannelModeMessages {
-	allsoundoff: 120
-	resetallcontrollers: 121
-	localcontrol: 122
-	allnotesoff: 123
-	omnimodeoff: 124
-	omnimodeon: 125
-	monomodeon: 126
-	polymodeon: 127
+  allsoundoff: 120
+  resetallcontrollers: 121
+  localcontrol: 122
+  allnotesoff: 123
+  omnimodeoff: 124
+  omnimodeon: 125
+  monomodeon: 126
+  polymodeon: 127
 }
 
 /**
@@ -363,65 +363,65 @@ export interface MidiChannelModeMessages {
  * Currently, there are only a limited number of them.
  */
 export interface MidiControlChangeMessages {
-	bankselectcoarse: 0
-	modulationwheelcoarse: 1
-	breathcontrollercoarse: 2
-	footcontrollercoarse: 4
-	portamentotimecoarse: 5
-	dataentrycoarse: 6
-	volumecoarse: 7
-	balancecoarse: 8
-	pancoarse: 10
-	expressioncoarse: 11
-	effectcontrol1coarse: 12
-	effectcontrol2coarse: 13
-	generalpurposeslider1: 16
-	generalpurposeslider2: 17
-	generalpurposeslider3: 18
-	generalpurposeslider4: 19
-	bankselectfine: 32
-	modulationwheelfine: 33
-	breathcontrollerfine: 34
-	footcontrollerfine: 36
-	portamentotimefine: 37
-	dataentryfine: 38
-	volumefine: 39
-	balancefine: 40
-	panfine: 42
-	expressionfine: 43
-	effectcontrol1fine: 44
-	effectcontrol2fine: 45
-	holdpedal: 64
-	portamento: 65
-	sustenutopedal: 66
-	softpedal: 67
-	legatopedal: 68
-	hold2pedal: 69
-	soundvariation: 70
-	resonance: 71
-	soundreleasetime: 72
-	soundattacktime: 73
-	brightness: 74
-	soundcontrol6: 75
-	soundcontrol7: 76
-	soundcontrol8: 77
-	soundcontrol9: 78
-	soundcontrol10: 79
-	generalpurposebutton1: 80
-	generalpurposebutton2: 81
-	generalpurposebutton3: 82
-	generalpurposebutton4: 83
-	reverblevel: 91
-	tremololevel: 92
-	choruslevel: 93
-	celestelevel: 94
-	phaserlevel: 95
-	databuttonincrement: 96
-	databuttondecrement: 97
-	nonregisteredparametercoarse: 98
-	nonregisteredparameterfine: 99
-	registeredparametercoarse: 100
-	registeredparameterfine: 101
+  bankselectcoarse: 0
+  modulationwheelcoarse: 1
+  breathcontrollercoarse: 2
+  footcontrollercoarse: 4
+  portamentotimecoarse: 5
+  dataentrycoarse: 6
+  volumecoarse: 7
+  balancecoarse: 8
+  pancoarse: 10
+  expressioncoarse: 11
+  effectcontrol1coarse: 12
+  effectcontrol2coarse: 13
+  generalpurposeslider1: 16
+  generalpurposeslider2: 17
+  generalpurposeslider3: 18
+  generalpurposeslider4: 19
+  bankselectfine: 32
+  modulationwheelfine: 33
+  breathcontrollerfine: 34
+  footcontrollerfine: 36
+  portamentotimefine: 37
+  dataentryfine: 38
+  volumefine: 39
+  balancefine: 40
+  panfine: 42
+  expressionfine: 43
+  effectcontrol1fine: 44
+  effectcontrol2fine: 45
+  holdpedal: 64
+  portamento: 65
+  sustenutopedal: 66
+  softpedal: 67
+  legatopedal: 68
+  hold2pedal: 69
+  soundvariation: 70
+  resonance: 71
+  soundreleasetime: 72
+  soundattacktime: 73
+  brightness: 74
+  soundcontrol6: 75
+  soundcontrol7: 76
+  soundcontrol8: 77
+  soundcontrol9: 78
+  soundcontrol10: 79
+  generalpurposebutton1: 80
+  generalpurposebutton2: 81
+  generalpurposebutton3: 82
+  generalpurposebutton4: 83
+  reverblevel: 91
+  tremololevel: 92
+  choruslevel: 93
+  celestelevel: 94
+  phaserlevel: 95
+  databuttonincrement: 96
+  databuttondecrement: 97
+  nonregisteredparametercoarse: 98
+  nonregisteredparameterfine: 99
+  registeredparametercoarse: 100
+  registeredparameterfine: 101
 }
 
 /**
@@ -432,27 +432,27 @@ export interface MidiControlChangeMessages {
  * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
  */
 export interface MidiSystemMessages {
-	// System common messages
-	sysex: 0xF0
-	timecode: 0xF1
-	songposition: 0xF2
-	songselect: 0xF3
-	tuningrequest: 0xF6
+  // System common messages
+  sysex: 0xF0
+  timecode: 0xF1
+  songposition: 0xF2
+  songselect: 0xF3
+  tuningrequest: 0xF6
 
-	/** never actually received - simply ends a sysex */
-	sysexend: 0xF7
+  /** never actually received - simply ends a sysex */
+  sysexend: 0xF7
 
-	// System real-time messages
-	clock: 0xF8
-	start: 0xFA
-	continue: 0xFB
-	stop: 0xFC
-	activesensing: 0xFE
-	reset: 0xFF
+  // System real-time messages
+  clock: 0xF8
+  start: 0xFA
+  continue: 0xFB
+  stop: 0xFC
+  activesensing: 0xFE
+  reset: 0xFF
 
-	// Custom WebMidi.js messages
-	midimessage: 0
-	unknownsystemmessage: -1
+  // Custom WebMidi.js messages
+  midimessage: 0
+  unknownsystemmessage: -1
 }
 
 /**
@@ -472,7 +472,7 @@ export interface OutputBaseOptions {
 	 * If time is not present or is set to a time in the past,
 	 * the request is to be sent as soon as possible.
 	 */
-	time?: DOMHighResTimeStamp | string
+  time?: DOMHighResTimeStamp | string
 }
 
 /**
@@ -509,18 +509,18 @@ export interface Input extends MidiPort<"input"> {
 	 * @param listener A callback function to execute when the specified event is detected.
 	 * @returns the WebMidi object so methods can be chained.
 	 */
-	addListener<T extends keyof InputEvents>(
-		type: T,
-		channel: IMidiChannel | undefined,
-		listener: (event: InputEvents[T]) => void
-	): Input
+  addListener<T extends keyof InputEvents>(
+    type: T,
+    channel: IMidiChannel | undefined,
+    listener: (event: InputEvents[T]) => void
+  ): Input
 
-	/** Alias for `addListener` */
-	on<T extends keyof InputEvents>(
-		type: T,
-		channel: IMidiChannel | undefined,
-		listener: (event: InputEvents[T]) => void
-	): Input
+  /** Alias for `addListener` */
+  on<T extends keyof InputEvents>(
+    type: T,
+    channel: IMidiChannel | undefined,
+    listener: (event: InputEvents[T]) => void
+  ): Input
 
 	/**
 	 * Returns the name of a control change message matching the specified number.
@@ -529,7 +529,7 @@ export interface Input extends MidiPort<"input"> {
 	 * @returns The matching control change name or `undefined`.
 	 * @throws {RangeError} The control change number must be between 0 and 119.
 	 */
-	getCcNameByNumber(number: number): string | undefined
+  getCcNameByNumber(number: number): string | undefined
 
 
 	/**
@@ -539,7 +539,7 @@ export interface Input extends MidiPort<"input"> {
 	 * @returns The matching channel mode message's name or `undefined`.
 	 * @throws {RangeError} The channel mode number must be between 120 and 127.
 	 */
-	getChannelModeByNumber(number: number): string | undefined
+  getChannelModeByNumber(number: number): string | undefined
 
 	/**
 	 * Checks if the specified event type is already defined to 
@@ -556,11 +556,11 @@ export interface Input extends MidiPort<"input"> {
 	 * @returns Boolean value indicating whether or not the channel(s)
 	 * already have this listener defined.
 	 */
-	hasListener<T extends keyof InputEvents>(
-		type: T,
-		channel: IMidiChannel,
-		listener: (event: InputEvents[T]) => void
-	): boolean
+  hasListener<T extends keyof InputEvents>(
+    type: T,
+    channel: IMidiChannel,
+    listener: (event: InputEvents[T]) => void
+  ): boolean
 
 	/**
 	 * Removes the specified listener from the specified channel(s).
@@ -578,11 +578,11 @@ export interface Input extends MidiPort<"input"> {
 	 * @param listener The callback function to check for.
 	 * @returns The `Input` object for easy method chaining.
 	 */
-	removeListener<T extends keyof InputEvents>(
-		type?: T,
-		channel?: IMidiChannel,
-		listener?: (event: InputEvents[T]) => void
-	): Input
+  removeListener<T extends keyof InputEvents>(
+    type?: T,
+    channel?: IMidiChannel,
+    listener?: (event: InputEvents[T]) => void
+  ): Input
 }
 
 /**
@@ -615,11 +615,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @returns Returns the `Output` object so methods can be chained.
 	 */
-	decrementRegisteredParameter(
-		parameter: keyof MidiRegisteredParameters | [number, number],
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  decrementRegisteredParameter(
+    parameter: keyof MidiRegisteredParameters | [number, number],
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
@@ -645,11 +645,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @returns {Output} Returns the `Output` object so methods can be chained.
 	 */
-	incrementRegisteredParameter(
-		parameter: keyof MidiRegisteredParameters | [number, number],
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  incrementRegisteredParameter(
+    parameter: keyof MidiRegisteredParameters | [number, number],
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Requests the playback of a single note or multiple notes on the specified channel(s). You can
@@ -678,21 +678,21 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	playNote(
-		note: INoteParam,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions & {
+  playNote(
+    note: INoteParam,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions & {
 			/**
 			 * The number of milliseconds (integer) to wait before sending a matching **note off** event.
 			 * If left undefined, only a **note on** message is sent.
 			 */
-			duration?: number
+      duration?: number
 
 			/**
 			 * Controls whether the attack and release velocities are set using integers between
 			 * `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).
 			 */
-			rawVelocity?: boolean
+      rawVelocity?: boolean
 
 
 			/**
@@ -701,16 +701,16 @@ export interface Output extends MidiPort<"output"> {
 			 * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
 			 * This is only used with the **note off** event triggered when `options.duration` is set.
 			 */
-			release?: number
+      release?: number
 
 			/**
 			 * The velocity at which to play the note (between `0` and
 			 * `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
 			 * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
 			 */
-			velocity?: number
-		}
-	): Output
+      velocity?: number
+    }
+  ): Output
 
 	/**
 	 * Sends a MIDI message on the MIDI output port, at the scheduled timestamp.
@@ -736,11 +736,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	send(
-		status: number,
-		data?: number[],
-		timestamp?: DOMHighResTimeStamp
-	): Output
+  send(
+    status: number,
+    data?: number[],
+    timestamp?: DOMHighResTimeStamp
+  ): Output
 
 	/**
 	 * Sends an *Active Sensing* real-time message. This tells the device connected to this port that
@@ -751,7 +751,7 @@ export interface Output extends MidiPort<"output"> {
 	 * 
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendActiveSensing(options?: OutputBaseOptions): Output
+  sendActiveSensing(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a MIDI `channel aftertouch` message to the specified channel(s). For key-specific
@@ -766,11 +766,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendChannelAftertouch(
-		pressure?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  sendChannelAftertouch(
+    pressure?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to send can be specified
@@ -792,12 +792,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendChannelMode(
-		command: keyof MidiChannelModeMessages | number,
-		value?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  sendChannelMode(
+    command: keyof MidiChannelModeMessages | number,
+    value?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a *MIDI Clock* real-time message. According to the standard, there are 24 MIDI Clocks
@@ -807,7 +807,7 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendClock(options?: OutputBaseOptions): Output
+  sendClock(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a *Continue* real-time message. This resumes song playback where it was previously
@@ -818,7 +818,7 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `WebMidi` object so methods can be chained.
 	 */
-	sendContinue(options?: OutputBaseOptions): Output
+  sendContinue(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a MIDI `control change` message to the specified channel(s) at the scheduled time. The
@@ -845,12 +845,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendControlChange(
-		controller: keyof MidiControlChangeMessages | number,
-		value?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  sendControlChange(
+    controller: keyof MidiControlChangeMessages | number,
+    value?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a MIDI `key aftertouch` message to the specified channel(s) at the scheduled time. This
@@ -873,12 +873,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendKeyAftertouch(
-		note: INoteParam,
-		channel?: IMidiChannel,
-		pressure?: number,
-		options?: OutputBaseOptions
-	): Output
+  sendKeyAftertouch(
+    note: INoteParam,
+    channel?: IMidiChannel,
+    pressure?: number,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a MIDI `pitch bend` message to the specified channel(s) at the scheduled time.
@@ -894,11 +894,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendPitchBend(
-		bend: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  sendPitchBend(
+    bend: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a MIDI `program change` message to the specified channel(s) at the scheduled time.
@@ -913,11 +913,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendProgramChange(
-		program: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  sendProgramChange(
+    program: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends *Reset* real-time message. This tells the device connected to this port that is should
@@ -927,7 +927,7 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return  Returns the `Output` object so methods can be chained.
 	 */
-	sendReset(options?: OutputBaseOptions): Output
+  sendReset(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a *Song Position* MIDI message. The value is expressed in MIDI beats (between 0 and
@@ -938,10 +938,10 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendSongPosition(
-		value: number,
-		options?: OutputBaseOptions
-	): Output
+  sendSongPosition(
+    value: number,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a *Song Select* MIDI message. Beware that some devices will display position 0 as
@@ -955,10 +955,10 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendSongSelect(
-		value: number,
-		options?: OutputBaseOptions
-	): Output
+  sendSongSelect(
+    value: number,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a *Start* real-time message. A MIDI Start message starts the playback of the current
@@ -968,7 +968,7 @@ export interface Output extends MidiPort<"output"> {
 	 * 
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendStart(options?: OutputBaseOptions): Output
+  sendStart(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a *Stop* real-time message. This tells the device connected to this port to stop playback
@@ -978,7 +978,7 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendStop(options?: OutputBaseOptions): Output
+  sendStop(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a MIDI *system exclusive* (sysex) message. The generated message will automatically be
@@ -1024,11 +1024,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendSysex(
-		manufacturer: number | number[],
-		data?: number[],
-		options?: OutputBaseOptions
-	): Output
+  sendSysex(
+    manufacturer: number | number[],
+    data?: number[],
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a *MIDI Timecode Quarter Frame* message. Please note that no processing is being done on
@@ -1040,10 +1040,10 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendTimecodeQuarterFrame(
-		value: number,
-		options?: OutputBaseOptions
-	): Output
+  sendTimecodeQuarterFrame(
+    value: number,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a *MIDI tuning request* real-time message.
@@ -1056,7 +1056,7 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	sendTuningRequest(options?: OutputBaseOptions): Output
+  sendTuningRequest(options?: OutputBaseOptions): Output
 
 	/**
 	 * Sends a master tuning message to the specified channel(s). The value is decimal and must be
@@ -1078,11 +1078,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return {Output} Returns the `Output` object so methods can be chained.
 	 */
-	setMasterTuning(
-		value?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setMasterTuning(
+    value?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a modulation depth range message to the specified channel(s) so that they adjust the
@@ -1101,12 +1101,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	setModulationRange(
-		semitones?: number,
-		cents?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setModulationRange(
+    semitones?: number,
+    cents?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
@@ -1145,12 +1145,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @returns Returns the `Output` object so methods can be chained.
 	 */
-	setNonRegisteredParameter(
-		parameter: [number, number],
-		data?: number | [number] | [number, number],
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setNonRegisteredParameter(
+    parameter: [number, number],
+    data?: number | [number] | [number, number],
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
@@ -1171,12 +1171,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return {Output} Returns the `Output` object so methods can be chained.
 	 */
-	setPitchBendRange(
-		semitones?: number,
-		cents?: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setPitchBendRange(
+    semitones?: number,
+    cents?: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sets the specified MIDI registered parameter to the desired value. The value is defined with
@@ -1201,12 +1201,12 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @returns Returns the `Output` object so methods can be chained.
 	 */
-	setRegisteredParameter(
-		parameter: keyof MidiRegisteredParameters | [number, number],
-		data?: number | [number] | [number, number],
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setRegisteredParameter(
+    parameter: keyof MidiRegisteredParameters | [number, number],
+    data?: number | [number] | [number, number],
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -1222,11 +1222,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	setTuningBank(
-		value: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setTuningBank(
+    value: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -1242,11 +1242,11 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	setTuningProgram(
-		value: number,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions
-	): Output
+  setTuningProgram(
+    value: number,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions
+  ): Output
 
 	/**
 	 * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
@@ -1269,15 +1269,15 @@ export interface Output extends MidiPort<"output"> {
 	 *
 	 * @return Returns the `Output` object so methods can be chained.
 	 */
-	stopNote(
-		note: INoteParam,
-		channel?: IMidiChannel,
-		options?: OutputBaseOptions & {
+  stopNote(
+    note: INoteParam,
+    channel?: IMidiChannel,
+    options?: OutputBaseOptions & {
 			/** 
 			 * Controls whether the release velocity is set using an integer between `0` and `127` (`true`)
 			 * or a decimal number between `0` and `1` (`false`, default).
 			 */
-			rawVelocity: boolean
+      rawVelocity: boolean
 
 			/**
 			 * The velocity at which to release the note (between `0`
@@ -1286,9 +1286,9 @@ export interface Output extends MidiPort<"output"> {
 			 * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
 			 * ignored.
 			 */
-			velocity: number
-		}
-	): Output
+      velocity: number
+    }
+  ): Output
 }
 
 /**
@@ -1343,13 +1343,13 @@ export interface WebMidi {
 	/**
 	 * List of valid MIDI channel messages and matching hexadecimal values.
 	 */
-	readonly MIDI_CHANNEL_MESSAGES: MidiChannelMessages
+  readonly MIDI_CHANNEL_MESSAGES: MidiChannelMessages
 
 	/**
 	 * List of MIDI channel mode messages as defined in the official MIDI
 	 * specification.
 	 */
-	readonly MIDI_CHANNEL_MODE_MESSAGES: MidiChannelModeMessages
+  readonly MIDI_CHANNEL_MODE_MESSAGES: MidiChannelModeMessages
 
 	/**
 	 * List of MIDI control change messages
@@ -1358,14 +1358,14 @@ export interface WebMidi {
 	 * values. MIDI registered parameters extend the original list of control change messages.
 	 * Currently, there are only a limited number of them.
 	 */
-	readonly MIDI_CONTROL_CHANGE_MESSAGES: MidiControlChangeMessages
+  readonly MIDI_CONTROL_CHANGE_MESSAGES: MidiControlChangeMessages
 
 	/**
 	 * List of valid MIDI registered parameters and their matching pair of hexadecimal
 	 * values. MIDI registered parameters extend the original list of control change messages.
 	 * Currently, there are only a limited number of them.
 	 */
-	readonly MIDI_REGISTERED_PARAMETER: MidiRegisteredParameters
+  readonly MIDI_REGISTERED_PARAMETER: MidiRegisteredParameters
 
 	/**
 	 * List of valid MIDI system messages and matching hexadecimal values.
@@ -1374,23 +1374,23 @@ export interface WebMidi {
 	 * they are used for. They are not part of the online
 	 * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
 	 */
-	readonly MIDI_SYSTEM_MESSAGES: MidiSystemMessages
+  readonly MIDI_SYSTEM_MESSAGES: MidiSystemMessages
 
 	/**
 	 * Indicates whether the interface to the host's MIDI subsystem is currently
 	 * enabled.
 	 */
-	readonly enabled: boolean
+  readonly enabled: boolean
 
 	/**
 	 * An array of all currently available MIDI input ports.
 	 */
-	readonly inputs: Input[]
+  readonly inputs: Input[]
 
 	/**
 	 * An array of all currently available MIDI output ports.
 	 */
-	readonly outputs: Output[]
+  readonly outputs: Output[]
 
 	/**
 	 * Indicates whether the environment supports the Web MIDI API or not.
@@ -1400,19 +1400,19 @@ export interface WebMidi {
 	 * WebMIDIAPIShim but no plugin, this property will be true even though actual support might
 	 * not be there.
 	 */
-	readonly supported: boolean
+  readonly supported: boolean
 
 	/**
 	 * Indicates whether the interface to the host's MIDI subsystem is currently
 	 * active.
 	 */
-	readonly sysexEnabled: boolean
+  readonly sysexEnabled: boolean
 
 	/**
 	 * Current MIDI performance time in milliseconds. This can be used to queue events
 	 * in the future.
 	 */
-	readonly time: DOMHighResTimeStamp
+  readonly time: DOMHighResTimeStamp
 
 	/**
 	 * An integer to offset the octave both in inbound and outbound messages. By default, middle C
@@ -1421,7 +1421,7 @@ export interface WebMidi {
 	 * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
 	 * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
 	 */
-	octaveOffset: number
+  octaveOffset: number
 
 	/**
 	 * Adds an event listener on the `WebMidi` object that will trigger a function callback when the
@@ -1439,17 +1439,17 @@ export interface WebMidi {
 	 * @throws {TypeError} The specified event type is not supported.
 	 * @throws {TypeError} The 'listener' parameter must be a function.
 	 */
-	addListener<T extends keyof WebMidiEvents>(
-		type: T,
-		listener: (event: WebMidiEvents[T]) => void
-	): WebMidi
+  addListener<T extends keyof WebMidiEvents>(
+    type: T,
+    listener: (event: WebMidiEvents[T]) => void
+  ): WebMidi
 
 	/**
 	 * Completely disables `WebMidi` by unlinking the MIDI subsystem's interface and destroying all
 	 * `Input` and `Output` objects that may be available. This also means that any listener that may
 	 * have been defined on `Input` or `Output` objects will be destroyed.
 	 */
-	disable(): void
+  disable(): void
 
 	/**
 	 * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
@@ -1469,10 +1469,10 @@ export interface WebMidi {
 	 * @throws Error The Web MIDI API is not supported by your browser.
 	 * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
 	 */
-	enable(
-		callback?: (err?: Error) => void,
-		sysex?: boolean
-	): void
+  enable(
+    callback?: (err?: Error) => void,
+    sysex?: boolean
+  ): void
 
 	/**
 	 *
@@ -1486,7 +1486,7 @@ export interface WebMidi {
 	 * @returns A MIDIInput port matching the specified id. If no matching port
 	 * can be found, the method returns `false`.
 	 */
-	getInputById(id: string): Input | false
+  getInputById(id: string): Input | false
 
 	/**
 	 * Returns the first MIDI `Input` whose name *contains* the specified string.
@@ -1501,7 +1501,7 @@ export interface WebMidi {
 	 * @throws Error WebMidi is not enabled.
 	 * @throws TypeError The name must be a string.
 	 */
-	getInputByName(name: string): Input | false
+  getInputByName(name: string): Input | false
 
 	/**
 	 * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
@@ -1512,7 +1512,7 @@ export interface WebMidi {
 	 *
 	 * @returns The octave (as a signed integer) or `undefined`.
 	 */
-	getOctave(number: number): number | undefined
+  getOctave(number: number): number | undefined
 
 	/**
 	 * Returns an `Output` object representing the output port matching the specified id.
@@ -1525,7 +1525,7 @@ export interface WebMidi {
 	 * @returns A MIDIOutput port matching the specified id. If no matching
 	 * port can be found, the method returns `false`.
 	 */
-	getOutputById(id: string): Output | false
+  getOutputById(id: string): Output | false
 
 	/**
 	 * Returns the first MIDI `Output` that matches the specified name.
@@ -1539,7 +1539,7 @@ export interface WebMidi {
 	 * 
 	 * @throws Error WebMidi is not enabled.
 	 */
-	getOutputByName(name: string): Output | false
+  getOutputByName(name: string): Output | false
 
 	/**
 	 * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a note
@@ -1551,7 +1551,7 @@ export interface WebMidi {
 	 * @throws {Error} Invalid input value
 	 * @returns A valid MIDI note number (0-127).
 	 */
-	guessNoteNumber(input: number | string): number
+  guessNoteNumber(input: number | string): number
 
 	/**
 	 * Checks if the specified event type is already defined to trigger the specified listener
@@ -1567,10 +1567,10 @@ export interface WebMidi {
 	 * @return Boolean value indicating whether or not a callback is already defined for
 	 * this event type.
 	 */
-	hasListener<T extends keyof WebMidiEvents>(
-		type: T,
-		listener: (event: WebMidiEvents[T]) => void
-	): boolean
+  hasListener<T extends keyof WebMidiEvents>(
+    type: T,
+    listener: (event: WebMidiEvents[T]) => void
+  ): boolean
 
 	/**
 	 * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
@@ -1592,7 +1592,7 @@ export interface WebMidi {
 	 * @throws {RangeError} Invalid note name or note outside valid range.
 	 * @return The MIDI note number (between 0 and 127)
 	 */
-	noteNameToNumber(name: string): number
+  noteNameToNumber(name: string): number
 
 	/**
 	 * Removes the specified listener(s). If the `listener` parameter is left undefined, all listeners
@@ -1608,11 +1608,13 @@ export interface WebMidi {
 	 *
 	 * @return The `WebMidi` object for easy method chaining.
 	 */
-	removeListener<T extends keyof WebMidiEvents>(
-		type?: T,
-		listener?: (event: WebMidiEvents[T]) => void
-	): WebMidi
+  removeListener<T extends keyof WebMidiEvents>(
+    type?: T,
+    listener?: (event: WebMidiEvents[T]) => void
+  ): WebMidi
 }
 
 /** The `webmidi` module is a singleton of the `WebMidi` class */
-export const webmidi: WebMidi
+declare const webmidi: WebMidi
+
+export default webmidi;
