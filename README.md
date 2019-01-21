@@ -70,10 +70,14 @@ TypeScript type definitions have been officially added to WebMidi.js with versio
 [mmmveggies](https://www.github.com/mmmveggies)).
 
 Importing WebMidi is easy:
-`import webmidi from 'webmidi';`
+```javascript
+import webmidi from 'webmidi';
+```
 
 To import interfaces and types:
-`import webmidi, { INoteParam, IMidiChannel } from 'webmidi';`
+```javascript
+import webmidi, { INoteParam, IMidiChannel } from 'webmidi';
+```
 
 ## Installation
 
