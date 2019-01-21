@@ -4,37 +4,37 @@
 //   Largely copied from original JSDoc comments
 
 /** All Input events extend this base event. */
-interface InputEventBase<T extends keyof InputEvents> {
+export interface InputEventBase<T extends keyof InputEvents> {
   /** The Input that triggered the event. */
-  target: Input 
+  target: Input
 
   /** The raw MIDI message as an array of 8 bit values. */
-  data: Uint8Array 
+  data: Uint8Array
 
   /** The time when the event occurred (in milliseconds) */
-  timestamp: number 
+  timestamp: number
 
   /** The type of event that occured. */
   type: T
 }
 
 /** All Input events that relate to a specific channel extend this event. */
-interface InputEventChannelBase<T extends keyof InputEvents> extends InputEventBase<T> {
+export interface InputEventChannelBase<T extends keyof InputEvents> extends InputEventBase<T> {
   /** The channel where the event occurred (between 1 and 16). */
   channel: number
 }
 
 /** The controller `name` and `number` information. */
-interface IEventController {
+export interface IEventController {
   /** The usual name or function of the controller. */
-  name: string 
+  name: string
 
   /** The number of the controller. */
   number: number
 }
 
 /** The note information for a given event. */
-interface IEventNote {
+export interface IEventNote {
   /** The MIDI note number. */
   number: number
 
@@ -46,24 +46,24 @@ interface IEventNote {
 }
 
 /** Parameter describing 1-16 midi channels, "all" means all */
-type IMidiChannel = number | number[] | "all"
+export type IMidiChannel = number | number[] | "all"
 
 /**
  * A description of a note, used in method parameters.
  * Strings can be name with octaves e.g. "A#5" and numbers
  * are midi ints e.g. middle C is 60
  */
-type INoteParam = number | string | Array<number | string>
+export type INoteParam = number | string | Array<number | string>
 
 
 /** Event emitted when a system active sensing MIDI message has been received. */
-type InputEventActivesensing = InputEventBase<"activesensing">
+export type InputEventActivesensing = InputEventBase<"activesensing">
 
 /**
  * Event emitted when a channel-wide aftertouch MIDI message has been received on a specific
  * device and channel.
  */
-interface InputEventChannelaftertouch extends InputEventChannelBase<"channelaftertouch"> {
+export interface InputEventChannelaftertouch extends InputEventChannelBase<"channelaftertouch"> {
   /** The aftertouch value received (between 0 and 1). */
   value: number
 }
@@ -72,7 +72,7 @@ interface InputEventChannelaftertouch extends InputEventChannelBase<"channelafte
  * Event emitted when a channel mode MIDI message has been received on a
  * specific device and channel.
  */
-interface InputEventChannelmode extends InputEventChannelBase<"channelmode"> {
+export interface InputEventChannelmode extends InputEventChannelBase<"channelmode"> {
   /** The controller `name` and `number` information. */
   controller: IEventController
 
@@ -81,16 +81,16 @@ interface InputEventChannelmode extends InputEventChannelBase<"channelmode"> {
 }
 
 /** Event emitted when a system timing clock MIDI message has been received. */
-type InputEventClock = InputEventBase<"clock">
+export type InputEventClock = InputEventBase<"clock">
 
 /** Event emitted when a system continue MIDI message has been received. */
-type InputEventContinue = InputEventBase<"continue">
+export type InputEventContinue = InputEventBase<"continue">
 
 /**
  * Event emitted when a control change MIDI message has been received
  * on a specific device and channel.
  */
-interface InputEventControlchange extends InputEventChannelBase<"controlchange"> {
+export interface InputEventControlchange extends InputEventChannelBase<"controlchange"> {
   /** The controller `name` and `number` information. */
   controller: IEventController
 
@@ -99,8 +99,8 @@ interface InputEventControlchange extends InputEventChannelBase<"controlchange">
 }
 
 /** Event emitted when a key-specific aftertouch MIDI message has been received on a specific
-                    device and channel. */
-interface InputEventKeyaftertouch extends InputEventChannelBase<"keyaftertouch"> {
+          device and channel. */
+export interface InputEventKeyaftertouch extends InputEventChannelBase<"keyaftertouch"> {
   /** The note information for a given event. */
   note: IEventNote
 
@@ -112,13 +112,13 @@ interface InputEventKeyaftertouch extends InputEventChannelBase<"keyaftertouch">
  * Event emitted when a MIDI message is received.
  * This should be used primarily for debugging purposes.
  */
-type InputEventMidimessage = InputEventBase<"midimessage">
+export type InputEventMidimessage = InputEventBase<"midimessage">
 
 /**
  * Event emitted when a note off MIDI message has been received on a
  * specific device and channel.
  */
-interface InputEventNoteoff extends InputEventChannelBase<"noteoff"> {
+export interface InputEventNoteoff extends InputEventChannelBase<"noteoff"> {
   /** The note information for a given event. */
   note: IEventNote
 
@@ -133,7 +133,7 @@ interface InputEventNoteoff extends InputEventChannelBase<"noteoff"> {
  * Event emitted when a note on MIDI message has been received on a
  * specific device and channel.
  */
-interface InputEventNoteon extends InputEventChannelBase<"noteon"> {
+export interface InputEventNoteon extends InputEventChannelBase<"noteon"> {
   /** The note information for a given event. */
   note: IEventNote
 
@@ -148,7 +148,7 @@ interface InputEventNoteon extends InputEventChannelBase<"noteon"> {
  * Event emitted when a pitch bend MIDI message has been received on a
  * specific device and channel.
  */
-interface InputEventPitchbend extends InputEventChannelBase<"pitchbend"> {
+export interface InputEventPitchbend extends InputEventChannelBase<"pitchbend"> {
   /** The pitch bend value received (between -1 and 1). */
   value: number
 }
@@ -157,28 +157,28 @@ interface InputEventPitchbend extends InputEventChannelBase<"pitchbend"> {
  * Event emitted when a program change MIDI message has been received on a
  * specific device and channel.
  */
-interface InputEventProgramchange extends InputEventChannelBase<"programchange"> {
+export interface InputEventProgramchange extends InputEventChannelBase<"programchange"> {
   /** The value received (between 0 and 127). */
   value: number
 }
 
 /** Event emitted when a system reset MIDI message has been received. */
-type InputEventReset = InputEventBase<"reset">
+export type InputEventReset = InputEventBase<"reset">
 
 /** Event emitted when a system song position pointer MIDI message has been received. */
-type InputEventSongposition = InputEventBase<"songposition">
+export type InputEventSongposition = InputEventBase<"songposition">
 
 /** Event emitted when a system song select MIDI message has been received. */
-interface InputEventSongselect extends InputEventBase<"songselect"> {
+export interface InputEventSongselect extends InputEventBase<"songselect"> {
   /** Song (or sequence) number to select. */
   song: string
 }
 
 /** Event emitted when a system start MIDI message has been received. */
-type InputEventStart = InputEventBase<"start">
+export type InputEventStart = InputEventBase<"start">
 
 /** Event emitted when a system stop MIDI message has been received. */
-type InputEventStop = InputEventBase<"stop">
+export type InputEventStop = InputEventBase<"stop">
 
 /**
  * Event emitted when a system exclusive MIDI message has been received.
@@ -195,22 +195,22 @@ type InputEventStop = InputEventBase<"stop">
  *        });
  *      }, true);
  **/
-type InputEventSysex = InputEventBase<"sysex">
+export type InputEventSysex = InputEventBase<"sysex">
 
 /** Event emitted when a system MIDI time code quarter frame message has been received. */
-type InputEventTimecode = InputEventBase<"timecode">
+export type InputEventTimecode = InputEventBase<"timecode">
 
 /** Event emitted when a system tune request MIDI message has been received. */
-type InputEventTuningrequest = InputEventBase<"tuningrequest">
+export type InputEventTuningrequest = InputEventBase<"tuningrequest">
 
 /**
  * Event emitted when an unknown system MIDI message has been received.
  * It could be, for example, one of the undefined/reserved messages.
  */
-type InputEventUnknownsystemmessage = InputEventBase<"unknownsystemmessage">
+export type InputEventUnknownsystemmessage = InputEventBase<"unknownsystemmessage">
 
 /** All events one can listen to on an `Input`. */
-interface InputEvents {
+export interface InputEvents {
   activesensing: InputEventActivesensing
   channelaftertouch: InputEventChannelaftertouch
   channelmode: InputEventChannelmode
@@ -237,7 +237,7 @@ interface InputEvents {
 /**
  * Generic description of a MIDI port
  */
-interface MidiPort<T extends "input" | "output" = "input" | "output"> {
+export interface MidiPort<T extends "input" | "output" = "input" | "output"> {
   /** Status of the MIDI port's connection */
   readonly connection: "pending" | "open" | "closed"
 
@@ -268,7 +268,7 @@ interface MidiPort<T extends "input" | "output" = "input" | "output"> {
 /**
  * List of valid MIDI channel messages and matching hexadecimal values.
  */
-interface MidiChannelMessages {
+export interface MidiChannelMessages {
   noteoff: 0x8
   noteon: 0x9
   keyaftertouch: 0xA
@@ -284,7 +284,7 @@ interface MidiChannelMessages {
  * MIDI device is plugged in. Please note that it may fire several times if a device possesses
  * multiple input/output ports.
  */
-interface WebMidiEventConnected {
+export interface WebMidiEventConnected {
   /** The timestamp when the event occurred (in milliseconds since the epoch) */
   timestamp: number
 
@@ -300,7 +300,7 @@ interface WebMidiEventConnected {
  * MIDI device is unplugged. Please note that it may fire several times if a device possesses
  * multiple input/output ports.
  */
-interface WebMidiEventDisconnected {
+export interface WebMidiEventDisconnected {
   /** The timestamp when the event occurred (in milliseconds since the epoch) */
   timestamp: number
 
@@ -312,7 +312,7 @@ interface WebMidiEventDisconnected {
 }
 
 /** All possible events that `WebMidi` itself can be set up to listen for */
-interface WebMidiEvents {
+export interface WebMidiEvents {
   connected: WebMidiEventConnected
   disconnected: WebMidiEventDisconnected
 }
@@ -322,7 +322,7 @@ interface WebMidiEvents {
  * values. MIDI registered parameters extend the original list of control change messages.
  * Currently, there are only a limited number of them.
  */
-interface MidiRegisteredParameters {
+export interface MidiRegisteredParameters {
   pitchbendrange: [0x00, 0x00]
   channelfinetuning: [0x00, 0x01]
   channelcoarsetuning: [0x00, 0x02]
@@ -344,7 +344,7 @@ interface MidiRegisteredParameters {
  * List of MIDI channel mode messages as defined in the official MIDI
  * specification.
  */
-interface MidiChannelModeMessages {
+export interface MidiChannelModeMessages {
   allsoundoff: 120
   resetallcontrollers: 121
   localcontrol: 122
@@ -362,7 +362,7 @@ interface MidiChannelModeMessages {
  * values. MIDI registered parameters extend the original list of control change messages.
  * Currently, there are only a limited number of them.
  */
-interface MidiControlChangeMessages {
+export interface MidiControlChangeMessages {
   bankselectcoarse: 0
   modulationwheelcoarse: 1
   breathcontrollercoarse: 2
@@ -431,7 +431,7 @@ interface MidiControlChangeMessages {
  * they are used for. They are not part of the online
  * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
  */
-interface MidiSystemMessages {
+export interface MidiSystemMessages {
   // System common messages
   sysex: 0xF0
   timecode: 0xF1
@@ -440,7 +440,7 @@ interface MidiSystemMessages {
   tuningrequest: 0xF6
 
   /** never actually received - simply ends a sysex */
-  sysexend: 0xF7 
+  sysexend: 0xF7
 
   // System real-time messages
   clock: 0xF8
@@ -459,7 +459,7 @@ interface MidiSystemMessages {
  * All `Output` methods that have an `options` parameter
  * derive from this base interface
  */
-interface OutputBaseOptions {
+export interface OutputBaseOptions {
   /**
    * This value can be one of two things. 
    * If the value is a string starting with the + sign and followed by a number,
@@ -480,7 +480,7 @@ interface OutputBaseOptions {
  * This object is created by the MIDI subsystem and cannot be instantiated directly.
  * You will find all available `Input` objects in the `WebMidi.inputs` array.
  */
-interface Input extends MidiPort<"input"> {
+export interface Input extends MidiPort<"input"> {
   /**
    * Adds an event listener to the Input that will trigger a function
    * callback when the specified event happens.
@@ -559,7 +559,7 @@ interface Input extends MidiPort<"input"> {
   hasListener<T extends keyof InputEvents>(
     type: T,
     channel: IMidiChannel,
-    listener: (event: InputEvents[T]) => void  
+    listener: (event: InputEvents[T]) => void
   ): boolean
 
   /**
@@ -581,7 +581,7 @@ interface Input extends MidiPort<"input"> {
   removeListener<T extends keyof InputEvents>(
     type?: T,
     channel?: IMidiChannel,
-    listener?: (event: InputEvents[T]) => void  
+    listener?: (event: InputEvents[T]) => void
   ): Input
 }
 
@@ -590,7 +590,7 @@ interface Input extends MidiPort<"input"> {
  * This object is created by the MIDI subsystem and cannot be instantiated directly.
  * You will find all available `Output` objects in the `WebMidi.outputs` array.
  */
-interface Output extends MidiPort<"output"> {
+export interface Output extends MidiPort<"output"> {
   /**
    * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
    * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
@@ -1339,7 +1339,7 @@ interface Output extends MidiPort<"output"> {
  *
  * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
  */
-interface WebMidi {
+export interface WebMidi {
   /**
    * List of valid MIDI channel messages and matching hexadecimal values.
    */
@@ -1616,4 +1616,5 @@ interface WebMidi {
 
 /** The `webmidi` module is a singleton of the `WebMidi` class */
 declare const webmidi: WebMidi
-export = webmidi
+
+export default webmidi;
