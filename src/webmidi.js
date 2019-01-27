@@ -2859,7 +2859,8 @@
    */
   Output.prototype.playNote = function(note, channel, options) {
 
-    var nVelocity = 64;
+    var time,
+        nVelocity = 64;
 
     options = options || {};
 
@@ -2877,6 +2878,8 @@
 
     }
 
+    time = this._parseTimeParameter(options.time);
+
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
@@ -2884,7 +2887,7 @@
         this.send(
           (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
           [item, Math.round(nVelocity)],
-          this._parseTimeParameter(options.time)
+          time
         );
       }.bind(this));
 
@@ -2919,7 +2922,7 @@
           this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
             [item, Math.round(nRelease)],
-            (options.time || wm.time) + options.duration
+            (time || wm.time) + options.duration
           );
         }.bind(this));
 
@@ -4106,14 +4109,13 @@
    */
   Output.prototype._parseTimeParameter = function(time) {
 
-    var parsed, value;
+    var value,
+        parsed = parseFloat(time);
 
     if (typeof time === 'string' &&  time.substring(0, 1) === "+") {
-      parsed = parseFloat(time);
-      if (parsed && parsed > 0) { value = wm.time + parsed; }
+      if (parsed && parsed > 0) value = wm.time + parsed;
     } else {
-      parsed = parseFloat(time);
-      if (parsed > wm.time) { value = parsed; }
+      if (parsed > wm.time) value = parsed;
     }
 
     return value;
