@@ -2877,8 +2877,6 @@
 
     }
 
-    options.time = this._parseTimeParameter(options.time);
-
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
 
@@ -2886,7 +2884,7 @@
         this.send(
           (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (ch - 1),
           [item, Math.round(nVelocity)],
-          options.time
+          this._parseTimeParameter(options.time)
         );
       }.bind(this));
 
