@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.4.0</em>
+            <em>API Docs for: 2.3.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -2943,7 +2943,8 @@
    */
   Output.prototype.playNote = function(note, channel, options) {
 
-    var nVelocity = 64;
+    var time,
+        nVelocity = 64;
 
     options = options || {};
 
@@ -2961,7 +2962,7 @@
 
     }
 
-    options.time = this._parseTimeParameter(options.time);
+    time = this._parseTimeParameter(options.time);
 
     // Send note on messages
     this._convertNoteToArray(note).forEach(function(item) {
@@ -2970,7 +2971,7 @@
         this.send(
           (wm.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (ch - 1),
           [item, Math.round(nVelocity)],
-          options.time
+          time
         );
       }.bind(this));
 
@@ -3005,7 +3006,7 @@
           this.send(
             (wm.MIDI_CHANNEL_MESSAGES.noteoff &lt;&lt; 4) + (ch - 1),
             [item, Math.round(nRelease)],
-            (options.time || wm.time) + options.duration
+            (time || wm.time) + options.duration
           );
         }.bind(this));
 
@@ -4192,14 +4193,13 @@
    */
   Output.prototype._parseTimeParameter = function(time) {
 
-    var parsed, value;
+    var value,
+        parsed = parseFloat(time);
 
     if (typeof time === &#x27;string&#x27; &amp;&amp;  time.substring(0, 1) === &quot;+&quot;) {
-      parsed = parseFloat(time);
-      if (parsed &amp;&amp; parsed &gt; 0) { value = wm.time + parsed; }
+      if (parsed &amp;&amp; parsed &gt; 0) value = wm.time + parsed;
     } else {
-      parsed = parseFloat(time);
-      if (parsed &gt; wm.time) { value = parsed; }
+      if (parsed &gt; wm.time) value = parsed;
     }
 
     return value;
