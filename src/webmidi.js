@@ -3108,9 +3108,7 @@
     if (typeof controller === "string") {
 
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      if (!controller) {
-        throw new TypeError("Invalid controller name.");
-      }
+      if (controller === undefined) throw new TypeError("Invalid controller name.");
 
     } else {
 
