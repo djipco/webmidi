@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.3.2</em>
+            <em>API Docs for: 2.3.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -3192,9 +3192,7 @@
     if (typeof controller === &quot;string&quot;) {
 
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      if (!controller) {
-        throw new TypeError(&quot;Invalid controller name.&quot;);
-      }
+      if (controller === undefined) throw new TypeError(&quot;Invalid controller name.&quot;);
 
     } else {
 
