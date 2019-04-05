@@ -54,19 +54,7 @@
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
    * @todo  Switch away from yuidoc (deprecated) to be able to serve doc over https
-   * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
-   * @todo  Complete unit tests
-   * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
-   * @todo  Refine "options" param of addListener. Allow listening for specific controller change.
-   * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
-   * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
-   * @todo  Implement the show control protocol subset.
-   * @todo  Add methods for channel mode messages
-   * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
-   * @todo  Implement port statechange events (connected and disconnected)
-   * @todo  For the songposition and timecode message, we should calculate time values and make them directly available
    *
    */
   function WebMidi() {
