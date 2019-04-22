@@ -818,7 +818,8 @@
   /**
    * Converts an input value (which should be an integer, an array of integers, &#x60;&quot;all&quot;&#x60; or
    * &#x60;undefined&#x60;) to an array of valid MIDI channel numbers. Passing &#x60;&quot;all&quot;&#x60; or &#x60;undefined&#x60; to this
-   * function results in all channels being returned (1-16).
+   * function results in all channels being returned (1-16). Passing &#x60;&quot;none&quot;&#x60; results in no 
+   * channels being returned as an empty array.
    *
    * Elements in the array that cannot successfully be parsed to integers between 1 and 16 (using
    * &#x60;parseInt()&#x60;) are silently removed.
@@ -833,15 +834,15 @@
     var channels;
 
     if (channel === &#x27;all&#x27; || channel === undefined) {
-      channels = [&#x27;all&#x27;];
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      return channels;
+    } else if (channel === &#x27;none&#x27;) {
+      channels = [];
+      return channels;
     } else if (!Array.isArray(channel)) {
       channels = [channel];
     } else {
       channels = channel;
-    }
-
-    if (channels.indexOf(&#x27;all&#x27;) &gt; -1) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     }
 
     return channels
