@@ -6,7 +6,11 @@
   "main": "webmidi.min.js",
   "types": "webmidi.d.ts",
   "scripts": {
-    "test": "tsc --strict --noEmit ./webmidi.d.ts"
+    "test": "tsc --strict --noEmit ./webmidi.d.ts",
+    "build": "grunt uglify",
+    "generate-doc": "grunt yuidoc",
+    "gh-pages": "grunt gh-pages",
+    "release": "grunt release"
   },
   "repository": {
     "type": "git",

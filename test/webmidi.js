@@ -642,6 +642,7 @@ describe('WebMidi', function() {
       expect(WebMidi.toMIDIChannels([]).length).to.equal(0);
       expect(WebMidi.toMIDIChannels([9.7])[0]).to.equal(9);
       expect(WebMidi.toMIDIChannels([1e1])[0]).to.equal(10);
+      expect(WebMidi.toMIDIChannels('none').length).to.equal(0);
 
     });
 
