@@ -10,8 +10,7 @@
     "build": "grunt uglify",
     "generate-doc": "grunt yuidoc",
     "gh-pages": "grunt gh-pages",
-    "release": "grunt release",
-    "bumpup": "grunt bumpup"
+    "release": "grunt release"
   },
   "repository": {
     "type": "git",
