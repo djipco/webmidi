@@ -834,8 +834,7 @@
     var channels;
 
     if (channel === &#x27;all&#x27; || channel === undefined) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      return channels;
+      channels = [&#x27;all&#x27;];
     } else if (channel === &#x27;none&#x27;) {
       channels = [];
       return channels;
@@ -843,6 +842,12 @@
       channels = [channel];
     } else {
       channels = channel;
+    }
+
+    // In order of being backward compatible,
+    // we let this assignment as it is.
+    if (channels.indexOf(&#x27;all&#x27;) &gt; -1) {
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     }
 
     return channels
