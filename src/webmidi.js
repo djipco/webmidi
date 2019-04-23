@@ -720,18 +720,25 @@
   };
 
   /**
-   * Converts an input value (which should be an integer, an array of integers, `"all"` or
-   * `undefined`) to an array of valid MIDI channel numbers. Passing `"all"` or `undefined` to this
-   * function results in all channels being returned (1-16). Passing `"none"` results in no 
-   * channels being returned as an empty array.
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
+   * the following:
    *
-   * Elements in the array that cannot successfully be parsed to integers between 1 and 16 (using
-   * `parseInt()`) are silently removed.
+   * * a single integer
+   * * an array of integers
+   * * the special value `"all"`
+   * * the special value `"none"`
+   *
+   * Passing `"all"` or `undefined` as a parameter to this function results in all channels being
+   * returned (1-16). Passing `"none"` results in no channel being returned (as an empty array).
+   *
+   * Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
+   * ignored.
    *
    * @method toMIDIChannels
-   * @param [channel] {uint|Array}
-   * @returns {Array}
-   * @protected
+   * @static
+   *
+   * @param [channel="all"] {Number|Array|"all"|"none"}
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers
    */
   WebMidi.prototype.toMIDIChannels = function(channel) {
 
@@ -748,8 +755,7 @@
       channels = channel;
     }
 
-    // In order of being backward compatible,
-    // we let this assignment as it is.
+    // In order to preserve backwards-compatibility, we let this assignment as it is.
     if (channels.indexOf('all') > -1) {
       channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     }
