@@ -1,6 +1,6 @@
 (function(scope) {
 
-  "use strict";
+  'use strict';
 
   /**
    * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -22,8 +22,8 @@
    * thing that needs to be done is to first enable `WebMidi`. Here is an example:
    *
    *      WebMidi.enable(function(err) {
-   *        if (err) console.log("An error occurred", err);
-   *        WebMidi.outputs[0].playNote("C3");
+   *        if (err) console.log('An error occurred', err);
+   *        WebMidi.outputs[0].playNote('C3');
    *      });
    *
    * The code above, calls the `WebMidi.enable()` method. Upon success, this method executes the
@@ -37,10 +37,10 @@
    * events on the first input port:
    *
    *      WebMidi.enable(function(err) {
-   *        if (err) console.log("An error occurred", err);
+   *        if (err) console.log('An error occurred', err);
    *
-   *        WebMidi.inputs[0].addListener('pitchbend', "all", function(e) {
-   *          console.log("Pitch value: " + e.value);
+   *        WebMidi.inputs[0].addListener('pitchbend', 'all', function(e) {
+   *          console.log('Pitch value: ' + e.value);
    *        });
    *
    *      });
@@ -61,7 +61,7 @@
 
     // Singleton. Prevent instantiation through WebMidi.__proto__.constructor()
     if (WebMidi.prototype._singleton) {
-      throw new Error("WebMidi is a singleton, it cannot be instantiated directly.");
+      throw new Error('WebMidi is a singleton, it cannot be instantiated directly.');
     }
     WebMidi.prototype._singleton = this;
 
@@ -82,13 +82,13 @@
     this._processingStateChange = false;
 
     // Events triggered at the interface level (WebMidi)
-    this._midiInterfaceEvents = ["connected", "disconnected"];
+    this._midiInterfaceEvents = ['connected', 'disconnected'];
 
     // Notes and semitones for note guessing
-    this._notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    this._semitones = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11 };
+    this._notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    this._semitones = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11 };
 
-    // Define some "static" properties
+    // Define some 'static' properties
     Object.defineProperties(this, {
 
       /**
@@ -108,24 +108,24 @@
         value: {
 
           // System common messages
-          "sysex": 0xF0,            // 240
-          "timecode": 0xF1,         // 241
-          "songposition": 0xF2,     // 242
-          "songselect": 0xF3,       // 243
-          "tuningrequest": 0xF6,    // 246
-          "sysexend": 0xF7,         // 247 (never actually received - simply ends a sysex)
+          'sysex': 0xF0,            // 240
+          'timecode': 0xF1,         // 241
+          'songposition': 0xF2,     // 242
+          'songselect': 0xF3,       // 243
+          'tuningrequest': 0xF6,    // 246
+          'sysexend': 0xF7,         // 247 (never actually received - simply ends a sysex)
 
           // System real-time messages
-          "clock": 0xF8,            // 248
-          "start": 0xFA,            // 250
-          "continue": 0xFB,         // 251
-          "stop": 0xFC,             // 252
-          "activesensing": 0xFE,    // 254
-          "reset": 0xFF,            // 255
+          'clock': 0xF8,            // 248
+          'start': 0xFA,            // 250
+          'continue': 0xFB,         // 251
+          'stop': 0xFC,             // 252
+          'activesensing': 0xFE,    // 254
+          'reset': 0xFF,            // 255
 
           // Custom WebMidi.js messages
-          "midimessage": 0,
-          "unknownsystemmessage": -1
+          'midimessage': 0,
+          'unknownsystemmessage': -1
         },
         writable: false,
         enumerable: true,
@@ -144,14 +144,14 @@
        */
       MIDI_CHANNEL_MESSAGES: {
         value: {
-          "noteoff": 0x8,           // 8
-          "noteon": 0x9,            // 9
-          "keyaftertouch": 0xA,     // 10
-          "controlchange": 0xB,     // 11
-          "channelmode": 0xB,       // 11
-          "programchange": 0xC,     // 12
-          "channelaftertouch": 0xD, // 13
-          "pitchbend": 0xE          // 14
+          'noteoff': 0x8,           // 8
+          'noteon': 0x9,            // 9
+          'keyaftertouch': 0xA,     // 10
+          'controlchange': 0xB,     // 11
+          'channelmode': 0xB,       // 11
+          'programchange': 0xC,     // 12
+          'channelaftertouch': 0xD, // 13
+          'pitchbend': 0xE          // 14
         },
         writable: false,
         enumerable: true,
@@ -283,14 +283,14 @@
        */
       MIDI_CHANNEL_MODE_MESSAGES: {
         value: {
-          "allsoundoff": 120,
-          "resetallcontrollers": 121,
-          "localcontrol": 122,
-          "allnotesoff": 123,
-          "omnimodeoff": 124,
-          "omnimodeon": 125,
-          "monomodeon": 126,
-          "polymodeon": 127
+          'allsoundoff': 120,
+          'resetallcontrollers': 121,
+          'localcontrol': 122,
+          'allnotesoff': 123,
+          'omnimodeoff': 124,
+          'omnimodeon': 125,
+          'monomodeon': 126,
+          'polymodeon': 127
         },
         writable: false,
         enumerable: true,
@@ -337,7 +337,7 @@
       supported: {
         enumerable: true,
         get: function() {
-          return "requestMIDIAccess" in navigator;
+          return 'requestMIDIAccess' in navigator;
         }
       },
 
@@ -461,15 +461,15 @@
 
     if ( !this.supported) {
 
-      if (typeof callback === "function") {
-        callback( new Error("The Web MIDI API is not supported by your browser.") );
+      if (typeof callback === 'function') {
+        callback( new Error('The Web MIDI API is not supported by your browser.') );
       }
 
       return;
 
     }
 
-    navigator.requestMIDIAccess({"sysex": sysex}).then(
+    navigator.requestMIDIAccess({'sysex': sysex}).then(
 
       function(midiAccess) {
 
@@ -482,7 +482,7 @@
 
         // We setup a temporary `statechange` handler that will catch all events triggered while we
         // setup. Those events will be re-triggered after calling the user's callback. This will
-        // allow the user to listen to "connected" events which can be very convenient.
+        // allow the user to listen to 'connected' events which can be very convenient.
         this.interface.onstatechange = function (e) {
           events.push(e);
         };
@@ -490,7 +490,7 @@
         // Here we manually open the inputs and outputs. Usually, this is optional. When the ports
         // are not explicitely opened, they will be opened automatically (and asynchonously) by
         // setting a listener on `midimessage` (MIDIInput) or calling `send()` (MIDIOutput).
-        // However, we do not want that here. We want to be sure that "connected" events will be
+        // However, we do not want that here. We want to be sure that 'connected' events will be
         // available in the user's callback. So, what we do is open all input and output ports and
         // wait until all promises are resolved. Then, we re-trigger the events after the user's
         // callback has been executed. This seems like the most sensible and practical way.
@@ -515,7 +515,7 @@
           this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
           // We execute the callback and then re-trigger the statechange events.
-          if (typeof callback === "function") { callback.call(this); }
+          if (typeof callback === 'function') { callback.call(this); }
 
           events.forEach(function (event) {
             this._onInterfaceStateChange(event);
@@ -532,8 +532,8 @@
             .then(onPortsOpen.bind(this))
         }
 
-        // When MIDI access is requested, all input and output ports have their "state" set to
-        // "connected". However, the value of their "connection" property is "closed".
+        // When MIDI access is requested, all input and output ports have their 'state' set to
+        // 'connected'. However, the value of their 'connection' property is 'closed'.
         //
         // A `MIDIInput` becomes `open` when you explicitely call its `open()` method or when you
         // assign a listener to its `onmidimessage` property. A `MIDIOutput` becomes `open` when you
@@ -545,7 +545,7 @@
       }.bind(this),
 
       function (err) {
-        if (typeof callback === "function") { callback.call(this, err); }
+        if (typeof callback === 'function') { callback.call(this, err); }
       }.bind(this)
 
     );
@@ -565,7 +565,7 @@
   WebMidi.prototype.disable = function() {
 
     if ( !this.supported ) {
-      throw new Error("The Web MIDI API is not supported by your browser.");
+      throw new Error('The Web MIDI API is not supported by your browser.');
     }
 
     if (this.interface) this.interface.onstatechange = undefined;
@@ -584,7 +584,7 @@
    *
    * Currently, only one event is being dispatched by the `WebMidi` object:
    *
-   *    * {{#crossLink "WebMidi/statechange:event"}}statechange{{/crossLink}}
+   *    * {{#crossLink 'WebMidi/statechange:event'}}statechange{{/crossLink}}
    *
    * @method addListener
    * @static
@@ -604,21 +604,21 @@
    */
   WebMidi.prototype.addListener = function(type, listener) {
 
-      if (!this.enabled) {
-        throw new Error("WebMidi must be enabled before adding event listeners.");
-      }
+    if (!this.enabled) {
+      throw new Error('WebMidi must be enabled before adding event listeners.');
+    }
 
-      if (typeof listener !== "function") {
-        throw new TypeError("The 'listener' parameter must be a function.");
-      }
+    if (typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
+    }
 
-      if (this._midiInterfaceEvents.indexOf(type) >= 0) {
-        this._userHandlers[type].push(listener);
-      } else {
-        throw new TypeError("The specified event type is not supported.");
-      }
+    if (this._midiInterfaceEvents.indexOf(type) >= 0) {
+      this._userHandlers[type].push(listener);
+    } else {
+      throw new TypeError('The specified event type is not supported.');
+    }
 
-      return this;
+    return this;
 
   };
 
@@ -642,11 +642,11 @@
   WebMidi.prototype.hasListener = function(type, listener) {
 
     if (!this.enabled) {
-      throw new Error("WebMidi must be enabled before checking event listeners.");
+      throw new Error('WebMidi must be enabled before checking event listeners.');
     }
 
-    if (typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
+    if (typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
     }
 
     if (this._midiInterfaceEvents.indexOf(type) >= 0) {
@@ -658,7 +658,7 @@
       }
 
     } else {
-      throw new TypeError("The specified event type is not supported.");
+      throw new TypeError('The specified event type is not supported.');
     }
 
     return false;
@@ -686,11 +686,11 @@
   WebMidi.prototype.removeListener = function(type, listener) {
 
     if (!this.enabled) {
-      throw new Error("WebMidi must be enabled before removing event listeners.");
+      throw new Error('WebMidi must be enabled before removing event listeners.');
     }
 
-    if (listener !== undefined && typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
+    if (listener !== undefined && typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
     }
 
     if (this._midiInterfaceEvents.indexOf(type) >= 0) {
@@ -712,7 +712,7 @@
       this._resetInterfaceUserHandlers();
 
     } else {
-      throw new TypeError("The specified event type is not supported.");
+      throw new TypeError('The specified event type is not supported.');
     }
 
     return this;
@@ -725,11 +725,11 @@
    *
    * * a single integer
    * * an array of integers
-   * * the special value `"all"`
-   * * the special value `"none"`
+   * * the special value `'all'`
+   * * the special value `'none'`
    *
-   * Passing `"all"` or `undefined` as a parameter to this function results in all channels being
-   * returned (1-16). Passing `"none"` results in no channel being returned (as an empty array).
+   * Passing `'all'` or `undefined` as a parameter to this function results in all channels being
+   * returned (1-16). Passing `'none'` results in no channel being returned (as an empty array).
    *
    * Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
    * ignored.
@@ -737,7 +737,7 @@
    * @method toMIDIChannels
    * @static
    *
-   * @param [channel="all"] {Number|Array|"all"|"none"}
+   * @param [channel='all'] {Number|Array|'all'|'none'}
    * @returns {Array} An array of 0 or more valid MIDI channel numbers
    */
   WebMidi.prototype.toMIDIChannels = function(channel) {
@@ -793,7 +793,7 @@
    */
   WebMidi.prototype.getInputById = function(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
+    if (!this.enabled) throw new Error('WebMidi is not enabled.');
 
     id = String(id);
 
@@ -827,7 +827,7 @@
    */
   WebMidi.prototype.getOutputById = function(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
+    if (!this.enabled) throw new Error('WebMidi is not enabled.');
 
     id = String(id);
 
@@ -862,7 +862,7 @@
   WebMidi.prototype.getInputByName = function(name) {
 
     if (!this.enabled) {
-      throw new Error("WebMidi is not enabled.");
+      throw new Error('WebMidi is not enabled.');
     }
 
     for (var i = 0; i < this.inputs.length; i++) {
@@ -876,7 +876,7 @@
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
    * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
-   * <a href="#property_octaveOffset">octaveOffset</a> property, you can offset the result as much
+   * <a href='#property_octaveOffset'>octaveOffset</a> property, you can offset the result as much
    * as you want.
    *
    * @method getOctave
@@ -918,7 +918,7 @@
   WebMidi.prototype.getOutputByName = function(name) {
 
     if (!this.enabled) {
-      throw new Error("WebMidi is not enabled.");
+      throw new Error('WebMidi is not enabled.');
     }
 
     for (var i = 0; i < this.outputs.length; i++) {
@@ -943,9 +943,9 @@
    * @returns {Number} A valid MIDI note number (0-127).
    */
   WebMidi.prototype.guessNoteNumber = function(input) {
-  
+
     var output = false;
-  
+
     if (input && input.toFixed && input >= 0 && input <= 127) {         // uint
       output = Math.round(input);
     } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // uint as string
@@ -953,8 +953,8 @@
     } else if (typeof input === 'string' || input instanceof String) {  // string
       output = this.noteNameToNumber(input);
     }
-  
-    if (output === false) throw new Error("Invalid input value (" + input + ").");
+
+    if (output === false) throw new Error('Invalid input value (' + input + ').');
     return output;
 
   };
@@ -969,14 +969,14 @@
    * number 60) as per the scientific pitch notation standard.
    *
    * Also note that the resulting note number is offset by the `octaveOffset` value (if not zero).
-   * For example, if you pass in "C4" and the `octaveOffset` value is 2 the resulting MIDI note
+   * For example, if you pass in 'C4' and the `octaveOffset` value is 2 the resulting MIDI note
    * number will be 36.
    *
    * @method noteNameToNumber
    * @static
    *
-   * @param name {String} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
+   * @param name {String} The name of the note in the form of a letter, followed by an optional '#',
+   * '##', 'b' or 'bb' followed by the octave number.
    *
    * @throws {RangeError} Invalid note name.
    * @throws {RangeError} Invalid note name or note outside valid range.
@@ -984,24 +984,24 @@
    */
   WebMidi.prototype.noteNameToNumber = function(name) {
 
-    if (typeof name !== "string") name = '';
+    if (typeof name !== 'string') name = '';
 
     var matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) throw new RangeError("Invalid note name.");
+    if(!matches) throw new RangeError('Invalid note name.');
 
     var semitones = wm._semitones[matches[1].toUpperCase()];
     var octave = parseInt(matches[3]);
     var result = ((octave + 1 - Math.floor(wm.octaveOffset)) * 12) + semitones;
 
 
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
+    if (matches[2].toLowerCase().indexOf('b') > -1) {
       result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+    } else if (matches[2].toLowerCase().indexOf('#') > -1) {
       result += matches[2].length;
     }
 
     if (result < 0 || result > 127) {
-      throw new RangeError("Invalid note name or note outside valid range.");
+      throw new RangeError('Invalid note name or note outside valid range.');
     }
 
     return result;
@@ -1119,7 +1119,7 @@
    * @static
    * @protected
    */
-   WebMidi.prototype._onInterfaceStateChange = function(e) {
+  WebMidi.prototype._onInterfaceStateChange = function(e) {
 
     this._updateInputsAndOutputs();
 
@@ -1154,18 +1154,18 @@
       type: e.port.state
     };
 
-    if (this.interface && e.port.state === "connected") {
+    if (this.interface && e.port.state === 'connected') {
 
-      if (e.port.type === "output") {
+      if (e.port.type === 'output') {
         event.port = this.getOutputById(e.port.id);
-      } else if (e.port.type === "input") {
+      } else if (e.port.type === 'input') {
         event.port = this.getInputById(e.port.id);
       }
 
     } else {
 
       event.port = {
-        connection: "closed",
+        connection: 'closed',
         id: e.port.id,
         manufacturer: e.port.manufacturer,
         name: e.port.name,
@@ -1208,7 +1208,7 @@
     var that = this;
 
     // User-defined handlers list
-    this._userHandlers = { "channel": {}, "system": {} };
+    this._userHandlers = { 'channel': {}, 'system': {} };
 
     // Reference to the actual MIDIInput object
     this._midiInput = midiInput;
@@ -1310,30 +1310,30 @@
    *
    * Channel-specific MIDI events:
    *
-   *    * {{#crossLink "Input/noteoff:event"}}noteoff{{/crossLink}}
-   *    * {{#crossLink "Input/noteon:event"}}noteon{{/crossLink}}
-   *    * {{#crossLink "Input/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
-   *    * {{#crossLink "Input/controlchange:event"}}controlchange{{/crossLink}}
-   *    * {{#crossLink "Input/channelmode:event"}}channelmode{{/crossLink}}
-   *    * {{#crossLink "Input/programchange:event"}}programchange{{/crossLink}}
-   *    * {{#crossLink "Input/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
-   *    * {{#crossLink "Input/pitchbend:event"}}pitchbend{{/crossLink}}
+   *    * {{#crossLink 'Input/noteoff:event'}}noteoff{{/crossLink}}
+   *    * {{#crossLink 'Input/noteon:event'}}noteon{{/crossLink}}
+   *    * {{#crossLink 'Input/keyaftertouch:event'}}keyaftertouch{{/crossLink}}
+   *    * {{#crossLink 'Input/controlchange:event'}}controlchange{{/crossLink}}
+   *    * {{#crossLink 'Input/channelmode:event'}}channelmode{{/crossLink}}
+   *    * {{#crossLink 'Input/programchange:event'}}programchange{{/crossLink}}
+   *    * {{#crossLink 'Input/channelaftertouch:event'}}channelaftertouch{{/crossLink}}
+   *    * {{#crossLink 'Input/pitchbend:event'}}pitchbend{{/crossLink}}
    *
    * Input-wide MIDI events:
    *
-   *    * {{#crossLink "Input/sysex:event"}}sysex{{/crossLink}}
-   *    * {{#crossLink "Input/timecode:event"}}timecode{{/crossLink}}
-   *    * {{#crossLink "Input/songposition:event"}}songposition{{/crossLink}}
-   *    * {{#crossLink "Input/songselect:event"}}songselect{{/crossLink}}
-   *    * {{#crossLink "Input/tuningrequest:event"}}tuningrequest{{/crossLink}}
-   *    * {{#crossLink "Input/clock:event"}}clock{{/crossLink}}
-   *    * {{#crossLink "Input/start:event"}}start{{/crossLink}}
-   *    * {{#crossLink "Input/continue:event"}}continue{{/crossLink}}
-   *    * {{#crossLink "Input/stop:event"}}stop{{/crossLink}}
-   *    * {{#crossLink "Input/activesensing:event"}}activesensing{{/crossLink}}
-   *    * {{#crossLink "Input/reset:event"}}reset{{/crossLink}}
-   *    * {{#crossLink "Input/midimessage:event"}}midimessage{{/crossLink}}
-   *    * {{#crossLink "Input/unknownsystemmessage:event"}}unknownsystemmessage{{/crossLink}}
+   *    * {{#crossLink 'Input/sysex:event'}}sysex{{/crossLink}}
+   *    * {{#crossLink 'Input/timecode:event'}}timecode{{/crossLink}}
+   *    * {{#crossLink 'Input/songposition:event'}}songposition{{/crossLink}}
+   *    * {{#crossLink 'Input/songselect:event'}}songselect{{/crossLink}}
+   *    * {{#crossLink 'Input/tuningrequest:event'}}tuningrequest{{/crossLink}}
+   *    * {{#crossLink 'Input/clock:event'}}clock{{/crossLink}}
+   *    * {{#crossLink 'Input/start:event'}}start{{/crossLink}}
+   *    * {{#crossLink 'Input/continue:event'}}continue{{/crossLink}}
+   *    * {{#crossLink 'Input/stop:event'}}stop{{/crossLink}}
+   *    * {{#crossLink 'Input/activesensing:event'}}activesensing{{/crossLink}}
+   *    * {{#crossLink 'Input/reset:event'}}reset{{/crossLink}}
+   *    * {{#crossLink 'Input/midimessage:event'}}midimessage{{/crossLink}}
+   *    * {{#crossLink 'Input/unknownsystemmessage:event'}}unknownsystemmessage{{/crossLink}}
    *
    * For device-wide events, the `channel` parameter will be silently ignored. You can simply use
    * `undefined` in that case.
@@ -1364,20 +1364,20 @@
 
     var that = this;
 
-    if (channel === undefined) { channel = "all"; }
+    if (channel === undefined) { channel = 'all'; }
     if (!Array.isArray(channel)) { channel = [channel]; }
 
     // Check if channel entries are valid
     channel.forEach(function(item){
-      if (item !== "all" && !(item >= 1 && item <= 16)) {
+      if (item !== 'all' && !(item >= 1 && item <= 16)) {
         throw new RangeError(
-            "The 'channel' parameter is invalid."
+          'The "channel" parameter is invalid.'
         );
       }
     });
 
-    if (typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
+    if (typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
     }
 
     if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
@@ -1387,8 +1387,8 @@
 
     } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (channel.indexOf("all") > -1) {
+      // If 'all' is present anywhere in the channel array, use all 16 channels
+      if (channel.indexOf('all') > -1) {
         channel = [];
         for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
@@ -1407,7 +1407,7 @@
       });
 
     } else {
-      throw new TypeError("The specified event type is not supported.");
+      throw new TypeError('The specified event type is not supported.');
     }
 
     return this;
@@ -1415,7 +1415,7 @@
   };
 
   /**
-   * This is an alias to the {{#crossLink "Input/addListener"}}Input.addListener(){{/crossLink}}
+   * This is an alias to the {{#crossLink 'Input/addListener'}}Input.addListener(){{/crossLink}}
    * function.
    *
    * @method on
@@ -1447,11 +1447,11 @@
 
     var that = this;
 
-    if (typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
+    if (typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
     }
 
-    if (channel === undefined) { channel = "all"; }
+    if (channel === undefined) { channel = 'all'; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
     if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
@@ -1462,8 +1462,8 @@
 
     } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (channel.indexOf("all") > -1) {
+      // If 'all' is present anywhere in the channel array, use all 16 channels
+      if (channel.indexOf('all') > -1) {
         channel = [];
         for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
@@ -1497,7 +1497,7 @@
    *
    * @param [type] {String} The type of the event.
    * @param [channel] {Number|String|Array} The MIDI channel(s) to check on. It can be a uint
-   * (between 1 and 16) an array of channel numbers or the special value "all".
+   * (between 1 and 16) an array of channel numbers or the special value 'all'.
    * @param [listener] {Function} The callback function to check for.
    *
    * @throws {TypeError} The specified event type is not supported.
@@ -1509,11 +1509,11 @@
 
     var that = this;
 
-    if (listener !== undefined && typeof listener !== "function") {
-      throw new TypeError("The 'listener' parameter must be a function.");
+    if (listener !== undefined && typeof listener !== 'function') {
+      throw new TypeError('The "listener" parameter must be a function.');
     }
 
-    if (channel === undefined) { channel = "all"; }
+    if (channel === undefined) { channel = 'all'; }
     if (channel.constructor !== Array) { channel = [channel]; }
 
     if (wm.MIDI_SYSTEM_MESSAGES[type] !== undefined) {
@@ -1534,8 +1534,8 @@
 
     } else if (wm.MIDI_CHANNEL_MESSAGES[type] !== undefined) {
 
-      // If "all" is present anywhere in the channel array, use all 16 channels
-      if (channel.indexOf("all") > -1) {
+      // If 'all' is present anywhere in the channel array, use all 16 channels
+      if (channel.indexOf('all') > -1) {
         channel = [];
         for (var j = 1; j <= 16; j++) { channel.push(j); }
       }
@@ -1560,7 +1560,7 @@
     } else if (type === undefined) {
       this._initializeUserHandlers();
     } else {
-      throw new TypeError("The specified event type is not supported.");
+      throw new TypeError('The specified event type is not supported.');
     }
 
     return this;
@@ -1593,14 +1593,14 @@
    */
   Input.prototype._onMidiMessage = function(e) {
 
-    // Execute "midimessage" listeners (if any)
-    if (this._userHandlers.system["midimessage"].length > 0) {
+    // Execute 'midimessage' listeners (if any)
+    if (this._userHandlers.system['midimessage'].length > 0) {
 
       var event = {
-        "target": this,
-        "data": e.data,
-        "timestamp": e.timeStamp,
-        type: "midimessage"
+        'target': this,
+        'data': e.data,
+        'timestamp': e.timeStamp,
+        type: 'midimessage'
       };
 
       /**
@@ -1617,7 +1617,7 @@
        * @param {String} event.type The type of event that occurred.
        * @since 2.1
        */
-      this._userHandlers.system["midimessage"].forEach(
+      this._userHandlers.system['midimessage'].forEach(
         function(callback) { callback(event); }
       );
 
@@ -1649,15 +1649,15 @@
 
     // Returned event
     var event = {
-      "target": this,
-      "data": e.data,
-      "timestamp": e.timeStamp,
-      "channel": channel
+      'target': this,
+      'data': e.data,
+      'timestamp': e.timeStamp,
+      'channel': channel
     };
 
     if (
-        command === wm.MIDI_CHANNEL_MESSAGES.noteoff ||
-        (command === wm.MIDI_CHANNEL_MESSAGES.noteon && data2 === 0)
+      command === wm.MIDI_CHANNEL_MESSAGES.noteoff ||
+      (command === wm.MIDI_CHANNEL_MESSAGES.noteon && data2 === 0)
     ) {
 
       /**
@@ -1682,9 +1682,9 @@
        */
       event.type = 'noteoff';
       event.note = {
-        "number": data1,
-        "name": wm._notes[data1 % 12],
-        "octave": wm.getOctave(data1)
+        'number': data1,
+        'name': wm._notes[data1 % 12],
+        'octave': wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1713,9 +1713,9 @@
        */
       event.type = 'noteon';
       event.note = {
-        "number": data1,
-        "name": wm._notes[data1 % 12],
-        "octave": wm.getOctave(data1)
+        'number': data1,
+        'name': wm._notes[data1 % 12],
+        'octave': wm.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
@@ -1742,15 +1742,15 @@
        */
       event.type = 'keyaftertouch';
       event.note = {
-        "number": data1,
-        "name": wm._notes[data1 % 12],
-        "octave": wm.getOctave(data1)
+        'number': data1,
+        'name': wm._notes[data1 % 12],
+        'octave': wm.getOctave(data1)
       };
       event.value = data2 / 127;
 
     } else if (
-        command === wm.MIDI_CHANNEL_MESSAGES.controlchange &&
-        data1 >= 0 && data1 <= 119
+      command === wm.MIDI_CHANNEL_MESSAGES.controlchange &&
+      data1 >= 0 && data1 <= 119
     ) {
 
       /**
@@ -1772,14 +1772,14 @@
        */
       event.type = 'controlchange';
       event.controller = {
-        "number": data1,
-        "name": this.getCcNameByNumber(data1)
+        'number': data1,
+        'name': this.getCcNameByNumber(data1)
       };
       event.value = data2;
 
     } else if (
-        command === wm.MIDI_CHANNEL_MESSAGES.channelmode &&
-        data1 >= 120 && data1 <= 127
+      command === wm.MIDI_CHANNEL_MESSAGES.channelmode &&
+      data1 >= 120 && data1 <= 127
     ) {
 
       /**
@@ -1801,8 +1801,8 @@
        */
       event.type = 'channelmode';
       event.controller = {
-        "number": data1,
-        "name": this.getChannelModeByNumber(data1)
+        'number': data1,
+        'name': this.getChannelModeByNumber(data1)
       };
       event.value = data2;
 
@@ -1868,12 +1868,12 @@
 
     // If some callbacks have been defined for this event, on that device and channel, execute them.
     if (
-        this._userHandlers.channel[event.type] &&
-        this._userHandlers.channel[event.type][channel]
+      this._userHandlers.channel[event.type] &&
+      this._userHandlers.channel[event.type][channel]
     ) {
 
       this._userHandlers.channel[event.type][channel].forEach(
-          function(callback) { callback(event); }
+        function(callback) { callback(event); }
       );
     }
 
@@ -1897,7 +1897,7 @@
     number = Math.floor(number);
 
     if ( !(number >= 0 && number <= 119) ) {
-      throw new RangeError("The control change number must be between 0 and 119.");
+      throw new RangeError('The control change number must be between 0 and 119.');
     }
 
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
@@ -1933,7 +1933,7 @@
     number = Math.floor(number);
 
     if ( !(number >= 120 && status <= 127) ) {
-      throw new RangeError("The control change number must be between 120 and 127.");
+      throw new RangeError('The control change number must be between 120 and 127.');
     }
 
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
@@ -1959,9 +1959,9 @@
 
     // Returned event
     var event = {
-      "target": this,
-      "data": e.data,
-      "timestamp": e.timeStamp
+      'target': this,
+      'data': e.data,
+      'timestamp': e.timeStamp
     };
 
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
@@ -1974,12 +1974,12 @@
        *     WebMidi.enable(function(err) {
        *
        *        if (err) {
-       *          console.log("WebMidi could not be enabled.");
+       *          console.log('WebMidi could not be enabled.');
        *        }
        *
        *        var input = WebMidi.inputs[0];
        *
-       *        input.addListener('sysex', "all", function (e) {
+       *        input.addListener('sysex', 'all', function (e) {
        *          console.log(e);
        *        });
        *
@@ -2287,7 +2287,7 @@
    * `sendControlChange()`, `sendSystemMessage()`, etc.
    *
    * Details on the format of MIDI messages are available in the
-   * <a href="http://www.midi.org/techspecs/midimessages.php">summary of MIDI messages</a> of the
+   * <a href='http://www.midi.org/techspecs/midimessages.php'>summary of MIDI messages</a> of the
    * MIDI Manufacturers Association.
    *
    * @method send
@@ -2311,7 +2311,7 @@
   Output.prototype.send = function(status, data, timestamp) {
 
     if ( !(status >= 128 && status <= 255) ) {
-      throw new RangeError("The status byte must be an integer between 128 (0x80) and 255 (0xFF).");
+      throw new RangeError('The status byte must be an integer between 128 (0x80) and 255 (0xFF).');
     }
 
     if (data === undefined) data = [];
@@ -2319,14 +2319,14 @@
 
     var message = [];
 
-    data.forEach(function(item, index){
+    data.forEach(function(item){
 
       var parsed = Math.floor(item); // mandatory because of 'null'
 
       if (parsed >= 0 && parsed <= 255) {
         message.push(parsed);
       } else {
-        throw new RangeError("Data bytes must be integers between 0 (0x00) and 255 (0xFF).");
+        throw new RangeError('Data bytes must be integers between 0 (0x00) and 255 (0xFF).');
       }
 
     });
@@ -2348,7 +2348,7 @@
    *         if (err) {
    *             console.warn(err);
    *         } else {
-   *             console.log("Sysex is enabled!");
+   *             console.log('Sysex is enabled!');
    *         }
    *     }, true);
    *
@@ -2401,7 +2401,7 @@
   Output.prototype.sendSysex = function(manufacturer, data, options) {
 
     if (!wm.sysexEnabled) {
-      throw new Error("Sysex message support must first be activated.");
+      throw new Error('Sysex message support must first be activated.');
     }
 
     options = options || {};
@@ -2411,7 +2411,7 @@
     data.forEach(function(item){
       if (item < 0 || item > 127) {
         throw new RangeError(
-            "The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F)."
+          'The data bytes of a sysex message must be integers between 0 (0x00) and 127 (0x7F).'
         );
       }
     });
@@ -2513,14 +2513,14 @@
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  Output.prototype.sendSongSelect = function(value,  options) {
+  Output.prototype.sendSongSelect = function(value, options) {
 
     value = Math.floor(value);
 
     options = options || {};
 
     if ( !(value >= 0 && value <= 127) ) {
-      throw new RangeError("The song number must be between 0 and 127.");
+      throw new RangeError('The song number must be between 0 and 127.');
     }
 
     this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], this._parseTimeParameter(options.time));
@@ -2533,7 +2533,7 @@
    * Sends a *MIDI tuning request* real-time message.
    *
    * Note: there is currently a bug in Chrome's MIDI implementation. If you try to use this
-   * function, Chrome will actually throw a "Message is incomplete" error. The bug is
+   * function, Chrome will actually throw a 'Message is incomplete' error. The bug is
    * [scheduled to be fixed](https://bugs.chromium.org/p/chromium/issues/detail?id=610116).
    *
    * @method sendTuningRequest
@@ -2789,9 +2789,9 @@
       wm.toMIDIChannels(channel).forEach(function(ch) {
 
         this.send(
-            (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
-            [item, Math.round(nVelocity)],
-            this._parseTimeParameter(options.time)
+          (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (ch - 1),
+          [item, Math.round(nVelocity)],
+          this._parseTimeParameter(options.time)
         );
 
       }.bind(this));
@@ -2937,7 +2937,7 @@
   /**
    * Sends a MIDI `key aftertouch` message to the specified channel(s) at the scheduled time. This
    * is a key-specific aftertouch. For a channel-wide aftertouch message, use
-   * {{#crossLink "WebMidi/sendChannelAftertouch:method"}}sendChannelAftertouch(){{/crossLink}}.
+   * {{#crossLink 'WebMidi/sendChannelAftertouch:method'}}sendChannelAftertouch(){{/crossLink}}.
    *
    * @method sendKeyAftertouch
    * @chainable
@@ -2950,7 +2950,7 @@
    * an array of note names and/or numbers.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Number} [pressure=0.5] The pressure level to send (between 0 and 1).
@@ -2976,7 +2976,7 @@
     options = options || {};
 
     if (channel < 1 || channel > 16) {
-      throw new RangeError("The channel must be between 1 and 16.");
+      throw new RangeError('The channel must be between 1 and 16.');
     }
 
     if (isNaN(pressure) || pressure < 0 || pressure > 1) {
@@ -3070,8 +3070,8 @@
    * does not mean you cannot use the others. It simply means you will need to use their number
    * instead of their name.
    *
-   * To view a list of all available `control change` messages, please consult "Table 3 - Control
-   * Change Messages" from the
+   * To view a list of all available `control change` messages, please consult 'Table 3 - Control
+   * Change Messages' from the
    * [MIDI Messages](https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
@@ -3083,7 +3083,7 @@
    * @param [value=0] {Number} The value to send (0-127).
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3105,23 +3105,23 @@
 
     options = options || {};
 
-    if (typeof controller === "string") {
+    if (typeof controller === 'string') {
 
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      if (controller === undefined) throw new TypeError("Invalid controller name.");
+      if (controller === undefined) throw new TypeError('Invalid controller name.');
 
     } else {
 
       controller = Math.floor(controller);
       if ( !(controller >= 0 && controller <= 119) ) {
-        throw new RangeError("Controller numbers must be between 0 and 119.");
+        throw new RangeError('Controller numbers must be between 0 and 119.');
       }
 
     }
 
     value = Math.floor(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
-      throw new RangeError("Controller value must be between 0 and 127.");
+      throw new RangeError('Controller value must be between 0 and 127.');
     }
 
     wm.toMIDIChannels(channel).forEach(function(ch) {
@@ -3156,15 +3156,15 @@
 
     parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
-      throw new RangeError("The control65 value must be between 0 and 127");
+      throw new RangeError('The control65 value must be between 0 and 127');
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
-      throw new RangeError("The control64 value must be between 0 and 127");
+      throw new RangeError('The control64 value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.sendControlChange(0x65, parameter[0], channel, {time: time});
       that.sendControlChange(0x64, parameter[1], channel, {time: time});
     });
@@ -3193,15 +3193,15 @@
 
     parameter[0] = Math.floor(parameter[0]);
     if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
-      throw new RangeError("The control63 value must be between 0 and 127");
+      throw new RangeError('The control63 value must be between 0 and 127');
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
-      throw new RangeError("The control62 value must be between 0 and 127");
+      throw new RangeError('The control62 value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.sendControlChange(0x63, parameter[0], channel, {time: time});
       that.sendControlChange(0x62, parameter[1], channel, {time: time});
     });
@@ -3230,16 +3230,16 @@
 
     data[0] = Math.floor(data[0]);
     if ( !(data[0] >= 0 && data[0] <= 127) ) {
-      throw new RangeError("The msb value must be between 0 and 127");
+      throw new RangeError('The msb value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.sendControlChange(0x06, data[0], channel, {time: time});
     });
 
     data[1] = Math.floor(data[1]);
     if(data[1] >= 0 && data[1] <= 127) {
-      wm.toMIDIChannels(channel).forEach(function(ch) {
+      wm.toMIDIChannels(channel).forEach(function() {
         that.sendControlChange(0x26, data[1], channel, {time: time});
       });
     }
@@ -3267,7 +3267,7 @@
 
     var that = this;
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.sendControlChange(0x65, 0x7F, channel, {time: time});
       that.sendControlChange(0x64, 0x7F, channel, {time: time});
     });
@@ -3321,7 +3321,7 @@
    * of 2 specifying the desired data.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3344,12 +3344,12 @@
 
     if ( !Array.isArray(parameter) ) {
       if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error("The specified parameter is not available.");
+        throw new Error('The specified parameter is not available.');
       }
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that._selectRegisteredParameter(parameter, channel, options.time);
       that._setCurrentRegisteredParameter(data, channel, options.time);
       that._deselectRegisteredParameter(channel, options.time);
@@ -3395,7 +3395,7 @@
    * specifying the desired data.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3417,17 +3417,17 @@
     options = options || {};
 
     if (
-        !(parameter[0] >= 0 && parameter[0] <= 127) ||
-        !(parameter[1] >= 0 && parameter[1] <= 127)
+      !(parameter[0] >= 0 && parameter[0] <= 127) ||
+      !(parameter[1] >= 0 && parameter[1] <= 127)
     ) {
       throw new Error(
-          "Position 0 and 1 of the 2-position parameter array must both be between 0 and 127."
+        'Position 0 and 1 of the 2-position parameter array must both be between 0 and 127.'
       );
     }
 
     data = [].concat(data);
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that._selectNonRegisteredParameter(parameter, channel, options.time);
       that._setCurrentRegisteredParameter(data, channel, options.time);
       that._deselectRegisteredParameter(channel, options.time);
@@ -3472,7 +3472,7 @@
    * parameter.
    *
    * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3497,12 +3497,12 @@
 
     if ( !Array.isArray(parameter) ) {
       if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error("The specified parameter is not available.");
+        throw new Error('The specified parameter is not available.');
       }
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that._selectRegisteredParameter(parameter, channel, options.time);
       that.sendControlChange(0x60, 0, channel, {time: options.time});
       that._deselectRegisteredParameter(channel, options.time);
@@ -3547,7 +3547,7 @@
    * parameter.
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3570,12 +3570,12 @@
 
     if ( !Array.isArray(parameter) ) {
       if ( !wm.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new TypeError("The specified parameter is not available.");
+        throw new TypeError('The specified parameter is not available.');
       }
       parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       this._selectRegisteredParameter(parameter, channel, options.time);
       this.sendControlChange(0x61, 0, channel, {time: options.time});
       this._deselectRegisteredParameter(channel, options.time);
@@ -3600,7 +3600,7 @@
    * @param [cents=0] {Number} The desired adjustment value in cents (integer between 0-127).
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3626,17 +3626,17 @@
 
     semitones = Math.floor(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
-      throw new RangeError("The semitones value must be between 0 and 127");
+      throw new RangeError('The semitones value must be between 0 and 127');
     }
 
     cents = Math.floor(cents) || 0;
     if ( !(cents >= 0 && cents <= 127) ) {
-      throw new RangeError("The cents value must be between 0 and 127");
+      throw new RangeError('The cents value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.setRegisteredParameter(
-        "pitchbendrange", [semitones, cents], channel, {time: options.time}
+        'pitchbendrange', [semitones, cents], channel, {time: options.time}
       );
     });
 
@@ -3658,7 +3658,7 @@
    * @param [cents=0] {Number} The desired adjustment value in cents (0-127).
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3684,17 +3684,17 @@
 
     semitones = Math.floor(semitones) || 0;
     if ( !(semitones >= 0 && semitones <= 127) ) {
-      throw new RangeError("The semitones value must be between 0 and 127");
+      throw new RangeError('The semitones value must be between 0 and 127');
     }
 
     cents = Math.floor(cents) || 0;
     if ( !(cents >= 0 && cents <= 127) ) {
-      throw new RangeError("The cents value must be between 0 and 127");
+      throw new RangeError('The cents value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
+    wm.toMIDIChannels(channel).forEach(function() {
       that.setRegisteredParameter(
-        "modulationrange", [semitones, cents], channel, {time: options.time}
+        'modulationrange', [semitones, cents], channel, {time: options.time}
       );
     });
 
@@ -3717,7 +3717,7 @@
    * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3745,7 +3745,7 @@
 
     if (value <= -65 || value >= 64) {
       throw new RangeError(
-          "The value must be a decimal number larger than -65 and smaller than 64."
+        'The value must be a decimal number larger than -65 and smaller than 64.'
       );
     }
 
@@ -3757,9 +3757,9 @@
     var msb = (fine >> 7) & 0x7F;
     var lsb = fine & 0x7F;
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
-      that.setRegisteredParameter("channelcoarsetuning", coarse, channel, {time: options.time});
-      that.setRegisteredParameter("channelfinetuning", [msb, lsb], channel, {time: options.time});
+    wm.toMIDIChannels(channel).forEach(function() {
+      that.setRegisteredParameter('channelcoarsetuning', coarse, channel, {time: options.time});
+      that.setRegisteredParameter('channelfinetuning', [msb, lsb], channel, {time: options.time});
     });
 
     return this;
@@ -3776,7 +3776,7 @@
    * @param value {Number} The desired tuning program (0-127).
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3801,11 +3801,11 @@
 
     value = Math.floor(value);
     if ( !(value >= 0 && value <= 127) ) {
-      throw new RangeError("The program value must be between 0 and 127");
+      throw new RangeError('The program value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningprogram", value, channel, {time: options.time});
+    wm.toMIDIChannels(channel).forEach(function() {
+      that.setRegisteredParameter('tuningprogram', value, channel, {time: options.time});
     });
 
     return this;
@@ -3822,7 +3822,7 @@
    * @param value {Number} The desired tuning bank (0-127).
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3847,11 +3847,11 @@
 
     value = Math.floor(value) || 0;
     if ( !(value >= 0 && value <= 127) ) {
-      throw new RangeError("The bank value must be between 0 and 127");
+      throw new RangeError('The bank value must be between 0 and 127');
     }
 
-    wm.toMIDIChannels(channel).forEach(function(ch) {
-      that.setRegisteredParameter("tuningbank", value, channel, {time: options.time});
+    wm.toMIDIChannels(channel).forEach(function() {
+      that.setRegisteredParameter('tuningbank', value, channel, {time: options.time});
     });
 
     return this;
@@ -3881,7 +3881,7 @@
    * its name as a string.
    * @param [value=0] {Number} The value to send (integer between 0-127).
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an array of channel
-   * numbers. If the special value "all" is used, the message will be sent to all 16 channels.
+   * numbers. If the special value 'all' is used, the message will be sent to all 16 channels.
    * @param {Object} [options={}]
    * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two things. If the value is
    * a string starting with the + sign and followed by a number, the request will be delayed by the specified number
@@ -3901,12 +3901,12 @@
 
     options = options || {};
 
-    if (typeof command === "string") {
+    if (typeof command === 'string') {
 
       command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
 
       if (!command) {
-        throw new TypeError("Invalid channel mode message name.");
+        throw new TypeError('Invalid channel mode message name.');
       }
 
     } else {
@@ -3914,7 +3914,7 @@
       command = Math.floor(command);
 
       if ( !(command >= 120 && command <= 127) ) {
-        throw new RangeError("Channel mode numerical identifiers must be between 120 and 127.");
+        throw new RangeError('Channel mode numerical identifiers must be between 120 and 127.');
       }
 
     }
@@ -3922,15 +3922,15 @@
     value = Math.floor(value) || 0;
 
     if (value < 0 || value > 127) {
-      throw new RangeError("Value must be an integer between 0 and 127.");
+      throw new RangeError('Value must be an integer between 0 and 127.');
     }
 
     wm.toMIDIChannels(channel).forEach(function(ch) {
 
       this.send(
-          (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (ch - 1),
-          [command, value],
-          this._parseTimeParameter(options.time)
+        (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (ch - 1),
+        [command, value],
+        this._parseTimeParameter(options.time)
       );
 
     }.bind(this));
@@ -3948,7 +3948,7 @@
    * @param program {Number} The MIDI patch (program) number (0-127)
    *
    * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -3974,7 +3974,7 @@
 
     program = Math.floor(program);
     if (isNaN(program) || program < 0 || program > 127) {
-      throw new RangeError("Program numbers must be between 0 and 127.");
+      throw new RangeError('Program numbers must be between 0 and 127.');
     }
 
     wm.toMIDIChannels(channel).forEach(function(ch) {
@@ -4000,7 +4000,7 @@
    * will silently trigger the default behaviour.
    *
    * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or
-   * an array of channel numbers. If the special value "all" is used, the message will be sent to
+   * an array of channel numbers. If the special value 'all' is used, the message will be sent to
    * all 16 channels.
    *
    * @param {Object} [options={}]
@@ -4028,9 +4028,9 @@
 
     wm.toMIDIChannels(channel).forEach(function(ch) {
       that.send(
-          (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (ch - 1),
-          [nPressure],
-          that._parseTimeParameter(options.time)
+        (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (ch - 1),
+        [nPressure],
+        that._parseTimeParameter(options.time)
       );
     });
 
@@ -4048,7 +4048,7 @@
    * no bend.
    *
    * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * array of channel numbers. If the special value 'all' is used, the message will be sent to all
    * 16 channels.
    *
    * @param {Object} [options={}]
@@ -4072,7 +4072,7 @@
     options = options || {};
 
     if (isNaN(bend) || bend < -1 || bend > 1) {
-      throw new RangeError("Pitch bend value must be between -1 and 1.");
+      throw new RangeError('Pitch bend value must be between -1 and 1.');
     }
 
     var nLevel = Math.round((bend + 1) / 2 * 16383);
@@ -4093,7 +4093,7 @@
 
   /**
    * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
-   * parameter. If the parameter is a string starting with the "+" sign and followed by a number,
+   * parameter. If the parameter is a string starting with the '+' sign and followed by a number,
    * the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
    * value will be returned as is.
    *
@@ -4110,7 +4110,7 @@
     var value,
         parsed = parseFloat(time);
 
-    if (typeof time === 'string' &&  time.substring(0, 1) === "+") {
+    if (typeof time === 'string' && time.substring(0, 1) === '+') {
       if (parsed && parsed > 0) value = wm.time + parsed;
     } else {
       if (parsed > wm.time) value = parsed;
@@ -4145,11 +4145,11 @@
 
   // Check if RequireJS/AMD is used. If it is, use it to define our module instead of
   // polluting the global space.
-  if ( typeof define === "function" && typeof define.amd === "object") {
+  if ( typeof define === 'function' && typeof define.amd === 'object') {
     define([], function () {
       return wm;
     });
-  } else if (typeof module !== "undefined" && module.exports) {
+  } else if (typeof module !== 'undefined' && module.exports) {
     module.exports = wm;
   } else {
     if (!scope.WebMidi) { scope.WebMidi = wm; }
