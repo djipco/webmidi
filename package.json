@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
     "grunt": "^1.0.4",
     "grunt-bumpup": "^0.6.3",
     "grunt-contrib-clean": "^2.0.0",
