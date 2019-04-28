@@ -10,16 +10,17 @@ module.exports = {
     'module': 'readonly'
   },
 
-  'extends': 'eslint:recommended',
+  'extends': ['eslint:recommended', 'prettier'],
 
   'rules': {
-    'indent': ['error', 2, { 'VariableDeclarator': 'first' }],
+    'indent': ['error', 2],
     'linebreak-style': ['error', 'unix'],
-    'quotes': ['error', 'single', {'avoidEscape':  true, 'allowTemplateLiterals': true}],
-    'no-console': ['error', { 'allow': ['warn', 'error'] }],
+    'quotes': ['error', 'double', {'avoidEscape':  true, 'allowTemplateLiterals': true}],
+    'no-console': ['error', { 'allow': ['info', 'warn', 'error'] }],
     'no-multi-spaces': ['error', { 'ignoreEOLComments': true }],
     'no-trailing-spaces': ['error', { 'skipBlankLines': true, 'ignoreComments': true }],
-    'no-underscore-dangle': 'off'
+    'no-underscore-dangle': 'off',
+    'quote-props': ["error", "as-needed"]
   }
 
 };
