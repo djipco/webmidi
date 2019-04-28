@@ -138,19 +138,7 @@
    * @throws Error WebMidi is a singleton, it cannot be instantiated directly.
    *
    * @todo  Switch away from yuidoc (deprecated) to be able to serve doc over https
-   * @todo  Test with the Node.js version of Jazz Plugin. Initial tests are promising.
-   * @todo  Complete unit tests
-   * @todo  Look into the new parameter for requestMIDIAccess (software): https://webaudio.github.io/web-midi-api/#dom-midioptions
-   * @todo  Refine &quot;options&quot; param of addListener. Allow listening for specific controller change.
-   * @todo  Add once() function.
    * @todo  Yuidoc does not allow multiple exceptions (@throws) for a single method ?!
-   * @todo  Should the sendsysex method allow Uint8Array param ?
-   * @todo  Add explicit support for universal system exclusive messages, real time (0x7F and non-real time)
-   * @todo  Implement the show control protocol subset.
-   * @todo  Add methods for channel mode messages
-   * @todo  Allow send() to accept Uint8Array output.send(new Uint8Array([0x90, 0x45, 0x7f]));
-   * @todo  Implement port statechange events (connected and disconnected)
-   * @todo  For the songposition and timecode message, we should calculate time values and make them directly available
    *
    */
   function WebMidi() {
@@ -816,18 +804,25 @@
   };
 
   /**
-   * Converts an input value (which should be an integer, an array of integers, &#x60;&quot;all&quot;&#x60; or
-   * &#x60;undefined&#x60;) to an array of valid MIDI channel numbers. Passing &#x60;&quot;all&quot;&#x60; or &#x60;undefined&#x60; to this
-   * function results in all channels being returned (1-16). Passing &#x60;&quot;none&quot;&#x60; results in no 
-   * channels being returned as an empty array.
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
+   * the following:
    *
-   * Elements in the array that cannot successfully be parsed to integers between 1 and 16 (using
-   * &#x60;parseInt()&#x60;) are silently removed.
+   * * a single integer
+   * * an array of integers
+   * * the special value &#x60;&quot;all&quot;&#x60;
+   * * the special value &#x60;&quot;none&quot;&#x60;
+   *
+   * Passing &#x60;&quot;all&quot;&#x60; or &#x60;undefined&#x60; as a parameter to this function results in all channels being
+   * returned (1-16). Passing &#x60;&quot;none&quot;&#x60; results in no channel being returned (as an empty array).
+   *
+   * Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
+   * ignored.
    *
    * @method toMIDIChannels
-   * @param [channel] {uint|Array}
-   * @returns {Array}
-   * @protected
+   * @static
+   *
+   * @param [channel=&quot;all&quot;] {Number|Array|&quot;all&quot;|&quot;none&quot;}
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers
    */
   WebMidi.prototype.toMIDIChannels = function(channel) {
 
@@ -844,8 +839,7 @@
       channels = channel;
     }
 
-    // In order of being backward compatible,
-    // we let this assignment as it is.
+    // In order to preserve backwards-compatibility, we let this assignment as it is.
     if (channels.indexOf(&#x27;all&#x27;) &gt; -1) {
       channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     }
