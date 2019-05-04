@@ -413,9 +413,9 @@ Obviously, you can also
 ## Testing
 The test are able to run without any browser on the command line.
 
-All tests could be run by:
+All tests inclusive code-coverage report on cli could be run by:
 ``` 
-npm run test
+npm run test-all
 ``` 
 
 Developing in watch-mode (hot-file-reloading):
@@ -432,6 +432,12 @@ Developing a single test in watch mode:
 ``` 
 npx mocha ./test/virtual-midi-test.js -- -w
 ``` 
+
+Just running code-coverage:
+``` 
+npm run test-coverage
+``` 
+
 
 ## Support the Project
 
