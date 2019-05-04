@@ -53,7 +53,7 @@ to the owner. The versioning scheme follows the [SemVer](http://semver.org/) sta
 ## Testing
 
 WebMidi.js now has a proper test suite. The tests can be run on the command line without a need for
-a browser (thanks @TimSusa!).
+a browser (thanks to Tim Susa).
 
 You can execute all tests, including code coverage, by running the following command in the 
 terminal or on the command line:
