@@ -20,7 +20,7 @@ const expectedInputDriverName = "Virtual MIDI-In"
 const inputPort = mt.MidiSrc(expectedInputDriverName);
 
 
-describe.only('WebMidi', function() {
+describe('WebMidi', function() {
 
   beforeEach(function(done) {
     global.navigator = {
