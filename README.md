@@ -410,6 +410,11 @@ including the following in your page:
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
 
+## Contributing
+
+If you are interested in contributing to the project, please read our 
+[Contribution Guidelines](/djipco/webmidi/blob/master/CONTRIBUTING.md).
+
 ## Support the Project
 
 If you find this library useful, you can **[buy me a drink](https://beerpay.io/djipco/webmidi)** as
