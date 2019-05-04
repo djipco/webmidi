@@ -410,35 +410,6 @@ including the following in your page:
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
 
-## Testing
-The test are able to run without any browser on the command line.
-
-All tests inclusive code-coverage report on cli could be run by:
-``` 
-npm run test-all
-``` 
-
-Developing in watch-mode (hot-file-reloading):
-``` 
-npm run test -- -w
-``` 
-
-A a single test could be started by:
-``` 
-npx mocha ./test/virtual-midi-test.js
-``` 
-
-Developing a single test in watch mode:
-``` 
-npx mocha ./test/virtual-midi-test.js -- -w
-``` 
-
-Just running code-coverage:
-``` 
-npm run test-coverage
-``` 
-
-
 ## Support the Project
 
 If you find this library useful, you can **[buy me a drink](https://beerpay.io/djipco/webmidi)** as
