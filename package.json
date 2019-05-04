@@ -6,7 +6,7 @@
   "main": "webmidi.min.js",
   "types": "webmidi.d.ts",
   "scripts": {
-    "test": "tsc --strict --noEmit ./webmidi.d.ts && mocha ./test",
+    "test": "tsc --strict --noEmit ./webmidi.d.ts && mocha ./test/tests.js",
     "build": "grunt uglify",
     "generate-doc": "grunt yuidoc",
     "gh-pages": "grunt gh-pages",
