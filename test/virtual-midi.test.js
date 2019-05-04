@@ -1,9 +1,7 @@
-var assert = require("assert");
-const util = require("util");
+const assert = require("assert");
 const JZZ = require("jzz");
 const mt = require("midi-test");
 const webmidi = require("../src/webmidi");
-const { expect } = require("chai");
 
 global.navigator = null;
 global.performance = null;
