@@ -413,7 +413,7 @@ Obviously, you can also
 ## Contributing
 
 If you are interested in contributing to the project, please read our 
-[Contribution Guidelines](/djipco/webmidi/blob/master/CONTRIBUTING.md).
+[Contribution Guidelines](https://github.com/djipco/webmidi/blob/master/CONTRIBUTING.md).
 
 ## Support the Project
 
