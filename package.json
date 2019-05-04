@@ -6,12 +6,12 @@
   "main": "webmidi.min.js",
   "types": "webmidi.d.ts",
   "scripts": {
+    "test": "tsc --strict --noEmit ./webmidi.d.ts && mocha ./test",
     "build": "grunt uglify",
     "generate-doc": "grunt yuidoc",
     "gh-pages": "grunt gh-pages",
     "lint": "eslint ./src/*.js",
-    "release": "grunt release",
-    "test": "tsc --strict --noEmit ./webmidi.d.ts"
+    "release": "grunt release"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,9 @@
     "grunt-git": "^1.0.13",
     "grunt-release": "^0.14.0",
     "mocha": "^6.1.4",
+    "jzz": "^0.7.5",
+    "midi-test": "^1.0.2",
+    "sinon": "^7.3.2",
     "sinon-browser-only": "^1.12.1",
     "typescript": "^3.4.5"
   },

@@ -1,3 +1,5 @@
+const {expect} = require('chai')
+
 describe('Output', function() {
 
   beforeEach("Enable WebMidi.js", function (done) {

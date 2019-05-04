@@ -1,5 +1,6 @@
-describe('Input', function() {
+const {expect} = require('chai')
 
+describe('Input', function() {
   beforeEach("Enable WebMidi.js", function (done) {
 
     WebMidi.disable();
