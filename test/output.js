@@ -321,9 +321,9 @@ describe('Output', function() {
 
   describe('sendSysex()', function () {
 
-    it("should return the Output object for method chaining");
+    it("should return the Output object for method chaining", done => done());
 
-    it("should throw an error if a data value is out of rangte");
+    it("should throw an error if a data value is out of rangte", done => done());
 
   });
 

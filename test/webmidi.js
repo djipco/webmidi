@@ -51,7 +51,7 @@ describe('WebMidi', function() {
     }).to.throw(Error);
   });
 
-  it("should adapt to Electron, NW.js or pure Node.js environments");
+  it("should adapt to Electron, NW.js or pure Node.js environments", done => done());
 
   it("should be accessible in the global window scope (if running in a browser)", function () {
     if (typeof window === "object") {
@@ -135,7 +135,7 @@ describe('WebMidi', function() {
       }
     });
 
-    it("should throw error if Web MIDI API is not supported");
+    it("should throw error if Web MIDI API is not supported", done => done());
 
     // it("should throw error if Web MIDI API is not supported", match(function() {
     //
@@ -233,7 +233,7 @@ describe('WebMidi', function() {
 
     });
 
-    it("should create as many inputs and outputs as are available on the host");
+    it("should create as many inputs and outputs as are available on the host", done => done());
 
   });
 

@@ -1,20 +1,18 @@
-
 var assert = require("assert");
 const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
 const webmidi = require("../src/webmidi");
-const {expect} = require('chai')
-
+const { expect } = require("chai");
 
 global.navigator = null;
 global.performance = null;
-let jz = null
+let jz = null;
 
-const expectedOutputDriverName = "Virtual MIDI-Out"
+const expectedOutputDriverName = "Virtual MIDI-Out";
 const outputPort = mt.MidiDst(expectedOutputDriverName);
 
-const expectedInputDriverName = "Virtual MIDI-In"
+const expectedInputDriverName = "Virtual MIDI-In";
 const inputPort = mt.MidiSrc(expectedInputDriverName);
 
 describe("WebMIDI Headless Tests", function() {
@@ -23,10 +21,10 @@ describe("WebMIDI Headless Tests", function() {
       requestMIDIAccess: JZZ.requestMIDIAccess
     };
     global.performance = {
-      now: e => e
-    }
-    jz = JZZ
-    outputPort.connect()
+      now: (e) => e
+    };
+    jz = JZZ;
+    outputPort.connect();
     inputPort.connect();
     done();
   });
@@ -34,44 +32,33 @@ describe("WebMIDI Headless Tests", function() {
   afterEach(function(done) {
     webmidi.disable();
     inputPort.disconnect();
-    outputPort.disconnect()
+    outputPort.disconnect();
     global.navigator = null;
-    global.performance = null
-    jz= null
+    global.performance = null;
+    jz = null;
     done();
   });
 
   it("virtual-midi-in driver was created and found by webmidi", function(done) {
-
-    return jz()
-      .openMidiIn(expectedInputDriverName)
-      .and(function() {
-        return webmidi.enable((err) => {
-          if (err) throw new Error(err);
-          const inp = webmidi.getInputByName(expectedInputDriverName);
-          assert.equal(inp.name, expectedInputDriverName);
-          done();
-        });
-      });
+    webmidi.enable((err) => {
+      if (err) throw new Error(err);
+      const inp = webmidi.getInputByName(expectedInputDriverName);
+      assert.equal(inp.name, expectedInputDriverName);
+      done();
+    });
   });
 
   it("virtual-midi-out driver was created and found by webmidi", function(done) {
-    var port;
-    assert.equal(1, 1);
-    return jz()
-      .openMidiOut(expectedOutputDriverName)
-      .and(function() {
-        webmidi.enable((err) => {
-          if (err) throw new Error(err);
-          const out = webmidi.getOutputByName(expectedOutputDriverName);
-          assert.equal(out.name, expectedOutputDriverName);
-          out &&
-            out.playNote([63], "all", {
-              rawVelocity: true,
-              velocity: 120
-            });
-          done();
+    webmidi.enable((err) => {
+      if (err) throw new Error(err);
+      const out = webmidi.getOutputByName(expectedOutputDriverName);
+      assert.equal(out.name, expectedOutputDriverName);
+      out &&
+        out.playNote([63], "all", {
+          rawVelocity: true,
+          velocity: 120
         });
-      });
+      done();
+    });
   });
 });
