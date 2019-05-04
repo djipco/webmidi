@@ -32,16 +32,16 @@ tutorials called
 **WebMidi.js** is a relatively small library supported by an even smaller team. Therefore, the 
 process for contributing is intended to be simple and friendly. 
 
+However, to insure good quality, there are steps that you should go through when submitting a PR. 
 Here are the usual steps:
 
 1. Discuss the change(s) you wish to make by means of an 
 [issue](https://github.com/djipco/webmidi/issues).
 2. Unless the PR is for a minor improvement (typo, documentation, etc.), you should write and/or 
-update unit tests. The tests are located in the `/test` directory.
-3. Check your code against the tests. You can use `npm run test` to do so.
-4. If appropriate, update the [jsdoc](http://usejsdoc.org/) comments. Keeping the documentation and
+update unit tests and check your code against the tests (see below).
+3. If appropriate, update the [jsdoc](http://usejsdoc.org/) comments. Keeping the documentation and
 the API consistant is very important.
-5. If appropriate, update the `README.md` file.
+4. If appropriate, update the `README.md` file.
 
 Please note that your code should adhere to the styles defined in `.eslintrc.js`. You can use 
 `npm run lint` to make sure it does.
@@ -49,3 +49,35 @@ Please note that your code should adhere to the styles defined in `.eslintrc.js`
 Finally, **do not** update the library's version number. Version numbering and releases will be 
 handled by the owner. If the PR breaks backwards-compatibility, it must be communicated explicitely
 to the owner. The versioning scheme follows the [SemVer](http://semver.org/) standard.
+
+## Testing
+
+WebMidi.js now has a proper test suite. The tests can be run on the command line without a need for
+a browser (thanks @TimSusa!).
+
+You can execute all tests, including code coverage, by running the following command in the 
+terminal or on the command line:
+
+``` 
+npm run test-all
+``` 
+
+You can develop in *watch mode* with hot file reloading like so: 
+``` 
+npm run test -- -w
+``` 
+
+You can start a single test in this way:
+``` 
+npx mocha ./test/virtual-midi-test.js
+``` 
+
+You can develop a single test in *watch mode* like this:
+``` 
+npx mocha ./test/virtual-midi-test.js -- -w
+``` 
+
+If you simply want to view code coverage, you can do:
+``` 
+npm run test-coverage
+``` 
