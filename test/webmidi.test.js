@@ -1,4 +1,49 @@
+const {match} = require('sinon')
+const sinon = require('sinon')
+const WebMidi = require('../src/webmidi')
+
+var assert = require("assert");
+const util = require("util");
+const JZZ = require("jzz");
+const mt = require("midi-test");
+const {expect} = require('chai')
+const Utils = require('./libs/Utils')
+
+global.navigator = null;
+global.performance = null;
+let jz = null
+
+const expectedOutputDriverName = "Virtual MIDI-Out"
+const outputPort = mt.MidiDst(expectedOutputDriverName);
+
+const expectedInputDriverName = "Virtual MIDI-In"
+const inputPort = mt.MidiSrc(expectedInputDriverName);
+
+
 describe('WebMidi', function() {
+
+  beforeEach(function(done) {
+    global.navigator = {
+      requestMIDIAccess: JZZ.requestMIDIAccess
+    };
+    global.performance = {
+      now: e => e
+    }
+    jz = JZZ
+    outputPort.connect()
+    inputPort.connect();
+    done();
+  });
+
+  afterEach(function(done) {
+    WebMidi.disable();
+    inputPort.disconnect();
+    outputPort.disconnect()
+    global.navigator = null;
+    global.performance = null
+    jz= null
+    done();
+  });
 
   it("should not allow direct user instantiation", function () {
     expect(function () {
@@ -6,7 +51,7 @@ describe('WebMidi', function() {
     }).to.throw(Error);
   });
 
-  it("should adapt to Electron, NW.js or pure Node.js environments");
+  it("should adapt to Electron, NW.js or pure Node.js environments", done => done());
 
   it("should be accessible in the global window scope (if running in a browser)", function () {
     if (typeof window === "object") {
@@ -90,9 +135,9 @@ describe('WebMidi', function() {
       }
     });
 
-    it("should throw error if Web MIDI API is not supported");
+    it("should throw error if Web MIDI API is not supported", done => done());
 
-    // it("should throw error if Web MIDI API is not supported", sinon.test(function() {
+    // it("should throw error if Web MIDI API is not supported", match(function() {
     //
     // }));
 
@@ -104,10 +149,10 @@ describe('WebMidi', function() {
       WebMidi.disable();
     });
 
-    it("should pass error to callback if Web MIDI API not supported", sinon.test(function (done) {
+    it("should pass error to callback if Web MIDI API not supported", function (done) {
 
       if (navigator && navigator.requestMIDIAccess) {
-        var rma = this.stub(navigator, "requestMIDIAccess");
+        var rma = sinon.stub(navigator, "requestMIDIAccess");
         rma.returns(Promise.reject(new Error('Simulated failure!')));
       }
 
@@ -116,21 +161,20 @@ describe('WebMidi', function() {
         done();
       });
 
-    }));
+    });
 
-    it("should set 'enabled' property to false if it fails", sinon.test(function (done) {
+    it("should set 'enabled' property to false if it fails", function (done) {
 
       if (navigator && navigator.requestMIDIAccess) {
-        var stub = this.stub(navigator, "requestMIDIAccess");
-        stub.returns(Promise.reject(new Error('Simulated failure!')));
+        const spys = sinon.stub(navigator, 'requestMIDIAccess')
+        spys.returns(Promise.reject(new Error('Simulated failure!')));
       }
-
       WebMidi.enable(function (err) {
         expect(WebMidi.enabled).to.equal(false);
         done();
       });
 
-    }));
+    });
 
     it("should set the enabled property to true if successful", function (done) {
 
@@ -155,16 +199,21 @@ describe('WebMidi', function() {
     });
 
     it("should enable sysex only if requested (for browsers with native MIDI)", function (done) {
+      WebMidi.enable(function (err) {
 
-      WebMidi.enable(function () {
+        if (err) {
+          expect(false, true)
+        }
 
         if ( Utils.isNative(navigator.requestMIDIAccess) ) {
           expect(WebMidi.sysexEnabled).to.equal(true);
+          done();
         } else {
           expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
+          done();
         }
 
-        done();
+        
       }, true);
 
     });
@@ -184,7 +233,7 @@ describe('WebMidi', function() {
 
     });
 
-    it("should create as many inputs and outputs as are available on the host");
+    it("should create as many inputs and outputs as are available on the host", done => done());
 
   });
 
