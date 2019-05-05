@@ -1,22 +1,18 @@
-const {match} = require("sinon")
-const sinon = require("sinon")
-const WebMidi = require("../src/webmidi")
-
-var assert = require("assert");
-const util = require("util");
+const sinon = require("sinon");
+const WebMidi = require("../src/webmidi");
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const {expect} = require("chai")
-const Utils = require("./libs/Utils")
+const {expect} = require("chai");
+const Utils = require("./libs/Utils");
 
 global.navigator = null;
 global.performance = null;
-let jz = null
+let jz = null;
 
-const expectedOutputDriverName = "Virtual MIDI-Out"
+const expectedOutputDriverName = "Virtual MIDI-Out";
 const outputPort = mt.MidiDst(expectedOutputDriverName);
 
-const expectedInputDriverName = "Virtual MIDI-In"
+const expectedInputDriverName = "Virtual MIDI-In";
 const inputPort = mt.MidiSrc(expectedInputDriverName);
 
 
@@ -169,7 +165,7 @@ describe("WebMidi", function() {
         const spys = sinon.stub(navigator, "requestMIDIAccess")
         spys.returns(Promise.reject(new Error("Simulated failure!")));
       }
-      WebMidi.enable(function (err) {
+      WebMidi.enable(function () {
         expect(WebMidi.enabled).to.equal(false);
         done();
       });
@@ -213,7 +209,7 @@ describe("WebMidi", function() {
           done();
         }
 
-        
+
       }, true);
 
     });

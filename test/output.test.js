@@ -1,13 +1,8 @@
-const {match} = require("sinon")
-const sinon = require("sinon")
 const WebMidi = require("../src/webmidi")
 
-var assert = require("assert");
-const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
 const {expect} = require("chai")
-const Utils = require("./libs/Utils")
 
 global.navigator = null;
 global.performance = null;
@@ -15,7 +10,6 @@ let jz = null
 
 const expectedOutputDriverName = "Virtual MIDI-Out"
 const outputPort = mt.MidiDst(expectedOutputDriverName);
-
 
 describe("Output", function() {
 

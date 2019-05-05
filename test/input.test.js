@@ -1,13 +1,8 @@
-const {match} = require("sinon")
-const sinon = require("sinon")
-const WebMidi = require("../src/webmidi")
+const WebMidi = require("../src/webmidi");
 
-var assert = require("assert");
-const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const {expect} = require("chai")
-const Utils = require("./libs/Utils")
+const {expect} = require("chai");
 
 global.navigator = null;
 global.performance = null;
@@ -15,8 +10,6 @@ let jz = null
 
 const expectedInputDriverName = "Virtual MIDI-In"
 const inputPort = mt.MidiSrc(expectedInputDriverName);
-
-
 
 describe("Input", function() {
 
@@ -189,7 +182,7 @@ describe("Input", function() {
 
     it("should throw error if filters param is defined but not an object", function() {
 
-      ["prout", undefined, null, 123].forEach(function (param) {
+      ["prout", undefined, null, 123].forEach(function () {
         expect(function () {
           WebMidi.inputs[0].removeListener("start", function() {}, 123);
         }).to.throw(TypeError);
