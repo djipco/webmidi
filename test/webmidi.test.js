@@ -511,7 +511,7 @@ describe("WebMidi", function() {
 
     });
 
-    it("should throw error if note number is outside range given the current octave offset", function() {
+    it("should throw error if number is outside range given the current octave offset", function() {
 
       WebMidi.octaveOffset = 0;
 

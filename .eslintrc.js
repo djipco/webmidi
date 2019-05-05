@@ -20,12 +20,13 @@ module.exports = {
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "double", {"avoidEscape":  true, "allowTemplateLiterals": true}],
+    "max-len": ["error", { "code": 100 }],
     "no-console": ["error", { "allow": ["info", "warn", "error"] }],
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }],
     "no-underscore-dangle": "off",
     "quote-props": ["error", "as-needed"],
+    "quotes": ["error", "double", {"avoidEscape":  true, "allowTemplateLiterals": true}],
     "semi": ["error", "always"]
   }
 

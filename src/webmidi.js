@@ -3071,8 +3071,8 @@
    * instead of their name.
    *
    * To view a list of all available `control change` messages, please consult "Table 3 - Control
-   * Change Messages" from the
-   * [MIDI Messages](https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
+   * Change Messages" from the [MIDI Messages](
+   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
    * @method sendControlChange
@@ -3587,8 +3587,8 @@
 
   /**
    * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-   * adjust the range used by their pitch bend lever. The range can be specified with the `semitones`
-   * parameter, the `cents` parameter or by specifying both parameters at the same time.
+   * adjust the range used by their pitch bend lever. The range can be specified with the
+   * `semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.
    *
    * @method setPitchBendRange
    * @chainable
@@ -3859,8 +3859,8 @@
   };
 
   /**
-   * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to send can be specified
-   * numerically or by using one of the following common names:
+   * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to
+   * send can be specified numerically or by using one of the following common names:
    *
    *   * `allsoundoff` (#120)
    *   * `resetallcontrollers` (#121)
@@ -3871,24 +3871,27 @@
    *   * `monomodeon` (#126)
    *   * `polymodeon` (#127)
    *
-   * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may require a value
-   * that"s not zero. For that reason, the `value` parameter is optional and defaults to 0.
+   * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
+   * require a value that"s not zero. For that reason, the `value` parameter is optional and
+   * defaults to 0.
    *
    * @method sendChannelMode
    * @chainable
    *
-   * @param command {Number|String} The numerical identifier of the channel mode message (integer between 120-127) or
-   * its name as a string.
+   * @param command {Number|String} The numerical identifier of the channel mode message (integer
+   * between 120-127) or its name as a string.
    * @param [value=0] {Number} The value to send (integer between 0-127).
-   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an array of channel
-   * numbers. If the special value "all" is used, the message will be sent to all 16 channels.
+   * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
    * @param {Object} [options={}]
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two things. If the value is
-   * a string starting with the + sign and followed by a number, the request will be delayed by the specified number
-   * (in milliseconds). Otherwise, the value is considered a timestamp and the request will be scheduled at that
-   * timestamp. The `DOMHighResTimeStamp` value is relative to the navigation start of the document. To retrieve the
-   * current time, you can use `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is
-   * to be sent as soon as possible.
+   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
+   * things. If the value is a string starting with the + sign and followed by a number, the request
+   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
+   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
+   * is relative to the navigation start of the document. To retrieve the current time, you can use
+   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
+   * sent as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
