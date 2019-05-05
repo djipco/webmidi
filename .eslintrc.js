@@ -1,9 +1,10 @@
 module.exports = {
 
   "env": {
+    "amd": true,
     "browser": true,
-    "node": true,
-    "mocha": true
+    "mocha": true,
+    "node": true
   },
 
   "parserOptions": {
@@ -11,8 +12,7 @@ module.exports = {
   },
 
   "globals": {
-    "Promise": "readonly",
-    "module": "readonly"
+    "Promise": "readonly"
   },
 
   "extends": ["eslint:recommended", "prettier"],
