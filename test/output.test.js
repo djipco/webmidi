@@ -1,14 +1,14 @@
-const WebMidi = require("../src/webmidi")
+const WebMidi = require("../src/webmidi");
 
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const {expect} = require("chai")
+const {expect} = require("chai");
 
 global.navigator = null;
 global.performance = null;
-let jz = null
+let jz = null;
 
-const expectedOutputDriverName = "Virtual MIDI-Out"
+const expectedOutputDriverName = "Virtual MIDI-Out";
 const outputPort = mt.MidiDst(expectedOutputDriverName);
 
 describe("Output", function() {
@@ -19,9 +19,9 @@ describe("Output", function() {
     };
     global.performance = {
       now: e => e
-    }
-    jz = JZZ
-    outputPort.connect()
+    };
+    jz = JZZ;
+    outputPort.connect();
     WebMidi.disable();
 
     WebMidi.enable(function() {
@@ -68,10 +68,10 @@ describe("Output", function() {
 
   afterEach(function(done) {
     WebMidi.disable();
-    outputPort.disconnect()
+    outputPort.disconnect();
     global.navigator = null;
-    global.performance = null
-    jz= null
+    global.performance = null;
+    jz= null;
     done();
   });
   describe("decrementRegisteredParameter()", function () {
@@ -214,7 +214,7 @@ describe("Output", function() {
       expect(
         WebMidi.outputs[0].send(144, [64, 64])
       ).to.equal(WebMidi.outputs[0]);
-      done()
+      done();
     });
 
   });

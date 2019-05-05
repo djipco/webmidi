@@ -24,9 +24,9 @@ describe("WebMidi", function() {
     };
     global.performance = {
       now: e => e
-    }
-    jz = JZZ
-    outputPort.connect()
+    };
+    jz = JZZ;
+    outputPort.connect();
     inputPort.connect();
     done();
   });
@@ -34,10 +34,10 @@ describe("WebMidi", function() {
   afterEach(function(done) {
     WebMidi.disable();
     inputPort.disconnect();
-    outputPort.disconnect()
+    outputPort.disconnect();
     global.navigator = null;
-    global.performance = null
-    jz= null
+    global.performance = null;
+    jz= null;
     done();
   });
 
@@ -162,7 +162,7 @@ describe("WebMidi", function() {
     it("should set 'enabled' property to false if it fails", function (done) {
 
       if (navigator && navigator.requestMIDIAccess) {
-        const spys = sinon.stub(navigator, "requestMIDIAccess")
+        const spys = sinon.stub(navigator, "requestMIDIAccess");
         spys.returns(Promise.reject(new Error("Simulated failure!")));
       }
       WebMidi.enable(function () {
@@ -198,7 +198,7 @@ describe("WebMidi", function() {
       WebMidi.enable(function (err) {
 
         if (err) {
-          expect(false, true)
+          expect(false, true);
         }
 
         if ( Utils.isNative(navigator.requestMIDIAccess) ) {
@@ -268,7 +268,7 @@ describe("WebMidi", function() {
         expect(WebMidi.getInputById(WebMidi.inputs[0].id))
           .to.be.instanceOf(WebMidi.inputs[0].constructor);
       } else {
-        this.skip()
+        this.skip();
       }
 
     });

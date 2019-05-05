@@ -6,9 +6,9 @@ const {expect} = require("chai");
 
 global.navigator = null;
 global.performance = null;
-let jz = null
+let jz = null;
 
-const expectedInputDriverName = "Virtual MIDI-In"
+const expectedInputDriverName = "Virtual MIDI-In";
 const inputPort = mt.MidiSrc(expectedInputDriverName);
 
 describe("Input", function() {
@@ -19,8 +19,8 @@ describe("Input", function() {
     };
     global.performance = {
       now: e => e
-    }
-    jz = JZZ
+    };
+    jz = JZZ;
     inputPort.connect();
     WebMidi.disable();
 
@@ -46,8 +46,8 @@ describe("Input", function() {
     WebMidi.disable();
     inputPort.disconnect();
     global.navigator = null;
-    global.performance = null
-    jz= null
+    global.performance = null;
+    jz= null;
     done();
   });
   describe("addListener()", function() {
