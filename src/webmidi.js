@@ -529,7 +529,7 @@
           Promise
             .all(promises)
             .catch(function(err) { console.warn(err); })
-            .then(onPortsOpen.bind(this))
+            .then(onPortsOpen.bind(this));
         }
 
         // When MIDI access is requested, all input and output ports have their "state" set to
@@ -765,7 +765,7 @@
         return parseInt(ch);
       })
       .filter(function(ch) {
-        return (ch >= 1 && ch <= 16)
+        return (ch >= 1 && ch <= 16);
       });
 
   };
@@ -1171,7 +1171,7 @@
         name: e.port.name,
         state: e.port.state,
         type: e.port.type
-      }
+      };
 
     }
 
