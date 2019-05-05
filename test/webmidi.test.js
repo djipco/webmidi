@@ -1,13 +1,13 @@
-const {match} = require('sinon')
-const sinon = require('sinon')
-const WebMidi = require('../src/webmidi')
+const {match} = require("sinon")
+const sinon = require("sinon")
+const WebMidi = require("../src/webmidi")
 
 var assert = require("assert");
 const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const {expect} = require('chai')
-const Utils = require('./libs/Utils')
+const {expect} = require("chai")
+const Utils = require("./libs/Utils")
 
 global.navigator = null;
 global.performance = null;
@@ -20,7 +20,7 @@ const expectedInputDriverName = "Virtual MIDI-In"
 const inputPort = mt.MidiSrc(expectedInputDriverName);
 
 
-describe('WebMidi', function() {
+describe("WebMidi", function() {
 
   beforeEach(function(done) {
     global.navigator = {
@@ -59,7 +59,7 @@ describe('WebMidi', function() {
     }
   });
 
-  describe('addListener()', function() {
+  describe("addListener()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -78,7 +78,7 @@ describe('WebMidi', function() {
 
     it("should throw error if event type is not supported", function() {
 
-      ['', undefined, null, {}, 'abc', function () {}].forEach(function (param) {
+      ["", undefined, null, {}, "abc", function () {}].forEach(function (param) {
 
         expect(function() {
           WebMidi.addListener(param, function() {});
@@ -90,10 +90,10 @@ describe('WebMidi', function() {
 
     it("should throw error if listener is not a function", function() {
 
-      ['', undefined, null, {}, 'abc'].forEach(function (param) {
+      ["", undefined, null, {}, "abc"].forEach(function (param) {
 
         expect(function() {
-          WebMidi.addListener('statechange', param);
+          WebMidi.addListener("statechange", param);
         }).to.throw(TypeError);
 
       });
@@ -104,13 +104,13 @@ describe('WebMidi', function() {
 
       function f() {}
       WebMidi.addListener("connected", f);
-      expect(WebMidi.hasListener('connected', f)).to.equal(true);
+      expect(WebMidi.hasListener("connected", f)).to.equal(true);
 
     });
 
   });
 
-  describe('disable()', function() {
+  describe("disable()", function() {
 
     beforeEach("Enable WebMidi.js", function () {
       WebMidi.disable();
@@ -143,9 +143,9 @@ describe('WebMidi', function() {
 
   });
 
-  describe('enable()', function() {
+  describe("enable()", function() {
 
-    beforeEach('Make sure WebMidi is not already enabled.', function () {
+    beforeEach("Make sure WebMidi is not already enabled.", function () {
       WebMidi.disable();
     });
 
@@ -153,7 +153,7 @@ describe('WebMidi', function() {
 
       if (navigator && navigator.requestMIDIAccess) {
         var rma = sinon.stub(navigator, "requestMIDIAccess");
-        rma.returns(Promise.reject(new Error('Simulated failure!')));
+        rma.returns(Promise.reject(new Error("Simulated failure!")));
       }
 
       WebMidi.enable(function (err) {
@@ -166,8 +166,8 @@ describe('WebMidi', function() {
     it("should set 'enabled' property to false if it fails", function (done) {
 
       if (navigator && navigator.requestMIDIAccess) {
-        const spys = sinon.stub(navigator, 'requestMIDIAccess')
-        spys.returns(Promise.reject(new Error('Simulated failure!')));
+        const spys = sinon.stub(navigator, "requestMIDIAccess")
+        spys.returns(Promise.reject(new Error("Simulated failure!")));
       }
       WebMidi.enable(function (err) {
         expect(WebMidi.enabled).to.equal(false);
@@ -237,7 +237,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('getInputById()', function() {
+  describe("getInputById()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -252,7 +252,7 @@ describe('WebMidi', function() {
     });
 
     it("should return false if no device is found", function() {
-      expect(WebMidi.getInputById('0000000')).to.equal(false);
+      expect(WebMidi.getInputById("0000000")).to.equal(false);
     });
 
     it("should return the right input", function() {
@@ -279,7 +279,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('getInputByName()', function() {
+  describe("getInputByName()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -295,7 +295,7 @@ describe('WebMidi', function() {
     });
 
     it("should return false if no device is found", function() {
-      expect(WebMidi.getInputByName('0000000')).to.equal(false);
+      expect(WebMidi.getInputByName("0000000")).to.equal(false);
     });
 
     it("should return the right input", function() {
@@ -322,7 +322,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('getOctave()', function() {
+  describe("getOctave()", function() {
 
     beforeEach("Enable WebMidi.js", function () {
       WebMidi.disable();
@@ -357,7 +357,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('getOutputById()', function() {
+  describe("getOutputById()", function() {
 
     // beforeEach('Make sure WebMidi is not already enabled.', function() {
     //   WebMidi.disable();
@@ -378,7 +378,7 @@ describe('WebMidi', function() {
     });
 
     it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputById('0000000')).to.equal(false);
+      expect(WebMidi.getOutputById("0000000")).to.equal(false);
     });
 
     it("should return the right output id", function() {
@@ -405,7 +405,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('getOutputByName()', function() {
+  describe("getOutputByName()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -421,7 +421,7 @@ describe('WebMidi', function() {
     });
 
     it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputByName('0000000')).to.equal(false);
+      expect(WebMidi.getOutputByName("0000000")).to.equal(false);
     });
 
     it("should return the right output", function() {
@@ -448,7 +448,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('guessNoteNumber()', function() {
+  describe("guessNoteNumber()", function() {
 
     it("should throw error if invalid input is provided", function() {
 
@@ -539,7 +539,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('hasListener()', function() {
+  describe("hasListener()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -557,7 +557,7 @@ describe('WebMidi', function() {
     it("should throw error if event type is not supported", function() {
 
       expect(function() {
-        WebMidi.hasListener('abc', undefined);
+        WebMidi.hasListener("abc", undefined);
       }).to.throw(TypeError);
 
     });
@@ -565,7 +565,7 @@ describe('WebMidi', function() {
     it("should throw error if listener is not a function", function() {
 
       expect(function() {
-        WebMidi.hasListener('connected', undefined);
+        WebMidi.hasListener("connected", undefined);
       }).to.throw(TypeError);
 
     });
@@ -576,23 +576,23 @@ describe('WebMidi', function() {
       WebMidi.addListener("connected", function() {});
       WebMidi.addListener("connected", f);
       WebMidi.addListener("connected", function() {});
-      expect(WebMidi.hasListener('connected', f)).to.equal(true);
+      expect(WebMidi.hasListener("connected", f)).to.equal(true);
 
     });
 
     it("should report false if listener is not present", function() {
       WebMidi.addListener("connected", function() {});
-      expect(WebMidi.hasListener('connected', function() {})).to.equal(false);
+      expect(WebMidi.hasListener("connected", function() {})).to.equal(false);
     });
 
   });
 
-  describe('noteNameToNumber()', function() {
+  describe("noteNameToNumber()", function() {
 
     it("should throw error if invalid input is provided", function() {
 
       [
-        '', "abc", null, undefined, "G#9", "Cb-1", 'X2', function () {}, {}, "555", "C-3",
+        "", "abc", null, undefined, "G#9", "Cb-1", "X2", function () {}, {}, "555", "C-3",
         "Cbb-1/", "H3", "G##9"
       ].forEach(function (param) {
 
@@ -606,7 +606,7 @@ describe('WebMidi', function() {
 
   });
 
-  describe('removeListener()', function() {
+  describe("removeListener()", function() {
 
     beforeEach("Enable WebMidi.js", function (done) {
       WebMidi.disable();
@@ -624,7 +624,7 @@ describe('WebMidi', function() {
     it("should throw error if event type is defined but not supported", function() {
 
       expect(function() {
-        WebMidi.removeListener('abc', function() {});
+        WebMidi.removeListener("abc", function() {});
       }).to.throw(TypeError);
 
     });
@@ -632,7 +632,7 @@ describe('WebMidi', function() {
     it("should throw error if listener is defined but not a function", function() {
 
       expect(function() {
-        WebMidi.removeListener('connected', "abc");
+        WebMidi.removeListener("connected", "abc");
       }).to.throw(TypeError);
 
     });
@@ -642,7 +642,7 @@ describe('WebMidi', function() {
       function f() {}
       WebMidi.addListener("connected", f);
       WebMidi.removeListener("connected", f);
-      expect(WebMidi.hasListener('connected', f)).to.equal(false);
+      expect(WebMidi.hasListener("connected", f)).to.equal(false);
 
     });
 
@@ -655,9 +655,9 @@ describe('WebMidi', function() {
       WebMidi.addListener("connected", b);
       WebMidi.addListener("connected", c);
       WebMidi.removeListener("connected");
-      expect(WebMidi.hasListener('connected', a)).to.equal(false);
-      expect(WebMidi.hasListener('connected', b)).to.equal(false);
-      expect(WebMidi.hasListener('connected', c)).to.equal(false);
+      expect(WebMidi.hasListener("connected", a)).to.equal(false);
+      expect(WebMidi.hasListener("connected", b)).to.equal(false);
+      expect(WebMidi.hasListener("connected", c)).to.equal(false);
 
     });
 
@@ -670,15 +670,15 @@ describe('WebMidi', function() {
       WebMidi.addListener("connected", b);
       WebMidi.addListener("connected", c);
       WebMidi.removeListener();
-      expect(WebMidi.hasListener('connected', a)).to.equal(false);
-      expect(WebMidi.hasListener('connected', b)).to.equal(false);
-      expect(WebMidi.hasListener('connected', c)).to.equal(false);
+      expect(WebMidi.hasListener("connected", a)).to.equal(false);
+      expect(WebMidi.hasListener("connected", b)).to.equal(false);
+      expect(WebMidi.hasListener("connected", c)).to.equal(false);
 
     });
 
   });
 
-  describe('toMIDIChannels()', function() {
+  describe("toMIDIChannels()", function() {
 
     it("should return only valid MIDI channel numbers", function() {
 
@@ -691,12 +691,12 @@ describe('WebMidi', function() {
       expect(WebMidi.toMIDIChannels([]).length).to.equal(0);
       expect(WebMidi.toMIDIChannels([9.7])[0]).to.equal(9);
       expect(WebMidi.toMIDIChannels([1e1])[0]).to.equal(10);
-      expect(WebMidi.toMIDIChannels('none').length).to.equal(0);
+      expect(WebMidi.toMIDIChannels("none").length).to.equal(0);
 
     });
 
     it("should return all channels when 'all' or undefined is specified", function() {
-      expect(WebMidi.toMIDIChannels('all').length).to.equal(16);
+      expect(WebMidi.toMIDIChannels("all").length).to.equal(16);
       expect(WebMidi.toMIDIChannels().length).to.equal(16);
     });
 

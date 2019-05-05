@@ -1,13 +1,13 @@
-const {match} = require('sinon')
-const sinon = require('sinon')
-const WebMidi = require('../src/webmidi')
+const {match} = require("sinon")
+const sinon = require("sinon")
+const WebMidi = require("../src/webmidi")
 
 var assert = require("assert");
 const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const {expect} = require('chai')
-const Utils = require('./libs/Utils')
+const {expect} = require("chai")
+const Utils = require("./libs/Utils")
 
 global.navigator = null;
 global.performance = null;
@@ -17,7 +17,7 @@ const expectedOutputDriverName = "Virtual MIDI-Out"
 const outputPort = mt.MidiDst(expectedOutputDriverName);
 
 
-describe('Output', function() {
+describe("Output", function() {
 
   beforeEach(function(done) {
     global.navigator = {
@@ -80,7 +80,7 @@ describe('Output', function() {
     jz= null
     done();
   });
-  describe('decrementRegisteredParameter()', function () {
+  describe("decrementRegisteredParameter()", function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -89,7 +89,7 @@ describe('Output', function() {
       }).to.throw(TypeError);
 
       expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter('xxx');
+        WebMidi.outputs[0].decrementRegisteredParameter("xxx");
       }).to.throw(TypeError);
 
     });
@@ -119,7 +119,7 @@ describe('Output', function() {
 
   });
 
-  describe('incrementRegisteredParameter()', function () {
+  describe("incrementRegisteredParameter()", function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -128,7 +128,7 @@ describe('Output', function() {
       }).to.throw(Error);
 
       expect(function () {
-        WebMidi.outputs[0].incrementRegisteredParameter('xxx');
+        WebMidi.outputs[0].incrementRegisteredParameter("xxx");
       }).to.throw(Error);
 
     });
@@ -159,7 +159,7 @@ describe('Output', function() {
 
   });
 
-  describe('playNote()', function () {
+  describe("playNote()", function () {
 
     it("should throw error if note is invalid", function() {
 
@@ -183,7 +183,7 @@ describe('Output', function() {
 
   });
 
-  describe('send()', function () {
+  describe("send()", function () {
 
     it("should throw error if status byte is invalid", function() {
 
@@ -225,7 +225,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendActiveSensing()', function () {
+  describe("sendActiveSensing()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(WebMidi.outputs[0]);
@@ -233,7 +233,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendChannelAftertouch()', function () {
+  describe("sendChannelAftertouch()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(WebMidi.outputs[0]);
@@ -241,7 +241,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendChannelMode()', function () {
+  describe("sendChannelMode()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelMode("allsoundoff")).to.equal(WebMidi.outputs[0]);
@@ -251,7 +251,7 @@ describe('Output', function() {
 
       [-1, 128].forEach(function (param) {
         expect(function () {
-            WebMidi.outputs[0].sendChannelMode("localcontrol", param);
+          WebMidi.outputs[0].sendChannelMode("localcontrol", param);
         }).to.throw(Error);
       });
 
@@ -259,7 +259,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendClock()', function () {
+  describe("sendClock()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendClock()).to.equal(WebMidi.outputs[0]);
@@ -267,7 +267,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendContinue()', function () {
+  describe("sendContinue()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendContinue()).to.equal(WebMidi.outputs[0]);
@@ -275,7 +275,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendControlChange()', function () {
+  describe("sendControlChange()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(WebMidi.outputs[0]);
@@ -293,7 +293,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendKeyAftertouch()', function () {
+  describe("sendKeyAftertouch()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendKeyAftertouch("C#3", 1)).to.equal(WebMidi.outputs[0]);
@@ -301,7 +301,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendPitchBend()', function () {
+  describe("sendPitchBend()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendPitchBend(0.75)).to.equal(WebMidi.outputs[0]);
@@ -319,7 +319,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendSysex()', function () {
+  describe("sendSysex()", function () {
 
     it("should return the Output object for method chaining", done => done());
 
@@ -327,7 +327,7 @@ describe('Output', function() {
 
   });
 
-  describe('setTuningProgram()', function () {
+  describe("setTuningProgram()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].setTuningProgram(64, 1)).to.equal(WebMidi.outputs[0]);
@@ -345,7 +345,7 @@ describe('Output', function() {
 
   });
 
-  describe('stopNote()', function () {
+  describe("stopNote()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].stopNote(64)).to.equal(WebMidi.outputs[0]);
