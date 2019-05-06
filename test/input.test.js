@@ -1,62 +1,65 @@
-const {match} = require('sinon')
-const sinon = require('sinon')
-const WebMidi = require('../src/webmidi')
+if (process.env.BROWSER === "NONE") {
+  var expectedOutputDriverName = "Virtual MIDI-Out";
+  var expectedInputDriverName = "Virtual MIDI-In";
+  var WebMidi = null;
+  var JZZ = null;
+  var sinon = null;
+  var expect = null;
+  var { match } = require("sinon");
 
-var assert = require("assert");
-const util = require("util");
-const JZZ = require("jzz");
-const mt = require("midi-test");
-const {expect} = require('chai')
-const Utils = require('./libs/Utils')
+  sinon = require("sinon");
+  sinon.test = match;
+  WebMidi = require("../src/webmidi");
 
-global.navigator = null;
-global.performance = null;
-let jz = null
+  var assert = require("assert");
+  var util = require("util");
+  JZZ = require("jzz");
+  var mt = require("midi-test");
+  var outputPort = null;
+  var inputPort = null;
 
-const expectedInputDriverName = "Virtual MIDI-In"
-const inputPort = mt.MidiSrc(expectedInputDriverName);
+  expect = require("chai").expect;
+  outputPort = mt.MidiDst(expectedOutputDriverName);
 
+  inputPort = mt.MidiSrc(expectedInputDriverName);
 
+  var Utils = {
+    isNative: function(fn) {
+      return /\{\s*\[native code\]\s*\}/.test("" + fn);
+    }
+  };
+
+  // global.navigator = null;
+  // global.performance = null;
+  let jz = null;
+}
 
 describe('Input', function() {
+  if (process.env.BROWSER === "NONE") {
+    beforeEach(function(done) {
+      global.navigator = {
+        requestMIDIAccess: JZZ.requestMIDIAccess
+      };
+      global.performance = {
+        now: (e) => e
+      };
+      //jz = JZZ
+      outputPort.connect();
+      inputPort.connect();
+      done();
+    });
 
-  beforeEach(function(done) {
-    global.navigator = {
-      requestMIDIAccess: JZZ.requestMIDIAccess
-    };
-    global.performance = {
-      now: e => e
-    }
-    jz = JZZ
-    inputPort.connect();
-    WebMidi.disable();
-
-    WebMidi.enable(function() {
-
-      if (WebMidi.inputs.length > 0) {
-        done();
-      } else {
-
-        // Calling this.skip() throws an error. We catch it so it does not up show in the console
-        try {
-          this.skip();
-        } catch (err) {
-          // console.warn(err.message)
-        }
-
-      }
-
-    }.bind(this));
-  });
-
-  afterEach(function(done) {
-    WebMidi.disable();
-    inputPort.disconnect();
-    global.navigator = null;
-    global.performance = null
-    jz= null
-    done();
-  });
+    afterEach(function(done) {
+      WebMidi.disable();
+      inputPort.disconnect();
+      outputPort.disconnect();
+      global.navigator = null;
+      global.performance = null;
+      //jz= null
+      done();
+    });
+  }
+  
   describe('addListener()', function() {
 
     it("should throw error if listener is not a function", function() {

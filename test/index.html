@@ -52,6 +52,7 @@
     <!-- Tests -->
     <script>var expect = chai.expect;</script>
     <script>mocha.setup('bdd');</script>
+    <script>var process = {env: {BROWSER: 'TRUE'}};</script>
     <script src="platform.test.js"></script>
     <script src="webmidi.test.js"></script>
     <script src="input.test.js"></script>

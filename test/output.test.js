@@ -1,53 +1,105 @@
-const {match} = require('sinon')
-const sinon = require('sinon')
-const WebMidi = require('../src/webmidi')
+if (process.env.BROWSER === "NONE") {
+  var expectedOutputDriverName = "Virtual MIDI-Out";
+  var expectedInputDriverName = "Virtual MIDI-In";
+  var WebMidi = null;
+  var JZZ = null;
+  var sinon = null;
+  var expect = null;
+  var { match } = require("sinon");
 
-var assert = require("assert");
-const util = require("util");
-const JZZ = require("jzz");
-const mt = require("midi-test");
-const {expect} = require('chai')
-const Utils = require('./libs/Utils')
+  sinon = require("sinon");
+  sinon.test = match;
+  WebMidi = require("../src/webmidi");
 
-global.navigator = null;
-global.performance = null;
-let jz = null
+  var assert = require("assert");
+  var util = require("util");
+  JZZ = require("jzz");
+  var mt = require("midi-test");
+  var outputPort = null;
+  var inputPort = null;
 
-const expectedOutputDriverName = "Virtual MIDI-Out"
-const outputPort = mt.MidiDst(expectedOutputDriverName);
+  expect = require("chai").expect;
+  outputPort = mt.MidiDst(expectedOutputDriverName);
 
+  inputPort = mt.MidiSrc(expectedInputDriverName);
 
-describe('Output', function() {
-
-  beforeEach(function(done) {
-    global.navigator = {
-      requestMIDIAccess: JZZ.requestMIDIAccess
-    };
-    global.performance = {
-      now: e => e
+  var Utils = {
+    isNative: function(fn) {
+      return /\{\s*\[native code\]\s*\}/.test("" + fn);
     }
-    jz = JZZ
-    outputPort.connect()
-    WebMidi.disable();
+  };
 
-    WebMidi.enable(function() {
+  // global.navigator = null;
+  // global.performance = null;
+  let jz = null;
+}
 
-      if (WebMidi.outputs.length > 0) {
-        done();
-      } else {
+describe("Output", function() {
+  if (process.env.BROWSER === "NONE") {
+    beforeEach(function(done) {
+      global.navigator = {
+        requestMIDIAccess: JZZ.requestMIDIAccess
+      };
+      global.performance = {
+        now: (e) => e
+      };
+      jz = JZZ;
+      outputPort.connect();
+      inputPort.connect();
+      WebMidi.enable(
+        function() {
+          if (WebMidi.outputs.length > 0) {
+            done();
+          } else {
+            // Calling this.skip() throws an error. We catch it so it does not show up in the console
+            try {
+              this.skip();
+            } catch (err) {
+              // console.warn(err.message)
+            }
+          }
+        }.bind(this)
+      );
+    });
 
-        // Calling this.skip() throws an error. We catch it so it does not show up in the console
-        try {
-          this.skip();
-        } catch (err) {
-          // console.warn(err.message)
-        }
+    afterEach(function(done) {
+      WebMidi.disable();
+      inputPort.disconnect();
+      outputPort.disconnect();
+      global.navigator = null;
+      global.performance = null;
+      //jz= null
+      done();
+    });
+  }
+  // beforeEach(function(done) {
+  //   global.navigator = {
+  //     requestMIDIAccess: JZZ.requestMIDIAccess
+  //   };
+  //   global.performance = {
+  //     now: e => e
+  //   }
+  //   jz = JZZ
+  //   outputPort.connect()
+  //   WebMidi.disable();
 
-      }
+  //   WebMidi.enable(function() {
 
-    }.bind(this));
-  });
+  //     if (WebMidi.outputs.length > 0) {
+  //       done();
+  //     } else {
 
+  //       // Calling this.skip() throws an error. We catch it so it does not show up in the console
+  //       try {
+  //         this.skip();
+  //       } catch (err) {
+  //         // console.warn(err.message)
+  //       }
+
+  //     }
+
+  //   }.bind(this));
+  // });
 
   // beforeEach("Enable WebMidi.js", function (done) {
 
@@ -72,26 +124,23 @@ describe('Output', function() {
 
   // });
 
-  afterEach(function(done) {
-    WebMidi.disable();
-    outputPort.disconnect()
-    global.navigator = null;
-    global.performance = null
-    jz= null
-    done();
-  });
-  describe('decrementRegisteredParameter()', function () {
-
+  // afterEach(function(done) {
+  //   WebMidi.disable();
+  //   outputPort.disconnect()
+  //   global.navigator = null;
+  //   global.performance = null
+  //   jz= null
+  //   done();
+  // });
+  describe("decrementRegisteredParameter()", function() {
     it("should throw error if registered parameter is invalid", function() {
-
-      expect(function () {
+      expect(function() {
         WebMidi.outputs[0].decrementRegisteredParameter(0);
       }).to.throw(TypeError);
 
-      expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter('xxx');
+      expect(function() {
+        WebMidi.outputs[0].decrementRegisteredParameter("xxx");
       }).to.throw(TypeError);
-
     });
 
     // it("should call send the right amount of times", function() {
@@ -116,21 +165,17 @@ describe('Output', function() {
     // it("should throw error if options.time is invalid", function(done) {
     //
     // });
-
   });
 
-  describe('incrementRegisteredParameter()', function () {
-
+  describe("incrementRegisteredParameter()", function() {
     it("should throw error if registered parameter is invalid", function() {
-
-      expect(function () {
+      expect(function() {
         WebMidi.outputs[0].incrementRegisteredParameter(0);
       }).to.throw(Error);
 
-      expect(function () {
-        WebMidi.outputs[0].incrementRegisteredParameter('xxx');
+      expect(function() {
+        WebMidi.outputs[0].incrementRegisteredParameter("xxx");
       }).to.throw(Error);
-
     });
 
     it("should return the Output object for method chaining", function() {
@@ -156,53 +201,45 @@ describe('Output', function() {
     //   });
     //
     // });
-
   });
 
-  describe('playNote()', function () {
-
+  describe("playNote()", function() {
     it("should throw error if note is invalid", function() {
-
-      ["Z-8", "R22", -1, 128, undefined, null, function() {}, ["x"]].forEach(function (param) {
-        expect(function () {
-          WebMidi.outputs[0].playNote(param);
-        }).to.throw(Error);
-      });
-
+      ["Z-8", "R22", -1, 128, undefined, null, function() {}, ["x"]].forEach(
+        function(param) {
+          expect(function() {
+            WebMidi.outputs[0].playNote(param);
+          }).to.throw(Error);
+        }
+      );
     });
 
     it("should return the Output object for method chaining", function() {
-      expect(
-        WebMidi.outputs[0].playNote(64)
-      ).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].playNote(64)).to.equal(WebMidi.outputs[0]);
     });
 
     // it("should throw error if options.time is invalid", function(done) {
     //
     // });
-
   });
 
-  describe('send()', function () {
-
+  describe("send()", function() {
     it("should throw error if status byte is invalid", function() {
-
-      ["xxx", [], NaN, 127, 256, undefined, null, -1, 0, {}].forEach(function (param) {
-        expect(function () {
+      ["xxx", [], NaN, 127, 256, undefined, null, -1, 0, {}].forEach(function(
+        param
+      ) {
+        expect(function() {
           WebMidi.outputs[0].send(param);
         }).to.throw(RangeError);
       });
-
     });
 
     it("should throw error if data bytes are invalid", function() {
-
-      ["xxx", -1, 256, NaN, null, Infinity].forEach(function (param) {
-        expect(function () {
+      ["xxx", -1, 256, NaN, null, Infinity].forEach(function(param) {
+        expect(function() {
           WebMidi.outputs[0].send(64, param);
         }).to.throw(RangeError);
       });
-
     });
 
     // Sry, I cannot see, where TypeError could be thrown by that function
@@ -217,140 +254,123 @@ describe('Output', function() {
     // });
 
     it("should return the Output object for method chaining", function(done) {
-      expect(
-        WebMidi.outputs[0].send(144, [64, 64])
-      ).to.equal(WebMidi.outputs[0]);
-      done()
+      expect(WebMidi.outputs[0].send(144, [64, 64])).to.equal(
+        WebMidi.outputs[0]
+      );
+      done();
     });
-
   });
 
-  describe('sendActiveSensing()', function () {
-
+  describe("sendActiveSensing()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(
+        WebMidi.outputs[0]
+      );
     });
-
   });
 
-  describe('sendChannelAftertouch()', function () {
-
+  describe("sendChannelAftertouch()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(
+        WebMidi.outputs[0]
+      );
     });
-
   });
 
-  describe('sendChannelMode()', function () {
-
+  describe("sendChannelMode()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendChannelMode("allsoundoff")).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendChannelMode("allsoundoff")).to.equal(
+        WebMidi.outputs[0]
+      );
     });
 
     it("should throw an error if value is out of range", function() {
-
-      [-1, 128].forEach(function (param) {
-        expect(function () {
-            WebMidi.outputs[0].sendChannelMode("localcontrol", param);
+      [-1, 128].forEach(function(param) {
+        expect(function() {
+          WebMidi.outputs[0].sendChannelMode("localcontrol", param);
         }).to.throw(Error);
       });
-
     });
-
   });
 
-  describe('sendClock()', function () {
-
+  describe("sendClock()", function() {
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendClock()).to.equal(WebMidi.outputs[0]);
     });
-
   });
 
-  describe('sendContinue()', function () {
-
+  describe("sendContinue()", function() {
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendContinue()).to.equal(WebMidi.outputs[0]);
     });
-
   });
 
-  describe('sendControlChange()', function () {
-
+  describe("sendControlChange()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(
+        WebMidi.outputs[0]
+      );
     });
 
     it("should throw an error if value is out of range", function() {
-
-      [-1, 129, 1111111].forEach(function (param) {
-        expect(function () {
+      [-1, 129, 1111111].forEach(function(param) {
+        expect(function() {
           WebMidi.outputs[0].sendControlChange("bankselectcoarse", param);
         }).to.throw(Error);
       });
-
     });
-
   });
 
-  describe('sendKeyAftertouch()', function () {
-
+  describe("sendKeyAftertouch()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendKeyAftertouch("C#3", 1)).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendKeyAftertouch("C#3", 1)).to.equal(
+        WebMidi.outputs[0]
+      );
     });
-
   });
 
-  describe('sendPitchBend()', function () {
-
+  describe("sendPitchBend()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendPitchBend(0.75)).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].sendPitchBend(0.75)).to.equal(
+        WebMidi.outputs[0]
+      );
     });
 
     it("should throw an error if bend value is out of range", function() {
-
-      [-2, 17, NaN, Infinity].forEach(function (param) {
-        expect(function () {
+      [-2, 17, NaN, Infinity].forEach(function(param) {
+        expect(function() {
           WebMidi.outputs[0].sendPitchBend(param);
         }).to.throw(Error);
       });
-
     });
-
   });
 
-  describe('sendSysex()', function () {
+  describe("sendSysex()", function() {
+    it("should return the Output object for method chaining", (done) => done());
 
-    it("should return the Output object for method chaining", done => done());
-
-    it("should throw an error if a data value is out of rangte", done => done());
-
+    it("should throw an error if a data value is out of rangte", (done) =>
+      done());
   });
 
-  describe('setTuningProgram()', function () {
-
+  describe("setTuningProgram()", function() {
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].setTuningProgram(64, 1)).to.equal(WebMidi.outputs[0]);
+      expect(WebMidi.outputs[0].setTuningProgram(64, 1)).to.equal(
+        WebMidi.outputs[0]
+      );
     });
 
     it("should throw an error if value is out of bounds", function() {
-
-      [-1, 128, Infinity, NaN, -Infinity].forEach(function (param) {
-        expect(function () {
+      [-1, 128, Infinity, NaN, -Infinity].forEach(function(param) {
+        expect(function() {
           WebMidi.outputs[0].setTuningProgram(param, 1);
         }).to.throw(RangeError);
       });
-
     });
-
   });
 
-  describe('stopNote()', function () {
-
+  describe("stopNote()", function() {
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].stopNote(64)).to.equal(WebMidi.outputs[0]);
     });
-
   });
-
 });

@@ -6,7 +6,7 @@
   "main": "webmidi.min.js",
   "types": "webmidi.d.ts",
   "scripts": {
-    "test": "mocha ./test --exit",
+    "test": "BROWSER=NONE mocha ./test --exit",
     "test-all": "npm run types && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "build": "grunt uglify",
