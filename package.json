@@ -7,7 +7,7 @@
   "types": "webmidi.d.ts",
   "scripts": {
     "test": "BROWSER=NONE mocha ./test/headless --exit",
-    "test-all": "npm run types && npm run test-coverage",
+    "test-all": "npm run types && run lint && && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "build": "grunt uglify",
     "generate-doc": "grunt yuidoc",

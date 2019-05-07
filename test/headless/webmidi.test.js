@@ -7,7 +7,7 @@ const util = require("util");
 const JZZ = require("jzz");
 const mt = require("midi-test");
 const {expect} = require('chai')
-const Utils = require('./libs/Utils')
+const Utils = require('./util.comon.js')
 
 global.navigator = null;
 global.performance = null;
