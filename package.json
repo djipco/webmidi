@@ -6,12 +6,15 @@
   "main": "webmidi.min.js",
   "types": "webmidi.d.ts",
   "scripts": {
+    "test": "BROWSER=NONE mocha ./test/headless --exit",
+    "test-all": "npm run types && npm run test-coverage",
+    "test-coverage": "nyc --reporter=text npm run test",
     "build": "grunt uglify",
     "generate-doc": "grunt yuidoc",
     "gh-pages": "grunt gh-pages",
     "lint": "eslint ./src/*.js",
     "release": "grunt release",
-    "test": "tsc --strict --noEmit ./webmidi.d.ts"
+    "types": "tsc --strict --noEmit ./webmidi.d.ts"
   },
   "repository": {
     "type": "git",
@@ -47,7 +50,11 @@
     "grunt-gh-pages": "^3.1.0",
     "grunt-git": "^1.0.13",
     "grunt-release": "^0.14.0",
+    "jzz": "^0.7.5",
+    "midi-test": "^1.0.2",
     "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "sinon": "^7.3.2",
     "sinon-browser-only": "^1.12.1",
     "typescript": "^3.4.5"
   },
