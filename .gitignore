@@ -1,4 +1,4 @@
 .vscode
 node_modules
 .nyc_output
-.DS_STORE
+.DS_Store
