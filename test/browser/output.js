@@ -1,27 +1,7 @@
-const WebMidi = require("../src/webmidi");
+describe('Output', function() {
 
-const JZZ = require("jzz");
-const mt = require("midi-test");
-const {expect} = require("chai");
+  beforeEach("Enable WebMidi.js", function (done) {
 
-global.navigator = null;
-global.performance = null;
-let jz = null;
-
-const expectedOutputDriverName = "Virtual MIDI-Out";
-const outputPort = mt.MidiDst(expectedOutputDriverName);
-
-describe("Output", function() {
-
-  beforeEach(function(done) {
-    global.navigator = {
-      requestMIDIAccess: JZZ.requestMIDIAccess
-    };
-    global.performance = {
-      now: e => e
-    };
-    jz = JZZ;
-    outputPort.connect();
     WebMidi.disable();
 
     WebMidi.enable(function() {
@@ -40,41 +20,10 @@ describe("Output", function() {
       }
 
     }.bind(this));
+
   });
 
-
-  // beforeEach("Enable WebMidi.js", function (done) {
-
-  //   WebMidi.disable();
-
-  //   WebMidi.enable(function() {
-
-  //     if (WebMidi.outputs.length > 0) {
-  //       done();
-  //     } else {
-
-  //       // Calling this.skip() throws an error. We catch it so it does not show up in the console
-  //       try {
-  //         this.skip();
-  //       } catch (err) {
-  //         // console.warn(err.message)
-  //       }
-
-  //     }
-
-  //   }.bind(this));
-
-  // });
-
-  afterEach(function(done) {
-    WebMidi.disable();
-    outputPort.disconnect();
-    global.navigator = null;
-    global.performance = null;
-    jz= null;
-    done();
-  });
-  describe("decrementRegisteredParameter()", function () {
+  describe('decrementRegisteredParameter()', function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -83,7 +32,7 @@ describe("Output", function() {
       }).to.throw(TypeError);
 
       expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter("xxx");
+        WebMidi.outputs[0].decrementRegisteredParameter('xxx');
       }).to.throw(TypeError);
 
     });
@@ -113,7 +62,7 @@ describe("Output", function() {
 
   });
 
-  describe("incrementRegisteredParameter()", function () {
+  describe('incrementRegisteredParameter()', function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -122,7 +71,7 @@ describe("Output", function() {
       }).to.throw(Error);
 
       expect(function () {
-        WebMidi.outputs[0].incrementRegisteredParameter("xxx");
+        WebMidi.outputs[0].incrementRegisteredParameter('xxx');
       }).to.throw(Error);
 
     });
@@ -153,7 +102,7 @@ describe("Output", function() {
 
   });
 
-  describe("playNote()", function () {
+  describe('playNote()', function () {
 
     it("should throw error if note is invalid", function() {
 
@@ -177,7 +126,7 @@ describe("Output", function() {
 
   });
 
-  describe("send()", function () {
+  describe('send()', function () {
 
     it("should throw error if status byte is invalid", function() {
 
@@ -199,27 +148,25 @@ describe("Output", function() {
 
     });
 
-    // Sry, I cannot see, where TypeError could be thrown by that function
-    // it("should throw error if message is incomplete", function() {
+    it("should throw error if message is incomplete", function() {
 
-    //   expect(function () {
-    //       [0x80, 0x90, 0x0].forEach(function (param) {
-    //         WebMidi.outputs[0].send(param, []);
-    //       });
-    //   }).to.throw(TypeError);
+      [0x80, 0x90, 0xA0].forEach(function (param) {
+        expect(function () {
+          WebMidi.outputs[0].send(param, []);
+        }).to.throw(TypeError);
+      });
 
-    // });
+    });
 
-    it("should return the Output object for method chaining", function(done) {
+    it("should return the Output object for method chaining", function() {
       expect(
         WebMidi.outputs[0].send(144, [64, 64])
       ).to.equal(WebMidi.outputs[0]);
-      done();
     });
 
   });
 
-  describe("sendActiveSensing()", function () {
+  describe('sendActiveSensing()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(WebMidi.outputs[0]);
@@ -227,7 +174,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendChannelAftertouch()", function () {
+  describe('sendChannelAftertouch()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(WebMidi.outputs[0]);
@@ -235,7 +182,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendChannelMode()", function () {
+  describe('sendChannelMode()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelMode("allsoundoff")).to.equal(WebMidi.outputs[0]);
@@ -253,7 +200,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendClock()", function () {
+  describe('sendClock()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendClock()).to.equal(WebMidi.outputs[0]);
@@ -261,7 +208,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendContinue()", function () {
+  describe('sendContinue()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendContinue()).to.equal(WebMidi.outputs[0]);
@@ -269,7 +216,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendControlChange()", function () {
+  describe('sendControlChange()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(WebMidi.outputs[0]);
@@ -277,7 +224,7 @@ describe("Output", function() {
 
     it("should throw an error if value is out of range", function() {
 
-      [-1, 129, 1111111].forEach(function (param) {
+      [-1, 120, "xxx"].forEach(function (param) {
         expect(function () {
           WebMidi.outputs[0].sendControlChange("bankselectcoarse", param);
         }).to.throw(Error);
@@ -287,7 +234,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendKeyAftertouch()", function () {
+  describe('sendKeyAftertouch()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendKeyAftertouch("C#3", 1)).to.equal(WebMidi.outputs[0]);
@@ -295,7 +242,7 @@ describe("Output", function() {
 
   });
 
-  describe("sendPitchBend()", function () {
+  describe('sendPitchBend()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendPitchBend(0.75)).to.equal(WebMidi.outputs[0]);
@@ -313,15 +260,15 @@ describe("Output", function() {
 
   });
 
-  describe("sendSysex()", function () {
+  describe('sendSysex()', function () {
 
-    it("should return the Output object for method chaining", done => done());
+    it("should return the Output object for method chaining");
 
-    it("should throw an error if a data value is out of rangte", done => done());
+    it("should throw an error if a data value is out of rangte");
 
   });
 
-  describe("setTuningProgram()", function () {
+  describe('setTuningProgram()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].setTuningProgram(64, 1)).to.equal(WebMidi.outputs[0]);
@@ -339,7 +286,7 @@ describe("Output", function() {
 
   });
 
-  describe("stopNote()", function () {
+  describe('stopNote()', function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].stopNote(64)).to.equal(WebMidi.outputs[0]);
