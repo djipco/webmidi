@@ -1,4 +1,4 @@
-const WebMidi = require("../src/webmidi");
+const WebMidi = require("../../src/webmidi");
 
 const JZZ = require("jzz");
 const mt = require("midi-test");

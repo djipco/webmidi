@@ -1,7 +1,7 @@
 const assert = require("assert");
 const JZZ = require("jzz");
 const mt = require("midi-test");
-const webmidi = require("../src/webmidi");
+const webmidi = require("../../src/webmidi");
 
 global.navigator = null;
 global.performance = null;
