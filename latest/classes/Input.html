@@ -530,7 +530,7 @@ event. This event is dispatched for every single message that is received on tha
 
                     <div class="param-description">
                         <p>The MIDI channel to listen on (integer between 1 and 16).
-You can also specify an array of channel numbers or the value 'all' (or leave it undefined for
+You can also specify an array of channel numbers or the value &quot;all&quot; (or leave it undefined for
 input-wide events).</p>
 
                     </div>
@@ -543,7 +543,7 @@ input-wide events).</p>
 
                     <div class="param-description">
                         <p>A callback function to execute when the specified event is detected.
-This function will receive an event parameter object. For details on this object's properties,
+This function will receive an event parameter object. For details on this object&quot;s properties,
 check out the documentation for the various events (links above).</p>
 
                     </div>
@@ -710,7 +710,7 @@ returns <code>undefined</code>.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>:
-                    <p>The matching channel mode message's name or <code>undefined</code>;</p>
+                    <p>The matching channel mode message&quot;s name or <code>undefined</code>;</p>
 
             </div>
         </div>
@@ -793,7 +793,7 @@ We suggest you use <code>undefined</code> in such cases.</p>
 
                     <div class="param-description">
                         <p>The MIDI channel to check on (between 1 and 16). You
-can also specify an array of channel numbers or the string 'all'.</p>
+can also specify an array of channel numbers or the string &quot;all&quot;.</p>
 
                     </div>
 
@@ -828,7 +828,7 @@ listener defined.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function.</p>
+                    <p>The &quot;listener&quot; parameter must be a function.</p>
 
             </div>
         </div>
@@ -975,7 +975,7 @@ You can use <code>undefined</code> in such cases.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function..</p>
+                    <p>The &quot;listener&quot; parameter must be a function..</p>
 
             </div>
         </div>
@@ -1004,7 +1004,7 @@ You can use <code>undefined</code> in such cases.</p>
     </div>
 
     <div class="description">
-        <p>[read-only] Status of the MIDI port's connection (<code>pending</code>, <code>open</code> or <code>closed</code>)</p>
+        <p>[read-only] Status of the MIDI port&quot;s connection (<code>pending</code>, <code>open</code> or <code>closed</code>)</p>
 
     </div>
 
@@ -2950,7 +2950,7 @@ different IDs for the same port.</p>
                     
                        var input = WebMidi.inputs[0];
                     
-                       input.addListener('sysex', &quot;all&quot;, function (e) {
+                       input.addListener(&quot;sysex&quot;, &quot;all&quot;, function (e) {
                          console.log(e);
                        });
                     

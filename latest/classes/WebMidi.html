@@ -114,12 +114,12 @@ callback function specified as a parameter. In this case, the callback calls the
 function to play a 3rd octave C on the first available output port.</p>
 <h4>Receiving messages</h4>
 <p>Receiving messages is just as easy. You simply have to set a callback function to be triggered
-when a specific MIDI message is received. For example, here's how to listen for pitch bend
+when a specific MIDI message is received. For example, here&quot;s how to listen for pitch bend
 events on the first input port:</p>
 <pre class="code prettyprint"><code> WebMidi.enable(function(err) {
    if (err) console.log(&quot;An error occurred&quot;, err);
 
-   WebMidi.inputs[0].addListener('pitchbend', &quot;all&quot;, function(e) {
+   WebMidi.inputs[0].addListener(&quot;pitchbend&quot;, &quot;all&quot;, function(e) {
      console.log(&quot;Pitch value: &quot; + e.value);
    });
 
@@ -557,7 +557,7 @@ specified event happens.</p>
 
                     <div class="param-description">
                         <p>A callback function to execute when the specified event is detected.
-This function will receive an event parameter object. For details on this object's properties,
+This function will receive an event parameter object. For details on this object&quot;s properties,
 check out the documentation for the various events (links above).</p>
 
                     </div>
@@ -581,7 +581,7 @@ check out the documentation for the various events (links above).</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function.</p>
+                    <p>The &quot;listener&quot; parameter must be a function.</p>
 
             </div>
         </div>
@@ -612,7 +612,7 @@ check out the documentation for the various events (links above).</p>
     </div>
 
     <div class="description">
-        <p>Completely disables <code>WebMidi</code> by unlinking the MIDI subsystem's interface and destroying all
+        <p>Completely disables <code>WebMidi</code> by unlinking the MIDI subsystem&quot;s interface and destroying all
 <code>Input</code> and <code>Output</code> objects that may be available. This also means that any listener that may
 have been defined on <code>Input</code> or <code>Output</code> objects will be destroyed.</p>
 
@@ -655,8 +655,8 @@ have been defined on <code>Input</code> or <code>Output</code> objects will be d
     </div>
 
     <div class="description">
-        <p>Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
-This is an asynchronous operation. When it's done, the specified handler callback will be
+        <p>Checks if the Web MIDI API is available and then tries to connect to the host&quot;s MIDI subsystem.
+This is an asynchronous operation. When it&quot;s done, the specified handler callback will be
 executed. If an error occurred, the callback function will receive an <code>Error</code> object as its
 sole parameter.</p>
 <p>To enable the use of system exclusive messages, the <code>sysex</code> parameter should be set to true.
@@ -1554,7 +1554,7 @@ ignored.</p>
     </div>
 
     <div class="description">
-        <p>[read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+        <p>[read-only] Indicates whether the interface to the host&quot;s MIDI subsystem is currently
 enabled.</p>
 
     </div>
@@ -1837,7 +1837,7 @@ not be there.</p>
     </div>
 
     <div class="description">
-        <p>[read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+        <p>[read-only] Indicates whether the interface to the host&quot;s MIDI subsystem is currently
 active.</p>
 
     </div>
