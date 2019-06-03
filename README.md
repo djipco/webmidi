@@ -106,18 +106,6 @@ Then, just add a `<script>` tag to your HTML page and make it point to:
 
     <script src="node_modules/webmidi/webmidi.min.js"></script>
 
-#### Bower Install
-
-To install via Bower, simply run the following command in the Terminal (Mac, Linux) or the 
-Command Prompt (Windows) from the root of your project. Just make sure to correctly capitalize 
-the "W" and the "M" in "WebMidi":
-
-    bower install WebMidi
-
-Then, just add a `<script>` tag to your HTML page and make it point to:
-
-    <script src="bower_components/WebMidi/src/webmidi.js"></script>
-
 #### Using with a Bundler
 
 If you are using a bundler such as WebPack, you can import **WebMidi.js** in your project in this way:
