@@ -16,15 +16,6 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
 much easier.
 
->### Warning to users of version <= 2.0.5
->A small, but important, change has been introduced in version 2.1.0. Middle C is now positionned at
->C4 (instead of C3). To maintain compatibility, please add the following code to existing projects:
->```
->WebMidi.octaveOffset = -1;
->```
->Details about this change and the reasoning behind it can be found in
-[issue #42](https://github.com/djipco/webmidi/issues/42) and [issue #18](https://github.com/djipco/webmidi/issues/18).
-
 ## Browser Support
 
 This library works in all browsers that natively support the 
