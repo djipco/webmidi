@@ -184,25 +184,6 @@ input.addListener('pitchbend', "all", function(e) {
 });
 ```
 
-## About Sysex Support
-
-Per the 
-[Web MIDI API specification](https://webaudio.github.io/web-midi-api/#dom-navigator-requestmidiaccess), 
-system exclusive (sysex) support is disabled by default. If you need to use sysex messages, you will 
-need to pass `true` as the second parameter to `WebMidi.enable()`:
-
-```javascript
-WebMidi.enable(function (err) {
-  if (err) {
-    console.warn(err);
-  } else {
-    console.log("Sysex is enabled!");
-  }
-}, true);
-```
-**Important**: depending on the browser, version and platform, it may also be necessary to serve the 
-page over https if you want to enable sysex support.
-
 ## API Documentation
 
 The [API for WebMidi.js](http://djipco.github.io/webmidi/latest/classes/WebMidi.html) is fully 
@@ -337,6 +318,24 @@ WebMidi.enable(function (err) {
 
 });
 ```
+## About Sysex Support
+
+Per the 
+[Web MIDI API specification](https://webaudio.github.io/web-midi-api/#dom-navigator-requestmidiaccess), 
+system exclusive (sysex) support is disabled by default. If you need to use sysex messages, you will 
+need to pass `true` as the second parameter to `WebMidi.enable()`:
+
+```javascript
+WebMidi.enable(function (err) {
+  if (err) {
+    console.warn(err);
+  } else {
+    console.log("Sysex is enabled!");
+  }
+}, true);
+```
+**Important**: depending on the browser, version and platform, it may also be necessary to serve the 
+page over https if you want to enable sysex support.
 
 ## Migration Notes
 
