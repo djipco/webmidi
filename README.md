@@ -394,6 +394,13 @@ including the following in your page:
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
 
+## Feature Request
+
+If you would like to request a new feature, enhancement or API change, please first verify that it 
+is not already planned for an upcoming version by checking the 
+[Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
+[file an issue](https://github.com/djipco/webmidi/issues) describing your request.
+
 ## Contributing
 
 If you are interested in contributing to the project, please read our 
