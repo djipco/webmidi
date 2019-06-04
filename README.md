@@ -56,18 +56,21 @@ for more information. If anyone is interested in contributing, help would be mor
 
 ## TypeScript Support
 
-TypeScript type definitions have been officially added to WebMidi.js with version 2.3 (thanks to
+TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
 [mmmveggies](https://www.github.com/mmmveggies)).
 
-Importing WebMidi is easy:
+Importing WebMidi seems to work with this:
 ```javascript
-import webmidi from 'webmidi';
+import * as webmidi from "webmidi";
 ```
 
-To import interfaces and types:
-```javascript
-import webmidi, { INoteParam, IMidiChannel } from 'webmidi';
-```
+But not with this (not sure why):
+````javascript
+import webmidi from "webmidi";
+````
+
+As I'm not a TypeScript user, clarifications on the topic (as well as more working examples) would 
+be welcome. Feel free to send a PR or open a new issue
 
 ## Installation
 
