@@ -339,6 +339,39 @@ WebMidi.enable(function (err) {
 **Important**: depending on the browser, version and platform, it may also be necessary to serve the 
 page over https if you want to enable sysex support.
 
+## Explicit NRPN Listener
+
+Listening for NPRN messages directly is not standardized so is disabled by default. If you would
+like to listen for `nrpn` events, you will need to pass `true` as the third parameter to `WebMidi.enable()`:
+
+```javascript
+WebMidi.enable(function (err) {
+  if (err) {
+    console.log("WebMidi could not be enabled.", err);
+  }
+
+  var input = WebMidi.inputs[0];
+  function nrpnListener(e) {
+    console.log("NRPN #: " + e.controller.number);
+    console.log("NRPN type: " + e.controller.type);
+    console.log("NRPN Value: " + e.value);
+  }
+  input.addListener('nrpn', 8, test);
+  input.addListener('nrpn', 9, test);
+  input.addListener('nrpn', 10, test);
+  input.addListener('nrpn', 11, test);
+  console.log("nrpnEnabled: ", WebMidi.nrpnEnabled);
+
+}, false, true);
+```
+The nature of NPRN messages is that they utilize groups of CC messages together to provide two other
+types of controls: increment/decrement (1 or -1) values and 14-bit (16,384 possible values).
+As shown above in the code example, `nrpn` event objects will have a `controller.type` property.
+This will have the value of either `parameter` or `incremental`.
+
+The CC messages used are 6, 38, 96, 97, 98, and 99. These should not be expected to work as
+regular CC's if you use CC 99. It is best to just not use these CC's if you are using this feature.
+
 ## Migration Notes
 
 If you are upgrading from version 1.x to 2.x, you should know that v2.x is not backwards compatible.
