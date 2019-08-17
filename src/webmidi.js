@@ -438,7 +438,7 @@
        * [read-only] Indicates whether WebMidi should dispatch Non-Registered
        * Parameter Number events (which are generally groups of CC messages)
        * If correct sequences of CC messages are received, NRPN events will
-       * fire. The first out of order NRPN CC will fall through the collector 
+       * fire. The first out of order NRPN CC will fall through the collector
        * logic and all CC messages buffered will be discarded as incomplete.
        *
        * @property nrpnEventsEnabled
@@ -1706,17 +1706,17 @@
   };
 
   /**
-   * Parses Channel events and constructs NRPN message parts in valid sequences.
+   * Parses channel events and constructs NRPN message parts in valid sequences.
    * Keeps a separate NRPN buffer for each channel.
    * Emits an event after it receives the final CC parts msb 127 lsb 127.
    * If a message is incomplete and other messages are received before
-   * the final 127 bytes, the incomplete message is cleared. 
+   * the final 127 bytes, the incomplete message is cleared.
    * @method _parseNrpnEvent
    * @param e Event
    * @protected
    */
   Input.prototype._parseNrpnEvent = function(e) {
-    
+
     var command = e.data[0] >> 4;
     var channel = (e.data[0] & 0xf) + 1;
     var data1, data2;
@@ -1725,7 +1725,7 @@
       data1 = e.data[1];
       data2 = e.data.length > 2 ? e.data[2] : undefined;
     }
-    
+
     if(
       !(
         wm.nrpnEventsEnabled &&
@@ -1751,7 +1751,7 @@
       },
       value: data2
     };
-      
+
     if(
       // if we get a starting MSB(CC99 - 0-126) vs an end MSB(CC99 - 127)
       // destroy inclomplete NRPN and begin building again
@@ -1800,29 +1800,35 @@
     ) {
       wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
       // now we have a full inc or dec NRPN message, lets create that event!
-      
+
       var rawData = [];
-      wm._nrpnBuffer[ccEvent.channel].forEach(ev => rawData.push(ev.data));
-      var nrpnNumber = (wm._nrpnBuffer[ccEvent.channel][0].value<<7) | (wm._nrpnBuffer[ccEvent.channel][1].value);
+
+      wm._nrpnBuffer[ccEvent.channel].forEach(function(ev) {
+        rawData.push(ev.data);
+      });
+
+      var nrpnNumber = (wm._nrpnBuffer[ccEvent.channel][0].value<<7) |
+        (wm._nrpnBuffer[ccEvent.channel][1].value);
       var nrpnValue = wm._nrpnBuffer[ccEvent.channel][2].value;
       if(wm._nrpnBuffer[ccEvent.channel].length === 6) {
-        nrpnValue = (wm._nrpnBuffer[ccEvent.channel][2].value<<7) | (wm._nrpnBuffer[ccEvent.channel][3].value);
+        nrpnValue = (wm._nrpnBuffer[ccEvent.channel][2].value<<7) |
+          (wm._nrpnBuffer[ccEvent.channel][3].value);
       }
       var nrpnControllerType = "";
       switch (wm._nrpnBuffer[ccEvent.channel][2].controller.number) {
-        case wm.MIDI_NRPN_MESSAGES.entrymsb:
-          nrpnControllerType = wm._nrpnTypes[0];
-          break;
-        case wm.MIDI_NRPN_MESSAGES.increment:
-          nrpnControllerType = wm._nrpnTypes[1];
-          break;
-        case wm.MIDI_NRPN_MESSAGES.decrement:
-          nrpnControllerType = wm._nrpnTypes[2];
-          break;
-        default:
-          throw new Error("The NPRN type was unidentifiable.");
+      case wm.MIDI_NRPN_MESSAGES.entrymsb:
+        nrpnControllerType = wm._nrpnTypes[0];
+        break;
+      case wm.MIDI_NRPN_MESSAGES.increment:
+        nrpnControllerType = wm._nrpnTypes[1];
+        break;
+      case wm.MIDI_NRPN_MESSAGES.decrement:
+        nrpnControllerType = wm._nrpnTypes[2];
+        break;
+      default:
+        throw new Error("The NPRN type was unidentifiable.");
       }
-      
+
       /**
        * Event emitted when a control change MIDI message has been received on a specific device
        * and channel.
@@ -1840,7 +1846,7 @@
        * @param {String} event.controller.name The usual name or function of the controller.
        * @param {uint} event.value The value received (between 0 and 65535).
        */
-       
+
       var nrpnEvent = {
         timestamp: ccEvent.timestamp,
         channel: ccEvent.channel,
@@ -1855,7 +1861,8 @@
       };
       // now we are done building an NRPN, so clear the NRPN buffer for this channel
       wm._nrpnBuffer[ccEvent.channel] = [];
-      // If some callbacks have been defined for this event, on that device and channel, execute them.
+      // If some callbacks have been defined for this event, on that device and channel, execute
+      // them.
       if (
         this._userHandlers.channel[nrpnEvent.type] &&
         this._userHandlers.channel[nrpnEvent.type][nrpnEvent.channel]
@@ -2599,14 +2606,21 @@
    * If you want to send a sysex message to a Korg device connected to the first output, you would
    * use the following code:
    *
-   *     WebMidi.outputs[0].sendSysex(0x42, [1, 2, 3, 4, 5]);
+   *     WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]);
    *
-   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg (ID 0x42) devices. Some
-   * manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as
-   * the first parameter. For example, to send the same sysex message to a *Native Instruments*
-   * device:
+   * The parameters can be specified using any number notation (decimal, hex, binary, etc.).
+   * Therefore, the code below is equivalent to the code above:
    *
-   *     WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [1, 2, 3, 4, 5]);
+   *     WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);
+   *
+   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (hex 42 is the same as
+   * decimal 66).
+   *
+   * Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array
+   * as the first parameter. For example, to send the same sysex message to a
+   * *Native Instruments* device:
+   *
+   *     WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
    *
    * There is no limit for the length of the data array. However, it is generally suggested to keep
    * system exclusive messages to 64Kb or less.
