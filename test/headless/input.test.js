@@ -102,11 +102,11 @@ describe("Input", function() {
       expect(WebMidi.inputs[0].hasListener("controlchange", [1, 2, 3], a)).to.equal(true);
       expect(WebMidi.inputs[0].hasListener("controlchange", "all", a)).to.equal(false);
 
-      WebMidi.inputs[0].addListener('nrpn', [1, 2, 3], a);
-      expect(WebMidi.inputs[0].hasListener('nrpn', 3, a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', [1, 3], a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', [1, 2, 3], a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', "all", a)).to.equal(false);
+      WebMidi.inputs[0].addListener("nrpn", [1, 2, 3], a);
+      expect(WebMidi.inputs[0].hasListener("nrpn", 3, a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", [1, 3], a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", [1, 2, 3], a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", "all", a)).to.equal(false);
 
       WebMidi.inputs[0].addListener("channelmode", "all", a);
       expect(WebMidi.inputs[0].hasListener("channelmode", 3, a)).to.equal(true);
@@ -152,11 +152,11 @@ describe("Input", function() {
       expect(WebMidi.inputs[0].hasListener("controlchange", [1, 2, 3], a)).to.equal(true);
       expect(WebMidi.inputs[0].hasListener("controlchange", "all", a)).to.equal(false);
 
-      WebMidi.inputs[0].addListener('nrpn', [1, 2, 3], a);
-      expect(WebMidi.inputs[0].hasListener('nrpn', 3, a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', [1, 3], a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', [1, 2, 3], a)).to.equal(true);
-      expect(WebMidi.inputs[0].hasListener('nrpn', "all", a)).to.equal(false);
+      WebMidi.inputs[0].addListener("nrpn", [1, 2, 3], a);
+      expect(WebMidi.inputs[0].hasListener("nrpn", 3, a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", [1, 3], a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", [1, 2, 3], a)).to.equal(true);
+      expect(WebMidi.inputs[0].hasListener("nrpn", "all", a)).to.equal(false);
 
       WebMidi.inputs[0].addListener("channelmode", "all", a);
       expect(WebMidi.inputs[0].hasListener("channelmode", 3, a)).to.equal(true);

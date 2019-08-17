@@ -12,7 +12,9 @@ module.exports = {
   },
 
   "globals": {
-    "Promise": "readonly"
+    "Promise": "readonly",
+    "WebMidi": "readonly",
+    "expect": "readonly"
   },
 
   "extends": ["eslint:recommended", "prettier"],
