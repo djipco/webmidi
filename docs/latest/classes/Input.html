@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.3.3</em>
+            <em>API Docs for: 2.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -83,7 +83,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_webmidi.js.html#l1203"><code>src&#x2F;webmidi.js:1203</code></a>
+            Defined in: <a href="../files/src_webmidi.js.html#l1269"><code>src&#x2F;webmidi.js:1269</code></a>
         </div>
 
 
@@ -125,6 +125,10 @@ the MIDI subsystem and cannot be instantiated directly.</p>
                             </li>
                             <li class="index-item method protected">
                                 <a href="#method__parseChannelEvent">_parseChannelEvent</a>
+
+                            </li>
+                            <li class="index-item method protected">
+                                <a href="#method__parseNrpnEvent">_parseNrpnEvent</a>
 
                             </li>
                             <li class="index-item method protected">
@@ -235,6 +239,10 @@ the MIDI subsystem and cannot be instantiated directly.</p>
 
                             </li>
                             <li class="index-item event">
+                                <a href="#event_nrpn">nrpn</a>
+
+                            </li>
+                            <li class="index-item event">
                                 <a href="#event_pitchbend">pitchbend</a>
 
                             </li>
@@ -301,7 +309,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1576"><code>src&#x2F;webmidi.js:1576</code></a>
+        <a href="../files/src_webmidi.js.html#l1643"><code>src&#x2F;webmidi.js:1643</code></a>
         </p>
 
 
@@ -332,7 +340,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1596"><code>src&#x2F;webmidi.js:1596</code></a>
+        <a href="../files/src_webmidi.js.html#l1663"><code>src&#x2F;webmidi.js:1663</code></a>
         </p>
 
 
@@ -369,7 +377,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1640"><code>src&#x2F;webmidi.js:1640</code></a>
+        <a href="../files/src_webmidi.js.html#l1880"><code>src&#x2F;webmidi.js:1880</code></a>
         </p>
 
 
@@ -378,6 +386,65 @@ the MIDI subsystem and cannot be instantiated directly.</p>
 
     <div class="description">
         
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__parseNrpnEvent" class="method item protected">
+    <h3 class="name"><code>_parseNrpnEvent</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag protected">protected</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l1708"><code>src&#x2F;webmidi.js:1708</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Parses channel events and constructs NRPN message parts in valid sequences.
+Keeps a separate NRPN buffer for each channel.
+Emits an event after it receives the final CC parts msb 127 lsb 127.
+If a message is incomplete and other messages are received before
+the final 127 bytes, the incomplete message is cleared.</p>
+
     </div>
 
         <div class="params">
@@ -417,7 +484,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1958"><code>src&#x2F;webmidi.js:1958</code></a>
+        <a href="../files/src_webmidi.js.html#l2198"><code>src&#x2F;webmidi.js:2198</code></a>
         </p>
 
 
@@ -463,7 +530,7 @@ the MIDI subsystem and cannot be instantiated directly.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1311"><code>src&#x2F;webmidi.js:1311</code></a>
+        <a href="../files/src_webmidi.js.html#l1377"><code>src&#x2F;webmidi.js:1377</code></a>
         </p>
 
 
@@ -480,6 +547,7 @@ event happens. The events that are dispatched can be channel-specific or Input-w
 <li><a href="../classes/Input.html#event_noteon" class="crosslink">noteon</a></li>
 <li><a href="../classes/Input.html#event_keyaftertouch" class="crosslink">keyaftertouch</a></li>
 <li><a href="../classes/Input.html#event_controlchange" class="crosslink">controlchange</a></li>
+<li><a href="../classes/Input.html#event_nrpn" class="crosslink">pitchbend</a></li>
 <li><a href="../classes/Input.html#event_channelmode" class="crosslink">channelmode</a></li>
 <li><a href="../classes/Input.html#event_programchange" class="crosslink">programchange</a></li>
 <li><a href="../classes/Input.html#event_channelaftertouch" class="crosslink">channelaftertouch</a></li>
@@ -530,7 +598,7 @@ event. This event is dispatched for every single message that is received on tha
 
                     <div class="param-description">
                         <p>The MIDI channel to listen on (integer between 1 and 16).
-You can also specify an array of channel numbers or the value 'all' (or leave it undefined for
+You can also specify an array of channel numbers or the value &quot;all&quot; (or leave it undefined for
 input-wide events).</p>
 
                     </div>
@@ -543,7 +611,7 @@ input-wide events).</p>
 
                     <div class="param-description">
                         <p>A callback function to execute when the specified event is detected.
-This function will receive an event parameter object. For details on this object's properties,
+This function will receive an event parameter object. For details on this object&quot;s properties,
 check out the documentation for the various events (links above).</p>
 
                     </div>
@@ -597,7 +665,7 @@ check out the documentation for the various events (links above).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1888"><code>src&#x2F;webmidi.js:1888</code></a>
+        <a href="../files/src_webmidi.js.html#l2128"><code>src&#x2F;webmidi.js:2128</code></a>
         </p>
 
 
@@ -673,7 +741,7 @@ found, the function returns <code>undefined</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1924"><code>src&#x2F;webmidi.js:1924</code></a>
+        <a href="../files/src_webmidi.js.html#l2164"><code>src&#x2F;webmidi.js:2164</code></a>
         </p>
 
 
@@ -710,7 +778,7 @@ returns <code>undefined</code>.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>:
-                    <p>The matching channel mode message's name or <code>undefined</code>;</p>
+                    <p>The matching channel mode message&quot;s name or <code>undefined</code>;</p>
 
             </div>
         </div>
@@ -755,7 +823,7 @@ returns <code>undefined</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1432"><code>src&#x2F;webmidi.js:1432</code></a>
+        <a href="../files/src_webmidi.js.html#l1499"><code>src&#x2F;webmidi.js:1499</code></a>
         </p>
 
 
@@ -793,7 +861,7 @@ We suggest you use <code>undefined</code> in such cases.</p>
 
                     <div class="param-description">
                         <p>The MIDI channel to check on (between 1 and 16). You
-can also specify an array of channel numbers or the string 'all'.</p>
+can also specify an array of channel numbers or the string &quot;all&quot;.</p>
 
                     </div>
 
@@ -828,7 +896,7 @@ listener defined.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function.</p>
+                    <p>The &quot;listener&quot; parameter must be a function.</p>
 
             </div>
         </div>
@@ -849,7 +917,7 @@ listener defined.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1423"><code>src&#x2F;webmidi.js:1423</code></a>
+        <a href="../files/src_webmidi.js.html#l1490"><code>src&#x2F;webmidi.js:1490</code></a>
         </p>
 
 
@@ -898,7 +966,7 @@ function.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1491"><code>src&#x2F;webmidi.js:1491</code></a>
+        <a href="../files/src_webmidi.js.html#l1558"><code>src&#x2F;webmidi.js:1558</code></a>
         </p>
 
 
@@ -975,7 +1043,7 @@ You can use <code>undefined</code> in such cases.</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function..</p>
+                    <p>The &quot;listener&quot; parameter must be a function..</p>
 
             </div>
         </div>
@@ -997,14 +1065,14 @@ You can use <code>undefined</code> in such cases.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1224"><code>src&#x2F;webmidi.js:1224</code></a>
+        <a href="../files/src_webmidi.js.html#l1290"><code>src&#x2F;webmidi.js:1290</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Status of the MIDI port's connection (<code>pending</code>, <code>open</code> or <code>closed</code>)</p>
+        <p>[read-only] Status of the MIDI port&quot;s connection (<code>pending</code>, <code>open</code> or <code>closed</code>)</p>
 
     </div>
 
@@ -1022,7 +1090,7 @@ You can use <code>undefined</code> in such cases.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1237"><code>src&#x2F;webmidi.js:1237</code></a>
+        <a href="../files/src_webmidi.js.html#l1303"><code>src&#x2F;webmidi.js:1303</code></a>
         </p>
 
 
@@ -1049,7 +1117,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1252"><code>src&#x2F;webmidi.js:1252</code></a>
+        <a href="../files/src_webmidi.js.html#l1318"><code>src&#x2F;webmidi.js:1318</code></a>
         </p>
 
 
@@ -1074,7 +1142,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1265"><code>src&#x2F;webmidi.js:1265</code></a>
+        <a href="../files/src_webmidi.js.html#l1331"><code>src&#x2F;webmidi.js:1331</code></a>
         </p>
 
 
@@ -1099,7 +1167,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1278"><code>src&#x2F;webmidi.js:1278</code></a>
+        <a href="../files/src_webmidi.js.html#l1344"><code>src&#x2F;webmidi.js:1344</code></a>
         </p>
 
 
@@ -1124,7 +1192,7 @@ different IDs for the same port.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1291"><code>src&#x2F;webmidi.js:1291</code></a>
+        <a href="../files/src_webmidi.js.html#l1357"><code>src&#x2F;webmidi.js:1357</code></a>
         </p>
 
 
@@ -1155,7 +1223,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2134"><code>src&#x2F;webmidi.js:2134</code></a>
+                            <a href="../files/src_webmidi.js.html#l2374"><code>src&#x2F;webmidi.js:2374</code></a>
                             </p>
                     
                     
@@ -1238,7 +1306,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1836"><code>src&#x2F;webmidi.js:1836</code></a>
+                            <a href="../files/src_webmidi.js.html#l2076"><code>src&#x2F;webmidi.js:2076</code></a>
                             </p>
                     
                     
@@ -1342,7 +1410,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1791"><code>src&#x2F;webmidi.js:1791</code></a>
+                            <a href="../files/src_webmidi.js.html#l2031"><code>src&#x2F;webmidi.js:2031</code></a>
                             </p>
                     
                     
@@ -1473,7 +1541,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2070"><code>src&#x2F;webmidi.js:2070</code></a>
+                            <a href="../files/src_webmidi.js.html#l2310"><code>src&#x2F;webmidi.js:2310</code></a>
                             </p>
                     
                     
@@ -1557,7 +1625,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2102"><code>src&#x2F;webmidi.js:2102</code></a>
+                            <a href="../files/src_webmidi.js.html#l2342"><code>src&#x2F;webmidi.js:2342</code></a>
                             </p>
                     
                     
@@ -1641,7 +1709,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1762"><code>src&#x2F;webmidi.js:1762</code></a>
+                            <a href="../files/src_webmidi.js.html#l2002"><code>src&#x2F;webmidi.js:2002</code></a>
                             </p>
                     
                     
@@ -1772,7 +1840,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1731"><code>src&#x2F;webmidi.js:1731</code></a>
+                            <a href="../files/src_webmidi.js.html#l1971"><code>src&#x2F;webmidi.js:1971</code></a>
                             </p>
                     
                     
@@ -1911,7 +1979,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1612"><code>src&#x2F;webmidi.js:1612</code></a>
+                            <a href="../files/src_webmidi.js.html#l1679"><code>src&#x2F;webmidi.js:1679</code></a>
                             </p>
                     
                     
@@ -1997,7 +2065,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1669"><code>src&#x2F;webmidi.js:1669</code></a>
+                            <a href="../files/src_webmidi.js.html#l1909"><code>src&#x2F;webmidi.js:1909</code></a>
                             </p>
                     
                     
@@ -2147,7 +2215,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1700"><code>src&#x2F;webmidi.js:1700</code></a>
+                            <a href="../files/src_webmidi.js.html#l1940"><code>src&#x2F;webmidi.js:1940</code></a>
                             </p>
                     
                     
@@ -2286,6 +2354,137 @@ different IDs for the same port.</p>
                     
                     
                     </div>
+                    <div id="event_nrpn" class="events item">
+                        <h3 class="name"><code>nrpn</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_webmidi.js.html#l1832"><code>src&#x2F;webmidi.js:1832</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Event emitted when a control change MIDI message has been received on a specific device
+                    and channel.</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Event Payload:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">event</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                             
+                                        </div>
+                    
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">target</code>
+                                                        <span class="type"><a href="../classes/Input.html" class="crosslink">Input</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The <code>Input</code> that triggered the event.</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">data</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The raw MIDI message as arrays of 8 bit values( Uint8Array ).</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">timestamp</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The time when the event occurred (in milliseconds)</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">channel</code>
+                                                        <span class="type">Uint</span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The channel where the event occurred (between 1 and 16).</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">type</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The type of event that occurred.</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">controller</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+                                                    <div class="param-description">
+                                                        
+                                                    </div>
+                    
+                                                        <ul class="params-list">
+                                                            <li class="param">
+                                                                <code class="param-name">number</code>
+                                                                <span class="type">Uint</span>
+                    
+                                                                <div class="param-description">
+                                                                    The number of the NRPN.
+                                                                </div>
+                                                            </li>
+                                                            <li class="param">
+                                                                <code class="param-name">name</code>
+                                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+                                                                <div class="param-description">
+                                                                    The usual name or function of the controller.
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">value</code>
+                                                        <span class="type">Uint</span>
+                    
+                                                    <div class="param-description">
+                                                        <p>The value received (between 0 and 65535).</p>
+                    
+                                                    </div>
+                    
+                                                </li>
+                                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                    
+                    
+                    </div>
                     <div id="event_pitchbend" class="events item">
                         <h3 class="name"><code>pitchbend</code></h3>
                         <span class="type"></span>
@@ -2297,7 +2496,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1855"><code>src&#x2F;webmidi.js:1855</code></a>
+                            <a href="../files/src_webmidi.js.html#l2095"><code>src&#x2F;webmidi.js:2095</code></a>
                             </p>
                     
                     
@@ -2401,7 +2600,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1817"><code>src&#x2F;webmidi.js:1817</code></a>
+                            <a href="../files/src_webmidi.js.html#l2057"><code>src&#x2F;webmidi.js:2057</code></a>
                             </p>
                     
                     
@@ -2505,7 +2704,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2149"><code>src&#x2F;webmidi.js:2149</code></a>
+                            <a href="../files/src_webmidi.js.html#l2389"><code>src&#x2F;webmidi.js:2389</code></a>
                             </p>
                     
                     
@@ -2588,7 +2787,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2022"><code>src&#x2F;webmidi.js:2022</code></a>
+                            <a href="../files/src_webmidi.js.html#l2262"><code>src&#x2F;webmidi.js:2262</code></a>
                             </p>
                     
                     
@@ -2671,7 +2870,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2037"><code>src&#x2F;webmidi.js:2037</code></a>
+                            <a href="../files/src_webmidi.js.html#l2277"><code>src&#x2F;webmidi.js:2277</code></a>
                             </p>
                     
                     
@@ -2764,7 +2963,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2086"><code>src&#x2F;webmidi.js:2086</code></a>
+                            <a href="../files/src_webmidi.js.html#l2326"><code>src&#x2F;webmidi.js:2326</code></a>
                             </p>
                     
                     
@@ -2848,7 +3047,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2118"><code>src&#x2F;webmidi.js:2118</code></a>
+                            <a href="../files/src_webmidi.js.html#l2358"><code>src&#x2F;webmidi.js:2358</code></a>
                             </p>
                     
                     
@@ -2932,7 +3131,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1975"><code>src&#x2F;webmidi.js:1975</code></a>
+                            <a href="../files/src_webmidi.js.html#l2215"><code>src&#x2F;webmidi.js:2215</code></a>
                             </p>
                     
                     
@@ -2950,7 +3149,7 @@ different IDs for the same port.</p>
                     
                        var input = WebMidi.inputs[0];
                     
-                       input.addListener('sysex', &quot;all&quot;, function (e) {
+                       input.addListener(&quot;sysex&quot;, &quot;all&quot;, function (e) {
                          console.log(e);
                        });
                     
@@ -3030,7 +3229,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2007"><code>src&#x2F;webmidi.js:2007</code></a>
+                            <a href="../files/src_webmidi.js.html#l2247"><code>src&#x2F;webmidi.js:2247</code></a>
                             </p>
                     
                     
@@ -3113,7 +3312,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2054"><code>src&#x2F;webmidi.js:2054</code></a>
+                            <a href="../files/src_webmidi.js.html#l2294"><code>src&#x2F;webmidi.js:2294</code></a>
                             </p>
                     
                     
@@ -3197,7 +3396,7 @@ different IDs for the same port.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l2164"><code>src&#x2F;webmidi.js:2164</code></a>
+                            <a href="../files/src_webmidi.js.html#l2404"><code>src&#x2F;webmidi.js:2404</code></a>
                             </p>
                     
                     

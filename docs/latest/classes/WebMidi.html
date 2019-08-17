@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.3.3</em>
+            <em>API Docs for: 2.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -114,12 +114,12 @@ callback function specified as a parameter. In this case, the callback calls the
 function to play a 3rd octave C on the first available output port.</p>
 <h4>Receiving messages</h4>
 <p>Receiving messages is just as easy. You simply have to set a callback function to be triggered
-when a specific MIDI message is received. For example, here's how to listen for pitch bend
+when a specific MIDI message is received. For example, here&quot;s how to listen for pitch bend
 events on the first input port:</p>
 <pre class="code prettyprint"><code> WebMidi.enable(function(err) {
    if (err) console.log(&quot;An error occurred&quot;, err);
 
-   WebMidi.inputs[0].addListener('pitchbend', &quot;all&quot;, function(e) {
+   WebMidi.inputs[0].addListener(&quot;pitchbend&quot;, &quot;all&quot;, function(e) {
      console.log(&quot;Pitch value: &quot; + e.value);
    });
 
@@ -233,9 +233,10 @@ manually craft or decode binary MIDI messages anymore!</p>
 
                                     <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method protected">
+                            <li class="index-item method">
                                 <a href="#method_toMIDIChannels">toMIDIChannels</a>
 
+                                    <span class="flag static">static</span>
                             </li>
                     </ul>
                 </div>
@@ -270,12 +271,27 @@ manually craft or decode binary MIDI messages anymore!</p>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
+                                <a href="#property_MIDI_NRPN_MESSAGES">MIDI_NRPN_MESSAGES</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_MIDI_REGISTERED_PARAMETER">MIDI_REGISTERED_PARAMETER</a>
 
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
                                 <a href="#property_MIDI_SYSTEM_MESSAGES">MIDI_SYSTEM_MESSAGES</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_nrpnEventsEnabled">nrpnEventsEnabled</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_nrpnTypes">nrpnTypes</a>
 
                                     <span class="flag static">static</span>
                             </li>
@@ -344,7 +360,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1123"><code>src&#x2F;webmidi.js:1123</code></a>
+        <a href="../files/src_webmidi.js.html#l1189"><code>src&#x2F;webmidi.js:1189</code></a>
         </p>
 
 
@@ -376,7 +392,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1190"><code>src&#x2F;webmidi.js:1190</code></a>
+        <a href="../files/src_webmidi.js.html#l1256"><code>src&#x2F;webmidi.js:1256</code></a>
         </p>
 
 
@@ -408,7 +424,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1027"><code>src&#x2F;webmidi.js:1027</code></a>
+        <a href="../files/src_webmidi.js.html#l1093"><code>src&#x2F;webmidi.js:1093</code></a>
         </p>
 
 
@@ -440,7 +456,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1017"><code>src&#x2F;webmidi.js:1017</code></a>
+        <a href="../files/src_webmidi.js.html#l1083"><code>src&#x2F;webmidi.js:1083</code></a>
         </p>
 
 
@@ -472,7 +488,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1075"><code>src&#x2F;webmidi.js:1075</code></a>
+        <a href="../files/src_webmidi.js.html#l1141"><code>src&#x2F;webmidi.js:1141</code></a>
         </p>
 
 
@@ -516,7 +532,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l591"><code>src&#x2F;webmidi.js:591</code></a>
+        <a href="../files/src_webmidi.js.html#l651"><code>src&#x2F;webmidi.js:651</code></a>
         </p>
 
 
@@ -556,7 +572,7 @@ specified event happens.</p>
 
                     <div class="param-description">
                         <p>A callback function to execute when the specified event is detected.
-This function will receive an event parameter object. For details on this object's properties,
+This function will receive an event parameter object. For details on this object&quot;s properties,
 check out the documentation for the various events (links above).</p>
 
                     </div>
@@ -580,7 +596,7 @@ check out the documentation for the various events (links above).</p>
 
             <div class="throws-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" class="crosslink external" target="_blank">TypeError</a></span>:
-                    <p>The 'listener' parameter must be a function.</p>
+                    <p>The &quot;listener&quot; parameter must be a function.</p>
 
             </div>
         </div>
@@ -602,7 +618,7 @@ check out the documentation for the various events (links above).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l567"><code>src&#x2F;webmidi.js:567</code></a>
+        <a href="../files/src_webmidi.js.html#l626"><code>src&#x2F;webmidi.js:626</code></a>
         </p>
 
 
@@ -611,7 +627,7 @@ check out the documentation for the various events (links above).</p>
     </div>
 
     <div class="description">
-        <p>Completely disables <code>WebMidi</code> by unlinking the MIDI subsystem's interface and destroying all
+        <p>Completely disables <code>WebMidi</code> by unlinking the MIDI subsystem&quot;s interface and destroying all
 <code>Input</code> and <code>Output</code> objects that may be available. This also means that any listener that may
 have been defined on <code>Input</code> or <code>Output</code> objects will be destroyed.</p>
 
@@ -646,7 +662,7 @@ have been defined on <code>Input</code> or <code>Output</code> objects will be d
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l437"><code>src&#x2F;webmidi.js:437</code></a>
+        <a href="../files/src_webmidi.js.html#l496"><code>src&#x2F;webmidi.js:496</code></a>
         </p>
 
 
@@ -654,8 +670,8 @@ have been defined on <code>Input</code> or <code>Output</code> objects will be d
     </div>
 
     <div class="description">
-        <p>Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
-This is an asynchronous operation. When it's done, the specified handler callback will be
+        <p>Checks if the Web MIDI API is available and then tries to connect to the host&quot;s MIDI subsystem.
+This is an asynchronous operation. When it&quot;s done, the specified handler callback will be
 executed. If an error occurred, the callback function will receive an <code>Error</code> object as its
 sole parameter.</p>
 <p>To enable the use of system exclusive messages, the <code>sysex</code> parameter should be set to true.
@@ -732,7 +748,7 @@ is always enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l779"><code>src&#x2F;webmidi.js:779</code></a>
+        <a href="../files/src_webmidi.js.html#l845"><code>src&#x2F;webmidi.js:845</code></a>
         </p>
 
 
@@ -813,7 +829,7 @@ can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l848"><code>src&#x2F;webmidi.js:848</code></a>
+        <a href="../files/src_webmidi.js.html#l914"><code>src&#x2F;webmidi.js:914</code></a>
         </p>
 
 
@@ -893,7 +909,7 @@ name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l882"><code>src&#x2F;webmidi.js:882</code></a>
+        <a href="../files/src_webmidi.js.html#l948"><code>src&#x2F;webmidi.js:948</code></a>
         </p>
 
 
@@ -964,7 +980,7 @@ as you want.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l814"><code>src&#x2F;webmidi.js:814</code></a>
+        <a href="../files/src_webmidi.js.html#l880"><code>src&#x2F;webmidi.js:880</code></a>
         </p>
 
 
@@ -1045,7 +1061,7 @@ can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l905"><code>src&#x2F;webmidi.js:905</code></a>
+        <a href="../files/src_webmidi.js.html#l971"><code>src&#x2F;webmidi.js:971</code></a>
         </p>
 
 
@@ -1125,7 +1141,7 @@ specified name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l938"><code>src&#x2F;webmidi.js:938</code></a>
+        <a href="../files/src_webmidi.js.html#l1004"><code>src&#x2F;webmidi.js:1004</code></a>
         </p>
 
 
@@ -1207,7 +1223,7 @@ used, in which case it will simply be returned (if between 0 and 127).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l637"><code>src&#x2F;webmidi.js:637</code></a>
+        <a href="../files/src_webmidi.js.html#l697"><code>src&#x2F;webmidi.js:697</code></a>
         </p>
 
 
@@ -1296,7 +1312,7 @@ this event type.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l968"><code>src&#x2F;webmidi.js:968</code></a>
+        <a href="../files/src_webmidi.js.html#l1034"><code>src&#x2F;webmidi.js:1034</code></a>
         </p>
 
 
@@ -1385,7 +1401,7 @@ number will be 36.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l680"><code>src&#x2F;webmidi.js:680</code></a>
+        <a href="../files/src_webmidi.js.html#l740"><code>src&#x2F;webmidi.js:740</code></a>
         </p>
 
 
@@ -1451,13 +1467,13 @@ omitted, all listeners attached to the <code>WebMidi</code> object will be remov
         </div>
 
 </div>
-<div id="method_toMIDIChannels" class="method item protected">
+<div id="method_toMIDIChannels" class="method item">
     <h3 class="name"><code>toMIDIChannels</code></h3>
 
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code class="optional">[channel]</code>
+                        <code class="optional">[channel=&quot;all&quot;]</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -1467,16 +1483,16 @@ omitted, all listeners attached to the <code>WebMidi</code> object will be remov
         </span>
 
 
-        <span class="flag protected">protected</span>
 
 
+        <span class="flag static">static</span>
 
 
 
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l734"><code>src&#x2F;webmidi.js:734</code></a>
+        <a href="../files/src_webmidi.js.html#l794"><code>src&#x2F;webmidi.js:794</code></a>
         </p>
 
 
@@ -1484,12 +1500,18 @@ omitted, all listeners attached to the <code>WebMidi</code> object will be remov
     </div>
 
     <div class="description">
-        <p>Converts an input value (which should be an integer, an array of integers, <code>&quot;all&quot;</code> or
-<code>undefined</code>) to an array of valid MIDI channel numbers. Passing <code>&quot;all&quot;</code> or <code>undefined</code> to this
-function results in all channels being returned (1-16). Passing <code>&quot;none&quot;</code> results in no
-channels being returned as an empty array.</p>
-<p>Elements in the array that cannot successfully be parsed to integers between 1 and 16 (using
-<code>parseInt()</code>) are silently removed.</p>
+        <p>Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
+the following:</p>
+<ul>
+<li>a single integer</li>
+<li>an array of integers</li>
+<li>the special value <code>&quot;all&quot;</code></li>
+<li>the special value <code>&quot;none&quot;</code></li>
+</ul>
+<p>Passing <code>&quot;all&quot;</code> or <code>undefined</code> as a parameter to this function results in all channels being
+returned (1-16). Passing <code>&quot;none&quot;</code> results in no channel being returned (as an empty array).</p>
+<p>Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
+ignored.</p>
 
     </div>
 
@@ -1498,8 +1520,8 @@ channels being returned as an empty array.</p>
 
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name optional">[channel]</code>
-                        <span class="type">Uint | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                        <code class="param-name optional">[channel=&quot;all&quot;]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | "all" | "none"</span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
 
 
@@ -1516,6 +1538,8 @@ channels being returned as an empty array.</p>
 
             <div class="returns-description">
                         <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    <p>An array of 0 or more valid MIDI channel numbers</p>
+
             </div>
         </div>
 
@@ -1538,14 +1562,14 @@ channels being returned as an empty array.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l356"><code>src&#x2F;webmidi.js:356</code></a>
+        <a href="../files/src_webmidi.js.html#l379"><code>src&#x2F;webmidi.js:379</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+        <p>[read-only] Indicates whether the interface to the host&quot;s MIDI subsystem is currently
 enabled.</p>
 
     </div>
@@ -1565,7 +1589,7 @@ enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l371"><code>src&#x2F;webmidi.js:371</code></a>
+        <a href="../files/src_webmidi.js.html#l394"><code>src&#x2F;webmidi.js:394</code></a>
         </p>
 
 
@@ -1591,7 +1615,7 @@ enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l147"><code>src&#x2F;webmidi.js:147</code></a>
+        <a href="../files/src_webmidi.js.html#l144"><code>src&#x2F;webmidi.js:144</code></a>
         </p>
 
 
@@ -1619,7 +1643,7 @@ associated hexadecimal value.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l286"><code>src&#x2F;webmidi.js:286</code></a>
+        <a href="../files/src_webmidi.js.html#l309"><code>src&#x2F;webmidi.js:309</code></a>
         </p>
 
 
@@ -1647,7 +1671,7 @@ specification.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l209"><code>src&#x2F;webmidi.js:209</code></a>
+        <a href="../files/src_webmidi.js.html#l207"><code>src&#x2F;webmidi.js:207</code></a>
         </p>
 
 
@@ -1657,6 +1681,34 @@ specification.</p>
     <div class="description">
         <p>[read-only] An object containing properties for each MIDI control change messages (a.k.a.
 CC messages) and their associated hexadecimal value.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_MIDI_NRPN_MESSAGES" class="property item">
+    <h3 class="name"><code>MIDI_NRPN_MESSAGES</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l284"><code>src&#x2F;webmidi.js:284</code></a>
+        </p>
+
+
+            <p>Available since 2.0.0</p>
+    </div>
+
+    <div class="description">
+        <p>[read-only] An object containing properties for MIDI control change messages
+that make up NRPN messages</p>
 
     </div>
 
@@ -1675,7 +1727,7 @@ CC messages) and their associated hexadecimal value.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l173"><code>src&#x2F;webmidi.js:173</code></a>
+        <a href="../files/src_webmidi.js.html#l171"><code>src&#x2F;webmidi.js:171</code></a>
         </p>
 
 
@@ -1705,7 +1757,7 @@ of them.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l106"><code>src&#x2F;webmidi.js:106</code></a>
+        <a href="../files/src_webmidi.js.html#l103"><code>src&#x2F;webmidi.js:103</code></a>
         </p>
 
 
@@ -1717,6 +1769,62 @@ of them.</p>
 <p>Note: values 249 and 253 are actually dispatched by the Web MIDI API but I do not know what
 they are used for. They are not part of the online
 <a href="http://www.midi.org/techspecs/midimessages.php">MIDI 1.0 spec</a>.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_nrpnEventsEnabled" class="property item">
+    <h3 class="name"><code>nrpnEventsEnabled</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l437"><code>src&#x2F;webmidi.js:437</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>[read-only] Indicates whether WebMidi should dispatch Non-Registered
+Parameter Number events (which are generally groups of CC messages)
+If correct sequences of CC messages are received, NRPN events will
+fire. The first out of order NRPN CC will fall through the collector
+logic and all CC messages buffered will be discarded as incomplete.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_nrpnTypes" class="property item">
+    <h3 class="name"><code>nrpnTypes</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/src_webmidi.js.html#l459"><code>src&#x2F;webmidi.js:459</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>[read-only] NRPN message types</p>
 
     </div>
 
@@ -1735,7 +1843,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l312"><code>src&#x2F;webmidi.js:312</code></a>
+        <a href="../files/src_webmidi.js.html#l335"><code>src&#x2F;webmidi.js:335</code></a>
         </p>
 
 
@@ -1765,7 +1873,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l385"><code>src&#x2F;webmidi.js:385</code></a>
+        <a href="../files/src_webmidi.js.html#l408"><code>src&#x2F;webmidi.js:408</code></a>
         </p>
 
 
@@ -1791,7 +1899,7 @@ they are used for. They are not part of the online
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l337"><code>src&#x2F;webmidi.js:337</code></a>
+        <a href="../files/src_webmidi.js.html#l360"><code>src&#x2F;webmidi.js:360</code></a>
         </p>
 
 
@@ -1821,14 +1929,14 @@ not be there.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l399"><code>src&#x2F;webmidi.js:399</code></a>
+        <a href="../files/src_webmidi.js.html#l422"><code>src&#x2F;webmidi.js:422</code></a>
         </p>
 
 
     </div>
 
     <div class="description">
-        <p>[read-only] Indicates whether the interface to the host's MIDI subsystem is currently
+        <p>[read-only] Indicates whether the interface to the host&quot;s MIDI subsystem is currently
 active.</p>
 
     </div>
@@ -1848,7 +1956,7 @@ active.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l414"><code>src&#x2F;webmidi.js:414</code></a>
+        <a href="../files/src_webmidi.js.html#l473"><code>src&#x2F;webmidi.js:473</code></a>
         </p>
 
 
@@ -1880,7 +1988,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1132"><code>src&#x2F;webmidi.js:1132</code></a>
+                            <a href="../files/src_webmidi.js.html#l1198"><code>src&#x2F;webmidi.js:1198</code></a>
                             </p>
                     
                     
@@ -1956,7 +2064,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1145"><code>src&#x2F;webmidi.js:1145</code></a>
+                            <a href="../files/src_webmidi.js.html#l1211"><code>src&#x2F;webmidi.js:1211</code></a>
                             </p>
                     
                     
