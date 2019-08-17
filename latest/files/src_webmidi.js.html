@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.3.3</em>
+            <em>API Docs for: 2.5.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -1886,7 +1886,11 @@
       // now we have a full inc or dec NRPN message, lets create that event!
 
       var rawData = [];
-      wm._nrpnBuffer[ccEvent.channel].forEach(ev =&gt; rawData.push(ev.data));
+
+      wm._nrpnBuffer[ccEvent.channel].forEach(function(ev) {
+        rawData.push(ev.data);
+      });
+
       var nrpnNumber = (wm._nrpnBuffer[ccEvent.channel][0].value&lt;&lt;7) |
         (wm._nrpnBuffer[ccEvent.channel][1].value);
       var nrpnValue = wm._nrpnBuffer[ccEvent.channel][2].value;
