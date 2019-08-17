@@ -299,6 +299,22 @@ WebMidi.enable(function (err) {
       console.log("Received 'controlchange' message.", e);
     }
   );
+  
+  // Listen to NRPN message on all channels
+  input.addListener('nrpn', "all",
+    function (e) {
+      if(e.controller.type === 'entry') {
+        console.log("Received 'nrpn' 'entry' message.", e);
+      }
+      if(e.controller.type === 'decrement') {
+        console.log("Received 'nrpn' 'decrement' message.", e);
+      }
+      if(e.controller.type === 'increment') {
+        console.log("Received 'nrpn' 'increment' message.", e);
+      }
+      console.log("message value: " + e.controller.value + ".", e);
+    }
+  );
 
   // Check for the presence of an event listener (n such cases, you cannot use anonymous functions).
   function test(e) { console.log(e); }
