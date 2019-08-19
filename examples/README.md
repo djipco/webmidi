@@ -1,4 +1,4 @@
-## Examples
+## Examples wanted!
 
 No examples have yet been created but community contributions are most welcome. Simply submit a push 
 request and it will be quickly reviewed.
