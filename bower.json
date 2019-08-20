@@ -5,7 +5,7 @@
     "Jean-Philippe Côté <jp@cote.cc> (http://cote.cc)"
   ],
   "description": "Tame the Web MIDI API. Send MIDI messages with ease using user-friendly functions. React to MIDI events with simple event listeners.",
-  "main": "src/webmidi.js",
+  "main": "webmidi.min.js",
   "moduleType": [
     "amd",
     "globals",
@@ -27,7 +27,6 @@
     "Gruntfile.js",
     "package.json",
     "README.md",
-    "test",
-    "webmidi.min.js"
+    "test"
   ]
 }
