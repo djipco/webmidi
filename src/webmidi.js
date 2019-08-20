@@ -1830,8 +1830,8 @@
       }
 
       /**
-       * Event emitted when a control change MIDI message has been received on a specific device
-       * and channel.
+       * Event emitted when a valid NRPN message sequence has been received on a specific device and
+       * channel.
        *
        * @event nrpn
        *
