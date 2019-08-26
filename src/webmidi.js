@@ -85,7 +85,7 @@
     this._midiInterfaceEvents = ["connected", "disconnected"];
 
     // the current nrpns being constructed, by channel
-    this._nrpnBuffer = new Array(16);
+    this._nrpnBuffer = [[],[],[],[], [],[],[],[], [],[],[],[], [],[],[],[]];
 
     // Enable/Disable NRPN event dispatch
     this._nrpnEventsEnabled = true;
@@ -1718,7 +1718,8 @@
   Input.prototype._parseNrpnEvent = function(e) {
 
     var command = e.data[0] >> 4;
-    var channel = (e.data[0] & 0xf) + 1;
+    var channelBufferIndex = (e.data[0] & 0xf); // use this for index of channel in _nrpnBuffer
+    var channel = channelBufferIndex + 1;
     var data1, data2;
 
     if (e.data.length > 1) {
@@ -1726,13 +1727,20 @@
       data2 = e.data.length > 2 ? e.data[2] : undefined;
     }
 
+    // nrpn disabled
+    if(!wm.nrpnEventsEnabled) {
+      return;
+    }
+    
+    // nrpn enabled, message not valid for nrpn
     if(
       !(
-        wm.nrpnEventsEnabled &&
         command === wm.MIDI_CHANNEL_MESSAGES.controlchange &&
-        (data1 >= wm.MIDI_NRPN_MESSAGES.increment && data1 <= wm.MIDI_NRPN_MESSAGES.parammsb) ||
-        data1 === wm.MIDI_NRPN_MESSAGES.entrymsb ||
-        data1 === wm.MIDI_NRPN_MESSAGES.entrylsb
+        (
+          (data1 >= wm.MIDI_NRPN_MESSAGES.increment && data1 <= wm.MIDI_NRPN_MESSAGES.parammsb) ||
+          data1 === wm.MIDI_NRPN_MESSAGES.entrymsb ||
+          data1 === wm.MIDI_NRPN_MESSAGES.entrylsb
+        )
       )
     ) {
       return;
@@ -1751,71 +1759,72 @@
       },
       value: data2
     };
-
     if(
       // if we get a starting MSB(CC99 - 0-126) vs an end MSB(CC99 - 127)
       // destroy inclomplete NRPN and begin building again
       ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.parammsb &&
       ccEvent.value != wm.MIDI_NRPN_MESSAGES.nullactiveparameter
     ) {
-      wm._nrpnBuffer[ccEvent.channel] = [];
-      wm._nrpnBuffer[ccEvent.channel][0] = ccEvent;
+      wm._nrpnBuffer[channelBufferIndex] = [];
+      wm._nrpnBuffer[channelBufferIndex][0] = ccEvent;
     } else if(
       // add the param LSB
-      wm._nrpnBuffer[ccEvent.channel].length === 1 &&
+      wm._nrpnBuffer[channelBufferIndex].length === 1 &&
         ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.paramlsb
     ) {
-      wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
+      wm._nrpnBuffer[channelBufferIndex].push(ccEvent);
 
     } else if(
       // add data inc/dec or value MSB for 14bit
-      wm._nrpnBuffer[ccEvent.channel].length === 2 &&
+      wm._nrpnBuffer[channelBufferIndex].length === 2 &&
         (ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.increment ||
          ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.decrement ||
          ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.entrymsb)
     ) {
-      wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
+      wm._nrpnBuffer[channelBufferIndex].push(ccEvent);
 
     } else if(
       // if we have a value MSB, only add an LSB to pair with that
-      wm._nrpnBuffer[ccEvent.channel].length === 3 &&
-        wm._nrpnBuffer[ccEvent.channel][2].number === wm.MIDI_NRPN_MESSAGES.entrymsb &&
+      wm._nrpnBuffer[channelBufferIndex].length === 3 &&
+        wm._nrpnBuffer[channelBufferIndex][2].number === wm.MIDI_NRPN_MESSAGES.entrymsb &&
         ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.entrylsb
     ) {
-      wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
+      wm._nrpnBuffer[channelBufferIndex].push(ccEvent);
 
     } else if(
       // add an end MSB(CC99 - 127)
-      wm._nrpnBuffer[ccEvent.channel].length >= 3 && wm._nrpnBuffer[ccEvent.channel].length <= 4 &&
+      wm._nrpnBuffer[channelBufferIndex].length >= 3 &&
+      wm._nrpnBuffer[channelBufferIndex].length <= 4 &&
         ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.parammsb &&
         ccEvent.value === wm.MIDI_NRPN_MESSAGES.nullactiveparameter
     ) {
-      wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
+      wm._nrpnBuffer[channelBufferIndex].push(ccEvent);
 
     } else if(
       // add an end LSB(CC99 - 127)
-      wm._nrpnBuffer[ccEvent.channel].length >= 4 && wm._nrpnBuffer[ccEvent.channel].length <= 5 &&
+      wm._nrpnBuffer[channelBufferIndex].length >= 4 &&
+      wm._nrpnBuffer[channelBufferIndex].length <= 5 &&
         ccEvent.controller.number === wm.MIDI_NRPN_MESSAGES.paramlsb &&
         ccEvent.value === wm.MIDI_NRPN_MESSAGES.nullactiveparameter
     ) {
-      wm._nrpnBuffer[ccEvent.channel].push(ccEvent);
+      wm._nrpnBuffer[channelBufferIndex].push(ccEvent);
       // now we have a full inc or dec NRPN message, lets create that event!
 
       var rawData = [];
 
-      wm._nrpnBuffer[ccEvent.channel].forEach(function(ev) {
+      wm._nrpnBuffer[channelBufferIndex].forEach(function(ev) {
         rawData.push(ev.data);
       });
 
-      var nrpnNumber = (wm._nrpnBuffer[ccEvent.channel][0].value<<7) |
-        (wm._nrpnBuffer[ccEvent.channel][1].value);
-      var nrpnValue = wm._nrpnBuffer[ccEvent.channel][2].value;
-      if(wm._nrpnBuffer[ccEvent.channel].length === 6) {
-        nrpnValue = (wm._nrpnBuffer[ccEvent.channel][2].value<<7) |
-          (wm._nrpnBuffer[ccEvent.channel][3].value);
+      var nrpnNumber = (wm._nrpnBuffer[channelBufferIndex][0].value<<7) |
+        (wm._nrpnBuffer[channelBufferIndex][1].value);
+      var nrpnValue = wm._nrpnBuffer[channelBufferIndex][2].value;
+      if(wm._nrpnBuffer[channelBufferIndex].length === 6) {
+        nrpnValue = (wm._nrpnBuffer[channelBufferIndex][2].value<<7) |
+          (wm._nrpnBuffer[channelBufferIndex][3].value);
       }
       var nrpnControllerType = "";
-      switch (wm._nrpnBuffer[ccEvent.channel][2].controller.number) {
+      switch (wm._nrpnBuffer[channelBufferIndex][2].controller.number) {
       case wm.MIDI_NRPN_MESSAGES.entrymsb:
         nrpnControllerType = wm._nrpnTypes[0];
         break;
@@ -1859,8 +1868,9 @@
         },
         value: nrpnValue
       };
+      
       // now we are done building an NRPN, so clear the NRPN buffer for this channel
-      wm._nrpnBuffer[ccEvent.channel] = [];
+      wm._nrpnBuffer[channelBufferIndex] = [];
       // If some callbacks have been defined for this event, on that device and channel, execute
       // them.
       if (
@@ -1873,7 +1883,7 @@
       }
     } else {
       // something didn't match, clear the incomplete NRPN message by
-      wm._nrpnBuffer[ccEvent.channel] = [];
+      wm._nrpnBuffer[channelBufferIndex] = [];
     }
   };
 
