@@ -171,6 +171,14 @@ describe("Output", function() {
       ).to.equal(WebMidi.outputs[0]);
     });
 
+    // it("should not throw error when playing a note", function() {
+    //
+    //   expect(function () {
+    //     WebMidi.outputs[0].playNote(6, 1);
+    //   }).to.throw();
+    //
+    // });
+
     // it("should throw error if options.time is invalid", function(done) {
     //
     // });
@@ -272,7 +280,9 @@ describe("Output", function() {
   describe("sendControlChange()", function () {
 
     it("should return the Output object for method chaining", function() {
-      expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(WebMidi.outputs[0]);
+      expect(
+        WebMidi.outputs[0].sendControlChange("brightness", 0)
+      ).to.equal(WebMidi.outputs[0]);
     });
 
     it("should throw an error if value is out of range", function() {
@@ -284,6 +294,17 @@ describe("Output", function() {
       });
 
     });
+
+    // it("should not throw an error if value is valid", function() {
+    //
+    //   [6, 38].forEach(function (param) {
+    //     expect(function () {
+    //       WebMidi.outputs[0].sendControlChange(param);
+    //     }).to.throw();
+    //   });
+    //
+    // });
+
 
   });
 
