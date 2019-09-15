@@ -114,6 +114,13 @@ If you are using a bundler such as WebPack, you can import **WebMidi.js** in you
 
     import WebMidi from 'path/to/webmidi';
 
+## Insecure Origins
+
+Starting with version 77, [Chrome deprecates Web MIDI usage on insecure origins](https://www.chromestatus.com/feature/5138066234671104). This means that, going forward, the page will 
+need to be hosted on a secure origin (e.g. `https://`, `localhost:` or `file:///`) and the user will 
+need to explicitely authorize usage (no matter if `sysex` is used or not).
+
+
 ## Quick Start
 
 Getting started is easy. The first thing to do is to enable **WebMidi.js**. To do that, you call
@@ -131,6 +138,7 @@ WebMidi.enable(function (err) {
   
 });
 ```
+
 
 To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
 device. To view all the available `Input` and `Output` ports, you can use the matching arrays:
