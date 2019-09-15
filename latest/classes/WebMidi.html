@@ -360,7 +360,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1189"><code>src&#x2F;webmidi.js:1189</code></a>
+        <a href="../files/src_webmidi.js.html#l1193"><code>src&#x2F;webmidi.js:1193</code></a>
         </p>
 
 
@@ -392,7 +392,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1256"><code>src&#x2F;webmidi.js:1256</code></a>
+        <a href="../files/src_webmidi.js.html#l1260"><code>src&#x2F;webmidi.js:1260</code></a>
         </p>
 
 
@@ -424,7 +424,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1093"><code>src&#x2F;webmidi.js:1093</code></a>
+        <a href="../files/src_webmidi.js.html#l1097"><code>src&#x2F;webmidi.js:1097</code></a>
         </p>
 
 
@@ -456,7 +456,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1083"><code>src&#x2F;webmidi.js:1083</code></a>
+        <a href="../files/src_webmidi.js.html#l1087"><code>src&#x2F;webmidi.js:1087</code></a>
         </p>
 
 
@@ -488,7 +488,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1141"><code>src&#x2F;webmidi.js:1141</code></a>
+        <a href="../files/src_webmidi.js.html#l1145"><code>src&#x2F;webmidi.js:1145</code></a>
         </p>
 
 
@@ -532,7 +532,7 @@ manually craft or decode binary MIDI messages anymore!</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l651"><code>src&#x2F;webmidi.js:651</code></a>
+        <a href="../files/src_webmidi.js.html#l655"><code>src&#x2F;webmidi.js:655</code></a>
         </p>
 
 
@@ -618,7 +618,7 @@ check out the documentation for the various events (links above).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l626"><code>src&#x2F;webmidi.js:626</code></a>
+        <a href="../files/src_webmidi.js.html#l630"><code>src&#x2F;webmidi.js:630</code></a>
         </p>
 
 
@@ -670,13 +670,16 @@ have been defined on <code>Input</code> or <code>Output</code> objects will be d
     </div>
 
     <div class="description">
-        <p>Checks if the Web MIDI API is available and then tries to connect to the host&quot;s MIDI subsystem.
-This is an asynchronous operation. When it&quot;s done, the specified handler callback will be
+        <p>Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
+This is an asynchronous operation. When it's done, the specified handler callback will be
 executed. If an error occurred, the callback function will receive an <code>Error</code> object as its
 sole parameter.</p>
 <p>To enable the use of system exclusive messages, the <code>sysex</code> parameter should be set to true.
 However, under some environments (e.g. Jazz-Plugin), the sysex parameter is ignored and sysex
 is always enabled.</p>
+<p>Warning: starting with Chrome v77, the Web MIDI API must be hosted on a secure origin
+(<code>https://</code>, <code>localhost</code> or <code>file:///</code>) and the user will always be prompted to authorize the
+operation (no matter if <code>sysex</code> is requested or not).</p>
 
     </div>
 
@@ -748,7 +751,7 @@ is always enabled.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l845"><code>src&#x2F;webmidi.js:845</code></a>
+        <a href="../files/src_webmidi.js.html#l849"><code>src&#x2F;webmidi.js:849</code></a>
         </p>
 
 
@@ -829,7 +832,7 @@ can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l914"><code>src&#x2F;webmidi.js:914</code></a>
+        <a href="../files/src_webmidi.js.html#l918"><code>src&#x2F;webmidi.js:918</code></a>
         </p>
 
 
@@ -909,7 +912,7 @@ name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l948"><code>src&#x2F;webmidi.js:948</code></a>
+        <a href="../files/src_webmidi.js.html#l952"><code>src&#x2F;webmidi.js:952</code></a>
         </p>
 
 
@@ -980,7 +983,7 @@ as you want.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l880"><code>src&#x2F;webmidi.js:880</code></a>
+        <a href="../files/src_webmidi.js.html#l884"><code>src&#x2F;webmidi.js:884</code></a>
         </p>
 
 
@@ -1061,7 +1064,7 @@ can be found, the method returns <code>false</code>.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l971"><code>src&#x2F;webmidi.js:971</code></a>
+        <a href="../files/src_webmidi.js.html#l975"><code>src&#x2F;webmidi.js:975</code></a>
         </p>
 
 
@@ -1141,7 +1144,7 @@ specified name.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1004"><code>src&#x2F;webmidi.js:1004</code></a>
+        <a href="../files/src_webmidi.js.html#l1008"><code>src&#x2F;webmidi.js:1008</code></a>
         </p>
 
 
@@ -1223,7 +1226,7 @@ used, in which case it will simply be returned (if between 0 and 127).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l697"><code>src&#x2F;webmidi.js:697</code></a>
+        <a href="../files/src_webmidi.js.html#l701"><code>src&#x2F;webmidi.js:701</code></a>
         </p>
 
 
@@ -1312,7 +1315,7 @@ this event type.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l1034"><code>src&#x2F;webmidi.js:1034</code></a>
+        <a href="../files/src_webmidi.js.html#l1038"><code>src&#x2F;webmidi.js:1038</code></a>
         </p>
 
 
@@ -1401,7 +1404,7 @@ number will be 36.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l740"><code>src&#x2F;webmidi.js:740</code></a>
+        <a href="../files/src_webmidi.js.html#l744"><code>src&#x2F;webmidi.js:744</code></a>
         </p>
 
 
@@ -1492,7 +1495,7 @@ omitted, all listeners attached to the <code>WebMidi</code> object will be remov
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/src_webmidi.js.html#l794"><code>src&#x2F;webmidi.js:794</code></a>
+        <a href="../files/src_webmidi.js.html#l798"><code>src&#x2F;webmidi.js:798</code></a>
         </p>
 
 
@@ -1988,7 +1991,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1198"><code>src&#x2F;webmidi.js:1198</code></a>
+                            <a href="../files/src_webmidi.js.html#l1202"><code>src&#x2F;webmidi.js:1202</code></a>
                             </p>
                     
                     
@@ -2064,7 +2067,7 @@ in the future.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_webmidi.js.html#l1211"><code>src&#x2F;webmidi.js:1211</code></a>
+                            <a href="../files/src_webmidi.js.html#l1215"><code>src&#x2F;webmidi.js:1215</code></a>
                             </p>
                     
                     
