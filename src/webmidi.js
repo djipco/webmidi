@@ -494,14 +494,18 @@
   var wm = new WebMidi();
 
   /**
-   * Checks if the Web MIDI API is available and then tries to connect to the host"s MIDI subsystem.
-   * This is an asynchronous operation. When it"s done, the specified handler callback will be
+   * Checks if the Web MIDI API is available and then tries to connect to the host's MIDI subsystem.
+   * This is an asynchronous operation. When it's done, the specified handler callback will be
    * executed. If an error occurred, the callback function will receive an `Error` object as its
    * sole parameter.
    *
    * To enable the use of system exclusive messages, the `sysex` parameter should be set to true.
    * However, under some environments (e.g. Jazz-Plugin), the sysex parameter is ignored and sysex
    * is always enabled.
+   *
+   * Warning: starting with Chrome v77, the Web MIDI API must be hosted on a secure origin
+   * (`https://`, `localhost` or `file:///`) and the user will always be prompted to authorize the
+   * operation (no matter if `sysex` is requested or not).
    *
    * @method enable
    * @static
@@ -1731,7 +1735,7 @@
     if(!wm.nrpnEventsEnabled) {
       return;
     }
-    
+
     // nrpn enabled, message not valid for nrpn
     if(
       !(
@@ -1868,7 +1872,7 @@
         },
         value: nrpnValue
       };
-      
+
       // now we are done building an NRPN, so clear the NRPN buffer for this channel
       wm._nrpnBuffer[channelBufferIndex] = [];
       // If some callbacks have been defined for this event, on that device and channel, execute
