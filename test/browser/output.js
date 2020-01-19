@@ -1,4 +1,4 @@
-describe('Output', function() {
+describe("Output", function() {
 
   beforeEach("Enable WebMidi.js", function (done) {
 
@@ -23,7 +23,7 @@ describe('Output', function() {
 
   });
 
-  describe('decrementRegisteredParameter()', function () {
+  describe("decrementRegisteredParameter()", function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -32,7 +32,7 @@ describe('Output', function() {
       }).to.throw(TypeError);
 
       expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter('xxx');
+        WebMidi.outputs[0].decrementRegisteredParameter("xxx");
       }).to.throw(TypeError);
 
     });
@@ -42,7 +42,7 @@ describe('Output', function() {
     //   var spy = sinon.spy(WebMidi.outputs[0], "send");
     //
     //   // expect(function () {
-    //     WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1);
+    //     WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange", 1);
     //   // }).to.throw(RangeError);
     //
     //   expect(spy.callCount).to.equal(2);
@@ -62,7 +62,7 @@ describe('Output', function() {
 
   });
 
-  describe('incrementRegisteredParameter()', function () {
+  describe("incrementRegisteredParameter()", function () {
 
     it("should throw error if registered parameter is invalid", function() {
 
@@ -71,7 +71,7 @@ describe('Output', function() {
       }).to.throw(Error);
 
       expect(function () {
-        WebMidi.outputs[0].incrementRegisteredParameter('xxx');
+        WebMidi.outputs[0].incrementRegisteredParameter("xxx");
       }).to.throw(Error);
 
     });
@@ -87,11 +87,11 @@ describe('Output', function() {
     //   WebMidi.enable(function() {
     //
     //     expect(function () {
-    //       WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: 'abc'});
+    //       WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange", 1, {time: "abc"});
     //     }).to.throw(TypeError);
     //
     //     expect(function () {
-    //       WebMidi.outputs[0].decrementRegisteredParameter('pitchbendrange', 1, {time: '+abc'});
+    //       WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange", 1, {time: "+abc"});
     //     }).to.throw(TypeError);
     //
     //     done();
@@ -102,7 +102,7 @@ describe('Output', function() {
 
   });
 
-  describe('playNote()', function () {
+  describe("playNote()", function () {
 
     it("should throw error if note is invalid", function() {
 
@@ -126,7 +126,7 @@ describe('Output', function() {
 
   });
 
-  describe('send()', function () {
+  describe("send()", function () {
 
     it("should throw error if status byte is invalid", function() {
 
@@ -166,7 +166,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendActiveSensing()', function () {
+  describe("sendActiveSensing()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendActiveSensing()).to.equal(WebMidi.outputs[0]);
@@ -174,7 +174,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendChannelAftertouch()', function () {
+  describe("sendChannelAftertouch()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelAftertouch()).to.equal(WebMidi.outputs[0]);
@@ -182,7 +182,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendChannelMode()', function () {
+  describe("sendChannelMode()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendChannelMode("allsoundoff")).to.equal(WebMidi.outputs[0]);
@@ -200,7 +200,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendClock()', function () {
+  describe("sendClock()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendClock()).to.equal(WebMidi.outputs[0]);
@@ -208,7 +208,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendContinue()', function () {
+  describe("sendContinue()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendContinue()).to.equal(WebMidi.outputs[0]);
@@ -216,7 +216,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendControlChange()', function () {
+  describe("sendControlChange()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendControlChange("brightness", 0)).to.equal(WebMidi.outputs[0]);
@@ -234,7 +234,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendKeyAftertouch()', function () {
+  describe("sendKeyAftertouch()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendKeyAftertouch("C#3", 1)).to.equal(WebMidi.outputs[0]);
@@ -242,7 +242,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendPitchBend()', function () {
+  describe("sendPitchBend()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].sendPitchBend(0.75)).to.equal(WebMidi.outputs[0]);
@@ -260,7 +260,7 @@ describe('Output', function() {
 
   });
 
-  describe('sendSysex()', function () {
+  describe("sendSysex()", function () {
 
     it("should return the Output object for method chaining");
 
@@ -268,7 +268,7 @@ describe('Output', function() {
 
   });
 
-  describe('setTuningProgram()', function () {
+  describe("setTuningProgram()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].setTuningProgram(64, 1)).to.equal(WebMidi.outputs[0]);
@@ -286,7 +286,7 @@ describe('Output', function() {
 
   });
 
-  describe('stopNote()', function () {
+  describe("stopNote()", function () {
 
     it("should return the Output object for method chaining", function() {
       expect(WebMidi.outputs[0].stopNote(64)).to.equal(WebMidi.outputs[0]);
