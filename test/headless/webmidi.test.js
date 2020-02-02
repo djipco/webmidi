@@ -47,6 +47,10 @@ describe("WebMidi", function() {
 
   it("should adapt to Electron, NW.js or pure Node.js environments", (done) => done());
 
+  it('should dispatch "connected" even upon device connection');
+
+  it('should dispatch "disconnected" even upon device disconnection');
+
   it("should be accessible in the global window scope (if running in a browser)", function() {
     if (typeof window === "object") {
       expect(WebMidi).to.be.instanceOf(WebMidi.constructor);
@@ -446,7 +450,7 @@ describe("WebMidi", function() {
       WebMidi.octaveOffset = 0;
     });
 
-    it("should throw error if note number is outside range given the current octave offset", function() {
+    it("should throw error if note is outside range given the current octave offset", function() {
       WebMidi.octaveOffset = 0;
 
       expect(function() {
