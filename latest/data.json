@@ -4,7 +4,7 @@
         "version": "2.5.1",
         "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
         "url": "",
-        "logo": "https://djipco.github.io/webmidi/images/webmidijs-logo-small.png"
+        "logo": "http://djipco.github.io/webmidi/images/webmidijs-logo-small.png"
     },
     "files": {
         "src/webmidi.js": {
