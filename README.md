@@ -196,17 +196,17 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## API Documentation
 
-The [API for WebMidi.js](https://djipco.github.io/webmidi/latest/classes/WebMidi.html) is fully 
+The [API for WebMidi.js](http://djipco.github.io/webmidi/latest/classes/WebMidi.html) is fully 
 documented and I take pride in maintaining good API documentation. If you spot an error (even 
 something minor) or think a topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
 
 Here is a link to the full
-**[API Reference](https://djipco.github.io/webmidi/latest/classes/WebMidi.html)**. You can also find 
+**[API Reference](http://djipco.github.io/webmidi/latest/classes/WebMidi.html)**. You can also find 
 the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
-[documentation for version 1.0.0-beta.15](https://djipco.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html)
+[documentation for version 1.0.0-beta.15](http://djipco.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html)
 will also remain available online as long as necessary.
 
 ## More code examples
