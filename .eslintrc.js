@@ -14,7 +14,8 @@ module.exports = {
   "globals": {
     "Promise": "readonly",
     "WebMidi": "readonly",
-    "expect": "readonly"
+    "expect": "readonly",
+    "sinon": "readonly"
   },
 
   "extends": ["eslint:recommended", "prettier"],
