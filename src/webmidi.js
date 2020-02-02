@@ -1390,7 +1390,7 @@
    *    * {{#crossLink "Input/noteon:event"}}noteon{{/crossLink}}
    *    * {{#crossLink "Input/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
    *    * {{#crossLink "Input/controlchange:event"}}controlchange{{/crossLink}}
-   *    * {{#crossLink "Input/nrpn:event"}}pitchbend{{/crossLink}}
+   *    * {{#crossLink "Input/nrpn:event"}}nrpn{{/crossLink}}
    *    * {{#crossLink "Input/channelmode:event"}}channelmode{{/crossLink}}
    *    * {{#crossLink "Input/programchange:event"}}programchange{{/crossLink}}
    *    * {{#crossLink "Input/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
