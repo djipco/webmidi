@@ -200,7 +200,7 @@ The [API for WebMidi.js](http://djipco.github.io/webmidi/latest/classes/WebMidi.
 documented and I take pride in maintaining good API documentation. If you spot an error (even 
 something minor) or think a topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
-
+˚
 Here is a link to the full
 **[API Reference](http://djipco.github.io/webmidi/latest/classes/WebMidi.html)**. You can also find 
 the API reference in portable format inside the `docs` folder.
@@ -429,3 +429,11 @@ is not already planned for an upcoming version by checking the
 
 If you are interested in contributing to the project, please read our 
 [Contribution Guidelines](https://github.com/djipco/webmidi/blob/master/CONTRIBUTING.md).
+
+## Citing this Software in Research
+
+If you use this software for research or academic purposes, please cite the project in your 
+references (or wherever appropriate). Here's an example of how to cite it (APA Style):
+
+Côté, J. P. (2019). WebMidi.js v2.5.1 [Computer Software]. Retrieved from 
+https://github.com/djipco/webmidi
