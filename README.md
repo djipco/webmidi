@@ -59,11 +59,22 @@ for more information. If anyone is interested in contributing, help would be mor
 TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
 [mmmveggies](https://www.github.com/mmmveggies)).
 
-Just import the library:
+Usage:
+
 ```ts
 import WebMidi from "webmidi";
 
 WebMidi.enable(...);
+```
+
+You can also import the types, if you need it:
+
+```ts
+import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
+
+input.addListener("noteon", "all", (event: InputEventNoteon) => {
+  ...
+}) 
 ```
 
 ## Installation
