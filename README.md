@@ -59,18 +59,23 @@ for more information. If anyone is interested in contributing, help would be mor
 TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
 [mmmveggies](https://www.github.com/mmmveggies)).
 
-Importing WebMidi seems to work with this:
-```javascript
-import * as webmidi from "webmidi";
+Usage:
+
+```ts
+import WebMidi from "webmidi";
+
+WebMidi.enable(...);
 ```
 
-But not with this (probably because nothing called "webmidi" is ever exported):
-````javascript
-import webmidi from "webmidi";
-````
+You can also import the types, if you need it:
 
-As I'm not a TypeScript user, clarifications on the topic (as well as more working examples) would 
-be welcome. Feel free to send a PR or open a new issue
+```ts
+import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
+
+input.addListener("noteon", "all", (event: InputEventNoteon) => {
+  ...
+}) 
+```
 
 ## Installation
 
