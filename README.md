@@ -329,7 +329,7 @@ WebMidi.enable(function (err) {
     }
   );
 
-  // Check for the presence of an event listener (n such cases, you cannot use anonymous functions).
+  // Check for the presence of an event listener (in such cases, you cannot use anonymous functions).
   function test(e) { console.log(e); }
   input.addListener('programchange', 12, test);
   console.log("Has event listener: ", input.hasListener('programchange', 12, test));
