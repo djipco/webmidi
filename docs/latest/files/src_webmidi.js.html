@@ -578,14 +578,18 @@
   var wm = new WebMidi();
 
   /**
-   * Checks if the Web MIDI API is available and then tries to connect to the host&quot;s MIDI subsystem.
-   * This is an asynchronous operation. When it&quot;s done, the specified handler callback will be
+   * Checks if the Web MIDI API is available and then tries to connect to the host&#x27;s MIDI subsystem.
+   * This is an asynchronous operation. When it&#x27;s done, the specified handler callback will be
    * executed. If an error occurred, the callback function will receive an &#x60;Error&#x60; object as its
    * sole parameter.
    *
    * To enable the use of system exclusive messages, the &#x60;sysex&#x60; parameter should be set to true.
    * However, under some environments (e.g. Jazz-Plugin), the sysex parameter is ignored and sysex
    * is always enabled.
+   *
+   * Warning: starting with Chrome v77, the Web MIDI API must be hosted on a secure origin
+   * (&#x60;https://&#x60;, &#x60;localhost&#x60; or &#x60;file:///&#x60;) and the user will always be prompted to authorize the
+   * operation (no matter if &#x60;sysex&#x60; is requested or not).
    *
    * @method enable
    * @static
@@ -1470,7 +1474,7 @@
    *    * {{#crossLink &quot;Input/noteon:event&quot;}}noteon{{/crossLink}}
    *    * {{#crossLink &quot;Input/keyaftertouch:event&quot;}}keyaftertouch{{/crossLink}}
    *    * {{#crossLink &quot;Input/controlchange:event&quot;}}controlchange{{/crossLink}}
-   *    * {{#crossLink &quot;Input/nrpn:event&quot;}}pitchbend{{/crossLink}}
+   *    * {{#crossLink &quot;Input/nrpn:event&quot;}}nrpn{{/crossLink}}
    *    * {{#crossLink &quot;Input/channelmode:event&quot;}}channelmode{{/crossLink}}
    *    * {{#crossLink &quot;Input/programchange:event&quot;}}programchange{{/crossLink}}
    *    * {{#crossLink &quot;Input/channelaftertouch:event&quot;}}channelaftertouch{{/crossLink}}
@@ -1815,7 +1819,7 @@
     if(!wm.nrpnEventsEnabled) {
       return;
     }
-    
+
     // nrpn enabled, message not valid for nrpn
     if(
       !(
@@ -1952,7 +1956,7 @@
         },
         value: nrpnValue
       };
-      
+
       // now we are done building an NRPN, so clear the NRPN buffer for this channel
       wm._nrpnBuffer[channelBufferIndex] = [];
       // If some callbacks have been defined for this event, on that device and channel, execute
