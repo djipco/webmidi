@@ -438,7 +438,8 @@ If you are interested in contributing to the project, please read our
 ## Citing this Software in Research
 
 If you use this software for research or academic purposes, please cite the project in your 
-references (or wherever appropriate). Here's an example of how to cite it (APA Style):
+references (or wherever appropriate). Here's an example of how to cite it 
+([APA Style](https://apastyle.apa.org/)):
 
 >Côté, J. P. (2019). WebMidi.js v2.5.1 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
