@@ -4,6 +4,9 @@
   "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
   "author": "Jean-Philippe Côté <jp@djip.co>",
   "main": "webmidi.min.js",
+  "webmidi": {
+    "name": "WebMidi.js"
+  },
   "types": "webmidi.d.ts",
   "scripts": {
     "test": "BROWSER=NONE mocha ./test/headless --exit",

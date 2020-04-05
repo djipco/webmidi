@@ -5,7 +5,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     pkg: grunt.file.readJSON("package.json"),
-    bower: grunt.file.readJSON("bower.json"),
 
     // Bumpup version
     bumpup: {
