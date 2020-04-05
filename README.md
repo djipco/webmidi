@@ -15,6 +15,18 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
 much easier.
 
+## Important information about v3
+
+Version 3 of WebMidi.js does introduce various new functionalities. Here is an overview of the most 
+notable additions:
+
+* to be completed
+
+Many efforts have been put forth to make version 3 as backwards-compatible as possible. For most 
+people, it will work out of the box. However, there are a few breaking changes:
+
+* Support for Bower has been dropped.
+
 ## Browser Support
 
 This library works in all browsers that natively support the 
