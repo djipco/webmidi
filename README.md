@@ -454,6 +454,6 @@ Creativity, Charlotte, 2019. Retrieved from https://arxiv.org/abs/1907.10380
 Tecnología de Tracking 3d con Tecnología MIDI [Doctoral dissertation, Pontificia Universidad
 Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/22000/15838
 
-I invite academics to show their support for this project by notifying us of all new papers 
-referencing the software. The best way to do that is to submit a pull request aading your paper 
+I invite academics to show their support for this project by notifying us of all papers 
+referencing the software. The best way to do that is to submit a pull request adding your paper 
 to the list above.
