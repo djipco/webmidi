@@ -440,5 +440,19 @@ If you are interested in contributing to the project, please read our
 If you use this software for research or academic purposes, please cite the project in your 
 references (or wherever appropriate). Here's an example of how to cite it (APA Style):
 
-Côté, J. P. (2019). WebMidi.js v2.5.1 [Computer Software]. Retrieved from 
+>Côté, J. P. (2019). WebMidi.js v2.5.1 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
+
+Here are a few examples of academic papers citing WebMidi.js:
+
+* Bazin, T. & Hadjeres, G. (2019). NONOTO: A Model-agnostic Web Interface for Interactive 
+Music Composition by Inpainting, presented at 10th International Conference on Computational
+Creativity, Charlotte, 2019. Retrieved from https://arxiv.org/abs/1907.10380
+
+* Cárdenas, A. & Mauricio B. (2018). Diseño y desarrollo de un prototipo para integración de
+Tecnología de Tracking 3d con Tecnología MIDI [Doctoral dissertation, Pontificia Universidad
+Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/22000/15838
+
+I invite academics to show their support for this project by notifying us of all new papers 
+referencing the software. The best way to do that is to submit a pull request aading your paper 
+to the list above.
