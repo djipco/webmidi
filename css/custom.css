@@ -6,8 +6,9 @@
   }
 
   .page-header .summary {
-    background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo-small.png);
+    background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo.svg);
     background-repeat: no-repeat;
+    padding-top: 70px;
   }
 
 }
@@ -16,6 +17,10 @@
   color: #252525;
 }
 
-
+.page-header .summary {
+  background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo-small.png);
+  background-repeat: no-repeat;
+  padding-top: 70px;
+}
 
 
