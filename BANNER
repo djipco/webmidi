@@ -1,4 +1,0 @@
-<%= pkg.webmidi.name %> v<%= pkg.version %>
-
-<%= pkg.description %>
-<%= pkg.homepage %>

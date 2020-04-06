@@ -19,6 +19,7 @@
     "test-coverage": "nyc --reporter=text npm run test",
     "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
+    "build": "node automation/build/build.js -t cjs && node automation/build/build.js -t esm && node automation/build/build.js -t iife",
     "lint": "eslint ./src/*.js",
     "documentation:generate": "node automation/documentation/generate.js",
     "documentation:publish": "node automation/documentation/publish.js"
@@ -36,7 +37,13 @@
     "web",
     "browser",
     "front-end",
-    "webmidi api"
+    "web midi api",
+    "music",
+    "djipco",
+    "music",
+    "protocol",
+    "communication",
+    "channel"
   ],
   "homepage": "https://github.com/djipco/webmidi",
   "license": "MIT",
@@ -44,6 +51,11 @@
     "node": ">0.6.x"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
@@ -52,12 +64,19 @@
     "jsdoc": "^3.6.3",
     "jzz": "^1.0.2",
     "midi-test": "^1.1.1",
+    "minimist": "^1.2.5",
     "mocha": "^7.1.1",
     "nyc": "^15.0.0",
     "rimraf": "^3.0.2",
+    "rollup": "^2.3.3",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-license": "^2.0.0",
+    "rollup-plugin-terser": "^5.3.0",
     "sinon": "^9.0.1",
     "sinon-browser-only": "^1.12.1",
     "typescript": "^3.8.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "djipevents": "^1.0.0-a"
+  }
 }

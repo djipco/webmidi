@@ -1,0 +1,5 @@
+<%= pkg.webmidi.name %> v<%= pkg.version %>
+<%= pkg.webmidi.tagline %>
+<%= pkg.homepage %>
+
+This build was generated on <%= moment().format('MMMM Do YYYY') %>.
