@@ -16,22 +16,6 @@ module.exports = function(grunt) {
       files: ["package.json"]
     },
 
-    uglify: {
-      options: {
-        banner: "/*\n\n" + grunt.file.read("BANNER") + "\n\n" + grunt.file.read("LICENSE.txt") +
-          "*/\n\n",
-        compress: {
-          drop_console: true
-        },
-        mangle: false,
-        preserveComments: false
-      },
-      build: {
-        src: "./src/<%= pkg.name %>.js",
-        dest: "./<%= pkg.name %>.min.js"
-      }
-    },
-
     // Files that are copied or written over must be re-committed.
     gitcommit: {
       commitupdated: {

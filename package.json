@@ -17,7 +17,6 @@
     "test": "BROWSER=NONE mocha ./test/headless --exit",
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
-    "build": "grunt uglify",
     "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
 
@@ -56,7 +55,6 @@
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^1.6.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-yuidoc": "^1.0.0",
     "grunt-gh-pages": "^3.1.0",
     "grunt-git": "^1.0.14",
