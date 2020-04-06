@@ -1,10 +1,9 @@
-<!-- start:readme.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-		<title>WebMidi.js</title>
+		<title>WebMidi</title>
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -156,16 +155,113 @@
 	</header>
 	<!-- end:navbar.hbs -->		<div class="page-header">
 			<div class="container">
-				<span class="kind">readme</span>
-				<h1><span class="name">WebMidi.js</span></h1>
-				<div class="summary"><p>A JavaScript library to you tame the Web MIDI API</p></div>			</div>
+				<span class="kind">class</span>
+				<h1><span class="name">WebMidi</span></h1>
+			</div>
 		</div>
 	<div class="container content">
 		<div class="row">
 			<div class="col-md-9 main-content">
-		<section class="readme-section">
-			<article></article>
-		</section>
+						<ol class="breadcrumb">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="list_class.html">Classes</a></li>
+							<li class="active">WebMidi</li>
+						</ol>
+					<section>
+							<dl class="symbol primary">
+								<dt class="symbol-title class collapsible-symbol expanded">
+			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">WebMidi</span><span class="signature-params">()</span><span class="signature-type"></span></h2>
+</dt>
+<dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it simplifies
+			two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
+			<p>Sending MIDI messages is done via an <code>Output</code> object. All available outputs can be accessed in
+			the <code>WebMidi.outputs</code> array. There is one <code>Output</code> object for each output port available on
+			your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of
+			adding a listener to an <code>Input</code> object. Similarly, all inputs can be found in the
+			<code>WebMidi.inputs</code> array.</p>
+			<p>Please note that a single hardware device might create more than one input and/or output ports.</p>
+			<h4>Sending messages</h4>
+			<p>To send MIDI messages, you simply need to call the desired method (<code>playNote()</code>,
+			<code>sendPitchBend()</code>, <code>stopNote()</code>, etc.) from an <code>Output</code> object and pass in the appropriate
+			parameters. All the native MIDI communication will be handled for you. The only additional
+			thing that needs to be done is to first enable <code>WebMidi</code>. Here is an example:</p>
+			<pre><code> WebMidi.enable(function(err) {
+			   if (err) console.log(&quot;An error occurred&quot;, err);
+			   WebMidi.outputs[0].playNote(&quot;C3&quot;);
+			 });
+			</code></pre>
+			<p>The code above, calls the <code>WebMidi.enable()</code> method. Upon success, this method executes the
+			callback function specified as a parameter. In this case, the callback calls the <code>playnote()</code>
+			function to play a 3rd octave C on the first available output port.</p>
+			<h4>Receiving messages</h4>
+			<p>Receiving messages is just as easy. You simply have to set a callback function to be triggered
+			when a specific MIDI message is received. For example, here&quot;s how to listen for pitch bend
+			events on the first input port:</p>
+			<pre><code> WebMidi.enable(function(err) {
+			   if (err) console.log(&quot;An error occurred&quot;, err);
+			
+			   WebMidi.inputs[0].addListener(&quot;pitchbend&quot;, &quot;all&quot;, function(e) {
+			     console.log(&quot;Pitch value: &quot; + e.value);
+			   });
+			
+			 });
+			</code></pre>
+			<p>As you can see, this library is much easier to use than the native Web MIDI API. No need to
+			manually craft or decode binary MIDI messages anymore!</p></div>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Error WebMidi is a singleton, it cannot be instantiated directly.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="webmidi.js.html">webmidi.js</a>, <a href="webmidi.js.html#line-5">line 5</a></p>
+								</div>
+							</div>
+			
+			
+			
+							<!-- todo -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">To Do</label>
+								<div class="col-sm-9">
+										<ul class="form-control-static">
+												<li>Switch away from yuidoc (deprecated) to be able to serve doc over https</li>
+												<li>Yuidoc does not allow multiple exceptions (@throws) for a single method ?!</li>
+										</ul>
+								</div>
+							</div>
+			
+					</form>
+			</div>	</div>
+</dd>
+							</dl>
+							<article class="secondary">
+							</article>
+					</section>
 			</div>
 				<div class="col-md-3 side-content">
 					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
@@ -201,4 +297,3 @@
 	
 </body>
 </html>
-<!-- end:readme.hbs -->
