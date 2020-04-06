@@ -10,3 +10,10 @@
 .page-header p {
   color: #252525;
 }
+
+.page-header h1 {
+  background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo-small.png);
+  background-repeat: no-repeat;
+}
+
+
