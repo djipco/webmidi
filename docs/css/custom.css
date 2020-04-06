@@ -5,8 +5,17 @@
     padding-bottom: 30px;
   }
 
+  .page-header .summary {
+    background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo-small.png);
+    background-repeat: no-repeat;
+  }
+
 }
 
 .page-header p {
   color: #252525;
 }
+
+
+
+
