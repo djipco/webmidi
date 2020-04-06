@@ -32,22 +32,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Generate doc
-    yuidoc: {
-      compile: {
-        name: "WebMidi.js",
-        version: "<%= pkg.version %>",
-        description: "<%= pkg.description %>",
-        url: "<%= pkg.url %>",
-        logo: "http://djipco.github.io/webmidi/images/webmidijs-logo-small.png",
-        options: {
-          outdir: "./docs/latest",
-          linkNatives: true,
-          paths: ["./src/"]
-        }
-      }
-    },
-
     // Files that are copied or written over must be re-committed.
     gitcommit: {
       commitupdated: {

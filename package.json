@@ -2,10 +2,15 @@
   "name": "webmidi",
   "version": "3.0.0-alpha.1",
   "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
-  "author": "Jean-Philippe Côté <jp@djip.co>",
+  "author": {
+    "name": "Jean-Philippe Côté",
+    "email": "jp@cote.cc",
+    "url": "https://djip.co"
+  },
   "main": "webmidi.min.js",
   "webmidi": {
-    "name": "WebMidi.js"
+    "name": "WebMidi.js",
+    "tagline": "A JavaScript library to help you tame the Web MIDI API"
   },
   "types": "webmidi.d.ts",
   "scripts": {
@@ -13,11 +18,11 @@
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "build": "grunt uglify",
-    "generate-doc": "grunt yuidoc",
     "gh-pages": "grunt gh-pages",
     "lint": "eslint ./src/*.js",
     "release": "grunt release",
-    "types": "tsc --strict --noEmit ./webmidi.d.ts"
+    "types": "tsc --strict --noEmit ./webmidi.d.ts",
+    "doc": "node npm-scripts/doc.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +48,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "foodoc": "0.0.9",
     "grunt": "^1.1.0",
     "grunt-bumpup": "^0.6.3",
     "grunt-contrib-clean": "^2.0.0",
@@ -53,10 +59,12 @@
     "grunt-gh-pages": "^3.1.0",
     "grunt-git": "^1.0.14",
     "grunt-release": "^0.14.0",
+    "jsdoc": "^3.6.3",
     "jzz": "^1.0.2",
     "midi-test": "^1.1.1",
     "mocha": "^7.1.1",
     "nyc": "^15.0.0",
+    "rimraf": "^3.0.2",
     "sinon": "^9.0.1",
     "sinon-browser-only": "^1.12.1",
     "typescript": "^3.8.3"
