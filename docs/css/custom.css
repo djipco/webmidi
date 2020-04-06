@@ -17,6 +17,10 @@
   color: #252525;
 }
 
+.page-header .kind {
+  opacity: .18;
+}
+
 /*.page-header .summary {*/
 /*  background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo.svg);*/
 /*  background-repeat: no-repeat;*/
