@@ -7,7 +7,8 @@
     "email": "jp@cote.cc",
     "url": "https://djip.co"
   },
-  "main": "webmidi.min.js",
+  "main": "dist/webmidi.cjs.min.js",
+  "module": "dist/webmidi.esm.min.js",
   "webmidi": {
     "name": "WebMidi.js",
     "tagline": "A JavaScript library to help you tame the Web MIDI API"
