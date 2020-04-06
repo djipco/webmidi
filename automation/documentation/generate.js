@@ -4,7 +4,7 @@ const pkg = require("../../package.json");
 const rimraf = require("rimraf");
 
 // Path to jsdoc configuration file (will be temporarily written to disk)
-const CONF_PATH = "./automation/document/.jsdoc.json";
+const CONF_PATH = "./automation/documentation/.jsdoc.json";
 
 // Path to menu image (we put it with other images in the docs directory)
 const IMAGE_PATH = "./docs/images/webmidijs3-logo-40x40.png";

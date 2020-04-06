@@ -22,7 +22,8 @@
     "lint": "eslint ./src/*.js",
     "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "document": "node automation/document/document.js"
+    "documentation:generate": "node automation/documentation/generate.js",
+    "documentation:publish": "node automation/documentation/publish.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "foodoc": "0.0.9",
+    "gh-pages": "^2.2.0",
     "grunt": "^1.1.0",
     "grunt-bumpup": "^0.6.3",
     "grunt-contrib-clean": "^2.0.0",
