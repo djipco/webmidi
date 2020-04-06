@@ -22,7 +22,7 @@
     "lint": "eslint ./src/*.js",
     "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "doc": "node npm-scripts/doc.js"
+    "document": "node automation/document/document.js"
   },
   "repository": {
     "type": "git",
