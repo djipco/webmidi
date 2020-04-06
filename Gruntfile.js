@@ -46,14 +46,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Push documentation to GitHub pages
-    "gh-pages": {
-      options: {
-        base: "./docs"
-      },
-      src: ["**/*"]
-    },
-
     release: {
       options: {
         bump: false,

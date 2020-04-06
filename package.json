@@ -18,16 +18,16 @@
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "build": "grunt uglify",
-    "gh-pages": "grunt gh-pages",
-    "lint": "eslint ./src/*.js",
     "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
+
+    "lint": "eslint ./src/*.js",
     "documentation:generate": "node automation/documentation/generate.js",
     "documentation:publish": "node automation/documentation/publish.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/djipco/webmidi.git"
+    "url": "https://github.com/djipco/webmidi.git"
   },
   "bugs": {
     "url": "https://github.com/djipco/webmidi/issues"
