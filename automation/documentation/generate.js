@@ -51,7 +51,8 @@ const config = {
     systemLogo: IMAGE_PATH,
     systemColor: "#ffcf09",
 
-    copyright: `©${pkg.author.name}, 2015-${new Date().getFullYear()}. ` +
+    copyright: `©<a href="https://djip.co">${pkg.author.name}</a>, ` +
+      `2015-${new Date().getFullYear()}. ` +
       `${pkg.webmidi.name} v${pkg.version} is released under the ${pkg.license} license.`,
 
     navMembers: [
@@ -71,7 +72,7 @@ const config = {
       CUSTOM_STYLESHEET
     ],
 
-    dateFormat: "MMMM Do YYYY, H:mm:ss",
+    dateFormat: "MMMM Do YYYY @ H:mm:ss",
     sort: "longname, linenum, version, since"
 
   }
