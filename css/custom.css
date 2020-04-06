@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+
+  .page-header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+}
+
+.page-header p {
+  color: #252525;
+}
