@@ -27,6 +27,8 @@ people, it will work out of the box. However, there are a few breaking changes:
 
 * Support for Bower has been dropped.
 
+You can find a more extensive list of changes in the [CHANGELOG](changelog.md).
+
 ## Browser Support
 
 This library works in all browsers that natively support the 
