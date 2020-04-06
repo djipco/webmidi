@@ -1,204 +1,117 @@
-<!-- start:readme.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-		<title>WebMidi.js</title>
-		<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
-		<link type="text/css" rel="stylesheet" href="css/template.min.css">
-		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY, H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to you tame the Web MIDI API","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"WebMidi.js is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false,"default":{"outputSourceFiles":true}};
-			window.DOCLET_TOC_ENABLED = true;
-			window.DOCLET_AFILTER_ENABLED = false;
-		</script>
+    <meta charset="utf-8">
+    <title>WebMidi.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="./assets/css/main.css" id="site_styles">
+    <link rel="icon" href="./assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
-<body>
-	<!-- start:navbar.hbs -->
-	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="index.html">
-					WebMidi.js
-				</a>
-				<!-- displayed on small devices -->
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="navbar-collapse collapse" id="topNavigation">
-				<ul class="nav navbar-nav">
-								<li class="dropdown">
-									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-											<li><a href="global.html#_convertNoteToArray">_convertNoteToArray</a></li>
-											<li><a href="global.html#_deselectRegisteredParameter">_deselectRegisteredParameter</a></li>
-											<li><a href="global.html#_initializeUserHandlers">_initializeUserHandlers</a></li>
-											<li><a href="global.html">_onInterfaceStateChange</a></li>
-											<li><a href="global.html#_onMidiMessage">_onMidiMessage</a></li>
-											<li><a href="global.html#_parseChannelEvent">_parseChannelEvent</a></li>
-											<li><a href="global.html#_parseNrpnEvent">_parseNrpnEvent</a></li>
-											<li><a href="global.html#_parseSystemEvent">_parseSystemEvent</a></li>
-											<li><a href="global.html#_parseTimeParameter">_parseTimeParameter</a></li>
-											<li><a href="global.html">_resetInterfaceUserHandlers</a></li>
-											<li><a href="global.html#_selectNonRegisteredParameter">_selectNonRegisteredParameter</a></li>
-											<li><a href="global.html#_selectRegisteredParameter">_selectRegisteredParameter</a></li>
-											<li><a href="global.html#_setCurrentRegisteredParameter">_setCurrentRegisteredParameter</a></li>
-											<li><a href="global.html">_updateInputs</a></li>
-											<li><a href="global.html">_updateInputsAndOutputs</a></li>
-											<li><a href="global.html">_updateOutputs</a></li>
-											<li><a href="global.html#addListener">addListener</a></li>
-											<li><a href="global.html#addListener">addListener</a></li>
-											<li><a href="global.html#connection">connection</a></li>
-											<li><a href="global.html#connection">connection</a></li>
-											<li><a href="global.html#decrementRegisteredParameter">decrementRegisteredParameter</a></li>
-											<li><a href="global.html">disable</a></li>
-											<li><a href="global.html">enable</a></li>
-											<li><a href="global.html#enabled">enabled</a></li>
-											<li><a href="global.html#getCcNameByNumber">getCcNameByNumber</a></li>
-											<li><a href="global.html#getChannelModeByNumber">getChannelModeByNumber</a></li>
-											<li><a href="global.html">getInputById</a></li>
-											<li><a href="global.html">getInputByName</a></li>
-											<li><a href="global.html">getOctave</a></li>
-											<li><a href="global.html">getOutputById</a></li>
-											<li><a href="global.html">getOutputByName</a></li>
-											<li><a href="global.html">guessNoteNumber</a></li>
-											<li><a href="global.html#hasListener">hasListener</a></li>
-											<li><a href="global.html#hasListener">hasListener</a></li>
-											<li><a href="global.html#id">id</a></li>
-											<li><a href="global.html#id">id</a></li>
-											<li><a href="global.html#incrementRegisteredParameter">incrementRegisteredParameter</a></li>
-											<li><a href="global.html#inputs">inputs</a></li>
-											<li><a href="global.html#manufacturer">manufacturer</a></li>
-											<li><a href="global.html#manufacturer">manufacturer</a></li>
-											<li><a href="global.html#MIDI_CHANNEL_MESSAGES">MIDI_CHANNEL_MESSAGES</a></li>
-											<li><a href="global.html#MIDI_CHANNEL_MODE_MESSAGES">MIDI_CHANNEL_MODE_MESSAGES</a></li>
-											<li><a href="global.html#MIDI_CONTROL_CHANGE_MESSAGES">MIDI_CONTROL_CHANGE_MESSAGES</a></li>
-											<li><a href="global.html#MIDI_NRPN_MESSAGES">MIDI_NRPN_MESSAGES</a></li>
-											<li><a href="global.html#MIDI_REGISTERED_PARAMETER">MIDI_REGISTERED_PARAMETER</a></li>
-											<li><a href="global.html#MIDI_SYSTEM_MESSAGES">MIDI_SYSTEM_MESSAGES</a></li>
-											<li><a href="global.html#name">name</a></li>
-											<li><a href="global.html#name">name</a></li>
-											<li><a href="global.html">noteNameToNumber</a></li>
-											<li><a href="global.html#nrpnEventsEnabled">nrpnEventsEnabled</a></li>
-											<li><a href="global.html#nrpnTypes">nrpnTypes</a></li>
-											<li><a href="global.html#octaveOffset">octaveOffset</a></li>
-											<li><a href="global.html#on">on</a></li>
-											<li><a href="global.html#outputs">outputs</a></li>
-											<li><a href="global.html#playNote">playNote</a></li>
-											<li><a href="global.html#removeListener">removeListener</a></li>
-											<li><a href="global.html#removeListener">removeListener</a></li>
-											<li><a href="global.html#send">send</a></li>
-											<li><a href="global.html#sendActiveSensing">sendActiveSensing</a></li>
-											<li><a href="global.html#sendChannelAftertouch">sendChannelAftertouch</a></li>
-											<li><a href="global.html#sendChannelMode">sendChannelMode</a></li>
-											<li><a href="global.html#sendClock">sendClock</a></li>
-											<li><a href="global.html#sendContinue">sendContinue</a></li>
-											<li><a href="global.html#sendControlChange">sendControlChange</a></li>
-											<li><a href="global.html#sendKeyAftertouch">sendKeyAftertouch</a></li>
-											<li><a href="global.html#sendPitchBend">sendPitchBend</a></li>
-											<li><a href="global.html#sendProgramChange">sendProgramChange</a></li>
-											<li><a href="global.html#sendReset">sendReset</a></li>
-											<li><a href="global.html#sendSongPosition">sendSongPosition</a></li>
-											<li><a href="global.html#sendSongSelect">sendSongSelect</a></li>
-											<li><a href="global.html#sendStart">sendStart</a></li>
-											<li><a href="global.html#sendStop">sendStop</a></li>
-											<li><a href="global.html#sendSysex">sendSysex</a></li>
-											<li><a href="global.html#sendTimecodeQuarterFrame">sendTimecodeQuarterFrame</a></li>
-											<li><a href="global.html#sendTuningRequest">sendTuningRequest</a></li>
-											<li><a href="global.html#setMasterTuning">setMasterTuning</a></li>
-											<li><a href="global.html#setModulationRange">setModulationRange</a></li>
-											<li><a href="global.html#setNonRegisteredParameter">setNonRegisteredParameter</a></li>
-											<li><a href="global.html#setPitchBendRange">setPitchBendRange</a></li>
-											<li><a href="global.html#setRegisteredParameter">setRegisteredParameter</a></li>
-											<li><a href="global.html#setTuningBank">setTuningBank</a></li>
-											<li><a href="global.html#setTuningProgram">setTuningProgram</a></li>
-											<li><a href="global.html#state">state</a></li>
-											<li><a href="global.html#state">state</a></li>
-											<li><a href="global.html#stopNote">stopNote</a></li>
-											<li><a href="global.html#supported">supported</a></li>
-											<li><a href="global.html#sysexEnabled">sysexEnabled</a></li>
-											<li><a href="global.html#time">time</a></li>
-											<li><a href="global.html">toMIDIChannels</a></li>
-											<li><a href="global.html#type">type</a></li>
-											<li><a href="global.html#type">type</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-											<li><a href="Input.html">Input</a></li>
-											<li><a href="Output.html">Output</a></li>
-											<li><a href="WebMidi.html">WebMidi</a></li>
-									</ul>
-								</li>
-				</ul>
-					<!-- start:lunr-search-navbar.hbs -->
-					<form class="navbar-form navbar-right" role="search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
-							<div class="input-group-btn">
-								<button class="btn btn-default" id="lunr-search-submit">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-					<!-- start:lunr-search-navbar.hbs -->		</div>
-		</div>
-	</header>
-	<!-- end:navbar.hbs -->		<div class="page-header">
-			<div class="container">
-				<span class="kind">readme</span>
-				<h1><span class="name">WebMidi.js</span></h1>
-				<div class="summary"><p>A JavaScript library to you tame the Web MIDI API</p></div>			</div>
-		</div>
-	<div class="container content">
-		<div class="row">
-			<div class="col-md-9 main-content">
-		<section class="readme-section">
-			<article></article>
-		</section>
-			</div>
-				<div class="col-md-3 side-content">
-					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
-				</div>
-		</div>
-	</div>
-	<footer>
-				<div class="copyright">WebMidi.js is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 5th 2020, 19:20:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
-	</footer>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/clipboard.min.js"></script>
-	<script src="js/prism.min.js"></script>
-	<script src="js/template.min.js"></script>
-		<!-- start:lunr-search-modal.hbs -->
-		<div class="modal fade" id="lunr-search-modal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Search results</h4>
-					</div>
-					<div class="modal-body" id="lunr-search-body">
-					</div>
-					<div class="modal-footer" id="lunr-search-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
-	
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 2.5.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="./classes/Input.html">Input</a></li>
+                                <li><a href="./classes/Output.html">Output</a></li>
+                                <li><a href="./classes/WebMidi.html">WebMidi</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+    <div class="apidocs">
+        <div id="docs-main" class="content">
+            <p>
+            Browse to a module or class using the sidebar to view its API documentation.
+            </p>
+
+            <h2>Keyboard Shortcuts</h2>
+
+            <ul>
+                <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
+
+                <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
+
+                <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
+
+                <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
+            </ul>
+        </div>
+    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="./assets/js/yui-prettify.js"></script>
+<script src="./assets/../api.js"></script>
+<script src="./assets/js/api-filter.js"></script>
+<script src="./assets/js/api-list.js"></script>
+<script src="./assets/js/api-search.js"></script>
+<script src="./assets/js/apidocs.js"></script>
 </body>
 </html>
-<!-- end:readme.hbs -->
