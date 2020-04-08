@@ -8,14 +8,14 @@ module.exports = {
   },
 
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2017,
     "sourceType": "module"
   },
 
   "globals": {
     "Promise": "readonly",
     "WebMidi": "readonly",
-    "expect": "readonly",
+    "chai": "readonly",
     "sinon": "readonly"
   },
 
