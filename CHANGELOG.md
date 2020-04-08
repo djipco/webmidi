@@ -16,6 +16,10 @@ outdated [yuidoc](https://www.npmjs.com/package/grunt-contrib-yuidoc).
 
 - Grunt has been replaced with NPM scripts for all build purposes.
 
+- All methods now return `false` instead of throwing an error when invalid input is provided. 
+Methods that were changed to match this behaviour are `guessNoteNumber()`, `getOctave()` and
+`noteNameToNumber()`
+
 ### Deprecated
 
 ### Removed
