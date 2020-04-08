@@ -10,7 +10,7 @@ if (["cjs", "esm", "iife"].includes(argv.t)) type = argv.t;
 // Prepare command
 let cmd = `./node_modules/.bin/rollup ` +
   `--config ${__dirname}/rollup.config.${type}.js ` +
-  `--input src/index.js ` +
+  `--input src/WebMidi.js ` +
   `--format ${type} ` +
   `--file dist/webmidi.${type}.min.js ` +
   `--sourcemap`;
