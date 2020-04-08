@@ -66,8 +66,6 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
-											<li><a href="Input.html">Input</a></li>
-											<li><a href="Output.html">Output</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -107,47 +105,302 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it simplifies
-			two things: sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
-			<p>Sending MIDI messages is done via an <code>Output</code> object. All available outputs can be accessed in
-			the <code>WebMidi.outputs</code> array. There is one <code>Output</code> object for each output port available on
-			your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of
-			adding a listener to an <code>Input</code> object. Similarly, all inputs can be found in the
-			<code>WebMidi.inputs</code> array.</p>
-			<p>Please note that a single hardware device might create more than one input and/or output ports.</p>
-			<h4>Sending messages</h4>
-			<p>To send MIDI messages, you simply need to call the desired method (<code>playNote()</code>,
-			<code>sendPitchBend()</code>, <code>stopNote()</code>, etc.) from an <code>Output</code> object and pass in the appropriate
-			parameters. All the native MIDI communication will be handled for you. The only additional
-			thing that needs to be done is to first enable <code>WebMidi</code>. Here is an example:</p>
-			<pre><code> WebMidi.enable(function(err) {
-			   if (err) console.log(&quot;An error occurred&quot;, err);
-			   WebMidi.outputs[0].playNote(&quot;C3&quot;);
-			 });
-			</code></pre>
-			<p>The code above, calls the <code>WebMidi.enable()</code> method. Upon success, this method executes the
-			callback function specified as a parameter. In this case, the callback calls the <code>playnote()</code>
-			function to play a 3rd octave C on the first available output port.</p>
-			<h4>Receiving messages</h4>
-			<p>Receiving messages is just as easy. You simply have to set a callback function to be triggered
-			when a specific MIDI message is received. For example, here&quot;s how to listen for pitch bend
-			events on the first input port:</p>
-			<pre><code> WebMidi.enable(function(err) {
-			   if (err) console.log(&quot;An error occurred&quot;, err);
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it simplifies
+			sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
+			<p>When using the WebMidi.js library, the <code>WebMidi</code> class has already been instantiated for you.
+			If you use the <strong>IIFE</strong> version, you should simply use the global object called <code>WebMidi</code>. If you
+			use the <strong>CJS</strong> (CommonJS) or <strong>ESM</strong> (ES6 module) version, you get an already-instantiated
+			object. This means there is no need to instantiate a new <code>WebMidi</code> object directly.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
-			   WebMidi.inputs[0].addListener(&quot;pitchbend&quot;, &quot;all&quot;, function(e) {
-			     console.log(&quot;Pitch value: &quot; + e.value);
-			   });
 			
-			 });
-			</code></pre>
-			<p>As you can see, this library is much easier to use than the native Web MIDI API. No need to
-			manually craft or decode binary MIDI messages anymore!</p></div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-14">line 14</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+							</dl>
+							<article class="secondary">
+									<h3>Members</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="enabled" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">enabled</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether access to the host's MIDI subsystem is active or not.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-177">line 177</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="interface" class="member public"><span class="signature-attribs">&lt;readonly, nullable> </span><span class="name">interface</span><span class="signature-type"> :MIDIAccess</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>MIDIAccess</code> instance used to talk to the Web MIDI API. This should not be used directly
+			unless you know what you are doing.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">MIDIAccess</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-25">line 25</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="supported" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">supported</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the environment provides support for the Web MIDI API or not.</p>
+			<p><strong>Note</strong>: in environments that do not offer built-in MIDI support, this will report <code>true</code> if
+			the <code>navigator.requestMIDIAccess</code> function is available. For example, if you have installed
+			WebMIDIAPIShim.js but no plugin, this property will be <code>true</code> even though actual support might
+			not be there.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-192">line 192</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
+									<h3>Methods</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="enable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">enable</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Promise}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Checks if the Web MIDI API is available in the current environment and then tries to connect to
+			the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
+			be displayed to the user.</p>
+			<p>Since version 3, this method returns a <code>Promise</code>. We encourage users to use the promise-based
+			approach. When using such an approach, you can omit the callback option altogether.</p>
+			<p>To enable the use of MIDI system exclusive messages, the <code>sysex</code> parameter should be set to
+			<code>true</code>. However, under some environments (e.g. Jazz-Plugin), the <code>sysex</code> parameter is ignored
+			and system exclusive messages are always enabled.</p>
+			<p>To enable access to software synthesizers available on the host, you would set the <code>software</code>
+			option to <code>true</code>. However, note that this option is only there to future-proof the library as
+			support for software synths has not yet been implemented in any browser (April 2020).</p>
+			<p><strong>Important note</strong>: starting with Chrome v77, a page using Web MIDI API must be hosted on a
+			secure origin (<code>https://</code>, <code>localhost</code> or <code>file:///</code>) and the user will always be prompted to
+			authorize the operation (no matter if the <code>sysex</code> option is <code>true</code> or not).</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>Options</p>
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>callback</code></td>
+													<td><span class="param-type">function</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>A function to execute once the operation completes. This
+									function will receive an <code>Error</code> object if enabling the Web MIDI API failed.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>sysex</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether to enable MIDI system exclusive messages or not.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>software</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether to request access to software synthesizers on
+									the host system. This is part of the spec but has not yet been implemented by most browsers.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-code">
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">// Enabling WebMidi while leaving &#x60;sysex&#x60; off
+			WebMidi.enable().then(() &#x3D;&gt; {
+			  console.log(&quot;WebMidi.js has been enabled!&quot;);
+			})</code></pre>
+					</div>
+					<div class="example-code">
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">// Enabling WebMidi while turning &#x60;sysex&#x60; on
+			WebMidi.enable({sysex: true}).then(() &#x3D;&gt; {
+			  console.log(&quot;WebMidi.js has been enabled and sysex is active!&quot;);
+			})</code></pre>
+					</div>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error WebMidi is a singleton, it cannot be instantiated directly.</p></div>
+									<div class="form-control-static exceptions-description"><p>Error The Web MIDI API is not supported in your environment.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Error Jazz-Plugin must be installed to use WebMIDIAPIShim.</p></div>
 								</div>
 							</div>
 					</form>
@@ -171,28 +424,17 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="webmidi.js.html">webmidi.js</a>, <a href="webmidi.js.html#line-5">line 5</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-74">line 74</a></p>
 								</div>
 							</div>
 			
 			
 			
-							<!-- todo -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">To Do</label>
-								<div class="col-sm-9">
-										<ul class="form-control-static">
-												<li>Switch away from yuidoc (deprecated) to be able to serve doc over https</li>
-												<li>Yuidoc does not allow multiple exceptions (@throws) for a single method ?!</li>
-										</ul>
-								</div>
-							</div>
 			
 					</form>
 			</div>	</div>
 </dd>
-							</dl>
-							<article class="secondary">
+									</dl>
 							</article>
 					</section>
 			</div>
@@ -203,7 +445,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 6th 2020 @ 11:32:02 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 7th 2020 @ 16:39:10 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

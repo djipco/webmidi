@@ -61,168 +61,208 @@
           "list",
           "list:class"
         ],
-        "Input.html": [
-          "array",
-          "avail",
-          "class",
-          "creat",
-          "directli",
-          "find",
-          "host",
-          "input",
-          "instanti",
-          "midi",
-          "object",
-          "port",
-          "repres",
-          "subsystem",
-          "system",
-          "webmidi.input"
-        ],
-        "Output.html": [
-          "array",
-          "avail",
-          "class",
-          "creat",
-          "directli",
-          "find",
-          "host",
-          "instanti",
-          "midi",
-          "object",
-          "output",
-          "port",
-          "repres",
-          "subsystem",
-          "system",
-          "webmidi.output"
-        ],
         "WebMidi.html": [
-          "3rd",
-          "abov",
-          "access",
-          "ad",
-          "addit",
-          "and/or",
-          "anymor",
+          "alreadi",
           "api",
-          "appropri",
-          "array",
-          "avail",
           "basic",
-          "bend",
-          "binari",
-          "c",
           "call",
-          "callback",
-          "case",
+          "cj",
           "class",
-          "code",
-          "come",
-          "commun",
-          "console.log(\"an",
-          "console.log(\"pitch",
-          "craft",
-          "creat",
-          "decod",
-          "desir",
-          "devic",
-          "done",
-          "e.valu",
-          "each",
-          "easi",
+          "commonj",
+          "directli",
           "easier",
-          "enabl",
-          "err",
-          "error",
-          "etc",
-          "event",
-          "exampl",
-          "execut",
-          "first",
-          "found",
-          "function",
-          "function(",
-          "handl",
-          "hardwar",
-          "here",
-          "here\"",
+          "es6",
+          "esm",
+          "global",
+          "iif",
           "incom",
-          "input",
+          "instanti",
           "librari",
-          "listen",
           "make",
-          "manual",
+          "mean",
+          "messag",
+          "midi",
+          "modul",
+          "need",
+          "new",
+          "object",
+          "outgo",
+          "react",
+          "send",
+          "simpli",
+          "simplifi",
+          "us",
+          "version",
+          "web",
+          "webmidi",
+          "webmidi.j",
+          "work"
+        ],
+        "WebMidi.html#enabled": [
+          "access",
+          "activ",
+          "boolean",
+          "enabl",
+          "host'",
+          "indic",
+          "lt;readonly&gt",
+          "member",
+          "midi",
+          "subsystem",
+          "webmidi#en",
+          "whether"
+        ],
+        "WebMidi.html#interface": [
+          "api",
+          "directli",
+          "do",
+          "instanc",
+          "interfac",
+          "know",
+          "lt;readonli",
+          "member",
+          "midi",
+          "midiaccess",
+          "nullable&gt",
+          "talk",
+          "unless",
+          "us",
+          "web",
+          "webmidi#interfac"
+        ],
+        "WebMidi.html#supported": [
+          "actual",
+          "api",
+          "avail",
+          "boolean",
+          "built",
+          "environ",
+          "even",
+          "exampl",
+          "function",
+          "indic",
+          "instal",
+          "lt;readonly&gt",
+          "member",
+          "midi",
+          "navigator.requestmidiaccess",
+          "note",
+          "offer",
+          "plugin",
+          "properti",
+          "provid",
+          "report",
+          "support",
+          "though",
+          "true",
+          "web",
+          "webmidi#support",
+          "webmidiapishim.j",
+          "whether"
+        ],
+        "WebMidi.html#enable": [
+          "2020",
+          "3",
+          "access",
+          "altogeth",
+          "alway",
+          "api",
+          "approach",
+          "april",
+          "asynchron",
+          "author",
+          "avail",
+          "base",
+          "browser",
+          "callback",
+          "caus",
+          "check",
+          "chrome",
+          "connect",
+          "current",
+          "display",
+          "e.g",
+          "enabl",
+          "encourag",
+          "environ",
+          "exclus",
+          "file",
+          "function",
+          "futur",
+          "host",
+          "host'",
+          "http",
+          "ignor",
+          "implement",
+          "import",
+          "jazz",
+          "librari",
+          "localhost",
+          "lt;async&gt",
           "matter",
           "messag",
           "method",
           "midi",
-          "more",
-          "much",
-          "nativ",
-          "need",
           "note",
-          "object",
-          "occur",
-          "octav",
-          "on",
-          "outgo",
-          "output",
+          "omit",
+          "oper",
+          "option",
+          "origin",
+          "page",
           "paramet",
-          "pass",
-          "pitch",
-          "play",
-          "playnot",
-          "pleas",
-          "port",
-          "react",
-          "receiv",
-          "see",
-          "send",
-          "sendpitchbend",
+          "plugin",
+          "promis",
+          "prompt",
+          "proof",
+          "return",
+          "secur",
           "set",
-          "similarli",
-          "simpli",
-          "simplifi",
-          "singl",
-          "specif",
-          "specifi",
-          "stopnot",
-          "success",
+          "softwar",
+          "start",
+          "subsystem",
+          "such",
+          "support",
+          "synth",
+          "synthes",
+          "sysex",
           "system",
-          "thing",
-          "trigger",
-          "two",
-          "upon",
+          "tri",
+          "true",
+          "under",
           "us",
-          "valu",
-          "via",
+          "user",
+          "v77",
+          "version",
           "web",
-          "webmidi",
-          "webmidi.en",
-          "webmidi.enable(function(err",
-          "webmidi.input",
-          "webmidi.inputs[0].addlistener(\"pitchbend",
-          "webmidi.output",
-          "webmidi.outputs[0].playnote(\"c3",
-          "work"
+          "webmidi#en"
         ]
       },
-      "length": 6
+      "length": 8
     },
     "tokenStore": {
       "root": {
-        "3": {
-          "docs": {},
-          "r": {
-            "docs": {},
-            "d": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
+        "2": {
+          "0": {
+            "2": {
+              "0": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
                 }
-              }
+              },
+              "docs": {}
+            },
+            "docs": {}
+          },
+          "docs": {}
+        },
+        "3": {
+          "docs": {
+            "WebMidi.html#enable": {
+              "ref": "WebMidi.html#enable",
+              "tf": 0.46728971962616817
             }
           }
         },
@@ -239,7 +279,19 @@
                 },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.5434782608695652
+                  "tf": 0.9803921568627451
+                },
+                "WebMidi.html#interface": {
+                  "ref": "WebMidi.html#interface",
+                  "tf": 4.166666666666666
+                },
+                "WebMidi.html#supported": {
+                  "ref": "WebMidi.html#supported",
+                  "tf": 1.7241379310344827
+                },
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.9345794392523363
                 }
               }
             },
@@ -249,15 +301,15 @@
                 "docs": {},
                 "o": {
                   "docs": {},
-                  "p": {
+                  "a": {
                     "docs": {},
-                    "r": {
+                    "c": {
                       "docs": {},
-                      "i": {
+                      "h": {
                         "docs": {
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.2717391304347826
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 0.9345794392523363
                           }
                         }
                       }
@@ -265,67 +317,77 @@
                   }
                 }
               }
-            }
-          },
-          "r": {
-            "docs": {},
+            },
             "r": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "y": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 2.5
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 2.5
-                    },
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "v": {
-            "docs": {},
-            "a": {
               "docs": {},
               "i": {
                 "docs": {},
                 "l": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 2.5
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 2.5
-                    },
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.8152173913043478
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
                     }
                   }
                 }
               }
             }
           },
-          "b": {
+          "l": {
             "docs": {},
-            "o": {
+            "r": {
               "docs": {},
-              "v": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+              "e": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "d": {
+                    "docs": {},
+                    "i": {
+                      "docs": {
+                        "WebMidi.html": {
+                          "ref": "WebMidi.html",
+                          "tf": 1.9607843137254901
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "g": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "h": {
+                        "docs": {
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 0.46728971962616817
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "w": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "y": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.9345794392523363
+                    }
                   }
                 }
               }
@@ -341,68 +403,111 @@
                   "docs": {},
                   "s": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                      "WebMidi.html#enabled": {
+                        "ref": "WebMidi.html#enabled",
+                        "tf": 7.142857142857142
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
                     }
                   }
                 }
               }
-            }
-          },
-          "d": {
-            "docs": {
-              "WebMidi.html": {
-                "ref": "WebMidi.html",
-                "tf": 0.2717391304347826
-              }
             },
-            "d": {
+            "t": {
               "docs": {},
               "i": {
                 "docs": {},
-                "t": {
+                "v": {
                   "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                    "WebMidi.html#enabled": {
+                      "ref": "WebMidi.html#enabled",
+                      "tf": 7.142857142857142
+                    }
+                  }
+                }
+              },
+              "u": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
+                      }
                     }
                   }
                 }
               }
             }
           },
-          "n": {
+          "v": {
             "docs": {},
-            "d": {
+            "a": {
               "docs": {},
-              "/": {
+              "i": {
                 "docs": {},
-                "o": {
+                "l": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.9345794392523363
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "s": {
+            "docs": {},
+            "y": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "c": {
                   "docs": {},
-                  "r": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                  "h": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "WebMidi.html#enable": {
+                              "ref": "WebMidi.html#enable",
+                              "tf": 0.46728971962616817
+                            }
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
-            },
-            "y": {
+            }
+          },
+          "u": {
+            "docs": {},
+            "t": {
               "docs": {},
-              "m": {
+              "h": {
                 "docs": {},
                 "o": {
                   "docs": {},
                   "r": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
                     }
                   }
@@ -425,25 +530,6 @@
                   }
                 }
               }
-            },
-            "r": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                },
-                "\"": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
             }
           },
           "o": {
@@ -452,50 +538,35 @@
               "docs": {},
               "t": {
                 "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 2.5
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 2.5
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.9345794392523363
+                  }
+                },
+                "'": {
+                  "docs": {
+                    "WebMidi.html#enabled": {
+                      "ref": "WebMidi.html#enabled",
+                      "tf": 7.142857142857142
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
                   }
                 }
               }
             }
           },
-          "a": {
+          "t": {
             "docs": {},
-            "n": {
+            "t": {
               "docs": {},
-              "d": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "d": {
-                "docs": {},
-                "w": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "r": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
-                        }
-                      }
-                    }
+              "p": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
                   }
                 }
               }
@@ -518,21 +589,32 @@
                     }
                   }
                 }
+              },
+              "i": {
+                "docs": {},
+                "c": {
+                  "docs": {
+                    "WebMidi.html#enabled": {
+                      "ref": "WebMidi.html#enabled",
+                      "tf": 7.142857142857142
+                    },
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
+                  }
+                }
               }
             },
-            "p": {
+            "c": {
               "docs": {},
-              "u": {
+              "o": {
                 "docs": {},
-                "t": {
+                "m": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1907.5
-                    },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 1.0869565217391304
+                      "tf": 0.9803921568627451
                     }
                   }
                 }
@@ -550,13 +632,48 @@
                       "docs": {},
                       "i": {
                         "docs": {
-                          "Input.html": {
-                            "ref": "Input.html",
-                            "tf": 2.5
-                          },
-                          "Output.html": {
-                            "ref": "Output.html",
-                            "tf": 2.5
+                          "WebMidi.html": {
+                            "ref": "WebMidi.html",
+                            "tf": 2.941176470588235
+                          }
+                        }
+                      }
+                    },
+                    "c": {
+                      "docs": {
+                        "WebMidi.html#interface": {
+                          "ref": "WebMidi.html#interface",
+                          "tf": 4.166666666666666
+                        }
+                      }
+                    }
+                  },
+                  "l": {
+                    "docs": {
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "f": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "c": {
+                        "docs": {
+                          "WebMidi.html#interface": {
+                            "ref": "WebMidi.html#interface",
+                            "tf": 675
                           }
                         }
                       }
@@ -564,16 +681,73 @@
                   }
                 }
               }
-            },
-            "c": {
+            }
+          },
+          "i": {
+            "docs": {},
+            "f": {
+              "docs": {
+                "WebMidi.html": {
+                  "ref": "WebMidi.html",
+                  "tf": 0.9803921568627451
+                }
+              }
+            }
+          },
+          "g": {
+            "docs": {},
+            "n": {
               "docs": {},
               "o": {
                 "docs": {},
-                "m": {
+                "r": {
                   "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "m": {
+            "docs": {},
+            "p": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "m": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "t": {
+                          "docs": {
+                            "WebMidi.html#enable": {
+                              "ref": "WebMidi.html#enable",
+                              "tf": 0.46728971962616817
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
+                      }
                     }
                   }
                 }
@@ -613,6 +787,17 @@
                   }
                 }
               }
+            },
+            "z": {
+              "docs": {},
+              "z": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
             }
           }
         },
@@ -636,7 +821,11 @@
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
+                          "tf": 0.9803921568627451
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
                         }
                       }
                     }
@@ -675,14 +864,117 @@
                       }
                     }
                   }
-                },
+                }
+              }
+            }
+          },
+          "t": {
+            "docs": {},
+            ";": {
+              "docs": {},
+              "r": {
+                "docs": {},
                 "e": {
                   "docs": {},
-                  "n": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.5434782608695652
+                  "a": {
+                    "docs": {},
+                    "d": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "y": {
+                              "docs": {},
+                              "&": {
+                                "docs": {},
+                                "g": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {
+                                      "WebMidi.html#enabled": {
+                                        "ref": "WebMidi.html#enabled",
+                                        "tf": 33.33333333333333
+                                      },
+                                      "WebMidi.html#supported": {
+                                        "ref": "WebMidi.html#supported",
+                                        "tf": 33.33333333333333
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "i": {
+                              "docs": {
+                                "WebMidi.html#interface": {
+                                  "ref": "WebMidi.html#interface",
+                                  "tf": 25
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "a": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "y": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "c": {
+                        "docs": {},
+                        "&": {
+                          "docs": {},
+                          "g": {
+                            "docs": {},
+                            "t": {
+                              "docs": {
+                                "WebMidi.html#enable": {
+                                  "ref": "WebMidi.html#enable",
+                                  "tf": 25
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "c": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "h": {
+                    "docs": {},
+                    "o": {
+                      "docs": {},
+                      "s": {
+                        "docs": {},
+                        "t": {
+                          "docs": {
+                            "WebMidi.html#enable": {
+                              "ref": "WebMidi.html#enable",
+                              "tf": 0.46728971962616817
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -703,17 +995,48 @@
                     "ref": "index.html",
                     "tf": 10
                   },
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 5
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 5
-                  },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 2.717391304347826
+                    "tf": 2.941176470588235
+                  },
+                  "WebMidi.html#enabled": {
+                    "ref": "WebMidi.html#enabled",
+                    "tf": 7.142857142857142
+                  },
+                  "WebMidi.html#interface": {
+                    "ref": "WebMidi.html#interface",
+                    "tf": 4.166666666666666
+                  },
+                  "WebMidi.html#supported": {
+                    "ref": "WebMidi.html#supported",
+                    "tf": 3.4482758620689653
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 1.8691588785046727
+                  }
+                },
+                "a": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "s": {
+                          "docs": {},
+                          "s": {
+                            "docs": {
+                              "WebMidi.html#interface": {
+                                "ref": "WebMidi.html#interface",
+                                "tf": 29.166666666666664
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -727,24 +1050,7 @@
                 "docs": {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "l": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
-                      }
-                    }
+                    "tf": 0.9803921568627451
                   }
                 }
               }
@@ -757,9 +1063,9 @@
                   "docs": {},
                   "r": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
                     }
                   }
@@ -769,6 +1075,17 @@
           },
           "e": {
             "docs": {},
+            "a": {
+              "docs": {},
+              "n": {
+                "docs": {
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.9803921568627451
+                  }
+                }
+              }
+            },
             "s": {
               "docs": {},
               "s": {
@@ -779,7 +1096,36 @@
                     "docs": {
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 2.717391304347826
+                        "tf": 1.9607843137254901
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.9345794392523363
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "m": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "WebMidi.html#enabled": {
+                        "ref": "WebMidi.html#enabled",
+                        "tf": 110
+                      },
+                      "WebMidi.html#interface": {
+                        "ref": "WebMidi.html#interface",
+                        "tf": 110
+                      },
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 110
                       }
                     }
                   }
@@ -794,9 +1140,9 @@
                   "docs": {},
                   "d": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.8152173913043478
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
                     }
                   }
@@ -806,27 +1152,16 @@
           },
           "o": {
             "docs": {},
-            "r": {
+            "d": {
               "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "c": {
-              "docs": {},
-              "h": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+              "u": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.9803921568627451
+                    }
                   }
                 }
               }
@@ -856,7 +1191,7 @@
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
+                      "tf": 0.9803921568627451
                     }
                   }
                 }
@@ -864,36 +1199,32 @@
             },
             "p": {
               "docs": {},
-              "r": {
+              "o": {
                 "docs": {},
-                "e": {
+                "r": {
                   "docs": {},
-                  "s": {
+                  "t": {
                     "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 2.5
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 2.5
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
                       }
                     }
                   }
                 }
               }
             },
-            "c": {
+            "t": {
               "docs": {},
-              "e": {
+              "u": {
                 "docs": {},
-                "i": {
+                "r": {
                   "docs": {},
-                  "v": {
+                  "n": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.8152173913043478
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
                     }
                   }
@@ -916,19 +1247,33 @@
                   }
                 }
               }
+            },
+            "l": {
+              "docs": {},
+              "k": {
+                "docs": {
+                  "WebMidi.html#interface": {
+                    "ref": "WebMidi.html#interface",
+                    "tf": 4.166666666666666
+                  }
+                }
+              }
             }
           },
           "h": {
             "docs": {},
-            "i": {
+            "o": {
               "docs": {},
-              "n": {
+              "u": {
                 "docs": {},
                 "g": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
+                  "docs": {},
+                  "h": {
+                    "docs": {
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
+                      }
                     }
                   }
                 }
@@ -937,34 +1282,26 @@
           },
           "r": {
             "docs": {},
-            "i": {
+            "u": {
               "docs": {},
-              "g": {
-                "docs": {},
-                "g": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "r": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
-                        }
-                      }
-                    }
+              "e": {
+                "docs": {
+                  "WebMidi.html#supported": {
+                    "ref": "WebMidi.html#supported",
+                    "tf": 3.4482758620689653
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 1.4018691588785046
                   }
                 }
               }
-            }
-          },
-          "w": {
-            "docs": {},
-            "o": {
+            },
+            "i": {
               "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.46728971962616817
                 }
               }
             }
@@ -982,7 +1319,19 @@
                 },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.5434782608695652
+                  "tf": 0.9803921568627451
+                },
+                "WebMidi.html#interface": {
+                  "ref": "WebMidi.html#interface",
+                  "tf": 4.166666666666666
+                },
+                "WebMidi.html#supported": {
+                  "ref": "WebMidi.html#supported",
+                  "tf": 1.7241379310344827
+                },
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.9345794392523363
                 }
               },
               "m": {
@@ -995,7 +1344,7 @@
                       "docs": {
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1900.5434782608695
+                          "tf": 1903.921568627451
                         }
                       },
                       ".": {
@@ -1005,6 +1354,28 @@
                             "index.html": {
                               "ref": "index.html",
                               "tf": 600
+                            },
+                            "WebMidi.html": {
+                              "ref": "WebMidi.html",
+                              "tf": 0.9803921568627451
+                            }
+                          }
+                        }
+                      },
+                      "#": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {
+                              "WebMidi.html#enabled": {
+                                "ref": "WebMidi.html#enabled",
+                                "tf": 1150
+                              },
+                              "WebMidi.html#enable": {
+                                "ref": "WebMidi.html#enable",
+                                "tf": 1150
+                              }
                             }
                           }
                         },
@@ -1012,105 +1383,24 @@
                           "docs": {},
                           "n": {
                             "docs": {},
-                            "p": {
+                            "t": {
                               "docs": {},
-                              "u": {
+                              "e": {
                                 "docs": {},
-                                "t": {
-                                  "docs": {
-                                    "Input.html": {
-                                      "ref": "Input.html",
-                                      "tf": 2.5
-                                    },
-                                    "WebMidi.html": {
-                                      "ref": "WebMidi.html",
-                                      "tf": 0.2717391304347826
-                                    }
-                                  },
-                                  "s": {
+                                "r": {
+                                  "docs": {},
+                                  "f": {
                                     "docs": {},
-                                    "[": {
-                                      "0": {
-                                        "docs": {},
-                                        "]": {
-                                          "docs": {},
-                                          ".": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "d": {
-                                                "docs": {},
-                                                "d": {
-                                                  "docs": {},
-                                                  "l": {
-                                                    "docs": {},
-                                                    "i": {
-                                                      "docs": {},
-                                                      "s": {
-                                                        "docs": {},
-                                                        "t": {
-                                                          "docs": {},
-                                                          "e": {
-                                                            "docs": {},
-                                                            "n": {
-                                                              "docs": {},
-                                                              "e": {
-                                                                "docs": {},
-                                                                "r": {
-                                                                  "docs": {},
-                                                                  "(": {
-                                                                    "docs": {},
-                                                                    "\"": {
-                                                                      "docs": {},
-                                                                      "p": {
-                                                                        "docs": {},
-                                                                        "i": {
-                                                                          "docs": {},
-                                                                          "t": {
-                                                                            "docs": {},
-                                                                            "c": {
-                                                                              "docs": {},
-                                                                              "h": {
-                                                                                "docs": {},
-                                                                                "b": {
-                                                                                  "docs": {},
-                                                                                  "e": {
-                                                                                    "docs": {},
-                                                                                    "n": {
-                                                                                      "docs": {},
-                                                                                      "d": {
-                                                                                        "docs": {
-                                                                                          "WebMidi.html": {
-                                                                                            "ref": "WebMidi.html",
-                                                                                            "tf": 0.2717391304347826
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
+                                    "a": {
+                                      "docs": {},
+                                      "c": {
+                                        "docs": {
+                                          "WebMidi.html#interface": {
+                                            "ref": "WebMidi.html#interface",
+                                            "tf": 1150
                                           }
                                         }
-                                      },
-                                      "docs": {}
+                                      }
                                     }
                                   }
                                 }
@@ -1118,81 +1408,24 @@
                             }
                           }
                         },
-                        "o": {
+                        "s": {
                           "docs": {},
                           "u": {
                             "docs": {},
-                            "t": {
+                            "p": {
                               "docs": {},
                               "p": {
                                 "docs": {},
-                                "u": {
+                                "o": {
                                   "docs": {},
-                                  "t": {
-                                    "docs": {
-                                      "Output.html": {
-                                        "ref": "Output.html",
-                                        "tf": 2.5
-                                      },
-                                      "WebMidi.html": {
-                                        "ref": "WebMidi.html",
-                                        "tf": 0.2717391304347826
-                                      }
-                                    },
-                                    "s": {
-                                      "docs": {},
-                                      "[": {
-                                        "0": {
-                                          "docs": {},
-                                          "]": {
-                                            "docs": {},
-                                            ".": {
-                                              "docs": {},
-                                              "p": {
-                                                "docs": {},
-                                                "l": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "y": {
-                                                      "docs": {},
-                                                      "n": {
-                                                        "docs": {},
-                                                        "o": {
-                                                          "docs": {},
-                                                          "t": {
-                                                            "docs": {},
-                                                            "e": {
-                                                              "docs": {},
-                                                              "(": {
-                                                                "docs": {},
-                                                                "\"": {
-                                                                  "docs": {},
-                                                                  "c": {
-                                                                    "3": {
-                                                                      "docs": {
-                                                                        "WebMidi.html": {
-                                                                          "ref": "WebMidi.html",
-                                                                          "tf": 0.2717391304347826
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    "docs": {}
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "docs": {}
+                                  "r": {
+                                    "docs": {},
+                                    "t": {
+                                      "docs": {
+                                        "WebMidi.html#supported": {
+                                          "ref": "WebMidi.html#supported",
+                                          "tf": 1150
+                                        }
                                       }
                                     }
                                   }
@@ -1200,64 +1433,29 @@
                               }
                             }
                           }
-                        },
-                        "e": {
+                        }
+                      },
+                      "a": {
+                        "docs": {},
+                        "p": {
                           "docs": {},
-                          "n": {
-                            "docs": {
-                              "WebMidi.html": {
-                                "ref": "WebMidi.html",
-                                "tf": 0.2717391304347826
-                              }
-                            },
-                            "a": {
+                          "i": {
+                            "docs": {},
+                            "s": {
                               "docs": {},
-                              "b": {
+                              "h": {
                                 "docs": {},
-                                "l": {
+                                "i": {
                                   "docs": {},
-                                  "e": {
+                                  "m": {
                                     "docs": {},
-                                    "(": {
+                                    ".": {
                                       "docs": {},
-                                      "f": {
-                                        "docs": {},
-                                        "u": {
-                                          "docs": {},
-                                          "n": {
-                                            "docs": {},
-                                            "c": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {},
-                                                "i": {
-                                                  "docs": {},
-                                                  "o": {
-                                                    "docs": {},
-                                                    "n": {
-                                                      "docs": {},
-                                                      "(": {
-                                                        "docs": {},
-                                                        "e": {
-                                                          "docs": {},
-                                                          "r": {
-                                                            "docs": {},
-                                                            "r": {
-                                                              "docs": {
-                                                                "WebMidi.html": {
-                                                                  "ref": "WebMidi.html",
-                                                                  "tf": 0.5434782608695652
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
+                                      "j": {
+                                        "docs": {
+                                          "WebMidi.html#supported": {
+                                            "ref": "WebMidi.html#supported",
+                                            "tf": 1.7241379310344827
                                           }
                                         }
                                       }
@@ -1283,7 +1481,34 @@
                 "docs": {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+                    "tf": 0.9803921568627451
+                  }
+                }
+              }
+            }
+          },
+          "h": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "h": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "WebMidi.html#enabled": {
+                          "ref": "WebMidi.html#enabled",
+                          "tf": 7.142857142857142
+                        },
+                        "WebMidi.html#supported": {
+                          "ref": "WebMidi.html#supported",
+                          "tf": 1.7241379310344827
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -1293,7 +1518,12 @@
         "d": {
           "docs": {},
           "o": {
-            "docs": {},
+            "docs": {
+              "WebMidi.html#interface": {
+                "ref": "WebMidi.html#interface",
+                "tf": 4.166666666666666
+              }
+            },
             "c": {
               "docs": {},
               "u": {
@@ -1320,17 +1550,6 @@
                   }
                 }
               }
-            },
-            "n": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.5434782608695652
-                  }
-                }
-              }
             }
           },
           "i": {
@@ -1347,13 +1566,13 @@
                       "docs": {},
                       "i": {
                         "docs": {
-                          "Input.html": {
-                            "ref": "Input.html",
-                            "tf": 2.5
+                          "WebMidi.html": {
+                            "ref": "WebMidi.html",
+                            "tf": 0.9803921568627451
                           },
-                          "Output.html": {
-                            "ref": "Output.html",
-                            "tf": 2.5
+                          "WebMidi.html#interface": {
+                            "ref": "WebMidi.html#interface",
+                            "tf": 4.166666666666666
                           }
                         }
                       }
@@ -1361,47 +1580,22 @@
                   }
                 }
               }
-            }
-          },
-          "e": {
-            "docs": {},
-            "c": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "d": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
             },
             "s": {
               "docs": {},
-              "i": {
+              "p": {
                 "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "c": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                "l": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "y": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
+                      }
                     }
                   }
                 }
@@ -1424,6 +1618,10 @@
                       "global.html": {
                         "ref": "global.html",
                         "tf": 2045
+                      },
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 0.9803921568627451
                       }
                     }
                   }
@@ -1433,12 +1631,7 @@
           }
         },
         "c": {
-          "docs": {
-            "WebMidi.html": {
-              "ref": "WebMidi.html",
-              "tf": 0.2717391304347826
-            }
-          },
+          "docs": {},
           "l": {
             "docs": {},
             "a": {
@@ -1451,56 +1644,9 @@
                       "ref": "list_class.html",
                       "tf": 635
                     },
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 110
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 110
-                    },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 110
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "r": {
-            "docs": {},
-            "e": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 2.5
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 2.5
-                    },
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            },
-            "a": {
-              "docs": {},
-              "f": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                      "tf": 110.98039215686275
                     }
                   }
                 }
@@ -1515,7 +1661,7 @@
                 "docs": {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.8152173913043478
+                    "tf": 0.9803921568627451
                   }
                 },
                 "b": {
@@ -1526,9 +1672,9 @@
                       "docs": {},
                       "k": {
                         "docs": {
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.8152173913043478
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 0.46728971962616817
                           }
                         }
                       }
@@ -1537,687 +1683,118 @@
                 }
               }
             },
-            "s": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              }
-            },
-            "m": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              },
-              "m": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "l": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      ".": {
-                        "docs": {},
-                        "l": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "g": {
-                              "docs": {},
-                              "(": {
-                                "docs": {},
-                                "\"": {
-                                  "docs": {},
-                                  "a": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {
-                                        "WebMidi.html": {
-                                          "ref": "WebMidi.html",
-                                          "tf": 0.5434782608695652
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "p": {
-                                    "docs": {},
-                                    "i": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "h": {
-                                            "docs": {
-                                              "WebMidi.html": {
-                                                "ref": "WebMidi.html",
-                                                "tf": 0.2717391304347826
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "f": {
-          "docs": {},
-          "i": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "d": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 2.5
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 2.5
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.8152173913043478
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
             "u": {
               "docs": {},
-              "n": {
-                "docs": {},
-                "d": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
+              "s": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
                   }
                 }
               }
             }
           },
-          "u": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "o": {
-                      "docs": {},
-                      "n": {
-                        "docs": {
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.8152173913043478
-                          }
-                        },
-                        "(": {
-                          "docs": {
-                            "WebMidi.html": {
-                              "ref": "WebMidi.html",
-                              "tf": 0.2717391304347826
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "o": {
-          "docs": {},
-          "b": {
-            "docs": {},
-            "j": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "c": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 7.5
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 7.5
-                      },
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 1.358695652173913
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1907.5
-                      },
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 1.9021739130434785
-                      }
-                    }
-                  }
-                }
-              },
-              "g": {
-                "docs": {},
-                "o": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "c": {
-            "docs": {},
-            "c": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "n": {
+          "j": {
             "docs": {
               "WebMidi.html": {
                 "ref": "WebMidi.html",
-                "tf": 0.5434782608695652
+                "tf": 0.9803921568627451
               }
             }
-          }
-        },
-        "p": {
-          "docs": {},
+          },
           "o": {
             "docs": {},
-            "r": {
+            "m": {
               "docs": {},
-              "t": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 2.5
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 2.5
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 1.0869565217391304
+              "m": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "n": {
+                    "docs": {},
+                    "j": {
+                      "docs": {
+                        "WebMidi.html": {
+                          "ref": "WebMidi.html",
+                          "tf": 0.9803921568627451
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
           },
-          "a": {
+          "h": {
             "docs": {},
+            "e": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "k": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  }
+                }
+              }
+            },
             "r": {
               "docs": {},
-              "a": {
+              "o": {
                 "docs": {},
                 "m": {
                   "docs": {},
                   "e": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.5434782608695652
-                        }
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
                       }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                }
-              }
-            }
-          },
-          "i": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
                     }
                   }
                 }
               }
             }
           },
-          "l": {
-            "docs": {},
-            "a": {
-              "docs": {},
-              "y": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                },
-                "n": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.5434782608695652
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "s": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "s": {
-          "docs": {},
           "u": {
             "docs": {},
-            "b": {
+            "r": {
               "docs": {},
-              "s": {
-                "docs": {},
-                "y": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "m": {
-                          "docs": {
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 2.5
-                            },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 2.5
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "c": {
+              "r": {
                 "docs": {},
                 "e": {
                   "docs": {},
-                  "s": {
-                    "docs": {},
-                    "s": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "y": {
-            "docs": {},
-            "s": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "m": {
-                    "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 2.5
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 2.5
-                      },
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "e": {
-            "docs": {},
-            "e": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "d": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 1.0869565217391304
-                  }
-                },
-                "p": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "c": {
-                        "docs": {},
-                        "h": {
-                          "docs": {},
-                          "b": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {},
-                                "d": {
-                                  "docs": {
-                                    "WebMidi.html": {
-                                      "ref": "WebMidi.html",
-                                      "tf": 0.2717391304347826
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
-                }
-              }
-            }
-          },
-          "i": {
-            "docs": {},
-            "m": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "l": {
-                        "docs": {},
-                        "i": {
-                          "docs": {
-                            "WebMidi.html": {
-                              "ref": "WebMidi.html",
-                              "tf": 0.5434782608695652
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "p": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "i": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.8152173913043478
-                      }
-                    },
-                    "f": {
-                      "docs": {},
-                      "i": {
-                        "docs": {
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.2717391304347826
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "p": {
-            "docs": {},
-            "e": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "f": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
-                      }
-                    },
-                    "i": {
-                      "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "t": {
-            "docs": {},
-            "o": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "o": {
+                  "n": {
                     "docs": {},
                     "t": {
                       "docs": {
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 0.2717391304347826
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
                         }
                       }
                     }
@@ -2239,40 +1816,81 @@
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                      "tf": 0.9803921568627451
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "WebMidi.html#enabled": {
+                          "ref": "WebMidi.html#enabled",
+                          "tf": 33.33333333333333
+                        },
+                        "WebMidi.html#supported": {
+                          "ref": "WebMidi.html#supported",
+                          "tf": 33.33333333333333
+                        }
+                      }
                     }
                   }
                 }
               }
             }
           },
-          "e": {
+          "u": {
             "docs": {},
-            "n": {
+            "i": {
               "docs": {},
-              "d": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+              "l": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
                   }
                 }
               }
             }
           },
-          "i": {
+          "r": {
             "docs": {},
-            "n": {
+            "o": {
               "docs": {},
-              "a": {
+              "w": {
                 "docs": {},
-                "r": {
+                "s": {
                   "docs": {},
-                  "i": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
                       }
                     }
                   }
@@ -2283,19 +1901,19 @@
         },
         "e": {
           "docs": {},
-          ".": {
+          "a": {
             "docs": {},
-            "v": {
+            "s": {
               "docs": {},
-              "a": {
+              "i": {
                 "docs": {},
-                "l": {
+                "e": {
                   "docs": {},
-                  "u": {
+                  "r": {
                     "docs": {
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                        "tf": 0.9803921568627451
                       }
                     }
                   }
@@ -2303,38 +1921,21 @@
               }
             }
           },
-          "a": {
-            "docs": {},
-            "c": {
-              "docs": {},
-              "h": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
+          "s": {
+            "6": {
+              "docs": {
+                "WebMidi.html": {
+                  "ref": "WebMidi.html",
+                  "tf": 0.9803921568627451
                 }
               }
             },
-            "s": {
-              "docs": {},
-              "i": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
-                  }
-                },
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.5434782608695652
-                      }
-                    }
-                  }
+            "docs": {},
+            "m": {
+              "docs": {
+                "WebMidi.html": {
+                  "ref": "WebMidi.html",
+                  "tf": 0.9803921568627451
                 }
               }
             }
@@ -2347,44 +1948,62 @@
                 "docs": {},
                 "l": {
                   "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
+                    "WebMidi.html#enabled": {
+                      "ref": "WebMidi.html#enabled",
+                      "tf": 683.3333333333334
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 676.4018691588785
                     }
                   }
                 }
               }
-            }
-          },
-          "r": {
-            "docs": {},
-            "r": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 1.0869565217391304
-                }
-              },
-              "o": {
+            },
+            "v": {
+              "docs": {},
+              "i": {
                 "docs": {},
                 "r": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "WebMidi.html#supported": {
+                          "ref": "WebMidi.html#supported",
+                          "tf": 3.4482758620689653
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.9345794392523363
+                        }
+                      }
                     }
                   }
                 }
               }
-            }
-          },
-          "t": {
-            "docs": {},
+            },
             "c": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
+              "docs": {},
+              "o": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "g": {
+                        "docs": {
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 0.46728971962616817
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -2394,13 +2013,10 @@
             "e": {
               "docs": {},
               "n": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.2717391304347826
-                    }
+                "docs": {
+                  "WebMidi.html#supported": {
+                    "ref": "WebMidi.html#supported",
+                    "tf": 1.7241379310344827
                   }
                 }
               }
@@ -2416,29 +2032,40 @@
                   "docs": {},
                   "l": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.5434782608695652
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
                       }
                     }
                   }
                 }
               }
             },
-            "e": {
+            "c": {
               "docs": {},
-              "c": {
+              "l": {
                 "docs": {},
                 "u": {
                   "docs": {},
-                  "t": {
+                  "s": {
                     "docs": {
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.2717391304347826
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.9345794392523363
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          ".": {
+            "docs": {},
+            "g": {
+              "docs": {
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.46728971962616817
                 }
               }
             }
@@ -2446,23 +2073,6 @@
         },
         "n": {
           "docs": {},
-          "a": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.5434782608695652
-                    }
-                  }
-                }
-              }
-            }
-          },
           "e": {
             "docs": {},
             "e": {
@@ -2471,7 +2081,133 @@
                 "docs": {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.8152173913043478
+                    "tf": 0.9803921568627451
+                  }
+                }
+              }
+            },
+            "w": {
+              "docs": {
+                "WebMidi.html": {
+                  "ref": "WebMidi.html",
+                  "tf": 0.9803921568627451
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "b": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "&": {
+                          "docs": {},
+                          "g": {
+                            "docs": {},
+                            "t": {
+                              "docs": {
+                                "WebMidi.html#interface": {
+                                  "ref": "WebMidi.html#interface",
+                                  "tf": 25
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "v": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "g": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "r": {
+                          "docs": {},
+                          ".": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "q": {
+                                  "docs": {},
+                                  "u": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "m": {
+                                            "docs": {},
+                                            "i": {
+                                              "docs": {},
+                                              "d": {
+                                                "docs": {},
+                                                "i": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "c": {
+                                                      "docs": {},
+                                                      "c": {
+                                                        "docs": {},
+                                                        "e": {
+                                                          "docs": {},
+                                                          "s": {
+                                                            "docs": {},
+                                                            "s": {
+                                                              "docs": {
+                                                                "WebMidi.html#supported": {
+                                                                  "ref": "WebMidi.html#supported",
+                                                                  "tf": 1.7241379310344827
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -2483,9 +2219,369 @@
               "docs": {},
               "e": {
                 "docs": {
+                  "WebMidi.html#supported": {
+                    "ref": "WebMidi.html#supported",
+                    "tf": 1.7241379310344827
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.9345794392523363
+                  }
+                }
+              }
+            }
+          }
+        },
+        "o": {
+          "docs": {},
+          "b": {
+            "docs": {},
+            "j": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 3.9215686274509802
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "o": {
+                  "docs": {
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.9803921568627451
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "f": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "m": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "t": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
+            }
+          },
+          "p": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "r": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.9345794392523363
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 26.869158878504674
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "s": {
+          "docs": {},
+          "e": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "d": {
+                "docs": {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+                    "tf": 0.9803921568627451
+                  }
+                }
+              }
+            },
+            "c": {
+              "docs": {},
+              "u": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.9345794392523363
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.9345794392523363
+                }
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 0.9803921568627451
+                      }
+                    },
+                    "f": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "WebMidi.html": {
+                            "ref": "WebMidi.html",
+                            "tf": 0.9803921568627451
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "b": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "y": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "m": {
+                          "docs": {
+                            "WebMidi.html#enabled": {
+                              "ref": "WebMidi.html#enabled",
+                              "tf": 7.142857142857142
+                            },
+                            "WebMidi.html#enable": {
+                              "ref": "WebMidi.html#enable",
+                              "tf": 0.46728971962616817
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "p": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "WebMidi.html#supported": {
+                          "ref": "WebMidi.html#supported",
+                          "tf": 688.5057471264369
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "c": {
+              "docs": {},
+              "h": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "w": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 1.4018691588785046
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "t": {
+            "docs": {},
+            "a": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "y": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "s": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "x": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 1.4018691588785046
+                    }
+                  }
+                }
+              },
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "m": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.9345794392523363
+                      }
+                    }
                   }
                 }
               }
@@ -2494,40 +2590,167 @@
         },
         "u": {
           "docs": {},
-          "p": {
-            "docs": {},
-            "o": {
+          "s": {
+            "docs": {
+              "WebMidi.html": {
+                "ref": "WebMidi.html",
+                "tf": 3.9215686274509802
+              },
+              "WebMidi.html#interface": {
+                "ref": "WebMidi.html#interface",
+                "tf": 8.333333333333332
+              },
+              "WebMidi.html#enable": {
+                "ref": "WebMidi.html#enable",
+                "tf": 1.8691588785046727
+              }
+            },
+            "e": {
               "docs": {},
-              "n": {
+              "r": {
                 "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 1.4018691588785046
                   }
                 }
               }
             }
           },
-          "s": {
-            "docs": {
-              "WebMidi.html": {
-                "ref": "WebMidi.html",
-                "tf": 0.2717391304347826
+          "n": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "s": {
+                    "docs": {
+                      "WebMidi.html#interface": {
+                        "ref": "WebMidi.html#interface",
+                        "tf": 4.166666666666666
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "d": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  }
+                }
               }
             }
           }
         },
         "v": {
+          "7": {
+            "7": {
+              "docs": {
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.46728971962616817
+                }
+              }
+            },
+            "docs": {}
+          },
           "docs": {},
-          "a": {
+          "e": {
             "docs": {},
-            "l": {
+            "r": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "WebMidi.html": {
+                          "ref": "WebMidi.html",
+                          "tf": 1.9607843137254901
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.46728971962616817
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "k": {
+          "docs": {},
+          "n": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "w": {
+                "docs": {
+                  "WebMidi.html#interface": {
+                    "ref": "WebMidi.html#interface",
+                    "tf": 4.166666666666666
+                  }
+                }
+              }
+            }
+          }
+        },
+        "f": {
+          "docs": {},
+          "u": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "o": {
+                      "docs": {},
+                      "n": {
+                        "docs": {
+                          "WebMidi.html#supported": {
+                            "ref": "WebMidi.html#supported",
+                            "tf": 1.7241379310344827
+                          },
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 110
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
               "docs": {},
               "u": {
-                "docs": {
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.2717391304347826
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
                   }
                 }
               }
@@ -2535,143 +2758,298 @@
           },
           "i": {
             "docs": {},
-            "a": {
-              "docs": {
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.2717391304347826
+            "l": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
+            }
+          }
+        },
+        "p": {
+          "docs": {},
+          "l": {
+            "docs": {},
+            "u": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.46728971962616817
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "WebMidi.html#supported": {
+                            "ref": "WebMidi.html#supported",
+                            "tf": 1.7241379310344827
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "v": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "d": {
+                    "docs": {
+                      "WebMidi.html#supported": {
+                        "ref": "WebMidi.html#supported",
+                        "tf": 1.7241379310344827
+                      }
+                    }
+                  }
+                }
+              },
+              "m": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "s": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 25.934579439252335
+                      }
+                    }
+                  }
+                },
+                "p": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.9345794392523363
+                      }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "f": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.46728971962616817
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "g": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.46728971962616817
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.9345794392523363
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
           }
         }
       },
-      "length": 156
+      "length": 181
     },
     "corpusTokens": [
-      "3rd",
-      "abov",
+      "2020",
+      "3",
       "access",
-      "ad",
-      "addit",
-      "and/or",
-      "anymor",
+      "activ",
+      "actual",
+      "alreadi",
+      "altogeth",
+      "alway",
       "api",
-      "appropri",
-      "array",
+      "approach",
+      "april",
+      "asynchron",
+      "author",
       "avail",
+      "base",
       "basic",
-      "bend",
-      "binari",
-      "c",
+      "boolean",
+      "browser",
+      "built",
       "call",
       "callback",
-      "case",
+      "caus",
+      "check",
+      "chrome",
+      "cj",
       "class",
-      "code",
-      "come",
-      "commun",
-      "console.log(\"an",
-      "console.log(\"pitch",
-      "craft",
-      "creat",
-      "decod",
-      "desir",
-      "devic",
+      "commonj",
+      "connect",
+      "current",
       "directli",
+      "display",
+      "do",
       "document",
-      "done",
-      "e.valu",
-      "each",
-      "easi",
+      "e.g",
       "easier",
       "enabl",
-      "err",
-      "error",
-      "etc",
-      "event",
+      "encourag",
+      "environ",
+      "es6",
+      "esm",
+      "even",
       "exampl",
-      "execut",
-      "find",
-      "first",
-      "found",
+      "exclus",
+      "file",
       "function",
-      "function(",
+      "futur",
       "global",
-      "handl",
-      "hardwar",
       "help",
-      "here",
-      "here\"",
       "host",
+      "host'",
+      "http",
+      "ignor",
+      "iif",
+      "implement",
+      "import",
       "incom",
       "index",
-      "input",
+      "indic",
+      "instal",
+      "instanc",
       "instanti",
+      "interfac",
       "javascript",
+      "jazz",
+      "know",
       "librari",
       "list",
       "list:class",
-      "listen",
+      "localhost",
+      "lt;async&gt",
+      "lt;readonli",
+      "lt;readonly&gt",
       "make",
-      "manual",
       "matter",
+      "mean",
+      "member",
       "messag",
       "method",
       "midi",
-      "more",
-      "much",
-      "nativ",
+      "midiaccess",
+      "modul",
+      "navigator.requestmidiaccess",
       "need",
+      "new",
       "note",
+      "nullable&gt",
       "object",
-      "occur",
-      "octav",
-      "on",
+      "offer",
+      "omit",
+      "oper",
+      "option",
+      "origin",
       "outgo",
-      "output",
+      "page",
       "paramet",
-      "pass",
-      "pitch",
-      "play",
-      "playnot",
-      "pleas",
-      "port",
+      "plugin",
+      "promis",
+      "prompt",
+      "proof",
+      "properti",
+      "provid",
       "react",
       "readm",
-      "receiv",
-      "repres",
-      "see",
+      "report",
+      "return",
+      "secur",
       "send",
-      "sendpitchbend",
       "set",
-      "similarli",
       "simpli",
       "simplifi",
-      "singl",
-      "specif",
-      "specifi",
-      "stopnot",
+      "softwar",
+      "start",
       "subsystem",
-      "success",
+      "such",
+      "support",
+      "synth",
+      "synthes",
+      "sysex",
       "system",
+      "talk",
       "tame",
-      "thing",
-      "trigger",
-      "two",
-      "upon",
+      "though",
+      "tri",
+      "true",
+      "under",
+      "unless",
       "us",
-      "valu",
-      "via",
+      "user",
+      "v77",
+      "version",
       "web",
       "webmidi",
-      "webmidi.en",
-      "webmidi.enable(function(err",
-      "webmidi.input",
-      "webmidi.inputs[0].addlistener(\"pitchbend",
+      "webmidi#en",
+      "webmidi#interfac",
+      "webmidi#support",
       "webmidi.j",
-      "webmidi.output",
-      "webmidi.outputs[0].playnote(\"c3",
+      "webmidiapishim.j",
+      "whether",
       "work"
     ],
     "pipeline": [
@@ -2714,28 +3092,6 @@
       "description": "",
       "body": ""
     },
-    "Input.html": {
-      "id": "Input.html",
-      "kind": "class",
-      "title": "Input",
-      "longname": "Input",
-      "name": "Input",
-      "tags": "Input",
-      "summary": "",
-      "description": "The Input object represents a MIDI input port on the host system. This object is created by the MIDI subsystem and cannot be instantiated directly. You will find all available Input objects in the WebMidi.inputs array.",
-      "body": ""
-    },
-    "Output.html": {
-      "id": "Output.html",
-      "kind": "class",
-      "title": "Output",
-      "longname": "Output",
-      "name": "Output",
-      "tags": "Output",
-      "summary": "",
-      "description": "The Output object represents a MIDI output port on the host system. This object is created by the MIDI subsystem and cannot be instantiated directly. You will find all available Output objects in the WebMidi.outputs array.",
-      "body": ""
-    },
     "WebMidi.html": {
       "id": "WebMidi.html",
       "kind": "class",
@@ -2744,8 +3100,48 @@
       "name": "WebMidi",
       "tags": "WebMidi",
       "summary": "",
-      "description": "The WebMidi object makes it easier to work with the Web MIDI API. Basically, it simplifies two things: sending outgoing MIDI messages and reacting to incoming MIDI messages. Sending MIDI messages is done via an Output object. All available outputs can be accessed in the WebMidi.outputs array. There is one Output object for each output port available on your system. Similarly, reacting to MIDI messages as they are coming in is simply a matter of adding a listener to an Input object. Similarly, all inputs can be found in the WebMidi.inputs array. Please note that a single hardware device might create more than one input and/or output ports. Sending messages To send MIDI messages, you simply need to call the desired method (playNote(), sendPitchBend(), stopNote(), etc.) from an Output object and pass in the appropriate parameters. All the native MIDI communication will be handled for you. The only additional thing that needs to be done is to first enable WebMidi. Here is an example: WebMidi.enable(function(err) { if (err) console.log(\"An error occurred\", err); WebMidi.outputs[0].playNote(\"C3\"); }); The code above, calls the WebMidi.enable() method. Upon success, this method executes the callback function specified as a parameter. In this case, the callback calls the playnote() function to play a 3rd octave C on the first available output port. Receiving messages Receiving messages is just as easy. You simply have to set a callback function to be triggered when a specific MIDI message is received. For example, here\"s how to listen for pitch bend events on the first input port: WebMidi.enable(function(err) { if (err) console.log(\"An error occurred\", err); WebMidi.inputs[0].addListener(\"pitchbend\", \"all\", function(e) { console.log(\"Pitch value: \" + e.value); }); }); As you can see, this library is much easier to use than the native Web MIDI API. No need to manually craft or decode binary MIDI messages anymore!",
+      "description": "The WebMidi object makes it easier to work with the Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, the WebMidi class has already been instantiated for you. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object. This means there is no need to instantiate a new WebMidi object directly.",
       "body": ""
+    },
+    "WebMidi.html#enabled": {
+      "id": "WebMidi.html#enabled",
+      "kind": "member",
+      "title": "&lt;readonly&gt; enabled :boolean",
+      "longname": "WebMidi#enabled",
+      "name": "enabled",
+      "tags": "WebMidi#enabled enabled",
+      "summary": "",
+      "description": "Indicates whether access to the host's MIDI subsystem is active or not."
+    },
+    "WebMidi.html#interface": {
+      "id": "WebMidi.html#interface",
+      "kind": "member",
+      "title": "&lt;readonly, nullable&gt; interface :MIDIAccess",
+      "longname": "WebMidi#interface",
+      "name": "interface",
+      "tags": "WebMidi#interface interface",
+      "summary": "",
+      "description": "The MIDIAccess instance used to talk to the Web MIDI API. This should not be used directly unless you know what you are doing."
+    },
+    "WebMidi.html#supported": {
+      "id": "WebMidi.html#supported",
+      "kind": "member",
+      "title": "&lt;readonly&gt; supported :boolean",
+      "longname": "WebMidi#supported",
+      "name": "supported",
+      "tags": "WebMidi#supported supported",
+      "summary": "",
+      "description": "Indicates whether the environment provides support for the Web MIDI API or not. Note: in environments that do not offer built-in MIDI support, this will report true if the navigator.requestMIDIAccess function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this property will be true even though actual support might not be there."
+    },
+    "WebMidi.html#enable": {
+      "id": "WebMidi.html#enable",
+      "kind": "function",
+      "title": "&lt;async&gt; enable( [ options ] ) → {Promise}",
+      "longname": "WebMidi#enable",
+      "name": "enable",
+      "tags": "WebMidi#enable enable",
+      "summary": "",
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. Since version 3, this method returns a Promise. We encourage users to use the promise-based approach. When using such an approach, you can omit the callback option altogether. To enable the use of MIDI system exclusive messages, the sysex parameter should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex parameter is ignored and system exclusive messages are always enabled. To enable access to software synthesizers available on the host, you would set the software option to true. However, note that this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (April 2020). Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not)."
     }
   }
 }
