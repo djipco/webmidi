@@ -6,6 +6,7 @@
 
     <meta charset="utf-8">
     <title>WebMidi.js Unit Tests</title>
+
     <link rel="stylesheet" href="../../node_modules/mocha/mocha.css" />
 
     <style>
@@ -19,6 +20,19 @@
       }
     </style>
 
+    <!-- WebMIDIAPIShim + some custom utils -->
+    <script src="libs/WebMIDIAPIShim.js" defer></script>
+    <script src="libs/Utils.js" defer></script>
+
+    <!-- Sinon, Chai & Mocha -->
+    <script src="../../node_modules/sinon-browser-only/sinon.js" defer></script>
+    <script src="../../node_modules/chai/chai.js" defer></script>
+    <script src="../../node_modules/mocha/mocha.js" defer></script>
+
+    <!-- Set up and run tests! -->
+    <script type="module" src="setup.js"></script>
+    <script type="module" src="run.js"></script>
+
   </head>
 
   <body>
@@ -28,6 +42,8 @@
 
       <h1>WebMidi.js Unit Tests</h1>
 
+      <p>This page can be run in your target browser to assess if WebMidi.js works as expected.</p>
+
       <!-- Jazz Plugin for browsers that do not support Web MIDI-->
       <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
         <object id="Jazz2" type="audio/x-jazz" class="hidden">
@@ -36,27 +52,6 @@
       </object>
 
     </div>
-
-    <!-- WebMIDIAPIShim + some custom utils -->
-    <script src="../libs/WebMIDIAPIShim.js"></script>
-    <script src="../libs/Utils.js"></script>
-
-    <!-- Sinon, Chai & Mocha -->
-    <script src="../../node_modules/sinon-browser-only/sinon.js"></script>
-    <script src="../../node_modules/chai/chai.js"></script>
-    <script src="../../node_modules/mocha/mocha.js"></script>
-
-    <!-- WebMidi -->
-    <script src="../../src/webmidi.js"></script>
-
-    <!-- Tests -->
-    <script>var expect = chai.expect;</script>
-    <script>mocha.setup('bdd');</script>
-    <script src="platform.js"></script>
-    <script src="webmidi.js"></script>
-    <script src="input.js"></script>
-    <script src="output.js"></script>
-    <script>mocha.run();</script>
 
   </body>
 
