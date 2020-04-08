@@ -4,7 +4,7 @@ const pkg = require("../../package.json");
 const rimraf = require("rimraf");
 
 // Path to jsdoc configuration file (will be temporarily written to disk)
-const CONF_PATH = "./automation/documentation/.jsdoc.json";
+const CONF_PATH = "./tools/documentation/.jsdoc.json";
 
 // Path to menu image (we put it with other images in the docs directory)
 const IMAGE_PATH = "./docs/images/webmidijs3-logo-40x40.png";
@@ -33,7 +33,7 @@ const config = {
 
   // Source files
   source: {
-    include: ["./src/"]
+    include: ["./src/WebMidi.js", "./src/Input.js", "./src/Output.js"]
   },
 
   sourceType: "module", // THIS WILL NEED TO BE CHANGED/KEPT DEPEDNING ON NEW CODE!!!

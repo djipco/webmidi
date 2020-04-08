@@ -15,15 +15,15 @@
   },
   "types": "webmidi.d.ts",
   "scripts": {
-    "test": "BROWSER=NONE mocha ./test/headless --exit",
+    "testOLDw": "BROWSER=NONE mocha ./test/headless --exit",
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
-    "release": "grunt release",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "build": "node automation/build/build.js -t cjs && node automation/build/build.js -t esm && node automation/build/build.js -t iife",
+    "test": "mocha --require @babel/polyfill ./test/index.js --exit",
+    "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
     "lint": "eslint ./src/*.js",
-    "documentation:generate": "node automation/documentation/generate.js",
-    "documentation:publish": "node automation/documentation/publish.js"
+    "documentation:generate": "node tools/documentation/generate.js",
+    "documentation:publish": "node tools/documentation/publish.js"
   },
   "repository": {
     "type": "git",
@@ -78,6 +78,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "djipevents": "^1.0.0-a"
+    "djipevents": "^1.0.0-beta.1"
   }
 }
