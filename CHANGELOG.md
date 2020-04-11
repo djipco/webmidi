@@ -7,21 +7,26 @@ format used is the one suggested by [Keep a Changelog](https://keepachangelog.co
 
 ### Added
 
-- `Input` and `Output` object now emit `connected` and `disconnected` events
+- The `WebMidi.enabled()` method now returns a promise. The promise is fulfilled with an object 
+referencing the available inputs and outputs.
 
-- CHANGELOG.md
+- `Input` and `Output` objects now emit `opened`, `closed` and `disconnected` events.
+
+- All emitted events now have a `target` property referencing the object that triggered the event.
+
+- A CHANGELOG.md file was added to the project to trach changes.
 
 ### Changed
-
-- Documentation is now generated with [jsdoc](https://www.npmjs.com/package/jsdoc) instead of the 
-outdated [yuidoc](https://www.npmjs.com/package/grunt-contrib-yuidoc).
-
-- Grunt has been replaced with NPM scripts for all build purposes.
 
 - All non-chainable methods now return `false` instead of returning `undefined` or throwing an error
 when invalid input is provided. Methods that were changed to match this behaviour are 
 `WebMidi.guessNoteNumber()`, `WebMidi.getOctave()`, `WebMidi.getNoteNumberByName()`, 
 `Input.getCcNameByNumber()`, `Input.getChannelModeByNumber()`
+
+- Documentation is now generated with [jsdoc](https://www.npmjs.com/package/jsdoc) instead of the 
+outdated [yuidoc](https://www.npmjs.com/package/grunt-contrib-yuidoc).
+
+- Grunt has been replaced with NPM scripts for all build purposes.
 
 ### Deprecated
 
@@ -29,6 +34,9 @@ when invalid input is provided. Methods that were changed to match this behaviou
 `WebMidi.getNoteNumberByName()`. The old name has been deprecated but will continue to work in v3.x.
 
 - The name of the `WebMidi.toMIDIChannels()` method was changed to `WebMidi.sanitizeChannels()`. The
+old name has been deprecated but will continue to work in v3.x.
+
+- The name of the `Output.sendTuningRequest()` method was changed to `Output.sendTuneRequest()`. The
 old name has been deprecated but will continue to work in v3.x.
 
 - The name of the `WebMidi.MIDI_CHANNEL_MESSAGES` enum was changed to 
