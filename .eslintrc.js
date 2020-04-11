@@ -4,7 +4,8 @@ module.exports = {
     "amd": true,
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "es6": true
   },
 
   "parserOptions": {
