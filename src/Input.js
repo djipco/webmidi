@@ -1,11 +1,303 @@
-/**
- * Input class...
- */
-export class Input {
+import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {WebMidi} from './WebMidi.js';
 
-  constructor() {
+/**
+ * The `Input` class represents a MIDI input port. This object is derived from the host's MIDI
+ * subsystem and cannot be instantiated directly. This is the reason why WebMidi.js does not export
+ * this class.
+ *
+ * You can find a list of all available `Input` objects in the {@link WebMidi#inputs} array.
+ *
+ * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem
+ *
+ * @fires Input#opened
+ * @fires Input#disconnected
+ * @fires Input#closed
+ */
+export class Input extends EventEmitter {
+
+  constructor(midiInput) {
+
+    super();
+
+    // Reference to the actual MIDIInput object
+    this._midiInput = midiInput;
+
+    /**
+     * An array of the current NRPNs being constructed (by channel)
+     *
+     * @type {string[][]}
+     * @private
+     */
+    this._nrpnBuffer = [[],[],[],[], [],[],[],[], [],[],[],[], [],[],[],[]];
+
+    this.nrpnEventsEnabled = true;
+
+    this._midiInput.onstatechange = this._onStateChange.bind(this);
+    // this._midiInput.onmidimessage =
 
   }
+
+  /**
+   * Opens the input for usage.
+   *
+   * @returns {Promise<Input>} The promise is fulfilled with the `Input`
+   */
+  async open() {
+
+    // Explicitly opens the port for usage. This is not mandatory. When the port is not explicitly
+    // opened, it is implicitly opened (asynchronously) when assigning a listener to the
+    // `onmidimessage` property of the `MIDIInput`. We do it explicitly so that 'connected' events
+    // are dispatched immediately and that we are ready to listen.
+    try {
+      await this._midiInput.open();
+      return Promise.resolve(this);
+    } catch (err) {
+      return Promise.reject(err)
+    }
+
+  }
+
+  async close() {
+
+    // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
+    // event.
+    return this._midiInput.close();
+
+  }
+
+  _onStateChange() {
+
+    let event = {
+      timestamp: WebMidi.time
+    };
+
+    if (e.port.connection === "open") {
+
+      /**
+       * Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
+       * method.
+       *
+       * @event Input#opened
+       * @type {Object}
+       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"opened"`
+       * @property {Input} target The object that triggered the event
+       */
+      event.type = "opened";
+      event.target = this;
+      this.emit("opened", event);
+
+    } else if (e.port.connection === "closed" && e.port.state === "connected") {
+
+      /**
+       * Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
+       * method.
+       *
+       * @event Input#closed
+       * @type {Object}
+       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"closed"`
+       * @property {Input} target The object that triggered the event
+       */
+      event.type = "closed";
+      event.target = this;
+      this.emit("closed", event);
+
+    } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
+
+      /**
+       * Event emitted when the {@link Input} becomes unavailable. This event is typically fired
+       * when the MIDI device is unplugged.
+       *
+       * @event Input#disconnected
+       * @type {Object}
+       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
+       * since the navigation start of the document).
+       * @property {string} type `"disconnected"`
+       * @property {Object} target Object with properties describing the {@link Input} that triggered
+       * the event. This is not the actual `Input` as it is no longer available.
+       * @property {string} target.connection `"closed"`
+       * @property {string} target.id ID of the input
+       * @property {string} target.manufacturer Manufacturer of the device that provided the input
+       * @property {string} target.name Name of the device that provided the input
+       * @property {string} target.state `"disconnected"`
+       * @property {string} target.type `"input"`
+       */
+      event.type = "disconnected";
+      event.target = {
+        connection: e.port.connection,
+        id: e.port.id,
+        manufacturer: e.port.manufacturer,
+        name: e.port.name,
+        state: e.port.state,
+        type: e.port.type
+      }
+      this.emit("disconnected", event);
+
+    } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
+      // I don't see the need to forward that...
+    } else {
+      console.warn("This statechange event was not caught:", e.port.connection, e.port.state);
+    }
+
+  }
+
+  /**
+   * Returns the name of a control change message matching the specified number. If no match is
+   * found, the function returns `false`.
+   *
+   * @param {number} number An integer representing the control change message
+   * @returns {string|false} The matching control change name or `false` if not match was found
+   *
+   * @since 2.0.0
+   */
+  getCcNameByNumber(number) {
+
+    number = Math.floor(number);
+
+    if ( !(number >= 0 && number <= 119) ) return false;
+
+    for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
+
+      if (
+        WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
+        number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
+      ) {
+        return cc;
+      }
+
+    }
+
+    return false;
+
+  };
+
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `false`.
+   *
+   * @param {number} number An integer representing the channel mode message.
+   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * found.
+   *
+   * @since 2.0.0
+   */
+  getChannelModeByNumber(number) {
+
+    number = Math.floor(number);
+
+    if ( !(number >= 120 && status <= 127) ) return false;
+
+    for (let cm in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
+
+      if (
+        WebMidi.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
+        return cm;
+      }
+
+    }
+
+  };
+
+  /**
+   * @async
+   * @return {Promise<void>}
+   */
+  async destroy() {
+
+    return this._midiInput.close().then(() => {
+      this._midiInput.onmidimessage = null;
+      this._midiInput.onstatechange = null;
+      this._midiInput = null;
+    })
+
+  }
+
+  /**
+   * Indicates whether the `Input` should dispatch events for **Non-Registered Parameter Number**.
+   * This is a system-wide setting. NRPNs are composed of a sequence of specific **control change**
+   * messages. When a valid sequence of such control change messages is received, an `nrpn` event
+   * will fire. If an invalid or out of order control change message is received, it will fall
+   * through the collector logic and all buffered control change messages will be discarded as
+   * incomplete.
+   *
+   * @type Boolean
+   */
+  get nrpnEventsEnabled() {
+    return this._nrpnEventsEnabled;
+  }
+  set nrpnEventsEnabled(enabled) {
+    this._nrpnEventsEnabled = !!enabled;
+  }
+
+  /**
+   * Name of the MIDI input
+   *
+   * @property name
+   * @type String
+   */
+  get name() {
+    return this._midiInput.name;
+  }
+
+  /**
+   * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+   * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+   * the same port.
+   *
+   * @type {string}
+   * @readonly
+   */
+  get id() {
+    return this._midiInput.id;
+  }
+
+  /**
+   * Input port's connection state: `"pending"`, `"open"` or `"closed"`.
+   *
+   * @type {string}
+   * @readonly
+   */
+  get connection() {
+    return this._midiInput.connection;
+  }
+
+  /**
+   * Name of the manufacturer of the device that makes this input port available.
+   *
+   * @type {string}
+   * @readonly
+   */
+  get manufacturer() {
+    return this._midiInput.manufacturer;
+  }
+
+  /**
+   * State of the input port: `"connected"` or `"disconnected"`.
+   *
+   * @type {string}
+   * @readonly
+   */
+  get state() {
+    return this._midiInput.state;
+  }
+
+  /**
+   * Type of the input port (`"input"`)
+   *
+   * @type {string}
+   * @readonly
+   */
+  get type() {
+    return this._midiInput.type;
+  }
+
+
 
   /**
    * Array of valid **non-registered parameter number** (NRPNs) types.
@@ -19,17 +311,6 @@ export class Input {
 
 }
 
-
-
-// /**
-//  * The `Input` object represents a MIDI input port on the host system. This object is created by
-//  * the MIDI subsystem and cannot be instantiated directly.
-//  *
-//  * You will find all available `Input` objects in the `WebMidi.inputs` array.
-//  *
-//  * @class Input
-//  * @param {MIDIInput} midiInput `MIDIInput` object
-//  */
 // function Input(midiInput) {
 //
 //   var that = this;
@@ -37,98 +318,11 @@ export class Input {
 //   // User-defined handlers list
 //   this._userHandlers = { channel: {}, system: {} };
 //
-//   // Reference to the actual MIDIInput object
-//   this._midiInput = midiInput;
-//
-//   Object.defineProperties(this, {
-//
-//     /**
-//      * [read-only] Status of the MIDI port"s connection (`pending`, `open` or `closed`)
-//      *
-//      * @property connection
-//      * @type String
-//      */
-//     connection: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.connection;
-//       }
-//     },
-//
-//     /**
-//      * [read-only] ID string of the MIDI port. The ID is host-specific. Do not expect the same ID
-//      * on different platforms. For example, Google Chrome and the Jazz-Plugin report completely
-//      * different IDs for the same port.
-//      *
-//      * @property id
-//      * @type String
-//      */
-//     id: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.id;
-//       }
-//     },
-//
-//     /**
-//      * [read-only] Name of the manufacturer of the device that makes this port available.
-//      *
-//      * @property manufacturer
-//      * @type String
-//      */
-//     manufacturer: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.manufacturer;
-//       }
-//     },
-//
-//     /**
-//      * [read-only] Name of the MIDI port
-//      *
-//      * @property name
-//      * @type String
-//      */
-//     name: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.name;
-//       }
-//     },
-//
-//     /**
-//      * [read-only] State of the MIDI port (`connected` or `disconnected`)
-//      *
-//      * @property state
-//      * @type String
-//      */
-//     state: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.state;
-//       }
-//     },
-//
-//     /**
-//      * [read-only] Type of the MIDI port (`input`)
-//      *
-//      * @property type
-//      * @type String
-//      */
-//     type: {
-//       enumerable: true,
-//       get: function () {
-//         return that._midiInput.type;
-//       }
-//     }
-//
-//   });
-//
 //   this._initializeUserHandlers();
 //   this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
 //
 // }
-//
+
 // /**
 //  * Adds an event listener to the `Input` that will trigger a function callback when the specified
 //  * event happens. The events that are dispatched can be channel-specific or Input-wide.
@@ -241,7 +435,7 @@ export class Input {
 //   return this;
 //
 // };
-//
+
 // /**
 //  * This is an alias to the {{#crossLink "Input/addListener"}}Input.addListener(){{/crossLink}}
 //  * function.
@@ -250,7 +444,7 @@ export class Input {
 //  * @since 2.0.0
 //  */
 // Input.prototype.on = Input.prototype.addListener;
-//
+
 // /**
 //  * Checks if the specified event type is already defined to trigger the listener function on the
 //  * specified channel(s). If more than one channel is specified, the function will return `true`
@@ -309,7 +503,7 @@ export class Input {
 //   return false;
 //
 // };
-//
+
 // /**
 //  * Removes the specified listener from the specified channel(s). If the `listener` parameter is
 //  * left undefined, all listeners for the specified `type` will be removed from all channels. If
@@ -394,7 +588,7 @@ export class Input {
 //   return this;
 //
 // };
-//
+
 // /**
 //  * @method _initializeUserHandlers
 //  * @protected
@@ -414,7 +608,7 @@ export class Input {
 //   }
 //
 // };
-//
+
 // /**
 //  * @method _onMidiMessage
 //  * @protected
@@ -441,7 +635,7 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
 //      * @param {uint} event.timestamp The timestamp when the event occurred (in milliseconds since
-//      * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time)).
+//      * the navigation start of the document).
 //      * @param {String} event.type The type of event that occurred.
 //      * @since 2.1
 //      */
@@ -459,7 +653,7 @@ export class Input {
 //   }
 //
 // };
-//
+
 // /**
 //  * Parses channel events and constructs NRPN message parts in valid sequences.
 //  * Keeps a separate NRPN buffer for each channel.
@@ -483,7 +677,7 @@ export class Input {
 //   }
 //
 //   // nrpn disabled
-//   if(!wm.nrpnEventsEnabled) {
+//   if(!this.nrpnEventsEnabled) {
 //     return;
 //   }
 //
@@ -602,7 +796,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Array} event.data The raw MIDI message as arrays of 8 bit values( Uint8Array ).
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.controller
@@ -641,7 +836,7 @@ export class Input {
 //     wm._nrpnBuffer[channelBufferIndex] = [];
 //   }
 // };
-//
+
 // /**
 //  * @method _parseChannelEvent
 //  * @param e Event
@@ -680,7 +875,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.note
@@ -711,7 +907,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.note
@@ -742,7 +939,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.note
@@ -773,7 +971,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.controller
@@ -802,7 +1001,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Object} event.controller
@@ -828,7 +1028,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {uint} event.value The value received (between 0 and 127).
@@ -847,7 +1048,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Number} event.value The aftertouch value received (between 0 and 1).
@@ -866,7 +1068,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {uint} event.channel The channel where the event occurred (between 1 and 16).
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {Number} event.value The pitch bend value received (between -1 and 1).
@@ -889,76 +1092,7 @@ export class Input {
 //   }
 //
 // };
-//
-// /**
-//  * Returns the name of a control change message matching the specified number. If no match is
-//  * found, the function returns `undefined`.
-//  *
-//  * @method getCcNameByNumber
-//  *
-//  * @param number {Number} The number of the control change message.
-//  * @returns {String|undefined} The matching control change name or `undefined`.
-//  *
-//  * @throws RangeError The control change number must be between 0 and 119.
-//  *
-//  * @since 2.0.0
-//  */
-// Input.prototype.getCcNameByNumber = function(number) {
-//
-//   number = Math.floor(number);
-//
-//   if ( !(number >= 0 && number <= 119) ) {
-//     throw new RangeError("The control change number must be between 0 and 119.");
-//   }
-//
-//   for (var cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-//
-//     if (
-//       WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
-//       number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
-//     ) {
-//       return cc;
-//     }
-//
-//   }
-//
-//   return undefined;
-//
-// };
-//
-// /**
-//  * Returns the channel mode name matching the specified number. If no match is found, the function
-//  * returns `undefined`.
-//  *
-//  * @method getChannelModeByNumber
-//  *
-//  * @param number {Number} The number of the channel mode message.
-//  * @returns {String|undefined} The matching channel mode message"s name or `undefined`;
-//  *
-//  * @throws RangeError The channel mode number must be between 120 and 127.
-//  *
-//  * @since 2.0.0
-//  */
-// Input.prototype.getChannelModeByNumber = function(number) {
-//
-//   number = Math.floor(number);
-//
-//   if ( !(number >= 120 && status <= 127) ) {
-//     throw new RangeError("The control change number must be between 120 and 127.");
-//   }
-//
-//   for (var cm in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
-//
-//     if (
-//       WebMidi.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
-//       number === WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cm]
-//     ) {
-//       return cm;
-//     }
-//
-//   }
-//
-// };
+
 //
 // /**
 //  * @method _parseSystemEvent
@@ -1001,7 +1135,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type The type of event that occurred.
 //      *
 //      */
@@ -1017,7 +1152,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type The type of event that occurred.
 //      */
 //     event.type = "timecode";
@@ -1032,7 +1168,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type The type of event that occurred.
 //      */
 //     event.type = "songposition";
@@ -1047,7 +1184,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type The type of event that occurred.
 //      * @param {String} event.song Song (or sequence) number to select.
 //      */
@@ -1065,7 +1203,8 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
 //      *                                    values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "tuningrequest";
@@ -1081,7 +1220,8 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
 //      *                                    values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "clock";
@@ -1097,7 +1237,8 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
 //      *                                    values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "start";
@@ -1113,7 +1254,8 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
 //      *                                    values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "continue";
@@ -1129,7 +1271,8 @@ export class Input {
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit
 //      *                                    values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "stop";
@@ -1144,7 +1287,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "activesensing";
@@ -1159,7 +1303,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data     The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type         The type of event that occurred.
 //      */
 //     event.type = "reset";
@@ -1175,7 +1320,8 @@ export class Input {
 //      * @param {Object} event
 //      * @param {Input} event.target The `Input` that triggered the event.
 //      * @param {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
-//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds)
+//      * @param {Number} event.timestamp The time when the event occurred (in milliseconds since
+//      * the navigation start of the document)
 //      * @param {String} event.type The type of event that occurred.
 //      */
 //     event.type = "unknownsystemmessage";
