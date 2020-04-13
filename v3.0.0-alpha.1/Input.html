@@ -67,7 +67,9 @@
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
+											<li><a href="InputChannel.html">InputChannel</a></li>
 											<li><a href="Output.html">Output</a></li>
+											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -107,9 +109,10 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>Input</code> object represents a MIDI input port on the host system. This object is created by
-			the MIDI subsystem and cannot be instantiated directly.</p>
-			<p>You will find all available <code>Input</code> objects in the <code>WebMidi.inputs</code> array.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Input</code> class represents a MIDI input port. This object is derived from the host's MIDI
+			subsystem and cannot be instantiated directly. This is the reason why WebMidi.js does not export
+			this class.</p>
+			<p>You can find a list of all available <code>Input</code> objects in the <a href="WebMidi.html#inputs">WebMidi#inputs</a> array.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -125,13 +128,33 @@
 								<td><code>midiInput</code></td>
 							<td><span class="param-type">MIDIInput</span></td>
 							<td class="last">
-									<p><code>MIDIInput</code> object</p>
+									<p><code>MIDIInput</code> object as provided by the MIDI subsystem</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			<div class="callout callout-warning"><h5>Fires</h5>		<form class="form-horizontal fires">
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:closed">Input#closed</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:disconnected">Input#disconnected</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:opened">Input#opened</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
 			
@@ -151,7 +174,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="webmidiOLD.js.html">webmidiOLD.js</a>, <a href="webmidiOLD.js.html#line-1273">line 1273</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-19">line 19</a></p>
 								</div>
 							</div>
 			
@@ -163,6 +186,940 @@
 </dd>
 							</dl>
 							<article class="secondary">
+									<h3>Classes</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title class public">
+			<h4 id="Input" class="class public"><a href="Input.html"><span class="signature-new">new&nbsp;</span><span class="name">Input</span><span class="signature-params">( <span class="signature-param">midiInput</span>&nbsp;)</span><span class="signature-type"></span></a></h4>
+		</dt>
+<dd class="symbol-details class public">
+	<div class="symbol-details-inner">
+	</div>
+</dd>
+									</dl>
+									<h3>Members</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id=".NRPN_TYPES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">NRPN_TYPES</span><span class="signature-type"> :Array.&lt;string></span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array of valid <strong>non-registered parameter number</strong> (NRPNs) types.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-317">line 317</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="connection" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">connection</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input port's connection state: <code>&quot;pending&quot;</code>, <code>&quot;open&quot;</code> or <code>&quot;closed&quot;</code>.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-275">line 275</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="id" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">id</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+			platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+			the same port.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-265">line 265</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="manufacturer" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">manufacturer</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Name of the manufacturer of the device that makes this input port available.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-285">line 285</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="name" class="member public"><span class="name">name</span><span class="signature-type"> :String</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Name of the MIDI input</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>name</code></td>
+							<td></td>
+							<td class="last">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">String</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-253">line 253</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="nrpnEventsEnabled" class="member public"><span class="name">nrpnEventsEnabled</span><span class="signature-type"> :Boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the <code>Input</code> should dispatch events for <strong>Non-Registered Parameter Number</strong>.
+			This is a system-wide setting. NRPNs are composed of a sequence of specific <strong>control change</strong>
+			messages. When a valid sequence of such control change messages is received, an <code>nrpn</code> event
+			will fire. If an invalid or out of order control change message is received, it will fall
+			through the collector logic and all buffered control change messages will be discarded as
+			incomplete.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-240">line 240</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="state" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">state</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>State of the input port: <code>&quot;connected&quot;</code> or <code>&quot;disconnected&quot;</code>.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-295">line 295</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="type" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">type</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Type of the input port (<code>&quot;input&quot;</code>)</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-305">line 305</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
+									<h3>Methods</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="destroy" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">destroy</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;void>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-215">line 215</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getCcNameByNumber" class="function public"><span class="name">getCcNameByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|false}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of a control change message matching the specified number. If no match is
+			found, the function returns <code>false</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>number</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>An integer representing the control change message</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The matching control change name or <code>false</code> if not match was found</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">2.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-161">line 161</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getChannelModeByNumber" class="function public"><span class="name">getChannelModeByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|false}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the channel mode name matching the specified number. If no match is found, the function
+			returns <code>false</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>number</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>An integer representing the channel mode message.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The name of the matching channel mode or <code>false</code> if not match could be
+			found.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">2.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-192">line 192</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="open" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">open</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;<a href="Input.html">Input</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Opens the input for usage.</p></div>
+			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;<a href="Input.html">Input</a>></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The promise is fulfilled with the <code>Input</code></p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-46">line 46</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
+									<h3>Events</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:closed" class="event public"><span class="name">closed</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when the <a href="Input.html">Input</a> has been closed by calling the Input#close
+			method.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td class="last">
+									<p>The moment when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;closed&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The object that triggered the event</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-98">line 98</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:disconnected" class="event public"><span class="name">disconnected</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when the <a href="Input.html">Input</a> becomes unavailable. This event is typically fired
+			when the MIDI device is unplugged.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td class="last">
+									<p>The moment when the event occurred (in milliseconds
+			since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;disconnected&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type">Object</span></td>
+							<td class="last">
+									<p>Object with properties describing the <a href="Input.html">Input</a> that triggered
+			the event. This is not the actual <code>Input</code> as it is no longer available.</p>
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>connection</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p><code>&quot;closed&quot;</code></p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>id</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p>ID of the input</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>manufacturer</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p>Manufacturer of the device that provided the input</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>name</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p>Name of the device that provided the input</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>state</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p><code>&quot;disconnected&quot;</code></p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>type</code></td>
+													<td><span class="param-type">string</span></td>
+													<td class="last">
+															<p><code>&quot;input&quot;</code></p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-115">line 115</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:opened" class="event public"><span class="name">opened</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when the <a href="Input.html">Input</a> has been opened by calling the <a href="Input.html#open">Input#open</a>
+			method.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td class="last">
+									<p>The moment when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;opened&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The object that triggered the event</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-81">line 81</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
 							</article>
 					</section>
 			</div>
@@ -173,7 +1130,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 6th 2020 @ 17:24:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 13th 2020 @ 11:26:12 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
