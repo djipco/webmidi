@@ -33,7 +33,13 @@ const config = {
 
   // Source files
   source: {
-    include: ["./src/WebMidi.js", "./src/Input.js", "./src/Output.js"]
+    include: [
+      "./src/WebMidi.js",
+      "./src/Output.js",
+      "./src/Input.js",
+      "./src/OutputChannel.js",
+      "./src/InputChannel.js"
+    ]
   },
 
   sourceType: "module", // THIS WILL NEED TO BE CHANGED/KEPT DEPEDNING ON NEW CODE!!!
