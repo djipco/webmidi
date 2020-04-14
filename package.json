@@ -15,11 +15,11 @@
   },
   "types": "webmidi.d.ts",
   "scripts": {
-    "testOLDw": "BROWSER=NONE mocha ./test/headless --exit",
+    "testOLD": "BROWSER=NONE mocha ./test/headless --exit",
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "test": "mocha --require @babel/polyfill ./test/index.js --exit",
+    "test": "mocha --require @babel/polyfill ./test/headless/index.js --exit",
     "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
     "lint": "eslint ./src/*.js",
     "documentation:generate": "node tools/documentation/generate.js",
@@ -78,6 +78,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "djipevents": "^1.0.0-beta.2"
+    "djipevents": "^1.0.0-beta.3"
   }
 }
