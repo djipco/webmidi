@@ -1,12 +1,13 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {EventEmitter} from '../node_modules/djipevents/dist/djipevents.esm.min.js';
+import {OutputChannel} from './OutputChannel.js';
 import {WebMidi} from './WebMidi.js';
 
 /**
  * The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
- * subsystem and cannot be instantiated directly. This is the reason why WebMidi.js does not export
- * this class.
+ * subsystem and cannot be instantiated directly.
  *
- * You can find a list of all available `Output` objects in the {@link WebMidi#outputs} array.
+ * You can find a list of all available `Output` objects in the
+ * [WebMidi.outputs]{@link WebMidi#outputs} array.
  *
  * @param {MIDIOutput} midiOutput `MIDIOutput` object as provided by the MIDI subsystem
  *
@@ -27,7 +28,98 @@ export class Output extends EventEmitter {
      */
     this._midiOutput = midiOutput;
 
+    /**
+     * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
+     * channels are numbered 1 through 16.
+     *
+     * @type {OutputChannel[]}
+     */
+    this.channels = [];
+    for (let i = 1; i <= 16; i++) this.channels[i] = new OutputChannel(this, i);
+
     this._midiOutput.onstatechange = this._onStateChange.bind(this);
+
+  }
+
+  /**
+   * @private
+   */
+  _onStateChange(e) {
+
+    let event = {
+      timestamp: WebMidi.time
+    };
+
+    if (e.port.connection === 'open') {
+
+      /**
+       * Event emitted when the {@link Output} has been opened by calling the
+       * [open()]{@link Output#open} method.
+       *
+       * @event Output#opened
+       * @type {Object}
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"opened"`
+       * @property {Output} target The object that triggered the event
+       */
+      event.type = 'opened';
+      event.target = this;
+      this.emit('opened', event);
+
+    } else if (e.port.connection === 'closed' && e.port.state === 'connected') {
+
+      /**
+       * Event emitted when the {@link Output} has been closed by calling the
+       * [close()]{@link Output#close} method.
+       *
+       * @event Output#closed
+       * @type {Object}
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"closed"`
+       * @property {Output} target The object that triggered the event
+       */
+      event.type = 'closed';
+      event.target = this;
+      this.emit('closed', event);
+
+    } else if (e.port.connection === 'closed' && e.port.state === 'disconnected') {
+
+      /**
+       * Event emitted when the {@link Output} becomes unavailable. This event is typically fired
+       * when the MIDI device is unplugged.
+       *
+       * @event Output#disconnected
+       * @type {Object}
+       * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"disconnected"`
+       * @property {Object} target Object with properties describing the {@link Output} that triggered
+       * the event. This is not the actual `Output` as it is no longer available.
+       * @property {string} target.connection `"closed"`
+       * @property {string} target.id ID of the input
+       * @property {string} target.manufacturer Manufacturer of the device that provided the input
+       * @property {string} target.name Name of the device that provided the input
+       * @property {string} target.state `"disconnected"`
+       * @property {string} target.type `"output"`
+       */
+      event.type = 'disconnected';
+      event.target = {
+        connection: e.port.connection,
+        id: e.port.id,
+        manufacturer: e.port.manufacturer,
+        name: e.port.name,
+        state: e.port.state,
+        type: e.port.type
+      }
+      this.emit('disconnected', event);
+
+    } else if (e.port.connection === 'pending' && e.port.state === 'disconnected') {
+      // I don't see the need to forward that...
+    } else {
+      console.warn('This statechange event was not caught:', e.port.connection, e.port.state);
+    }
 
   }
 
@@ -52,24 +144,27 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Closes the output. When an output is closed, it cannot be used to send MIDI messages.
+   * Closes the output. When an output is closed, it cannot be used to send MIDI messages until the
+   * output is opened again by calling [Output.open()]{@link Output#open}.
    *
-   * @returns {Promise<void|any>}
+   * @returns {Promise<void>}
    */
   async close() {
 
-    // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
-    // event.
-    return this._midiOutput.close();
+    // We close the port. This triggers a 'statechange' event which we listen to to re-trigger the
+    // 'closed' event.
+    if (this._midiOutput) {
+      return this._midiOutput.close();
+    } else {
+      return Promise.resolve();
+    }
 
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp.
-   *
-   * Unless, you are familiar with the details of the MIDI message format, you should not use this
-   * method directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,
-   * `sendControlChange()`, `sendSystemMessage()`, etc.
+   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. It is usually not
+   * necessary to use this method directly as you can use one of the simpler helper methods such as
+   * `playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
@@ -82,9 +177,9 @@ export class Output extends EventEmitter {
    * message types (use undefined or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
-   * @param [timestamp=0] {DOMHighResTimeStamp} The timestamp at which to send the message. You can
-   * use `WebMidi.time` to retrieve the current timestamp. To send immediately, leave blank or use
-   * 0.
+   * @param [timestamp=0] {number} The timestamp (DOMHighResTimeStamp) at which to send the message.
+   * You can use [WebMidi.time]{@link WebMidi#time} to retrieve the current timestamp. To send
+   * immediately, leave blank or use 0.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
    * than 0xFF.
@@ -115,7 +210,7 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   send(status, data = [], timestamp) {
-    if ( !Array.isArray(data) ) data = [data];
+    if (!Array.isArray(data)) data = [data];
     this._midiOutput.send([status].concat(data), parseFloat(timestamp) || 0);
     return this;
   }
@@ -175,13 +270,10 @@ export class Output extends EventEmitter {
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|string} [options.time] This value can be one of two things. If the
-   * value is a string starting with the + sign and followed by a number, the request will be
-   * delayed by the specified number of milliseconds. Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that time. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * {@link WebMidi#time}. If `time` is not present or is set to a time in the past, the request is
-   * to be sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @throws {DOMException} Failed to execute 'send' on 'MIDIOutput': System exclusive message is
    * not allowed.
@@ -196,7 +288,7 @@ export class Output extends EventEmitter {
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, this._convertToTimestamp(options.time));
+    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, WebMidi.convertToTimestamp(options.time));
 
     return this;
 
@@ -211,53 +303,55 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
-    if (this._midiOutput.clear) this._midiOutput.clear();
+    if (this._midiOutput.clear) {
+      this._midiOutput.clear();
+    } else {
+      console.warn("The 'clear()' method has not yet been implemented in your environment.");
+    }
     return this;
   }
 
   /**
-   * Sends a *MIDI Timecode Quarter Frame* message. Please note that no processing is being done on
-   * the data. It is up to the developer to format the data according to the
+   * Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
+   * on the data. It is up to the developer to format the data according to the
    * [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
    *
    * @param value {number} The quarter frame message content (integer between 0 and 127).
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] If the value is a string starting
-   * with the + sign and followed by a number, the request will be delayed by the specified number
-   * of milliseconds. Otherwise, the value is considered a timestamp and the request will be
-   * scheduled at that timestamp. The `DOMHighResTimeStamp` value is relative to the navigation
-   * start of the document. To retrieve the current time, you can use {@link WebMidi#time}. If the
-   * `time` option is not present or is set to a time in the past, the request is to be sent as soon
-   * as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendTimecodeQuarterFrame(value, options = {}) {
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.timecode, value, this._convertToTimestamp(options.time));
+    this.send(
+      WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
+      value,
+      WebMidi.convertToTimestamp(options.time)
+    );
     return this;
   };
 
   /**
-   * Sends a *Song Position* MIDI message. The value is expressed in MIDI beats (between 0 and
+   * Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
    * 16383) which are 16th note. Position 0 is always the start of the song.
    *
    * @param [value=0] {number} The MIDI beat to cue to (integer between 0 and 16383).
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] If the value is a string starting
-   * with the + sign and followed by a number, the request will be delayed by the specified number
-   * of milliseconds. Otherwise, the value is considered a timestamp and the request will be
-   * scheduled at that timestamp. The `DOMHighResTimeStamp` value is relative to the navigation
-   * start of the document. To retrieve the current time, you can use {@link WebMidi#time}. If the
-   * `time` option is not present or is set to a time in the past, the request is to be sent as soon
-   * as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendSongPosition(value, options = {}) {
+  setSongPosition(value, options = {}) {
 
     value = Math.floor(value) || 0;
 
@@ -267,53 +361,82 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
       [msb, lsb],
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
 
-  };
+  }
 
   /**
-   * Sends a *Song Select* MIDI message. Beware that some devices display position 0 as position 1
-   * (for user-friendliness).
+   * @private
+   * @deprecated since version 3.0
+   */
+  sendSongPosition(value, options = {}) {
+    this.setSongPosition(value, options);
+    console.warn(
+      'The sendSongPosition() method has been deprecated. Use setSongPosition() instead.'
+    );
+    return this;
+  }
+
+  /**
+   * Sends a **song select** MIDI message.
    *
-   * @param value {number} The number of the song to select (integer between 0 and 127).
+   * **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
+   * and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices that
+   * use a numbering scheme starting at 1.
+   *
+   * @param value {number} The number of the song to select (integer between 1 and 128).
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
-   * @throws The song number must be between 0 and 127.
+   * @throws The song number must be between 1 and 128.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendSongSelect(value, options = {}) {
+  setSong(value, options = {}) {
+
+    value = parseInt(value);
+    if (isNaN(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError('The program value must be between 1 and 128');
+    }
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
       [value],
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
+
     return this;
-  };
+
+  }
 
   /**
-   * Sends a *MIDI tune request* real-time message.
+   * @private
+   * @deprecated since version 3.0
+   */
+  sendSongSelect(value, options = {}) {
+    this.setSong(value, options);
+    console.warn(
+      'The sendSongSelect() method has been deprecated. Use setSong() instead.'
+    );
+    return this;
+  }
+
+  /**
+   * Sends a MIDI **tune request** real-time message.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -321,46 +444,44 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.tuningrequest,
       undefined,
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
   };
 
   /**
-   * Sends a *MIDI Clock* real-time message. According to the standard, there are 24 MIDI Clocks
+   * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
    * for every quarter note.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendClock = function(options= {}) {
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.clock, undefined, this._convertToTimestamp(options.time));
+  sendClock(options = {}) {
+    this.send(
+      WebMidi.MIDI_SYSTEM_MESSAGES.clock,
+      undefined,
+      WebMidi.convertToTimestamp(options.time)
+    );
     return this;
   };
 
   /**
-   * Sends a *Start* real-time message. A MIDI Start message starts the playback of the current
-   * song at beat 0. To start playback elsewhere in the song, use the {@link Output#sendContinue}
-   * method.
+   * Sends a **start** real-time message. A MIDI Start message starts the playback of the current
+   * song at beat 0. To start playback elsewhere in the song, use the
+   * [sendContinue()]{@link Output#sendContinue} method.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -368,25 +489,22 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.start,
       undefined,
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
   };
 
   /**
-   * Sends a *Continue* real-time message. This resumes song playback where it was previously
+   * Sends a **continue** real-time message. This resumes song playback where it was previously
    * stopped or where it was last cued with a song position message. To start playback from the
-   * start, use the {@link Output#sendStart}` method.
+   * start, use the [sendStart()]{@link Output#sendStart}` method.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
@@ -394,46 +512,44 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.continue,
       undefined,
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
   };
 
   /**
-   * Sends a *Stop* real-time message. This tells the device connected to this output to stop
+   * Sends a **stop** real-time message. This tells the device connected to this output to stop
    * playback immediately (or at the scheduled time).
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendStop(options = {}) {
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.stop, undefined, this._convertToTimestamp(options.time));
+    this.send(
+      WebMidi.MIDI_SYSTEM_MESSAGES.stop,
+      undefined,
+      WebMidi.convertToTimestamp(options.time)
+    );
     return this;
   };
 
   /**
-   * Sends an *Active Sensing* real-time message. This tells the device connected to this port that
+   * Sends an **active sensing** real-time message. This tells the device connected to this port that
    * the connection is still good. Active sensing messages should be sent every 300 ms if there was
    * no other activity on the MIDI port.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -441,32 +557,29 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
       [],
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
   };
 
   /**
-   * Sends a *Reset* real-time message. This tells the device connected to this output that it
+   * Sends a **reset** real-time message. This tells the device connected to this output that it
    * should reset itself to a default state.
    *
    * @param {Object} [options={}]
    *
-   * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-   * things. If the value is a string starting with the + sign and followed by a number, the request
-   * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-   * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-   * is relative to the navigation start of the document. To retrieve the current time, you can use
-   * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-   * sent as soon as possible.
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendReset(options= {}) {
+  sendReset(options = {}) {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.reset,
       undefined,
-      this._convertToTimestamp(options.time)
+      WebMidi.convertToTimestamp(options.time)
     );
     return this;
   };
@@ -477,151 +590,1156 @@ export class Output extends EventEmitter {
    */
   sendTuningRequest(options = {}) {
     this.sendTuneRequest(options);
+    console.warn(
+      'The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.'
+    );
     return this;
   }
 
+  /**
+   * Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
+   * is a key-specific aftertouch. For a channel-wide aftertouch message, use
+   * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+   *
+   * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
+   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
+   * integer between 0 and 127). The second way is by using the note name followed by the octave
+   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
+   * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+   * an array of note names and/or numbers.
+   *
+   * @param channel {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers.
+   *
+   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
+   * pressure can be defined by using an integer between 0 and 127.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
+   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setKeyAftertouch(note, channel, pressure, options = {}) {
 
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setKeyAftertouch(note, pressure, options);
+    });
+
+    return this;
+
+  };
 
   /**
    * @private
+   * @deprecated since version 3.0
    */
-  _onStateChange(e) {
+  sendKeyAftertouch(note, channel, pressure, options = {}) {
+    this.setKeyAftertouch(note, channel, pressure, options);
+    console.warn(
+      'The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.'
+    );
+    return this;
+  }
 
-    let event = {
-      timestamp: WebMidi.time
-    };
+  /**
+   * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
+   * control change message to send can be specified numerically or by using one of the following
+   * common names:
+   *
+   *  * `bankselectcoarse` (#0)
+   *  * `modulationwheelcoarse` (#1)
+   *  * `breathcontrollercoarse` (#2)
+   *  * `footcontrollercoarse` (#4)
+   *  * `portamentotimecoarse` (#5)
+   *  * `dataentrycoarse` (#6)
+   *  * `volumecoarse` (#7)
+   *  * `balancecoarse` (#8)
+   *  * `pancoarse` (#10)
+   *  * `expressioncoarse` (#11)
+   *  * `effectcontrol1coarse` (#12)
+   *  * `effectcontrol2coarse` (#13)
+   *  * `generalpurposeslider1` (#16)
+   *  * `generalpurposeslider2` (#17)
+   *  * `generalpurposeslider3` (#18)
+   *  * `generalpurposeslider4` (#19)
+   *  * `bankselectfine` (#32)
+   *  * `modulationwheelfine` (#33)
+   *  * `breathcontrollerfine` (#34)
+   *  * `footcontrollerfine` (#36)
+   *  * `portamentotimefine` (#37)
+   *  * `dataentryfine` (#38)
+   *  * `volumefine` (#39)
+   *  * `balancefine` (#40)
+   *  * `panfine` (#42)
+   *  * `expressionfine` (#43)
+   *  * `effectcontrol1fine` (#44)
+   *  * `effectcontrol2fine` (#45)
+   *  * `holdpedal` (#64)
+   *  * `portamento` (#65)
+   *  * `sustenutopedal` (#66)
+   *  * `softpedal` (#67)
+   *  * `legatopedal` (#68)
+   *  * `hold2pedal` (#69)
+   *  * `soundvariation` (#70)
+   *  * `resonance` (#71)
+   *  * `soundreleasetime` (#72)
+   *  * `soundattacktime` (#73)
+   *  * `brightness` (#74)
+   *  * `soundcontrol6` (#75)
+   *  * `soundcontrol7` (#76)
+   *  * `soundcontrol8` (#77)
+   *  * `soundcontrol9` (#78)
+   *  * `soundcontrol10` (#79)
+   *  * `generalpurposebutton1` (#80)
+   *  * `generalpurposebutton2` (#81)
+   *  * `generalpurposebutton3` (#82)
+   *  * `generalpurposebutton4` (#83)
+   *  * `reverblevel` (#91)
+   *  * `tremololevel` (#92)
+   *  * `choruslevel` (#93)
+   *  * `celestelevel` (#94)
+   *  * `phaserlevel` (#95)
+   *  * `databuttonincrement` (#96)
+   *  * `databuttondecrement` (#97)
+   *  * `nonregisteredparametercoarse` (#98)
+   *  * `nonregisteredparameterfine` (#99)
+   *  * `registeredparametercoarse` (#100)
+   *  * `registeredparameterfine` (#101)
+   *
+   * Note: as you can see above, not all control change message have a matching common name. This
+   * does not mean you cannot use the others. It simply means you will need to use their number
+   * instead of their name.
+   *
+   * To view a list of all available `control change` messages, please consult "Table 3 - Control
+   * Change Messages" from the [MIDI Messages](
+   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
+   * specification.
+   *
+   * @param controller {number|string} The MIDI controller name or number (0-119).
+   *
+   * @param [value=0] {number} The value to send (0-127).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} Controller numbers must be between 0 and 119.
+   * @throws {RangeError} Invalid controller name.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  sendControlChange(controller, value, channel, options = {}) {
 
-    if (e.port.connection === "open") {
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].sendControlChange(controller, value, options);
+    });
 
-      /**
-       * Event emitted when the {@link Output} has been opened by calling the {@link Output#open}
-       * method.
-       *
-       * @event Output#opened
-       * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"opened"`
-       * @property {Output} target The object that triggered the event
-       */
-      event.type = "opened";
-      event.target = this;
-      this.emit("opened", event);
+    return this;
 
-    } else if (e.port.connection === "closed" && e.port.state === "connected") {
+  };
 
-      /**
-       * Event emitted when the {@link Output} has been closed by calling the {@link Output#close}
-       * method.
-       *
-       * @event Output#closed
-       * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"closed"`
-       * @property {Output} target The object that triggered the event
-       */
-      event.type = "closed";
-      event.target = this;
-      this.emit("closed", event);
+  /**
+   * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
+   * adjust the range used by their pitch bend lever. The range can be specified with the
+   * `semitones` parameter (msb), the `cents` parameter (lsb) or by specifying both parameters at
+   * the same time.
+   *
+   * @param semitones {number} The desired adjustment value in semitones (integer between 0-127).
+   * While nothing imposes that in the specification, it is very common for manufacturers to limit
+   * the range to 2 octaves (-12 semitones to 12 semitones).
+   *
+   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The msb value must be between 0 and 127.
+   * @throws {RangeError} The lsb value must be between 0 and 127.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  setPitchBendRange(semitones, cents, channel, options = {}) {
 
-    } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.setRegisteredParameter(
+        'pitchbendrange', [semitones, cents], ch, {time: options.time}
+      );
+    });
 
-      /**
-       * Event emitted when the {@link Output} becomes unavailable. This event is typically fired
-       * when the MIDI device is unplugged.
-       *
-       * @event Output#disconnected
-       * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
-       * since the navigation start of the document).
-       * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Output} that triggered
-       * the event. This is not the actual `Output` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `"disconnected"`
-       * @property {string} target.type `"output"`
-       */
-      event.type = "disconnected";
-      event.target = {
-        connection: e.port.connection,
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      }
-      this.emit("disconnected", event);
-
-    } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
-      // I don't see the need to forward that...
-    } else {
-      console.warn("This statechange event was not caught:", e.port.connection, e.port.state);
-    }
+    return this;
 
   }
 
   /**
-   * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
-   * parameter. If the parameter is a string starting with the "+" sign and followed by a number,
-   * the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
-   * value will be returned as is.
+   * Sets the specified MIDI registered parameter to the desired value. The value is defined with
+   * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
    *
-   * If the calculated return value is 0, less than zero or an otherwise invalid value, `false` will
-   * be returned.
+   * MIDI
+   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * extend the original list of control change messages. The MIDI 1.0 specification lists only a
+   * limited number of them. Here are the original registered parameters with the identifier that
+   * can be used as the first parameter of this function:
    *
-   * @param [time] {number|string} The time string or integer to parse
-   * @return DOMHighResTimeStamp
-   * @private
+   *  * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
+   *  * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
+   *  * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
+   *  * Tuning Program (0x00, 0x03): `"tuningprogram"`
+   *  * Tuning Bank (0x00, 0x04): `"tuningbank"`
+   *  * Modulation Range (0x00, 0x05): `"modulationrange"`
+   *
+   * Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
+   * Standard*, which is not widely implemented.
+   *
+   * Another set of extra parameters have been later added for 3D sound controllers. They are:
+   *
+   *  * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
+   *  * Elevation Angle (0x3D, 0x01): `"elevationangle"`
+   *  * Gain (0x3D, 0x02): `"gain"`
+   *  * Distance Ratio (0x3D, 0x03): `"distanceratio"`
+   *  * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
+   *  * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
+   *  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
+   *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
+   *  * Roll Angle (0x3D, 0x08): `"rollangle"`
+   *
+   * @param parameter {string|number[]} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
+   * registered parameter.
+   *
+   * @param [data=[]] {number|number[]} An single integer or an array of integers with a maximum
+   * length of 2 specifying the desired data.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  _convertToTimestamp(time) {
+  setRegisteredParameter(parameter, data, channel, options = {}) {
 
-    let value;
-    let parsed = parseFloat(time);
-
-    if (typeof time === "string" && time.substring(0, 1) === "+") {
-      if (parsed && parsed > 0) value = WebMidi.time + parsed;
-    } else {
-      if (parsed > WebMidi.time) value = parsed;
-    }
-
-    return value || false;
-
-  };
-
-  /**
-   * Converts an input value (which can be an unsigned int, a string or an array of the previous
-   * two) to an array of MIDI note numbers.
-   *
-   * @param [note] {number|array|string}
-   * @returns {number[]}
-   *
-   * @private
-   */
-  _convertToNoteArray = function(note) {
-
-    let notes = [];
-
-    if (!Array.isArray(note)) note = [note];
-
-    note.forEach(item => {
-      notes.push(WebMidi.guessNoteNumber(item));
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
 
-    return notes;
+    return this;
+
+  }
+
+  /**
+   * Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
+   * aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+   *
+   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
+   * pressure can be defined by using an integer between 0 and 127.
+   *
+   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or
+   * an array of channel numbers. If the special value "all" is used, the message will be sent to
+   * all 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
+   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setChannelAftertouch(pressure, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.setChannelAftertouch(pressure, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  sendChannelAftertouch(pressure, channel, options = {}) {
+    this.setChannelAftertouch(pressure, channel, options);
+    console.warn(
+      'The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead.'
+    );
+    return this;
+  }
+
+  /**
+   * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
+   *
+   * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
+   * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
+   * an integer between 0 and 127. In this case, a value of 64 means no bend.
+   *
+   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
+   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  setPitchBend(value, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.setPitchBend(value, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  sendPitchBend(bend, channel, options = {}) {
+    this.setPitchBend(bend, channel, options);
+    console.warn(
+      'The sendPitchBend() method has been deprecated. Use setPitchBend() instead.'
+    );
+    return this;
+  }
+
+  /**
+   * Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
+   *
+   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
+   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
+   * that use a numbering scheme starting at 1.
+   *
+   * @param [program=1] {number} The MIDI patch (program) number (1-128)
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
+   * than 0xFF.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   */
+  setProgram(program, channel, options = {}) {
+
+    program = parseFloat(program) - 1;
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.send(
+        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (ch - 1),
+        [program],
+        WebMidi.convertToTimestamp(options.time)
+      );
+    });
+
+    return this;
+
+  }
+
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  sendProgramChange(program, channel, options = {}) {
+    this.setProgram(program, channel, options = {});
+    console.warn(
+      'The sendProgramChange() method has been deprecated. Use setProgram() instead.'
+    );
+    return this;
+  }
+
+  /**
+   * Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
+   * depth of their modulation wheel's range. The range can be specified with the `semitones`
+   * parameter, the `cents` parameter or by specifying both parameters at the same time.
+   *
+   * @param [semitones=0] {number} The desired adjustment value in semitones (integer between
+   * 0 and 127).
+   *
+   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The msb value must be between 0 and 127
+   * @throws {RangeError} The lsb value must be between 0 and 127
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setModulationRange(semitones, cents, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setModulationRange(semitones, cents, options);
+    });
+
+    return this;
 
   };
 
   /**
+   * Sends a master tuning message to the specified channel(s). The value is decimal and must be
+   * larger than -65 semitones and smaller than 64 semitones.
+   *
+   * Because of the way the MIDI specification works, the decimal portion of the value will be
+   * encoded with a resolution of 14bit. The integer portion must be between -64 and 63
+   * inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
+   * a **Master Fine Tuning** RPN messages.
+   *
+   * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
+   * than 64.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setMasterTuning(value, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setMasterTuning(value, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
+   * *MIDI Tuning Standard*, which is not widely implemented.
+   *
+   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
+   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
+   * that use a numbering scheme starting at 1.
+   *
+   * @param value {number} The desired tuning program (1-128).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The program value must be between 1 and 128.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setTuningProgram(value, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setTuningProgram(value, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
+   * *MIDI Tuning Standard*, which is not widely implemented.
+   *
+   * **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
+   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
+   * that use a numbering scheme starting at 1.
+   *
+   * @param value {number} The desired tuning bank (1-128).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The bank value must be between 1 and 128.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setTuningBank(value, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.setTuningBank(value, options);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
+   * send can be specified numerically or by using one of the following common names:
+   *
+   *   * `"allsoundoff"` (#120)
+   *   * `"resetallcontrollers"` (#121)
+   *   * `"localcontrol"` (#122)
+   *   * `"allnotesoff"` (#123)
+   *   * `"omnimodeoff"` (#124)
+   *   * `"omnimodeon"` (#125)
+   *   * `"monomodeon"` (#126)
+   *   * `"polymodeon"` (#127)
+   *
+   * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
+   * require a value that's not zero. For that reason, the `value` parameter is optional and
+   * defaults to 0.
+   *
+   * To make it easier, all channel mode messages have a matching helper method:
+   *
+   *   - [turnSoundOff()]{@link OutputChannel#turnSoundOff}
+   *   - [resetAllControllers()]{@link OutputChannel#resetAllControllers}
+   *   - [setLocalControl()]{@link OutputChannel#turnSoundOff}
+   *   - [turnNotesOff()]{@link OutputChannel#turnNotesOff}
+   *   - [setOmniMode()]{@link OutputChannel#setOmniMode}
+   *   - [setPolyphonicMode()]{@link OutputChannel#setPolyphonicMode}
+   *
+   * @param command {number|string} The numerical identifier of the channel mode message (integer
+   * between 120-127) or its name as a string.
+   *
+   * @param [value] {number} The value to send (integer between 0-127).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {TypeError} Invalid channel mode message name.
+   * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
+   * @throws {RangeError} Value must be an integer between 0 and 127.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   */
+  sendChannelMode(command, value, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].sendChannelMode(command, value, options);
+    });
+
+    return this;
+
+  }
+
+
+  /**
+   * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
+   * channel but will not prevent new sounds from being triggered.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @returns {Output}
+   */
+  turnSoundOff(channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].turnSoundOff(options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sends an **all note soff** channel mode message. This will turn all currently playing notes off.
+   * However, this does not prevent new notes from being played.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @returns {Output}
+   */
+  turnNotesOff(channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].turnNotesOff(options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as the
+   * pitch bend, to their default value.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @returns {Output}
+   */
+  resetAllControllers(channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].resetAllControllers(options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
+   * and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
+   * multiple notes are being played.
+   *
+   * @param mode {string} The mode to use: `"mono"` or `"poly"`.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setPolyphonicMode(mode, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setPolyphonicMode(mode, options);
+    });
+
+    return this;
+
+  }
+
+
+  /**
+   * Turns local control on or off. Local control is usually enabled by default. If you disable it,
+   * the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
+   * its out port.
+   *
+   * @param [state=false] {boolean} Whether to activate local control (`true`) or disable it
+   * (`false`).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setLocalControl(state, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setLocalControl(options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
+   * instrument to respond to messages from all channels.
+   *
+   * It should be noted that support for OMNI mode is not as common as it used to be.
+   *
+   * @param [state] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {TypeError} Invalid channel mode message name.
+   * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
+   * @throws {RangeError} Value must be an integer between 0 and 127.
+   *
+   * @return {Output} Returns the `Output` object so methods can be chained.
+   */
+  setOmniMode(state, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setOmniMode(state, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+   * two-position array specifying the values of the two control bytes. The value is specified by
+   * passing in a single integer (most cases) or an array of two integers.
+   *
+   * NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
+   * they see fit. For example, according to the Roland GS specification, you can control the
+   * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
+   * would use:
+   *
+   * ```js
+   * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
+   * ```
+   *
+   * Obviously, you should select a channel so the message is not sent to all channels. For
+   * instance, to send to channel 1 of the first output port, you would use:
+   *
+   * ```js
+   * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
+   * ```
+   *
+   * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
+   * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
+   * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
+   * value to send was 10, you could use:
+   *
+   * ```js
+   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
+   * ```
+   *
+   * For further implementation details, refer to the manufacturer"s documentation.
+   *
+   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+   * 0x62) that identify the non-registered parameter.
+   *
+   * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
+   * specifying the desired data.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws {RangeError} The control value must be between 0 and 127.
+   * @throws {RangeError} The msb value must be between 0 and 127
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  setNonRegisteredParameter(parameter, data, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].setNonRegisteredParameter(parameter, data, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
+   * names that can be used with this method:
+   *
+   *  * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
+   *  * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
+   *  * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
+   *  * Tuning Program (0x00, 0x03): `"tuningprogram"`
+   *  * Tuning Bank (0x00, 0x04): `"tuningbank"`
+   *  * Modulation Range (0x00, 0x05): `"modulationrange"`
+   *  * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
+   *  * Elevation Angle (0x3D, 0x01): `"elevationangle"`
+   *  * Gain (0x3D, 0x02): `"gain"`
+   *  * Distance Ratio (0x3D, 0x03): `"distanceratio"`
+   *  * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
+   *  * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
+   *  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
+   *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
+   *  * Roll Angle (0x3D, 0x08): `"rollangle"`
+   *
+   * @param parameter {String|number[]} A string identifying the parameter's name (see above) or a
+   * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+   * parameter.
+   *
+   * @param [channel=all] {number|number[]|String} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws Error The specified parameter is not available.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  incrementRegisteredParameter(parameter, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].incrementRegisteredParameter(parameter, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
+   * names that can be used with this method:
+   *
+   *  * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
+   *  * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
+   *  * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
+   *  * Tuning Program (0x00, 0x03): `"tuningprogram"`
+   *  * Tuning Bank (0x00, 0x04): `"tuningbank"`
+   *  * Modulation Range (0x00, 0x05): `"modulationrange"`
+   *  * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
+   *  * Elevation Angle (0x3D, 0x01): `"elevationangle"`
+   *  * Gain (0x3D, 0x02): `"gain"`
+   *  * Distance Ratio (0x3D, 0x03): `"distanceratio"`
+   *  * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
+   *  * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
+   *  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
+   *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
+   *  * Roll Angle (0x3D, 0x08): `"rollangle"`
+   *
+   * @param parameter {String|number[]} A string identifying the parameter"s name (see above) or a
+   * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+   * parameter.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
+   * array of channel numbers. If the special value "all" is used, the message will be sent to all
+   * 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @throws TypeError The specified parameter is not available.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  decrementRegisteredParameter(parameter, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].decrementRegisteredParameter(parameter, options);
+    });
+
+    return this;
+
+  };
+
+  /**
+   * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
+   * simultaneous notes (chord). You can delay the execution of the **note off** command by using
+   * the `time` property of the `options` parameter (in milliseconds).
+   *
+   * @param note {number|number[]|string}  The note(s) you wish to stop. The notes can be specified
+   * in one of three ways. The first way is by using the MIDI note number (an integer between `0`
+   * and `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1,
+   * Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
+   * and the highest note is G8 (MIDI note number 127). It is also possible to specify an array of
+   * note numbers and/or names. The final way is to use the special value `all` to send an
+   * `"allnotesoff"` channel message.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`) or
+   * an array of channel numbers. If the special value `all` is used (default), the message will be
+   * sent to all 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {Boolean} [options.rawValue=false] Controls whether the release velocity is set using
+   * an integer between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * default).
+   *
+   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
+   * ignored.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  sendNoteOff(note, channel, options) {
+
+    // Backwards compatibility
+    if (options.rawVelocity) {
+      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      options.rawValue = options.rawVelocity;
+    }
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].sendNoteOff(note, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
+   *
+   * @see {@link Output#sendNoteOff}
+   *
+   * @param note
+   * @param channel
+   * @param options
+   * @returns {Output}
+   */
+  stopNote(note, channel, options) {
+    return this.sendNoteOff(note, channel, options);
+  }
+
+  /**
+   * Sends a **note on** message for a single note or multiple notes on the specified channel(s).
+   * The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * If no duration is specified in the `options`, the note will play until a matching **note off**
+   * message is sent. If a duration is specified, a **note off** message will be automatically sent
+   * after said duration.
+   *
+   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
+   * a **note off**.
+   *
+   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
+   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
+   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
+   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
+   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
+   * and/or names.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`)
+   * or an array of channel numbers. If the special value **all** is used (default), the message
+   * will be sent to all 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=undefined] The number of milliseconds (integer) to wait
+   * before sending a matching **note off** event. If left undefined, only a **note on** message is
+   * sent.
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
+   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
+   * (`false`, default).
+   *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * This is only used with the **note off** event triggered when `options.duration` is set.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
+   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  playNote(note, channel, options = {}) {
+
+    // Backwards compatibility
+    if (options.rawVelocity) {
+      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      options.rawValue = options.rawVelocity;
+    }
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].playNote(note, options);
+    });
+
+  }
+
+  /**
+   * Sends a **note on** message for a single note or multiple notes on the specified channel(s).
+   * The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter (milliseconds).
+   *
+   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
+   * a **note off**.
+   *
+   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
+   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
+   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
+   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
+   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
+   * and/or names.
+   *
+   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`)
+   * or an array of channel numbers. If the special value **all** is used (default), the message
+   * will be sent to all 16 channels.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
+   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
+   * (`false`, default).
+   *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * This is only used with the **note off** event triggered when `options.duration` is set.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
+   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  sendNoteOn(note, channel, options = {}) {
+
+    // Backwards compatibility
+    if (options.rawVelocity) {
+      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      options.rawValue = options.rawVelocity;
+    }
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].sendNoteOn(note, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Closes the output, unregisters listeners and disconnects the output from the host's MIDI
+   * subsystem.
+   *
    * @async
    * @return {Promise<void>}
    */
   async destroy() {
     return this.close().then(() => {
-      this._midiOutput.onstatechange = null;
+      if (this._midiOutput) this._midiOutput.onstatechange = null;
       this._midiOutput = null;
     })
   }
@@ -689,1376 +1807,3 @@ export class Output extends EventEmitter {
   }
 
 }
-
-// /**
-//  * Sends a MIDI `key aftertouch` message to the specified channel(s) at the scheduled time. This
-//  * is a key-specific aftertouch. For a channel-wide aftertouch message, use
-//  * {@link Output#sendChannelAftertouch}.
-//  *
-//  * @param note {number|string|array}  The note for which you are sending an aftertouch value. The
-//  * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-//  * integer between 0 and 127). The second way is by using the note name followed by the octave
-//  * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-//  * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
-//  * an array of note names and/or numbers.
-//  *
-//  * @param [channel=all] {number|array|string} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Number} [pressure=0.5] The pressure level to send (between 0 and 1).
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The channel must be between 1 and 16.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// sendKeyAftertouch(note, channel, pressure, options= {}) {
-//
-//   if (channel < 1 || channel > 16) {
-//     throw new RangeError("The channel must be between 1 and 16.");
-//   }
-//
-//   if (isNaN(pressure) || pressure < 0 || pressure > 1) {
-//     pressure = 0.5;
-//   }
-//
-//   var nPressure = Math.round(pressure * 127);
-//
-//   this._convertToNoteArray(note).forEach(item => {
-//
-//     wm.sanitizeChannels(channel).forEach(ch => {
-//       this.send(
-//         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (ch - 1),
-//         [item, nPressure],
-//         this._convertToTimestamp(options.time)
-//       );
-//     });
-//
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
-//  * simultaneous notes (chord). You can delay the execution of the **note off** command by using
-//  * the `time` property of the `options` parameter (in milliseconds).
-//  *
-//  * @method stopNote
-//  * @chainable
-//  *
-//  * @param note {Number|Array|String}  The note(s) you wish to stop. The notes can be specified in
-//  * one of three ways. The first way is by using the MIDI note number (an integer between `0` and
-//  * `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7).
-//  * The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and
-//  * the highest note is G8 (MIDI note number 127). It is also possible to specify an array of note
-//  * numbers and/or names. The final way is to use the special value `all` to send an "allnotesoff"
-//  * channel message.
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between `1` and `16`) or an
-//  * array of channel numbers. If the special value `all` is used (default), the message will be
-//  * sent to all 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {Boolean} [options.rawVelocity=false] Controls whether the release velocity is set using
-//  * an integer between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
-//  * default).
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
-//  * and `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
-//  * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-//  * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
-//  * ignored.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.stopNote = function(note, channel, options) {
-//
-//   if (note === "all") {
-//     return this.sendChannelMode("allnotesoff", 0, channel, options);
-//   }
-//
-//   var nVelocity = 64;
-//
-//   options = options || {};
-//
-//   if (options.rawVelocity) {
-//
-//     if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
-//       nVelocity = options.velocity;
-//     }
-//
-//   } else {
-//
-//     if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
-//       nVelocity = options.velocity * 127;
-//     }
-//
-//   }
-//
-//   // Send note off messages
-//   this._convertToNoteArray(note).forEach(function(item) {
-//
-//     wm.sanitizeChannels(channel).forEach(function(ch) {
-//
-//       this.send(
-//         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (ch - 1),
-//         [item, Math.round(nVelocity)],
-//         this._convertToTimestamp(options.time)
-//       );
-//
-//     }.bind(this));
-//
-//   }.bind(this));
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Requests the playback of a single note or multiple notes on the specified channel(s). You can
-//  * delay the execution of the **note on** command by using the `time` property of the `options`
-//  * parameter (milliseconds).
-//  *
-//  * If no duration is specified in the `options`, the note will play until a matching **note off**
-//  * is sent. If a duration is specified, a **note off** will be automatically sent after said
-//  * duration.
-//  *
-//  * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
-//  * a **note off**.
-//  *
-//  * @method playNote
-//  * @chainable
-//  *
-//  * @param note {Number|String|Array}  The note(s) you wish to play. The notes can be specified in
-//  * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-//  * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-//  * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-//  * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-//  * and/or names.
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between `1` and `16`) or an
-//  * array of channel numbers. If the special value **all** is used (default), the message will be
-//  * sent to all 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {Number} [options.duration=undefined] The number of milliseconds (integer) to wait
-//  * before sending a matching **note off** event. If left undefined, only a **note on** message is
-//  * sent.
-//  *
-//  * @param {Boolean} [options.rawVelocity=false] Controls whether the attack and release velocities
-//  * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
-//  * (`false`, default).
-//  *
-//  * @param {Number} [options.release=0.5] The velocity at which to release the note (between `0`
-//  * and `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
-//  * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-//  * This is only used with the **note off** event triggered when `options.duration` is set.
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @param {Number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
-//  * `1`). If the `rawVelocity` option is `true`, the value should be specified as an integer
-//  * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.playNote = function(note, channel, options) {
-//
-//   var time,
-//     nVelocity = 64;
-//
-//   options = options || {};
-//
-//   if (options.rawVelocity) {
-//
-//     if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
-//       nVelocity = options.velocity;
-//     }
-//
-//   } else {
-//
-//     if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
-//       nVelocity = options.velocity * 127;
-//     }
-//
-//   }
-//
-//   time = this._convertToTimestamp(options.time);
-//
-//   // Send note on messages
-//   this._convertToNoteArray(note).forEach(function(item) {
-//
-//     wm.sanitizeChannels(channel).forEach(function(ch) {
-//       this.send(
-//         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (ch - 1),
-//         [item, Math.round(nVelocity)],
-//         time
-//       );
-//     }.bind(this));
-//
-//   }.bind(this));
-//
-//
-//   // Send note off messages (only if a valid duration has been defined)
-//   if (!isNaN(options.duration)) {
-//
-//     if (options.duration <= 0) { options.duration = 0; }
-//
-//     var nRelease = 64;
-//
-//     if (options.rawVelocity) {
-//
-//       if (!isNaN(options.release) && options.release >= 0 && options.release <= 127) {
-//         nRelease = options.release;
-//       }
-//
-//     } else {
-//
-//       if (!isNaN(options.release) && options.release >= 0 && options.release <= 1) {
-//         nRelease = options.release * 127;
-//       }
-//
-//     }
-//
-//     this._convertToNoteArray(note).forEach(function(item) {
-//
-//       wm.sanitizeChannels(channel).forEach(function(ch) {
-//
-//         this.send(
-//           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (ch - 1),
-//           [item, Math.round(nRelease)],
-//           (time || wm.time) + options.duration
-//         );
-//       }.bind(this));
-//
-//     }.bind(this));
-//
-//   }
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI `control change` message (a.k.a. CC message) to the specified channel(s) at the
-//  * scheduled time. The control change message to send can be specified numerically or by using one
-//  * of the following common names:
-//  *
-//  *  * `bankselectcoarse` (#0)
-//  *  * `modulationwheelcoarse` (#1)
-//  *  * `breathcontrollercoarse` (#2)
-//  *  * `footcontrollercoarse` (#4)
-//  *  * `portamentotimecoarse` (#5)
-//  *  * `dataentrycoarse` (#6)
-//  *  * `volumecoarse` (#7)
-//  *  * `balancecoarse` (#8)
-//  *  * `pancoarse` (#10)
-//  *  * `expressioncoarse` (#11)
-//  *  * `effectcontrol1coarse` (#12)
-//  *  * `effectcontrol2coarse` (#13)
-//  *  * `generalpurposeslider1` (#16)
-//  *  * `generalpurposeslider2` (#17)
-//  *  * `generalpurposeslider3` (#18)
-//  *  * `generalpurposeslider4` (#19)
-//  *  * `bankselectfine` (#32)
-//  *  * `modulationwheelfine` (#33)
-//  *  * `breathcontrollerfine` (#34)
-//  *  * `footcontrollerfine` (#36)
-//  *  * `portamentotimefine` (#37)
-//  *  * `dataentryfine` (#38)
-//  *  * `volumefine` (#39)
-//  *  * `balancefine` (#40)
-//  *  * `panfine` (#42)
-//  *  * `expressionfine` (#43)
-//  *  * `effectcontrol1fine` (#44)
-//  *  * `effectcontrol2fine` (#45)
-//  *  * `holdpedal` (#64)
-//  *  * `portamento` (#65)
-//  *  * `sustenutopedal` (#66)
-//  *  * `softpedal` (#67)
-//  *  * `legatopedal` (#68)
-//  *  * `hold2pedal` (#69)
-//  *  * `soundvariation` (#70)
-//  *  * `resonance` (#71)
-//  *  * `soundreleasetime` (#72)
-//  *  * `soundattacktime` (#73)
-//  *  * `brightness` (#74)
-//  *  * `soundcontrol6` (#75)
-//  *  * `soundcontrol7` (#76)
-//  *  * `soundcontrol8` (#77)
-//  *  * `soundcontrol9` (#78)
-//  *  * `soundcontrol10` (#79)
-//  *  * `generalpurposebutton1` (#80)
-//  *  * `generalpurposebutton2` (#81)
-//  *  * `generalpurposebutton3` (#82)
-//  *  * `generalpurposebutton4` (#83)
-//  *  * `reverblevel` (#91)
-//  *  * `tremololevel` (#92)
-//  *  * `choruslevel` (#93)
-//  *  * `celestelevel` (#94)
-//  *  * `phaserlevel` (#95)
-//  *  * `databuttonincrement` (#96)
-//  *  * `databuttondecrement` (#97)
-//  *  * `nonregisteredparametercoarse` (#98)
-//  *  * `nonregisteredparameterfine` (#99)
-//  *  * `registeredparametercoarse` (#100)
-//  *  * `registeredparameterfine` (#101)
-//  *
-//  * Note: as you can see above, not all control change message have a matching common name. This
-//  * does not mean you cannot use the others. It simply means you will need to use their number
-//  * instead of their name.
-//  *
-//  * To view a list of all available `control change` messages, please consult "Table 3 - Control
-//  * Change Messages" from the [MIDI Messages](
-//  * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
-//  * specification.
-//  *
-//  * @method sendControlChange
-//  * @chainable
-//  *
-//  * @param controller {Number|String} The MIDI controller number (0-119) or name.
-//  *
-//  * @param [value=0] {Number} The value to send (0-127).
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} Controller numbers must be between 0 and 119.
-//  * @throws {RangeError} Value must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.sendControlChange = function(controller, value, channel, options) {
-//
-//   options = options || {};
-//
-//   if (typeof controller === "string") {
-//
-//     controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-//     if (controller === undefined) throw new TypeError("Invalid controller name.");
-//
-//   } else {
-//
-//     controller = Math.floor(controller);
-//     if ( !(controller >= 0 && controller <= 119) ) {
-//       throw new RangeError("Controller numbers must be between 0 and 119.");
-//     }
-//
-//   }
-//
-//   value = Math.floor(value) || 0;
-//   if ( !(value >= 0 && value <= 127) ) {
-//     throw new RangeError("Controller value must be between 0 and 127.");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function(ch) {
-//     this.send(
-//       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (ch - 1),
-//       [controller, value],
-//       this._convertToTimestamp(options.time)
-//     );
-//   }.bind(this));
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Selects a MIDI registered parameter so it is affected by data entry, data increment and data
-//  * decrement messages.
-//  *
-//  * @method _selectRegisteredParameter
-//  * @protected
-//  *
-//  * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
-//  * that identify the registered parameter.
-//  * @param channel
-//  * @param time
-//  *
-//  * @returns {Output}
-//  */
-// Output.prototype._selectRegisteredParameter = function(parameter, channel, time) {
-//
-//   var that = this;
-//
-//   parameter[0] = Math.floor(parameter[0]);
-//   if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
-//     throw new RangeError("The control65 value must be between 0 and 127");
-//   }
-//
-//   parameter[1] = Math.floor(parameter[1]);
-//   if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
-//     throw new RangeError("The control64 value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.sendControlChange(0x65, parameter[0], channel, {time: time});
-//     that.sendControlChange(0x64, parameter[1], channel, {time: time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Selects a MIDI non-registered parameter so it is affected by data entry, data increment and
-//  * data decrement messages.
-//  *
-//  * @method _selectNonRegisteredParameter
-//  * @protected
-//  *
-//  * @param parameter {Array} A two-position array specifying the two control bytes (0x63, 0x62)
-//  * that identify the registered parameter.
-//  * @param channel
-//  * @param time
-//  *
-//  * @returns {Output}
-//  */
-// Output.prototype._selectNonRegisteredParameter = function(parameter, channel, time) {
-//
-//   var that = this;
-//
-//   parameter[0] = Math.floor(parameter[0]);
-//   if ( !(parameter[0] >= 0 && parameter[0] <= 127) ) {
-//     throw new RangeError("The control63 value must be between 0 and 127");
-//   }
-//
-//   parameter[1] = Math.floor(parameter[1]);
-//   if ( !(parameter[1] >= 0 && parameter[1] <= 127) ) {
-//     throw new RangeError("The control62 value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.sendControlChange(0x63, parameter[0], channel, {time: time});
-//     that.sendControlChange(0x62, parameter[1], channel, {time: time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sets the value of the currently selected MIDI registered parameter.
-//  *
-//  * @method _setCurrentRegisteredParameter
-//  * @protected
-//  *
-//  * @param data {int|Array}
-//  * @param channel
-//  * @param time
-//  *
-//  * @returns {Output}
-//  */
-// Output.prototype._setCurrentRegisteredParameter = function(data, channel, time) {
-//
-//   var that = this;
-//
-//   data = [].concat(data);
-//
-//   data[0] = Math.floor(data[0]);
-//   if ( !(data[0] >= 0 && data[0] <= 127) ) {
-//     throw new RangeError("The msb value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.sendControlChange(0x06, data[0], channel, {time: time});
-//   });
-//
-//   data[1] = Math.floor(data[1]);
-//   if(data[1] >= 0 && data[1] <= 127) {
-//     wm.sanitizeChannels(channel).forEach(function() {
-//       that.sendControlChange(0x26, data[1], channel, {time: time});
-//     });
-//   }
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Deselects the currently active MIDI registered parameter so it is no longer affected by data
-//  * entry, data increment and data decrement messages.
-//  *
-//  * Current best practice recommends doing that after each call to
-//  * `_setCurrentRegisteredParameter()`.
-//  *
-//  * @method _deselectRegisteredParameter
-//  * @protected
-//  *
-//  * @param channel
-//  * @param time
-//  *
-//  * @returns {Output}
-//  */
-// Output.prototype._deselectRegisteredParameter = function(channel, time) {
-//
-//   var that = this;
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.sendControlChange(0x65, 0x7F, channel, {time: time});
-//     that.sendControlChange(0x64, 0x7F, channel, {time: time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sets the specified MIDI registered parameter to the desired value. The value is defined with
-//  * up to two bytes of data that each can go from 0 to 127.
-//  *
-//  * >Unless you are very familiar with the MIDI standard you probably should favour one of the
-//  * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
-//  * >`setMasterTuning()`, etc.
-//  *
-//  * MIDI registered parameters extend the original list of control change messages. Currently,
-//  * there are only a limited number of them. Here are the original registered parameters with the
-//  * identifier that can be used as the first parameter of this function:
-//  *
-//  *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
-//  *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
-//  *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
-//  *  * Tuning Program (0x00, 0x03): `tuningprogram`
-//  *  * Tuning Bank (0x00, 0x04): `tuningbank`
-//  *  * Modulation Range (0x00, 0x05): `modulationrange`
-//  *
-//  * Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
-//  * Standard*, which is not widely implemented.
-//  *
-//  * Another set of extra parameters have been later added for 3D sound controllers. They are:
-//  *
-//  *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
-//  *  * Elevation Angle (0x3D, 0x01): `elevationangle`
-//  *  * Gain (0x3D, 0x02): `gain`
-//  *  * Distance Ratio (0x3D, 0x03): `distanceratio`
-//  *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
-//  *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
-//  *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
-//  *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
-//  *  * Roll Angle (0x3D, 0x08): `rollangle`
-//  *
-//  * @method setRegisteredParameter
-//  * @chainable
-//  *
-//  * @param parameter {String|Array} A string identifying the parameter"s name (see above) or a
-//  * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
-//  * parameter.
-//  *
-//  * @param [data=[]] {Number|Array} An single integer or an array of integers with a maximum length
-//  * of 2 specifying the desired data.
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @returns {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setRegisteredParameter = function(parameter, data, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   if ( !Array.isArray(parameter) ) {
-//     if ( !WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-//       throw new Error("The specified parameter is not available.");
-//     }
-//     parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that._selectRegisteredParameter(parameter, channel, options.time);
-//     that._setCurrentRegisteredParameter(data, channel, options.time);
-//     that._deselectRegisteredParameter(channel, options.time);
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
-//  * two-position array specifying the values of the two control bytes. The value is specified by
-//  * passing in an single integer (most cases) or an array of two integers.
-//  *
-//  * NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
-//  * they see fit. For example, according to the Roland GS specification, you can control the
-//  * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
-//  * would use:
-//  *
-//  *     WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
-//  *
-//  * Obviously, you should select a channel so the message is not sent to all channels. For
-//  * instance, to send to channel 1 of the first output port, you would use:
-//  *
-//  *     WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
-//  *
-//  * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-//  * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
-//  * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
-//  * value to send was 10, you could use:
-//  *
-//  *     WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
-//  *
-//  * For further implementation details, refer to the manufacturer"s documentation.
-//  *
-//  * @method setNonRegisteredParameter
-//  * @chainable
-//  *
-//  * @param parameter {Array} A two-position array specifying the two control bytes (0x63,
-//  * 0x62) that identify the non-registered parameter.
-//  *
-//  * @param [data=[]] {Number|Array} An integer or an array of integers with a length of 1 or 2
-//  * specifying the desired data.
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @returns {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setNonRegisteredParameter = function(parameter, data, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   if (
-//     !(parameter[0] >= 0 && parameter[0] <= 127) ||
-//     !(parameter[1] >= 0 && parameter[1] <= 127)
-//   ) {
-//     throw new Error(
-//       "Position 0 and 1 of the 2-position parameter array must both be between 0 and 127."
-//     );
-//   }
-//
-//   data = [].concat(data);
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that._selectNonRegisteredParameter(parameter, channel, options.time);
-//     that._setCurrentRegisteredParameter(data, channel, options.time);
-//     that._deselectRegisteredParameter(channel, options.time);
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
-//  * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-//  * increment and decrement controllers.
-//  *
-//  * >Unless you are very familiar with the MIDI standard you probably should favour one of the
-//  * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
-//  * >`setMasterTuning()`, etc.
-//  *
-//  * Here is the full list of parameter names that can be used with this function:
-//  *
-//  *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
-//  *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
-//  *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
-//  *  * Tuning Program (0x00, 0x03): `tuningprogram`
-//  *  * Tuning Bank (0x00, 0x04): `tuningbank`
-//  *  * Modulation Range (0x00, 0x05): `modulationrange`
-//  *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
-//  *  * Elevation Angle (0x3D, 0x01): `elevationangle`
-//  *  * Gain (0x3D, 0x02): `gain`
-//  *  * Distance Ratio (0x3D, 0x03): `distanceratio`
-//  *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
-//  *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
-//  *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
-//  *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
-//  *  * Roll Angle (0x3D, 0x08): `rollangle`
-//  *
-//  * @method incrementRegisteredParameter
-//  * @chainable
-//  *
-//  * @param parameter {String|Array} A string identifying the parameter"s name (see above) or a
-//  * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
-//  * parameter.
-//  *
-//  * @param [channel=all] {uint|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws Error The specified parameter is not available.
-//  *
-//  * @returns {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.incrementRegisteredParameter = function(parameter, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   if ( !Array.isArray(parameter) ) {
-//     if ( !WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-//       throw new Error("The specified parameter is not available.");
-//     }
-//     parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that._selectRegisteredParameter(parameter, channel, options.time);
-//     that.sendControlChange(0x60, 0, channel, {time: options.time});
-//     that._deselectRegisteredParameter(channel, options.time);
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
-//  * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-//  * increment and decrement controllers.
-//  *
-//  * >Unless you are very familiar with the MIDI standard you probably should favour one of the
-//  * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
-//  * >`setMasterTuning()`, etc.
-//  *
-//  * Here is the full list of parameter names that can be used with this function:
-//  *
-//  *  * Pitchbend Range (0x00, 0x00): `pitchbendrange`
-//  *  * Channel Fine Tuning (0x00, 0x01): `channelfinetuning`
-//  *  * Channel Coarse Tuning (0x00, 0x02): `channelcoarsetuning`
-//  *  * Tuning Program (0x00, 0x03): `tuningprogram`
-//  *  * Tuning Bank (0x00, 0x04): `tuningbank`
-//  *  * Modulation Range (0x00, 0x05): `modulationrange`
-//  *  * Azimuth Angle (0x3D, 0x00): `azimuthangle`
-//  *  * Elevation Angle (0x3D, 0x01): `elevationangle`
-//  *  * Gain (0x3D, 0x02): `gain`
-//  *  * Distance Ratio (0x3D, 0x03): `distanceratio`
-//  *  * Maximum Distance (0x3D, 0x04): `maximumdistance`
-//  *  * Maximum Distance Gain (0x3D, 0x05): `maximumdistancegain`
-//  *  * Reference Distance Ratio (0x3D, 0x06): `referencedistanceratio`
-//  *  * Pan Spread Angle (0x3D, 0x07): `panspreadangle`
-//  *  * Roll Angle (0x3D, 0x08): `rollangle`
-//  *
-//  * @method decrementRegisteredParameter
-//  * @chainable
-//  *
-//  * @param parameter {String|Array} A string identifying the parameter"s name (see above) or a
-//  * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
-//  * parameter.
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws TypeError The specified parameter is not available.
-//  *
-//  * @returns {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.decrementRegisteredParameter = function(parameter, channel, options) {
-//
-//   options = options || {};
-//
-//   if ( !Array.isArray(parameter) ) {
-//     if ( !WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-//       throw new TypeError("The specified parameter is not available.");
-//     }
-//     parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     this._selectRegisteredParameter(parameter, channel, options.time);
-//     this.sendControlChange(0x61, 0, channel, {time: options.time});
-//     this._deselectRegisteredParameter(channel, options.time);
-//   }.bind(this));
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-//  * adjust the range used by their pitch bend lever. The range can be specified with the
-//  * `semitones` parameter, the `cents` parameter or by specifying both parameters at the same time.
-//  *
-//  * @method setPitchBendRange
-//  * @chainable
-//  *
-//  * @param [semitones=0] {Number} The desired adjustment value in semitones (integer between
-//  * 0-127). While nothing imposes that in the specification, it is very common for manufacturers to
-//  * limit the range to 2 octaves (-12 semitones to 12 semitones).
-//  *
-//  * @param [cents=0] {Number} The desired adjustment value in cents (integer between 0-127).
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The semitones value must be between 0 and 127.
-//  * @throws {RangeError} The cents value must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setPitchBendRange = function(semitones, cents, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   semitones = Math.floor(semitones) || 0;
-//   if ( !(semitones >= 0 && semitones <= 127) ) {
-//     throw new RangeError("The semitones value must be between 0 and 127");
-//   }
-//
-//   cents = Math.floor(cents) || 0;
-//   if ( !(cents >= 0 && cents <= 127) ) {
-//     throw new RangeError("The cents value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.setRegisteredParameter(
-//       "pitchbendrange", [semitones, cents], channel, {time: options.time}
-//     );
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a modulation depth range message to the specified channel(s) so that they adjust the
-//  * depth of their modulation wheel"s range. The range can be specified with the `semitones`
-//  * parameter, the `cents` parameter or by specifying both parameters at the same time.
-//  *
-//  * @method setModulationRange
-//  * @chainable
-//  *
-//  * @param [semitones=0] {Number} The desired adjustment value in semitones (integer between
-//  * 0-127).
-//  *
-//  * @param [cents=0] {Number} The desired adjustment value in cents (0-127).
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The semitones value must be between 0 and 127.
-//  * @throws {RangeError} The cents value must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setModulationRange = function(semitones, cents, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   semitones = Math.floor(semitones) || 0;
-//   if ( !(semitones >= 0 && semitones <= 127) ) {
-//     throw new RangeError("The semitones value must be between 0 and 127");
-//   }
-//
-//   cents = Math.floor(cents) || 0;
-//   if ( !(cents >= 0 && cents <= 127) ) {
-//     throw new RangeError("The cents value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.setRegisteredParameter(
-//       "modulationrange", [semitones, cents], channel, {time: options.time}
-//     );
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a master tuning message to the specified channel(s). The value is decimal and must be
-//  * larger than -65 semitones and smaller than 64 semitones.
-//  *
-//  * >Because of the way the MIDI specification works, the decimal portion of the value will be
-//  * >encoded with a resolution of 14bit. The integer portion must be between -64 and 63
-//  * >inclusively. For those familiar with the MIDI protocol, this function actually generates
-//  * >**Master Coarse Tuning** and **Master Fine Tuning** RPN messages.
-//  *
-//  * @method setMasterTuning
-//  * @chainable
-//  *
-//  * @param [value=0.0] {Number} The desired decimal adjustment value in semitones (-65 < x < 64)
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
-//  * than 64.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setMasterTuning = function(value, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   value = parseFloat(value) || 0.0;
-//
-//   if (value <= -65 || value >= 64) {
-//     throw new RangeError(
-//       "The value must be a decimal number larger than -65 and smaller than 64."
-//     );
-//   }
-//
-//   var coarse = Math.floor(value) + 64;
-//   var fine = value - Math.floor(value);
-//
-//   // Calculate MSB and LSB for fine adjustment (14bit resolution)
-//   fine = Math.round((fine + 1) / 2 * 16383);
-//   var msb = (fine >> 7) & 0x7F;
-//   var lsb = fine & 0x7F;
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.setRegisteredParameter("channelcoarsetuning", coarse, channel, {time: options.time});
-//     that.setRegisteredParameter("channelfinetuning", [msb, lsb], channel, {time: options.time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
-//  * *MIDI Tuning Standard*, which is not widely implemented.
-//  *
-//  * @method setTuningProgram
-//  * @chainable
-//  *
-//  * @param value {Number} The desired tuning program (0-127).
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The program value must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setTuningProgram = function(value, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   value = Math.floor(value);
-//   if ( !(value >= 0 && value <= 127) ) {
-//     throw new RangeError("The program value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.setRegisteredParameter("tuningprogram", value, channel, {time: options.time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
-//  * *MIDI Tuning Standard*, which is not widely implemented.
-//  *
-//  * @method setTuningBank
-//  * @chainable
-//  *
-//  * @param value {Number} The desired tuning bank (0-127).
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} The bank value must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.setTuningBank = function(value, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   value = Math.floor(value) || 0;
-//   if ( !(value >= 0 && value <= 127) ) {
-//     throw new RangeError("The bank value must be between 0 and 127");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function() {
-//     that.setRegisteredParameter("tuningbank", value, channel, {time: options.time});
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI `channel mode` message to the specified channel(s). The channel mode message to
-//  * send can be specified numerically or by using one of the following common names:
-//  *
-//  *   * `allsoundoff` (#120)
-//  *   * `resetallcontrollers` (#121)
-//  *   * `localcontrol` (#122)
-//  *   * `allnotesoff` (#123)
-//  *   * `omnimodeoff` (#124)
-//  *   * `omnimodeon` (#125)
-//  *   * `monomodeon` (#126)
-//  *   * `polymodeon` (#127)
-//  *
-//  * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
-//  * require a value that"s not zero. For that reason, the `value` parameter is optional and
-//  * defaults to 0.
-//  *
-//  * @method sendChannelMode
-//  * @chainable
-//  *
-//  * @param command {Number|String} The numerical identifier of the channel mode message (integer
-//  * between 120-127) or its name as a string.
-//  * @param [value=0] {Number} The value to send (integer between 0-127).
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  * @param {Object} [options={}]
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {TypeError} Invalid channel mode message name.
-//  * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-//  * @throws {RangeError} Value must be an integer between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  *
-//  */
-// Output.prototype.sendChannelMode = function(command, value, channel, options) {
-//
-//   options = options || {};
-//
-//   if (typeof command === "string") {
-//
-//     command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
-//
-//     if (!command) {
-//       throw new TypeError("Invalid channel mode message name.");
-//     }
-//
-//   } else {
-//
-//     command = Math.floor(command);
-//
-//     if ( !(command >= 120 && command <= 127) ) {
-//       throw new RangeError("Channel mode numerical identifiers must be between 120 and 127.");
-//     }
-//
-//   }
-//
-//   value = Math.floor(value) || 0;
-//
-//   if (value < 0 || value > 127) {
-//     throw new RangeError("Value must be an integer between 0 and 127.");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function(ch) {
-//
-//     this.send(
-//       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (ch - 1),
-//       [command, value],
-//       this._convertToTimestamp(options.time)
-//     );
-//
-//   }.bind(this));
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI `program change` message to the specified channel(s) at the scheduled time.
-//  *
-//  * @method sendProgramChange
-//  * @chainable
-//  *
-//  * @param program {Number} The MIDI patch (program) number (0-127)
-//  *
-//  * @param [channel=all] {Number|Array|String} The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} Program numbers must be between 0 and 127.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  *
-//  */
-// Output.prototype.sendProgramChange = function(program, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   program = Math.floor(program);
-//   if (isNaN(program) || program < 0 || program > 127) {
-//     throw new RangeError("Program numbers must be between 0 and 127.");
-//   }
-//
-//   wm.sanitizeChannels(channel).forEach(function(ch) {
-//     that.send(
-//       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (ch - 1),
-//       [program],
-//       that._convertToTimestamp(options.time)
-//     );
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI `channel aftertouch` message to the specified channel(s). For key-specific
-//  * aftertouch, you should instead use `sendKeyAftertouch()`.
-//  *
-//  * @method sendChannelAftertouch
-//  * @chainable
-//  *
-//  * @param [pressure=0.5] {Number} The pressure level (between 0 and 1). An invalid pressure value
-//  * will silently trigger the default behaviour.
-//  *
-//  * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or
-//  * an array of channel numbers. If the special value "all" is used, the message will be sent to
-//  * all 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.sendChannelAftertouch = function(pressure, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   pressure = parseFloat(pressure);
-//   if (isNaN(pressure) || pressure < 0 || pressure > 1) { pressure = 0.5; }
-//
-//   var nPressure = Math.round(pressure * 127);
-//
-//   wm.sanitizeChannels(channel).forEach(function(ch) {
-//     that.send(
-//       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (ch - 1),
-//       [nPressure],
-//       that._convertToTimestamp(options.time)
-//     );
-//   });
-//
-//   return this;
-//
-// };
-
-// /**
-//  * Sends a MIDI `pitch bend` message to the specified channel(s) at the scheduled time.
-//  *
-//  * @method sendPitchBend
-//  * @chainable
-//  *
-//  * @param bend {Number} The intensity level of the bend (between -1 and 1). A value of zero means
-//  * no bend.
-//  *
-//  * @param [channel=all] {Number|Array|String}  The MIDI channel number (between 1 and 16) or an
-//  * array of channel numbers. If the special value "all" is used, the message will be sent to all
-//  * 16 channels.
-//  *
-//  * @param {Object} [options={}]
-//  *
-//  * @param {DOMHighResTimeStamp|String} [options.time=undefined] This value can be one of two
-//  * things. If the value is a string starting with the + sign and followed by a number, the request
-//  * will be delayed by the specified number (in milliseconds). Otherwise, the value is considered a
-//  * timestamp and the request will be scheduled at that timestamp. The `DOMHighResTimeStamp` value
-//  * is relative to the navigation start of the document. To retrieve the current time, you can use
-//  * `WebMidi.time`. If `time` is not present or is set to a time in the past, the request is to be
-//  * sent as soon as possible.
-//  *
-//  * @throws {RangeError} Pitch bend value must be between -1 and 1.
-//  *
-//  * @return {Output} Returns the `Output` object so methods can be chained.
-//  */
-// Output.prototype.sendPitchBend = function(bend, channel, options) {
-//
-//   var that = this;
-//
-//   options = options || {};
-//
-//   if (isNaN(bend) || bend < -1 || bend > 1) {
-//     throw new RangeError("Pitch bend value must be between -1 and 1.");
-//   }
-//
-//   var nLevel = Math.round((bend + 1) / 2 * 16383);
-//   var msb = (nLevel >> 7) & 0x7F;
-//   var lsb = nLevel & 0x7F;
-//
-//   wm.sanitizeChannels(channel).forEach(function(ch) {
-//     that.send(
-//       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (ch - 1),
-//       [lsb, msb],
-//       that._convertToTimestamp(options.time)
-//     );
-//   });
-//
-//   return this;
-//
-// };
-//
-
-
