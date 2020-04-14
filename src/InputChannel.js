@@ -1,10 +1,14 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 
 /**
- * InputChannel class...
+ * The `InputChannel` class represents a single input channel (1-16) from an input device. This
+ * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * @param {Input} input The Input this channel belongs to
- * @param {number} number The channel number (1-16)
+ * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
+ * property.
+ *
+ * @param {Input} input The `Input` this channel belongs to
+ * @param {number} number The channel's number (1-16)
  */
 export class InputChannel extends EventEmitter {
 
