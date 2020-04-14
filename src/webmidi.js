@@ -447,6 +447,9 @@ class WebMidi extends EventEmitter {
    * @deprecated since version 3.0. Use getNoteNumberByName() instead.
    */
   noteNameToNumber(name) {
+    console.warn(
+      "The noteNameToNumber() method has been deprecated. Use getNoteNumberByName() instead."
+    );
     return this.getNoteNumberByName(name);
   }
 
@@ -521,13 +524,16 @@ class WebMidi extends EventEmitter {
         return (ch >= 1 && ch <= 16);
       });
 
-  };
+  }
 
   /**
    * @private
    * @deprecated since version 3.0. Use sanitizeChannels() instead.
    */
   toMIDIChannels(channel) {
+    console.warn(
+      "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
+    );
     return this.sanitizeChannels(channel);
   }
 
@@ -554,13 +560,41 @@ class WebMidi extends EventEmitter {
     } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // uint as string
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
-      output = this.noteNameToNumber(input);
+      output = this.getNoteNumberByName(input);
     }
 
     if (output === false) return false;
     return output;
 
   };
+
+  /**
+   * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
+   * parameter. If the parameter is a string starting with the "+" sign and followed by a number,
+   * the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
+   * value will be returned as is.
+   *
+   * If the calculated return value is 0, less than zero or an otherwise invalid value, `false` will
+   * be returned.
+   *
+   * @param [time] {number|string} The time string or integer to parse
+   * @return DOMHighResTimeStamp
+   */
+  convertToTimestamp(time) {
+
+    let value;
+    let parsed = parseFloat(time);
+
+    if (typeof time === "string" && time.substring(0, 1) === "+") {
+      if (parsed && parsed > 0) value = performance.now() + parsed;
+    } else {
+      if (parsed > performance.now()) value = parsed;
+    }
+
+    return value || false;
+
+  };
+
 
   /**
    * @private
@@ -958,6 +992,9 @@ class WebMidi extends EventEmitter {
    * @since 2.0.0
    */
   get MIDI_CHANNEL_MESSAGES() {
+    console.warn(
+      "MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead."
+    );
     return this.MIDI_CHANNEL_VOICE_MESSAGES;
   }
 
