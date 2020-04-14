@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="../../node_modules/mocha/mocha.css" />
 
+    <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true" />
+
     <style>
       #mocha > h1 {
         font-weight: bold;
@@ -22,7 +24,6 @@
 
     <!-- WebMIDIAPIShim + some custom utils -->
     <script src="libs/WebMIDIAPIShim.js" defer></script>
-    <script src="libs/Utils.js" defer></script>
 
     <!-- Sinon, Chai & Mocha -->
     <script src="../../node_modules/sinon-browser-only/sinon.js" defer></script>
@@ -47,7 +48,9 @@
       <!-- Jazz Plugin for browsers that do not support Web MIDI-->
       <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
         <object id="Jazz2" type="audio/x-jazz" class="hidden">
-          <p><a href=http://jazz-soft.net>Jazz-Plugin</a> required!</p>
+          <p style="visibility:visible;">
+            This page requires <a href=http://jazz-soft.net>Jazz-Plugin</a> for MIDI support.
+          </p>
         </object>
       </object>
 
