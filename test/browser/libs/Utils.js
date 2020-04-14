@@ -1,7 +1,4 @@
-var Utils = {
-  
-  isNative: function(fn) {
-    return (/\{\s*\[native code\]\s*\}/).test('' + fn);
-  }
-  
-};
+export function isNative(fn) {
+  return (/\{\s*\[native code\]\s*\}/).test("" + fn);
+}
+
