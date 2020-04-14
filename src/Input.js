@@ -62,11 +62,15 @@ export class Input extends EventEmitter {
 
     // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
     // event.
-    return this._midiInput.close();
+    if (this._midiInput) {
+      return this._midiInput.close();
+    } else {
+      return Promise.resolve();
+    }
 
   }
 
-  _onStateChange() {
+  _onStateChange(e) {
 
     let event = {
       timestamp: WebMidi.time
@@ -211,9 +215,14 @@ export class Input extends EventEmitter {
   async destroy() {
 
     return this._midiInput.close().then(() => {
-      this._midiInput.onmidimessage = null;
-      this._midiInput.onstatechange = null;
+
+      if (this._midiInput) {
+        this._midiInput.onmidimessage = null;
+        this._midiInput.onstatechange = null;
+      }
+
       this._midiInput = null;
+
     })
 
   }
