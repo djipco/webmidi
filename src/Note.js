@@ -12,15 +12,15 @@ import {WebMidi} from './WebMidi.js';
  *
  * @param name {string|number} The name or note number of the note to create. If a number is used,
  * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
- * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -2 and
- * 8. The lowest note is C-2 (MIDI note number 0) and the highest note is G8 (MIDI note number 127).
+ * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
+ * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
  *
  * @param {Object} [options={}]
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number} [options.channel] The channel number to play the note on (1-16).
+ * @param {number[]} [options.channels] An array of channel numbers to play the note on (1-16).
  *
  * @param {number} [options.attackVelocity=0.5] The note's attack velocity as a decimal number
  * between 0 and 1.
@@ -34,6 +34,8 @@ import {WebMidi} from './WebMidi.js';
  * @param {number} [options.rawReleaseVelocity=64] The note's release velocity as an integer between
  * 0 and 127.
  *
+ * @throws {Error} Invalid note name.
+ *
  */
 export class Note {
 
@@ -46,9 +48,9 @@ export class Note {
     }
 
     this.duration = options.duration;
-    this.channel = options.channel;
+    this.channels = options.channels;
     this.attackVelocity = options.attackVelocity;
-    this.releaseVelocity = options.remaining;
+    this.releaseVelocity = options.releaseVelocity;
     if (options.rawAttackVelocity) this.rawAttackVelocity = options.rawAttackVelocity;
     if (options.rawReleaseVelocity) this.rawReleaseVelocity = options.rawReleaseVelocity;
 
@@ -63,8 +65,8 @@ export class Note {
     return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(data1);
   }
   set name(value) {
-    let value = WebMidi.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note name.")
+    value = WebMidi.guessNoteNumber(value);
+    if (value === false) throw new Error("Invalid note name.");
     this._number = value;
   }
 
@@ -76,7 +78,7 @@ export class Note {
     return this._number;
   }
   set number(value) {
-    let value = WebMidi.guessNoteNumber(value);
+    value = WebMidi.guessNoteNumber(value);
     if (value === false) throw new Error("Invalid note number.")
     this._number = value;
   }
@@ -92,31 +94,31 @@ export class Note {
     return this._duration;
   }
   set duration(value) {
-    let value = Math.max(parseFloat(value), 0);
+    value = Math.max(parseFloat(value), 0);
     this._duration = isNaN(value) ? Infinity : value;
   }
 
   /**
-   * A positive integer between 1 and 16 or an array of such numbers representing the MIDI
-   * channel(s) the note should be played on.
+   * An array of integers (1-16) representing the MIDI channel(s) the note should be played on.
    *
    * This is only necessary if you intend to use the {@link Output} object's
    * [playNote()]{@link Output#playNote} method. If you use the {@link OutputChannel} object's
    * [playNote()]{@link OutputChannel#playNote} method, it will be played on that channel (no matter
    * what has been set as the channel).
    *
-   * @type {number|number[]}
+   * @type {number[]}
    */
-  get channel() {
-    return this._channel;
+  get channels() {
+    return this._channels;
   }
-  set channel(value) {
-    this._channel = WebMidi.sanitizeChannels(value);
+  set channels(value) {
+    this._channels = WebMidi.sanitizeChannels(value);
   }
 
   /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-   * 0.5.
+   * 64 ÷ 127 which is roughly 0.5.
+   *
    * @type {number}
    */
   get attackVelocity() {
@@ -142,7 +144,8 @@ export class Note {
 
   /**
    * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
-   * to 0.5.
+   * to 64 ÷ 127 which is roughly 0.5.
+   *
    * @type {number}
    */
   get releaseVelocity() {
@@ -164,6 +167,14 @@ export class Note {
   set rawReleaseVelocity(value) {
     value = Math.min(Math.max(parseInt(value), 0), 127);
     this._rawReleaseVelocity = isNaN(value) ? 64 : value;
+  }
+
+  /**
+   * The octave of the note as an integer between -1 and 8.
+   * @type {number}
+   */
+  get octave() {
+    return Math.floor(Math.floor(this._number) / 12 - 1);
   }
 
 }
