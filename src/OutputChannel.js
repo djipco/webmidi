@@ -93,8 +93,8 @@ export class OutputChannel extends EventEmitter {
    * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+   * (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
+   * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
    * an array of note names and/or numbers.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
@@ -123,7 +123,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError('Pressure value must be between 0 and 1');
     }
 
-    this._convertToNoteArray(note).forEach(item => {
+    WebMidi.getValidNoteArray(note).forEach(item => {
 
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
@@ -476,30 +476,6 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Converts an input value (which can be an unsigned int, a string or an array of the previous
-   * two) to an array of MIDI note numbers.
-   *
-   * @private
-   *
-   * @param [note] {number|Array|string}
-   *
-   * @returns {number[]}
-   */
-  _convertToNoteArray(note) {
-
-    let notes = [];
-
-    if (!Array.isArray(note)) note = [note];
-
-    note.forEach(item => {
-      notes.push(WebMidi.guessNoteNumber(item));
-    });
-
-    return notes;
-
-  };
-
-  /**
    * Sends a **note on** message for a single note or multiple notes. The execution of the
    * **note on** command can be delayed by using the `time` property of the `options` parameter.
    *
@@ -580,8 +556,8 @@ export class OutputChannel extends EventEmitter {
    * @param note {number|number[]|string}  The note(s) you wish to stop. The notes can be specified
    * in one of three ways. The first way is by using the MIDI note number (an integer between `0`
    * and `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-   * Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
-   * and the highest note is G8 (MIDI note number 127). It is also possible to specify an array of
+   * Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0)
+   * and the highest note is G9 (MIDI note number 127). It is also possible to specify an array of
    * note numbers and/or names. The final way is to use the special value `all` to send an
    * `"allnotesoff"` channel message.
    *
@@ -627,7 +603,7 @@ export class OutputChannel extends EventEmitter {
     }
 
     // Send note off messages
-    this._convertToNoteArray(note).forEach(item => {
+    WebMidi.getValidNoteArray(note).forEach(item => {
 
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
@@ -639,6 +615,20 @@ export class OutputChannel extends EventEmitter {
 
     return this;
 
+  }
+
+  /**
+   * This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
+   *
+   * @see {@link OutputChannel#sendNoteOff}
+   *
+   * @param note
+   * @param channel
+   * @param options
+   * @returns {Output}
+   */
+  stopNote(note, channel, options) {
+    return this.sendNoteOff(note, channel, options);
   }
 
   /**
@@ -694,7 +684,7 @@ export class OutputChannel extends EventEmitter {
 
     time = WebMidi.convertToTimestamp(options.time);
 
-    this._convertToNoteArray(note).forEach(item => {
+    WebMidi.getValidNoteArray(note).forEach(item => {
 
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
