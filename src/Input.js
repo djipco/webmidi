@@ -146,6 +146,10 @@ export class Input extends EventEmitter {
    */
   _onMidiMessage(e) {
 
+    // Extract data bytes (unless it's a sysex message)
+    let dataBytes = null;
+    if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+
     /**
      * Event emitted when a MIDI message is received on the `Input`
      *
@@ -156,12 +160,17 @@ export class Input extends EventEmitter {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {string} type `"midimessage"`
+     * @property {number} event.statusByte The message's status byte.
+     * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
+     * integers. This will be null for `sysex` messages.
      *
      * @since 2.1
      */
     let event = {
       target: this,
       data: e.data,
+      statusByte: e.data[0],
+      dataBytes: dataBytes,
       timestamp: e.timeStamp,
       type: "midimessage"
     };
@@ -554,9 +563,8 @@ export class Input extends EventEmitter {
    *
    * @param type {string} The type of the event.
    *
-   * @param channel {number|Array|string} The MIDI channel to listen on (integer between 1 and 16).
-   * You can also specify an array of channel numbers or the value "all" (or leave it undefined for
-   * input-wide events).
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object"s properties,
@@ -650,9 +658,8 @@ export class Input extends EventEmitter {
    *
    * @param type {string} The type of the event.
    *
-   * @param channel {number|Array|string} The MIDI channel to listen on (integer between 1 and 16).
-   * You can also specify an array of channel numbers or the value "all" (or leave it undefined for
-   * input-wide events).
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object"s properties,
@@ -704,8 +711,8 @@ export class Input extends EventEmitter {
    *
    * @param type {string} The type of the event.
    *
-   * @param channel {number|Array|string} The MIDI channel to check on (between 1 and 16). You
-   * can also specify an array of channel numbers or the string "all".
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param listener {function} The callback function to check for.
    *
@@ -714,7 +721,7 @@ export class Input extends EventEmitter {
    * @returns {Boolean} Boolean value indicating whether or not the channel(s) already have this
    * listener defined.
    */
-  hasListener = function(type, channel, listener) {
+  hasListener(type, channel, listener) {
 
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[type] !== undefined) {
 
@@ -741,8 +748,10 @@ export class Input extends EventEmitter {
    * You can use `undefined` in such cases.
    *
    * @param [type] {String} The type of the event.
-   * @param [channel] {number|String|array} The MIDI channel(s) to check on. It can be a uint
-   * (between 1 and 16) an array of channel numbers or the special value "all".
+   *
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
+   *
    * @param [listener] {Function} The callback function to check for.
    *
    * @param {Object} [options={}]

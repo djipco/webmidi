@@ -1,5 +1,5 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi} from './WebMidi';
+import {WebMidi} from './WebMidi.js';
 
 /**
  * The `InputChannel` class represents a single input channel (1-16) from an input device. This
@@ -59,6 +59,10 @@ export class InputChannel extends EventEmitter {
    */
   _parseEvent(e) {
 
+    // Extract data bytes (unless it's a sysex message)
+    let dataBytes = null;
+    if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+
     /**
      * Event emitted when a MIDI message is received on the `InputChannel`
      *
@@ -66,12 +70,17 @@ export class InputChannel extends EventEmitter {
      * @type {Object}
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+     * @property {number} event.statusByte The message's status byte.
+     * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
+     * integers. This will be null for `sysex` messages.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {string} type `"midimessage"`
      */
     let midiMessageEvent = {
       target: this,
+      statusByte: e.data[0],
+      dataBytes: dataBytes,
       data: e.data,
       timestamp: e.timeStamp,
       type: "midimessage"
@@ -161,7 +170,7 @@ export class InputChannel extends EventEmitter {
       event.note = {
         number: data1,
         name: WebMidi.NOTES[data1 % 12],
-        octave: wm.getOctave(data1)
+        octave: WebMidi.getOctave(data1)
       };
       event.velocity = data2 / 127;
       event.rawVelocity = data2;
