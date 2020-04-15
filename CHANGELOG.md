@@ -69,6 +69,9 @@ work in version 3.0:
 
 - [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`.
 
+- Although still supported, passing `"all"` as the `channel` parameter is now discouraged for 
+performance reasons. For this reason, it has been removed from the documentation.
+
 ### Deprecated
 
 - The name of the `WebMidi.noteNameToNumber()` method was changed to 
