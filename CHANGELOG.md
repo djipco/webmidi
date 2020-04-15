@@ -43,6 +43,15 @@ the number represents an enumeration it will be one-based (like channel numbers,
 bank numbers). When the number represents a magnitude, it will be zero-based (like control change 
 values).
 
+- [BREAKING CHANGE] The `"controlchange"` event's `value` property is now a float between 0 and 1. 
+Its `rawValue` property now contains the 7bit integer value (between 0 and 127).
+
+- [BREAKING CHANGE] The `"nrpn"` event's `value` property is now a float between 0 and 1. 
+Its `rawValue` property now contains the 16bit integer value (between 0 and 65535).
+
+- [BREAKING CHANGE] The `"songselect"` event now reports the song as an integer between 1 and 128 
+(instead of 0-127).
+
 - Various methods have been renamed. All old method names have been deprecated but will continue to
 work in version 3.0:
 
@@ -54,6 +63,11 @@ work in version 3.0:
   - `sendProgramChange()` => `setProgram()`
 
 - Grunt has been replaced with NPM scripts for all build purposes.
+
+- [BREAKING CHANGE] The `nrpnEventsEnabled` property has been moved from the `Input` class to the 
+`InputChannel` class.
+
+- [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`.
 
 ### Deprecated
 
@@ -69,6 +83,8 @@ old name has been deprecated but will continue to work in v3.x.
 - The name of the `WebMidi.MIDI_CHANNEL_MESSAGES` enum was changed to 
 `WebMidi.MIDI_CHANNEL_VOICE_MESSAGES`. The old name has been deprecated but will continue to work in
 v3.x.
+
+- The `on()` method of the `Input` class has been deprecated. Use `addListener()` instead.
 
 ### Removed
 
