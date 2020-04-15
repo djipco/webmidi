@@ -604,12 +604,12 @@ export class Output extends EventEmitter {
    * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+   * (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
+   * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
    * an array of note names and/or numbers.
    *
-   * @param channel {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -727,9 +727,8 @@ export class Output extends EventEmitter {
    *
    * @param [value=0] {number} The value to send (0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -765,9 +764,8 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -832,9 +830,8 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} An single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -863,9 +860,8 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or
-   * an array of channel numbers. If the special value "all" is used, the message will be sent to
-   * all 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -908,9 +904,8 @@ export class Output extends EventEmitter {
    * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
    * an integer between 0 and 127. In this case, a value of 64 means no bend.
    *
-   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -957,9 +952,8 @@ export class Output extends EventEmitter {
    *
    * @param [program=1] {number} The MIDI patch (program) number (1-128)
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1012,9 +1006,8 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1049,9 +1042,8 @@ export class Output extends EventEmitter {
    *
    * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1085,9 +1077,8 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning program (1-128).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1120,9 +1111,8 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning bank (1-128).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1176,9 +1166,9 @@ export class Output extends EventEmitter {
    *
    * @param [value] {number} The value to send (integer between 0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
+   *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
@@ -1208,9 +1198,8 @@ export class Output extends EventEmitter {
    * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
    * channel but will not prevent new sounds from being triggered.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1235,9 +1224,8 @@ export class Output extends EventEmitter {
    * Sends an **all note soff** channel mode message. This will turn all currently playing notes off.
    * However, this does not prevent new notes from being played.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1262,9 +1250,8 @@ export class Output extends EventEmitter {
    * Sends a **reset all controllers** channel mode message. This resets all controllers, such as the
    * pitch bend, to their default value.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1292,9 +1279,8 @@ export class Output extends EventEmitter {
    *
    * @param mode {string} The mode to use: `"mono"` or `"poly"`.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1324,9 +1310,8 @@ export class Output extends EventEmitter {
    * @param [state=false] {boolean} Whether to activate local control (`true`) or disable it
    * (`false`).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1355,9 +1340,8 @@ export class Output extends EventEmitter {
    *
    * @param [state] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1420,9 +1404,8 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1470,9 +1453,8 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [channel=all] {number|number[]|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1519,9 +1501,8 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1552,8 +1533,8 @@ export class Output extends EventEmitter {
    * @param note {number|number[]|string}  The note(s) you wish to stop. The notes can be specified
    * in one of three ways. The first way is by using the MIDI note number (an integer between `0`
    * and `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-   * Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
-   * and the highest note is G8 (MIDI note number 127). It is also possible to specify an array of
+   * Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0)
+   * and the highest note is G9 (MIDI note number 127). It is also possible to specify an array of
    * note numbers and/or names. The final way is to use the special value `all` to send an
    * `"allnotesoff"` channel message.
    *
@@ -1584,7 +1565,7 @@ export class Output extends EventEmitter {
 
     // Backwards compatibility
     if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawValue' instead.");
       options.rawValue = options.rawVelocity;
     }
 
@@ -1607,7 +1588,8 @@ export class Output extends EventEmitter {
    * @returns {Output}
    */
   stopNote(note, channel, options) {
-    return this.sendNoteOff(note, channel, options);
+    this.stopNote(note, channel, options);
+    return this;
   }
 
   /**
@@ -1663,7 +1645,7 @@ export class Output extends EventEmitter {
 
     // Backwards compatibility
     if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawValue' instead.");
       options.rawValue = options.rawVelocity;
     }
 
@@ -1718,7 +1700,7 @@ export class Output extends EventEmitter {
 
     // Backwards compatibility
     if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawValue' instead.");
       options.rawValue = options.rawVelocity;
     }
 
