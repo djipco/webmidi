@@ -28,6 +28,9 @@ between 0 and 1.
 
 ### Changed
 
+- [BREAKING CHANGE] The `iife` version of the library is now namespaced inside the `webmidi` 
+global property. This means that the `WebMidi` object is accessible at `webmidi.WebMidi`.
+
 - All non-chainable methods now return `false` instead of returning `undefined` or throwing an error
 when invalid input is provided. Methods that were changed to match this behaviour are 
 `WebMidi.guessNoteNumber()`, `WebMidi.getOctave()`, `WebMidi.getNoteNumberByName()`, 

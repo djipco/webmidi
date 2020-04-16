@@ -16,7 +16,7 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--sourcemap`;
 
 // Additional arguments are needed for IIFE
-if (type === "iife") cmd += ` --name WebMidi --exports named`;
+if (type === "iife") cmd += ` --name webmidi --exports named`;
 
 // Execute command
 exec(cmd, (err, stdout, stderr) => {

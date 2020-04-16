@@ -476,32 +476,26 @@ class WebMidi extends EventEmitter {
       return false;
     }
 
-  };
+  }
 
   /**
-   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
-   * the following:
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+   * single integer or an array of integers.
    *
-   * * a single integer
-   * * an array of integers
-   * * the special value `"all"`
-   * * the special value `"none"`
+   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+   * integers between 1 and 16 are silently ignored.
    *
-   * Passing `"all"` or `undefined` as a parameter to this function results in all channels being
-   * returned (1-16). Passing `"none"` results in no channel being returned (as an empty array).
+   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+   * numbers.
    *
-   * Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
-   * ignored.
-   *
-   * @param [channel="all"] {number|number[]|"all"|"none"} The channel(s) to parse.
-   *
-   * @returns {array} An array of 0 or more valid MIDI channel numbers
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
    */
   sanitizeChannels(channel) {
 
     let channels;
 
-    if (channel === "all" || channel === undefined) {
+    if (channel === "all" || channel === undefined) { // backwards-compatibility
       channels = ["all"];
     } else if (channel === "none") {
       return [];
@@ -555,9 +549,9 @@ class WebMidi extends EventEmitter {
 
     let output = false;
 
-    if (input && input.toFixed && input >= 0 && input <= 127) {         // uint
-      output = Math.round(input);
-    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // uint as string
+    if (Number.isInteger(input) && input >= 0 && input <= 127) {        // uint
+      output = parseInt(input);
+    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // float or uint as string
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
       output = this.getNoteNumberByName(input);
@@ -566,7 +560,24 @@ class WebMidi extends EventEmitter {
     if (output === false) return false;
     return output;
 
-  };
+  }
+
+  /**
+   * Converts an input value (which can be an unsigned int, a string or an array of the previous
+   * two) to an array of valid MIDI note numbers.
+   *
+   * @param [note] {number|Array|string}
+   *
+   * @returns {number[]}
+   */
+  getValidNoteArray(note) {
+
+    let notes = [];
+    if (!Array.isArray(note)) note = [note];
+    note.forEach(item => notes.push(this.guessNoteNumber(item)));
+    return notes;
+
+  }
 
   /**
    * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
@@ -927,7 +938,7 @@ class WebMidi extends EventEmitter {
       timecode: 0xF1,         // 241
       songposition: 0xF2,     // 242
       songselect: 0xF3,       // 243
-      tuningrequest: 0xF6,    // 246
+      tunerequest: 0xF6,      // 246
       sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
 
       // System real-time messages
@@ -1251,3 +1262,6 @@ class WebMidi extends EventEmitter {
 const wm = new WebMidi();
 wm.constructor = null;
 export {wm as WebMidi};
+
+//
+export {Note} from "./Note.js";

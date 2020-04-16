@@ -158,6 +158,8 @@ WebMidi.enable(function (err) {
 });
 ```
 
+MUST ADD INFO ABOUT THE IIFE VERSION WHICH IS NOW UNDER webmidi.WebMidi
+
 
 To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
 device. To view all the available `Input` and `Output` ports, you can use the matching arrays:
