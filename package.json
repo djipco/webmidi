@@ -19,7 +19,7 @@
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
     "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "test": "mocha --require @babel/polyfill ./test/headless/index.js --exit",
+    "test": "mocha --require @babel/polyfill test/index.js --exit",
     "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
     "lint": "eslint ./src/*.js",
     "documentation:generate": "node tools/documentation/generate.js",
