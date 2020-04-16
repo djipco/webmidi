@@ -40,6 +40,6 @@ describe("WebMidi.js Test Suite", function() {
   require("./tests/WebMidi.test.js");
   require("./tests/Note.test.js");
   // require("./tests/Input.test.js");
-  // require("./tests/Ouput.test.js");
+  // require("./tests/Output.test.js");
 
 });
