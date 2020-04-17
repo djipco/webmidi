@@ -63,10 +63,12 @@ testing will need to be done but it looks very promising.
 
 ## Node.js Support
 
-WebMidi.js is not officially supported in Node.js. However, there is hope. I managed to get most 
-parts of it working by using the [web-midi-api](https://www.npmjs.com/package/web-midi-api) npm 
-module. Check out this [comment](https://github.com/djipco/webmidi/issues/15#issuecomment-322020295)
-for more information. If anyone is interested in contributing, help would be more than welcome.
+Version 3.0 of WebMidi.js introduced builtin Node.js support. Nothing special needs to be done, it 
+should just work. Big thanks to the [JZZ](https://www.npmjs.com/package/jzz) module and the good 
+folks of [Jazz-Soft](https://jazz-soft.net/).
+
+While it is technically possible to use WebMidi.js in version 2.x, anyone who wants to use this 
+library inside Node.js is strongly encouraged to upgrade to version 3.
 
 ## TypeScript Support
 
