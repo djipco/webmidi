@@ -7,6 +7,8 @@ format used is the one suggested by [Keep a Changelog](https://keepachangelog.co
 
 ### Added
 
+- WebMidi.js now has builtin Node.js support.
+
 - The `WebMidi.enabled()` method now returns a promise. The promise is fulfilled with an object 
 referencing the available inputs and outputs.
 
