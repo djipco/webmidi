@@ -199,7 +199,7 @@ export class InputChannel extends EventEmitter {
       event.note = {
         number: data1,
         name: WebMidi.NOTES[data1 % 12],
-        octave: wm.getOctave(data1)
+        octave: WebMidi.getOctave(data1)
       };
       event.value = data2 / 127;
       event.rawValue = data2;
@@ -324,6 +324,35 @@ export class InputChannel extends EventEmitter {
     }
 
     this.emit(event.type, event);
+
+  }
+
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `false`.
+   *
+   * @param {number} number An integer representing the channel mode message.
+   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * found.
+   *
+   * @since 2.0.0
+   */
+  getChannelModeByNumber(number) {
+
+    number = Math.floor(number);
+
+    if ( !(number >= 120 && status <= 127) ) return false;
+
+    for (let cm in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
+
+      if (
+        WebMidi.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
+        return cm;
+      }
+
+    }
 
   }
 
