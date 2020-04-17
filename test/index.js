@@ -5,9 +5,10 @@ const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
 
 // Create virtual MIDI input and output ports using 'midi-test' and make them available globally.
 const inputPort = new MT.MidiSrc("VIRTUAL MIDI-In");
-const outputPort = new MT.MidiDst("VIRTUAL MIDI-Out");
 global.inputPort = inputPort;
+const outputPort = new MT.MidiDst("VIRTUAL MIDI-Out");
 global.outputPort = outputPort;
+global.outputPort.receive = () => {}; // this is to prevent stdout to the console
 
 // Make objects available globally. We do this so we can use the same test files for browser and
 // Node.js
@@ -33,7 +34,9 @@ describe("WebMidi.js Test Suite", function() {
   require("./tests/Environment.test.js");
   require("./tests/WebMidi.test.js");
   require("./tests/Note.test.js");
-  // require("./tests/Input.test.js");
+  require("./tests/Input.test.js");
+  // require("./tests/InputChannel.test.js");
   // require("./tests/Output.test.js");
+  // require("./tests/OutputChannel.test.js");
 
 });
