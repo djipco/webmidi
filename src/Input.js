@@ -488,29 +488,18 @@ export class Input extends EventEmitter {
 
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
-   * The events that are dispatched can be channel-specific or input-wide.
+   * The events that are listened to can be channel-specific or input-wide.
    *
-   * This method overrides the one in `djipevents.EventEmitter` by adding a `channel` parameter that
-   * makes it possible to add a single listener to one or several channels at once. If you want to
-   * add a listener to a single channel, use
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#addListener)
+   * by adding a `channel` parameter that makes it possible to add a listener to one or several
+   * channels at once. Invalid channels will be silently ignored.
+   *
+   * If you want to add a listener to a single channel, use
    * [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
    *
-   * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
-   *
-   * Channel-specific MIDI events:
-   *
-   *    * [noteoff]{@link InputChannel#event:noteoff}
-   *    * [noteon]{@link InputChannel#event:noteon}
-   *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-   *    * [controlchange]{@link InputChannel#event:controlchange}
-   *    * [nrpn]{@link InputChannel#event:nrpn}
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * [programchange]{@link InputChannel#event:programchange}
-   *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-   *    * [pitchbend]{@link InputChannel#event:pitchbend}
-   *    * [midimessage]{@link InputChannel#event:midimessage}
-   *
-   * Input-level MIDI events:
+   * Here is a list of events that are directly dispatched by `Input` objects and that can be
+   * listened to:
    *
    *    * [sysex]{@link Input#event:sysex}
    *    * [timecode]{@link Input#event:timecode}
@@ -526,13 +515,27 @@ export class Input extends EventEmitter {
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
-   * For input-wide events, the `channel` parameter will be silently ignored. You can simply use
+   *  For input-wide events, the `channel` parameter will be silently ignored. You can simply use
    * `undefined` in that case.
    *
-   * If you want to view all incoming MIDI traffic, you can listen to the input-level `midimessage`
-   * event. This event is dispatched for every single message that is received on that input.
+   * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
+   * event is dispatched for every single message that is received on that `Input`.
    *
-   * @param type {string} The type of the event.
+   * By using the `channel` property, you can also add listeners to all channels in the `channel`
+   * parameter. These are the events dispatched by {@link InputChannel} objects:
+   *
+   *    * [noteoff]{@link InputChannel#event:noteoff}
+   *    * [noteon]{@link InputChannel#event:noteon}
+   *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
+   *    * [controlchange]{@link InputChannel#event:controlchange}
+   *    * [nrpn]{@link InputChannel#event:nrpn}
+   *    * [channelmode]{@link InputChannel#event:channelmode}
+   *    * [programchange]{@link InputChannel#event:programchange}
+   *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
+   *    * [pitchbend]{@link InputChannel#event:pitchbend}
+   *    * [midimessage]{@link InputChannel#event:midimessage}
+   *
+   * @param event {string} The type of the event.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -559,25 +562,24 @@ export class Input extends EventEmitter {
    * property of the [**Listener**]{@link Listener} object and can be retrieved or modified as
    * desired.
    *
-   * @throws {RangeError} The "channel" parameter is invalid.
-   * @throws {TypeError} The "listener" parameter must be a function.
-   * @throws {TypeError} The specified event type is not supported.
+   * @throws {TypeError} The callback must be a function.
+   * @throws {TypeError} The 'event' parameter must be a string or EventEmitter.ANY_EVENT.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Listener[]} An array of all `Listener` objects that were created.
    */
-  addListener(type, channel, listener, options) {
+  addListener(event, channel, listener, options) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    let listeners = [];
 
-      if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[type] !== undefined) {
-        this.channels[ch].addListener(type, listener, options);
-      } else {
-        super.addListener(type, listener, options);
-      }
+    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+      listeners.push(super.addListener(event, listener, options));
+    } else {
+      WebMidi.sanitizeChannels(channel).forEach(ch => {
+        listeners.push(this.channels[ch].addListener(event, listener, options));
+      });
+    }
 
-    });
-
-    return this;
+    return listeners;
 
   }
 
@@ -655,7 +657,7 @@ export class Input extends EventEmitter {
    * @throws {TypeError} The "listener" parameter must be a function.
    * @throws {TypeError} The specified event type is not supported.
    *
-   * @return {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @return {Listener[]} An array of all `Listener` objects that were created.
    */
   addOneTimeListener(type, channel, listener, options = {}) {
     options.remaining = 1;
@@ -732,8 +734,6 @@ export class Input extends EventEmitter {
    *
    * @throws {TypeError} The specified event type is not supported.
    * @throws {TypeError} The "listener" parameter must be a function..
-   *
-   * @return {Input} The `Input` object for easy method chaining.
    */
   removeListener(type, channel, listener, options) {
 
@@ -742,12 +742,10 @@ export class Input extends EventEmitter {
         this.channels[ch].removeListener(type, listener, options);
       });
     } else if (type != undefined) {
-      super.removeListener(type, listener, options);
+      return super.removeListener(type, listener, options);
     } else if (type == undefined) {
-      super.removeListener();
+      return super.removeListener();
     }
-
-    return this;
 
   }
 
