@@ -63,7 +63,6 @@
     "foodoc": "0.0.9",
     "gh-pages": "^2.2.0",
     "jsdoc": "^3.6.3",
-    "jzz": "^1.0.2",
     "midi-test": "^1.1.1",
     "minimist": "^1.2.5",
     "mocha": "^7.1.1",
@@ -79,5 +78,8 @@
   },
   "dependencies": {
     "djipevents": "^1.0.0-beta.3"
+  },
+  "optionalDependencies": {
+    "jzz": "^1.0.3"
   }
 }

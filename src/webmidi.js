@@ -73,6 +73,12 @@ class WebMidi extends EventEmitter {
      */
     this._stateChangeQueue = [];
 
+    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and performance.now()
+    if (this.isNode) {
+      global.navigator = require("jzz");
+      global.performance = require('perf_hooks').performance;
+    }
+
   }
 
   /**
@@ -229,6 +235,8 @@ class WebMidi extends EventEmitter {
     if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
 
     return this._destroyInputsAndOutputs().then(() => {
+
+      if (this.isNode) navigator.close();
 
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
@@ -621,10 +629,11 @@ class WebMidi extends EventEmitter {
      *
      * @event WebMidi#connected
      * @type {Object}
-     * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
-     * since the navigation start of the document).
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
+     * (in milliseconds since the navigation start of the document).
      * @property {string} type `connected`
-     * @property {WebMidi} target The object that triggered the event
+     * @property {Input|Output} target The {@link Input} or {@link Output} object that triggered the
+     * event.
      */
 
     /**
@@ -822,6 +831,18 @@ class WebMidi extends EventEmitter {
    */
   get supported() {
     return navigator && navigator.requestMIDIAccess;
+  }
+
+  /**
+   * Indicates whether the current environment is Node.js or not
+   * @type {boolean}
+   */
+  get isNode() {
+
+    return (Object.prototype.toString.call(
+      typeof process !== 'undefined' ? process : 0
+    ) === '[object process]');
+
   }
 
   /**
