@@ -52,9 +52,10 @@ describe("WebMidi", function() {
     // Ignore in browser
     if (!WebMidi.isNode) this.skip();
 
-    return new Promise(async resolve => {
+    await WebMidi.enable();
+
+    await new Promise(async resolve => {
       WebMidi.addListener("disabled", resolve);
-      await WebMidi.enable();
       await WebMidi.disable();
     });
 
@@ -63,111 +64,89 @@ describe("WebMidi", function() {
 
 
 
-
-
-
-  // it("should trigger 'connected' event for output ports", async function () {
+  // it("should trigger 'connected' event for output ports DOES NOT WORK!!!!!", async function () {
   //
   //   // Ignore in browser
   //   if (!WebMidi.isNode) this.skip();
+  //
+  //   await WebMidi.enable();
   //
   //   // We disconnect the external device's input port. From WebMidi's point of view, it is an output
   //   // port. As a matter of fact, it shows up here as "VIRTUAL MIDI-Out".
   //   inputPort.disconnect();
   //
-  //   return new Promise(async (resolve, reject) => {
+  //   await new Promise(async function(resolve) {
   //
-  //     // WebMidi.addListener("connected", e => {
-  //     //
-  //     //   if (e.target.name === "VIRTUAL MIDI-Out") {
-  //     //     // Had weird issues with "VIRTUAL MIDI-Out" sometimes not showing up... Seems fine now!
-  //     //     // console.log(e.target.name, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-  //     //     resolve();
-  //     //   }
-  //     //
-  //     // })
-  //     //
-  //     // try {
-  //     //   await WebMidi.enable();
-  //     //   await new Promise(resolve => setTimeout(resolve, 200));
-  //     //   // inputPort.connect();
-  //     // } catch (err) {
-  //     //   reject();
-  //     // }
+  //     // resolve(); // marche
   //
-  //     try {
+  //     WebMidi.addListener("connected", function(e) {
   //
-  //       await WebMidi.enable();
+  //       // resolve(); // marche pas
   //
-  //       WebMidi.addListener("connected", e => {
-  //         if (e.target.name === "VIRTUAL MIDI-Out") {
-  //           console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
-  //           console.log(resolve);
-  //           resolve();
-  //         }
-  //       });
+  //       if (e.target.name === "VIRTUAL MIDI-Out") {
+  //         console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
+  //         resolve(); // marche pas.
+  //       }
+  //     });
   //
-  //       inputPort.connect();
-  //
-  //     } catch (err) {
-  //       reject(err);
-  //     }
-  //
-  //
+  //     inputPort.connect();
   //
   //   });
   //
   // });
 
-  it("should trigger 'connected' event for output ports DOES NOT WORK!!!!!", function (done) {
 
-    done();
 
-    // // Ignore in browser
-    // if (!WebMidi.isNode) this.skip();
-    //
-    // // We disconnect the external device's input port. From WebMidi's point of view, it is an output
-    // // port. As a matter of fact, it shows up here as "VIRTUAL MIDI-Out".
-    // inputPort.disconnect();
-    //
-    // WebMidi.enable()
-    //   .then(function() {
-    //
-    //     // done(); // ici, ça marche!
-    //
-    //     WebMidi.addListener("connected", function(e) {
-    //       if (e.target.name === "VIRTUAL MIDI-Out") {
-    //         done(); // ici, ça marche pas.
-    //         console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
-    //       }
-    //     });
-    //
-    //     inputPort.connect();
-    //
-    //   })
-    //   .catch(err => done(err))
+
+
+
+  describe("constructor()", function() {
+
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
+    });
+
+    it("should adjut to Node.js environmenet", function() {
+
+      if (WebMidi.isNode) {
+        expect(typeof navigator.requestMIDIAccess).to.equal("function");
+        expect(typeof performance.now).to.equal("function");
+      } else {
+        this.skip();
+      }
+
+    });
 
   });
 
+  describe("convertToTimestamp()", function() {
 
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
+    });
 
+    it("should return timestamp when passed a string starting with '+'", function() {
+      expect(WebMidi.convertToTimestamp("+1000")).to.be.a("number");
+    });
 
+    it("should return false for invalid input", function() {
+      [undefined, null, false, [], {}, "", "-1", "+", -1, -Infinity].forEach(value => {
+        expect(WebMidi.convertToTimestamp(value)).to.be.false;
+      });
+    });
 
+    it("should return a positive number as is", function() {
+      [0, 1, Infinity].forEach(value => {
+        expect(WebMidi.convertToTimestamp(value)).to.equal(value);
+      });
+    });
 
-
+  });
 
   describe("disable()", function() {
 
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable({sysex: true})
-        .then(() => done())
-        .catch(() => {});
-    });
-
-    afterEach("Make sure WebMidi is disabled when done", function (done) {
-      WebMidi.disable()
-        .then(() => done())
-        .catch(() => {});
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
     });
 
     it("should set the 'enabled' property to false", function(done) {
@@ -237,10 +216,6 @@ describe("WebMidi", function() {
   });
 
   describe("enable()", function() {
-
-    afterEach("Make sure WebMidi is disabled when done", function(done) {
-      WebMidi.disable().then(() => done());
-    });
 
     it("should pass error to callback upon failure", function(done) {
 
@@ -382,26 +357,20 @@ describe("WebMidi", function() {
 
   describe("getInputById()", function() {
 
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable().then(() => done());
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
     });
 
-    afterEach("Make sure WebMidi is disabled when done", function(done) {
-      WebMidi.disable().then(() => done());
-    });
+    it("should throw error if WebMidi is disabled", async function() {
 
-    it("should throw error if WebMidi is disabled", function(done) {
+      await WebMidi.disable();
 
-      WebMidi.disable().then(() => {
-
-        try {
-          WebMidi.getInputById("test");
-        } catch (err) {
-          expect(err).to.be.an("error");
-          done();
-        }
-
-      });
+      try {
+        WebMidi.getInputById("test");
+        return Promise.reject();
+      } catch (err) {
+        return Promise.resolve();
+      }
 
     });
 
@@ -420,7 +389,7 @@ describe("WebMidi", function() {
 
     });
 
-    it("should return an instance of the Input class", function() {
+    it("should return an instance of the 'Input' class", function() {
 
       if (WebMidi.inputs.length > 0) {
         expect(WebMidi.getInputById(WebMidi.inputs[0].id))
@@ -445,28 +414,81 @@ describe("WebMidi", function() {
 
   });
 
+  describe("getInputByName()", function() {
+
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
+    });
+
+    it("should throw error if WebMidi is disabled", async function() {
+
+      await WebMidi.disable();
+
+      try {
+        WebMidi.getInputByName("test");
+        return Promise.reject();
+      } catch (err) {
+        return Promise.resolve();
+      }
+
+    });
+
+    it("should return false if no device is found", function() {
+      expect(WebMidi.getInputByName("0000000")).to.equal(false);
+    });
+
+    it("should return the right input", function() {
+
+      if (WebMidi.inputs.length > 0) {
+        let name = WebMidi.inputs[0].name;
+        expect(WebMidi.getInputByName(name).name).to.equal(name);
+      } else {
+        this.skip();
+      }
+
+    });
+
+    it("should return instance of 'Input' class", function() {
+
+      if (WebMidi.inputs.length > 0) {
+        expect(WebMidi.getInputByName(WebMidi.inputs[WebMidi.inputs.length - 1].name))
+          .to.be.instanceOf(WebMidi.inputs[WebMidi.inputs.length - 1].constructor);
+      } else {
+        this.skip();
+      }
+
+    });
+
+    it("should return 'false' when an invalid name is provided", function() {
+
+      if (WebMidi.inputs.length > 0) {
+        [null, undefined, ""].forEach(name => {
+          expect(WebMidi.getInputByName(name)).to.equal(false);
+        });
+      } else {
+        this.skip();
+      }
+
+    });
+
+  });
+
   describe("getOutputById()", function() {
 
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable().then(() => done());
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
     });
 
-    afterEach("Make sure WebMidi is disabled when done", function(done) {
-      WebMidi.disable().then(() => done());
-    });
+    it("should throw error if WebMidi is disabled", async function() {
 
-    it("should throw error if WebMidi is disabled", function(done) {
+      await WebMidi.disable();
 
-      WebMidi.disable().then(() => {
-
-        try {
-          WebMidi.getOutputById("test");
-        } catch (err) {
-          expect(err).to.be.an("error");
-          done();
-        }
-
-      });
+      try {
+        WebMidi.getOutputById("test");
+        return Promise.reject();
+      } catch (err) {
+        return Promise.resolve();
+      }
 
     });
 
@@ -510,89 +532,22 @@ describe("WebMidi", function() {
 
   });
 
-  describe("getInputByName()", function() {
-
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable().then(() => done());
-    });
-
-    it("should throw error if WebMidi is disabled", function(done) {
-
-      WebMidi.disable().then(() => {
-
-        try {
-          WebMidi.getInputByName("test");
-        } catch (err) {
-          expect(err).to.be.an("error");
-          done();
-        }
-
-      });
-
-    });
-
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getInputByName("0000000")).to.equal(false);
-    });
-
-    it("should return the right input", function() {
-
-      if (WebMidi.inputs.length > 0) {
-        let name = WebMidi.inputs[0].name;
-        expect(WebMidi.getInputByName(name).name).to.equal(name);
-      } else {
-        this.skip();
-      }
-
-    });
-
-    it("should return instance of Input class", function() {
-
-      if (WebMidi.inputs.length > 0) {
-        expect(WebMidi.getInputByName(WebMidi.inputs[WebMidi.inputs.length - 1].name))
-          .to.be.instanceOf(WebMidi.inputs[WebMidi.inputs.length - 1].constructor);
-      } else {
-        this.skip();
-      }
-
-    });
-
-    it("should return 'false' when an invalid name is provided", function() {
-
-      if (WebMidi.inputs.length > 0) {
-        [null, undefined, ""].forEach(name => {
-          expect(WebMidi.getInputByName(name)).to.equal(false);
-        });
-      } else {
-        this.skip();
-      }
-
-    });
-
-  });
-
   describe("getOutputByName()", function() {
 
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable().then(() => done());
+    beforeEach("Enable WebMidi", async function() {
+      await WebMidi.enable({sysex: true});
     });
 
-    afterEach("Make sure WebMidi is disabled when done", function(done) {
-      WebMidi.disable().then(() => done());
-    });
+    it("should throw error if WebMidi is disabled", async function() {
 
-    it("should throw error if WebMidi is disabled", function(done) {
+      await WebMidi.disable();
 
-      WebMidi.disable().then(() => {
-
-        try {
-          WebMidi.getOutputByName("test");
-        } catch (err) {
-          expect(err).to.be.an("error");
-          done();
-        }
-
-      });
+      try {
+        WebMidi.getOutputByName("test");
+        return Promise.reject();
+      } catch (err) {
+        return Promise.resolve();
+      }
 
     });
 
@@ -638,18 +593,11 @@ describe("WebMidi", function() {
 
   describe("getOctave()", function() {
 
-    beforeEach("Enable WebMidi", function (done) {
-      WebMidi.enable().then(() => done());
-    });
-
-    afterEach("Make sure WebMidi is disabled when done", function(done) {
-      WebMidi.disable().then(() => done());
-    });
-
-    it("should return undefined if number is invalid", function() {
-      ["abc", null, undefined, -1, 128, () => {}, {}, "555"].forEach(function (param) {
-        expect(WebMidi.getOctave(param)).to.be.false;
-      });
+    it("should return false if number is invalid", function() {
+      ["abc", null, undefined, -1, 128, () => {}, {}, "555", Infinity, -Infinity]
+        .forEach(function (param) {
+          expect(WebMidi.getOctave(param)).to.be.false;
+        });
     });
 
     it("should return a signed integer", function() {
@@ -680,7 +628,7 @@ describe("WebMidi", function() {
     it("should return false if invalid input is provided", function() {
 
       [
-        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8"
+        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8", Infinity, -Infinity
       ].forEach(function (param) {
         expect(WebMidi.guessNoteNumber(param)).to.be.false;
       });
@@ -696,6 +644,12 @@ describe("WebMidi", function() {
         expect(WebMidi.guessNoteNumber(i + 0.5)).to.equal(Math.min(i, 127));
       }
 
+    });
+
+    it("should return matching number for strings containing valid numbers", function() {
+      expect(WebMidi.guessNoteNumber("127")).to.equal(127);
+      expect(WebMidi.guessNoteNumber("0")).to.equal(0);
+      expect(WebMidi.guessNoteNumber("1")).to.equal(1);
     });
 
     it("should provide correct value for note names with varying octave offsets", function() {

@@ -1,4 +1,4 @@
-const Utils = {
+const UtilsCjs = {
 
   isNative: function(fn) {
     return (/\{\s*\[native code\]\s*\}/).test("" + fn);
@@ -6,4 +6,4 @@ const Utils = {
 
 };
 
-module.exports = Utils;
+module.exports = UtilsCjs;

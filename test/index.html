@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true" />
 
-    <link rel="stylesheet" href="../../node_modules/mocha/mocha.css" />
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
 
     <style>
       #mocha > h1 {
@@ -35,7 +35,7 @@
 
       <p>For meaningful tests, you need to have at least one MIDI input and one MIDI output.</p>
 
-      <!-- Jazz Plugin for browsers that do not support Web MIDI-->
+      <!-- Jazz Plugin for browsers that do not support Web MIDI -->
       <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
         <object id="Jazz2" type="audio/x-jazz" class="hidden">
           <p style="visibility:visible;">
@@ -46,13 +46,13 @@
 
     </div>
 
-    <script src="../../dist/webmidi.iife.min.js"></script>
-    <script src="libs/JZZ.js"></script>
-    <script src="libs/Utils.js"></script>
+    <script src="../dist/webmidi.iife.min.js"></script>
+    <script src="support/JZZ.js"></script>
+    <script src="support/Utils.iife.js"></script>
 
-    <script src="../../node_modules/sinon-browser-only/sinon.js"></script>
-    <script src="../../node_modules/mocha/mocha.js"></script>
-    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/sinon-browser-only/sinon.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
 
     <script>
       mocha.setup('bdd');
@@ -62,8 +62,8 @@
       window.Note = webmidi.Note;
     </script>
 
-    <script src="../tests/WebMidi.test.js"></script>
-    <script src="../tests/Note.test.js"></script>
+    <script src="tests/WebMidi.test.js"></script>
+    <script src="tests/Note.test.js"></script>
 
     <script>
       mocha.run();

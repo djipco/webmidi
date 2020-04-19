@@ -37,34 +37,34 @@ describe("Note", function() {
 
     it("should set correct default value for velocities", function() {
       let note1 = new Note(60);
-      expect(note1.rawAttackVelocity).to.equal(64);
+      expect(note1.rawAttack).to.equal(64);
       let note2 = new Note(60);
-      expect(note2.rawReleaseVelocity).to.equal(64);
+      expect(note2.rawRelease).to.equal(64);
     });
 
     it("should convert invalid velocities to valid values", function() {
 
-      let note1 = new Note(60, {attackVelocity: -1.1});
-      expect(note1.rawAttackVelocity).to.equal(0);
-      expect(note1.attackVelocity).to.equal(0);
+      let note1 = new Note(60, {attack: -1.1});
+      expect(note1.rawAttack).to.equal(0);
+      expect(note1.attack).to.equal(0);
 
-      let note2 = new Note(60, {releaseVelocity: 1.1});
-      expect(note2.releaseVelocity).to.equal(1);
-      expect(note2.rawReleaseVelocity).to.equal(127);
+      let note2 = new Note(60, {release: 1.1});
+      expect(note2.release).to.equal(1);
+      expect(note2.rawRelease).to.equal(127);
 
-      let note3 = new Note(60, {rawAttackVelocity: -1});
-      expect(note3.attackVelocity).to.equal(0);
-      expect(note3.rawAttackVelocity).to.equal(0);
+      let note3 = new Note(60, {rawAttack: -1});
+      expect(note3.attack).to.equal(0);
+      expect(note3.rawAttack).to.equal(0);
 
-      let note4 = new Note(60, {rawReleaseVelocity: 128});
-      expect(note4.releaseVelocity).to.equal(1);
-      expect(note4.rawReleaseVelocity).to.equal(127);
+      let note4 = new Note(60, {rawRelease: 128});
+      expect(note4.release).to.equal(1);
+      expect(note4.rawRelease).to.equal(127);
 
       ["xxx", [], {}, NaN, undefined, null].forEach(param => {
-        let note1 = new Note(60, {attackVelocity: param});
-        expect(note1.rawAttackVelocity).to.equal(64);
-        let note2 = new Note(60, {releaseVelocity: param});
-        expect(note1.rawReleaseVelocity).to.equal(64);
+        let note1 = new Note(60, {attack: param});
+        expect(note1.rawAttack).to.equal(64);
+        let note2 = new Note(60, {release: param});
+        expect(note1.rawRelease).to.equal(64);
       });
 
     });

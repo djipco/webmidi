@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const {isNative} = require("./support/Utils.js");
+const {isNative} = require("./support/Utils.cjs.js");
 const MT = require("midi-test");
 const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
 
