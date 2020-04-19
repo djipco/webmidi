@@ -15,15 +15,14 @@
   },
   "types": "webmidi.d.ts",
   "scripts": {
-    "testOLD": "BROWSER=NONE mocha ./test/headless --exit",
+    "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
+    "documentation:generate": "node tools/documentation/generate.js",
+    "documentation:publish": "node tools/documentation/publish.js",
+    "lint": "eslint ./src/*.js",
+    "test": "mocha --require @babel/polyfill test/index.js --exit",
     "test-all": "npm run types && npm run lint && npm run test-coverage",
     "test-coverage": "nyc --reporter=text npm run test",
-    "types": "tsc --strict --noEmit ./webmidi.d.ts",
-    "test": "mocha --require @babel/polyfill test/index.js --exit",
-    "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
-    "lint": "eslint ./src/*.js",
-    "documentation:generate": "node tools/documentation/generate.js",
-    "documentation:publish": "node tools/documentation/publish.js"
+    "types": "tsc --strict --noEmit ./webmidi.d.ts"
   },
   "repository": {
     "type": "git",
