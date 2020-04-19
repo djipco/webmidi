@@ -37,7 +37,10 @@ module.exports = {
     "linebreak-style": ["error", "unix"], // Force \n instead of Prettier's auto-detect behaviour
     "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }],
     "max-len": ["error", { "code": 100 }], // Prettier's 80 is too small. Period.
-    "no-console": ["error", { "allow": ["info", "warn", "error"] }] // Only some (unlike Prettier)
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }], // Only some (unlike Prettier)
+
+    // Other rules
+    "no-prototype-builtins": "off"
 
   }
 
