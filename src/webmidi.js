@@ -66,7 +66,7 @@ class WebMidi extends EventEmitter {
     // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and performance.now()
     if (this.isNode) {
       global.navigator = require("jzz");
-      global.performance = require('perf_hooks').performance;
+      global.performance = require("perf_hooks").performance;
     }
 
   }
@@ -766,7 +766,7 @@ class WebMidi extends EventEmitter {
       }
 
       if (add) {
-        let input = new Input(nInput)
+        let input = new Input(nInput);
         this._inputs.push(input);
         promises.push(input.open());
       }
@@ -863,8 +863,8 @@ class WebMidi extends EventEmitter {
   get isNode() {
 
     return (Object.prototype.toString.call(
-      typeof process !== 'undefined' ? process : 0
-    ) === '[object process]');
+      typeof process !== "undefined" ? process : 0
+    ) === "[object process]");
 
   }
 
@@ -901,8 +901,9 @@ class WebMidi extends EventEmitter {
 
   /**
    * The elapsed time, in milliseconds, since the
-   * [time origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
-   * Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
+   * [time origin]
+   * (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin). Said
+   * simply, it is the number of milliseconds that passed since the page was loaded. Being a
    * floating-point number, it has sub-millisecond accuracy. According to the
    * [specification](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
@@ -931,7 +932,7 @@ class WebMidi extends EventEmitter {
   }
   set octaveOffset(value) {
     value = parseInt(value);
-    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.")
+    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
     this._octaveOffset = value;
   }
 
