@@ -101,27 +101,87 @@
 			<div class="col-md-12 main-content">
 		<section class="source-section">
 			<article></article>
-			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">/**
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {WebMidi} from './WebMidi.js';
+
+/**
  * The `Note` class represents a single note to be played. The `Note` can be played on a single
  * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
- * channel(s) by using [Output.playNote()]{@link Output#playNote}.
+ * channels at once by using [Output.playNote()]{@link Output#playNote}.
  *
  * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitely stopped using
+ * no duration is set, it will play until it is explicitly stopped using
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
  * [Output.stopNote()]{@link Output#stopNote}.
+ *
+ * @param name {string|number} The name or note number of the note to create. If a number is used,
+ * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
+ * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
+ * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+ *
+ * @param {Object} [options={}]
+ *
+ * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+ * explicitly stopped.
+ *
+ * @param {number} [options.attackVelocity=0.5] The note's attack velocity as a decimal number
+ * between 0 and 1.
+ *
+ * @param {number} [options.releaseVelocity=0.5] The note's release velocity as a decimal number
+ * between 0 and 1.
+ *
+ * @param {number} [options.rawAttackVelocity=64] The note's attack velocity as an integer between
+ * 0 and 127.
+ *
+ * @param {number} [options.rawReleaseVelocity=64] The note's release velocity as an integer between
+ * 0 and 127.
+ *
+ * @throws {Error} Invalid note name.
  *
  */
 export class Note {
 
-  constructor(options = {}) {
+  constructor(name, options = {}) {
 
-    // Set defaults
-    this._duration = Infinity;
-    this._channel = [];
-    this._rawAttackVelocity = 64;
-    this._rawReleaseVelocity = 64;
+    if (Number.isInteger(name)) {
+      this.number = name;
+    } else {
+      this.name = name;
+    }
 
+    this.duration = options.duration;
+    this.channels = options.channels;
+    this.attackVelocity = options.attackVelocity;
+    this.releaseVelocity = options.releaseVelocity;
+    if (options.rawAttackVelocity) this.rawAttackVelocity = options.rawAttackVelocity;
+    if (options.rawReleaseVelocity) this.rawReleaseVelocity = options.rawReleaseVelocity;
+
+  }
+
+  /**
+   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
+   *
+   * @type {string}
+   */
+  get name() {
+    return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(data1);
+  }
+  set name(value) {
+    value = WebMidi.guessNoteNumber(value);
+    if (value === false) throw new Error("Invalid note name.");
+    this._number = value;
+  }
+
+  /**
+   * The MIDI note number as an integer between 0 and 127
+   * @type {number}
+   */
+  get number() {
+    return this._number;
+  }
+  set number(value) {
+    value = WebMidi.guessNoteNumber(value);
+    if (value === false) throw new Error("Invalid note number.")
+    this._number = value;
   }
 
   /**
@@ -135,31 +195,31 @@ export class Note {
     return this._duration;
   }
   set duration(value) {
-    let value = Math.max(parseFloat(value), 0);
+    value = Math.max(parseFloat(value), 0);
     this._duration = isNaN(value) ? Infinity : value;
   }
 
   /**
-   * A positive integer between 1 and 16 or an array of such numbers representing the MIDI
-   * channel(s) the note should be played on.
+   * An array of integers (1-16) representing the MIDI channel(s) the note should be played on.
    *
    * This is only necessary if you intend to use the {@link Output} object's
    * [playNote()]{@link Output#playNote} method. If you use the {@link OutputChannel} object's
    * [playNote()]{@link OutputChannel#playNote} method, it will be played on that channel (no matter
    * what has been set as the channel).
    *
-   * @type {number|number[]}
+   * @type {number[]}
    */
-  get channel() {
-    return this._channel;
+  get channels() {
+    return this._channels;
   }
-  set channel(value) {
-    this._channel = WebMidi.sanitizeChannels(value);
+  set channels(value) {
+    this._channels = WebMidi.sanitizeChannels(value);
   }
 
   /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-   * 0.5.
+   * 64 ÷ 127 which is roughly 0.5.
+   *
    * @type {number}
    */
   get attackVelocity() {
@@ -185,7 +245,8 @@ export class Note {
 
   /**
    * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
-   * to 0.5.
+   * to 64 ÷ 127 which is roughly 0.5.
+   *
    * @type {number}
    */
   get releaseVelocity() {
@@ -209,6 +270,14 @@ export class Note {
     this._rawReleaseVelocity = isNaN(value) ? 64 : value;
   }
 
+  /**
+   * The octave of the note as an integer between -1 and 8.
+   * @type {number}
+   */
+  get octave() {
+    return Math.floor(Math.floor(this._number) / 12 - 1);
+  }
+
 }
 </code></pre>
 		</section>
@@ -217,7 +286,7 @@ export class Note {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 15th 2020 @ 11:08:02 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

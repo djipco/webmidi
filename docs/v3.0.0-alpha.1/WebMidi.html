@@ -67,7 +67,10 @@
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
+											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
+											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -124,7 +127,19 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:disabled">WebMidi#disabled</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:disconnected">WebMidi#disconnected</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:enabled">WebMidi#enabled</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
@@ -157,7 +172,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-25">line 25</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-27">line 27</a></p>
 								</div>
 							</div>
 			
@@ -173,20 +188,197 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_CHANNEL_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_CHANNEL_MESSAGES</span><span class="signature-type"> :number</span></h4>
+			<h4 id="enabled" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">enabled</span><span class="signature-type"> :boolean</span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-			has been deprecated since v3.0. You should now use
-			<a href="WebMidi.html#.MIDI_CHANNEL_VOICE_MESSAGES">MIDI_CHANNEL_VOICE_MESSAGES</a>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether access to the host's MIDI subsystem is active or not.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-817">line 817</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="inputs" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">inputs</span><span class="signature-type"> :Array</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all currently available MIDI inputs.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-854">line 854</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="interface" class="member public"><span class="signature-attribs">&lt;readonly, nullable> </span><span class="name">interface</span><span class="signature-type"> :MIDIAccess</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>MIDIAccess</code> instance used to talk to the Web MIDI API. This should not be used directly
+			unless you know what you are doing.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">MIDIAccess</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-38">line 38</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="isNode" class="member public"><span class="name">isNode</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the current environment is Node.js or not</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-840">line 840</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="MIDI_CHANNEL_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all MIDI channel voice messages and their associated numerical value. Note that it
+			has been deprecated since v3.0. You should now use
+			MIDI_CHANNEL_VOICE_MESSAGES.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -221,7 +413,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-951">line 951</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1026">line 1026</a></p>
 								</div>
 							</div>
 			
@@ -233,7 +425,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_CHANNEL_MODE_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_CHANNEL_MODE_MESSAGES</span><span class="signature-type"> :number</span></h4>
+			<h4 id="MIDI_CHANNEL_MODE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MODE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -254,7 +446,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -282,7 +474,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1185">line 1185</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1263">line 1263</a></p>
 								</div>
 							</div>
 			
@@ -294,7 +486,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_CHANNEL_VOICE_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_CHANNEL_VOICE_MESSAGES</span><span class="signature-type"> :number</span></h4>
+			<h4 id="MIDI_CHANNEL_VOICE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_VOICE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -316,7 +508,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -344,7 +536,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-924">line 924</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-999">line 999</a></p>
 								</div>
 							</div>
 			
@@ -356,7 +548,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_CONTROL_CHANGE_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_CONTROL_CHANGE_MESSAGES</span><span class="signature-type"> :Array.&lt;number></span></h4>
+			<h4 id="MIDI_CONTROL_CHANGE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CONTROL_CHANGE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -428,7 +620,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;number></span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -456,7 +648,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1071">line 1071</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1149">line 1149</a></p>
 								</div>
 							</div>
 			
@@ -468,7 +660,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_INTERFACE_EVENTS" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_INTERFACE_EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
+			<h4 id="MIDI_INTERFACE_EVENTS" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_INTERFACE_EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -500,7 +692,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-826">line 826</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-901">line 901</a></p>
 								</div>
 							</div>
 			
@@ -512,7 +704,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_NRPN_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_NRPN_MESSAGES</span><span class="signature-type"> :number</span></h4>
+			<h4 id="MIDI_NRPN_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_NRPN_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -533,7 +725,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -561,7 +753,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1154">line 1154</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1232">line 1232</a></p>
 								</div>
 							</div>
 			
@@ -573,7 +765,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_REGISTERED_PARAMETER" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_REGISTERED_PARAMETER</span><span class="signature-type"> :Array.&lt;number></span></h4>
+			<h4 id="MIDI_REGISTERED_PARAMETER" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_REGISTERED_PARAMETER</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -603,7 +795,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;number></span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -631,7 +823,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-981">line 981</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1059">line 1059</a></p>
 								</div>
 							</div>
 			
@@ -643,7 +835,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".MIDI_SYSTEM_MESSAGES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">MIDI_SYSTEM_MESSAGES</span><span class="signature-type"> :number</span></h4>
+			<h4 id="MIDI_SYSTEM_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_SYSTEM_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -683,7 +875,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
 								</div>
 							</div>
 			
@@ -711,7 +903,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-878">line 878</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-953">line 953</a></p>
 								</div>
 							</div>
 			
@@ -723,7 +915,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".NOTES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">NOTES</span><span class="signature-type"> :Array.&lt;string></span></h4>
+			<h4 id="NOTES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">NOTES</span><span class="signature-type"> :Array.&lt;string></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -755,189 +947,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-836">line 836</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="enabled" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">enabled</span><span class="signature-type"> :boolean</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether access to the host's MIDI subsystem is active or not.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-743">line 743</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="inputs" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">inputs</span><span class="signature-type"> :Array</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all currently available MIDI inputs.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-768">line 768</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="interface" class="member public"><span class="signature-attribs">&lt;readonly, nullable> </span><span class="name">interface</span><span class="signature-type"> :MIDIAccess</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>MIDIAccess</code> instance used to talk to the Web MIDI API. This should not be used directly
-			unless you know what you are doing.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">MIDIAccess</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-36">line 36</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="nrpnEventsEnabled" class="member public"><span class="name">nrpnEventsEnabled</span><span class="signature-type"> :Boolean</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether WebMidi.js should dispatch <strong>Non-Registered Parameter Number</strong> events. This
-			is a system-wide setting. NRPNs are composed of a sequence of specific <strong>control change</strong>
-			messages. When a valid sequence of such control change messages is received, an <code>nrpn</code> event
-			will fire. If an invalid or out of order control change message is received, it will fall
-			through the collector logic and all buffered control change messages will be discarded as
-			incomplete.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Boolean</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-803">line 803</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-911">line 911</a></p>
 								</div>
 							</div>
 			
@@ -991,7 +1001,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-49">line 49</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-51">line 51</a></p>
 								</div>
 							</div>
 			
@@ -1035,7 +1045,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-778">line 778</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-864">line 864</a></p>
 								</div>
 							</div>
 			
@@ -1083,7 +1093,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-758">line 758</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-832">line 832</a></p>
 								</div>
 							</div>
 			
@@ -1128,7 +1138,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-789">line 789</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-875">line 875</a></p>
 								</div>
 							</div>
 			
@@ -1144,7 +1154,13 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Current MIDI performance time in milliseconds. This can be used to queue events in the future.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The elapsed time, in milliseconds, since the
+			<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin">time origin</a>.
+			Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
+			floating-point number, it has sub-millisecond accuracy. According to the
+			<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp">specification</a>, the
+			time should be accurate to 5 µs (microseconds). However, due to various constraints, the
+			browser might only be accurate to one millisecond.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -1172,7 +1188,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-816">line 816</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-891">line 891</a></p>
 								</div>
 							</div>
 			
@@ -1187,14 +1203,95 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="disable" class="function public"><span class="name">disable</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
+			<h4 id="convertToTimestamp" class="function public"><span class="name">convertToTimestamp</span><span class="signature-params">( [&nbsp;<span class="signature-param">time</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a timestamp, relative to the navigation start of the document, derived from the <code>time</code>
+			parameter. If the parameter is a string starting with the &quot;+&quot; sign and followed by a number,
+			the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
+			value will be returned as is.</p>
+			<p>If the calculated return value is 0, less than zero or an otherwise invalid value, <code>false</code> will
+			be returned.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>time</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>The time string or integer to parse</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>DOMHighResTimeStamp</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-602">line 602</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="disable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">disable</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;void>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Completely disables <code>WebMidi.js</code> by unlinking the MIDI subsystem's interface and destroying all
-			<a href="Input.html">Input</a> and <a href="Output.html">Output</a> objects that may be available. This also means that any
-			listener that may have been defined on <a href="Input.html">Input</a> or <a href="Output.html">Output</a> objects will be
+			<a href="Input.html">Input</a> and <a href="Output.html">Output</a> objects that may be available. This also means that listeners
+			added to <a href="Input.html">Input</a> objects, <a href="Output.html">Output</a> objects or to <code>WebMidi</code> itself are also
 			destroyed.</p></div>
+			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
@@ -1230,7 +1327,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-254">line 254</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-233">line 233</a></p>
 								</div>
 							</div>
 			
@@ -1242,24 +1339,57 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="enable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">enable</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Promise}</span></h4>
+			<h4 id="enable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">enable</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;Object>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Checks if the Web MIDI API is available in the current environment and then tries to connect to
 			the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
 			be displayed to the user.</p>
-			<p>Since version 3, this method returns a <code>Promise</code>. We encourage users to use the promise-based
-			approach. When using such an approach, you can omit the <code>callback</code> option altogether.</p>
 			<p>To enable the use of MIDI system exclusive messages, the <code>sysex</code> option should be set to
 			<code>true</code>. However, under some environments (e.g. Jazz-Plugin), the <code>sysex</code> option is ignored
-			and system exclusive messages are always enabled.</p>
+			and system exclusive messages are always enabled. You can check the
+			<a href="WebMidi.html#sysexEnabled">sysexEnabled</a> property to confirm.</p>
 			<p>To enable access to software synthesizers available on the host, you would set the <code>software</code>
-			option to <code>true</code>. However, note that this option is only there to future-proof the library as
-			support for software synths has not yet been implemented in any browser (April 2020).</p>
+			option to <code>true</code>. However, this option is only there to future-proof the library as support for
+			software synths has not yet been implemented in any browser (as of April 2020).</p>
+			<p>There are 3 ways to execute code after <code>WebMidi</code> has been enabled:</p>
+			<ul>
+			<li>Pass a callback function in the options</li>
+			<li>Listen to the <code>enabled</code> event</li>
+			<li>Wait for the promise to resolve</li>
+			</ul>
+			<p>In order, this is what happens towards the end of the enabling process:</p>
+			<ol>
+			<li>callback is executed</li>
+			<li><code>enabled</code> event is triggered</li>
+			<li><code>connected</code> events from available inputs and outputs are triggered</li>
+			<li>promise is resolved</li>
+			</ol>
+			<p>The promise is fulfilled with an object containing two properties (<code>inputs</code> and <code>outputs</code>) that
+			contain arrays of available inputs and outputs, respectively.</p>
 			<p><strong>Important note</strong>: starting with Chrome v77, a page using Web MIDI API must be hosted on a
 			secure origin (<code>https://</code>, <code>localhost</code> or <code>file:///</code>) and the user will always be prompted to
-			authorize the operation (no matter if the <code>sysex</code> option is <code>true</code> or not).</p></div>
+			authorize the operation (no matter if the <code>sysex</code> option is <code>true</code> or not).</p>
+			<h5>Examples</h5>
+			<pre class="prettyprint source lang-js"><code>// Enabling WebMidi and using the promise
+			WebMidi.enable().then(ports => {
+			  console.log(&quot;WebMidi.js has been enabled!&quot;);
+			  console.log(&quot;Inputs: &quot;, ports.inputs);
+			  console.log(&quot;Outputs: &quot;, ports.outputs);
+			})
+			</code></pre>
+			<pre class="prettyprint source lang-js"><code>// Enabling WebMidi and listening to 'enabled' event
+			WebMidi.addListener(&quot;enabled&quot;, e => {
+			  console.log(&quot;WebMidi.js has been enabled!&quot;);
+			});
+			WebMidi.enable();
+			</code></pre>
+			<pre class="prettyprint source lang-js"><code>// Enabling WebMidi and using callback function
+			WebMidi.enable({callback: e => {
+			  console.log(&quot;WebMidi.js has been enabled!&quot;);
+			});
+			</code></pre></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1277,7 +1407,6 @@
 							<td><span class="param-type">Object</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 							<td class="last">
-									<p>Options</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -1315,7 +1444,8 @@
 														<td>false</td>
 													<td class="last">
 															<p>Whether to request access to software synthesizers on
-									the host system. This is part of the spec but has not yet been implemented by most browsers.</p>
+									the host system. This is part of the spec but has not yet been implemented by most browsers as
+									of April 2020.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1327,24 +1457,13 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise</span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;Object></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"></div>
+									<div class="form-control-static returns-description"><p>The promise is fulfilled with an object containing two properties
+			(<code>inputs</code> and <code>outputs</code>) that contain arrays of available inputs and outputs, respectively.</p></div>
 								</div>
 							</div>
 					</form>
-			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-code">
-						<pre class="prettyprint source language-javascript"><code class="language-javascript">// Enabling WebMidi while leaving &#x60;sysex&#x60; off
-			WebMidi.enable().then(() &#x3D;&gt; {
-			  console.log(&quot;WebMidi.js has been enabled!&quot;);
-			})</code></pre>
-					</div>
-					<div class="example-code">
-						<pre class="prettyprint source language-javascript"><code class="language-javascript">// Enabling WebMidi while turning &#x60;sysex&#x60; on
-			WebMidi.enable({sysex: true}).then(() &#x3D;&gt; {
-			  console.log(&quot;WebMidi.js has been enabled and sysex is active!&quot;);
-			})</code></pre>
-					</div>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
@@ -1379,7 +1498,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-149">line 149</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-158">line 158</a></p>
 								</div>
 							</div>
 			
@@ -1414,8 +1533,9 @@
 								<td><code>id</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p>The ID string of the port. IDs can be viewed by looking at the
-			<a href="WebMidi.html#inputs">inputs</a> array.</p>
+									<p>The ID string of the input. IDs can be viewed by looking at the
+			<a href="WebMidi.html#inputs">inputs</a> array. Even though they sometimes look like integers, IDs are
+			strings.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1465,7 +1585,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-281">line 281</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-305">line 305</a></p>
 								</div>
 							</div>
 			
@@ -1499,8 +1619,8 @@
 								<td><code>name</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p>The string to look for within the name of MIDI inputs (such as those
-			visible in the <a href="WebMidi.html#inputs">inputs</a> array).</p>
+									<p>The non-empty string to look for within the name of MIDI inputs (such as
+			those visible in the <a href="WebMidi.html#inputs">inputs</a> array).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1550,7 +1670,85 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-310">line 310</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-333">line 333</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getNoteNumberByName" class="function public"><span class="name">getNoteNumberByName</span><span class="signature-params">( <span class="signature-param">name</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a MIDI note number matching the note name passed in the form of a string parameter. The
+			note name must include the octave number. The name can also optionally include a sharp (#),
+			a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+			names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.</p>
+			<p>When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
+			per the scientific pitch notation standard.</p>
+			<p>The resulting note number is offset by the <a href="WebMidi.html#octaveOffset">octaveOffset</a> value (if
+			not zero). For example, if you pass in &quot;C4&quot; and the <a href="WebMidi.html#octaveOffset">octaveOffset</a>
+			value is 2, the resulting MIDI note number will be 36.</p>
+			<p><strong>Note</strong>: since v3.x, this function returns <code>false</code> instead of throwing an error when it cannot
+			parse the name to a number.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>name</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The name of the note in the form of a letter, followed by an optional &quot;#&quot;,
+			&quot;##&quot;, &quot;b&quot; or &quot;bb&quot; followed by the octave number.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span> | <span class="param-type">false</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The MIDI note number (an integer between 0 and 127) or <code>false</code> if the
+			name could not successfully be parsed to a number.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-429">line 429</a></p>
 								</div>
 							</div>
 			
@@ -1628,7 +1826,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-442">line 442</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-479">line 479</a></p>
 								</div>
 							</div>
 			
@@ -1715,7 +1913,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-367">line 367</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-394">line 394</a></p>
 								</div>
 							</div>
 			
@@ -1749,8 +1947,8 @@
 								<td><code>name</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p>The string to look for within the name of MIDI inputs (such as those
-			visible in the <a href="WebMidi.html#outputs">outputs</a> array).</p>
+									<p>The non-empty string to look for within the name of MIDI inputs (such as
+			those visible in the <a href="WebMidi.html#outputs">outputs</a> array).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1800,7 +1998,75 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-337">line 337</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-362">line 362</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getValidNoteArray" class="function public"><span class="name">getValidNoteArray</span><span class="signature-params">( [&nbsp;<span class="signature-param">note</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;number>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Converts an input value (which can be an unsigned int, a string or an array of the previous
+			two) to an array of valid MIDI note numbers.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>note</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array</span> | <span class="param-type">string</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;number></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-581">line 581</a></p>
 								</div>
 							</div>
 			
@@ -1872,7 +2138,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-514">line 514</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-556">line 556</a></p>
 								</div>
 							</div>
 			
@@ -1884,100 +2150,15 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="noteNameToNumber" class="function public"><span class="name">noteNameToNumber</span><span class="signature-params">( <span class="signature-param">name</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
+			<h4 id="sanitizeChannels" class="function public"><span class="name">sanitizeChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-			note name must include the octave number. The name can also optionally include a sharp (#),
-			a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-			names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.</p>
-			<p>When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-			per the scientific pitch notation standard.</p>
-			<p>The resulting note number is offset by the <a href="WebMidi.html#octaveOffset">octaveOffset</a> value (if
-			not zero). For example, if you pass in &quot;C4&quot; and the <a href="WebMidi.html#octaveOffset">octaveOffset</a>
-			value is 2, the resulting MIDI note number will be 36.</p>
-			<p><strong>Note</strong>: since v3.x, this function returns <code>false</code> instead of throwing an error when it cannot
-			parse the name to a number.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>name</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p>The name of the note in the form of a letter, followed by an optional &quot;#&quot;,
-			&quot;##&quot;, &quot;b&quot; or &quot;bb&quot; followed by the octave number.</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span> | <span class="param-type">false</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The MIDI note number (an integer between 0 and 127) or <code>false</code> if the
-			name could not successfully be parsed to a number.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-403">line 403</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="toMIDIChannels" class="function public"><span class="name">toMIDIChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{array}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
-			the following:</p>
-			<ul>
-			<li>a single integer</li>
-			<li>an array of integers</li>
-			<li>the special value <code>&quot;all&quot;</code></li>
-			<li>the special value <code>&quot;none&quot;</code></li>
-			</ul>
-			<p>Passing <code>&quot;all&quot;</code> or <code>undefined</code> as a parameter to this function results in all channels being
-			returned (1-16). Passing <code>&quot;none&quot;</code> results in no channel being returned (as an empty array).</p>
-			<p>Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
-			ignored.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+			single integer or an array of integers.</p>
+			<p>For backwards-compatibility, passing <code>undefined</code> as a parameter to this method results in all
+			channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+			integers between 1 and 16 are silently ignored.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1986,18 +2167,17 @@
 							<th>Name</th>
 						<th>Type</th>
 							<th>Attributes</th>
-							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr>
 								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">"all"</span> | <span class="param-type">"none"</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>&quot;all&quot;</td>
 							<td class="last">
-									<p>The channel(s) to parse.</p>
+									<p>An integer or an array of integers to parse as channel
+			numbers.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2005,9 +2185,9 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">array</span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An array of 0 or more valid MIDI channel numbers</p></div>
+									<div class="form-control-static returns-description"><p>An array of 0 or more valid MIDI channel numbers.</p></div>
 								</div>
 							</div>
 					</form>
@@ -2031,7 +2211,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-471">line 471</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-502">line 502</a></p>
 								</div>
 							</div>
 			
@@ -2060,7 +2240,6 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
-							<th>Attributes</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
@@ -2068,45 +2247,24 @@
 						<tr>
 								<td><code>timestamp</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
 							<td class="last">
-									<p>The moment when the event occurred (in milliseconds since the
-			epoch).</p>
+									<p>The moment (DOMHighResTimeStamp) when the event occurred
+			(in milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
-								<td class="attributes"></td>
 							<td class="last">
 									<p><code>connected</code></p>
 							</td>
 						</tr>
 						<tr>
-								<td><code>isTrusted</code></td>
-							<td><span class="param-type">boolean</span></td>
-								<td class="attributes"></td>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span> | <span class="param-type"><a href="Output.html">Output</a></span></td>
 							<td class="last">
-									<p>Indicates whether the event was generated by a user action
-			(<code>true</code>) or if it was created or modified by a script (<code>false</code>).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>input</code></td>
-							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
-								<td class="attributes">&lt;nullable&gt;<br/></td>
-							<td class="last">
-									<p>The actual <a href="Input.html">Input</a> object that triggered the event. If the
-			event was triggered by an <a href="Output.html">Output</a>, this will be <code>null</code>.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>output</code></td>
-							<td><span class="param-type"><a href="Output.html">Output</a></span></td>
-								<td class="attributes">&lt;nullable&gt;<br/></td>
-							<td class="last">
-									<p>The actual <a href="Output.html">Output</a> object that triggered the event. If the
-			event was triggered by an <a href="Input.html">Input</a>, this will be <code>null</code>.</p>
+									<p>The <a href="Input.html">Input</a> or <a href="Output.html">Output</a> object that triggered the
+			event.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2139,7 +2297,87 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-538">line 538</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-625">line 625</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:disabled" class="event public"><span class="name">disabled</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted once <code>WebMidi</code> has been successfully disabled.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td class="last">
+									<p>The moment when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="WebMidi.html">WebMidi</a></span></td>
+							<td class="last">
+									<p>The object that triggered the event</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>disabled</code></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-244">line 244</a></p>
 								</div>
 							</div>
 			
@@ -2165,44 +2403,31 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
-							<th>Attributes</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr>
 								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
 							<td class="last">
-									<p>The moment when the event occurred (in milliseconds since the
-			epoch).</p>
+									<p>The moment when the event occurred (in milliseconds
+			since the navigation start of the document).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
-								<td class="attributes"></td>
 							<td class="last">
 									<p><code>disconnected</code></p>
 							</td>
 						</tr>
 						<tr>
-								<td><code>isTrusted</code></td>
-							<td><span class="param-type">boolean</span></td>
-								<td class="attributes"></td>
-							<td class="last">
-									<p>Indicates whether the event was generated by a user action
-			(<code>true</code>) or if it was created or modified by a script (<code>false</code>).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>input</code></td>
+								<td><code>target</code></td>
 							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;nullable&gt;<br/></td>
 							<td class="last">
-									<p>Object with properties describing the <a href="Input.html">Input</a> that triggered
-			the event. If the event was triggered by an <a href="Output.html">Output</a>, this will be <code>null</code>.</p>
+									<p>Object with properties describing the <a href="Input.html">Input</a> or {@Output}
+			that triggered the event.</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -2216,7 +2441,7 @@
 														<td><code>connection</code></td>
 													<td><span class="param-type">string</span></td>
 													<td class="last">
-															<p><code>closed</code></p>
+															<p><code>&quot;closed&quot;</code></p>
 													</td>
 												</tr>
 												<tr>
@@ -2251,69 +2476,7 @@
 														<td><code>type</code></td>
 													<td><span class="param-type">string</span></td>
 													<td class="last">
-															<p><code>input</code></p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-						<tr>
-								<td><code>output</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;nullable&gt;<br/></td>
-							<td class="last">
-									<p>Object with properties describing the <a href="Output.html">Output</a> that
-			triggered the event. If the event was triggered by an <a href="Input.html">Input</a>, this will be <code>null</code>.</p>
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>connection</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p><code>closed</code></p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>id</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p>The input's ID</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>manufacturer</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p>Manufacturer of the device</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>name</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p>Name of the device</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>state</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p><code>disconnected</code></p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>type</code></td>
-													<td><span class="param-type">string</span></td>
-													<td class="last">
-															<p><code>output</code></p>
+															<p><code>input</code> or <code>output</code></p>
 													</td>
 												</tr>
 											</tbody>
@@ -2350,7 +2513,87 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-556">line 556</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-639">line 639</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:enabled" class="event public"><span class="name">enabled</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted once <code>WebMidi</code> has been successfully enabled.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td class="last">
+									<p>The moment when the event occurred (in milliseconds
+			since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="WebMidi.html">WebMidi</a></span></td>
+							<td class="last">
+									<p>The object that triggered the event</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>enabled</code></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-181">line 181</a></p>
 								</div>
 							</div>
 			
@@ -2371,7 +2614,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 8th 2020 @ 16:43:18 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
