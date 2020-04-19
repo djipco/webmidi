@@ -1,6 +1,6 @@
-import {EventEmitter} from '../node_modules/djipevents/dist/djipevents.esm.min.js';
-import {OutputChannel} from './OutputChannel.js';
-import {WebMidi} from './WebMidi.js';
+import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {OutputChannel} from "./OutputChannel.js";
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
@@ -50,7 +50,7 @@ export class Output extends EventEmitter {
       timestamp: WebMidi.time
     };
 
-    if (e.port.connection === 'open') {
+    if (e.port.connection === "open") {
 
       /**
        * Event emitted when the {@link Output} has been opened by calling the
@@ -63,11 +63,11 @@ export class Output extends EventEmitter {
        * @property {string} type `"opened"`
        * @property {Output} target The object that triggered the event
        */
-      event.type = 'opened';
+      event.type = "opened";
       event.target = this;
-      this.emit('opened', event);
+      this.emit("opened", event);
 
-    } else if (e.port.connection === 'closed' && e.port.state === 'connected') {
+    } else if (e.port.connection === "closed" && e.port.state === "connected") {
 
       /**
        * Event emitted when the {@link Output} has been closed by calling the
@@ -80,11 +80,11 @@ export class Output extends EventEmitter {
        * @property {string} type `"closed"`
        * @property {Output} target The object that triggered the event
        */
-      event.type = 'closed';
+      event.type = "closed";
       event.target = this;
-      this.emit('closed', event);
+      this.emit("closed", event);
 
-    } else if (e.port.connection === 'closed' && e.port.state === 'disconnected') {
+    } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
 
       /**
        * Event emitted when the {@link Output} becomes unavailable. This event is typically fired
@@ -95,8 +95,8 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Output} that triggered
-       * the event. This is not the actual `Output` as it is no longer available.
+       * @property {Object} target Object with properties describing the {@link Output} that
+       * triggered the event. This is not the actual `Output` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
        * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -104,7 +104,7 @@ export class Output extends EventEmitter {
        * @property {string} target.state `"disconnected"`
        * @property {string} target.type `"output"`
        */
-      event.type = 'disconnected';
+      event.type = "disconnected";
       event.target = {
         connection: e.port.connection,
         id: e.port.id,
@@ -112,13 +112,13 @@ export class Output extends EventEmitter {
         name: e.port.name,
         state: e.port.state,
         type: e.port.type
-      }
-      this.emit('disconnected', event);
+      };
+      this.emit("disconnected", event);
 
-    } else if (e.port.connection === 'pending' && e.port.state === 'disconnected') {
+    } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
       // I don't see the need to forward that...
     } else {
-      console.warn('This statechange event was not caught:', e.port.connection, e.port.state);
+      console.warn("This statechange event was not caught:", e.port.connection, e.port.state);
     }
 
   }
@@ -138,7 +138,7 @@ export class Output extends EventEmitter {
       await this._midiOutput.open();
       return Promise.resolve(this);
     } catch (err) {
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
 
   }
@@ -216,7 +216,8 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI [system exclusive]{@link https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
+   * Sends a MIDI [system exclusive]{@link
+    * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
    * (*sysex*) message. The generated message will automatically be prepended with the *sysex byte*
    * (0xF0) and terminated with the *end of sysex byte* (0xF7).
    *
@@ -263,7 +264,8 @@ export class Output extends EventEmitter {
    * @param manufacturer {number|number[]} An unsigned integer or an array of three unsigned
    * integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers
    * Association* maintains a full list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
+   * .
    *
    * @param [data=number[]] {Array} An array of unsigned integers between 0 and 127. This is the
    * data you wish to transfer.
@@ -374,7 +376,7 @@ export class Output extends EventEmitter {
   sendSongPosition(value, options = {}) {
     this.setSongPosition(value, options);
     console.warn(
-      'The sendSongPosition() method has been deprecated. Use setSongPosition() instead.'
+      "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
     );
     return this;
   }
@@ -403,7 +405,7 @@ export class Output extends EventEmitter {
 
     value = parseInt(value);
     if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError('The program value must be between 1 and 128');
+      throw new RangeError("The program value must be between 1 and 128");
     }
 
     this.send(
@@ -423,7 +425,7 @@ export class Output extends EventEmitter {
   sendSongSelect(value, options = {}) {
     this.setSong(value, options);
     console.warn(
-      'The sendSongSelect() method has been deprecated. Use setSong() instead.'
+      "The sendSongSelect() method has been deprecated. Use setSong() instead."
     );
     return this;
   }
@@ -540,9 +542,9 @@ export class Output extends EventEmitter {
   };
 
   /**
-   * Sends an **active sensing** real-time message. This tells the device connected to this port that
-   * the connection is still good. Active sensing messages should be sent every 300 ms if there was
-   * no other activity on the MIDI port.
+   * Sends an **active sensing** real-time message. This tells the device connected to this port
+   * that the connection is still good. Active sensing messages should be sent every 300 ms if there
+   * was no other activity on the MIDI port.
    *
    * @param {Object} [options={}]
    *
@@ -591,7 +593,7 @@ export class Output extends EventEmitter {
   sendTuningRequest(options = {}) {
     this.sendTuneRequest(options);
     console.warn(
-      'The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.'
+      "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
     );
     return this;
   }
@@ -644,7 +646,7 @@ export class Output extends EventEmitter {
   sendKeyAftertouch(note, channel, pressure, options = {}) {
     this.setKeyAftertouch(note, channel, pressure, options);
     console.warn(
-      'The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.'
+      "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
     );
     return this;
   }
@@ -783,7 +785,7 @@ export class Output extends EventEmitter {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
       this.setRegisteredParameter(
-        'pitchbendrange', [semitones, cents], ch, {time: options.time}
+        "pitchbendrange", [semitones, cents], ch, {time: options.time}
       );
     });
 
@@ -796,7 +798,8 @@ export class Output extends EventEmitter {
    * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
    *
    * MIDI
-   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * [registered parameters]
+   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
    * extend the original list of control change messages. The MIDI 1.0 specification lists only a
    * limited number of them. Here are the original registered parameters with the identifier that
    * can be used as the first parameter of this function:
@@ -878,7 +881,7 @@ export class Output extends EventEmitter {
   setChannelAftertouch(pressure, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setChannelAftertouch(pressure, options);
+      this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
     return this;
@@ -892,7 +895,7 @@ export class Output extends EventEmitter {
   sendChannelAftertouch(pressure, channel, options = {}) {
     this.setChannelAftertouch(pressure, channel, options);
     console.warn(
-      'The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead.'
+      "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead."
     );
     return this;
   }
@@ -924,7 +927,7 @@ export class Output extends EventEmitter {
   setPitchBend(value, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setPitchBend(value, options);
+      this.channels[ch].setPitchBend(value, options);
     });
 
     return this;
@@ -938,7 +941,7 @@ export class Output extends EventEmitter {
   sendPitchBend(bend, channel, options = {}) {
     this.setPitchBend(bend, channel, options);
     console.warn(
-      'The sendPitchBend() method has been deprecated. Use setPitchBend() instead.'
+      "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
     );
     return this;
   }
@@ -989,11 +992,14 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendProgramChange(program, channel, options = {}) {
-    this.setProgram(program, channel, options = {});
+
+    this.setProgram(program, channel, options);
     console.warn(
-      'The sendProgramChange() method has been deprecated. Use setProgram() instead.'
+      "The sendProgramChange() method has been deprecated. Use setProgram() instead."
     );
+
     return this;
+
   }
 
   /**
@@ -1128,7 +1134,7 @@ export class Output extends EventEmitter {
   setTuningBank(value, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setTuningBank(value, options);
+      this.channels[ch].setTuningBank(value, options);
     });
 
     return this;
@@ -1221,8 +1227,8 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends an **all note soff** channel mode message. This will turn all currently playing notes off.
-   * However, this does not prevent new notes from being played.
+   * Sends an **all note soff** channel mode message. This will turn all currently playing notes
+   * off. However, this does not prevent new notes from being played.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -1247,8 +1253,8 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as the
-   * pitch bend, to their default value.
+   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as
+   * the pitch bend, to their default value.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -1730,7 +1736,7 @@ export class Output extends EventEmitter {
     return this.close().then(() => {
       if (this._midiOutput) this._midiOutput.onstatechange = null;
       this._midiOutput = null;
-    })
+    });
   }
 
   /**

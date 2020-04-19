@@ -1,6 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi} from './WebMidi.js';
-import {InputChannel} from './InputChannel.js';
+import {WebMidi} from "./WebMidi.js";
+import {InputChannel} from "./InputChannel.js";
 
 /**
  * The `Input` class represents a MIDI input port. This object is derived from the host's MIDI
@@ -111,8 +111,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Input} that triggered
-       * the event. This is not the actual `Input` as it is no longer available.
+       * @property {Object} target Object with properties describing the {@link Input} that
+       * triggered the event. This is not the actual `Input` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
        * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -128,7 +128,7 @@ export class Input extends EventEmitter {
         name: e.port.name,
         state: e.port.state,
         type: e.port.type
-      }
+      };
       this.emit("disconnected", event);
 
     } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
@@ -414,7 +414,7 @@ export class Input extends EventEmitter {
       await this._midiInput.open();
       return Promise.resolve(this);
     } catch (err) {
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
 
   }
@@ -482,7 +482,7 @@ export class Input extends EventEmitter {
 
       this._midiInput = null;
 
-    })
+    });
 
   }
 
@@ -705,8 +705,6 @@ export class Input extends EventEmitter {
     } else {
       return super.hasListener(type, listener);
     }
-
-    return false;
 
   }
 

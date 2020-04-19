@@ -99,7 +99,6 @@ export class InputChannel extends EventEmitter {
   _parseEventForStandardMessages(e) {
 
     let command = e.data[0] >> 4;
-    let channel = (e.data[0] & 0xf) + 1;
     let data1, data2;
 
     if (e.data.length > 1) {
@@ -371,6 +370,7 @@ export class InputChannel extends EventEmitter {
 
     // Extract basic data
     let command = e.data[0] >> 4;
+    let channel = (e.data[0] & 0xf) + 1;
     let data1;
     let data2;
 
@@ -384,7 +384,10 @@ export class InputChannel extends EventEmitter {
       !(
         command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
         (
-          (data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment && data1 <= WebMidi.MIDI_NRPN_MESSAGES.parammsb) ||
+          (
+            data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &&
+            data1 <= WebMidi.MIDI_NRPN_MESSAGES.parammsb
+          ) ||
           data1 === WebMidi.MIDI_NRPN_MESSAGES.entrymsb ||
           data1 === WebMidi.MIDI_NRPN_MESSAGES.entrylsb
         )
@@ -469,17 +472,17 @@ export class InputChannel extends EventEmitter {
       let nrpnControllerType = "";
 
       switch (this._nrpnBuffer[2].controller.number) {
-        case WebMidi.MIDI_NRPN_MESSAGES.entrymsb:
-          nrpnControllerType = InputChannel.NRPN_TYPES[0];
-          break;
-        case WebMidi.MIDI_NRPN_MESSAGES.increment:
-          nrpnControllerType = InputChannel.NRPN_TYPES[1];
-          break;
-        case WebMidi.MIDI_NRPN_MESSAGES.decrement:
-          nrpnControllerType = InputChannel.NRPN_TYPES[2];
-          break;
-        default:
-          throw new Error("The NPRN type was unidentifiable.");
+      case WebMidi.MIDI_NRPN_MESSAGES.entrymsb:
+        nrpnControllerType = InputChannel.NRPN_TYPES[0];
+        break;
+      case WebMidi.MIDI_NRPN_MESSAGES.increment:
+        nrpnControllerType = InputChannel.NRPN_TYPES[1];
+        break;
+      case WebMidi.MIDI_NRPN_MESSAGES.decrement:
+        nrpnControllerType = InputChannel.NRPN_TYPES[2];
+        break;
+      default:
+        throw new Error("The NPRN type was unidentifiable.");
       }
 
       // now we are done building an NRPN, so clear the NRPN buffer

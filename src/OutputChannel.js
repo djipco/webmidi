@@ -1,5 +1,5 @@
-import {EventEmitter} from '../node_modules/djipevents/dist/djipevents.esm.min.js';
-import {WebMidi} from './WebMidi.js';
+import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
@@ -120,7 +120,7 @@ export class OutputChannel extends EventEmitter {
     if (isNaN(pressure)) pressure = 0.5;
     if (options.useRawValue) pressure = pressure / 127;
     if (pressure < 0 || pressure > 1) {
-      throw new RangeError('Pressure value must be between 0 and 1');
+      throw new RangeError("Pressure value must be between 0 and 1.");
     }
 
     WebMidi.getValidNoteArray(note).forEach(n => {
@@ -229,16 +229,16 @@ export class OutputChannel extends EventEmitter {
    */
   sendControlChange(controller, value, options = {}) {
 
-    if (typeof controller === 'string') {
+    if (typeof controller === "string") {
 
       controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      if (controller === undefined) throw new TypeError('Invalid controller name.');
+      if (controller === undefined) throw new TypeError("Invalid controller name.");
 
     } else {
 
       controller = Math.floor(controller);
       if (!(controller >= 0 && controller <= 119)) {
-        throw new RangeError('Controller numbers must be between 0 and 119.');
+        throw new RangeError("Controller numbers must be between 0 and 119.");
       }
 
     }
@@ -271,12 +271,12 @@ export class OutputChannel extends EventEmitter {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
-      throw new RangeError('The control63 value must be between 0 and 127');
+      throw new RangeError("The control63 value must be between 0 and 127.");
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
-      throw new RangeError('The control62 value must be between 0 and 127');
+      throw new RangeError("The control62 value must be between 0 and 127.");
     }
 
     this.sendControlChange(0x63, parameter[0], {time: time});
@@ -321,12 +321,12 @@ export class OutputChannel extends EventEmitter {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
-      throw new RangeError('The control65 value must be between 0 and 127');
+      throw new RangeError("The control65 value must be between 0 and 127");
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
-      throw new RangeError('The control64 value must be between 0 and 127');
+      throw new RangeError("The control64 value must be between 0 and 127");
     }
 
     this.sendControlChange(0x65, parameter[0], {time: time});
@@ -355,7 +355,7 @@ export class OutputChannel extends EventEmitter {
     if (!isNaN(data[0]) && data[0] >= 0 && data[0] <= 127) {
       this.sendControlChange(0x06, data[0], {time: time});
     } else {
-      throw new RangeError('The msb value must be between 0 and 127');
+      throw new RangeError("The msb value must be between 0 and 127.");
     }
 
     if (data.length < 2) return this;
@@ -366,7 +366,7 @@ export class OutputChannel extends EventEmitter {
     if (!isNaN(data[1]) && data[1] >= 0 && data[1] <= 127) {
       this.sendControlChange(0x26, data[1], {time: time});
     } else {
-      throw new RangeError('The lsb value must be between 0 and 127');
+      throw new RangeError("The lsb value must be between 0 and 127.");
     }
 
   }
@@ -410,7 +410,7 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) {
       if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new TypeError('The specified parameter is not available.');
+        throw new TypeError("The specified parameter is not available.");
       }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
@@ -462,14 +462,14 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) {
       if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error('The specified parameter is not available.');
+        throw new Error("The specified parameter is not available.");
       }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    that._selectRegisteredParameter(parameter, options.time);
-    that.sendControlChange(0x60, 0, {time: options.time});
-    that._deselectRegisteredParameter(ch, options.time);
+    this._selectRegisteredParameter(parameter, options.time);
+    this.sendControlChange(0x60, 0, {time: options.time});
+    this._deselectRegisteredParameter(options.time);
 
     return this;
 
@@ -783,20 +783,20 @@ export class OutputChannel extends EventEmitter {
    */
   sendChannelMode(command, value, options = {}) {
 
-    if (typeof command === 'string') {
+    if (typeof command === "string") {
       command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
     } else {
       command = parseInt(command);
     }
 
     if (isNaN(command) || !(command >= 120 && command <= 127)) {
-      throw new TypeError('Invalid channel mode message name or number.');
+      throw new TypeError("Invalid channel mode message name or number.");
     }
 
     value = parseInt(value) || 0;
 
     if (value < 0 || value > 127) {
-      throw new RangeError('Value must be an integer between 0 and 127.');
+      throw new RangeError("Value must be an integer between 0 and 127.");
     }
 
     this.send(
@@ -833,9 +833,9 @@ export class OutputChannel extends EventEmitter {
   setOmniMode(state, options = {}) {
 
     if (state === undefined || state) {
-      this.sendChannelMode('omnimodeon', 0, options);
+      this.sendChannelMode("omnimodeon", 0, options);
     } else {
-      this.sendChannelMode('omnimodeoff', 0, options);
+      this.sendChannelMode("omnimodeoff", 0, options);
     }
 
     return this;
@@ -843,8 +843,8 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead use
-   * [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+   * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
+   * use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -869,7 +869,7 @@ export class OutputChannel extends EventEmitter {
     if (isNaN(pressure)) pressure = 0.5;
     if (options.rawValue) pressure = pressure / 127;
     if (pressure < 0 || pressure > 1) {
-      throw new RangeError('Pitch bend value must be between 0 and 1');
+      throw new RangeError("Pitch bend value must be between 0 and 1.");
     }
 
     this.send(
@@ -911,7 +911,7 @@ export class OutputChannel extends EventEmitter {
 
     if (value <= -65 || value >= 64) {
       throw new RangeError(
-        'The value must be a decimal number larger than -65 and smaller than 64.'
+        "The value must be a decimal number larger than -65 and smaller than 64."
       );
     }
 
@@ -923,8 +923,8 @@ export class OutputChannel extends EventEmitter {
     let msb = (fine >> 7) & 0x7F;
     let lsb = fine & 0x7F;
 
-    this.setRegisteredParameter('channelcoarsetuning', coarse, {time: options.time});
-    this.setRegisteredParameter('channelfinetuning', [msb, lsb], {time: options.time});
+    this.setRegisteredParameter("channelcoarsetuning", coarse, {time: options.time});
+    this.setRegisteredParameter("channelfinetuning", [msb, lsb], {time: options.time});
 
     return this;
 
@@ -955,7 +955,7 @@ export class OutputChannel extends EventEmitter {
   setModulationRange(semitones, cents, options = {}) {
 
     this.setRegisteredParameter(
-      'modulationrange', [semitones, cents], {time: options.time}
+      "modulationrange", [semitones, cents], {time: options.time}
     );
 
     return this;
@@ -1011,7 +1011,7 @@ export class OutputChannel extends EventEmitter {
 
     this._selectNonRegisteredParameter(parameter, this.number, options.time);
     this._setCurrentRegisteredParameter(data, this.number, options.time);
-    this._deselectRegisteredParameter(channel, options.time);
+    this._deselectRegisteredParameter(options.time);
 
     return this;
 
@@ -1045,7 +1045,7 @@ export class OutputChannel extends EventEmitter {
     if (isNaN(value)) value = 0;
     if (options.rawValue) value = value / 127 * 2 - 1;
     if (value < -1 || value > 1) {
-      throw new RangeError('Pitch bend value must be between -1.0 and 1.0.');
+      throw new RangeError("Pitch bend value must be between -1.0 and 1.0.");
     }
 
     let nLevel = Math.round((value + 1) / 2 * 16383);
@@ -1088,7 +1088,7 @@ export class OutputChannel extends EventEmitter {
   setPitchBendRange(semitones, cents, options = {}) {
 
     this.setRegisteredParameter(
-      'pitchbendrange', [semitones, cents], {time: options.time}
+      "pitchbendrange", [semitones, cents], {time: options.time}
     );
 
     return this;
@@ -1136,7 +1136,8 @@ export class OutputChannel extends EventEmitter {
    * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
    *
    * MIDI
-   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * [registered parameters]
+   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
    * extend the original list of control change messages. The MIDI 1.0 specification lists only a
    * limited number of them. Here are the original registered parameters with the identifier that
    * can be used as the first parameter of this function:
@@ -1183,14 +1184,14 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) {
       if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error('The specified parameter is not available.');
+        throw new Error("The specified parameter is not available.");
       }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
     this._selectRegisteredParameter(parameter, this.number, options.time);
     this._setCurrentRegisteredParameter(data, this.number, options.time);
-    this._deselectRegisteredParameter(this.number, options.time);
+    this._deselectRegisteredParameter(options.time);
 
     return this;
 
@@ -1221,10 +1222,10 @@ export class OutputChannel extends EventEmitter {
 
     value = parseInt(value);
     if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError('The program value must be between 1 and 128');
+      throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter('tuningbank', value - 1, this.number, {time: options.time});
+    this.setRegisteredParameter("tuningbank", value - 1, this.number, {time: options.time});
 
     return this;
 
@@ -1255,10 +1256,10 @@ export class OutputChannel extends EventEmitter {
 
     value = parseInt(value);
     if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError('The program value must be between 1 and 128');
+      throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter('tuningprogram', value - 1, this.number, {time: options.time});
+    this.setRegisteredParameter("tuningprogram", value - 1, this.number, {time: options.time});
 
     return this;
 
@@ -1283,15 +1284,15 @@ export class OutputChannel extends EventEmitter {
    */
   setLocalControl(state, options = {}) {
     if (state) {
-      return this.sendChannelMode('localcontrol', 127, options);
+      return this.sendChannelMode("localcontrol", 127, options);
     } else {
-      return this.sendChannelMode('localcontrol', 0, options);
+      return this.sendChannelMode("localcontrol", 0, options);
     }
   }
 
   /**
-   * Sends an **all notes off** channel mode message. This will turn all currently playing notes off.
-   * However, this does not prevent new notes from being played.
+   * Sends an **all notes off** channel mode message. This will turn all currently playing notes
+   * off. However, this does not prevent new notes from being played.
    *
    * @param {Object} [options={}]
    *
@@ -1303,7 +1304,7 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   turnNotesOff(options = {}) {
-    return this.sendChannelMode('allnotesoff', 0, options);
+    return this.sendChannelMode("allnotesoff", 0, options);
   }
 
   /**
@@ -1320,12 +1321,12 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   turnSoundOff(options = {}) {
-    return this.sendChannelMode('allsoundoff', 0, options);
+    return this.sendChannelMode("allsoundoff", 0, options);
   }
 
   /**
-   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as the
-   * pitch bend, to their default value.
+   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as
+   * the pitch bend, to their default value.
    *
    * @param {Object} [options={}]
    *
@@ -1337,7 +1338,7 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   resetAllControllers(options = {}) {
-    return this.sendChannelMode('resetallcontrollers', 0, options);
+    return this.sendChannelMode("resetallcontrollers", 0, options);
   }
 
   /**
@@ -1357,10 +1358,10 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPolyphonicMode(mode, options = {}) {
-    if (mode === 'mono') {
-      return this.sendChannelMode('monomodeon', 0, options);
+    if (mode === "mono") {
+      return this.sendChannelMode("monomodeon", 0, options);
     } else {
-      return this.sendChannelMode('polymodeon', 0, options);
+      return this.sendChannelMode("polymodeon", 0, options);
     }
   }
 

@@ -1,4 +1,4 @@
-import {WebMidi} from './WebMidi.js';
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `Note` class represents a single note to be played. The `Note` can be played on a single
@@ -60,7 +60,7 @@ export class Note {
    * @type {string}
    */
   get name() {
-    return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(data1);
+    return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(this.number);
   }
   set name(value) {
     value = WebMidi.guessNoteNumber(value);
@@ -77,7 +77,7 @@ export class Note {
   }
   set number(value) {
     value = WebMidi.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note number.")
+    if (value === false) throw new Error("Invalid note number.");
     this._number = value;
   }
 
