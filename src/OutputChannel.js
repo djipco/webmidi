@@ -98,7 +98,7 @@ export class OutputChannel extends EventEmitter {
    * an array of note names and/or numbers.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
-   * will silently trigger the default behaviour. If the `useRaw` option is set to `true`, the
+   * will silently trigger the default behaviour. If the `useRawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
    * @param {Object} [options={}]
@@ -123,11 +123,11 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError('Pressure value must be between 0 and 1');
     }
 
-    WebMidi.getValidNoteArray(note).forEach(item => {
+    WebMidi.getValidNoteArray(note).forEach(n => {
 
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-        [item, Math.round(pressure * 127)],
+        [n.number, Math.round(pressure * 127)],
         WebMidi.convertToTimestamp(options.time)
       );
 
@@ -476,69 +476,66 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a **note on** message for a single note or multiple notes. The execution of the
-   * **note on** command can be delayed by using the `time` property of the `options` parameter.
+   * Plays a note or an array of notes on the channel. The first parameter is the note to play. It
+   * can be a single value or an array of the following valid values:
    *
-   * If no duration is specified in the `options`, the note will play until a matching **note off**
-   * message is sent. If a duration is specified, a **note off** message will be automatically sent
-   * after said duration.
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
    *
-   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
-   * a **note off**.
+   * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
+   * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
+   * object's [duration]{@link Note#duration} property, it will also schedule a **note off** message
+   * to end the note after said duration. If no `duration` is set, the note will simply play until
+   * a matching **note off** message is sent with [stopNote()]{@link OutputChannel#stopNote} or
+   * [sendNoteOff()]{@link OutputChannel#sendNoteOff}.
    *
-   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-   * and/or names.
+   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
+   * objects have precedence over the ones specified via the method's `options` parameter.
+   *
+   * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+   * functionally equivalent to a **note off** message.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
    *
-   * @param {number} [options.duration=undefined] The number of milliseconds (integer) to wait
-   * before sending a matching **note off** event. If left undefined, only a **note on** message is
-   * sent.
+   * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
+   * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
    *
-   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
-   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
-   * (`false`, default).
+   * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
+   * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
+   * value will silently trigger the default of `0.5`.
+   *
+   * @param {number} [options.rawAttack=0.5] The attack velocity at which to play the note (between
+   * `0` and `127`). This has priority over the `attack` property. An invalid velocity value will
+   * silently trigger the default of `0.5`.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * This is only used with the **note off** event triggered when `options.duration` is set.
+   * and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid
+   * velocity value will silently trigger the default of `0.5`. This is only used with the
+   * **note off** event triggered when `options.duration` is set.
+   *
+   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note (between `0`
+   * and `127`). This has priority over the `release` property. An invalid velocity value will
+   * silently trigger the default of `0.5`. This is only used with the **note off** event triggered
+   * when `options.duration` is set.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
-   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   playNote(note, options = {}) {
-
-    let time;
-    let nVelocity = 64;
-
-    if (options.rawValue) {
-
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
-        nVelocity = options.velocity;
-      }
-
-    } else {
-
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
-        nVelocity = options.velocity * 127;
-      }
-
-    }
-
-    time = WebMidi.convertToTimestamp(options.time);
 
     // Send note on message and, optionally, note off message
     this.sendNoteOn(note, options);
@@ -549,68 +546,87 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI **note off** message for a single note or multiple simultaneous notes (chord). You
-   * can delay the execution of the **note off** command by using the `time` property of the
+   * Sends a **note off** message for the specified notes on the channel. The first parameter is the
+   * note. It can be a single value or an array of the following valid values:
+   *
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
+   *
+   *  The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * @param note {number|number[]|string}  The note(s) you wish to stop. The notes can be specified
-   * in one of three ways. The first way is by using the MIDI note number (an integer between `0`
-   * and `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-   * Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0)
-   * and the highest note is G9 (MIDI note number 127). It is also possible to specify an array of
-   * note numbers and/or names. The final way is to use the special value `all` to send an
-   * `"allnotesoff"` channel message.
+   * When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
+   * precedence over the one specified via the method's `options` parameter.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
-   *
-   * @param {Boolean} [options.rawValue=false] Controls whether the release velocity is set using
-   * an integer between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
-   * default).
-   *
-   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
-   * ignored.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
+   * @param {number} [options.release=0.5] The velocity at which to release the note
+   * (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have
+   * priority. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note
+   * (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have
+   * priority. An invalid velocity value will silently trigger the default of `64`.
+   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   sendNoteOff(note, options) {
 
-    if (note === 'all') return this.sendAllNotesOff(channel, options)
+    // Compatibility warning
+    if (options.rawVelocity) {
+      options.rawRelease = options.velocity;
+      console.warn(
+        "The 'rawVelocity' option is deprecated. Use 'rawRelease' instead."
+      );
+    }
+    if (options.velocity) {
+      options.release = options.velocity;
+      console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+    }
 
     let nVelocity = 64;
 
     options = options || {};
 
-    if (options.rawValue) {
-
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
-        nVelocity = options.velocity;
+    if (options.rawRelease) {
+      if (
+        !isNaN(options.rawRelease) &&
+        options.rawRelease >= 0
+        && options.rawRelease <= 127
+      ) {
+        nVelocity = options.rawRelease;
       }
-
     } else {
-
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
-        nVelocity = options.velocity * 127;
+      if (
+        !isNaN(options.release) &&
+        options.release >= 0 &&
+        options.release <= 1
+      ) {
+        nVelocity = options.release * 127;
       }
-
     }
 
     // Send note off messages
-    WebMidi.getValidNoteArray(note).forEach(item => {
+    let o = {rawRelease: nVelocity};
 
+    WebMidi.getValidNoteArray(note, o).forEach(n => {
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
-        [item, Math.round(nVelocity)],
+        [n.number, n.rawRelease],
         WebMidi.convertToTimestamp(options.time)
       );
-
     });
 
     return this;
@@ -623,75 +639,98 @@ export class OutputChannel extends EventEmitter {
    * @see {@link OutputChannel#sendNoteOff}
    *
    * @param note
-   * @param channel
    * @param options
    * @returns {Output}
    */
-  stopNote(note, channel, options) {
-    return this.sendNoteOff(note, channel, options);
+  stopNote(note, options) {
+    return this.sendNoteOff(note, options);
   }
 
   /**
-   * Sends a **note on** message for a single note or multiple notes. The execution of the
-   * **note on** command can be delayed by using the `time` property of the `options` parameter.
+   * Sends a **note on** message for the specified notes on the channel. The first parameter is the
+   * note. It can be a single value or an array of the following valid values:
    *
-   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
-   * a **note off**.
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
    *
-   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-   * and/or names.
+   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
+   * precedence over the one specified via the method's `options` parameter. Also, the `duration` is
+   * ignored. If you want to also send a **note off** message, use the
+   * [playNote()]{@link Output#playNote} method instead.
+   *
+   * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+   * functionally equivalent to a **note off** message.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
-   *
-   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
-   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
-   * (`false`, default).
-   *
-   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * This is only used with the **note off** event triggered when `options.duration` is set.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
-   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
+   * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
+   * velocity value will silently trigger the default of `0.5`.
+   *
+   * @param {number} [options.rawAttack=0.5] The velocity at which to release the note (between `0`
+   * and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid
+   * velocity value will silently trigger the default of `64`.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   sendNoteOn(note, options = {}) {
 
-    let time;
+    // Compatibility warnings
+    if (options.rawVelocity) {
+      options.rawAttack = options.velocity;
+      options.rawRelease = options.release;
+      console.warn(
+        "The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease' instead."
+      );
+    }
+    if (options.velocity) {
+      options.attack = options.velocity;
+      console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+    }
+
     let nVelocity = 64;
 
-    if (options.rawValue) {
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 127) {
-        nVelocity = options.velocity;
+    if (options.rawAttack) {
+      if (
+        !isNaN(options.attack) &&
+        options.attack >= 0 &&
+        options.attack <= 127
+      ) {
+        nVelocity = options.attack;
       }
     } else {
-      if (!isNaN(options.velocity) && options.velocity >= 0 && options.velocity <= 1) {
-        nVelocity = options.velocity * 127;
+      if (
+        !isNaN(options.attack) &&
+        options.attack >= 0 &&
+        options.attack <= 1
+      ) {
+        nVelocity = options.attack * 127;
       }
     }
 
-    time = WebMidi.convertToTimestamp(options.time);
+    let o = {rawAttack: nVelocity};
 
-    WebMidi.getValidNoteArray(note).forEach(item => {
-
+    WebMidi.getValidNoteArray(note, o).forEach(n => {
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
-        [item, Math.round(nVelocity)],
-        time
+        [n.number, n.rawAttack],
+        WebMidi.convertToTimestamp(options.time)
       );
-
     });
 
     return this;
