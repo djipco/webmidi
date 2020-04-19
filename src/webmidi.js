@@ -1,6 +1,7 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {Input} from "./Input.js";
 import {Output} from "./Output.js";
+import {Note} from "./Note.js";
 
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -38,19 +39,6 @@ class WebMidi extends EventEmitter {
     this.interface = null;
 
     /**
-     * An integer to offset the octave both in inbound and outbound messages. By default, middle C
-     * (MIDI note number 60) is placed on the 4th octave (C4).
-     *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-     *
-     * @type {number}
-     *
-     * @since 2.1
-     */
-    this.octaveOffset = 0;
-
-    /**
      * Array of all {@link Input} objects
      * @type {Input[]}
      * @private
@@ -72,6 +60,8 @@ class WebMidi extends EventEmitter {
      * @private
      */
     this._stateChangeQueue = [];
+
+    this._octaveOffset = 0;
 
     // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and performance.now()
     if (this.isNode) {
@@ -478,8 +468,10 @@ class WebMidi extends EventEmitter {
    */
   getOctave(number) {
 
-    if (number != null && number >= 0 && number <= 127) {
-      return Math.floor(Math.floor(number) / 12 - 1) + Math.floor(this.octaveOffset);
+    number = parseInt(number);
+
+    if (!isNaN(number) && number >= 0 && number <= 127) {
+      return Math.floor(number / 12 - 1) + this.octaveOffset;
     } else {
       return false;
     }
@@ -503,9 +495,9 @@ class WebMidi extends EventEmitter {
 
     let channels;
 
-    if (channel === "all" || channel === undefined) { // backwards-compatibility
+    if (channel === "all") { // backwards-compatibility
       channels = ["all"];
-    } else if (channel === "none") {
+    } else if (channel === "none") { // backwards-compatibility
       return [];
     } else if (!Array.isArray(channel)) {
       channels = [channel];
@@ -541,8 +533,9 @@ class WebMidi extends EventEmitter {
 
   /**
    * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-   * string containing a note name (C3, F#4, D-2, G8, etc.). If an integer between 0 and 127 is
-   * passed, it will simply be returned as is (for convenience).
+   * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
+   * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
+   * parsed for integer, if possible.
    *
    * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
    * is invalid.
@@ -571,46 +564,76 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Converts an input value (which can be an unsigned int, a string or an array of the previous
-   * two) to an array of valid MIDI note numbers.
+   * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
+   * object or an array of the previous types, to an array of {@link Note} objects.
    *
-   * @param [note] {number|Array|string}
+   * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
+   * created with the options specified.
    *
-   * @returns {number[]}
+   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @returns {Note[]}
    */
-  getValidNoteArray(note) {
+  getValidNoteArray(notes, options = {}) {
 
-    let notes = [];
-    if (!Array.isArray(note)) note = [note];
-    note.forEach(item => notes.push(this.guessNoteNumber(item)));
-    return notes;
+    let result = [];
+    if (!Array.isArray(notes)) notes = [notes];
+
+    notes.forEach(note => {
+
+      if (note instanceof Note) {
+        result.push(note);
+      } else {
+        let number = this.guessNoteNumber(note);
+        if (number !== false) result.push(new Note(number, options));
+      }
+
+    });
+
+    return result;
 
   }
 
   /**
-   * Returns a timestamp, relative to the navigation start of the document, derived from the `time`
-   * parameter. If the parameter is a string starting with the "+" sign and followed by a number,
-   * the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
-   * value will be returned as is.
+   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+   * returned.
    *
-   * If the calculated return value is 0, less than zero or an otherwise invalid value, `false` will
-   * be returned.
-   *
-   * @param [time] {number|string} The time string or integer to parse
-   * @return DOMHighResTimeStamp
+   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+   * @return {number} A positive number
    */
   convertToTimestamp(time) {
 
-    let value;
+    let value = false;
     let parsed = parseFloat(time);
+    if (isNaN(parsed)) return false;
 
     if (typeof time === "string" && time.substring(0, 1) === "+") {
-      if (parsed && parsed > 0) value = performance.now() + parsed;
+      if (parsed >= 0) value = performance.now() + parsed;
     } else {
-      if (parsed > performance.now()) value = parsed;
+      if (parsed >= 0) value = parsed;
     }
 
-    return value || false;
+    return value;
 
   };
 
@@ -893,6 +916,27 @@ class WebMidi extends EventEmitter {
   }
 
   /**
+   * An integer to offset the octave both in inbound and outbound messages. By default, middle C
+   * (MIDI note number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * @type {number}
+   *
+   * @since 2.1
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+    value = parseInt(value);
+    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.")
+    this._octaveOffset = value;
+  }
+
+
+  /**
    * Array of valid events triggered at the interface level.
    *
    * @type {string[]}
@@ -921,7 +965,7 @@ class WebMidi extends EventEmitter {
    * - `timecode`: 0xF1 (241)
    * - `songposition`: 0xF2 (242)
    * - `songselect`: 0xF3 (243)
-   * - `tuningrequest`: 0xF6 (246)
+   * - `tunerequest`: 0xF6 (246)
    * - `sysexend`: 0xF7 (247)
    *
    * The `sysexend` message is never actually received. It simply ends a sysex stream.
@@ -960,6 +1004,7 @@ class WebMidi extends EventEmitter {
       songposition: 0xF2,     // 242
       songselect: 0xF3,       // 243
       tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
       sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
 
       // System real-time messages
