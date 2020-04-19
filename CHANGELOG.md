@@ -14,6 +14,8 @@ referencing the available inputs and outputs.
 
 - `Input` and `Output` objects now emit `opened`, `closed` and `disconnected` events.
 
+- There are new `InputChannel` and `OutputChannel` objects. They have most of the methods of the ...
+
 - All emitted events now have a `target` property referencing the object that triggered the event.
 
 - The `sendNoteOn()` method has been added. It behaves the same way as `playNote()` does except it 
@@ -31,7 +33,11 @@ between 0 and 1.
 ### Changed
 
 - [BREAKING CHANGE] The `iife` version of the library is now namespaced inside the `webmidi` 
-global property. This means that the `WebMidi` object is accessible at `webmidi.WebMidi`.
+global property. This means that the `WebMidi` object is accessible at `webmidi.WebMidi`. This 
+allows us to grow the library with more objects such as the new `Note` object.
+
+- [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
+that all channels should be listening. This was a terrible design decision and it ends now.
 
 - All non-chainable methods now return `false` instead of returning `undefined` or throwing an error
 when invalid input is provided. Methods that were changed to match this behaviour are 
@@ -70,14 +76,17 @@ work in version 3.0:
 - Grunt has been replaced with NPM scripts for all build purposes.
 
 - [BREAKING CHANGE] The `nrpnEventsEnabled` property has been moved from the `Input` class to the 
-`InputChannel` class.
+`InputChannel` class. Trying to access it will trigger a warning in the console.
 
-- [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`.
+- [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`. 
 
 - Although still supported, passing `"all"` as the `channel` parameter is now discouraged for 
-performance reasons. For this reason, it has been removed from the documentation.
+performance reasons. It has been removed from the documentation.
 
 ### Deprecated
+
+- The `velocity` option parameter has been renamed `attack`. There are new `rawAttack` and 
+`rawRelease` parameters that should be used instead of setting `rawVelocity` to `true`.
 
 - The name of the `WebMidi.noteNameToNumber()` method was changed to 
 `WebMidi.getNoteNumberByName()`. The old name has been deprecated but will continue to work in v3.x.
@@ -98,7 +107,6 @@ v3.x.
 
 - Support for Bower.
 
-### Fixed
 
 ## [2.5.1] - 2019-08-25
 
