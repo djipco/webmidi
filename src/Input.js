@@ -283,7 +283,7 @@ export class Input extends EventEmitter {
        * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"songseletunerequest"`
+       * @property {string} type `"tunerequest"`
        */
       event.type = "tunerequest";
 
@@ -809,6 +809,11 @@ export class Input extends EventEmitter {
    */
   get type() {
     return this._midiInput.type;
+  }
+
+  get nrpnEventsEnabled() {
+    console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
+    return false;
   }
 
 }
