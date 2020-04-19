@@ -6,7 +6,7 @@ import {WebMidi} from './WebMidi.js';
  * channels at once by using [Output.playNote()]{@link Output#playNote}.
  *
  * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitely stopped using
+ * no duration is set, it will play until it is explicitly stopped using
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
  * [Output.stopNote()]{@link Output#stopNote}.
  *
@@ -20,19 +20,17 @@ import {WebMidi} from './WebMidi.js';
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number[]} [options.channels] An array of channel numbers to play the note on (1-16).
+ * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
+ * 1.
  *
- * @param {number} [options.attackVelocity=0.5] The note's attack velocity as a decimal number
- * between 0 and 1.
+ * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+ * and 1.
  *
- * @param {number} [options.releaseVelocity=0.5] The note's release velocity as a decimal number
- * between 0 and 1.
+ * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+ * 127.
  *
- * @param {number} [options.rawAttackVelocity=64] The note's attack velocity as an integer between
- * 0 and 127.
- *
- * @param {number} [options.rawReleaseVelocity=64] The note's release velocity as an integer between
- * 0 and 127.
+ * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+ * 127.
  *
  * @throws {Error} Invalid note name.
  *
@@ -49,10 +47,10 @@ export class Note {
 
     this.duration = options.duration;
     this.channels = options.channels;
-    this.attackVelocity = options.attackVelocity;
-    this.releaseVelocity = options.releaseVelocity;
-    if (options.rawAttackVelocity) this.rawAttackVelocity = options.rawAttackVelocity;
-    if (options.rawReleaseVelocity) this.rawReleaseVelocity = options.rawReleaseVelocity;
+    this.attack = options.attack;
+    this.release = options.release;
+    if (options.rawAttack) this.rawAttack = options.rawAttack;
+    if (options.rawRelease) this.rawRelease = options.rawRelease;
 
   }
 
@@ -121,12 +119,12 @@ export class Note {
    *
    * @type {number}
    */
-  get attackVelocity() {
-    return this._rawAttackVelocity / 127;
+  get attack() {
+    return this._rawAttack / 127;
   }
-  set attackVelocity(value) {
+  set attack(value) {
     value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawAttackVelocity = isNaN(value) ? 64 : Math.round(value * 127);
+    this._rawAttack = isNaN(value) ? 64 : Math.round(value * 127);
   }
 
   /**
@@ -134,12 +132,12 @@ export class Note {
    * 64.
    * @type {number}
    */
-  get rawAttackVelocity() {
-    return this._rawAttackVelocity;
+  get rawAttack() {
+    return this._rawAttack;
   }
-  set rawAttackVelocity(value) {
+  set rawAttack(value) {
     value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawAttackVelocity = isNaN(value) ? 64 : value;
+    this._rawAttack = isNaN(value) ? 64 : value;
   }
 
   /**
@@ -148,12 +146,12 @@ export class Note {
    *
    * @type {number}
    */
-  get releaseVelocity() {
-    return this._rawReleaseVelocity / 127;
+  get release() {
+    return this._rawRelease / 127;
   }
-  set releaseVelocity(value) {
+  set release(value) {
     value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawReleaseVelocity = isNaN(value) ? 64 : Math.round(value * 127);
+    this._rawRelease = isNaN(value) ? 64 : Math.round(value * 127);
   }
 
   /**
@@ -161,12 +159,12 @@ export class Note {
    * to 64.
    * @type {number}
    */
-  get rawReleaseVelocity() {
-    return this._rawReleaseVelocity;
+  get rawRelease() {
+    return this._rawRelease;
   }
-  set rawReleaseVelocity(value) {
+  set rawRelease(value) {
     value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawReleaseVelocity = isNaN(value) ? 64 : value;
+    this._rawRelease = isNaN(value) ? 64 : value;
   }
 
   /**

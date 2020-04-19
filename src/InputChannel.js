@@ -133,8 +133,8 @@ export class InputChannel extends EventEmitter {
        * @property {Object} note.number The MIDI note number.
        * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
        * @property {Object} note.octave The octave (between -2 and 8).
-       * @property {number} velocity The release velocity expressed as a float between 0 and 1.
-       * @property {number} rawVelocity The release velocity expressed as an integer (between 0 and
+       * @property {number} release The release velocity expressed as a float between 0 and 1.
+       * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
       event.type = "noteoff";
@@ -143,8 +143,8 @@ export class InputChannel extends EventEmitter {
         name: WebMidi.NOTES[data1 % 12],
         octave: WebMidi.getOctave(data1)
       };
-      event.velocity = data2 / 127;
-      event.rawVelocity = data2;
+      event.release = data2 / 127;
+      event.rawRelease = data2;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
 
@@ -162,8 +162,8 @@ export class InputChannel extends EventEmitter {
        * @property {Object} note.number The MIDI note number.
        * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
        * @property {Object} note.octave The octave (between -2 and 8).
-       * @property {number} velocity The attack velocity expressed as a float between 0 and 1.
-       * @property {number} rawVelocity The attack velocity expressed as an integer (between 0 and
+       * @property {number} attack The attack velocity expressed as a float between 0 and 1.
+       * @property {number} rawAttack The attack velocity expressed as an integer (between 0 and
        * 127).
        */
       event.type = "noteon";
@@ -172,8 +172,8 @@ export class InputChannel extends EventEmitter {
         name: WebMidi.NOTES[data1 % 12],
         octave: WebMidi.getOctave(data1)
       };
-      event.velocity = data2 / 127;
-      event.rawVelocity = data2;
+      event.attack = data2 / 127;
+      event.rawVAttack = data2;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
 
