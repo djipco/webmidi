@@ -15,13 +15,15 @@
   },
   "types": "webmidi.d.ts",
   "scripts": {
-    "build": "node tools/build/build.js -t cjs && node tools/build/build.js -t esm && node tools/build/build.js -t iife",
+    "build:all": "npm run lint && npm run build:cjs && npm run build:esm && npm run build:iife",
+    "build:cjs": "node tools/build/build.js -t cjs",
+    "build:esm": "node tools/build/build.js -t esm",
+    "build:iife": "node tools/build/build.js -t esm",
     "documentation:generate": "node tools/documentation/generate.js",
     "documentation:publish": "node tools/documentation/publish.js",
     "lint": "eslint ./src/*.js",
-    "test": "mocha --require @babel/polyfill test/index.js --exit",
-    "test-all": "npm run types && npm run lint && npm run test-coverage",
-    "test-coverage": "nyc --reporter=text npm run test",
+    "test:all": "mocha --require @babel/polyfill test/index.js --exit",
+    "test:coverage": "nyc --reporter=text npm run test:all",
     "types": "tsc --strict --noEmit ./webmidi.d.ts"
   },
   "repository": {
