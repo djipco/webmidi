@@ -1,5 +1,5 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi} from './WebMidi.js';
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `InputChannel` class represents a single input channel (1-16) from an input device. This
