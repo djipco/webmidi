@@ -1,18 +1,19 @@
-const expect = require('chai').expect;
+const expect = require("chai").expect;
 const {isNative} = require("./support/Utils.cjs.js");
-const MT = require("midi-test");
+const midi = require("midi");
+const sinon = require("sinon");
 const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
 
-// Create virtual MIDI input and output ports using 'midi-test' and make them available globally.
-const inputPort = new MT.MidiSrc("VIRTUAL MIDI-In");
+// Create virtual MIDI input and output ports and make them available globally.
+const inputPort = new midi.Input();
+const outputPort = new midi.Output();
 global.inputPort = inputPort;
-const outputPort = new MT.MidiDst("VIRTUAL MIDI-Out");
 global.outputPort = outputPort;
-global.outputPort.receive = () => {}; // this is to prevent stdout to the console
 
 // Make objects available globally. We do this so we can use the same test files for browser and
 // Node.js
 global.expect = expect;
+global.sinon = sinon;
 global.isNative = isNative;
 global.WebMidi = WebMidi;
 global.Note = Note;
@@ -20,14 +21,14 @@ global.Note = Note;
 // Start tests...
 describe("WebMidi.js Test Suite", function() {
 
-  beforeEach(async function() {
-    inputPort.connect();
-    outputPort.connect();
+  before(function () {
+    inputPort.openVirtualPort("Virtual Input");
+    outputPort.openVirtualPort("Virtual Output");
   });
 
-  afterEach(async function() {
-    inputPort.disconnect();
-    outputPort.disconnect();
+  after(function () {
+    inputPort.closePort();
+    outputPort.closePort();
   });
 
   // Fetch tests from appropriate files...
@@ -35,8 +36,8 @@ describe("WebMidi.js Test Suite", function() {
   require("./tests/WebMidi.test.js");
   require("./tests/Note.test.js");
   require("./tests/Input.test.js");
+  require("./tests/Output.test.js");
   // require("./tests/InputChannel.test.js");
-  // require("./tests/Output.test.js");
   // require("./tests/OutputChannel.test.js");
 
 });

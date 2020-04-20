@@ -67,26 +67,27 @@ describe("WebMidi", function() {
   //   await WebMidi.enable();
   //
   //   // We disconnect the external device's input port. From WebMidi's point of view, it is an
-  //   // output port. As a matter of fact, it shows up here as "VIRTUAL MIDI-Out".
-  //   inputPort.disconnect();
+  //   // output port.
+  //   inputPort.closePort();
+  //   inputPort.openPort(0);
   //
-  //   await new Promise(function(resolve) {
-  //
-  //     // resolve(); // marche
-  //
-  //     WebMidi.addListener("connected", function(e) {
-  //
-  //       // resolve(); // marche pas
-  //
-  //       if (e.target.name === "VIRTUAL MIDI-Out") {
-  //         console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
-  //         resolve(); // marche pas.
-  //       }
-  //     });
-  //
-  //     inputPort.connect();
-  //
-  //   });
+  //   // await new Promise(function(resolve) {
+  //   //
+  //   //   // resolve(); // marche
+  //   //
+  //   //   WebMidi.addListener("connected", function(e) {
+  //   //
+  //   //     // resolve(); // marche pas
+  //   //
+  //   //     if (e.target.name === "Virtual Input") {
+  //   //       console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
+  //   //       resolve(); // marche pas.
+  //   //     }
+  //   //   });
+  //   //
+  //   //   inputPort.openVirtualPort("Virtual Input");
+  //   //
+  //   // });
   //
   // });
 
