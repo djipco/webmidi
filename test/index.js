@@ -6,6 +6,7 @@ const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
 
 // Create virtual MIDI input and output ports and make them available globally.
 const inputPort = new midi.Input();
+inputPort.ignoreTypes(false, false, false); // include sysex, timing and active sensing
 const outputPort = new midi.Output();
 global.inputPort = inputPort;
 global.outputPort = outputPort;
