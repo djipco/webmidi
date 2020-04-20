@@ -31,6 +31,11 @@ export class OutputChannel extends EventEmitter {
 
   }
 
+  destroy() {
+    this.output = null;
+    this.removeListener();
+  }
+
   /**
    * Sends a MIDI message at the scheduled timestamp. It is usually not necessary to use this method
    * directly as you can use one of the simpler helper methods such as `playNote()`, `stopNote()`,

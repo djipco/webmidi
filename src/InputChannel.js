@@ -53,6 +53,11 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  destroy() {
+    this.input = null;
+    this.removeListener();
+  }
+
   /**
    * @param e Event
    * @protected
