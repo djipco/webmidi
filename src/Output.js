@@ -21,6 +21,10 @@ export class Output extends EventEmitter {
 
     super();
 
+    if (!midiOutput || midiOutput.type !== "output") {
+      throw new TypeError("The supplied MIDIOutput is invalid.");
+    }
+
     /**
      * A reference to the `MIDIOutput` object
      * @type {MIDIOutput}
@@ -39,6 +43,20 @@ export class Output extends EventEmitter {
 
     this._midiOutput.onstatechange = this._onStateChange.bind(this);
 
+  }
+
+  /**
+   * Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
+   * subsystem is unlinked.
+   * @returns {Promise<void>}
+   */
+  async destroy() {
+    this.removeListener();
+    this.channels.forEach(ch => ch.destroy());
+    this.channels = [];
+    this._midiOutput.onstatechange = null;
+    await this.close();
+    this._midiOutput = null;
   }
 
   /**
@@ -144,8 +162,9 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Closes the output. When an output is closed, it cannot be used to send MIDI messages until the
-   * output is opened again by calling [Output.open()]{@link Output#open}.
+   * Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
+   * until the output is opened again by calling [Output.open()]{@link Output#open}. You can check
+   * the connection status by looking at the [connection]{@link Output#connection} property.
    *
    * @returns {Promise<void>}
    */
@@ -154,17 +173,17 @@ export class Output extends EventEmitter {
     // We close the port. This triggers a 'statechange' event which we listen to to re-trigger the
     // 'closed' event.
     if (this._midiOutput) {
-      return this._midiOutput.close();
+      await this._midiOutput.close();
     } else {
-      return Promise.resolve();
+      await Promise.resolve();
     }
 
   }
 
   /**
    * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. It is usually not
-   * necessary to use this method directly as you can use one of the simpler helper methods such as
-   * `playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   * necessary to use this method directly since it is often simpler to use one of the helper
+   * methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
@@ -1668,6 +1687,8 @@ export class Output extends EventEmitter {
       this.channels[ch].playNote(note, options);
     });
 
+    return this;
+
   }
 
   /**
@@ -1723,20 +1744,6 @@ export class Output extends EventEmitter {
 
     return this;
 
-  }
-
-  /**
-   * Closes the output, unregisters listeners and disconnects the output from the host's MIDI
-   * subsystem.
-   *
-   * @async
-   * @return {Promise<void>}
-   */
-  async destroy() {
-    return this.close().then(() => {
-      if (this._midiOutput) this._midiOutput.onstatechange = null;
-      this._midiOutput = null;
-    });
   }
 
   /**

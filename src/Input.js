@@ -55,6 +55,15 @@ export class Input extends EventEmitter {
 
   }
 
+  async destroy() {
+    this.removeListener();
+    this.channels.forEach(ch => ch.destroy());
+    this.channels = [];
+    this._midiInput.onstatechange = null;
+    await this.close();
+    this._midiInput = null;
+  }
+
   /**
    * Executed when a `"statechange"` event occurs.
    *
@@ -466,25 +475,6 @@ export class Input extends EventEmitter {
     return false;
 
   };
-
-  /**
-   * @async
-   * @return {Promise<void>}
-   */
-  async destroy() {
-
-    return this._midiInput.close().then(() => {
-
-      if (this._midiInput) {
-        this._midiInput.onmidimessage = null;
-        this._midiInput.onstatechange = null;
-      }
-
-      this._midiInput = null;
-
-    });
-
-  }
 
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
