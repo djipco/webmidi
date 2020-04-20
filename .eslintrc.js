@@ -17,7 +17,10 @@ module.exports = {
     "Promise": "readonly",
     "WebMidi": "readonly",
     "chai": "readonly",
-    "sinon": "readonly"
+    "sinon": "readonly",
+    "expect": "readonly",
+    "Note": "readonly",
+    "isNative": "readonly"
   },
 
   "extends": ["eslint:recommended", "prettier"],
