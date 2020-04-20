@@ -20,7 +20,9 @@ module.exports = {
     "sinon": "readonly",
     "expect": "readonly",
     "Note": "readonly",
-    "isNative": "readonly"
+    "isNative": "readonly",
+    "inputPort": "readonly",
+    "outputPort": "readonly",
   },
 
   "extends": ["eslint:recommended", "prettier"],
