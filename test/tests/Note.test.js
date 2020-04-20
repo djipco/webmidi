@@ -42,6 +42,24 @@ describe("Note", function() {
       expect(note2.rawRelease).to.equal(64);
     });
 
+    it("should give priority to rawAttack/rawRelease over attack/release", function() {
+
+      let options = {
+        attack: 42,
+        release: 0,
+        rawAttack: 127,
+        rawRelease: 127
+      };
+
+      let note = new Note(60, options);
+
+      expect(note.attack).to.equal(1);
+      expect(note.release).to.equal(1);
+      expect(note.rawAttack).to.equal(127);
+      expect(note.rawRelease).to.equal(127);
+
+    });
+
     it("should convert invalid velocities to valid values", function() {
 
       let note1 = new Note(60, {attack: -1.1});
@@ -64,7 +82,7 @@ describe("Note", function() {
         let note1 = new Note(60, {attack: param});
         expect(note1.rawAttack).to.equal(64);
         let note2 = new Note(60, {release: param});
-        expect(note1.rawRelease).to.equal(64);
+        expect(note2.rawRelease).to.equal(64);
       });
 
     });
@@ -79,6 +97,66 @@ describe("Note", function() {
       ["G9", 127].forEach(param => {
         let note = new Note(param);
         expect(note.octave).to.equal(9);
+      });
+
+    });
+
+  });
+
+  describe("set name()", function () {
+
+    it("should throw error if passing an invalid note name", function() {
+
+      let note = new Note(42);
+
+      let params = [-1];
+
+      params.forEach(param => {
+        expect(() => note.name = param).to.throw(Error);
+      });
+
+    });
+
+  });
+
+  describe("set number()", function () {
+
+    it("should throw error if passing an invalid note name", function() {
+
+      let note = new Note(42);
+
+      [
+        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8", Infinity, -Infinity
+      ].forEach(function (param) {
+        expect(() => note.number = param).to.be.throw(Error);
+      });
+
+    });
+
+  });
+
+  describe("set duration()", function () {
+
+    it("should set duration to infinity if the value is invalid", function() {
+
+      let note = new Note(42);
+
+      [
+        "abc", null, undefined, function () {}, {}, "H3", NaN
+      ].forEach(function (param) {
+        note.duration = param;
+        expect(note.duration).to.equal(Infinity);
+      });
+
+    });
+
+    it("should set duration to 0 if the value is negative", function() {
+
+      let note = new Note(42);
+
+      ["-1", -1, -Infinity].forEach(function (param) {
+        note.duration = param;
+        expect(note.duration).to.equal(0);
       });
 
     });

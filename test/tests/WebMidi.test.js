@@ -37,12 +37,9 @@ describe("WebMidi", function() {
     // Ignore in browser
     if (!WebMidi.isNode) this.skip();
 
-    return new Promise(async resolve => {
-      WebMidi.addListener("enabled", async () => {
-        await WebMidi.disable();
-        resolve();
-      });
-      await WebMidi.enable();
+    await new Promise(resolve => {
+      WebMidi.addListener("enabled", resolve);
+      WebMidi.enable();
     });
 
   });
@@ -52,11 +49,9 @@ describe("WebMidi", function() {
     // Ignore in browser
     if (!WebMidi.isNode) this.skip();
 
-    await WebMidi.enable();
-
-    await new Promise(async resolve => {
+    await new Promise(resolve => {
       WebMidi.addListener("disabled", resolve);
-      await WebMidi.disable();
+      WebMidi.disable();
     });
 
   });
@@ -71,11 +66,11 @@ describe("WebMidi", function() {
   //
   //   await WebMidi.enable();
   //
-  //   // We disconnect the external device's input port. From WebMidi's point of view, it is an output
-  //   // port. As a matter of fact, it shows up here as "VIRTUAL MIDI-Out".
+  //   // We disconnect the external device's input port. From WebMidi's point of view, it is an
+  //   // output port. As a matter of fact, it shows up here as "VIRTUAL MIDI-Out".
   //   inputPort.disconnect();
   //
-  //   await new Promise(async function(resolve) {
+  //   await new Promise(function(resolve) {
   //
   //     // resolve(); // marche
   //
@@ -223,9 +218,9 @@ describe("WebMidi", function() {
       navigator.requestMIDIAccess = undefined;
 
       WebMidi.enable({callback: err => {
-          expect(err).to.be.an("error");
-          done();
-        }}).catch(() => {});
+        expect(err).to.be.an("error");
+        done();
+      }}).catch(() => {});
 
       navigator.requestMIDIAccess = backup;
 
@@ -276,22 +271,22 @@ describe("WebMidi", function() {
 
       WebMidi.enable({callback: function (err) {
 
-          if (err) { // This could happen if WebMIDIAPIShim is there but not the Jazz-Plugin
-            expect(WebMidi.enabled).to.equal(false);
-          } else {
-            expect(WebMidi.enabled).to.equal(true);
-          }
+        if (err) { // This could happen if WebMIDIAPIShim is there but not the Jazz-Plugin
+          expect(WebMidi.enabled).to.equal(false);
+        } else {
+          expect(WebMidi.enabled).to.equal(true);
+        }
 
-          done();
+        done();
 
-        }});
+      }});
 
     });
 
     it("should execute the callback if successful", function(done) {
       WebMidi.enable({callback: function () {
-          done();
-        }});
+        done();
+      }});
     });
 
     it("should return a promise if successful", function(done) {
@@ -623,6 +618,48 @@ describe("WebMidi", function() {
 
   });
 
+  describe("getValidNoteArray()", function() {
+
+    it("should exclude invalid values", function() {
+
+      let invalid = ["abc", null, undefined, -1, 128, {}, "555", "H3", "Z#8", Infinity, -Infinity];
+      let valid = [42, "42", new Note(60), "C-1", "G9"];
+
+      let notes = WebMidi.getValidNoteArray(invalid.concat(valid));
+      expect(notes.length).to.equal(valid.length);
+
+    });
+
+    it("should pass on options to values that aren't 'Note' objects", function() {
+
+      let options1 = {
+        duration: 1000,
+        attack: 1,
+        release: 1
+      };
+
+      let notes1 = WebMidi.getValidNoteArray([60], options1);
+      expect(notes1[0].duration).to.equal(1000);
+      expect(notes1[0].attack).to.equal(1);
+      expect(notes1[0].release).to.equal(1);
+
+      let options2 = {
+        attack: 0.1,
+        release: 0.1,
+        rawAttack: 127,
+        rawRelease: 127,
+      };
+
+      let notes2 = WebMidi.getValidNoteArray([60], options2);
+      expect(notes2[0].duration).to.equal(Infinity);
+      expect(notes2[0].attack).to.equal(1);
+      expect(notes2[0].release).to.equal(1);
+
+
+    });
+
+  });
+
   describe("guessNoteNumber()", function() {
 
     it("should return false if invalid input is provided", function() {
@@ -741,6 +778,42 @@ describe("WebMidi", function() {
 
   });
 
+  describe("noteNameToNumber()", function() {
+
+    it("should return the same as getNoteNumberByName()", function() {
+
+      [
+        "", "abc", null, undefined, "G#9", "Cb-1", "555", "C-3", "Cbb-1/", "H3", "G##9",
+        "C6", "C-1", "G9"
+      ].forEach(param => {
+        expect(WebMidi.noteNameToNumber(param)).to.equal(WebMidi.getNoteNumberByName(param));
+      });
+
+    });
+
+    it("should return the correct number given the current octave", function() {
+
+      WebMidi.octaveOffset = 0;
+      expect(WebMidi.getNoteNumberByName("C-1")).to.equal(0);
+      expect(WebMidi.getNoteNumberByName("B-1")).to.equal(11);
+      WebMidi.octaveOffset = -1;
+      expect(WebMidi.getNoteNumberByName("C-1")).to.equal(12);
+      expect(WebMidi.getNoteNumberByName("B-1")).to.equal(23);
+      WebMidi.octaveOffset = -10;
+      expect(WebMidi.getNoteNumberByName("C-1")).to.equal(120);
+      expect(WebMidi.getNoteNumberByName("B-1")).to.be.false;
+      WebMidi.octaveOffset = 0;
+
+    });
+
+  });
+
+  describe("set octaveOffset()", function() {
+
+    it("should be tested!");
+
+  });
+
   describe("sanitizeChannels()", function() {
 
     it("should return only valid MIDI channel numbers", function() {
@@ -765,6 +838,77 @@ describe("WebMidi", function() {
     it("should return an empty array when 'none' is passed", function() {
       expect(WebMidi.sanitizeChannels("none").length).to.equal(0);
     });
+
+  });
+
+  describe("toMIDIChannels()", function() {
+
+    it("should return the same as sanitizeChannels()", function() {
+
+      let values = [
+        1, -1, -2.3, 0, 17, "x", NaN, null, Infinity, 8, -Infinity, true, false, [undefined],
+        4e2, 16, 1, 16
+      ];
+
+      let a = WebMidi.toMIDIChannels(values);
+      let b = WebMidi.sanitizeChannels(values);
+      for (let i = 0; i <a.length; i++) expect(a[i]).to.equal(b[i]);
+
+    });
+
+  });
+
+  describe("get MIDI_CHANNEL_VOICE_MESSAGES()", function() {
+    it("should return an object with valid properties", function() {
+      expect(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend).to.equal(0xE);
+    });
+  });
+
+  describe("get MIDI_CHANNEL_MESSAGES()", function() {
+    it("should return an object with valid properties", function() {
+      expect(WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend).to.equal(0xE);
+    });
+  });
+
+  describe("get MIDI_REGISTERED_PARAMETER()", function() {
+    it("should return an object with valid properties", function() {
+      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[0]).to.equal(0x3D);
+      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[1]).to.equal(0x08);
+    });
+  });
+
+  describe("get MIDI_CONTROL_CHANGE_MESSAGES()", function() {
+    it("should return an object with valid properties", function() {
+      expect(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine).to.equal(101);
+    });
+  });
+
+  describe("get MIDI_NRPN_MESSAGES()", function() {
+    it("should return an object with valid properties", function() {
+      expect(WebMidi.MIDI_NRPN_MESSAGES.nullactiveparameter).to.equal(127);
+    });
+  });
+
+  describe("set octaveOffset()", function() {
+
+    afterEach("Reset octave", function () {
+      WebMidi.octaveOffset = 0;
+    });
+
+    it("should throw error for invalid values", function() {
+      ["abc", null, undefined, () => {}, {}, Infinity, -Infinity].forEach(value => {
+        expect(() => WebMidi.octaveOffset = value).to.throw(Error);
+      });
+    });
+
+    it("should properly set the octave when the value is valid", function() {
+      [-1, 9, "-1", "9"].forEach(value => {
+        WebMidi.octaveOffset = value;
+        expect(WebMidi._octaveOffset).to.equal(WebMidi.octaveOffset);
+      });
+    });
+
+
 
   });
 
