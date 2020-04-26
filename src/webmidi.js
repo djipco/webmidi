@@ -147,17 +147,39 @@ class WebMidi extends EventEmitter {
    */
   async enable(options = {}, sysex = false) {
 
-    if (!this.supported) {
-      let error = new Error("Error The Web MIDI API is not supported in your environment.");
-      if (typeof options.callback === "function") options.callback(error);
-      return Promise.reject(error);
-    }
-
     if (this.enabled) return Promise.resolve();
 
     // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
     if (typeof options === "function") options = {callback: options, sysex: sysex};
     if (sysex) options.sysex = true;
+
+    // The Jazz plugin takes a while to be available (even after the Window's 'load' event has been
+    // fired). Therefore, we wait a little while to give it enough time to load.
+    if (!this.supported) {
+
+      await new Promise((resolve, reject) => {
+
+        const start = this.time;
+
+        const intervalID = setInterval(() => {
+
+          if (this.supported) {
+            clearInterval(intervalID);
+            resolve();
+          } else {
+            if (this.time > start + 1500) {
+              clearInterval(intervalID);
+              let error = new Error("Web MIDI API support is not available in your environment.");
+              if (typeof options.callback === "function") options.callback(error);
+              reject(error);
+            }
+          }
+
+        }, 25);
+
+      });
+
+    }
 
     // Request MIDI access
     try {
@@ -165,6 +187,7 @@ class WebMidi extends EventEmitter {
         {sysex: options.sysex, software: options.software}
       );
     } catch(err) {
+      if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
     }
 
@@ -208,7 +231,7 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and destroying all
+   * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
    * {@link Input} and {@link Output} objects that may be available. This also means that listeners
    * added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
    * destroyed.
@@ -568,7 +591,7 @@ class WebMidi extends EventEmitter {
    * object or an array of the previous types, to an array of {@link Note} objects.
    *
    * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified.
+   * created with the options specified. Invalid elements are simply ignored.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
@@ -636,7 +659,6 @@ class WebMidi extends EventEmitter {
     return value;
 
   };
-
 
   /**
    * @private
@@ -800,7 +822,7 @@ class WebMidi extends EventEmitter {
       }
 
       if (remove) {
-        this._outputs[i].destroy();
+        this._outputs[i].close();
         this._outputs.splice(i, 1);
       }
 
@@ -831,6 +853,60 @@ class WebMidi extends EventEmitter {
 
   };
 
+  // async injectPluginMarkup(parent) {
+  //
+  //   // Silently ignore on Node.js
+  //   if (this.isNode) return;
+  //
+  //   // Default to <body> if no parent is specified
+  //   if (!(parent instanceof Element) && !(parent instanceof HTMLDocument)) {
+  //     parent = document.body;
+  //   }
+  //
+  //
+  //
+  //   // This seems to be necessary on Firefox?!
+  //   await new Promise(resolve => setTimeout(resolve, 2000));
+  //
+  //   // IE10 needs this:
+  //   // <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"/>
+  //
+  //   // Create markup and add to parent
+  //   const obj = document.createElement("object");
+  //
+  //   await new Promise((resolve, reject) => {
+  //
+  //     obj.addEventListener("load", () => {
+  //
+  //       if (obj.isJazz) {
+  //         resolve(obj);
+  //       } else {
+  //         parent.removeChild(obj);
+  //         reject();
+  //       }
+  //
+  //     });
+  //
+  //     obj.addEventListener("error", () => {
+  //       reject();
+  //     });
+  //
+  //     setTimeout(() => {
+  //
+  //       obj.classid = "CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90"; // IE
+  //       if (!obj.isJazz) obj.type = "audio/x-jazz";                 // Standards-compliant browsers
+  //       // obj.style.visibility = "hidden";
+  //       // obj.style.width = obj.style.height = "0px";
+  //       // parent.appendChild(obj);
+  //
+  //     }, 1000);
+  //
+  //
+  //
+  //   });
+  //
+  // }
+
   /**
    * Indicates whether access to the host's MIDI subsystem is active or not.
    *
@@ -853,7 +929,7 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    return navigator && navigator.requestMIDIAccess;
+    return (navigator && navigator.requestMIDIAccess) ? true : false;
   }
 
   /**
