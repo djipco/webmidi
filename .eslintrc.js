@@ -21,8 +21,7 @@ module.exports = {
     "expect": "readonly",
     "Note": "readonly",
     "isNative": "readonly",
-    "inputPort": "readonly",
-    "outputPort": "readonly",
+    "config": "readonly"
   },
 
   "extends": ["eslint:recommended", "prettier"],
