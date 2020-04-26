@@ -992,14 +992,8 @@ export class Output extends EventEmitter {
    */
   setProgram(program, channel, options = {}) {
 
-    program = parseFloat(program) - 1;
-
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.send(
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (ch - 1),
-        [program],
-        WebMidi.convertToTimestamp(options.time)
-      );
+      this.channels[ch].setProgram(program, options);
     });
 
     return this;
@@ -1012,12 +1006,11 @@ export class Output extends EventEmitter {
    */
   sendProgramChange(program, channel, options = {}) {
 
-    this.setProgram(program, channel, options);
     console.warn(
       "The sendProgramChange() method has been deprecated. Use setProgram() instead."
     );
 
-    return this;
+    return this.setProgram(program, channel, options);
 
   }
 
