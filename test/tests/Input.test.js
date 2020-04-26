@@ -3,7 +3,7 @@ let preset = {
   booleans: [true, false],
   listener: () => {},
   channels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-}
+};
 
 describe("Input", function() {
 
@@ -23,7 +23,7 @@ describe("Input", function() {
 
     it("should set up all 'InputChannel' objects", function() {
 
-      expect(WebMidi.inputs[0].channels.length).to.equal(16+1)
+      expect(WebMidi.inputs[0].channels.length).to.equal(16+1);
 
       for (let i = 1; i <= 16; i++) {
         expect(WebMidi.inputs[0].channels[i].number).to.equal(i);
@@ -58,7 +58,7 @@ describe("Input", function() {
 
       WebMidi.inputs[0].channels.forEach(ch => {
         expect(ch.hasListener("noteon", l1)).to.be.true;
-      })
+      });
 
     });
 
@@ -66,11 +66,11 @@ describe("Input", function() {
 
       let l1 = () => {};
 
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key) {
         WebMidi.inputs[0].addListener(key, undefined, l1);
       });
 
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key) {
         expect(WebMidi.inputs[0].hasListener(key, l1)).to.be.true;
       });
 
