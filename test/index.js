@@ -4,12 +4,22 @@ const midi = require("midi");
 const sinon = require("sinon");
 const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
 
-// Create virtual MIDI input and output ports and make them available globally.
-const inputPort = new midi.Input();
-inputPort.ignoreTypes(false, false, false); // include sysex, timing and active sensing
-const outputPort = new midi.Output();
-global.inputPort = inputPort;
-global.outputPort = outputPort;
+// Create virtual MIDI input and output ports and make them available globally. Being an external,
+// the virtual device's input is seen as an output from WebMidi's perspective (same thing happens
+// with the output. To avoid confusion, the property names adopt WebMidi's point of view.
+global.config = {
+  output: {
+    port: new midi.Input(),
+    name: "Virtual Output"
+  },
+  input: {
+    port: new midi.Output(),
+    name: "Virtual input"
+  }
+};
+
+// Tell RTMidi to include 'sysex', 'timing' and 'active sensing' messages
+config.output.port.ignoreTypes(false, false, false);
 
 // Make objects available globally. We do this so we can use the same test files for browser and
 // Node.js
@@ -23,17 +33,16 @@ global.Note = Note;
 describe("WebMidi.js Test Suite", function() {
 
   before(function () {
-    inputPort.openVirtualPort("Virtual Input");
-    outputPort.openVirtualPort("Virtual Output");
+    config.input.port.openVirtualPort(config.input.name);
+    config.output.port.openVirtualPort(config.output.name);
   });
 
   after(function () {
-    inputPort.closePort();
-    outputPort.closePort();
+    config.input.port.closePort();
+    config.output.port.closePort();
   });
 
   // Fetch tests from appropriate files...
-  require("./tests/Environment.test.js");
   require("./tests/WebMidi.test.js");
   require("./tests/Note.test.js");
   require("./tests/Input.test.js");
