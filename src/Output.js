@@ -775,13 +775,13 @@ export class Output extends EventEmitter {
 
   /**
    * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-   * adjust the range used by their pitch bend lever. The range can be specified with the
-   * `semitones` parameter (msb), the `cents` parameter (lsb) or by specifying both parameters at
-   * the same time.
+   * adjust the range used by their pitch bend lever. The range is specified by using the
+   * `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
+   * means that the pitch bend range will be 12 semitones above and below the nominal pitch.
    *
-   * @param semitones {number} The desired adjustment value in semitones (integer between 0-127).
-   * While nothing imposes that in the specification, it is very common for manufacturers to limit
-   * the range to 2 octaves (-12 semitones to 12 semitones).
+   * @param semitones {number} The desired adjustment value in semitones (between 0 and 127). While
+   * nothing imposes that in the specification, it is very common for manufacturers to limit the
+   * range to 2 octaves (-12 semitones to 12 semitones).
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
@@ -803,9 +803,7 @@ export class Output extends EventEmitter {
   setPitchBendRange(semitones, cents, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setRegisteredParameter(
-        "pitchbendrange", [semitones, cents], ch, {time: options.time}
-      );
+      this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
     return this;
@@ -849,7 +847,7 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
    * registered parameter.
    *
-   * @param [data=[]] {number|number[]} An single integer or an array of integers with a maximum
+   * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
@@ -1343,7 +1341,7 @@ export class Output extends EventEmitter {
   setLocalControl(state, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.channels[ch].setLocalControl(options);
+      this.channels[ch].setLocalControl(state, options);
     });
 
     return this;
@@ -1411,7 +1409,7 @@ export class Output extends EventEmitter {
    * value to send was 10, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
+   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
    * ```
    *
    * For further implementation details, refer to the manufacturer"s documentation.
@@ -1604,8 +1602,13 @@ export class Output extends EventEmitter {
    * @returns {Output}
    */
   stopNote(note, channel, options) {
-    this.sendNoteOff(note, channel, options);
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].stopNote(note, options);
+    });
+
     return this;
+
   }
 
   /**
