@@ -153,8 +153,8 @@ class WebMidi extends EventEmitter {
     if (typeof options === "function") options = {callback: options, sysex: sysex};
     if (sysex) options.sysex = true;
 
-    // The Jazz plugin takes a while to be available (even after the Window's 'load' event has been
-    // fired). Therefore, we wait a little while to give it enough time to load.
+    // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
+    // fired). Therefore, we wait a little while to give it time to load.
     if (!this.supported) {
 
       await new Promise((resolve, reject) => {
@@ -277,25 +277,6 @@ class WebMidi extends EventEmitter {
     });
 
   };
-
-  /**
-   *
-   * @return {Promise<void>}
-   * @private
-   */
-  async _destroyInputsAndOutputs() {
-
-    let promises = [];
-
-    this.inputs.forEach(input => promises.push(input.destroy()));
-    this.outputs.forEach(output => promises.push(output.destroy()));
-
-    return Promise.all(promises).then(() => {
-      this._inputs = [];
-      this._outputs = [];
-    });
-
-  }
 
   /**
    * Returns the {@link Input} object that matches the specified ID string or `false` if no matching
@@ -661,6 +642,25 @@ class WebMidi extends EventEmitter {
   };
 
   /**
+   *
+   * @return {Promise<void>}
+   * @private
+   */
+  async _destroyInputsAndOutputs() {
+
+    let promises = [];
+
+    this.inputs.forEach(input => promises.push(input.destroy()));
+    this.outputs.forEach(output => promises.push(output.destroy()));
+
+    return Promise.all(promises).then(() => {
+      this._inputs = [];
+      this._outputs = [];
+    });
+
+  }
+
+  /**
    * @private
    */
   _onInterfaceStateChange(e) {
@@ -853,7 +853,7 @@ class WebMidi extends EventEmitter {
 
   };
 
-  // async injectPluginMarkup(parent) {
+  // injectPluginMarkup(parent) {
   //
   //   // Silently ignore on Node.js
   //   if (this.isNode) return;
@@ -863,47 +863,16 @@ class WebMidi extends EventEmitter {
   //     parent = document.body;
   //   }
   //
-  //
-  //
-  //   // This seems to be necessary on Firefox?!
-  //   await new Promise(resolve => setTimeout(resolve, 2000));
-  //
   //   // IE10 needs this:
   //   // <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"/>
   //
   //   // Create markup and add to parent
   //   const obj = document.createElement("object");
-  //
-  //   await new Promise((resolve, reject) => {
-  //
-  //     obj.addEventListener("load", () => {
-  //
-  //       if (obj.isJazz) {
-  //         resolve(obj);
-  //       } else {
-  //         parent.removeChild(obj);
-  //         reject();
-  //       }
-  //
-  //     });
-  //
-  //     obj.addEventListener("error", () => {
-  //       reject();
-  //     });
-  //
-  //     setTimeout(() => {
-  //
-  //       obj.classid = "CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90"; // IE
-  //       if (!obj.isJazz) obj.type = "audio/x-jazz";                 // Standards-compliant browsers
-  //       // obj.style.visibility = "hidden";
-  //       // obj.style.width = obj.style.height = "0px";
-  //       // parent.appendChild(obj);
-  //
-  //     }, 1000);
-  //
-  //
-  //
-  //   });
+  //   obj.classid = "CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90"; // IE
+  //   if (!obj.isJazz) obj.type = "audio/x-jazz";                 // Standards-compliant
+  //   obj.style.visibility = "hidden";
+  //   obj.style.width = obj.style.height = "0px";
+  //   parent.appendChild(obj);
   //
   // }
 
@@ -918,18 +887,13 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Indicates whether the environment provides support for the Web MIDI API or not.
-   *
-   * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
-   * the `navigator.requestMIDIAccess` function is available. For example, if you have installed
-   * WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
-   * not be there.
+   * An array of all currently available MIDI inputs.
    *
    * @readonly
-   * @type {boolean}
+   * @type {Array}
    */
-  get supported() {
-    return (navigator && navigator.requestMIDIAccess) ? true : false;
+  get inputs() {
+    return this._inputs;
   }
 
   /**
@@ -945,13 +909,23 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * An array of all currently available MIDI inputs.
+   * An integer to offset the octave both in inbound and outbound messages. By default, middle C
+   * (MIDI note number 60) is placed on the 4th octave (C4).
    *
-   * @readonly
-   * @type {Array}
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * @type {number}
+   *
+   * @since 2.1
    */
-  get inputs() {
-    return this._inputs;
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+    value = parseInt(value);
+    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+    this._octaveOffset = value;
   }
 
   /**
@@ -962,6 +936,21 @@ class WebMidi extends EventEmitter {
    */
   get outputs() {
     return this._outputs;
+  }
+
+  /**
+   * Indicates whether the environment provides support for the Web MIDI API or not.
+   *
+   * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
+   * the `navigator.requestMIDIAccess` function is available. For example, if you have installed
+   * WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
+   * not be there.
+   *
+   * @readonly
+   * @type {boolean}
+   */
+  get supported() {
+    return (navigator && navigator.requestMIDIAccess) ? true : false;
   }
 
   /**
@@ -990,114 +979,6 @@ class WebMidi extends EventEmitter {
    */
   get time() {
     return performance.now();
-  }
-
-  /**
-   * An integer to offset the octave both in inbound and outbound messages. By default, middle C
-   * (MIDI note number 60) is placed on the 4th octave (C4).
-   *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * @type {number}
-   *
-   * @since 2.1
-   */
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-  set octaveOffset(value) {
-    value = parseInt(value);
-    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
-    this._octaveOffset = value;
-  }
-
-
-  /**
-   * Array of valid events triggered at the interface level.
-   *
-   * @type {string[]}
-   * @readonly
-   */
-  get MIDI_INTERFACE_EVENTS() {
-    return ["connected", "disconnected"];
-  }
-
-  /**
-   * Array of standard note names
-   *
-   * @type {string[]}
-   * @readonly
-   */
-  get NOTES() {
-    return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-  }
-
-  /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-  get MIDI_SYSTEM_MESSAGES() {
-
-    return {
-
-      // System common messages
-      sysex: 0xF0,            // 240
-      timecode: 0xF1,         // 241
-      songposition: 0xF2,     // 242
-      songselect: 0xF3,       // 243
-      tunerequest: 0xF6,      // 246
-      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
-
-      // System real-time messages
-      clock: 0xF8,            // 248
-      start: 0xFA,            // 250
-      continue: 0xFB,         // 251
-      stop: 0xFC,             // 252
-      activesensing: 0xFE,    // 254
-      reset: 0xFF,            // 255
-
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-
-    };
-
   }
 
   /**
@@ -1153,49 +1034,33 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all registered parameters and their associated pair of numerical values. MIDI
-   * registered parameters extend the original list of control change messages. Currently, there are
-   * only a limited number of them:
+   * Enum of all channel mode messages and their associated numerical value:
    *
-   * - `pitchbendrange`: [0x00, 0x00]
-   * - `channelfinetuning`: [0x00, 0x01]
-   * - `channelcoarsetuning`: [0x00, 0x02]
-   * - `tuningprogram`: [0x00, 0x03]
-   * - `tuningbank`: [0x00, 0x04]
-   * - `modulationrange`: [0x00, 0x05]
-   * - `azimuthangle`: [0x3D, 0x00]
-   * - `elevationangle`: [0x3D, 0x01]
-   * - `gain`: [0x3D, 0x02]
-   * - `distanceratio`: [0x3D, 0x03]
-   * - `maximumdistance`: [0x3D, 0x04]
-   * - `maximumdistancegain`: [0x3D, 0x05]
-   * - `referencedistanceratio`: [0x3D, 0x06]
-   * - `panspreadangle`: [0x3D, 0x07]
-   * - `rollangle`: [0x3D, 0x08]
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
    *
    * @enum {Object.<string, number>}
    * @readonly
    *
    * @since 2.0.0
    */
-  get MIDI_REGISTERED_PARAMETER() {
+  get MIDI_CHANNEL_MODE_MESSAGES() {
 
     return {
-      pitchbendrange: [0x00, 0x00],
-      channelfinetuning: [0x00, 0x01],
-      channelcoarsetuning: [0x00, 0x02],
-      tuningprogram: [0x00, 0x03],
-      tuningbank: [0x00, 0x04],
-      modulationrange: [0x00, 0x05],
-      azimuthangle: [0x3D, 0x00],
-      elevationangle: [0x3D, 0x01],
-      gain: [0x3D, 0x02],
-      distanceratio: [0x3D, 0x03],
-      maximumdistance: [0x3D, 0x04],
-      maximumdistancegain: [0x3D, 0x05],
-      referencedistanceratio: [0x3D, 0x06],
-      panspreadangle: [0x3D, 0x07],
-      rollangle: [0x3D, 0x08]
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
     };
 
   }
@@ -1335,6 +1200,16 @@ class WebMidi extends EventEmitter {
   }
 
   /**
+   * Array of valid events triggered at the interface level.
+   *
+   * @type {string[]}
+   * @readonly
+   */
+  get MIDI_INTERFACE_EVENTS() {
+    return ["connected", "disconnected"];
+  }
+
+  /**
    * Enum of all control change messages that are used to create NRPN messages and their associated
    * numerical value:
    *
@@ -1366,35 +1241,128 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all channel mode messages and their associated numerical value:
+   * Enum of all registered parameters and their associated pair of numerical values. MIDI
+   * registered parameters extend the original list of control change messages. Currently, there are
+   * only a limited number of them:
    *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
+   * - `pitchbendrange`: [0x00, 0x00]
+   * - `channelfinetuning`: [0x00, 0x01]
+   * - `channelcoarsetuning`: [0x00, 0x02]
+   * - `tuningprogram`: [0x00, 0x03]
+   * - `tuningbank`: [0x00, 0x04]
+   * - `modulationrange`: [0x00, 0x05]
+   * - `azimuthangle`: [0x3D, 0x00]
+   * - `elevationangle`: [0x3D, 0x01]
+   * - `gain`: [0x3D, 0x02]
+   * - `distanceratio`: [0x3D, 0x03]
+   * - `maximumdistance`: [0x3D, 0x04]
+   * - `maximumdistancegain`: [0x3D, 0x05]
+   * - `referencedistanceratio`: [0x3D, 0x06]
+   * - `panspreadangle`: [0x3D, 0x07]
+   * - `rollangle`: [0x3D, 0x08]
    *
    * @enum {Object.<string, number>}
    * @readonly
    *
    * @since 2.0.0
    */
-  get MIDI_CHANNEL_MODE_MESSAGES() {
+  get MIDI_REGISTERED_PARAMETER() {
 
     return {
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
+      pitchbendrange: [0x00, 0x00],
+      channelfinetuning: [0x00, 0x01],
+      channelcoarsetuning: [0x00, 0x02],
+      tuningprogram: [0x00, 0x03],
+      tuningbank: [0x00, 0x04],
+      modulationrange: [0x00, 0x05],
+      azimuthangle: [0x3D, 0x00],
+      elevationangle: [0x3D, 0x01],
+      gain: [0x3D, 0x02],
+      distanceratio: [0x3D, 0x03],
+      maximumdistance: [0x3D, 0x04],
+      maximumdistancegain: [0x3D, 0x05],
+      referencedistanceratio: [0x3D, 0x06],
+      panspreadangle: [0x3D, 0x07],
+      rollangle: [0x3D, 0x08]
     };
 
+  }
+
+  /**
+   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
+   * two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   *
+   * @since 2.0.0
+   */
+  get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
+    };
+
+  }
+
+  /**
+   * Array of standard note names
+   *
+   * @type {string[]}
+   * @readonly
+   */
+  get NOTES() {
+    return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
   }
 
 }
