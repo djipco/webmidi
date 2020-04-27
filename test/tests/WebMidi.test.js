@@ -64,30 +64,29 @@ describe("WebMidi", function() {
   //   // Ignore in browser
   //   if (!WebMidi.isNode) this.skip();
   //
-  //   await WebMidi.enable();
-  //
   //   // We disconnect the external device's input port. From WebMidi's point of view, it is an
   //   // output port.
-  //   inputPort.closePort();
-  //   inputPort.openPort(0);
+  //   config.output.port.closePort();
   //
-  //   // await new Promise(function(resolve) {
-  //   //
-  //   //   // resolve(); // marche
-  //   //
-  //   //   WebMidi.addListener("connected", function(e) {
-  //   //
-  //   //     // resolve(); // marche pas
-  //   //
-  //   //     if (e.target.name === "Virtual Input") {
-  //   //       console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
-  //   //       resolve(); // marche pas.
-  //   //     }
-  //   //   });
-  //   //
-  //   //   inputPort.openVirtualPort("Virtual Input");
-  //   //
-  //   // });
+  //   await WebMidi.enable();
+  //
+  //   await new Promise(function(resolve) {
+  //
+  //     // resolve(); // marche
+  //
+  //     WebMidi.addListener("connected", function(e) {
+  //
+  //       // resolve(); // marche pas
+  //
+  //       if (e.target.name === config.output.name) {
+  //         console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
+  //         resolve(); // marche pas.
+  //       }
+  //     });
+  //
+  //     // config.output.port.openVirtualPort(config.output.name);
+  //
+  //   });
   //
   // });
 
@@ -215,6 +214,9 @@ describe("WebMidi", function() {
 
     it("should pass error to callback upon failure", function(done) {
 
+      if (WebMidi.isNode) this.skip(); // I can't seem to be able to fake the absence of RMA on Node
+      this.timeout = 3000;
+
       let backup = navigator.requestMIDIAccess;
       navigator.requestMIDIAccess = undefined;
 
@@ -228,6 +230,9 @@ describe("WebMidi", function() {
     });
 
     it("should return a rejected promise upon failure", function(done) {
+
+      if (WebMidi.isNode) this.skip(); // I can't seem to be able to fake the absence of RMA on Node
+      this.timeout = 3000;
 
       let backup = navigator.requestMIDIAccess;
       navigator.requestMIDIAccess = undefined;
