@@ -20,6 +20,8 @@ import {WebMidi} from "./WebMidi.js";
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ *
+ * @since 3.0.0
  */
 export class InputChannel extends EventEmitter {
 

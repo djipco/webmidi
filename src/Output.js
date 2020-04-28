@@ -371,6 +371,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setSongPosition(value, options = {}) {
 
@@ -419,6 +421,8 @@ export class Output extends EventEmitter {
    * @throws The song number must be between 1 and 128.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setSong(value, options = {}) {
 
@@ -460,6 +464,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   sendTuneRequest(options = {}) {
     this.send(
@@ -647,6 +653,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setKeyAftertouch(note, pressure, channel, options = {}) {
 
@@ -799,6 +807,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The lsb value must be between 0 and 127.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPitchBendRange(semitones, cents, channel, options = {}) {
 
@@ -894,6 +904,7 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   * @since 3.0.0
    */
   setChannelAftertouch(pressure, channel, options = {}) {
 
@@ -940,6 +951,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPitchBend(value, channel, options = {}) {
 
@@ -987,6 +1000,7 @@ export class Output extends EventEmitter {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
+   * @since 3.0.0
    */
   setProgram(program, channel, options = {}) {
 
@@ -1036,6 +1050,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The lsb value must be between 0 and 127
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setModulationRange(semitones, cents, channel, options = {}) {
 
@@ -1072,6 +1088,8 @@ export class Output extends EventEmitter {
    * than 64.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setMasterTuning(value, channel, options = {}) {
 
@@ -1106,6 +1124,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The program value must be between 1 and 128.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setTuningProgram(value, channel, options = {}) {
 
@@ -1140,6 +1160,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The bank value must be between 1 and 128.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setTuningBank(value, channel, options = {}) {
 
@@ -1225,6 +1247,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output}
+   *
+   * @since 3.0.0
    */
   turnSoundOff(channel, options = {}) {
 
@@ -1251,6 +1275,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output}
+   *
+   * @since 3.0.0
    */
   turnNotesOff(channel, options = {}) {
 
@@ -1306,6 +1332,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPolyphonicMode(mode, channel, options = {}) {
 
@@ -1337,6 +1365,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setLocalControl(state, channel, options = {}) {
 
@@ -1371,6 +1401,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} Value must be an integer between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setOmniMode(state, channel, options = {}) {
 

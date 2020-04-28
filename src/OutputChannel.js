@@ -10,6 +10,8 @@ import {WebMidi} from "./WebMidi.js";
  *
  * @param {Output} output The output this channel belongs to
  * @param {number} number The channel's number (1-16)
+ *
+ * @since 3.0.0
  */
 export class OutputChannel extends EventEmitter {
 

@@ -34,6 +34,7 @@ import {WebMidi} from "./WebMidi.js";
  *
  * @throws {Error} Invalid note name.
  *
+ * @since 3.0.0
  */
 export class Note {
 
