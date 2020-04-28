@@ -1,4 +1,6 @@
-describe("Output", function() {
+let WebMidiOutputChannel;
+
+describe("OutputChannel Object", function() {
 
   beforeEach("Check support and enable", async function () {
     if (!WebMidi.supported) {
@@ -6,6 +8,7 @@ describe("Output", function() {
       this.skip();
     }
     await WebMidi.enable();
+    WebMidiOutputChannel = WebMidi.getOutputByName(config.output.name).channels[1];
   });
 
   afterEach("Disable WebMidi.js", async function () {
@@ -14,40 +17,133 @@ describe("Output", function() {
 
   describe("decrementRegisteredParameter()", function () {
 
-    it("should throw error if registered parameter is invalid", function () {
+    it("should throw error if registered parameter, specified by name, is invalid", function () {
 
-      expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter(0);
-      }).to.throw(TypeError);
-
-      expect(function () {
-        WebMidi.outputs[0].decrementRegisteredParameter("xxx");
+      expect(() => {
+        WebMidiOutputChannel.decrementRegisteredParameter("xxx");
       }).to.throw(TypeError);
 
     });
 
-    // it("should call send the right amount of times", function() {
-    //
-    //   var spy = sinon.spy(WebMidi.outputs[0], "send");
-    //
-    //   // expect(function () {
-    //     WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange", 1);
-    //   // }).to.throw(RangeError);
-    //
-    //   expect(spy.callCount).to.equal(2);
-    //   spy.restore(WebMidi, "send");
-    //
-    // });
+    it("should throw error if registered parameter, specified by array, is invalid", function () {
 
-    it("should return the Output object for method chaining", function () {
+      [[], [-1, -1], [0x3d, 1111]].forEach(value => {
+
+        expect(() => {
+          WebMidiOutputChannel.decrementRegisteredParameter(value);
+        }).to.throw();
+
+      });
+
+    });
+
+    it("should actually send the messages", function(done) {
+
+      let messages = [];
+
+      config.output.port.on("message", (deltaTime, message) => {
+
+        messages.push(message);
+
+        if (messages.length >= 5) {
+
+          config.output.port.removeAllListeners();
+
+          expect(messages[0]).to.include.members([176, 101, 0]);    // select rpn
+          expect(messages[1]).to.include.members([176, 100, 5]);    // select rpn
+          expect(messages[2]).to.include.members([176, 97, 0]);     // decrement
+          expect(messages[3]).to.include.members([176, 101, 127]);  // deselect rpn
+          expect(messages[4]).to.include.members([176, 100, 127]);  // deselect rpn
+
+          done();
+
+        }
+
+      });
+
+      WebMidiOutputChannel.decrementRegisteredParameter("modulationrange");
+
+    });
+
+    it("should return the 'OutputChannel' object for method chaining", function () {
       expect(
-        WebMidi.outputs[0].decrementRegisteredParameter("pitchbendrange")
-      ).to.equal(WebMidi.outputs[0]);
+        WebMidiOutputChannel.decrementRegisteredParameter("pitchbendrange")
+      ).to.equal(WebMidiOutputChannel);
     });
 
-    // it("should throw error if options.time is invalid", function(done) {
-    //
-    // });
+  });
+
+  describe("destroy()", function () {
+
+    it("should set the output to null", function () {
+      WebMidiOutputChannel.destroy();
+      expect(WebMidiOutputChannel.output).to.be.null;
+    });
+
+    it("should remove all listeners", function () {
+      let f1 = () => {};
+      WebMidiOutputChannel.addListener("test", f1);
+      WebMidiOutputChannel.destroy();
+      expect(WebMidiOutputChannel.hasListener("test", f1)).to.be.false;
+    });
+
+  });
+
+  describe("incrementRegisteredParameter()", function () {
+
+    it("should throw error if registered parameter, specified by name, is invalid", function () {
+
+      expect(() => {
+        WebMidiOutputChannel.incrementRegisteredParameter("xxx");
+      }).to.throw(TypeError);
+
+    });
+
+    it("should throw error if registered parameter, specified by array, is invalid", function () {
+
+      [[], [-1, -1], [0x3d, 1111]].forEach(value => {
+
+        expect(() => {
+          WebMidiOutputChannel.incrementRegisteredParameter(value);
+        }).to.throw();
+
+      });
+
+    });
+
+    it("should actually send the messages", function(done) {
+
+      let messages = [];
+
+      config.output.port.on("message", (deltaTime, message) => {
+
+        messages.push(message);
+
+        if (messages.length >= 5) {
+
+          config.output.port.removeAllListeners();
+
+          expect(messages[0]).to.include.members([176, 101, 0]);    // select rpn
+          expect(messages[1]).to.include.members([176, 100, 5]);    // select rpn
+          expect(messages[2]).to.include.members([176, 96, 0]);     // increment
+          expect(messages[3]).to.include.members([176, 101, 127]);  // deselect rpn
+          expect(messages[4]).to.include.members([176, 100, 127]);  // deselect rpn
+
+          done();
+
+        }
+
+      });
+
+      WebMidiOutputChannel.incrementRegisteredParameter("modulationrange");
+
+    });
+
+    it("should return the 'OutputChannel' object for method chaining", function () {
+      expect(
+        WebMidiOutputChannel.incrementRegisteredParameter("pitchbendrange")
+      ).to.equal(WebMidiOutputChannel);
+    });
 
   });
 

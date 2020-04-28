@@ -1,4 +1,4 @@
-describe("Note", function() {
+describe("Note Object", function() {
 
   describe("constructor()", function () {
 

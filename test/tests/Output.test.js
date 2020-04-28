@@ -1,6 +1,6 @@
 let WebMidiOutput;
 
-describe("Output", function() {
+describe("Output Object", function() {
 
   beforeEach("Check support and enable", async function () {
     if (!WebMidi.supported) {

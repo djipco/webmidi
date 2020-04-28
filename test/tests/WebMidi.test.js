@@ -1,4 +1,4 @@
-describe("WebMidi", function() {
+describe("WebMidi Object", function() {
 
   beforeEach("Check support", function () {
     if (!WebMidi.supported) {
