@@ -629,12 +629,12 @@ export class Output extends EventEmitter {
    * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
    * an array of note names and/or numbers.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
+   *
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -648,7 +648,7 @@ export class Output extends EventEmitter {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  setKeyAftertouch(note, channel, pressure, options = {}) {
+  setKeyAftertouch(note, pressure, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
@@ -663,7 +663,7 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendKeyAftertouch(note, channel, pressure, options = {}) {
-    this.setKeyAftertouch(note, channel, pressure, options);
+    this.setKeyAftertouch(note, pressure, channel, options);
     console.warn(
       "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
     );
