@@ -459,7 +459,7 @@ export class OutputChannel extends EventEmitter {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @throws Error The specified parameter is not available.
+   * @throws TypeError The specified parameter is not available.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -467,7 +467,7 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) {
       if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error("The specified parameter is not available.");
+        throw new TypeError("The specified parameter is not available.");
       }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
@@ -1027,7 +1027,8 @@ export class OutputChannel extends EventEmitter {
    *
    * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
    * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
-   * an integer between 0 and 127. In this case, a value of 64 means no bend.
+   * an integer between 0 and 127. In this case, a value of 64 means no bend. The range of the pitch
+   * bend can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}.
    *
    * @param {Object} [options={}]
    *
@@ -1068,13 +1069,14 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a pitch bend range message at the scheduled time so that the instrument adjusts the range
-   * of its pitch bend lever. The range can be specified with the `semitones` parameter (msb), the
-   * `cents` parameter (lsb) or by specifying both parameters at the same time.
+   * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
+   * adjust the range used by their pitch bend lever. The range is specified by using the
+   * `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
+   * means that the pitch bend range will be 12 semitones above and below the nominal pitch.
    *
-   * @param semitones {number} The desired adjustment value in semitones (integer between 0-127).
-   * While nothing imposes that in the specification, it is very common for manufacturers to limit
-   * the range to 2 octaves (-12 semitones to 12 semitones).
+   * @param semitones {number} The desired adjustment value in semitones (between 0 and 127). While
+   * nothing imposes that in the specification, it is very common for manufacturers to limit the
+   * range to 2 octaves (-12 semitones to 12 semitones).
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
