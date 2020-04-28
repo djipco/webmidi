@@ -1,36 +1,13 @@
 {
   "name": "webmidi",
   "version": "3.0.0-alpha.1",
-  "description": "WebMidi.js helps you tame the Web MIDI API. Send and receive MIDI messages with ease. Control instruments with user-friendly functions (playNote, sendPitchBend, etc.). React to MIDI input with simple event listeners (noteon, pitchbend, controlchange, etc.).",
-  "author": {
-    "name": "Jean-Philippe Côté",
-    "email": "jp@cote.cc",
-    "url": "https://djip.co"
-  },
+  "description": "WebMidi.js makes it easy to talk to MIDI instruments from a browser or from Node.js. It simplifies the control of external or virtual MIDI instruments with functions such as playNote(), setPitchBend(), sendControlChange(), etc. It also allows reacting to incoming MIDI messages by adding listeners for user-friendly events such as 'noteon', 'pitchbend', 'songposition', etc.",
   "main": "dist/webmidi.cjs.min.js",
   "module": "dist/webmidi.esm.min.js",
-  "webmidi": {
-    "name": "WebMidi.js",
-    "tagline": "A JavaScript library to help you tame the Web MIDI API"
-  },
-  "types": "webmidi.d.ts",
-  "scripts": {
-    "build:all": "npm run lint && npm run build:cjs && npm run build:esm && npm run build:iife",
-    "build:cjs": "node tools/build/build.js -t cjs",
-    "build:esm": "node tools/build/build.js -t esm",
-    "build:iife": "node tools/build/build.js -t esm",
-    "coverage:text": "nyc --reporter=text npm run test:all",
-    "coverage:html": "nyc --reporter=html npm run test:all",
-    "documentation:generate": "node tools/documentation/generate.js",
-    "documentation:publish": "node tools/documentation/publish.js",
-    "lint": "eslint ./src/*.js",
-    "test:all": "mocha test/index.js",
-    "test:WebMidi": "mocha test/index.js -g 'WebMidi Object'",
-    "test:Input": "mocha test/index.js -g 'Input Object'",
-    "test:Output": "mocha test/index.js -g 'Output Object'",
-    "test:InputChannel": "mocha test/index.js -g 'InputChannel Object'",
-    "test:OutputChannel": "mocha test/index.js -g 'OutputChannel Object'",
-    "types": "tsc --strict --noEmit ./webmidi.d.ts"
+  "author": {
+    "name": "Jean-Philippe Côté",
+    "email": "webmidi@djip.co",
+    "url": "https://djip.co"
   },
   "repository": {
     "type": "git",
@@ -51,12 +28,42 @@
     "music",
     "protocol",
     "communication",
-    "channel"
+    "channel",
+    "node",
+    "instrument",
+    "device",
+    "note"
   ],
   "homepage": "https://github.com/djipco/webmidi",
   "license": "MIT",
-  "engines": {
-    "node": ">0.6.x"
+  "webmidi": {
+    "name": "WebMidi.js",
+    "tagline": "A JavaScript library to kickstart your MIDI projects"
+  },
+  "scripts": {
+    "build:all": "npm run lint && npm run build:cjs && npm run build:esm && npm run build:iife",
+    "build:cjs": "node tools/build/build.js -t cjs",
+    "build:esm": "node tools/build/build.js -t esm",
+    "build:iife": "node tools/build/build.js -t esm",
+    "coverage:text": "nyc --reporter=text npm run test:all",
+    "coverage:html": "nyc --reporter=html npm run test:all",
+    "documentation:generate": "node tools/documentation/generate.js",
+    "documentation:publish": "node tools/documentation/publish.js",
+    "lint": "eslint ./src/*.js",
+    "test:all": "mocha test/index.js",
+    "test:WebMidi": "mocha test/index.js -g 'WebMidi Object'",
+    "test:Input": "mocha test/index.js -g 'Input Object'",
+    "test:Output": "mocha test/index.js -g 'Output Object'",
+    "test:InputChannel": "mocha test/index.js -g 'InputChannel Object'",
+    "test:OutputChannel": "mocha test/index.js -g 'OutputChannel Object'",
+    "types": "tsc --strict --noEmit ./webmidi.d.ts"
+  },
+  "types": "webmidi.d.ts",
+  "dependencies": {
+    "djipevents": "^1.0.0-beta.4"
+  },
+  "optionalDependencies": {
+    "jzz": "^1.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -71,6 +78,7 @@
     "foodoc": "0.0.9",
     "gh-pages": "^2.2.0",
     "jsdoc": "^3.6.3",
+    "markdown-it": "^10.0.0",
     "midi": "^1.0.0",
     "minimist": "^1.2.5",
     "mocha": "^7.1.1",
@@ -83,11 +91,5 @@
     "sinon": "^9.0.1",
     "sinon-browser-only": "^1.12.1",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "djipevents": "^1.0.0-beta.4"
-  },
-  "optionalDependencies": {
-    "jzz": "^1.0.3"
   }
 }
