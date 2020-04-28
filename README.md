@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
 
 ## Background
 
@@ -101,8 +102,8 @@ ways.
 #### CDN
 
 The easiest way to get started is to link the WebMidi.js library from the 
-[jsDelivr](https://www.jsdelivr.com/) CDN (content delivery network). To retrieve the latest 
-version, just add this `<script>` tag to your HTML page:
+[jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (content delivery network). To retrieve
+the latest version, just add this `<script>` tag to your HTML page:
 
     <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
     
