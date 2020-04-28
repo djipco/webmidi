@@ -55,6 +55,12 @@ export class Input extends EventEmitter {
 
   }
 
+  /**
+   * Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+   * MIDI subsystem.
+   *
+   * @returns {Promise<void>}
+   */
   async destroy() {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
@@ -648,6 +654,8 @@ export class Input extends EventEmitter {
    * @throws {TypeError} The specified event type is not supported.
    *
    * @return {Listener[]} An array of all `Listener` objects that were created.
+   *
+   * @since 3.0.0
    */
   addOneTimeListener(type, channel, listener, options = {}) {
     options.remaining = 1;
@@ -799,6 +807,11 @@ export class Input extends EventEmitter {
     return this._midiInput.type;
   }
 
+  /**
+   * @type {boolean}
+   * @private
+   * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+   */
   get nrpnEventsEnabled() {
     console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
     return false;
