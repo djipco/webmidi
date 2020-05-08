@@ -13,8 +13,13 @@ import {Note} from "./Note.js";
  * object. This means there is no need to instantiate a new `WebMidi` object directly.
  *
  * The `WebMidi` object extends the
- * [EventEmitter]{@link https://djipco.github.io/djipevents/EventEmitter.html} class from the
- * [djipevents module]{@link https://djipco.github.io/djipevents/index.html}.
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
+ * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
+ * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
+ * others.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disconnected

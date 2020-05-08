@@ -8,6 +8,15 @@ import {WebMidi} from "./WebMidi.js";
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
  *
+ * The `InputChannel` class extends the
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
+ * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
+ * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
+ * others.
+ *
  * @param {Input} input The `Input` this channel belongs to
  * @param {number} number The channel's number (1-16)
  *

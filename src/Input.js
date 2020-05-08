@@ -8,7 +8,25 @@ import {InputChannel} from "./InputChannel.js";
  *
  * You can find a list of all available `Input` objects in the {@link WebMidi#inputs} array.
  *
- * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem.
+ * The `Input` class extends the
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [getListeners()](https://djipco.github.io/djipevents/EventEmitter.html#getListeners),
+ * [emit()](https://djipco.github.io/djipevents/EventEmitter.html#emit),
+ * [suspendEvent()](https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent) and several
+ * others.
+ *
+ * The `addListener()`, `addOneTimeListener()`, `hasListener()` and `removeListener()` methods are
+ * being overridden in this class to include a `channel` parameter which makes it possible to
+ * add/remove listeners from several channels at once. Note that, when adding events to channels, it
+ * is the {@link InputChannel} instance that gets a listener added and not the `Input` instance.
+ *
+ * Also note that several events are input-wide and not tied to a channel. Examples of these are
+ * `"opened"`, `"midimessage"`, `"sysex"`, etc. In such cases, simply pass `undefined` as the
+ * `channel` parameter.
+ *
+ * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
  * @fires Input#disconnected
@@ -511,14 +529,14 @@ export class Input extends EventEmitter {
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
-   *  For input-wide events, the `channel` parameter will be silently ignored. You can simply use
-   * `undefined` in that case.
+   *  For these input-wide events, the `channel` parameter will be silently ignored. You can simply
+   *  use `undefined` in that case.
    *
    * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
    * event is dispatched for every single message that is received on that `Input`.
    *
    * By using the `channel` property, you can also add listeners to all channels in the `channel`
-   * parameter. These are the events dispatched by {@link InputChannel} objects:
+   * parameter. These are the events dispatched by individual {@link InputChannel} objects:
    *
    *    * [noteoff]{@link InputChannel#event:noteoff}
    *    * [noteon]{@link InputChannel#event:noteon}
@@ -533,8 +551,9 @@ export class Input extends EventEmitter {
    *
    * @param event {string} The type of the event.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
+   * @param channel {number|number[]|undefined} An integer between 1 and 16 or an array of such
+   * integers representing the channel(s) to listen on. This parameter will be ignored for
+   * input-wide events (just set it to `undefined` in such cases).
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object"s properties,
@@ -680,6 +699,11 @@ export class Input extends EventEmitter {
    * For input-level events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
    * We suggest you use `undefined` in such cases.
    *
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#hasListener)
+   * by adding a `channel` parameter that makes it possible to check for the listener on one or
+   * several channels at once. Invalid channels will be silently ignored.
+   *
    * @param type {string} The type of the event.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
@@ -715,6 +739,11 @@ export class Input extends EventEmitter {
    *
    * For input-level events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
    * You can use `undefined` in such cases.
+   *
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#removeListener)
+   * by adding a `channel` parameter that makes it possible to remove a listener from one or several
+   * channels at once. Invalid channels will be silently ignored.
    *
    * @param [type] {String} The type of the event.
    *
