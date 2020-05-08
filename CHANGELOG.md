@@ -7,7 +7,10 @@ format used is the one suggested by [Keep a Changelog](https://keepachangelog.co
 
 ### Added
 
-- WebMidi.js now has builtin Node.js support.
+- WebMidi.js now has builtin Node.js support thanks to the `jzz` node module by Jazz-Soft.
+
+- WebMidi.js now explicitly checks for Jazz-Plugin support in environments with no native support 
+for the Web MIDI API.
 
 - The `WebMidi.enabled()` method now returns a promise. The promise is fulfilled with an object 
 referencing the available inputs and outputs.
@@ -27,8 +30,6 @@ Actually, `stopNote()` is an alias to `sendNoteOff()`.
 - The `setChannelAftertouch()`, `setKeyAftertouch()` and `setPitchbend()` method now have a 
 `useRawValue` options allowing to assign value using an integer between 0 and 127 instead of a float
 between 0 and 1.
-
-- A CHANGELOG.md file was added to the project to trach changes.
 
 ### Changed
 
