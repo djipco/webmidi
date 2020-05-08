@@ -15,6 +15,15 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
 much easier.
 
+> ## ⚠️ I need your ideas for v3.0
+> 
+> I am currently working on version 3 and I would love to hear your ideas on how to improve the
+> library. If you have a few minutes to spare, please fill in this [survey](https://forms.gle/bcahgNCGgwhcoJDD7):
+>
+> > https://forms.gle/bcahgNCGgwhcoJDD7 
+>
+> Thank you so much for your help!
+
 ## Browser Support
 
 This library works in all browsers that natively support the 
