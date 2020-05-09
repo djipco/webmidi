@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -68,6 +68,7 @@
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
@@ -110,9 +111,23 @@
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Input</code> class represents a MIDI input port. This object is derived from the host's MIDI
-			subsystem and cannot be instantiated directly. This is the reason why WebMidi.js does not export
-			this class.</p>
-			<p>You can find a list of all available <code>Input</code> objects in the <a href="WebMidi.html#inputs">WebMidi#inputs</a> array.</p></div>
+			subsystem and cannot be instantiated directly.</p>
+			<p>You can find a list of all available <code>Input</code> objects in the <a href="WebMidi.html#inputs">WebMidi#inputs</a> array.</p>
+			<p>The <code>Input</code> class extends the
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
+			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
+			it also includes methods such as
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#getListeners">getListeners()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#emit">emit()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent">suspendEvent()</a> and several
+			others.</p>
+			<p>The <code>addListener()</code>, <code>addOneTimeListener()</code>, <code>hasListener()</code> and <code>removeListener()</code> methods are
+			being overridden in this class to include a <code>channel</code> parameter which makes it possible to
+			add/remove listeners from several channels at once. Note that, when adding events to channels, it
+			is the <a href="InputChannel.html">InputChannel</a> instance that gets a listener added and not the <code>Input</code> instance.</p>
+			<p>Also note that several events are input-wide and not tied to a channel. Examples of these are
+			<code>&quot;opened&quot;</code>, <code>&quot;midimessage&quot;</code>, <code>&quot;sysex&quot;</code>, etc. In such cases, simply pass <code>undefined</code> as the
+			<code>channel</code> parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -128,7 +143,7 @@
 								<td><code>midiInput</code></td>
 							<td><span class="param-type">MIDIInput</span></td>
 							<td class="last">
-									<p><code>MIDIInput</code> object as provided by the MIDI subsystem</p>
+									<p><code>MIDIInput</code> object as provided by the MIDI subsystem (Web MIDI API).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -148,7 +163,91 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:midimessage">Input#midimessage</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:opened">Input#opened</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:sysex</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:timecode</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:songposition</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:songselect</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:tunerequest</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:clock</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:start</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:continue</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:stop</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:activesensing</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:reset</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="Input.html#event:midimessage">Input#event:midimessage</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">Input#event:unknownmidimessage</label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
@@ -174,7 +273,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-19">line 19</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-51">line 51</a></p>
 								</div>
 							</div>
 			
@@ -201,18 +300,19 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id=".NRPN_TYPES" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">NRPN_TYPES</span><span class="signature-type"> :Array.&lt;string></span></h4>
+			<h4 id="channels" class="member public"><span class="name">channels</span><span class="signature-type"> :Array.&lt;<a href="InputChannel.html">InputChannel</a>></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array of valid <strong>non-registered parameter number</strong> (NRPNs) types.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array containing the 16 <a href="InputChannel.html">InputChannel</a> objects available for this <code>Input</code>. The
+			channels are numbered 1 through 16.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;<a href="InputChannel.html">InputChannel</a>></span></div>
 								</div>
 							</div>
 			
@@ -233,7 +333,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-317">line 317</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-67">line 67</a></p>
 								</div>
 							</div>
 			
@@ -277,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-275">line 275</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-805">line 805</a></p>
 								</div>
 							</div>
 			
@@ -323,7 +423,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-265">line 265</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-795">line 795</a></p>
 								</div>
 							</div>
 			
@@ -367,7 +467,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-285">line 285</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-815">line 815</a></p>
 								</div>
 							</div>
 			
@@ -431,56 +531,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-253">line 253</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="nrpnEventsEnabled" class="member public"><span class="name">nrpnEventsEnabled</span><span class="signature-type"> :Boolean</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the <code>Input</code> should dispatch events for <strong>Non-Registered Parameter Number</strong>.
-			This is a system-wide setting. NRPNs are composed of a sequence of specific <strong>control change</strong>
-			messages. When a valid sequence of such control change messages is received, an <code>nrpn</code> event
-			will fire. If an invalid or out of order control change message is received, it will fall
-			through the collector logic and all buffered control change messages will be discarded as
-			incomplete.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Boolean</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-240">line 240</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-783">line 783</a></p>
 								</div>
 							</div>
 			
@@ -524,7 +575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-295">line 295</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-825">line 825</a></p>
 								</div>
 							</div>
 			
@@ -568,7 +619,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-305">line 305</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-835">line 835</a></p>
 								</div>
 							</div>
 			
@@ -583,11 +634,498 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="addListener" class="function public"><span class="name">addListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;Listener>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds an event listener that will trigger a function callback when the specified event happens.
+			The events that are listened to can be channel-specific or input-wide.</p>
+			<p>This method overrides the one in
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">djipevents.EventEmitter</a>
+			by adding a <code>channel</code> parameter that makes it possible to add a listener to one or several
+			channels at once. Invalid channels will be silently ignored.</p>
+			<p>If you want to add a listener to a single channel, use
+			InputChannel.addListener() instead.</p>
+			<p>Here is a list of events that are directly dispatched by <code>Input</code> objects and that can be
+			listened to:</p>
+			<ul>
+			<li>sysex</li>
+			<li>timecode</li>
+			<li>songposition</li>
+			<li>songselect</li>
+			<li>tunerequest</li>
+			<li>clock</li>
+			<li>start</li>
+			<li>continue</li>
+			<li>stop</li>
+			<li>activesensing</li>
+			<li>reset</li>
+			<li><a href="Input.html#event:midimessage">midimessage</a></li>
+			<li>unknownmidimessage</li>
+			</ul>
+			<p>For these input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply
+			use <code>undefined</code> in that case.</p>
+			<p>If you want to view all incoming MIDI traffic, you can listen to the <code>midimessage</code> event. This
+			event is dispatched for every single message that is received on that <code>Input</code>.</p>
+			<p>By using the <code>channel</code> property, you can also add listeners to all channels in the <code>channel</code>
+			parameter. These are the events dispatched by individual <a href="InputChannel.html">InputChannel</a> objects:</p>
+			<ul>
+			<li><a href="InputChannel.html#event:noteoff">noteoff</a></li>
+			<li><a href="InputChannel.html#event:noteon">noteon</a></li>
+			<li><a href="InputChannel.html#event:keyaftertouch">keyaftertouch</a></li>
+			<li><a href="InputChannel.html#event:controlchange">controlchange</a></li>
+			<li><a href="InputChannel.html#event:nrpn">nrpn</a></li>
+			<li><a href="InputChannel.html#event:channelmode">channelmode</a></li>
+			<li><a href="InputChannel.html#event:programchange">programchange</a></li>
+			<li><a href="InputChannel.html#event:channelaftertouch">channelaftertouch</a></li>
+			<li><a href="InputChannel.html#event:pitchbend">pitchbend</a></li>
+			<li><a href="InputChannel.html#event:midimessage">midimessage</a></li>
+			</ul></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The type of the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>channel</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">undefined</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>An integer between 1 and 16 or an array of such
+			integers representing the channel(s) to listen on. This parameter will be ignored for
+			input-wide events (just set it to <code>undefined</code> in such cases).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>listener</code></td>
+							<td><span class="param-type">function</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>A callback function to execute when the specified event is detected.
+			This function will receive an event parameter object. For details on this object&quot;s properties,
+			check out the documentation for the various events (links above).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The value of <code>this</code> in the callback function.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of times after which the callback
+									should automatically be removed.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <strong>arguments</strong>
+									property of the <strong>Listener</strong> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;Listener></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array of all <code>Listener</code> objects that were created.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The callback must be a function.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The 'event' parameter must be a string or EventEmitter.ANY_EVENT.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-585">line 585</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="addOneTimeListener" class="function public"><span class="name">addOneTimeListener</span><span class="signature-params">( <span class="signature-param">type</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;Listener>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time event listener that will trigger a function callback when the specified event
+			happens. The events that are dispatched can be channel-specific or input-wide.</p>
+			<p>This method overrides the one in <code>djipevents.EventEmitter</code> by adding a <code>channel</code> parameter that
+			makes it possible to add a single listener to one or several channels at once. If you want to
+			add a listener to a single channel, use
+			InputChannel.addListener() instead.</p>
+			<p>Here is a list of events that are dispatched by <code>Input</code> objects and that can be listened to.</p>
+			<p>Channel-specific MIDI events:</p>
+			<ul>
+			<li><a href="InputChannel.html#event:noteoff">noteoff</a></li>
+			<li><a href="InputChannel.html#event:noteon">noteon</a></li>
+			<li><a href="InputChannel.html#event:keyaftertouch">keyaftertouch</a></li>
+			<li><a href="InputChannel.html#event:controlchange">controlchange</a></li>
+			<li><a href="InputChannel.html#event:nrpn">nrpn</a></li>
+			<li><a href="InputChannel.html#event:channelmode">channelmode</a></li>
+			<li><a href="InputChannel.html#event:programchange">programchange</a></li>
+			<li><a href="InputChannel.html#event:channelaftertouch">channelaftertouch</a></li>
+			<li><a href="InputChannel.html#event:pitchbend">pitchbend</a></li>
+			<li><a href="InputChannel.html#event:midimessage">midimessage</a></li>
+			</ul>
+			<p>Input-level MIDI events:</p>
+			<ul>
+			<li>sysex</li>
+			<li>timecode</li>
+			<li>songposition</li>
+			<li>songselect</li>
+			<li>tunerequest</li>
+			<li>clock</li>
+			<li>start</li>
+			<li>continue</li>
+			<li>stop</li>
+			<li>activesensing</li>
+			<li>reset</li>
+			<li><a href="Input.html#event:midimessage">midimessage</a></li>
+			<li>unknownmidimessage</li>
+			</ul>
+			<p>For input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply use
+			<code>undefined</code> in that case.</p>
+			<p>If you want to view all incoming MIDI traffic, you can listen to the input-level <code>midimessage</code>
+			event. This event is dispatched for every single message that is received on that input.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The type of the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>channel</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>An integer between 1 and 16 or an array of such integers
+			representing the channel(s) to listen on.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>listener</code></td>
+							<td><span class="param-type">function</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>A callback function to execute when the specified event is detected.
+			This function will receive an event parameter object. For details on this object&quot;s properties,
+			check out the documentation for the various events (links above).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The value of <code>this</code> in the callback function.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <strong>arguments</strong>
+									property of the <strong>Listener</strong> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;Listener></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array of all <code>Listener</code> objects that were created.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The &quot;channel&quot; parameter is invalid.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The specified event type is not supported.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-679">line 679</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="close" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">close</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;(void|*)>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
+			the input is opened again by calling <a href="Input.html#open">Input.open()</a>.</p></div>
+			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;(void|*)></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-461">line 461</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="destroy" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">destroy</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;void>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Destroys the <code>Input</code> by remove all listeners, emptying the <code>channels</code> array and unlinking the
+			MIDI subsystem.</p></div>
+			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
 								<div class="col-sm-9">
@@ -615,7 +1153,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-215">line 215</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-82">line 82</a></p>
 								</div>
 							</div>
 			
@@ -689,7 +1227,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-161">line 161</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-482">line 482</a></p>
 								</div>
 							</div>
 			
@@ -701,12 +1239,19 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getChannelModeByNumber" class="function public"><span class="name">getChannelModeByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|false}</span></h4>
+			<h4 id="hasListener" class="function public"><span class="name">hasListener</span><span class="signature-params">( <span class="signature-param">type</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Boolean}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the channel mode name matching the specified number. If no match is found, the function
-			returns <code>false</code>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Checks if the specified event type is already defined to trigger the listener function on the
+			specified channel(s). If more than one channel is specified, the function will return <code>true</code>
+			only if all channels have the listener defined.</p>
+			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
+			We suggest you use <code>undefined</code> in such cases.</p>
+			<p>This method overrides the one in
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">djipevents.EventEmitter</a>
+			by adding a <code>channel</code> parameter that makes it possible to check for the listener on one or
+			several channels at once. Invalid channels will be silently ignored.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -719,10 +1264,25 @@
 					</thead>
 					<tbody>
 						<tr>
-								<td><code>number</code></td>
-							<td><span class="param-type">number</span></td>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p>An integer representing the channel mode message.</p>
+									<p>The type of the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>channel</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+							<td class="last">
+									<p>An integer between 1 and 16 or an array of such integers
+			representing the channel(s) to listen on.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>listener</code></td>
+							<td><span class="param-type">function</span></td>
+							<td class="last">
+									<p>The callback function to check for.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -730,10 +1290,18 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Boolean</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The name of the matching channel mode or <code>false</code> if not match could be
-			found.</p></div>
+									<div class="form-control-static returns-description"><p>Boolean value indicating whether or not the channel(s) already have this
+			listener defined.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function.</p></div>
 								</div>
 							</div>
 					</form>
@@ -743,13 +1311,6 @@
 			
 			
 			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
 			
 			
 			
@@ -764,7 +1325,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-192">line 192</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-719">line 719</a></p>
 								</div>
 							</div>
 			
@@ -809,7 +1370,149 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-46">line 46</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-440">line 440</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="removeListener" class="function public"><span class="name">removeListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">type</span>&nbsp;], <span class="signature-param">channel</span> [,&nbsp;<span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes the specified listener from the specified channel(s). If the <code>listener</code> parameter is
+			left undefined, all listeners for the specified <code>type</code> will be removed from all channels. If
+			the <code>channel</code> is also omitted, all listeners of the specified type will be removed from all
+			channels. If no parameters are defined, all listeners attached to any channel of the <code>Input</code>
+			will be removed.</p>
+			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
+			You can use <code>undefined</code> in such cases.</p>
+			<p>This method overrides the one in
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">djipevents.EventEmitter</a>
+			by adding a <code>channel</code> parameter that makes it possible to remove a listener from one or several
+			channels at once. Invalid channels will be silently ignored.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">String</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>The type of the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>channel</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>An integer between 1 and 16 or an array of such integers
+			representing the channel(s) to listen on.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>listener</code></td>
+							<td><span class="param-type">function</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>The callback function to check for.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">*</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listeners that have this exact context.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listener if it has exactly that many
+									remaining times to be executed.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The specified event type is not supported.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function..</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-763">line 763</a></p>
 								</div>
 							</div>
 			
@@ -828,7 +1531,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when the <a href="Input.html">Input</a> has been closed by calling the Input#close
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when the <a href="Input.html">Input</a> has been closed by calling the <a href="Input.html#close">Input#close</a>
 			method.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
@@ -843,9 +1546,9 @@
 					<tbody>
 						<tr>
 								<td><code>timestamp</code></td>
-							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The moment when the event occurred (in
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
 			milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
@@ -893,7 +1596,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-98">line 98</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-122">line 122</a></p>
 								</div>
 							</div>
 			
@@ -924,10 +1627,10 @@
 					<tbody>
 						<tr>
 								<td><code>timestamp</code></td>
-							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The moment when the event occurred (in milliseconds
-			since the navigation start of the document).</p>
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
 						<tr>
@@ -941,8 +1644,8 @@
 								<td><code>target</code></td>
 							<td><span class="param-type">Object</span></td>
 							<td class="last">
-									<p>Object with properties describing the <a href="Input.html">Input</a> that triggered
-			the event. This is not the actual <code>Input</code> as it is no longer available.</p>
+									<p>Object with properties describing the <a href="Input.html">Input</a> that
+			triggered the event. This is not the actual <code>Input</code> as it is no longer available.</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -1028,7 +1731,123 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-115">line 115</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-138">line 138</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:midimessage" class="event public"><span class="name">midimessage</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a MIDI message is received on the <code>Input</code></p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Uint8Array</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The raw MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p><code>&quot;midimessage&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.statusByte</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The message's status byte.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.dataBytes</code></td>
+							<td><span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes">&lt;nullable&gt;<br/></td>
+							<td class="last">
+									<p>The message's data bytes as an array of 0, 1 or 2
+			integers. This will be null for <code>sysex</code> messages.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">2.1</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-186">line 186</a></p>
 								</div>
 							</div>
 			
@@ -1059,9 +1878,9 @@
 					<tbody>
 						<tr>
 								<td><code>timestamp</code></td>
-							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The moment when the event occurred (in
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
 			milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
@@ -1109,7 +1928,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-81">line 81</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-106">line 106</a></p>
 								</div>
 							</div>
 			
@@ -1130,7 +1949,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 14th 2020 @ 11:36:41 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 9th 2020 @ 10:55:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

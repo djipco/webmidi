@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -68,6 +68,7 @@
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
@@ -112,7 +113,15 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>OutputChannel</code> class represents a single output channel (1-16) from an output device. This
 			object is derived from the host's MIDI subsystem and cannot be instantiated directly.</p>
 			<p>All 16 <code>OutputChannel</code> objects can be found inside the output's <a href="Output.html#channels">channels</a>
-			property.</p></div>
+			property.</p>
+			<p>The <code>OutputChannel</code> class extends the
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
+			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
+			it also includes methods such as
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">addListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">removeListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">hasListener()</a> and several
+			others.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -147,6 +156,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -161,7 +177,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-16">line 16</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-27">line 27</a></p>
 								</div>
 							</div>
 			
@@ -220,7 +236,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-30">line 30</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-41">line 41</a></p>
 								</div>
 							</div>
 			
@@ -264,7 +280,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-24">line 24</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-35">line 35</a></p>
 								</div>
 							</div>
 			
@@ -396,7 +412,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-409">line 409</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-425">line 425</a></p>
 								</div>
 							</div>
 			
@@ -501,7 +517,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error The specified parameter is not available.</p></div>
+									<div class="form-control-static exceptions-description"><p>TypeError The specified parameter is not available.</p></div>
 								</div>
 							</div>
 					</form>
@@ -525,7 +541,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-461">line 461</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-477">line 477</a></p>
 								</div>
 							</div>
 			
@@ -541,13 +557,25 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for a single note or multiple notes. The execution of the
-			<strong>note on</strong> command can be delayed by using the <code>time</code> property of the <code>options</code> parameter.</p>
-			<p>If no duration is specified in the <code>options</code>, the note will play until a matching <strong>note off</strong>
-			message is sent. If a duration is specified, a <strong>note off</strong> message will be automatically sent
-			after said duration.</p>
-			<p>Note: As per the MIDI standard, a <strong>note on</strong> event with a velocity of <code>0</code> is considered to be
-			a <strong>note off</strong>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Plays a note or an array of notes on the channel. The first parameter is the note to play. It
+			can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul>
+			<p>The <code>playNote()</code> method sends a <strong>note on</strong> MIDI message for all specified notes on all
+			specified channels. If a <code>duration</code> is set in the <code>options</code> parameter or in the <a href="Note.html">Note</a>
+			object's <a href="Note.html#duration">duration</a> property, it will also schedule a <strong>note off</strong> message
+			to end the note after said duration. If no <code>duration</code> is set, the note will simply play until
+			a matching <strong>note off</strong> message is sent with <a href="OutputChannel.html#stopNote">stopNote()</a> or
+			<a href="OutputChannel.html#sendNoteOff">sendNoteOff()</a>.</p>
+			<p>The execution of the <strong>note on</strong> command can be delayed by using the <code>time</code> property of the
+			<code>options</code> parameter.</p>
+			<p>When using <a href="Note.html">Note</a> objects, the durations and velocities defined in the <a href="Note.html">Note</a>
+			objects have precedence over the ones specified via the method's <code>options</code> parameter.</p>
+			<p><strong>Note</strong>: As per the MIDI standard, a <strong>note on</strong> message with an attack velocity of <code>0</code> is
+			functionally equivalent to a <strong>note off</strong> message.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -563,16 +591,15 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) you wish to play. The notes can be specified in
-			one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-			The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-			range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-			note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-			and/or names.</p>
+									<p>The note(s) to play. The notes can be
+			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
+			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+			note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
@@ -598,20 +625,30 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td></td>
 													<td class="last">
-															<p>The number of milliseconds (integer) to wait
-									before sending a matching <strong>note off</strong> event. If left undefined, only a <strong>note on</strong> message is
-									sent.</p>
+															<p>The number of milliseconds (integer) after which a
+									<strong>note off</strong> message will be scheduled. If left undefined, only a <strong>note on</strong> message is sent.</p>
 													</td>
 												</tr>
 												<tr>
-														<td><code>rawValue</code></td>
-													<td><span class="param-type">boolean</span></td>
+														<td><code>attack</code></td>
+													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
+														<td>0.5</td>
 													<td class="last">
-															<p>Controls whether the attack and release velocities
-									are set using integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code>
-									(<code>false</code>, default).</p>
+															<p>The velocity at which to play the note (between <code>0</code> and
+									<code>1</code>). If the <code>rawAttack</code> option is also defined, it will have priority. An invalid velocity
+									value will silently trigger the default of <code>0.5</code>.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawAttack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The attack velocity at which to play the note (between
+									<code>0</code> and <code>127</code>). This has priority over the <code>attack</code> property. An invalid velocity value will
+									silently trigger the default of <code>0.5</code>.</p>
 													</td>
 												</tr>
 												<tr>
@@ -621,9 +658,21 @@
 														<td>0.5</td>
 													<td class="last">
 															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
-									This is only used with the <strong>note off</strong> event triggered when <code>options.duration</code> is set.</p>
+									and <code>1</code>). If the <code>rawRelease</code> option is also defined, it will have priority. An invalid
+									velocity value will silently trigger the default of <code>0.5</code>. This is only used with the
+									<strong>note off</strong> event triggered when <code>options.duration</code> is set.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The velocity at which to release the note (between <code>0</code>
+									and <code>127</code>). This has priority over the <code>release</code> property. An invalid velocity value will
+									silently trigger the default of <code>0.5</code>. This is only used with the <strong>note off</strong> event triggered
+									when <code>options.duration</code> is set.</p>
 													</td>
 												</tr>
 												<tr>
@@ -636,17 +685,6 @@
 									a number, the message will be delayed by that many milliseconds. If the value is a number
 									(DOMHighResTimeStamp), the operation will be scheduled for that time. If <code>time</code> is omitted, or
 									in the past, the operation will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>velocity</code></td>
-													<td><span class="param-type">number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to play the note (between <code>0</code> and
-									<code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -684,7 +722,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-546">line 546</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-554">line 554</a></p>
 								</div>
 							</div>
 			
@@ -700,8 +738,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as the
-			pitch bend, to their default value.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as
+			the pitch bend, to their default value.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -777,7 +815,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1310">line 1310</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1358">line 1358</a></p>
 								</div>
 							</div>
 			
@@ -940,7 +978,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-83">line 83</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-99">line 99</a></p>
 								</div>
 							</div>
 			
@@ -1094,7 +1132,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-755">line 755</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-800">line 800</a></p>
 								</div>
 							</div>
 			
@@ -1287,7 +1325,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-230">line 230</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-246">line 246</a></p>
 								</div>
 							</div>
 			
@@ -1303,9 +1341,17 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>note off</strong> message for a single note or multiple simultaneous notes (chord). You
-			can delay the execution of the <strong>note off</strong> command by using the <code>time</code> property of the
-			<code>options</code> parameter.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note off</strong> message for the specified notes on the channel. The first parameter is the
+			note. It can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul>
+			<p>The execution of the <strong>note off</strong> command can be delayed by using the <code>time</code> property of the
+			<code>options</code> parameter.</p>
+			<p>When using <a href="Note.html">Note</a> objects, the release velocity defined in the <a href="Note.html">Note</a> objects has
+			precedence over the one specified via the method's <code>options</code> parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1321,17 +1367,15 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">string</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) you wish to stop. The notes can be specified
-			in one of three ways. The first way is by using the MIDI note number (an integer between <code>0</code>
-			and <code>127</code>). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-			Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
-			and the highest note is G8 (MIDI note number 127). It is also possible to specify an array of
-			note numbers and/or names. The final way is to use the special value <code>all</code> to send an
-			<code>&quot;allnotesoff&quot;</code> channel message.</p>
+									<p>The note(s) to stop. The notes can be
+			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
+			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+			note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
@@ -1352,30 +1396,6 @@
 											</thead>
 											<tbody>
 												<tr>
-														<td><code>rawValue</code></td>
-													<td><span class="param-type">Boolean</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
-													<td class="last">
-															<p>Controls whether the release velocity is set using
-									an integer between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
-									default).</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>velocity</code></td>
-													<td><span class="param-type">Number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
-									Note that when the first parameter to <code>stopNote()</code> is <code>all</code>, the release velocity is silently
-									ignored.</p>
-													</td>
-												</tr>
-												<tr>
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
@@ -1385,6 +1405,28 @@
 									a number, the message will be delayed by that many milliseconds. If the value is a number
 									(DOMHighResTimeStamp), the operation will be scheduled for that time. If <code>time</code> is omitted, or
 									in the past, the operation will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>release</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The velocity at which to release the note
+									(between <code>0</code> and <code>1</code>).  If the <code>rawRelease</code> option is also defined, <code>rawRelease</code> will have
+									priority. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The velocity at which to release the note
+									(between <code>0</code> and <code>127</code>). If the <code>release</code> option is also defined, <code>rawRelease</code> will have
+									priority. An invalid velocity value will silently trigger the default of <code>64</code>.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1422,7 +1464,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-607">line 607</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-601">line 601</a></p>
 								</div>
 							</div>
 			
@@ -1438,10 +1480,21 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for a single note or multiple notes. The execution of the
-			<strong>note on</strong> command can be delayed by using the <code>time</code> property of the <code>options</code> parameter.</p>
-			<p>Note: As per the MIDI standard, a <strong>note on</strong> event with a velocity of <code>0</code> is considered to be
-			a <strong>note off</strong>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for the specified notes on the channel. The first parameter is the
+			note. It can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul>
+			<p>The execution of the <strong>note on</strong> command can be delayed by using the <code>time</code> property of the
+			<code>options</code> parameter.</p>
+			<p>When using <a href="Note.html">Note</a> objects, the attack velocity defined in the <a href="Note.html">Note</a> objects has
+			precedence over the one specified via the method's <code>options</code> parameter. Also, the <code>duration</code> is
+			ignored. If you want to also send a <strong>note off</strong> message, use the
+			<a href="Output.html#playNote">playNote()</a> method instead.</p>
+			<p><strong>Note</strong>: As per the MIDI standard, a <strong>note on</strong> message with an attack velocity of <code>0</code> is
+			functionally equivalent to a <strong>note off</strong> message.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1457,16 +1510,15 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) you wish to play. The notes can be specified in
-			one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-			The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-			range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-			note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-			and/or names.</p>
+									<p>The note(s) to play. The notes can be
+			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
+			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+			note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
@@ -1487,29 +1539,6 @@
 											</thead>
 											<tbody>
 												<tr>
-														<td><code>rawValue</code></td>
-													<td><span class="param-type">boolean</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
-													<td class="last">
-															<p>Controls whether the attack and release velocities
-									are set using integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code>
-									(<code>false</code>, default).</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>release</code></td>
-													<td><span class="param-type">number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
-									This is only used with the <strong>note off</strong> event triggered when <code>options.duration</code> is set.</p>
-													</td>
-												</tr>
-												<tr>
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
@@ -1522,14 +1551,25 @@
 													</td>
 												</tr>
 												<tr>
-														<td><code>velocity</code></td>
+														<td><code>attack</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
 															<p>The velocity at which to play the note (between <code>0</code> and
-									<code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
+									<code>1</code>).  If the <code>rawAttack</code> option is also defined, <code>rawAttack</code> will have priority. An invalid
+									velocity value will silently trigger the default of <code>0.5</code>.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawAttack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The velocity at which to release the note (between <code>0</code>
+									and <code>127</code>). If the <code>attack</code> option is also defined, <code>rawAttack</code> will have priority. An invalid
+									velocity value will silently trigger the default of <code>64</code>.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1567,7 +1607,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-680">line 680</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-707">line 707</a></p>
 								</div>
 							</div>
 			
@@ -1583,8 +1623,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>channel aftertouch</strong> message. For key-specific aftertouch, you should instead use
-			<a href="Output.html#setKeyAftertouch">setKeyAftertouch()</a>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>channel aftertouch</strong> message. For key-specific aftertouch, you should instead
+			use <a href="Output.html#setKeyAftertouch">setKeyAftertouch()</a>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1683,7 +1723,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-836">line 836</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-881">line 881</a></p>
 								</div>
 							</div>
 			
@@ -1724,8 +1764,8 @@
 									<p>The note for which you are sending an aftertouch value. The
 			notes can be specified in one of two ways. The first way is by using the MIDI note number (an
 			integer between 0 and 127). The second way is by using the note name followed by the octave
-			(C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-			note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+			(C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
+			note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
 			an array of note names and/or numbers.</p>
 							</td>
 						</tr>
@@ -1736,7 +1776,7 @@
 								<td>0.5</td>
 							<td class="last">
 									<p>The pressure level (between 0 and 1). An invalid pressure value
-			will silently trigger the default behaviour. If the <code>useRaw</code> option is set to <code>true</code>, the
+			will silently trigger the default behaviour. If the <code>useRawValue</code> option is set to <code>true</code>, the
 			pressure can be defined by using an integer between 0 and 127.</p>
 							</td>
 						</tr>
@@ -1814,7 +1854,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-116">line 116</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-132">line 132</a></p>
 								</div>
 							</div>
 			
@@ -1918,7 +1958,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1255">line 1255</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1303">line 1303</a></p>
 								</div>
 							</div>
 			
@@ -2033,7 +2073,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-879">line 879</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-924">line 924</a></p>
 								</div>
 							</div>
 			
@@ -2160,7 +2200,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-926">line 926</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-971">line 971</a></p>
 								</div>
 							</div>
 			
@@ -2301,7 +2341,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-979">line 979</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1024">line 1024</a></p>
 								</div>
 							</div>
 			
@@ -2424,7 +2464,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-804">line 804</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-849">line 849</a></p>
 								</div>
 							</div>
 			
@@ -2462,7 +2502,8 @@
 							<td class="last">
 									<p>The intensity level of the bend (between -1.0 and 1.0). A value of zero
 			means no bend. If the <code>rawValue</code> option is set to <code>true</code>, the intensity can be defined by using
-			an integer between 0 and 127. In this case, a value of 64 means no bend.</p>
+			an integer between 0 and 127. In this case, a value of 64 means no bend. The range of the pitch
+			bend can be set with <a href="OutputChannel.html#setPitchBendRange">setPitchBendRange()</a>.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2547,7 +2588,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1012">line 1012</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1058">line 1058</a></p>
 								</div>
 							</div>
 			
@@ -2563,9 +2604,10 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a pitch bend range message at the scheduled time so that the instrument adjusts the range
-			of its pitch bend lever. The range can be specified with the <code>semitones</code> parameter (msb), the
-			<code>cents</code> parameter (lsb) or by specifying both parameters at the same time.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
+			adjust the range used by their pitch bend lever. The range is specified by using the
+			<code>semitones</code> and <code>cents</code> parameters. For example, setting the <code>semitones</code> parameter to <code>12</code>
+			means that the pitch bend range will be 12 semitones above and below the nominal pitch.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2585,9 +2627,9 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The desired adjustment value in semitones (integer between 0-127).
-			While nothing imposes that in the specification, it is very common for manufacturers to limit
-			the range to 2 octaves (-12 semitones to 12 semitones).</p>
+									<p>The desired adjustment value in semitones (between 0 and 127). While
+			nothing imposes that in the specification, it is very common for manufacturers to limit the
+			range to 2 octaves (-12 semitones to 12 semitones).</p>
 							</td>
 						</tr>
 						<tr>
@@ -2675,7 +2717,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1059">line 1059</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1106">line 1106</a></p>
 								</div>
 							</div>
 			
@@ -2778,7 +2820,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1330">line 1330</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1378">line 1378</a></p>
 								</div>
 							</div>
 			
@@ -2891,7 +2933,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1091">line 1091</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1138">line 1138</a></p>
 								</div>
 							</div>
 			
@@ -2910,7 +2952,8 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sets the specified MIDI registered parameter to the desired value. The value is defined with
 			up to two bytes of data (msb, lsb) that each can go from 0 to 127.</p>
 			<p>MIDI
-			<a href="https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">registered parameters</a>
+			[registered parameters]
+			(https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
 			extend the original list of control change messages. The MIDI 1.0 specification lists only a
 			limited number of them. Here are the original registered parameters with the identifier that
 			can be used as the first parameter of this function:</p>
@@ -3032,7 +3075,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1153">line 1153</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1201">line 1201</a></p>
 								</div>
 							</div>
 			
@@ -3145,7 +3188,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1191">line 1191</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1239">line 1239</a></p>
 								</div>
 							</div>
 			
@@ -3258,7 +3301,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1225">line 1225</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1273">line 1273</a></p>
 								</div>
 							</div>
 			
@@ -3270,12 +3313,90 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="stopNote" class="function public"><span class="name">stopNote</span><span class="signature-params">( <span class="signature-param">note</span>, <span class="signature-param">options</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Output.html">Output</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This is an alias to the <a href="OutputChannel.html#sendNoteOff">sendNoteOff()</a> method.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>note</code></td>
+							<td></td>
+							<td class="last">
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td></td>
+							<td class="last">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Output.html">Output</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-661">line 661</a></p>
+								</div>
+							</div>
+			
+			
+							<!-- see -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">See</label>
+								<div class="col-sm-9">
+										<p class="form-control-static"><a href="OutputChannel.html#sendNoteOff">OutputChannel#sendNoteOff</a></p>
+								</div>
+							</div>
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="turnNotesOff" class="function public"><span class="name">turnNotesOff</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all notes off</strong> channel mode message. This will turn all currently playing notes off.
-			However, this does not prevent new notes from being played.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all notes off</strong> channel mode message. This will turn all currently playing notes
+			off. However, this does not prevent new notes from being played.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -3351,7 +3472,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1276">line 1276</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1324">line 1324</a></p>
 								</div>
 							</div>
 			
@@ -3444,7 +3565,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1293">line 1293</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1341">line 1341</a></p>
 								</div>
 							</div>
 			
@@ -3465,7 +3586,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 14th 2020 @ 11:36:41 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 9th 2020 @ 10:55:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

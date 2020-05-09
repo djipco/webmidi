@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -68,6 +68,7 @@
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
@@ -117,7 +118,12 @@
 			object. This means there is no need to instantiate a new <code>WebMidi</code> object directly.</p>
 			<p>The <code>WebMidi</code> object extends the
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
-			<a href="https://djipco.github.io/djipevents/index.html">djipevents module</a>.</p></div>
+			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
+			it also includes methods such as
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">addListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">removeListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">hasListener()</a> and several
+			others.</p></div>
 			</div>			<div class="callout callout-warning"><h5>Fires</h5>		<form class="form-horizontal fires">
 							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:connected">WebMidi#connected</a></label>
@@ -171,7 +177,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-27">line 27</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-33">line 33</a></p>
 								</div>
 							</div>
 			
@@ -219,7 +225,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-797">line 797</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-890">line 890</a></p>
 								</div>
 							</div>
 			
@@ -263,7 +269,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-822">line 822</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-900">line 900</a></p>
 								</div>
 							</div>
 			
@@ -308,7 +314,51 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-38">line 38</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-44">line 44</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="isNode" class="member public"><span class="name">isNode</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the current environment is Node.js or not</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-908">line 908</a></p>
 								</div>
 							</div>
 			
@@ -368,7 +418,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-994">line 994</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1034">line 1034</a></p>
 								</div>
 							</div>
 			
@@ -429,7 +479,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1231">line 1231</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1058">line 1058</a></p>
 								</div>
 							</div>
 			
@@ -491,7 +541,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-967">line 967</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1007">line 1007</a></p>
 								</div>
 							</div>
 			
@@ -603,7 +653,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1117">line 1117</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1141">line 1141</a></p>
 								</div>
 							</div>
 			
@@ -647,7 +697,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-869">line 869</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1213">line 1213</a></p>
 								</div>
 							</div>
 			
@@ -708,7 +758,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1200">line 1200</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1234">line 1234</a></p>
 								</div>
 							</div>
 			
@@ -778,7 +828,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1027">line 1027</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1274">line 1274</a></p>
 								</div>
 							</div>
 			
@@ -802,7 +852,7 @@
 			<li><code>timecode</code>: 0xF1 (241)</li>
 			<li><code>songposition</code>: 0xF2 (242)</li>
 			<li><code>songselect</code>: 0xF3 (243)</li>
-			<li><code>tuningrequest</code>: 0xF6 (246)</li>
+			<li><code>tunerequest</code>: 0xF6 (246)</li>
 			<li><code>sysexend</code>: 0xF7 (247)</li>
 			</ul>
 			<p>The <code>sysexend</code> message is never actually received. It simply ends a sysex stream.</p>
@@ -858,7 +908,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-921">line 921</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1334">line 1334</a></p>
 								</div>
 							</div>
 			
@@ -902,7 +952,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-879">line 879</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1369">line 1369</a></p>
 								</div>
 							</div>
 			
@@ -956,7 +1006,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-51">line 51</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-927">line 927</a></p>
 								</div>
 							</div>
 			
@@ -1000,7 +1050,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-832">line 832</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-942">line 942</a></p>
 								</div>
 							</div>
 			
@@ -1048,7 +1098,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-812">line 812</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-957">line 957</a></p>
 								</div>
 							</div>
 			
@@ -1093,7 +1143,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-843">line 843</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-968">line 968</a></p>
 								</div>
 							</div>
 			
@@ -1110,8 +1160,9 @@
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The elapsed time, in milliseconds, since the
-			<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin">time origin</a>.
-			Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
+			[time origin]
+			(https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin). Said
+			simply, it is the number of milliseconds that passed since the page was loaded. Being a
 			floating-point number, it has sub-millisecond accuracy. According to the
 			<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp">specification</a>, the
 			time should be accurate to 5 µs (microseconds). However, due to various constraints, the
@@ -1143,7 +1194,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-859">line 859</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-985">line 985</a></p>
 								</div>
 							</div>
 			
@@ -1158,16 +1209,15 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="convertToTimestamp" class="function public"><span class="name">convertToTimestamp</span><span class="signature-params">( [&nbsp;<span class="signature-param">time</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+			<h4 id="convertToTimestamp" class="function public"><span class="name">convertToTimestamp</span><span class="signature-params">( [&nbsp;<span class="signature-param">time</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a timestamp, relative to the navigation start of the document, derived from the <code>time</code>
-			parameter. If the parameter is a string starting with the &quot;+&quot; sign and followed by a number,
-			the resulting value will be the sum of the current timestamp plus that number. Otherwise, the
-			value will be returned as is.</p>
-			<p>If the calculated return value is 0, less than zero or an otherwise invalid value, <code>false</code> will
-			be returned.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a valid timestamp, relative to the navigation start of the document, derived from the
+			<code>time</code> parameter. If the parameter is a string starting with the &quot;+&quot; sign and followed by a
+			number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+			the parameter is a positive number, it will be returned as is. Otherwise, false will be
+			returned.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1185,7 +1235,7 @@
 							<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 							<td class="last">
-									<p>The time string or integer to parse</p>
+									<p>The time string (e.g. <code>&quot;+2000&quot;</code>) or number to parse</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1193,9 +1243,9 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>DOMHighResTimeStamp</p></div>
+									<div class="form-control-static returns-description"><p>A positive number</p></div>
 								</div>
 							</div>
 					</form>
@@ -1219,7 +1269,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-583">line 583</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-633">line 633</a></p>
 								</div>
 							</div>
 			
@@ -1235,7 +1285,7 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Completely disables <code>WebMidi.js</code> by unlinking the MIDI subsystem's interface and destroying all
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Completely disables <code>WebMidi.js</code> by unlinking the MIDI subsystem's interface and closing all
 			<a href="Input.html">Input</a> and <a href="Output.html">Output</a> objects that may be available. This also means that listeners
 			added to <a href="Input.html">Input</a> objects, <a href="Output.html">Output</a> objects or to <code>WebMidi</code> itself are also
 			destroyed.</p></div>
@@ -1282,7 +1332,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-227">line 227</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-251">line 251</a></p>
 								</div>
 							</div>
 			
@@ -1453,7 +1503,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-152">line 152</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-153">line 153</a></p>
 								</div>
 							</div>
 			
@@ -1540,7 +1590,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-297">line 297</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-304">line 304</a></p>
 								</div>
 							</div>
 			
@@ -1625,7 +1675,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-325">line 325</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-332">line 332</a></p>
 								</div>
 							</div>
 			
@@ -1703,7 +1753,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-421">line 421</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-428">line 428</a></p>
 								</div>
 							</div>
 			
@@ -1781,7 +1831,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-471">line 471</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-478">line 478</a></p>
 								</div>
 							</div>
 			
@@ -1868,7 +1918,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-386">line 386</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-393">line 393</a></p>
 								</div>
 							</div>
 			
@@ -1953,7 +2003,150 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-354">line 354</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-361">line 361</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getValidNoteArray" class="function public"><span class="name">getValidNoteArray</span><span class="signature-params">( [&nbsp;<span class="signature-param">notes</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Note.html">Note</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Converts an input value, which can be an unsigned integer (0-127), a note name, a <a href="Note.html">Note</a>
+			object or an array of the previous types, to an array of <a href="Note.html">Note</a> objects.</p>
+			<p><a href="Note.html">Note</a> objects are returned as is. For note numbers and names, a <a href="Note.html">Note</a> object is
+			created with the options specified. Invalid elements are simply ignored.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>notes</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the note should
+									be explicitly stopped.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>attack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The note's attack velocity as a decimal number between 0
+									and 1.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>release</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The note's release velocity as a decimal number between 0
+									and 1.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawAttack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The note's attack velocity as an integer between 0 and
+									127.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The note's release velocity as an integer between 0 and
+									127.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-603">line 603</a></p>
 								</div>
 							</div>
 			
@@ -1970,8 +2163,9 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-			string containing a note name (C3, F#4, D-2, G8, etc.). If an integer between 0 and 127 is
-			passed, it will simply be returned as is (for convenience).</p>
+			string containing a note name (<code>&quot;C3&quot;</code>, <code>&quot;F#4&quot;</code>, <code>&quot;D-2&quot;</code>, <code>&quot;G8&quot;</code>, etc.). If an integer between 0
+			and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
+			parsed for integer, if possible.</p>
 			<p><strong>Note</strong>: since v3.x, this method returns <code>false</code> instead of throwing an error when the input
 			is invalid.</p></div>
 			</div>			<div class="callout callout-info">
@@ -2025,7 +2219,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-554">line 554</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-558">line 558</a></p>
 								</div>
 							</div>
 			
@@ -2037,22 +2231,15 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="sanitizeChannels" class="function public"><span class="name">sanitizeChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{array}</span></h4>
+			<h4 id="sanitizeChannels" class="function public"><span class="name">sanitizeChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be one of
-			the following:</p>
-			<ul>
-			<li>a single integer</li>
-			<li>an array of integers</li>
-			<li>the special value <code>&quot;all&quot;</code></li>
-			<li>the special value <code>&quot;none&quot;</code></li>
-			</ul>
-			<p>Passing <code>&quot;all&quot;</code> or <code>undefined</code> as a parameter to this function results in all channels being
-			returned (1-16). Passing <code>&quot;none&quot;</code> results in no channel being returned (as an empty array).</p>
-			<p>Note: parameters that cannot successfully be parsed to integers between 1 and 16 are silently
-			ignored.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+			single integer or an array of integers.</p>
+			<p>For backwards-compatibility, passing <code>undefined</code> as a parameter to this method results in all
+			channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+			integers between 1 and 16 are silently ignored.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2061,18 +2248,17 @@
 							<th>Name</th>
 						<th>Type</th>
 							<th>Attributes</th>
-							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr>
 								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">"all"</span> | <span class="param-type">"none"</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>&quot;all&quot;</td>
 							<td class="last">
-									<p>The channel(s) to parse.</p>
+									<p>An integer or an array of integers to parse as channel
+			numbers.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2080,9 +2266,9 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">array</span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An array of 0 or more valid MIDI channel numbers</p></div>
+									<div class="form-control-static returns-description"><p>An array of 0 or more valid MIDI channel numbers.</p></div>
 								</div>
 							</div>
 					</form>
@@ -2106,7 +2292,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-500">line 500</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-503">line 503</a></p>
 								</div>
 							</div>
 			
@@ -2141,10 +2327,10 @@
 					<tbody>
 						<tr>
 								<td><code>timestamp</code></td>
-							<td><span class="param-type">DOMHighResTimeStamp</span></td>
+							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The moment when the event occurred (in milliseconds
-			since the navigation start of the document).</p>
+									<p>The moment (DOMHighResTimeStamp) when the event occurred
+			(in milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
 						<tr>
@@ -2156,9 +2342,10 @@
 						</tr>
 						<tr>
 								<td><code>target</code></td>
-							<td><span class="param-type"><a href="WebMidi.html">WebMidi</a></span></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span> | <span class="param-type"><a href="Output.html">Output</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event</p>
+									<p>The <a href="Input.html">Input</a> or <a href="Output.html">Output</a> object that triggered the
+			event.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2191,7 +2378,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-606">line 606</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-675">line 675</a></p>
 								</div>
 							</div>
 			
@@ -2271,7 +2458,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-236">line 236</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-262">line 262</a></p>
 								</div>
 							</div>
 			
@@ -2407,7 +2594,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-619">line 619</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-689">line 689</a></p>
 								</div>
 							</div>
 			
@@ -2487,7 +2674,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-175">line 175</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-199">line 199</a></p>
 								</div>
 							</div>
 			
@@ -2508,7 +2695,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 14th 2020 @ 11:36:41 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 9th 2020 @ 10:55:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

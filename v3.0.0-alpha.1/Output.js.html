@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -69,6 +69,7 @@
 									<ul class="dropdown-menu">
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
@@ -100,9 +101,9 @@
 			<div class="col-md-12 main-content">
 		<section class="source-section">
 			<article></article>
-			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from '../node_modules/djipevents/dist/djipevents.esm.min.js';
-import {OutputChannel} from './OutputChannel.js';
-import {WebMidi} from './WebMidi.js';
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {OutputChannel} from "./OutputChannel.js";
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
@@ -110,6 +111,15 @@ import {WebMidi} from './WebMidi.js';
  *
  * You can find a list of all available `Output` objects in the
  * [WebMidi.outputs]{@link WebMidi#outputs} array.
+ *
+ * The `Output` class extends the
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
+ * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
+ * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
+ * others.
  *
  * @param {MIDIOutput} midiOutput `MIDIOutput` object as provided by the MIDI subsystem
  *
@@ -122,6 +132,10 @@ export class Output extends EventEmitter {
   constructor(midiOutput) {
 
     super();
+
+    if (!midiOutput || midiOutput.type !== "output") {
+      throw new TypeError("The supplied MIDIOutput is invalid.");
+    }
 
     /**
      * A reference to the `MIDIOutput` object
@@ -144,6 +158,20 @@ export class Output extends EventEmitter {
   }
 
   /**
+   * Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
+   * subsystem is unlinked.
+   * @returns {Promise&lt;void>}
+   */
+  async destroy() {
+    this.removeListener();
+    this.channels.forEach(ch => ch.destroy());
+    this.channels = [];
+    this._midiOutput.onstatechange = null;
+    await this.close();
+    this._midiOutput = null;
+  }
+
+  /**
    * @private
    */
   _onStateChange(e) {
@@ -152,41 +180,41 @@ export class Output extends EventEmitter {
       timestamp: WebMidi.time
     };
 
-    if (e.port.connection === 'open') {
+    if (e.port.connection === "open") {
 
       /**
-       * Event emitted when the {@link Output} has been opened by calling the {@link Output#open}
-       * method.
+       * Event emitted when the {@link Output} has been opened by calling the
+       * [open()]{@link Output#open} method.
        *
        * @event Output#opened
        * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
        * @property {Output} target The object that triggered the event
        */
-      event.type = 'opened';
+      event.type = "opened";
       event.target = this;
-      this.emit('opened', event);
+      this.emit("opened", event);
 
-    } else if (e.port.connection === 'closed' &amp;&amp; e.port.state === 'connected') {
+    } else if (e.port.connection === "closed" &amp;&amp; e.port.state === "connected") {
 
       /**
-       * Event emitted when the {@link Output} has been closed by calling the {@link Output#close}
-       * method.
+       * Event emitted when the {@link Output} has been closed by calling the
+       * [close()]{@link Output#close} method.
        *
        * @event Output#closed
        * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
        * @property {Output} target The object that triggered the event
        */
-      event.type = 'closed';
+      event.type = "closed";
       event.target = this;
-      this.emit('closed', event);
+      this.emit("closed", event);
 
-    } else if (e.port.connection === 'closed' &amp;&amp; e.port.state === 'disconnected') {
+    } else if (e.port.connection === "closed" &amp;&amp; e.port.state === "disconnected") {
 
       /**
        * Event emitted when the {@link Output} becomes unavailable. This event is typically fired
@@ -194,11 +222,11 @@ export class Output extends EventEmitter {
        *
        * @event Output#disconnected
        * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
-       * since the navigation start of the document).
+       * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
+       * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Output} that triggered
-       * the event. This is not the actual `Output` as it is no longer available.
+       * @property {Object} target Object with properties describing the {@link Output} that
+       * triggered the event. This is not the actual `Output` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
        * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -206,7 +234,7 @@ export class Output extends EventEmitter {
        * @property {string} target.state `"disconnected"`
        * @property {string} target.type `"output"`
        */
-      event.type = 'disconnected';
+      event.type = "disconnected";
       event.target = {
         connection: e.port.connection,
         id: e.port.id,
@@ -214,13 +242,13 @@ export class Output extends EventEmitter {
         name: e.port.name,
         state: e.port.state,
         type: e.port.type
-      }
-      this.emit('disconnected', event);
+      };
+      this.emit("disconnected", event);
 
-    } else if (e.port.connection === 'pending' &amp;&amp; e.port.state === 'disconnected') {
+    } else if (e.port.connection === "pending" &amp;&amp; e.port.state === "disconnected") {
       // I don't see the need to forward that...
     } else {
-      console.warn('This statechange event was not caught:', e.port.connection, e.port.state);
+      console.warn("This statechange event was not caught:", e.port.connection, e.port.state);
     }
 
   }
@@ -240,14 +268,15 @@ export class Output extends EventEmitter {
       await this._midiOutput.open();
       return Promise.resolve(this);
     } catch (err) {
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
 
   }
 
   /**
-   * Closes the output. When an output is closed, it cannot be used to send MIDI messages until the
-   * output is opened again by calling [Output.open()]{@link Output#open}.
+   * Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
+   * until the output is opened again by calling [Output.open()]{@link Output#open}. You can check
+   * the connection status by looking at the [connection]{@link Output#connection} property.
    *
    * @returns {Promise&lt;void>}
    */
@@ -256,17 +285,17 @@ export class Output extends EventEmitter {
     // We close the port. This triggers a 'statechange' event which we listen to to re-trigger the
     // 'closed' event.
     if (this._midiOutput) {
-      return this._midiOutput.close();
+      await this._midiOutput.close();
     } else {
-      return Promise.resolve();
+      await Promise.resolve();
     }
 
   }
 
   /**
    * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. It is usually not
-   * necessary to use this method directly as you can use one of the simpler helper methods such as
-   * `playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   * necessary to use this method directly since it is often simpler to use one of the helper
+   * methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
@@ -318,7 +347,8 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI [system exclusive]{@link https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
+   * Sends a MIDI [system exclusive]{@link
+    * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
    * (*sysex*) message. The generated message will automatically be prepended with the *sysex byte*
    * (0xF0) and terminated with the *end of sysex byte* (0xF7).
    *
@@ -365,7 +395,8 @@ export class Output extends EventEmitter {
    * @param manufacturer {number|number[]} An unsigned integer or an array of three unsigned
    * integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers
    * Association* maintains a full list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
+   * .
    *
    * @param [data=number[]] {Array} An array of unsigned integers between 0 and 127. This is the
    * data you wish to transfer.
@@ -452,6 +483,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setSongPosition(value, options = {}) {
 
@@ -476,7 +509,7 @@ export class Output extends EventEmitter {
   sendSongPosition(value, options = {}) {
     this.setSongPosition(value, options);
     console.warn(
-      'The sendSongPosition() method has been deprecated. Use setSongPosition() instead.'
+      "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
     );
     return this;
   }
@@ -500,12 +533,14 @@ export class Output extends EventEmitter {
    * @throws The song number must be between 1 and 128.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setSong(value, options = {}) {
 
     value = parseInt(value);
     if (isNaN(value) || !(value >= 1 &amp;&amp; value &lt;= 128)) {
-      throw new RangeError('The program value must be between 1 and 128');
+      throw new RangeError("The program value must be between 1 and 128");
     }
 
     this.send(
@@ -525,7 +560,7 @@ export class Output extends EventEmitter {
   sendSongSelect(value, options = {}) {
     this.setSong(value, options);
     console.warn(
-      'The sendSongSelect() method has been deprecated. Use setSong() instead.'
+      "The sendSongSelect() method has been deprecated. Use setSong() instead."
     );
     return this;
   }
@@ -541,15 +576,17 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   sendTuneRequest(options = {}) {
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.tuningrequest,
+      WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
       undefined,
       WebMidi.convertToTimestamp(options.time)
     );
     return this;
-  };
+  }
 
   /**
    * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
@@ -642,9 +679,9 @@ export class Output extends EventEmitter {
   };
 
   /**
-   * Sends an **active sensing** real-time message. This tells the device connected to this port that
-   * the connection is still good. Active sensing messages should be sent every 300 ms if there was
-   * no other activity on the MIDI port.
+   * Sends an **active sensing** real-time message. This tells the device connected to this port
+   * that the connection is still good. Active sensing messages should be sent every 300 ms if there
+   * was no other activity on the MIDI port.
    *
    * @param {Object} [options={}]
    *
@@ -693,7 +730,7 @@ export class Output extends EventEmitter {
   sendTuningRequest(options = {}) {
     this.sendTuneRequest(options);
     console.warn(
-      'The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.'
+      "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
     );
     return this;
   }
@@ -706,16 +743,16 @@ export class Output extends EventEmitter {
    * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
    * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
    * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI
-   * note number 0) and the highest note is G8 (MIDI note number 127). It is also possible to use
+   * (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
+   * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
    * an array of note names and/or numbers.
-   *
-   * @param channel {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
+   *
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -728,8 +765,10 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
-  setKeyAftertouch(note, channel, pressure, options = {}) {
+  setKeyAftertouch(note, pressure, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
@@ -744,9 +783,9 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendKeyAftertouch(note, channel, pressure, options = {}) {
-    this.setKeyAftertouch(note, channel, pressure, options);
+    this.setKeyAftertouch(note, pressure, channel, options);
     console.warn(
-      'The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.'
+      "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
     );
     return this;
   }
@@ -829,9 +868,8 @@ export class Output extends EventEmitter {
    *
    * @param [value=0] {number} The value to send (0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -857,19 +895,18 @@ export class Output extends EventEmitter {
 
   /**
    * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-   * adjust the range used by their pitch bend lever. The range can be specified with the
-   * `semitones` parameter (msb), the `cents` parameter (lsb) or by specifying both parameters at
-   * the same time.
+   * adjust the range used by their pitch bend lever. The range is specified by using the
+   * `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
+   * means that the pitch bend range will be 12 semitones above and below the nominal pitch.
    *
-   * @param semitones {number} The desired adjustment value in semitones (integer between 0-127).
-   * While nothing imposes that in the specification, it is very common for manufacturers to limit
-   * the range to 2 octaves (-12 semitones to 12 semitones).
+   * @param semitones {number} The desired adjustment value in semitones (between 0 and 127). While
+   * nothing imposes that in the specification, it is very common for manufacturers to limit the
+   * range to 2 octaves (-12 semitones to 12 semitones).
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -882,13 +919,13 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The lsb value must be between 0 and 127.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPitchBendRange(semitones, cents, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setRegisteredParameter(
-        'pitchbendrange', [semitones, cents], ch, {time: options.time}
-      );
+      this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
     return this;
@@ -900,7 +937,8 @@ export class Output extends EventEmitter {
    * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
    *
    * MIDI
-   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * [registered parameters]
+   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
    * extend the original list of control change messages. The MIDI 1.0 specification lists only a
    * limited number of them. Here are the original registered parameters with the identifier that
    * can be used as the first parameter of this function:
@@ -931,12 +969,11 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
    * registered parameter.
    *
-   * @param [data=[]] {number|number[]} An single integer or an array of integers with a maximum
+   * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -965,9 +1002,8 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or
-   * an array of channel numbers. If the special value "all" is used, the message will be sent to
-   * all 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -980,11 +1016,12 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   * @since 3.0.0
    */
   setChannelAftertouch(pressure, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setChannelAftertouch(pressure, options);
+      this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
     return this;
@@ -998,7 +1035,7 @@ export class Output extends EventEmitter {
   sendChannelAftertouch(pressure, channel, options = {}) {
     this.setChannelAftertouch(pressure, channel, options);
     console.warn(
-      'The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead.'
+      "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead."
     );
     return this;
   }
@@ -1010,9 +1047,8 @@ export class Output extends EventEmitter {
    * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
    * an integer between 0 and 127. In this case, a value of 64 means no bend.
    *
-   * @param [channel=all] {number|number[]|string}  The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1027,11 +1063,13 @@ export class Output extends EventEmitter {
    * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPitchBend(value, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setPitchBend(value, options);
+      this.channels[ch].setPitchBend(value, options);
     });
 
     return this;
@@ -1045,7 +1083,7 @@ export class Output extends EventEmitter {
   sendPitchBend(bend, channel, options = {}) {
     this.setPitchBend(bend, channel, options);
     console.warn(
-      'The sendPitchBend() method has been deprecated. Use setPitchBend() instead.'
+      "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
     );
     return this;
   }
@@ -1059,9 +1097,8 @@ export class Output extends EventEmitter {
    *
    * @param [program=1] {number} The MIDI patch (program) number (1-128)
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1075,17 +1112,12 @@ export class Output extends EventEmitter {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
+   * @since 3.0.0
    */
   setProgram(program, channel, options = {}) {
 
-    program = parseFloat(program) - 1;
-
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.send(
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange &lt;&lt; 4) + (ch - 1),
-        [program],
-        WebMidi.convertToTimestamp(options.time)
-      );
+      this.channels[ch].setProgram(program, options);
     });
 
     return this;
@@ -1097,11 +1129,13 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendProgramChange(program, channel, options = {}) {
-    this.setProgram(program, channel, options = {});
+
     console.warn(
-      'The sendProgramChange() method has been deprecated. Use setProgram() instead.'
+      "The sendProgramChange() method has been deprecated. Use setProgram() instead."
     );
-    return this;
+
+    return this.setProgram(program, channel, options);
+
   }
 
   /**
@@ -1114,9 +1148,8 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1129,6 +1162,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The lsb value must be between 0 and 127
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setModulationRange(semitones, cents, channel, options = {}) {
 
@@ -1151,9 +1186,8 @@ export class Output extends EventEmitter {
    *
    * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 &lt; x &lt; 64)
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1166,6 +1200,8 @@ export class Output extends EventEmitter {
    * than 64.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setMasterTuning(value, channel, options = {}) {
 
@@ -1187,9 +1223,8 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning program (1-128).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1201,6 +1236,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The program value must be between 1 and 128.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setTuningProgram(value, channel, options = {}) {
 
@@ -1222,9 +1259,8 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning bank (1-128).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1236,11 +1272,13 @@ export class Output extends EventEmitter {
    * @throws {RangeError} The bank value must be between 1 and 128.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setTuningBank(value, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.setTuningBank(value, options);
+      this.channels[ch].setTuningBank(value, options);
     });
 
     return this;
@@ -1278,9 +1316,9 @@ export class Output extends EventEmitter {
    *
    * @param [value] {number} The value to send (integer between 0-127).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
+   *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
@@ -1310,9 +1348,8 @@ export class Output extends EventEmitter {
    * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
    * channel but will not prevent new sounds from being triggered.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1322,6 +1359,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output}
+   *
+   * @since 3.0.0
    */
   turnSoundOff(channel, options = {}) {
 
@@ -1334,12 +1373,11 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends an **all note soff** channel mode message. This will turn all currently playing notes off.
-   * However, this does not prevent new notes from being played.
+   * Sends an **all note soff** channel mode message. This will turn all currently playing notes
+   * off. However, this does not prevent new notes from being played.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1349,6 +1387,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @returns {Output}
+   *
+   * @since 3.0.0
    */
   turnNotesOff(channel, options = {}) {
 
@@ -1361,12 +1401,11 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as the
-   * pitch bend, to their default value.
+   * Sends a **reset all controllers** channel mode message. This resets all controllers, such as
+   * the pitch bend, to their default value.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1394,9 +1433,8 @@ export class Output extends EventEmitter {
    *
    * @param mode {string} The mode to use: `"mono"` or `"poly"`.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1406,6 +1444,8 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setPolyphonicMode(mode, channel, options = {}) {
 
@@ -1426,9 +1466,8 @@ export class Output extends EventEmitter {
    * @param [state=false] {boolean} Whether to activate local control (`true`) or disable it
    * (`false`).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1438,11 +1477,13 @@ export class Output extends EventEmitter {
    * in the past, the operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setLocalControl(state, channel, options = {}) {
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.channels[ch].setLocalControl(options);
+      this.channels[ch].setLocalControl(state, options);
     });
 
     return this;
@@ -1457,9 +1498,8 @@ export class Output extends EventEmitter {
    *
    * @param [state] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1473,6 +1513,8 @@ export class Output extends EventEmitter {
    * @throws {RangeError} Value must be an integer between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0.0
    */
   setOmniMode(state, channel, options = {}) {
 
@@ -1511,7 +1553,7 @@ export class Output extends EventEmitter {
    * value to send was 10, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
+   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
    * ```
    *
    * For further implementation details, refer to the manufacturer"s documentation.
@@ -1522,9 +1564,8 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1572,9 +1613,8 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [channel=all] {number|number[]|String} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1621,9 +1661,8 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between 1 and 16) or an
-   * array of channel numbers. If the special value "all" is used, the message will be sent to all
-   * 16 channels.
+   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
+   * representing the channel(s) to listen on.
    *
    * @param {Object} [options={}]
    *
@@ -1647,48 +1686,46 @@ export class Output extends EventEmitter {
   };
 
   /**
-   * Sends a MIDI **note off** message to the specified channel(s) for a single note or multiple
-   * simultaneous notes (chord). You can delay the execution of the **note off** command by using
-   * the `time` property of the `options` parameter (in milliseconds).
+   * Sends a **note off** message for the specified notes on the specified channel(s). The first
+   * parameter is the note. It can be a single value or an array of the following valid values:
    *
-   * @param note {number|number[]|string}  The note(s) you wish to stop. The notes can be specified
-   * in one of three ways. The first way is by using the MIDI note number (an integer between `0`
-   * and `127`). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-   * Db7). The octave range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0)
-   * and the highest note is G8 (MIDI note number 127). It is also possible to specify an array of
-   * note numbers and/or names. The final way is to use the special value `all` to send an
-   * `"allnotesoff"` channel message.
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
    *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`) or
-   * an array of channel numbers. If the special value `all` is used (default), the message will be
-   * sent to all 16 channels.
+   *  The execution of the **note off** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
+   * precedence over the one specified via the method's `options` parameter.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
+   *
+   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
+   * of channel numbers.
    *
    * @param {Object} [options={}]
    *
-   * @param {Boolean} [options.rawValue=false] Controls whether the release velocity is set using
-   * an integer between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
+   * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
    * default).
-   *
-   * @param {Number} [options.velocity=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * Note that when the first parameter to `stopNote()` is `all`, the release velocity is silently
-   * ignored.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendNoteOff(note, channel, options) {
-
-    // Backwards compatibility
-    if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
-      options.rawValue = options.rawVelocity;
-    }
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
@@ -1709,123 +1746,9 @@ export class Output extends EventEmitter {
    * @returns {Output}
    */
   stopNote(note, channel, options) {
-    return this.sendNoteOff(note, channel, options);
-  }
-
-  /**
-   * Sends a **note on** message for a single note or multiple notes on the specified channel(s).
-   * The execution of the **note on** command can be delayed by using the `time` property of the
-   * `options` parameter.
-   *
-   * If no duration is specified in the `options`, the note will play until a matching **note off**
-   * message is sent. If a duration is specified, a **note off** message will be automatically sent
-   * after said duration.
-   *
-   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
-   * a **note off**.
-   *
-   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-   * and/or names.
-   *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`)
-   * or an array of channel numbers. If the special value **all** is used (default), the message
-   * will be sent to all 16 channels.
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.duration=undefined] The number of milliseconds (integer) to wait
-   * before sending a matching **note off** event. If left undefined, only a **note on** message is
-   * sent.
-   *
-   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
-   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
-   * (`false`, default).
-   *
-   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * This is only used with the **note off** event triggered when `options.duration` is set.
-   *
-   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
-   *
-   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
-   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   *
-   * @returns {Output} Returns the `Output` object so methods can be chained.
-   */
-  playNote(note, channel, options = {}) {
-
-    // Backwards compatibility
-    if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
-      options.rawValue = options.rawVelocity;
-    }
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.channels[ch].playNote(note, options);
-    });
-
-  }
-
-  /**
-   * Sends a **note on** message for a single note or multiple notes on the specified channel(s).
-   * The execution of the **note on** command can be delayed by using the `time` property of the
-   * `options` parameter (milliseconds).
-   *
-   * Note: As per the MIDI standard, a **note on** event with a velocity of `0` is considered to be
-   * a **note off**.
-   *
-   * @param note {number|string|Array}  The note(s) you wish to play. The notes can be specified in
-   * one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-   * The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-   * range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-   * note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-   * and/or names.
-   *
-   * @param [channel=all] {number|number[]|string} The MIDI channel number (between `1` and `16`)
-   * or an array of channel numbers. If the special value **all** is used (default), the message
-   * will be sent to all 16 channels.
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
-   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
-   * (`false`, default).
-   *
-   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   * This is only used with the **note off** event triggered when `options.duration` is set.
-   *
-   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
-   *
-   * @param {number} [options.velocity=0.5] The velocity at which to play the note (between `0` and
-   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   *
-   * @returns {Output} Returns the `Output` object so methods can be chained.
-   */
-  sendNoteOn(note, channel, options = {}) {
-
-    // Backwards compatibility
-    if (options.rawVelocity) {
-      console.warn('The \'rawVelocity\' option is deprecated. Use \'rawValue\' instead.');
-      options.rawValue = options.rawVelocity;
-    }
-
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.channels[ch].sendNoteOn(note, options);
+      this.channels[ch].stopNote(note, options);
     });
 
     return this;
@@ -1833,17 +1756,134 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Closes the output, unregisters listeners and disconnects the output from the host's MIDI
-   * subsystem.
+   * Plays a note or an array of notes on the specified channel(s). The first parameter is the note
+   * to play. It can be a single value or an array of the following valid values:
    *
-   * @async
-   * @return {Promise&lt;void>}
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
+   *
+   * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
+   * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
+   * object's [duration]{@link Note#duration} property, it will also schedule a **note off** message
+   * to end the note after said duration. If no `duration` is set, the note will simply play until
+   * a matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
+   * [sendNoteOff()]{@link Output#sendNoteOff}.
+   *
+   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
+   * objects have precedence over the ones specified via the method's `options` parameter.
+   *
+   * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+   * functionally equivalent to a **note off** message.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
+   *
+   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
+   * of channel numbers.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
+   * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
+   * are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
+   * (`false`, default).
+   *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   * This is only used with the **note off** event triggered when `options.duration` is set.
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
+   * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  async destroy() {
-    return this.close().then(() => {
-      if (this._midiOutput) this._midiOutput.onstatechange = null;
-      this._midiOutput = null;
-    })
+  playNote(note, channel, options = {}) {
+
+    // Compatibility warning
+    if (options.rawVelocity) {
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
+    }
+    if (options.velocity) {
+      console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+    }
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].playNote(note, options);
+    });
+
+    return this;
+
+  }
+
+  /**
+   * Sends a **note on** message for the specified notes on the specified channel(s). The first
+   * parameter is the note. It can be a single value or an array of the following valid values:
+   *
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
+   *
+   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
+   * precedence over the one specified via the method's `options` parameter. Also, the `duration` is
+   * ignored. If you want to also send a **note off** message, use the
+   * [playNote()]{@link Output#playNote} method instead.
+   *
+   * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+   * functionally equivalent to a **note off** message.
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types. When using a note name, octave range
+   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * note is G9 (MIDI note number 127).
+   *
+   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
+   * of channel numbers.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the attack velocity is set using
+   * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * default).
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
+   * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
+  sendNoteOn(note, channel, options = {}) {
+
+    WebMidi.sanitizeChannels(channel).forEach(ch => {
+      this.channels[ch].sendNoteOn(note, options);
+    });
+
+    return this;
+
   }
 
   /**
@@ -1916,7 +1956,7 @@ export class Output extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 14th 2020 @ 11:36:41 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 9th 2020 @ 10:55:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
