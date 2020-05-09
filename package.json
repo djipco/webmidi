@@ -16,6 +16,10 @@
   "bugs": {
     "url": "https://github.com/djipco/webmidi/issues"
   },
+  "files": [
+    "/dist",
+    "/webmidi.d.ts"
+  ],
   "keywords": [
     "midi",
     "message",
@@ -50,7 +54,7 @@
     "docs:generate": "node tools/documentation/generate.js",
     "docs:generate-and-publish": "npm run docs:generate && node tools/documentation/publish.js",
     "lint": "eslint ./src/*.js",
-    "release:next": "npm version prerelease && node tools/build/release.js && npm publish --tag next",
+    "release:next": "npm version prerelease && node tools/build/release.js && npm publish --tag next --dry-run",
     "release:latest": "npm version patch && node tools/build/release.js && npm publish",
     "test:all": "mocha test/index.js",
     "test:WebMidi": "mocha test/index.js -g 'WebMidi Object'",
