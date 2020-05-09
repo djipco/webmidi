@@ -89,10 +89,17 @@ const config = {
 // Write configuration to temporary file
 fs.writeFileSync(CONF_PATH, JSON.stringify(config));
 
-// Generate documentation
+// Prepare commit string
+let now = new Date();
+let message = "Docs generated on: ";
+message += now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " ";
+message += now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+// Generate and commit documentation
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
-  `--destination ./docs/v${pkg.version}`;
+  `--destination ./docs/v${pkg.version} ` +
+  `&& git commit docs -m "${message}"`;
 
 exec(cmd, (err, stdout, stderr) => {
 
