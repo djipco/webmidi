@@ -91,9 +91,13 @@ fs.writeFileSync(CONF_PATH, JSON.stringify(config));
 
 // Prepare commit string
 let now = new Date();
-let message = "Docs generated on: ";
-message += now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " ";
-message += now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+let message = "Updated on: ";
+message += now.getFullYear() + "-";
+message += ("0" + (now.getMonth() + 1)).slice(-2)+ "-";
+message += ("0" + now.getDate()).slice(-2) + " @ ";
+message += ("0" + now.getHours()).slice(-2) + ":";
+message += ("0" + now.getMinutes()).slice(-2) + ":";
+message += ("0" + now.getSeconds()).slice(-2);
 
 // Generate and commit documentation
 const cmd = "./node_modules/.bin/jsdoc " +
