@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -102,8 +102,8 @@
 		<section class="source-section">
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi} from './WebMidi.js';
-import {InputChannel} from './InputChannel.js';
+import {WebMidi} from "./WebMidi.js";
+import {InputChannel} from "./InputChannel.js";
 
 /**
  * The `Input` class represents a MIDI input port. This object is derived from the host's MIDI
@@ -111,7 +111,25 @@ import {InputChannel} from './InputChannel.js';
  *
  * You can find a list of all available `Input` objects in the {@link WebMidi#inputs} array.
  *
- * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem.
+ * The `Input` class extends the
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [getListeners()](https://djipco.github.io/djipevents/EventEmitter.html#getListeners),
+ * [emit()](https://djipco.github.io/djipevents/EventEmitter.html#emit),
+ * [suspendEvent()](https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent) and several
+ * others.
+ *
+ * The `addListener()`, `addOneTimeListener()`, `hasListener()` and `removeListener()` methods are
+ * being overridden in this class to include a `channel` parameter which makes it possible to
+ * add/remove listeners from several channels at once. Note that, when adding events to channels, it
+ * is the {@link InputChannel} instance that gets a listener added and not the `Input` instance.
+ *
+ * Also note that several events are input-wide and not tied to a channel. Examples of these are
+ * `"opened"`, `"midimessage"`, `"sysex"`, etc. In such cases, simply pass `undefined` as the
+ * `channel` parameter.
+ *
+ * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
  * @fires Input#disconnected
@@ -156,6 +174,21 @@ export class Input extends EventEmitter {
     this._midiInput.onstatechange = this._onStateChange.bind(this);
     this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
 
+  }
+
+  /**
+   * Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+   * MIDI subsystem.
+   *
+   * @returns {Promise&lt;void>}
+   */
+  async destroy() {
+    this.removeListener();
+    this.channels.forEach(ch => ch.destroy());
+    this.channels = [];
+    this._midiInput.onstatechange = null;
+    await this.close();
+    this._midiInput = null;
   }
 
   /**
@@ -214,8 +247,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Input} that triggered
-       * the event. This is not the actual `Input` as it is no longer available.
+       * @property {Object} target Object with properties describing the {@link Input} that
+       * triggered the event. This is not the actual `Input` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
        * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -231,7 +264,7 @@ export class Input extends EventEmitter {
         name: e.port.name,
         state: e.port.state,
         type: e.port.type
-      }
+      };
       this.emit("disconnected", event);
 
     } else if (e.port.connection === "pending" &amp;&amp; e.port.state === "disconnected") {
@@ -386,7 +419,7 @@ export class Input extends EventEmitter {
        * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"songseletunerequest"`
+       * @property {string} type `"tunerequest"`
        */
       event.type = "tunerequest";
 
@@ -517,7 +550,7 @@ export class Input extends EventEmitter {
       await this._midiInput.open();
       return Promise.resolve(this);
     } catch (err) {
-      return Promise.reject(err)
+      return Promise.reject(err);
     }
 
   }
@@ -571,25 +604,6 @@ export class Input extends EventEmitter {
   };
 
   /**
-   * @async
-   * @return {Promise&lt;void>}
-   */
-  async destroy() {
-
-    return this._midiInput.close().then(() => {
-
-      if (this._midiInput) {
-        this._midiInput.onmidimessage = null;
-        this._midiInput.onstatechange = null;
-      }
-
-      this._midiInput = null;
-
-    })
-
-  }
-
-  /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
    * The events that are listened to can be channel-specific or input-wide.
    *
@@ -618,14 +632,14 @@ export class Input extends EventEmitter {
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
-   *  For input-wide events, the `channel` parameter will be silently ignored. You can simply use
-   * `undefined` in that case.
+   *  For these input-wide events, the `channel` parameter will be silently ignored. You can simply
+   *  use `undefined` in that case.
    *
    * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
    * event is dispatched for every single message that is received on that `Input`.
    *
    * By using the `channel` property, you can also add listeners to all channels in the `channel`
-   * parameter. These are the events dispatched by {@link InputChannel} objects:
+   * parameter. These are the events dispatched by individual {@link InputChannel} objects:
    *
    *    * [noteoff]{@link InputChannel#event:noteoff}
    *    * [noteon]{@link InputChannel#event:noteon}
@@ -640,8 +654,9 @@ export class Input extends EventEmitter {
    *
    * @param event {string} The type of the event.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
+   * @param channel {number|number[]|undefined} An integer between 1 and 16 or an array of such
+   * integers representing the channel(s) to listen on. This parameter will be ignored for
+   * input-wide events (just set it to `undefined` in such cases).
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object"s properties,
@@ -761,6 +776,8 @@ export class Input extends EventEmitter {
    * @throws {TypeError} The specified event type is not supported.
    *
    * @return {Listener[]} An array of all `Listener` objects that were created.
+   *
+   * @since 3.0.0
    */
   addOneTimeListener(type, channel, listener, options = {}) {
     options.remaining = 1;
@@ -784,6 +801,11 @@ export class Input extends EventEmitter {
    *
    * For input-level events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
    * We suggest you use `undefined` in such cases.
+   *
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#hasListener)
+   * by adding a `channel` parameter that makes it possible to check for the listener on one or
+   * several channels at once. Invalid channels will be silently ignored.
    *
    * @param type {string} The type of the event.
    *
@@ -809,8 +831,6 @@ export class Input extends EventEmitter {
       return super.hasListener(type, listener);
     }
 
-    return false;
-
   }
 
   /**
@@ -822,6 +842,11 @@ export class Input extends EventEmitter {
    *
    * For input-level events (`sysex`, `start`, etc.), the `channel` parameter is silently ignored.
    * You can use `undefined` in such cases.
+   *
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#removeListener)
+   * by adding a `channel` parameter that makes it possible to remove a listener from one or several
+   * channels at once. Invalid channels will be silently ignored.
    *
    * @param [type] {String} The type of the event.
    *
@@ -914,6 +939,16 @@ export class Input extends EventEmitter {
     return this._midiInput.type;
   }
 
+  /**
+   * @type {boolean}
+   * @private
+   * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+   */
+  get nrpnEventsEnabled() {
+    console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
+    return false;
+  }
+
 }
 </code></pre>
 		</section>
@@ -922,7 +957,7 @@ export class Input extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 8th 2020 @ 20:10:42 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

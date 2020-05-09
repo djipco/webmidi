@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -113,7 +113,15 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Output</code> class represents a MIDI output port. This object is derived from the host's MIDI
 			subsystem and cannot be instantiated directly.</p>
 			<p>You can find a list of all available <code>Output</code> objects in the
-			<a href="WebMidi.html#outputs">WebMidi.outputs</a> array.</p></div>
+			<a href="WebMidi.html#outputs">WebMidi.outputs</a> array.</p>
+			<p>The <code>Output</code> class extends the
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
+			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
+			it also includes methods such as
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">addListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">removeListener()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">hasListener()</a> and several
+			others.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -175,7 +183,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-20">line 20</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-29">line 29</a></p>
 								</div>
 							</div>
 			
@@ -235,7 +243,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-37">line 37</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-50">line 50</a></p>
 								</div>
 							</div>
 			
@@ -279,7 +287,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1766">line 1766</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1814">line 1814</a></p>
 								</div>
 							</div>
 			
@@ -325,7 +333,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1756">line 1756</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1804">line 1804</a></p>
 								</div>
 							</div>
 			
@@ -369,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1776">line 1776</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1824">line 1824</a></p>
 								</div>
 							</div>
 			
@@ -413,7 +421,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1744">line 1744</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1792">line 1792</a></p>
 								</div>
 							</div>
 			
@@ -457,7 +465,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1786">line 1786</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1834">line 1834</a></p>
 								</div>
 							</div>
 			
@@ -501,7 +509,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1796">line 1796</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1844">line 1844</a></p>
 								</div>
 							</div>
 			
@@ -551,7 +559,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-305">line 305</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-335">line 335</a></p>
 								</div>
 							</div>
 			
@@ -567,8 +575,9 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Closes the output. When an output is closed, it cannot be used to send MIDI messages until the
-			output is opened again by calling <a href="Output.html#open">Output.open()</a>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
+			until the output is opened again by calling <a href="Output.html#open">Output.open()</a>. You can check
+			the connection status by looking at the <a href="Output.html#connection">connection</a> property.</p></div>
 			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
@@ -597,7 +606,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-152">line 152</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-180">line 180</a></p>
 								</div>
 							</div>
 			
@@ -736,7 +745,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1518">line 1518</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1575">line 1575</a></p>
 								</div>
 							</div>
 			
@@ -752,8 +761,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Closes the output, unregisters listeners and disconnects the output from the host's MIDI
-			subsystem.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Destroys the <code>Output</code>. All listeners are removed, all channels are destroyed and the MIDI
+			subsystem is unlinked.</p></div>
 			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
@@ -782,7 +791,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1731">line 1731</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-62">line 62</a></p>
 								</div>
 							</div>
 			
@@ -921,7 +930,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1470">line 1470</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1527">line 1527</a></p>
 								</div>
 							</div>
 			
@@ -966,7 +975,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-131">line 131</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-158">line 158</a></p>
 								</div>
 							</div>
 			
@@ -999,7 +1008,7 @@
 			<code>options</code> parameter.</p>
 			<p>When using <a href="Note.html">Note</a> objects, the durations and velocities defined in the <a href="Note.html">Note</a>
 			objects have precedence over the ones specified via the method's <code>options</code> parameter.</p>
-			<p><strong>Note</strong>: As per the MIDI standard, a <strong>note on</strong> message with a velocity of <code>0</code> is
+			<p><strong>Note</strong>: As per the MIDI standard, a <strong>note on</strong> message with an attack velocity of <code>0</code> is
 			functionally equivalent to a <strong>note off</strong> message.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1100,13 +1109,13 @@
 													</td>
 												</tr>
 												<tr>
-														<td><code>velocity</code></td>
+														<td><code>attack</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
-															<p>The velocity at which to play the note (between <code>0</code> and
-									<code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
+															<p>The attack velocity to use when playing the note (between
+									<code>0</code> and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
 									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
 													</td>
 												</tr>
@@ -1145,7 +1154,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1653">line 1653</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1713">line 1713</a></p>
 								</div>
 							</div>
 			
@@ -1161,8 +1170,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as the
-			pitch bend, to their default value.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as
+			the pitch bend, to their default value.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1248,7 +1257,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1265">line 1265</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1316">line 1316</a></p>
 								</div>
 							</div>
 			
@@ -1265,8 +1274,8 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI message on the MIDI output port, at the scheduled timestamp. It is usually not
-			necessary to use this method directly as you can use one of the simpler helper methods such as
-			<code>playNote()</code>, <code>stopNote()</code>, <code>sendControlChange()</code>, etc.</p>
+			necessary to use this method directly since it is often simpler to use one of the helper
+			methods such as <code>playNote()</code>, <code>stopNote()</code>, <code>sendControlChange()</code>, etc.</p>
 			<p>Details on the format of MIDI messages are available in the summary of
 			<a href="https://www.midi.org/specifications/item/table-1-summary-of-midi-message">MIDI messages</a>
 			from the MIDI Manufacturers Association.</p></div>
@@ -1410,7 +1419,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-212">line 212</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-240">line 240</a></p>
 								</div>
 							</div>
 			
@@ -1426,9 +1435,9 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>active sensing</strong> real-time message. This tells the device connected to this port that
-			the connection is still good. Active sensing messages should be sent every 300 ms if there was
-			no other activity on the MIDI port.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>active sensing</strong> real-time message. This tells the device connected to this port
+			that the connection is still good. Active sensing messages should be sent every 300 ms if there
+			was no other activity on the MIDI port.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1504,7 +1513,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-556">line 556</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-592">line 592</a></p>
 								</div>
 							</div>
 			
@@ -1668,7 +1677,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1186">line 1186</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1233">line 1233</a></p>
 								</div>
 							</div>
 			
@@ -1761,7 +1770,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-465">line 465</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-501">line 501</a></p>
 								</div>
 							</div>
 			
@@ -1855,7 +1864,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-511">line 511</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-547">line 547</a></p>
 								</div>
 							</div>
 			
@@ -2058,7 +2067,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-745">line 745</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-783">line 783</a></p>
 								</div>
 							</div>
 			
@@ -2074,9 +2083,17 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>note off</strong> message to the specified channel(s) for a single note or multiple
-			simultaneous notes (chord). You can delay the execution of the <strong>note off</strong> command by using
-			the <code>time</code> property of the <code>options</code> parameter (in milliseconds).</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note off</strong> message for the specified notes on the specified channel(s). The first
+			parameter is the note. It can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul>
+			<p>The execution of the <strong>note off</strong> command can be delayed by using the <code>time</code> property of the
+			<code>options</code> parameter.</p>
+			<p>When using <a href="Note.html">Note</a> objects, the release velocity defined in the <a href="Note.html">Note</a> objects has
+			precedence over the one specified via the method's <code>options</code> parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2092,28 +2109,25 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">string</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) you wish to stop. The notes can be specified
-			in one of three ways. The first way is by using the MIDI note number (an integer between <code>0</code>
-			and <code>127</code>). The second way is by using the note name followed by the octave (C3, G#4, F-1,
-			Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0)
-			and the highest note is G9 (MIDI note number 127). It is also possible to specify an array of
-			note numbers and/or names. The final way is to use the special value <code>all</code> to send an
-			<code>&quot;allnotesoff&quot;</code> channel message.</p>
+									<p>The note(s) to stop. The notes can be
+			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
+			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+			note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">string</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>all</td>
+								<td></td>
 							<td class="last">
-									<p>The MIDI channel number (between <code>1</code> and <code>16</code>) or
-			an array of channel numbers. If the special value <code>all</code> is used (default), the message will be
-			sent to all 16 channels.</p>
+									<p>The MIDI channel number (between <code>1</code> and <code>16</code>) or an array
+			of channel numbers.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2135,26 +2149,13 @@
 											<tbody>
 												<tr>
 														<td><code>rawValue</code></td>
-													<td><span class="param-type">Boolean</span></td>
+													<td><span class="param-type">boolean</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>false</td>
 													<td class="last">
 															<p>Controls whether the release velocity is set using
-									an integer between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
+									integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
 									default).</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>velocity</code></td>
-													<td><span class="param-type">Number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
-									Note that when the first parameter to <code>stopNote()</code> is <code>all</code>, the release velocity is silently
-									ignored.</p>
 													</td>
 												</tr>
 												<tr>
@@ -2167,6 +2168,17 @@
 									a number, the message will be delayed by that many milliseconds. If the value is a number
 									(DOMHighResTimeStamp), the operation will be scheduled for that time. If <code>time</code> is omitted, or
 									in the past, the operation will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>release</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The velocity at which to release the note (between <code>0</code>
+									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
+									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -2204,7 +2216,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1564">line 1564</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1625">line 1625</a></p>
 								</div>
 							</div>
 			
@@ -2220,11 +2232,21 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for a single note or multiple notes on the specified channel(s).
-			The execution of the <strong>note on</strong> command can be delayed by using the <code>time</code> property of the
-			<code>options</code> parameter (milliseconds).</p>
-			<p>Note: As per the MIDI standard, a <strong>note on</strong> event with a velocity of <code>0</code> is considered to be
-			a <strong>note off</strong>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for the specified notes on the specified channel(s). The first
+			parameter is the note. It can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul>
+			<p>The execution of the <strong>note on</strong> command can be delayed by using the <code>time</code> property of the
+			<code>options</code> parameter.</p>
+			<p>When using <a href="Note.html">Note</a> objects, the attack velocity defined in the <a href="Note.html">Note</a> objects has
+			precedence over the one specified via the method's <code>options</code> parameter. Also, the <code>duration</code> is
+			ignored. If you want to also send a <strong>note off</strong> message, use the
+			<a href="Output.html#playNote">playNote()</a> method instead.</p>
+			<p><strong>Note</strong>: As per the MIDI standard, a <strong>note on</strong> message with an attack velocity of <code>0</code> is
+			functionally equivalent to a <strong>note off</strong> message.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2240,27 +2262,25 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) you wish to play. The notes can be specified in
-			one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127).
-			The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave
-			range should be between -2 and 8. The lowest note is C-2 (MIDI note number 0) and the highest
-			note is G8 (MIDI note number 127). It is also possible to specify an array of note numbers
-			and/or names.</p>
+									<p>The note(s) to play. The notes can be
+			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
+			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+			note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">string</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>all</td>
+								<td></td>
 							<td class="last">
-									<p>The MIDI channel number (between <code>1</code> and <code>16</code>)
-			or an array of channel numbers. If the special value <strong>all</strong> is used (default), the message
-			will be sent to all 16 channels.</p>
+									<p>The MIDI channel number (between <code>1</code> and <code>16</code>) or an array
+			of channel numbers.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2286,21 +2306,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>false</td>
 													<td class="last">
-															<p>Controls whether the attack and release velocities
-									are set using integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code>
-									(<code>false</code>, default).</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>release</code></td>
-													<td><span class="param-type">number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.
-									This is only used with the <strong>note off</strong> event triggered when <code>options.duration</code> is set.</p>
+															<p>Controls whether the attack velocity is set using
+									integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
+									default).</p>
 													</td>
 												</tr>
 												<tr>
@@ -2316,7 +2324,7 @@
 													</td>
 												</tr>
 												<tr>
-														<td><code>velocity</code></td>
+														<td><code>attack</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
@@ -2361,7 +2369,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1708">line 1708</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1776">line 1776</a></p>
 								</div>
 							</div>
 			
@@ -2454,7 +2462,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-578">line 578</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-614">line 614</a></p>
 								</div>
 							</div>
 			
@@ -2548,7 +2556,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-488">line 488</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-524">line 524</a></p>
 								</div>
 							</div>
 			
@@ -2641,7 +2649,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-533">line 533</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-569">line 569</a></p>
 								</div>
 							</div>
 			
@@ -2707,7 +2715,8 @@
 									<p>An unsigned integer or an array of three unsigned
 			integers between 0 and 127 that identify the targeted manufacturer. The <em>MIDI Manufacturers
 			Association</em> maintains a full list of
-			<a href="https://www.midi.org/specifications-old/item/manufacturer-id-numbers">Manufacturer ID Numbers</a>.</p>
+			<a href="https://www.midi.org/specifications-old/item/manufacturer-id-numbers">Manufacturer ID Numbers</a>
+			.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2798,7 +2807,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-286">line 286</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-316">line 316</a></p>
 								</div>
 							</div>
 			
@@ -2901,7 +2910,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-330">line 330</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-360">line 360</a></p>
 								</div>
 							</div>
 			
@@ -2979,6 +2988,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -2993,7 +3009,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-443">line 443</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-479">line 479</a></p>
 								</div>
 							</div>
 			
@@ -3105,6 +3121,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3119,7 +3142,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-878">line 878</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-918">line 918</a></p>
 								</div>
 							</div>
 			
@@ -3131,7 +3154,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setKeyAftertouch" class="function public"><span class="name">setKeyAftertouch</span><span class="signature-params">( <span class="signature-param">note</span>, <span class="signature-param">channel</span> [,&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Output.html">Output</a>}</span></h4>
+			<h4 id="setKeyAftertouch" class="function public"><span class="name">setKeyAftertouch</span><span class="signature-params">( <span class="signature-param">note</span> [,&nbsp;<span class="signature-param">pressure</span>&nbsp;], <span class="signature-param">channel</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Output.html">Output</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -3166,16 +3189,6 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>An integer between 1 and 16 or an array of such integers
-			representing the channel(s) to listen on.</p>
-							</td>
-						</tr>
-						<tr>
 								<td><code>pressure</code></td>
 							<td><span class="param-type">number</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
@@ -3184,6 +3197,16 @@
 									<p>The pressure level (between 0 and 1). An invalid pressure value
 			will silently trigger the default behaviour. If the <code>rawValue</code> option is set to <code>true</code>, the
 			pressure can be defined by using an integer between 0 and 127.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>channel</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>An integer between 1 and 16 or an array of such integers
+			representing the channel(s) to listen on.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3246,6 +3269,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3260,7 +3290,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-630">line 630</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-668">line 668</a></p>
 								</div>
 							</div>
 			
@@ -3360,6 +3390,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3374,7 +3411,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1325">line 1325</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1380">line 1380</a></p>
 								</div>
 							</div>
 			
@@ -3485,6 +3522,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3499,7 +3543,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1060">line 1060</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1103">line 1103</a></p>
 								</div>
 							</div>
 			
@@ -3622,6 +3666,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3636,7 +3687,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1024">line 1024</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1065">line 1065</a></p>
 								</div>
 							</div>
 			
@@ -3669,7 +3720,7 @@
 			would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter (2, 63), Novation
 			uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
 			value to send was 10, you could use:</p>
-			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10]);
+			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
 			</code></pre>
 			<p>For further implementation details, refer to the manufacturer&quot;s documentation.</p></div>
 			</div>			<div class="callout callout-info">
@@ -3791,7 +3842,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1422">line 1422</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1479">line 1479</a></p>
 								</div>
 							</div>
 			
@@ -3910,6 +3961,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -3924,7 +3982,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1359">line 1359</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1416">line 1416</a></p>
 								</div>
 							</div>
 			
@@ -4043,6 +4101,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4057,7 +4122,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-924">line 924</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-966">line 966</a></p>
 								</div>
 							</div>
 			
@@ -4074,9 +4139,9 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-			adjust the range used by their pitch bend lever. The range can be specified with the
-			<code>semitones</code> parameter (msb), the <code>cents</code> parameter (lsb) or by specifying both parameters at
-			the same time.</p></div>
+			adjust the range used by their pitch bend lever. The range is specified by using the
+			<code>semitones</code> and <code>cents</code> parameters. For example, setting the <code>semitones</code> parameter to <code>12</code>
+			means that the pitch bend range will be 12 semitones above and below the nominal pitch.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -4096,9 +4161,9 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The desired adjustment value in semitones (integer between 0-127).
-			While nothing imposes that in the specification, it is very common for manufacturers to limit
-			the range to 2 octaves (-12 semitones to 12 semitones).</p>
+									<p>The desired adjustment value in semitones (between 0 and 127). While
+			nothing imposes that in the specification, it is very common for manufacturers to limit the
+			range to 2 octaves (-12 semitones to 12 semitones).</p>
 							</td>
 						</tr>
 						<tr>
@@ -4182,6 +4247,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4196,7 +4268,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-782">line 782</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-822">line 822</a></p>
 								</div>
 							</div>
 			
@@ -4295,6 +4367,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4309,7 +4388,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1294">line 1294</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1347">line 1347</a></p>
 								</div>
 							</div>
 			
@@ -4418,6 +4497,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4432,7 +4518,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-971">line 971</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1014">line 1014</a></p>
 								</div>
 							</div>
 			
@@ -4451,7 +4537,8 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sets the specified MIDI registered parameter to the desired value. The value is defined with
 			up to two bytes of data (msb, lsb) that each can go from 0 to 127.</p>
 			<p>MIDI
-			<a href="https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">registered parameters</a>
+			[registered parameters]
+			(https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
 			extend the original list of control change messages. The MIDI 1.0 specification lists only a
 			limited number of them. Here are the original registered parameters with the identifier that
 			can be used as the first parameter of this function:</p>
@@ -4507,7 +4594,7 @@
 								<td class="attributes">&lt;optional&gt;<br/></td>
 								<td>[]</td>
 							<td class="last">
-									<p>An single integer or an array of integers with a maximum
+									<p>A single integer or an array of integers with a maximum
 			length of 2 specifying the desired data.</p>
 							</td>
 						</tr>
@@ -4583,7 +4670,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-845">line 845</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-884">line 884</a></p>
 								</div>
 							</div>
 			
@@ -4681,6 +4768,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4695,7 +4789,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-402">line 402</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-436">line 436</a></p>
 								</div>
 							</div>
 			
@@ -4783,6 +4877,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4797,7 +4898,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-354">line 354</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-386">line 386</a></p>
 								</div>
 							</div>
 			
@@ -4906,6 +5007,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -4920,7 +5028,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1128">line 1128</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1175">line 1175</a></p>
 								</div>
 							</div>
 			
@@ -5029,6 +5137,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -5043,7 +5158,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1094">line 1094</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1139">line 1139</a></p>
 								</div>
 							</div>
 			
@@ -5120,7 +5235,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1590">line 1590</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1645">line 1645</a></p>
 								</div>
 							</div>
 			
@@ -5143,8 +5258,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all note soff</strong> channel mode message. This will turn all currently playing notes off.
-			However, this does not prevent new notes from being played.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all note soff</strong> channel mode message. This will turn all currently playing notes
+			off. However, this does not prevent new notes from being played.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -5216,6 +5331,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -5230,7 +5352,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1239">line 1239</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1290">line 1290</a></p>
 								</div>
 							</div>
 			
@@ -5319,6 +5441,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -5333,7 +5462,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1213">line 1213</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-1262">line 1262</a></p>
 								</div>
 							</div>
 			
@@ -5417,7 +5546,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-72">line 72</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-99">line 99</a></p>
 								</div>
 							</div>
 			
@@ -5465,8 +5594,8 @@
 								<td><code>target</code></td>
 							<td><span class="param-type">Object</span></td>
 							<td class="last">
-									<p>Object with properties describing the <a href="Output.html">Output</a> that triggered
-			the event. This is not the actual <code>Output</code> as it is no longer available.</p>
+									<p>Object with properties describing the <a href="Output.html">Output</a> that
+			triggered the event. This is not the actual <code>Output</code> as it is no longer available.</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -5552,7 +5681,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-89">line 89</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-116">line 116</a></p>
 								</div>
 							</div>
 			
@@ -5633,7 +5762,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-55">line 55</a></p>
+									<p class="form-control-static"><a href="Output.js.html">Output.js</a>, <a href="Output.js.html#line-82">line 82</a></p>
 								</div>
 							</div>
 			
@@ -5654,7 +5783,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 8th 2020 @ 20:10:42 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

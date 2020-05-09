@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -102,7 +102,7 @@
 		<section class="source-section">
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi} from './WebMidi.js';
+import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `InputChannel` class represents a single input channel (1-16) from an input device. This
@@ -110,6 +110,15 @@ import {WebMidi} from './WebMidi.js';
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
+ *
+ * The `InputChannel` class extends the
+ * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
+ * it also includes methods such as
+ * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
+ * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
+ * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
+ * others.
  *
  * @param {Input} input The `Input` this channel belongs to
  * @param {number} number The channel's number (1-16)
@@ -123,6 +132,8 @@ import {WebMidi} from './WebMidi.js';
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ *
+ * @since 3.0.0
  */
 export class InputChannel extends EventEmitter {
 
@@ -154,6 +165,11 @@ export class InputChannel extends EventEmitter {
     // Enable NRPN events by default
     this.nrpnEventsEnabled = true;
 
+  }
+
+  destroy() {
+    this.input = null;
+    this.removeListener();
   }
 
   /**
@@ -202,7 +218,6 @@ export class InputChannel extends EventEmitter {
   _parseEventForStandardMessages(e) {
 
     let command = e.data[0] >> 4;
-    let channel = (e.data[0] &amp; 0xf) + 1;
     let data1, data2;
 
     if (e.data.length > 1) {
@@ -236,8 +251,8 @@ export class InputChannel extends EventEmitter {
        * @property {Object} note.number The MIDI note number.
        * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
        * @property {Object} note.octave The octave (between -2 and 8).
-       * @property {number} velocity The release velocity expressed as a float between 0 and 1.
-       * @property {number} rawVelocity The release velocity expressed as an integer (between 0 and
+       * @property {number} release The release velocity expressed as a float between 0 and 1.
+       * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
       event.type = "noteoff";
@@ -246,8 +261,8 @@ export class InputChannel extends EventEmitter {
         name: WebMidi.NOTES[data1 % 12],
         octave: WebMidi.getOctave(data1)
       };
-      event.velocity = data2 / 127;
-      event.rawVelocity = data2;
+      event.release = data2 / 127;
+      event.rawRelease = data2;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
 
@@ -265,8 +280,8 @@ export class InputChannel extends EventEmitter {
        * @property {Object} note.number The MIDI note number.
        * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
        * @property {Object} note.octave The octave (between -2 and 8).
-       * @property {number} velocity The attack velocity expressed as a float between 0 and 1.
-       * @property {number} rawVelocity The attack velocity expressed as an integer (between 0 and
+       * @property {number} attack The attack velocity expressed as a float between 0 and 1.
+       * @property {number} rawAttack The attack velocity expressed as an integer (between 0 and
        * 127).
        */
       event.type = "noteon";
@@ -275,8 +290,8 @@ export class InputChannel extends EventEmitter {
         name: WebMidi.NOTES[data1 % 12],
         octave: WebMidi.getOctave(data1)
       };
-      event.velocity = data2 / 127;
-      event.rawVelocity = data2;
+      event.attack = data2 / 127;
+      event.rawVAttack = data2;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
 
@@ -474,6 +489,7 @@ export class InputChannel extends EventEmitter {
 
     // Extract basic data
     let command = e.data[0] >> 4;
+    let channel = (e.data[0] &amp; 0xf) + 1;
     let data1;
     let data2;
 
@@ -487,7 +503,10 @@ export class InputChannel extends EventEmitter {
       !(
         command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &amp;&amp;
         (
-          (data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &amp;&amp; data1 &lt;= WebMidi.MIDI_NRPN_MESSAGES.parammsb) ||
+          (
+            data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &amp;&amp;
+            data1 &lt;= WebMidi.MIDI_NRPN_MESSAGES.parammsb
+          ) ||
           data1 === WebMidi.MIDI_NRPN_MESSAGES.entrymsb ||
           data1 === WebMidi.MIDI_NRPN_MESSAGES.entrylsb
         )
@@ -572,17 +591,17 @@ export class InputChannel extends EventEmitter {
       let nrpnControllerType = "";
 
       switch (this._nrpnBuffer[2].controller.number) {
-        case WebMidi.MIDI_NRPN_MESSAGES.entrymsb:
-          nrpnControllerType = InputChannel.NRPN_TYPES[0];
-          break;
-        case WebMidi.MIDI_NRPN_MESSAGES.increment:
-          nrpnControllerType = InputChannel.NRPN_TYPES[1];
-          break;
-        case WebMidi.MIDI_NRPN_MESSAGES.decrement:
-          nrpnControllerType = InputChannel.NRPN_TYPES[2];
-          break;
-        default:
-          throw new Error("The NPRN type was unidentifiable.");
+      case WebMidi.MIDI_NRPN_MESSAGES.entrymsb:
+        nrpnControllerType = InputChannel.NRPN_TYPES[0];
+        break;
+      case WebMidi.MIDI_NRPN_MESSAGES.increment:
+        nrpnControllerType = InputChannel.NRPN_TYPES[1];
+        break;
+      case WebMidi.MIDI_NRPN_MESSAGES.decrement:
+        nrpnControllerType = InputChannel.NRPN_TYPES[2];
+        break;
+      default:
+        throw new Error("The NPRN type was unidentifiable.");
       }
 
       // now we are done building an NRPN, so clear the NRPN buffer
@@ -661,7 +680,7 @@ export class InputChannel extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 8th 2020 @ 20:10:42 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

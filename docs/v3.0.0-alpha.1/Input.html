@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to help you tame the Web MIDI API","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"img/webmidijs3-logo-40x40.png","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"©<a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["https://djipco.github.io/webmidi/css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -112,7 +112,22 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Input</code> class represents a MIDI input port. This object is derived from the host's MIDI
 			subsystem and cannot be instantiated directly.</p>
-			<p>You can find a list of all available <code>Input</code> objects in the <a href="WebMidi.html#inputs">WebMidi#inputs</a> array.</p></div>
+			<p>You can find a list of all available <code>Input</code> objects in the <a href="WebMidi.html#inputs">WebMidi#inputs</a> array.</p>
+			<p>The <code>Input</code> class extends the
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
+			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
+			it also includes methods such as
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#getListeners">getListeners()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#emit">emit()</a>,
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent">suspendEvent()</a> and several
+			others.</p>
+			<p>The <code>addListener()</code>, <code>addOneTimeListener()</code>, <code>hasListener()</code> and <code>removeListener()</code> methods are
+			being overridden in this class to include a <code>channel</code> parameter which makes it possible to
+			add/remove listeners from several channels at once. Note that, when adding events to channels, it
+			is the <a href="InputChannel.html">InputChannel</a> instance that gets a listener added and not the <code>Input</code> instance.</p>
+			<p>Also note that several events are input-wide and not tied to a channel. Examples of these are
+			<code>&quot;opened&quot;</code>, <code>&quot;midimessage&quot;</code>, <code>&quot;sysex&quot;</code>, etc. In such cases, simply pass <code>undefined</code> as the
+			<code>channel</code> parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -128,7 +143,7 @@
 								<td><code>midiInput</code></td>
 							<td><span class="param-type">MIDIInput</span></td>
 							<td class="last">
-									<p><code>MIDIInput</code> object as provided by the MIDI subsystem.</p>
+									<p><code>MIDIInput</code> object as provided by the MIDI subsystem (Web MIDI API).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -258,7 +273,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-33">line 33</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-51">line 51</a></p>
 								</div>
 							</div>
 			
@@ -318,7 +333,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-49">line 49</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-67">line 67</a></p>
 								</div>
 							</div>
 			
@@ -362,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-780">line 780</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-805">line 805</a></p>
 								</div>
 							</div>
 			
@@ -408,7 +423,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-770">line 770</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-795">line 795</a></p>
 								</div>
 							</div>
 			
@@ -452,7 +467,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-790">line 790</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-815">line 815</a></p>
 								</div>
 							</div>
 			
@@ -516,7 +531,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-758">line 758</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-783">line 783</a></p>
 								</div>
 							</div>
 			
@@ -560,7 +575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-800">line 800</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-825">line 825</a></p>
 								</div>
 							</div>
 			
@@ -604,7 +619,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-810">line 810</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-835">line 835</a></p>
 								</div>
 							</div>
 			
@@ -648,12 +663,12 @@
 			<li><a href="Input.html#event:midimessage">midimessage</a></li>
 			<li>unknownmidimessage</li>
 			</ul>
-			<p>For input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply use
-			<code>undefined</code> in that case.</p>
+			<p>For these input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply
+			use <code>undefined</code> in that case.</p>
 			<p>If you want to view all incoming MIDI traffic, you can listen to the <code>midimessage</code> event. This
 			event is dispatched for every single message that is received on that <code>Input</code>.</p>
 			<p>By using the <code>channel</code> property, you can also add listeners to all channels in the <code>channel</code>
-			parameter. These are the events dispatched by <a href="InputChannel.html">InputChannel</a> objects:</p>
+			parameter. These are the events dispatched by individual <a href="InputChannel.html">InputChannel</a> objects:</p>
 			<ul>
 			<li><a href="InputChannel.html#event:noteoff">noteoff</a></li>
 			<li><a href="InputChannel.html#event:noteon">noteon</a></li>
@@ -690,12 +705,13 @@
 						</tr>
 						<tr>
 								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">undefined</span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>An integer between 1 and 16 or an array of such integers
-			representing the channel(s) to listen on.</p>
+									<p>An integer between 1 and 16 or an array of such
+			integers representing the channel(s) to listen on. This parameter will be ignored for
+			input-wide events (just set it to <code>undefined</code> in such cases).</p>
 							</td>
 						</tr>
 						<tr>
@@ -826,7 +842,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-570">line 570</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-585">line 585</a></p>
 								</div>
 							</div>
 			
@@ -1024,6 +1040,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -1038,7 +1061,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-662">line 662</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-679">line 679</a></p>
 								</div>
 							</div>
 			
@@ -1084,7 +1107,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-428">line 428</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-461">line 461</a></p>
 								</div>
 							</div>
 			
@@ -1100,7 +1123,9 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Destroys the <code>Input</code> by remove all listeners, emptying the <code>channels</code> array and unlinking the
+			MIDI subsystem.</p></div>
+			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
 								<div class="col-sm-9">
@@ -1128,7 +1153,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-474">line 474</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-82">line 82</a></p>
 								</div>
 							</div>
 			
@@ -1202,7 +1227,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-449">line 449</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-482">line 482</a></p>
 								</div>
 							</div>
 			
@@ -1222,7 +1247,11 @@
 			specified channel(s). If more than one channel is specified, the function will return <code>true</code>
 			only if all channels have the listener defined.</p>
 			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
-			We suggest you use <code>undefined</code> in such cases.</p></div>
+			We suggest you use <code>undefined</code> in such cases.</p>
+			<p>This method overrides the one in
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">djipevents.EventEmitter</a>
+			by adding a <code>channel</code> parameter that makes it possible to check for the listener on one or
+			several channels at once. Invalid channels will be silently ignored.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1296,7 +1325,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-697">line 697</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-719">line 719</a></p>
 								</div>
 							</div>
 			
@@ -1341,7 +1370,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-407">line 407</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-440">line 440</a></p>
 								</div>
 							</div>
 			
@@ -1363,7 +1392,11 @@
 			channels. If no parameters are defined, all listeners attached to any channel of the <code>Input</code>
 			will be removed.</p>
 			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
-			You can use <code>undefined</code> in such cases.</p></div>
+			You can use <code>undefined</code> in such cases.</p>
+			<p>This method overrides the one in
+			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">djipevents.EventEmitter</a>
+			by adding a <code>channel</code> parameter that makes it possible to remove a listener from one or several
+			channels at once. Invalid channels will be silently ignored.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1479,7 +1512,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-738">line 738</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-763">line 763</a></p>
 								</div>
 							</div>
 			
@@ -1563,7 +1596,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-89">line 89</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-122">line 122</a></p>
 								</div>
 							</div>
 			
@@ -1611,8 +1644,8 @@
 								<td><code>target</code></td>
 							<td><span class="param-type">Object</span></td>
 							<td class="last">
-									<p>Object with properties describing the <a href="Input.html">Input</a> that triggered
-			the event. This is not the actual <code>Input</code> as it is no longer available.</p>
+									<p>Object with properties describing the <a href="Input.html">Input</a> that
+			triggered the event. This is not the actual <code>Input</code> as it is no longer available.</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -1698,7 +1731,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-105">line 105</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-138">line 138</a></p>
 								</div>
 							</div>
 			
@@ -1814,7 +1847,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-153">line 153</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-186">line 186</a></p>
 								</div>
 							</div>
 			
@@ -1895,7 +1928,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-73">line 73</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-106">line 106</a></p>
 								</div>
 							</div>
 			
@@ -1916,7 +1949,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.1 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on April 18th 2020 @ 10:44:17 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 8th 2020 @ 20:10:42 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
