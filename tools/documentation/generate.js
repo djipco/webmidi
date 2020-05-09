@@ -1,7 +1,7 @@
-const {exec} = require("child_process");
 const fs = require("fs");
 const pkg = require("../../package.json");
 const rimraf = require("rimraf");
+const system = require("system-commands");
 
 // Path to jsdoc configuration file (will be temporarily written to disk)
 const CONF_PATH = "./tools/documentation/.jsdoc.json";
@@ -43,10 +43,9 @@ const config = {
     ]
   },
 
-  sourceType: "module", // THIS WILL NEED TO BE CHANGED/KEPT DEPEDNING ON NEW CODE!!!
+  sourceType: "module",
 
   plugins: [
-    // "./node_modules/jsdoc-export-default-interop/dist/index.js",
     "plugins/markdown"
   ],
 
@@ -58,7 +57,7 @@ const config = {
     systemLogo: IMAGE_PATH,
     systemColor: "#ffcf09",
 
-    copyright: `©<a href="https://djip.co">${pkg.author.name}</a>, ` +
+    copyright: `©<a href="${pkg.author.url}">${pkg.author.name}</a>, ` +
       `2015-${new Date().getFullYear()}. ` +
       `${pkg.webmidi.name} v${pkg.version} is released under the ${pkg.license} license.`,
 
@@ -89,36 +88,20 @@ const config = {
 // Write configuration to temporary file
 fs.writeFileSync(CONF_PATH, JSON.stringify(config));
 
-// Prepare commit string
-let now = new Date();
-let message = "Updated on: ";
-message += now.getFullYear() + "-";
-message += ("0" + (now.getMonth() + 1)).slice(-2)+ "-";
-message += ("0" + now.getDate()).slice(-2) + " @ ";
-message += ("0" + now.getHours()).slice(-2) + ":";
-message += ("0" + now.getMinutes()).slice(-2) + ":";
-message += ("0" + now.getSeconds()).slice(-2);
-
-// Generate and commit documentation
+// Prepare command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
-  `--destination ./docs/v${pkg.version} ` +
-  `&& git commit docs -m "${message}"`;
+  `--destination ./docs/v${pkg.version}`;
 
-exec(cmd, (err, stdout, stderr) => {
-
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(stdout);
-  console.error(stderr);
-
-  // Delete temporary configuration file
-  rimraf(CONF_PATH, (err) => {
-    if (err) console.error(err);
-  });
-
-});
+// Execute command
+system(cmd)
+  .then(() => {
+    // eslint-disable-next-line no-console
+    console.log(`Documentation generated in folder "./docs/v${pkg.version}/"`);
+  })
+  .then(() => {
+    rimraf(CONF_PATH, err => {
+      if (err) console.error(err);
+    });
+  })
+  .catch(error => console.error(error));
