@@ -3585,7 +3585,6 @@ window.lunrData = {
           "new",
           "object",
           "other",
-          "ou",
           "outgo",
           "react",
           "removelisten",
@@ -3599,8 +3598,7 @@ window.lunrData = {
           "web",
           "webmidi",
           "webmidi.j",
-          "work",
-          "y"
+          "work"
         ],
         "WebMidi.html#enabled": [
           "access",
@@ -7414,7 +7412,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       },
                       "WebMidi.html#getNoteNumberByName": {
                         "ref": "WebMidi.html#getNoteNumberByName",
@@ -7450,7 +7448,7 @@ window.lunrData = {
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   },
                   "p": {
@@ -8439,7 +8437,7 @@ window.lunrData = {
                           },
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
-                            "tf": 2.1739130434782608
+                            "tf": 2.2388059701492535
                           }
                         }
                       }
@@ -9009,7 +9007,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 }
               }
             }
@@ -9274,7 +9272,7 @@ window.lunrData = {
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 0.7246376811594203
+                          "tf": 0.7462686567164178
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
@@ -10285,7 +10283,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 2.1739130434782608
+                    "tf": 2.2388059701492535
                   },
                   "WebMidi.html#enabled": {
                     "ref": "WebMidi.html#enabled",
@@ -10945,7 +10943,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 }
               }
@@ -11297,7 +11295,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 1.4492753623188406
+                    "tf": 1.4925373134328357
                   },
                   "WebMidi.html#disable": {
                     "ref": "WebMidi.html#disable",
@@ -11416,7 +11414,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       },
                       "WebMidi.html#sysexEnabled": {
                         "ref": "WebMidi.html#sysexEnabled",
@@ -11914,7 +11912,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 1.4492753623188406
+                        "tf": 1.4925373134328357
                       },
                       "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
@@ -12020,7 +12018,7 @@ window.lunrData = {
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 1.4492753623188406
+                      "tf": 1.4925373134328357
                     }
                   },
                   "a": {
@@ -14346,7 +14344,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -14407,7 +14405,7 @@ window.lunrData = {
                                   },
                                   "WebMidi.html": {
                                     "ref": "WebMidi.html",
-                                    "tf": 0.7246376811594203
+                                    "tf": 0.7462686567164178
                                   }
                                 }
                               }
@@ -15490,7 +15488,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 },
                 "WebMidi.html#interface": {
                   "ref": "WebMidi.html#interface",
@@ -15531,7 +15529,7 @@ window.lunrData = {
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1903.623188405797
+                          "tf": 1903.7313432835822
                         },
                         "WebMidi.html#disable": {
                           "ref": "WebMidi.html#disable",
@@ -15580,7 +15578,7 @@ window.lunrData = {
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
-                              "tf": 0.7246376811594203
+                              "tf": 0.7462686567164178
                             },
                             "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -17362,7 +17360,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 }
               }
@@ -18095,7 +18093,7 @@ window.lunrData = {
                           },
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
-                            "tf": 0.7246376811594203
+                            "tf": 0.7462686567164178
                           },
                           "WebMidi.html#interface": {
                             "ref": "WebMidi.html#interface",
@@ -18353,7 +18351,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       }
                     },
                     "e": {
@@ -18713,7 +18711,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       }
                     }
                   }
@@ -19597,7 +19595,7 @@ window.lunrData = {
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 111.44927536231884
+                      "tf": 111.49253731343283
                     }
                   }
                 }
@@ -19748,7 +19746,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 },
                 "b": {
@@ -21111,7 +21109,7 @@ window.lunrData = {
                       "docs": {
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 0.7246376811594203
+                          "tf": 0.7462686567164178
                         }
                       }
                     }
@@ -21371,7 +21369,7 @@ window.lunrData = {
             "docs": {
               "WebMidi.html": {
                 "ref": "WebMidi.html",
-                "tf": 0.7246376811594203
+                "tf": 0.7462686567164178
               }
             }
           },
@@ -21502,7 +21500,7 @@ window.lunrData = {
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
-                              "tf": 0.7246376811594203
+                              "tf": 0.7462686567164178
                             }
                           }
                         }
@@ -22217,7 +22215,7 @@ window.lunrData = {
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1.4492753623188406
+                          "tf": 1.4925373134328357
                         }
                       }
                     }
@@ -22777,7 +22775,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 },
                 "WebMidi.html#interface": {
                   "ref": "WebMidi.html#interface",
@@ -23501,7 +23499,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -23788,7 +23786,7 @@ window.lunrData = {
                               },
                               "WebMidi.html": {
                                 "ref": "WebMidi.html",
-                                "tf": 0.7246376811594203
+                                "tf": 0.7462686567164178
                               }
                             }
                           }
@@ -23913,7 +23911,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       },
                       "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
                         "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
@@ -24558,7 +24556,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       }
                     }
                   }
@@ -24736,7 +24734,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 }
               }
             },
@@ -24745,7 +24743,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 }
               }
             }
@@ -25795,7 +25793,7 @@ window.lunrData = {
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
-                              "tf": 0.7246376811594203
+                              "tf": 0.7462686567164178
                             }
                           }
                         }
@@ -27639,7 +27637,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 }
               }
@@ -27664,7 +27662,7 @@ window.lunrData = {
                 },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.7246376811594203
+                  "tf": 0.7462686567164178
                 }
               }
             },
@@ -27754,7 +27752,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 3.6231884057971016
+                        "tf": 3.731343283582089
                       },
                       "WebMidi.html#disable": {
                         "ref": "WebMidi.html#disable",
@@ -28380,7 +28378,7 @@ window.lunrData = {
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   },
                   "w": {
@@ -28617,12 +28615,7 @@ window.lunrData = {
             }
           },
           "u": {
-            "docs": {
-              "WebMidi.html": {
-                "ref": "WebMidi.html",
-                "tf": 0.7246376811594203
-              }
-            },
+            "docs": {},
             "t": {
               "docs": {
                 "InputChannel.html#nrpnEventsEnabled": {
@@ -31676,7 +31669,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -31919,7 +31912,7 @@ window.lunrData = {
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.7246376811594203
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -32922,7 +32915,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 },
                 "n": {
@@ -33496,7 +33489,7 @@ window.lunrData = {
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.7246376811594203
+                        "tf": 0.7462686567164178
                       },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -33521,7 +33514,7 @@ window.lunrData = {
                         "docs": {
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
-                            "tf": 0.7246376811594203
+                            "tf": 0.7462686567164178
                           }
                         }
                       }
@@ -33795,7 +33788,7 @@ window.lunrData = {
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.7246376811594203
+                    "tf": 0.7462686567164178
                   }
                 }
               },
@@ -36961,7 +36954,7 @@ window.lunrData = {
               },
               "WebMidi.html": {
                 "ref": "WebMidi.html",
-                "tf": 2.898550724637681
+                "tf": 2.9850746268656714
               },
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
@@ -37697,7 +37690,7 @@ window.lunrData = {
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1.4492753623188406
+                          "tf": 1.4925373134328357
                         }
                       }
                     }
@@ -37881,17 +37874,9 @@ window.lunrData = {
               }
             }
           }
-        },
-        "y": {
-          "docs": {
-            "WebMidi.html": {
-              "ref": "WebMidi.html",
-              "tf": 0.7246376811594203
-            }
-          }
         }
       },
-      "length": 4333
+      "length": 4331
     },
     "corpusTokens": [
       "0",
@@ -38508,7 +38493,6 @@ window.lunrData = {
       "origin",
       "other",
       "otherwis",
-      "ou",
       "out",
       "outbound",
       "outgo",
@@ -38923,7 +38907,6 @@ window.lunrData = {
       "whose",
       "wide",
       "work",
-      "y",
       "zero"
     ],
     "pipeline": [
@@ -40089,7 +40072,7 @@ window.lunrData = {
       "name": "WebMidi",
       "tags": "WebMidi",
       "summary": "",
-      "description": "The WebMidi object makes it easier to work with the Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, the WebMidi class has already been instantiated for y ou. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object. This means there is no need to instantiate a new WebMidi object directly. The WebMidi object extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
+      "description": "The WebMidi object makes it easier to work with the Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, the WebMidi class has already been instantiated for you. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object. This means there is no need to instantiate a new WebMidi object directly. The WebMidi object extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
       "body": ""
     },
     "WebMidi.html#enabled": {
