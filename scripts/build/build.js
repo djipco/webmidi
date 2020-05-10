@@ -1,4 +1,5 @@
-// const {exec} = require("child_process");
+const moment = require("moment");
+const git = require("simple-git/promise")();
 const system = require("system-commands");
 
 // Parse arguments (default type is esm). Use -t as type (if valid)
@@ -17,10 +18,24 @@ let cmd = `./node_modules/.bin/rollup ` +
 // Additional arguments are needed for IIFE
 if (type === "iife") cmd += ` --name webmidi --exports named`;
 
-// Execute command
-system(cmd)
-  .then(() => {
-    // eslint-disable-next-line no-console
-    console.log(`The "${type}" build was saved to "dist/webmidi.${type}.min.js"`);
-  })
-  .catch(error => console.error(error));
+async function execute() {
+
+  // Generate build
+  await system(cmd);
+
+  console.info(
+    "\x1b[32m", // red font
+    `The "${type}" build was saved to "dist/webmidi.${type}.min.js"`,
+    "\x1b[0m"   // reset font
+  );
+
+  // Commit and push
+  let message = "Built on: " + moment().format();
+  await git.commit(message, ["dist"]);
+  await git.push();
+  console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
+
+}
+
+// Execute and catch errors if any (in red)
+execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
