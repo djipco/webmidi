@@ -1,6 +1,8 @@
 const fs = require("fs");
+const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
-const rimraf = require("rimraf");
+const moment = require("moment");
+const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
 // Path to jsdoc configuration file (will be temporarily written to disk)
@@ -85,23 +87,36 @@ const config = {
 
 };
 
-// Write configuration to temporary file
-fs.writeFileSync(CONF_PATH, JSON.stringify(config));
-
-// Prepare command
+// Prepare jsdoc command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
   `--destination ./docs/v${pkg.version}`;
 
-// Execute command
-system(cmd)
-  .then(() => {
-    // eslint-disable-next-line no-console
-    console.log(`Documentation generated in folder "./docs/v${pkg.version}/"`);
-  })
-  .then(() => {
-    rimraf(CONF_PATH, err => {
-      if (err) console.error(err);
-    });
-  })
-  .catch(error => console.error(error));
+async function execute() {
+
+  // Write temporary configuration file
+  fs.writeFileSync(CONF_PATH, JSON.stringify(config));
+
+  // Generate documentation
+  await system(cmd);
+
+  // Print success to console
+  console.info(
+    "\x1b[32m",
+    `Documentation generated in folder "./docs/v${pkg.version}/"`,
+    "\x1b[0m"
+  );
+
+  // Remove temporary configuration file
+  await rimraf(CONF_PATH);
+
+  // Commit and push
+  let message = "Updated on: " + moment().format();
+  await git.commit(message, ["docs"]);
+  await git.push();
+  console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
+
+}
+
+// Execute and catch errors if any (in red)
+execute().catch(error => console.error("\x1b[31m", "Error: " + error));
