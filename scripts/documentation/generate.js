@@ -112,6 +112,7 @@ async function execute() {
 
   // Commit and push
   let message = "Updated on: " + moment().format();
+  await git.add(["docs"]);
   await git.commit(message, ["docs"]);
   await git.push();
   console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
