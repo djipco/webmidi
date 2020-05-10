@@ -54,7 +54,7 @@
     "docs:generate": "node scripts/documentation/generate.js",
     "docs:generate-and-publish": "npm run docs:generate && node scripts/documentation/publish.js",
     "lint": "eslint ./src/*.js",
-    "release:next": "npm version prerelease && node scripts/build/release.js && npm publish --tag next --dry-run",
+    "release:next": "npm run build:all && npm version prerelease && node scripts/build/release.js && npm publish --tag next --dry-run",
     "release:latest": "npm version patch && node scripts/build/release.js && npm publish",
     "test:all": "mocha test/index.js",
     "test:WebMidi": "mocha test/index.js -g 'WebMidi Object'",
@@ -72,6 +72,7 @@
     "jzz": "^1.0.4"
   },
   "devDependencies": {
+    "@alexbinary/rimraf": "^1.0.2",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -90,7 +91,6 @@
     "mocha": "^7.1.1",
     "moment": "^2.25.3",
     "nyc": "^15.0.1",
-    "rimraf": "^3.0.2",
     "rollup": "^2.3.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-license": "^2.0.0",
