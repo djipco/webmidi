@@ -862,7 +862,7 @@ describe("Output Object", function() {
         spies.push(sinon.spy(ch, "setKeyAftertouch"));
       });
 
-      WebMidiOutput.setKeyAftertouch(60, valid.concat(invalid), 0.5, options);
+      WebMidiOutput.setKeyAftertouch(60, 0.5, valid.concat(invalid), options);
 
       spies.forEach(spy => {
         expect(spy.calledOnceWithExactly(60, 0.5, options)).to.be.true;
