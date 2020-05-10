@@ -5,4 +5,4 @@ const git = require("simple-git")();
 let message = "Release v" + pkg.version;
 
 // Commit and push to current branch
-git.commit(message, ["dist", "package.json"]).push();
+git.add(["dist"]).commit(message, ["dist", "package.json"]).push();
