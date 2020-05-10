@@ -119,4 +119,4 @@ async function execute() {
 }
 
 // Execute and catch errors if any (in red)
-execute().catch(error => console.error("\x1b[31m", "Error: " + error));
+execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
