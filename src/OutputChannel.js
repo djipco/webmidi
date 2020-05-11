@@ -553,9 +553,13 @@ export class OutputChannel extends EventEmitter {
    */
   playNote(note, options = {}) {
 
-    // Send note on message and, optionally, note off message
+    // Send note on and, optionally, note off message (if duration is a positive number)
     this.sendNoteOn(note, options);
-    if (!isNaN(options.duration)) this.sendNoteOff(note, options);
+
+    // https://stackoverflow.com/questions/600763#answer-601877
+    if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
+      this.sendNoteOff(note, options);
+    }
 
     return this;
 
