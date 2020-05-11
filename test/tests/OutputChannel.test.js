@@ -147,4 +147,42 @@ describe("OutputChannel Object", function() {
 
   });
 
+  describe("playNote()", function () {
+
+    it("should call the 'sendNoteOn' method", function () {
+
+      // Arrange
+      let spy = sinon.spy(WebMidiOutputChannel, "sendNoteOn");
+
+      // Act
+      WebMidiOutputChannel.playNote("G5");
+
+      // Assert
+      expect(spy.calledOnce).to.be.true;
+
+    });
+
+    it("should call the 'sendNoteOff' method if duration is valid", function () {
+
+      // Arrange
+      let spy = sinon.spy(WebMidiOutputChannel, "sendNoteOff");
+      let invalid = [undefined, null, "", NaN, Infinity, -Infinity, -1];
+
+      // Act
+      WebMidiOutputChannel.playNote("C3", {duration: 123});
+      invalid.forEach(value => WebMidiOutputChannel.playNote("C3", {duration: value}));
+
+      // Assert
+      expect(spy.calledOnce).to.be.true;
+
+    });
+
+    it("should return the 'OutputChannel' object for method chaining", function () {
+      expect(
+        WebMidiOutputChannel.playNote("C3")
+      ).to.equal(WebMidiOutputChannel);
+    });
+
+  });
+
 });
