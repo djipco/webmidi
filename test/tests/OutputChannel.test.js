@@ -185,4 +185,28 @@ describe("OutputChannel Object", function() {
 
   });
 
+  describe("resetAllControllers()", function () {
+
+    it("should call the 'sendChannelMode' method", function () {
+
+      // Arrange
+      let spy = sinon.spy(WebMidiOutputChannel, "sendChannelMode");
+      let options = {};
+
+      // Act
+      WebMidiOutputChannel.resetAllControllers(options);
+
+      // Assert
+      expect(spy.calledOnceWithExactly("resetallcontrollers", 0, options)).to.be.true;
+
+    });
+
+    it("should return the 'OutputChannel' object for method chaining", function () {
+      expect(
+        WebMidiOutputChannel.resetAllControllers()
+      ).to.equal(WebMidiOutputChannel);
+    });
+
+  });
+
 });
