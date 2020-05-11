@@ -37,7 +37,7 @@
     "device",
     "note"
   ],
-  "homepage": "https://github.com/djipco/webmidi",
+  "homepage": "https://webmidijs.org",
   "license": "MIT",
   "webmidi": {
     "name": "WebMidi.js",
