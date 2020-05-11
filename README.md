@@ -102,7 +102,7 @@ version, just add this `<script>` tag to your HTML page:
 In production, it might be a better idea to target a specific version. To do that, just append the 
 desired version at the end of the request:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.1"></script>
 
 #### Manual Install
 
