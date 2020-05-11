@@ -1,7 +1,7 @@
-const moment = require("moment");
-const ghpages = require("gh-pages");
-const credentials = require("../../.credentials/credentials.json");
+const credentials = require("../../.credentials/ftp.json");
 const FtpDeploy = require("ftp-deploy");
+const ghpages = require("gh-pages");
+const moment = require("moment");
 const pkg = require("../../package.json");
 
 // Commit message for gh-pages
@@ -18,7 +18,7 @@ let config = {
   remoteRoot: "/",
   deleteRemote: false,
   forcePasv: true,
-  // secure: "control"
+  secure: "control"
 };
 
 async function execute() {
@@ -37,7 +37,7 @@ async function execute() {
   });
 
   // Upload
-  console.info("\x1b[32m", "Uploading files by FTP...", "\x1b[0m");
+  console.info("\x1b[32m", "Uploading files via FTP...", "\x1b[0m");
   await ftp.deploy(config);
   console.info("\x1b[32m", "Done.", "\x1b[0m");
 
@@ -51,4 +51,4 @@ async function execute() {
 }
 
 // Execute and catch errors if any (in red)
-execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
+execute().catch(error => console.error("\x1b[31m", "Error: " + error.message, "\x1b[0m"));
