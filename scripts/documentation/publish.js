@@ -4,7 +4,7 @@ const ghpages = require("gh-pages");
 const moment = require("moment");
 const pkg = require("../../package.json");
 
-// Commit message for gh-pages
+// Commit message for gh-pages (e.g. 2020-05-10T13:05:01-04:00)
 let message = "Updated on: " + moment().format();
 
 // FTP configuration
