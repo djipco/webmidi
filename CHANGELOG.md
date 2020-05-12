@@ -31,6 +31,10 @@ Actually, `stopNote()` is an alias to `sendNoteOff()`.
 `useRawValue` options allowing to assign value using an integer between 0 and 127 instead of a float
 between 0 and 1.
 
+- There is a new `Note` object that can be used im various places such as when calling `playNote()`
+or `stopNote()`. It carries with it the note number, the duration (if any), the attack and release
+information, etc.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
