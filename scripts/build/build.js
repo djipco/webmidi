@@ -15,9 +15,6 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--file dist/webmidi.${type}.min.js ` +
   `--sourcemap`;
 
-// Additional arguments are needed for IIFE
-if (type === "iife") cmd += ` --name webmidi --exports named`;
-
 async function execute() {
 
   // Generate build

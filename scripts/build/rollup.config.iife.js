@@ -8,6 +8,12 @@ const LICENSE = fs.readFileSync(__dirname + "/../../LICENSE.txt", "utf8");
 
 export default {
 
+  output: {
+    name: "window",       // WebMidi and Note will be added to window
+    extend: true,         // important!
+    exports: "named"
+  },
+
   plugins: [
     babel(),
     terser(),

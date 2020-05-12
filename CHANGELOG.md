@@ -33,10 +33,6 @@ between 0 and 1.
 
 ### Changed
 
-- [BREAKING CHANGE] The `iife` version of the library is now namespaced inside the `webmidi` 
-global property. This means that the `WebMidi` object is accessible at `webmidi.WebMidi`. This 
-allows us to grow the library with more objects such as the new `Note` object.
-
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
 that all channels should be listening. This was a terrible design decision and it ends now.
 
