@@ -209,4 +209,103 @@ describe("OutputChannel Object", function() {
 
   });
 
+  describe("send()", function () {
+
+    it("should actually send the MIDI message", function (done) {
+
+      let status = 144;
+      let data = [10, 0];
+
+      config.output.port.on("message", (deltaTime, message) => {
+
+        config.output.port.removeAllListeners();
+
+        expect(message[0]).to.equal(status);
+        expect(message[1]).to.equal(data[0]);
+        expect(message[2]).to.equal(data[1]);
+
+        done();
+
+      });
+
+      WebMidiOutputChannel.send(status, data);
+
+    });
+
+    it("should schedule the message according to the timestamp", function (done) {
+
+      // Arrange
+      let status = 144;
+      let data = [12, 0];
+      let target = WebMidi.time + 100;
+
+      config.output.port.on("message", (deltaTime, message) => {
+
+        if (message[0] === status && message[1] === data[0] && message[2] === data[1]) {
+          config.output.port.removeAllListeners();
+          expect(WebMidi.time - target).to.be.within(-2, 8);
+          done();
+        }
+
+      });
+
+      // Act
+      WebMidiOutputChannel.send(status, data, target);
+
+    });
+
+    it("should send immediately if no valid future timestamp is found", function (done) {
+
+      // Arrange
+      let status = 144;
+      let data = [13, 0];
+      let sent = WebMidi.time;
+      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
+      let index = 0;
+
+
+      config.output.port.on("message", (deltaTime, message) => {
+
+        if (message[0] === status && message[1] === data[0] && message[2] === data[1]) {
+
+          expect(WebMidi.time - sent).to.be.within(0, 5);
+          index++;
+
+          if (index === timestamps.length) {
+            config.output.port.removeAllListeners();
+            done();
+          }
+
+        }
+
+      });
+
+      // Act
+      timestamps.forEach(stamp => WebMidiOutputChannel.send(status, data, stamp));
+
+    });
+
+    it("should return the 'OutputChannel' object for method chaining", function () {
+      expect(
+        WebMidiOutputChannel.send(144, [127, 127])
+      ).to.equal(WebMidiOutputChannel);
+    });
+
+  });
+
 });
+
+
+// it("should actually send the messages", function(done) {
+//
+//   config.output.port.on("message", (deltaTime, message) => {
+//     console.log(message);
+//     if (message[0] === 243) {
+//       config.output.port.removeAllListeners();
+//       done();
+//     }
+//   });
+//
+//   WebMidiOutputChannel.resetAllControllers();
+//
+// });
