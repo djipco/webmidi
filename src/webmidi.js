@@ -68,10 +68,14 @@ class WebMidi extends EventEmitter {
 
     this._octaveOffset = 0;
 
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and performance.now()
+    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and import performance.now()
     if (this.isNode) {
-      global.navigator = require("jzz");
+
+      // Important: performance must be imported before jzz because jzz checks for its existence at
+      // startup and falls back to something less precise if absent.
       global.performance = require("perf_hooks").performance;
+      global.navigator = require("jzz");
+
     }
 
   }
@@ -1379,5 +1383,4 @@ const wm = new WebMidi();
 wm.constructor = null;
 export {wm as WebMidi};
 
-//
 export {Note} from "./Note.js";
