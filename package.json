@@ -43,6 +43,7 @@
     "name": "WebMidi.js",
     "tagline": "A JavaScript library to kickstart your MIDI projects"
   },
+  "engines" : { "node" : ">=8.5" },
   "scripts": {
     "build:all": "npm run lint && npm run build:cjs && npm run build:esm && npm run build:iife",
     "build:cjs": "node scripts/build/build.js -t cjs",
