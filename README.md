@@ -60,8 +60,8 @@ testing will need to be done but it looks very promising.
 I invite you to communicate with the Firefox and Safari teams to let them know how having native Web
 MIDI support is important for you:
 
-Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
-Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
+* Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
+* Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
 
 
 ## Node.js Support
