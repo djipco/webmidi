@@ -30,9 +30,10 @@ This library works in all browsers that natively support the
 [Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
 built-in support: 
 
-* Chrome (Mac, GNU/Linux, Android & Windows)
-* Opera (Mac, GNU/Linux, Windows)
-* Android WebView component (KitKat and above) 
+* Chrome (macOS, GNU/Linux, Android & Windows)
+* Opera (macOS, GNU/Linux, Windows)
+* Android WebView component (KitKat and above)
+* Edge (Windows)
 
 It is also possible to use this library in other browsers if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
@@ -40,7 +41,7 @@ It is also possible to use this library in other browsers if you install version
 support for the following additional browsers:
 
 * Firefox v51 **or less** (Mac, GNU/Linux & Windows)
-* Safari (Mac)
+* Safari (macOS)
 * Internet Explorer (Windows)
 
 >For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip 
@@ -55,6 +56,13 @@ For **Firefox v52+ support**, you need to install two extensions made by
 
 Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
 testing will need to be done but it looks very promising.
+
+I invite you to communicate with the Firefox and Safari teams to let them know how having native Web
+MIDI support is important for you:
+
+Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
+Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
+
 
 ## Node.js Support
 
