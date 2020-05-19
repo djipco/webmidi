@@ -328,8 +328,8 @@ export class OutputChannel extends EventEmitter {
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
    * that identify the registered parameter.
    *
-   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * @param {number|string} [time] If `time` is a string prefixed with `"+"` and followed by a
+   * number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    */
@@ -431,8 +431,8 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._selectRegisteredParameter(parameter, this.number, options.time);
-    this.sendControlChange(0x61, 0, this.number, {time: options.time});
+    this._selectRegisteredParameter(parameter, options.time);
+    this.sendControlChange(0x61, 0, {time: options.time});
     this._deselectRegisteredParameter(options.time);
 
     return this;
@@ -558,7 +558,15 @@ export class OutputChannel extends EventEmitter {
 
     // https://stackoverflow.com/questions/600763#answer-601877
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
-      this.sendNoteOff(note, options);
+
+      let noteOffOptions = {
+        time: WebMidi.convertToTimestamp(options.time) + options.duration,
+        release: options.release,
+        rawRelease: options.rawRelease,
+      };
+
+      this.sendNoteOff(note, noteOffOptions);
+
     }
 
     return this;
