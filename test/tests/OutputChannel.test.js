@@ -37,7 +37,7 @@ describe("OutputChannel Object", function() {
 
     });
 
-    it("should actually send the messages", function(done) {
+    it("should actually send the MIDI messages", function(done) {
 
       let messages = [];
 
@@ -62,6 +62,53 @@ describe("OutputChannel Object", function() {
       });
 
       WebMidiOutputChannel.decrementRegisteredParameter("modulationrange");
+
+    });
+
+    it("should schedule the message according to the absolute timestamp", function (done) {
+
+      // Arrange
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.decrementRegisteredParameter("pitchbendrange", {time: target});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) === JSON.stringify([176, 101, 0])) {
+          config.output.port.removeAllListeners();
+          expect(WebMidi.time - target).to.be.within(-5, 10);
+          done();
+        }
+      }
+
+    });
+
+    it("should schedule the message according to the relative timestamp", function (done) {
+
+      // Arrange
+      let count = 0;
+      let offset = "+100";
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.decrementRegisteredParameter("modulationrange", {time: offset});
+
+      // Assert
+      function assert() {
+
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        count++;
+
+        if (count >= 5) {
+          config.output.port.removeAllListeners();
+          done();
+        }
+
+      }
 
     });
 
@@ -139,6 +186,53 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should schedule the message according to the absolute timestamp", function (done) {
+
+      // Arrange
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.incrementRegisteredParameter("pitchbendrange", {time: target});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) === JSON.stringify([176, 101, 0])) {
+          config.output.port.removeAllListeners();
+          expect(WebMidi.time - target).to.be.within(-5, 10);
+          done();
+        }
+      }
+
+    });
+
+    it("should schedule the message according to the relative timestamp", function (done) {
+
+      // Arrange
+      let count = 0;
+      let offset = "+100";
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.incrementRegisteredParameter("modulationrange", {time: offset});
+
+      // Assert
+      function assert() {
+
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        count++;
+
+        if (count >= 5) {
+          config.output.port.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
     it("should return the 'OutputChannel' object for method chaining", function () {
       expect(
         WebMidiOutputChannel.incrementRegisteredParameter("pitchbendrange")
@@ -174,6 +268,91 @@ describe("OutputChannel Object", function() {
 
       // Assert
       expect(spy.calledOnce).to.be.true;
+
+    });
+
+    it("should schedule the 'note on' message according to absolute timestamp", function (done) {
+
+      // Arrange
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.playNote("C3", {time: target});
+
+      // Assert
+      function assert() {
+        config.output.port.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it("should schedule the 'note on' message according to relative timestamp", function (done) {
+
+      // Arrange
+      let offset = 100;
+      let target = WebMidi.time + offset;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.playNote("G5", {time: "+" + offset});
+
+      // Assert
+      function assert() {
+        config.output.port.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it("should schedule the 'note off' message according to absolute timestamp", function (done) {
+
+      // Arrange
+      let duration = 200;
+      let target = WebMidi.time + 100;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.playNote("C3", {time: target, duration: duration});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        // Note off on channel 1
+        if (message[0] === 128) {
+          config.output.port.removeAllListeners();
+          expect(WebMidi.time - (target + duration)).to.be.within(-5, 10);
+          done();
+        }
+
+      }
+
+    });
+
+    it("should schedule the 'note off' message according to relative timestamp", function (done) {
+
+      // Arrange
+      let offset = 100;
+      let duration = 200;
+      let target = WebMidi.time + duration + offset;
+      config.output.port.on("message", assert);
+
+      // Act
+      WebMidiOutputChannel.playNote("G5", {time: "+" + offset, duration: duration});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (message[0] === 128) {
+          config.output.port.removeAllListeners();
+          expect(WebMidi.time - target).to.be.within(-5, 10);
+          done();
+        }
+
+      }
 
     });
 
@@ -243,7 +422,7 @@ describe("OutputChannel Object", function() {
 
         if (message[0] === status && message[1] === data[0] && message[2] === data[1]) {
           config.output.port.removeAllListeners();
-          expect(WebMidi.time - target).to.be.within(-2, 8);
+          expect(WebMidi.time - target).to.be.within(-5, 10);
           done();
         }
 
@@ -294,18 +473,3 @@ describe("OutputChannel Object", function() {
   });
 
 });
-
-
-// it("should actually send the messages", function(done) {
-//
-//   config.output.port.on("message", (deltaTime, message) => {
-//     console.log(message);
-//     if (message[0] === 243) {
-//       config.output.port.removeAllListeners();
-//       done();
-//     }
-//   });
-//
-//   WebMidiOutputChannel.resetAllControllers();
-//
-// });
