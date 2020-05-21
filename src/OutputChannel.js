@@ -59,14 +59,17 @@ export class OutputChannel extends EventEmitter {
    * @param status {Number} The MIDI status byte of the message (128-255). This is a combination of
    * the command and the channel.
    *
-   * @param [data=[]] {Array} An array of unsigned integers for the message. The number of data
+   * @param {number[]} [data] An array of unsigned integers for the message. The number of data
    * bytes varies depending on the status byte. It is perfectly legal to send no data for some
    * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
-   * @param [timestamp=0] {number} The timestamp (DOMHighResTimeStamp) at which to send the message.
-   * You can use [WebMidi.time]{@link WebMidi#time} to retrieve the current timestamp. To send
-   * immediately, leave blank or use 0.
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
    * than 0xFF.
@@ -75,7 +78,7 @@ export class OutputChannel extends EventEmitter {
    * than 0xFF.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-   * index 2.
+   * index 0.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
    *
@@ -94,10 +97,12 @@ export class OutputChannel extends EventEmitter {
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
    * 2.
    *
+   * @throw {TypeError} Failed to execute 'send' on 'MIDIOutput': ? is not a UInt8 value.
+   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  send(status, data = [], timestamp) {
-    this.output.send(status, data, timestamp);
+  send(status, data = [], options = {}) {
+    this.output.send(status, data, options);
     return this;
   }
 

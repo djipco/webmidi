@@ -205,9 +205,12 @@ export class Output extends EventEmitter {
    * message types (use undefined or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
-   * @param [timestamp=0] {number} The timestamp (DOMHighResTimeStamp) at which to send the message.
-   * You can use [WebMidi.time]{@link WebMidi#time} to retrieve the current timestamp. To send
-   * immediately, leave blank or use 0.
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
    * than 0xFF.
@@ -237,9 +240,10 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(status, data = [], timestamp) {
+  send(status, data = [], options= {}) {
     if (!Array.isArray(data)) data = [data];
-    this._midiOutput.send([status].concat(data), parseFloat(timestamp) || 0);
+    if (typeof options === "number") options = {time: options}; // legacy support
+    this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
     return this;
   }
 
@@ -318,7 +322,7 @@ export class Output extends EventEmitter {
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, WebMidi.convertToTimestamp(options.time));
+    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, {time: options.time});
 
     return this;
 
@@ -361,7 +365,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
       value,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -393,7 +397,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
       [msb, lsb],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
 
@@ -443,7 +447,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
       [value],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
 
     return this;
@@ -480,7 +484,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   }
@@ -502,7 +506,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.clock,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -525,7 +529,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.start,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -548,7 +552,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.continue,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -570,7 +574,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.stop,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -593,7 +597,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
       [],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
@@ -615,7 +619,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.reset,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
   };
