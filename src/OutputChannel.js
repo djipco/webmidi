@@ -678,7 +678,7 @@ export class OutputChannel extends EventEmitter {
    * @param options
    * @returns {Output}
    */
-  stopNote(note, options) {
+  stopNote(note, options = {}) {
     return this.sendNoteOff(note, options);
   }
 
