@@ -636,7 +636,7 @@ export class OutputChannel extends EventEmitter {
 
     let nVelocity = 64;
 
-    if (options.rawRelease) {
+    if (options.rawRelease != undefined) {
       if (
         !isNaN(options.rawRelease) &&
         options.rawRelease >= 0
