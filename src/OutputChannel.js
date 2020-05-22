@@ -257,11 +257,16 @@ export class OutputChannel extends EventEmitter {
 
     } else {
 
-      controller = Math.floor(controller);
+      controller = parseInt(controller);
       if (!(controller >= 0 && controller <= 119)) {
         throw new RangeError("Controller numbers must be between 0 and 119.");
       }
 
+    }
+
+    value = parseInt(value) || 0;
+    if (!(value >= 0 && value <= 127)) {
+      throw new RangeError("Value must be between 0 and 127.");
     }
 
     this.send(
