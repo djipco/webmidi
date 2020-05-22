@@ -50,8 +50,8 @@ export class Note {
     this.channels = options.channels;
     this.attack = options.attack;
     this.release = options.release;
-    if (options.rawAttack) this.rawAttack = options.rawAttack;
-    if (options.rawRelease) this.rawRelease = options.rawRelease;
+    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
+    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
 
   }
 
