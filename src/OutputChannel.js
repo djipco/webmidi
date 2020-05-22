@@ -620,9 +620,9 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  sendNoteOff(note, options) {
+  sendNoteOff(note, options = {}) {
 
-    // Compatibility warning
+    // Compatibility warnings
     if (options.rawVelocity) {
       options.rawRelease = options.velocity;
       console.warn(
@@ -635,8 +635,6 @@ export class OutputChannel extends EventEmitter {
     }
 
     let nVelocity = 64;
-
-    options = options || {};
 
     if (options.rawRelease) {
       if (
