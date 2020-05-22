@@ -614,7 +614,7 @@ export class OutputChannel extends EventEmitter {
    * (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have
    * priority. An invalid velocity value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note
+   * @param {number} [options.rawRelease=64] The velocity at which to release the note
    * (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have
    * priority. An invalid velocity value will silently trigger the default of `64`.
    *
@@ -655,7 +655,7 @@ export class OutputChannel extends EventEmitter {
     }
 
     // Send note off messages
-    let o = {rawRelease: nVelocity};
+    let o = {rawRelease: parseInt(nVelocity)};
 
     WebMidi.getValidNoteArray(note, o).forEach(n => {
       this.send(
@@ -741,13 +741,13 @@ export class OutputChannel extends EventEmitter {
 
     let nVelocity = 64;
 
-    if (options.rawAttack) {
+    if (options.rawAttack != undefined) {
       if (
-        !isNaN(options.attack) &&
-        options.attack >= 0 &&
-        options.attack <= 127
+        !isNaN(options.rawAttack) &&
+        options.rawAttack >= 0 &&
+        options.rawAttack <= 127
       ) {
-        nVelocity = options.attack;
+        nVelocity = options.rawAttack;
       }
     } else {
       if (
