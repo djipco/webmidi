@@ -4207,7 +4207,6 @@
           "due",
           "elaps",
           "float",
-          "https://developer.mozilla.org/en",
           "load",
           "lt;readonly&gt",
           "member",
@@ -4224,7 +4223,6 @@
           "specif",
           "sub",
           "time",
-          "us/docs/web/api/domhighrestimestamp#the_time_origin",
           "variou",
           "webmidi#tim"
         ],
@@ -6721,7 +6719,7 @@
             },
             "WebMidi.html#time": {
               "ref": "WebMidi.html#time",
-              "tf": 1.4705882352941175
+              "tf": 1.5625
             }
           }
         },
@@ -10011,7 +10009,7 @@
                 "docs": {
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.4705882352941175
+                    "tf": 1.5625
                   }
                 }
               }
@@ -10919,7 +10917,7 @@
                                 },
                                 "WebMidi.html#time": {
                                   "ref": "WebMidi.html#time",
-                                  "tf": 5.88235294117647
+                                  "tf": 6.25
                                 }
                               }
                             }
@@ -10951,7 +10949,7 @@
                               "docs": {
                                 "WebMidi.html#time": {
                                   "ref": "WebMidi.html#time",
-                                  "tf": 1.4705882352941175
+                                  "tf": 1.5625
                                 }
                               }
                             }
@@ -13251,7 +13249,7 @@
                   },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.4705882352941175
+                    "tf": 1.5625
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
@@ -13419,7 +13417,7 @@
                   },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.4705882352941175
+                    "tf": 1.5625
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
@@ -13842,7 +13840,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.4705882352941175
+                      "tf": 1.5625
                     }
                   }
                 }
@@ -18681,7 +18679,7 @@
               "docs": {
                 "WebMidi.html#time": {
                   "ref": "WebMidi.html#time",
-                  "tf": 1.4705882352941175
+                  "tf": 1.5625
                 }
               }
             }
@@ -21102,7 +21100,7 @@
                             "docs": {
                               "WebMidi.html#time": {
                                 "ref": "WebMidi.html#time",
-                                "tf": 1.4705882352941175
+                                "tf": 1.5625
                               }
                             }
                           }
@@ -22365,7 +22363,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.4705882352941175
+                        "tf": 1.5625
                       }
                     }
                   }
@@ -22395,7 +22393,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 2.941176470588235
+                      "tf": 3.125
                     }
                   },
                   "a": {
@@ -22406,7 +22404,7 @@
                         "docs": {
                           "WebMidi.html#time": {
                             "ref": "WebMidi.html#time",
-                            "tf": 1.4705882352941175
+                            "tf": 1.5625
                           }
                         }
                       }
@@ -23123,7 +23121,7 @@
               },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
-                "tf": 1.4705882352941175
+                "tf": 1.5625
               },
               "WebMidi.html#getOctave": {
                 "ref": "WebMidi.html#getOctave",
@@ -23459,7 +23457,7 @@
                         },
                         "WebMidi.html#time": {
                           "ref": "WebMidi.html#time",
-                          "tf": 1.4705882352941175
+                          "tf": 1.5625
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
@@ -24739,7 +24737,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.4705882352941175
+                      "tf": 1.5625
                     }
                   }
                 }
@@ -26019,7 +26017,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.4705882352941175
+                      "tf": 1.5625
                     }
                   }
                 }
@@ -26401,83 +26399,6 @@
                                                                 "OutputChannel.html#setRegisteredParameter": {
                                                                   "ref": "OutputChannel.html#setRegisteredParameter",
                                                                   "tf": 0.3289473684210526
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "d": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "v": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {},
-                                  "o": {
-                                    "docs": {},
-                                    "p": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "r": {
-                                          "docs": {},
-                                          ".": {
-                                            "docs": {},
-                                            "m": {
-                                              "docs": {},
-                                              "o": {
-                                                "docs": {},
-                                                "z": {
-                                                  "docs": {},
-                                                  "i": {
-                                                    "docs": {},
-                                                    "l": {
-                                                      "docs": {},
-                                                      "l": {
-                                                        "docs": {},
-                                                        "a": {
-                                                          "docs": {},
-                                                          ".": {
-                                                            "docs": {},
-                                                            "o": {
-                                                              "docs": {},
-                                                              "r": {
-                                                                "docs": {},
-                                                                "g": {
-                                                                  "docs": {},
-                                                                  "/": {
-                                                                    "docs": {},
-                                                                    "e": {
-                                                                      "docs": {},
-                                                                      "n": {
-                                                                        "docs": {
-                                                                          "WebMidi.html#time": {
-                                                                            "ref": "WebMidi.html#time",
-                                                                            "tf": 1.4705882352941175
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -27341,7 +27262,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 2.941176470588235
+                        "tf": 3.125
                       },
                       "WebMidi.html#convertToTimestamp": {
                         "ref": "WebMidi.html#convertToTimestamp",
@@ -28249,7 +28170,7 @@
               },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
-                "tf": 1.4705882352941175
+                "tf": 1.5625
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
@@ -28914,7 +28835,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.4705882352941175
+                        "tf": 1.5625
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
@@ -32321,7 +32242,7 @@
           "docs": {
             "WebMidi.html#time": {
               "ref": "WebMidi.html#time",
-              "tf": 1.4705882352941175
+              "tf": 1.5625
             }
           },
           "e": {
@@ -34085,7 +34006,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.4705882352941175
+                        "tf": 1.5625
                       },
                       "WebMidi.html#getValidNoteArray": {
                         "ref": "WebMidi.html#getValidNoteArray",
@@ -34255,7 +34176,7 @@
               "docs": {
                 "WebMidi.html#time": {
                   "ref": "WebMidi.html#time",
-                  "tf": 1.4705882352941175
+                  "tf": 1.5625
                 }
               },
               "s": {
@@ -35343,7 +35264,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.4705882352941175
+                        "tf": 1.5625
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -36294,7 +36215,7 @@
                   },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 687.7450980392157
+                    "tf": 688.0208333333334
                   },
                   "WebMidi.html#convertToTimestamp": {
                     "ref": "WebMidi.html#convertToTimestamp",
@@ -37630,158 +37551,6 @@
                 }
               }
             },
-            "/": {
-              "docs": {},
-              "d": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "c": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "/": {
-                        "docs": {},
-                        "w": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "b": {
-                              "docs": {},
-                              "/": {
-                                "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "p": {
-                                    "docs": {},
-                                    "i": {
-                                      "docs": {},
-                                      "/": {
-                                        "docs": {},
-                                        "d": {
-                                          "docs": {},
-                                          "o": {
-                                            "docs": {},
-                                            "m": {
-                                              "docs": {},
-                                              "h": {
-                                                "docs": {},
-                                                "i": {
-                                                  "docs": {},
-                                                  "g": {
-                                                    "docs": {},
-                                                    "h": {
-                                                      "docs": {},
-                                                      "r": {
-                                                        "docs": {},
-                                                        "e": {
-                                                          "docs": {},
-                                                          "s": {
-                                                            "docs": {},
-                                                            "t": {
-                                                              "docs": {},
-                                                              "i": {
-                                                                "docs": {},
-                                                                "m": {
-                                                                  "docs": {},
-                                                                  "e": {
-                                                                    "docs": {},
-                                                                    "s": {
-                                                                      "docs": {},
-                                                                      "t": {
-                                                                        "docs": {},
-                                                                        "a": {
-                                                                          "docs": {},
-                                                                          "m": {
-                                                                            "docs": {},
-                                                                            "p": {
-                                                                              "docs": {},
-                                                                              "#": {
-                                                                                "docs": {},
-                                                                                "t": {
-                                                                                  "docs": {},
-                                                                                  "h": {
-                                                                                    "docs": {},
-                                                                                    "e": {
-                                                                                      "docs": {},
-                                                                                      "_": {
-                                                                                        "docs": {},
-                                                                                        "t": {
-                                                                                          "docs": {},
-                                                                                          "i": {
-                                                                                            "docs": {},
-                                                                                            "m": {
-                                                                                              "docs": {},
-                                                                                              "e": {
-                                                                                                "docs": {},
-                                                                                                "_": {
-                                                                                                  "docs": {},
-                                                                                                  "o": {
-                                                                                                    "docs": {},
-                                                                                                    "r": {
-                                                                                                      "docs": {},
-                                                                                                      "i": {
-                                                                                                        "docs": {},
-                                                                                                        "g": {
-                                                                                                          "docs": {},
-                                                                                                          "i": {
-                                                                                                            "docs": {},
-                                                                                                            "n": {
-                                                                                                              "docs": {
-                                                                                                                "WebMidi.html#time": {
-                                                                                                                  "ref": "WebMidi.html#time",
-                                                                                                                  "tf": 1.4705882352941175
-                                                                                                                }
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "e": {
               "docs": {},
               "r": {
@@ -38188,7 +37957,7 @@
                     "docs": {
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.4705882352941175
+                        "tf": 1.5625
                       }
                     }
                   }
@@ -38478,7 +38247,7 @@
           }
         }
       },
-      "length": 4372
+      "length": 4370
     },
     "corpusTokens": [
       "0",
@@ -38904,7 +38673,6 @@
       "host",
       "host'",
       "http",
-      "https://developer.mozilla.org/en",
       "https://www.midi.org/specif",
       "id",
       "identifi",
@@ -39448,7 +39216,6 @@
       "up",
       "upcom",
       "us",
-      "us/docs/web/api/domhighrestimestamp#the_time_origin",
       "usag",
       "user",
       "usual",
@@ -40887,7 +40654,7 @@
       "name": "time",
       "tags": "WebMidi#time time",
       "summary": "",
-      "description": "The elapsed time, in milliseconds, since the [time origin] (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin). Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the specification, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond."
+      "description": "The elapsed time, in milliseconds, since the time origin. Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the specification, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond."
     },
     "WebMidi.html#convertToTimestamp": {
       "id": "WebMidi.html#convertToTimestamp",
