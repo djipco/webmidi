@@ -2713,7 +2713,8 @@ window.lunrData = {
           "paramet",
           "regist",
           "select",
-          "selectregisteredparamet"
+          "selectregisteredparamet",
+          "upcom"
         ],
         "OutputChannel.html#send": [
           "associ",
@@ -7540,7 +7541,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#selectRegisteredParameter": {
                               "ref": "OutputChannel.html#selectRegisteredParameter",
-                              "tf": 4.166666666666666
+                              "tf": 3.8461538461538463
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -10287,7 +10288,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#selectRegisteredParameter": {
                     "ref": "OutputChannel.html#selectRegisteredParameter",
-                    "tf": 4.166666666666666
+                    "tf": 3.8461538461538463
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -11908,7 +11909,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#selectRegisteredParameter": {
                         "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 4.166666666666666
+                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -13092,7 +13093,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#selectRegisteredParameter": {
                           "ref": "OutputChannel.html#selectRegisteredParameter",
-                          "tf": 37.49999999999999
+                          "tf": 37.179487179487175
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
@@ -14955,7 +14956,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#selectRegisteredParameter": {
                         "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 4.166666666666666
+                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -18069,7 +18070,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#selectRegisteredParameter": {
                               "ref": "OutputChannel.html#selectRegisteredParameter",
-                              "tf": 4.166666666666666
+                              "tf": 3.8461538461538463
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -18752,7 +18753,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#selectRegisteredParameter": {
                     "ref": "OutputChannel.html#selectRegisteredParameter",
-                    "tf": 12.5
+                    "tf": 11.538461538461538
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -23021,7 +23022,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#selectRegisteredParameter": {
                         "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 4.166666666666666
+                        "tf": 3.8461538461538463
                       }
                     }
                   }
@@ -24492,7 +24493,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#selectRegisteredParameter": {
                       "ref": "OutputChannel.html#selectRegisteredParameter",
-                      "tf": 4.166666666666666
+                      "tf": 3.8461538461538463
                     }
                   }
                 },
@@ -33954,7 +33955,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#selectRegisteredParameter": {
                         "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 4.166666666666666
+                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -37807,6 +37808,20 @@ window.lunrData = {
                 "ref": "OutputChannel.html#setRegisteredParameter",
                 "tf": 0.3289473684210526
               }
+            },
+            "c": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "OutputChannel.html#selectRegisteredParameter": {
+                      "ref": "OutputChannel.html#selectRegisteredParameter",
+                      "tf": 3.8461538461538463
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -38463,7 +38478,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4371
+      "length": 4372
     },
     "corpusTokens": [
       "0",
@@ -39431,6 +39446,7 @@ window.lunrData = {
       "unsign",
       "until",
       "up",
+      "upcom",
       "us",
       "us/docs/web/api/domhighrestimestamp#the_time_origin",
       "usag",
@@ -40460,7 +40476,7 @@ window.lunrData = {
       "name": "selectRegisteredParameter",
       "tags": "OutputChannel#selectRegisteredParameter selectRegisteredParameter",
       "summary": "",
-      "description": "Selects a MIDI registered parameter so it is affected by data entry, data increment and data decrement messages."
+      "description": "Selects a MIDI registered parameter so it is affected by upcoming data entry, data increment and data decrement messages."
     },
     "OutputChannel.html#send": {
       "id": "OutputChannel.html#send",
