@@ -280,7 +280,7 @@ export class OutputChannel extends EventEmitter {
 
     return this;
 
-  };
+  }
 
   /**
    * Selects a MIDI non-registered parameter so it is affected by upcoming data entry, data
@@ -312,14 +312,14 @@ export class OutputChannel extends EventEmitter {
     this.sendControlChange(0x63, parameter[0], {time: options.time});
     this.sendControlChange(0x62, parameter[1], {time: options.time});
 
-  };
+  }
 
   /**
    * Deselects the currently active MIDI registered parameter so it is no longer affected by data
    * entry, data increment and data decrement messages.
    *
    * Current best practice recommends doing that after each call to
-   * [setCurrentRegisteredParameter()]{@link Output#setCurrentRegisteredParameter}.
+   * [setCurrentRegisteredParameter()]{@link OutputChannel#setCurrentRegisteredParameter}.
    *
    * @param {Object} [options={}]
    *
@@ -332,7 +332,7 @@ export class OutputChannel extends EventEmitter {
   deselectRegisteredParameter(options = {}) {
     this.sendControlChange(0x65, 0x7F, {time: options.time});
     this.sendControlChange(0x64, 0x7F, {time: options.time});
-  };
+  }
 
   /**
    * Selects a MIDI registered parameter so it is affected by upcoming data entry, data increment
@@ -364,7 +364,7 @@ export class OutputChannel extends EventEmitter {
     this.sendControlChange(0x65, parameter[0], {time: options.time});
     this.sendControlChange(0x64, parameter[1], {time: options.time});
 
-  };
+  }
 
   /**
    * Sets the value of the currently selected MIDI registered parameter.
@@ -455,7 +455,7 @@ export class OutputChannel extends EventEmitter {
 
     return this;
 
-  };
+  }
 
   /**
    * Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
