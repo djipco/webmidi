@@ -324,9 +324,9 @@ export class OutputChannel extends EventEmitter {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    */
-  _deselectRegisteredParameter(time) {
-    this.sendControlChange(0x65, 0x7F, {time: time});
-    this.sendControlChange(0x64, 0x7F, {time: time});
+  _deselectRegisteredParameter({options = {}}) {
+    this.sendControlChange(0x65, 0x7F, {time: options.time});
+    this.sendControlChange(0x64, 0x7F, {time: options.time});
   };
 
   /**
@@ -343,7 +343,7 @@ export class OutputChannel extends EventEmitter {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    */
-  _selectRegisteredParameter(parameter, time) {
+  _selectRegisteredParameter(parameter, options = {}) {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
@@ -355,8 +355,8 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The control64 value must be between 0 and 127");
     }
 
-    this.sendControlChange(0x65, parameter[0], {time: time});
-    this.sendControlChange(0x64, parameter[1], {time: time});
+    this.sendControlChange(0x65, parameter[0], {time: options.time});
+    this.sendControlChange(0x64, parameter[1], {time: options.time});
 
   };
 
@@ -1227,9 +1227,9 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._selectRegisteredParameter(parameter, this.number, options.time);
-    this._setCurrentRegisteredParameter(data, this.number, options.time);
-    this._deselectRegisteredParameter(options.time);
+    this._selectRegisteredParameter(parameter, this.number, {time: options.time});
+    this._setCurrentRegisteredParameter(data, this.number, {time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
