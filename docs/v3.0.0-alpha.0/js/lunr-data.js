@@ -4203,6 +4203,7 @@ window.lunrData = {
           "be",
           "browser",
           "constraint",
+          "document",
           "domhighrestimestamp",
           "due",
           "elaps",
@@ -4220,7 +4221,6 @@ window.lunrData = {
           "point",
           "s",
           "simpli",
-          "specif",
           "sub",
           "time",
           "variou",
@@ -17546,6 +17546,10 @@ window.lunrData = {
                           "OutputChannel.html#setNonRegisteredParameter": {
                             "ref": "OutputChannel.html#setNonRegisteredParameter",
                             "tf": 0.4807692307692308
+                          },
+                          "WebMidi.html#time": {
+                            "ref": "WebMidi.html#time",
+                            "tf": 1.5625
                           },
                           "WebMidi.html#convertToTimestamp": {
                             "ref": "WebMidi.html#convertToTimestamp",
@@ -35262,10 +35266,6 @@ window.lunrData = {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                         "tf": 0.5617977528089888
                       },
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
                         "tf": 1.4705882352941175
@@ -40654,7 +40654,7 @@ window.lunrData = {
       "name": "time",
       "tags": "WebMidi#time time",
       "summary": "",
-      "description": "The elapsed time, in milliseconds, since the time origin. Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the specification, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond."
+      "description": "The elapsed time, in milliseconds, since the time origin. Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the documentation, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond."
     },
     "WebMidi.html#convertToTimestamp": {
       "id": "WebMidi.html#convertToTimestamp",
