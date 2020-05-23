@@ -974,12 +974,11 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * The elapsed time, in milliseconds, since the
-   * [time origin]
-   * (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin). Said
-   * simply, it is the number of milliseconds that passed since the page was loaded. Being a
+   * The elapsed time, in milliseconds, since the time
+   * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
+   * Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
    * floating-point number, it has sub-millisecond accuracy. According to the
-   * [specification](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
+   * [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
    *
