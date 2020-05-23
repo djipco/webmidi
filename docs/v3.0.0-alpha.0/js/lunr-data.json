@@ -1207,6 +1207,7 @@
           "midi",
           "necessari",
           "on",
+          "option",
           "output",
           "output#send",
           "playnot",
@@ -2528,6 +2529,32 @@
           "tuningprogram",
           "us"
         ],
+        "OutputChannel.html#deselectRegisteredParameter": [
+          "activ",
+          "affect",
+          "best",
+          "call",
+          "current",
+          "data",
+          "decrement",
+          "deselect",
+          "deselectregisteredparamet",
+          "do",
+          "each",
+          "entri",
+          "function",
+          "increment",
+          "longer",
+          "messag",
+          "midi",
+          "option",
+          "outputchannel#deselectregisteredparamet",
+          "paramet",
+          "practic",
+          "recommend",
+          "regist",
+          "setcurrentregisteredparamet"
+        ],
         "OutputChannel.html#incrementRegisteredParameter": [
           "0x00",
           "0x01",
@@ -2672,6 +2699,22 @@
           "such",
           "valu"
         ],
+        "OutputChannel.html#selectRegisteredParameter": [
+          "affect",
+          "data",
+          "decrement",
+          "entri",
+          "function",
+          "increment",
+          "messag",
+          "midi",
+          "option",
+          "outputchannel#selectregisteredparamet",
+          "paramet",
+          "regist",
+          "select",
+          "selectregisteredparamet"
+        ],
         "OutputChannel.html#send": [
           "associ",
           "avail",
@@ -2688,6 +2731,7 @@
           "midi",
           "necessari",
           "on",
+          "option",
           "outputchannel",
           "outputchannel#send",
           "playnot",
@@ -4661,7 +4705,7 @@
           "webmidi#sanitizechannel"
         ]
       },
-      "length": 145
+      "length": 147
     },
     "tokenStore": {
       "root": {
@@ -7486,9 +7530,17 @@
                               "ref": "Output.html#incrementRegisteredParameter",
                               "tf": 0.5434782608695652
                             },
+                            "OutputChannel.html#deselectRegisteredParameter": {
+                              "ref": "OutputChannel.html#deselectRegisteredParameter",
+                              "tf": 2.1739130434782608
+                            },
                             "OutputChannel.html#incrementRegisteredParameter": {
                               "ref": "OutputChannel.html#incrementRegisteredParameter",
                               "tf": 0.5434782608695652
+                            },
+                            "OutputChannel.html#selectRegisteredParameter": {
+                              "ref": "OutputChannel.html#selectRegisteredParameter",
+                              "tf": 4.166666666666666
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -9939,6 +9991,10 @@
                         "ref": "Output.html#setLocalControl",
                         "tf": 2.7777777777777777
                       },
+                      "OutputChannel.html#deselectRegisteredParameter": {
+                        "ref": "OutputChannel.html#deselectRegisteredParameter",
+                        "tf": 2.1739130434782608
+                      },
                       "OutputChannel.html#setLocalControl": {
                         "ref": "OutputChannel.html#setLocalControl",
                         "tf": 2.7777777777777777
@@ -10217,6 +10273,10 @@
                     "ref": "OutputChannel.html#decrementRegisteredParameter",
                     "tf": 0.5434782608695652
                   },
+                  "OutputChannel.html#deselectRegisteredParameter": {
+                    "ref": "OutputChannel.html#deselectRegisteredParameter",
+                    "tf": 2.1739130434782608
+                  },
                   "OutputChannel.html#incrementRegisteredParameter": {
                     "ref": "OutputChannel.html#incrementRegisteredParameter",
                     "tf": 0.5434782608695652
@@ -10224,6 +10284,10 @@
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
                     "tf": 1.3888888888888888
+                  },
+                  "OutputChannel.html#selectRegisteredParameter": {
+                    "ref": "OutputChannel.html#selectRegisteredParameter",
+                    "tf": 4.166666666666666
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -11830,6 +11894,10 @@
                         "ref": "Output.html#turnSoundOff",
                         "tf": 3.571428571428571
                       },
+                      "OutputChannel.html#deselectRegisteredParameter": {
+                        "ref": "OutputChannel.html#deselectRegisteredParameter",
+                        "tf": 2.1739130434782608
+                      },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
                         "tf": 2.314814814814815
@@ -11837,6 +11905,10 @@
                       "OutputChannel.html#resetAllControllers": {
                         "ref": "OutputChannel.html#resetAllControllers",
                         "tf": 3.8461538461538463
+                      },
+                      "OutputChannel.html#selectRegisteredParameter": {
+                        "ref": "OutputChannel.html#selectRegisteredParameter",
+                        "tf": 4.166666666666666
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -12888,6 +12960,26 @@
                   }
                 }
               }
+            },
+            "a": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "c": {
+                      "docs": {
+                        "OutputChannel.html#deselectRegisteredParameter": {
+                          "ref": "OutputChannel.html#deselectRegisteredParameter",
+                          "tf": 2.1739130434782608
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           },
           "a": {
@@ -12986,6 +13078,10 @@
                           "ref": "OutputChannel.html#decrementRegisteredParameter",
                           "tf": 26.08695652173913
                         },
+                        "OutputChannel.html#deselectRegisteredParameter": {
+                          "ref": "OutputChannel.html#deselectRegisteredParameter",
+                          "tf": 2.1739130434782608
+                        },
                         "OutputChannel.html#incrementRegisteredParameter": {
                           "ref": "OutputChannel.html#incrementRegisteredParameter",
                           "tf": 26.08695652173913
@@ -12993,6 +13089,10 @@
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
                           "tf": 1.8518518518518516
+                        },
+                        "OutputChannel.html#selectRegisteredParameter": {
+                          "ref": "OutputChannel.html#selectRegisteredParameter",
+                          "tf": 37.49999999999999
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
@@ -14520,6 +14620,29 @@
                     }
                   }
                 }
+              },
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "m": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "d": {
+                          "docs": {
+                            "OutputChannel.html#deselectRegisteredParameter": {
+                              "ref": "OutputChannel.html#deselectRegisteredParameter",
+                              "tf": 2.1739130434782608
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             },
             "s": {
@@ -14822,9 +14945,17 @@
                         "ref": "OutputChannel.html#decrementRegisteredParameter",
                         "tf": 0.5434782608695652
                       },
+                      "OutputChannel.html#deselectRegisteredParameter": {
+                        "ref": "OutputChannel.html#deselectRegisteredParameter",
+                        "tf": 2.1739130434782608
+                      },
                       "OutputChannel.html#incrementRegisteredParameter": {
                         "ref": "OutputChannel.html#incrementRegisteredParameter",
                         "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#selectRegisteredParameter": {
+                        "ref": "OutputChannel.html#selectRegisteredParameter",
+                        "tf": 4.166666666666666
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -17380,6 +17511,10 @@
           },
           "o": {
             "docs": {
+              "OutputChannel.html#deselectRegisteredParameter": {
+                "ref": "OutputChannel.html#deselectRegisteredParameter",
+                "tf": 2.1739130434782608
+              },
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
                 "tf": 4.166666666666666
@@ -17670,6 +17805,82 @@
                     }
                   }
                 }
+              },
+              "e": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "OutputChannel.html#deselectRegisteredParameter": {
+                            "ref": "OutputChannel.html#deselectRegisteredParameter",
+                            "tf": 2.1739130434782608
+                          }
+                        },
+                        "r": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "g": {
+                              "docs": {},
+                              "i": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "d": {
+                                            "docs": {},
+                                            "p": {
+                                              "docs": {},
+                                              "a": {
+                                                "docs": {},
+                                                "r": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "m": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "t": {
+                                                          "docs": {
+                                                            "OutputChannel.html#deselectRegisteredParameter": {
+                                                              "ref": "OutputChannel.html#deselectRegisteredParameter",
+                                                              "tf": 700
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             },
             "f": {
@@ -17851,6 +18062,14 @@
                             "OutputChannel.html#decrementRegisteredParameter": {
                               "ref": "OutputChannel.html#decrementRegisteredParameter",
                               "tf": 0.5434782608695652
+                            },
+                            "OutputChannel.html#deselectRegisteredParameter": {
+                              "ref": "OutputChannel.html#deselectRegisteredParameter",
+                              "tf": 2.1739130434782608
+                            },
+                            "OutputChannel.html#selectRegisteredParameter": {
+                              "ref": "OutputChannel.html#selectRegisteredParameter",
+                              "tf": 4.166666666666666
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -18526,6 +18745,14 @@
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
                     "tf": 17.32456140350877
+                  },
+                  "OutputChannel.html#deselectRegisteredParameter": {
+                    "ref": "OutputChannel.html#deselectRegisteredParameter",
+                    "tf": 6.521739130434782
+                  },
+                  "OutputChannel.html#selectRegisteredParameter": {
+                    "ref": "OutputChannel.html#selectRegisteredParameter",
+                    "tf": 12.5
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -19743,6 +19970,10 @@
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
                     "tf": 0.33333333333333337
+                  },
+                  "OutputChannel.html#deselectRegisteredParameter": {
+                    "ref": "OutputChannel.html#deselectRegisteredParameter",
+                    "tf": 2.1739130434782608
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
@@ -21244,6 +21475,10 @@
                           "ref": "Output.html#turnNotesOff",
                           "tf": 3.3333333333333335
                         },
+                        "OutputChannel.html#deselectRegisteredParameter": {
+                          "ref": "OutputChannel.html#deselectRegisteredParameter",
+                          "tf": 4.3478260869565215
+                        },
                         "OutputChannel.html#turnNotesOff": {
                           "ref": "OutputChannel.html#turnNotesOff",
                           "tf": 3.571428571428571
@@ -22033,6 +22268,10 @@
                       "ref": "Output.html#sendActiveSensing",
                       "tf": 6.8181818181818175
                     },
+                    "OutputChannel.html#deselectRegisteredParameter": {
+                      "ref": "OutputChannel.html#deselectRegisteredParameter",
+                      "tf": 2.1739130434782608
+                    },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
                       "tf": 7.142857142857142
@@ -22767,6 +23006,27 @@
                   }
                 }
               }
+            },
+            "f": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "OutputChannel.html#deselectRegisteredParameter": {
+                        "ref": "OutputChannel.html#deselectRegisteredParameter",
+                        "tf": 2.1739130434782608
+                      },
+                      "OutputChannel.html#selectRegisteredParameter": {
+                        "ref": "OutputChannel.html#selectRegisteredParameter",
+                        "tf": 4.166666666666666
+                      }
+                    }
+                  }
+                }
+              }
             }
           },
           "p": {
@@ -23064,6 +23324,17 @@
                   "Output.html#setSongPosition": {
                     "ref": "Output.html#setSongPosition",
                     "tf": 2.631578947368421
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "t": {
+                "docs": {
+                  "OutputChannel.html#deselectRegisteredParameter": {
+                    "ref": "OutputChannel.html#deselectRegisteredParameter",
+                    "tf": 2.1739130434782608
                   }
                 }
               }
@@ -24209,6 +24480,55 @@
                 }
               }
             },
+            "t": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "i": {
+                  "docs": {
+                    "OutputChannel.html#deselectRegisteredParameter": {
+                      "ref": "OutputChannel.html#deselectRegisteredParameter",
+                      "tf": 2.1739130434782608
+                    },
+                    "OutputChannel.html#selectRegisteredParameter": {
+                      "ref": "OutputChannel.html#selectRegisteredParameter",
+                      "tf": 4.166666666666666
+                    }
+                  }
+                },
+                "y": {
+                  "docs": {},
+                  "l": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "m": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "v": {
               "docs": {},
               "i": {
@@ -24276,43 +24596,6 @@
                   "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                     "tf": 0.5617977528089888
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "r": {
-                "docs": {},
-                "y": {
-                  "docs": {},
-                  "l": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "m": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -24574,6 +24857,10 @@
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
                     "tf": 0.3289473684210526
+                  },
+                  "OutputChannel.html#deselectRegisteredParameter": {
+                    "ref": "OutputChannel.html#deselectRegisteredParameter",
+                    "tf": 2.1739130434782608
                   },
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -25182,6 +25469,10 @@
                             "ref": "OutputChannel.html#decrementRegisteredParameter",
                             "tf": 110.54347826086956
                           },
+                          "OutputChannel.html#deselectRegisteredParameter": {
+                            "ref": "OutputChannel.html#deselectRegisteredParameter",
+                            "tf": 110
+                          },
                           "OutputChannel.html#incrementRegisteredParameter": {
                             "ref": "OutputChannel.html#incrementRegisteredParameter",
                             "tf": 110.54347826086956
@@ -25192,6 +25483,10 @@
                           },
                           "OutputChannel.html#resetAllControllers": {
                             "ref": "OutputChannel.html#resetAllControllers",
+                            "tf": 110
+                          },
+                          "OutputChannel.html#selectRegisteredParameter": {
+                            "ref": "OutputChannel.html#selectRegisteredParameter",
                             "tf": 110
                           },
                           "OutputChannel.html#send": {
@@ -28098,6 +28393,10 @@
                         "ref": "Output.html#resetAllControllers",
                         "tf": 25
                       },
+                      "Output.html#send": {
+                        "ref": "Output.html#send",
+                        "tf": 20
+                      },
                       "Output.html#sendActiveSensing": {
                         "ref": "Output.html#sendActiveSensing",
                         "tf": 33.33333333333333
@@ -28230,6 +28529,10 @@
                         "ref": "OutputChannel.html#decrementRegisteredParameter",
                         "tf": 25
                       },
+                      "OutputChannel.html#deselectRegisteredParameter": {
+                        "ref": "OutputChannel.html#deselectRegisteredParameter",
+                        "tf": 50
+                      },
                       "OutputChannel.html#incrementRegisteredParameter": {
                         "ref": "OutputChannel.html#incrementRegisteredParameter",
                         "tf": 25
@@ -28241,6 +28544,14 @@
                       "OutputChannel.html#resetAllControllers": {
                         "ref": "OutputChannel.html#resetAllControllers",
                         "tf": 33.33333333333333
+                      },
+                      "OutputChannel.html#selectRegisteredParameter": {
+                        "ref": "OutputChannel.html#selectRegisteredParameter",
+                        "tf": 33.33333333333333
+                      },
+                      "OutputChannel.html#send": {
+                        "ref": "OutputChannel.html#send",
+                        "tf": 20
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
@@ -29242,6 +29553,80 @@
                                               }
                                             }
                                           }
+                                        },
+                                        "s": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "l": {
+                                              "docs": {},
+                                              "e": {
+                                                "docs": {},
+                                                "c": {
+                                                  "docs": {},
+                                                  "t": {
+                                                    "docs": {},
+                                                    "r": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "g": {
+                                                          "docs": {},
+                                                          "i": {
+                                                            "docs": {},
+                                                            "s": {
+                                                              "docs": {},
+                                                              "t": {
+                                                                "docs": {},
+                                                                "e": {
+                                                                  "docs": {},
+                                                                  "r": {
+                                                                    "docs": {},
+                                                                    "e": {
+                                                                      "docs": {},
+                                                                      "d": {
+                                                                        "docs": {},
+                                                                        "p": {
+                                                                          "docs": {},
+                                                                          "a": {
+                                                                            "docs": {},
+                                                                            "r": {
+                                                                              "docs": {},
+                                                                              "a": {
+                                                                                "docs": {},
+                                                                                "m": {
+                                                                                  "docs": {},
+                                                                                  "e": {
+                                                                                    "docs": {},
+                                                                                    "t": {
+                                                                                      "docs": {
+                                                                                        "OutputChannel.html#deselectRegisteredParameter": {
+                                                                                          "ref": "OutputChannel.html#deselectRegisteredParameter",
+                                                                                          "tf": 1150
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
                                         }
                                       }
                                     },
@@ -29408,6 +29793,74 @@
                                       "docs": {},
                                       "e": {
                                         "docs": {},
+                                        "l": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "c": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "r": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    "g": {
+                                                      "docs": {},
+                                                      "i": {
+                                                        "docs": {},
+                                                        "s": {
+                                                          "docs": {},
+                                                          "t": {
+                                                            "docs": {},
+                                                            "e": {
+                                                              "docs": {},
+                                                              "r": {
+                                                                "docs": {},
+                                                                "e": {
+                                                                  "docs": {},
+                                                                  "d": {
+                                                                    "docs": {},
+                                                                    "p": {
+                                                                      "docs": {},
+                                                                      "a": {
+                                                                        "docs": {},
+                                                                        "r": {
+                                                                          "docs": {},
+                                                                          "a": {
+                                                                            "docs": {},
+                                                                            "m": {
+                                                                              "docs": {},
+                                                                              "e": {
+                                                                                "docs": {},
+                                                                                "t": {
+                                                                                  "docs": {
+                                                                                    "OutputChannel.html#selectRegisteredParameter": {
+                                                                                      "ref": "OutputChannel.html#selectRegisteredParameter",
+                                                                                      "tf": 1150
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
                                         "n": {
                                           "docs": {},
                                           "d": {
@@ -32339,6 +32792,80 @@
                       }
                     }
                   }
+                },
+                "u": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "g": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "r": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "d": {
+                                                "docs": {},
+                                                "p": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "r": {
+                                                      "docs": {},
+                                                      "a": {
+                                                        "docs": {},
+                                                        "m": {
+                                                          "docs": {},
+                                                          "e": {
+                                                            "docs": {},
+                                                            "t": {
+                                                              "docs": {
+                                                                "OutputChannel.html#deselectRegisteredParameter": {
+                                                                  "ref": "OutputChannel.html#deselectRegisteredParameter",
+                                                                  "tf": 2.1739130434782608
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               },
               "k": {
@@ -33425,9 +33952,69 @@
                         "ref": "Output.html#setSong",
                         "tf": 1.6666666666666667
                       },
+                      "OutputChannel.html#selectRegisteredParameter": {
+                        "ref": "OutputChannel.html#selectRegisteredParameter",
+                        "tf": 4.166666666666666
+                      },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
                         "tf": 0.4807692307692308
+                      }
+                    },
+                    "r": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "g": {
+                          "docs": {},
+                          "i": {
+                            "docs": {},
+                            "s": {
+                              "docs": {},
+                              "t": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "d": {
+                                        "docs": {},
+                                        "p": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "r": {
+                                              "docs": {},
+                                              "a": {
+                                                "docs": {},
+                                                "m": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    "t": {
+                                                      "docs": {
+                                                        "OutputChannel.html#selectRegisteredParameter": {
+                                                          "ref": "OutputChannel.html#selectRegisteredParameter",
+                                                          "tf": 683.3333333333334
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -35751,11 +36338,11 @@
                           "docs": {
                             "Output.html#send": {
                               "ref": "Output.html#send",
-                              "tf": 21.470588235294116
+                              "tf": 1.4705882352941175
                             },
                             "OutputChannel.html#send": {
                               "ref": "OutputChannel.html#send",
-                              "tf": 21.612903225806452
+                              "tf": 1.6129032258064515
                             },
                             "WebMidi.html#convertToTimestamp": {
                               "ref": "WebMidi.html#convertToTimestamp",
@@ -37876,7 +38463,7 @@
           }
         }
       },
-      "length": 4331
+      "length": 4371
     },
     "corpusTokens": [
       "0",
@@ -38031,6 +38618,7 @@
       "addlisten",
       "addonetimelisten",
       "adjust",
+      "affect",
       "aftertouch",
       "again",
       "alia",
@@ -38075,6 +38663,7 @@
       "belong",
       "below",
       "bend",
+      "best",
       "between",
       "binari",
       "bit",
@@ -38163,6 +38752,8 @@
       "deprec",
       "depth",
       "deriv",
+      "deselect",
+      "deselectregisteredparamet",
       "desir",
       "destroy",
       "detail",
@@ -38205,6 +38796,7 @@
       "enabl",
       "encod",
       "end",
+      "entri",
       "entrylsb",
       "entrymsb",
       "enum",
@@ -38551,11 +39143,13 @@
       "output.stopnot",
       "outputchannel",
       "outputchannel#decrementregisteredparamet",
+      "outputchannel#deselectregisteredparamet",
       "outputchannel#incrementregisteredparamet",
       "outputchannel#numb",
       "outputchannel#output",
       "outputchannel#playnot",
       "outputchannel#resetallcontrol",
+      "outputchannel#selectregisteredparamet",
       "outputchannel#send",
       "outputchannel#sendchannelmod",
       "outputchannel#sendcontrolchang",
@@ -38624,6 +39218,7 @@
       "ports.output",
       "posit",
       "possibl",
+      "practic",
       "preced",
       "prepend",
       "pressur",
@@ -38660,6 +39255,7 @@
       "real",
       "reason",
       "receiv",
+      "recommend",
       "refer",
       "referencedistanceratio",
       "regist",
@@ -38700,6 +39296,7 @@
       "secur",
       "see",
       "select",
+      "selectregisteredparamet",
       "semiton",
       "send",
       "sendactivesens",
@@ -38721,6 +39318,7 @@
       "serv",
       "set",
       "setchannelaftertouch",
+      "setcurrentregisteredparamet",
       "setkeyaftertouch",
       "setlocalcontrol",
       "setmastertun",
@@ -39446,7 +40044,7 @@
     "Output.html#send": {
       "id": "Output.html#send",
       "kind": "function",
-      "title": "send( status [, data [, timestamp ] ] ) → {Output}",
+      "title": "send( status [, data [, options ] ] ) → {Output}",
       "longname": "Output#send",
       "name": "send",
       "tags": "Output#send send",
@@ -39814,6 +40412,16 @@
       "summary": "",
       "description": "Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter names that can be used with this function: Pitchbend Range (0x00, 0x00): \"pitchbendrange\" Channel Fine Tuning (0x00, 0x01): \"channelfinetuning\" Channel Coarse Tuning (0x00, 0x02): \"channelcoarsetuning\" Tuning Program (0x00, 0x03): \"tuningprogram\" Tuning Bank (0x00, 0x04): \"tuningbank\" Modulation Range (0x00, 0x05): \"modulationrange\" Azimuth Angle (0x3D, 0x00): \"azimuthangle\" Elevation Angle (0x3D, 0x01): \"elevationangle\" Gain (0x3D, 0x02): \"gain\" Distance Ratio (0x3D, 0x03): \"distanceratio\" Maximum Distance (0x3D, 0x04): \"maximumdistance\" Maximum Distance Gain (0x3D, 0x05): \"maximumdistancegain\" Reference Distance Ratio (0x3D, 0x06): \"referencedistanceratio\" Pan Spread Angle (0x3D, 0x07): \"panspreadangle\" Roll Angle (0x3D, 0x08): \"rollangle\""
     },
+    "OutputChannel.html#deselectRegisteredParameter": {
+      "id": "OutputChannel.html#deselectRegisteredParameter",
+      "kind": "function",
+      "title": "deselectRegisteredParameter( [ options ] )",
+      "longname": "OutputChannel#deselectRegisteredParameter",
+      "name": "deselectRegisteredParameter",
+      "tags": "OutputChannel#deselectRegisteredParameter deselectRegisteredParameter",
+      "summary": "",
+      "description": "Deselects the currently active MIDI registered parameter so it is no longer affected by data entry, data increment and data decrement messages. Current best practice recommends doing that after each call to setCurrentRegisteredParameter()."
+    },
     "OutputChannel.html#incrementRegisteredParameter": {
       "id": "OutputChannel.html#incrementRegisteredParameter",
       "kind": "function",
@@ -39844,10 +40452,20 @@
       "summary": "",
       "description": "Sends a reset all controllers channel mode message. This resets all controllers, such as the pitch bend, to their default value."
     },
+    "OutputChannel.html#selectRegisteredParameter": {
+      "id": "OutputChannel.html#selectRegisteredParameter",
+      "kind": "function",
+      "title": "selectRegisteredParameter( parameter [, options ] )",
+      "longname": "OutputChannel#selectRegisteredParameter",
+      "name": "selectRegisteredParameter",
+      "tags": "OutputChannel#selectRegisteredParameter selectRegisteredParameter",
+      "summary": "",
+      "description": "Selects a MIDI registered parameter so it is affected by data entry, data increment and data decrement messages."
+    },
     "OutputChannel.html#send": {
       "id": "OutputChannel.html#send",
       "kind": "function",
-      "title": "send( status [, data [, timestamp ] ] ) → {OutputChannel}",
+      "title": "send( status [, data [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#send",
       "name": "send",
       "tags": "OutputChannel#send send",
