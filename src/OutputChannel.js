@@ -296,6 +296,8 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   selectNonRegisteredParameter(parameter, options = {}) {
 
@@ -311,6 +313,8 @@ export class OutputChannel extends EventEmitter {
 
     this.sendControlChange(0x63, parameter[0], {time: options.time});
     this.sendControlChange(0x62, parameter[1], {time: options.time});
+
+    return this;
 
   }
 
@@ -328,10 +332,13 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   deselectRegisteredParameter(options = {}) {
     this.sendControlChange(0x65, 0x7F, {time: options.time});
     this.sendControlChange(0x64, 0x7F, {time: options.time});
+    return this;
   }
 
   /**
@@ -348,6 +355,8 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   selectRegisteredParameter(parameter, options = {}) {
 
@@ -364,6 +373,8 @@ export class OutputChannel extends EventEmitter {
     this.sendControlChange(0x65, parameter[0], {time: options.time});
     this.sendControlChange(0x64, parameter[1], {time: options.time});
 
+    return this;
+
   }
 
   /**
@@ -378,6 +389,8 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setCurrentRegisteredParameter(data, options = {}) {
 
@@ -401,6 +414,8 @@ export class OutputChannel extends EventEmitter {
     } else {
       throw new RangeError("The lsb value must be between 0 and 127.");
     }
+
+    return this;
 
   }
 
