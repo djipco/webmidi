@@ -289,6 +289,8 @@ export class OutputChannel extends EventEmitter {
    * @param parameter {number[]} A two-position array specifying the two control bytes (0x63, 0x62)
    * that identify the registered parameter.
    *
+   * @private
+   *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
@@ -299,7 +301,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  selectNonRegisteredParameter(parameter, options = {}) {
+  _selectNonRegisteredParameter(parameter, options = {}) {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
@@ -323,7 +325,9 @@ export class OutputChannel extends EventEmitter {
    * entry, data increment and data decrement messages.
    *
    * Current best practice recommends doing that after each call to
-   * [setCurrentRegisteredParameter()]{@link OutputChannel#setCurrentRegisteredParameter}.
+   * [_setCurrentParameter()]{@link OutputChannel#_setCurrentParameter}.
+   *
+   * @private
    *
    * @param {Object} [options={}]
    *
@@ -335,7 +339,29 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  deselectRegisteredParameter(options = {}) {
+  _deselectRegisteredParameter(options = {}) {
+    this.sendControlChange(0x65, 0x7F, {time: options.time});
+    this.sendControlChange(0x64, 0x7F, {time: options.time});
+    return this;
+  }
+
+  /**
+   * Deselects the currently active MIDI non-registered parameter so it is no longer affected by
+   * data entry, data increment and data decrement messages.
+   *
+   * @private
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   */
+  _deselectNonRegisteredParameter(options = {}) {
     this.sendControlChange(0x65, 0x7F, {time: options.time});
     this.sendControlChange(0x64, 0x7F, {time: options.time});
     return this;
@@ -344,6 +370,8 @@ export class OutputChannel extends EventEmitter {
   /**
    * Selects a MIDI registered parameter so it is affected by upcoming data entry, data increment
    * and data decrement messages.
+   *
+   * @private
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
    * that identify the registered parameter.
@@ -358,16 +386,16 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  selectRegisteredParameter(parameter, options = {}) {
+  _selectRegisteredParameter(parameter, options = {}) {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
-      throw new RangeError("The control65 value must be between 0 and 127");
+      throw new RangeError("The control65 value must be between 0 and 127.");
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
-      throw new RangeError("The control64 value must be between 0 and 127");
+      throw new RangeError("The control64 value must be between 0 and 127.");
     }
 
     this.sendControlChange(0x65, parameter[0], {time: options.time});
@@ -392,7 +420,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  setCurrentRegisteredParameter(data, options = {}) {
+  _setCurrentParameter(data, options = {}) {
 
     data = [].concat(data);
 
@@ -464,9 +492,9 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, {time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
     this.sendControlChange(0x61, 0, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
@@ -517,9 +545,9 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, {time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
     this.sendControlChange(0x60, 0, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
@@ -1078,9 +1106,9 @@ export class OutputChannel extends EventEmitter {
 
     data = [].concat(data);
 
-    this.selectNonRegisteredParameter(parameter, this.number, options.time);
-    this.setCurrentRegisteredParameter(data, this.number, options.time);
-    this.deselectRegisteredParameter(options.time);
+    this._selectNonRegisteredParameter(parameter, this.number, options.time);
+    this._setCurrentParameter(data, this.number, options.time);
+    this._deselectNonRegisteredParameter(options.time);
 
     return this;
 
@@ -1264,9 +1292,9 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, this.number, {time: options.time});
-    this.setCurrentRegisteredParameter(data, this.number, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._selectRegisteredParameter(parameter, this.number, {time: options.time});
+    this._setCurrentParameter(data, this.number, {time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
