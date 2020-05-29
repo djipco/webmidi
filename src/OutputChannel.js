@@ -286,8 +286,9 @@ export class OutputChannel extends EventEmitter {
    * Selects a MIDI non-registered parameter so it is affected by upcoming data entry, data
    * increment and data decrement messages.
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63, 0x62)
-   * that identify the registered parameter.
+   * @param parameter {number[]} A two-position array specifying the two control bytes that identify
+   * the registered parameter. The NRPN MSB (99 or 0x63) is a position 0. The NRPN LSB (98 or 0x62)
+   * is at position 1.
    *
    * @private
    *
@@ -1106,9 +1107,9 @@ export class OutputChannel extends EventEmitter {
 
     data = [].concat(data);
 
-    this._selectNonRegisteredParameter(parameter, this.number, options.time);
-    this._setCurrentParameter(data, this.number, options.time);
-    this._deselectNonRegisteredParameter(options.time);
+    this._selectNonRegisteredParameter(parameter, {time: options.time});
+    this._setCurrentParameter(data, {time: options.time});
+    this._deselectNonRegisteredParameter({time: options.time});
 
     return this;
 
@@ -1117,15 +1118,27 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sends a MIDI **pitch bend** message at the scheduled time.
    *
-   * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
-   * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
-   * an integer between 0 and 127. In this case, a value of 64 means no bend. The range of the pitch
-   * bend can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}.
+   * @param value {number} The intensity of the bend (between -1.0 and 1.0). A value of zero means
+   * no bend. The resulting bend is relative to the pitch bend range that has been defined. The
+   * range can be set using [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}. So, for
+   * example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will
+   * bend the note 1 octave below its nominal value.
+   *
+   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
+   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
+   * byte). The MSB is expressed in semitones with 64 meaning no bend. A value lower than 64 bends
+   * downwards while a value higher than 64 bends upwards. The LSB is expressed in cents
+   * (1/100 of a semitone). An LSB of 64 also means no bend.
+   *
+   * @param {number|number[]} [value] The bend value. If no value is specified, a bend value of 0
+   * (no bend) will be used.
    *
    * @param {Object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127.
+   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
+   * an array of 2 integers if using both MSB and LSB).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -1139,17 +1152,35 @@ export class OutputChannel extends EventEmitter {
    */
   setPitchBend(value, options = {}) {
 
-    // Validation
-    value = parseFloat(value);
-    if (isNaN(value)) value = 0;
-    if (options.rawValue) value = value / 127 * 2 - 1;
-    if (value < -1 || value > 1) {
-      throw new RangeError("Pitch bend value must be between -1.0 and 1.0.");
-    }
+    let msb = 0;
+    let lsb = 0;
 
-    let nLevel = Math.round((value + 1) / 2 * 16383);
-    let msb = (nLevel >> 7) & 0x7F;
-    let lsb = nLevel & 0x7F;
+    // Calculate MSB and LSB for both scenarios
+    if (options.rawValue) {
+
+      if (Array.isArray(value)) {
+        msb = parseInt(value[0]);
+        lsb = parseInt(value[1]);
+      } else {
+        msb = parseInt(value);
+      }
+
+      if (isNaN(msb)) msb = 64;
+      if (isNaN(lsb)) lsb = 64;
+
+      // Validation
+      msb = Math.min(Math.max(msb, 0), 127);
+      lsb = Math.min(Math.max(lsb, 0), 127);
+
+    } else {
+
+      let valid = parseFloat(value) || 0;
+      valid = Math.min(Math.max(valid, -1), 1);
+      let nLevel = Math.round((valid + 1) / 2 * 16383);
+      msb = (nLevel >> 7) & 0x7F;
+      lsb = nLevel & 0x7F;
+
+    }
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1),
@@ -1292,8 +1323,8 @@ export class OutputChannel extends EventEmitter {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._selectRegisteredParameter(parameter, this.number, {time: options.time});
-    this._setCurrentParameter(data, this.number, {time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
+    this._setCurrentParameter(data, {time: options.time});
     this._deselectRegisteredParameter({time: options.time});
 
     return this;
