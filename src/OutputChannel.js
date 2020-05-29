@@ -1392,7 +1392,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter("tuningprogram", value - 1, this.number, {time: options.time});
+    this.setRegisteredParameter("tuningprogram", value - 1, {time: options.time});
 
     return this;
 
