@@ -1132,7 +1132,8 @@ export class OutputChannel extends EventEmitter {
    * (1/100 of a semitone). An LSB of 64 also means no bend.
    *
    * @param {number|number[]} [value] The bend value. If no value is specified, a bend value of 0
-   * (no bend) will be used.
+   * (no bend) will be used. If an invalid value is specified, the nearest valid value will be used
+   * instead.
    *
    * @param {Object} [options={}]
    *
@@ -1145,8 +1146,6 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
-   *
-   * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */

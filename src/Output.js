@@ -944,9 +944,22 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
    *
-   * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
-   * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
-   * an integer between 0 and 127. In this case, a value of 64 means no bend.
+   * @param value {number} The intensity of the bend (between -1.0 and 1.0). A value of zero means
+   * no bend. The resulting bend is relative to the pitch bend range that has been defined. The
+   * range can be set using [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}. So, for
+   * example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will
+   * bend the note 1 octave below its nominal value.
+   *
+   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
+   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
+   * byte). The MSB is expressed in semitones with 64 meaning no bend. A value lower than 64 bends
+   * downwards while a value higher than 64 bends upwards. The LSB is expressed in cents
+   * (1/100 of a semitone). An LSB of 64 also means no bend.
+   *
+   * @param {number|number[]} [value] The bend value. If no value is specified, a bend value of 0
+   * (no bend) will be used. If an invalid value is specified, the nearest valid value will be used
+   * instead.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -954,14 +967,13 @@ export class Output extends EventEmitter {
    * @param {Object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127.
+   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
+   * an array of 2 integers if using both MSB and LSB).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
-   *
-   * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
