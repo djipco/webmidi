@@ -1118,22 +1118,20 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sends a MIDI **pitch bend** message at the scheduled time.
    *
-   * @param value {number} The intensity of the bend (between -1.0 and 1.0). A value of zero means
-   * no bend. The resulting bend is relative to the pitch bend range that has been defined. The
-   * range can be set using [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}. So, for
-   * example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will
-   * bend the note 1 octave below its nominal value.
+   * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
+   * zero means no bend. The resulting bend is relative to the pitch bend range that has been
+   * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
+   * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
+   * -1 will bend the note 1 octave below its nominal value.
+   *
+   * If an invalid value is specified, the nearest valid value will be used instead.
    *
    * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
    * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
    * representing, respectively, the MSB (most significant byte) and the LSB (least significant
-   * byte). The MSB is expressed in semitones with 64 meaning no bend. A value lower than 64 bends
-   * downwards while a value higher than 64 bends upwards. The LSB is expressed in cents
-   * (1/100 of a semitone). An LSB of 64 also means no bend.
-   *
-   * @param {number|number[]} [value] The bend value. If no value is specified, a bend value of 0
-   * (no bend) will be used. If an invalid value is specified, the nearest valid value will be used
-   * instead.
+   * byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64`
+   * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
+   * (1/100 of a semitone). An LSB of `64` also means no bend.
    *
    * @param {Object} [options={}]
    *
@@ -1359,7 +1357,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter("tuningbank", value - 1, this.number, {time: options.time});
+    this.setRegisteredParameter("tuningbank", value - 1, {time: options.time});
 
     return this;
 
