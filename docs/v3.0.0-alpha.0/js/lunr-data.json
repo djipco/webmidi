@@ -19961,7 +19961,7 @@
                         },
                         "Output.html#setPitchBend": {
                           "ref": "Output.html#setPitchBend",
-                          "tf": 16.666666666666664
+                          "tf": 20
                         },
                         "Output.html#setPitchBendRange": {
                           "ref": "Output.html#setPitchBendRange",
@@ -28150,7 +28150,7 @@
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
@@ -28266,7 +28266,7 @@
                       },
                       "OutputChannel.html#setPitchBend": {
                         "ref": "OutputChannel.html#setPitchBend",
-                        "tf": 20
+                        "tf": 25
                       },
                       "OutputChannel.html#setPitchBendRange": {
                         "ref": "OutputChannel.html#setPitchBendRange",
@@ -28765,7 +28765,7 @@
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
@@ -29012,7 +29012,7 @@
                                     },
                                     "OutputChannel.html#setPitchBend": {
                                       "ref": "OutputChannel.html#setPitchBend",
-                                      "tf": 20
+                                      "tf": 25
                                     },
                                     "OutputChannel.html#setPitchBendRange": {
                                       "ref": "OutputChannel.html#setPitchBendRange",
@@ -32254,11 +32254,11 @@
                                 "docs": {
                                   "Output.html#setPitchBend": {
                                     "ref": "Output.html#setPitchBend",
-                                    "tf": 666.6666666666666
+                                    "tf": 670
                                   },
                                   "OutputChannel.html#setPitchBend": {
                                     "ref": "OutputChannel.html#setPitchBend",
-                                    "tf": 670
+                                    "tf": 675
                                   }
                                 },
                                 "r": {
@@ -37356,7 +37356,7 @@
                   },
                   "Output.html#setPitchBend": {
                     "ref": "Output.html#setPitchBend",
-                    "tf": 33.33333333333333
+                    "tf": 20
                   },
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
@@ -37416,7 +37416,7 @@
                   },
                   "OutputChannel.html#setPitchBend": {
                     "ref": "OutputChannel.html#setPitchBend",
-                    "tf": 40
+                    "tf": 25
                   },
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
@@ -39609,7 +39609,7 @@
     "Output.html#setPitchBend": {
       "id": "Output.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( value [, value ], channel [, options ] ) → {Output}",
+      "title": "setPitchBend( [ value ], channel [, options ] ) → {Output}",
       "longname": "Output#setPitchBend",
       "name": "setPitchBend",
       "tags": "Output#setPitchBend setPitchBend",
@@ -39930,7 +39930,7 @@
     "OutputChannel.html#setPitchBend": {
       "id": "OutputChannel.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( value [, value [, options ] ] ) → {OutputChannel}",
+      "title": "setPitchBend( [ value [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#setPitchBend",
       "name": "setPitchBend",
       "tags": "OutputChannel#setPitchBend setPitchBend",

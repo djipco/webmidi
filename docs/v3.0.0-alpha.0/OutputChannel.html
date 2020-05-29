@@ -920,7 +920,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1479">line 1479</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1477">line 1477</a></p>
 								</div>
 							</div>
 			
@@ -2091,7 +2091,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1421">line 1421</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1419">line 1419</a></p>
 								</div>
 							</div>
 			
@@ -2613,7 +2613,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setPitchBend" class="function public"><span class="name">setPitchBend</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="setPitchBend" class="function public"><span class="name">setPitchBend</span><span class="signature-params">( [&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -2633,32 +2633,22 @@
 					<tbody>
 						<tr>
 								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>The intensity of the bend (between -1.0 and 1.0). A value of zero means
-			no bend. The resulting bend is relative to the pitch bend range that has been defined. The
-			range can be set using <a href="OutputChannel.html#setPitchBendRange">setPitchBendRange()</a>. So, for
-			example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will
-			bend the note 1 octave below its nominal value.</p>
-			<p>If the <code>rawValue</code> option is set to <code>true</code>, the intensity of the bend can be defined by either
-			using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
-			representing, respectively, the MSB (most significant byte) and the LSB (least significant
-			byte). The MSB is expressed in semitones with 64 meaning no bend. A value lower than 64 bends
-			downwards while a value higher than 64 bends upwards. The LSB is expressed in cents
-			(1/100 of a semitone). An LSB of 64 also means no bend.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
 							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 								<td></td>
 							<td class="last">
-									<p>The bend value. If no value is specified, a bend value of 0
-			(no bend) will be used. If an invalid value is specified, the nearest valid value will be used
-			instead.</p>
+									<p>The intensity of the bend (between -1.0 and 1.0). A value of
+			zero means no bend. The resulting bend is relative to the pitch bend range that has been
+			defined. The range can be set with <a href="OutputChannel.html#setPitchBendRange">setPitchBendRange()</a>
+			. So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
+			-1 will bend the note 1 octave below its nominal value.</p>
+			<p>If an invalid value is specified, the nearest valid value will be used instead.</p>
+			<p>If the <code>rawValue</code> option is set to <code>true</code>, the intensity of the bend can be defined by either
+			using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+			representing, respectively, the MSB (most significant byte) and the LSB (least significant
+			byte). The MSB is expressed in semitones with <code>64</code> meaning no bend. A value lower than <code>64</code>
+			bends downwards while a value higher than <code>64</code> bends upwards. The LSB is expressed in cents
+			(1/100 of a semitone). An LSB of <code>64</code> also means no bend.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2737,7 +2727,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1152">line 1152</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1150">line 1150</a></p>
 								</div>
 							</div>
 			
@@ -2867,7 +2857,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1219">line 1219</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1217">line 1217</a></p>
 								</div>
 							</div>
 			
@@ -2971,7 +2961,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1500">line 1500</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1498">line 1498</a></p>
 								</div>
 							</div>
 			
@@ -3085,7 +3075,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1252">line 1252</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1250">line 1250</a></p>
 								</div>
 							</div>
 			
@@ -3228,7 +3218,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1316">line 1316</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1314">line 1314</a></p>
 								</div>
 							</div>
 			
@@ -3342,7 +3332,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1355">line 1355</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1353">line 1353</a></p>
 								</div>
 							</div>
 			
@@ -3456,7 +3446,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1390">line 1390</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1388">line 1388</a></p>
 								</div>
 							</div>
 			
@@ -3628,7 +3618,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1443">line 1443</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1441">line 1441</a></p>
 								</div>
 							</div>
 			
@@ -3722,7 +3712,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1461">line 1461</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1459">line 1459</a></p>
 								</div>
 							</div>
 			
@@ -3743,7 +3733,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 29th 2020 @ 16:10:24 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 29th 2020 @ 16:14:55 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
