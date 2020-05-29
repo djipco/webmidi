@@ -2467,6 +2467,21 @@ window.lunrData = {
           "output",
           "outputchannel#output"
         ],
+        "OutputChannel.html#_setCurrentParameter": [
+          "_setcurrentparamet",
+          "current",
+          "data",
+          "function",
+          "midi",
+          "option",
+          "outputchannel",
+          "outputchannel#_setcurrentparamet",
+          "paramet",
+          "regist",
+          "select",
+          "set",
+          "valu"
+        ],
         "OutputChannel.html#decrementRegisteredParameter": [
           "0x00",
           "0x01",
@@ -2528,32 +2543,6 @@ window.lunrData = {
           "tuningbank",
           "tuningprogram",
           "us"
-        ],
-        "OutputChannel.html#deselectRegisteredParameter": [
-          "activ",
-          "affect",
-          "best",
-          "call",
-          "current",
-          "data",
-          "decrement",
-          "deselect",
-          "deselectregisteredparamet",
-          "do",
-          "each",
-          "entri",
-          "function",
-          "increment",
-          "longer",
-          "messag",
-          "midi",
-          "option",
-          "outputchannel#deselectregisteredparamet",
-          "paramet",
-          "practic",
-          "recommend",
-          "regist",
-          "setcurrentregisteredparamet"
         ],
         "OutputChannel.html#incrementRegisteredParameter": [
           "0x00",
@@ -2698,23 +2687,6 @@ window.lunrData = {
           "send",
           "such",
           "valu"
-        ],
-        "OutputChannel.html#selectRegisteredParameter": [
-          "affect",
-          "data",
-          "decrement",
-          "entri",
-          "function",
-          "increment",
-          "messag",
-          "midi",
-          "option",
-          "outputchannel#selectregisteredparamet",
-          "paramet",
-          "regist",
-          "select",
-          "selectregisteredparamet",
-          "upcom"
         ],
         "OutputChannel.html#send": [
           "associ",
@@ -4704,7 +4676,7 @@ window.lunrData = {
           "webmidi#sanitizechannel"
         ]
       },
-      "length": 147
+      "length": 146
     },
     "tokenStore": {
       "root": {
@@ -7529,17 +7501,9 @@ window.lunrData = {
                               "ref": "Output.html#incrementRegisteredParameter",
                               "tf": 0.5434782608695652
                             },
-                            "OutputChannel.html#deselectRegisteredParameter": {
-                              "ref": "OutputChannel.html#deselectRegisteredParameter",
-                              "tf": 2.1739130434782608
-                            },
                             "OutputChannel.html#incrementRegisteredParameter": {
                               "ref": "OutputChannel.html#incrementRegisteredParameter",
                               "tf": 0.5434782608695652
-                            },
-                            "OutputChannel.html#selectRegisteredParameter": {
-                              "ref": "OutputChannel.html#selectRegisteredParameter",
-                              "tf": 3.8461538461538463
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -9990,10 +9954,6 @@ window.lunrData = {
                         "ref": "Output.html#setLocalControl",
                         "tf": 2.7777777777777777
                       },
-                      "OutputChannel.html#deselectRegisteredParameter": {
-                        "ref": "OutputChannel.html#deselectRegisteredParameter",
-                        "tf": 2.1739130434782608
-                      },
                       "OutputChannel.html#setLocalControl": {
                         "ref": "OutputChannel.html#setLocalControl",
                         "tf": 2.7777777777777777
@@ -10268,13 +10228,13 @@ window.lunrData = {
                     "ref": "OutputChannel.html",
                     "tf": 1.2195121951219512
                   },
+                  "OutputChannel.html#_setCurrentParameter": {
+                    "ref": "OutputChannel.html#_setCurrentParameter",
+                    "tf": 7.142857142857142
+                  },
                   "OutputChannel.html#decrementRegisteredParameter": {
                     "ref": "OutputChannel.html#decrementRegisteredParameter",
                     "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#deselectRegisteredParameter": {
-                    "ref": "OutputChannel.html#deselectRegisteredParameter",
-                    "tf": 2.1739130434782608
                   },
                   "OutputChannel.html#incrementRegisteredParameter": {
                     "ref": "OutputChannel.html#incrementRegisteredParameter",
@@ -10283,10 +10243,6 @@ window.lunrData = {
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
                     "tf": 1.3888888888888888
-                  },
-                  "OutputChannel.html#selectRegisteredParameter": {
-                    "ref": "OutputChannel.html#selectRegisteredParameter",
-                    "tf": 3.8461538461538463
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -11893,20 +11849,12 @@ window.lunrData = {
                         "ref": "Output.html#turnSoundOff",
                         "tf": 3.571428571428571
                       },
-                      "OutputChannel.html#deselectRegisteredParameter": {
-                        "ref": "OutputChannel.html#deselectRegisteredParameter",
-                        "tf": 2.1739130434782608
-                      },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
                         "tf": 2.314814814814815
                       },
                       "OutputChannel.html#resetAllControllers": {
                         "ref": "OutputChannel.html#resetAllControllers",
-                        "tf": 3.8461538461538463
-                      },
-                      "OutputChannel.html#selectRegisteredParameter": {
-                        "ref": "OutputChannel.html#selectRegisteredParameter",
                         "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#send": {
@@ -12959,26 +12907,6 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "a": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "c": {
-                      "docs": {
-                        "OutputChannel.html#deselectRegisteredParameter": {
-                          "ref": "OutputChannel.html#deselectRegisteredParameter",
-                          "tf": 2.1739130434782608
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
           },
           "a": {
@@ -13073,13 +13001,13 @@ window.lunrData = {
                           "ref": "Output.html#setTuningProgram",
                           "tf": 1.25
                         },
+                        "OutputChannel.html#_setCurrentParameter": {
+                          "ref": "OutputChannel.html#_setCurrentParameter",
+                          "tf": 7.142857142857142
+                        },
                         "OutputChannel.html#decrementRegisteredParameter": {
                           "ref": "OutputChannel.html#decrementRegisteredParameter",
                           "tf": 26.08695652173913
-                        },
-                        "OutputChannel.html#deselectRegisteredParameter": {
-                          "ref": "OutputChannel.html#deselectRegisteredParameter",
-                          "tf": 2.1739130434782608
                         },
                         "OutputChannel.html#incrementRegisteredParameter": {
                           "ref": "OutputChannel.html#incrementRegisteredParameter",
@@ -13088,10 +13016,6 @@ window.lunrData = {
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
                           "tf": 1.8518518518518516
-                        },
-                        "OutputChannel.html#selectRegisteredParameter": {
-                          "ref": "OutputChannel.html#selectRegisteredParameter",
-                          "tf": 37.179487179487175
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
@@ -14619,29 +14543,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "m": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "d": {
-                          "docs": {
-                            "OutputChannel.html#deselectRegisteredParameter": {
-                              "ref": "OutputChannel.html#deselectRegisteredParameter",
-                              "tf": 2.1739130434782608
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             },
             "s": {
@@ -14940,21 +14841,17 @@ window.lunrData = {
                         "ref": "Output.html#setRegisteredParameter",
                         "tf": 0.9868421052631579
                       },
+                      "OutputChannel.html#_setCurrentParameter": {
+                        "ref": "OutputChannel.html#_setCurrentParameter",
+                        "tf": 7.142857142857142
+                      },
                       "OutputChannel.html#decrementRegisteredParameter": {
                         "ref": "OutputChannel.html#decrementRegisteredParameter",
                         "tf": 0.5434782608695652
                       },
-                      "OutputChannel.html#deselectRegisteredParameter": {
-                        "ref": "OutputChannel.html#deselectRegisteredParameter",
-                        "tf": 2.1739130434782608
-                      },
                       "OutputChannel.html#incrementRegisteredParameter": {
                         "ref": "OutputChannel.html#incrementRegisteredParameter",
                         "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#selectRegisteredParameter": {
-                        "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -17510,10 +17407,6 @@ window.lunrData = {
           },
           "o": {
             "docs": {
-              "OutputChannel.html#deselectRegisteredParameter": {
-                "ref": "OutputChannel.html#deselectRegisteredParameter",
-                "tf": 2.1739130434782608
-              },
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
                 "tf": 4.166666666666666
@@ -17808,82 +17701,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "e": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "t": {
-                        "docs": {
-                          "OutputChannel.html#deselectRegisteredParameter": {
-                            "ref": "OutputChannel.html#deselectRegisteredParameter",
-                            "tf": 2.1739130434782608
-                          }
-                        },
-                        "r": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "g": {
-                              "docs": {},
-                              "i": {
-                                "docs": {},
-                                "s": {
-                                  "docs": {},
-                                  "t": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "e": {
-                                          "docs": {},
-                                          "d": {
-                                            "docs": {},
-                                            "p": {
-                                              "docs": {},
-                                              "a": {
-                                                "docs": {},
-                                                "r": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "m": {
-                                                      "docs": {},
-                                                      "e": {
-                                                        "docs": {},
-                                                        "t": {
-                                                          "docs": {
-                                                            "OutputChannel.html#deselectRegisteredParameter": {
-                                                              "ref": "OutputChannel.html#deselectRegisteredParameter",
-                                                              "tf": 700
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             },
             "f": {
@@ -18065,14 +17882,6 @@ window.lunrData = {
                             "OutputChannel.html#decrementRegisteredParameter": {
                               "ref": "OutputChannel.html#decrementRegisteredParameter",
                               "tf": 0.5434782608695652
-                            },
-                            "OutputChannel.html#deselectRegisteredParameter": {
-                              "ref": "OutputChannel.html#deselectRegisteredParameter",
-                              "tf": 2.1739130434782608
-                            },
-                            "OutputChannel.html#selectRegisteredParameter": {
-                              "ref": "OutputChannel.html#selectRegisteredParameter",
-                              "tf": 3.8461538461538463
                             },
                             "WebMidi.html#MIDI_NRPN_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -18749,13 +18558,9 @@ window.lunrData = {
                     "ref": "Output.html#setRegisteredParameter",
                     "tf": 17.32456140350877
                   },
-                  "OutputChannel.html#deselectRegisteredParameter": {
-                    "ref": "OutputChannel.html#deselectRegisteredParameter",
-                    "tf": 6.521739130434782
-                  },
-                  "OutputChannel.html#selectRegisteredParameter": {
-                    "ref": "OutputChannel.html#selectRegisteredParameter",
-                    "tf": 11.538461538461538
+                  "OutputChannel.html#_setCurrentParameter": {
+                    "ref": "OutputChannel.html#_setCurrentParameter",
+                    "tf": 25
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -19974,10 +19779,6 @@ window.lunrData = {
                     "ref": "Output.html#sendSysex",
                     "tf": 0.33333333333333337
                   },
-                  "OutputChannel.html#deselectRegisteredParameter": {
-                    "ref": "OutputChannel.html#deselectRegisteredParameter",
-                    "tf": 2.1739130434782608
-                  },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
                     "tf": 0.7462686567164178
@@ -20160,7 +19961,7 @@ window.lunrData = {
                         },
                         "Output.html#setPitchBend": {
                           "ref": "Output.html#setPitchBend",
-                          "tf": 20
+                          "tf": 16.666666666666664
                         },
                         "Output.html#setPitchBendRange": {
                           "ref": "Output.html#setPitchBendRange",
@@ -21478,9 +21279,9 @@ window.lunrData = {
                           "ref": "Output.html#turnNotesOff",
                           "tf": 3.3333333333333335
                         },
-                        "OutputChannel.html#deselectRegisteredParameter": {
-                          "ref": "OutputChannel.html#deselectRegisteredParameter",
-                          "tf": 4.3478260869565215
+                        "OutputChannel.html#_setCurrentParameter": {
+                          "ref": "OutputChannel.html#_setCurrentParameter",
+                          "tf": 7.142857142857142
                         },
                         "OutputChannel.html#turnNotesOff": {
                           "ref": "OutputChannel.html#turnNotesOff",
@@ -22271,10 +22072,6 @@ window.lunrData = {
                       "ref": "Output.html#sendActiveSensing",
                       "tf": 6.8181818181818175
                     },
-                    "OutputChannel.html#deselectRegisteredParameter": {
-                      "ref": "OutputChannel.html#deselectRegisteredParameter",
-                      "tf": 2.1739130434782608
-                    },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
                       "tf": 7.142857142857142
@@ -23009,27 +22806,6 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "f": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "c": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "OutputChannel.html#deselectRegisteredParameter": {
-                        "ref": "OutputChannel.html#deselectRegisteredParameter",
-                        "tf": 2.1739130434782608
-                      },
-                      "OutputChannel.html#selectRegisteredParameter": {
-                        "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 3.8461538461538463
-                      }
-                    }
-                  }
-                }
-              }
             }
           },
           "p": {
@@ -23327,17 +23103,6 @@ window.lunrData = {
                   "Output.html#setSongPosition": {
                     "ref": "Output.html#setSongPosition",
                     "tf": 2.631578947368421
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "t": {
-                "docs": {
-                  "OutputChannel.html#deselectRegisteredParameter": {
-                    "ref": "OutputChannel.html#deselectRegisteredParameter",
-                    "tf": 2.1739130434782608
                   }
                 }
               }
@@ -24483,55 +24248,6 @@ window.lunrData = {
                 }
               }
             },
-            "t": {
-              "docs": {},
-              "r": {
-                "docs": {},
-                "i": {
-                  "docs": {
-                    "OutputChannel.html#deselectRegisteredParameter": {
-                      "ref": "OutputChannel.html#deselectRegisteredParameter",
-                      "tf": 2.1739130434782608
-                    },
-                    "OutputChannel.html#selectRegisteredParameter": {
-                      "ref": "OutputChannel.html#selectRegisteredParameter",
-                      "tf": 3.8461538461538463
-                    }
-                  }
-                },
-                "y": {
-                  "docs": {},
-                  "l": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "m": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "v": {
               "docs": {},
               "i": {
@@ -24599,6 +24315,43 @@ window.lunrData = {
                   "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                     "tf": 0.5617977528089888
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "y": {
+                  "docs": {},
+                  "l": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "m": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -24860,10 +24613,6 @@ window.lunrData = {
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
                     "tf": 0.3289473684210526
-                  },
-                  "OutputChannel.html#deselectRegisteredParameter": {
-                    "ref": "OutputChannel.html#deselectRegisteredParameter",
-                    "tf": 2.1739130434782608
                   },
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -25468,13 +25217,13 @@ window.lunrData = {
                             "ref": "Output.html#turnSoundOff",
                             "tf": 110
                           },
+                          "OutputChannel.html#_setCurrentParameter": {
+                            "ref": "OutputChannel.html#_setCurrentParameter",
+                            "tf": 110
+                          },
                           "OutputChannel.html#decrementRegisteredParameter": {
                             "ref": "OutputChannel.html#decrementRegisteredParameter",
                             "tf": 110.54347826086956
-                          },
-                          "OutputChannel.html#deselectRegisteredParameter": {
-                            "ref": "OutputChannel.html#deselectRegisteredParameter",
-                            "tf": 110
                           },
                           "OutputChannel.html#incrementRegisteredParameter": {
                             "ref": "OutputChannel.html#incrementRegisteredParameter",
@@ -25486,10 +25235,6 @@ window.lunrData = {
                           },
                           "OutputChannel.html#resetAllControllers": {
                             "ref": "OutputChannel.html#resetAllControllers",
-                            "tf": 110
-                          },
-                          "OutputChannel.html#selectRegisteredParameter": {
-                            "ref": "OutputChannel.html#selectRegisteredParameter",
                             "tf": 110
                           },
                           "OutputChannel.html#send": {
@@ -28405,7 +28150,7 @@ window.lunrData = {
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 20
+                        "tf": 16.666666666666664
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
@@ -28451,13 +28196,13 @@ window.lunrData = {
                         "ref": "Output.html#turnSoundOff",
                         "tf": 25
                       },
+                      "OutputChannel.html#_setCurrentParameter": {
+                        "ref": "OutputChannel.html#_setCurrentParameter",
+                        "tf": 25
+                      },
                       "OutputChannel.html#decrementRegisteredParameter": {
                         "ref": "OutputChannel.html#decrementRegisteredParameter",
                         "tf": 25
-                      },
-                      "OutputChannel.html#deselectRegisteredParameter": {
-                        "ref": "OutputChannel.html#deselectRegisteredParameter",
-                        "tf": 50
                       },
                       "OutputChannel.html#incrementRegisteredParameter": {
                         "ref": "OutputChannel.html#incrementRegisteredParameter",
@@ -28469,10 +28214,6 @@ window.lunrData = {
                       },
                       "OutputChannel.html#resetAllControllers": {
                         "ref": "OutputChannel.html#resetAllControllers",
-                        "tf": 33.33333333333333
-                      },
-                      "OutputChannel.html#selectRegisteredParameter": {
-                        "ref": "OutputChannel.html#selectRegisteredParameter",
                         "tf": 33.33333333333333
                       },
                       "OutputChannel.html#send": {
@@ -28525,7 +28266,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#setPitchBend": {
                         "ref": "OutputChannel.html#setPitchBend",
-                        "tf": 25
+                        "tf": 20
                       },
                       "OutputChannel.html#setPitchBendRange": {
                         "ref": "OutputChannel.html#setPitchBendRange",
@@ -29024,7 +28765,7 @@ window.lunrData = {
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 20
+                        "tf": 16.666666666666664
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
@@ -29201,6 +28942,10 @@ window.lunrData = {
                                       "ref": "OutputChannel.html",
                                       "tf": 1903.658536585366
                                     },
+                                    "OutputChannel.html#_setCurrentParameter": {
+                                      "ref": "OutputChannel.html#_setCurrentParameter",
+                                      "tf": 25
+                                    },
                                     "OutputChannel.html#decrementRegisteredParameter": {
                                       "ref": "OutputChannel.html#decrementRegisteredParameter",
                                       "tf": 25
@@ -29267,7 +29012,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#setPitchBend": {
                                       "ref": "OutputChannel.html#setPitchBend",
-                                      "tf": 25
+                                      "tf": 20
                                     },
                                     "OutputChannel.html#setPitchBendRange": {
                                       "ref": "OutputChannel.html#setPitchBendRange",
@@ -29399,6 +29144,65 @@ window.lunrData = {
                                         }
                                       }
                                     },
+                                    "_": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {},
+                                            "c": {
+                                              "docs": {},
+                                              "u": {
+                                                "docs": {},
+                                                "r": {
+                                                  "docs": {},
+                                                  "r": {
+                                                    "docs": {},
+                                                    "e": {
+                                                      "docs": {},
+                                                      "n": {
+                                                        "docs": {},
+                                                        "t": {
+                                                          "docs": {},
+                                                          "p": {
+                                                            "docs": {},
+                                                            "a": {
+                                                              "docs": {},
+                                                              "r": {
+                                                                "docs": {},
+                                                                "a": {
+                                                                  "docs": {},
+                                                                  "m": {
+                                                                    "docs": {},
+                                                                    "e": {
+                                                                      "docs": {},
+                                                                      "t": {
+                                                                        "docs": {
+                                                                          "OutputChannel.html#_setCurrentParameter": {
+                                                                            "ref": "OutputChannel.html#_setCurrentParameter",
+                                                                            "tf": 1150
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
                                     "d": {
                                       "docs": {},
                                       "e": {
@@ -29455,80 +29259,6 @@ window.lunrData = {
                                                                                             "ref": "OutputChannel.html#decrementRegisteredParameter",
                                                                                             "tf": 1150
                                                                                           }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "s": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "l": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "c": {
-                                                  "docs": {},
-                                                  "t": {
-                                                    "docs": {},
-                                                    "r": {
-                                                      "docs": {},
-                                                      "e": {
-                                                        "docs": {},
-                                                        "g": {
-                                                          "docs": {},
-                                                          "i": {
-                                                            "docs": {},
-                                                            "s": {
-                                                              "docs": {},
-                                                              "t": {
-                                                                "docs": {},
-                                                                "e": {
-                                                                  "docs": {},
-                                                                  "r": {
-                                                                    "docs": {},
-                                                                    "e": {
-                                                                      "docs": {},
-                                                                      "d": {
-                                                                        "docs": {},
-                                                                        "p": {
-                                                                          "docs": {},
-                                                                          "a": {
-                                                                            "docs": {},
-                                                                            "r": {
-                                                                              "docs": {},
-                                                                              "a": {
-                                                                                "docs": {},
-                                                                                "m": {
-                                                                                  "docs": {},
-                                                                                  "e": {
-                                                                                    "docs": {},
-                                                                                    "t": {
-                                                                                      "docs": {
-                                                                                        "OutputChannel.html#deselectRegisteredParameter": {
-                                                                                          "ref": "OutputChannel.html#deselectRegisteredParameter",
-                                                                                          "tf": 1150
                                                                                         }
                                                                                       }
                                                                                     }
@@ -29719,74 +29449,6 @@ window.lunrData = {
                                       "docs": {},
                                       "e": {
                                         "docs": {},
-                                        "l": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "c": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {},
-                                                "r": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "g": {
-                                                      "docs": {},
-                                                      "i": {
-                                                        "docs": {},
-                                                        "s": {
-                                                          "docs": {},
-                                                          "t": {
-                                                            "docs": {},
-                                                            "e": {
-                                                              "docs": {},
-                                                              "r": {
-                                                                "docs": {},
-                                                                "e": {
-                                                                  "docs": {},
-                                                                  "d": {
-                                                                    "docs": {},
-                                                                    "p": {
-                                                                      "docs": {},
-                                                                      "a": {
-                                                                        "docs": {},
-                                                                        "r": {
-                                                                          "docs": {},
-                                                                          "a": {
-                                                                            "docs": {},
-                                                                            "m": {
-                                                                              "docs": {},
-                                                                              "e": {
-                                                                                "docs": {},
-                                                                                "t": {
-                                                                                  "docs": {
-                                                                                    "OutputChannel.html#selectRegisteredParameter": {
-                                                                                      "ref": "OutputChannel.html#selectRegisteredParameter",
-                                                                                      "tf": 1150
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
                                         "n": {
                                           "docs": {},
                                           "d": {
@@ -32383,6 +32045,10 @@ window.lunrData = {
                   "ref": "Output.html#setTuningProgram",
                   "tf": 1.25
                 },
+                "OutputChannel.html#_setCurrentParameter": {
+                  "ref": "OutputChannel.html#_setCurrentParameter",
+                  "tf": 7.142857142857142
+                },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
                   "tf": 0.9259259259259258
@@ -32588,11 +32254,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#setPitchBend": {
                                     "ref": "Output.html#setPitchBend",
-                                    "tf": 670
+                                    "tf": 666.6666666666666
                                   },
                                   "OutputChannel.html#setPitchBend": {
                                     "ref": "OutputChannel.html#setPitchBend",
-                                    "tf": 675
+                                    "tf": 670
                                   }
                                 },
                                 "r": {
@@ -32701,80 +32367,6 @@ window.lunrData = {
                                                   "OutputChannel.html#setKeyAftertouch": {
                                                     "ref": "OutputChannel.html#setKeyAftertouch",
                                                     "tf": 3.125
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "u": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "g": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "e": {
-                                          "docs": {},
-                                          "r": {
-                                            "docs": {},
-                                            "e": {
-                                              "docs": {},
-                                              "d": {
-                                                "docs": {},
-                                                "p": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "r": {
-                                                      "docs": {},
-                                                      "a": {
-                                                        "docs": {},
-                                                        "m": {
-                                                          "docs": {},
-                                                          "e": {
-                                                            "docs": {},
-                                                            "t": {
-                                                              "docs": {
-                                                                "OutputChannel.html#deselectRegisteredParameter": {
-                                                                  "ref": "OutputChannel.html#deselectRegisteredParameter",
-                                                                  "tf": 2.1739130434782608
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
                                                   }
                                                 }
                                               }
@@ -33878,69 +33470,13 @@ window.lunrData = {
                         "ref": "Output.html#setSong",
                         "tf": 1.6666666666666667
                       },
-                      "OutputChannel.html#selectRegisteredParameter": {
-                        "ref": "OutputChannel.html#selectRegisteredParameter",
-                        "tf": 3.8461538461538463
+                      "OutputChannel.html#_setCurrentParameter": {
+                        "ref": "OutputChannel.html#_setCurrentParameter",
+                        "tf": 7.142857142857142
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
                         "tf": 0.4807692307692308
-                      }
-                    },
-                    "r": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "g": {
-                          "docs": {},
-                          "i": {
-                            "docs": {},
-                            "s": {
-                              "docs": {},
-                              "t": {
-                                "docs": {},
-                                "e": {
-                                  "docs": {},
-                                  "r": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "d": {
-                                        "docs": {},
-                                        "p": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "a": {
-                                                "docs": {},
-                                                "m": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "t": {
-                                                      "docs": {
-                                                        "OutputChannel.html#selectRegisteredParameter": {
-                                                          "ref": "OutputChannel.html#selectRegisteredParameter",
-                                                          "tf": 683.3333333333334
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
                       }
                     }
                   }
@@ -37577,20 +37113,6 @@ window.lunrData = {
                 "ref": "OutputChannel.html#setRegisteredParameter",
                 "tf": 0.3289473684210526
               }
-            },
-            "c": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "OutputChannel.html#selectRegisteredParameter": {
-                      "ref": "OutputChannel.html#selectRegisteredParameter",
-                      "tf": 3.8461538461538463
-                    }
-                  }
-                }
-              }
             }
           }
         },
@@ -37834,7 +37356,7 @@ window.lunrData = {
                   },
                   "Output.html#setPitchBend": {
                     "ref": "Output.html#setPitchBend",
-                    "tf": 20
+                    "tf": 33.33333333333333
                   },
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
@@ -37855,6 +37377,10 @@ window.lunrData = {
                   "Output.html#setTuningProgram": {
                     "ref": "Output.html#setTuningProgram",
                     "tf": 20
+                  },
+                  "OutputChannel.html#_setCurrentParameter": {
+                    "ref": "OutputChannel.html#_setCurrentParameter",
+                    "tf": 7.142857142857142
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
@@ -37890,7 +37416,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#setPitchBend": {
                     "ref": "OutputChannel.html#setPitchBend",
-                    "tf": 25
+                    "tf": 40
                   },
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
@@ -38178,6 +37704,62 @@ window.lunrData = {
                 }
               }
             }
+          },
+          "s": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "r": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {},
+                            "t": {
+                              "docs": {},
+                              "p": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "a": {
+                                      "docs": {},
+                                      "m": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {
+                                              "OutputChannel.html#_setCurrentParameter": {
+                                                "ref": "OutputChannel.html#_setCurrentParameter",
+                                                "tf": 675
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "q": {
@@ -38247,7 +37829,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4370
+      "length": 4344
     },
     "corpusTokens": [
       "0",
@@ -38387,6 +37969,7 @@ window.lunrData = {
       "98",
       "99",
       "_parseev",
+      "_setcurrentparamet",
       "abb4",
       "abov",
       "access",
@@ -38402,7 +37985,6 @@ window.lunrData = {
       "addlisten",
       "addonetimelisten",
       "adjust",
-      "affect",
       "aftertouch",
       "again",
       "alia",
@@ -38447,7 +38029,6 @@ window.lunrData = {
       "belong",
       "below",
       "bend",
-      "best",
       "between",
       "binari",
       "bit",
@@ -38536,8 +38117,6 @@ window.lunrData = {
       "deprec",
       "depth",
       "deriv",
-      "deselect",
-      "deselectregisteredparamet",
       "desir",
       "destroy",
       "detail",
@@ -38580,7 +38159,6 @@ window.lunrData = {
       "enabl",
       "encod",
       "end",
-      "entri",
       "entrylsb",
       "entrymsb",
       "enum",
@@ -38925,14 +38503,13 @@ window.lunrData = {
       "output.playnot",
       "output.stopnot",
       "outputchannel",
+      "outputchannel#_setcurrentparamet",
       "outputchannel#decrementregisteredparamet",
-      "outputchannel#deselectregisteredparamet",
       "outputchannel#incrementregisteredparamet",
       "outputchannel#numb",
       "outputchannel#output",
       "outputchannel#playnot",
       "outputchannel#resetallcontrol",
-      "outputchannel#selectregisteredparamet",
       "outputchannel#send",
       "outputchannel#sendchannelmod",
       "outputchannel#sendcontrolchang",
@@ -39001,7 +38578,6 @@ window.lunrData = {
       "ports.output",
       "posit",
       "possibl",
-      "practic",
       "preced",
       "prepend",
       "pressur",
@@ -39038,7 +38614,6 @@ window.lunrData = {
       "real",
       "reason",
       "receiv",
-      "recommend",
       "refer",
       "referencedistanceratio",
       "regist",
@@ -39079,7 +38654,6 @@ window.lunrData = {
       "secur",
       "see",
       "select",
-      "selectregisteredparamet",
       "semiton",
       "send",
       "sendactivesens",
@@ -39101,7 +38675,6 @@ window.lunrData = {
       "serv",
       "set",
       "setchannelaftertouch",
-      "setcurrentregisteredparamet",
       "setkeyaftertouch",
       "setlocalcontrol",
       "setmastertun",
@@ -39214,7 +38787,6 @@ window.lunrData = {
       "unsign",
       "until",
       "up",
-      "upcom",
       "us",
       "usag",
       "user",
@@ -40037,7 +39609,7 @@ window.lunrData = {
     "Output.html#setPitchBend": {
       "id": "Output.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( value, channel [, options ] ) → {Output}",
+      "title": "setPitchBend( value [, value ], channel [, options ] ) → {Output}",
       "longname": "Output#setPitchBend",
       "name": "setPitchBend",
       "tags": "Output#setPitchBend setPitchBend",
@@ -40185,6 +39757,16 @@ window.lunrData = {
       "summary": "",
       "description": "The Output this channel belongs to"
     },
+    "OutputChannel.html#_setCurrentParameter": {
+      "id": "OutputChannel.html#_setCurrentParameter",
+      "kind": "function",
+      "title": "_setCurrentParameter( data [, options ] ) → {OutputChannel}",
+      "longname": "OutputChannel#_setCurrentParameter",
+      "name": "_setCurrentParameter",
+      "tags": "OutputChannel#_setCurrentParameter _setCurrentParameter",
+      "summary": "",
+      "description": "Sets the value of the currently selected MIDI registered parameter."
+    },
     "OutputChannel.html#decrementRegisteredParameter": {
       "id": "OutputChannel.html#decrementRegisteredParameter",
       "kind": "function",
@@ -40194,16 +39776,6 @@ window.lunrData = {
       "tags": "OutputChannel#decrementRegisteredParameter decrementRegisteredParameter",
       "summary": "",
       "description": "Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter names that can be used with this function: Pitchbend Range (0x00, 0x00): \"pitchbendrange\" Channel Fine Tuning (0x00, 0x01): \"channelfinetuning\" Channel Coarse Tuning (0x00, 0x02): \"channelcoarsetuning\" Tuning Program (0x00, 0x03): \"tuningprogram\" Tuning Bank (0x00, 0x04): \"tuningbank\" Modulation Range (0x00, 0x05): \"modulationrange\" Azimuth Angle (0x3D, 0x00): \"azimuthangle\" Elevation Angle (0x3D, 0x01): \"elevationangle\" Gain (0x3D, 0x02): \"gain\" Distance Ratio (0x3D, 0x03): \"distanceratio\" Maximum Distance (0x3D, 0x04): \"maximumdistance\" Maximum Distance Gain (0x3D, 0x05): \"maximumdistancegain\" Reference Distance Ratio (0x3D, 0x06): \"referencedistanceratio\" Pan Spread Angle (0x3D, 0x07): \"panspreadangle\" Roll Angle (0x3D, 0x08): \"rollangle\""
-    },
-    "OutputChannel.html#deselectRegisteredParameter": {
-      "id": "OutputChannel.html#deselectRegisteredParameter",
-      "kind": "function",
-      "title": "deselectRegisteredParameter( [ options ] )",
-      "longname": "OutputChannel#deselectRegisteredParameter",
-      "name": "deselectRegisteredParameter",
-      "tags": "OutputChannel#deselectRegisteredParameter deselectRegisteredParameter",
-      "summary": "",
-      "description": "Deselects the currently active MIDI registered parameter so it is no longer affected by data entry, data increment and data decrement messages. Current best practice recommends doing that after each call to setCurrentRegisteredParameter()."
     },
     "OutputChannel.html#incrementRegisteredParameter": {
       "id": "OutputChannel.html#incrementRegisteredParameter",
@@ -40234,16 +39806,6 @@ window.lunrData = {
       "tags": "OutputChannel#resetAllControllers resetAllControllers",
       "summary": "",
       "description": "Sends a reset all controllers channel mode message. This resets all controllers, such as the pitch bend, to their default value."
-    },
-    "OutputChannel.html#selectRegisteredParameter": {
-      "id": "OutputChannel.html#selectRegisteredParameter",
-      "kind": "function",
-      "title": "selectRegisteredParameter( parameter [, options ] )",
-      "longname": "OutputChannel#selectRegisteredParameter",
-      "name": "selectRegisteredParameter",
-      "tags": "OutputChannel#selectRegisteredParameter selectRegisteredParameter",
-      "summary": "",
-      "description": "Selects a MIDI registered parameter so it is affected by upcoming data entry, data increment and data decrement messages."
     },
     "OutputChannel.html#send": {
       "id": "OutputChannel.html#send",
@@ -40368,7 +39930,7 @@ window.lunrData = {
     "OutputChannel.html#setPitchBend": {
       "id": "OutputChannel.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( value [, options ] ) → {OutputChannel}",
+      "title": "setPitchBend( value [, value [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#setPitchBend",
       "name": "setPitchBend",
       "tags": "OutputChannel#setPitchBend setPitchBend",

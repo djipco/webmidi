@@ -170,9 +170,10 @@ export class OutputChannel extends EventEmitter {
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
    * than 0xFF.
@@ -231,9 +232,10 @@ export class OutputChannel extends EventEmitter {
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @return {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -342,9 +344,10 @@ export class OutputChannel extends EventEmitter {
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} Controller numbers must be between 0 and 119.
    * @throws {RangeError} Invalid controller name.
@@ -372,8 +375,6 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("Value must be between 0 and 127.");
     }
 
-    console.log("sendControlChange", WebMidi.convertToTimestamp(options.time));
-
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
       [controller, value],
@@ -382,23 +383,29 @@ export class OutputChannel extends EventEmitter {
 
     return this;
 
-  };
+  }
 
   /**
-   * Selects a MIDI non-registered parameter so it is affected by data entry, data increment and
-   * data decrement messages.
+   * Selects a MIDI non-registered parameter so it is affected by upcoming data entry, data
+   * increment and data decrement messages.
+   *
+   * @param parameter {number[]} A two-position array specifying the two control bytes that identify
+   * the registered parameter. The NRPN MSB (99 or 0x63) is a position 0. The NRPN LSB (98 or 0x62)
+   * is at position 1.
    *
    * @private
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63, 0x62)
-   * that identify the registered parameter.
+   * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  _selectNonRegisteredParameter(parameter, time) {
+  _selectNonRegisteredParameter(parameter, options = {}) {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 &amp;&amp; parameter[0] &lt;= 127)) {
@@ -410,33 +417,65 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The control62 value must be between 0 and 127.");
     }
 
-    this.sendControlChange(0x63, parameter[0], {time: time});
-    this.sendControlChange(0x62, parameter[1], {time: time});
+    this.sendControlChange(0x63, parameter[0], {time: options.time});
+    this.sendControlChange(0x62, parameter[1], {time: options.time});
 
-  };
+    return this;
+
+  }
 
   /**
    * Deselects the currently active MIDI registered parameter so it is no longer affected by data
    * entry, data increment and data decrement messages.
    *
    * Current best practice recommends doing that after each call to
-   * [setCurrentRegisteredParameter()]{@link Output#setCurrentRegisteredParameter}.
+   * [_setCurrentParameter()]{@link OutputChannel#_setCurrentParameter}.
+   *
+   * @private
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  deselectRegisteredParameter(options = {}) {
+  _deselectRegisteredParameter(options = {}) {
     this.sendControlChange(0x65, 0x7F, {time: options.time});
     this.sendControlChange(0x64, 0x7F, {time: options.time});
-  };
+    return this;
+  }
+
+  /**
+   * Deselects the currently active MIDI non-registered parameter so it is no longer affected by
+   * data entry, data increment and data decrement messages.
+   *
+   * @private
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   */
+  _deselectNonRegisteredParameter(options = {}) {
+    this.sendControlChange(0x65, 0x7F, {time: options.time});
+    this.sendControlChange(0x64, 0x7F, {time: options.time});
+    return this;
+  }
 
   /**
    * Selects a MIDI registered parameter so it is affected by upcoming data entry, data increment
    * and data decrement messages.
+   *
+   * @private
    *
    * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
    * that identify the registered parameter.
@@ -448,46 +487,51 @@ export class OutputChannel extends EventEmitter {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  selectRegisteredParameter(parameter, options = {}) {
+  _selectRegisteredParameter(parameter, options = {}) {
 
     parameter[0] = Math.floor(parameter[0]);
     if (!(parameter[0] >= 0 &amp;&amp; parameter[0] &lt;= 127)) {
-      throw new RangeError("The control65 value must be between 0 and 127");
+      throw new RangeError("The control65 value must be between 0 and 127.");
     }
 
     parameter[1] = Math.floor(parameter[1]);
     if (!(parameter[1] >= 0 &amp;&amp; parameter[1] &lt;= 127)) {
-      throw new RangeError("The control64 value must be between 0 and 127");
+      throw new RangeError("The control64 value must be between 0 and 127.");
     }
-console.log("select", options);
+
     this.sendControlChange(0x65, parameter[0], {time: options.time});
     this.sendControlChange(0x64, parameter[1], {time: options.time});
 
-  };
+    return this;
+
+  }
 
   /**
    * Sets the value of the currently selected MIDI registered parameter.
    *
-   * @private
-   *
    * @param data {number|number[]}
    *
-   *
+   * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  _setCurrentRegisteredParameter(data, time) {
+  _setCurrentParameter(data, options = {}) {
 
     data = [].concat(data);
 
     // MSB
     data[0] = parseInt(data[0]);
     if (!isNaN(data[0]) &amp;&amp; data[0] >= 0 &amp;&amp; data[0] &lt;= 127) {
-      this.sendControlChange(0x06, data[0], {time: time});
+      this.sendControlChange(0x06, data[0], {time: options.time});
     } else {
       throw new RangeError("The msb value must be between 0 and 127.");
     }
@@ -498,10 +542,12 @@ console.log("select", options);
     data[1] = parseInt(data[1]);
 
     if (!isNaN(data[1]) &amp;&amp; data[1] >= 0 &amp;&amp; data[1] &lt;= 127) {
-      this.sendControlChange(0x26, data[1], {time: time});
+      this.sendControlChange(0x26, data[1], {time: options.time});
     } else {
       throw new RangeError("The lsb value must be between 0 and 127.");
     }
+
+    return this;
 
   }
 
@@ -532,9 +578,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws TypeError The specified parameter is not available.
    *
@@ -549,13 +596,13 @@ console.log("select", options);
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, {time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
     this.sendControlChange(0x61, 0, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
-  };
+  }
 
   /**
    * Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -584,9 +631,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws TypeError The specified parameter is not available.
    *
@@ -601,9 +649,9 @@ console.log("select", options);
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, {time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
     this.sendControlChange(0x60, 0, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
@@ -663,9 +711,10 @@ console.log("select", options);
    * when `options.duration` is set.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -714,9 +763,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note
    * (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have
@@ -818,9 +868,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
@@ -915,9 +966,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -964,9 +1016,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -1000,9 +1053,10 @@ console.log("select", options);
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1040,9 +1094,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
    * than 64.
@@ -1087,9 +1142,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The msb value must be between 0 and 127
    * @throws {RangeError} The lsb value must be between 0 and 127
@@ -1140,9 +1196,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The control value must be between 0 and 127.
    * @throws {RangeError} The msb value must be between 0 and 127
@@ -1153,9 +1210,9 @@ console.log("select", options);
 
     data = [].concat(data);
 
-    this._selectNonRegisteredParameter(parameter, this.number, options.time);
-    this._setCurrentRegisteredParameter(data, this.number, options.time);
-    this.deselectRegisteredParameter(options.time);
+    this._selectNonRegisteredParameter(parameter, {time: options.time});
+    this._setCurrentParameter(data, {time: options.time});
+    this._deselectNonRegisteredParameter({time: options.time});
 
     return this;
 
@@ -1164,38 +1221,68 @@ console.log("select", options);
   /**
    * Sends a MIDI **pitch bend** message at the scheduled time.
    *
-   * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
-   * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
-   * an integer between 0 and 127. In this case, a value of 64 means no bend. The range of the pitch
-   * bend can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}.
+   * @param value {number} The intensity of the bend (between -1.0 and 1.0). A value of zero means
+   * no bend. The resulting bend is relative to the pitch bend range that has been defined. The
+   * range can be set using [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}. So, for
+   * example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will
+   * bend the note 1 octave below its nominal value.
+   *
+   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
+   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
+   * byte). The MSB is expressed in semitones with 64 meaning no bend. A value lower than 64 bends
+   * downwards while a value higher than 64 bends upwards. The LSB is expressed in cents
+   * (1/100 of a semitone). An LSB of 64 also means no bend.
+   *
+   * @param {number|number[]} [value] The bend value. If no value is specified, a bend value of 0
+   * (no bend) will be used. If an invalid value is specified, the nearest valid value will be used
+   * instead.
    *
    * @param {Object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127.
+   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
+   * an array of 2 integers if using both MSB and LSB).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
-   *
-   * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPitchBend(value, options = {}) {
 
-    // Validation
-    value = parseFloat(value);
-    if (isNaN(value)) value = 0;
-    if (options.rawValue) value = value / 127 * 2 - 1;
-    if (value &lt; -1 || value > 1) {
-      throw new RangeError("Pitch bend value must be between -1.0 and 1.0.");
-    }
+    let msb = 0;
+    let lsb = 0;
 
-    let nLevel = Math.round((value + 1) / 2 * 16383);
-    let msb = (nLevel >> 7) &amp; 0x7F;
-    let lsb = nLevel &amp; 0x7F;
+    // Calculate MSB and LSB for both scenarios
+    if (options.rawValue) {
+
+      if (Array.isArray(value)) {
+        msb = parseInt(value[0]);
+        lsb = parseInt(value[1]);
+      } else {
+        msb = parseInt(value);
+      }
+
+      if (isNaN(msb)) msb = 64;
+      if (isNaN(lsb)) lsb = 64;
+
+      // Validation
+      msb = Math.min(Math.max(msb, 0), 127);
+      lsb = Math.min(Math.max(lsb, 0), 127);
+
+    } else {
+
+      let valid = parseFloat(value) || 0;
+      valid = Math.min(Math.max(valid, -1), 1);
+      let nLevel = Math.round((valid + 1) / 2 * 16383);
+      msb = (nLevel >> 7) &amp; 0x7F;
+      lsb = nLevel &amp; 0x7F;
+
+    }
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend &lt;&lt; 4) + (this.number - 1),
@@ -1222,9 +1309,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The msb value must be between 0 and 127.
    * @throws {RangeError} The lsb value must be between 0 and 127.
@@ -1253,9 +1341,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
    * than 0xFF.
@@ -1320,9 +1409,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1335,9 +1425,9 @@ console.log("select", options);
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this.selectRegisteredParameter(parameter, this.number, {time: options.time});
-    this._setCurrentRegisteredParameter(data, this.number, {time: options.time});
-    this.deselectRegisteredParameter({time: options.time});
+    this._selectRegisteredParameter(parameter, {time: options.time});
+    this._setCurrentParameter(data, {time: options.time});
+    this._deselectRegisteredParameter({time: options.time});
 
     return this;
 
@@ -1356,9 +1446,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The bank value must be between 1 and 128.
    *
@@ -1390,9 +1481,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @throws {RangeError} The program value must be between 1 and 128.
    *
@@ -1422,9 +1514,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1443,9 +1536,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1460,9 +1554,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1477,9 +1572,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1497,9 +1593,10 @@ console.log("select", options);
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1519,7 +1616,7 @@ console.log("select", options);
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 23rd 2020 @ 12:01:33 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 29th 2020 @ 16:10:24 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
