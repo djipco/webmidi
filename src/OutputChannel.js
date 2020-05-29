@@ -112,14 +112,19 @@ export class OutputChannel extends EventEmitter {
    * aftertouch. For a channel-wide aftertouch message, use
    * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
    *
-   * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
-   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-   * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
-   * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
-   * an array of note names and/or numbers.
+   * The note can be a single value or an array of the following valid values:
    *
-   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A {@link Note} object
+   *
+   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
+   * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+   * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
+   * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
+   * number 0) and the highest note is G9 (MIDI note number 127).
+   *
+   *  @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `useRawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
@@ -146,14 +151,12 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("Pressure value must be between 0 and 1.");
     }
 
-    WebMidi.getValidNoteArray(note).forEach(n => {
-
+    WebMidi.getValidNoteArray(note, options).forEach(n => {
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
         [n.number, Math.round(pressure * 127)],
         WebMidi.convertToTimestamp(options.time)
       );
-
     });
 
     return this;
@@ -940,9 +943,8 @@ export class OutputChannel extends EventEmitter {
    * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
    * use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
    *
-   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
-   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
-   * pressure can be defined by using an integer between 0 and 127.
+   * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
+   * set to `true`, the pressure can be defined by using an integer between 0 and 127.
    *
    * @param {Object} [options={}]
    *
@@ -956,15 +958,17 @@ export class OutputChannel extends EventEmitter {
    * will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @throws RangeError Invalid channel aftertouch value.
    */
   setChannelAftertouch(pressure, options = {}) {
 
     // Validation
     pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = 0.5;
+    if (isNaN(pressure)) pressure = -1;
     if (options.rawValue) pressure = pressure / 127;
     if (pressure < 0 || pressure > 1) {
-      throw new RangeError("Pitch bend value must be between 0 and 1.");
+      throw new RangeError("Invalid channel aftertouch value.");
     }
 
     this.send(
