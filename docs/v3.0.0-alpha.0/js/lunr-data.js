@@ -39609,7 +39609,7 @@ window.lunrData = {
     "Output.html#setPitchBend": {
       "id": "Output.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( [ value ], channel [, options ] ) → {Output}",
+      "title": "setPitchBend( value, channel [, options ] ) → {Output}",
       "longname": "Output#setPitchBend",
       "name": "setPitchBend",
       "tags": "Output#setPitchBend setPitchBend",
