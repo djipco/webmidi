@@ -548,22 +548,17 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws TypeError The specified parameter is not available.
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
     if (!Array.isArray(parameter)) {
-      if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new TypeError("The specified parameter is not available.");
-      }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._selectRegisteredParameter(parameter, {time: options.time});
-    this.sendControlChange(0x60, 0, {time: options.time});
-    this._deselectRegisteredParameter({time: options.time});
+    this._selectRegisteredParameter(parameter, options);
+    this.sendControlChange(0x60, 0, options);
+    this._deselectRegisteredParameter(options);
 
     return this;
 
