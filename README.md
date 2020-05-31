@@ -447,6 +447,15 @@ is not already planned for an upcoming version by checking the
 [Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
 [file an issue](https://github.com/djipco/webmidi/issues) describing your request.
 
+## Sponsors
+
+I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
+but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+
+![https://github.com/awatterott](https://avatars3.githubusercontent.com/u/1488433?s=60&v=4 "@awatterott")
+
+
+
 ## Contributing
 
 If you are interested in contributing to the project, please read our 
