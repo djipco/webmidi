@@ -42,8 +42,16 @@ export class OutputChannel extends EventEmitter {
 
   }
 
+  /**
+   * Unlinks the MIDI subsystem, removes all listeners attached to the channel and nulls the channel
+   * number. This method is mostly for internal use. It has not been prefixed with an underscore
+   * since it is called by other objects such as the `Output` object.
+   *
+   * @private
+   */
   destroy() {
     this.output = null;
+    this.number = null;
     this.removeListener();
   }
 
@@ -125,8 +133,8 @@ export class OutputChannel extends EventEmitter {
    * number 0) and the highest note is G9 (MIDI note number 127).
    *
    *  @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
-   * will silently trigger the default behaviour. If the `useRawValue` option is set to `true`, the
-   * pressure can be defined by using an integer between 0 and 127.
+   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
+   * pressure is defined by using an integer between 0 and 127.
    *
    * @param {Object} [options={}]
    *
@@ -140,15 +148,20 @@ export class OutputChannel extends EventEmitter {
    * will be carried out as soon as possible.
    *
    * @return {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @throws RangeError Invalid key aftertouch value.
    */
   setKeyAftertouch(note, pressure, options = {}) {
 
+    // Legacy support
+    if (options.useRawValue) options.rawValue = options.useRawValue;
+
     // Validation
     pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = 0.5;
-    if (options.useRawValue) pressure = pressure / 127;
+    if (isNaN(pressure)) pressure = -1;
+    if (options.rawValue) pressure = pressure / 127;
     if (pressure < 0 || pressure > 1) {
-      throw new RangeError("Pressure value must be between 0 and 1.");
+      throw new RangeError("Invalid key aftertouch value.");
     }
 
     WebMidi.getValidNoteArray(note, options).forEach(n => {
@@ -412,6 +425,8 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sets the value of the currently selected MIDI registered parameter.
    *
+   * @private
+   *
    * @param data {number|number[]}
    *
    * @param {Object} [options={}]
@@ -490,15 +505,12 @@ export class OutputChannel extends EventEmitter {
   decrementRegisteredParameter(parameter, options = {}) {
 
     if (!Array.isArray(parameter)) {
-      if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new TypeError("The specified parameter is not available.");
-      }
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
     }
 
-    this._selectRegisteredParameter(parameter, {time: options.time});
-    this.sendControlChange(0x61, 0, {time: options.time});
-    this._deselectRegisteredParameter({time: options.time});
+    this._selectRegisteredParameter(parameter, options);
+    this.sendControlChange(0x61, 0, options);
+    this._deselectRegisteredParameter(options);
 
     return this;
 
