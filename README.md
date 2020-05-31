@@ -455,7 +455,7 @@ but it still takes quite a bit of time to develop and maintain. Thank you! 👏
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
 
 If you would like to support the project, you can press the 
-[Sponsor 💜](https://github.com/sponsors/djipco) button at the top of the page.
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Contributing
 
