@@ -12,7 +12,7 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--input src/WebMidi.js ` +
   `--format ${type} `;
 
-// Production version (minified, argument validation removed)
+// Production version (minified with sourcemap, argument validation removed)
 let production = cmd + ` --file dist/webmidi.${type}.min.js ` +
   `--sourcemap ` +
   `--config ${__dirname}/rollup.config.${type}.production.js `;
@@ -27,7 +27,7 @@ async function execute() {
   await system(production);
 
   console.info(
-    "\x1b[32m", // red font
+    "\x1b[32m", // green font
     `The "${type}" production build was saved to "dist/webmidi.${type}.min.js"`,
     "\x1b[0m"   // reset font
   );
@@ -36,7 +36,7 @@ async function execute() {
   await system(development);
 
   console.info(
-    "\x1b[32m", // red font
+    "\x1b[32m", // green font
     `The "${type}" development build was saved to "dist/webmidi.${type}.js"`,
     "\x1b[0m"   // reset font
   );
