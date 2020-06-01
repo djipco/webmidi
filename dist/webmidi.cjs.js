@@ -1455,28 +1455,6 @@ class Input extends e {
 }
 
 /**
- * Throws if not valid
- * @param value
- * @param validators
- */
-
-function check(values, validators) {
-  // Make sure we are working with arrays
-  values = Array.from(values);
-  validators = Array.from(validators); // Execute all validators
-
-  validators.forEach((validator, index) => {
-    if (validators[validator] === undefined) {
-      throw new TypeError(`Invalid validator (${validator})`);
-    } else {
-      validators[validator](values[index]);
-    }
-  }); // If we make it here, its all good!
-
-  return true;
-}
-
-/**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
@@ -1739,9 +1717,9 @@ class OutputChannel extends e {
 
   sendControlChange(controller, value, options = {}) {
     /* START.VALIDATION */
-    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
-    /* END.VALIDATION */
+    //check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
 
+    /* END.VALIDATION */
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     } else {
