@@ -390,8 +390,8 @@ export class OutputChannel extends EventEmitter {
    *
    * @private
    *
-   * @param parameter {Array} A two-position array specifying the two control bytes (0x65, 0x64)
-   * that identify the registered parameter.
+   * @param parameter {number[]} A two-position array of integers specifying the two control bytes
+   * (0x65, 0x64) that identify the registered parameter. The integers must be between 0 and 127.
    *
    * @param {Object} [options={}]
    *
@@ -404,22 +404,9 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   _selectRegisteredParameter(parameter, options = {}) {
-
-    parameter[0] = Math.floor(parameter[0]);
-    if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
-      throw new RangeError("The control65 value must be between 0 and 127.");
-    }
-
-    parameter[1] = Math.floor(parameter[1]);
-    if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
-      throw new RangeError("The control64 value must be between 0 and 127.");
-    }
-
     this.sendControlChange(0x65, parameter[0], {time: options.time});
     this.sendControlChange(0x64, parameter[1], {time: options.time});
-
     return this;
-
   }
 
   /**
@@ -498,14 +485,22 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws TypeError The specified parameter is not available.
+   * @throws TypeError The specified registered parameter is invalid.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) {
+    // Validation
+    if (Array.isArray(parameter)) {
+      parameter[0] = parseInt(parameter[0]);
+      parameter[1] = parseInt(parameter[1]);
+    } else {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    }
+
+    if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
+      throw new TypeError("The specified registered parameter is invalid.");
     }
 
     this._selectRegisteredParameter(parameter, options);
@@ -548,12 +543,22 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
+   * @throws TypeError The specified registered parameter is invalid.
+   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) {
+    // Validation
+    if (Array.isArray(parameter)) {
+      parameter[0] = parseInt(parameter[0]);
+      parameter[1] = parseInt(parameter[1]);
+    } else {
       parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    }
+
+    if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
+      throw new TypeError("The specified registered parameter is invalid.");
     }
 
     this._selectRegisteredParameter(parameter, options);
