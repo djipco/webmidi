@@ -1457,7 +1457,8 @@ class Input extends e {
 function check(values, validators) {
   // Make sure we are working with arrays
   values = Array.from(values);
-  validators = Array.from(validators); // Execute all validators
+  validators = Array.from(validators);
+  console.log(values, validators); // Execute all validators
 
   validators.forEach((validator, index) => {
     if (validators[validator] === undefined) {
