@@ -6189,4 +6189,3 @@ wm.constructor = null;
 
 exports.Note = Note;
 exports.WebMidi = wm;
-//# sourceMappingURL=webmidi.cjs.js.map
