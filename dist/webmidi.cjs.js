@@ -1968,7 +1968,9 @@ class OutputChannel extends e {
 
 
   incrementRegisteredParameter(parameter, options = {}) {
-    // // Validation
+    if (!Array.isArray(parameter)) {
+      parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    } // // Validation
     // if (Array.isArray(parameter)) {
     //   parameter[0] = parseInt(parameter[0]);
     //   parameter[1] = parseInt(parameter[1]);
@@ -1979,6 +1981,8 @@ class OutputChannel extends e {
     // if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
     //   throw new TypeError("The specified registered parameter is invalid.");
     // }
+
+
     this._selectRegisteredParameter(parameter, options);
 
     this.sendControlChange(0x60, 0, options);
