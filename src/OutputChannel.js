@@ -1,5 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
+import {check} from "./check.js";
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
@@ -252,7 +253,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param {number|string} controller The MIDI controller name or number (0-119).
    *
-   * @param {number} [value=0] The value to send (0-127).
+   * @param {number} value The value to send (0-127).
    *
    * @param {Object} [options={}]
    *
@@ -269,23 +270,14 @@ export class OutputChannel extends EventEmitter {
    */
   sendControlChange(controller, value, options = {}) {
 
+    /* START.VALIDATION */
+    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
+    /* END.VALIDATION */
+
     if (typeof controller === "string") {
-
       controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      if (controller === undefined) throw new TypeError("Invalid controller name.");
-
     } else {
-
       controller = parseInt(controller);
-      if (!(controller >= 0 && controller <= 119)) {
-        throw new RangeError("Controller numbers must be between 0 and 119.");
-      }
-
-    }
-
-    value = parseInt(value) || 0;
-    if (!(value >= 0 && value <= 127)) {
-      throw new RangeError("Value must be between 0 and 127.");
     }
 
     this.send(
@@ -320,18 +312,18 @@ export class OutputChannel extends EventEmitter {
    */
   _selectNonRegisteredParameter(parameter, options = {}) {
 
-    parameter[0] = Math.floor(parameter[0]);
-    if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
-      throw new RangeError("The control63 value must be between 0 and 127.");
-    }
+    // parameter[0] = Math.floor(parameter[0]);
+    // if (!(parameter[0] >= 0 && parameter[0] <= 127)) {
+    //   throw new RangeError("The control63 value must be between 0 and 127.");
+    // }
+    //
+    // parameter[1] = Math.floor(parameter[1]);
+    // if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
+    //   throw new RangeError("The control62 value must be between 0 and 127.");
+    // }
 
-    parameter[1] = Math.floor(parameter[1]);
-    if (!(parameter[1] >= 0 && parameter[1] <= 127)) {
-      throw new RangeError("The control62 value must be between 0 and 127.");
-    }
-
-    this.sendControlChange(0x63, parameter[0], {time: options.time});
-    this.sendControlChange(0x62, parameter[1], {time: options.time});
+    this.sendControlChange(0x63, parameter[0], options);
+    this.sendControlChange(0x62, parameter[1], options);
 
     return this;
 
@@ -357,8 +349,8 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   _deselectRegisteredParameter(options = {}) {
-    this.sendControlChange(0x65, 0x7F, {time: options.time});
-    this.sendControlChange(0x64, 0x7F, {time: options.time});
+    this.sendControlChange(0x65, 0x7F, options);
+    this.sendControlChange(0x64, 0x7F, options);
     return this;
   }
 
@@ -379,8 +371,8 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   _deselectNonRegisteredParameter(options = {}) {
-    this.sendControlChange(0x65, 0x7F, {time: options.time});
-    this.sendControlChange(0x64, 0x7F, {time: options.time});
+    this.sendControlChange(0x65, 0x7F, options);
+    this.sendControlChange(0x64, 0x7F, options);
     return this;
   }
 
@@ -404,8 +396,8 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   _selectRegisteredParameter(parameter, options = {}) {
-    this.sendControlChange(0x65, parameter[0], {time: options.time});
-    this.sendControlChange(0x64, parameter[1], {time: options.time});
+    this.sendControlChange(0x65, parameter[0], options);
+    this.sendControlChange(0x64, parameter[1], options);
     return this;
   }
 
@@ -431,23 +423,23 @@ export class OutputChannel extends EventEmitter {
     data = [].concat(data);
 
     // MSB
-    data[0] = parseInt(data[0]);
-    if (!isNaN(data[0]) && data[0] >= 0 && data[0] <= 127) {
-      this.sendControlChange(0x06, data[0], {time: options.time});
-    } else {
-      throw new RangeError("The msb value must be between 0 and 127.");
-    }
+    // data[0] = parseInt(data[0]);
+    // if (!isNaN(data[0]) && data[0] >= 0 && data[0] <= 127) {
+    this.sendControlChange(0x06, data[0], options);
+    // } else {
+    //   throw new RangeError("The msb value must be between 0 and 127.");
+    // }
 
     if (data.length < 2) return this;
 
     // LSB
-    data[1] = parseInt(data[1]);
+    // data[1] = parseInt(data[1]);
 
-    if (!isNaN(data[1]) && data[1] >= 0 && data[1] <= 127) {
-      this.sendControlChange(0x26, data[1], {time: options.time});
-    } else {
-      throw new RangeError("The lsb value must be between 0 and 127.");
-    }
+    // if (!isNaN(data[1]) && data[1] >= 0 && data[1] <= 127) {
+    this.sendControlChange(0x26, data[1], options);
+    // } else {
+    //   throw new RangeError("The lsb value must be between 0 and 127.");
+    // }
 
     return this;
 
@@ -491,17 +483,7 @@ export class OutputChannel extends EventEmitter {
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    // Validation
-    if (Array.isArray(parameter)) {
-      parameter[0] = parseInt(parameter[0]);
-      parameter[1] = parseInt(parameter[1]);
-    } else {
-      parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-    }
-
-    if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
 
     this._selectRegisteredParameter(parameter, options);
     this.sendControlChange(0x61, 0, options);
@@ -549,17 +531,17 @@ export class OutputChannel extends EventEmitter {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    // Validation
-    if (Array.isArray(parameter)) {
-      parameter[0] = parseInt(parameter[0]);
-      parameter[1] = parseInt(parameter[1]);
-    } else {
-      parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-    }
-
-    if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
+    // // Validation
+    // if (Array.isArray(parameter)) {
+    //   parameter[0] = parseInt(parameter[0]);
+    //   parameter[1] = parseInt(parameter[1]);
+    // } else {
+    //   parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    // }
+    //
+    // if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
+    //   throw new TypeError("The specified registered parameter is invalid.");
+    // }
 
     this._selectRegisteredParameter(parameter, options);
     this.sendControlChange(0x60, 0, options);
@@ -1035,8 +1017,8 @@ export class OutputChannel extends EventEmitter {
     let msb = (fine >> 7) & 0x7F;
     let lsb = fine & 0x7F;
 
-    this.setRegisteredParameter("channelcoarsetuning", coarse, {time: options.time});
-    this.setRegisteredParameter("channelfinetuning", [msb, lsb], {time: options.time});
+    this.setRegisteredParameter("channelcoarsetuning", coarse, options);
+    this.setRegisteredParameter("channelfinetuning", [msb, lsb], options);
 
     return this;
 
@@ -1068,7 +1050,7 @@ export class OutputChannel extends EventEmitter {
   setModulationRange(semitones, cents, options = {}) {
 
     this.setRegisteredParameter(
-      "modulationrange", [semitones, cents], {time: options.time}
+      "modulationrange", [semitones, cents], options
     );
 
     return this;
@@ -1121,11 +1103,24 @@ export class OutputChannel extends EventEmitter {
    */
   setNonRegisteredParameter(parameter, data, options = {}) {
 
+    // Validation
+    parameter = [].concat(parameter);
+    parameter[0] = parseInt(parameter[0]);
+    parameter[1] = parseInt(parameter[1]);
+
+    if (isNaN(parameter[0]) || isNaN(parameter[1])) {
+      throw new TypeError("The specified registered parameter is invalid.");
+    }
+
+
+
+
+
     data = [].concat(data);
 
-    this._selectNonRegisteredParameter(parameter, {time: options.time});
-    this._setCurrentParameter(data, {time: options.time});
-    this._deselectNonRegisteredParameter({time: options.time});
+    this._selectNonRegisteredParameter(parameter, options);
+    this._setCurrentParameter(data, options);
+    this._deselectNonRegisteredParameter(options);
 
     return this;
 
@@ -1231,13 +1226,8 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPitchBendRange(semitones, cents, options = {}) {
-
-    this.setRegisteredParameter(
-      "pitchbendrange", [semitones, cents], {time: options.time}
-    );
-
+    this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
     return this;
-
   }
 
   /**
@@ -1329,16 +1319,11 @@ export class OutputChannel extends EventEmitter {
    */
   setRegisteredParameter(parameter, data, options = {}) {
 
-    if (!Array.isArray(parameter)) {
-      if (!WebMidi.MIDI_REGISTERED_PARAMETER[parameter]) {
-        throw new Error("The specified parameter is not available.");
-      }
-      parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-    }
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
 
-    this._selectRegisteredParameter(parameter, {time: options.time});
-    this._setCurrentParameter(data, {time: options.time});
-    this._deselectRegisteredParameter({time: options.time});
+    this._selectRegisteredParameter(parameter, options);
+    this._setCurrentParameter(data, options);
+    this._deselectRegisteredParameter(options);
 
     return this;
 
@@ -1373,7 +1358,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter("tuningbank", value - 1, {time: options.time});
+    this.setRegisteredParameter("tuningbank", value - 1, options);
 
     return this;
 
@@ -1408,7 +1393,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The program value must be between 1 and 128.");
     }
 
-    this.setRegisteredParameter("tuningprogram", value - 1, {time: options.time});
+    this.setRegisteredParameter("tuningprogram", value - 1, options);
 
     return this;
 
