@@ -1454,12 +1454,6 @@ class Input extends e {
 
 }
 
-/**
- * Throws if not valid
- * @param value
- * @param validators
- */
-
 function check(values, validators) {
   // Make sure we are working with arrays
   values = Array.from(values);
