@@ -1718,9 +1718,28 @@ class OutputChannel extends e {
   sendControlChange(controller, value, options = {}) {
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      /* START.VALIDATION */
+
+      if (controller === undefined) throw new TypeError("Invalid controller name.");
+      /* END.VALIDATION */
     } else {
       controller = parseInt(controller);
+      /* START.VALIDATION */
+
+      if (!(controller >= 0 && controller <= 119)) {
+        throw new RangeError("Controller number must be between 0 and 119.");
+      }
+      /* END.VALIDATION */
+
     }
+    /* START.VALIDATION */
+
+
+    if (!(value >= 0 && value <= 127)) {
+      throw new RangeError("Controller value must be between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
     return this;
