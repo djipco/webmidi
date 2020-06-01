@@ -15,11 +15,11 @@ let cmd = `./node_modules/.bin/rollup ` +
 // Production version (minified with sourcemap, argument validation removed)
 let production = cmd + ` --file dist/webmidi.${type}.min.js ` +
   `--sourcemap ` +
-  `--config ${__dirname}/rollup.config.${type}.production.js `;
+  `--config ${__dirname}/rollup.config.${type}.production.js`;
 
 // Development version (non-minified, with argument validation)
 let development = cmd + ` --file dist/webmidi.${type}.js ` +
-  `--config ${__dirname}/rollup.config.${type}.development.js `;
+  `--config ${__dirname}/rollup.config.${type}.development.js`;
 
 async function execute() {
 
