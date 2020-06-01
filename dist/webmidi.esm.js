@@ -1444,6 +1444,31 @@ class Input extends e {
 }
 
 /**
+ * Throws if not valid
+ * @param value
+ * @param validators
+ */
+function check(values, validators) {
+
+  // Make sure we are working with arrays
+  values = Array.from(values);
+  validators = Array.from((validators));
+
+  // Execute all validators
+  validators.forEach((validator, index) => {
+    if (validators[validator] === undefined) {
+      throw new TypeError(`Invalid validator (${validator})`);
+    } else {
+      validators[validator](values[index]);
+    }
+  });
+
+  // If we make it here, its all good!
+  return true;
+
+}
+
+/**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
@@ -1711,25 +1736,15 @@ class OutputChannel extends e {
    */
   sendControlChange(controller, value, options = {}) {
 
+    /* START.VALIDATION */
+    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
+    /* END.VALIDATION */
+
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-      /* START.VALIDATION */
-      if (controller === undefined) throw new TypeError("Invalid controller name.");
-      /* END.VALIDATION */
     } else {
       controller = parseInt(controller);
-      /* START.VALIDATION */
-      if ( !(controller >= 0 && controller <= 119) ) {
-        throw new RangeError("Controller number must be between 0 and 119.");
-      }
-      /* END.VALIDATION */
     }
-
-    /* START.VALIDATION */
-    if ( !(value >= 0 && value <= 127) ) {
-      throw new RangeError("Controller value must be between 0 and 127.");
-    }
-    /* END.VALIDATION */
 
     this.send(
       (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
