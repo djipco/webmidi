@@ -7,22 +7,37 @@ let type = "esm";
 const argv = require("minimist")(process.argv.slice(2));
 if (["cjs", "esm", "iife"].includes(argv.t)) type = argv.t;
 
-// Prepare command
+// Prepare general command
 let cmd = `./node_modules/.bin/rollup ` +
-  `--config ${__dirname}/rollup.config.${type}.js ` +
   `--input src/WebMidi.js ` +
-  `--format ${type} ` +
-  `--file dist/webmidi.${type}.min.js ` +
-  `--sourcemap`;
+  `--format ${type} `;
+
+// Production version (minified, argument validation removed)
+let production = cmd + ` --file dist/webmidi.${type}.min.js ` +
+  `--sourcemap ` +
+  `--config ${__dirname}/rollup.config.${type}.production.js `;
+
+// Development version (non-minified, with argument validation)
+let development = cmd + ` --file dist/webmidi.${type}.js ` +
+  `--config ${__dirname}/rollup.config.${type}.development.js `;
 
 async function execute() {
 
-  // Generate build
-  await system(cmd);
+  // Production build
+  await system(production);
 
   console.info(
     "\x1b[32m", // red font
-    `The "${type}" build was saved to "dist/webmidi.${type}.min.js"`,
+    `The "${type}" production build was saved to "dist/webmidi.${type}.min.js"`,
+    "\x1b[0m"   // reset font
+  );
+
+  // Development build
+  await system(development);
+
+  console.info(
+    "\x1b[32m", // red font
+    `The "${type}" development build was saved to "dist/webmidi.${type}.js"`,
     "\x1b[0m"   // reset font
   );
 

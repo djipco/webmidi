@@ -1,23 +1,20 @@
-import babel from "rollup-plugin-babel";
 const fs = require("fs");
 const license = require("rollup-plugin-license");
-import {terser} from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
+import stripCode from "rollup-plugin-strip-code";
 
 const BANNER = fs.readFileSync(__dirname + "/../../BANNER.txt", "utf8") + "\n\n\n";
 const LICENSE = fs.readFileSync(__dirname + "/../../LICENSE.txt", "utf8");
 
 export default {
 
-  output: {
-    name: "window",       // WebMidi and Note will be added to window
-    extend: true,         // important!
-    exports: "named"
-  },
-
   plugins: [
-    babel(),
+    stripCode({
+      start_comment: "START.VALIDATION",
+      end_comment: "END.VALIDATION"
+    }),
     terser(),
-    license({banner: BANNER + LICENSE})
+    license({banner: BANNER + LICENSE}),
   ]
 
 };
