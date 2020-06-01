@@ -1726,7 +1726,7 @@ class OutputChannel extends e {
       controller = parseInt(controller);
     }
 
-    console.log([controller, value]);
+    console.log("sendControlChange", controller, value);
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
     return this;
   }
@@ -1837,6 +1837,7 @@ class OutputChannel extends e {
 
 
   _selectRegisteredParameter(parameter, options = {}) {
+    console.log("select", parameter);
     this.sendControlChange(0x65, parameter[0], options);
     this.sendControlChange(0x64, parameter[1], options);
     return this;
