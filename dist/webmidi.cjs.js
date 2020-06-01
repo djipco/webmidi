@@ -1454,17 +1454,17 @@ class Input extends e {
 
 }
 
-function check(values, validators) {
+function check(values, types) {
   // Make sure we are working with arrays
   values = Array.from(values);
-  validators = Array.from(validators);
-  console.log(values, validators); // Execute all validators
+  types = Array.from(types);
+  console.log(values, types); // Execute all validators
 
-  validators.forEach((validator, index) => {
-    if (validators[validator] === undefined) {
+  types.forEach((validator, index) => {
+    if (types[validator] === undefined) {
       throw new TypeError(`Invalid validator (${validator})`);
     } else {
-      validators[validator](values[index]);
+      types[validator](values[index]);
     }
   }); // If we make it here, its all good!
 
