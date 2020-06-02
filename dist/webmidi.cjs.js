@@ -1492,13 +1492,13 @@ validators.options = value => {
 function check(values, types) {
   // Make sure we are working with arrays
   values = Array.from(values);
-  types = Array.from(types);
-  console.log(values, types); // Execute all validators
+  types = Array.from(types); // Execute all validators
 
   types.forEach((validator, index) => {
     if (validators[validator] === undefined) {
       throw new TypeError(`Invalid validator (${validator})`);
     } else {
+      console.log(validator, values[index]);
       validators[validator](values[index]);
     }
   }); // If we make it here, its all good!
@@ -1771,7 +1771,7 @@ class OutputChannel extends e {
 
   sendControlChange(controller, value, options = {}) {
     /* START.VALIDATION */
-    check(arguments, ["controlChangeIdentifier", "controlChangeValue"]);
+    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
     /* END.VALIDATION */
 
     if (typeof controller === "string") {
