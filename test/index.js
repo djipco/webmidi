@@ -2,7 +2,7 @@ const expect = require("chai").expect;
 const {isNative} = require("./support/Utils.cjs.js");
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi, Note} = require("../dist/webmidi.cjs.min.js");
+const {WebMidi, Note} = require("../dist/webmidi.cjs.development.js");
 
 // Create virtual MIDI input and output ports and make them available globally. Being an external,
 // the virtual device's input is seen as an output from WebMidi's perspective (same thing happens
