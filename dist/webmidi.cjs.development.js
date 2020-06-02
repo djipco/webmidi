@@ -2626,7 +2626,7 @@ class OutputChannel extends e {
         throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
       }
     } else {
-      if (isNaN(value)) {
+      if (isNaN(value) || value === null) {
         throw new RangeError("Invalid pitch bend value.");
       }
 
