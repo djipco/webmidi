@@ -2432,9 +2432,10 @@ class OutputChannel extends e {
 
   setMasterTuning(value, options = {}) {
     value = parseFloat(value) || 0.0;
+    console.log(value);
     /* START.VALIDATION */
 
-    if (isNaN(value) || !(value > -65 && value < 64)) {
+    if (!(value > -65 && value < 64)) {
       throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
     }
     /* END.VALIDATION */
