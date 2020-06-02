@@ -1454,11 +1454,6 @@ class Input extends e {
 
 }
 
-/* START.VALIDATION */
-// import {check} from "./check.js";
-
-/* END.VALIDATION */
-
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
@@ -1721,13 +1716,25 @@ class OutputChannel extends e {
 
 
   sendControlChange(controller, value, options = {}) {
-    /* START.VALIDATION */
-    // check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
-
-    /* END.VALIDATION */
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
+    /* START.VALIDATION */
+
+
+    if (controller === undefined) {
+      throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
+    }
+
+    if (!Number.isInteger(value) || !(value >= 0 && value <= 119)) {
+      throw new TypeError("Control change number must be an integer between 0 and 119.");
+    }
+
+    if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
+      throw new TypeError("Control change value must be an integer between 0 and 127");
+    }
+    /* END.VALIDATION */
+
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
     return this;
