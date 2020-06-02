@@ -2280,9 +2280,11 @@ class OutputChannel extends e {
 
 
   sendChannelMode(command, value, options = {}) {
+    if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
     /* START.VALIDATION */
-    if (typeof command === "string" && wm.MIDI_CHANNEL_MODE_MESSAGES[command] === undefined) {
-      throw new TypeError("Invalid channel mode message name.");
+
+    if (typeof command === undefined) {
+      throw new TypeError("Invalid channel mode message name or number.");
     }
 
     if (isNaN(command) || !(command >= 120 && command <= 127)) {
@@ -2295,7 +2297,6 @@ class OutputChannel extends e {
     /* END.VALIDATION */
 
 
-    if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
     return this;
   }
