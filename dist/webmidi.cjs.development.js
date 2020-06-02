@@ -2630,7 +2630,7 @@ class OutputChannel extends e {
         throw new RangeError("Invalid pitch bend value.");
       }
 
-      if (!(value[0] >= -1 && value[0] <= 1)) {
+      if (!(value >= -1 && value <= 1)) {
         throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
       }
     }
