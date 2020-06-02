@@ -1771,7 +1771,7 @@ class OutputChannel extends e {
 
   sendControlChange(controller, value, options = {}) {
     /* START.VALIDATION */
-    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
+    check(arguments, ["controlChangeIdentifier", "controlChangeValue"]);
     /* END.VALIDATION */
 
     if (typeof controller === "string") {
