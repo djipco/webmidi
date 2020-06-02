@@ -1921,6 +1921,20 @@ class OutputChannel extends e {
 
   decrementRegisteredParameter(parameter, options = {}) {
     if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    /* START.VALIDATION */
+
+    if (parameter === undefined) {
+      throw new TypeError("The specified registered parameter is invalid.");
+    }
+
+    let valid = false;
+    wm.MIDI_REGISTERED_PARAMETER.getOwnPropertyNames().forEach(p => {
+      if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+        valid = true;
+      }
+    });
+    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    /* END.VALIDATION */
 
     this._selectRegisteredParameter(parameter, options);
 
@@ -2280,10 +2294,11 @@ class OutputChannel extends e {
 
 
   sendChannelMode(command, value, options = {}) {
+    // Normalize command to integer
     if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
     /* START.VALIDATION */
 
-    if (typeof command === undefined) {
+    if (command === undefined) {
       throw new TypeError("Invalid channel mode message name or number.");
     }
 
