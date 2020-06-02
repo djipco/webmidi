@@ -198,11 +198,11 @@ export class Output extends EventEmitter {
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (128-255).
+   * @param status {Number} The MIDI status byte of the message (integer between 128-255).
    *
-   * @param [data=[]] {Array} An array of unsigned integers for the message. The number of data
+   * @param [data=[]] {number[]} An array of unsigned integers for the message. The number of data
    * bytes varies depending on the status byte. It is perfectly legal to send no data for some
-   * message types (use undefined or an empty array in this case). Each byte must be between 0 and
+   * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
    * @param {Object} [options={}]
@@ -242,12 +242,19 @@ export class Output extends EventEmitter {
    */
   send(status, data = [], options= {}) {
 
-    /* START.VALIDATION */
     if (!Array.isArray(data)) data = [data];
+
+    /* START.VALIDATION */
+    if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
+      throw new RangeError("The status must be an integer between 128 and 255.");
+    }
 
     data.map(value => {
       value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
+      if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
+      if (!(parseInt(value) >= 0 && parseInt(status) <= 255)) {
+        throw new RangeError("The data bytes must be integers between 0 and 255.");
+      }
       return value;
     });
     /* END.VALIDATION */
