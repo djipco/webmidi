@@ -1726,7 +1726,9 @@ class OutputChannel extends e {
       throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
     }
 
-    if (!(value >= 0 && value <= 119)) {
+    console.log(controller, value);
+
+    if (!Number.isInteger(value) || !(value >= 0 && value <= 119)) {
       throw new TypeError("Control change number must be an integer between 0 and 119.");
     }
 
