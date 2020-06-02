@@ -2797,11 +2797,12 @@ class OutputChannel extends e {
 
 
   setTuningBank(value, options = {}) {
-    value = parseInt(value);
-
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128.");
+    /* START.VALIDATION */
+    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError("The tuning bank number must be between 1 and 128.");
     }
+    /* END.VALIDATION */
+
 
     this.setRegisteredParameter("tuningbank", value - 1, options);
     return this;
