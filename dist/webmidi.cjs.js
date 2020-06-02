@@ -2074,8 +2074,9 @@ class OutputChannel extends e {
    *
    * @param {Object} [options={}]
    *
-   * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
-   * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
+   * @param {number} [options.duration] A positive number larger than 0 representing the number of
+   * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
+   * a **note on** message will be sent.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
@@ -2333,22 +2334,19 @@ class OutputChannel extends e {
 
 
   sendChannelMode(command, value, options = {}) {
-    if (typeof command === "string") {
-      command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
-    } else {
-      command = parseInt(command);
-    }
-
-    if (isNaN(command) || !(command >= 120 && command <= 127)) {
-      throw new TypeError("Invalid channel mode message name or number.");
-    }
-
-    value = parseInt(value) || 0;
-
-    if (value < 0 || value > 127) {
-      throw new RangeError("Value must be an integer between 0 and 127.");
-    }
-
+    // if (typeof command === "string") {
+    //   command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
+    // } else {
+    //   command = parseInt(command);
+    // }
+    // if (isNaN(command) || !(command >= 120 && command <= 127)) {
+    //   throw new TypeError("Invalid channel mode message name or number.");
+    // }
+    // value = parseInt(value) || 0;
+    // if (value < 0 || value > 127) {
+    //   throw new RangeError("Value must be an integer between 0 and 127.");
+    // }
+    if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
     return this;
   }
