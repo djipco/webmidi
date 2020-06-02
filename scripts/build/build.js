@@ -13,12 +13,12 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--format ${type} `;
 
 // Production version (minified with sourcemap, argument validation removed)
-let production = cmd + ` --file dist/webmidi.${type}.min.js ` +
+let production = cmd + ` --file dist/webmidi.${type}.production.js ` +
   `--sourcemap ` +
   `--config ${__dirname}/rollup.config.${type}.production.js`;
 
 // Development version (non-minified, with argument validation)
-let development = cmd + ` --file dist/webmidi.${type}.js ` +
+let development = cmd + ` --file dist/webmidi.${type}.development.js ` +
   `--config ${__dirname}/rollup.config.${type}.development.js`;
 
 async function execute() {
@@ -28,7 +28,7 @@ async function execute() {
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" production build was saved to "dist/webmidi.${type}.min.js"`,
+    `The "${type}" production build was saved to "dist/webmidi.${type}.production.js"`,
     "\x1b[0m"   // reset font
   );
 
@@ -37,7 +37,7 @@ async function execute() {
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" development build was saved to "dist/webmidi.${type}.js"`,
+    `The "${type}" development build was saved to "dist/webmidi.${type}.development.js"`,
     "\x1b[0m"   // reset font
   );
 
