@@ -2548,19 +2548,30 @@ class OutputChannel extends e {
    */
 
 
-  setNonRegisteredParameter(parameter, data, options = {}) {
-    // Validation
-    parameter = [].concat(parameter);
-    parameter[0] = parseInt(parameter[0]);
-    parameter[1] = parseInt(parameter[1]);
+  setNonRegisteredParameter(nrpn, data, options = {}) {
+    data = [].concat(data);
+    /* START.VALIDATION */
 
-    if (isNaN(parameter[0]) || isNaN(parameter[1])) {
-      throw new TypeError("The specified registered parameter is invalid.");
+    if (!Array.isArray(nrpn) || !Number.isInteger(nrpn[0]) || !Number.isInteger(nrpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
     }
 
-    data = [].concat(data);
+    if (!(nrpn[0] >= 0 && nrpn[0] <= 127)) {
+      throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
+    }
 
-    this._selectNonRegisteredParameter(parameter, options);
+    if (!(nrpn[1] >= 0 && nrpn[1] <= 127)) {
+      throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
+    }
+
+    data.forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectNonRegisteredParameter(nrpn, options);
 
     this._setCurrentParameter(data, options);
 
@@ -2571,13 +2582,11 @@ class OutputChannel extends e {
   /**
    * Sends a MIDI **pitch bend** message at the scheduled time.
    *
-   * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
+   * @param {number|number[]} [value=0] The intensity of the bend (between -1.0 and 1.0). A value of
    * zero means no bend. The resulting bend is relative to the pitch bend range that has been
    * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
    * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
    * -1 will bend the note 1 octave below its nominal value.
-   *
-   * If an invalid value is specified, the nearest valid value will be used instead.
    *
    * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
    * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
@@ -2604,39 +2613,41 @@ class OutputChannel extends e {
 
   setPitchBend(value, options = {}) {
     /* START.VALIDATION */
-    // if (isNaN(parseFloat(value)) || !(value >= -1 && value <= 1)) {
-    //   throw new RangeError("The pitch bend value must be a float between -1 and 1.");
-    // }
-    //
-    // if (options.rawValue) {
-    //
-    //   if (isNaN(parseFloat(value)) || !(value >= -1 && value <= 1)) {
-    //     throw new RangeError("The pitch bend value must be a float between -1 and 1.");
-    //   }
-    //
-    // }
+    if (options.rawValue && Array.isArray(value)) {
+      if (!(value[0] >= 0 && value[0] <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
 
+      if (!(value[1] >= 0 && value[1] <= 127)) {
+        throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
+      }
+    } else if (options.rawValue && !Array.isArray(value)) {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+    } else {
+      if (isNaN(value)) {
+        throw new RangeError("Invalid pitch bend value.");
+      }
+
+      if (!(value[0] >= -1 && value[0] <= 1)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+    }
     /* END.VALIDATION */
+
+
     let msb = 0;
     let lsb = 0; // Calculate MSB and LSB for both scenarios
 
-    if (options.rawValue) {
-      if (Array.isArray(value)) {
-        msb = parseInt(value[0]);
-        lsb = parseInt(value[1]);
-      } else {
-        msb = parseInt(value);
-      }
-
-      if (isNaN(msb)) msb = 64;
-      if (isNaN(lsb)) lsb = 64; // Validation
-
-      msb = Math.min(Math.max(msb, 0), 127);
-      lsb = Math.min(Math.max(lsb, 0), 127);
+    if (options.rawValue && Array.isArray(value)) {
+      msb = isNaN(value[0]) ? 64 : value[0];
+      lsb = isNaN(value[1]) ? 64 : value[1];
+    } else if (options.rawValue && !Array.isArray(value)) {
+      msb = isNaN(value) ? 64 : value;
     } else {
-      let valid = parseFloat(value) || 0;
-      valid = Math.min(Math.max(valid, -1), 1);
-      let nLevel = Math.round((valid + 1) / 2 * 16383);
+      value = value || 0;
+      let nLevel = Math.round((value + 1) / 2 * 16383);
       msb = nLevel >> 7 & 0x7F;
       lsb = nLevel & 0x7F;
     }
@@ -2776,10 +2787,30 @@ class OutputChannel extends e {
    */
 
 
-  setRegisteredParameter(parameter, data, options = {}) {
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+  setRegisteredParameter(rpn, data, options = {}) {
+    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETER[rpn];
+    /* START.VALIDATION */
 
-    this._selectRegisteredParameter(parameter, options);
+    if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
+    }
+
+    if (!(rpn[0] >= 0 && rpn[0] <= 127)) {
+      throw new RangeError("The first byte of the RPN must be between 0 and 127.");
+    }
+
+    if (!(rpn[1] >= 0 && rpn[1] <= 127)) {
+      throw new RangeError("The second byte of the RPN must be between 0 and 127.");
+    }
+
+    data.forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectRegisteredParameter(rpn, options);
 
     this._setCurrentParameter(data, options);
 
