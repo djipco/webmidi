@@ -1,6 +1,9 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
+
+/* START.VALIDATION */
 import {check} from "./check.js";
+/* END.VALIDATION */
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
@@ -530,6 +533,10 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   incrementRegisteredParameter(parameter, options = {}) {
+
+    if (!Array.isArray(parameter)) {
+      parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    }
 
     // // Validation
     // if (Array.isArray(parameter)) {
