@@ -2392,14 +2392,29 @@ class OutputChannel extends e {
 
 
   setChannelAftertouch(pressure, options = {}) {
-    // Validation
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
-
-    if (pressure < 0 || pressure > 1) {
+    /* START.VALIDATION */
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid channel aftertouch value.");
     }
+
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+      }
+    }
+    /* END.VALIDATION */
+    // Validation
+    // pressure = parseFloat(pressure);
+    // if (isNaN(pressure)) pressure = -1;
+    // if (options.rawValue) pressure = pressure / 127;
+    // if (pressure < 0 || pressure > 1) {
+    //   throw new RangeError("Invalid channel aftertouch value.");
+    // }
+
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), [Math.round(pressure * 127)], wm.convertToTimestamp(options.time));
     return this;
