@@ -3083,7 +3083,7 @@ class Output extends e {
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (128-255).
+   * @param status {Number} The MIDI status byte of the message (integer between 128-255).
    *
    * @param [data=[]] {Array} An array of unsigned integers for the message. The number of data
    * bytes varies depending on the status byte. It is perfectly legal to send no data for some
@@ -3128,8 +3128,13 @@ class Output extends e {
 
 
   send(status, data = [], options = {}) {
-    /* START.VALIDATION */
     if (!Array.isArray(data)) data = [data];
+    /* START.VALIDATION */
+
+    if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
+      throw new RangeError("The status must be an integer between 128 and 255.");
+    }
+
     data.map(value => {
       value = parseInt(value);
       if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
