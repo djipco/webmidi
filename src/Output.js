@@ -241,10 +241,25 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   send(status, data = [], options= {}) {
+
+    /* START.VALIDATION */
     if (!Array.isArray(data)) data = [data];
-    if (typeof options === "number") options = {time: options}; // legacy support
+
+    data.map(value => {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
+      return value;
+    });
+    /* END.VALIDATION */
+
+    // Legacy support
+    if (typeof options === "number") options = {time: options};
+
+    // Actually send the message
     this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
+
     return this;
+
   }
 
   /**
