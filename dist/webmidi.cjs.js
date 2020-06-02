@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 1st 2020.
+ * This build was generated on June 2nd 2020.
  *
  *
  *
@@ -1498,7 +1498,6 @@ function check(values, types) {
     if (validators[validator] === undefined) {
       throw new TypeError(`Invalid validator (${validator})`);
     } else {
-      console.log(validator, values[index]);
       validators[validator](values[index]);
     }
   }); // If we make it here, its all good!
