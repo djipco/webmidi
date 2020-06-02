@@ -2588,6 +2588,20 @@ class OutputChannel extends e {
 
 
   setPitchBend(value, options = {}) {
+    /* START.VALIDATION */
+    // if (isNaN(parseFloat(value)) || !(value >= -1 && value <= 1)) {
+    //   throw new RangeError("The pitch bend value must be a float between -1 and 1.");
+    // }
+    //
+    // if (options.rawValue) {
+    //
+    //   if (isNaN(parseFloat(value)) || !(value >= -1 && value <= 1)) {
+    //     throw new RangeError("The pitch bend value must be a float between -1 and 1.");
+    //   }
+    //
+    // }
+
+    /* END.VALIDATION */
     let msb = 0;
     let lsb = 0; // Calculate MSB and LSB for both scenarios
 
@@ -2683,8 +2697,16 @@ class OutputChannel extends e {
 
 
   setProgram(program, options = {}) {
-    program = parseFloat(program) - 1;
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), [program], wm.convertToTimestamp(options.time));
+    program = parseInt(program) || 1;
+    /* START.VALIDATION */
+
+    if (!(program >= 1 && program <= 128)) {
+      throw new RangeError("The program number must be between 1 and 128.");
+    }
+    /* END.VALIDATION */
+
+
+    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), [program - 1], wm.convertToTimestamp(options.time));
     return this;
   }
   /**
