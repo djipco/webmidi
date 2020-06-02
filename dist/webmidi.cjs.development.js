@@ -2473,7 +2473,11 @@ class OutputChannel extends e {
 
 
   setModulationRange(semitones, cents, options = {}) {
+    // Assign defaults (if necessary)
+    semitones = parseInt(semitones) || 0;
+    cents = parseInt(cents) || 0;
     /* START.VALIDATION */
+
     if (!(semitones >= 0 && semitones <= 127)) {
       throw new RangeError("The semitones value must be an integer between 0 and 127.");
     }
