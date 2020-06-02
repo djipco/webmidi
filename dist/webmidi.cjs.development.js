@@ -2468,14 +2468,22 @@ class OutputChannel extends e {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The msb value must be between 0 and 127
-   * @throws {RangeError} The lsb value must be between 0 and 127
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
 
 
   setModulationRange(semitones, cents, options = {}) {
+    /* START.VALIDATION */
+    if (!(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+
+    if (!(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
+
     this.setRegisteredParameter("modulationrange", [semitones, cents], options);
     return this;
   }
