@@ -1983,20 +1983,21 @@ class OutputChannel extends e {
 
 
   incrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) {
-      parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
-    } // // Validation
-    // if (Array.isArray(parameter)) {
-    //   parameter[0] = parseInt(parameter[0]);
-    //   parameter[1] = parseInt(parameter[1]);
-    // } else {
-    //   parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-    // }
-    //
-    // if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
-    //   throw new TypeError("The specified registered parameter is invalid.");
-    // }
+    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    /* START.VALIDATION */
 
+    if (parameter === undefined) {
+      throw new TypeError("The specified registered parameter is invalid.");
+    }
+
+    let valid = false;
+    Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+        valid = true;
+      }
+    });
+    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    /* END.VALIDATION */
 
     this._selectRegisteredParameter(parameter, options);
 
