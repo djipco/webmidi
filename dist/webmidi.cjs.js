@@ -2315,7 +2315,7 @@ class OutputChannel extends e {
    * @param command {number|string} The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
    *
-   * @param [value] {number} The value to send (integer between 0-127).
+   * @param value {number} The value to send (integer between 0-127).
    *
    * @param {Object} [options={}]
    *
@@ -2324,10 +2324,6 @@ class OutputChannel extends e {
    * operation will be scheduled for that time. The current time can be retrieved with
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
-   *
-   * @throws {TypeError} Invalid channel mode message name.
-   * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-   * @throws {RangeError} Value must be an integer between 0 and 127.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -2347,7 +2343,7 @@ class OutputChannel extends e {
     //   throw new RangeError("Value must be an integer between 0 and 127.");
     // }
     if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
+    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [parseInt(command), parseInt(value)], wm.convertToTimestamp(options.time));
     return this;
   }
   /**
