@@ -3135,6 +3135,7 @@ class Output extends e {
       throw new RangeError("The status must be an integer between 128 and 255.");
     }
 
+    console.log(data);
     data.map(value => {
       value = parseInt(value);
       if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
