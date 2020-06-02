@@ -1928,7 +1928,7 @@ class OutputChannel extends e {
     }
 
     let valid = false;
-    wm.MIDI_REGISTERED_PARAMETER.getOwnPropertyNames().forEach(p => {
+    Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
       if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
         valid = true;
       }
