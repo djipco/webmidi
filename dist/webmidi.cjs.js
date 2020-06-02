@@ -1461,7 +1461,7 @@ validators.controlChangeIdentifier = value => {
     validators.controlChangeName(value);
     validators.controlChangeNumber(value);
   } catch (err) {
-    throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 199.");
+    throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
   }
 };
 
@@ -1505,6 +1505,8 @@ function check(values, types) {
 
   return true;
 }
+
+/* END.VALIDATION */
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
