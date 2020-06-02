@@ -1621,8 +1621,14 @@ class OutputChannel extends e {
       throw new RangeError("Invalid key aftertouch value.");
     }
 
-    if (options.rawValue && !(pressure >= 0 && pressure <= 1 && Number.isInteger(pressure))) {
-      throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
+      }
     }
     /* END.VALIDATION */
     // Normalize to integer
