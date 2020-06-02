@@ -2280,18 +2280,21 @@ class OutputChannel extends e {
 
 
   sendChannelMode(command, value, options = {}) {
-    // if (typeof command === "string") {
-    //   command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
-    // } else {
-    //   command = parseInt(command);
-    // }
-    // if (isNaN(command) || !(command >= 120 && command <= 127)) {
-    //   throw new TypeError("Invalid channel mode message name or number.");
-    // }
-    // value = parseInt(value) || 0;
-    // if (value < 0 || value > 127) {
-    //   throw new RangeError("Value must be an integer between 0 and 127.");
-    // }
+    /* START.VALIDATION */
+    if (typeof command === "string" && wm.MIDI_CHANNEL_MODE_MESSAGES[command] === undefined) {
+      throw new TypeError("Invalid channel mode message name.");
+    }
+
+    if (isNaN(command) || !(command >= 120 && command <= 127)) {
+      throw new TypeError("Invalid channel mode message number.");
+    }
+
+    if (isNaN(parseInt(value)) || value < 0 || value > 127) {
+      throw new RangeError("Value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
+
     if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
     return this;
