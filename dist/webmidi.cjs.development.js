@@ -2432,7 +2432,6 @@ class OutputChannel extends e {
 
   setMasterTuning(value, options = {}) {
     value = parseFloat(value) || 0.0;
-    console.log(value);
     /* START.VALIDATION */
 
     if (!(value > -65 && value < 64)) {
