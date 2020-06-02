@@ -1,10 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 
-/* START.VALIDATION */
-import {check} from "./check.js";
-/* END.VALIDATION */
-
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
@@ -136,7 +132,7 @@ export class OutputChannel extends EventEmitter {
    * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
    * number 0) and the highest note is G9 (MIDI note number 127).
    *
-   *  @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure is defined by using an integer between 0 and 127.
    *
@@ -160,18 +156,28 @@ export class OutputChannel extends EventEmitter {
     // Legacy support
     if (options.useRawValue) options.rawValue = options.useRawValue;
 
-    // Validation
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
-    if (pressure < 0 || pressure > 1) {
+    /* START.VALIDATION */
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid key aftertouch value.");
     }
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
+      }
+    }
+    /* END.VALIDATION */
+
+    // Normalize to integer
+    if (!options.rawValue) pressure = Math.round(pressure * 127);
 
     WebMidi.getValidNoteArray(note, options).forEach(n => {
       this.send(
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-        [n.number, Math.round(pressure * 127)],
+        [n.number, pressure],
         WebMidi.convertToTimestamp(options.time)
       );
     });
@@ -273,15 +279,25 @@ export class OutputChannel extends EventEmitter {
    */
   sendControlChange(controller, value, options = {}) {
 
-    /* START.VALIDATION */
-    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
-    /* END.VALIDATION */
-
     if (typeof controller === "string") {
       controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-    } else {
-      controller = parseInt(controller);
     }
+
+    /* START.VALIDATION */
+    if (controller === undefined) {
+      throw new TypeError(
+        "Control change must be identified with a valid name or an integer between 0 and 119."
+      );
+    }
+
+    if ( !Number.isInteger(controller) || !(controller >= 0 && controller <= 119) ) {
+      throw new TypeError("Control change number must be an integer between 0 and 119.");
+    }
+
+    if ( !Number.isInteger(value) || !(value >= 0 && value <= 127) ) {
+      throw new TypeError("Control change value must be an integer between 0 and 127");
+    }
+    /* END.VALIDATION */
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
@@ -488,6 +504,25 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
 
+    /* START.VALIDATION */
+    if (parameter === undefined) {
+      throw new TypeError("The specified registered parameter is invalid.");
+    }
+
+    let valid = false;
+
+    Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      if (
+        WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
+        WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+      ) {
+        valid = true;
+      }
+    });
+
+    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    /* END.VALIDATION */
+
     this._selectRegisteredParameter(parameter, options);
     this.sendControlChange(0x61, 0, options);
     this._deselectRegisteredParameter(options);
@@ -534,21 +569,26 @@ export class OutputChannel extends EventEmitter {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) {
-      parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+
+    /* START.VALIDATION */
+    if (parameter === undefined) {
+      throw new TypeError("The specified registered parameter is invalid.");
     }
 
-    // // Validation
-    // if (Array.isArray(parameter)) {
-    //   parameter[0] = parseInt(parameter[0]);
-    //   parameter[1] = parseInt(parameter[1]);
-    // } else {
-    //   parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
-    // }
-    //
-    // if (!parameter || isNaN(parameter[0]) || isNaN(parameter[1])) {
-    //   throw new TypeError("The specified registered parameter is invalid.");
-    // }
+    let valid = false;
+
+    Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      if (
+        WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
+        WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+      ) {
+        valid = true;
+      }
+    });
+
+    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    /* END.VALIDATION */
 
     this._selectRegisteredParameter(parameter, options);
     this.sendControlChange(0x60, 0, options);
@@ -590,8 +630,9 @@ export class OutputChannel extends EventEmitter {
    *
    * @param {Object} [options={}]
    *
-   * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
-   * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
+   * @param {number} [options.duration] A positive number larger than 0 representing the number of
+   * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
+   * a **note on** message will be sent.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
@@ -862,7 +903,7 @@ export class OutputChannel extends EventEmitter {
    * @param command {number|string} The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
    *
-   * @param [value] {number} The value to send (integer between 0-127).
+   * @param value {number} The value to send (integer between 0-127).
    *
    * @param {Object} [options={}]
    *
@@ -872,29 +913,26 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {TypeError} Invalid channel mode message name.
-   * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
-   * @throws {RangeError} Value must be an integer between 0 and 127.
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   sendChannelMode(command, value, options = {}) {
 
-    if (typeof command === "string") {
-      command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
-    } else {
-      command = parseInt(command);
-    }
+    // Normalize command to integer
+    if (typeof command === "string") command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
 
-    if (isNaN(command) || !(command >= 120 && command <= 127)) {
+    /* START.VALIDATION */
+    if (command === undefined) {
       throw new TypeError("Invalid channel mode message name or number.");
     }
 
-    value = parseInt(value) || 0;
+    if (isNaN(command) || !(command >= 120 && command <= 127)) {
+      throw new TypeError("Invalid channel mode message number.");
+    }
 
-    if (value < 0 || value > 127) {
+    if (isNaN(parseInt(value)) || value < 0 || value > 127) {
       throw new RangeError("Value must be an integer between 0 and 127.");
     }
+    /* END.VALIDATION */
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1),
@@ -1010,11 +1048,13 @@ export class OutputChannel extends EventEmitter {
 
     value = parseFloat(value) || 0.0;
 
-    if (value <= -65 || value >= 64) {
+    /* START.VALIDATION */
+    if (!(value > -65 && value < 64)) {
       throw new RangeError(
         "The value must be a decimal number larger than -65 and smaller than 64."
       );
     }
+    /* END.VALIDATION */
 
     let coarse = Math.floor(value) + 64;
     let fine = value - Math.floor(value);
@@ -1049,16 +1089,20 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The msb value must be between 0 and 127
-   * @throws {RangeError} The lsb value must be between 0 and 127
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setModulationRange(semitones, cents, options = {}) {
 
-    this.setRegisteredParameter(
-      "modulationrange", [semitones, cents], options
-    );
+    /* START.VALIDATION */
+    if (!(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+    if (!(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
+    this.setRegisteredParameter("modulationrange", [semitones, cents], options);
 
     return this;
 
