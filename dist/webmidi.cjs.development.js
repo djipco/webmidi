@@ -2582,7 +2582,7 @@ class OutputChannel extends e {
   /**
    * Sends a MIDI **pitch bend** message at the scheduled time.
    *
-   * @param {number|number[]} [value=0] The intensity of the bend (between -1.0 and 1.0). A value of
+   * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
    * zero means no bend. The resulting bend is relative to the pitch bend range that has been
    * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
    * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
@@ -2641,12 +2641,11 @@ class OutputChannel extends e {
     let lsb = 0; // Calculate MSB and LSB for both scenarios
 
     if (options.rawValue && Array.isArray(value)) {
-      msb = isNaN(value[0]) ? 64 : value[0];
-      lsb = isNaN(value[1]) ? 64 : value[1];
+      msb = value[0];
+      lsb = value[1];
     } else if (options.rawValue && !Array.isArray(value)) {
-      msb = isNaN(value) ? 64 : value;
+      msb = value;
     } else {
-      value = value || 0;
       let nLevel = Math.round((value + 1) / 2 * 16383);
       msb = nLevel >> 7 & 0x7F;
       lsb = nLevel & 0x7F;
