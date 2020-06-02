@@ -2455,10 +2455,10 @@ class OutputChannel extends e {
    * The range can be specified with the `semitones` parameter, the `cents` parameter or by
    * specifying both parameters at the same time.
    *
-   * @param [semitones=0] {number} The desired adjustment value in semitones (integer between
-   * 0 and 127).
+   * @param semitones {number} The desired adjustment value in semitones (integer between 0 and
+   * 127).
    *
-   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
+   * @param cents {number} The desired adjustment value in cents (integer between 0 and 127).
    *
    * @param {Object} [options={}]
    *
@@ -2473,16 +2473,12 @@ class OutputChannel extends e {
 
 
   setModulationRange(semitones, cents, options = {}) {
-    // Assign defaults (if necessary)
-    semitones = parseInt(semitones) || 0;
-    cents = parseInt(cents) || 0;
     /* START.VALIDATION */
-
-    if (!(semitones >= 0 && semitones <= 127)) {
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
       throw new RangeError("The semitones value must be an integer between 0 and 127.");
     }
 
-    if (!(cents >= 0 && cents <= 127)) {
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
       throw new RangeError("The cents value must be an integer between 0 and 127.");
     }
     /* END.VALIDATION */
