@@ -2643,6 +2643,17 @@ class OutputChannel extends e {
 
 
   setPitchBendRange(semitones, cents, options = {}) {
+    /* START.VALIDATION */
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
+
     this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
     return this;
   }
