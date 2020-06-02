@@ -1584,7 +1584,7 @@ class OutputChannel extends e {
    * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
    * number 0) and the highest note is G9 (MIDI note number 127).
    *
-   *  @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure is defined by using an integer between 0 and 127.
    *
@@ -1608,17 +1608,29 @@ class OutputChannel extends e {
   setKeyAftertouch(note, pressure, options = {}) {
     // Legacy support
     if (options.useRawValue) options.rawValue = options.useRawValue; // Validation
+    // pressure = parseFloat(pressure);
+    // if (isNaN(pressure)) pressure = -1;
+    // if (options.rawValue) pressure = pressure / 127;
+    // if (pressure < 0 || pressure > 1) {
+    //   throw new RangeError("Invalid key aftertouch value.");
+    // }
 
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
+    /* START.VALIDATION */
 
-    if (pressure < 0 || pressure > 1) {
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid key aftertouch value.");
     }
 
+    if (options.rawValue && !(pressure >= 0 && pressure <= 1 && Number.isInteger(pressure))) {
+      throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+    // Normalize to integer
+
+
+    if (!options.rawValue) pressure = Math.round(pressure * 127);
     wm.getValidNoteArray(note, options).forEach(n => {
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), [n.number, Math.round(pressure * 127)], wm.convertToTimestamp(options.time));
+      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), [n.number, pressure], wm.convertToTimestamp(options.time));
     });
     return this;
   }
