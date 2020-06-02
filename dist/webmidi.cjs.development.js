@@ -2434,7 +2434,7 @@ class OutputChannel extends e {
     value = parseFloat(value) || 0.0;
     /* START.VALIDATION */
 
-    if (!(value > -65 || value < 64)) {
+    if (!(value > -65 && value < 64)) {
       throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
     }
     /* END.VALIDATION */
