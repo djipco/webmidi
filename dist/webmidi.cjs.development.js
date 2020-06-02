@@ -1607,14 +1607,7 @@ class OutputChannel extends e {
 
   setKeyAftertouch(note, pressure, options = {}) {
     // Legacy support
-    if (options.useRawValue) options.rawValue = options.useRawValue; // Validation
-    // pressure = parseFloat(pressure);
-    // if (isNaN(pressure)) pressure = -1;
-    // if (options.rawValue) pressure = pressure / 127;
-    // if (pressure < 0 || pressure > 1) {
-    //   throw new RangeError("Invalid key aftertouch value.");
-    // }
-
+    if (options.useRawValue) options.rawValue = options.useRawValue;
     /* START.VALIDATION */
 
     if (isNaN(parseFloat(pressure))) {
@@ -2439,10 +2432,13 @@ class OutputChannel extends e {
 
   setMasterTuning(value, options = {}) {
     value = parseFloat(value) || 0.0;
+    /* START.VALIDATION */
 
-    if (value <= -65 || value >= 64) {
+    if (!(value > -65 || value < 64)) {
       throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
     }
+    /* END.VALIDATION */
+
 
     let coarse = Math.floor(value) + 64;
     let fine = value - Math.floor(value); // Calculate MSB and LSB for fine adjustment (14bit resolution)
