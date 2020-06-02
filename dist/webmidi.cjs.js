@@ -1454,56 +1454,8 @@ class Input extends e {
 
 }
 
-let validators = {};
-
-validators.controlChangeIdentifier = value => {
-  try {
-    validators.controlChangeName(value);
-    validators.controlChangeNumber(value);
-  } catch (err) {
-    throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
-  }
-};
-
-validators.controlChangeName = value => {
-  if (wm.MIDI_CONTROL_CHANGE_MESSAGES[value] == undefined) {
-    throw new TypeError("Control change name does not exist.");
-  }
-};
-
-validators.controlChangeNumber = value => {
-  if (!Number.isInteger(value) || !(value >= 0 && value <= 119)) {
-    throw new TypeError("Control change number must be an integer between 0 and 119.");
-  }
-};
-
-validators.controlChangeValue = value => {
-  if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
-    throw new TypeError("Control change value must be an integer between 0 and 127");
-  }
-};
-
-validators.options = value => {
-  if (typeof value === "object" && value !== null) {
-    throw new TypeError("Options must be an object");
-  }
-};
-
-function check(values, types) {
-  // Make sure we are working with arrays
-  values = Array.from(values);
-  types = Array.from(types); // Execute all validators
-
-  types.forEach((validator, index) => {
-    if (validators[validator] === undefined) {
-      throw new TypeError(`Invalid validator (${validator})`);
-    } else {
-      validators[validator](values[index]);
-    }
-  }); // If we make it here, its all good!
-
-  return true;
-}
+/* START.VALIDATION */
+// import {check} from "./check.js";
 
 /* END.VALIDATION */
 
@@ -1770,13 +1722,11 @@ class OutputChannel extends e {
 
   sendControlChange(controller, value, options = {}) {
     /* START.VALIDATION */
-    check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
-    /* END.VALIDATION */
+    // check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
 
+    /* END.VALIDATION */
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
-    } else {
-      controller = parseInt(controller);
     }
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
@@ -2343,7 +2293,7 @@ class OutputChannel extends e {
     //   throw new RangeError("Value must be an integer between 0 and 127.");
     // }
     if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [parseInt(command), parseInt(value)], wm.convertToTimestamp(options.time));
+    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
     return this;
   }
   /**
@@ -3151,10 +3101,19 @@ class Output extends e {
 
 
   send(status, data = [], options = {}) {
+    /* START.VALIDATION */
     if (!Array.isArray(data)) data = [data];
+    data.map(value => {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
+      return value;
+    });
+    /* END.VALIDATION */
+    // Legacy support
+
     if (typeof options === "number") options = {
       time: options
-    }; // legacy support
+    }; // Actually send the message
 
     this._midiOutput.send([status].concat(data), wm.convertToTimestamp(options.time));
 
