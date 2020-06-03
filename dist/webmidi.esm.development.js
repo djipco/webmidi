@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 2nd 2020.
+ * This build was generated on June 3rd 2020.
  *
  *
  *
@@ -1443,10 +1443,6 @@ class Input extends e {
 
 }
 
-/* START.VALIDATION */
-// import {check} from "./check.js";
-/* END.VALIDATION */
-
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
@@ -1578,7 +1574,7 @@ class OutputChannel extends e {
    * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
    * number 0) and the highest note is G9 (MIDI note number 127).
    *
-   *  @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
+   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure is defined by using an integer between 0 and 127.
    *
@@ -1602,18 +1598,28 @@ class OutputChannel extends e {
     // Legacy support
     if (options.useRawValue) options.rawValue = options.useRawValue;
 
-    // Validation
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
-    if (pressure < 0 || pressure > 1) {
+    /* START.VALIDATION */
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid key aftertouch value.");
     }
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
+      }
+    }
+    /* END.VALIDATION */
+
+    // Normalize to integer
+    if (!options.rawValue) pressure = Math.round(pressure * 127);
 
     wm.getValidNoteArray(note, options).forEach(n => {
       this.send(
         (wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-        [n.number, Math.round(pressure * 127)],
+        [n.number, pressure],
         wm.convertToTimestamp(options.time)
       );
     });
@@ -1715,13 +1721,25 @@ class OutputChannel extends e {
    */
   sendControlChange(controller, value, options = {}) {
 
-    /* START.VALIDATION */
-    // check(arguments, ["controlChangeIdentifier", "controlChangeValue", "options"]);
-    /* END.VALIDATION */
-
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
+
+    /* START.VALIDATION */
+    if (controller === undefined) {
+      throw new TypeError(
+        "Control change must be identified with a valid name or an integer between 0 and 119."
+      );
+    }
+
+    if ( !Number.isInteger(controller) || !(controller >= 0 && controller <= 119) ) {
+      throw new TypeError("Control change number must be an integer between 0 and 119.");
+    }
+
+    if ( !Number.isInteger(value) || !(value >= 0 && value <= 127) ) {
+      throw new TypeError("Control change value must be an integer between 0 and 127");
+    }
+    /* END.VALIDATION */
 
     this.send(
       (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
@@ -1929,7 +1947,6 @@ class OutputChannel extends e {
     if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
 
     /* START.VALIDATION */
-
     if (parameter === undefined) {
       throw new TypeError("The specified registered parameter is invalid.");
     }
@@ -1946,7 +1963,6 @@ class OutputChannel extends e {
     });
 
     if (!valid) throw new TypeError("The specified registered parameter is invalid.");
-
     /* END.VALIDATION */
 
     this._selectRegisteredParameter(parameter, options);
@@ -1998,7 +2014,6 @@ class OutputChannel extends e {
     if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
 
     /* START.VALIDATION */
-
     if (parameter === undefined) {
       throw new TypeError("The specified registered parameter is invalid.");
     }
@@ -2015,7 +2030,6 @@ class OutputChannel extends e {
     });
 
     if (!valid) throw new TypeError("The specified registered parameter is invalid.");
-
     /* END.VALIDATION */
 
     this._selectRegisteredParameter(parameter, options);
@@ -2150,12 +2164,22 @@ class OutputChannel extends e {
    */
   sendNoteOff(note, options = {}) {
 
-    // Compatibility warnings
+    /* START.VALIDATION */
+    if (
+      options.rawRelease != undefined &&
+      !(options.rawRelease >= 0 && options.rawRelease <= 127)
+    ) {
+      throw new RangeError("The 'rawRelease' option must be an integer between 0 and 127");
+    }
+    if (options.release != undefined && !(options.release >= 0 && options.release <= 1)) {
+      throw new RangeError("The 'release' option must be an number between 0 and 1");
+    }
+    /* END.VALIDATION */
+
+    // Legacy compatibility warnings
     if (options.rawVelocity) {
       options.rawRelease = options.velocity;
-      console.warn(
-        "The 'rawVelocity' option is deprecated. Use 'rawRelease' instead."
-      );
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.");
     }
     if (options.velocity) {
       options.release = options.velocity;
@@ -2165,21 +2189,9 @@ class OutputChannel extends e {
     let nVelocity = 64;
 
     if (options.rawRelease != undefined) {
-      if (
-        !isNaN(options.rawRelease) &&
-        options.rawRelease >= 0
-        && options.rawRelease <= 127
-      ) {
-        nVelocity = options.rawRelease;
-      }
+      nVelocity = options.rawRelease;
     } else {
-      if (
-        !isNaN(options.release) &&
-        options.release >= 0 &&
-        options.release <= 1
-      ) {
-        nVelocity = options.release * 127;
-      }
+      if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
     }
 
     // Send note off messages
@@ -2247,7 +2259,7 @@ class OutputChannel extends e {
    * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawAttack=64] The velocity at which to release the note (between `0`
    * and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `64`.
    *
@@ -2255,13 +2267,20 @@ class OutputChannel extends e {
    */
   sendNoteOn(note, options = {}) {
 
-    // Compatibility warnings
+    /* START.VALIDATION */
+    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack <= 127)) {
+      throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
+    }
+    if (options.attack != undefined && !(options.attack >= 0 && options.attack <= 1)) {
+      throw new RangeError("The 'attack' option must be an number between 0 and 1");
+    }
+    /* END.VALIDATION */
+
+    // Legacy compatibility warnings
     if (options.rawVelocity) {
       options.rawAttack = options.velocity;
       options.rawRelease = options.release;
-      console.warn(
-        "The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease' instead."
-      );
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.");
     }
     if (options.velocity) {
       options.attack = options.velocity;
@@ -2271,21 +2290,9 @@ class OutputChannel extends e {
     let nVelocity = 64;
 
     if (options.rawAttack != undefined) {
-      if (
-        !isNaN(options.rawAttack) &&
-        options.rawAttack >= 0 &&
-        options.rawAttack <= 127
-      ) {
-        nVelocity = options.rawAttack;
-      }
+      nVelocity = options.rawAttack;
     } else {
-      if (
-        !isNaN(options.attack) &&
-        options.attack >= 0 &&
-        options.attack <= 1
-      ) {
-        nVelocity = options.attack * 127;
-      }
+      if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
     }
 
     let o = {rawAttack: nVelocity};
@@ -2430,13 +2437,28 @@ class OutputChannel extends e {
    */
   setChannelAftertouch(pressure, options = {}) {
 
-    // Validation
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
-    if (pressure < 0 || pressure > 1) {
+    /* START.VALIDATION */
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid channel aftertouch value.");
     }
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+      }
+    }
+    /* END.VALIDATION */
+
+    // Validation
+    // pressure = parseFloat(pressure);
+    // if (isNaN(pressure)) pressure = -1;
+    // if (options.rawValue) pressure = pressure / 127;
+    // if (pressure < 0 || pressure > 1) {
+    //   throw new RangeError("Invalid channel aftertouch value.");
+    // }
 
     this.send(
       (wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1),
@@ -2476,11 +2498,13 @@ class OutputChannel extends e {
 
     value = parseFloat(value) || 0.0;
 
-    if (value <= -65 || value >= 64) {
+    /* START.VALIDATION */
+    if (!(value > -65 && value < 64)) {
       throw new RangeError(
         "The value must be a decimal number larger than -65 and smaller than 64."
       );
     }
+    /* END.VALIDATION */
 
     let coarse = Math.floor(value) + 64;
     let fine = value - Math.floor(value);
@@ -2502,10 +2526,10 @@ class OutputChannel extends e {
    * The range can be specified with the `semitones` parameter, the `cents` parameter or by
    * specifying both parameters at the same time.
    *
-   * @param [semitones=0] {number} The desired adjustment value in semitones (integer between
-   * 0 and 127).
+   * @param semitones {number} The desired adjustment value in semitones (integer between 0 and
+   * 127).
    *
-   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
+   * @param cents {number} The desired adjustment value in cents (integer between 0 and 127).
    *
    * @param {Object} [options={}]
    *
@@ -2515,16 +2539,20 @@ class OutputChannel extends e {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The msb value must be between 0 and 127
-   * @throws {RangeError} The lsb value must be between 0 and 127
-   *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setModulationRange(semitones, cents, options = {}) {
 
-    this.setRegisteredParameter(
-      "modulationrange", [semitones, cents], options
-    );
+    /* START.VALIDATION */
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
+    this.setRegisteredParameter("modulationrange", [semitones, cents], options);
 
     return this;
 
@@ -2574,24 +2602,31 @@ class OutputChannel extends e {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  setNonRegisteredParameter(parameter, data, options = {}) {
-
-    // Validation
-    parameter = [].concat(parameter);
-    parameter[0] = parseInt(parameter[0]);
-    parameter[1] = parseInt(parameter[1]);
-
-    if (isNaN(parameter[0]) || isNaN(parameter[1])) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
-
-
-
-
+  setNonRegisteredParameter(nrpn, data, options = {}) {
 
     data = [].concat(data);
 
-    this._selectNonRegisteredParameter(parameter, options);
+    /* START.VALIDATION */
+    if (!Array.isArray(nrpn) || !Number.isInteger(nrpn[0]) || !Number.isInteger(nrpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
+    }
+
+    if (!(nrpn[0] >= 0 && nrpn[0] <= 127)) {
+      throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
+    }
+
+    if (!(nrpn[1] >= 0 && nrpn[1] <= 127)) {
+      throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
+    }
+
+    data.forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectNonRegisteredParameter(nrpn, options);
     this._setCurrentParameter(data, options);
     this._deselectNonRegisteredParameter(options);
 
@@ -2607,8 +2642,6 @@ class OutputChannel extends e {
    * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
    * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
    * -1 will bend the note 1 octave below its nominal value.
-   *
-   * If an invalid value is specified, the nearest valid value will be used instead.
    *
    * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
    * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
@@ -2633,34 +2666,48 @@ class OutputChannel extends e {
    */
   setPitchBend(value, options = {}) {
 
+    /* START.VALIDATION */
+    if (options.rawValue && Array.isArray(value)) {
+
+      if (!(value[0] >= 0 && value[0] <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+      if (!(value[1] >= 0 && value[1] <= 127)) {
+        throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
+      }
+
+    } else if (options.rawValue && !Array.isArray(value)) {
+
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+
+    } else {
+
+      if (isNaN(value) || value === null) {
+        throw new RangeError("Invalid pitch bend value.");
+      }
+
+      if (!(value >= -1 && value <= 1)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+
+    }
+    /* END.VALIDATION */
+
     let msb = 0;
     let lsb = 0;
 
     // Calculate MSB and LSB for both scenarios
-    if (options.rawValue) {
-
-      if (Array.isArray(value)) {
-        msb = parseInt(value[0]);
-        lsb = parseInt(value[1]);
-      } else {
-        msb = parseInt(value);
-      }
-
-      if (isNaN(msb)) msb = 64;
-      if (isNaN(lsb)) lsb = 64;
-
-      // Validation
-      msb = Math.min(Math.max(msb, 0), 127);
-      lsb = Math.min(Math.max(lsb, 0), 127);
-
+    if (options.rawValue && Array.isArray(value)) {
+      msb = value[0];
+      lsb = value[1];
+    } else if (options.rawValue && !Array.isArray(value)) {
+      msb = value;
     } else {
-
-      let valid = parseFloat(value) || 0;
-      valid = Math.min(Math.max(valid, -1), 1);
-      let nLevel = Math.round((valid + 1) / 2 * 16383);
+      let nLevel = Math.round((value + 1) / 2 * 16383);
       msb = (nLevel >> 7) & 0x7F;
       lsb = nLevel & 0x7F;
-
     }
 
     this.send(
@@ -2699,8 +2746,19 @@ class OutputChannel extends e {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPitchBendRange(semitones, cents, options = {}) {
+
+    /* START.VALIDATION */
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
     this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
     return this;
+
   }
 
   /**
@@ -2728,11 +2786,17 @@ class OutputChannel extends e {
    */
   setProgram(program, options = {}) {
 
-    program = parseFloat(program) - 1;
+    program = parseInt(program) || 1;
+
+    /* START.VALIDATION */
+    if (!(program >= 1 && program <= 128)) {
+      throw new RangeError("The program number must be between 1 and 128.");
+    }
+    /* END.VALIDATION */
 
     this.send(
       (wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
-      [program],
+      [program - 1],
       wm.convertToTimestamp(options.time)
     );
 
@@ -2790,11 +2854,31 @@ class OutputChannel extends e {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  setRegisteredParameter(parameter, data, options = {}) {
+  setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETER[rpn];
 
-    this._selectRegisteredParameter(parameter, options);
+    /* START.VALIDATION */
+    if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
+    }
+
+    if (!(rpn[0] >= 0 && rpn[0] <= 127)) {
+      throw new RangeError("The first byte of the RPN must be between 0 and 127.");
+    }
+
+    if (!(rpn[1] >= 0 && rpn[1] <= 127)) {
+      throw new RangeError("The second byte of the RPN must be between 0 and 127.");
+    }
+
+    [].concat(data).forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectRegisteredParameter(rpn, options);
     this._setCurrentParameter(data, options);
     this._deselectRegisteredParameter(options);
 
@@ -2826,13 +2910,13 @@ class OutputChannel extends e {
    */
   setTuningBank(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128.");
+    /* START.VALIDATION */
+    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError("The tuning bank number must be between 1 and 128.");
     }
+    /* END.VALIDATION */
 
     this.setRegisteredParameter("tuningbank", value - 1, options);
-
     return this;
 
   }
@@ -2861,13 +2945,13 @@ class OutputChannel extends e {
    */
   setTuningProgram(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128.");
+    /* START.VALIDATION */
+    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError("The tuning program number must be between 1 and 128.");
     }
+    /* END.VALIDATION */
 
     this.setRegisteredParameter("tuningprogram", value - 1, options);
-
     return this;
 
   }
@@ -3173,11 +3257,11 @@ class Output extends e {
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (128-255).
+   * @param status {Number} The MIDI status byte of the message (integer between 128-255).
    *
-   * @param [data=[]] {Array} An array of unsigned integers for the message. The number of data
+   * @param [data=[]] {number[]} An array of unsigned integers for the message. The number of data
    * bytes varies depending on the status byte. It is perfectly legal to send no data for some
-   * message types (use undefined or an empty array in this case). Each byte must be between 0 and
+   * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
    * @param {Object} [options={}]
@@ -3217,13 +3301,19 @@ class Output extends e {
    */
   send(status, data = [], options= {}) {
 
-    /* START.VALIDATION */
     if (!Array.isArray(data)) data = [data];
 
-    data.map(value => {
+    /* START.VALIDATION */
+    if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
+      throw new RangeError("The status must be an integer between 128 and 255.");
+    }
+
+    data.forEach(value => {
       value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("Data cannot be NaN.");
-      return value;
+      if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
+      if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
+        throw new RangeError("The data bytes must be integers between 0 and 255.");
+      }
     });
     /* END.VALIDATION */
 
@@ -3330,7 +3420,9 @@ class Output extends e {
     if (this._midiOutput.clear) {
       this._midiOutput.clear();
     } else {
-      console.warn("The 'clear()' method has not yet been implemented in your environment.");
+      console.warn(
+        "The 'clear()' method has not yet been implemented in your environment."
+      );
     }
     return this;
   }
@@ -4524,8 +4616,6 @@ class Output extends e {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @throws Error The specified parameter is not available.
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   incrementRegisteredParameter(parameter, channel, options = {}) {
@@ -5607,7 +5697,7 @@ class WebMidi extends e {
    * object or an array of the previous types, to an array of {@link Note} objects.
    *
    * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. Invalid elements are simply ignored.
+   * created with the options specified. An error will be thrown when encountering invalid input.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
@@ -5629,6 +5719,8 @@ class WebMidi extends e {
    * 127.
    *
    * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
    */
   getValidNoteArray(notes, options = {}) {
 
@@ -5641,7 +5733,11 @@ class WebMidi extends e {
         result.push(note);
       } else {
         let number = this.guessNoteNumber(note);
-        if (number !== false) result.push(new Note(number, options));
+        if (number !== false) {
+          result.push(new Note(number, options));
+        } else {
+          throw new TypeError(`An element could not be parsed as a note (${note})`);
+        }
       }
 
     });
