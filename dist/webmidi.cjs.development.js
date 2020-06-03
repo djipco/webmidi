@@ -2265,7 +2265,7 @@ class OutputChannel extends e {
     if (options.rawAttack != undefined) {
       nVelocity = options.rawAttack;
     } else {
-      if (!isNaN(options.attack)) nVelocity = options.attack * 127;
+      if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
     }
 
     let o = {
