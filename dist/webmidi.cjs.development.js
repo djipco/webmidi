@@ -2228,7 +2228,7 @@ class OutputChannel extends e {
    * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawAttack=64] The velocity at which to release the note (between `0`
    * and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `64`.
    *
@@ -2263,19 +2263,9 @@ class OutputChannel extends e {
     let nVelocity = 64;
 
     if (options.rawAttack != undefined) {
-      // if (
-      //   !isNaN(options.rawAttack) &&
-      //   options.rawAttack >= 0 &&
-      //   options.rawAttack <= 127
-      // ) {
-      nVelocity = options.rawAttack; // }
+      nVelocity = options.rawAttack;
     } else {
-      if (!isNaN(options.attack) //&&
-      // options.attack >= 0 &&
-      // options.attack <= 1
-      ) {
-          nVelocity = options.attack * 127;
-        }
+      if (!isNaN(options.attack)) nVelocity = options.attack * 127;
     }
 
     let o = {
