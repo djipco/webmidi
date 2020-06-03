@@ -722,7 +722,19 @@ export class OutputChannel extends EventEmitter {
    */
   sendNoteOff(note, options = {}) {
 
-    // Compatibility warnings
+    /* START.VALIDATION */
+    if (
+      options.rawRelease != undefined &&
+      !(options.rawRelease >= 0 && options.rawRelease <= 127)
+    ) {
+      throw new RangeError("The 'rawRelease' option must be an integer between 0 and 127");
+    }
+    if (options.release != undefined && !(options.release >= 0 && options.release <= 1)) {
+      throw new RangeError("The 'release' option must be an number between 0 and 1");
+    }
+    /* END.VALIDATION */
+
+    // Legacy compatibility warnings
     if (options.rawVelocity) {
       options.rawRelease = options.velocity;
       console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.");
@@ -735,21 +747,9 @@ export class OutputChannel extends EventEmitter {
     let nVelocity = 64;
 
     if (options.rawRelease != undefined) {
-      if (
-        !isNaN(options.rawRelease) &&
-        options.rawRelease >= 0
-        && options.rawRelease <= 127
-      ) {
-        nVelocity = options.rawRelease;
-      }
+      nVelocity = options.rawRelease;
     } else {
-      if (
-        !isNaN(options.release) &&
-        options.release >= 0 &&
-        options.release <= 1
-      ) {
-        nVelocity = options.release * 127;
-      }
+      if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
     }
 
     // Send note off messages
@@ -1429,7 +1429,7 @@ export class OutputChannel extends EventEmitter {
       throw new RangeError("The second byte of the RPN must be between 0 and 127.");
     }
 
-    data.forEach(value => {
+    [].concat(data).forEach(value => {
       if (!(value >= 0 && value <= 127)) {
         throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
       }
