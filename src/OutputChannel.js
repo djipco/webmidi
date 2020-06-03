@@ -725,9 +725,7 @@ export class OutputChannel extends EventEmitter {
     // Compatibility warnings
     if (options.rawVelocity) {
       options.rawRelease = options.velocity;
-      console.warn(
-        "The 'rawVelocity' option is deprecated. Use 'rawRelease' instead."
-      );
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.");
     }
     if (options.velocity) {
       options.release = options.velocity;
@@ -819,7 +817,7 @@ export class OutputChannel extends EventEmitter {
    * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawAttack=64] The velocity at which to release the note (between `0`
    * and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid
    * velocity value will silently trigger the default of `64`.
    *
@@ -827,13 +825,20 @@ export class OutputChannel extends EventEmitter {
    */
   sendNoteOn(note, options = {}) {
 
-    // Compatibility warnings
+    /* START.VALIDATION */
+    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack <= 127)) {
+      throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
+    }
+    if (options.attack != undefined && !(options.attack >= 0 && options.attack <= 1)) {
+      throw new RangeError("The 'attack' option must be an number between 0 and 1");
+    }
+    /* END.VALIDATION */
+
+    // Legacy compatibility warnings
     if (options.rawVelocity) {
       options.rawAttack = options.velocity;
       options.rawRelease = options.release;
-      console.warn(
-        "The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease' instead."
-      );
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.");
     }
     if (options.velocity) {
       options.attack = options.velocity;
@@ -843,21 +848,9 @@ export class OutputChannel extends EventEmitter {
     let nVelocity = 64;
 
     if (options.rawAttack != undefined) {
-      if (
-        !isNaN(options.rawAttack) &&
-        options.rawAttack >= 0 &&
-        options.rawAttack <= 127
-      ) {
-        nVelocity = options.rawAttack;
-      }
+      nVelocity = options.rawAttack;
     } else {
-      if (
-        !isNaN(options.attack) &&
-        options.attack >= 0 &&
-        options.attack <= 1
-      ) {
-        nVelocity = options.attack * 127;
-      }
+      if (!isNaN(options.attack)) nVelocity = options.attack * 127;
     }
 
     let o = {rawAttack: nVelocity};
@@ -1002,13 +995,28 @@ export class OutputChannel extends EventEmitter {
    */
   setChannelAftertouch(pressure, options = {}) {
 
-    // Validation
-    pressure = parseFloat(pressure);
-    if (isNaN(pressure)) pressure = -1;
-    if (options.rawValue) pressure = pressure / 127;
-    if (pressure < 0 || pressure > 1) {
+    /* START.VALIDATION */
+    if (isNaN(parseFloat(pressure))) {
       throw new RangeError("Invalid channel aftertouch value.");
     }
+    if (options.rawValue) {
+      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+        throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+      }
+    } else {
+      if (!(pressure >= 0 && pressure <= 1)) {
+        throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+      }
+    }
+    /* END.VALIDATION */
+
+    // Validation
+    // pressure = parseFloat(pressure);
+    // if (isNaN(pressure)) pressure = -1;
+    // if (options.rawValue) pressure = pressure / 127;
+    // if (pressure < 0 || pressure > 1) {
+    //   throw new RangeError("Invalid channel aftertouch value.");
+    // }
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1),
@@ -1076,10 +1084,10 @@ export class OutputChannel extends EventEmitter {
    * The range can be specified with the `semitones` parameter, the `cents` parameter or by
    * specifying both parameters at the same time.
    *
-   * @param [semitones=0] {number} The desired adjustment value in semitones (integer between
-   * 0 and 127).
+   * @param semitones {number} The desired adjustment value in semitones (integer between 0 and
+   * 127).
    *
-   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
+   * @param cents {number} The desired adjustment value in cents (integer between 0 and 127).
    *
    * @param {Object} [options={}]
    *
@@ -1094,10 +1102,10 @@ export class OutputChannel extends EventEmitter {
   setModulationRange(semitones, cents, options = {}) {
 
     /* START.VALIDATION */
-    if (!(semitones >= 0 && semitones <= 127)) {
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
       throw new RangeError("The semitones value must be an integer between 0 and 127.");
     }
-    if (!(cents >= 0 && cents <= 127)) {
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
       throw new RangeError("The cents value must be an integer between 0 and 127.");
     }
     /* END.VALIDATION */
@@ -1152,24 +1160,31 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  setNonRegisteredParameter(parameter, data, options = {}) {
-
-    // Validation
-    parameter = [].concat(parameter);
-    parameter[0] = parseInt(parameter[0]);
-    parameter[1] = parseInt(parameter[1]);
-
-    if (isNaN(parameter[0]) || isNaN(parameter[1])) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
-
-
-
-
+  setNonRegisteredParameter(nrpn, data, options = {}) {
 
     data = [].concat(data);
 
-    this._selectNonRegisteredParameter(parameter, options);
+    /* START.VALIDATION */
+    if (!Array.isArray(nrpn) || !Number.isInteger(nrpn[0]) || !Number.isInteger(nrpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
+    }
+
+    if (!(nrpn[0] >= 0 && nrpn[0] <= 127)) {
+      throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
+    }
+
+    if (!(nrpn[1] >= 0 && nrpn[1] <= 127)) {
+      throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
+    }
+
+    data.forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectNonRegisteredParameter(nrpn, options);
     this._setCurrentParameter(data, options);
     this._deselectNonRegisteredParameter(options);
 
@@ -1185,8 +1200,6 @@ export class OutputChannel extends EventEmitter {
    * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
    * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
    * -1 will bend the note 1 octave below its nominal value.
-   *
-   * If an invalid value is specified, the nearest valid value will be used instead.
    *
    * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
    * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
@@ -1211,34 +1224,48 @@ export class OutputChannel extends EventEmitter {
    */
   setPitchBend(value, options = {}) {
 
+    /* START.VALIDATION */
+    if (options.rawValue && Array.isArray(value)) {
+
+      if (!(value[0] >= 0 && value[0] <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+      if (!(value[1] >= 0 && value[1] <= 127)) {
+        throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
+      }
+
+    } else if (options.rawValue && !Array.isArray(value)) {
+
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+
+    } else {
+
+      if (isNaN(value) || value === null) {
+        throw new RangeError("Invalid pitch bend value.");
+      }
+
+      if (!(value >= -1 && value <= 1)) {
+        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+      }
+
+    }
+    /* END.VALIDATION */
+
     let msb = 0;
     let lsb = 0;
 
     // Calculate MSB and LSB for both scenarios
-    if (options.rawValue) {
-
-      if (Array.isArray(value)) {
-        msb = parseInt(value[0]);
-        lsb = parseInt(value[1]);
-      } else {
-        msb = parseInt(value);
-      }
-
-      if (isNaN(msb)) msb = 64;
-      if (isNaN(lsb)) lsb = 64;
-
-      // Validation
-      msb = Math.min(Math.max(msb, 0), 127);
-      lsb = Math.min(Math.max(lsb, 0), 127);
-
+    if (options.rawValue && Array.isArray(value)) {
+      msb = value[0];
+      lsb = value[1];
+    } else if (options.rawValue && !Array.isArray(value)) {
+      msb = value;
     } else {
-
-      let valid = parseFloat(value) || 0;
-      valid = Math.min(Math.max(valid, -1), 1);
-      let nLevel = Math.round((valid + 1) / 2 * 16383);
+      let nLevel = Math.round((value + 1) / 2 * 16383);
       msb = (nLevel >> 7) & 0x7F;
       lsb = nLevel & 0x7F;
-
     }
 
     this.send(
@@ -1277,8 +1304,19 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPitchBendRange(semitones, cents, options = {}) {
+
+    /* START.VALIDATION */
+    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+      throw new RangeError("The semitones value must be an integer between 0 and 127.");
+    }
+    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+      throw new RangeError("The cents value must be an integer between 0 and 127.");
+    }
+    /* END.VALIDATION */
+
     this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
     return this;
+
   }
 
   /**
@@ -1306,11 +1344,17 @@ export class OutputChannel extends EventEmitter {
    */
   setProgram(program, options = {}) {
 
-    program = parseFloat(program) - 1;
+    program = parseInt(program) || 1;
+
+    /* START.VALIDATION */
+    if (!(program >= 1 && program <= 128)) {
+      throw new RangeError("The program number must be between 1 and 128.");
+    }
+    /* END.VALIDATION */
 
     this.send(
       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
-      [program],
+      [program - 1],
       WebMidi.convertToTimestamp(options.time)
     );
 
@@ -1368,11 +1412,31 @@ export class OutputChannel extends EventEmitter {
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
-  setRegisteredParameter(parameter, data, options = {}) {
+  setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETER[rpn];
 
-    this._selectRegisteredParameter(parameter, options);
+    /* START.VALIDATION */
+    if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
+      throw new TypeError("The specified NRPN is invalid.");
+    }
+
+    if (!(rpn[0] >= 0 && rpn[0] <= 127)) {
+      throw new RangeError("The first byte of the RPN must be between 0 and 127.");
+    }
+
+    if (!(rpn[1] >= 0 && rpn[1] <= 127)) {
+      throw new RangeError("The second byte of the RPN must be between 0 and 127.");
+    }
+
+    data.forEach(value => {
+      if (!(value >= 0 && value <= 127)) {
+        throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+      }
+    });
+    /* END.VALIDATION */
+
+    this._selectRegisteredParameter(rpn, options);
     this._setCurrentParameter(data, options);
     this._deselectRegisteredParameter(options);
 
@@ -1404,13 +1468,13 @@ export class OutputChannel extends EventEmitter {
    */
   setTuningBank(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128.");
+    /* START.VALIDATION */
+    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError("The tuning bank number must be between 1 and 128.");
     }
+    /* END.VALIDATION */
 
     this.setRegisteredParameter("tuningbank", value - 1, options);
-
     return this;
 
   }
@@ -1439,13 +1503,13 @@ export class OutputChannel extends EventEmitter {
    */
   setTuningProgram(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128.");
+    /* START.VALIDATION */
+    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+      throw new RangeError("The tuning program number must be between 1 and 128.");
     }
+    /* END.VALIDATION */
 
     this.setRegisteredParameter("tuningprogram", value - 1, options);
-
     return this;
 
   }
