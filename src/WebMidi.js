@@ -617,7 +617,7 @@ class WebMidi extends EventEmitter {
         result.push(note);
       } else {
         let number = this.guessNoteNumber(note);
-        if (number) {
+        if (number !== false) {
           result.push(new Note(number, options));
         } else {
           throw new TypeError(`An element could not be parsed as a note (${note})`);
