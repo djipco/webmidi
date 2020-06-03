@@ -3251,15 +3251,13 @@ class Output extends e {
       throw new RangeError("The status must be an integer between 128 and 255.");
     }
 
-    data.map(value => {
+    data.forEach(value => {
       value = parseInt(value);
       if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
 
       if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
         throw new RangeError("The data bytes must be integers between 0 and 255.");
       }
-
-      return value;
     });
     /* END.VALIDATION */
     // Legacy support
