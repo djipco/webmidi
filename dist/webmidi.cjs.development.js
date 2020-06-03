@@ -3255,7 +3255,7 @@ class Output extends e {
       value = parseInt(value);
       if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
 
-      if (!(parseInt(value) >= 0 && parseInt(status) <= 255)) {
+      if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
         throw new RangeError("The data bytes must be integers between 0 and 255.");
       }
 
@@ -4481,8 +4481,6 @@ class Output extends e {
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
-   *
-   * @throws Error The specified parameter is not available.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
