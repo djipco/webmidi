@@ -850,7 +850,7 @@ export class OutputChannel extends EventEmitter {
     if (options.rawAttack != undefined) {
       nVelocity = options.rawAttack;
     } else {
-      if (!isNaN(options.attack)) nVelocity = options.attack * 127;
+      if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
     }
 
     let o = {rawAttack: nVelocity};
