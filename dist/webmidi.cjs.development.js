@@ -2238,13 +2238,21 @@ class OutputChannel extends e {
 
   sendNoteOn(note, options = {}) {
     /* START.VALIDATION */
+    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack >= 127)) {
+      throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
+    }
 
+    if (options.attack != undefined && !(options.attack >= 0 && options.attack >= 1)) {
+      throw new RangeError("The 'attack' option must be an number between 0 and 1");
+    }
     /* END.VALIDATION */
-    // Compatibility warnings
+    // Legacy compatibility warnings
+
+
     if (options.rawVelocity) {
       options.rawAttack = options.velocity;
       options.rawRelease = options.release;
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease' instead.");
+      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.");
     }
 
     if (options.velocity) {
@@ -2255,13 +2263,19 @@ class OutputChannel extends e {
     let nVelocity = 64;
 
     if (options.rawAttack != undefined) {
-      if (!isNaN(options.rawAttack) && options.rawAttack >= 0 && options.rawAttack <= 127) {
-        nVelocity = options.rawAttack;
-      }
+      // if (
+      //   !isNaN(options.rawAttack) &&
+      //   options.rawAttack >= 0 &&
+      //   options.rawAttack <= 127
+      // ) {
+      nVelocity = options.rawAttack; // }
     } else {
-      if (!isNaN(options.attack) && options.attack >= 0 && options.attack <= 1) {
-        nVelocity = options.attack * 127;
-      }
+      if (!isNaN(options.attack) //&&
+      // options.attack >= 0 &&
+      // options.attack <= 1
+      ) {
+          nVelocity = options.attack * 127;
+        }
     }
 
     let o = {
