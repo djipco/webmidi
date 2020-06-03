@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 2nd 2020.
+ * This build was generated on June 3rd 2020.
  *
  *
  *
@@ -2237,6 +2237,9 @@ class OutputChannel extends e {
 
 
   sendNoteOn(note, options = {}) {
+    /* START.VALIDATION */
+
+    /* END.VALIDATION */
     // Compatibility warnings
     if (options.rawVelocity) {
       options.rawAttack = options.velocity;
@@ -5534,7 +5537,7 @@ class WebMidi extends e {
    * object or an array of the previous types, to an array of {@link Note} objects.
    *
    * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. Invalid elements are simply ignored.
+   * created with the options specified. An error will be thrown when encountering invalid input.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
@@ -5567,7 +5570,12 @@ class WebMidi extends e {
         result.push(note);
       } else {
         let number = this.guessNoteNumber(note);
-        if (number !== false) result.push(new Note(number, options));
+
+        if (number) {
+          result.push(new Note(number, options));
+        } else {
+          throw new TypeError(`An element could not be parsed as a note (${note})`);
+        }
       }
     });
     return result;
