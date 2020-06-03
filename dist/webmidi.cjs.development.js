@@ -2170,19 +2170,9 @@ class OutputChannel extends e {
     let nVelocity = 64;
 
     if (options.rawRelease != undefined) {
-      // if (
-      //   !isNaN(options.rawRelease) &&
-      //   options.rawRelease >= 0
-      //   && options.rawRelease <= 127
-      // ) {
-      nVelocity = options.rawRelease; // }
+      nVelocity = options.rawRelease;
     } else {
-      if (!isNaN(options.release) //&&
-      // options.release >= 0 &&
-      // options.release <= 1
-      ) {
-          nVelocity = options.release * 127;
-        }
+      if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
     } // Send note off messages
 
 
