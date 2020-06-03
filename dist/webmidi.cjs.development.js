@@ -5559,6 +5559,8 @@ class WebMidi extends e {
    * 127.
    *
    * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
    */
 
 
