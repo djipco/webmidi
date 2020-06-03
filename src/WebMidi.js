@@ -581,7 +581,7 @@ class WebMidi extends EventEmitter {
    * object or an array of the previous types, to an array of {@link Note} objects.
    *
    * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. Invalid elements are simply ignored.
+   * created with the options specified. An error will be thrown when encountering invalid input.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
@@ -615,7 +615,11 @@ class WebMidi extends EventEmitter {
         result.push(note);
       } else {
         let number = this.guessNoteNumber(note);
-        if (number !== false) result.push(new Note(number, options));
+        if (number) {
+          result.push(new Note(number, options));
+        } else {
+          throw new TypeError(`An element could not be parsed as a note (${note})`);
+        }
       }
 
     });
