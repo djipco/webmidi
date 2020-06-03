@@ -2816,7 +2816,7 @@ class OutputChannel extends e {
       throw new RangeError("The second byte of the RPN must be between 0 and 127.");
     }
 
-    data.forEach(value => {
+    [].concat(data).forEach(value => {
       if (!(value >= 0 && value <= 127)) {
         throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
       }
