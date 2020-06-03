@@ -2238,11 +2238,11 @@ class OutputChannel extends e {
 
   sendNoteOn(note, options = {}) {
     /* START.VALIDATION */
-    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack >= 127)) {
+    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack <= 127)) {
       throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
     }
 
-    if (options.attack != undefined && !(options.attack >= 0 && options.attack >= 1)) {
+    if (options.attack != undefined && !(options.attack >= 0 && options.attack <= 1)) {
       throw new RangeError("The 'attack' option must be an number between 0 and 1");
     }
     /* END.VALIDATION */
