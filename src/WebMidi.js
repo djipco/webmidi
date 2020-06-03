@@ -603,6 +603,8 @@ class WebMidi extends EventEmitter {
    * 127.
    *
    * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
    */
   getValidNoteArray(notes, options = {}) {
 
