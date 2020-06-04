@@ -810,7 +810,7 @@ describe("Output Object", function() {
       [255, 9999999, undefined, null, [], {}].forEach(value => {
         expect(() => {
           WebMidiOutput.sendTimecodeQuarterFrame(value);
-        }).to.throw(TypeError);
+        }).to.throw();
       });
 
 
