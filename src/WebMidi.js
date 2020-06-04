@@ -332,8 +332,10 @@ class WebMidi extends EventEmitter {
    */
   getInputById(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i < this.inputs.length; i++) {
       if (this.inputs[i].id === id.toString()) return this.inputs[i];
@@ -360,9 +362,11 @@ class WebMidi extends EventEmitter {
    */
   getInputByName(name) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i < this.inputs.length; i++) {
       if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
@@ -389,9 +393,11 @@ class WebMidi extends EventEmitter {
    */
   getOutputByName(name) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i < this.outputs.length; i++) {
       if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
@@ -421,8 +427,10 @@ class WebMidi extends EventEmitter {
    */
   getOutputById(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i < this.outputs.length; i++) {
       if (this.outputs[i].id === id.toString()) return this.outputs[i];
@@ -456,7 +464,9 @@ class WebMidi extends EventEmitter {
    */
   getNoteNumberByName(name) {
 
-    if (typeof name !== "string") name = "";
+    if (WebMidi.validation) {
+      if (typeof name !== "string") name = "";
+    }
 
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if(!matches) return false;
@@ -506,7 +516,9 @@ class WebMidi extends EventEmitter {
    */
   getOctave(number) {
 
-    number = parseInt(number);
+    if (WebMidi.validation) {
+      number = parseInt(number);
+    }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
       return Math.floor(number / 12 - 1) + this.octaveOffset;
@@ -533,11 +545,17 @@ class WebMidi extends EventEmitter {
 
     let channels;
 
-    if (channel === "all") { // backwards-compatibility
-      channels = ["all"];
-    } else if (channel === "none") { // backwards-compatibility
-      return [];
-    } else if (!Array.isArray(channel)) {
+    if (WebMidi.validation) {
+
+      if (channel === "all") { // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") { // backwards-compatibility
+        return [];
+      }
+
+    }
+
+    if (!Array.isArray(channel)) {
       channels = [channel];
     } else {
       channels = channel;
@@ -563,10 +581,15 @@ class WebMidi extends EventEmitter {
    * @deprecated since version 3.0. Use sanitizeChannels() instead.
    */
   toMIDIChannels(channel) {
-    console.warn(
-      "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
-    );
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
+      );
+    }
+
     return this.sanitizeChannels(channel);
+
   }
 
   /**
@@ -1000,9 +1023,14 @@ class WebMidi extends EventEmitter {
     return this._octaveOffset;
   }
   set octaveOffset(value) {
-    value = parseInt(value);
-    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+    }
+
     this._octaveOffset = value;
+
   }
 
   /**
