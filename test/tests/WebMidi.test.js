@@ -12,31 +12,41 @@ describe("WebMidi Object", function() {
   });
 
   it("should not allow itself to be instantiated", function() {
+
+    // Assert
     expect(function() {
       new WebMidi();
     }).to.throw(TypeError);
+
   });
 
   it("should not allow itself to be instantiated through 'constructor' property", function() {
+
+    // Assert
     expect(function() {
       new WebMidi.constructor();
     }).to.throw(TypeError);
+
   });
 
   it("should remain extensible", function() {
+
+    // Assert
     expect(Object.isExtensible(WebMidi)).to.be.true;
+
   });
 
   it("should have empty 'inputs' and 'outputs' arrays", function() {
+
+    // Assert
     expect(WebMidi.inputs.length).to.equal(0);
     expect(WebMidi.outputs.length).to.equal(0);
+
   });
 
   it("should trigger 'enabled' event", async function () {
 
-    // Ignore in browser
-    if (!WebMidi.isNode) this.skip();
-
+    // Assert
     await new Promise(resolve => {
       WebMidi.addListener("enabled", resolve);
       WebMidi.enable();
@@ -46,9 +56,7 @@ describe("WebMidi Object", function() {
 
   it("should trigger 'disabled' event", async function () {
 
-    // Ignore in browser
-    if (!WebMidi.isNode) this.skip();
-
+    // Assert
     await new Promise(resolve => {
       WebMidi.addListener("disabled", resolve);
       WebMidi.disable();
@@ -56,8 +64,7 @@ describe("WebMidi Object", function() {
 
   });
 
-
-
+  it("should trigger 'connected' event for output ports");
 
   // it("should trigger 'connected' event for output ports DOES NOT WORK!!!!!", async function () {
   //
@@ -90,62 +97,77 @@ describe("WebMidi Object", function() {
   //
   // });
 
-
-
-
-
-
+  // VERIFIED
   describe("constructor()", function() {
 
     beforeEach("Enable WebMidi", async function() {
       await WebMidi.enable({sysex: true});
     });
 
-    it("should adjut to Node.js environmenet", function() {
+    it("should adjust to Node.js environment", function() {
 
-      if (WebMidi.isNode) {
-        expect(typeof navigator.requestMIDIAccess).to.equal("function");
-        expect(typeof performance.now).to.equal("function");
-      } else {
-        this.skip();
-      }
+      // Assert
+      expect(typeof navigator.requestMIDIAccess).to.equal("function");
+      expect(typeof performance.now).to.equal("function");
 
     });
 
   });
 
+  // VERIFIED
   describe("convertToTimestamp()", function() {
 
     beforeEach("Enable WebMidi", async function() {
       await WebMidi.enable({sysex: true});
     });
 
-    it("should return timestamp when passed a string starting with '+'", function() {
+    it("should return timestamp when passed string starting with '+'", function() {
+      // Assert
       expect(WebMidi.convertToTimestamp("+1000")).to.be.a("number");
     });
 
     it("should return false for invalid input", function() {
-      [undefined, null, false, [], {}, "", "-1", "+", -1, -Infinity].forEach(value => {
+
+      // Arrange
+      let values = [undefined, null, false, [], {}, "", "-1", "+", -1, -Infinity];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
         expect(WebMidi.convertToTimestamp(value)).to.be.false;
-      });
+      }
+
     });
 
     it("should return a positive number as is", function() {
-      [0, 1, Infinity].forEach(value => {
+
+      // Arrange
+      let values = [0, 1, Infinity];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
         expect(WebMidi.convertToTimestamp(value)).to.equal(value);
-      });
+      }
+
     });
 
   });
 
+  // VERIFIED
   describe("disable()", function() {
 
     beforeEach("Enable WebMidi", async function() {
       await WebMidi.enable({sysex: true});
     });
 
-    it("should set the 'enabled' property to false", function(done) {
+    it("should set 'enabled' property to false", function(done) {
 
+      // Assert
       WebMidi.disable().then(() => {
         expect(WebMidi.enabled).to.equal(false);
         done();
@@ -154,40 +176,50 @@ describe("WebMidi Object", function() {
     });
 
     it("should set the 'sysexEnabled' property to false", function(done) {
+
+      // Assert
       WebMidi.disable().then(() => {
         expect(WebMidi.sysexEnabled).to.equal(false);
         done();
       });
+
     });
 
     it("should trim 'input' and 'output' array lengths to 0", function(done) {
+
+      // Assert
       WebMidi.disable().then(() => {
         expect(WebMidi.inputs.length).to.equal(0);
         expect(WebMidi.outputs.length).to.equal(0);
         done();
       });
+
     });
 
-    it("should remove all user handlers", function(done) {
+    it("should remove all user handlers", async function() {
 
+      // Arrange
       WebMidi.addListener("connected", () => {});
       WebMidi.addListener("disconnected", () => {});
       WebMidi.addListener("enabled", () => {});
       WebMidi.addListener("disabled", () => {});
 
-      WebMidi.disable().then(() => {
-        expect(WebMidi.hasListener()).to.be.false;
-        done();
-      });
+      // Act
+      await WebMidi.disable();
+
+      // Assert
+      expect(WebMidi.hasListener()).to.be.false;
 
     });
 
-    it("should set 'interface' to 'null'", function(done) {
+    it("should set 'interface' to 'null'", async function() {
 
-      WebMidi.disable().then(() => {
-        expect(WebMidi.interface).to.be.null;
-        done();
-      });
+      // Act
+      await WebMidi.disable();
+
+      // Assert
+      expect(WebMidi.interface).to.be.null;
+
     });
 
     it("should throw error if Web MIDI API is not supported", function(done) {
@@ -212,39 +244,43 @@ describe("WebMidi Object", function() {
 
   describe("enable()", function() {
 
-    it("should pass error to callback upon failure", function(done) {
+    it("should pass error to callback upon failure");
 
-      if (WebMidi.isNode) this.skip(); // I can't seem to be able to fake the absence of RMA on Node
-      this.timeout = 3000;
+    // it("should pass error to callback upon failure", function(done) {
+    //
+    //   if (WebMidi.isNode) this.skip(); // Can't seem to be able to fake the absence RMA on Node
+    //   this.timeout = 3000;
+    //
+    //   let backup = navigator.requestMIDIAccess;
+    //   navigator.requestMIDIAccess = undefined;
+    //
+    //   WebMidi.enable({callback: err => {
+    //     expect(err).to.be.an("error");
+    //     done();
+    //   }}).catch(() => {});
+    //
+    //   navigator.requestMIDIAccess = backup;
+    //
+    // });
 
-      let backup = navigator.requestMIDIAccess;
-      navigator.requestMIDIAccess = undefined;
+    it("should return a rejected promise upon failure");
 
-      WebMidi.enable({callback: err => {
-        expect(err).to.be.an("error");
-        done();
-      }}).catch(() => {});
-
-      navigator.requestMIDIAccess = backup;
-
-    });
-
-    it("should return a rejected promise upon failure", function(done) {
-
-      if (WebMidi.isNode) this.skip(); // I can't seem to be able to fake the absence of RMA on Node
-      this.timeout = 3000;
-
-      let backup = navigator.requestMIDIAccess;
-      navigator.requestMIDIAccess = undefined;
-
-      WebMidi.enable().catch(err => {
-        expect(err).to.be.an("error");
-        done();
-      });
-
-      navigator.requestMIDIAccess = backup;
-
-    });
+    // it("should return a rejected promise upon failure", function(done) {
+    //
+    //   if (WebMidi.isNode) this.skip(); // Can't seem to be able to fake absence of RMA on Node
+    //   this.timeout = 3000;
+    //
+    //   let backup = navigator.requestMIDIAccess;
+    //   navigator.requestMIDIAccess = undefined;
+    //
+    //   WebMidi.enable().catch(err => {
+    //     expect(err).to.be.an("error");
+    //     done();
+    //   });
+    //
+    //   navigator.requestMIDIAccess = backup;
+    //
+    // });
 
     it("should return a resolved promise if already enabled", function(done) {
 
@@ -299,40 +335,40 @@ describe("WebMidi Object", function() {
       WebMidi.enable().then(() => done());
     });
 
-    it("should enable sysex only if requested (for browsers with native MIDI)", function(done) {
+    // it("should enable sysex only if requested (for browsers with native MIDI)", function(done) {
+    //
+    //   WebMidi.enable({sysex: true})
+    //     .then(() => {
+    //
+    //       if ( isNative(navigator.requestMIDIAccess) ) {
+    //         expect(WebMidi.sysexEnabled).to.equal(true);
+    //       } else {
+    //         expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
+    //       }
+    //
+    //       done();
+    //
+    //     });
+    //
+    // });
 
-      WebMidi.enable({sysex: true})
-        .then(() => {
+    // it("should not enable sysex unless requested (browsers with native MIDI)", function(done) {
+    //
+    //   WebMidi.enable(function () {
+    //
+    //     if (isNative(navigator.requestMIDIAccess) ) {
+    //       expect(WebMidi.sysexEnabled).to.equal(false);
+    //     } else {
+    //       expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
+    //     }
+    //
+    //     done();
+    //
+    //   }, false);
+    //
+    // });
 
-          if ( isNative(navigator.requestMIDIAccess) ) {
-            expect(WebMidi.sysexEnabled).to.equal(true);
-          } else {
-            expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
-          }
-
-          done();
-
-        });
-
-    });
-
-    it("should not enable sysex unless requested (for browsers with native MIDI)", function(done) {
-
-      WebMidi.enable(function () {
-
-        if (isNative(navigator.requestMIDIAccess) ) {
-          expect(WebMidi.sysexEnabled).to.equal(false);
-        } else {
-          expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
-        }
-
-        done();
-
-      }, false);
-
-    });
-
-    it("should continue to support the old syntax", function(done) {
+    it("should continue to support the legacy syntax", function(done) {
 
       WebMidi.enable(function () {
 
@@ -390,7 +426,7 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return an instance of the 'Input' class", function() {
+    it("should return an instance of 'Input' class", function() {
 
       if (WebMidi.inputs.length > 0) {
         expect(WebMidi.getInputById(WebMidi.inputs[0].id))
@@ -401,7 +437,7 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when a weird id is provided", function() {
+    it("should return 'false' when invalid id is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, "", [], {}].forEach(id => {
@@ -626,13 +662,20 @@ describe("WebMidi Object", function() {
 
   describe("getValidNoteArray()", function() {
 
-    it("should exclude invalid values", function() {
+    it("should throw error for invalid values", function() {
 
-      let invalid = ["abc", null, undefined, -1, 128, {}, "555", "H3", "Z#8", Infinity, -Infinity];
-      let valid = [42, "42", new Note(60), "C-1", "G9"];
+      // Arrange
+      let values = ["abc", null, undefined, -1, 128, {}, "555", "H3", "Z#8", Infinity, -Infinity];
 
-      let notes = WebMidi.getValidNoteArray(invalid.concat(valid));
-      expect(notes.length).to.equal(valid.length);
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(() => {
+          WebMidi.getValidNoteArray(value);
+        }).to.throw();
+      }
 
     });
 
