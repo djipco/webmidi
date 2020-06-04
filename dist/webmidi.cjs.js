@@ -1606,25 +1606,24 @@ class OutputChannel extends e {
 
 
   setKeyAftertouch(note, pressure, options = {}) {
-    // Legacy support
-    if (options.useRawValue) options.rawValue = options.useRawValue;
-    /* START.VALIDATION */
+    if (wm.validation) {
+      // Legacy support
+      if (options.useRawValue) options.rawValue = options.useRawValue;
 
-    if (isNaN(parseFloat(pressure))) {
-      throw new RangeError("Invalid key aftertouch value.");
-    }
+      if (isNaN(parseFloat(pressure))) {
+        throw new RangeError("Invalid key aftertouch value.");
+      }
 
-    if (options.rawValue) {
-      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
-        throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+      if (options.rawValue) {
+        if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+          throw new RangeError("Key aftertouch raw value must be an integer between 0 and 127.");
+        }
+      } else {
+        if (!(pressure >= 0 && pressure <= 1)) {
+          throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
+        }
       }
-    } else {
-      if (!(pressure >= 0 && pressure <= 1)) {
-        throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
-      }
-    }
-    /* END.VALIDATION */
-    // Normalize to integer
+    } // Normalize to integer
 
 
     if (!options.rawValue) pressure = Math.round(pressure * 127);
@@ -1730,22 +1729,20 @@ class OutputChannel extends e {
     if (typeof controller === "string") {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
-    /* START.VALIDATION */
 
+    if (wm.validation) {
+      if (controller === undefined) {
+        throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
+      }
 
-    if (controller === undefined) {
-      throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 119.");
+      if (!Number.isInteger(controller) || !(controller >= 0 && controller <= 119)) {
+        throw new TypeError("Control change number must be an integer between 0 and 119.");
+      }
+
+      if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
+        throw new TypeError("Control change value must be an integer between 0 and 127");
+      }
     }
-
-    if (!Number.isInteger(controller) || !(controller >= 0 && controller <= 119)) {
-      throw new TypeError("Control change number must be an integer between 0 and 119.");
-    }
-
-    if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
-      throw new TypeError("Control change value must be an integer between 0 and 127");
-    }
-    /* END.VALIDATION */
-
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
     return this;
@@ -1939,20 +1936,20 @@ class OutputChannel extends e {
 
   decrementRegisteredParameter(parameter, options = {}) {
     if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
-    /* START.VALIDATION */
 
-    if (parameter === undefined) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
-
-    let valid = false;
-    Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
-      if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
-        valid = true;
+    if (wm.validation) {
+      if (parameter === undefined) {
+        throw new TypeError("The specified registered parameter is invalid.");
       }
-    });
-    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
-    /* END.VALIDATION */
+
+      let valid = false;
+      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
+        if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+          valid = true;
+        }
+      });
+      if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    }
 
     this._selectRegisteredParameter(parameter, options);
 
@@ -2002,20 +1999,20 @@ class OutputChannel extends e {
 
   incrementRegisteredParameter(parameter, options = {}) {
     if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
-    /* START.VALIDATION */
 
-    if (parameter === undefined) {
-      throw new TypeError("The specified registered parameter is invalid.");
-    }
-
-    let valid = false;
-    Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
-      if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
-        valid = true;
+    if (wm.validation) {
+      if (parameter === undefined) {
+        throw new TypeError("The specified registered parameter is invalid.");
       }
-    });
-    if (!valid) throw new TypeError("The specified registered parameter is invalid.");
-    /* END.VALIDATION */
+
+      let valid = false;
+      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
+        if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+          valid = true;
+        }
+      });
+      if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    }
 
     this._selectRegisteredParameter(parameter, options);
 
@@ -2145,26 +2142,25 @@ class OutputChannel extends e {
 
 
   sendNoteOff(note, options = {}) {
-    /* START.VALIDATION */
-    if (options.rawRelease != undefined && !(options.rawRelease >= 0 && options.rawRelease <= 127)) {
-      throw new RangeError("The 'rawRelease' option must be an integer between 0 and 127");
-    }
+    if (wm.validation) {
+      if (options.rawRelease != undefined && !(options.rawRelease >= 0 && options.rawRelease <= 127)) {
+        throw new RangeError("The 'rawRelease' option must be an integer between 0 and 127");
+      }
 
-    if (options.release != undefined && !(options.release >= 0 && options.release <= 1)) {
-      throw new RangeError("The 'release' option must be an number between 0 and 1");
-    }
-    /* END.VALIDATION */
-    // Legacy compatibility warnings
+      if (options.release != undefined && !(options.release >= 0 && options.release <= 1)) {
+        throw new RangeError("The 'release' option must be an number between 0 and 1");
+      } // Legacy compatibility warnings
 
 
-    if (options.rawVelocity) {
-      options.rawRelease = options.velocity;
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.");
-    }
+      if (options.rawVelocity) {
+        options.rawRelease = options.velocity;
+        console.warn("The 'rawVelocity' option is deprecated. Use 'rawRelease' instead.");
+      }
 
-    if (options.velocity) {
-      options.release = options.velocity;
-      console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+      if (options.velocity) {
+        options.release = options.velocity;
+        console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+      }
     }
 
     let nVelocity = 64;
@@ -2244,27 +2240,26 @@ class OutputChannel extends e {
 
 
   sendNoteOn(note, options = {}) {
-    /* START.VALIDATION */
-    if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack <= 127)) {
-      throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
-    }
+    if (wm.validation) {
+      if (options.rawAttack != undefined && !(options.rawAttack >= 0 && options.rawAttack <= 127)) {
+        throw new RangeError("The 'rawAttack' option must be an integer between 0 and 127");
+      }
 
-    if (options.attack != undefined && !(options.attack >= 0 && options.attack <= 1)) {
-      throw new RangeError("The 'attack' option must be an number between 0 and 1");
-    }
-    /* END.VALIDATION */
-    // Legacy compatibility warnings
+      if (options.attack != undefined && !(options.attack >= 0 && options.attack <= 1)) {
+        throw new RangeError("The 'attack' option must be an number between 0 and 1");
+      } // Legacy compatibility warnings
 
 
-    if (options.rawVelocity) {
-      options.rawAttack = options.velocity;
-      options.rawRelease = options.release;
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.");
-    }
+      if (options.rawVelocity) {
+        options.rawAttack = options.velocity;
+        options.rawRelease = options.release;
+        console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' or 'rawRelease'.");
+      }
 
-    if (options.velocity) {
-      options.attack = options.velocity;
-      console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+      if (options.velocity) {
+        options.attack = options.velocity;
+        console.warn("The 'velocity' option is deprecated. Use 'attack' instead.");
+      }
     }
 
     let nVelocity = 64;
@@ -2329,21 +2324,20 @@ class OutputChannel extends e {
   sendChannelMode(command, value, options = {}) {
     // Normalize command to integer
     if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
-    /* START.VALIDATION */
 
-    if (command === undefined) {
-      throw new TypeError("Invalid channel mode message name or number.");
+    if (wm.validation) {
+      if (command === undefined) {
+        throw new TypeError("Invalid channel mode message name or number.");
+      }
+
+      if (isNaN(command) || !(command >= 120 && command <= 127)) {
+        throw new TypeError("Invalid channel mode message number.");
+      }
+
+      if (isNaN(parseInt(value)) || value < 0 || value > 127) {
+        throw new RangeError("Value must be an integer between 0 and 127.");
+      }
     }
-
-    if (isNaN(command) || !(command >= 120 && command <= 127)) {
-      throw new TypeError("Invalid channel mode message number.");
-    }
-
-    if (isNaN(parseInt(value)) || value < 0 || value > 127) {
-      throw new RangeError("Value must be an integer between 0 and 127.");
-    }
-    /* END.VALIDATION */
-
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
     return this;
@@ -2406,29 +2400,21 @@ class OutputChannel extends e {
 
 
   setChannelAftertouch(pressure, options = {}) {
-    /* START.VALIDATION */
-    if (isNaN(parseFloat(pressure))) {
-      throw new RangeError("Invalid channel aftertouch value.");
-    }
-
-    if (options.rawValue) {
-      if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
-        throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+    if (wm.validation) {
+      if (isNaN(parseFloat(pressure))) {
+        throw new RangeError("Invalid channel aftertouch value.");
       }
-    } else {
-      if (!(pressure >= 0 && pressure <= 1)) {
-        throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+
+      if (options.rawValue) {
+        if (!(pressure >= 0 && pressure <= 127 && Number.isInteger(pressure))) {
+          throw new RangeError("Channel aftertouch raw value must be an integer between 0 and 127.");
+        }
+      } else {
+        if (!(pressure >= 0 && pressure <= 1)) {
+          throw new RangeError("Channel aftertouch value must be a float between 0 and 1.");
+        }
       }
     }
-    /* END.VALIDATION */
-    // Validation
-    // pressure = parseFloat(pressure);
-    // if (isNaN(pressure)) pressure = -1;
-    // if (options.rawValue) pressure = pressure / 127;
-    // if (pressure < 0 || pressure > 1) {
-    //   throw new RangeError("Invalid channel aftertouch value.");
-    // }
-
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), [Math.round(pressure * 127)], wm.convertToTimestamp(options.time));
     return this;
@@ -2461,13 +2447,12 @@ class OutputChannel extends e {
 
   setMasterTuning(value, options = {}) {
     value = parseFloat(value) || 0.0;
-    /* START.VALIDATION */
 
-    if (!(value > -65 && value < 64)) {
-      throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
+    if (wm.validation) {
+      if (!(value > -65 && value < 64)) {
+        throw new RangeError("The value must be a decimal number larger than -65 and smaller than 64.");
+      }
     }
-    /* END.VALIDATION */
-
 
     let coarse = Math.floor(value) + 64;
     let fine = value - Math.floor(value); // Calculate MSB and LSB for fine adjustment (14bit resolution)
@@ -2502,16 +2487,15 @@ class OutputChannel extends e {
 
 
   setModulationRange(semitones, cents, options = {}) {
-    /* START.VALIDATION */
-    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
-      throw new RangeError("The semitones value must be an integer between 0 and 127.");
-    }
+    if (wm.validation) {
+      if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+        throw new RangeError("The semitones value must be an integer between 0 and 127.");
+      }
 
-    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
-      throw new RangeError("The cents value must be an integer between 0 and 127.");
+      if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+        throw new RangeError("The cents value must be an integer between 0 and 127.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this.setRegisteredParameter("modulationrange", [semitones, cents], options);
     return this;
@@ -2564,26 +2548,26 @@ class OutputChannel extends e {
 
   setNonRegisteredParameter(nrpn, data, options = {}) {
     data = [].concat(data);
-    /* START.VALIDATION */
 
-    if (!Array.isArray(nrpn) || !Number.isInteger(nrpn[0]) || !Number.isInteger(nrpn[1])) {
-      throw new TypeError("The specified NRPN is invalid.");
-    }
-
-    if (!(nrpn[0] >= 0 && nrpn[0] <= 127)) {
-      throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
-    }
-
-    if (!(nrpn[1] >= 0 && nrpn[1] <= 127)) {
-      throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
-    }
-
-    data.forEach(value => {
-      if (!(value >= 0 && value <= 127)) {
-        throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+    if (wm.validation) {
+      if (!Array.isArray(nrpn) || !Number.isInteger(nrpn[0]) || !Number.isInteger(nrpn[1])) {
+        throw new TypeError("The specified NRPN is invalid.");
       }
-    });
-    /* END.VALIDATION */
+
+      if (!(nrpn[0] >= 0 && nrpn[0] <= 127)) {
+        throw new RangeError("The first byte of the NRPN must be between 0 and 127.");
+      }
+
+      if (!(nrpn[1] >= 0 && nrpn[1] <= 127)) {
+        throw new RangeError("The second byte of the NRPN must be between 0 and 127.");
+      }
+
+      data.forEach(value => {
+        if (!(value >= 0 && value <= 127)) {
+          throw new RangeError("The data bytes of the NRPN must be between 0 and 127.");
+        }
+      });
+    }
 
     this._selectNonRegisteredParameter(nrpn, options);
 
@@ -2626,30 +2610,29 @@ class OutputChannel extends e {
 
 
   setPitchBend(value, options = {}) {
-    /* START.VALIDATION */
-    if (options.rawValue && Array.isArray(value)) {
-      if (!(value[0] >= 0 && value[0] <= 127)) {
-        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
-      }
+    if (wm.validation) {
+      if (options.rawValue && Array.isArray(value)) {
+        if (!(value[0] >= 0 && value[0] <= 127)) {
+          throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+        }
 
-      if (!(value[1] >= 0 && value[1] <= 127)) {
-        throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
-      }
-    } else if (options.rawValue && !Array.isArray(value)) {
-      if (!(value >= 0 && value <= 127)) {
-        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
-      }
-    } else {
-      if (isNaN(value) || value === null) {
-        throw new RangeError("Invalid pitch bend value.");
-      }
+        if (!(value[1] >= 0 && value[1] <= 127)) {
+          throw new RangeError("The pitch bend LSB must be an integer between 0 and 127.");
+        }
+      } else if (options.rawValue && !Array.isArray(value)) {
+        if (!(value >= 0 && value <= 127)) {
+          throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+        }
+      } else {
+        if (isNaN(value) || value === null) {
+          throw new RangeError("Invalid pitch bend value.");
+        }
 
-      if (!(value >= -1 && value <= 1)) {
-        throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+        if (!(value >= -1 && value <= 1)) {
+          throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+        }
       }
     }
-    /* END.VALIDATION */
-
 
     let msb = 0;
     let lsb = 0; // Calculate MSB and LSB for both scenarios
@@ -2696,16 +2679,15 @@ class OutputChannel extends e {
 
 
   setPitchBendRange(semitones, cents, options = {}) {
-    /* START.VALIDATION */
-    if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
-      throw new RangeError("The semitones value must be an integer between 0 and 127.");
-    }
+    if (wm.validation) {
+      if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
+        throw new RangeError("The semitones value must be an integer between 0 and 127.");
+      }
 
-    if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
-      throw new RangeError("The cents value must be an integer between 0 and 127.");
+      if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
+        throw new RangeError("The cents value must be an integer between 0 and 127.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
     return this;
@@ -2737,13 +2719,12 @@ class OutputChannel extends e {
 
   setProgram(program, options = {}) {
     program = parseInt(program) || 1;
-    /* START.VALIDATION */
 
-    if (!(program >= 1 && program <= 128)) {
-      throw new RangeError("The program number must be between 1 and 128.");
+    if (wm.validation) {
+      if (!(program >= 1 && program <= 128)) {
+        throw new RangeError("The program number must be between 1 and 128.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), [program - 1], wm.convertToTimestamp(options.time));
     return this;
@@ -2802,26 +2783,26 @@ class OutputChannel extends e {
 
   setRegisteredParameter(rpn, data, options = {}) {
     if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETER[rpn];
-    /* START.VALIDATION */
 
-    if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
-      throw new TypeError("The specified NRPN is invalid.");
-    }
-
-    if (!(rpn[0] >= 0 && rpn[0] <= 127)) {
-      throw new RangeError("The first byte of the RPN must be between 0 and 127.");
-    }
-
-    if (!(rpn[1] >= 0 && rpn[1] <= 127)) {
-      throw new RangeError("The second byte of the RPN must be between 0 and 127.");
-    }
-
-    [].concat(data).forEach(value => {
-      if (!(value >= 0 && value <= 127)) {
-        throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+    if (wm.validation) {
+      if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
+        throw new TypeError("The specified NRPN is invalid.");
       }
-    });
-    /* END.VALIDATION */
+
+      if (!(rpn[0] >= 0 && rpn[0] <= 127)) {
+        throw new RangeError("The first byte of the RPN must be between 0 and 127.");
+      }
+
+      if (!(rpn[1] >= 0 && rpn[1] <= 127)) {
+        throw new RangeError("The second byte of the RPN must be between 0 and 127.");
+      }
+
+      [].concat(data).forEach(value => {
+        if (!(value >= 0 && value <= 127)) {
+          throw new RangeError("The data bytes of the RPN must be between 0 and 127.");
+        }
+      });
+    }
 
     this._selectRegisteredParameter(rpn, options);
 
@@ -2856,12 +2837,11 @@ class OutputChannel extends e {
 
 
   setTuningBank(value, options = {}) {
-    /* START.VALIDATION */
-    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The tuning bank number must be between 1 and 128.");
+    if (wm.validation) {
+      if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+        throw new RangeError("The tuning bank number must be between 1 and 128.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this.setRegisteredParameter("tuningbank", value - 1, options);
     return this;
@@ -2891,12 +2871,11 @@ class OutputChannel extends e {
 
 
   setTuningProgram(value, options = {}) {
-    /* START.VALIDATION */
-    if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The tuning program number must be between 1 and 128.");
+    if (wm.validation) {
+      if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
+        throw new RangeError("The tuning program number must be between 1 and 128.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this.setRegisteredParameter("tuningprogram", value - 1, options);
     return this;
@@ -3041,8 +3020,10 @@ class Output extends e {
   constructor(midiOutput) {
     super();
 
-    if (!midiOutput || midiOutput.type !== "output") {
-      throw new TypeError("The supplied MIDIOutput is invalid.");
+    if (wm.validation) {
+      if (!midiOutput || midiOutput.type !== "output") {
+        throw new TypeError("The supplied MIDIOutput is invalid.");
+      }
     }
     /**
      * A reference to the `MIDIOutput` object
@@ -3245,26 +3226,26 @@ class Output extends e {
 
   send(status, data = [], options = {}) {
     if (!Array.isArray(data)) data = [data];
-    /* START.VALIDATION */
 
-    if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
-      throw new RangeError("The status must be an integer between 128 and 255.");
-    }
-
-    data.forEach(value => {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
-
-      if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
-        throw new RangeError("The data bytes must be integers between 0 and 255.");
+    if (wm.validation) {
+      if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
+        throw new RangeError("The status must be an integer between 128 and 255.");
       }
-    });
-    /* END.VALIDATION */
-    // Legacy support
 
-    if (typeof options === "number") options = {
-      time: options
-    }; // Actually send the message
+      data.forEach(value => {
+        value = parseInt(value);
+        if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
+
+        if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
+          throw new RangeError("The data bytes must be integers between 0 and 255.");
+        }
+      }); // Legacy-compatibility
+
+      if (typeof options === "number") options = {
+        time: options
+      };
+    } // Actually send the message
+
 
     this._midiOutput.send([status].concat(data), wm.convertToTimestamp(options.time));
 
@@ -3366,7 +3347,9 @@ class Output extends e {
     if (this._midiOutput.clear) {
       this._midiOutput.clear();
     } else {
-      console.warn("The 'clear()' method has not yet been implemented in your environment.");
+      if (wm.validation) {
+        console.warn("The 'clear()' method has not yet been implemented in your environment.");
+      }
     }
 
     return this;
@@ -3390,6 +3373,14 @@ class Output extends e {
 
 
   sendTimecodeQuarterFrame(value, options = {}) {
+    if (wm.validation) {
+      value = parseInt(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("The value must be an integer between 0 and 127.");
+      }
+    }
+
     this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, value, {
       time: options.time
     });
@@ -4873,9 +4864,9 @@ class Note {
   }
 
   set name(value) {
-    /* START.VALIDATION */
-    if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    /* END.VALIDATION */
+    if (wm.validation) {
+      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+    }
 
     this._number = wm.guessNoteNumber(value);
   }
@@ -4890,9 +4881,9 @@ class Note {
   }
 
   set number(value) {
-    /* START.VALIDATION */
-    if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
-    /* END.VALIDATION */
+    if (wm.validation) {
+      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+    }
 
     this._number = wm.guessNoteNumber(value);
   }
@@ -4909,10 +4900,10 @@ class Note {
   }
 
   set duration(value) {
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
-    /* END.VALIDATION */
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    }
 
     this._duration = value;
   }
@@ -4927,14 +4918,13 @@ class Note {
   }
 
   set attack(value) {
-    /* START.VALIDATION */
-    value = parseFloat(value);
+    if (wm.validation) {
+      value = parseFloat(value);
 
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid attack value.");
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid attack value.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this._rawAttack = Math.round(value * 127);
   }
@@ -4949,14 +4939,13 @@ class Note {
   }
 
   set rawAttack(value) {
-    /* START.VALIDATION */
-    value = parseFloat(value);
+    if (wm.validation) {
+      value = parseFloat(value);
 
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-      throw new RangeError("Invalid rawAttack value.");
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawAttack value.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this._rawAttack = value;
   }
@@ -4971,14 +4960,13 @@ class Note {
   }
 
   set release(value) {
-    /* START.VALIDATION */
-    value = parseFloat(value);
+    if (wm.validation) {
+      value = parseFloat(value);
 
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid release value.");
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid release value.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this._rawRelease = Math.round(value * 127);
   }
@@ -4993,14 +4981,13 @@ class Note {
   }
 
   set rawRelease(value) {
-    /* START.VALIDATION */
-    value = parseFloat(value);
+    if (wm.validation) {
+      value = parseFloat(value);
 
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-      throw new RangeError("Invalid rawRelease value.");
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawRelease value.");
+      }
     }
-    /* END.VALIDATION */
-
 
     this._rawRelease = value;
   }
@@ -5054,6 +5041,18 @@ class WebMidi extends e {
      */
 
     this.interface = null;
+    /**
+     * Indicates whether argument validation and backwards-compatibility checks are performed
+     * throughout the WebMidi.js library for object methods and property setters.
+     *
+     * This is an advanced setting that should be used carefully. Setting `validation` to `false`
+     * improves performance but should only be done once the project has been thoroughly tested with
+     * validation turned on.
+     *
+     * @type {boolean}
+     */
+
+    this.validation = true;
     /**
      * Array of all {@link Input} objects
      * @type {Input[]}
@@ -5146,14 +5145,23 @@ class WebMidi extends e {
    * ```
    *
    * @param [options] {Object}
+   *
    * @param [options.callback] {function} A function to execute once the operation completes. This
    * function will receive an `Error` object if enabling the Web MIDI API failed.
+   *
    * @param [options.sysex=false] {boolean} Whether to enable MIDI system exclusive messages or not.
+   *
+   * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
+   * arguments and setter values. This is an advanced setting that should be used carefully. Setting
+   * `validation` to `false` improves performance but should only be done once the project has been
+   * thoroughly tested with validation turned on.
+   *
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
    *
    * @async
+   *
    * @returns {Promise<Object>} The promise is fulfilled with an object containing two properties
    * (`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.
    *
@@ -5163,14 +5171,19 @@ class WebMidi extends e {
 
 
   async enable(options = {}, sysex = false) {
-    if (this.enabled) return Promise.resolve(); // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
+    if (this.enabled) return Promise.resolve();
+    this.validation = options.validation !== false;
 
-    if (typeof options === "function") options = {
-      callback: options,
-      sysex: sysex
-    };
-    if (sysex) options.sysex = true; // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
+    if (this.validation) {
+      // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
+      if (typeof options === "function") options = {
+        callback: options,
+        sysex: sysex
+      };
+      if (sysex) options.sysex = true;
+    } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to load.
+
 
     if (!this.supported) {
       await new Promise((resolve, reject) => {
@@ -5300,8 +5313,10 @@ class WebMidi extends e {
    * @since 2.0.0
    */
   getInputById(id) {
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i < this.inputs.length; i++) {
       if (this.inputs[i].id === id.toString()) return this.inputs[i];
@@ -5326,9 +5341,11 @@ class WebMidi extends e {
    * @since 2.0.0
    */
   getInputByName(name) {
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i < this.inputs.length; i++) {
       if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
@@ -5353,9 +5370,11 @@ class WebMidi extends e {
    * @since 2.0.0
    */
   getOutputByName(name) {
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i < this.outputs.length; i++) {
       if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
@@ -5383,8 +5402,10 @@ class WebMidi extends e {
    * @since 2.0.0
    */
   getOutputById(id) {
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (WebMidi.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i < this.outputs.length; i++) {
       if (this.outputs[i].id === id.toString()) return this.outputs[i];
@@ -5416,7 +5437,10 @@ class WebMidi extends e {
    * name could not successfully be parsed to a number.
    */
   getNoteNumberByName(name) {
-    if (typeof name !== "string") name = "";
+    if (WebMidi.validation) {
+      if (typeof name !== "string") name = "";
+    }
+
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if (!matches) return false;
     let semitones = {
@@ -5468,7 +5492,9 @@ class WebMidi extends e {
 
 
   getOctave(number) {
-    number = parseInt(number);
+    if (WebMidi.validation) {
+      number = parseInt(number);
+    }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
       return Math.floor(number / 12 - 1) + this.octaveOffset;
@@ -5494,13 +5520,17 @@ class WebMidi extends e {
   sanitizeChannels(channel) {
     let channels;
 
-    if (channel === "all") {
-      // backwards-compatibility
-      channels = ["all"];
-    } else if (channel === "none") {
-      // backwards-compatibility
-      return [];
-    } else if (!Array.isArray(channel)) {
+    if (WebMidi.validation) {
+      if (channel === "all") {
+        // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") {
+        // backwards-compatibility
+        return [];
+      }
+    }
+
+    if (!Array.isArray(channel)) {
       channels = [channel];
     } else {
       channels = channel;
@@ -5524,7 +5554,10 @@ class WebMidi extends e {
 
 
   toMIDIChannels(channel) {
-    console.warn("The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead.");
+    if (WebMidi.validation) {
+      console.warn("The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead.");
+    }
+
     return this.sanitizeChannels(channel);
   }
   /**
@@ -5932,8 +5965,11 @@ class WebMidi extends e {
   }
 
   set octaveOffset(value) {
-    value = parseInt(value);
-    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+    }
+
     this._octaveOffset = value;
   }
   /**
