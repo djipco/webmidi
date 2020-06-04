@@ -47,7 +47,6 @@ export class Note {
     }
 
     this.duration = options.duration;
-    this.channels = options.channels;
     this.attack = options.attack;
     this.release = options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
@@ -95,23 +94,6 @@ export class Note {
   set duration(value) {
     value = Math.max(parseFloat(value), 0);
     this._duration = isNaN(value) ? Infinity : value;
-  }
-
-  /**
-   * An array of integers (1-16) representing the MIDI channel(s) the note should be played on.
-   *
-   * This is only necessary if you intend to use the {@link Output} object's
-   * [playNote()]{@link Output#playNote} method. If you use the {@link OutputChannel} object's
-   * [playNote()]{@link OutputChannel#playNote} method, it will be played on that channel (no matter
-   * what has been set as the channel).
-   *
-   * @type {number[]}
-   */
-  get channels() {
-    return this._channels;
-  }
-  set channels(value) {
-    this._channels = WebMidi.sanitizeChannels(value);
   }
 
   /**
