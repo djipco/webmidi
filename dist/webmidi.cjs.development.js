@@ -4849,9 +4849,9 @@ class Note {
       this.name = value;
     }
 
-    this.duration = options.duration;
-    this.attack = options.attack;
-    this.release = options.release;
+    this.duration = options.duration == undefined ? Infinity : options.duration;
+    this.attack = options.attack == undefined ? 0.5 : options.attack;
+    this.release = options.release == undefined ? 0.5 : options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
   }
@@ -4894,6 +4894,8 @@ class Note {
    * The duration of the note as a positive decimal number representing the number of milliseconds
    * that the note should play for.
    *
+   * Setting this property to `undefined` will actually set it to
+   *
    * @type {number}
    */
 
@@ -4904,14 +4906,11 @@ class Note {
 
   set duration(value) {
     /* START.VALIDATION */
-    if (value != undefined) {
-      value = parseFloat(value);
-      if (isNaN(value) || value < 0) throw new RangeError("Invalid note duration.");
-    }
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid note duration.");
     /* END.VALIDATION */
 
-
-    this._duration = value == undefined ? Infinity : value;
+    this._duration = value;
   }
   /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
@@ -4927,17 +4926,15 @@ class Note {
 
   set attack(value) {
     /* START.VALIDATION */
-    if (value != undefined) {
-      value = parseFloat(value);
+    value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid note attack value.");
-      }
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+      throw new RangeError("Invalid note attack value.");
     }
     /* END.VALIDATION */
 
 
-    this._rawAttack = value == undefined ? 64 : Math.round(value * 127);
+    this._rawAttack = Math.round(value * 127);
   }
   /**
    * The raw attack velocity of the note as an integer between 0 and 127. By default, this is set to
@@ -4952,17 +4949,15 @@ class Note {
 
   set rawAttack(value) {
     /* START.VALIDATION */
-    if (value != undefined) {
-      value = parseFloat(value);
+    value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawAttack value.");
-      }
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+      throw new RangeError("Invalid rawAttack value.");
     }
     /* END.VALIDATION */
 
 
-    this._rawAttack = value == undefined ? 64 : value;
+    this._rawAttack = value;
   }
   /**
    * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
@@ -4978,17 +4973,15 @@ class Note {
 
   set release(value) {
     /* START.VALIDATION */
-    if (value != undefined) {
-      value = parseFloat(value);
+    value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid note release value.");
-      }
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+      throw new RangeError("Invalid note release value.");
     }
     /* END.VALIDATION */
 
 
-    this._rawRelease = value == undefined ? 64 : Math.round(value * 127);
+    this._rawRelease = Math.round(value * 127);
   }
   /**
    * The raw release velocity of the note as an integer between 0 and 127. By default, this is set
@@ -5003,17 +4996,15 @@ class Note {
 
   set rawRelease(value) {
     /* START.VALIDATION */
-    if (value != undefined) {
-      value = parseFloat(value);
+    value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawRelease value.");
-      }
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+      throw new RangeError("Invalid rawRelease value.");
     }
     /* END.VALIDATION */
 
 
-    this._rawRelease = value == undefined ? 64 : value;
+    this._rawRelease = value;
   }
   /**
    * The octave of the note as an integer between -1 and 8.
