@@ -16,9 +16,11 @@ describe("Output Object", function() {
   });
 
   describe("clear()", function () {
+
     it("should return 'Output' object for chaining", function() {
       expect(WebMidiOutput.clear()).to.equal(WebMidiOutput);
     });
+
   });
 
   describe("close()", function () {
@@ -30,27 +32,32 @@ describe("Output Object", function() {
 
   });
 
+  // VERIFIED
   describe("decrementRegisteredParameter()", function () {
 
     it("should trigger the channel method for all valid channels", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let rpn = "pitchbendrange";
 
       WebMidiOutput.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "decrementRegisteredParameter"));
       });
 
+      // Act
       WebMidiOutput.decrementRegisteredParameter(
-        "pitchbendrange",
+        rpn,
         valid.concat(invalid),
         options
       );
 
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly("pitchbendrange", options)).to.be.true;
+        expect(spy.calledOnceWithExactly(rpn, options)).to.be.true;
         spy.restore();
       });
 
@@ -64,12 +71,15 @@ describe("Output Object", function() {
 
   });
 
+  // VERIFIED
   describe("destroy()", function () {
 
     it("should destroy the 'Output'", async function() {
 
+      // Act
       await WebMidiOutput.destroy();
 
+      // Assert
       try {
         WebMidiOutput.name;
       } catch (e) {
@@ -83,27 +93,32 @@ describe("Output Object", function() {
 
   });
 
+  // VERIFIED
   describe("incrementRegisteredParameter()", function () {
 
     it("should trigger the channel method for all valid channels", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let rpn = "pitchbendrange";
 
       WebMidiOutput.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "incrementRegisteredParameter"));
       });
 
+      // Act
       WebMidiOutput.incrementRegisteredParameter(
-        "pitchbendrange",
+        rpn,
         valid.concat(invalid),
         options
       );
 
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly("pitchbendrange", options)).to.be.true;
+        expect(spy.calledOnceWithExactly(rpn, options)).to.be.true;
         spy.restore();
       });
 
@@ -115,47 +130,43 @@ describe("Output Object", function() {
       ).to.equal(WebMidiOutput);
     });
 
-    it("should throw error if registered parameter is invalid", function() {
-
-      expect(function () {
-        WebMidiOutput.incrementRegisteredParameter("xxx", [1]);
-      }).to.throw(Error);
-
-      expect(function () {
-        WebMidiOutput.incrementRegisteredParameter([], [1]);
-      }).to.throw(Error);
-
-    });
-
   });
 
+  // VERIFIED
   describe("open()", function () {
 
     it("should open connection", async function() {
+
+      // Act
       await WebMidiOutput.close();
       await WebMidiOutput.open();
+
+      // Assert
       expect(WebMidiOutput.connection).to.equal("open");
+
     });
 
   });
 
+  // VERIFIED
   describe("playNote()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger channel method for all valid channels", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let note = 60;
+      WebMidiOutput.channels.forEach(ch => spies.push(sinon.spy(ch, "playNote")));
 
-      WebMidiOutput.channels.forEach(ch => {
-        spies.push(sinon.spy(ch, "playNote"));
-      });
+      // Act
+      WebMidiOutput.playNote(note, valid.concat(invalid), options);
 
-      WebMidiOutput.playNote(60, valid.concat(invalid), options);
-
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(60, options)).to.be.true;
+        expect(spy.calledOnceWithExactly(note, options)).to.be.true;
         spy.restore();
       });
 
@@ -169,10 +180,12 @@ describe("Output Object", function() {
 
   });
 
+  // VERIFIED
   describe("resetAllControllers()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger channel method for all valid channels", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
@@ -182,8 +195,10 @@ describe("Output Object", function() {
         spies.push(sinon.spy(ch, "resetAllControllers"));
       });
 
+      // Act
       WebMidiOutput.resetAllControllers(valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
         expect(spy.calledOnceWithExactly(options)).to.be.true;
         spy.restore();
@@ -199,35 +214,69 @@ describe("Output Object", function() {
 
   });
 
+  // VERIFIED
   describe("send()", function () {
 
     it("should throw error if status byte is invalid", function() {
 
-      ["xxx", [], NaN, 127, 256, undefined, null, -1, 0, {}].forEach(param => {
+      // Arrange
+      let values = ["xxx", [], NaN, 127, 256, undefined, null, -1, 0, {}];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(param){
         expect(() => {
           WebMidiOutput.send(param);
-        }).to.throw(TypeError);
-      });
+        }).to.throw(RangeError);
+      };
 
     });
 
     it("should throw error if data bytes are invalid", function() {
 
-      ["xxx", -1, 256, NaN, null, Infinity].forEach(param => {
+      // Arrange
+      let values = [
+        "xxx",
+        -1,
+        256,
+        NaN,
+        null,
+        Infinity,
+        [],
+        [0, -1],
+        [0, 256],
+        [-1, 0],
+        [256, 0]
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(param){
         expect(() => {
-          WebMidiOutput.send(64, param);
-        }).to.throw(TypeError);
-      });
+          WebMidiOutput.send(128, param);
+        }).to.throw();
+      };
 
     });
 
     it("should throw error if message is incomplete", function() {
 
-      [0x80, 0x90, 0xA0].forEach(param => {
+      // Arrange
+      let values = [0x80, 0x90, 0xA0];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(param) {
         expect(() => {
           WebMidiOutput.send(param, []);
         }).to.throw(TypeError);
-      });
+      }
 
     });
 
@@ -239,15 +288,19 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      config.output.port.on("message", (deltaTime, message) => {
-        if (message[0] === 0x90 && message[1] === 60 && message[2] === 127) {
-          config.output.port.removeAllListeners();
-          done();
-        }
-      });
+      // Arrange
+      let expected = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      config.output.port.on("message", assert);
 
-      // Note on, channel 0 (144), note number (60), velocity (127)
-      WebMidiOutput.send(0x90, [60, 127]);
+      // Act
+      WebMidiOutput.send(expected[0], [expected[1], expected[2]]);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(expected);
+        config.output.port.removeAllListeners();
+        done();
+      }
 
     });
 
