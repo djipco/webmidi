@@ -65,6 +65,7 @@
     "test:Output": "mocha test/index.js -g 'Output Object'",
     "test:InputChannel": "mocha test/index.js -g 'InputChannel Object'",
     "test:OutputChannel": "mocha test/index.js -g 'OutputChannel Object'",
+    "test:Note": "mocha test/index.js -g 'Note Object'",
     "types": "tsc --strict --noEmit ./webmidi.d.ts"
   },
   "types": "webmidi.d.ts",
