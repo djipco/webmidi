@@ -4888,8 +4888,7 @@ class Note {
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for. If the duration is set, a **note off** message is automatically
-   * scheduled to stop the note after the specified duration.
+   * that the note should play for.
    *
    * @type {number}
    */
@@ -4900,8 +4899,14 @@ class Note {
   }
 
   set duration(value) {
-    value = Math.max(parseFloat(value), 0);
-    this._duration = isNaN(value) ? Infinity : value;
+    if (value == undefined) {
+      value = Infinity;
+    } else {
+      value = parseFloat(value);
+      if (isNaN(value) || value < 0) throw new RangeError("Invalid note duration.");
+    }
+
+    this._duration = value;
   }
   /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
