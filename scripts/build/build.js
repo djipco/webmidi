@@ -12,32 +12,32 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--input src/WebMidi.js ` +
   `--format ${type} `;
 
-// Production version (minified with sourcemap, argument validation removed)
-let production = cmd + ` --file dist/webmidi.${type}.production.js ` +
+// Minified version (with sourcemap)
+let minified = cmd + ` --file dist/webmidi.${type}.min.js ` +
   `--sourcemap ` +
-  `--config ${__dirname}/rollup.config.${type}.production.js`;
+  `--config ${__dirname}/rollup.config.${type}.min.js`;
 
-// Development version (non-minified, with argument validation)
-let development = cmd + ` --file dist/webmidi.${type}.development.js ` +
-  `--config ${__dirname}/rollup.config.${type}.development.js`;
+// Non-minified version
+let normal = cmd + ` --file dist/webmidi.${type}.js ` +
+  `--config ${__dirname}/rollup.config.${type}.js`;
 
 async function execute() {
 
   // Production build
-  await system(production);
+  await system(minified);
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" production build was saved to "dist/webmidi.${type}.production.js"`,
+    `The "${type}" minified build was saved to "dist/webmidi.${type}.min.js"`,
     "\x1b[0m"   // reset font
   );
 
   // Development build
-  await system(development);
+  await system(normal);
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" development build was saved to "dist/webmidi.${type}.development.js"`,
+    `The "${type}" non-minified build was saved to "dist/webmidi.${type}.js"`,
     "\x1b[0m"   // reset font
   );
 
