@@ -2,101 +2,192 @@ describe("Note Object", function() {
 
   describe("constructor()", function () {
 
-    it("should throw error if the name parameter is invalid", function() {
+    it("should return 'Note' object with correct values", function() {
 
-      let params = [-1, 128, "B-2", "G#9", "xxx", "", [], {}, NaN, undefined, null, Infinity];
+      // Arrange
+      let notes = [];
+      let options = {
+        duration: 10,
+        attack: 0.25,
+        release: 0.5,
+        rawAttack: 127,
+        rawRelease: 64
+      };
 
-      params.forEach(param => {
-        expect(() => new Note(param)).to.throw(Error);
+      // Act
+      for (let i = 0; i <= 127; i++) notes.push(new Note(i, options));
+
+      // Assert
+      notes.forEach((note, index) => {
+        expect(note).to.be.an.instanceof(Note);
+        expect(note.number).to.equal(index);
+        expect(note.rawAttack).to.equal(options.rawAttack);
+        expect(note.rawRelease).to.equal(options.rawRelease);
       });
 
     });
 
-    it("should convert out of bounds durations to valid duration", function() {
+    it("should throw error if 'value' parameter is invalid", function() {
 
-      [-Infinity, -1, -1.5, -0.6].forEach(param => {
-        let note = new Note(60, {duration: param});
-        expect(note.duration).to.equal(0);
-      });
+      // Arrange
+      let values = [-1, 128, "B-2", "G#9", "xxx", "", [], {}, NaN, undefined, null, Infinity];
 
-      ["xxx", [], {}, NaN, undefined, null, Infinity].forEach(param => {
-        let note = new Note(60, {duration: param});
-        expect(note.duration).to.equal(Infinity);
-      });
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(
+          () => new Note(value)
+        ).to.throw(Error);
+      }
 
     });
 
-    it("should only keep valid channels in the 'channels' property", function() {
+    it("should throw error for invalid durations", function() {
 
-      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 16];
-      let invalid = [-1, 0, "xxx", [], {}, NaN, undefined, null, Infinity, -Infinity];
-      let note = new Note(60, {channels: valid.concat(invalid)});
-      expect(note.channels.length).to.equal(valid.length);
+      // Arrange
+      let values = [
+        -Infinity,
+        -1,
+        -1.5,
+        -0.6,
+        "xxx",
+        [],
+        {},
+        NaN
+      ];
+      let note = 60;
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(
+          () => {
+            new Note(note, {duration: value});
+          }
+        ).to.throw();
+      };
 
     });
 
     it("should set correct default value for velocities", function() {
-      let note1 = new Note(60);
-      expect(note1.rawAttack).to.equal(64);
-      let note2 = new Note(60);
-      expect(note2.rawRelease).to.equal(64);
+
+      // Arrange
+      let number = 60;
+
+      // Act
+      let note = new Note(number);
+
+      // Assert
+      expect(note.rawAttack).to.equal(64);
+      expect(note.rawRelease).to.equal(64);
+
     });
 
     it("should give priority to rawAttack/rawRelease over attack/release", function() {
 
+      // Arrange
+      let number = 60;
       let options = {
-        attack: 42,
+        attack: 0,
         release: 0,
         rawAttack: 127,
         rawRelease: 127
       };
 
-      let note = new Note(60, options);
+      // Act
+      let note = new Note(number, options);
 
+      // Assert
       expect(note.attack).to.equal(1);
       expect(note.release).to.equal(1);
-      expect(note.rawAttack).to.equal(127);
-      expect(note.rawRelease).to.equal(127);
+      expect(note.rawAttack).to.equal(options.rawAttack);
+      expect(note.rawRelease).to.equal(options.rawRelease);
 
     });
 
-    it("should convert invalid velocities to valid values", function() {
+    it("should throw error for invalid rawAttack and rawRelease velocities", function() {
 
-      let note1 = new Note(60, {attack: -1.1});
-      expect(note1.rawAttack).to.equal(0);
-      expect(note1.attack).to.equal(0);
+      // Arrange
+      let number = 60;
+      let values = [
+        -1,
+        128,
+        "xxx",
+        [],
+        {},
+        NaN
+      ];
 
-      let note2 = new Note(60, {release: 1.1});
-      expect(note2.release).to.equal(1);
-      expect(note2.rawRelease).to.equal(127);
+      // Act
+      values.forEach(assert);
 
-      let note3 = new Note(60, {rawAttack: -1});
-      expect(note3.attack).to.equal(0);
-      expect(note3.rawAttack).to.equal(0);
+      // Assert
+      function assert(value) {
 
-      let note4 = new Note(60, {rawRelease: 128});
-      expect(note4.release).to.equal(1);
-      expect(note4.rawRelease).to.equal(127);
+        expect(() => {
+          new Note(number, {rawAttack: value});
+        }).to.throw();
 
-      ["xxx", [], {}, NaN, undefined, null].forEach(param => {
-        let note1 = new Note(60, {attack: param});
-        expect(note1.rawAttack).to.equal(64);
-        let note2 = new Note(60, {release: param});
-        expect(note2.rawRelease).to.equal(64);
-      });
+        expect(() => {
+          new Note(number, {rawRelease: value});
+        }).to.throw();
+
+      }
+
+    });
+
+    it("should throw error for invalid attack and release velocities", function() {
+
+      // Arrange
+      let number = 60;
+      let values = [
+        -1,
+        2,
+        "xxx",
+        [],
+        {},
+        NaN
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+
+        expect(() => {
+          new Note(number, {attack: value});
+        }).to.throw();
+
+        expect(() => {
+          new Note(number, {release: value});
+        }).to.throw();
+
+      }
 
     });
 
     it("should report the correct octave value", function() {
 
-      ["C-1", 0].forEach(param => {
+      // Arrange
+      let lowValues = ["C-1", 0];
+      let lowTarget = -1;
+      let highValues = ["G9", 127];
+      let highTarget = 9;
+
+      // Assert
+      lowValues.forEach(param => {
         let note = new Note(param);
-        expect(note.octave).to.equal(-1);
+        expect(note.octave).to.equal(lowTarget);
       });
 
-      ["G9", 127].forEach(param => {
+      highValues.forEach(param => {
         let note = new Note(param);
-        expect(note.octave).to.equal(9);
+        expect(note.octave).to.equal(highTarget);
       });
 
     });
@@ -105,15 +196,19 @@ describe("Note Object", function() {
 
   describe("set name()", function () {
 
-    it("should throw error if passing an invalid note name", function() {
+    it("should throw error if passing invalid note name", function() {
 
+      // Arrange
       let note = new Note(42);
+      let values = [-1, 128, undefined, null, NaN, "xxx", "C-2", "G10"];
 
-      let params = [-1];
+      // Act
+      values.forEach(assert);
 
-      params.forEach(param => {
-        expect(() => note.name = param).to.throw(Error);
-      });
+      // Assert
+      function assert(value) {
+        expect(() => note.name = value).to.throw(Error);
+      }
 
     });
 
@@ -121,15 +216,32 @@ describe("Note Object", function() {
 
   describe("set number()", function () {
 
-    it("should throw error if passing an invalid note name", function() {
+    it("should throw error if passing invalid note number", function() {
 
+      // Arrange
       let note = new Note(42);
+      let values = [
+        "abc",
+        null,
+        undefined,
+        -1,
+        128,
+        function () {},
+        {},
+        "555",
+        "H3",
+        "Z#8",
+        Infinity,
+        -Infinity
+      ];
 
-      [
-        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8", Infinity, -Infinity
-      ].forEach(function (param) {
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(param) {
         expect(() => note.number = param).to.be.throw(Error);
-      });
+      };
 
     });
 
@@ -137,27 +249,21 @@ describe("Note Object", function() {
 
   describe("set duration()", function () {
 
-    it("should set duration to infinity if the value is invalid", function() {
+    it("should throw error if invalid duration is specified", function() {
 
+      // Arrange
       let note = new Note(42);
+      let values = [
+        "abc", null, function () {}, {}, "H3", NaN, "-1", -1, -Infinity
+      ];
 
-      [
-        "abc", null, undefined, function () {}, {}, "H3", NaN
-      ].forEach(function (param) {
-        note.duration = param;
-        expect(note.duration).to.equal(Infinity);
-      });
+      // Act
+      values.forEach(assert);
 
-    });
-
-    it("should set duration to 0 if the value is negative", function() {
-
-      let note = new Note(42);
-
-      ["-1", -1, -Infinity].forEach(function (param) {
-        note.duration = param;
-        expect(note.duration).to.equal(0);
-      });
+      // Assert
+      function assert(value) {
+        expect(() => note.duration = value).to.throw();
+      }
 
     });
 
