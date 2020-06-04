@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 3rd 2020.
+ * This build was generated on June 4th 2020.
  *
  *
  *
@@ -3357,6 +3357,9 @@ class Output extends e {
    * Warning: this method has been defined in the specification but has not been implemented yet. As
    * soon as browsers implement it, it will work.
    *
+   * You can check out the current status of this feature for Chromium (Chrome) here:
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
@@ -5575,19 +5578,57 @@ class WebMidi extends e {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
     notes.forEach(note => {
-      if (note instanceof Note) {
-        result.push(note);
-      } else {
-        let number = this.guessNoteNumber(note);
-
-        if (number !== false) {
-          result.push(new Note(number, options));
-        } else {
-          throw new TypeError(`An element could not be parsed as a note (${note})`);
-        }
-      }
+      result.push(this.getValidNote(note, options));
     });
     return result;
+  }
+  /**
+   * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
+   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
+   * it will be returned as is.
+   *
+   * If the input is a note number or name, it is possible to specify options by providing the
+   * optional `options` parameter.
+   *
+   * An error is thrown for invalid input.
+   *
+   * @param [notes] {number|string|Note}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @returns {Note}
+   *
+   * @throws TypeError The input could not be parsed as a note
+   */
+
+
+  getNoteObject(note, options) {
+    if (note instanceof Note) {
+      return note;
+    } else {
+      let number = this.guessNoteNumber(note);
+
+      if (number !== false) {
+        return new Note(number, options);
+      } else {
+        throw new TypeError(`The input could not be parsed as a note (${note})`);
+      }
+    }
   }
   /**
    * Returns a valid timestamp, relative to the navigation start of the document, derived from the
