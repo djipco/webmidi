@@ -44,6 +44,18 @@ class WebMidi extends EventEmitter {
     this.interface = null;
 
     /**
+     * Indicates whether argument validation and backwards-compatibility checks are performed
+     * throughout the WebMidi.js library for object methods and property setters.
+     *
+     * This is an advanced setting that should be used carefully. Setting `validation` to `false`
+     * improves performance but should only be done once the project has been thoroughly tested with
+     * validation turned on.
+     *
+     * @type {boolean}
+     */
+    this.validation = true;
+
+    /**
      * Array of all {@link Input} objects
      * @type {Input[]}
      * @private
@@ -140,14 +152,23 @@ class WebMidi extends EventEmitter {
    * ```
    *
    * @param [options] {Object}
+   *
    * @param [options.callback] {function} A function to execute once the operation completes. This
    * function will receive an `Error` object if enabling the Web MIDI API failed.
+   *
    * @param [options.sysex=false] {boolean} Whether to enable MIDI system exclusive messages or not.
+   *
+   * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
+   * arguments and setter values. This is an advanced setting that should be used carefully. Setting
+   * `validation` to `false` improves performance but should only be done once the project has been
+   * thoroughly tested with validation turned on.
+   *
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
    *
    * @async
+   *
    * @returns {Promise<Object>} The promise is fulfilled with an object containing two properties
    * (`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.
    *
@@ -158,9 +179,13 @@ class WebMidi extends EventEmitter {
 
     if (this.enabled) return Promise.resolve();
 
-    // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
-    if (typeof options === "function") options = {callback: options, sysex: sysex};
-    if (sysex) options.sysex = true;
+    this.validation = (options.validation !== false);
+
+    if (this.validation) {
+      // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
+      if (typeof options === "function") options = {callback: options, sysex: sysex};
+      if (sysex) options.sysex = true;
+    }
 
     // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to load.
