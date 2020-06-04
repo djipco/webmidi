@@ -4836,7 +4836,13 @@ class Output extends e {
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
  * 127.
  *
- * @throws {Error} Invalid note name or number.
+ * @throws {Error} Invalid note name.
+ * @throws {Error} Invalid note number.
+ * @throws {RangeError} Invalid duration.
+ * @throws {RangeError} Invalid attack value.
+ * @throws {RangeError} Invalid rawAttack value.
+ * @throws {RangeError} Invalid release value.
+ * @throws {RangeError} Invalid rawRelease value.
  *
  * @since 3.0.0
  */
@@ -4894,8 +4900,6 @@ class Note {
    * The duration of the note as a positive decimal number representing the number of milliseconds
    * that the note should play for.
    *
-   * Setting this property to `undefined` will actually set it to
-   *
    * @type {number}
    */
 
@@ -4907,15 +4911,13 @@ class Note {
   set duration(value) {
     /* START.VALIDATION */
     value = parseFloat(value);
-    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid note duration.");
+    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
     /* END.VALIDATION */
 
     this._duration = value;
   }
   /**
-   * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-   * the rounded value of 64 ÷ 127 (0.5).
-   *
+   * The attack velocity of the note as a decimal number between 0 and 1.
    * @type {number}
    */
 
@@ -4929,7 +4931,7 @@ class Note {
     value = parseFloat(value);
 
     if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid note attack value.");
+      throw new RangeError("Invalid attack value.");
     }
     /* END.VALIDATION */
 
@@ -4937,8 +4939,7 @@ class Note {
     this._rawAttack = Math.round(value * 127);
   }
   /**
-   * The raw attack velocity of the note as an integer between 0 and 127. By default, this is set to
-   * 64.
+   * The raw attack velocity of the note as an integer between 0 and 127.
    * @type {number}
    */
 
@@ -4960,9 +4961,7 @@ class Note {
     this._rawAttack = value;
   }
   /**
-   * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
-   * to 64 ÷ 127 which is roughly 0.5.
-   *
+   * The release velocity of the note as a decimal number between 0 and 1.
    * @type {number}
    */
 
@@ -4976,7 +4975,7 @@ class Note {
     value = parseFloat(value);
 
     if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid note release value.");
+      throw new RangeError("Invalid release value.");
     }
     /* END.VALIDATION */
 
@@ -4984,8 +4983,7 @@ class Note {
     this._rawRelease = Math.round(value * 127);
   }
   /**
-   * The raw release velocity of the note as an integer between 0 and 127. By default, this is set
-   * to 64.
+   * The raw release velocity of the note as an integer between 0 and 127.
    * @type {number}
    */
 
@@ -5007,7 +5005,7 @@ class Note {
     this._rawRelease = value;
   }
   /**
-   * The octave of the note as an integer between -1 and 8.
+   * The octave of the note as an integer between -1 and 9.
    * @type {number}
    */
 
