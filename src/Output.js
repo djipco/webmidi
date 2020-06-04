@@ -249,13 +249,12 @@ export class Output extends EventEmitter {
       throw new RangeError("The status must be an integer between 128 and 255.");
     }
 
-    data.map(value => {
+    data.forEach(value => {
       value = parseInt(value);
       if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
-      if (!(parseInt(value) >= 0 && parseInt(status) <= 255)) {
+      if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
         throw new RangeError("The data bytes must be integers between 0 and 255.");
       }
-      return value;
     });
     /* END.VALIDATION */
 
@@ -356,13 +355,18 @@ export class Output extends EventEmitter {
    * Warning: this method has been defined in the specification but has not been implemented yet. As
    * soon as browsers implement it, it will work.
    *
+   * You can check out the current status of this feature for Chromium (Chrome) here:
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
     if (this._midiOutput.clear) {
       this._midiOutput.clear();
     } else {
-      console.warn("The 'clear()' method has not yet been implemented in your environment.");
+      console.warn(
+        "The 'clear()' method has not yet been implemented in your environment."
+      );
     }
     return this;
   }
@@ -1555,8 +1559,6 @@ export class Output extends EventEmitter {
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
-   *
-   * @throws Error The specified parameter is not available.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
