@@ -10,7 +10,7 @@ import {WebMidi} from "./WebMidi.js";
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
  * [Output.stopNote()]{@link Output#stopNote}.
  *
- * @param name {string|number} The name or note number of the note to create. If a number is used,
+ * @param value {string|number} The name or note number of the note to create. If a number is used,
  * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
  * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
  * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
@@ -33,22 +33,28 @@ import {WebMidi} from "./WebMidi.js";
  * 127.
  *
  * @throws {Error} Invalid note name.
+ * @throws {Error} Invalid note number.
+ * @throws {RangeError} Invalid duration.
+ * @throws {RangeError} Invalid attack value.
+ * @throws {RangeError} Invalid rawAttack value.
+ * @throws {RangeError} Invalid release value.
+ * @throws {RangeError} Invalid rawRelease value.
  *
  * @since 3.0.0
  */
 export class Note {
 
-  constructor(name, options = {}) {
+  constructor(value, options = {}) {
 
-    if (Number.isInteger(name)) {
-      this.number = name;
+    if (Number.isInteger(value)) {
+      this.number = value;
     } else {
-      this.name = name;
+      this.name = value;
     }
 
-    this.duration = options.duration;
-    this.attack = options.attack;
-    this.release = options.release;
+    this.duration = (options.duration == undefined) ? Infinity : options.duration;
+    this.attack = (options.attack == undefined) ? 0.5 : options.attack;
+    this.release = (options.release == undefined) ? 0.5 : options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
 
@@ -63,9 +69,13 @@ export class Note {
     return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(this.number);
   }
   set name(value) {
-    value = WebMidi.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note name.");
-    this._number = value;
+
+    /* START.VALIDATION */
+    if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+    /* END.VALIDATION */
+
+    this._number = WebMidi.guessNoteNumber(value);
+
   }
 
   /**
@@ -76,15 +86,18 @@ export class Note {
     return this._number;
   }
   set number(value) {
-    value = WebMidi.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note number.");
-    this._number = value;
+
+    /* START.VALIDATION */
+    if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+    /* END.VALIDATION */
+
+    this._number = WebMidi.guessNoteNumber(value);
+
   }
 
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for. If the duration is set, a **note off** message is automatically
-   * scheduled to stop the note after the specified duration.
+   * that the note should play for.
    *
    * @type {number}
    */
@@ -92,66 +105,98 @@ export class Note {
     return this._duration;
   }
   set duration(value) {
-    value = Math.max(parseFloat(value), 0);
-    this._duration = isNaN(value) ? Infinity : value;
+
+    /* START.VALIDATION */
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    /* END.VALIDATION */
+
+    this._duration = value;
+
   }
 
   /**
-   * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-   * 64 ÷ 127 which is roughly 0.5.
-   *
+   * The attack velocity of the note as a decimal number between 0 and 1.
    * @type {number}
    */
   get attack() {
     return this._rawAttack / 127;
   }
   set attack(value) {
-    value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawAttack = isNaN(value) ? 64 : Math.round(value * 127);
+
+    /* START.VALIDATION */
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+      throw new RangeError("Invalid attack value.");
+    }
+    /* END.VALIDATION */
+
+    this._rawAttack = Math.round(value * 127);
+
   }
 
   /**
-   * The raw attack velocity of the note as an integer between 0 and 127. By default, this is set to
-   * 64.
+   * The raw attack velocity of the note as an integer between 0 and 127.
    * @type {number}
    */
   get rawAttack() {
     return this._rawAttack;
   }
   set rawAttack(value) {
-    value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawAttack = isNaN(value) ? 64 : value;
+
+    /* START.VALIDATION */
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+      throw new RangeError("Invalid rawAttack value.");
+    }
+    /* END.VALIDATION */
+
+    this._rawAttack = value;
+
   }
 
   /**
-   * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
-   * to 64 ÷ 127 which is roughly 0.5.
-   *
+   * The release velocity of the note as a decimal number between 0 and 1.
    * @type {number}
    */
   get release() {
     return this._rawRelease / 127;
   }
   set release(value) {
-    value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawRelease = isNaN(value) ? 64 : Math.round(value * 127);
+
+    /* START.VALIDATION */
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+      throw new RangeError("Invalid release value.");
+    }
+    /* END.VALIDATION */
+
+    this._rawRelease = Math.round(value * 127);
+
   }
 
   /**
-   * The raw release velocity of the note as an integer between 0 and 127. By default, this is set
-   * to 64.
+   * The raw release velocity of the note as an integer between 0 and 127.
    * @type {number}
    */
   get rawRelease() {
     return this._rawRelease;
   }
   set rawRelease(value) {
-    value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawRelease = isNaN(value) ? 64 : value;
+
+    /* START.VALIDATION */
+    value = parseFloat(value);
+    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+      throw new RangeError("Invalid rawRelease value.");
+    }
+    /* END.VALIDATION */
+
+    this._rawRelease = value;
+
   }
 
   /**
-   * The octave of the note as an integer between -1 and 8.
+   * The octave of the note as an integer between -1 and 9.
    * @type {number}
    */
   get octave() {
