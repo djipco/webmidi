@@ -4867,9 +4867,11 @@ class Note {
   }
 
   set name(value) {
-    value = wm.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note name.");
-    this._number = value;
+    /* START.VALIDATION */
+    if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+    /* END.VALIDATION */
+
+    this._number = wm.guessNoteNumber(value);
   }
   /**
    * The MIDI note number as an integer between 0 and 127
@@ -4882,9 +4884,11 @@ class Note {
   }
 
   set number(value) {
-    value = wm.guessNoteNumber(value);
-    if (value === false) throw new Error("Invalid note number.");
-    this._number = value;
+    /* START.VALIDATION */
+    if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+    /* END.VALIDATION */
+
+    this._number = wm.guessNoteNumber(value);
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -4899,14 +4903,15 @@ class Note {
   }
 
   set duration(value) {
-    if (value == undefined) {
-      value = Infinity;
-    } else {
+    /* START.VALIDATION */
+    if (value != undefined) {
       value = parseFloat(value);
       if (isNaN(value) || value < 0) throw new RangeError("Invalid note duration.");
     }
+    /* END.VALIDATION */
 
-    this._duration = value;
+
+    this._duration = value == undefined ? Infinity : value;
   }
   /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
@@ -4921,8 +4926,18 @@ class Note {
   }
 
   set attack(value) {
-    value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawAttack = isNaN(value) ? 64 : Math.round(value * 127);
+    /* START.VALIDATION */
+    if (value != undefined) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid note attack value.");
+      }
+    }
+    /* END.VALIDATION */
+
+
+    this._rawAttack = value == undefined ? 64 : Math.round(value * 127);
   }
   /**
    * The raw attack velocity of the note as an integer between 0 and 127. By default, this is set to
@@ -4936,8 +4951,18 @@ class Note {
   }
 
   set rawAttack(value) {
-    value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawAttack = isNaN(value) ? 64 : value;
+    /* START.VALIDATION */
+    if (value != undefined) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawAttack value.");
+      }
+    }
+    /* END.VALIDATION */
+
+
+    this._rawAttack = value == undefined ? 64 : value;
   }
   /**
    * The release velocity of the note as a decimal number between 0 and 1. By default, this is set
@@ -4952,8 +4977,18 @@ class Note {
   }
 
   set release(value) {
-    value = Math.min(Math.max(parseFloat(value), 0), 1);
-    this._rawRelease = isNaN(value) ? 64 : Math.round(value * 127);
+    /* START.VALIDATION */
+    if (value != undefined) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid note release value.");
+      }
+    }
+    /* END.VALIDATION */
+
+
+    this._rawRelease = value == undefined ? 64 : Math.round(value * 127);
   }
   /**
    * The raw release velocity of the note as an integer between 0 and 127. By default, this is set
@@ -4967,8 +5002,18 @@ class Note {
   }
 
   set rawRelease(value) {
-    value = Math.min(Math.max(parseInt(value), 0), 127);
-    this._rawRelease = isNaN(value) ? 64 : value;
+    /* START.VALIDATION */
+    if (value != undefined) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawRelease value.");
+      }
+    }
+    /* END.VALIDATION */
+
+
+    this._rawRelease = value == undefined ? 64 : value;
   }
   /**
    * The octave of the note as an integer between -1 and 8.
