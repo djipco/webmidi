@@ -70,9 +70,9 @@ export class Note {
   }
   set name(value) {
 
-    /* START.VALIDATION */
-    if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    /* END.VALIDATION */
+    if (WebMidi.validation) {
+      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+    }
 
     this._number = WebMidi.guessNoteNumber(value);
 
@@ -87,9 +87,9 @@ export class Note {
   }
   set number(value) {
 
-    /* START.VALIDATION */
-    if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
-    /* END.VALIDATION */
+    if (WebMidi.validation) {
+      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+    }
 
     this._number = WebMidi.guessNoteNumber(value);
 
@@ -106,10 +106,10 @@ export class Note {
   }
   set duration(value) {
 
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
-    /* END.VALIDATION */
+    if (WebMidi.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    }
 
     this._duration = value;
 
@@ -124,12 +124,12 @@ export class Note {
   }
   set attack(value) {
 
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid attack value.");
+    if (WebMidi.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid attack value.");
+      }
     }
-    /* END.VALIDATION */
 
     this._rawAttack = Math.round(value * 127);
 
@@ -144,12 +144,12 @@ export class Note {
   }
   set rawAttack(value) {
 
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-      throw new RangeError("Invalid rawAttack value.");
+    if (WebMidi.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawAttack value.");
+      }
     }
-    /* END.VALIDATION */
 
     this._rawAttack = value;
 
@@ -164,12 +164,12 @@ export class Note {
   }
   set release(value) {
 
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-      throw new RangeError("Invalid release value.");
+    if (WebMidi.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid release value.");
+      }
     }
-    /* END.VALIDATION */
 
     this._rawRelease = Math.round(value * 127);
 
@@ -184,12 +184,12 @@ export class Note {
   }
   set rawRelease(value) {
 
-    /* START.VALIDATION */
-    value = parseFloat(value);
-    if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-      throw new RangeError("Invalid rawRelease value.");
+    if (WebMidi.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawRelease value.");
+      }
     }
-    /* END.VALIDATION */
 
     this._rawRelease = value;
 
