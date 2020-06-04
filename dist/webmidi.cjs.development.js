@@ -4814,7 +4814,7 @@ class Output extends e {
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
  * [Output.stopNote()]{@link Output#stopNote}.
  *
- * @param name {string|number} The name or note number of the note to create. If a number is used,
+ * @param value {string|number} The name or note number of the note to create. If a number is used,
  * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
  * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
  * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
@@ -4836,21 +4836,20 @@ class Output extends e {
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
  * 127.
  *
- * @throws {Error} Invalid note name.
+ * @throws {Error} Invalid note name or number.
  *
  * @since 3.0.0
  */
 
 class Note {
-  constructor(name, options = {}) {
-    if (Number.isInteger(name)) {
-      this.number = name;
+  constructor(value, options = {}) {
+    if (Number.isInteger(value)) {
+      this.number = value;
     } else {
-      this.name = name;
+      this.name = value;
     }
 
     this.duration = options.duration;
-    this.channels = options.channels;
     this.attack = options.attack;
     this.release = options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
@@ -4905,27 +4904,8 @@ class Note {
     this._duration = isNaN(value) ? Infinity : value;
   }
   /**
-   * An array of integers (1-16) representing the MIDI channel(s) the note should be played on.
-   *
-   * This is only necessary if you intend to use the {@link Output} object's
-   * [playNote()]{@link Output#playNote} method. If you use the {@link OutputChannel} object's
-   * [playNote()]{@link OutputChannel#playNote} method, it will be played on that channel (no matter
-   * what has been set as the channel).
-   *
-   * @type {number[]}
-   */
-
-
-  get channels() {
-    return this._channels;
-  }
-
-  set channels(value) {
-    this._channels = wm.sanitizeChannels(value);
-  }
-  /**
    * The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-   * 64 ÷ 127 which is roughly 0.5.
+   * the rounded value of 64 ÷ 127 (0.5).
    *
    * @type {number}
    */
