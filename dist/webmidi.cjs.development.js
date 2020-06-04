@@ -5578,7 +5578,7 @@ class WebMidi extends e {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
     notes.forEach(note => {
-      result.push(this.getValidNote(note, options));
+      result.push(this.getNoteObject(note, options));
     });
     return result;
   }
