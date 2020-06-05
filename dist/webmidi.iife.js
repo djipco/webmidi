@@ -233,7 +233,8 @@
        * @event InputChannel#midimessage
        * @type {Object}
        * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
        * @property {number} event.statusByte The message's status byte.
        * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
        * integers. This will be null for `sysex` messages.
@@ -244,9 +245,10 @@
 
       let midiMessageEvent = {
         target: this,
+        data: Array.from(e.data),
+        rawData: e.data,
         statusByte: e.data[0],
         dataBytes: dataBytes,
-        data: e.data,
         timestamp: e.timeStamp,
         type: "midimessage"
       };
@@ -270,7 +272,8 @@
 
       let event = {
         target: this,
-        data: e.data,
+        data: Array.from(e.data),
+        rawData: e.data,
         timestamp: e.timeStamp
       };
 
@@ -281,7 +284,8 @@
          * @event InputChannel#noteoff
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"noteoff"`
@@ -308,7 +312,8 @@
          * @event InputChannel#noteon
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"noteon"`
@@ -335,7 +340,8 @@
          * @event InputChannel#keyaftertouch
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"keyaftertouch"`
@@ -362,7 +368,8 @@
          * @event InputChannel#controlchange
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"controlchange"`
@@ -386,7 +393,8 @@
          * @event InputChannel#channelmode
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"channelmode"`
@@ -408,7 +416,8 @@
          * @event InputChannel#programchange
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"programchange"`
@@ -427,7 +436,8 @@
          * @event InputChannel#channelaftertouch
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"channelaftertouch"`
@@ -444,7 +454,8 @@
          * @event InputChannel#pitchbend
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"pitchbend"`
@@ -515,7 +526,8 @@
       let ccEvent = {
         target: this,
         type: "controlchange",
-        data: e.data,
+        data: Array.from(e.data),
+        rawData: e.data,
         timestamp: e.timeStamp,
         channel: channel,
         controller: {
@@ -585,7 +597,8 @@
          * @event InputChannel#nrpn
          * @type {Object}
          * @property {InputChannel} target The `InputChannel` that triggered the event.
-         * @property {Uint8Array} data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"nrpn"`
@@ -601,7 +614,8 @@
           timestamp: ccEvent.timestamp,
           channel: ccEvent.channel,
           type: "nrpn",
-          data: rawData,
+          data: Array.from(rawData),
+          rawData: rawData,
           controller: {
             number: nrpnNumber,
             type: nrpnControllerType,
@@ -825,7 +839,8 @@
        * @event Input#midimessage
        * @type {Object}
        * @property {Input} target The `Input` that triggered the event.
-       * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"midimessage"`
@@ -838,7 +853,8 @@
 
       let event = {
         target: this,
-        data: e.data,
+        data: Array.from(e.data),
+        rawData: e.data,
         statusByte: e.data[0],
         dataBytes: dataBytes,
         timestamp: e.timeStamp,
@@ -867,7 +883,8 @@
 
       var event = {
         target: this,
-        data: e.data,
+        data: Array.from(e.data),
+        rawData: e.data,
         timestamp: e.timeStamp
       };
 
@@ -886,7 +903,8 @@
          * @event InputChannel#sysex
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"sysex"`
@@ -899,7 +917,8 @@
          * @event InputChannel#timecode
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"sysextimecode"`
@@ -912,7 +931,8 @@
          * @event InputChannel#songposition
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"songposition"`
@@ -925,7 +945,8 @@
          * @event InputChannel#songselect
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"songselect"`
@@ -940,7 +961,8 @@
          * @event InputChannel#tunerequest
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"tunerequest"`
@@ -953,7 +975,8 @@
          * @event InputChannel#clock
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"clock"`
@@ -966,7 +989,8 @@
          * @event InputChannel#start
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"start"`
@@ -979,7 +1003,8 @@
          * @event InputChannel#continue
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"continue"`
@@ -992,7 +1017,8 @@
          * @event InputChannel#stop
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"stop"`
@@ -1005,7 +1031,8 @@
          * @event InputChannel#activesensing
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"activesensing"`
@@ -1018,7 +1045,8 @@
          * @event InputChannel#reset
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"reset"`
@@ -1032,7 +1060,8 @@
          * @event InputChannel#unknownmidimessage
          * @type {Object}
          * @property {InputChannel} target The `Input` that triggered the event.
-         * @property {Uint8Array} event.data The raw MIDI message as an array of 8 bit values.
+         * @property {Array} event.data The MIDI message as an array of 8 bit values.
+         * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"unknownmidimessage"`
