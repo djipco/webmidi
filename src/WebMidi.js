@@ -332,7 +332,7 @@ class WebMidi extends EventEmitter {
    */
   getInputById(id) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return false;
     }
@@ -362,7 +362,7 @@ class WebMidi extends EventEmitter {
    */
   getInputByName(name) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!name) return false;
       name = name.toString();
@@ -393,7 +393,7 @@ class WebMidi extends EventEmitter {
    */
   getOutputByName(name) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!name) return false;
       name = name.toString();
@@ -427,7 +427,7 @@ class WebMidi extends EventEmitter {
    */
   getOutputById(id) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return false;
     }
@@ -464,7 +464,7 @@ class WebMidi extends EventEmitter {
    */
   getNoteNumberByName(name) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       if (typeof name !== "string") name = "";
     }
 
@@ -516,7 +516,7 @@ class WebMidi extends EventEmitter {
    */
   getOctave(number) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       number = parseInt(number);
     }
 
@@ -545,7 +545,7 @@ class WebMidi extends EventEmitter {
 
     let channels;
 
-    if (WebMidi.validation) {
+    if (this.validation) {
 
       if (channel === "all") { // backwards-compatibility
         channels = ["all"];
@@ -582,7 +582,7 @@ class WebMidi extends EventEmitter {
    */
   toMIDIChannels(channel) {
 
-    if (WebMidi.validation) {
+    if (this.validation) {
       console.warn(
         "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
       );
