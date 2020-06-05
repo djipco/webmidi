@@ -302,7 +302,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-568">line 568</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-582">line 582</a></p>
 								</div>
 							</div>
 			
@@ -394,7 +394,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-555">line 555</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-569">line 569</a></p>
 								</div>
 							</div>
 			
@@ -573,7 +573,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-355">line 355</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-366">line 366</a></p>
 								</div>
 							</div>
 			
@@ -586,93 +586,6 @@
 									</dl>
 									<h3>Events</h3>
 									<dl class="symbol">
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:activesensing" class="event public"><span class="name">activesensing</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>active sensing</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;activesensing&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-385">line 385</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
 			<h4 id="event:channelaftertouch" class="event public"><span class="name">channelaftertouch</span></h4>
@@ -699,10 +612,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -764,7 +684,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-301">line 301</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-310">line 310</a></p>
 								</div>
 							</div>
 			
@@ -800,10 +720,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -889,181 +816,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-256">line 256</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:clock" class="event public"><span class="name">clock</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>timing clock</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;clock&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-325">line 325</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:continue" class="event public"><span class="name">continue</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>continue</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;continue&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-355">line 355</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-263">line 263</a></p>
 								</div>
 							</div>
 			
@@ -1099,10 +852,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1195,7 +955,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-227">line 227</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-233">line 233</a></p>
 								</div>
 							</div>
 			
@@ -1231,10 +991,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1335,7 +1102,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-195">line 195</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-200">line 200</a></p>
 								</div>
 							</div>
 			
@@ -1374,10 +1141,18 @@
 						</tr>
 						<tr>
 								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 								<td class="attributes"></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1480,10 +1255,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1584,7 +1366,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-137">line 137</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-140">line 140</a></p>
 								</div>
 							</div>
 			
@@ -1620,10 +1402,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1724,7 +1513,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-166">line 166</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-170">line 170</a></p>
 								</div>
 							</div>
 			
@@ -1760,10 +1549,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1857,7 +1653,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-507">line 507</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-519">line 519</a></p>
 								</div>
 							</div>
 			
@@ -1893,10 +1689,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1958,7 +1761,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-320">line 320</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-330">line 330</a></p>
 								</div>
 							</div>
 			
@@ -1994,10 +1797,17 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>data</code></td>
+								<td><code>event.data</code></td>
+							<td><span class="param-type">Array</span></td>
+							<td class="last">
+									<p>The MIDI message as an array of 8 bit values.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>event.rawData</code></td>
 							<td><span class="param-type">Uint8Array</span></td>
 							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
+									<p>The raw MIDI message as a Uint8Array.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2052,804 +1862,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-280">line 280</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:reset" class="event public"><span class="name">reset</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>reset</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;reset&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-400">line 400</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:songposition" class="event public"><span class="name">songposition</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>song position</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;songposition&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-278">line 278</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:songselect" class="event public"><span class="name">songselect</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>song select</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;songselect&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>song</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p>Song (or sequence) number to select (1-128)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-293">line 293</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:start" class="event public"><span class="name">start</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>start</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;start&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-340">line 340</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:stop" class="event public"><span class="name">stop</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>stop</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;stop&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-370">line 370</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:sysex" class="event public"><span class="name">sysex</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>system exclusive</strong> message has been received. You should note that,
-			to receive <code>sysex</code> events, you must call the <code>WebMidi.enable()</code> method with the <code>sysex</code>
-			option set to <code>true</code>:</p>
-			<pre class="prettyprint source lang-js"><code>WebMidi.enable({sysex: true})
-			 .then(() => console.log(&quot;WebMidi has been enabled with sysex support.&quot;))
-			 .catch(err => console.log(&quot;WebMidi could not be enabled.&quot;))
-			</code></pre></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;sysex&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-240">line 240</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:timecode" class="event public"><span class="name">timecode</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>time code quarter frame</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;sysextimecode&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-263">line 263</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:tunerequest" class="event public"><span class="name">tunerequest</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>tune request</strong> message has been received.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;tunerequest&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-310">line 310</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:unknownmidimessage" class="event public"><span class="name">unknownmidimessage</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an unknown MIDI message has been received. It could be, for example, one
-			of the undefined/reserved messages.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>Input</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;unknownmidimessage&quot;</code></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-415">line 415</a></p>
+									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-288">line 288</a></p>
 								</div>
 							</div>
 			
@@ -2870,7 +1883,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 14:36:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:28:19 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
