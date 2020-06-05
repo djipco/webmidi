@@ -305,31 +305,39 @@
           "add",
           "addonetimelisten",
           "array.&lt;listener&gt",
+          "broken",
           "callback",
           "case",
+          "chang",
           "channel",
           "channelaftertouch",
           "channelmod",
           "clock",
+          "close",
           "continu",
           "controlchang",
+          "directli",
+          "disconnect",
           "dispatch",
           "djipevents.eventemitt",
+          "down",
           "event",
           "function",
           "happen",
-          "here",
           "ignor",
           "incom",
+          "individu",
           "input",
           "input#addonetimelisten",
+          "inputchannel",
           "inputchannel.addlisten",
           "instead",
+          "invalid",
           "keyaftertouch",
-          "level",
           "list",
           "listen",
           "make",
+          "matter",
           "messag",
           "method",
           "midi",
@@ -340,12 +348,16 @@
           "object",
           "on",
           "onc",
+          "open",
           "option",
           "overrid",
           "paramet",
+          "perform",
           "pitchbend",
           "possibl",
+          "prefer",
           "programchang",
+          "properti",
           "receiv",
           "reset",
           "sever",
@@ -357,8 +369,10 @@
           "specif",
           "specifi",
           "start",
+          "state",
           "stop",
           "sysex",
+          "system",
           "time",
           "timecod",
           "traffic",
@@ -367,9 +381,11 @@
           "undefin",
           "unknownmidimessag",
           "us",
+          "via",
           "view",
           "want",
-          "wide"
+          "wide",
+          "wise"
         ],
         "Input.html#close": [
           "again",
@@ -7385,6 +7401,10 @@
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
                             "tf": 0.3731343283582089
+                          },
+                          "Input.html#addOneTimeListener": {
+                            "ref": "Input.html#addOneTimeListener",
+                            "tf": 0.3703703703703704
                           }
                         }
                       }
@@ -7479,7 +7499,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -7637,7 +7657,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 2.8301886792452833
+                      "tf": 1.4814814814814816
                     },
                     "Input.html#close": {
                       "ref": "Input.html#close",
@@ -7730,6 +7750,10 @@
                                     "ref": "Input.html#addListener",
                                     "tf": 0.3731343283582089
                                   },
+                                  "Input.html#addOneTimeListener": {
+                                    "ref": "Input.html#addOneTimeListener",
+                                    "tf": 0.3703703703703704
+                                  },
                                   "InputChannel.html": {
                                     "ref": "InputChannel.html",
                                     "tf": 1903.658536585366
@@ -7761,7 +7785,7 @@
                                                       },
                                                       "Input.html#addOneTimeListener": {
                                                         "ref": "Input.html#addOneTimeListener",
-                                                        "tf": 0.4716981132075472
+                                                        "tf": 0.3703703703703704
                                                       }
                                                     }
                                                   }
@@ -8503,7 +8527,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
@@ -8614,6 +8638,10 @@
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
                           "tf": 0.3731343283582089
+                        },
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 0.3703703703703704
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -8882,7 +8910,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.7407407407407408
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
@@ -9239,7 +9267,7 @@
                                     },
                                     "Input.html#addOneTimeListener": {
                                       "ref": "Input.html#addOneTimeListener",
-                                      "tf": 0.4716981132075472
+                                      "tf": 0.3703703703703704
                                     },
                                     "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -9352,7 +9380,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -9432,7 +9460,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 19.0251572327044
+                        "tf": 18.518518518518515
                       },
                       "Input.html#close": {
                         "ref": "Input.html#close",
@@ -9775,10 +9803,6 @@
                 "docs": {},
                 "l": {
                   "docs": {
-                    "Input.html#addOneTimeListener": {
-                      "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.9433962264150944
-                    },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
                       "tf": 0.9090909090909091
@@ -10117,7 +10141,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 1.4150943396226416
+                    "tf": 1.1111111111111112
                   },
                   "Input.html#close": {
                     "ref": "Input.html#close",
@@ -10434,7 +10458,7 @@
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
-                                "tf": 1.4150943396226416
+                                "tf": 1.1111111111111112
                               },
                               "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -10969,7 +10993,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -11084,6 +11108,10 @@
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 0.3731343283582089
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
@@ -11372,7 +11400,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.3703703703703704
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
@@ -11734,7 +11762,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 1.8518518518518516
                       },
                       "Input.html#close": {
                         "ref": "Input.html#close",
@@ -12465,7 +12493,7 @@
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
-                                    "tf": 0.4716981132075472
+                                    "tf": 0.3703703703703704
                                   },
                                   "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -12494,6 +12522,10 @@
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
                             "tf": 0.3731343283582089
+                          },
+                          "Input.html#addOneTimeListener": {
+                            "ref": "Input.html#addOneTimeListener",
+                            "tf": 0.3703703703703704
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -12828,6 +12860,10 @@
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 0.3731343283582089
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
                       }
                     }
                   }
@@ -12988,7 +13024,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.9433962264150944
+                          "tf": 1.1111111111111112
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -13688,7 +13724,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -13899,6 +13935,10 @@
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
                           "tf": 0.3731343283582089
+                        },
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 0.3703703703703704
                         },
                         "WebMidi.html#validation": {
                           "ref": "WebMidi.html#validation",
@@ -14194,7 +14234,7 @@
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
-                              "tf": 0.4716981132075472
+                              "tf": 0.3703703703703704
                             },
                             "Output.html#decrementRegisteredParameter": {
                               "ref": "Output.html#decrementRegisteredParameter",
@@ -14604,7 +14644,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.3703703703703704
                       },
                       "InputChannel.html#nrpnEventsEnabled": {
                         "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -14631,7 +14671,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "Output.html#resetAllControllers": {
                       "ref": "Output.html#resetAllControllers",
@@ -17267,7 +17307,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.9433962264150944
+                    "tf": 0.7407407407407408
                   },
                   "Output.html#setKeyAftertouch": {
                     "ref": "Output.html#setKeyAftertouch",
@@ -17311,6 +17351,10 @@
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
                     "tf": 0.3731343283582089
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
                   }
                 }
               }
@@ -17328,7 +17372,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.9433962264150944
+                    "tf": 0.7407407407407408
                   },
                   "Output.html#sendNoteOn": {
                     "ref": "Output.html#sendNoteOn",
@@ -17574,6 +17618,10 @@
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
                     "tf": 0.3731343283582089
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
                   }
                 }
               }
@@ -18213,6 +18261,10 @@
                             "ref": "Input.html#addListener",
                             "tf": 0.3731343283582089
                           },
+                          "Input.html#addOneTimeListener": {
+                            "ref": "Input.html#addOneTimeListener",
+                            "tf": 0.3703703703703704
+                          },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
                             "tf": 1.2195121951219512
@@ -18293,6 +18345,10 @@
                                 "ref": "Input.html#addListener",
                                 "tf": 0.3731343283582089
                               },
+                              "Input.html#addOneTimeListener": {
+                                "ref": "Input.html#addOneTimeListener",
+                                "tf": 0.3703703703703704
+                              },
                               "Output.html#state": {
                                 "ref": "Output.html#state",
                                 "tf": 10
@@ -18335,7 +18391,7 @@
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
-                            "tf": 1.4150943396226416
+                            "tf": 1.4814814814814816
                           },
                           "InputChannel.html#nrpnEventsEnabled": {
                             "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -18536,7 +18592,7 @@
                                                     },
                                                     "Input.html#addOneTimeListener": {
                                                       "ref": "Input.html#addOneTimeListener",
-                                                      "tf": 0.4716981132075472
+                                                      "tf": 0.3703703703703704
                                                     },
                                                     "Input.html#hasListener": {
                                                       "ref": "Input.html#hasListener",
@@ -19808,6 +19864,10 @@
                       "ref": "Input.html#addListener",
                       "tf": 0.3731343283582089
                     },
+                    "Input.html#addOneTimeListener": {
+                      "ref": "Input.html#addOneTimeListener",
+                      "tf": 0.3703703703703704
+                    },
                     "Input.html#close": {
                       "ref": "Input.html#close",
                       "tf": 690.4761904761905
@@ -19837,7 +19897,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "Output.html#sendClock": {
                       "ref": "Output.html#sendClock",
@@ -19900,7 +19960,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
@@ -19964,7 +20024,7 @@
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
-                            "tf": 0.4716981132075472
+                            "tf": 0.3703703703703704
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
@@ -20049,7 +20109,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 19.496855345911946
+                          "tf": 20.370370370370367
                         },
                         "Input.html#destroy": {
                           "ref": "Input.html#destroy",
@@ -20294,7 +20354,7 @@
                                             },
                                             "Input.html#addOneTimeListener": {
                                               "ref": "Input.html#addOneTimeListener",
-                                              "tf": 0.4716981132075472
+                                              "tf": 0.3703703703703704
                                             },
                                             "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                               "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -20323,7 +20383,7 @@
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
-                                "tf": 0.4716981132075472
+                                "tf": 0.3703703703703704
                               },
                               "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -20527,6 +20587,10 @@
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
                       "tf": 0.7462686567164178
+                    },
+                    "Input.html#addOneTimeListener": {
+                      "ref": "Input.html#addOneTimeListener",
+                      "tf": 0.7407407407407408
                     },
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
@@ -20794,7 +20858,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Output.html#sendContinue": {
                           "ref": "Output.html#sendContinue",
@@ -20891,7 +20955,7 @@
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
-                                    "tf": 0.4716981132075472
+                                    "tf": 0.3703703703703704
                                   },
                                   "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -21670,7 +21734,7 @@
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
-                "tf": 0.4716981132075472
+                "tf": 0.3703703703703704
               },
               "Input.html#hasListener": {
                 "ref": "Input.html#hasListener",
@@ -21701,7 +21765,7 @@
                 },
                 "Input.html#addOneTimeListener": {
                   "ref": "Input.html#addOneTimeListener",
-                  "tf": 1.4150943396226416
+                  "tf": 1.4814814814814816
                 }
               },
               "/": {
@@ -22330,7 +22394,7 @@
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
-                                "tf": 0.4716981132075472
+                                "tf": 0.3703703703703704
                               },
                               "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -23368,6 +23432,10 @@
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 0.3731343283582089
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
                       }
                     }
                   }
@@ -24047,7 +24115,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 20.911949685534587
+                      "tf": 19.629629629629626
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
@@ -25305,7 +25373,7 @@
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
-                            "tf": 110.47169811320755
+                            "tf": 110.37037037037037
                           },
                           "Input.html#close": {
                             "ref": "Input.html#close",
@@ -26170,7 +26238,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.3703703703703704
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
@@ -26299,10 +26367,6 @@
               "docs": {},
               "e": {
                 "docs": {
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
-                  },
                   "Output.html#clear": {
                     "ref": "Output.html#clear",
                     "tf": 2.272727272727273
@@ -26897,7 +26961,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -26914,7 +26978,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.3703703703703704
                       },
                       "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -27923,7 +27987,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "InputChannel.html#.NRPN_TYPES": {
                     "ref": "InputChannel.html#.NRPN_TYPES",
@@ -28131,7 +28195,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.7407407407407408
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -28316,7 +28380,7 @@
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
-                "tf": 1.4150943396226416
+                "tf": 1.1111111111111112
               },
               "Input.html#hasListener": {
                 "ref": "Input.html#hasListener",
@@ -28415,7 +28479,7 @@
                 },
                 "Input.html#addOneTimeListener": {
                   "ref": "Input.html#addOneTimeListener",
-                  "tf": 0.4716981132075472
+                  "tf": 0.3703703703703704
                 },
                 "Input.html#hasListener": {
                   "ref": "Input.html#hasListener",
@@ -28469,6 +28533,10 @@
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
                     "tf": 0.3731343283582089
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
                   },
                   "Input.html#close": {
                     "ref": "Input.html#close",
@@ -28901,7 +28969,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -32339,7 +32407,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
@@ -33911,7 +33979,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.3703703703703704
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
@@ -33990,7 +34058,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.4716981132075472
+                        "tf": 0.7407407407407408
                       },
                       "Input.html#hasListener": {
                         "ref": "Input.html#hasListener",
@@ -34033,7 +34101,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 1.4150943396226416
+                      "tf": 0.7407407407407408
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -34441,7 +34509,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
@@ -34498,6 +34566,10 @@
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 1.1194029850746268
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.7407407407407408
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
@@ -34583,6 +34655,10 @@
                       "ref": "Input.html#addListener",
                       "tf": 0.7462686567164178
                     },
+                    "Input.html#addOneTimeListener": {
+                      "ref": "Input.html#addOneTimeListener",
+                      "tf": 0.7407407407407408
+                    },
                     "Output.html#connection": {
                       "ref": "Output.html#connection",
                       "tf": 7.142857142857142
@@ -34648,7 +34724,7 @@
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.4716981132075472
+                      "tf": 0.3703703703703704
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
@@ -34931,7 +35007,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Note.html": {
                     "ref": "Note.html",
@@ -35133,7 +35209,7 @@
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.9433962264150944
+                        "tf": 0.3703703703703704
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
@@ -35228,7 +35304,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.7407407407407408
                         },
                         "Input.html#getCcNameByNumber": {
                           "ref": "Input.html#getCcNameByNumber",
@@ -35477,7 +35553,7 @@
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
-                              "tf": 0.4716981132075472
+                              "tf": 0.3703703703703704
                             },
                             "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -35507,7 +35583,7 @@
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
-                                "tf": 0.4716981132075472
+                                "tf": 0.3703703703703704
                               },
                               "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -36040,7 +36116,7 @@
                 "docs": {
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
@@ -36175,7 +36251,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Output.html#sendTimecodeQuarterFrame": {
                           "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -36433,7 +36509,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         }
                       }
                     }
@@ -36462,7 +36538,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -36644,7 +36720,7 @@
                                 },
                                 "Input.html#addOneTimeListener": {
                                   "ref": "Input.html#addOneTimeListener",
-                                  "tf": 0.4716981132075472
+                                  "tf": 0.3703703703703704
                                 },
                                 "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -37033,7 +37109,7 @@
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4716981132075472
+                          "tf": 0.3703703703703704
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -37133,7 +37209,7 @@
                                             },
                                             "Input.html#addOneTimeListener": {
                                               "ref": "Input.html#addOneTimeListener",
-                                              "tf": 0.4716981132075472
+                                              "tf": 0.3703703703703704
                                             }
                                           }
                                         }
@@ -37291,7 +37367,7 @@
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
-                "tf": 0.9433962264150944
+                "tf": 1.1111111111111112
               },
               "Input.html#close": {
                 "ref": "Input.html#close",
@@ -37643,6 +37719,10 @@
                   "ref": "Input.html#addListener",
                   "tf": 0.3731343283582089
                 },
+                "Input.html#addOneTimeListener": {
+                  "ref": "Input.html#addOneTimeListener",
+                  "tf": 0.3703703703703704
+                },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
                   "tf": 0.45871559633027525
@@ -37683,7 +37763,7 @@
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
+                    "tf": 0.3703703703703704
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
@@ -38269,7 +38349,7 @@
           }
         }
       },
-      "length": 4387
+      "length": 4403
     },
     "corpusTokens": [
       "0",
@@ -39446,7 +39526,7 @@
       "name": "addListener",
       "tags": "Input#addListener addListener",
       "summary": "",
-      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The events that are listened to can be channel-specific or input-wide (system).. This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a listener to one or several channels at once. Invalid channels will be silently ignored. If you want to add a listener to a single channel (which is often preferable performance-wise), use InputChannel.addListener() instead. The list of events that are directly dispatched by Input objects can be broken down into system MIDI messages and state change messages: System MIDI messages sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage State change messages opened closed disconnected For these input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the midimessage event. This event is dispatched for every single message that is received on that Input (no matter the channel, if any). By using the channel property, you can also add listeners to all channels specified via the channel parameter. These are the events dispatched by individual InputChannel objects: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage"
+      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The events that are listened to can be channel-specific or input-wide (system). This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a listener to one or several channels at once. Invalid channels will be silently ignored. If you want to add a listener to a single channel (which is often preferable performance-wise), use InputChannel.addListener() instead. The list of events that are directly dispatched by Input objects can be broken down into system MIDI messages and state change messages: System MIDI messages sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage State change messages opened closed disconnected For these input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the midimessage event. This event is dispatched for every single message that is received on that Input (no matter the channel, if any). By using the channel property, you can also add listeners to all channels specified via the channel parameter. These are the events dispatched by individual InputChannel objects: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage"
     },
     "Input.html#addOneTimeListener": {
       "id": "Input.html#addOneTimeListener",
@@ -39456,7 +39536,7 @@
       "name": "addOneTimeListener",
       "tags": "Input#addOneTimeListener addOneTimeListener",
       "summary": "",
-      "description": "Adds a one-time event listener that will trigger a function callback when the specified event happens. The events that are dispatched can be channel-specific or input-wide. This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a single listener to one or several channels at once. If you want to add a listener to a single channel, use InputChannel.addListener() instead. Here is a list of events that are dispatched by Input objects and that can be listened to. Channel-specific MIDI events: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage Input-level MIDI events: sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage For input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the input-level midimessage event. This event is dispatched for every single message that is received on that input."
+      "description": "Adds a one-time event listener that will trigger a function callback when the specified event happens. The events that are dispatched can be channel-specific or input-wide. This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a listener to one or several channels at once. Invalid channels will be silently ignored. If you want to add a listener to a single channel (which is often preferable performance-wise), use InputChannel.addListener() instead. The list of events that are directly dispatched by Input objects can be broken down into system MIDI messages and state change messages: System MIDI messages sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage State change messages opened closed disconnected For these input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the midimessage event. This event is dispatched for every single message that is received on that Input (no matter the channel, if any). By using the channel property, you can also add listeners to all channels specified via the channel parameter. These are the events dispatched by individual InputChannel objects: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage"
     },
     "Input.html#close": {
       "id": "Input.html#close",
