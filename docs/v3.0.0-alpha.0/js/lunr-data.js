@@ -246,6 +246,7 @@ window.lunrData = {
           "list",
           "listen",
           "make",
+          "matter",
           "messag",
           "method",
           "midi",
@@ -259,8 +260,10 @@ window.lunrData = {
           "option",
           "overrid",
           "paramet",
+          "perform",
           "pitchbend",
           "possibl",
+          "prefer",
           "programchang",
           "properti",
           "receiv",
@@ -283,9 +286,11 @@ window.lunrData = {
           "undefin",
           "unknownmidimessag",
           "us",
+          "via",
           "view",
           "want",
-          "wide"
+          "wide",
+          "wise"
         ],
         "Input.html#addOneTimeListener": [
           "activesens",
@@ -352,7 +357,6 @@ window.lunrData = {
           "traffic",
           "trigger",
           "tunerequest",
-          "type",
           "undefin",
           "unknownmidimessag",
           "us",
@@ -7373,7 +7377,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 0.45045045045045046
+                            "tf": 0.423728813559322
                           }
                         }
                       }
@@ -7464,7 +7468,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -7622,7 +7626,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 1.8018018018018018
+                      "tf": 1.694915254237288
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -7717,7 +7721,7 @@ window.lunrData = {
                                   },
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.45045045045045046
+                                    "tf": 0.423728813559322
                                   },
                                   "InputChannel.html": {
                                     "ref": "InputChannel.html",
@@ -7746,7 +7750,7 @@ window.lunrData = {
                                                     "docs": {
                                                       "Input.html#addListener": {
                                                         "ref": "Input.html#addListener",
-                                                        "tf": 0.45045045045045046
+                                                        "tf": 0.423728813559322
                                                       },
                                                       "Input.html#addOneTimeListener": {
                                                         "ref": "Input.html#addOneTimeListener",
@@ -8488,7 +8492,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -8602,7 +8606,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -8867,7 +8871,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.9009009009009009
+                      "tf": 0.847457627118644
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -9224,7 +9228,7 @@ window.lunrData = {
                                   "docs": {
                                     "Input.html#addListener": {
                                       "ref": "Input.html#addListener",
-                                      "tf": 0.45045045045045046
+                                      "tf": 0.423728813559322
                                     },
                                     "Input.html#addOneTimeListener": {
                                       "ref": "Input.html#addOneTimeListener",
@@ -9337,7 +9341,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -9417,7 +9421,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 19.819819819819816
+                        "tf": 19.632768361581917
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -10102,7 +10106,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -10419,7 +10423,7 @@ window.lunrData = {
                               },
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 1.3513513513513513
+                                "tf": 1.2711864406779663
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -10954,7 +10958,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -11064,6 +11068,24 @@ window.lunrData = {
             },
             "t": {
               "docs": {},
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 0.423728813559322
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.2857142857142857
+                      }
+                    }
+                  }
+                }
+              },
               "c": {
                 "docs": {},
                 "h": {
@@ -11115,20 +11137,6 @@ window.lunrData = {
                     "WebMidi.html#getOutputById": {
                       "ref": "WebMidi.html#getOutputById",
                       "tf": 2.941176470588235
-                    }
-                  }
-                }
-              },
-              "t": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
-                      }
                     }
                   }
                 }
@@ -11353,7 +11361,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -11715,7 +11723,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -12446,7 +12454,7 @@ window.lunrData = {
                                 "docs": {
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.45045045045045046
+                                    "tf": 0.423728813559322
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
@@ -12478,7 +12486,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 0.45045045045045046
+                            "tf": 0.423728813559322
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -12804,6 +12812,20 @@ window.lunrData = {
             },
             "e": {
               "docs": {},
+              "f": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 0.423728813559322
+                      }
+                    }
+                  }
+                }
+              },
               "c": {
                 "docs": {},
                 "e": {
@@ -12955,7 +12977,7 @@ window.lunrData = {
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 1.3513513513513513
+                          "tf": 1.2711864406779663
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -13655,7 +13677,7 @@ window.lunrData = {
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -13867,6 +13889,10 @@ window.lunrData = {
                     "docs": {},
                     "m": {
                       "docs": {
+                        "Input.html#addListener": {
+                          "ref": "Input.html#addListener",
+                          "tf": 0.423728813559322
+                        },
                         "WebMidi.html#validation": {
                           "ref": "WebMidi.html#validation",
                           "tf": 3.225806451612903
@@ -14157,7 +14183,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
-                              "tf": 0.45045045045045046
+                              "tf": 0.423728813559322
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
@@ -14567,7 +14593,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -14594,7 +14620,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -17230,7 +17256,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.9009009009009009
+                    "tf": 0.847457627118644
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -17270,6 +17296,17 @@ window.lunrData = {
                   }
                 }
               }
+            },
+            "s": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.423728813559322
+                  }
+                }
+              }
             }
           },
           "a": {
@@ -17280,7 +17317,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.9009009009009009
+                    "tf": 0.847457627118644
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -18156,7 +18193,7 @@ window.lunrData = {
                           },
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 0.45045045045045046
+                            "tf": 0.423728813559322
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -18272,7 +18309,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 1.3513513513513513
+                            "tf": 1.2711864406779663
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
@@ -18473,7 +18510,7 @@ window.lunrData = {
                                                   "docs": {
                                                     "Input.html#addListener": {
                                                       "ref": "Input.html#addListener",
-                                                      "tf": 0.45045045045045046
+                                                      "tf": 0.423728813559322
                                                     },
                                                     "Input.html#addOneTimeListener": {
                                                       "ref": "Input.html#addOneTimeListener",
@@ -19770,7 +19807,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -19833,7 +19870,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -19897,7 +19934,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 0.45045045045045046
+                            "tf": 0.423728813559322
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
@@ -19982,7 +20019,7 @@ window.lunrData = {
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 20.72072072072072
+                          "tf": 20.903954802259882
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -20227,7 +20264,7 @@ window.lunrData = {
                                           "docs": {
                                             "Input.html#addListener": {
                                               "ref": "Input.html#addListener",
-                                              "tf": 0.45045045045045046
+                                              "tf": 0.423728813559322
                                             },
                                             "Input.html#addOneTimeListener": {
                                               "ref": "Input.html#addOneTimeListener",
@@ -20256,7 +20293,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.45045045045045046
+                                "tf": 0.423728813559322
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -20723,7 +20760,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -20820,7 +20857,7 @@ window.lunrData = {
                                 "docs": {
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.45045045045045046
+                                    "tf": 0.423728813559322
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
@@ -21599,7 +21636,7 @@ window.lunrData = {
               },
               "Input.html#addListener": {
                 "ref": "Input.html#addListener",
-                "tf": 0.45045045045045046
+                "tf": 0.423728813559322
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
@@ -21630,7 +21667,7 @@ window.lunrData = {
               "docs": {
                 "Input.html#addListener": {
                   "ref": "Input.html#addListener",
-                  "tf": 1.8018018018018018
+                  "tf": 1.694915254237288
                 },
                 "Input.html#addOneTimeListener": {
                   "ref": "Input.html#addOneTimeListener",
@@ -22259,7 +22296,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.45045045045045046
+                                "tf": 0.423728813559322
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -23962,15 +23999,15 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 20.270270270270267
+                      "tf": 20.05649717514124
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
-                      "tf": 4.245283018867925
+                      "tf": 20.911949685534587
                     },
                     "Input.html#hasListener": {
                       "ref": "Input.html#hasListener",
-                      "tf": 1.8181818181818181
+                      "tf": 21.818181818181817
                     },
                     "Input.html#removeListener": {
                       "ref": "Input.html#removeListener",
@@ -25220,7 +25257,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 110.45045045045045
+                            "tf": 110.42372881355932
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
@@ -26085,7 +26122,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -26220,7 +26257,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -26816,7 +26853,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -26833,7 +26870,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -27842,7 +27879,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -28050,7 +28087,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.9009009009009009
+                        "tf": 0.847457627118644
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -28235,7 +28272,7 @@ window.lunrData = {
             "docs": {
               "Input.html#addListener": {
                 "ref": "Input.html#addListener",
-                "tf": 0.9009009009009009
+                "tf": 0.847457627118644
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
@@ -28334,7 +28371,7 @@ window.lunrData = {
                 },
                 "Input.html#addListener": {
                   "ref": "Input.html#addListener",
-                  "tf": 0.45045045045045046
+                  "tf": 0.423728813559322
                 },
                 "Input.html#addOneTimeListener": {
                   "ref": "Input.html#addOneTimeListener",
@@ -28816,7 +28853,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -32254,7 +32291,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -33826,7 +33863,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -33905,7 +33942,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.9009009009009009
+                        "tf": 0.847457627118644
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -33948,7 +33985,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.9009009009009009
+                      "tf": 0.847457627118644
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34356,7 +34393,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34555,7 +34592,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.45045045045045046
+                      "tf": 0.423728813559322
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34838,7 +34875,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
+                    "tf": 0.423728813559322
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -35040,7 +35077,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.45045045045045046
+                        "tf": 0.423728813559322
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -35135,7 +35172,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.847457627118644
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -35384,7 +35421,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
-                              "tf": 0.45045045045045046
+                              "tf": 0.423728813559322
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
@@ -35414,7 +35451,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.45045045045045046
+                                "tf": 0.423728813559322
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -36082,7 +36119,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -36302,13 +36339,9 @@ window.lunrData = {
                     "ref": "Input.html#type",
                     "tf": 695.8333333333334
                   },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 16.666666666666664
-                  },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
-                    "tf": 20.90909090909091
+                    "tf": 0.9090909090909091
                   },
                   "Input.html#removeListener": {
                     "ref": "Input.html#removeListener",
@@ -36344,7 +36377,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -36373,7 +36406,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -36555,7 +36588,7 @@ window.lunrData = {
                               "docs": {
                                 "Input.html#addListener": {
                                   "ref": "Input.html#addListener",
-                                  "tf": 0.45045045045045046
+                                  "tf": 0.423728813559322
                                 },
                                 "Input.html#addOneTimeListener": {
                                   "ref": "Input.html#addOneTimeListener",
@@ -36944,7 +36977,7 @@ window.lunrData = {
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.45045045045045046
+                          "tf": 0.423728813559322
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -37044,7 +37077,7 @@ window.lunrData = {
                                           "docs": {
                                             "Input.html#addListener": {
                                               "ref": "Input.html#addListener",
-                                              "tf": 0.45045045045045046
+                                              "tf": 0.423728813559322
                                             },
                                             "Input.html#addOneTimeListener": {
                                               "ref": "Input.html#addOneTimeListener",
@@ -37202,7 +37235,7 @@ window.lunrData = {
             "docs": {
               "Input.html#addListener": {
                 "ref": "Input.html#addListener",
-                "tf": 1.3513513513513513
+                "tf": 1.2711864406779663
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
@@ -37552,31 +37585,12 @@ window.lunrData = {
           "docs": {},
           "i": {
             "docs": {},
-            "e": {
-              "docs": {},
-              "w": {
-                "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.45045045045045046
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.4716981132075472
-                  },
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  }
-                }
-              }
-            },
             "a": {
               "docs": {
+                "Input.html#addListener": {
+                  "ref": "Input.html#addListener",
+                  "tf": 0.423728813559322
+                },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
                   "tf": 0.45871559633027525
@@ -37604,6 +37618,29 @@ window.lunrData = {
                 "WebMidi.html#sysexEnabled": {
                   "ref": "WebMidi.html#sysexEnabled",
                   "tf": 4.166666666666666
+                }
+              }
+            },
+            "e": {
+              "docs": {},
+              "w": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.423728813559322
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.4716981132075472
+                  },
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  }
                 }
               }
             },
@@ -38180,7 +38217,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4376
+      "length": 4380
     },
     "corpusTokens": [
       "0",
@@ -38935,6 +38972,7 @@ window.lunrData = {
       "posit",
       "possibl",
       "preced",
+      "prefer",
       "prepend",
       "pressur",
       "prevent",
@@ -39221,6 +39259,7 @@ window.lunrData = {
       "whether",
       "whose",
       "wide",
+      "wise",
       "work",
       "zero"
     ],
@@ -39353,12 +39392,12 @@ window.lunrData = {
       "name": "addListener",
       "tags": "Input#addListener addListener",
       "summary": "",
-      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The events that are listened to can be channel-specific or input-wide. This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a listener to one or several channels at once. Invalid channels will be silently ignored. If you want to add a listener to a single channel, use InputChannel.addListener() instead. Here is a list of events that are directly dispatched by Input objects and that can be listened to: sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage For these input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the midimessage event. This event is dispatched for every single message that is received on that Input. By using the channel property, you can also add listeners to all channels in the channel parameter. These are the events dispatched by individual InputChannel objects: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage"
+      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The events that are listened to can be channel-specific or input-wide. This method overrides the one in djipevents.EventEmitter by adding a channel parameter that makes it possible to add a listener to one or several channels at once. Invalid channels will be silently ignored. If you want to add a listener to a single channel (which is often preferable performance-wise), use InputChannel.addListener() instead. Here is a list of events that are directly dispatched by Input objects and that can be listened to: sysex timecode songposition songselect tunerequest clock start continue stop activesensing reset midimessage unknownmidimessage For these input-wide events, the channel parameter will be silently ignored. You can simply use undefined in that case. If you want to view all incoming MIDI traffic, you can listen to the midimessage event. This event is dispatched for every single message that is received on that Input (no matter the channel, if any). By using the channel property, you can also add listeners to all channels specified via the channel parameter. These are the events dispatched by individual InputChannel objects: noteoff noteon keyaftertouch controlchange nrpn channelmode programchange channelaftertouch pitchbend midimessage"
     },
     "Input.html#addOneTimeListener": {
       "id": "Input.html#addOneTimeListener",
       "kind": "function",
-      "title": "addOneTimeListener( type, channel, listener [, options ] ) → {Array.&lt;Listener&gt;}",
+      "title": "addOneTimeListener( event, channel, listener [, options ] ) → {Array.&lt;Listener&gt;}",
       "longname": "Input#addOneTimeListener",
       "name": "addOneTimeListener",
       "tags": "Input#addOneTimeListener addOneTimeListener",
@@ -39398,7 +39437,7 @@ window.lunrData = {
     "Input.html#hasListener": {
       "id": "Input.html#hasListener",
       "kind": "function",
-      "title": "hasListener( type, channel, listener ) → {Boolean}",
+      "title": "hasListener( event, channel, listener ) → {Boolean}",
       "longname": "Input#hasListener",
       "name": "hasListener",
       "tags": "Input#hasListener hasListener",
