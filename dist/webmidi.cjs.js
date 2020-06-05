@@ -632,6 +632,38 @@ class InputChannel extends e {
     }
   }
   /**
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+   * In this case, the method returns `false`.
+   *
+   * @param {number} number An integer representing the control change message
+   * @returns {string|false} The matching control change name or `false` if not match was found
+   *
+   * @throws {RangeError} Invalid control change number.
+   *
+   * @since 2.0.0
+   */
+
+
+  getCcNameByNumber(number) {
+    if (wm.validation) {
+      number = parseInt(number);
+
+      if (!(number >= 0 && number <= 119)) {
+        throw new RangeError("Invalid control change number.");
+      }
+    }
+
+    for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
+      if (wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) && number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
+        return cc;
+      }
+    }
+
+    return false;
+  }
+  /**
    * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
    * are composed of a sequence of specific **control change** messages. When a valid sequence of
    * such control change messages is received, an `nrpn` event will fire. If an invalid or out of
@@ -1108,38 +1140,6 @@ class Input extends e {
     } else {
       return Promise.resolve();
     }
-  }
-  /**
-   * Returns the name of a control change message matching the specified number. Some valid control
-   * change numbers do not have a specific name or purpose assigned in the MIDI
-   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-   * In this case, the method returns `false`.
-   *
-   * @param {number} number An integer representing the control change message
-   * @returns {string|false} The matching control change name or `false` if not match was found
-   *
-   * @throws {RangeError} Invalid control change number.
-   *
-   * @since 2.0.0
-   */
-
-
-  getCcNameByNumber(number) {
-    if (wm.validation) {
-      number = parseInt(number);
-
-      if (!(number >= 0 && number <= 119)) {
-        throw new RangeError("Invalid control change number.");
-      }
-    }
-
-    for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-      if (wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) && number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
-        return cc;
-      }
-    }
-
-    return false;
   }
   /**
    * @private
