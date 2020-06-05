@@ -891,9 +891,9 @@ class Input extends e {
 
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
       /**
-       * Event emitted when a **system exclusive** message has been received. You should note that,
-       * to receive `sysex` events, you must call the `WebMidi.enable()` method with the `sysex`
-       * option set to `true`:
+       * Input-wide (system) event emitted when a **system exclusive** message has been received.
+       * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
+       * method with the `sysex` option set to `true`:
        *
        * ```js
        * WebMidi.enable({sysex: true})
@@ -901,7 +901,7 @@ class Input extends e {
        *  .catch(err => console.log("WebMidi could not be enabled."))
        * ```
        *
-       * @event InputChannel#sysex
+       * @event Input#sysex
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -913,9 +913,10 @@ class Input extends e {
       event.type = "sysex";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
       /**
-       * Event emitted when a **time code quarter frame** message has been received.
+       * Input-wide (system) event emitted when a **time code quarter frame** message has been
+       * received.
        *
-       * @event InputChannel#timecode
+       * @event Input#timecode
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -927,9 +928,9 @@ class Input extends e {
       event.type = "timecode";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
       /**
-       * Event emitted when a **song position** message has been received.
+       * Input-wide (system) event emitted when a **song position** message has been received.
        *
-       * @event InputChannel#songposition
+       * @event Input#songposition
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -941,9 +942,9 @@ class Input extends e {
       event.type = "songposition";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
       /**
-       * Event emitted when a **song select** message has been received.
+       * Input-wide (system) event emitted when a **song select** message has been received.
        *
-       * @event InputChannel#songselect
+       * @event Input#songselect
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -957,9 +958,9 @@ class Input extends e {
       event.song = e.data[1] + 1;
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.tunerequest) {
       /**
-       * Event emitted when a **tune request** message has been received.
+       * Input-wide (system) event emitted when a **tune request** message has been received.
        *
-       * @event InputChannel#tunerequest
+       * @event Input#tunerequest
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -971,9 +972,9 @@ class Input extends e {
       event.type = "tunerequest";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.clock) {
       /**
-       * Event emitted when a **timing clock** message has been received.
+       * Input-wide (system) event emitted when a **timing clock** message has been received.
        *
-       * @event InputChannel#clock
+       * @event Input#clock
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -985,9 +986,9 @@ class Input extends e {
       event.type = "clock";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.start) {
       /**
-       * Event emitted when a **start** message has been received.
+       * Input-wide (system) event emitted when a **start** message has been received.
        *
-       * @event InputChannel#start
+       * @event Input#start
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -999,9 +1000,9 @@ class Input extends e {
       event.type = "start";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.continue) {
       /**
-       * Event emitted when a **continue** message has been received.
+       * Input-wide (system) event emitted when a **continue** message has been received.
        *
-       * @event InputChannel#continue
+       * @event Input#continue
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -1013,9 +1014,9 @@ class Input extends e {
       event.type = "continue";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.stop) {
       /**
-       * Event emitted when a **stop** message has been received.
+       * Input-wide (system) event emitted when a **stop** message has been received.
        *
-       * @event InputChannel#stop
+       * @event Input#stop
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -1027,9 +1028,9 @@ class Input extends e {
       event.type = "stop";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.activesensing) {
       /**
-       * Event emitted when an **active sensing** message has been received.
+       * Input-wide (system) event emitted when an **active sensing** message has been received.
        *
-       * @event InputChannel#activesensing
+       * @event Input#activesensing
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -1041,9 +1042,9 @@ class Input extends e {
       event.type = "activesensing";
     } else if (command === wm.MIDI_SYSTEM_MESSAGES.reset) {
       /**
-       * Event emitted when a **reset** message has been received.
+       * Input-wide (system) event emitted when a **reset** message has been received.
        *
-       * @event InputChannel#reset
+       * @event Input#reset
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -1055,10 +1056,10 @@ class Input extends e {
       event.type = "reset";
     } else {
       /**
-       * Event emitted when an unknown MIDI message has been received. It could be, for example, one
-       * of the undefined/reserved messages.
+       * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+       * be, for example, one of the undefined/reserved messages.
        *
-       * @event InputChannel#unknownmidimessage
+       * @event Input#unknownmidimessage
        * @type {Object}
        * @property {InputChannel} target The `Input` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
@@ -1070,6 +1071,7 @@ class Input extends e {
       event.type = "unknownmidimessage";
     }
 
+    console.log(event.type);
     this.emit(event.type, event);
   }
   /**
@@ -1153,7 +1155,7 @@ class Input extends e {
   }
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
-   * The events that are listened to can be channel-specific or input-wide.
+   * The events that are listened to can be channel-specific or input-wide (system).
    *
    * This method overrides the one in
    * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#addListener)
@@ -1163,8 +1165,10 @@ class Input extends e {
    * If you want to add a listener to a single channel (which is often preferable performance-wise),
    * use [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
    *
-   * Here is a list of events that are directly dispatched by `Input` objects and that can be
-   * listened to:
+   * The list of events that are directly dispatched by `Input` objects can be broken down into
+   * system MIDI messages and state change messages:
+   *
+   * ###### System MIDI messages
    *
    *    * [sysex]{@link Input#event:sysex}
    *    * [timecode]{@link Input#event:timecode}
@@ -1179,6 +1183,12 @@ class Input extends e {
    *    * [reset]{@link Input#event:reset}
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+   *
+   * ###### State change messages
+   *
+   *    * [opened]{@link Input#event:opened}
+   *    * [closed]{@link Input#event:closed}
+   *    * [disconnected]{@link Input#event:disconnected}
    *
    * For these input-wide events, the `channel` parameter will be silently ignored. You can simply
    * use `undefined` in that case.
@@ -1255,27 +1265,18 @@ class Input extends e {
    * Adds a one-time event listener that will trigger a function callback when the specified event
    * happens. The events that are dispatched can be channel-specific or input-wide.
    *
-   * This method overrides the one in `djipevents.EventEmitter` by adding a `channel` parameter that
-   * makes it possible to add a single listener to one or several channels at once. If you want to
-   * add a listener to a single channel, use
-   * [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
+   * This method overrides the one in
+   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#addListener)
+   * by adding a `channel` parameter that makes it possible to add a listener to one or several
+   * channels at once. Invalid channels will be silently ignored.
    *
-   * Here is a list of events that are dispatched by `Input` objects and that can be listened to.
+   * If you want to add a listener to a single channel (which is often preferable performance-wise),
+   * use [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
    *
-   * Channel-specific MIDI events:
+   * The list of events that are directly dispatched by `Input` objects can be broken down into
+   * system MIDI messages and state change messages:
    *
-   *    * [noteoff]{@link InputChannel#event:noteoff}
-   *    * [noteon]{@link InputChannel#event:noteon}
-   *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-   *    * [controlchange]{@link InputChannel#event:controlchange}
-   *    * [nrpn]{@link InputChannel#event:nrpn}
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * [programchange]{@link InputChannel#event:programchange}
-   *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-   *    * [pitchbend]{@link InputChannel#event:pitchbend}
-   *    * [midimessage]{@link InputChannel#event:midimessage}
-   *
-   * Input-level MIDI events:
+   * ###### System MIDI messages
    *
    *    * [sysex]{@link Input#event:sysex}
    *    * [timecode]{@link Input#event:timecode}
@@ -1291,11 +1292,33 @@ class Input extends e {
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
-   * For input-wide events, the `channel` parameter will be silently ignored. You can simply use
-   * `undefined` in that case.
+   * ###### State change messages
    *
-   * If you want to view all incoming MIDI traffic, you can listen to the input-level `midimessage`
-   * event. This event is dispatched for every single message that is received on that input.
+   *    * [opened]{@link Input#event:opened}
+   *    * [closed]{@link Input#event:closed}
+   *    * [disconnected]{@link Input#event:disconnected}
+   *
+   * For these input-wide events, the `channel` parameter will be silently ignored. You can simply
+   * use `undefined` in that case.
+   *
+   * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
+   * event is dispatched for every single message that is received on that `Input` (no matter the
+   * channel, if any).
+   *
+   * By using the `channel` property, you can also add listeners to all channels specified via the
+   * `channel` parameter. These are the events dispatched by individual {@link InputChannel}
+   * objects:
+   *
+   *    * [noteoff]{@link InputChannel#event:noteoff}
+   *    * [noteon]{@link InputChannel#event:noteon}
+   *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
+   *    * [controlchange]{@link InputChannel#event:controlchange}
+   *    * [nrpn]{@link InputChannel#event:nrpn}
+   *    * [channelmode]{@link InputChannel#event:channelmode}
+   *    * [programchange]{@link InputChannel#event:programchange}
+   *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
+   *    * [pitchbend]{@link InputChannel#event:pitchbend}
+   *    * [midimessage]{@link InputChannel#event:midimessage}
    *
    * @param event {string} The type of the event.
    *
