@@ -295,107 +295,6 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="_setCurrentParameter" class="function public"><span class="name">_setCurrentParameter</span><span class="signature-params">( <span class="signature-param">data</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sets the value of the currently selected MIDI registered parameter.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>data</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-424">line 424</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="decrementRegisteredParameter" class="function public"><span class="name">decrementRegisteredParameter</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
@@ -490,7 +389,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>TypeError The specified parameter is not available.</p></div>
+									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
 								</div>
 							</div>
 					</form>
@@ -514,7 +413,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-487">line 487</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-505">line 505</a></p>
 								</div>
 							</div>
 			
@@ -620,7 +519,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>TypeError The specified parameter is not available.</p></div>
+									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
 								</div>
 							</div>
 					</form>
@@ -644,7 +543,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-540">line 540</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-572">line 572</a></p>
 								</div>
 							</div>
 			
@@ -728,8 +627,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td></td>
 													<td class="last">
-															<p>The number of milliseconds (integer) after which a
-									<strong>note off</strong> message will be scheduled. If left undefined, only a <strong>note on</strong> message is sent.</p>
+															<p>A positive number larger than 0 representing the number of
+									milliseconds to wait before sending a <strong>note off</strong> message. If invalid or left undefined, only
+									a <strong>note on</strong> message will be sent.</p>
 													</td>
 												</tr>
 												<tr>
@@ -826,7 +726,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-618">line 618</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-665">line 665</a></p>
 								</div>
 							</div>
 			
@@ -920,7 +820,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1477">line 1477</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1622">line 1622</a></p>
 								</div>
 							</div>
 			
@@ -1104,7 +1004,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-105">line 105</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-113">line 113</a></p>
 								</div>
 							</div>
 			
@@ -1116,7 +1016,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="sendChannelMode" class="function public"><span class="name">sendChannelMode</span><span class="signature-params">( <span class="signature-param">command</span> [,&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendChannelMode" class="function public"><span class="name">sendChannelMode</span><span class="signature-params">( <span class="signature-param">command</span>, <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1170,7 +1070,7 @@
 						<tr>
 								<td><code>value</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
 									<p>The value to send (integer between 0-127).</p>
@@ -1219,26 +1119,6 @@
 								</div>
 							</div>
 					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid channel mode message name.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Channel mode controller numbers must be between 120 and 127.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Value must be an integer between 0 and 127.</p></div>
-								</div>
-							</div>
-					</form>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -1259,7 +1139,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-877">line 877</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-921">line 921</a></p>
 								</div>
 							</div>
 			
@@ -1271,7 +1151,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="sendControlChange" class="function public"><span class="name">sendControlChange</span><span class="signature-params">( <span class="signature-param">controller</span> [,&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendControlChange" class="function public"><span class="name">sendControlChange</span><span class="signature-params">( <span class="signature-param">controller</span>, <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1370,8 +1250,8 @@
 						<tr>
 								<td><code>value</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0</td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
 									<p>The value to send (0-127).</p>
 							</td>
@@ -1453,7 +1333,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-254">line 254</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-282">line 282</a></p>
 								</div>
 							</div>
 			
@@ -1593,7 +1473,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-678">line 678</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-725">line 725</a></p>
 								</div>
 							</div>
 			
@@ -1695,7 +1575,7 @@
 														<td><code>rawAttack</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
+														<td>64</td>
 													<td class="last">
 															<p>The velocity at which to release the note (between <code>0</code>
 									and <code>127</code>). If the <code>attack</code> option is also defined, <code>rawAttack</code> will have priority. An invalid
@@ -1737,7 +1617,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-783">line 783</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-833">line 833</a></p>
 								</div>
 							</div>
 			
@@ -1772,11 +1652,10 @@
 								<td><code>pressure</code></td>
 							<td><span class="param-type">number</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0.5</td>
+								<td></td>
 							<td class="last">
-									<p>The pressure level (between 0 and 1). An invalid pressure value
-			will silently trigger the default behaviour. If the <code>rawValue</code> option is set to <code>true</code>, the
-			pressure can be defined by using an integer between 0 and 127.</p>
+									<p>The pressure level (between 0 and 1). If the <code>rawValue</code> option is
+			set to <code>true</code>, the pressure can be defined by using an integer between 0 and 127.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1834,6 +1713,14 @@
 								</div>
 							</div>
 					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>RangeError Invalid channel aftertouch value.</p></div>
+								</div>
+							</div>
+					</form>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -1854,7 +1741,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-960">line 960</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1008">line 1008</a></p>
 								</div>
 							</div>
 			
@@ -1872,7 +1759,13 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>key aftertouch</strong> message at the scheduled time. This is a key-specific
 			aftertouch. For a channel-wide aftertouch message, use
-			<a href="Output.html#setChannelAftertouch">setChannelAftertouch()</a>.</p></div>
+			<a href="Output.html#setChannelAftertouch">setChannelAftertouch()</a>.</p>
+			<p>The note can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
+			<li>A <a href="Note.html">Note</a> object</li>
+			</ul></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1888,16 +1781,15 @@
 					<tbody>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array</span></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note for which you are sending an aftertouch value. The
-			notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-			integer between 0 and 127). The second way is by using the note name followed by the octave
-			(C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
-			note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
-			an array of note names and/or numbers.</p>
+									<p>The note(s) for which you are sending
+			an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+			name (e.g. C3, G#4, F-1, Db7), a <a href="Note.html">Note</a> object or an array of the previous types. When
+			using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
+			number 0) and the highest note is G9 (MIDI note number 127).</p>
 							</td>
 						</tr>
 						<tr>
@@ -1907,8 +1799,8 @@
 								<td>0.5</td>
 							<td class="last">
 									<p>The pressure level (between 0 and 1). An invalid pressure value
-			will silently trigger the default behaviour. If the <code>useRawValue</code> option is set to <code>true</code>, the
-			pressure can be defined by using an integer between 0 and 127.</p>
+			will silently trigger the default behaviour. If the <code>rawValue</code> option is set to <code>true</code>, the
+			pressure is defined by using an integer between 0 and 127.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1966,6 +1858,14 @@
 								</div>
 							</div>
 					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>RangeError Invalid key aftertouch value.</p></div>
+								</div>
+							</div>
+					</form>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -1986,7 +1886,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-139">line 139</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-154">line 154</a></p>
 								</div>
 							</div>
 			
@@ -2091,7 +1991,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1419">line 1419</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1564">line 1564</a></p>
 								</div>
 							</div>
 			
@@ -2207,7 +2107,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1004">line 1004</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1064">line 1064</a></p>
 								</div>
 							</div>
 			
@@ -2219,7 +2119,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setModulationRange" class="function public"><span class="name">setModulationRange</span><span class="signature-params">( [&nbsp;<span class="signature-param">semitones</span> [,&nbsp;<span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="setModulationRange" class="function public"><span class="name">setModulationRange</span><span class="signature-params">( <span class="signature-param">semitones</span>, <span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -2242,18 +2142,18 @@
 						<tr>
 								<td><code>semitones</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0</td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
-									<p>The desired adjustment value in semitones (integer between
-			0 and 127).</p>
+									<p>The desired adjustment value in semitones (integer between 0 and
+			127).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>cents</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0</td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
 									<p>The desired adjustment value in cents (integer between 0 and 127).</p>
 							</td>
@@ -2301,20 +2201,6 @@
 								</div>
 							</div>
 					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The msb value must be between 0 and 127</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The lsb value must be between 0 and 127</p></div>
-								</div>
-							</div>
-					</form>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -2335,7 +2221,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1052">line 1052</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1113">line 1113</a></p>
 								</div>
 							</div>
 			
@@ -2477,7 +2363,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1106">line 1106</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1177">line 1177</a></p>
 								</div>
 							</div>
 			
@@ -2601,7 +2487,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-927">line 927</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-974">line 974</a></p>
 								</div>
 							</div>
 			
@@ -2642,7 +2528,6 @@
 			defined. The range can be set with <a href="OutputChannel.html#setPitchBendRange">setPitchBendRange()</a>
 			. So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
 			-1 will bend the note 1 octave below its nominal value.</p>
-			<p>If an invalid value is specified, the nearest valid value will be used instead.</p>
 			<p>If the <code>rawValue</code> option is set to <code>true</code>, the intensity of the bend can be defined by either
 			using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
 			representing, respectively, the MSB (most significant byte) and the LSB (least significant
@@ -2727,7 +2612,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1150">line 1150</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1241">line 1241</a></p>
 								</div>
 							</div>
 			
@@ -2857,7 +2742,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1217">line 1217</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1324">line 1324</a></p>
 								</div>
 							</div>
 			
@@ -2961,7 +2846,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1498">line 1498</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1643">line 1643</a></p>
 								</div>
 							</div>
 			
@@ -3075,7 +2960,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1250">line 1250</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1366">line 1366</a></p>
 								</div>
 							</div>
 			
@@ -3218,7 +3103,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1314">line 1314</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1438">line 1438</a></p>
 								</div>
 							</div>
 			
@@ -3332,7 +3217,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1353">line 1353</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1494">line 1494</a></p>
 								</div>
 							</div>
 			
@@ -3446,7 +3331,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1388">line 1388</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1531">line 1531</a></p>
 								</div>
 							</div>
 			
@@ -3517,7 +3402,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-736">line 736</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-786">line 786</a></p>
 								</div>
 							</div>
 			
@@ -3618,7 +3503,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1441">line 1441</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1586">line 1586</a></p>
 								</div>
 							</div>
 			
@@ -3712,7 +3597,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1459">line 1459</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1604">line 1604</a></p>
 								</div>
 							</div>
 			
@@ -3733,7 +3618,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 29th 2020 @ 16:20:48 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 4th 2020 @ 21:08:22 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
