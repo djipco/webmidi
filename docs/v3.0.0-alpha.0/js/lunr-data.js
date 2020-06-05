@@ -405,10 +405,12 @@ window.lunrData = {
           "match",
           "messag",
           "method",
+          "midi",
           "name",
           "number",
           "purpos",
           "return",
+          "spec",
           "specif",
           "specifi",
           "string|fals",
@@ -10114,6 +10116,10 @@ window.lunrData = {
                     "ref": "Input.html#destroy",
                     "tf": 5
                   },
+                  "Input.html#getCcNameByNumber": {
+                    "ref": "Input.html#getCcNameByNumber",
+                    "tf": 2.272727272727273
+                  },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
                     "tf": 1.2195121951219512
@@ -11064,7 +11070,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 2.380952380952381
+                      "tf": 2.272727272727273
                     },
                     "InputChannel.html#getChannelModeByNumber": {
                       "ref": "InputChannel.html#getChannelModeByNumber",
@@ -11355,7 +11361,7 @@ window.lunrData = {
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 2.380952380952381
+                        "tf": 2.272727272727273
                       },
                       "Input.html#hasListener": {
                         "ref": "Input.html#hasListener",
@@ -11721,7 +11727,7 @@ window.lunrData = {
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 2.380952380952381
+                        "tf": 2.272727272727273
                       },
                       "InputChannel.html#nrpnEventsEnabled": {
                         "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -14247,7 +14253,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 2.380952380952381
+                        "tf": 2.272727272727273
                       },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -14789,7 +14795,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 4.761904761904762
+                        "tf": 4.545454545454546
                       },
                       "Input.html#hasListener": {
                         "ref": "Input.html#hasListener",
@@ -19835,7 +19841,7 @@ window.lunrData = {
                   },
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 2.380952380952381
+                    "tf": 2.272727272727273
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -20457,7 +20463,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 4.761904761904762
+                      "tf": 4.545454545454546
                     },
                     "InputChannel.html#nrpnEventsEnabled": {
                       "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -20743,7 +20749,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#getCcNameByNumber": {
                           "ref": "Input.html#getCcNameByNumber",
-                          "tf": 4.761904761904762
+                          "tf": 4.545454545454546
                         },
                         "InputChannel.html#nrpnEventsEnabled": {
                           "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -22408,7 +22414,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 2.380952380952381
+                        "tf": 2.272727272727273
                       }
                     }
                   }
@@ -25667,7 +25673,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 2.380952380952381
+                    "tf": 2.272727272727273
                   },
                   "InputChannel.html#getChannelModeByNumber": {
                     "ref": "InputChannel.html#getChannelModeByNumber",
@@ -27233,7 +27239,7 @@ window.lunrData = {
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 38.09523809523809
+                        "tf": 37.878787878787875
                       },
                       "InputChannel.html#.NRPN_TYPES": {
                         "ref": "InputChannel.html#.NRPN_TYPES",
@@ -27619,7 +27625,7 @@ window.lunrData = {
                   },
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 4.761904761904762
+                    "tf": 4.545454545454546
                   },
                   "InputChannel.html#getChannelModeByNumber": {
                     "ref": "InputChannel.html#getChannelModeByNumber",
@@ -35015,6 +35021,10 @@ window.lunrData = {
               "docs": {},
               "c": {
                 "docs": {
+                  "Input.html#getCcNameByNumber": {
+                    "ref": "Input.html#getCcNameByNumber",
+                    "tf": 2.272727272727273
+                  },
                   "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                     "tf": 0.5617977528089888
@@ -35038,7 +35048,7 @@ window.lunrData = {
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 4.761904761904762
+                        "tf": 2.272727272727273
                       },
                       "InputChannel.html#nrpnEventsEnabled": {
                         "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -35133,7 +35143,7 @@ window.lunrData = {
                         },
                         "Input.html#getCcNameByNumber": {
                           "ref": "Input.html#getCcNameByNumber",
-                          "tf": 2.380952380952381
+                          "tf": 2.272727272727273
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -37632,7 +37642,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 2.380952380952381
+                      "tf": 2.272727272727273
                     },
                     "InputChannel.html#.NRPN_TYPES": {
                       "ref": "InputChannel.html#.NRPN_TYPES",
@@ -38170,7 +38180,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4374
+      "length": 4376
     },
     "corpusTokens": [
       "0",
@@ -39383,7 +39393,7 @@ window.lunrData = {
       "name": "getCcNameByNumber",
       "tags": "Input#getCcNameByNumber getCcNameByNumber",
       "summary": "",
-      "description": "Returns the name of a control change message matching the specified number. Some valid control change numbers do not have a specific name or purpose assigned in the specification . In this case, the method returns false."
+      "description": "Returns the name of a control change message matching the specified number. Some valid control change numbers do not have a specific name or purpose assigned in the MIDI spec. In this case, the method returns false."
     },
     "Input.html#hasListener": {
       "id": "Input.html#hasListener",
