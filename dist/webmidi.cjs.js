@@ -5348,6 +5348,7 @@ class WebMidi extends e {
    */
   getInputById(id) {
     if (WebMidi.validation) {
+      console.log("test", this.enabled);
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return false;
     }
