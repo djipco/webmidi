@@ -506,24 +506,24 @@ export class OutputChannel extends EventEmitter {
 
     if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
 
-      if (WebMidi.validation) {
-        if (parameter === undefined) {
-          throw new TypeError("The specified registered parameter is invalid.");
-        }
-
-        let valid = false;
-
-        Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
-          if (
-            WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
-            WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
-          ) {
-            valid = true;
-          }
-        });
-
-        if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    if (WebMidi.validation) {
+      if (parameter === undefined) {
+        throw new TypeError("The specified registered parameter is invalid.");
       }
+
+      let valid = false;
+
+      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+        if (
+          WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
+          WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+        ) {
+          valid = true;
+        }
+      });
+
+      if (!valid) throw new TypeError("The specified registered parameter is invalid.");
+    }
 
     this._selectRegisteredParameter(parameter, options);
     this.sendControlChange(0x61, 0, options);
