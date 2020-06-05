@@ -3421,7 +3421,11 @@ class Output extends e {
 
   sendSongPosition(value, options = {}) {
     this.setSongPosition(value, options);
-    console.warn("The sendSongPosition() method has been deprecated. Use setSongPosition() instead.");
+
+    if (wm.validation) {
+      console.warn("The sendSongPosition() method has been deprecated. Use setSongPosition() instead.");
+    }
+
     return this;
   }
   /**
@@ -3449,10 +3453,12 @@ class Output extends e {
 
 
   setSong(value, options = {}) {
-    value = parseInt(value);
+    if (wm.validation) {
+      value = parseInt(value);
 
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128");
+      if (isNaN(value) || !(value >= 1 && value <= 128)) {
+        throw new RangeError("The program value must be between 1 and 128");
+      }
     }
 
     this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], {
@@ -3468,7 +3474,11 @@ class Output extends e {
 
   sendSongSelect(value, options = {}) {
     this.setSong(value, options);
-    console.warn("The sendSongSelect() method has been deprecated. Use setSong() instead.");
+
+    if (wm.validation) {
+      console.warn("The sendSongSelect() method has been deprecated. Use setSong() instead.");
+    }
+
     return this;
   }
   /**
@@ -3514,7 +3524,6 @@ class Output extends e {
     });
     return this;
   }
-
   /**
    * Sends a **start** real-time message. A MIDI Start message starts the playback of the current
    * song at beat 0. To start playback elsewhere in the song, use the
@@ -3529,13 +3538,14 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
+
+
   sendStart(options = {}) {
     this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, {
       time: options.time
     });
     return this;
   }
-
   /**
    * Sends a **continue** real-time message. This resumes song playback where it was previously
    * stopped or where it was last cued with a song position message. To start playback from the
@@ -3550,13 +3560,14 @@ class Output extends e {
    *
    * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
+
+
   sendContinue(options = {}) {
     this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, {
       time: options.time
     });
     return this;
   }
-
   /**
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
    * playback immediately (or at the scheduled time).
@@ -3570,13 +3581,14 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
+
+
   sendStop(options = {}) {
     this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, {
       time: options.time
     });
     return this;
   }
-
   /**
    * Sends an **active sensing** real-time message. This tells the device connected to this port
    * that the connection is still good. Active sensing messages should be sent every 300 ms if there
@@ -3591,13 +3603,14 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
+
+
   sendActiveSensing(options = {}) {
     this.send(wm.MIDI_SYSTEM_MESSAGES.activesensing, [], {
       time: options.time
     });
     return this;
   }
-
   /**
    * Sends a **reset** real-time message. This tells the device connected to this output that it
    * should reset itself to a default state.
@@ -3611,20 +3624,27 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
+
+
   sendReset(options = {}) {
     this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, {
       time: options.time
     });
     return this;
   }
-
   /**
    * @private
    * @deprecated since version 3.0
    */
+
+
   sendTuningRequest(options = {}) {
     this.sendTuneRequest(options);
-    console.warn("The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.");
+
+    if (wm.validation) {
+      console.warn("The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.");
+    }
+
     return this;
   }
   /**
@@ -3674,8 +3694,11 @@ class Output extends e {
    * @deprecated since version 3.0
    */
   sendKeyAftertouch(note, channel, pressure, options = {}) {
+    if (wm.validation) {
+      console.warn("The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.");
+    }
+
     this.setKeyAftertouch(note, pressure, channel, options);
-    console.warn("The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.");
     return this;
   }
   /**
@@ -3914,8 +3937,11 @@ class Output extends e {
 
 
   sendChannelAftertouch(pressure, channel, options = {}) {
+    if (wm.validation) {
+      console.warn("The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch().");
+    }
+
     this.setChannelAftertouch(pressure, channel, options);
-    console.warn("The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead.");
     return this;
   }
   /**
@@ -3969,8 +3995,11 @@ class Output extends e {
 
 
   sendPitchBend(bend, channel, options = {}) {
+    if (wm.validation) {
+      console.warn("The sendPitchBend() method has been deprecated. Use setPitchBend() instead.");
+    }
+
     this.setPitchBend(bend, channel, options);
-    console.warn("The sendPitchBend() method has been deprecated. Use setPitchBend() instead.");
     return this;
   }
   /**
@@ -4014,7 +4043,10 @@ class Output extends e {
 
 
   sendProgramChange(program, channel, options = {}) {
-    console.warn("The sendProgramChange() method has been deprecated. Use setProgram() instead.");
+    if (wm.validation) {
+      console.warn("The sendProgramChange() method has been deprecated. Use setProgram() instead.");
+    }
+
     return this.setProgram(program, channel, options);
   }
   /**
@@ -4657,13 +4689,15 @@ class Output extends e {
 
 
   playNote(note, channel, options = {}) {
-    // Compatibility warning
-    if (options.rawVelocity) {
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
-    }
+    if (wm.validation) {
+      // Legacy-compatibility warning
+      if (options.rawVelocity) {
+        console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
+      }
 
-    if (options.velocity) {
-      console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+      if (options.velocity) {
+        console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+      }
     }
 
     wm.sanitizeChannels(channel).forEach(ch => {
