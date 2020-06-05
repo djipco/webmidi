@@ -30,8 +30,12 @@ export class Output extends EventEmitter {
 
     super();
 
-    if (!midiOutput || midiOutput.type !== "output") {
-      throw new TypeError("The supplied MIDIOutput is invalid.");
+    if (WebMidi.validation) {
+
+      if (!midiOutput || midiOutput.type !== "output") {
+        throw new TypeError("The supplied MIDIOutput is invalid.");
+      }
+
     }
 
     /**
@@ -244,22 +248,24 @@ export class Output extends EventEmitter {
 
     if (!Array.isArray(data)) data = [data];
 
-    /* START.VALIDATION */
-    if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
-      throw new RangeError("The status must be an integer between 128 and 255.");
-    }
+    if (WebMidi.validation) {
 
-    data.forEach(value => {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
-      if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
-        throw new RangeError("The data bytes must be integers between 0 and 255.");
+      if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
+        throw new RangeError("The status must be an integer between 128 and 255.");
       }
-    });
-    /* END.VALIDATION */
 
-    // Legacy support
-    if (typeof options === "number") options = {time: options};
+      data.forEach(value => {
+        value = parseInt(value);
+        if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
+        if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
+          throw new RangeError("The data bytes must be integers between 0 and 255.");
+        }
+      });
+
+      // Legacy-compatibility
+      if (typeof options === "number") options = {time: options};
+
+    }
 
     // Actually send the message
     this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
@@ -361,14 +367,23 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
+
     if (this._midiOutput.clear) {
+
       this._midiOutput.clear();
+
     } else {
-      console.warn(
-        "The 'clear()' method has not yet been implemented in your environment."
-      );
+
+      if (WebMidi.validation) {
+        console.warn(
+          "The 'clear()' method has not yet been implemented in your environment."
+        );
+      }
+
     }
+
     return this;
+
   }
 
   /**
@@ -388,12 +403,22 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendTimecodeQuarterFrame(value, options = {}) {
+
+    if (WebMidi.validation) {
+      value = parseInt(value);
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("The value must be an integer between 0 and 127.");
+      }
+    }
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
       value,
       {time: options.time}
     );
+
     return this;
+
   };
 
   /**
@@ -434,11 +459,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendSongPosition(value, options = {}) {
+
     this.setSongPosition(value, options);
-    console.warn(
-      "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
-    );
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
+      );
+    }
+
     return this;
+
   }
 
   /**
@@ -465,9 +496,14 @@ export class Output extends EventEmitter {
    */
   setSong(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 && value <= 128)) {
-      throw new RangeError("The program value must be between 1 and 128");
+    if (WebMidi.validation) {
+
+      value = parseInt(value);
+
+      if (isNaN(value) || !(value >= 1 && value <= 128)) {
+        throw new RangeError("The program value must be between 1 and 128");
+      }
+
     }
 
     this.send(
@@ -485,11 +521,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendSongSelect(value, options = {}) {
+
     this.setSong(value, options);
-    console.warn(
-      "The sendSongSelect() method has been deprecated. Use setSong() instead."
-    );
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendSongSelect() method has been deprecated. Use setSong() instead."
+      );
+    }
+
     return this;
+
   }
 
   /**
@@ -507,12 +549,15 @@ export class Output extends EventEmitter {
    * @since 3.0.0
    */
   sendTuneRequest(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
       undefined,
       {time: options.time}
     );
+
     return this;
+
   }
 
   /**
@@ -529,13 +574,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendClock(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.clock,
       undefined,
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **start** real-time message. A MIDI Start message starts the playback of the current
@@ -552,13 +600,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendStart(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.start,
       undefined,
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **continue** real-time message. This resumes song playback where it was previously
@@ -575,13 +626,16 @@ export class Output extends EventEmitter {
    * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   sendContinue(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.continue,
       undefined,
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
@@ -597,13 +651,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendStop(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.stop,
       undefined,
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends an **active sensing** real-time message. This tells the device connected to this port
@@ -620,13 +677,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendActiveSensing(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
       [],
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **reset** real-time message. This tells the device connected to this output that it
@@ -642,24 +702,35 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendReset(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.reset,
       undefined,
       {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * @private
    * @deprecated since version 3.0
    */
   sendTuningRequest(options = {}) {
+
     this.sendTuneRequest(options);
-    console.warn(
-      "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
-    );
+
+    if (WebMidi.validation) {
+
+      console.warn(
+        "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
+      );
+
+    }
+
     return this;
+
   }
 
   /**
@@ -710,11 +781,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendKeyAftertouch(note, channel, pressure, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
+      );
+    }
+
     this.setKeyAftertouch(note, pressure, channel, options);
-    console.warn(
-      "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
-    );
+
     return this;
+
   }
 
   /**
@@ -960,11 +1037,16 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendChannelAftertouch(pressure, channel, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch()."
+      );
+    }
+
     this.setChannelAftertouch(pressure, channel, options);
-    console.warn(
-      "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead."
-    );
     return this;
+
   }
 
   /**
@@ -1018,11 +1100,16 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendPitchBend(bend, channel, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
+      );
+    }
+
     this.setPitchBend(bend, channel, options);
-    console.warn(
-      "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
-    );
     return this;
+
   }
 
   /**
@@ -1067,9 +1154,11 @@ export class Output extends EventEmitter {
    */
   sendProgramChange(program, channel, options = {}) {
 
-    console.warn(
-      "The sendProgramChange() method has been deprecated. Use setProgram() instead."
-    );
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendProgramChange() method has been deprecated. Use setProgram() instead."
+      );
+    }
 
     return this.setProgram(program, channel, options);
 
@@ -1280,7 +1369,6 @@ export class Output extends EventEmitter {
 
   }
 
-
   /**
    * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
    * channel but will not prevent new sounds from being triggered.
@@ -1393,7 +1481,6 @@ export class Output extends EventEmitter {
     return this;
 
   }
-
 
   /**
    * Turns local control on or off. Local control is usually enabled by default. If you disable it,
@@ -1750,12 +1837,17 @@ export class Output extends EventEmitter {
    */
   playNote(note, channel, options = {}) {
 
-    // Compatibility warning
-    if (options.rawVelocity) {
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
-    }
-    if (options.velocity) {
-      console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+    if (WebMidi.validation) {
+
+      // Legacy-compatibility warning
+      if (options.rawVelocity) {
+        console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
+      }
+
+      if (options.velocity) {
+        console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+      }
+
     }
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
