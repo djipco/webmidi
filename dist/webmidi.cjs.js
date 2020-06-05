@@ -1080,19 +1080,28 @@ class Input extends e {
     }
   }
   /**
-   * Returns the name of a control change message matching the specified number. If no match is
-   * found, the function returns `false`.
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the [specification]
+   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2). In
+   * this case, the method returns `false`.
    *
    * @param {number} number An integer representing the control change message
    * @returns {string|false} The matching control change name or `false` if not match was found
+   *
+   * @throws {RangeError} Invalid control change number.
    *
    * @since 2.0.0
    */
 
 
   getCcNameByNumber(number) {
-    number = parseInt(number);
-    if (!(number >= 0 && number <= 119)) return false;
+    if (wm.validation) {
+      number = parseInt(number);
+
+      if (!(number >= 0 && number <= 119)) {
+        throw new RangeError("Invalid control change number.");
+      }
+    }
 
     for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
       if (wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) && number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
