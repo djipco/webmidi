@@ -377,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-843">line 843</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-852">line 852</a></p>
 								</div>
 							</div>
 			
@@ -423,7 +423,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-833">line 833</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-842">line 842</a></p>
 								</div>
 							</div>
 			
@@ -467,7 +467,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-853">line 853</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-862">line 862</a></p>
 								</div>
 							</div>
 			
@@ -531,7 +531,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-821">line 821</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-830">line 830</a></p>
 								</div>
 							</div>
 			
@@ -575,7 +575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-863">line 863</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-872">line 872</a></p>
 								</div>
 							</div>
 			
@@ -619,7 +619,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-873">line 873</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-882">line 882</a></p>
 								</div>
 							</div>
 			
@@ -639,15 +639,16 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds an event listener that will trigger a function callback when the specified event happens.
-			The events that are listened to can be channel-specific or input-wide.</p>
+			The events that are listened to can be channel-specific or input-wide (system)..</p>
 			<p>This method overrides the one in
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">djipevents.EventEmitter</a>
 			by adding a <code>channel</code> parameter that makes it possible to add a listener to one or several
 			channels at once. Invalid channels will be silently ignored.</p>
 			<p>If you want to add a listener to a single channel (which is often preferable performance-wise),
 			use InputChannel.addListener() instead.</p>
-			<p>Here is a list of events that are directly dispatched by <code>Input</code> objects and that can be
-			listened to:</p>
+			<p>The list of events that are directly dispatched by <code>Input</code> objects can be broken down into
+			system MIDI messages and state change messages:</p>
+			<h2>System MIDI messages</h2>
 			<ul>
 			<li><a href="Input.html#event:sysex">sysex</a></li>
 			<li><a href="Input.html#event:timecode">timecode</a></li>
@@ -662,6 +663,12 @@
 			<li><a href="Input.html#event:reset">reset</a></li>
 			<li><a href="Input.html#event:midimessage">midimessage</a></li>
 			<li><a href="Input.html#event:unknownmidimessage">unknownmidimessage</a></li>
+			</ul>
+			<h2>State change messages</h2>
+			<ul>
+			<li><a href="Input.html#event:opened">opened</a></li>
+			<li><a href="Input.html#event:closed">closed</a></li>
+			<li><a href="Input.html#event:disconnected">disconnected</a></li>
 			</ul>
 			<p>For these input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply
 			use <code>undefined</code> in that case.</p>
@@ -845,7 +852,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-622">line 622</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-631">line 631</a></p>
 								</div>
 							</div>
 			
@@ -1064,7 +1071,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-717">line 717</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-726">line 726</a></p>
 								</div>
 							</div>
 			
@@ -1110,7 +1117,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-476">line 476</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-477">line 477</a></p>
 								</div>
 							</div>
 			
@@ -1240,7 +1247,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-501">line 501</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-502">line 502</a></p>
 								</div>
 							</div>
 			
@@ -1338,7 +1345,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-757">line 757</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-766">line 766</a></p>
 								</div>
 							</div>
 			
@@ -1383,7 +1390,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-455">line 455</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-456">line 456</a></p>
 								</div>
 							</div>
 			
@@ -1525,7 +1532,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-801">line 801</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-810">line 810</a></p>
 								</div>
 							</div>
 			
@@ -1544,7 +1551,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>active sensing</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when an <strong>active sensing</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -1622,7 +1629,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-397">line 397</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-398">line 398</a></p>
 								</div>
 							</div>
 			
@@ -1638,7 +1645,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>timing clock</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>timing clock</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -1716,7 +1723,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-333">line 333</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-334">line 334</a></p>
 								</div>
 							</div>
 			
@@ -1813,7 +1820,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>continue</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>continue</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -1891,7 +1898,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-365">line 365</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-366">line 366</a></p>
 								</div>
 							</div>
 			
@@ -2247,7 +2254,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>reset</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>reset</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2325,7 +2332,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-413">line 413</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-414">line 414</a></p>
 								</div>
 							</div>
 			
@@ -2341,7 +2348,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>song position</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>song position</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2419,7 +2426,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-283">line 283</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-284">line 284</a></p>
 								</div>
 							</div>
 			
@@ -2435,7 +2442,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>song select</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>song select</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2520,7 +2527,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-299">line 299</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-300">line 300</a></p>
 								</div>
 							</div>
 			
@@ -2536,7 +2543,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>start</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>start</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2614,7 +2621,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-349">line 349</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-350">line 350</a></p>
 								</div>
 							</div>
 			
@@ -2630,7 +2637,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>stop</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>stop</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2708,7 +2715,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-381">line 381</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-382">line 382</a></p>
 								</div>
 							</div>
 			
@@ -2724,9 +2731,9 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>system exclusive</strong> message has been received. You should note that,
-			to receive <code>sysex</code> events, you must call the <code>WebMidi.enable()</code> method with the <code>sysex</code>
-			option set to <code>true</code>:</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>system exclusive</strong> message has been received.
+			You should note that, to receive <code>sysex</code> events, you must call the <code>WebMidi.enable()</code>
+			method with the <code>sysex</code> option set to <code>true</code>:</p>
 			<pre class="prettyprint source lang-js"><code>WebMidi.enable({sysex: true})
 			 .then(() => console.log(&quot;WebMidi has been enabled with sysex support.&quot;))
 			 .catch(err => console.log(&quot;WebMidi could not be enabled.&quot;))
@@ -2824,7 +2831,8 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>time code quarter frame</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>time code quarter frame</strong> message has been
+			received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2918,7 +2926,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>tune request</strong> message has been received.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when a <strong>tune request</strong> message has been received.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -2996,7 +3004,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-317">line 317</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-318">line 318</a></p>
 								</div>
 							</div>
 			
@@ -3012,8 +3020,8 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an unknown MIDI message has been received. It could be, for example, one
-			of the undefined/reserved messages.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+			be, for example, one of the undefined/reserved messages.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -3091,7 +3099,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-429">line 429</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-430">line 430</a></p>
 								</div>
 							</div>
 			
@@ -3112,7 +3120,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:28:19 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:39:27 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -344,9 +344,9 @@ export class Input extends EventEmitter {
     if (command === WebMidi.MIDI_SYSTEM_MESSAGES.sysex) {
 
       /**
-       * Event emitted when a **system exclusive** message has been received. You should note that,
-       * to receive `sysex` events, you must call the `WebMidi.enable()` method with the `sysex`
-       * option set to `true`:
+       * Input-wide (system) event emitted when a **system exclusive** message has been received.
+       * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
+       * method with the `sysex` option set to `true`:
        *
        * ```js
        * WebMidi.enable({sysex: true})
@@ -368,7 +368,8 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.timecode) {
 
       /**
-       * Event emitted when a **time code quarter frame** message has been received.
+       * Input-wide (system) event emitted when a **time code quarter frame** message has been
+       * received.
        *
        * @event Input#timecode
        * @type {Object}
@@ -384,7 +385,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.songposition) {
 
       /**
-       * Event emitted when a **song position** message has been received.
+       * Input-wide (system) event emitted when a **song position** message has been received.
        *
        * @event Input#songposition
        * @type {Object}
@@ -400,7 +401,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.songselect) {
 
       /**
-       * Event emitted when a **song select** message has been received.
+       * Input-wide (system) event emitted when a **song select** message has been received.
        *
        * @event Input#songselect
        * @type {Object}
@@ -418,7 +419,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest) {
 
       /**
-       * Event emitted when a **tune request** message has been received.
+       * Input-wide (system) event emitted when a **tune request** message has been received.
        *
        * @event Input#tunerequest
        * @type {Object}
@@ -434,7 +435,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.clock) {
 
       /**
-       * Event emitted when a **timing clock** message has been received.
+       * Input-wide (system) event emitted when a **timing clock** message has been received.
        *
        * @event Input#clock
        * @type {Object}
@@ -450,7 +451,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.start) {
 
       /**
-       * Event emitted when a **start** message has been received.
+       * Input-wide (system) event emitted when a **start** message has been received.
        *
        * @event Input#start
        * @type {Object}
@@ -466,7 +467,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.continue) {
 
       /**
-       * Event emitted when a **continue** message has been received.
+       * Input-wide (system) event emitted when a **continue** message has been received.
        *
        * @event Input#continue
        * @type {Object}
@@ -482,7 +483,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.stop) {
 
       /**
-       * Event emitted when a **stop** message has been received.
+       * Input-wide (system) event emitted when a **stop** message has been received.
        *
        * @event Input#stop
        * @type {Object}
@@ -498,7 +499,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.activesensing) {
 
       /**
-       * Event emitted when an **active sensing** message has been received.
+       * Input-wide (system) event emitted when an **active sensing** message has been received.
        *
        * @event Input#activesensing
        * @type {Object}
@@ -514,7 +515,7 @@ export class Input extends EventEmitter {
     } else if (command === WebMidi.MIDI_SYSTEM_MESSAGES.reset) {
 
       /**
-       * Event emitted when a **reset** message has been received.
+       * Input-wide (system) event emitted when a **reset** message has been received.
        *
        * @event Input#reset
        * @type {Object}
@@ -530,8 +531,8 @@ export class Input extends EventEmitter {
     } else {
 
       /**
-       * Event emitted when an unknown MIDI message has been received. It could be, for example, one
-       * of the undefined/reserved messages.
+       * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+       * be, for example, one of the undefined/reserved messages.
        *
        * @event Input#unknownmidimessage
        * @type {Object}
@@ -639,7 +640,7 @@ export class Input extends EventEmitter {
 
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
-   * The events that are listened to can be channel-specific or input-wide.
+   * The events that are listened to can be channel-specific or input-wide (system)..
    *
    * This method overrides the one in
    * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#addListener)
@@ -649,8 +650,10 @@ export class Input extends EventEmitter {
    * If you want to add a listener to a single channel (which is often preferable performance-wise),
    * use [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
    *
-   * Here is a list of events that are directly dispatched by `Input` objects and that can be
-   * listened to:
+   * The list of events that are directly dispatched by `Input` objects can be broken down into
+   * system MIDI messages and state change messages:
+   *
+   * ## System MIDI messages
    *
    *    * [sysex]{@link Input#event:sysex}
    *    * [timecode]{@link Input#event:timecode}
@@ -665,6 +668,12 @@ export class Input extends EventEmitter {
    *    * [reset]{@link Input#event:reset}
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+   *
+   * ## State change messages
+   *
+   *    * [opened]{@link Input#event:opened}
+   *    * [closed]{@link Input#event:closed}
+   *    * [disconnected]{@link Input#event:disconnected}
    *
    * For these input-wide events, the `channel` parameter will be silently ignored. You can simply
    * use `undefined` in that case.
@@ -997,7 +1006,7 @@ export class Input extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:28:19 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:39:27 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
