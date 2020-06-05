@@ -471,19 +471,26 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Returns the name of a control change message matching the specified number. If no match is
-   * found, the function returns `false`.
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+   * In this case, the method returns `false`.
    *
    * @param {number} number An integer representing the control change message
    * @returns {string|false} The matching control change name or `false` if not match was found
+   *
+   * @throws {RangeError} Invalid control change number.
    *
    * @since 2.0.0
    */
   getCcNameByNumber(number) {
 
-    number = parseInt(number);
-
-    if ( !(number >= 0 && number <= 119) ) return false;
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if ( !(number >= 0 && number <= 119) ) {
+        throw new RangeError("Invalid control change number.");
+      }
+    }
 
     for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
 
@@ -498,7 +505,19 @@ export class Input extends EventEmitter {
 
     return false;
 
-  };
+  }
+
+  /**
+   * @private
+   * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+   */
+  getChannelModeByNumber() {
+    if (WebMidi.validation) {
+      console.warn(
+        "The 'getChannelModeByNumber()' method has been moved to the 'InputChannel' class."
+      );
+    }
+  }
 
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
@@ -842,7 +861,9 @@ export class Input extends EventEmitter {
    * @deprecated since v3.0.0 (moved to 'InputChannel' class)
    */
   get nrpnEventsEnabled() {
-    console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
+    if (WebMidi.validation) {
+      console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
+    }
     return false;
   }
 
