@@ -481,7 +481,7 @@ export class Input extends EventEmitter {
    */
   getCcNameByNumber(number) {
 
-    number = Math.floor(number);
+    number = parseInt(number);
 
     if ( !(number >= 0 && number <= 119) ) return false;
 
