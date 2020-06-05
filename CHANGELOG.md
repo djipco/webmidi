@@ -7,7 +7,8 @@ format used is the one suggested by [Keep a Changelog](https://keepachangelog.co
 
 ### Added
 
-- WebMidi.js now has builtin Node.js support thanks to the `jzz` node module by Jazz-Soft.
+- WebMidi.js now has builtin Node.js support thanks to the [jzz](https://www.npmjs.com/package/jzz)
+node module by Jazz-Soft.
 
 - WebMidi.js now explicitly checks for Jazz-Plugin support in environments with no native support 
 for the Web MIDI API.
@@ -28,8 +29,8 @@ does not accept a `duration` option. It was added mostly for completeness' sake.
 Actually, `stopNote()` is an alias to `sendNoteOff()`.
 
 - The `setChannelAftertouch()`, `setKeyAftertouch()` and `setPitchbend()` method now have a 
-`useRawValue` options allowing to assign value using an integer between 0 and 127 instead of a float
-between 0 and 1.
+`useRawValue` options allowing the assignment of value using an integer between 0 and 127 instead of
+a float between 0 and 1.
 
 - There is a new `Note` object that can be used im various places such as when calling `playNote()`
 or `stopNote()`. It carries with it the note number, the duration (if any), the attack and release
@@ -38,12 +39,13 @@ information, etc.
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
-that all channels should be listening. This was a terrible design decision and it ends now.
+that all channels should be listening. This was a terrible design decision and it ends with version 
+3.
 
 - All non-chainable methods now return `false` instead of returning `undefined` or throwing an error
 when invalid input is provided. Methods that were changed to match this behaviour are 
 `WebMidi.guessNoteNumber()`, `WebMidi.getOctave()`, `WebMidi.getNoteNumberByName()`, 
-`Input.getCcNameByNumber()`, `Input.getChannelModeByNumber()`
+`Input.getCcNameByNumber()`, `Input.getChannelModeByNumber()`.
 
 - Documentation is now generated with [jsdoc](https://www.npmjs.com/package/jsdoc) instead of the 
 outdated [yuidoc](https://www.npmjs.com/package/grunt-contrib-yuidoc).
@@ -83,6 +85,10 @@ work in version 3.0:
 
 - Although still supported, passing `"all"` as the `channel` parameter is now discouraged for 
 performance reasons. It has been removed from the documentation.
+
+- The event received by listeners registered on `Input` and `InputChannel` objects has been slightly 
+changed. Its `data` property now contains a regular array (instead of a `Uint8Array`). Its `rawData` 
+property now contains the `Uint8Array`.
 
 ### Deprecated
 
