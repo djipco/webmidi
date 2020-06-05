@@ -1091,7 +1091,7 @@ class Input extends e {
 
 
   getCcNameByNumber(number) {
-    number = Math.floor(number);
+    number = parseInt(number);
     if (!(number >= 0 && number <= 119)) return false;
 
     for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
