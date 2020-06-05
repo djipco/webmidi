@@ -528,8 +528,8 @@ export class Input extends EventEmitter {
    * by adding a `channel` parameter that makes it possible to add a listener to one or several
    * channels at once. Invalid channels will be silently ignored.
    *
-   * If you want to add a listener to a single channel, use
-   * [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
+   * If you want to add a listener to a single channel (which is often preferable performance-wise),
+   * use [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
    *
    * Here is a list of events that are directly dispatched by `Input` objects and that can be
    * listened to:
@@ -548,14 +548,16 @@ export class Input extends EventEmitter {
    *    * [midimessage]{@link Input#event:midimessage}
    *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
-   *  For these input-wide events, the `channel` parameter will be silently ignored. You can simply
-   *  use `undefined` in that case.
+   * For these input-wide events, the `channel` parameter will be silently ignored. You can simply
+   * use `undefined` in that case.
    *
    * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
-   * event is dispatched for every single message that is received on that `Input`.
+   * event is dispatched for every single message that is received on that `Input` (no matter the
+   * channel, if any).
    *
-   * By using the `channel` property, you can also add listeners to all channels in the `channel`
-   * parameter. These are the events dispatched by individual {@link InputChannel} objects:
+   * By using the `channel` property, you can also add listeners to all channels specified via the
+   * `channel` parameter. These are the events dispatched by individual {@link InputChannel}
+   * objects:
    *
    *    * [noteoff]{@link InputChannel#event:noteoff}
    *    * [noteon]{@link InputChannel#event:noteon}
@@ -572,10 +574,11 @@ export class Input extends EventEmitter {
    *
    * @param channel {number|number[]|undefined} An integer between 1 and 16 or an array of such
    * integers representing the channel(s) to listen on. This parameter will be ignored for
-   * input-wide events (just set it to `undefined` in such cases).
+   * input-wide events. If you need to also use the `options` parameter, just set the channel to
+   * `undefined`.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
-   * This function will receive an event parameter object. For details on this object"s properties,
+   * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
    * @param {Object} [options={}]
@@ -599,12 +602,13 @@ export class Input extends EventEmitter {
    * @throws {TypeError} The callback must be a function.
    * @throws {TypeError} The 'event' parameter must be a string or EventEmitter.ANY_EVENT.
    *
-   * @return {Listener[]} An array of all `Listener` objects that were created.
+   * @returns {Listener[]} An array of all `Listener` objects that were created.
    */
   addListener(event, channel, listener, options) {
 
     let listeners = [];
 
+    // Check if the event is channel-specific or input-wide
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
       listeners.push(super.addListener(event, listener, options));
     } else {
@@ -663,7 +667,7 @@ export class Input extends EventEmitter {
    * If you want to view all incoming MIDI traffic, you can listen to the input-level `midimessage`
    * event. This event is dispatched for every single message that is received on that input.
    *
-   * @param type {string} The type of the event.
+   * @param event {string} The type of the event.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -695,9 +699,9 @@ export class Input extends EventEmitter {
    *
    * @since 3.0.0
    */
-  addOneTimeListener(type, channel, listener, options = {}) {
+  addOneTimeListener(event, channel, listener, options = {}) {
     options.remaining = 1;
-    return this.addListener(type, channel, listener, options);
+    return this.addListener(event, channel, listener, options);
   }
 
   /**
@@ -706,8 +710,8 @@ export class Input extends EventEmitter {
    * @deprecated since v3.0
    * @private
    */
-  on(type, channel, listener, options) {
-    return this.addListener(type, channel, listener, options);
+  on(event, channel, listener, options) {
+    return this.addListener(event, channel, listener, options);
   }
 
   /**
@@ -723,7 +727,7 @@ export class Input extends EventEmitter {
    * by adding a `channel` parameter that makes it possible to check for the listener on one or
    * several channels at once. Invalid channels will be silently ignored.
    *
-   * @param type {string} The type of the event.
+   * @param event {string} The type of the event.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -735,16 +739,16 @@ export class Input extends EventEmitter {
    * @returns {Boolean} Boolean value indicating whether or not the channel(s) already have this
    * listener defined.
    */
-  hasListener(type, channel, listener) {
+  hasListener(event, channel, listener) {
 
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[type] !== undefined) {
+    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
       return WebMidi.sanitizeChannels(channel).every(ch => {
-        return this.channels[ch].hasListener(type, listener);
+        return this.channels[ch].hasListener(event, listener);
       });
 
     } else {
-      return super.hasListener(type, listener);
+      return super.hasListener(event, listener);
     }
 
   }
@@ -779,15 +783,15 @@ export class Input extends EventEmitter {
    * @throws {TypeError} The specified event type is not supported.
    * @throws {TypeError} The "listener" parameter must be a function..
    */
-  removeListener(type, channel, listener, options) {
+  removeListener(event, channel, listener, options) {
 
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[type] !== undefined) {
+    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
       WebMidi.sanitizeChannels(channel).forEach(ch => {
-        this.channels[ch].removeListener(type, listener, options);
+        this.channels[ch].removeListener(event, listener, options);
       });
-    } else if (type != undefined) {
-      return super.removeListener(type, listener, options);
-    } else if (type == undefined) {
+    } else if (event != undefined) {
+      return super.removeListener(event, listener, options);
+    } else if (event == undefined) {
       return super.removeListener();
     }
 
