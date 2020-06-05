@@ -133,8 +133,12 @@ export class Output extends EventEmitter {
 
     super();
 
-    if (!midiOutput || midiOutput.type !== "output") {
-      throw new TypeError("The supplied MIDIOutput is invalid.");
+    if (WebMidi.validation) {
+
+      if (!midiOutput || midiOutput.type !== "output") {
+        throw new TypeError("The supplied MIDIOutput is invalid.");
+      }
+
     }
 
     /**
@@ -301,16 +305,19 @@ export class Output extends EventEmitter {
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (128-255).
+   * @param status {Number} The MIDI status byte of the message (integer between 128-255).
    *
-   * @param [data=[]] {Array} An array of unsigned integers for the message. The number of data
+   * @param [data=[]] {number[]} An array of unsigned integers for the message. The number of data
    * bytes varies depending on the status byte. It is perfectly legal to send no data for some
-   * message types (use undefined or an empty array in this case). Each byte must be between 0 and
+   * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
    * 255.
    *
-   * @param [timestamp=0] {number} The timestamp (DOMHighResTimeStamp) at which to send the message.
-   * You can use [WebMidi.time]{@link WebMidi#time} to retrieve the current timestamp. To send
-   * immediately, leave blank or use 0.
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number
+   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+   * in the past, the operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
    * than 0xFF.
@@ -340,10 +347,34 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(status, data = [], timestamp) {
+  send(status, data = [], options= {}) {
+
     if (!Array.isArray(data)) data = [data];
-    this._midiOutput.send([status].concat(data), parseFloat(timestamp) || 0);
+
+    if (WebMidi.validation) {
+
+      if (!(parseInt(status) >= 128 &amp;&amp; parseInt(status) &lt;= 255)) {
+        throw new RangeError("The status must be an integer between 128 and 255.");
+      }
+
+      data.forEach(value => {
+        value = parseInt(value);
+        if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
+        if (!(parseInt(value) >= 0 &amp;&amp; parseInt(value) &lt;= 255)) {
+          throw new RangeError("The data bytes must be integers between 0 and 255.");
+        }
+      });
+
+      // Legacy-compatibility
+      if (typeof options === "number") options = {time: options};
+
+    }
+
+    // Actually send the message
+    this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
+
     return this;
+
   }
 
   /**
@@ -421,7 +452,7 @@ export class Output extends EventEmitter {
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, WebMidi.convertToTimestamp(options.time));
+    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, {time: options.time});
 
     return this;
 
@@ -433,15 +464,29 @@ export class Output extends EventEmitter {
    * Warning: this method has been defined in the specification but has not been implemented yet. As
    * soon as browsers implement it, it will work.
    *
+   * You can check out the current status of this feature for Chromium (Chrome) here:
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
+
     if (this._midiOutput.clear) {
+
       this._midiOutput.clear();
+
     } else {
-      console.warn("The 'clear()' method has not yet been implemented in your environment.");
+
+      if (WebMidi.validation) {
+        console.warn(
+          "The 'clear()' method has not yet been implemented in your environment."
+        );
+      }
+
     }
+
     return this;
+
   }
 
   /**
@@ -461,12 +506,22 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendTimecodeQuarterFrame(value, options = {}) {
+
+    if (WebMidi.validation) {
+      value = parseInt(value);
+      if (isNaN(value) || !(value >= 0 &amp;&amp; value &lt;= 127)) {
+        throw new RangeError("The value must be an integer between 0 and 127.");
+      }
+    }
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
       value,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
+
   };
 
   /**
@@ -496,7 +551,7 @@ export class Output extends EventEmitter {
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
       [msb, lsb],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
     return this;
 
@@ -507,11 +562,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendSongPosition(value, options = {}) {
+
     this.setSongPosition(value, options);
-    console.warn(
-      "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
-    );
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
+      );
+    }
+
     return this;
+
   }
 
   /**
@@ -538,15 +599,20 @@ export class Output extends EventEmitter {
    */
   setSong(value, options = {}) {
 
-    value = parseInt(value);
-    if (isNaN(value) || !(value >= 1 &amp;&amp; value &lt;= 128)) {
-      throw new RangeError("The program value must be between 1 and 128");
+    if (WebMidi.validation) {
+
+      value = parseInt(value);
+
+      if (isNaN(value) || !(value >= 1 &amp;&amp; value &lt;= 128)) {
+        throw new RangeError("The program value must be between 1 and 128");
+      }
+
     }
 
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
       [value],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
 
     return this;
@@ -558,11 +624,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendSongSelect(value, options = {}) {
+
     this.setSong(value, options);
-    console.warn(
-      "The sendSongSelect() method has been deprecated. Use setSong() instead."
-    );
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendSongSelect() method has been deprecated. Use setSong() instead."
+      );
+    }
+
     return this;
+
   }
 
   /**
@@ -580,12 +652,15 @@ export class Output extends EventEmitter {
    * @since 3.0.0
    */
   sendTuneRequest(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
+
   }
 
   /**
@@ -602,13 +677,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendClock(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.clock,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **start** real-time message. A MIDI Start message starts the playback of the current
@@ -625,13 +703,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendStart(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.start,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **continue** real-time message. This resumes song playback where it was previously
@@ -648,13 +729,16 @@ export class Output extends EventEmitter {
    * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
    */
   sendContinue(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.continue,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
@@ -670,13 +754,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendStop(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.stop,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends an **active sensing** real-time message. This tells the device connected to this port
@@ -693,13 +780,16 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendActiveSensing(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
       [],
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * Sends a **reset** real-time message. This tells the device connected to this output that it
@@ -715,24 +805,35 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendReset(options = {}) {
+
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.reset,
       undefined,
-      WebMidi.convertToTimestamp(options.time)
+      {time: options.time}
     );
+
     return this;
-  };
+
+  }
 
   /**
    * @private
    * @deprecated since version 3.0
    */
   sendTuningRequest(options = {}) {
+
     this.sendTuneRequest(options);
-    console.warn(
-      "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
-    );
+
+    if (WebMidi.validation) {
+
+      console.warn(
+        "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
+      );
+
+    }
+
     return this;
+
   }
 
   /**
@@ -783,11 +884,17 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendKeyAftertouch(note, channel, pressure, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
+      );
+    }
+
     this.setKeyAftertouch(note, pressure, channel, options);
-    console.warn(
-      "The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead."
-    );
+
     return this;
+
   }
 
   /**
@@ -1033,19 +1140,35 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendChannelAftertouch(pressure, channel, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch()."
+      );
+    }
+
     this.setChannelAftertouch(pressure, channel, options);
-    console.warn(
-      "The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch() instead."
-    );
     return this;
+
   }
 
   /**
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
    *
-   * @param value {number} The intensity level of the bend (between -1.0 and 1.0). A value of zero
-   * means no bend. If the `rawValue` option is set to `true`, the intensity can be defined by using
-   * an integer between 0 and 127. In this case, a value of 64 means no bend.
+   * @param {number|number[]} value The intensity of the bend (between -1.0 and 1.0). A value of
+   * zero means no bend. The resulting bend is relative to the pitch bend range that has been
+   * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
+   * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
+   * -1 will bend the note 1 octave below its nominal value.
+   *
+   * If an invalid value is specified, the nearest valid value will be used instead.
+   *
+   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
+   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
+   * byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64`
+   * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
+   * (1/100 of a semitone). An LSB of `64` also means no bend.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
    * representing the channel(s) to listen on.
@@ -1053,14 +1176,13 @@ export class Output extends EventEmitter {
    * @param {Object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127.
+   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
+   * an array of 2 integers if using both MSB and LSB).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
-   *
-   * @throws {RangeError} Pitch bend value must be between -1.0 and 1.0.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
@@ -1081,11 +1203,16 @@ export class Output extends EventEmitter {
    * @deprecated since version 3.0
    */
   sendPitchBend(bend, channel, options = {}) {
+
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
+      );
+    }
+
     this.setPitchBend(bend, channel, options);
-    console.warn(
-      "The sendPitchBend() method has been deprecated. Use setPitchBend() instead."
-    );
     return this;
+
   }
 
   /**
@@ -1130,9 +1257,11 @@ export class Output extends EventEmitter {
    */
   sendProgramChange(program, channel, options = {}) {
 
-    console.warn(
-      "The sendProgramChange() method has been deprecated. Use setProgram() instead."
-    );
+    if (WebMidi.validation) {
+      console.warn(
+        "The sendProgramChange() method has been deprecated. Use setProgram() instead."
+      );
+    }
 
     return this.setProgram(program, channel, options);
 
@@ -1343,7 +1472,6 @@ export class Output extends EventEmitter {
 
   }
 
-
   /**
    * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
    * channel but will not prevent new sounds from being triggered.
@@ -1456,7 +1584,6 @@ export class Output extends EventEmitter {
     return this;
 
   }
-
 
   /**
    * Turns local control on or off. Local control is usually enabled by default. If you disable it,
@@ -1623,8 +1750,6 @@ export class Output extends EventEmitter {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @throws Error The specified parameter is not available.
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   incrementRegisteredParameter(parameter, channel, options = {}) {
@@ -1683,7 +1808,7 @@ export class Output extends EventEmitter {
 
     return this;
 
-  };
+  }
 
   /**
    * Sends a **note off** message for the specified notes on the specified channel(s). The first
@@ -1815,12 +1940,17 @@ export class Output extends EventEmitter {
    */
   playNote(note, channel, options = {}) {
 
-    // Compatibility warning
-    if (options.rawVelocity) {
-      console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
-    }
-    if (options.velocity) {
-      console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+    if (WebMidi.validation) {
+
+      // Legacy-compatibility warning
+      if (options.rawVelocity) {
+        console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
+      }
+
+      if (options.velocity) {
+        console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+      }
+
     }
 
     WebMidi.sanitizeChannels(channel).forEach(ch => {
@@ -1956,7 +2086,7 @@ export class Output extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 10th 2020 @ 13:05:00 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 14:36:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

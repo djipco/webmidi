@@ -106,7 +106,7 @@
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
-			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">name</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
+			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
@@ -131,7 +131,7 @@
 					</thead>
 					<tbody>
 						<tr>
-								<td><code>name</code></td>
+								<td><code>value</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type">number</span></td>
 								<td class="attributes"></td>
 								<td></td>
@@ -223,6 +223,42 @@
 									<div class="form-control-static exceptions-description"><p>Invalid note name.</p></div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid note number.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid duration.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid attack value.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid rawAttack value.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid release value.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid rawRelease value.</p></div>
+								</div>
+							</div>
 					</form>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
@@ -251,7 +287,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-41">line 41</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-47">line 47</a></p>
 								</div>
 							</div>
 			
@@ -267,7 +303,7 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title class public">
-			<h4 id="Note" class="class public"><a href="Note.html"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">name</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
+			<h4 id="Note" class="class public"><a href="Note.html"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
 		</dt>
 <dd class="symbol-details class public">
 	<div class="symbol-details-inner">
@@ -282,8 +318,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The attack velocity of the note as a decimal number between 0 and 1. By default, this is set to
-			64 ÷ 127 which is roughly 0.5.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The attack velocity of the note as a decimal number between 0 and 1.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -311,55 +346,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-123">line 123</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="channels" class="member public"><span class="name">channels</span><span class="signature-type"> :Array.&lt;number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of integers (1-16) representing the MIDI channel(s) the note should be played on.</p>
-			<p>This is only necessary if you intend to use the <a href="Output.html">Output</a> object's
-			<a href="Output.html#playNote">playNote()</a> method. If you use the <a href="OutputChannel.html">OutputChannel</a> object's
-			<a href="OutputChannel.html#playNote">playNote()</a> method, it will be played on that channel (no matter
-			what has been set as the channel).</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-110">line 110</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-122">line 122</a></p>
 								</div>
 							</div>
 			
@@ -376,8 +363,7 @@
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The duration of the note as a positive decimal number representing the number of milliseconds
-			that the note should play for. If the duration is set, a <strong>note off</strong> message is automatically
-			scheduled to stop the note after the specified duration.</p></div>
+			that the note should play for.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -405,7 +391,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-92">line 92</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-104">line 104</a></p>
 								</div>
 							</div>
 			
@@ -449,7 +435,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-63">line 63</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-68">line 68</a></p>
 								</div>
 							</div>
 			
@@ -493,7 +479,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-76">line 76</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-85">line 85</a></p>
 								</div>
 							</div>
 			
@@ -509,7 +495,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The octave of the note as an integer between -1 and 8.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The octave of the note as an integer between -1 and 9.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -537,7 +523,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-175">line 175</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-202">line 202</a></p>
 								</div>
 							</div>
 			
@@ -553,8 +539,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw attack velocity of the note as an integer between 0 and 127. By default, this is set to
-			64.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw attack velocity of the note as an integer between 0 and 127.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -582,7 +567,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-136">line 136</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-142">line 142</a></p>
 								</div>
 							</div>
 			
@@ -598,8 +583,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw release velocity of the note as an integer between 0 and 127. By default, this is set
-			to 64.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw release velocity of the note as an integer between 0 and 127.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -627,7 +611,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-163">line 163</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-182">line 182</a></p>
 								</div>
 							</div>
 			
@@ -643,8 +627,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The release velocity of the note as a decimal number between 0 and 1. By default, this is set
-			to 64 ÷ 127 which is roughly 0.5.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The release velocity of the note as a decimal number between 0 and 1.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -672,7 +655,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-150">line 150</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-162">line 162</a></p>
 								</div>
 							</div>
 			
@@ -693,7 +676,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 10th 2020 @ 13:05:00 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 14:36:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

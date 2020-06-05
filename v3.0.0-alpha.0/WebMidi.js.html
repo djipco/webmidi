@@ -147,6 +147,18 @@ class WebMidi extends EventEmitter {
     this.interface = null;
 
     /**
+     * Indicates whether argument validation and backwards-compatibility checks are performed
+     * throughout the WebMidi.js library for object methods and property setters.
+     *
+     * This is an advanced setting that should be used carefully. Setting `validation` to `false`
+     * improves performance but should only be done once the project has been thoroughly tested with
+     * validation turned on.
+     *
+     * @type {boolean}
+     */
+    this.validation = true;
+
+    /**
      * Array of all {@link Input} objects
      * @type {Input[]}
      * @private
@@ -171,10 +183,14 @@ class WebMidi extends EventEmitter {
 
     this._octaveOffset = 0;
 
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and performance.now()
+    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and import performance.now()
     if (this.isNode) {
-      global.navigator = require("jzz");
+
+      // Important: performance must be imported before jzz because jzz checks for its existence at
+      // startup and falls back to something less precise if absent.
       global.performance = require("perf_hooks").performance;
+      global.navigator = require("jzz");
+
     }
 
   }
@@ -239,14 +255,23 @@ class WebMidi extends EventEmitter {
    * ```
    *
    * @param [options] {Object}
+   *
    * @param [options.callback] {function} A function to execute once the operation completes. This
    * function will receive an `Error` object if enabling the Web MIDI API failed.
+   *
    * @param [options.sysex=false] {boolean} Whether to enable MIDI system exclusive messages or not.
+   *
+   * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
+   * arguments and setter values. This is an advanced setting that should be used carefully. Setting
+   * `validation` to `false` improves performance but should only be done once the project has been
+   * thoroughly tested with validation turned on.
+   *
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
    *
    * @async
+   *
    * @returns {Promise&lt;Object>} The promise is fulfilled with an object containing two properties
    * (`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.
    *
@@ -257,9 +282,13 @@ class WebMidi extends EventEmitter {
 
     if (this.enabled) return Promise.resolve();
 
-    // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
-    if (typeof options === "function") options = {callback: options, sysex: sysex};
-    if (sysex) options.sysex = true;
+    this.validation = (options.validation !== false);
+
+    if (this.validation) {
+      // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
+      if (typeof options === "function") options = {callback: options, sysex: sysex};
+      if (sysex) options.sysex = true;
+    }
 
     // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to load.
@@ -406,8 +435,10 @@ class WebMidi extends EventEmitter {
    */
   getInputById(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (this.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i &lt; this.inputs.length; i++) {
       if (this.inputs[i].id === id.toString()) return this.inputs[i];
@@ -434,9 +465,11 @@ class WebMidi extends EventEmitter {
    */
   getInputByName(name) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (this.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i &lt; this.inputs.length; i++) {
       if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
@@ -463,9 +496,11 @@ class WebMidi extends EventEmitter {
    */
   getOutputByName(name) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!name) return false;
-    name = name.toString();
+    if (this.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!name) return false;
+      name = name.toString();
+    }
 
     for (let i = 0; i &lt; this.outputs.length; i++) {
       if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
@@ -495,8 +530,10 @@ class WebMidi extends EventEmitter {
    */
   getOutputById(id) {
 
-    if (!this.enabled) throw new Error("WebMidi is not enabled.");
-    if (!id) return false;
+    if (this.validation) {
+      if (!this.enabled) throw new Error("WebMidi is not enabled.");
+      if (!id) return false;
+    }
 
     for (let i = 0; i &lt; this.outputs.length; i++) {
       if (this.outputs[i].id === id.toString()) return this.outputs[i];
@@ -530,7 +567,9 @@ class WebMidi extends EventEmitter {
    */
   getNoteNumberByName(name) {
 
-    if (typeof name !== "string") name = "";
+    if (this.validation) {
+      if (typeof name !== "string") name = "";
+    }
 
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if(!matches) return false;
@@ -580,7 +619,9 @@ class WebMidi extends EventEmitter {
    */
   getOctave(number) {
 
-    number = parseInt(number);
+    if (this.validation) {
+      number = parseInt(number);
+    }
 
     if (!isNaN(number) &amp;&amp; number >= 0 &amp;&amp; number &lt;= 127) {
       return Math.floor(number / 12 - 1) + this.octaveOffset;
@@ -607,11 +648,17 @@ class WebMidi extends EventEmitter {
 
     let channels;
 
-    if (channel === "all") { // backwards-compatibility
-      channels = ["all"];
-    } else if (channel === "none") { // backwards-compatibility
-      return [];
-    } else if (!Array.isArray(channel)) {
+    if (this.validation) {
+
+      if (channel === "all") { // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") { // backwards-compatibility
+        return [];
+      }
+
+    }
+
+    if (!Array.isArray(channel)) {
       channels = [channel];
     } else {
       channels = channel;
@@ -637,10 +684,15 @@ class WebMidi extends EventEmitter {
    * @deprecated since version 3.0. Use sanitizeChannels() instead.
    */
   toMIDIChannels(channel) {
-    console.warn(
-      "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
-    );
+
+    if (this.validation) {
+      console.warn(
+        "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
+      );
+    }
+
     return this.sanitizeChannels(channel);
+
   }
 
   /**
@@ -680,7 +732,7 @@ class WebMidi extends EventEmitter {
    * object or an array of the previous types, to an array of {@link Note} objects.
    *
    * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. Invalid elements are simply ignored.
+   * created with the options specified. An error will be thrown when encountering invalid input.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
@@ -702,6 +754,8 @@ class WebMidi extends EventEmitter {
    * 127.
    *
    * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
    */
   getValidNoteArray(notes, options = {}) {
 
@@ -709,17 +763,58 @@ class WebMidi extends EventEmitter {
     if (!Array.isArray(notes)) notes = [notes];
 
     notes.forEach(note => {
-
-      if (note instanceof Note) {
-        result.push(note);
-      } else {
-        let number = this.guessNoteNumber(note);
-        if (number !== false) result.push(new Note(number, options));
-      }
-
+      result.push(this.getNoteObject(note, options));
     });
 
     return result;
+
+  }
+
+  /**
+   * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
+   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
+   * it will be returned as is.
+   *
+   * If the input is a note number or name, it is possible to specify options by providing the
+   * optional `options` parameter.
+   *
+   * An error is thrown for invalid input.
+   *
+   * @param [notes] {number|string|Note}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @returns {Note}
+   *
+   * @throws TypeError The input could not be parsed as a note
+   */
+  getNoteObject(note, options) {
+
+    if (note instanceof Note) {
+      return note;
+    } else {
+      let number = this.guessNoteNumber(note);
+      if (number !== false) {
+        return new Note(number, options);
+      } else {
+        throw new TypeError(`The input could not be parsed as a note (${note})`);
+      }
+    }
 
   }
 
@@ -740,7 +835,7 @@ class WebMidi extends EventEmitter {
     if (isNaN(parsed)) return false;
 
     if (typeof time === "string" &amp;&amp; time.substring(0, 1) === "+") {
-      if (parsed >= 0) value = performance.now() + parsed;
+      if (parsed >= 0) value = this.time + parsed;
     } else {
       if (parsed >= 0) value = parsed;
     }
@@ -1031,9 +1126,14 @@ class WebMidi extends EventEmitter {
     return this._octaveOffset;
   }
   set octaveOffset(value) {
-    value = parseInt(value);
-    if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+    }
+
     this._octaveOffset = value;
+
   }
 
   /**
@@ -1073,12 +1173,11 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * The elapsed time, in milliseconds, since the
-   * [time origin]
-   * (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin). Said
-   * simply, it is the number of milliseconds that passed since the page was loaded. Being a
+   * The elapsed time, in milliseconds, since the time
+   * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
+   * Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
    * floating-point number, it has sub-millisecond accuracy. According to the
-   * [specification](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
+   * [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
    *
@@ -1482,7 +1581,6 @@ const wm = new WebMidi();
 wm.constructor = null;
 export {wm as WebMidi};
 
-//
 export {Note} from "./Note.js";
 </code></pre>
 		</section>
@@ -1491,7 +1589,7 @@ export {Note} from "./Note.js";
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on May 10th 2020 @ 13:05:00 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 14:36:09 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
