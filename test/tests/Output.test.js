@@ -2,7 +2,7 @@ let WebMidiOutput;
 
 describe("Output Object", function() {
 
-  beforeEach("Check support and enable", async function () {
+  beforeEach("Check support and enable WebMidi.js", async function () {
     if (!WebMidi.supported) {
       console.warn("The Web MIDI API is not supported in this environment.");
       this.skip();
@@ -25,9 +25,14 @@ describe("Output Object", function() {
 
   describe("close()", function () {
 
-    it("should close connection", function() {
-      WebMidiOutput.close();
+    it("should close connection", async function() {
+
+      // Act
+      await WebMidiOutput.close();
+
+      // Assert
       expect(WebMidiOutput.connection).to.equal("closed");
+
     });
 
   });
@@ -86,8 +91,8 @@ describe("Output Object", function() {
         await Promise.resolve();
       }
 
-      if (WebMidiOutput.channels.length !== 0) await Promise.reject();
-      if (WebMidiOutput.hasListener() === true) await Promise.reject();
+      if (WebMidiOutput.channels.length !== 0) return Promise.reject();
+      if (WebMidiOutput.hasListener() === true) return Promise.reject();
 
     });
 
