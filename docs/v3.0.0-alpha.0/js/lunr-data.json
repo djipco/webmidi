@@ -394,25 +394,19 @@
           "unlink"
         ],
         "Input.html#getCcNameByNumber": [
-          "2",
-          "3",
           "assign",
-          "byte",
           "case",
           "chang",
           "control",
-          "data",
           "fals",
           "function",
           "getccnamebynumb",
-          "https://www.midi.org/specif",
           "input#getccnamebynumb",
           "match",
           "messag",
           "method",
           "name",
           "number",
-          "old/item/t",
           "purpos",
           "return",
           "specif",
@@ -6290,10 +6284,6 @@
             "docs": {}
           },
           "docs": {
-            "Input.html#getCcNameByNumber": {
-              "ref": "Input.html#getCcNameByNumber",
-              "tf": 1.6666666666666667
-            },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
               "tf": 0.2890173410404624
@@ -6508,10 +6498,6 @@
             }
           },
           "docs": {
-            "Input.html#getCcNameByNumber": {
-              "ref": "Input.html#getCcNameByNumber",
-              "tf": 1.6666666666666667
-            },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
               "tf": 0.2890173410404624
@@ -11078,7 +11064,7 @@
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 1.6666666666666667
+                      "tf": 2.380952380952381
                     },
                     "InputChannel.html#getChannelModeByNumber": {
                       "ref": "InputChannel.html#getChannelModeByNumber",
@@ -11369,7 +11355,7 @@
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 1.6666666666666667
+                        "tf": 2.380952380952381
                       },
                       "Input.html#hasListener": {
                         "ref": "Input.html#hasListener",
@@ -11735,7 +11721,7 @@
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 3.3333333333333335
+                        "tf": 2.380952380952381
                       },
                       "InputChannel.html#nrpnEventsEnabled": {
                         "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -14261,7 +14247,7 @@
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 1.6666666666666667
+                        "tf": 2.380952380952381
                       },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -14803,7 +14789,7 @@
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 3.3333333333333335
+                        "tf": 4.761904761904762
                       },
                       "Input.html#hasListener": {
                         "ref": "Input.html#hasListener",
@@ -18516,16 +18502,96 @@
               }
             }
           },
+          "u": {
+            "docs": {},
+            "r": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 4.411764705882353
+                    },
+                    "Note.html#duration": {
+                      "ref": "Note.html#duration",
+                      "tf": 705
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 2.293577981651376
+                    },
+                    "Output.html#sendNoteOn": {
+                      "ref": "Output.html#sendNoteOn",
+                      "tf": 0.6024096385542169
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 2.314814814814815
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.6097560975609756
+                    }
+                  }
+                }
+              }
+            },
+            "e": {
+              "docs": {
+                "WebMidi.html#time": {
+                  "ref": "WebMidi.html#time",
+                  "tf": 1.5625
+                }
+              }
+            }
+          },
+          "b": {
+            "7": {
+              "docs": {
+                "Note.html#name": {
+                  "ref": "Note.html#name",
+                  "tf": 5
+                },
+                "Output.html#playNote": {
+                  "ref": "Output.html#playNote",
+                  "tf": 0.45871559633027525
+                },
+                "Output.html#sendNoteOff": {
+                  "ref": "Output.html#sendNoteOff",
+                  "tf": 0.8333333333333334
+                },
+                "Output.html#sendNoteOn": {
+                  "ref": "Output.html#sendNoteOn",
+                  "tf": 0.6024096385542169
+                },
+                "OutputChannel.html#playNote": {
+                  "ref": "OutputChannel.html#playNote",
+                  "tf": 0.4629629629629629
+                },
+                "OutputChannel.html#sendNoteOff": {
+                  "ref": "OutputChannel.html#sendNoteOff",
+                  "tf": 0.847457627118644
+                },
+                "OutputChannel.html#sendNoteOn": {
+                  "ref": "OutputChannel.html#sendNoteOn",
+                  "tf": 0.6097560975609756
+                },
+                "OutputChannel.html#setKeyAftertouch": {
+                  "ref": "OutputChannel.html#setKeyAftertouch",
+                  "tf": 1.1904761904761905
+                }
+              }
+            },
+            "docs": {}
+          },
           "a": {
             "docs": {},
             "t": {
               "docs": {},
               "a": {
                 "docs": {
-                  "Input.html#getCcNameByNumber": {
-                    "ref": "Input.html#getCcNameByNumber",
-                    "tf": 1.6666666666666667
-                  },
                   "Output.html#send": {
                     "ref": "Output.html#send",
                     "tf": 20
@@ -18694,90 +18760,6 @@
                 }
               }
             }
-          },
-          "u": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "Note.html": {
-                      "ref": "Note.html",
-                      "tf": 4.411764705882353
-                    },
-                    "Note.html#duration": {
-                      "ref": "Note.html#duration",
-                      "tf": 705
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 2.293577981651376
-                    },
-                    "Output.html#sendNoteOn": {
-                      "ref": "Output.html#sendNoteOn",
-                      "tf": 0.6024096385542169
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 2.314814814814815
-                    },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {
-                "WebMidi.html#time": {
-                  "ref": "WebMidi.html#time",
-                  "tf": 1.5625
-                }
-              }
-            }
-          },
-          "b": {
-            "7": {
-              "docs": {
-                "Note.html#name": {
-                  "ref": "Note.html#name",
-                  "tf": 5
-                },
-                "Output.html#playNote": {
-                  "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
-                },
-                "Output.html#sendNoteOff": {
-                  "ref": "Output.html#sendNoteOff",
-                  "tf": 0.8333333333333334
-                },
-                "Output.html#sendNoteOn": {
-                  "ref": "Output.html#sendNoteOn",
-                  "tf": 0.6024096385542169
-                },
-                "OutputChannel.html#playNote": {
-                  "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
-                },
-                "OutputChannel.html#sendNoteOff": {
-                  "ref": "OutputChannel.html#sendNoteOff",
-                  "tf": 0.847457627118644
-                },
-                "OutputChannel.html#sendNoteOn": {
-                  "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
-                },
-                "OutputChannel.html#setKeyAftertouch": {
-                  "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 1.1904761904761905
-                }
-              }
-            },
-            "docs": {}
           }
         },
         "g": {
@@ -19853,7 +19835,7 @@
                   },
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 1.6666666666666667
+                    "tf": 2.380952380952381
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -20475,7 +20457,7 @@
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 5
+                      "tf": 4.761904761904762
                     },
                     "InputChannel.html#nrpnEventsEnabled": {
                       "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -20761,7 +20743,7 @@
                       "docs": {
                         "Input.html#getCcNameByNumber": {
                           "ref": "Input.html#getCcNameByNumber",
-                          "tf": 5
+                          "tf": 4.761904761904762
                         },
                         "InputChannel.html#nrpnEventsEnabled": {
                           "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -22426,7 +22408,7 @@
                     "docs": {
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 1.6666666666666667
+                        "tf": 2.380952380952381
                       }
                     }
                   }
@@ -23300,40 +23282,6 @@
               }
             }
           },
-          "y": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html#getCcNameByNumber": {
-                    "ref": "Input.html#getCcNameByNumber",
-                    "tf": 1.6666666666666667
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 1.3333333333333335
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 0.4098360655737705
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 0.4807692307692308
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  }
-                }
-              }
-            }
-          },
           "o": {
             "docs": {},
             "o": {
@@ -23838,6 +23786,36 @@
                 "OutputChannel.html#setNonRegisteredParameter": {
                   "ref": "OutputChannel.html#setNonRegisteredParameter",
                   "tf": 0.9615384615384616
+                }
+              }
+            }
+          },
+          "y": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 1.3333333333333335
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 0.4098360655737705
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 0.4807692307692308
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  }
                 }
               }
             }
@@ -25689,7 +25667,7 @@
                 "docs": {
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 1.6666666666666667
+                    "tf": 2.380952380952381
                   },
                   "InputChannel.html#getChannelModeByNumber": {
                     "ref": "InputChannel.html#getChannelModeByNumber",
@@ -26352,76 +26330,6 @@
                       "docs": {},
                       "/": {
                         "docs": {},
-                        "w": {
-                          "docs": {},
-                          "w": {
-                            "docs": {},
-                            "w": {
-                              "docs": {},
-                              ".": {
-                                "docs": {},
-                                "m": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "d": {
-                                      "docs": {},
-                                      "i": {
-                                        "docs": {},
-                                        ".": {
-                                          "docs": {},
-                                          "o": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "g": {
-                                                "docs": {},
-                                                "/": {
-                                                  "docs": {},
-                                                  "s": {
-                                                    "docs": {},
-                                                    "p": {
-                                                      "docs": {},
-                                                      "e": {
-                                                        "docs": {},
-                                                        "c": {
-                                                          "docs": {},
-                                                          "i": {
-                                                            "docs": {},
-                                                            "f": {
-                                                              "docs": {
-                                                                "Input.html#getCcNameByNumber": {
-                                                                  "ref": "Input.html#getCcNameByNumber",
-                                                                  "tf": 1.6666666666666667
-                                                                },
-                                                                "Output.html#setRegisteredParameter": {
-                                                                  "ref": "Output.html#setRegisteredParameter",
-                                                                  "tf": 0.3289473684210526
-                                                                },
-                                                                "OutputChannel.html#setRegisteredParameter": {
-                                                                  "ref": "OutputChannel.html#setRegisteredParameter",
-                                                                  "tf": 0.3289473684210526
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
                         "b": {
                           "docs": {},
                           "u": {
@@ -26562,6 +26470,72 @@
                                                                       }
                                                                     }
                                                                   }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "w": {
+                          "docs": {},
+                          "w": {
+                            "docs": {},
+                            "w": {
+                              "docs": {},
+                              ".": {
+                                "docs": {},
+                                "m": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "d": {
+                                      "docs": {},
+                                      "i": {
+                                        "docs": {},
+                                        ".": {
+                                          "docs": {},
+                                          "o": {
+                                            "docs": {},
+                                            "r": {
+                                              "docs": {},
+                                              "g": {
+                                                "docs": {},
+                                                "/": {
+                                                  "docs": {},
+                                                  "s": {
+                                                    "docs": {},
+                                                    "p": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "c": {
+                                                          "docs": {},
+                                                          "i": {
+                                                            "docs": {},
+                                                            "f": {
+                                                              "docs": {
+                                                                "Output.html#setRegisteredParameter": {
+                                                                  "ref": "Output.html#setRegisteredParameter",
+                                                                  "tf": 0.3289473684210526
+                                                                },
+                                                                "OutputChannel.html#setRegisteredParameter": {
+                                                                  "ref": "OutputChannel.html#setRegisteredParameter",
+                                                                  "tf": 0.3289473684210526
                                                                 }
                                                               }
                                                             }
@@ -27259,7 +27233,7 @@
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 36.666666666666664
+                        "tf": 38.09523809523809
                       },
                       "InputChannel.html#.NRPN_TYPES": {
                         "ref": "InputChannel.html#.NRPN_TYPES",
@@ -27645,7 +27619,7 @@
                   },
                   "Input.html#getCcNameByNumber": {
                     "ref": "Input.html#getCcNameByNumber",
-                    "tf": 3.3333333333333335
+                    "tf": 4.761904761904762
                   },
                   "InputChannel.html#getChannelModeByNumber": {
                     "ref": "InputChannel.html#getChannelModeByNumber",
@@ -28860,46 +28834,6 @@
                               "Input.html": {
                                 "ref": "Input.html",
                                 "tf": 0.5952380952380952
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "l": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "/": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "m": {
-                        "docs": {},
-                        "/": {
-                          "docs": {},
-                          "t": {
-                            "docs": {
-                              "Input.html#getCcNameByNumber": {
-                                "ref": "Input.html#getCcNameByNumber",
-                                "tf": 1.6666666666666667
-                              },
-                              "Output.html#setRegisteredParameter": {
-                                "ref": "Output.html#setRegisteredParameter",
-                                "tf": 0.3289473684210526
-                              },
-                              "OutputChannel.html#setRegisteredParameter": {
-                                "ref": "OutputChannel.html#setRegisteredParameter",
-                                "tf": 0.3289473684210526
                               }
                             }
                           }
@@ -32217,6 +32151,42 @@
               }
             }
           },
+          "l": {
+            "docs": {},
+            "d": {
+              "docs": {},
+              "/": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "m": {
+                        "docs": {},
+                        "/": {
+                          "docs": {},
+                          "t": {
+                            "docs": {
+                              "Output.html#setRegisteredParameter": {
+                                "ref": "Output.html#setRegisteredParameter",
+                                "tf": 0.3289473684210526
+                              },
+                              "OutputChannel.html#setRegisteredParameter": {
+                                "ref": "OutputChannel.html#setRegisteredParameter",
+                                "tf": 0.3289473684210526
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "f": {
             "docs": {},
             "f": {
@@ -35068,7 +35038,7 @@
                       },
                       "Input.html#getCcNameByNumber": {
                         "ref": "Input.html#getCcNameByNumber",
-                        "tf": 3.3333333333333335
+                        "tf": 4.761904761904762
                       },
                       "InputChannel.html#nrpnEventsEnabled": {
                         "ref": "InputChannel.html#nrpnEventsEnabled",
@@ -35163,7 +35133,7 @@
                         },
                         "Input.html#getCcNameByNumber": {
                           "ref": "Input.html#getCcNameByNumber",
-                          "tf": 1.6666666666666667
+                          "tf": 2.380952380952381
                         },
                         "Input.html#hasListener": {
                           "ref": "Input.html#hasListener",
@@ -37662,7 +37632,7 @@
                   "docs": {
                     "Input.html#getCcNameByNumber": {
                       "ref": "Input.html#getCcNameByNumber",
-                      "tf": 1.6666666666666667
+                      "tf": 2.380952380952381
                     },
                     "InputChannel.html#.NRPN_TYPES": {
                       "ref": "InputChannel.html#.NRPN_TYPES",
@@ -38200,7 +38170,7 @@
           }
         }
       },
-      "length": 4380
+      "length": 4374
     },
     "corpusTokens": [
       "0",
@@ -39413,7 +39383,7 @@
       "name": "getCcNameByNumber",
       "tags": "Input#getCcNameByNumber getCcNameByNumber",
       "summary": "",
-      "description": "Returns the name of a control change message matching the specified number. Some valid control change numbers do not have a specific name or purpose assigned in the [specification] (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2). In this case, the method returns false."
+      "description": "Returns the name of a control change message matching the specified number. Some valid control change numbers do not have a specific name or purpose assigned in the specification . In this case, the method returns false."
     },
     "Input.html#hasListener": {
       "id": "Input.html#hasListener",
