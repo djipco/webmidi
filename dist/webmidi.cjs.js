@@ -831,7 +831,8 @@ class Input extends e {
 
 
   _onMidiMessage(e) {
-    // Extract data bytes (unless it's a sysex message)
+    console.log(e); // Extract data bytes (unless it's a sysex message)
+
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
@@ -1071,7 +1072,6 @@ class Input extends e {
       event.type = "unknownmidimessage";
     }
 
-    console.log(event.type);
     this.emit(event.type, event);
   }
   /**
