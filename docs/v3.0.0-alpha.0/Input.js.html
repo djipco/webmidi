@@ -590,43 +590,6 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Returns the name of a control change message matching the specified number. Some valid control
-   * change numbers do not have a specific name or purpose assigned in the MIDI
-   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-   * In this case, the method returns `false`.
-   *
-   * @param {number} number An integer representing the control change message
-   * @returns {string|false} The matching control change name or `false` if not match was found
-   *
-   * @throws {RangeError} Invalid control change number.
-   *
-   * @since 2.0.0
-   */
-  getCcNameByNumber(number) {
-
-    if (WebMidi.validation) {
-      number = parseInt(number);
-      if ( !(number >= 0 &amp;&amp; number &lt;= 119) ) {
-        throw new RangeError("Invalid control change number.");
-      }
-    }
-
-    for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-
-      if (
-        WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &amp;&amp;
-        number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
-      ) {
-        return cc;
-      }
-
-    }
-
-    return false;
-
-  }
-
-  /**
    * @private
    * @deprecated since v3.0.0 (moved to 'InputChannel' class)
    */
@@ -640,18 +603,30 @@ export class Input extends EventEmitter {
 
   /**
    * Adds an event listener that will trigger a function callback when the specified event happens.
-   * The events that are listened to can be channel-specific or input-wide (system).
+   * The event can be channel-bound or input-wide. Channel-bound events are tied to a specific
+   * channel while input-wide events are not.
    *
-   * This method overrides the one in
-   * [djipevents.EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html#addListener)
-   * by adding a `channel` parameter that makes it possible to add a listener to one or several
-   * channels at once. Invalid channels will be silently ignored.
+   * To listen for an input-wide event, there are two mandatory parameters: the event to listen for
+   * and the function to trigger:
    *
-   * If you want to add a listener to a single channel (which is often preferable performance-wise),
-   * use [InputChannel.addListener()]{@link InputChannel#addListener()} instead.
+   * ```
+   * WebMidi.inputs[0].addListener("midimessage", someFunction);
+   * ```
    *
-   * The list of events that are directly dispatched by `Input` objects can be broken down into
-   * system MIDI messages and state change messages:
+   * To listen for an channel-bound event, there are 3 mandatory parameters: the event to listen,
+   * the channel (or channels) to listen on and the function to trigger:
+   *
+   * ```
+   * WebMidi.inputs[0].addListener("noteon", [1, 2, 3], someFunction);
+   * ```
+   *
+   * The code above will add a listener for the `"noteon"` event on channels 1, 2 or 3 and call
+   * `someFunction` when the event is triggered. Note that if you want to add a listener to a single
+   * channel you should use the [addListener()]{@link InputChannel#addListener()} method of the
+   * {@link InputChannel} object directly.
+   *
+   * Input-wide events can be broken down into 2 categories: system MIDI messages and state change
+   * messages.
    *
    * ###### System MIDI messages
    *
@@ -666,8 +641,6 @@ export class Input extends EventEmitter {
    *    * [stop]{@link Input#event:stop}
    *    * [activesensing]{@link Input#event:activesensing}
    *    * [reset]{@link Input#event:reset}
-   *    * [midimessage]{@link Input#event:midimessage}
-   *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
    * ###### State change messages
    *
@@ -675,16 +648,7 @@ export class Input extends EventEmitter {
    *    * [closed]{@link Input#event:closed}
    *    * [disconnected]{@link Input#event:disconnected}
    *
-   * For these input-wide events, the `channel` parameter will be silently ignored. You can simply
-   * use `undefined` in that case.
-   *
-   * If you want to view all incoming MIDI traffic, you can listen to the `midimessage` event. This
-   * event is dispatched for every single message that is received on that `Input` (no matter the
-   * channel, if any).
-   *
-   * By using the `channel` property, you can also add listeners to all channels specified via the
-   * `channel` parameter. These are the events dispatched by individual {@link InputChannel}
-   * objects:
+   * Here is the list of all channel-specific events:
    *
    *    * [noteoff]{@link InputChannel#event:noteoff}
    *    * [noteon]{@link InputChannel#event:noteon}
@@ -696,6 +660,15 @@ export class Input extends EventEmitter {
    *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
    *    * [pitchbend]{@link InputChannel#event:pitchbend}
    *    * [midimessage]{@link InputChannel#event:midimessage}
+   *
+   * If you want to react to all incoming MIDI traffic, you can listen to the catch all
+   * `midimessage` event. This event is dispatched for every single message that is received on that
+   * `Input` (no matter if it's input-wide or channel-bound).
+   *
+   * ###### Catch all messages
+   *
+   *    * [midimessage]{@link Input#event:midimessage}
+   *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
    *
    * @param event {string} The type of the event.
    *
@@ -1019,7 +992,7 @@ export class Input extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:58:21 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 6th 2020 @ 17:47:37 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

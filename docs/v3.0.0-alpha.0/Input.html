@@ -377,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-865">line 865</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-838">line 838</a></p>
 								</div>
 							</div>
 			
@@ -423,7 +423,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-855">line 855</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-828">line 828</a></p>
 								</div>
 							</div>
 			
@@ -467,7 +467,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-875">line 875</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-848">line 848</a></p>
 								</div>
 							</div>
 			
@@ -531,7 +531,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-843">line 843</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-816">line 816</a></p>
 								</div>
 							</div>
 			
@@ -575,7 +575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-885">line 885</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-858">line 858</a></p>
 								</div>
 							</div>
 			
@@ -619,7 +619,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-895">line 895</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-868">line 868</a></p>
 								</div>
 							</div>
 			
@@ -639,15 +639,22 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds an event listener that will trigger a function callback when the specified event happens.
-			The events that are listened to can be channel-specific or input-wide (system).</p>
-			<p>This method overrides the one in
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">djipevents.EventEmitter</a>
-			by adding a <code>channel</code> parameter that makes it possible to add a listener to one or several
-			channels at once. Invalid channels will be silently ignored.</p>
-			<p>If you want to add a listener to a single channel (which is often preferable performance-wise),
-			use InputChannel.addListener() instead.</p>
-			<p>The list of events that are directly dispatched by <code>Input</code> objects can be broken down into
-			system MIDI messages and state change messages:</p>
+			The event can be channel-bound or input-wide. Channel-bound events are tied to a specific
+			channel while input-wide events are not.</p>
+			<p>To listen for an input-wide event, there are two mandatory parameters: the event to listen for
+			and the function to trigger:</p>
+			<pre class="prettyprint source"><code>WebMidi.inputs[0].addListener(&quot;midimessage&quot;, someFunction);
+			</code></pre>
+			<p>To listen for an channel-bound event, there are 3 mandatory parameters: the event to listen,
+			the channel (or channels) to listen on and the function to trigger:</p>
+			<pre class="prettyprint source"><code>WebMidi.inputs[0].addListener(&quot;noteon&quot;, [1, 2, 3], someFunction);
+			</code></pre>
+			<p>The code above will add a listener for the <code>&quot;noteon&quot;</code> event on channels 1, 2 or 3 and call
+			<code>someFunction</code> when the event is triggered. Note that if you want to add a listener to a single
+			channel you should use the addListener() method of the
+			<a href="InputChannel.html">InputChannel</a> object directly.</p>
+			<p>Input-wide events can be broken down into 2 categories: system MIDI messages and state change
+			messages.</p>
 			<h6>System MIDI messages</h6>
 			<ul>
 			<li><a href="Input.html#event:sysex">sysex</a></li>
@@ -661,8 +668,6 @@
 			<li><a href="Input.html#event:stop">stop</a></li>
 			<li><a href="Input.html#event:activesensing">activesensing</a></li>
 			<li><a href="Input.html#event:reset">reset</a></li>
-			<li><a href="Input.html#event:midimessage">midimessage</a></li>
-			<li><a href="Input.html#event:unknownmidimessage">unknownmidimessage</a></li>
 			</ul>
 			<h6>State change messages</h6>
 			<ul>
@@ -670,14 +675,7 @@
 			<li><a href="Input.html#event:closed">closed</a></li>
 			<li><a href="Input.html#event:disconnected">disconnected</a></li>
 			</ul>
-			<p>For these input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply
-			use <code>undefined</code> in that case.</p>
-			<p>If you want to view all incoming MIDI traffic, you can listen to the <code>midimessage</code> event. This
-			event is dispatched for every single message that is received on that <code>Input</code> (no matter the
-			channel, if any).</p>
-			<p>By using the <code>channel</code> property, you can also add listeners to all channels specified via the
-			<code>channel</code> parameter. These are the events dispatched by individual <a href="InputChannel.html">InputChannel</a>
-			objects:</p>
+			<p>Here is the list of all channel-specific events:</p>
 			<ul>
 			<li><a href="InputChannel.html#event:noteoff">noteoff</a></li>
 			<li><a href="InputChannel.html#event:noteon">noteon</a></li>
@@ -689,6 +687,14 @@
 			<li><a href="InputChannel.html#event:channelaftertouch">channelaftertouch</a></li>
 			<li><a href="InputChannel.html#event:pitchbend">pitchbend</a></li>
 			<li><a href="InputChannel.html#event:midimessage">midimessage</a></li>
+			</ul>
+			<p>If you want to react to all incoming MIDI traffic, you can listen to the catch all
+			<code>midimessage</code> event. This event is dispatched for every single message that is received on that
+			<code>Input</code> (no matter if it's input-wide or channel-bound).</p>
+			<h6>Catch all messages</h6>
+			<ul>
+			<li><a href="Input.html#event:midimessage">midimessage</a></li>
+			<li><a href="Input.html#event:unknownmidimessage">unknownmidimessage</a></li>
 			</ul></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -852,7 +858,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-631">line 631</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-604">line 604</a></p>
 								</div>
 							</div>
 			
@@ -1083,7 +1089,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-739">line 739</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-712">line 712</a></p>
 								</div>
 							</div>
 			
@@ -1187,90 +1193,6 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getCcNameByNumber" class="function public"><span class="name">getCcNameByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|false}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of a control change message matching the specified number. Some valid control
-			change numbers do not have a specific name or purpose assigned in the MIDI
-			<a href="https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">spec</a>.
-			In this case, the method returns <code>false</code>.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>number</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>An integer representing the control change message</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The matching control change name or <code>false</code> if not match was found</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid control change number.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-502">line 502</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="hasListener" class="function public"><span class="name">hasListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Boolean}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
@@ -1357,7 +1279,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-779">line 779</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-752">line 752</a></p>
 								</div>
 							</div>
 			
@@ -1544,7 +1466,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-823">line 823</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-796">line 796</a></p>
 								</div>
 							</div>
 			
@@ -3132,7 +3054,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 5th 2020 @ 15:58:21 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 6th 2020 @ 17:47:37 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
