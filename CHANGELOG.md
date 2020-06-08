@@ -36,6 +36,10 @@ a float between 0 and 1.
 or `stopNote()`. It carries with it the note number, the duration (if any), the attack and release
 information, etc.
 
+- A `WebMidi.validation` property (defaults to `true`) can be used to disable all argument checking
+and legacy support throughout the library (for performance). This property can also be in the 
+options of `WebMidi.enable()`.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
@@ -80,6 +84,9 @@ work in version 3.0:
 
 - [BREAKING CHANGE] The `nrpnEventsEnabled` property has been moved from the `Input` class to the 
 `InputChannel` class. Trying to access it will trigger a warning in the console.
+
+- [BREAKING CHANGE] The `getCcNameByNumber()` method has been moved from the `Input` class to the 
+`InputChannel` class.
 
 - [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`. 
 
