@@ -216,7 +216,7 @@ window.lunrData = {
           "1",
           "2",
           "3",
-          "5",
+          "6",
           "abov",
           "activesens",
           "add",
@@ -6729,10 +6729,6 @@ window.lunrData = {
         },
         "5": {
           "docs": {
-            "Input.html#addListener": {
-              "ref": "Input.html#addListener",
-              "tf": 0.29940119760479045
-            },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
               "tf": 0.2890173410404624
@@ -6920,6 +6916,10 @@ window.lunrData = {
             }
           },
           "docs": {
+            "Input.html#addListener": {
+              "ref": "Input.html#addListener",
+              "tf": 0.29940119760479045
+            },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
               "tf": 0.2890173410404624
@@ -39698,7 +39698,7 @@ window.lunrData = {
       "name": "addListener",
       "tags": "Input#addListener addListener",
       "summary": "",
-      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The event can be channel-bound or input-wide. Channel-bound events are tied to a specific MIDI channel while input-wide events are not. When listening for an input-wide event, you must specify the event to listen for and the callback function to trigger when the event happens: WebMidi.inputs[0].addListener(\"midimessage\", someFunction); To listen for a channel-bound event, you must also specify the event to listen for and the function to trigger but you must also add the the channels you wish to listen on in the options: WebMidi.inputs[0].addListener(\"noteon\", someFunction, {channels: [1, 2, 3]}); The code above will add a listener for the \"noteon\" event and call someFunction when the event is triggered on channels 1, 2 or 3. If you want to add a listener to a single MIDI channel you should probably do so directly with the addListener() method of the InputChannel object. There are 5 families of events you can listen to: Channel Voice Events (channel-specific) channelaftertouch controlchange keyaftertouch noteoff noteon nrpn pitchbend programchange Channel Mode Messages (channel-specific) channelmode TO COMPLETE !!! MIDI System Common Events (input-wide) songposition songselect sysex timecode tunerequest MIDI System Real-Time Events (input-wide) clock start continue stop activesensing reset State Change Events (input-wide) opened closed disconnected Catch-All Events (input-wide) midimessage unknownmidimessage If you want to react to all incoming MIDI traffic, you can listen to the catch all midimessage event. This event is dispatched for every single message that is received on that Input (no matter if it's input-wide or channel-bound)."
+      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The event can be channel-bound or input-wide. Channel-bound events are tied to a specific MIDI channel while input-wide events are not. When listening for an input-wide event, you must specify the event to listen for and the callback function to trigger when the event happens: WebMidi.inputs[0].addListener(\"midimessage\", someFunction); To listen for a channel-bound event, you must also specify the event to listen for and the function to trigger but you must also add the the channels you wish to listen on in the options: WebMidi.inputs[0].addListener(\"noteon\", someFunction, {channels: [1, 2, 3]}); The code above will add a listener for the \"noteon\" event and call someFunction when the event is triggered on channels 1, 2 or 3. If you want to add a listener to a single MIDI channel you should probably do so directly with the addListener() method of the InputChannel object. There are 6 families of events you can listen to: Channel Voice Events (channel-specific) channelaftertouch controlchange keyaftertouch noteoff noteon nrpn pitchbend programchange Channel Mode Messages (channel-specific) channelmode TO COMPLETE !!! MIDI System Common Events (input-wide) songposition songselect sysex timecode tunerequest MIDI System Real-Time Events (input-wide) clock start continue stop activesensing reset State Change Events (input-wide) opened closed disconnected Catch-All Events (input-wide) midimessage unknownmidimessage If you want to react to all incoming MIDI traffic, you can listen to the catch all midimessage event. This event is dispatched for every single message that is received on that Input (no matter if it's input-wide or channel-bound)."
     },
     "Input.html#addOneTimeListener": {
       "id": "Input.html#addOneTimeListener",
