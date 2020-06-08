@@ -148,10 +148,8 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"noteoff"`
-       * @property {Object} note
-       * @property {Object} note.number The MIDI note number.
-       * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
-       * @property {Object} note.octave The octave (between -2 and 8).
+       * @property {Object} note A {@link Note} object containing information such as note number,
+       * note name and octave.
        * @property {number} release The release velocity expressed as a float between 0 and 1.
        * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
@@ -178,10 +176,8 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"noteon"`
-       * @property {Object} note
-       * @property {Object} note.number The MIDI note number.
-       * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
-       * @property {Object} note.octave The octave (between -2 and 8).
+       * @property {Object} note A {@link Note} object containing information such as note number,
+       * note name and octave.
        * @property {number} attack The attack velocity expressed as a float between 0 and 1.
        * @property {number} rawAttack The attack velocity expressed as an integer (between 0 and
        * 127).
@@ -208,10 +204,8 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"keyaftertouch"`
-       * @property {Object} note
-       * @property {Object} note.number The MIDI note number.
-       * @property {Object} note.name The usual note name (C, C#, D, D#, etc.).
-       * @property {Object} note.octave The octave (between -2 and 8).
+       * @property {Object} note A {@link Note} object containing information such as note number,
+       * note name and octave.
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
@@ -556,6 +550,44 @@ export class InputChannel extends EventEmitter {
       this._nrpnBuffer = [];
     }
   }
+
+  /**
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+   * In this case, the method returns `false`.
+   *
+   * @param {number} number An integer representing the control change message
+   * @returns {string|false} The matching control change name or `false` if not match was found
+   *
+   * @throws {RangeError} Invalid control change number.
+   *
+   * @since 2.0.0
+   */
+  getCcNameByNumber(number) {
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if ( !(number >= 0 && number <= 119) ) {
+        throw new RangeError("Invalid control change number.");
+      }
+    }
+
+    for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
+
+      if (
+        WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
+        number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
+      ) {
+        return cc;
+      }
+
+    }
+
+    return false;
+
+  }
+
 
   /**
    * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
