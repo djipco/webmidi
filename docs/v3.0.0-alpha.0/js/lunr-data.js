@@ -177,6 +177,8 @@ window.lunrData = {
           "string"
         ],
         "Input.html#type": [
+          "alway",
+          "case",
           "input",
           "input#typ",
           "lt;readonly&gt",
@@ -7621,7 +7623,7 @@ window.lunrData = {
                     },
                     "Input.html#type": {
                       "ref": "Input.html#type",
-                      "tf": 25
+                      "tf": 16.666666666666664
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
@@ -12951,7 +12953,7 @@ window.lunrData = {
                   },
                   "Input.html#type": {
                     "ref": "Input.html#type",
-                    "tf": 12.5
+                    "tf": 8.333333333333332
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -21508,6 +21510,45 @@ window.lunrData = {
           },
           "a": {
             "docs": {},
+            "s": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#type": {
+                    "ref": "Input.html#type",
+                    "tf": 8.333333333333332
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
+                  },
+                  "Input.html#hasListener": {
+                    "ref": "Input.html#hasListener",
+                    "tf": 0.9090909090909091
+                  },
+                  "Input.html#removeListener": {
+                    "ref": "Input.html#removeListener",
+                    "tf": 0.819672131147541
+                  },
+                  "InputChannel.html#getCcNameByNumber": {
+                    "ref": "InputChannel.html#getCcNameByNumber",
+                    "tf": 2.272727272727273
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 1.2295081967213115
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 1.4423076923076923
+                  }
+                }
+              }
+            },
             "l": {
               "docs": {},
               "l": {
@@ -21570,41 +21611,6 @@ window.lunrData = {
                       "ref": "Input.html#addListener",
                       "tf": 0.3184713375796179
                     }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
-                  },
-                  "Input.html#hasListener": {
-                    "ref": "Input.html#hasListener",
-                    "tf": 0.9090909090909091
-                  },
-                  "Input.html#removeListener": {
-                    "ref": "Input.html#removeListener",
-                    "tf": 0.819672131147541
-                  },
-                  "InputChannel.html#getCcNameByNumber": {
-                    "ref": "InputChannel.html#getCcNameByNumber",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 1.2295081967213115
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 1.4423076923076923
                   }
                 }
               }
@@ -22183,6 +22189,182 @@ window.lunrData = {
               }
             }
           },
+          "l": {
+            "docs": {},
+            "w": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "y": {
+                  "docs": {
+                    "Input.html#type": {
+                      "ref": "Input.html#type",
+                      "tf": 8.333333333333332
+                    },
+                    "Output.html#setSongPosition": {
+                      "ref": "Output.html#setSongPosition",
+                      "tf": 2.631578947368421
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.5714285714285714
+                    }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "d": {
+                    "docs": {},
+                    "i": {
+                      "docs": {
+                        "Input.html#hasListener": {
+                          "ref": "Input.html#hasListener",
+                          "tf": 0.9090909090909091
+                        },
+                        "WebMidi.html": {
+                          "ref": "WebMidi.html",
+                          "tf": 1.4925373134328357
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "l": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "s": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "f": {
+                            "docs": {},
+                            "f": {
+                              "docs": {
+                                "Output.html#sendChannelMode": {
+                                  "ref": "Output.html#sendChannelMode",
+                                  "tf": 0.78125
+                                },
+                                "OutputChannel.html#sendChannelMode": {
+                                  "ref": "OutputChannel.html#sendChannelMode",
+                                  "tf": 0.8064516129032258
+                                },
+                                "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
+                                  "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
+                                  "tf": 2.1739130434782608
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "s": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "f": {
+                            "docs": {},
+                            "f": {
+                              "docs": {
+                                "Output.html#sendChannelMode": {
+                                  "ref": "Output.html#sendChannelMode",
+                                  "tf": 0.78125
+                                },
+                                "OutputChannel.html#sendChannelMode": {
+                                  "ref": "OutputChannel.html#sendChannelMode",
+                                  "tf": 0.8064516129032258
+                                },
+                                "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
+                                  "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
+                                  "tf": 2.1739130434782608
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "Output.html#setProgram": {
+                      "ref": "Output.html#setProgram",
+                      "tf": 1.4705882352941175
+                    },
+                    "Output.html#setSong": {
+                      "ref": "Output.html#setSong",
+                      "tf": 1.6666666666666667
+                    },
+                    "Output.html#setTuningBank": {
+                      "ref": "Output.html#setTuningBank",
+                      "tf": 1.25
+                    },
+                    "Output.html#setTuningProgram": {
+                      "ref": "Output.html#setTuningProgram",
+                      "tf": 1.25
+                    },
+                    "OutputChannel.html#setProgram": {
+                      "ref": "OutputChannel.html#setProgram",
+                      "tf": 1.5625
+                    },
+                    "OutputChannel.html#setTuningBank": {
+                      "ref": "OutputChannel.html#setTuningBank",
+                      "tf": 1.25
+                    },
+                    "OutputChannel.html#setTuningProgram": {
+                      "ref": "OutputChannel.html#setTuningProgram",
+                      "tf": 1.25
+                    }
+                  }
+                }
+              },
+              "a": {
+                "docs": {
+                  "Output.html#stopNote": {
+                    "ref": "Output.html#stopNote",
+                    "tf": 16.666666666666664
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 16.666666666666664
+                  }
+                }
+              }
+            }
+          },
           "b": {
             "docs": {},
             "o": {
@@ -22571,178 +22753,6 @@ window.lunrData = {
                     "Output.html#close": {
                       "ref": "Output.html#close",
                       "tf": 2.380952380952381
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "l": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "d": {
-                    "docs": {},
-                    "i": {
-                      "docs": {
-                        "Input.html#hasListener": {
-                          "ref": "Input.html#hasListener",
-                          "tf": 0.9090909090909091
-                        },
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 1.4925373134328357
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "n": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "s": {
-                        "docs": {},
-                        "o": {
-                          "docs": {},
-                          "f": {
-                            "docs": {},
-                            "f": {
-                              "docs": {
-                                "Output.html#sendChannelMode": {
-                                  "ref": "Output.html#sendChannelMode",
-                                  "tf": 0.78125
-                                },
-                                "OutputChannel.html#sendChannelMode": {
-                                  "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
-                                },
-                                "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
-                                  "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
-                                  "tf": 2.1739130434782608
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "s": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "u": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "d": {
-                        "docs": {},
-                        "o": {
-                          "docs": {},
-                          "f": {
-                            "docs": {},
-                            "f": {
-                              "docs": {
-                                "Output.html#sendChannelMode": {
-                                  "ref": "Output.html#sendChannelMode",
-                                  "tf": 0.78125
-                                },
-                                "OutputChannel.html#sendChannelMode": {
-                                  "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
-                                },
-                                "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
-                                  "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
-                                  "tf": 2.1739130434782608
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "n": {
-                  "docs": {
-                    "Output.html#setProgram": {
-                      "ref": "Output.html#setProgram",
-                      "tf": 1.4705882352941175
-                    },
-                    "Output.html#setSong": {
-                      "ref": "Output.html#setSong",
-                      "tf": 1.6666666666666667
-                    },
-                    "Output.html#setTuningBank": {
-                      "ref": "Output.html#setTuningBank",
-                      "tf": 1.25
-                    },
-                    "Output.html#setTuningProgram": {
-                      "ref": "Output.html#setTuningProgram",
-                      "tf": 1.25
-                    },
-                    "OutputChannel.html#setProgram": {
-                      "ref": "OutputChannel.html#setProgram",
-                      "tf": 1.5625
-                    },
-                    "OutputChannel.html#setTuningBank": {
-                      "ref": "OutputChannel.html#setTuningBank",
-                      "tf": 1.25
-                    },
-                    "OutputChannel.html#setTuningProgram": {
-                      "ref": "OutputChannel.html#setTuningProgram",
-                      "tf": 1.25
-                    }
-                  }
-                }
-              },
-              "a": {
-                "docs": {
-                  "Output.html#stopNote": {
-                    "ref": "Output.html#stopNote",
-                    "tf": 16.666666666666664
-                  },
-                  "OutputChannel.html#stopNote": {
-                    "ref": "OutputChannel.html#stopNote",
-                    "tf": 16.666666666666664
-                  }
-                }
-              }
-            },
-            "w": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "y": {
-                  "docs": {
-                    "Output.html#setSongPosition": {
-                      "ref": "Output.html#setSongPosition",
-                      "tf": 2.631578947368421
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.5714285714285714
                     }
                   }
                 }
@@ -35419,7 +35429,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#type": {
                     "ref": "Input.html#type",
-                    "tf": 695.8333333333334
+                    "tf": 691.6666666666667
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -38319,7 +38329,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4367
+      "length": 4369
     },
     "corpusTokens": [
       "0",
@@ -39492,7 +39502,7 @@ window.lunrData = {
       "name": "type",
       "tags": "Input#type type",
       "summary": "",
-      "description": "Type of the input port (\"input\")"
+      "description": "Port type. In the case of Input, this is always: \"input\"."
     },
     "Input.html#addListener": {
       "id": "Input.html#addListener",
