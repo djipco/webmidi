@@ -35,6 +35,7 @@ describe("WebMidi.js Test Suite", function() {
   before(function () {
     config.input.port.openVirtualPort(config.input.name);
     config.output.port.openVirtualPort(config.output.name);
+    config.output.port.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
   });
 
   after(function () {
