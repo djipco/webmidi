@@ -1252,7 +1252,7 @@ class Input extends e {
     if (wm.validation) {
       // Legacy compatibility
       if (typeof options === "function") {
-        let channels = [].concat(listener); // clone
+        let channels = listener != undefined ? [].concat(listener) : undefined; // clone
 
         listener = options;
         options = {
