@@ -17,7 +17,28 @@ describe("Input Object", function() {
 
   describe("addListener()", function() {
 
-    it("should add listeners to all specified channels", function() {
+    it("should add listeners to all specified channels (normal)", function() {
+
+      // Arrange
+      let l1 = () => {};
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let event = "noteon";
+
+      // Act
+      WebMidiInput.addListener(event, l1, {channels: channels});
+
+      // Assert
+      WebMidiInput.channels.forEach(ch => {
+        expect(ch.hasListener(event, l1)).to.be.true;
+      });
+
+      expect(
+        WebMidiInput.hasListener(event, l1, {channels: channels})
+      ).to.be.true;
+
+    });
+
+    it("should add listeners to all specified channels (legacy)", function() {
 
       // Arrange
       let l1 = () => {};
@@ -32,9 +53,30 @@ describe("Input Object", function() {
         expect(ch.hasListener(event, l1)).to.be.true;
       });
 
+      expect(
+        WebMidiInput.hasListener(event, channels, l1)
+      ).to.be.true;
+
     });
 
-    it("should add listeners for system (input-wide) messages", function() {
+    it("should add listeners for input-wide messages (normal)", function() {
+
+      // Arrange
+      let l1 = () => {};
+
+      // Act
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+        WebMidiInput.addListener(key, l1);
+      });
+
+      // Assert
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+        expect(WebMidiInput.hasListener(key, l1)).to.be.true;
+      });
+
+    });
+
+    it("should add listeners for input-wide messages (legacy)", function() {
 
       // Arrange
       let l1 = () => {};
@@ -46,12 +88,30 @@ describe("Input Object", function() {
 
       // Assert
       Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
-        expect(WebMidiInput.hasListener(key, l1)).to.be.true;
+        expect(WebMidiInput.hasListener(key, undefined, l1)).to.be.true;
       });
 
     });
 
-    it("should throw error for invalid event types", function() {
+    it("should throw error for invalid event types (normal)", function() {
+
+      // Arrange
+      let values = [undefined, null, "", NaN, [], {}, 0];
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+      //  Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(event) {
+        expect(() => {
+          WebMidiInput.addListener(event, () => {}, {channels: channels});
+        }).to.throw(TypeError);
+      }
+
+    });
+
+    it("should throw error for invalid event types (legacy)", function() {
 
       // Arrange
       let values = [undefined, null, "", NaN, [], {}, 0];
@@ -69,7 +129,27 @@ describe("Input Object", function() {
 
     });
 
-    it("should return array of 'Listener' objects (of length 1) for system messages", function() {
+    it("should return array of 'Listener' (of length 1) for system messages (normal)", function() {
+
+      // Arrange
+      let callbacks = [];
+      let listeners = [];
+
+      // Act
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        callbacks[index] = () => {};
+        listeners[index] = WebMidiInput.addListener(key, callbacks[index]);
+      });
+
+      // Assert
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        expect(listeners[index].length).to.equal(1);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should return array of 'Listener' (of length 1) for system messages (legacy)", function() {
 
       // Arrange
       let callbacks = [];
@@ -89,7 +169,26 @@ describe("Input Object", function() {
 
     });
 
-    it("should return an array of 'Listener' objects for channel messages", function() {
+    it("should return an array of 'Listener' objects for channel messages (normal)", function() {
+
+      // Arrange
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let callbacks = [];
+      let listeners = [];
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        callbacks[index] = () => {};
+        listeners[index] = WebMidiInput.addListener(key, callbacks[index], {channels: channels});
+      });
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        expect(listeners[index].length).to.equal(channels.length);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should return an array of 'Listener' objects for channel messages (legacy)", function() {
 
       // Arrange
       let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -108,7 +207,19 @@ describe("Input Object", function() {
 
     });
 
-    it("should throw error if channels are specified but listener is not a function", function() {
+    it("should throw if channels are specified but listener not a function (normal)", function() {
+
+      // Arrange
+      let event = "noteon";
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+      expect(() => {
+        WebMidiInput.addListener(event, undefined, {channels: channels});
+      }).to.throw(TypeError);
+
+    });
+
+    it("should throw if channels are specified but listener not a function (legacy)", function() {
 
       // Arrange
       let event = "noteon";
@@ -120,7 +231,22 @@ describe("Input Object", function() {
 
     });
 
-    it("should ignore invalid channels", function() {
+    it("should ignore invalid channels (normal)", function() {
+
+      // Arrange
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, "", NaN, [], {}, 0];
+      let channels = valid.concat(invalid);
+
+      // Act
+      let listeners = WebMidiInput.addListener("noteon", () => {}, {channels: channels});
+
+      // Assert
+      expect(listeners.length).to.equal(valid.length);
+
+    });
+
+    it("should ignore invalid channels (legacy)", function() {
 
       // Arrange
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -135,6 +261,213 @@ describe("Input Object", function() {
 
     });
 
+    it("should trigger events when receiving system MIDI messages (normal)", function (done) {
+
+      // Arrange
+      let events = [
+        // "sysex",         // RT-Midi does not seem to support these messages?!
+        // "timecode",
+        // "songposition",
+        // "songselect",
+        "tunerequest",
+        "clock",
+        "start",
+        "continue",
+        "stop",
+        "activesensing",
+        "reset"
+      ];
+      let index = 0;
+
+      events.forEach(event => {
+        WebMidiInput.addListener(event, assert);
+      });
+
+      // Act
+      events.forEach(event => {
+        config.input.port.sendMessage(
+          [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        );
+      });
+
+      // Assert
+      function assert(e) {
+        let event = events[index];
+        expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+        index++;
+        if (index >= events.length) done();
+      }
+
+    });
+
+    it("should trigger events when receiving system MIDI messages(legacy)", function (done) {
+
+      // Arrange
+      let events = [
+        // "sysex",         // RT-Midi does not seem to support these messages?!
+        // "timecode",
+        // "songposition",
+        // "songselect",
+        "tunerequest",
+        "clock",
+        "start",
+        "continue",
+        "stop",
+        "activesensing",
+        "reset"
+      ];
+      let index = 0;
+
+      events.forEach(event => {
+        WebMidiInput.addListener(event, undefined, assert);
+      });
+
+      // Act
+      events.forEach(event => {
+        config.input.port.sendMessage(
+          [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        );
+      });
+
+      // Assert
+      function assert(e) {
+        let event = events[index];
+        expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+        index++;
+        if (index >= events.length) done();
+      }
+
+    });
+
+    it("should trigger midimessage event when receiving any messages (normal)", function (done) {
+
+      // Arrange
+      let messages = [
+        [0x80, 48, 87],     // Note off
+        [0x90, 52, 64],     // Note on
+        [0xA0, 60, 83],     // Key pressure
+        [0xB0, 67, 92],     // Control change
+        [0xC0, 88],         // Program change
+        [0xD0, 93],         // Program change
+        [0xE0, 95, 101],    // Pitch bend
+        [250]               // Start
+      ];
+      let index = 0;
+
+      WebMidiInput.addListener("midimessage", assert);
+
+      // Act
+      messages.forEach(msg => {
+        config.input.port.sendMessage(msg);
+      });
+
+      // Assert
+      function assert(e) {
+        expect(e.data).to.have.ordered.members(messages[index]);
+        index++;
+        if (index >= messages.length) done();
+      }
+
+    });
+
+    it("should trigger midimessage event when receiving any messages (legacy)", function (done) {
+
+      // Arrange
+      let messages = [
+        [0x80, 48, 87],     // Note off
+        [0x90, 52, 64],     // Note on
+        [0xA0, 60, 83],     // Key pressure
+        [0xB0, 67, 92],     // Control change
+        [0xC0, 88],         // Program change
+        [0xD0, 93],         // Program change
+        [0xE0, 95, 101],    // Pitch bend
+        [250]               // Start
+      ];
+      let index = 0;
+
+      WebMidiInput.addListener("midimessage", undefined, assert);
+
+      // Act
+      messages.forEach(msg => {
+        config.input.port.sendMessage(msg);
+      });
+
+      // Assert
+      function assert(e) {
+        expect(e.data).to.have.ordered.members(messages[index]);
+        index++;
+        if (index >= messages.length) done();
+      }
+
+    });
+
+    it("should throw if event is input-specific but no ch. is defined (normal)", function () {
+
+      // Arrange
+      let events = [
+        "noteoff",
+        "noteon",
+        "keyaftertouch",
+        "controlchange",
+        "channelmode",
+        "nrpn",
+        "programchange",
+        "channelaftertouch",
+        "pitchbend"
+      ];
+
+      // Act
+      events.forEach(assert);
+
+      // Assert
+      function assert(event) {
+        expect(() => {
+          WebMidiInput.addListener(event, assert);
+        }).to.throw();
+      }
+
+    });
+
+    it("should throw if event is input-specific but no ch. is defined (legacy)", function () {
+
+      // Arrange
+      let events = [
+        "noteoff",
+        "noteon",
+        "keyaftertouch",
+        "controlchange",
+        "channelmode",
+        "nrpn",
+        "programchange",
+        "channelaftertouch",
+        "pitchbend"
+      ];
+
+      // Act
+      events.forEach(assert);
+
+      // Assert
+      function assert(event) {
+        expect(() => {
+          WebMidiInput.addListener(event, undefined, assert);
+        }).to.throw();
+      }
+
+    });
+
+    // it("should trigger 'opened' event", function (done) {
+    //
+    //   // Arrange
+    //   WebMidiInput.addListener("opened", undefined, done);
+    //
+    //   // Act
+    //   // WebMidiInput.close().then(() => WebMidiInput.open());
+    //
+    // });
+
+    it("should trigger 'closed' event");
+    it("should trigger 'disconnected' event");
+
   });
 
   describe("addOneTimeListener()", function() {
@@ -144,26 +477,23 @@ describe("Input Object", function() {
       // Arrange
       let spy = sinon.spy(WebMidiInput.channels[1], "addListener");
       let event = "noteon";
-      let channel = 1;
-      let context = {};
-      let params = [1, 2, 3];
-      let listener = () => {
-      };
+      let listener = () => {};
       let options = {
-        context: context,
+        channels: 1,
+        context: {},
         prepend: true,
         duration: 1000,
-        arguments: params
+        arguments: [1, 2, 3]
       };
 
       // Act
-      WebMidiInput.addOneTimeListener(event, channel, listener, options);
+      WebMidiInput.addOneTimeListener(event, listener, options);
 
       // Assert
       let args = spy.args[0];
       expect(args[0]).to.equal(event);
       expect(args[1]).to.equal(listener);
-      expect(args[2].context).to.equal(context);
+      expect(args[2].context).to.equal(options.context);
       expect(args[2].prepend).to.equal(options.prepend);
       expect(args[2].duration).to.equal(options.duration);
       expect(args[2].arguments).to.equal(options.arguments);
@@ -184,7 +514,7 @@ describe("Input Object", function() {
         spies.push(sinon.spy(WebMidiInput.channels[ch], "addListener"));
       });
 
-      WebMidiInput.addOneTimeListener(event, channels, listener);
+      WebMidiInput.addOneTimeListener(event, listener, {channels: channels});
 
       // Assert
       spies.forEach(spy => {
@@ -245,74 +575,32 @@ describe("Input Object", function() {
 
   });
 
-  describe("getCcNameByNumber()", function() {
-
-    it("should throw error for invalid control change numbers", function () {
-
-      // Arrange
-      let values = [-1, 120, "test", undefined, NaN, null];
-
-      // Act
-      values.forEach(assert);
-
-      // Assert
-      function assert(value) {
-        expect(() => {
-          WebMidiInput.getCcNameByNumber(value);
-        }).to.throw(RangeError);
-      }
-
-    });
-
-    it("should return string for valid control change numbers", function () {
-
-      // Arrange
-      let results = [];
-
-      // Act
-      for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-        let number = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc];
-        results.push(WebMidiInput.getCcNameByNumber(number));
-      }
-
-      // Assert
-      results.forEach(result => {
-        expect(result).to.be.a("string");
-      });
-
-    });
-
-    it("should return 'false' for numbers with no predefined purpose", function () {
-
-      // Arrange
-      let values = [
-        3, 9,
-        14, 15,
-        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-        30, 31,
-        85, 86, 87, 89, 90,
-        102, 103, 104, 105, 106, 107, 108, 109,
-        110, 111, 112, 113, 114, 115, 116, 117, 118, 119
-      ];
-      let results = [];
-
-      // Act
-      values.forEach(value => {
-        results.push(WebMidiInput.getCcNameByNumber(value));
-      });
-
-      // Assert
-      results.forEach(result => {
-        expect(result).to.be.false;
-      });
-
-    });
-
-  });
-
   describe("hasListener()", function() {
 
-    it("should call channel's 'hasListener()' for all specified channels", function () {
+    it("should call channel's 'hasListener()' for all specified channels (normal)", function () {
+
+      // Arrange
+      let event = "noteon";
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let listener = () => {};
+      let spies = [];
+
+      // Act
+      channels.forEach(ch => {
+        spies.push(sinon.spy(WebMidiInput.channels[ch], "hasListener"));
+      });
+
+      WebMidiInput.addListener(event, listener, {channels: channels});
+      WebMidiInput.hasListener(event, listener, {channels: channels});
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnce).to.be.true;
+      });
+
+    });
+
+    it("should call channel's 'hasListener()' for all specified channels (legacy)", function () {
 
       // Arrange
       let event = "noteon";
@@ -343,13 +631,13 @@ describe("Input Object", function() {
       let spy = sinon.spy(WebMidiInput, "hasListener");
 
       // Act
-      WebMidiInput.addListener(event, undefined, listener);
-      WebMidiInput.hasListener(event, undefined, listener);
+      WebMidiInput.addListener(event, listener);
+      WebMidiInput.hasListener(event, listener);
 
       // Assert
       expect(spy.calledOnce).to.be.true;
       expect(spy.args[0][0]).to.equal(event);
-      expect(spy.args[0][2]).to.equal(listener);
+      expect(spy.args[0][1]).to.equal(listener);
 
     });
 
@@ -372,7 +660,29 @@ describe("Input Object", function() {
 
   describe("removeListener()", function() {
 
-    it("should call channel's 'removeListener()' for all specified channels", function () {
+    it("should call channel's 'removeListener()' for all specified channels (normal)", function () {
+
+      // Arrange
+      let event = "noteon";
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let listener = () => {};
+      let spies = [];
+
+      // Act
+      channels.forEach(ch => {
+        spies.push(sinon.spy(WebMidiInput.channels[ch], "removeListener"));
+      });
+
+      WebMidiInput.removeListener(event, listener, {channels: channels});
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnce).to.be.true;
+      });
+
+    });
+
+    it("should call channel's 'removeListener()' for all specified channels (legacy)", function () {
 
       // Arrange
       let event = "noteon";
@@ -394,7 +704,24 @@ describe("Input Object", function() {
 
     });
 
-    it("should call input's 'removeListener()' for all input-wide events", function () {
+    it("should call input's 'removeListener()' for all input-wide events (normal)", function () {
+
+      // Arrange
+      let event = "clock";
+      let listener = () => {};
+      let spy = sinon.spy(WebMidiInput, "removeListener");
+
+      // Act
+      WebMidiInput.removeListener(event, listener);
+
+      // Assert
+      expect(spy.calledOnce).to.be.true;
+      expect(spy.args[0][0]).to.equal(event);
+      expect(spy.args[0][1]).to.equal(listener);
+
+    });
+
+    it("should call input's 'removeListener()' for all input-wide events (legacy)", function () {
 
       // Arrange
       let event = "clock";
