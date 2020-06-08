@@ -763,6 +763,7 @@ class Input extends e {
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
     this._midiInput.onstatechange = null;
+    this._midiInput.onmidimessage = null;
     await this.close();
     this._midiInput = null;
   }
