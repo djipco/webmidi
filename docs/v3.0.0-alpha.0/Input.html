@@ -120,14 +120,7 @@
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html#getListeners">getListeners()</a>,
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html#emit">emit()</a>,
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent">suspendEvent()</a> and several
-			others.</p>
-			<p>The <a href="Input.html#addListener">Input#addListener</a>, <code>addOneTimeListener()</code>, <code>hasListener()</code> and <code>removeListener()</code> methods are
-			being overridden in this class to include a <code>channel</code> parameter which makes it possible to
-			add/remove listeners from several channels at once. Note that, when adding events to channels, it
-			is the <a href="InputChannel.html">InputChannel</a> instance that gets a listener added and not the <code>Input</code> instance.</p>
-			<p>Also note that several events are input-wide and not tied to a channel. Examples of these are
-			<code>&quot;opened&quot;</code>, <code>&quot;midimessage&quot;</code>, <code>&quot;sysex&quot;</code>, etc. In such cases, simply pass <code>undefined</code> as the
-			<code>channel</code> parameter.</p></div>
+			others.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -273,7 +266,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-51">line 51</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-42">line 42</a></p>
 								</div>
 							</div>
 			
@@ -333,7 +326,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-67">line 67</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-58">line 58</a></p>
 								</div>
 							</div>
 			
@@ -377,7 +370,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-840">line 840</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-834">line 834</a></p>
 								</div>
 							</div>
 			
@@ -423,7 +416,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-830">line 830</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-824">line 824</a></p>
 								</div>
 							</div>
 			
@@ -467,7 +460,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-850">line 850</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-844">line 844</a></p>
 								</div>
 							</div>
 			
@@ -531,7 +524,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-818">line 818</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-812">line 812</a></p>
 								</div>
 							</div>
 			
@@ -575,7 +568,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-860">line 860</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-854">line 854</a></p>
 								</div>
 							</div>
 			
@@ -619,7 +612,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-870">line 870</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-864">line 864</a></p>
 								</div>
 							</div>
 			
@@ -652,6 +645,8 @@
 			</code></pre>
 			<p>The code above will add a listener for the <code>&quot;noteon&quot;</code> event and call <code>someFunction</code> when the
 			event is triggered on MIDI channels 1, 2 or 3.</p>
+			<p>Note that, when adding events to channels, it is the <a href="InputChannel.html">InputChannel</a> instance that gets a
+			listener added and not the <code>Input</code> instance.</p>
 			<p>If you want to add a listener to a single MIDI channel you should probably do so directly on
 			the <a href="InputChannel.html">InputChannel</a> object.</p>
 			<p>There are 6 families of events you can listen to:</p>
@@ -874,7 +869,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-606">line 606</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-600">line 600</a></p>
 								</div>
 							</div>
 			
@@ -1105,7 +1100,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-714">line 714</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-708">line 708</a></p>
 								</div>
 							</div>
 			
@@ -1151,7 +1146,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-477">line 477</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-468">line 468</a></p>
 								</div>
 							</div>
 			
@@ -1197,7 +1192,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-82">line 82</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-73">line 73</a></p>
 								</div>
 							</div>
 			
@@ -1295,7 +1290,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-754">line 754</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-748">line 748</a></p>
 								</div>
 							</div>
 			
@@ -1340,7 +1335,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-456">line 456</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-447">line 447</a></p>
 								</div>
 							</div>
 			
@@ -1482,7 +1477,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-798">line 798</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-792">line 792</a></p>
 								</div>
 							</div>
 			
@@ -1579,7 +1574,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-398">line 398</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-389">line 389</a></p>
 								</div>
 							</div>
 			
@@ -1673,7 +1668,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-334">line 334</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-325">line 325</a></p>
 								</div>
 							</div>
 			
@@ -1754,7 +1749,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-122">line 122</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-113">line 113</a></p>
 								</div>
 							</div>
 			
@@ -1848,7 +1843,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-366">line 366</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-357">line 357</a></p>
 								</div>
 							</div>
 			
@@ -1983,7 +1978,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-138">line 138</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-129">line 129</a></p>
 								</div>
 							</div>
 			
@@ -2107,7 +2102,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-186">line 186</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-177">line 177</a></p>
 								</div>
 							</div>
 			
@@ -2188,7 +2183,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-106">line 106</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-97">line 97</a></p>
 								</div>
 							</div>
 			
@@ -2282,7 +2277,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-414">line 414</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-405">line 405</a></p>
 								</div>
 							</div>
 			
@@ -2376,7 +2371,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-284">line 284</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-275">line 275</a></p>
 								</div>
 							</div>
 			
@@ -2477,7 +2472,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-300">line 300</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-291">line 291</a></p>
 								</div>
 							</div>
 			
@@ -2571,7 +2566,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-350">line 350</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-341">line 341</a></p>
 								</div>
 							</div>
 			
@@ -2665,7 +2660,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-382">line 382</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-373">line 373</a></p>
 								</div>
 							</div>
 			
@@ -2765,7 +2760,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-243">line 243</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-234">line 234</a></p>
 								</div>
 							</div>
 			
@@ -2860,7 +2855,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-267">line 267</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-258">line 258</a></p>
 								</div>
 							</div>
 			
@@ -2954,7 +2949,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-318">line 318</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-309">line 309</a></p>
 								</div>
 							</div>
 			
@@ -3049,7 +3044,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-430">line 430</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-421">line 421</a></p>
 								</div>
 							</div>
 			
@@ -3070,7 +3065,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 8th 2020 @ 9:36:41 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 8th 2020 @ 9:40:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

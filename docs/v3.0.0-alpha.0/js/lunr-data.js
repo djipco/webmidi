@@ -60,66 +60,36 @@ window.lunrData = {
           "list:class"
         ],
         "Input.html": [
-          "ad",
-          "add/remov",
-          "addonetimelisten",
           "array",
           "avail",
-          "be",
-          "case",
-          "channel",
           "class",
           "deriv",
           "directli",
           "djipev",
           "emit",
-          "etc",
-          "event",
           "eventemitt",
-          "exampl",
           "extend",
           "find",
-          "get",
           "getlisten",
-          "haslisten",
           "host'",
           "includ",
           "input",
-          "input#addlisten",
-          "inputchannel",
-          "instanc",
           "instanti",
           "list",
-          "listen",
-          "make",
           "mean",
           "method",
           "midi",
-          "midimessag",
           "modul",
-          "note",
           "object",
-          "onc",
-          "open",
           "other",
-          "overridden",
-          "paramet",
-          "pass",
           "port",
-          "possibl",
-          "removelisten",
           "repres",
           "sever",
-          "simpli",
           "singl",
           "subsystem",
           "such",
           "suspendev",
-          "sysex",
-          "ti",
-          "undefin",
-          "webmidi#input",
-          "wide"
+          "webmidi#input"
         ],
         "Input.html#channels": [
           "1",
@@ -220,6 +190,7 @@ window.lunrData = {
           "6",
           "abov",
           "activesens",
+          "ad",
           "add",
           "addlisten",
           "array.&lt;listener&gt",
@@ -243,15 +214,18 @@ window.lunrData = {
           "event",
           "famili",
           "function",
+          "get",
           "happen",
           "input",
           "input#addlisten",
           "inputchannel",
+          "instanc",
           "keyaftertouch",
           "listen",
           "midi",
           "midimessag",
           "mode",
+          "note",
           "noteoff",
           "noteon",
           "nrpn",
@@ -5967,7 +5941,7 @@ window.lunrData = {
             },
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
-              "tf": 0.6896551724137931
+              "tf": 0.641025641025641
             },
             "InputChannel.html": {
               "ref": "InputChannel.html",
@@ -6307,7 +6281,7 @@ window.lunrData = {
           "docs": {
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
-              "tf": 0.6896551724137931
+              "tf": 0.641025641025641
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
@@ -6525,7 +6499,7 @@ window.lunrData = {
           "docs": {
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
-              "tf": 0.6896551724137931
+              "tf": 0.641025641025641
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
@@ -6910,7 +6884,7 @@ window.lunrData = {
           "docs": {
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
-              "tf": 0.3448275862068966
+              "tf": 0.3205128205128205
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
@@ -7451,7 +7425,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1764705882352942
+                        "tf": 1.3513513513513513
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -7621,7 +7595,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1903.5294117647059
+                      "tf": 1905.4054054054054
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -7649,7 +7623,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 2.413793103448276
+                      "tf": 2.564102564102564
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -7722,86 +7696,6 @@ window.lunrData = {
                   },
                   "#": {
                     "docs": {},
-                    "a": {
-                      "docs": {},
-                      "d": {
-                        "docs": {},
-                        "d": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {
-                                        "Input.html": {
-                                          "ref": "Input.html",
-                                          "tf": 0.5882352941176471
-                                        },
-                                        "Input.html#addListener": {
-                                          "ref": "Input.html#addListener",
-                                          "tf": 1150
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "o": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "l": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "s": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {},
-                                                "e": {
-                                                  "docs": {},
-                                                  "n": {
-                                                    "docs": {
-                                                      "Input.html#addOneTimeListener": {
-                                                        "ref": "Input.html#addOneTimeListener",
-                                                        "tf": 1150
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
                     "c": {
                       "docs": {},
                       "h": {
@@ -7950,6 +7844,82 @@ window.lunrData = {
                         }
                       }
                     },
+                    "a": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "d": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "e": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {
+                                        "Input.html#addListener": {
+                                          "ref": "Input.html#addListener",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "o": {
+                            "docs": {},
+                            "n": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "l": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "s": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "e": {
+                                                  "docs": {},
+                                                  "n": {
+                                                    "docs": {
+                                                      "Input.html#addOneTimeListener": {
+                                                        "ref": "Input.html#addOneTimeListener",
+                                                        "tf": 1150
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "d": {
                       "docs": {},
                       "e": {
@@ -8081,17 +8051,13 @@ window.lunrData = {
                               "docs": {},
                               "l": {
                                 "docs": {
-                                  "Input.html": {
-                                    "ref": "Input.html",
-                                    "tf": 0.5882352941176471
-                                  },
                                   "Input.html#channels": {
                                     "ref": "Input.html#channels",
                                     "tf": 4.166666666666666
                                   },
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.3448275862068966
+                                    "tf": 0.641025641025641
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
@@ -8446,29 +8412,13 @@ window.lunrData = {
                   "docs": {},
                   "n": {
                     "docs": {},
-                    "c": {
-                      "docs": {
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 1.1764705882352942
-                        },
-                        "Output.html#setNonRegisteredParameter": {
-                          "ref": "Output.html#setNonRegisteredParameter",
-                          "tf": 0.4098360655737705
-                        },
-                        "WebMidi.html#interface": {
-                          "ref": "WebMidi.html#interface",
-                          "tf": 4.166666666666666
-                        }
-                      }
-                    },
                     "t": {
                       "docs": {},
                       "i": {
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 0.5882352941176471
+                            "tf": 1.3513513513513513
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -8486,6 +8436,22 @@ window.lunrData = {
                             "ref": "WebMidi.html",
                             "tf": 2.2388059701492535
                           }
+                        }
+                      }
+                    },
+                    "c": {
+                      "docs": {
+                        "Input.html#addListener": {
+                          "ref": "Input.html#addListener",
+                          "tf": 0.641025641025641
+                        },
+                        "Output.html#setNonRegisteredParameter": {
+                          "ref": "Output.html#setNonRegisteredParameter",
+                          "tf": 0.4098360655737705
+                        },
+                        "WebMidi.html#interface": {
+                          "ref": "WebMidi.html#interface",
+                          "tf": 4.166666666666666
                         }
                       }
                     }
@@ -9235,7 +9201,7 @@ window.lunrData = {
                                   "docs": {
                                     "Input.html#addListener": {
                                       "ref": "Input.html#addListener",
-                                      "tf": 0.3448275862068966
+                                      "tf": 0.3205128205128205
                                     },
                                     "Input.html#addOneTimeListener": {
                                       "ref": "Input.html#addOneTimeListener",
@@ -9344,7 +9310,7 @@ window.lunrData = {
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5882352941176471
+                    "tf": 1.3513513513513513
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -9418,13 +9384,9 @@ window.lunrData = {
                   "docs": {},
                   "n": {
                     "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.1764705882352942
-                      },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 23.103448275862068
+                        "tf": 23.205128205128204
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -10093,7 +10055,7 @@ window.lunrData = {
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.1764705882352942
+                    "tf": 2.7027027027027026
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -10105,7 +10067,7 @@ window.lunrData = {
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 1.7241379310344827
+                    "tf": 1.6025641025641024
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -10416,13 +10378,9 @@ window.lunrData = {
                           "docs": {},
                           "g": {
                             "docs": {
-                              "Input.html": {
-                                "ref": "Input.html",
-                                "tf": 0.5882352941176471
-                              },
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.3448275862068966
+                                "tf": 0.3205128205128205
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -10941,358 +10899,6 @@ window.lunrData = {
               }
             }
           },
-          "a": {
-            "docs": {},
-            "k": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 0.5882352941176471
-                  },
-                  "Input.html#manufacturer": {
-                    "ref": "Input.html#manufacturer",
-                    "tf": 7.142857142857142
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
-                  },
-                  "Input.html#hasListener": {
-                    "ref": "Input.html#hasListener",
-                    "tf": 0.9090909090909091
-                  },
-                  "Input.html#removeListener": {
-                    "ref": "Input.html#removeListener",
-                    "tf": 0.819672131147541
-                  },
-                  "Output.html#manufacturer": {
-                    "ref": "Output.html#manufacturer",
-                    "tf": 7.142857142857142
-                  },
-                  "Output.html#sendChannelMode": {
-                    "ref": "Output.html#sendChannelMode",
-                    "tf": 0.78125
-                  },
-                  "OutputChannel.html#sendChannelMode": {
-                    "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.7462686567164178
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "f": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "t": {
-                        "docs": {},
-                        "u": {
-                          "docs": {},
-                          "r": {
-                            "docs": {
-                              "Input.html#manufacturer": {
-                                "ref": "Input.html#manufacturer",
-                                "tf": 690.4761904761905
-                              },
-                              "Output.html#manufacturer": {
-                                "ref": "Output.html#manufacturer",
-                                "tf": 690.4761904761905
-                              },
-                              "Output.html#send": {
-                                "ref": "Output.html#send",
-                                "tf": 1.4705882352941175
-                              },
-                              "Output.html#sendSysex": {
-                                "ref": "Output.html#sendSysex",
-                                "tf": 20.333333333333332
-                              },
-                              "Output.html#setNonRegisteredParameter": {
-                                "ref": "Output.html#setNonRegisteredParameter",
-                                "tf": 0.4098360655737705
-                              },
-                              "OutputChannel.html#send": {
-                                "ref": "OutputChannel.html#send",
-                                "tf": 1.6129032258064515
-                              },
-                              "OutputChannel.html#setNonRegisteredParameter": {
-                                "ref": "OutputChannel.html#setNonRegisteredParameter",
-                                "tf": 0.4807692307692308
-                              }
-                            },
-                            "e": {
-                              "docs": {},
-                              "r": {
-                                "docs": {},
-                                "\"": {
-                                  "docs": {
-                                    "Output.html#setNonRegisteredParameter": {
-                                      "ref": "Output.html#setNonRegisteredParameter",
-                                      "tf": 0.4098360655737705
-                                    }
-                                  }
-                                },
-                                "'": {
-                                  "docs": {
-                                    "OutputChannel.html#setNonRegisteredParameter": {
-                                      "ref": "OutputChannel.html#setNonRegisteredParameter",
-                                      "tf": 0.4807692307692308
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.3703703703703704
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
-                      }
-                    }
-                  }
-                }
-              },
-              "c": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "InputChannel.html#getCcNameByNumber": {
-                      "ref": "InputChannel.html#getCcNameByNumber",
-                      "tf": 2.272727272727273
-                    },
-                    "InputChannel.html#getChannelModeByNumber": {
-                      "ref": "InputChannel.html#getChannelModeByNumber",
-                      "tf": 8.333333333333332
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
-                    },
-                    "Output.html#sendChannelMode": {
-                      "ref": "Output.html#sendChannelMode",
-                      "tf": 0.78125
-                    },
-                    "Output.html#sendControlChange": {
-                      "ref": "Output.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendChannelMode": {
-                      "ref": "OutputChannel.html#sendChannelMode",
-                      "tf": 0.8064516129032258
-                    },
-                    "OutputChannel.html#sendControlChange": {
-                      "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 0.5617977528089888
-                    },
-                    "WebMidi.html#getInputById": {
-                      "ref": "WebMidi.html#getInputById",
-                      "tf": 2.941176470588235
-                    },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    },
-                    "WebMidi.html#getOutputById": {
-                      "ref": "WebMidi.html#getOutputById",
-                      "tf": 2.941176470588235
-                    }
-                  }
-                }
-              }
-            },
-            "x": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "u": {
-                    "docs": {},
-                    "m": {
-                      "docs": {
-                        "Output.html#decrementRegisteredParameter": {
-                          "ref": "Output.html#decrementRegisteredParameter",
-                          "tf": 1.0869565217391304
-                        },
-                        "Output.html#incrementRegisteredParameter": {
-                          "ref": "Output.html#incrementRegisteredParameter",
-                          "tf": 1.0869565217391304
-                        },
-                        "Output.html#setRegisteredParameter": {
-                          "ref": "Output.html#setRegisteredParameter",
-                          "tf": 0.6578947368421052
-                        },
-                        "OutputChannel.html#decrementRegisteredParameter": {
-                          "ref": "OutputChannel.html#decrementRegisteredParameter",
-                          "tf": 1.0869565217391304
-                        },
-                        "OutputChannel.html#incrementRegisteredParameter": {
-                          "ref": "OutputChannel.html#incrementRegisteredParameter",
-                          "tf": 1.0869565217391304
-                        },
-                        "OutputChannel.html#setRegisteredParameter": {
-                          "ref": "OutputChannel.html#setRegisteredParameter",
-                          "tf": 0.6578947368421052
-                        }
-                      },
-                      "d": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "Output.html#decrementRegisteredParameter": {
-                                  "ref": "Output.html#decrementRegisteredParameter",
-                                  "tf": 0.5434782608695652
-                                },
-                                "Output.html#incrementRegisteredParameter": {
-                                  "ref": "Output.html#incrementRegisteredParameter",
-                                  "tf": 0.5434782608695652
-                                },
-                                "Output.html#setRegisteredParameter": {
-                                  "ref": "Output.html#setRegisteredParameter",
-                                  "tf": 0.3289473684210526
-                                },
-                                "OutputChannel.html#decrementRegisteredParameter": {
-                                  "ref": "OutputChannel.html#decrementRegisteredParameter",
-                                  "tf": 0.5434782608695652
-                                },
-                                "OutputChannel.html#incrementRegisteredParameter": {
-                                  "ref": "OutputChannel.html#incrementRegisteredParameter",
-                                  "tf": 0.5434782608695652
-                                },
-                                "OutputChannel.html#setRegisteredParameter": {
-                                  "ref": "OutputChannel.html#setRegisteredParameter",
-                                  "tf": 0.3289473684210526
-                                },
-                                "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                                  "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                                  "tf": 0.78125
-                                }
-                              },
-                              "a": {
-                                "docs": {},
-                                "n": {
-                                  "docs": {},
-                                  "c": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "g": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "n": {
-                                              "docs": {
-                                                "Output.html#decrementRegisteredParameter": {
-                                                  "ref": "Output.html#decrementRegisteredParameter",
-                                                  "tf": 0.5434782608695652
-                                                },
-                                                "Output.html#incrementRegisteredParameter": {
-                                                  "ref": "Output.html#incrementRegisteredParameter",
-                                                  "tf": 0.5434782608695652
-                                                },
-                                                "Output.html#setRegisteredParameter": {
-                                                  "ref": "Output.html#setRegisteredParameter",
-                                                  "tf": 0.3289473684210526
-                                                },
-                                                "OutputChannel.html#decrementRegisteredParameter": {
-                                                  "ref": "OutputChannel.html#decrementRegisteredParameter",
-                                                  "tf": 0.5434782608695652
-                                                },
-                                                "OutputChannel.html#incrementRegisteredParameter": {
-                                                  "ref": "OutputChannel.html#incrementRegisteredParameter",
-                                                  "tf": 0.5434782608695652
-                                                },
-                                                "OutputChannel.html#setRegisteredParameter": {
-                                                  "ref": "OutputChannel.html#setRegisteredParameter",
-                                                  "tf": 0.3289473684210526
-                                                },
-                                                "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                                                  "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                                                  "tf": 0.78125
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Output.html#setMasterTuning": {
-                        "ref": "Output.html#setMasterTuning",
-                        "tf": 3.4090909090909087
-                      },
-                      "OutputChannel.html#setMasterTuning": {
-                        "ref": "OutputChannel.html#setMasterTuning",
-                        "tf": 3.571428571428571
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "e": {
             "docs": {},
             "a": {
@@ -11301,7 +10907,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5882352941176471
+                    "tf": 1.3513513513513513
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
@@ -11352,7 +10958,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1764705882352942
+                        "tf": 1.3513513513513513
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -12000,7 +11606,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -12178,7 +11784,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "InputChannel.html#getChannelModeByNumber": {
                     "ref": "InputChannel.html#getChannelModeByNumber",
@@ -12297,6 +11903,354 @@ window.lunrData = {
               }
             }
           },
+          "a": {
+            "docs": {},
+            "k": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#manufacturer": {
+                    "ref": "Input.html#manufacturer",
+                    "tf": 7.142857142857142
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
+                  },
+                  "Input.html#hasListener": {
+                    "ref": "Input.html#hasListener",
+                    "tf": 0.9090909090909091
+                  },
+                  "Input.html#removeListener": {
+                    "ref": "Input.html#removeListener",
+                    "tf": 0.819672131147541
+                  },
+                  "Output.html#manufacturer": {
+                    "ref": "Output.html#manufacturer",
+                    "tf": 7.142857142857142
+                  },
+                  "Output.html#sendChannelMode": {
+                    "ref": "Output.html#sendChannelMode",
+                    "tf": 0.78125
+                  },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 0.8064516129032258
+                  },
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.7462686567164178
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "u": {
+                "docs": {},
+                "f": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "u": {
+                          "docs": {},
+                          "r": {
+                            "docs": {
+                              "Input.html#manufacturer": {
+                                "ref": "Input.html#manufacturer",
+                                "tf": 690.4761904761905
+                              },
+                              "Output.html#manufacturer": {
+                                "ref": "Output.html#manufacturer",
+                                "tf": 690.4761904761905
+                              },
+                              "Output.html#send": {
+                                "ref": "Output.html#send",
+                                "tf": 1.4705882352941175
+                              },
+                              "Output.html#sendSysex": {
+                                "ref": "Output.html#sendSysex",
+                                "tf": 20.333333333333332
+                              },
+                              "Output.html#setNonRegisteredParameter": {
+                                "ref": "Output.html#setNonRegisteredParameter",
+                                "tf": 0.4098360655737705
+                              },
+                              "OutputChannel.html#send": {
+                                "ref": "OutputChannel.html#send",
+                                "tf": 1.6129032258064515
+                              },
+                              "OutputChannel.html#setNonRegisteredParameter": {
+                                "ref": "OutputChannel.html#setNonRegisteredParameter",
+                                "tf": 0.4807692307692308
+                              }
+                            },
+                            "e": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "\"": {
+                                  "docs": {
+                                    "Output.html#setNonRegisteredParameter": {
+                                      "ref": "Output.html#setNonRegisteredParameter",
+                                      "tf": 0.4098360655737705
+                                    }
+                                  }
+                                },
+                                "'": {
+                                  "docs": {
+                                    "OutputChannel.html#setNonRegisteredParameter": {
+                                      "ref": "OutputChannel.html#setNonRegisteredParameter",
+                                      "tf": 0.4807692307692308
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.2857142857142857
+                      }
+                    }
+                  }
+                }
+              },
+              "c": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "InputChannel.html#getCcNameByNumber": {
+                      "ref": "InputChannel.html#getCcNameByNumber",
+                      "tf": 2.272727272727273
+                    },
+                    "InputChannel.html#getChannelModeByNumber": {
+                      "ref": "InputChannel.html#getChannelModeByNumber",
+                      "tf": 8.333333333333332
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 0.45871559633027525
+                    },
+                    "Output.html#sendChannelMode": {
+                      "ref": "Output.html#sendChannelMode",
+                      "tf": 0.78125
+                    },
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 0.4629629629629629
+                    },
+                    "OutputChannel.html#sendChannelMode": {
+                      "ref": "OutputChannel.html#sendChannelMode",
+                      "tf": 0.8064516129032258
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 0.5617977528089888
+                    },
+                    "WebMidi.html#getInputById": {
+                      "ref": "WebMidi.html#getInputById",
+                      "tf": 2.941176470588235
+                    },
+                    "WebMidi.html#getNoteNumberByName": {
+                      "ref": "WebMidi.html#getNoteNumberByName",
+                      "tf": 0.5681818181818182
+                    },
+                    "WebMidi.html#getOutputById": {
+                      "ref": "WebMidi.html#getOutputById",
+                      "tf": 2.941176470588235
+                    }
+                  }
+                }
+              }
+            },
+            "x": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "m": {
+                      "docs": {
+                        "Output.html#decrementRegisteredParameter": {
+                          "ref": "Output.html#decrementRegisteredParameter",
+                          "tf": 1.0869565217391304
+                        },
+                        "Output.html#incrementRegisteredParameter": {
+                          "ref": "Output.html#incrementRegisteredParameter",
+                          "tf": 1.0869565217391304
+                        },
+                        "Output.html#setRegisteredParameter": {
+                          "ref": "Output.html#setRegisteredParameter",
+                          "tf": 0.6578947368421052
+                        },
+                        "OutputChannel.html#decrementRegisteredParameter": {
+                          "ref": "OutputChannel.html#decrementRegisteredParameter",
+                          "tf": 1.0869565217391304
+                        },
+                        "OutputChannel.html#incrementRegisteredParameter": {
+                          "ref": "OutputChannel.html#incrementRegisteredParameter",
+                          "tf": 1.0869565217391304
+                        },
+                        "OutputChannel.html#setRegisteredParameter": {
+                          "ref": "OutputChannel.html#setRegisteredParameter",
+                          "tf": 0.6578947368421052
+                        }
+                      },
+                      "d": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "s": {
+                            "docs": {},
+                            "t": {
+                              "docs": {
+                                "Output.html#decrementRegisteredParameter": {
+                                  "ref": "Output.html#decrementRegisteredParameter",
+                                  "tf": 0.5434782608695652
+                                },
+                                "Output.html#incrementRegisteredParameter": {
+                                  "ref": "Output.html#incrementRegisteredParameter",
+                                  "tf": 0.5434782608695652
+                                },
+                                "Output.html#setRegisteredParameter": {
+                                  "ref": "Output.html#setRegisteredParameter",
+                                  "tf": 0.3289473684210526
+                                },
+                                "OutputChannel.html#decrementRegisteredParameter": {
+                                  "ref": "OutputChannel.html#decrementRegisteredParameter",
+                                  "tf": 0.5434782608695652
+                                },
+                                "OutputChannel.html#incrementRegisteredParameter": {
+                                  "ref": "OutputChannel.html#incrementRegisteredParameter",
+                                  "tf": 0.5434782608695652
+                                },
+                                "OutputChannel.html#setRegisteredParameter": {
+                                  "ref": "OutputChannel.html#setRegisteredParameter",
+                                  "tf": 0.3289473684210526
+                                },
+                                "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                                  "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                                  "tf": 0.78125
+                                }
+                              },
+                              "a": {
+                                "docs": {},
+                                "n": {
+                                  "docs": {},
+                                  "c": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "g": {
+                                        "docs": {},
+                                        "a": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "n": {
+                                              "docs": {
+                                                "Output.html#decrementRegisteredParameter": {
+                                                  "ref": "Output.html#decrementRegisteredParameter",
+                                                  "tf": 0.5434782608695652
+                                                },
+                                                "Output.html#incrementRegisteredParameter": {
+                                                  "ref": "Output.html#incrementRegisteredParameter",
+                                                  "tf": 0.5434782608695652
+                                                },
+                                                "Output.html#setRegisteredParameter": {
+                                                  "ref": "Output.html#setRegisteredParameter",
+                                                  "tf": 0.3289473684210526
+                                                },
+                                                "OutputChannel.html#decrementRegisteredParameter": {
+                                                  "ref": "OutputChannel.html#decrementRegisteredParameter",
+                                                  "tf": 0.5434782608695652
+                                                },
+                                                "OutputChannel.html#incrementRegisteredParameter": {
+                                                  "ref": "OutputChannel.html#incrementRegisteredParameter",
+                                                  "tf": 0.5434782608695652
+                                                },
+                                                "OutputChannel.html#setRegisteredParameter": {
+                                                  "ref": "OutputChannel.html#setRegisteredParameter",
+                                                  "tf": 0.3289473684210526
+                                                },
+                                                "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                                                  "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                                                  "tf": 0.78125
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Output.html#setMasterTuning": {
+                        "ref": "Output.html#setMasterTuning",
+                        "tf": 3.4090909090909087
+                      },
+                      "OutputChannel.html#setMasterTuning": {
+                        "ref": "OutputChannel.html#setMasterTuning",
+                        "tf": 3.571428571428571
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "u": {
             "docs": {},
             "l": {
@@ -12394,7 +12348,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.3448275862068966
+                          "tf": 0.3205128205128205
                         }
                       }
                     }
@@ -12462,7 +12416,7 @@ window.lunrData = {
                                 "docs": {
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.3448275862068966
+                                    "tf": 0.3205128205128205
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
@@ -12967,455 +12921,6 @@ window.lunrData = {
               }
             }
           },
-          "a": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 1.1764705882352942
-                        },
-                        "Input.html#addOneTimeListener": {
-                          "ref": "Input.html#addOneTimeListener",
-                          "tf": 1.1111111111111112
-                        },
-                        "Input.html#hasListener": {
-                          "ref": "Input.html#hasListener",
-                          "tf": 1.8181818181818181
-                        },
-                        "Input.html#removeListener": {
-                          "ref": "Input.html#removeListener",
-                          "tf": 3.278688524590164
-                        },
-                        "InputChannel.html#.NRPN_TYPES": {
-                          "ref": "InputChannel.html#.NRPN_TYPES",
-                          "tf": 6.25
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
-                        "Output.html#decrementRegisteredParameter": {
-                          "ref": "Output.html#decrementRegisteredParameter",
-                          "tf": 21.08695652173913
-                        },
-                        "Output.html#incrementRegisteredParameter": {
-                          "ref": "Output.html#incrementRegisteredParameter",
-                          "tf": 21.08695652173913
-                        },
-                        "Output.html#playNote": {
-                          "ref": "Output.html#playNote",
-                          "tf": 1.834862385321101
-                        },
-                        "Output.html#sendChannelMode": {
-                          "ref": "Output.html#sendChannelMode",
-                          "tf": 0.78125
-                        },
-                        "Output.html#sendNoteOff": {
-                          "ref": "Output.html#sendNoteOff",
-                          "tf": 2.5
-                        },
-                        "Output.html#sendNoteOn": {
-                          "ref": "Output.html#sendNoteOn",
-                          "tf": 1.8072289156626504
-                        },
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.6666666666666667
-                        },
-                        "Output.html#setModulationRange": {
-                          "ref": "Output.html#setModulationRange",
-                          "tf": 6.521739130434782
-                        },
-                        "Output.html#setNonRegisteredParameter": {
-                          "ref": "Output.html#setNonRegisteredParameter",
-                          "tf": 17.486338797814206
-                        },
-                        "Output.html#setPitchBendRange": {
-                          "ref": "Output.html#setPitchBendRange",
-                          "tf": 2.7777777777777777
-                        },
-                        "Output.html#setRegisteredParameter": {
-                          "ref": "Output.html#setRegisteredParameter",
-                          "tf": 18.64035087719298
-                        },
-                        "Output.html#setTuningBank": {
-                          "ref": "Output.html#setTuningBank",
-                          "tf": 1.25
-                        },
-                        "Output.html#setTuningProgram": {
-                          "ref": "Output.html#setTuningProgram",
-                          "tf": 1.25
-                        },
-                        "OutputChannel.html#decrementRegisteredParameter": {
-                          "ref": "OutputChannel.html#decrementRegisteredParameter",
-                          "tf": 26.08695652173913
-                        },
-                        "OutputChannel.html#incrementRegisteredParameter": {
-                          "ref": "OutputChannel.html#incrementRegisteredParameter",
-                          "tf": 26.08695652173913
-                        },
-                        "OutputChannel.html#playNote": {
-                          "ref": "OutputChannel.html#playNote",
-                          "tf": 1.8518518518518516
-                        },
-                        "OutputChannel.html#sendChannelMode": {
-                          "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.8064516129032258
-                        },
-                        "OutputChannel.html#sendNoteOff": {
-                          "ref": "OutputChannel.html#sendNoteOff",
-                          "tf": 2.5423728813559325
-                        },
-                        "OutputChannel.html#sendNoteOn": {
-                          "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 1.8292682926829267
-                        },
-                        "OutputChannel.html#setModulationRange": {
-                          "ref": "OutputChannel.html#setModulationRange",
-                          "tf": 7.142857142857142
-                        },
-                        "OutputChannel.html#setNonRegisteredParameter": {
-                          "ref": "OutputChannel.html#setNonRegisteredParameter",
-                          "tf": 20.96153846153846
-                        },
-                        "OutputChannel.html#setPitchBendRange": {
-                          "ref": "OutputChannel.html#setPitchBendRange",
-                          "tf": 2.7777777777777777
-                        },
-                        "OutputChannel.html#setRegisteredParameter": {
-                          "ref": "OutputChannel.html#setRegisteredParameter",
-                          "tf": 21.973684210526315
-                        },
-                        "OutputChannel.html#setTuningBank": {
-                          "ref": "OutputChannel.html#setTuningBank",
-                          "tf": 1.25
-                        },
-                        "OutputChannel.html#setTuningProgram": {
-                          "ref": "OutputChannel.html#setTuningProgram",
-                          "tf": 1.25
-                        },
-                        "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                          "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                          "tf": 1.5625
-                        },
-                        "WebMidi.html#convertToTimestamp": {
-                          "ref": "WebMidi.html#convertToTimestamp",
-                          "tf": 5
-                        },
-                        "WebMidi.html#getNoteNumberByName": {
-                          "ref": "WebMidi.html#getNoteNumberByName",
-                          "tf": 0.5681818181818182
-                        },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 2.7777777777777777
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
-                          "tf": 4.166666666666666
-                        }
-                      }
-                    }
-                  },
-                  "l": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "m": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                            "tf": 2
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "t": {
-                "docs": {
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "Output.html#setTuningBank": {
-                    "ref": "Output.html#setTuningBank",
-                    "tf": 1.25
-                  },
-                  "Output.html#setTuningProgram": {
-                    "ref": "Output.html#setTuningProgram",
-                    "tf": 1.25
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "OutputChannel.html#setTuningBank": {
-                    "ref": "OutputChannel.html#setTuningBank",
-                    "tf": 1.25
-                  },
-                  "OutputChannel.html#setTuningProgram": {
-                    "ref": "OutputChannel.html#setTuningProgram",
-                    "tf": 1.25
-                  }
-                }
-              },
-              "s": {
-                "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#sanitizeChannels": {
-                    "ref": "WebMidi.html#sanitizeChannels",
-                    "tf": 1.3888888888888888
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 0.5882352941176471
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 0.819672131147541
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 0.9615384615384616
-                  },
-                  "WebMidi.html#time": {
-                    "ref": "WebMidi.html#time",
-                    "tf": 1.5625
-                  },
-                  "WebMidi.html#enable": {
-                    "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#sanitizeChannels": {
-                    "ref": "WebMidi.html#sanitizeChannels",
-                    "tf": 1.3888888888888888
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {
-                "Output.html#decrementRegisteredParameter": {
-                  "ref": "Output.html#decrementRegisteredParameter",
-                  "tf": 0.5434782608695652
-                },
-                "Output.html#incrementRegisteredParameter": {
-                  "ref": "Output.html#incrementRegisteredParameter",
-                  "tf": 0.5434782608695652
-                },
-                "Output.html#setRegisteredParameter": {
-                  "ref": "Output.html#setRegisteredParameter",
-                  "tf": 0.3289473684210526
-                },
-                "OutputChannel.html#decrementRegisteredParameter": {
-                  "ref": "OutputChannel.html#decrementRegisteredParameter",
-                  "tf": 0.5434782608695652
-                },
-                "OutputChannel.html#incrementRegisteredParameter": {
-                  "ref": "OutputChannel.html#incrementRegisteredParameter",
-                  "tf": 0.5434782608695652
-                },
-                "OutputChannel.html#setRegisteredParameter": {
-                  "ref": "OutputChannel.html#setRegisteredParameter",
-                  "tf": 0.3289473684210526
-                }
-              },
-              "s": {
-                "docs": {},
-                "p": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "d": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "g": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {
-                                    "Output.html#decrementRegisteredParameter": {
-                                      "ref": "Output.html#decrementRegisteredParameter",
-                                      "tf": 0.5434782608695652
-                                    },
-                                    "Output.html#incrementRegisteredParameter": {
-                                      "ref": "Output.html#incrementRegisteredParameter",
-                                      "tf": 0.5434782608695652
-                                    },
-                                    "Output.html#setRegisteredParameter": {
-                                      "ref": "Output.html#setRegisteredParameter",
-                                      "tf": 0.3289473684210526
-                                    },
-                                    "OutputChannel.html#decrementRegisteredParameter": {
-                                      "ref": "OutputChannel.html#decrementRegisteredParameter",
-                                      "tf": 0.5434782608695652
-                                    },
-                                    "OutputChannel.html#incrementRegisteredParameter": {
-                                      "ref": "OutputChannel.html#incrementRegisteredParameter",
-                                      "tf": 0.5434782608695652
-                                    },
-                                    "OutputChannel.html#setRegisteredParameter": {
-                                      "ref": "OutputChannel.html#setRegisteredParameter",
-                                      "tf": 0.3289473684210526
-                                    },
-                                    "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                                      "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                                      "tf": 0.78125
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "c": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "s": {
-                        "docs": {
-                          "Output.html#sendControlChange": {
-                            "ref": "Output.html#sendControlChange",
-                            "tf": 0.2890173410404624
-                          },
-                          "OutputChannel.html#sendControlChange": {
-                            "ref": "OutputChannel.html#sendControlChange",
-                            "tf": 0.2890173410404624
-                          },
-                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                            "tf": 0.4032258064516129
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "f": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                        "tf": 0.4032258064516129
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "g": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "WebMidi.html#time": {
-                    "ref": "WebMidi.html#time",
-                    "tf": 1.5625
-                  },
-                  "WebMidi.html#enable": {
-                    "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "r": {
-                "docs": {
-                  "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                    "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                    "tf": 0.78125
-                  }
-                }
-              }
-            }
-          },
           "o": {
             "docs": {},
             "r": {
@@ -13424,7 +12929,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5882352941176471
+                    "tf": 1.3513513513513513
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -13675,10 +13180,6 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 0.5882352941176471
-                        },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.3703703703703704
@@ -14183,7 +13684,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
-                              "tf": 0.3448275862068966
+                              "tf": 0.3205128205128205
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
@@ -14262,6 +13763,447 @@ window.lunrData = {
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "r": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 1.1111111111111112
+                        },
+                        "Input.html#hasListener": {
+                          "ref": "Input.html#hasListener",
+                          "tf": 1.8181818181818181
+                        },
+                        "Input.html#removeListener": {
+                          "ref": "Input.html#removeListener",
+                          "tf": 3.278688524590164
+                        },
+                        "InputChannel.html#.NRPN_TYPES": {
+                          "ref": "InputChannel.html#.NRPN_TYPES",
+                          "tf": 6.25
+                        },
+                        "InputChannel.html#nrpnEventsEnabled": {
+                          "ref": "InputChannel.html#nrpnEventsEnabled",
+                          "tf": 1.1904761904761905
+                        },
+                        "Output.html#decrementRegisteredParameter": {
+                          "ref": "Output.html#decrementRegisteredParameter",
+                          "tf": 21.08695652173913
+                        },
+                        "Output.html#incrementRegisteredParameter": {
+                          "ref": "Output.html#incrementRegisteredParameter",
+                          "tf": 21.08695652173913
+                        },
+                        "Output.html#playNote": {
+                          "ref": "Output.html#playNote",
+                          "tf": 1.834862385321101
+                        },
+                        "Output.html#sendChannelMode": {
+                          "ref": "Output.html#sendChannelMode",
+                          "tf": 0.78125
+                        },
+                        "Output.html#sendNoteOff": {
+                          "ref": "Output.html#sendNoteOff",
+                          "tf": 2.5
+                        },
+                        "Output.html#sendNoteOn": {
+                          "ref": "Output.html#sendNoteOn",
+                          "tf": 1.8072289156626504
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.6666666666666667
+                        },
+                        "Output.html#setModulationRange": {
+                          "ref": "Output.html#setModulationRange",
+                          "tf": 6.521739130434782
+                        },
+                        "Output.html#setNonRegisteredParameter": {
+                          "ref": "Output.html#setNonRegisteredParameter",
+                          "tf": 17.486338797814206
+                        },
+                        "Output.html#setPitchBendRange": {
+                          "ref": "Output.html#setPitchBendRange",
+                          "tf": 2.7777777777777777
+                        },
+                        "Output.html#setRegisteredParameter": {
+                          "ref": "Output.html#setRegisteredParameter",
+                          "tf": 18.64035087719298
+                        },
+                        "Output.html#setTuningBank": {
+                          "ref": "Output.html#setTuningBank",
+                          "tf": 1.25
+                        },
+                        "Output.html#setTuningProgram": {
+                          "ref": "Output.html#setTuningProgram",
+                          "tf": 1.25
+                        },
+                        "OutputChannel.html#decrementRegisteredParameter": {
+                          "ref": "OutputChannel.html#decrementRegisteredParameter",
+                          "tf": 26.08695652173913
+                        },
+                        "OutputChannel.html#incrementRegisteredParameter": {
+                          "ref": "OutputChannel.html#incrementRegisteredParameter",
+                          "tf": 26.08695652173913
+                        },
+                        "OutputChannel.html#playNote": {
+                          "ref": "OutputChannel.html#playNote",
+                          "tf": 1.8518518518518516
+                        },
+                        "OutputChannel.html#sendChannelMode": {
+                          "ref": "OutputChannel.html#sendChannelMode",
+                          "tf": 0.8064516129032258
+                        },
+                        "OutputChannel.html#sendNoteOff": {
+                          "ref": "OutputChannel.html#sendNoteOff",
+                          "tf": 2.5423728813559325
+                        },
+                        "OutputChannel.html#sendNoteOn": {
+                          "ref": "OutputChannel.html#sendNoteOn",
+                          "tf": 1.8292682926829267
+                        },
+                        "OutputChannel.html#setModulationRange": {
+                          "ref": "OutputChannel.html#setModulationRange",
+                          "tf": 7.142857142857142
+                        },
+                        "OutputChannel.html#setNonRegisteredParameter": {
+                          "ref": "OutputChannel.html#setNonRegisteredParameter",
+                          "tf": 20.96153846153846
+                        },
+                        "OutputChannel.html#setPitchBendRange": {
+                          "ref": "OutputChannel.html#setPitchBendRange",
+                          "tf": 2.7777777777777777
+                        },
+                        "OutputChannel.html#setRegisteredParameter": {
+                          "ref": "OutputChannel.html#setRegisteredParameter",
+                          "tf": 21.973684210526315
+                        },
+                        "OutputChannel.html#setTuningBank": {
+                          "ref": "OutputChannel.html#setTuningBank",
+                          "tf": 1.25
+                        },
+                        "OutputChannel.html#setTuningProgram": {
+                          "ref": "OutputChannel.html#setTuningProgram",
+                          "tf": 1.25
+                        },
+                        "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                          "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                          "tf": 1.5625
+                        },
+                        "WebMidi.html#convertToTimestamp": {
+                          "ref": "WebMidi.html#convertToTimestamp",
+                          "tf": 5
+                        },
+                        "WebMidi.html#getNoteNumberByName": {
+                          "ref": "WebMidi.html#getNoteNumberByName",
+                          "tf": 0.5681818181818182
+                        },
+                        "WebMidi.html#getNoteObject": {
+                          "ref": "WebMidi.html#getNoteObject",
+                          "tf": 2.7777777777777777
+                        },
+                        "WebMidi.html#guessNoteNumber": {
+                          "ref": "WebMidi.html#guessNoteNumber",
+                          "tf": 1.1363636363636365
+                        },
+                        "WebMidi.html#sanitizeChannels": {
+                          "ref": "WebMidi.html#sanitizeChannels",
+                          "tf": 4.166666666666666
+                        }
+                      }
+                    }
+                  },
+                  "l": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "m": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                            "tf": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "t": {
+                "docs": {
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "Output.html#setTuningBank": {
+                    "ref": "Output.html#setTuningBank",
+                    "tf": 1.25
+                  },
+                  "Output.html#setTuningProgram": {
+                    "ref": "Output.html#setTuningProgram",
+                    "tf": 1.25
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "OutputChannel.html#setTuningBank": {
+                    "ref": "OutputChannel.html#setTuningBank",
+                    "tf": 1.25
+                  },
+                  "OutputChannel.html#setTuningProgram": {
+                    "ref": "OutputChannel.html#setTuningProgram",
+                    "tf": 1.25
+                  }
+                }
+              },
+              "s": {
+                "docs": {
+                  "WebMidi.html#getNoteNumberByName": {
+                    "ref": "WebMidi.html#getNoteNumberByName",
+                    "tf": 0.5681818181818182
+                  },
+                  "WebMidi.html#getOctave": {
+                    "ref": "WebMidi.html#getOctave",
+                    "tf": 1.282051282051282
+                  },
+                  "WebMidi.html#guessNoteNumber": {
+                    "ref": "WebMidi.html#guessNoteNumber",
+                    "tf": 1.1363636363636365
+                  },
+                  "WebMidi.html#sanitizeChannels": {
+                    "ref": "WebMidi.html#sanitizeChannels",
+                    "tf": 1.3888888888888888
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {
+                "Output.html#decrementRegisteredParameter": {
+                  "ref": "Output.html#decrementRegisteredParameter",
+                  "tf": 0.5434782608695652
+                },
+                "Output.html#incrementRegisteredParameter": {
+                  "ref": "Output.html#incrementRegisteredParameter",
+                  "tf": 0.5434782608695652
+                },
+                "Output.html#setRegisteredParameter": {
+                  "ref": "Output.html#setRegisteredParameter",
+                  "tf": 0.3289473684210526
+                },
+                "OutputChannel.html#decrementRegisteredParameter": {
+                  "ref": "OutputChannel.html#decrementRegisteredParameter",
+                  "tf": 0.5434782608695652
+                },
+                "OutputChannel.html#incrementRegisteredParameter": {
+                  "ref": "OutputChannel.html#incrementRegisteredParameter",
+                  "tf": 0.5434782608695652
+                },
+                "OutputChannel.html#setRegisteredParameter": {
+                  "ref": "OutputChannel.html#setRegisteredParameter",
+                  "tf": 0.3289473684210526
+                }
+              },
+              "s": {
+                "docs": {},
+                "p": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "a": {
+                        "docs": {},
+                        "d": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "n": {
+                              "docs": {},
+                              "g": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {
+                                    "Output.html#decrementRegisteredParameter": {
+                                      "ref": "Output.html#decrementRegisteredParameter",
+                                      "tf": 0.5434782608695652
+                                    },
+                                    "Output.html#incrementRegisteredParameter": {
+                                      "ref": "Output.html#incrementRegisteredParameter",
+                                      "tf": 0.5434782608695652
+                                    },
+                                    "Output.html#setRegisteredParameter": {
+                                      "ref": "Output.html#setRegisteredParameter",
+                                      "tf": 0.3289473684210526
+                                    },
+                                    "OutputChannel.html#decrementRegisteredParameter": {
+                                      "ref": "OutputChannel.html#decrementRegisteredParameter",
+                                      "tf": 0.5434782608695652
+                                    },
+                                    "OutputChannel.html#incrementRegisteredParameter": {
+                                      "ref": "OutputChannel.html#incrementRegisteredParameter",
+                                      "tf": 0.5434782608695652
+                                    },
+                                    "OutputChannel.html#setRegisteredParameter": {
+                                      "ref": "OutputChannel.html#setRegisteredParameter",
+                                      "tf": 0.3289473684210526
+                                    },
+                                    "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                                      "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                                      "tf": 0.78125
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "c": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "s": {
+                        "docs": {
+                          "Output.html#sendControlChange": {
+                            "ref": "Output.html#sendControlChange",
+                            "tf": 0.2890173410404624
+                          },
+                          "OutputChannel.html#sendControlChange": {
+                            "ref": "OutputChannel.html#sendControlChange",
+                            "tf": 0.2890173410404624
+                          },
+                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                            "tf": 0.4032258064516129
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "f": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                        "tf": 0.4032258064516129
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "g": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 1.5625
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.2857142857142857
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "s": {
+                "docs": {
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 0.819672131147541
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 0.9615384615384616
+                  },
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 1.5625
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.2857142857142857
+                  },
+                  "WebMidi.html#getNoteNumberByName": {
+                    "ref": "WebMidi.html#getNoteNumberByName",
+                    "tf": 1.1363636363636365
+                  },
+                  "WebMidi.html#guessNoteNumber": {
+                    "ref": "WebMidi.html#guessNoteNumber",
+                    "tf": 1.1363636363636365
+                  },
+                  "WebMidi.html#sanitizeChannels": {
+                    "ref": "WebMidi.html#sanitizeChannels",
+                    "tf": 1.3888888888888888
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "r": {
+                "docs": {
+                  "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                    "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                    "tf": 0.78125
                   }
                 }
               }
@@ -14382,7 +14324,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Output.html#sendActiveSensing": {
                     "ref": "Output.html#sendActiveSensing",
@@ -14448,74 +14390,6 @@ window.lunrData = {
                 }
               }
             },
-            "m": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "Input.html#destroy": {
-                      "ref": "Input.html#destroy",
-                      "tf": 5
-                    },
-                    "Input.html#removeListener": {
-                      "ref": "Input.html#removeListener",
-                      "tf": 4.098360655737705
-                    },
-                    "Output.html#destroy": {
-                      "ref": "Output.html#destroy",
-                      "tf": 5.555555555555555
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "s": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {
-                                  "Input.html": {
-                                    "ref": "Input.html",
-                                    "tf": 0.5882352941176471
-                                  },
-                                  "Input.html#removeListener": {
-                                    "ref": "Input.html#removeListener",
-                                    "tf": 670
-                                  },
-                                  "InputChannel.html": {
-                                    "ref": "InputChannel.html",
-                                    "tf": 1.2195121951219512
-                                  },
-                                  "Output.html": {
-                                    "ref": "Output.html",
-                                    "tf": 1.3888888888888888
-                                  },
-                                  "OutputChannel.html": {
-                                    "ref": "OutputChannel.html",
-                                    "tf": 1.2195121951219512
-                                  },
-                                  "WebMidi.html": {
-                                    "ref": "WebMidi.html",
-                                    "tf": 0.7462686567164178
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "p": {
               "docs": {},
               "r": {
@@ -14526,7 +14400,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5882352941176471
+                        "tf": 1.3513513513513513
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -14595,7 +14469,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -14805,6 +14679,70 @@ window.lunrData = {
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                         "tf": 0.5617977528089888
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "m": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "v": {
+                  "docs": {
+                    "Input.html#destroy": {
+                      "ref": "Input.html#destroy",
+                      "tf": 5
+                    },
+                    "Input.html#removeListener": {
+                      "ref": "Input.html#removeListener",
+                      "tf": 4.098360655737705
+                    },
+                    "Output.html#destroy": {
+                      "ref": "Output.html#destroy",
+                      "tf": 5.555555555555555
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "i": {
+                        "docs": {},
+                        "s": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "n": {
+                                "docs": {
+                                  "Input.html#removeListener": {
+                                    "ref": "Input.html#removeListener",
+                                    "tf": 670
+                                  },
+                                  "InputChannel.html": {
+                                    "ref": "InputChannel.html",
+                                    "tf": 1.2195121951219512
+                                  },
+                                  "Output.html": {
+                                    "ref": "Output.html",
+                                    "tf": 1.3888888888888888
+                                  },
+                                  "OutputChannel.html": {
+                                    "ref": "OutputChannel.html",
+                                    "tf": 1.2195121951219512
+                                  },
+                                  "WebMidi.html": {
+                                    "ref": "WebMidi.html",
+                                    "tf": 0.7462686567164178
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -15735,7 +15673,7 @@ window.lunrData = {
                                                                                           "docs": {
                                                                                             "Input.html#addListener": {
                                                                                               "ref": "Input.html#addListener",
-                                                                                              "tf": 0.3448275862068966
+                                                                                              "tf": 0.3205128205128205
                                                                                             }
                                                                                           }
                                                                                         }
@@ -15762,7 +15700,7 @@ window.lunrData = {
                                                                                   "docs": {
                                                                                     "Input.html#addListener": {
                                                                                       "ref": "Input.html#addListener",
-                                                                                      "tf": 0.3448275862068966
+                                                                                      "tf": 0.3205128205128205
                                                                                     }
                                                                                   }
                                                                                 }
@@ -16320,7 +16258,7 @@ window.lunrData = {
                                   "docs": {
                                     "Input.html": {
                                       "ref": "Input.html",
-                                      "tf": 0.5882352941176471
+                                      "tf": 1.3513513513513513
                                     },
                                     "WebMidi.html#inputs": {
                                       "ref": "WebMidi.html#inputs",
@@ -17371,79 +17309,6 @@ window.lunrData = {
               }
             }
           },
-          "i": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 0.5882352941176471
-                  },
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 2.413793103448276
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.7407407407407408
-                  },
-                  "Output.html#setKeyAftertouch": {
-                    "ref": "Output.html#setKeyAftertouch",
-                    "tf": 2.7777777777777777
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "Output.html#setTuningBank": {
-                    "ref": "Output.html#setTuningBank",
-                    "tf": 1.25
-                  },
-                  "Output.html#setTuningProgram": {
-                    "ref": "Output.html#setTuningProgram",
-                    "tf": 1.25
-                  },
-                  "OutputChannel.html#setKeyAftertouch": {
-                    "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "OutputChannel.html#setTuningBank": {
-                    "ref": "OutputChannel.html#setTuningBank",
-                    "tf": 1.25
-                  },
-                  "OutputChannel.html#setTuningProgram": {
-                    "ref": "OutputChannel.html#setTuningProgram",
-                    "tf": 1.25
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "h": {
-                "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
-                  }
-                }
-              },
-              "e": {
-                "docs": {
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
-                  }
-                }
-              }
-            }
-          },
           "a": {
             "docs": {},
             "n": {
@@ -17452,7 +17317,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -17523,6 +17388,75 @@ window.lunrData = {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
                     "tf": 0.2857142857142857
+                  }
+                }
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "d": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 2.2435897435897436
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.7407407407407408
+                  },
+                  "Output.html#setKeyAftertouch": {
+                    "ref": "Output.html#setKeyAftertouch",
+                    "tf": 2.7777777777777777
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "Output.html#setTuningBank": {
+                    "ref": "Output.html#setTuningBank",
+                    "tf": 1.25
+                  },
+                  "Output.html#setTuningProgram": {
+                    "ref": "Output.html#setTuningProgram",
+                    "tf": 1.25
+                  },
+                  "OutputChannel.html#setKeyAftertouch": {
+                    "ref": "OutputChannel.html#setKeyAftertouch",
+                    "tf": 1.1904761904761905
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "OutputChannel.html#setTuningBank": {
+                    "ref": "OutputChannel.html#setTuningBank",
+                    "tf": 1.25
+                  },
+                  "OutputChannel.html#setTuningProgram": {
+                    "ref": "OutputChannel.html#setTuningProgram",
+                    "tf": 1.25
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "h": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.3205128205128205
+                  }
+                }
+              },
+              "e": {
+                "docs": {
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
                   }
                 }
               }
@@ -17802,7 +17736,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -18335,11 +18269,11 @@ window.lunrData = {
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 0.5882352941176471
+                            "tf": 1.3513513513513513
                           },
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 0.3448275862068966
+                            "tf": 0.3205128205128205
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
@@ -18423,7 +18357,7 @@ window.lunrData = {
                               },
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.3448275862068966
+                                "tf": 0.3205128205128205
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -18613,7 +18547,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5882352941176471
+                        "tf": 1.3513513513513513
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -19001,9 +18935,9 @@ window.lunrData = {
             "docs": {},
             "t": {
               "docs": {
-                "Input.html": {
-                  "ref": "Input.html",
-                  "tf": 0.5882352941176471
+                "Input.html#addListener": {
+                  "ref": "Input.html#addListener",
+                  "tf": 0.3205128205128205
                 }
               },
               "l": {
@@ -19020,7 +18954,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5882352941176471
+                              "tf": 1.3513513513513513
                             }
                           }
                         }
@@ -19896,7 +19830,7 @@ window.lunrData = {
                     },
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 112.3529411764706
+                      "tf": 114.05405405405405
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -19934,7 +19868,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -19965,7 +19899,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -20016,159 +19950,6 @@ window.lunrData = {
               }
             }
           },
-          "a": {
-            "docs": {},
-            "s": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 0.5882352941176471
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
-                  },
-                  "Input.html#hasListener": {
-                    "ref": "Input.html#hasListener",
-                    "tf": 0.9090909090909091
-                  },
-                  "Input.html#removeListener": {
-                    "ref": "Input.html#removeListener",
-                    "tf": 0.819672131147541
-                  },
-                  "InputChannel.html#getCcNameByNumber": {
-                    "ref": "InputChannel.html#getCcNameByNumber",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 1.2295081967213115
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 1.4423076923076923
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "l": {
-                "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
-                  },
-                  "Input.html#close": {
-                    "ref": "Input.html#close",
-                    "tf": 3.571428571428571
-                  },
-                  "Output.html#close": {
-                    "ref": "Output.html#close",
-                    "tf": 2.380952380952381
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.7462686567164178
-                  }
-                },
-                "b": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "k": {
-                        "docs": {
-                          "Input.html#addListener": {
-                            "ref": "Input.html#addListener",
-                            "tf": 0.6896551724137931
-                          },
-                          "Input.html#addOneTimeListener": {
-                            "ref": "Input.html#addOneTimeListener",
-                            "tf": 0.3703703703703704
-                          },
-                          "WebMidi.html#enable": {
-                            "ref": "WebMidi.html#enable",
-                            "tf": 0.8571428571428572
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "Input.html#addListener": {
-                      "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
-                    }
-                  }
-                }
-              }
-            },
-            "u": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "Output.html#setOmniMode": {
-                    "ref": "Output.html#setOmniMode",
-                    "tf": 2.631578947368421
-                  },
-                  "OutputChannel.html#setOmniMode": {
-                    "ref": "OutputChannel.html#setOmniMode",
-                    "tf": 2.941176470588235
-                  },
-                  "WebMidi.html#enable": {
-                    "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "f": {
-                  "docs": {},
-                  "u": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "l": {
-                        "docs": {},
-                        "i": {
-                          "docs": {
-                            "WebMidi.html#validation": {
-                              "ref": "WebMidi.html#validation",
-                              "tf": 1.6129032258064515
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "h": {
             "docs": {},
             "a": {
@@ -20181,17 +19962,13 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 2.941176470588235
-                        },
                         "Input.html#channels": {
                           "ref": "Input.html#channels",
                           "tf": 704.1666666666666
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 4.137931034482759
+                          "tf": 4.166666666666666
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -20436,7 +20213,7 @@ window.lunrData = {
                                           "docs": {
                                             "Input.html#addListener": {
                                               "ref": "Input.html#addListener",
-                                              "tf": 0.3448275862068966
+                                              "tf": 0.3205128205128205
                                             },
                                             "Input.html#addOneTimeListener": {
                                               "ref": "Input.html#addOneTimeListener",
@@ -20465,7 +20242,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.3448275862068966
+                                "tf": 0.3205128205128205
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -20672,7 +20449,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -20940,7 +20717,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.3448275862068966
+                          "tf": 0.3205128205128205
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -21037,7 +20814,7 @@ window.lunrData = {
                                 "docs": {
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
-                                    "tf": 0.3448275862068966
+                                    "tf": 0.3205128205128205
                                   },
                                   "Input.html#addOneTimeListener": {
                                     "ref": "Input.html#addOneTimeListener",
@@ -21398,7 +21175,7 @@ window.lunrData = {
                         },
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 0.3448275862068966
+                          "tf": 0.3205128205128205
                         },
                         "Output.html#id": {
                           "ref": "Output.html#id",
@@ -21447,7 +21224,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.3448275862068966
+                        "tf": 0.3205128205128205
                       },
                       "Output.html#sendChannelMode": {
                         "ref": "Output.html#sendChannelMode",
@@ -21556,7 +21333,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
@@ -21632,6 +21409,155 @@ window.lunrData = {
                     "OutputChannel.html#setRegisteredParameter": {
                       "ref": "OutputChannel.html#setRegisteredParameter",
                       "tf": 0.3289473684210526
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "l": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.3205128205128205
+                  },
+                  "Input.html#close": {
+                    "ref": "Input.html#close",
+                    "tf": 3.571428571428571
+                  },
+                  "Output.html#close": {
+                    "ref": "Output.html#close",
+                    "tf": 2.380952380952381
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.7462686567164178
+                  }
+                },
+                "b": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "k": {
+                        "docs": {
+                          "Input.html#addListener": {
+                            "ref": "Input.html#addListener",
+                            "tf": 0.641025641025641
+                          },
+                          "Input.html#addOneTimeListener": {
+                            "ref": "Input.html#addOneTimeListener",
+                            "tf": 0.3703703703703704
+                          },
+                          "WebMidi.html#enable": {
+                            "ref": "WebMidi.html#enable",
+                            "tf": 0.8571428571428572
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "Input.html#addListener": {
+                      "ref": "Input.html#addListener",
+                      "tf": 0.3205128205128205
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
+                  },
+                  "Input.html#hasListener": {
+                    "ref": "Input.html#hasListener",
+                    "tf": 0.9090909090909091
+                  },
+                  "Input.html#removeListener": {
+                    "ref": "Input.html#removeListener",
+                    "tf": 0.819672131147541
+                  },
+                  "InputChannel.html#getCcNameByNumber": {
+                    "ref": "InputChannel.html#getCcNameByNumber",
+                    "tf": 2.272727272727273
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 1.2295081967213115
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 1.4423076923076923
+                  }
+                }
+              }
+            },
+            "u": {
+              "docs": {},
+              "s": {
+                "docs": {
+                  "Output.html#setOmniMode": {
+                    "ref": "Output.html#setOmniMode",
+                    "tf": 2.631578947368421
+                  },
+                  "OutputChannel.html#setOmniMode": {
+                    "ref": "OutputChannel.html#setOmniMode",
+                    "tf": 2.941176470588235
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.2857142857142857
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "f": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "l": {
+                        "docs": {},
+                        "i": {
+                          "docs": {
+                            "WebMidi.html#validation": {
+                              "ref": "WebMidi.html#validation",
+                              "tf": 1.6129032258064515
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -21820,206 +21746,6 @@ window.lunrData = {
         },
         "a": {
           "docs": {},
-          "d": {
-            "docs": {
-              "Input.html": {
-                "ref": "Input.html",
-                "tf": 1.1764705882352942
-              },
-              "Input.html#addOneTimeListener": {
-                "ref": "Input.html#addOneTimeListener",
-                "tf": 0.3703703703703704
-              },
-              "Input.html#hasListener": {
-                "ref": "Input.html#hasListener",
-                "tf": 0.9090909090909091
-              },
-              "Input.html#removeListener": {
-                "ref": "Input.html#removeListener",
-                "tf": 0.819672131147541
-              },
-              "Output.html#setRegisteredParameter": {
-                "ref": "Output.html#setRegisteredParameter",
-                "tf": 0.3289473684210526
-              },
-              "OutputChannel.html#setRegisteredParameter": {
-                "ref": "OutputChannel.html#setRegisteredParameter",
-                "tf": 0.3289473684210526
-              },
-              "WebMidi.html#disable": {
-                "ref": "WebMidi.html#disable",
-                "tf": 2.272727272727273
-              }
-            },
-            "d": {
-              "docs": {
-                "Input.html#addListener": {
-                  "ref": "Input.html#addListener",
-                  "tf": 1.3793103448275863
-                },
-                "Input.html#addOneTimeListener": {
-                  "ref": "Input.html#addOneTimeListener",
-                  "tf": 1.4814814814814816
-                }
-              },
-              "/": {
-                "docs": {},
-                "r": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "m": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "v": {
-                          "docs": {
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 0.5882352941176471
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "o": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "m": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "l": {
-                              "docs": {},
-                              "i": {
-                                "docs": {},
-                                "s": {
-                                  "docs": {},
-                                  "t": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "n": {
-                                        "docs": {
-                                          "Input.html": {
-                                            "ref": "Input.html",
-                                            "tf": 0.5882352941176471
-                                          },
-                                          "Input.html#addOneTimeListener": {
-                                            "ref": "Input.html#addOneTimeListener",
-                                            "tf": 666.6666666666666
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "l": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "n": {
-                          "docs": {
-                            "Input.html#addListener": {
-                              "ref": "Input.html#addListener",
-                              "tf": 670
-                            },
-                            "InputChannel.html": {
-                              "ref": "InputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 1.3888888888888888
-                            },
-                            "OutputChannel.html": {
-                              "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "WebMidi.html": {
-                              "ref": "WebMidi.html",
-                              "tf": 0.7462686567164178
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "j": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Output.html#setModulationRange": {
-                        "ref": "Output.html#setModulationRange",
-                        "tf": 2.1739130434782608
-                      },
-                      "Output.html#setPitchBendRange": {
-                        "ref": "Output.html#setPitchBendRange",
-                        "tf": 1.3888888888888888
-                      },
-                      "OutputChannel.html#setModulationRange": {
-                        "ref": "OutputChannel.html#setModulationRange",
-                        "tf": 2.380952380952381
-                      },
-                      "OutputChannel.html#setPitchBendRange": {
-                        "ref": "OutputChannel.html#setPitchBendRange",
-                        "tf": 1.3888888888888888
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "c": {
-                    "docs": {
-                      "WebMidi.html#validation": {
-                        "ref": "WebMidi.html#validation",
-                        "tf": 1.6129032258064515
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "r": {
             "docs": {},
             "r": {
@@ -22030,7 +21756,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -22384,7 +22110,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -22455,7 +22181,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
@@ -22525,7 +22251,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.3448275862068966
+                                "tf": 0.3205128205128205
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -22640,6 +22366,179 @@ window.lunrData = {
                             "tf": 1.5625
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "d": {
+            "docs": {
+              "Input.html#addListener": {
+                "ref": "Input.html#addListener",
+                "tf": 0.641025641025641
+              },
+              "Input.html#addOneTimeListener": {
+                "ref": "Input.html#addOneTimeListener",
+                "tf": 0.3703703703703704
+              },
+              "Input.html#hasListener": {
+                "ref": "Input.html#hasListener",
+                "tf": 0.9090909090909091
+              },
+              "Input.html#removeListener": {
+                "ref": "Input.html#removeListener",
+                "tf": 0.819672131147541
+              },
+              "Output.html#setRegisteredParameter": {
+                "ref": "Output.html#setRegisteredParameter",
+                "tf": 0.3289473684210526
+              },
+              "OutputChannel.html#setRegisteredParameter": {
+                "ref": "OutputChannel.html#setRegisteredParameter",
+                "tf": 0.3289473684210526
+              },
+              "WebMidi.html#disable": {
+                "ref": "WebMidi.html#disable",
+                "tf": 2.272727272727273
+              }
+            },
+            "d": {
+              "docs": {
+                "Input.html#addListener": {
+                  "ref": "Input.html#addListener",
+                  "tf": 1.282051282051282
+                },
+                "Input.html#addOneTimeListener": {
+                  "ref": "Input.html#addOneTimeListener",
+                  "tf": 1.4814814814814816
+                }
+              },
+              "l": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "Input.html#addListener": {
+                              "ref": "Input.html#addListener",
+                              "tf": 670
+                            },
+                            "InputChannel.html": {
+                              "ref": "InputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "Output.html": {
+                              "ref": "Output.html",
+                              "tf": 1.3888888888888888
+                            },
+                            "OutputChannel.html": {
+                              "ref": "OutputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "WebMidi.html": {
+                              "ref": "WebMidi.html",
+                              "tf": 0.7462686567164178
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "i": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "l": {
+                              "docs": {},
+                              "i": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "n": {
+                                        "docs": {
+                                          "Input.html#addOneTimeListener": {
+                                            "ref": "Input.html#addOneTimeListener",
+                                            "tf": 666.6666666666666
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "j": {
+              "docs": {},
+              "u": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Output.html#setModulationRange": {
+                        "ref": "Output.html#setModulationRange",
+                        "tf": 2.1739130434782608
+                      },
+                      "Output.html#setPitchBendRange": {
+                        "ref": "Output.html#setPitchBendRange",
+                        "tf": 1.3888888888888888
+                      },
+                      "OutputChannel.html#setModulationRange": {
+                        "ref": "OutputChannel.html#setModulationRange",
+                        "tf": 2.380952380952381
+                      },
+                      "OutputChannel.html#setPitchBendRange": {
+                        "ref": "OutputChannel.html#setPitchBendRange",
+                        "tf": 1.3888888888888888
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "c": {
+                    "docs": {
+                      "WebMidi.html#validation": {
+                        "ref": "WebMidi.html#validation",
+                        "tf": 1.6129032258064515
                       }
                     }
                   }
@@ -23259,849 +23158,6 @@ window.lunrData = {
             }
           }
         },
-        "b": {
-          "docs": {
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 0.5681818181818182
-            }
-          },
-          "e": {
-            "docs": {
-              "Input.html": {
-                "ref": "Input.html",
-                "tf": 0.5882352941176471
-              },
-              "Output.html#sendTimecodeQuarterFrame": {
-                "ref": "Output.html#sendTimecodeQuarterFrame",
-                "tf": 2.5
-              },
-              "Output.html#setPolyphonicMode": {
-                "ref": "Output.html#setPolyphonicMode",
-                "tf": 2.083333333333333
-              },
-              "Output.html#turnNotesOff": {
-                "ref": "Output.html#turnNotesOff",
-                "tf": 3.3333333333333335
-              },
-              "Output.html#turnSoundOff": {
-                "ref": "Output.html#turnSoundOff",
-                "tf": 3.571428571428571
-              },
-              "OutputChannel.html#setPolyphonicMode": {
-                "ref": "OutputChannel.html#setPolyphonicMode",
-                "tf": 2.083333333333333
-              },
-              "OutputChannel.html#turnNotesOff": {
-                "ref": "OutputChannel.html#turnNotesOff",
-                "tf": 3.571428571428571
-              },
-              "OutputChannel.html#turnSoundOff": {
-                "ref": "OutputChannel.html#turnSoundOff",
-                "tf": 3.571428571428571
-              },
-              "WebMidi.html#time": {
-                "ref": "WebMidi.html#time",
-                "tf": 1.5625
-              },
-              "WebMidi.html#getOctave": {
-                "ref": "WebMidi.html#getOctave",
-                "tf": 1.282051282051282
-              },
-              "WebMidi.html#sanitizeChannels": {
-                "ref": "WebMidi.html#sanitizeChannels",
-                "tf": 1.3888888888888888
-              }
-            },
-            "l": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "g": {
-                    "docs": {
-                      "InputChannel.html#input": {
-                        "ref": "InputChannel.html#input",
-                        "tf": 16.666666666666664
-                      },
-                      "OutputChannel.html#output": {
-                        "ref": "OutputChannel.html#output",
-                        "tf": 16.666666666666664
-                      }
-                    }
-                  }
-                },
-                "w": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 0.33333333333333337
-                    },
-                    "Output.html#setPitchBendRange": {
-                      "ref": "Output.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    },
-                    "OutputChannel.html#setPitchBendRange": {
-                      "ref": "OutputChannel.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "w": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "n": {
-                      "docs": {
-                        "Note.html#attack": {
-                          "ref": "Note.html#attack",
-                          "tf": 6.25
-                        },
-                        "Note.html#number": {
-                          "ref": "Note.html#number",
-                          "tf": 7.142857142857142
-                        },
-                        "Note.html#octave": {
-                          "ref": "Note.html#octave",
-                          "tf": 8.333333333333332
-                        },
-                        "Note.html#rawAttack": {
-                          "ref": "Note.html#rawAttack",
-                          "tf": 6.25
-                        },
-                        "Note.html#rawRelease": {
-                          "ref": "Note.html#rawRelease",
-                          "tf": 6.25
-                        },
-                        "Note.html#release": {
-                          "ref": "Note.html#release",
-                          "tf": 6.25
-                        },
-                        "Output.html#playNote": {
-                          "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
-                        },
-                        "Output.html#sendNoteOff": {
-                          "ref": "Output.html#sendNoteOff",
-                          "tf": 0.8333333333333334
-                        },
-                        "Output.html#sendNoteOn": {
-                          "ref": "Output.html#sendNoteOn",
-                          "tf": 0.6024096385542169
-                        },
-                        "Output.html#setMasterTuning": {
-                          "ref": "Output.html#setMasterTuning",
-                          "tf": 1.1363636363636365
-                        },
-                        "Output.html#setProgram": {
-                          "ref": "Output.html#setProgram",
-                          "tf": 2.941176470588235
-                        },
-                        "Output.html#setSong": {
-                          "ref": "Output.html#setSong",
-                          "tf": 3.3333333333333335
-                        },
-                        "Output.html#setSongPosition": {
-                          "ref": "Output.html#setSongPosition",
-                          "tf": 2.631578947368421
-                        },
-                        "Output.html#setTuningBank": {
-                          "ref": "Output.html#setTuningBank",
-                          "tf": 2.5
-                        },
-                        "Output.html#setTuningProgram": {
-                          "ref": "Output.html#setTuningProgram",
-                          "tf": 2.5
-                        },
-                        "OutputChannel.html#playNote": {
-                          "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
-                        },
-                        "OutputChannel.html#sendNoteOff": {
-                          "ref": "OutputChannel.html#sendNoteOff",
-                          "tf": 0.847457627118644
-                        },
-                        "OutputChannel.html#sendNoteOn": {
-                          "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
-                        },
-                        "OutputChannel.html#setKeyAftertouch": {
-                          "ref": "OutputChannel.html#setKeyAftertouch",
-                          "tf": 1.1904761904761905
-                        },
-                        "OutputChannel.html#setMasterTuning": {
-                          "ref": "OutputChannel.html#setMasterTuning",
-                          "tf": 1.1904761904761905
-                        },
-                        "OutputChannel.html#setProgram": {
-                          "ref": "OutputChannel.html#setProgram",
-                          "tf": 3.125
-                        },
-                        "OutputChannel.html#setTuningBank": {
-                          "ref": "OutputChannel.html#setTuningBank",
-                          "tf": 2.5
-                        },
-                        "OutputChannel.html#setTuningProgram": {
-                          "ref": "OutputChannel.html#setTuningProgram",
-                          "tf": 2.5
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
-                          "tf": 1.3888888888888888
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "d": {
-                "docs": {
-                  "Output.html#resetAllControllers": {
-                    "ref": "Output.html#resetAllControllers",
-                    "tf": 3.8461538461538463
-                  },
-                  "Output.html#setPitchBend": {
-                    "ref": "Output.html#setPitchBend",
-                    "tf": 5.555555555555555
-                  },
-                  "Output.html#setPitchBendRange": {
-                    "ref": "Output.html#setPitchBendRange",
-                    "tf": 4.166666666666666
-                  },
-                  "OutputChannel.html#resetAllControllers": {
-                    "ref": "OutputChannel.html#resetAllControllers",
-                    "tf": 3.8461538461538463
-                  },
-                  "OutputChannel.html#setPitchBend": {
-                    "ref": "OutputChannel.html#setPitchBend",
-                    "tf": 7.142857142857142
-                  },
-                  "OutputChannel.html#setPitchBendRange": {
-                    "ref": "OutputChannel.html#setPitchBendRange",
-                    "tf": 4.166666666666666
-                  }
-                }
-              }
-            },
-            "a": {
-              "docs": {},
-              "t": {
-                "docs": {
-                  "Output.html#sendStart": {
-                    "ref": "Output.html#sendStart",
-                    "tf": 2.380952380952381
-                  },
-                  "Output.html#setSongPosition": {
-                    "ref": "Output.html#setSongPosition",
-                    "tf": 2.631578947368421
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "u": {
-              "docs": {},
-              "n": {
-                "docs": {},
-                "d": {
-                  "docs": {
-                    "Input.html#addListener": {
-                      "ref": "Input.html#addListener",
-                      "tf": 1.0344827586206897
-                    }
-                  }
-                }
-              }
-            },
-            "o": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "n": {
-                      "docs": {
-                        "Input.html#hasListener": {
-                          "ref": "Input.html#hasListener",
-                          "tf": 20
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 50
-                        },
-                        "WebMidi.html#enabled": {
-                          "ref": "WebMidi.html#enabled",
-                          "tf": 33.33333333333333
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 50
-                        },
-                        "WebMidi.html#supported": {
-                          "ref": "WebMidi.html#supported",
-                          "tf": 33.33333333333333
-                        },
-                        "WebMidi.html#sysexEnabled": {
-                          "ref": "WebMidi.html#sysexEnabled",
-                          "tf": 33.33333333333333
-                        },
-                        "WebMidi.html#validation": {
-                          "ref": "WebMidi.html#validation",
-                          "tf": 50
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "h": {
-                "docs": {
-                  "Output.html#setModulationRange": {
-                    "ref": "Output.html#setModulationRange",
-                    "tf": 2.1739130434782608
-                  },
-                  "OutputChannel.html#setModulationRange": {
-                    "ref": "OutputChannel.html#setModulationRange",
-                    "tf": 2.380952380952381
-                  },
-                  "WebMidi.html#octaveOffset": {
-                    "ref": "WebMidi.html#octaveOffset",
-                    "tf": 1.3513513513513513
-                  }
-                }
-              }
-            }
-          },
-          "r": {
-            "docs": {},
-            "o": {
-              "docs": {},
-              "k": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.3703703703703704
-                      }
-                    }
-                  }
-                }
-              },
-              "w": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "r": {
-                      "docs": {
-                        "Output.html#clear": {
-                          "ref": "Output.html#clear",
-                          "tf": 2.272727272727273
-                        },
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.33333333333333337
-                        },
-                        "WebMidi.html#time": {
-                          "ref": "WebMidi.html#time",
-                          "tf": 1.5625
-                        },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "h": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {},
-                                  "l": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "o": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "r": {
-                                                "docs": {},
-                                                "s": {
-                                                  "docs": {
-                                                    "Output.html#sendControlChange": {
-                                                      "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.2890173410404624
-                                                    },
-                                                    "OutputChannel.html#sendControlChange": {
-                                                      "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.2890173410404624
-                                                    },
-                                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                      "tf": 0.4032258064516129
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "f": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "n": {
-                                              "docs": {
-                                                "Output.html#sendControlChange": {
-                                                  "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.2890173410404624
-                                                },
-                                                "OutputChannel.html#sendControlChange": {
-                                                  "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.2890173410404624
-                                                },
-                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                  "tf": 0.4032258064516129
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "h": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                        "tf": 0.4032258064516129
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "f": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html#supported": {
-                      "ref": "WebMidi.html#supported",
-                      "tf": 1.7241379310344827
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "a": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "k": {
-                "docs": {
-                  "Output.html#decrementRegisteredParameter": {
-                    "ref": "Output.html#decrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "Output.html#incrementRegisteredParameter": {
-                    "ref": "Output.html#incrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "Output.html#setTuningBank": {
-                    "ref": "Output.html#setTuningBank",
-                    "tf": 3.75
-                  },
-                  "OutputChannel.html#decrementRegisteredParameter": {
-                    "ref": "OutputChannel.html#decrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#incrementRegisteredParameter": {
-                    "ref": "OutputChannel.html#incrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "OutputChannel.html#setTuningBank": {
-                    "ref": "OutputChannel.html#setTuningBank",
-                    "tf": 3.75
-                  }
-                },
-                "s": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "c": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "c": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "r": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {
-                                        "Output.html#sendControlChange": {
-                                          "ref": "Output.html#sendControlChange",
-                                          "tf": 0.2890173410404624
-                                        },
-                                        "OutputChannel.html#sendControlChange": {
-                                          "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.2890173410404624
-                                        },
-                                        "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                          "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                          "tf": 0.4032258064516129
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "f": {
-                              "docs": {},
-                              "i": {
-                                "docs": {},
-                                "n": {
-                                  "docs": {
-                                    "Output.html#sendControlChange": {
-                                      "ref": "Output.html#sendControlChange",
-                                      "tf": 0.2890173410404624
-                                    },
-                                    "OutputChannel.html#sendControlChange": {
-                                      "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.2890173410404624
-                                    },
-                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                      "tf": 0.4032258064516129
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "c": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "c": {
-                        "docs": {},
-                        "o": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "s": {
-                                "docs": {
-                                  "Output.html#sendControlChange": {
-                                    "ref": "Output.html#sendControlChange",
-                                    "tf": 0.2890173410404624
-                                  },
-                                  "OutputChannel.html#sendControlChange": {
-                                    "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.2890173410404624
-                                  },
-                                  "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                    "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                    "tf": 0.4032258064516129
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "f": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "n": {
-                            "docs": {
-                              "Output.html#sendControlChange": {
-                                "ref": "Output.html#sendControlChange",
-                                "tf": 0.2890173410404624
-                              },
-                              "OutputChannel.html#sendControlChange": {
-                                "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.2890173410404624
-                              },
-                              "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                "tf": 0.4032258064516129
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "c": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.7462686567164178
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "k": {
-                "docs": {},
-                "w": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "d": {
-                        "docs": {
-                          "WebMidi.html#validation": {
-                            "ref": "WebMidi.html#validation",
-                            "tf": 1.6129032258064515
-                          },
-                          "WebMidi.html#sanitizeChannels": {
-                            "ref": "WebMidi.html#sanitizeChannels",
-                            "tf": 1.3888888888888888
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "i": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "r": {
-                  "docs": {},
-                  "i": {
-                    "docs": {
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 0.33333333333333337
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {
-                "Output.html#setNonRegisteredParameter": {
-                  "ref": "Output.html#setNonRegisteredParameter",
-                  "tf": 0.819672131147541
-                },
-                "OutputChannel.html#setNonRegisteredParameter": {
-                  "ref": "OutputChannel.html#setNonRegisteredParameter",
-                  "tf": 0.9615384615384616
-                }
-              }
-            }
-          },
-          "y": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 1.3333333333333335
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 0.4098360655737705
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 0.4807692307692308
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  }
-                }
-              }
-            }
-          },
-          "#": {
-            "docs": {},
-            "#": {
-              "6": {
-                "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
-                  }
-                }
-              },
-              "docs": {}
-            }
-          },
-          "b": {
-            "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
-              }
-            }
-          }
-        },
         "e": {
           "docs": {
             "InputChannel.html#_parseEvent": {
@@ -24121,7 +23177,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5882352941176471
+                    "tf": 1.3513513513513513
                   }
                 }
               }
@@ -24137,53 +23193,6 @@ window.lunrData = {
                       "tf": 5
                     }
                   }
-                }
-              }
-            }
-          },
-          "t": {
-            "docs": {},
-            "c": {
-              "docs": {
-                "Input.html": {
-                  "ref": "Input.html",
-                  "tf": 0.5882352941176471
-                },
-                "Input.html#hasListener": {
-                  "ref": "Input.html#hasListener",
-                  "tf": 0.9090909090909091
-                },
-                "Input.html#removeListener": {
-                  "ref": "Input.html#removeListener",
-                  "tf": 0.819672131147541
-                },
-                "Note.html#name": {
-                  "ref": "Note.html#name",
-                  "tf": 5
-                },
-                "Output.html#send": {
-                  "ref": "Output.html#send",
-                  "tf": 1.4705882352941175
-                },
-                "Output.html#sendSysex": {
-                  "ref": "Output.html#sendSysex",
-                  "tf": 0.33333333333333337
-                },
-                "OutputChannel.html#send": {
-                  "ref": "OutputChannel.html#send",
-                  "tf": 1.6129032258064515
-                },
-                "WebMidi.html#getNoteNumberByName": {
-                  "ref": "WebMidi.html#getNoteNumberByName",
-                  "tf": 0.5681818181818182
-                },
-                "WebMidi.html#getNoteObject": {
-                  "ref": "WebMidi.html#getNoteObject",
-                  "tf": 1.3888888888888888
-                },
-                "WebMidi.html#guessNoteNumber": {
-                  "ref": "WebMidi.html#guessNoteNumber",
-                  "tf": 1.1363636363636365
                 }
               }
             }
@@ -24209,13 +23218,9 @@ window.lunrData = {
                 },
                 "t": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.1764705882352942
-                    },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 26.551724137931036
+                      "tf": 26.41025641025641
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -24254,7 +23259,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html": {
                                 "ref": "Input.html",
-                                "tf": 0.5882352941176471
+                                "tf": 1.3513513513513513
                               },
                               "InputChannel.html": {
                                 "ref": "InputChannel.html",
@@ -24284,6 +23289,66 @@ window.lunrData = {
           },
           "x": {
             "docs": {},
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "d": {
+                    "docs": {
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.3513513513513513
+                      },
+                      "InputChannel.html": {
+                        "ref": "InputChannel.html",
+                        "tf": 1.2195121951219512
+                      },
+                      "Output.html": {
+                        "ref": "Output.html",
+                        "tf": 1.3888888888888888
+                      },
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.3289473684210526
+                      },
+                      "OutputChannel.html": {
+                        "ref": "OutputChannel.html",
+                        "tf": 1.2195121951219512
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.3289473684210526
+                      },
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 0.7462686567164178
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 0.78125
+                      }
+                    }
+                  }
+                }
+              },
+              "r": {
+                "docs": {},
+                "a": {
+                  "docs": {
+                    "Output.html#setRegisteredParameter": {
+                      "ref": "Output.html#setRegisteredParameter",
+                      "tf": 0.3289473684210526
+                    },
+                    "OutputChannel.html#setRegisteredParameter": {
+                      "ref": "OutputChannel.html#setRegisteredParameter",
+                      "tf": 0.3289473684210526
+                    }
+                  }
+                }
+              }
+            },
             "a": {
               "docs": {},
               "m": {
@@ -24292,10 +23357,6 @@ window.lunrData = {
                   "docs": {},
                   "l": {
                     "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 0.5882352941176471
-                      },
                       "Input.html#id": {
                         "ref": "Input.html#id",
                         "tf": 2.1739130434782608
@@ -24356,66 +23417,6 @@ window.lunrData = {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
                       }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "d": {
-                    "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 0.5882352941176471
-                      },
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.2195121951219512
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1.3888888888888888
-                      },
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.3289473684210526
-                      },
-                      "OutputChannel.html": {
-                        "ref": "OutputChannel.html",
-                        "tf": 1.2195121951219512
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.3289473684210526
-                      },
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.7462686567164178
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 0.78125
-                      }
-                    }
-                  }
-                }
-              },
-              "r": {
-                "docs": {},
-                "a": {
-                  "docs": {
-                    "Output.html#setRegisteredParameter": {
-                      "ref": "Output.html#setRegisteredParameter",
-                      "tf": 0.3289473684210526
-                    },
-                    "OutputChannel.html#setRegisteredParameter": {
-                      "ref": "OutputChannel.html#setRegisteredParameter",
-                      "tf": 0.3289473684210526
                     }
                   }
                 }
@@ -24607,6 +23608,49 @@ window.lunrData = {
                       }
                     }
                   }
+                }
+              }
+            }
+          },
+          "t": {
+            "docs": {},
+            "c": {
+              "docs": {
+                "Input.html#hasListener": {
+                  "ref": "Input.html#hasListener",
+                  "tf": 0.9090909090909091
+                },
+                "Input.html#removeListener": {
+                  "ref": "Input.html#removeListener",
+                  "tf": 0.819672131147541
+                },
+                "Note.html#name": {
+                  "ref": "Note.html#name",
+                  "tf": 5
+                },
+                "Output.html#send": {
+                  "ref": "Output.html#send",
+                  "tf": 1.4705882352941175
+                },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.33333333333333337
+                },
+                "OutputChannel.html#send": {
+                  "ref": "OutputChannel.html#send",
+                  "tf": 1.6129032258064515
+                },
+                "WebMidi.html#getNoteNumberByName": {
+                  "ref": "WebMidi.html#getNoteNumberByName",
+                  "tf": 0.5681818181818182
+                },
+                "WebMidi.html#getNoteObject": {
+                  "ref": "WebMidi.html#getNoteObject",
+                  "tf": 1.3888888888888888
+                },
+                "WebMidi.html#guessNoteNumber": {
+                  "ref": "WebMidi.html#guessNoteNumber",
+                  "tf": 1.1363636363636365
                 }
               }
             }
@@ -25322,7 +24366,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5882352941176471
+                    "tf": 1.3513513513513513
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -25469,7 +24513,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.3448275862068966
+                        "tf": 0.3205128205128205
                       }
                     }
                   }
@@ -25544,7 +24588,7 @@ window.lunrData = {
                         "docs": {
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
-                            "tf": 111.03448275862068
+                            "tf": 110.96153846153847
                           },
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
@@ -26297,80 +25341,6 @@ window.lunrData = {
         },
         "h": {
           "docs": {},
-          "a": {
-            "docs": {},
-            "s": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "n": {
-                          "docs": {
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 0.5882352941176471
-                            },
-                            "Input.html#hasListener": {
-                              "ref": "Input.html#hasListener",
-                              "tf": 670
-                            },
-                            "InputChannel.html": {
-                              "ref": "InputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 1.3888888888888888
-                            },
-                            "OutputChannel.html": {
-                              "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "WebMidi.html": {
-                              "ref": "WebMidi.html",
-                              "tf": 0.7462686567164178
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "p": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Input.html#addListener": {
-                        "ref": "Input.html#addListener",
-                        "tf": 0.6896551724137931
-                      },
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.3703703703703704
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "o": {
             "docs": {},
             "s": {
@@ -26402,7 +25372,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -26474,6 +25444,76 @@ window.lunrData = {
                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
                           "tf": 0.4032258064516129
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "p": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 0.641025641025641
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.2857142857142857
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "Input.html#hasListener": {
+                              "ref": "Input.html#hasListener",
+                              "tf": 670
+                            },
+                            "InputChannel.html": {
+                              "ref": "InputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "Output.html": {
+                              "ref": "Output.html",
+                              "tf": 1.3888888888888888
+                            },
+                            "OutputChannel.html": {
+                              "ref": "OutputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "WebMidi.html": {
+                              "ref": "WebMidi.html",
+                              "tf": 0.7462686567164178
+                            }
+                          }
                         }
                       }
                     }
@@ -26833,1463 +25873,6 @@ window.lunrData = {
             }
           }
         },
-        "n": {
-          "docs": {},
-          "o": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.1764705882352942
-                  },
-                  "Note.html": {
-                    "ref": "Note.html",
-                    "tf": 1905.8823529411766
-                  },
-                  "Note.html#attack": {
-                    "ref": "Note.html#attack",
-                    "tf": 6.25
-                  },
-                  "Note.html#duration": {
-                    "ref": "Note.html#duration",
-                    "tf": 10
-                  },
-                  "Note.html#name": {
-                    "ref": "Note.html#name",
-                    "tf": 5
-                  },
-                  "Note.html#number": {
-                    "ref": "Note.html#number",
-                    "tf": 7.142857142857142
-                  },
-                  "Note.html#octave": {
-                    "ref": "Note.html#octave",
-                    "tf": 8.333333333333332
-                  },
-                  "Note.html#rawAttack": {
-                    "ref": "Note.html#rawAttack",
-                    "tf": 6.25
-                  },
-                  "Note.html#rawRelease": {
-                    "ref": "Note.html#rawRelease",
-                    "tf": 6.25
-                  },
-                  "Note.html#release": {
-                    "ref": "Note.html#release",
-                    "tf": 6.25
-                  },
-                  "Output.html#playNote": {
-                    "ref": "Output.html#playNote",
-                    "tf": 28.71559633027523
-                  },
-                  "Output.html#sendChannelMode": {
-                    "ref": "Output.html#sendChannelMode",
-                    "tf": 0.78125
-                  },
-                  "Output.html#sendClock": {
-                    "ref": "Output.html#sendClock",
-                    "tf": 3.8461538461538463
-                  },
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  },
-                  "Output.html#sendNoteOff": {
-                    "ref": "Output.html#sendNoteOff",
-                    "tf": 27.5
-                  },
-                  "Output.html#sendNoteOn": {
-                    "ref": "Output.html#sendNoteOn",
-                    "tf": 27.83132530120482
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "Output.html#sendTimecodeQuarterFrame": {
-                    "ref": "Output.html#sendTimecodeQuarterFrame",
-                    "tf": 2.5
-                  },
-                  "Output.html#setKeyAftertouch": {
-                    "ref": "Output.html#setKeyAftertouch",
-                    "tf": 16.666666666666664
-                  },
-                  "Output.html#setOmniMode": {
-                    "ref": "Output.html#setOmniMode",
-                    "tf": 2.631578947368421
-                  },
-                  "Output.html#setPolyphonicMode": {
-                    "ref": "Output.html#setPolyphonicMode",
-                    "tf": 6.25
-                  },
-                  "Output.html#setProgram": {
-                    "ref": "Output.html#setProgram",
-                    "tf": 1.4705882352941175
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "Output.html#setSong": {
-                    "ref": "Output.html#setSong",
-                    "tf": 1.6666666666666667
-                  },
-                  "Output.html#setSongPosition": {
-                    "ref": "Output.html#setSongPosition",
-                    "tf": 2.631578947368421
-                  },
-                  "Output.html#setTuningBank": {
-                    "ref": "Output.html#setTuningBank",
-                    "tf": 2.5
-                  },
-                  "Output.html#setTuningProgram": {
-                    "ref": "Output.html#setTuningProgram",
-                    "tf": 2.5
-                  },
-                  "Output.html#stopNote": {
-                    "ref": "Output.html#stopNote",
-                    "tf": 20
-                  },
-                  "Output.html#turnNotesOff": {
-                    "ref": "Output.html#turnNotesOff",
-                    "tf": 10
-                  },
-                  "OutputChannel.html#playNote": {
-                    "ref": "OutputChannel.html#playNote",
-                    "tf": 33.7962962962963
-                  },
-                  "OutputChannel.html#sendChannelMode": {
-                    "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  },
-                  "OutputChannel.html#sendNoteOff": {
-                    "ref": "OutputChannel.html#sendNoteOff",
-                    "tf": 32.6271186440678
-                  },
-                  "OutputChannel.html#sendNoteOn": {
-                    "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 32.926829268292686
-                  },
-                  "OutputChannel.html#setKeyAftertouch": {
-                    "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 24.761904761904763
-                  },
-                  "OutputChannel.html#setOmniMode": {
-                    "ref": "OutputChannel.html#setOmniMode",
-                    "tf": 2.941176470588235
-                  },
-                  "OutputChannel.html#setPolyphonicMode": {
-                    "ref": "OutputChannel.html#setPolyphonicMode",
-                    "tf": 6.25
-                  },
-                  "OutputChannel.html#setProgram": {
-                    "ref": "OutputChannel.html#setProgram",
-                    "tf": 1.5625
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.3289473684210526
-                  },
-                  "OutputChannel.html#setTuningBank": {
-                    "ref": "OutputChannel.html#setTuningBank",
-                    "tf": 2.5
-                  },
-                  "OutputChannel.html#setTuningProgram": {
-                    "ref": "OutputChannel.html#setTuningProgram",
-                    "tf": 2.5
-                  },
-                  "OutputChannel.html#stopNote": {
-                    "ref": "OutputChannel.html#stopNote",
-                    "tf": 25
-                  },
-                  "OutputChannel.html#turnNotesOff": {
-                    "ref": "OutputChannel.html#turnNotesOff",
-                    "tf": 10.714285714285714
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  },
-                  "WebMidi.html#NOTES": {
-                    "ref": "WebMidi.html#NOTES",
-                    "tf": 695.8333333333334
-                  },
-                  "WebMidi.html#octaveOffset": {
-                    "ref": "WebMidi.html#octaveOffset",
-                    "tf": 4.054054054054054
-                  },
-                  "WebMidi.html#supported": {
-                    "ref": "WebMidi.html#supported",
-                    "tf": 1.7241379310344827
-                  },
-                  "WebMidi.html#enable": {
-                    "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
-                  },
-                  "WebMidi.html#getInputById": {
-                    "ref": "WebMidi.html#getInputById",
-                    "tf": 1.4705882352941175
-                  },
-                  "WebMidi.html#getInputByName": {
-                    "ref": "WebMidi.html#getInputByName",
-                    "tf": 2
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 4.545454545454546
-                  },
-                  "WebMidi.html#getNoteObject": {
-                    "ref": "WebMidi.html#getNoteObject",
-                    "tf": 56.94444444444444
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 3.8461538461538463
-                  },
-                  "WebMidi.html#getOutputById": {
-                    "ref": "WebMidi.html#getOutputById",
-                    "tf": 1.4705882352941175
-                  },
-                  "WebMidi.html#getOutputByName": {
-                    "ref": "WebMidi.html#getOutputByName",
-                    "tf": 2
-                  },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
-                    "tf": 34.09090909090909
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 3.4090909090909087
-                  }
-                },
-                "o": {
-                  "docs": {},
-                  "f": {
-                    "docs": {},
-                    "f": {
-                      "docs": {
-                        "Input.html#addListener": {
-                          "ref": "Input.html#addListener",
-                          "tf": 0.3448275862068966
-                        },
-                        "Input.html#addOneTimeListener": {
-                          "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.3703703703703704
-                        },
-                        "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                          "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                          "tf": 1.4285714285714286
-                        }
-                      }
-                    }
-                  },
-                  "n": {
-                    "docs": {
-                      "Input.html#addListener": {
-                        "ref": "Input.html#addListener",
-                        "tf": 0.6896551724137931
-                      },
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.3703703703703704
-                      },
-                      "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                        "tf": 1.4285714285714286
-                      }
-                    }
-                  }
-                },
-                "'": {
-                  "docs": {
-                    "Note.html": {
-                      "ref": "Note.html",
-                      "tf": 1.4705882352941175
-                    }
-                  }
-                },
-                "#": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "t": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "c": {
-                            "docs": {},
-                            "k": {
-                              "docs": {
-                                "Note.html#attack": {
-                                  "ref": "Note.html#attack",
-                                  "tf": 1150
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "d": {
-                    "docs": {},
-                    "u": {
-                      "docs": {},
-                      "r": {
-                        "docs": {
-                          "Note.html#duration": {
-                            "ref": "Note.html#duration",
-                            "tf": 1150
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "n": {
-                    "docs": {},
-                    "a": {
-                      "docs": {},
-                      "m": {
-                        "docs": {
-                          "Note.html#name": {
-                            "ref": "Note.html#name",
-                            "tf": 1150
-                          }
-                        }
-                      }
-                    },
-                    "u": {
-                      "docs": {},
-                      "m": {
-                        "docs": {},
-                        "b": {
-                          "docs": {
-                            "Note.html#number": {
-                              "ref": "Note.html#number",
-                              "tf": 1150
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "o": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "t": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "v": {
-                            "docs": {
-                              "Note.html#octave": {
-                                "ref": "Note.html#octave",
-                                "tf": 1150
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "r": {
-                    "docs": {},
-                    "a": {
-                      "docs": {},
-                      "w": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "t": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "c": {
-                                  "docs": {},
-                                  "k": {
-                                    "docs": {
-                                      "Note.html#rawAttack": {
-                                        "ref": "Note.html#rawAttack",
-                                        "tf": 1150
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "r": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "l": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "s": {
-                                    "docs": {
-                                      "Note.html#rawRelease": {
-                                        "ref": "Note.html#rawRelease",
-                                        "tf": 1150
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "e": {
-                      "docs": {},
-                      "l": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "Note.html#release": {
-                                  "ref": "Note.html#release",
-                                  "tf": 1150
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 0.33333333333333337
-                    },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {
-                "InputChannel.html#.NRPN_TYPES": {
-                  "ref": "InputChannel.html#.NRPN_TYPES",
-                  "tf": 6.25
-                },
-                "InputChannel.html#nrpnEventsEnabled": {
-                  "ref": "InputChannel.html#nrpnEventsEnabled",
-                  "tf": 1.1904761904761905
-                },
-                "Output.html#setNonRegisteredParameter": {
-                  "ref": "Output.html#setNonRegisteredParameter",
-                  "tf": 0.4098360655737705
-                },
-                "OutputChannel.html#setNonRegisteredParameter": {
-                  "ref": "OutputChannel.html#setNonRegisteredParameter",
-                  "tf": 0.4807692307692308
-                }
-              },
-              "r": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "g": {
-                    "docs": {},
-                    "i": {
-                      "docs": {},
-                      "s": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "d": {
-                                  "docs": {},
-                                  "p": {
-                                    "docs": {},
-                                    "a": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "m": {
-                                            "docs": {},
-                                            "e": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {},
-                                                "e": {
-                                                  "docs": {},
-                                                  "r": {
-                                                    "docs": {},
-                                                    "c": {
-                                                      "docs": {},
-                                                      "o": {
-                                                        "docs": {},
-                                                        "a": {
-                                                          "docs": {},
-                                                          "r": {
-                                                            "docs": {},
-                                                            "s": {
-                                                              "docs": {
-                                                                "Output.html#sendControlChange": {
-                                                                  "ref": "Output.html#sendControlChange",
-                                                                  "tf": 0.2890173410404624
-                                                                },
-                                                                "OutputChannel.html#sendControlChange": {
-                                                                  "ref": "OutputChannel.html#sendControlChange",
-                                                                  "tf": 0.2890173410404624
-                                                                },
-                                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                                  "tf": 0.4032258064516129
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    },
-                                                    "f": {
-                                                      "docs": {},
-                                                      "i": {
-                                                        "docs": {},
-                                                        "n": {
-                                                          "docs": {
-                                                            "Output.html#sendControlChange": {
-                                                              "ref": "Output.html#sendControlChange",
-                                                              "tf": 0.2890173410404624
-                                                            },
-                                                            "OutputChannel.html#sendControlChange": {
-                                                              "ref": "OutputChannel.html#sendControlChange",
-                                                              "tf": 0.2890173410404624
-                                                            },
-                                                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                              "tf": 0.4032258064516129
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "Output.html#setNonRegisteredParameter": {
-                      "ref": "Output.html#setNonRegisteredParameter",
-                      "tf": 0.4098360655737705
-                    },
-                    "OutputChannel.html#setNonRegisteredParameter": {
-                      "ref": "OutputChannel.html#setNonRegisteredParameter",
-                      "tf": 0.4807692307692308
-                    }
-                  }
-                }
-              }
-            },
-            "m": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "n": {
-                  "docs": {
-                    "Output.html#setPitchBendRange": {
-                      "ref": "Output.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    },
-                    "OutputChannel.html#setPitchBendRange": {
-                      "ref": "OutputChannel.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    }
-                  }
-                }
-              }
-            },
-            "d": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                ".": {
-                  "docs": {},
-                  "j": {
-                    "docs": {
-                      "WebMidi.html#isNode": {
-                        "ref": "WebMidi.html#isNode",
-                        "tf": 10
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "w": {
-              "docs": {
-                "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                  "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                  "tf": 3.571428571428571
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "m": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Input.html#channels": {
-                        "ref": "Input.html#channels",
-                        "tf": 4.166666666666666
-                      },
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 6.25
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      },
-                      "InputChannel.html#number": {
-                        "ref": "InputChannel.html#number",
-                        "tf": 762.5
-                      },
-                      "InputChannel.html#getCcNameByNumber": {
-                        "ref": "InputChannel.html#getCcNameByNumber",
-                        "tf": 37.878787878787875
-                      },
-                      "InputChannel.html#getChannelModeByNumber": {
-                        "ref": "InputChannel.html#getChannelModeByNumber",
-                        "tf": 37.49999999999999
-                      },
-                      "Note.html#attack": {
-                        "ref": "Note.html#attack",
-                        "tf": 56.25
-                      },
-                      "Note.html#duration": {
-                        "ref": "Note.html#duration",
-                        "tf": 60
-                      },
-                      "Note.html#name": {
-                        "ref": "Note.html#name",
-                        "tf": 5
-                      },
-                      "Note.html#number": {
-                        "ref": "Note.html#number",
-                        "tf": 757.1428571428571
-                      },
-                      "Note.html#octave": {
-                        "ref": "Note.html#octave",
-                        "tf": 50
-                      },
-                      "Note.html#rawAttack": {
-                        "ref": "Note.html#rawAttack",
-                        "tf": 50
-                      },
-                      "Note.html#rawRelease": {
-                        "ref": "Note.html#rawRelease",
-                        "tf": 50
-                      },
-                      "Note.html#release": {
-                        "ref": "Note.html#release",
-                        "tf": 56.25
-                      },
-                      "Output.html#channels": {
-                        "ref": "Output.html#channels",
-                        "tf": 4.166666666666666
-                      },
-                      "Output.html#playNote": {
-                        "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
-                      },
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "Output.html#sendNoteOff": {
-                        "ref": "Output.html#sendNoteOff",
-                        "tf": 0.8333333333333334
-                      },
-                      "Output.html#sendNoteOn": {
-                        "ref": "Output.html#sendNoteOn",
-                        "tf": 0.6024096385542169
-                      },
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 0.33333333333333337
-                      },
-                      "Output.html#setProgram": {
-                        "ref": "Output.html#setProgram",
-                        "tf": 4.411764705882353
-                      },
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.3289473684210526
-                      },
-                      "Output.html#setSong": {
-                        "ref": "Output.html#setSong",
-                        "tf": 5
-                      },
-                      "Output.html#setTuningBank": {
-                        "ref": "Output.html#setTuningBank",
-                        "tf": 3.75
-                      },
-                      "Output.html#setTuningProgram": {
-                        "ref": "Output.html#setTuningProgram",
-                        "tf": 3.75
-                      },
-                      "OutputChannel.html#number": {
-                        "ref": "OutputChannel.html#number",
-                        "tf": 762.5
-                      },
-                      "OutputChannel.html#playNote": {
-                        "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "OutputChannel.html#sendNoteOff": {
-                        "ref": "OutputChannel.html#sendNoteOff",
-                        "tf": 0.847457627118644
-                      },
-                      "OutputChannel.html#sendNoteOn": {
-                        "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.6097560975609756
-                      },
-                      "OutputChannel.html#setKeyAftertouch": {
-                        "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 1.1904761904761905
-                      },
-                      "OutputChannel.html#setProgram": {
-                        "ref": "OutputChannel.html#setProgram",
-                        "tf": 4.6875
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.3289473684210526
-                      },
-                      "OutputChannel.html#setTuningBank": {
-                        "ref": "OutputChannel.html#setTuningBank",
-                        "tf": 3.75
-                      },
-                      "OutputChannel.html#setTuningProgram": {
-                        "ref": "OutputChannel.html#setTuningProgram",
-                        "tf": 3.75
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 0.78125
-                      },
-                      "WebMidi.html#octaveOffset": {
-                        "ref": "WebMidi.html#octaveOffset",
-                        "tf": 54.054054054054056
-                      },
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 3.125
-                      },
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
-                        "tf": 38.33333333333333
-                      },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 3.977272727272727
-                      },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 37.179487179487175
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
-                        "tf": 1.5151515151515151
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 1.1363636363636365
-                      },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
-                        "tf": 1.3888888888888888
-                      }
-                    },
-                    "&": {
-                      "docs": {},
-                      "g": {
-                        "docs": {},
-                        "t": {
-                          "docs": {
-                            "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                              "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                              "tf": 25
-                            },
-                            "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                              "tf": 25
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "|": {
-                      "docs": {},
-                      "f": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "WebMidi.html#getNoteNumberByName": {
-                                  "ref": "WebMidi.html#getNoteNumberByName",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#getOctave": {
-                                  "ref": "WebMidi.html#getOctave",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#guessNoteNumber": {
-                                  "ref": "WebMidi.html#guessNoteNumber",
-                                  "tf": 33.33333333333333
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "Output.html#sendChannelMode": {
-                      "ref": "Output.html#sendChannelMode",
-                      "tf": 0.78125
-                    },
-                    "Output.html#sendControlChange": {
-                      "ref": "Output.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "OutputChannel.html#sendChannelMode": {
-                      "ref": "OutputChannel.html#sendChannelMode",
-                      "tf": 0.8064516129032258
-                    },
-                    "OutputChannel.html#sendControlChange": {
-                      "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                      "tf": 3.571428571428571
-                    },
-                    "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
-                      "tf": 2.1739130434782608
-                    },
-                    "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                      "tf": 1.4285714285714286
-                    },
-                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                      "tf": 0.4032258064516129
-                    },
-                    "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                      "tf": 2
-                    },
-                    "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                      "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                      "tf": 0.78125
-                    },
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 0.5617977528089888
-                    }
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "b": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "&": {
-                          "docs": {},
-                          "g": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "WebMidi.html#interface": {
-                                  "ref": "WebMidi.html#interface",
-                                  "tf": 25
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "c": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "v": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "p": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "a": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {
-                                            "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                                              "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                                              "tf": 2
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "a": {
-            "docs": {},
-            "m": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Input.html#manufacturer": {
-                    "ref": "Input.html#manufacturer",
-                    "tf": 7.142857142857142
-                  },
-                  "Input.html#name": {
-                    "ref": "Input.html#name",
-                    "tf": 716.6666666666666
-                  },
-                  "InputChannel.html#getCcNameByNumber": {
-                    "ref": "InputChannel.html#getCcNameByNumber",
-                    "tf": 4.545454545454546
-                  },
-                  "InputChannel.html#getChannelModeByNumber": {
-                    "ref": "InputChannel.html#getChannelModeByNumber",
-                    "tf": 4.166666666666666
-                  },
-                  "Note.html#name": {
-                    "ref": "Note.html#name",
-                    "tf": 705
-                  },
-                  "Output.html#manufacturer": {
-                    "ref": "Output.html#manufacturer",
-                    "tf": 7.142857142857142
-                  },
-                  "Output.html#name": {
-                    "ref": "Output.html#name",
-                    "tf": 700
-                  },
-                  "Output.html#decrementRegisteredParameter": {
-                    "ref": "Output.html#decrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "Output.html#incrementRegisteredParameter": {
-                    "ref": "Output.html#incrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "Output.html#playNote": {
-                    "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
-                  },
-                  "Output.html#sendChannelMode": {
-                    "ref": "Output.html#sendChannelMode",
-                    "tf": 0.78125
-                  },
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 0.8670520231213872
-                  },
-                  "Output.html#sendNoteOff": {
-                    "ref": "Output.html#sendNoteOff",
-                    "tf": 0.8333333333333334
-                  },
-                  "Output.html#sendNoteOn": {
-                    "ref": "Output.html#sendNoteOn",
-                    "tf": 0.6024096385542169
-                  },
-                  "OutputChannel.html#decrementRegisteredParameter": {
-                    "ref": "OutputChannel.html#decrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#incrementRegisteredParameter": {
-                    "ref": "OutputChannel.html#incrementRegisteredParameter",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#playNote": {
-                    "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
-                  },
-                  "OutputChannel.html#sendChannelMode": {
-                    "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.8670520231213872
-                  },
-                  "OutputChannel.html#sendNoteOff": {
-                    "ref": "OutputChannel.html#sendNoteOff",
-                    "tf": 0.847457627118644
-                  },
-                  "OutputChannel.html#sendNoteOn": {
-                    "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.6097560975609756
-                  },
-                  "OutputChannel.html#setKeyAftertouch": {
-                    "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
-                  },
-                  "WebMidi.html#NOTES": {
-                    "ref": "WebMidi.html#NOTES",
-                    "tf": 12.5
-                  },
-                  "WebMidi.html#getInputByName": {
-                    "ref": "WebMidi.html#getInputByName",
-                    "tf": 39.33333333333333
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 36.742424242424235
-                  },
-                  "WebMidi.html#getNoteObject": {
-                    "ref": "WebMidi.html#getNoteObject",
-                    "tf": 2.7777777777777777
-                  },
-                  "WebMidi.html#getOutputByName": {
-                    "ref": "WebMidi.html#getOutputByName",
-                    "tf": 39.33333333333333
-                  },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
-                    "tf": 3.0303030303030303
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 0.33333333333333337
-                    }
-                  }
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "g": {
-                  "docs": {
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
-                      "tf": 1.6666666666666667
-                    }
-                  },
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "r": {
-                          "docs": {},
-                          ".": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "q": {
-                                  "docs": {},
-                                  "u": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {},
-                                          "m": {
-                                            "docs": {},
-                                            "i": {
-                                              "docs": {},
-                                              "d": {
-                                                "docs": {},
-                                                "i": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "c": {
-                                                      "docs": {},
-                                                      "c": {
-                                                        "docs": {},
-                                                        "e": {
-                                                          "docs": {},
-                                                          "s": {
-                                                            "docs": {},
-                                                            "s": {
-                                                              "docs": {
-                                                                "WebMidi.html#supported": {
-                                                                  "ref": "WebMidi.html#supported",
-                                                                  "tf": 1.7241379310344827
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "r": {
-            "docs": {},
-            "p": {
-              "docs": {},
-              "n": {
-                "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
-                  },
-                  "InputChannel.html#.NRPN_TYPES": {
-                    "ref": "InputChannel.html#.NRPN_TYPES",
-                    "tf": 6.25
-                  },
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 2.380952380952381
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 1.639344262295082
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 2.403846153846154
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                    "tf": 1.4285714285714286
-                  },
-                  "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                    "tf": 2
-                  }
-                },
-                "_": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "y": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {
-                            "InputChannel.html#.NRPN_TYPES": {
-                              "ref": "InputChannel.html#.NRPN_TYPES",
-                              "tf": 675
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "e": {
-                  "docs": {},
-                  "v": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {
-                                  "InputChannel.html#nrpnEventsEnabled": {
-                                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                                    "tf": 700
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "e": {
-            "docs": {},
-            "c": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "a": {
-                      "docs": {},
-                      "r": {
-                        "docs": {},
-                        "i": {
-                          "docs": {
-                            "Output.html#send": {
-                              "ref": "Output.html#send",
-                              "tf": 1.4705882352941175
-                            },
-                            "Output.html#sendSysex": {
-                              "ref": "Output.html#sendSysex",
-                              "tf": 0.33333333333333337
-                            },
-                            "OutputChannel.html#send": {
-                              "ref": "OutputChannel.html#send",
-                              "tf": 1.6129032258064515
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "d": {
-                "docs": {
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 0.4098360655737705
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.2890173410404624
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 0.4807692307692308
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.7462686567164178
-                  }
-                }
-              }
-            },
-            "w": {
-              "docs": {
-                "Output.html#turnNotesOff": {
-                  "ref": "Output.html#turnNotesOff",
-                  "tf": 3.3333333333333335
-                },
-                "Output.html#turnSoundOff": {
-                  "ref": "Output.html#turnSoundOff",
-                  "tf": 3.571428571428571
-                },
-                "OutputChannel.html#turnNotesOff": {
-                  "ref": "OutputChannel.html#turnNotesOff",
-                  "tf": 3.571428571428571
-                },
-                "OutputChannel.html#turnSoundOff": {
-                  "ref": "OutputChannel.html#turnSoundOff",
-                  "tf": 3.571428571428571
-                },
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.7462686567164178
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 0.5617977528089888
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "o": {
           "docs": {},
           "b": {
@@ -28304,7 +25887,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1764705882352942
+                        "tf": 2.7027027027027026
                       },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
@@ -28312,7 +25895,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 0.3448275862068966
+                        "tf": 0.3205128205128205
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -28493,138 +26076,61 @@ window.lunrData = {
               }
             }
           },
-          "n": {
-            "docs": {
-              "Input.html#addOneTimeListener": {
-                "ref": "Input.html#addOneTimeListener",
-                "tf": 1.1111111111111112
-              },
-              "Input.html#hasListener": {
-                "ref": "Input.html#hasListener",
-                "tf": 2.727272727272727
-              },
-              "Input.html#removeListener": {
-                "ref": "Input.html#removeListener",
-                "tf": 1.639344262295082
-              },
-              "Output.html#playNote": {
-                "ref": "Output.html#playNote",
-                "tf": 0.45871559633027525
-              },
-              "Output.html#send": {
-                "ref": "Output.html#send",
-                "tf": 1.4705882352941175
-              },
-              "Output.html#sendChannelMode": {
-                "ref": "Output.html#sendChannelMode",
-                "tf": 0.78125
-              },
-              "Output.html#sendControlChange": {
-                "ref": "Output.html#sendControlChange",
-                "tf": 0.2890173410404624
-              },
-              "Output.html#sendNoteOff": {
-                "ref": "Output.html#sendNoteOff",
-                "tf": 0.8333333333333334
-              },
-              "Output.html#sendNoteOn": {
-                "ref": "Output.html#sendNoteOn",
-                "tf": 0.6024096385542169
-              },
-              "Output.html#setPolyphonicMode": {
-                "ref": "Output.html#setPolyphonicMode",
-                "tf": 2.083333333333333
-              },
-              "OutputChannel.html#playNote": {
-                "ref": "OutputChannel.html#playNote",
-                "tf": 0.4629629629629629
-              },
-              "OutputChannel.html#send": {
-                "ref": "OutputChannel.html#send",
-                "tf": 1.6129032258064515
-              },
-              "OutputChannel.html#sendChannelMode": {
-                "ref": "OutputChannel.html#sendChannelMode",
-                "tf": 0.8064516129032258
-              },
-              "OutputChannel.html#sendControlChange": {
-                "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.2890173410404624
-              },
-              "OutputChannel.html#sendNoteOff": {
-                "ref": "OutputChannel.html#sendNoteOff",
-                "tf": 0.847457627118644
-              },
-              "OutputChannel.html#sendNoteOn": {
-                "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 0.6097560975609756
-              },
-              "OutputChannel.html#setPolyphonicMode": {
-                "ref": "OutputChannel.html#setPolyphonicMode",
-                "tf": 2.083333333333333
-              },
-              "WebMidi.html#time": {
-                "ref": "WebMidi.html#time",
-                "tf": 1.5625
-              },
-              "WebMidi.html#getInputById": {
-                "ref": "WebMidi.html#getInputById",
-                "tf": 1.4705882352941175
-              },
-              "WebMidi.html#getInputByName": {
-                "ref": "WebMidi.html#getInputByName",
-                "tf": 2
-              },
-              "WebMidi.html#getOutputById": {
-                "ref": "WebMidi.html#getOutputById",
-                "tf": 1.4705882352941175
-              },
-              "WebMidi.html#getOutputByName": {
-                "ref": "WebMidi.html#getOutputByName",
-                "tf": 2
-              }
-            },
-            "c": {
-              "docs": {
-                "Input.html": {
-                  "ref": "Input.html",
-                  "tf": 0.5882352941176471
-                },
-                "Input.html#addOneTimeListener": {
-                  "ref": "Input.html#addOneTimeListener",
-                  "tf": 0.3703703703703704
-                },
-                "Input.html#hasListener": {
-                  "ref": "Input.html#hasListener",
-                  "tf": 0.9090909090909091
-                },
-                "Input.html#removeListener": {
-                  "ref": "Input.html#removeListener",
-                  "tf": 0.819672131147541
-                },
-                "Note.html": {
-                  "ref": "Note.html",
-                  "tf": 1.4705882352941175
-                },
-                "Output.html#setPolyphonicMode": {
-                  "ref": "Output.html#setPolyphonicMode",
-                  "tf": 2.083333333333333
-                },
-                "OutputChannel.html#setPolyphonicMode": {
-                  "ref": "OutputChannel.html#setPolyphonicMode",
-                  "tf": 2.083333333333333
-                },
-                "WebMidi.html#validation": {
-                  "ref": "WebMidi.html#validation",
-                  "tf": 1.6129032258064515
-                }
-              }
-            },
-            "g": {
-              "docs": {
-                "Output.html#setSongPosition": {
-                  "ref": "Output.html#setSongPosition",
-                  "tf": 2.631578947368421
+          "t": {
+            "docs": {},
+            "h": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 1.3513513513513513
+                    },
+                    "InputChannel.html": {
+                      "ref": "InputChannel.html",
+                      "tf": 1.2195121951219512
+                    },
+                    "Output.html": {
+                      "ref": "Output.html",
+                      "tf": 1.3888888888888888
+                    },
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "OutputChannel.html": {
+                      "ref": "OutputChannel.html",
+                      "tf": 1.2195121951219512
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.7462686567164178
+                    }
+                  },
+                  "w": {
+                    "docs": {},
+                    "i": {
+                      "docs": {},
+                      "s": {
+                        "docs": {
+                          "WebMidi.html#convertToTimestamp": {
+                            "ref": "WebMidi.html#convertToTimestamp",
+                            "tf": 1.6666666666666667
+                          },
+                          "WebMidi.html#sanitizeChannels": {
+                            "ref": "WebMidi.html#sanitizeChannels",
+                            "tf": 1.3888888888888888
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -28635,17 +26141,13 @@ window.lunrData = {
               "docs": {},
               "n": {
                 "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 0.5882352941176471
-                  },
                   "Input.html#connection": {
                     "ref": "Input.html#connection",
                     "tf": 7.142857142857142
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -28692,7 +26194,7 @@ window.lunrData = {
                     "docs": {
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 20.344827586206897
+                        "tf": 20.32051282051282
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -28976,61 +26478,134 @@ window.lunrData = {
               }
             }
           },
-          "t": {
-            "docs": {},
-            "h": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 0.5882352941176471
-                    },
-                    "InputChannel.html": {
-                      "ref": "InputChannel.html",
-                      "tf": 1.2195121951219512
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 1.3888888888888888
-                    },
-                    "Output.html#sendControlChange": {
-                      "ref": "Output.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "OutputChannel.html": {
-                      "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
-                    },
-                    "OutputChannel.html#sendControlChange": {
-                      "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.2890173410404624
-                    },
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.7462686567164178
-                    }
-                  },
-                  "w": {
-                    "docs": {},
-                    "i": {
-                      "docs": {},
-                      "s": {
-                        "docs": {
-                          "WebMidi.html#convertToTimestamp": {
-                            "ref": "WebMidi.html#convertToTimestamp",
-                            "tf": 1.6666666666666667
-                          },
-                          "WebMidi.html#sanitizeChannels": {
-                            "ref": "WebMidi.html#sanitizeChannels",
-                            "tf": 1.3888888888888888
-                          }
-                        }
-                      }
-                    }
-                  }
+          "n": {
+            "docs": {
+              "Input.html#addOneTimeListener": {
+                "ref": "Input.html#addOneTimeListener",
+                "tf": 1.1111111111111112
+              },
+              "Input.html#hasListener": {
+                "ref": "Input.html#hasListener",
+                "tf": 2.727272727272727
+              },
+              "Input.html#removeListener": {
+                "ref": "Input.html#removeListener",
+                "tf": 1.639344262295082
+              },
+              "Output.html#playNote": {
+                "ref": "Output.html#playNote",
+                "tf": 0.45871559633027525
+              },
+              "Output.html#send": {
+                "ref": "Output.html#send",
+                "tf": 1.4705882352941175
+              },
+              "Output.html#sendChannelMode": {
+                "ref": "Output.html#sendChannelMode",
+                "tf": 0.78125
+              },
+              "Output.html#sendControlChange": {
+                "ref": "Output.html#sendControlChange",
+                "tf": 0.2890173410404624
+              },
+              "Output.html#sendNoteOff": {
+                "ref": "Output.html#sendNoteOff",
+                "tf": 0.8333333333333334
+              },
+              "Output.html#sendNoteOn": {
+                "ref": "Output.html#sendNoteOn",
+                "tf": 0.6024096385542169
+              },
+              "Output.html#setPolyphonicMode": {
+                "ref": "Output.html#setPolyphonicMode",
+                "tf": 2.083333333333333
+              },
+              "OutputChannel.html#playNote": {
+                "ref": "OutputChannel.html#playNote",
+                "tf": 0.4629629629629629
+              },
+              "OutputChannel.html#send": {
+                "ref": "OutputChannel.html#send",
+                "tf": 1.6129032258064515
+              },
+              "OutputChannel.html#sendChannelMode": {
+                "ref": "OutputChannel.html#sendChannelMode",
+                "tf": 0.8064516129032258
+              },
+              "OutputChannel.html#sendControlChange": {
+                "ref": "OutputChannel.html#sendControlChange",
+                "tf": 0.2890173410404624
+              },
+              "OutputChannel.html#sendNoteOff": {
+                "ref": "OutputChannel.html#sendNoteOff",
+                "tf": 0.847457627118644
+              },
+              "OutputChannel.html#sendNoteOn": {
+                "ref": "OutputChannel.html#sendNoteOn",
+                "tf": 0.6097560975609756
+              },
+              "OutputChannel.html#setPolyphonicMode": {
+                "ref": "OutputChannel.html#setPolyphonicMode",
+                "tf": 2.083333333333333
+              },
+              "WebMidi.html#time": {
+                "ref": "WebMidi.html#time",
+                "tf": 1.5625
+              },
+              "WebMidi.html#getInputById": {
+                "ref": "WebMidi.html#getInputById",
+                "tf": 1.4705882352941175
+              },
+              "WebMidi.html#getInputByName": {
+                "ref": "WebMidi.html#getInputByName",
+                "tf": 2
+              },
+              "WebMidi.html#getOutputById": {
+                "ref": "WebMidi.html#getOutputById",
+                "tf": 1.4705882352941175
+              },
+              "WebMidi.html#getOutputByName": {
+                "ref": "WebMidi.html#getOutputByName",
+                "tf": 2
+              }
+            },
+            "c": {
+              "docs": {
+                "Input.html#addOneTimeListener": {
+                  "ref": "Input.html#addOneTimeListener",
+                  "tf": 0.3703703703703704
+                },
+                "Input.html#hasListener": {
+                  "ref": "Input.html#hasListener",
+                  "tf": 0.9090909090909091
+                },
+                "Input.html#removeListener": {
+                  "ref": "Input.html#removeListener",
+                  "tf": 0.819672131147541
+                },
+                "Note.html": {
+                  "ref": "Note.html",
+                  "tf": 1.4705882352941175
+                },
+                "Output.html#setPolyphonicMode": {
+                  "ref": "Output.html#setPolyphonicMode",
+                  "tf": 2.083333333333333
+                },
+                "OutputChannel.html#setPolyphonicMode": {
+                  "ref": "OutputChannel.html#setPolyphonicMode",
+                  "tf": 2.083333333333333
+                },
+                "WebMidi.html#validation": {
+                  "ref": "WebMidi.html#validation",
+                  "tf": 1.6129032258064515
+                }
+              }
+            },
+            "g": {
+              "docs": {
+                "Output.html#setSongPosition": {
+                  "ref": "Output.html#setSongPosition",
+                  "tf": 2.631578947368421
                 }
               }
             }
@@ -29087,20 +26662,6 @@ window.lunrData = {
                         "Input.html#removeListener": {
                           "ref": "Input.html#removeListener",
                           "tf": 0.819672131147541
-                        }
-                      },
-                      "d": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "n": {
-                            "docs": {
-                              "Input.html": {
-                                "ref": "Input.html",
-                                "tf": 0.5882352941176471
-                              }
-                            }
-                          }
                         }
                       }
                     }
@@ -32508,7 +30069,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.7647058823529411
+                      "tf": 1.3513513513513513
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34066,85 +31627,6 @@ window.lunrData = {
           },
           "i": {
             "docs": {},
-            "m": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "i": {
-                    "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 0.5882352941176471
-                      },
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.3703703703703704
-                      },
-                      "Output.html#playNote": {
-                        "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
-                      },
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "OutputChannel.html#playNote": {
-                        "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.2890173410404624
-                      },
-                      "WebMidi.html": {
-                        "ref": "WebMidi.html",
-                        "tf": 0.7462686567164178
-                      },
-                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                        "tf": 1.1235955056179776
-                      },
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 1.1363636363636365
-                      }
-                    },
-                    "f": {
-                      "docs": {},
-                      "i": {
-                        "docs": {
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.7462686567164178
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "r": {
-                      "docs": {
-                        "Output.html#send": {
-                          "ref": "Output.html#send",
-                          "tf": 1.4705882352941175
-                        },
-                        "OutputChannel.html#send": {
-                          "ref": "OutputChannel.html#send",
-                          "tf": 1.6129032258064515
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "n": {
               "docs": {},
               "g": {
@@ -34153,11 +31635,11 @@ window.lunrData = {
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5882352941176471
+                      "tf": 1.3513513513513513
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34260,6 +31742,81 @@ window.lunrData = {
                 }
               }
             },
+            "m": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
+                      },
+                      "Output.html#playNote": {
+                        "ref": "Output.html#playNote",
+                        "tf": 0.45871559633027525
+                      },
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "OutputChannel.html#playNote": {
+                        "ref": "OutputChannel.html#playNote",
+                        "tf": 0.4629629629629629
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 0.7462686567164178
+                      },
+                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                        "tf": 1.1235955056179776
+                      },
+                      "WebMidi.html#time": {
+                        "ref": "WebMidi.html#time",
+                        "tf": 1.5625
+                      },
+                      "WebMidi.html#guessNoteNumber": {
+                        "ref": "WebMidi.html#guessNoteNumber",
+                        "tf": 1.1363636363636365
+                      }
+                    },
+                    "f": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "WebMidi.html": {
+                            "ref": "WebMidi.html",
+                            "tf": 0.7462686567164178
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "Output.html#send": {
+                          "ref": "Output.html#send",
+                          "tf": 1.4705882352941175
+                        },
+                        "OutputChannel.html#send": {
+                          "ref": "OutputChannel.html#send",
+                          "tf": 1.6129032258064515
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "g": {
               "docs": {},
               "n": {
@@ -34295,7 +31852,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5882352941176471
+                              "tf": 1.3513513513513513
                             },
                             "Input.html#destroy": {
                               "ref": "Input.html#destroy",
@@ -34347,7 +31904,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.1764705882352942
+                    "tf": 1.3513513513513513
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -34452,7 +32009,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5882352941176471
+                              "tf": 1.3513513513513513
                             }
                           }
                         }
@@ -34592,150 +32149,6 @@ window.lunrData = {
               }
             }
           },
-          "y": {
-            "docs": {},
-            "s": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "x": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 0.5882352941176471
-                    },
-                    "Input.html#addListener": {
-                      "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
-                    },
-                    "Input.html#addOneTimeListener": {
-                      "ref": "Input.html#addOneTimeListener",
-                      "tf": 0.3703703703703704
-                    },
-                    "Input.html#hasListener": {
-                      "ref": "Input.html#hasListener",
-                      "tf": 0.9090909090909091
-                    },
-                    "Input.html#removeListener": {
-                      "ref": "Input.html#removeListener",
-                      "tf": 0.819672131147541
-                    },
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 2.3333333333333335
-                    },
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 1.1235955056179776
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.8571428571428572
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "n": {
-                      "docs": {
-                        "WebMidi.html#sysexEnabled": {
-                          "ref": "WebMidi.html#sysexEnabled",
-                          "tf": 683.3333333333334
-                        },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
-                        }
-                      },
-                      "d": {
-                        "docs": {
-                          "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                            "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                            "tf": 1.1235955056179776
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "t": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "m": {
-                    "docs": {
-                      "Input.html#addListener": {
-                        "ref": "Input.html#addListener",
-                        "tf": 0.6896551724137931
-                      },
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 0.7407407407407408
-                      },
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 1
-                      },
-                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                        "tf": 1.6853932584269662
-                      },
-                      "WebMidi.html#sysexEnabled": {
-                        "ref": "WebMidi.html#sysexEnabled",
-                        "tf": 4.166666666666666
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "s": {
-                      "docs": {
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "m": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "l": {
-                    "docs": {
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "t": {
             "docs": {},
             "a": {
@@ -34754,7 +32167,7 @@ window.lunrData = {
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34821,7 +32234,7 @@ window.lunrData = {
                   "docs": {
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
-                      "tf": 0.3448275862068966
+                      "tf": 0.3205128205128205
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -35104,7 +32517,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -35306,7 +32719,7 @@ window.lunrData = {
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
-                        "tf": 1.0344827586206897
+                        "tf": 0.9615384615384616
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -35401,7 +32814,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 1.0344827586206897
+                          "tf": 0.9615384615384616
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -35633,7 +33046,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
-                              "tf": 1.0344827586206897
+                              "tf": 0.9615384615384616
                             }
                           }
                         }
@@ -35676,7 +33089,7 @@ window.lunrData = {
                           "docs": {
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
-                              "tf": 0.3448275862068966
+                              "tf": 0.3205128205128205
                             },
                             "Input.html#addOneTimeListener": {
                               "ref": "Input.html#addOneTimeListener",
@@ -35706,7 +33119,7 @@ window.lunrData = {
                             "docs": {
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
-                                "tf": 0.3448275862068966
+                                "tf": 0.3205128205128205
                               },
                               "Input.html#addOneTimeListener": {
                                 "ref": "Input.html#addOneTimeListener",
@@ -36046,6 +33459,146 @@ window.lunrData = {
               }
             }
           },
+          "y": {
+            "docs": {},
+            "s": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "x": {
+                  "docs": {
+                    "Input.html#addListener": {
+                      "ref": "Input.html#addListener",
+                      "tf": 0.3205128205128205
+                    },
+                    "Input.html#addOneTimeListener": {
+                      "ref": "Input.html#addOneTimeListener",
+                      "tf": 0.3703703703703704
+                    },
+                    "Input.html#hasListener": {
+                      "ref": "Input.html#hasListener",
+                      "tf": 0.9090909090909091
+                    },
+                    "Input.html#removeListener": {
+                      "ref": "Input.html#removeListener",
+                      "tf": 0.819672131147541
+                    },
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 2.3333333333333335
+                    },
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 1.1235955056179776
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.8571428571428572
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "WebMidi.html#sysexEnabled": {
+                          "ref": "WebMidi.html#sysexEnabled",
+                          "tf": 683.3333333333334
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.2857142857142857
+                        }
+                      },
+                      "d": {
+                        "docs": {
+                          "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                            "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                            "tf": 1.1235955056179776
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "m": {
+                    "docs": {
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 0.641025641025641
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.7407407407407408
+                      },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 1
+                      },
+                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                        "tf": 1.6853932584269662
+                      },
+                      "WebMidi.html#sysexEnabled": {
+                        "ref": "WebMidi.html#sysexEnabled",
+                        "tf": 4.166666666666666
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.5714285714285714
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.2857142857142857
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "s": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.2857142857142857
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "m": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "WebMidi.html#getNoteNumberByName": {
+                        "ref": "WebMidi.html#getNoteNumberByName",
+                        "tf": 0.5681818181818182
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "c": {
             "docs": {},
             "h": {
@@ -36228,50 +33781,447 @@ window.lunrData = {
             }
           }
         },
-        "t": {
+        "n": {
           "docs": {},
-          "i": {
-            "docs": {
-              "Input.html": {
-                "ref": "Input.html",
-                "tf": 0.5882352941176471
+          "u": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Input.html#channels": {
+                        "ref": "Input.html#channels",
+                        "tf": 4.166666666666666
+                      },
+                      "InputChannel.html#.NRPN_TYPES": {
+                        "ref": "InputChannel.html#.NRPN_TYPES",
+                        "tf": 6.25
+                      },
+                      "InputChannel.html#nrpnEventsEnabled": {
+                        "ref": "InputChannel.html#nrpnEventsEnabled",
+                        "tf": 1.1904761904761905
+                      },
+                      "InputChannel.html#number": {
+                        "ref": "InputChannel.html#number",
+                        "tf": 762.5
+                      },
+                      "InputChannel.html#getCcNameByNumber": {
+                        "ref": "InputChannel.html#getCcNameByNumber",
+                        "tf": 37.878787878787875
+                      },
+                      "InputChannel.html#getChannelModeByNumber": {
+                        "ref": "InputChannel.html#getChannelModeByNumber",
+                        "tf": 37.49999999999999
+                      },
+                      "Note.html#attack": {
+                        "ref": "Note.html#attack",
+                        "tf": 56.25
+                      },
+                      "Note.html#duration": {
+                        "ref": "Note.html#duration",
+                        "tf": 60
+                      },
+                      "Note.html#name": {
+                        "ref": "Note.html#name",
+                        "tf": 5
+                      },
+                      "Note.html#number": {
+                        "ref": "Note.html#number",
+                        "tf": 757.1428571428571
+                      },
+                      "Note.html#octave": {
+                        "ref": "Note.html#octave",
+                        "tf": 50
+                      },
+                      "Note.html#rawAttack": {
+                        "ref": "Note.html#rawAttack",
+                        "tf": 50
+                      },
+                      "Note.html#rawRelease": {
+                        "ref": "Note.html#rawRelease",
+                        "tf": 50
+                      },
+                      "Note.html#release": {
+                        "ref": "Note.html#release",
+                        "tf": 56.25
+                      },
+                      "Output.html#channels": {
+                        "ref": "Output.html#channels",
+                        "tf": 4.166666666666666
+                      },
+                      "Output.html#playNote": {
+                        "ref": "Output.html#playNote",
+                        "tf": 0.45871559633027525
+                      },
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "Output.html#sendNoteOff": {
+                        "ref": "Output.html#sendNoteOff",
+                        "tf": 0.8333333333333334
+                      },
+                      "Output.html#sendNoteOn": {
+                        "ref": "Output.html#sendNoteOn",
+                        "tf": 0.6024096385542169
+                      },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.33333333333333337
+                      },
+                      "Output.html#setProgram": {
+                        "ref": "Output.html#setProgram",
+                        "tf": 4.411764705882353
+                      },
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.3289473684210526
+                      },
+                      "Output.html#setSong": {
+                        "ref": "Output.html#setSong",
+                        "tf": 5
+                      },
+                      "Output.html#setTuningBank": {
+                        "ref": "Output.html#setTuningBank",
+                        "tf": 3.75
+                      },
+                      "Output.html#setTuningProgram": {
+                        "ref": "Output.html#setTuningProgram",
+                        "tf": 3.75
+                      },
+                      "OutputChannel.html#number": {
+                        "ref": "OutputChannel.html#number",
+                        "tf": 762.5
+                      },
+                      "OutputChannel.html#playNote": {
+                        "ref": "OutputChannel.html#playNote",
+                        "tf": 0.4629629629629629
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "OutputChannel.html#sendNoteOff": {
+                        "ref": "OutputChannel.html#sendNoteOff",
+                        "tf": 0.847457627118644
+                      },
+                      "OutputChannel.html#sendNoteOn": {
+                        "ref": "OutputChannel.html#sendNoteOn",
+                        "tf": 0.6097560975609756
+                      },
+                      "OutputChannel.html#setKeyAftertouch": {
+                        "ref": "OutputChannel.html#setKeyAftertouch",
+                        "tf": 1.1904761904761905
+                      },
+                      "OutputChannel.html#setProgram": {
+                        "ref": "OutputChannel.html#setProgram",
+                        "tf": 4.6875
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.3289473684210526
+                      },
+                      "OutputChannel.html#setTuningBank": {
+                        "ref": "OutputChannel.html#setTuningBank",
+                        "tf": 3.75
+                      },
+                      "OutputChannel.html#setTuningProgram": {
+                        "ref": "OutputChannel.html#setTuningProgram",
+                        "tf": 3.75
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 0.78125
+                      },
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 54.054054054054056
+                      },
+                      "WebMidi.html#time": {
+                        "ref": "WebMidi.html#time",
+                        "tf": 3.125
+                      },
+                      "WebMidi.html#convertToTimestamp": {
+                        "ref": "WebMidi.html#convertToTimestamp",
+                        "tf": 38.33333333333333
+                      },
+                      "WebMidi.html#getNoteNumberByName": {
+                        "ref": "WebMidi.html#getNoteNumberByName",
+                        "tf": 3.977272727272727
+                      },
+                      "WebMidi.html#getNoteObject": {
+                        "ref": "WebMidi.html#getNoteObject",
+                        "tf": 1.3888888888888888
+                      },
+                      "WebMidi.html#getOctave": {
+                        "ref": "WebMidi.html#getOctave",
+                        "tf": 37.179487179487175
+                      },
+                      "WebMidi.html#getValidNoteArray": {
+                        "ref": "WebMidi.html#getValidNoteArray",
+                        "tf": 1.5151515151515151
+                      },
+                      "WebMidi.html#guessNoteNumber": {
+                        "ref": "WebMidi.html#guessNoteNumber",
+                        "tf": 1.1363636363636365
+                      },
+                      "WebMidi.html#sanitizeChannels": {
+                        "ref": "WebMidi.html#sanitizeChannels",
+                        "tf": 1.3888888888888888
+                      }
+                    },
+                    "&": {
+                      "docs": {},
+                      "g": {
+                        "docs": {},
+                        "t": {
+                          "docs": {
+                            "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                              "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                              "tf": 25
+                            },
+                            "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                              "tf": 25
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "|": {
+                      "docs": {},
+                      "f": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "s": {
+                              "docs": {
+                                "WebMidi.html#getNoteNumberByName": {
+                                  "ref": "WebMidi.html#getNoteNumberByName",
+                                  "tf": 33.33333333333333
+                                },
+                                "WebMidi.html#getOctave": {
+                                  "ref": "WebMidi.html#getOctave",
+                                  "tf": 33.33333333333333
+                                },
+                                "WebMidi.html#guessNoteNumber": {
+                                  "ref": "WebMidi.html#guessNoteNumber",
+                                  "tf": 33.33333333333333
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               },
-              "Input.html#addListener": {
-                "ref": "Input.html#addListener",
-                "tf": 0.3448275862068966
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Output.html#sendChannelMode": {
+                      "ref": "Output.html#sendChannelMode",
+                      "tf": 0.78125
+                    },
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "OutputChannel.html#sendChannelMode": {
+                      "ref": "OutputChannel.html#sendChannelMode",
+                      "tf": 0.8064516129032258
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.2890173410404624
+                    },
+                    "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                      "tf": 3.571428571428571
+                    },
+                    "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
+                      "tf": 2.1739130434782608
+                    },
+                    "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                      "tf": 1.4285714285714286
+                    },
+                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                      "tf": 0.4032258064516129
+                    },
+                    "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                      "tf": 2
+                    },
+                    "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                      "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                      "tf": 0.78125
+                    },
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 0.5617977528089888
+                    }
+                  }
+                }
               }
             },
+            "l": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "b": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "&": {
+                          "docs": {},
+                          "g": {
+                            "docs": {},
+                            "t": {
+                              "docs": {
+                                "WebMidi.html#interface": {
+                                  "ref": "WebMidi.html#interface",
+                                  "tf": 25
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "c": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "i": {
+                        "docs": {},
+                        "v": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "a": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {
+                                            "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                                              "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                                              "tf": 2
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
             "m": {
               "docs": {},
               "e": {
                 "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                  "Input.html#manufacturer": {
+                    "ref": "Input.html#manufacturer",
+                    "tf": 7.142857142857142
                   },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.3703703703703704
+                  "Input.html#name": {
+                    "ref": "Input.html#name",
+                    "tf": 716.6666666666666
+                  },
+                  "InputChannel.html#getCcNameByNumber": {
+                    "ref": "InputChannel.html#getCcNameByNumber",
+                    "tf": 4.545454545454546
+                  },
+                  "InputChannel.html#getChannelModeByNumber": {
+                    "ref": "InputChannel.html#getChannelModeByNumber",
+                    "tf": 4.166666666666666
+                  },
+                  "Note.html#name": {
+                    "ref": "Note.html#name",
+                    "tf": 705
+                  },
+                  "Output.html#manufacturer": {
+                    "ref": "Output.html#manufacturer",
+                    "tf": 7.142857142857142
+                  },
+                  "Output.html#name": {
+                    "ref": "Output.html#name",
+                    "tf": 700
+                  },
+                  "Output.html#decrementRegisteredParameter": {
+                    "ref": "Output.html#decrementRegisteredParameter",
+                    "tf": 0.5434782608695652
+                  },
+                  "Output.html#incrementRegisteredParameter": {
+                    "ref": "Output.html#incrementRegisteredParameter",
+                    "tf": 0.5434782608695652
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
                     "tf": 0.45871559633027525
                   },
-                  "Output.html#sendActiveSensing": {
-                    "ref": "Output.html#sendActiveSensing",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#sendClock": {
-                    "ref": "Output.html#sendClock",
-                    "tf": 3.8461538461538463
-                  },
-                  "Output.html#sendContinue": {
-                    "ref": "Output.html#sendContinue",
-                    "tf": 2.380952380952381
+                  "Output.html#sendChannelMode": {
+                    "ref": "Output.html#sendChannelMode",
+                    "tf": 0.78125
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.2890173410404624
+                    "tf": 0.8670520231213872
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -36281,53 +34231,25 @@ window.lunrData = {
                     "ref": "Output.html#sendNoteOn",
                     "tf": 0.6024096385542169
                   },
-                  "Output.html#sendReset": {
-                    "ref": "Output.html#sendReset",
-                    "tf": 3.8461538461538463
+                  "OutputChannel.html#decrementRegisteredParameter": {
+                    "ref": "OutputChannel.html#decrementRegisteredParameter",
+                    "tf": 0.5434782608695652
                   },
-                  "Output.html#sendStart": {
-                    "ref": "Output.html#sendStart",
-                    "tf": 2.380952380952381
-                  },
-                  "Output.html#sendStop": {
-                    "ref": "Output.html#sendStop",
-                    "tf": 7.142857142857142
-                  },
-                  "Output.html#sendTuneRequest": {
-                    "ref": "Output.html#sendTuneRequest",
-                    "tf": 7.142857142857142
-                  },
-                  "Output.html#setKeyAftertouch": {
-                    "ref": "Output.html#setKeyAftertouch",
-                    "tf": 2.7777777777777777
-                  },
-                  "Output.html#setModulationRange": {
-                    "ref": "Output.html#setModulationRange",
-                    "tf": 2.1739130434782608
-                  },
-                  "Output.html#setPitchBend": {
-                    "ref": "Output.html#setPitchBend",
-                    "tf": 5.555555555555555
-                  },
-                  "Output.html#setPitchBendRange": {
-                    "ref": "Output.html#setPitchBendRange",
-                    "tf": 1.3888888888888888
-                  },
-                  "Output.html#setPolyphonicMode": {
-                    "ref": "Output.html#setPolyphonicMode",
-                    "tf": 2.083333333333333
-                  },
-                  "Output.html#setProgram": {
-                    "ref": "Output.html#setProgram",
-                    "tf": 1.4705882352941175
+                  "OutputChannel.html#incrementRegisteredParameter": {
+                    "ref": "OutputChannel.html#incrementRegisteredParameter",
+                    "tf": 0.5434782608695652
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
                     "tf": 0.4629629629629629
                   },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 0.8064516129032258
+                  },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.2890173410404624
+                    "tf": 0.8670520231213872
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -36341,86 +34263,127 @@ window.lunrData = {
                     "ref": "OutputChannel.html#setKeyAftertouch",
                     "tf": 1.1904761904761905
                   },
-                  "OutputChannel.html#setModulationRange": {
-                    "ref": "OutputChannel.html#setModulationRange",
-                    "tf": 2.380952380952381
+                  "WebMidi.html#NOTES": {
+                    "ref": "WebMidi.html#NOTES",
+                    "tf": 12.5
                   },
-                  "OutputChannel.html#setPitchBend": {
-                    "ref": "OutputChannel.html#setPitchBend",
-                    "tf": 7.142857142857142
+                  "WebMidi.html#getInputByName": {
+                    "ref": "WebMidi.html#getInputByName",
+                    "tf": 39.33333333333333
                   },
-                  "OutputChannel.html#setPitchBendRange": {
-                    "ref": "OutputChannel.html#setPitchBendRange",
-                    "tf": 1.3888888888888888
+                  "WebMidi.html#getNoteNumberByName": {
+                    "ref": "WebMidi.html#getNoteNumberByName",
+                    "tf": 36.742424242424235
                   },
-                  "OutputChannel.html#setPolyphonicMode": {
-                    "ref": "OutputChannel.html#setPolyphonicMode",
-                    "tf": 2.083333333333333
+                  "WebMidi.html#getNoteObject": {
+                    "ref": "WebMidi.html#getNoteObject",
+                    "tf": 2.7777777777777777
                   },
-                  "OutputChannel.html#setProgram": {
-                    "ref": "OutputChannel.html#setProgram",
-                    "tf": 1.5625
+                  "WebMidi.html#getOutputByName": {
+                    "ref": "WebMidi.html#getOutputByName",
+                    "tf": 39.33333333333333
                   },
-                  "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                    "tf": 0.5617977528089888
+                  "WebMidi.html#getValidNoteArray": {
+                    "ref": "WebMidi.html#getValidNoteArray",
+                    "tf": 3.0303030303030303
                   },
-                  "WebMidi.html#time": {
-                    "ref": "WebMidi.html#time",
-                    "tf": 688.0208333333334
-                  },
-                  "WebMidi.html#convertToTimestamp": {
-                    "ref": "WebMidi.html#convertToTimestamp",
-                    "tf": 34.99999999999999
+                  "WebMidi.html#guessNoteNumber": {
+                    "ref": "WebMidi.html#guessNoteNumber",
+                    "tf": 1.1363636363636365
                   }
-                },
-                "c": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "Input.html#addListener": {
-                          "ref": "Input.html#addListener",
-                          "tf": 0.3448275862068966
-                        },
-                        "Input.html#addOneTimeListener": {
-                          "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.3703703703703704
-                        },
-                        "Output.html#sendTimecodeQuarterFrame": {
-                          "ref": "Output.html#sendTimecodeQuarterFrame",
-                          "tf": 5
-                        },
-                        "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                          "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                          "tf": 0.5617977528089888
-                        }
-                      }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "v": {
+                  "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.33333333333333337
                     }
                   }
-                },
-                "s": {
-                  "docs": {},
-                  "t": {
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "g": {
+                  "docs": {
+                    "WebMidi.html#convertToTimestamp": {
+                      "ref": "WebMidi.html#convertToTimestamp",
+                      "tf": 1.6666666666666667
+                    }
+                  },
+                  "a": {
                     "docs": {},
-                    "a": {
+                    "t": {
                       "docs": {},
-                      "m": {
+                      "o": {
                         "docs": {},
-                        "p": {
-                          "docs": {
-                            "Output.html#send": {
-                              "ref": "Output.html#send",
-                              "tf": 1.4705882352941175
-                            },
-                            "OutputChannel.html#send": {
-                              "ref": "OutputChannel.html#send",
-                              "tf": 1.6129032258064515
-                            },
-                            "WebMidi.html#convertToTimestamp": {
-                              "ref": "WebMidi.html#convertToTimestamp",
-                              "tf": 5
+                        "r": {
+                          "docs": {},
+                          ".": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "q": {
+                                  "docs": {},
+                                  "u": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "m": {
+                                            "docs": {},
+                                            "i": {
+                                              "docs": {},
+                                              "d": {
+                                                "docs": {},
+                                                "i": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "c": {
+                                                      "docs": {},
+                                                      "c": {
+                                                        "docs": {},
+                                                        "e": {
+                                                          "docs": {},
+                                                          "s": {
+                                                            "docs": {},
+                                                            "s": {
+                                                              "docs": {
+                                                                "WebMidi.html#supported": {
+                                                                  "ref": "WebMidi.html#supported",
+                                                                  "tf": 1.7241379310344827
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -36431,6 +34394,852 @@ window.lunrData = {
               }
             }
           },
+          "o": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.3205128205128205
+                  },
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 1905.8823529411766
+                  },
+                  "Note.html#attack": {
+                    "ref": "Note.html#attack",
+                    "tf": 6.25
+                  },
+                  "Note.html#duration": {
+                    "ref": "Note.html#duration",
+                    "tf": 10
+                  },
+                  "Note.html#name": {
+                    "ref": "Note.html#name",
+                    "tf": 5
+                  },
+                  "Note.html#number": {
+                    "ref": "Note.html#number",
+                    "tf": 7.142857142857142
+                  },
+                  "Note.html#octave": {
+                    "ref": "Note.html#octave",
+                    "tf": 8.333333333333332
+                  },
+                  "Note.html#rawAttack": {
+                    "ref": "Note.html#rawAttack",
+                    "tf": 6.25
+                  },
+                  "Note.html#rawRelease": {
+                    "ref": "Note.html#rawRelease",
+                    "tf": 6.25
+                  },
+                  "Note.html#release": {
+                    "ref": "Note.html#release",
+                    "tf": 6.25
+                  },
+                  "Output.html#playNote": {
+                    "ref": "Output.html#playNote",
+                    "tf": 28.71559633027523
+                  },
+                  "Output.html#sendChannelMode": {
+                    "ref": "Output.html#sendChannelMode",
+                    "tf": 0.78125
+                  },
+                  "Output.html#sendClock": {
+                    "ref": "Output.html#sendClock",
+                    "tf": 3.8461538461538463
+                  },
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "Output.html#sendNoteOff": {
+                    "ref": "Output.html#sendNoteOff",
+                    "tf": 27.5
+                  },
+                  "Output.html#sendNoteOn": {
+                    "ref": "Output.html#sendNoteOn",
+                    "tf": 27.83132530120482
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "Output.html#sendTimecodeQuarterFrame": {
+                    "ref": "Output.html#sendTimecodeQuarterFrame",
+                    "tf": 2.5
+                  },
+                  "Output.html#setKeyAftertouch": {
+                    "ref": "Output.html#setKeyAftertouch",
+                    "tf": 16.666666666666664
+                  },
+                  "Output.html#setOmniMode": {
+                    "ref": "Output.html#setOmniMode",
+                    "tf": 2.631578947368421
+                  },
+                  "Output.html#setPolyphonicMode": {
+                    "ref": "Output.html#setPolyphonicMode",
+                    "tf": 6.25
+                  },
+                  "Output.html#setProgram": {
+                    "ref": "Output.html#setProgram",
+                    "tf": 1.4705882352941175
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "Output.html#setSong": {
+                    "ref": "Output.html#setSong",
+                    "tf": 1.6666666666666667
+                  },
+                  "Output.html#setSongPosition": {
+                    "ref": "Output.html#setSongPosition",
+                    "tf": 2.631578947368421
+                  },
+                  "Output.html#setTuningBank": {
+                    "ref": "Output.html#setTuningBank",
+                    "tf": 2.5
+                  },
+                  "Output.html#setTuningProgram": {
+                    "ref": "Output.html#setTuningProgram",
+                    "tf": 2.5
+                  },
+                  "Output.html#stopNote": {
+                    "ref": "Output.html#stopNote",
+                    "tf": 20
+                  },
+                  "Output.html#turnNotesOff": {
+                    "ref": "Output.html#turnNotesOff",
+                    "tf": 10
+                  },
+                  "OutputChannel.html#playNote": {
+                    "ref": "OutputChannel.html#playNote",
+                    "tf": 33.7962962962963
+                  },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 0.8064516129032258
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "OutputChannel.html#sendNoteOff": {
+                    "ref": "OutputChannel.html#sendNoteOff",
+                    "tf": 32.6271186440678
+                  },
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 32.926829268292686
+                  },
+                  "OutputChannel.html#setKeyAftertouch": {
+                    "ref": "OutputChannel.html#setKeyAftertouch",
+                    "tf": 24.761904761904763
+                  },
+                  "OutputChannel.html#setOmniMode": {
+                    "ref": "OutputChannel.html#setOmniMode",
+                    "tf": 2.941176470588235
+                  },
+                  "OutputChannel.html#setPolyphonicMode": {
+                    "ref": "OutputChannel.html#setPolyphonicMode",
+                    "tf": 6.25
+                  },
+                  "OutputChannel.html#setProgram": {
+                    "ref": "OutputChannel.html#setProgram",
+                    "tf": 1.5625
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.3289473684210526
+                  },
+                  "OutputChannel.html#setTuningBank": {
+                    "ref": "OutputChannel.html#setTuningBank",
+                    "tf": 2.5
+                  },
+                  "OutputChannel.html#setTuningProgram": {
+                    "ref": "OutputChannel.html#setTuningProgram",
+                    "tf": 2.5
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 25
+                  },
+                  "OutputChannel.html#turnNotesOff": {
+                    "ref": "OutputChannel.html#turnNotesOff",
+                    "tf": 10.714285714285714
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                    "tf": 3.571428571428571
+                  },
+                  "WebMidi.html#NOTES": {
+                    "ref": "WebMidi.html#NOTES",
+                    "tf": 695.8333333333334
+                  },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 4.054054054054054
+                  },
+                  "WebMidi.html#supported": {
+                    "ref": "WebMidi.html#supported",
+                    "tf": 1.7241379310344827
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.2857142857142857
+                  },
+                  "WebMidi.html#getInputById": {
+                    "ref": "WebMidi.html#getInputById",
+                    "tf": 1.4705882352941175
+                  },
+                  "WebMidi.html#getInputByName": {
+                    "ref": "WebMidi.html#getInputByName",
+                    "tf": 2
+                  },
+                  "WebMidi.html#getNoteNumberByName": {
+                    "ref": "WebMidi.html#getNoteNumberByName",
+                    "tf": 4.545454545454546
+                  },
+                  "WebMidi.html#getNoteObject": {
+                    "ref": "WebMidi.html#getNoteObject",
+                    "tf": 56.94444444444444
+                  },
+                  "WebMidi.html#getOctave": {
+                    "ref": "WebMidi.html#getOctave",
+                    "tf": 3.8461538461538463
+                  },
+                  "WebMidi.html#getOutputById": {
+                    "ref": "WebMidi.html#getOutputById",
+                    "tf": 1.4705882352941175
+                  },
+                  "WebMidi.html#getOutputByName": {
+                    "ref": "WebMidi.html#getOutputByName",
+                    "tf": 2
+                  },
+                  "WebMidi.html#getValidNoteArray": {
+                    "ref": "WebMidi.html#getValidNoteArray",
+                    "tf": 34.09090909090909
+                  },
+                  "WebMidi.html#guessNoteNumber": {
+                    "ref": "WebMidi.html#guessNoteNumber",
+                    "tf": 3.4090909090909087
+                  }
+                },
+                "o": {
+                  "docs": {},
+                  "f": {
+                    "docs": {},
+                    "f": {
+                      "docs": {
+                        "Input.html#addListener": {
+                          "ref": "Input.html#addListener",
+                          "tf": 0.3205128205128205
+                        },
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 0.3703703703703704
+                        },
+                        "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                          "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                          "tf": 1.4285714285714286
+                        }
+                      }
+                    }
+                  },
+                  "n": {
+                    "docs": {
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 0.641025641025641
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
+                      },
+                      "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                        "tf": 1.4285714285714286
+                      }
+                    }
+                  }
+                },
+                "'": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 1.4705882352941175
+                    }
+                  }
+                },
+                "#": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "c": {
+                            "docs": {},
+                            "k": {
+                              "docs": {
+                                "Note.html#attack": {
+                                  "ref": "Note.html#attack",
+                                  "tf": 1150
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "d": {
+                    "docs": {},
+                    "u": {
+                      "docs": {},
+                      "r": {
+                        "docs": {
+                          "Note.html#duration": {
+                            "ref": "Note.html#duration",
+                            "tf": 1150
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "n": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "m": {
+                        "docs": {
+                          "Note.html#name": {
+                            "ref": "Note.html#name",
+                            "tf": 1150
+                          }
+                        }
+                      }
+                    },
+                    "u": {
+                      "docs": {},
+                      "m": {
+                        "docs": {},
+                        "b": {
+                          "docs": {
+                            "Note.html#number": {
+                              "ref": "Note.html#number",
+                              "tf": 1150
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "o": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "v": {
+                            "docs": {
+                              "Note.html#octave": {
+                                "ref": "Note.html#octave",
+                                "tf": 1150
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "r": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "w": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "t": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "c": {
+                                  "docs": {},
+                                  "k": {
+                                    "docs": {
+                                      "Note.html#rawAttack": {
+                                        "ref": "Note.html#rawAttack",
+                                        "tf": 1150
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "r": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "l": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "s": {
+                                    "docs": {
+                                      "Note.html#rawRelease": {
+                                        "ref": "Note.html#rawRelease",
+                                        "tf": 1150
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "e": {
+                      "docs": {},
+                      "l": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "s": {
+                              "docs": {
+                                "Note.html#release": {
+                                  "ref": "Note.html#release",
+                                  "tf": 1150
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "a": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.33333333333333337
+                    },
+                    "WebMidi.html#getNoteNumberByName": {
+                      "ref": "WebMidi.html#getNoteNumberByName",
+                      "tf": 0.5681818181818182
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {
+                "InputChannel.html#.NRPN_TYPES": {
+                  "ref": "InputChannel.html#.NRPN_TYPES",
+                  "tf": 6.25
+                },
+                "InputChannel.html#nrpnEventsEnabled": {
+                  "ref": "InputChannel.html#nrpnEventsEnabled",
+                  "tf": 1.1904761904761905
+                },
+                "Output.html#setNonRegisteredParameter": {
+                  "ref": "Output.html#setNonRegisteredParameter",
+                  "tf": 0.4098360655737705
+                },
+                "OutputChannel.html#setNonRegisteredParameter": {
+                  "ref": "OutputChannel.html#setNonRegisteredParameter",
+                  "tf": 0.4807692307692308
+                }
+              },
+              "r": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "g": {
+                    "docs": {},
+                    "i": {
+                      "docs": {},
+                      "s": {
+                        "docs": {},
+                        "t": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "d": {
+                                  "docs": {},
+                                  "p": {
+                                    "docs": {},
+                                    "a": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "a": {
+                                          "docs": {},
+                                          "m": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "e": {
+                                                  "docs": {},
+                                                  "r": {
+                                                    "docs": {},
+                                                    "c": {
+                                                      "docs": {},
+                                                      "o": {
+                                                        "docs": {},
+                                                        "a": {
+                                                          "docs": {},
+                                                          "r": {
+                                                            "docs": {},
+                                                            "s": {
+                                                              "docs": {
+                                                                "Output.html#sendControlChange": {
+                                                                  "ref": "Output.html#sendControlChange",
+                                                                  "tf": 0.2890173410404624
+                                                                },
+                                                                "OutputChannel.html#sendControlChange": {
+                                                                  "ref": "OutputChannel.html#sendControlChange",
+                                                                  "tf": 0.2890173410404624
+                                                                },
+                                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                                  "tf": 0.4032258064516129
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    "f": {
+                                                      "docs": {},
+                                                      "i": {
+                                                        "docs": {},
+                                                        "n": {
+                                                          "docs": {
+                                                            "Output.html#sendControlChange": {
+                                                              "ref": "Output.html#sendControlChange",
+                                                              "tf": 0.2890173410404624
+                                                            },
+                                                            "OutputChannel.html#sendControlChange": {
+                                                              "ref": "OutputChannel.html#sendControlChange",
+                                                              "tf": 0.2890173410404624
+                                                            },
+                                                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                              "tf": 0.4032258064516129
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "Output.html#setNonRegisteredParameter": {
+                      "ref": "Output.html#setNonRegisteredParameter",
+                      "tf": 0.4098360655737705
+                    },
+                    "OutputChannel.html#setNonRegisteredParameter": {
+                      "ref": "OutputChannel.html#setNonRegisteredParameter",
+                      "tf": 0.4807692307692308
+                    }
+                  }
+                }
+              }
+            },
+            "m": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "Output.html#setPitchBendRange": {
+                      "ref": "Output.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    },
+                    "OutputChannel.html#setPitchBendRange": {
+                      "ref": "OutputChannel.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    }
+                  }
+                }
+              }
+            },
+            "d": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                ".": {
+                  "docs": {},
+                  "j": {
+                    "docs": {
+                      "WebMidi.html#isNode": {
+                        "ref": "WebMidi.html#isNode",
+                        "tf": 10
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "w": {
+              "docs": {
+                "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                  "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                  "tf": 3.571428571428571
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "p": {
+              "docs": {},
+              "n": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.3205128205128205
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
+                  },
+                  "InputChannel.html#.NRPN_TYPES": {
+                    "ref": "InputChannel.html#.NRPN_TYPES",
+                    "tf": 6.25
+                  },
+                  "InputChannel.html#nrpnEventsEnabled": {
+                    "ref": "InputChannel.html#nrpnEventsEnabled",
+                    "tf": 2.380952380952381
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 1.639344262295082
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 2.403846153846154
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                    "tf": 1.4285714285714286
+                  },
+                  "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                    "tf": 2
+                  }
+                },
+                "_": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "y": {
+                      "docs": {},
+                      "p": {
+                        "docs": {},
+                        "e": {
+                          "docs": {
+                            "InputChannel.html#.NRPN_TYPES": {
+                              "ref": "InputChannel.html#.NRPN_TYPES",
+                              "tf": 675
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "e": {
+                  "docs": {},
+                  "v": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "t": {
+                          "docs": {},
+                          "s": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "n": {
+                                "docs": {
+                                  "InputChannel.html#nrpnEventsEnabled": {
+                                    "ref": "InputChannel.html#nrpnEventsEnabled",
+                                    "tf": 700
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "c": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "r": {
+                        "docs": {},
+                        "i": {
+                          "docs": {
+                            "Output.html#send": {
+                              "ref": "Output.html#send",
+                              "tf": 1.4705882352941175
+                            },
+                            "Output.html#sendSysex": {
+                              "ref": "Output.html#sendSysex",
+                              "tf": 0.33333333333333337
+                            },
+                            "OutputChannel.html#send": {
+                              "ref": "OutputChannel.html#send",
+                              "tf": 1.6129032258064515
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "e": {
+              "docs": {},
+              "d": {
+                "docs": {
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 0.4098360655737705
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 0.4807692307692308
+                  },
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.7462686567164178
+                  }
+                }
+              }
+            },
+            "w": {
+              "docs": {
+                "Output.html#turnNotesOff": {
+                  "ref": "Output.html#turnNotesOff",
+                  "tf": 3.3333333333333335
+                },
+                "Output.html#turnSoundOff": {
+                  "ref": "Output.html#turnSoundOff",
+                  "tf": 3.571428571428571
+                },
+                "OutputChannel.html#turnNotesOff": {
+                  "ref": "OutputChannel.html#turnNotesOff",
+                  "tf": 3.571428571428571
+                },
+                "OutputChannel.html#turnSoundOff": {
+                  "ref": "OutputChannel.html#turnSoundOff",
+                  "tf": 3.571428571428571
+                },
+                "WebMidi.html": {
+                  "ref": "WebMidi.html",
+                  "tf": 0.7462686567164178
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 0.5617977528089888
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "t": {
+          "docs": {},
           "h": {
             "docs": {},
             "r": {
@@ -36626,6 +35435,203 @@ window.lunrData = {
               }
             }
           },
+          "i": {
+            "docs": {
+              "Input.html#addListener": {
+                "ref": "Input.html#addListener",
+                "tf": 0.3205128205128205
+              }
+            },
+            "m": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.3205128205128205
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.3703703703703704
+                  },
+                  "Output.html#playNote": {
+                    "ref": "Output.html#playNote",
+                    "tf": 0.45871559633027525
+                  },
+                  "Output.html#sendActiveSensing": {
+                    "ref": "Output.html#sendActiveSensing",
+                    "tf": 2.272727272727273
+                  },
+                  "Output.html#sendClock": {
+                    "ref": "Output.html#sendClock",
+                    "tf": 3.8461538461538463
+                  },
+                  "Output.html#sendContinue": {
+                    "ref": "Output.html#sendContinue",
+                    "tf": 2.380952380952381
+                  },
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "Output.html#sendNoteOff": {
+                    "ref": "Output.html#sendNoteOff",
+                    "tf": 0.8333333333333334
+                  },
+                  "Output.html#sendNoteOn": {
+                    "ref": "Output.html#sendNoteOn",
+                    "tf": 0.6024096385542169
+                  },
+                  "Output.html#sendReset": {
+                    "ref": "Output.html#sendReset",
+                    "tf": 3.8461538461538463
+                  },
+                  "Output.html#sendStart": {
+                    "ref": "Output.html#sendStart",
+                    "tf": 2.380952380952381
+                  },
+                  "Output.html#sendStop": {
+                    "ref": "Output.html#sendStop",
+                    "tf": 7.142857142857142
+                  },
+                  "Output.html#sendTuneRequest": {
+                    "ref": "Output.html#sendTuneRequest",
+                    "tf": 7.142857142857142
+                  },
+                  "Output.html#setKeyAftertouch": {
+                    "ref": "Output.html#setKeyAftertouch",
+                    "tf": 2.7777777777777777
+                  },
+                  "Output.html#setModulationRange": {
+                    "ref": "Output.html#setModulationRange",
+                    "tf": 2.1739130434782608
+                  },
+                  "Output.html#setPitchBend": {
+                    "ref": "Output.html#setPitchBend",
+                    "tf": 5.555555555555555
+                  },
+                  "Output.html#setPitchBendRange": {
+                    "ref": "Output.html#setPitchBendRange",
+                    "tf": 1.3888888888888888
+                  },
+                  "Output.html#setPolyphonicMode": {
+                    "ref": "Output.html#setPolyphonicMode",
+                    "tf": 2.083333333333333
+                  },
+                  "Output.html#setProgram": {
+                    "ref": "Output.html#setProgram",
+                    "tf": 1.4705882352941175
+                  },
+                  "OutputChannel.html#playNote": {
+                    "ref": "OutputChannel.html#playNote",
+                    "tf": 0.4629629629629629
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 0.2890173410404624
+                  },
+                  "OutputChannel.html#sendNoteOff": {
+                    "ref": "OutputChannel.html#sendNoteOff",
+                    "tf": 0.847457627118644
+                  },
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.6097560975609756
+                  },
+                  "OutputChannel.html#setKeyAftertouch": {
+                    "ref": "OutputChannel.html#setKeyAftertouch",
+                    "tf": 1.1904761904761905
+                  },
+                  "OutputChannel.html#setModulationRange": {
+                    "ref": "OutputChannel.html#setModulationRange",
+                    "tf": 2.380952380952381
+                  },
+                  "OutputChannel.html#setPitchBend": {
+                    "ref": "OutputChannel.html#setPitchBend",
+                    "tf": 7.142857142857142
+                  },
+                  "OutputChannel.html#setPitchBendRange": {
+                    "ref": "OutputChannel.html#setPitchBendRange",
+                    "tf": 1.3888888888888888
+                  },
+                  "OutputChannel.html#setPolyphonicMode": {
+                    "ref": "OutputChannel.html#setPolyphonicMode",
+                    "tf": 2.083333333333333
+                  },
+                  "OutputChannel.html#setProgram": {
+                    "ref": "OutputChannel.html#setProgram",
+                    "tf": 1.5625
+                  },
+                  "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                    "tf": 0.5617977528089888
+                  },
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 688.0208333333334
+                  },
+                  "WebMidi.html#convertToTimestamp": {
+                    "ref": "WebMidi.html#convertToTimestamp",
+                    "tf": 34.99999999999999
+                  }
+                },
+                "c": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "d": {
+                      "docs": {
+                        "Input.html#addListener": {
+                          "ref": "Input.html#addListener",
+                          "tf": 0.3205128205128205
+                        },
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 0.3703703703703704
+                        },
+                        "Output.html#sendTimecodeQuarterFrame": {
+                          "ref": "Output.html#sendTimecodeQuarterFrame",
+                          "tf": 5
+                        },
+                        "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                          "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                          "tf": 0.5617977528089888
+                        }
+                      }
+                    }
+                  }
+                },
+                "s": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "m": {
+                        "docs": {},
+                        "p": {
+                          "docs": {
+                            "Output.html#send": {
+                              "ref": "Output.html#send",
+                              "tf": 1.4705882352941175
+                            },
+                            "OutputChannel.html#send": {
+                              "ref": "OutputChannel.html#send",
+                              "tf": 1.6129032258064515
+                            },
+                            "WebMidi.html#convertToTimestamp": {
+                              "ref": "WebMidi.html#convertToTimestamp",
+                              "tf": 5
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "r": {
             "docs": {},
             "i": {
@@ -36645,7 +35651,7 @@ window.lunrData = {
                       "docs": {
                         "Input.html#addListener": {
                           "ref": "Input.html#addListener",
-                          "tf": 1.3793103448275863
+                          "tf": 1.282051282051282
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -36847,7 +35853,7 @@ window.lunrData = {
                               "docs": {
                                 "Input.html#addListener": {
                                   "ref": "Input.html#addListener",
-                                  "tf": 0.3448275862068966
+                                  "tf": 0.3205128205128205
                                 },
                                 "Input.html#addOneTimeListener": {
                                   "ref": "Input.html#addOneTimeListener",
@@ -37216,10 +36222,944 @@ window.lunrData = {
             }
           }
         },
+        "b": {
+          "docs": {
+            "WebMidi.html#getNoteNumberByName": {
+              "ref": "WebMidi.html#getNoteNumberByName",
+              "tf": 0.5681818181818182
+            }
+          },
+          "o": {
+            "docs": {},
+            "u": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "d": {
+                  "docs": {
+                    "Input.html#addListener": {
+                      "ref": "Input.html#addListener",
+                      "tf": 0.9615384615384616
+                    }
+                  }
+                }
+              }
+            },
+            "o": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "Input.html#hasListener": {
+                          "ref": "Input.html#hasListener",
+                          "tf": 20
+                        },
+                        "InputChannel.html#nrpnEventsEnabled": {
+                          "ref": "InputChannel.html#nrpnEventsEnabled",
+                          "tf": 50
+                        },
+                        "WebMidi.html#enabled": {
+                          "ref": "WebMidi.html#enabled",
+                          "tf": 33.33333333333333
+                        },
+                        "WebMidi.html#isNode": {
+                          "ref": "WebMidi.html#isNode",
+                          "tf": 50
+                        },
+                        "WebMidi.html#supported": {
+                          "ref": "WebMidi.html#supported",
+                          "tf": 33.33333333333333
+                        },
+                        "WebMidi.html#sysexEnabled": {
+                          "ref": "WebMidi.html#sysexEnabled",
+                          "tf": 33.33333333333333
+                        },
+                        "WebMidi.html#validation": {
+                          "ref": "WebMidi.html#validation",
+                          "tf": 50
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "h": {
+                "docs": {
+                  "Output.html#setModulationRange": {
+                    "ref": "Output.html#setModulationRange",
+                    "tf": 2.1739130434782608
+                  },
+                  "OutputChannel.html#setModulationRange": {
+                    "ref": "OutputChannel.html#setModulationRange",
+                    "tf": 2.380952380952381
+                  },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 1.3513513513513513
+                  }
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "k": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 0.3703703703703704
+                      }
+                    }
+                  }
+                }
+              },
+              "w": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "Output.html#clear": {
+                          "ref": "Output.html#clear",
+                          "tf": 2.272727272727273
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.33333333333333337
+                        },
+                        "WebMidi.html#time": {
+                          "ref": "WebMidi.html#time",
+                          "tf": 1.5625
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.2857142857142857
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "e": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "h": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {},
+                                  "l": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "c": {
+                                          "docs": {},
+                                          "o": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "r": {
+                                                "docs": {},
+                                                "s": {
+                                                  "docs": {
+                                                    "Output.html#sendControlChange": {
+                                                      "ref": "Output.html#sendControlChange",
+                                                      "tf": 0.2890173410404624
+                                                    },
+                                                    "OutputChannel.html#sendControlChange": {
+                                                      "ref": "OutputChannel.html#sendControlChange",
+                                                      "tf": 0.2890173410404624
+                                                    },
+                                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                      "tf": 0.4032258064516129
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "f": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "n": {
+                                              "docs": {
+                                                "Output.html#sendControlChange": {
+                                                  "ref": "Output.html#sendControlChange",
+                                                  "tf": 0.2890173410404624
+                                                },
+                                                "OutputChannel.html#sendControlChange": {
+                                                  "ref": "OutputChannel.html#sendControlChange",
+                                                  "tf": 0.2890173410404624
+                                                },
+                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                  "tf": 0.4032258064516129
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "h": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.2890173410404624
+                      },
+                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                        "tf": 0.4032258064516129
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {
+              "Output.html#sendTimecodeQuarterFrame": {
+                "ref": "Output.html#sendTimecodeQuarterFrame",
+                "tf": 2.5
+              },
+              "Output.html#setPolyphonicMode": {
+                "ref": "Output.html#setPolyphonicMode",
+                "tf": 2.083333333333333
+              },
+              "Output.html#turnNotesOff": {
+                "ref": "Output.html#turnNotesOff",
+                "tf": 3.3333333333333335
+              },
+              "Output.html#turnSoundOff": {
+                "ref": "Output.html#turnSoundOff",
+                "tf": 3.571428571428571
+              },
+              "OutputChannel.html#setPolyphonicMode": {
+                "ref": "OutputChannel.html#setPolyphonicMode",
+                "tf": 2.083333333333333
+              },
+              "OutputChannel.html#turnNotesOff": {
+                "ref": "OutputChannel.html#turnNotesOff",
+                "tf": 3.571428571428571
+              },
+              "OutputChannel.html#turnSoundOff": {
+                "ref": "OutputChannel.html#turnSoundOff",
+                "tf": 3.571428571428571
+              },
+              "WebMidi.html#time": {
+                "ref": "WebMidi.html#time",
+                "tf": 1.5625
+              },
+              "WebMidi.html#getOctave": {
+                "ref": "WebMidi.html#getOctave",
+                "tf": 1.282051282051282
+              },
+              "WebMidi.html#sanitizeChannels": {
+                "ref": "WebMidi.html#sanitizeChannels",
+                "tf": 1.3888888888888888
+              }
+            },
+            "l": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "g": {
+                    "docs": {
+                      "InputChannel.html#input": {
+                        "ref": "InputChannel.html#input",
+                        "tf": 16.666666666666664
+                      },
+                      "OutputChannel.html#output": {
+                        "ref": "OutputChannel.html#output",
+                        "tf": 16.666666666666664
+                      }
+                    }
+                  }
+                },
+                "w": {
+                  "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.33333333333333337
+                    },
+                    "Output.html#setPitchBendRange": {
+                      "ref": "Output.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    },
+                    "OutputChannel.html#setPitchBendRange": {
+                      "ref": "OutputChannel.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "w": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "Note.html#attack": {
+                          "ref": "Note.html#attack",
+                          "tf": 6.25
+                        },
+                        "Note.html#number": {
+                          "ref": "Note.html#number",
+                          "tf": 7.142857142857142
+                        },
+                        "Note.html#octave": {
+                          "ref": "Note.html#octave",
+                          "tf": 8.333333333333332
+                        },
+                        "Note.html#rawAttack": {
+                          "ref": "Note.html#rawAttack",
+                          "tf": 6.25
+                        },
+                        "Note.html#rawRelease": {
+                          "ref": "Note.html#rawRelease",
+                          "tf": 6.25
+                        },
+                        "Note.html#release": {
+                          "ref": "Note.html#release",
+                          "tf": 6.25
+                        },
+                        "Output.html#playNote": {
+                          "ref": "Output.html#playNote",
+                          "tf": 0.45871559633027525
+                        },
+                        "Output.html#sendNoteOff": {
+                          "ref": "Output.html#sendNoteOff",
+                          "tf": 0.8333333333333334
+                        },
+                        "Output.html#sendNoteOn": {
+                          "ref": "Output.html#sendNoteOn",
+                          "tf": 0.6024096385542169
+                        },
+                        "Output.html#setMasterTuning": {
+                          "ref": "Output.html#setMasterTuning",
+                          "tf": 1.1363636363636365
+                        },
+                        "Output.html#setProgram": {
+                          "ref": "Output.html#setProgram",
+                          "tf": 2.941176470588235
+                        },
+                        "Output.html#setSong": {
+                          "ref": "Output.html#setSong",
+                          "tf": 3.3333333333333335
+                        },
+                        "Output.html#setSongPosition": {
+                          "ref": "Output.html#setSongPosition",
+                          "tf": 2.631578947368421
+                        },
+                        "Output.html#setTuningBank": {
+                          "ref": "Output.html#setTuningBank",
+                          "tf": 2.5
+                        },
+                        "Output.html#setTuningProgram": {
+                          "ref": "Output.html#setTuningProgram",
+                          "tf": 2.5
+                        },
+                        "OutputChannel.html#playNote": {
+                          "ref": "OutputChannel.html#playNote",
+                          "tf": 0.4629629629629629
+                        },
+                        "OutputChannel.html#sendNoteOff": {
+                          "ref": "OutputChannel.html#sendNoteOff",
+                          "tf": 0.847457627118644
+                        },
+                        "OutputChannel.html#sendNoteOn": {
+                          "ref": "OutputChannel.html#sendNoteOn",
+                          "tf": 0.6097560975609756
+                        },
+                        "OutputChannel.html#setKeyAftertouch": {
+                          "ref": "OutputChannel.html#setKeyAftertouch",
+                          "tf": 1.1904761904761905
+                        },
+                        "OutputChannel.html#setMasterTuning": {
+                          "ref": "OutputChannel.html#setMasterTuning",
+                          "tf": 1.1904761904761905
+                        },
+                        "OutputChannel.html#setProgram": {
+                          "ref": "OutputChannel.html#setProgram",
+                          "tf": 3.125
+                        },
+                        "OutputChannel.html#setTuningBank": {
+                          "ref": "OutputChannel.html#setTuningBank",
+                          "tf": 2.5
+                        },
+                        "OutputChannel.html#setTuningProgram": {
+                          "ref": "OutputChannel.html#setTuningProgram",
+                          "tf": 2.5
+                        },
+                        "WebMidi.html#guessNoteNumber": {
+                          "ref": "WebMidi.html#guessNoteNumber",
+                          "tf": 1.1363636363636365
+                        },
+                        "WebMidi.html#sanitizeChannels": {
+                          "ref": "WebMidi.html#sanitizeChannels",
+                          "tf": 1.3888888888888888
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "d": {
+                "docs": {
+                  "Output.html#resetAllControllers": {
+                    "ref": "Output.html#resetAllControllers",
+                    "tf": 3.8461538461538463
+                  },
+                  "Output.html#setPitchBend": {
+                    "ref": "Output.html#setPitchBend",
+                    "tf": 5.555555555555555
+                  },
+                  "Output.html#setPitchBendRange": {
+                    "ref": "Output.html#setPitchBendRange",
+                    "tf": 4.166666666666666
+                  },
+                  "OutputChannel.html#resetAllControllers": {
+                    "ref": "OutputChannel.html#resetAllControllers",
+                    "tf": 3.8461538461538463
+                  },
+                  "OutputChannel.html#setPitchBend": {
+                    "ref": "OutputChannel.html#setPitchBend",
+                    "tf": 7.142857142857142
+                  },
+                  "OutputChannel.html#setPitchBendRange": {
+                    "ref": "OutputChannel.html#setPitchBendRange",
+                    "tf": 4.166666666666666
+                  }
+                }
+              }
+            },
+            "a": {
+              "docs": {},
+              "t": {
+                "docs": {
+                  "Output.html#sendStart": {
+                    "ref": "Output.html#sendStart",
+                    "tf": 2.380952380952381
+                  },
+                  "Output.html#setSongPosition": {
+                    "ref": "Output.html#setSongPosition",
+                    "tf": 2.631578947368421
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "f": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "InputChannel.html#nrpnEventsEnabled": {
+                        "ref": "InputChannel.html#nrpnEventsEnabled",
+                        "tf": 1.1904761904761905
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "a": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "k": {
+                "docs": {
+                  "Output.html#decrementRegisteredParameter": {
+                    "ref": "Output.html#decrementRegisteredParameter",
+                    "tf": 0.5434782608695652
+                  },
+                  "Output.html#incrementRegisteredParameter": {
+                    "ref": "Output.html#incrementRegisteredParameter",
+                    "tf": 0.5434782608695652
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "Output.html#setTuningBank": {
+                    "ref": "Output.html#setTuningBank",
+                    "tf": 3.75
+                  },
+                  "OutputChannel.html#decrementRegisteredParameter": {
+                    "ref": "OutputChannel.html#decrementRegisteredParameter",
+                    "tf": 0.5434782608695652
+                  },
+                  "OutputChannel.html#incrementRegisteredParameter": {
+                    "ref": "OutputChannel.html#incrementRegisteredParameter",
+                    "tf": 0.5434782608695652
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "OutputChannel.html#setTuningBank": {
+                    "ref": "OutputChannel.html#setTuningBank",
+                    "tf": 3.75
+                  }
+                },
+                "s": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "c": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "c": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {
+                                        "Output.html#sendControlChange": {
+                                          "ref": "Output.html#sendControlChange",
+                                          "tf": 0.2890173410404624
+                                        },
+                                        "OutputChannel.html#sendControlChange": {
+                                          "ref": "OutputChannel.html#sendControlChange",
+                                          "tf": 0.2890173410404624
+                                        },
+                                        "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                          "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                          "tf": 0.4032258064516129
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "f": {
+                              "docs": {},
+                              "i": {
+                                "docs": {},
+                                "n": {
+                                  "docs": {
+                                    "Output.html#sendControlChange": {
+                                      "ref": "Output.html#sendControlChange",
+                                      "tf": 0.2890173410404624
+                                    },
+                                    "OutputChannel.html#sendControlChange": {
+                                      "ref": "OutputChannel.html#sendControlChange",
+                                      "tf": 0.2890173410404624
+                                    },
+                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                      "tf": 0.4032258064516129
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "l": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "c": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "s": {
+                                "docs": {
+                                  "Output.html#sendControlChange": {
+                                    "ref": "Output.html#sendControlChange",
+                                    "tf": 0.2890173410404624
+                                  },
+                                  "OutputChannel.html#sendControlChange": {
+                                    "ref": "OutputChannel.html#sendControlChange",
+                                    "tf": 0.2890173410404624
+                                  },
+                                  "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                    "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                    "tf": 0.4032258064516129
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "f": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "n": {
+                            "docs": {
+                              "Output.html#sendControlChange": {
+                                "ref": "Output.html#sendControlChange",
+                                "tf": 0.2890173410404624
+                              },
+                              "OutputChannel.html#sendControlChange": {
+                                "ref": "OutputChannel.html#sendControlChange",
+                                "tf": 0.2890173410404624
+                              },
+                              "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                "tf": 0.4032258064516129
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "c": {
+                  "docs": {
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.7462686567164178
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {
+                  "WebMidi.html#getOctave": {
+                    "ref": "WebMidi.html#getOctave",
+                    "tf": 1.282051282051282
+                  }
+                }
+              }
+            },
+            "c": {
+              "docs": {},
+              "k": {
+                "docs": {},
+                "w": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "d": {
+                        "docs": {
+                          "WebMidi.html#validation": {
+                            "ref": "WebMidi.html#validation",
+                            "tf": 1.6129032258064515
+                          },
+                          "WebMidi.html#sanitizeChannels": {
+                            "ref": "WebMidi.html#sanitizeChannels",
+                            "tf": 1.3888888888888888
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.33333333333333337
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {
+                "Output.html#setNonRegisteredParameter": {
+                  "ref": "Output.html#setNonRegisteredParameter",
+                  "tf": 0.819672131147541
+                },
+                "OutputChannel.html#setNonRegisteredParameter": {
+                  "ref": "OutputChannel.html#setNonRegisteredParameter",
+                  "tf": 0.9615384615384616
+                }
+              }
+            }
+          },
+          "y": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 1.3333333333333335
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 0.4098360655737705
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 0.4807692307692308
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  }
+                }
+              }
+            }
+          },
+          "#": {
+            "docs": {},
+            "#": {
+              "6": {
+                "docs": {
+                  "WebMidi.html#getNoteNumberByName": {
+                    "ref": "WebMidi.html#getNoteNumberByName",
+                    "tf": 0.5681818181818182
+                  }
+                }
+              },
+              "docs": {}
+            }
+          },
+          "b": {
+            "docs": {
+              "WebMidi.html#getNoteNumberByName": {
+                "ref": "WebMidi.html#getNoteNumberByName",
+                "tf": 0.5681818181818182
+              }
+            }
+          }
+        },
         "u": {
           "docs": {},
           "n": {
             "docs": {},
+            "k": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "w": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "m": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "m": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "s": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {},
+                                      "a": {
+                                        "docs": {},
+                                        "g": {
+                                          "docs": {
+                                            "Input.html#addListener": {
+                                              "ref": "Input.html#addListener",
+                                              "tf": 0.3205128205128205
+                                            },
+                                            "Input.html#addOneTimeListener": {
+                                              "ref": "Input.html#addOneTimeListener",
+                                              "tf": 0.3703703703703704
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "s": {
+                        "docs": {},
+                        "y": {
+                          "docs": {},
+                          "s": {
+                            "docs": {},
+                            "t": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "m": {
+                                  "docs": {},
+                                  "m": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "g": {
+                                              "docs": {
+                                                "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                                                  "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                                                  "tf": 0.5617977528089888
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "d": {
               "docs": {},
               "e": {
@@ -37230,10 +37170,6 @@ window.lunrData = {
                     "docs": {},
                     "n": {
                       "docs": {
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 0.5882352941176471
-                        },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.3703703703703704
@@ -37295,101 +37231,6 @@ window.lunrData = {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
                       "tf": 0.2857142857142857
-                    }
-                  }
-                }
-              }
-            },
-            "k": {
-              "docs": {},
-              "n": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "w": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "m": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "d": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "m": {
-                                "docs": {},
-                                "e": {
-                                  "docs": {},
-                                  "s": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {},
-                                      "a": {
-                                        "docs": {},
-                                        "g": {
-                                          "docs": {
-                                            "Input.html#addListener": {
-                                              "ref": "Input.html#addListener",
-                                              "tf": 0.3448275862068966
-                                            },
-                                            "Input.html#addOneTimeListener": {
-                                              "ref": "Input.html#addOneTimeListener",
-                                              "tf": 0.3703703703703704
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "s": {
-                        "docs": {},
-                        "y": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "t": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "m": {
-                                  "docs": {},
-                                  "m": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "s": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "g": {
-                                              "docs": {
-                                                "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                                                  "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                                                  "tf": 0.5617977528089888
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -37842,7 +37683,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
-                    "tf": 0.3448275862068966
+                    "tf": 0.3205128205128205
                   },
                   "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
@@ -38468,7 +38309,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4391
+      "length": 4365
     },
     "corpusTokens": [
       "0",
@@ -38618,7 +38459,6 @@ window.lunrData = {
       "actual",
       "ad",
       "add",
-      "add/remov",
       "addlisten",
       "addonetimelisten",
       "adjust",
@@ -39185,7 +39025,6 @@ window.lunrData = {
       "output|fals",
       "over",
       "overrid",
-      "overridden",
       "page",
       "pair",
       "pan",
@@ -39572,7 +39411,7 @@ window.lunrData = {
       "name": "Input",
       "tags": "Input",
       "summary": "",
-      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others. The Input#addListener, addOneTimeListener(), hasListener() and removeListener() methods are being overridden in this class to include a channel parameter which makes it possible to add/remove listeners from several channels at once. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. Also note that several events are input-wide and not tied to a channel. Examples of these are \"opened\", \"midimessage\", \"sysex\", etc. In such cases, simply pass undefined as the channel parameter.",
+      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others.",
       "body": ""
     },
     "Input.html#channels": {
@@ -39653,7 +39492,7 @@ window.lunrData = {
       "name": "addListener",
       "tags": "Input#addListener addListener",
       "summary": "",
-      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The event can be channel-bound or input-wide. Channel-bound events are tied to a specific MIDI channel while input-wide events are not. When listening for an input-wide event, you must specify the event to listen for and the callback function to trigger when the event happens: WebMidi.inputs[0].addListener(\"midimessage\", someFunction); To listen for a channel-bound event, you must also specify the event to listen for and the function to trigger but you must also add the the channels you wish to listen on in the options: WebMidi.inputs[0].addListener(\"noteon\", someFunction, {channels: [1, 2, 3]}); The code above will add a listener for the \"noteon\" event and call someFunction when the event is triggered on MIDI channels 1, 2 or 3. If you want to add a listener to a single MIDI channel you should probably do so directly on the InputChannel object. There are 6 families of events you can listen to: Channel Voice Events (channel-specific) channelaftertouch controlchange keyaftertouch noteoff noteon nrpn pitchbend programchange Channel Mode Events (channel-specific) channelmode To be completed... MIDI System Common Events (input-wide) songposition songselect sysex timecode tunerequest MIDI System Real-Time Events (input-wide) clock start continue stop activesensing reset State Change Events (input-wide) opened closed disconnected Catch-All Events (input-wide) midimessage unknownmidimessage"
+      "description": "Adds an event listener that will trigger a function callback when the specified event happens. The event can be channel-bound or input-wide. Channel-bound events are tied to a specific MIDI channel while input-wide events are not. When listening for an input-wide event, you must specify the event to listen for and the callback function to trigger when the event happens: WebMidi.inputs[0].addListener(\"midimessage\", someFunction); To listen for a channel-bound event, you must also specify the event to listen for and the function to trigger but you must also add the the channels you wish to listen on in the options: WebMidi.inputs[0].addListener(\"noteon\", someFunction, {channels: [1, 2, 3]}); The code above will add a listener for the \"noteon\" event and call someFunction when the event is triggered on MIDI channels 1, 2 or 3. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. If you want to add a listener to a single MIDI channel you should probably do so directly on the InputChannel object. There are 6 families of events you can listen to: Channel Voice Events (channel-specific) channelaftertouch controlchange keyaftertouch noteoff noteon nrpn pitchbend programchange Channel Mode Events (channel-specific) channelmode To be completed... MIDI System Common Events (input-wide) songposition songselect sysex timecode tunerequest MIDI System Real-Time Events (input-wide) clock start continue stop activesensing reset State Change Events (input-wide) opened closed disconnected Catch-All Events (input-wide) midimessage unknownmidimessage"
     },
     "Input.html#addOneTimeListener": {
       "id": "Input.html#addOneTimeListener",
