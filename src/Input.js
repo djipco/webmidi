@@ -76,6 +76,7 @@ export class Input extends EventEmitter {
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
     this._midiInput.onstatechange = null;
+    this._midiInput.onmidimessage = null;
     await this.close();
     this._midiInput = null;
   }
@@ -603,7 +604,7 @@ export class Input extends EventEmitter {
 
       // Legacy compatibility
       if (typeof options === "function") {
-        let channels = [].concat(listener); // clone
+        let channels = (listener != undefined) ? [].concat(listener) : undefined; // clone
         listener = options;
         options = {channels: channels};
       }
