@@ -111,6 +111,7 @@
           "repres",
           "sever",
           "simpli",
+          "singl",
           "subsystem",
           "such",
           "suspendev",
@@ -7450,7 +7451,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.1764705882352942
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -7620,7 +7621,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1903.5714285714287
+                      "tf": 1903.5294117647059
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -7735,7 +7736,7 @@
                                 "docs": {
                                   "Input.html": {
                                     "ref": "Input.html",
-                                    "tf": 0.5952380952380952
+                                    "tf": 0.5882352941176471
                                   },
                                   "Input.html#channels": {
                                     "ref": "Input.html#channels",
@@ -8445,7 +8446,7 @@
                       "docs": {
                         "Input.html": {
                           "ref": "Input.html",
-                          "tf": 1.1904761904761905
+                          "tf": 1.1764705882352942
                         },
                         "Output.html#setNonRegisteredParameter": {
                           "ref": "Output.html#setNonRegisteredParameter",
@@ -8463,7 +8464,7 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 0.5952380952380952
+                            "tf": 0.5882352941176471
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -9339,7 +9340,7 @@
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -9415,7 +9416,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.1764705882352942
                       },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
@@ -10088,7 +10089,7 @@
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.1904761904761905
+                    "tf": 1.1764705882352942
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -10413,7 +10414,7 @@
                             "docs": {
                               "Input.html": {
                                 "ref": "Input.html",
-                                "tf": 0.5952380952380952
+                                "tf": 0.5882352941176471
                               },
                               "Input.html#addListener": {
                                 "ref": "Input.html#addListener",
@@ -10944,7 +10945,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#manufacturer": {
                     "ref": "Input.html#manufacturer",
@@ -11296,7 +11297,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
@@ -11347,7 +11348,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.1764705882352942
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -11995,7 +11996,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -12976,7 +12977,7 @@
                       "docs": {
                         "Input.html": {
                           "ref": "Input.html",
-                          "tf": 1.1904761904761905
+                          "tf": 1.1764705882352942
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -13210,7 +13211,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
@@ -13419,7 +13420,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -13672,7 +13673,7 @@
                       "docs": {
                         "Input.html": {
                           "ref": "Input.html",
-                          "tf": 0.5952380952380952
+                          "tf": 0.5882352941176471
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -14478,7 +14479,7 @@
                                 "docs": {
                                   "Input.html": {
                                     "ref": "Input.html",
-                                    "tf": 0.5952380952380952
+                                    "tf": 0.5882352941176471
                                   },
                                   "Input.html#removeListener": {
                                     "ref": "Input.html#removeListener",
@@ -14521,7 +14522,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5952380952380952
+                        "tf": 0.5882352941176471
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -16315,7 +16316,7 @@
                                   "docs": {
                                     "Input.html": {
                                       "ref": "Input.html",
-                                      "tf": 0.5952380952380952
+                                      "tf": 0.5882352941176471
                                     },
                                     "WebMidi.html#inputs": {
                                       "ref": "WebMidi.html#inputs",
@@ -17374,7 +17375,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
@@ -17797,7 +17798,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -18330,7 +18331,7 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 0.5952380952380952
+                            "tf": 0.5882352941176471
                           },
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
@@ -18608,7 +18609,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5952380952380952
+                        "tf": 0.5882352941176471
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -18998,7 +18999,7 @@
               "docs": {
                 "Input.html": {
                   "ref": "Input.html",
-                  "tf": 0.5952380952380952
+                  "tf": 0.5882352941176471
                 }
               },
               "l": {
@@ -19015,7 +19016,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             }
                           }
                         }
@@ -19891,7 +19892,7 @@
                     },
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 112.38095238095238
+                      "tf": 112.3529411764706
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -20019,7 +20020,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -20178,7 +20179,7 @@
                       "docs": {
                         "Input.html": {
                           "ref": "Input.html",
-                          "tf": 2.976190476190476
+                          "tf": 2.941176470588235
                         },
                         "Input.html#channels": {
                           "ref": "Input.html#channels",
@@ -21819,7 +21820,7 @@
             "docs": {
               "Input.html": {
                 "ref": "Input.html",
-                "tf": 1.1904761904761905
+                "tf": 1.1764705882352942
               },
               "Input.html#addOneTimeListener": {
                 "ref": "Input.html#addOneTimeListener",
@@ -21871,7 +21872,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             }
                           }
                         }
@@ -21894,7 +21895,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             },
                             "Input.html#addListener": {
                               "ref": "Input.html#addListener",
@@ -21951,7 +21952,7 @@
                                         "docs": {
                                           "Input.html": {
                                             "ref": "Input.html",
-                                            "tf": 0.5952380952380952
+                                            "tf": 0.5882352941176471
                                           },
                                           "Input.html#addOneTimeListener": {
                                             "ref": "Input.html#addOneTimeListener",
@@ -22029,7 +22030,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -22383,7 +22384,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -23269,7 +23270,7 @@
             "docs": {
               "Input.html": {
                 "ref": "Input.html",
-                "tf": 0.5952380952380952
+                "tf": 0.5882352941176471
               },
               "Output.html#sendTimecodeQuarterFrame": {
                 "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -24120,7 +24121,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   }
                 }
               }
@@ -24146,7 +24147,7 @@
               "docs": {
                 "Input.html": {
                   "ref": "Input.html",
-                  "tf": 0.5952380952380952
+                  "tf": 0.5882352941176471
                 },
                 "Input.html#hasListener": {
                   "ref": "Input.html#hasListener",
@@ -24210,7 +24211,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.1764705882352942
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
@@ -24253,7 +24254,7 @@
                             "docs": {
                               "Input.html": {
                                 "ref": "Input.html",
-                                "tf": 0.5952380952380952
+                                "tf": 0.5882352941176471
                               },
                               "InputChannel.html": {
                                 "ref": "InputChannel.html",
@@ -24293,7 +24294,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5952380952380952
+                        "tf": 0.5882352941176471
                       },
                       "Input.html#id": {
                         "ref": "Input.html#id",
@@ -24370,7 +24371,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5952380952380952
+                        "tf": 0.5882352941176471
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -25321,7 +25322,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -26314,7 +26315,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             },
                             "Input.html#hasListener": {
                               "ref": "Input.html#hasListener",
@@ -26401,7 +26402,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -26842,7 +26843,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.1904761904761905
+                    "tf": 1.1764705882352942
                   },
                   "Note.html": {
                     "ref": "Note.html",
@@ -28303,7 +28304,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.1764705882352942
                       },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
@@ -28587,7 +28588,7 @@
               "docs": {
                 "Input.html": {
                   "ref": "Input.html",
-                  "tf": 0.5952380952380952
+                  "tf": 0.5882352941176471
                 },
                 "Input.html#addOneTimeListener": {
                   "ref": "Input.html#addOneTimeListener",
@@ -28636,7 +28637,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 0.5952380952380952
+                    "tf": 0.5882352941176471
                   },
                   "Input.html#connection": {
                     "ref": "Input.html#connection",
@@ -28985,7 +28986,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -29096,7 +29097,7 @@
                             "docs": {
                               "Input.html": {
                                 "ref": "Input.html",
-                                "tf": 0.5952380952380952
+                                "tf": 0.5882352941176471
                               }
                             }
                           }
@@ -32507,7 +32508,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.7857142857142856
+                      "tf": 1.7647058823529411
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -34075,7 +34076,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 0.5952380952380952
+                        "tf": 0.5882352941176471
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -34150,6 +34151,10 @@
                 "docs": {},
                 "l": {
                   "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 0.5882352941176471
+                    },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
                       "tf": 0.3448275862068966
@@ -34290,7 +34295,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             },
                             "Input.html#destroy": {
                               "ref": "Input.html#destroy",
@@ -34342,7 +34347,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.1904761904761905
+                    "tf": 1.1764705882352942
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -34447,7 +34452,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 0.5952380952380952
+                              "tf": 0.5882352941176471
                             }
                           }
                         }
@@ -34597,7 +34602,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 0.5952380952380952
+                      "tf": 0.5882352941176471
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
@@ -36229,7 +36234,7 @@
             "docs": {
               "Input.html": {
                 "ref": "Input.html",
-                "tf": 0.5952380952380952
+                "tf": 0.5882352941176471
               },
               "Input.html#addListener": {
                 "ref": "Input.html#addListener",
@@ -37227,7 +37232,7 @@
                       "docs": {
                         "Input.html": {
                           "ref": "Input.html",
-                          "tf": 0.5952380952380952
+                          "tf": 0.5882352941176471
                         },
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
@@ -38463,7 +38468,7 @@
           }
         }
       },
-      "length": 4390
+      "length": 4391
     },
     "corpusTokens": [
       "0",
@@ -39567,7 +39572,7 @@
       "name": "Input",
       "tags": "Input",
       "summary": "",
-      "description": "The Input class represents a MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others. The addListener(), addOneTimeListener(), hasListener() and removeListener() methods are being overridden in this class to include a channel parameter which makes it possible to add/remove listeners from several channels at once. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. Also note that several events are input-wide and not tied to a channel. Examples of these are \"opened\", \"midimessage\", \"sysex\", etc. In such cases, simply pass undefined as the channel parameter.",
+      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others. The addListener(), addOneTimeListener(), hasListener() and removeListener() methods are being overridden in this class to include a channel parameter which makes it possible to add/remove listeners from several channels at once. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. Also note that several events are input-wide and not tied to a channel. Examples of these are \"opened\", \"midimessage\", \"sysex\", etc. In such cases, simply pass undefined as the channel parameter.",
       "body": ""
     },
     "Input.html#channels": {
