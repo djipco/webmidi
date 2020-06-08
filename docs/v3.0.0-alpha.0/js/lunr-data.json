@@ -63,6 +63,7 @@
           "array",
           "avail",
           "class",
+          "current",
           "deriv",
           "directli",
           "djipev",
@@ -158,6 +159,7 @@
         "Input.html#name": [
           "input",
           "input#nam",
+          "lt;readonly&gt",
           "member",
           "midi",
           "name",
@@ -7425,7 +7427,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3513513513513513
+                        "tf": 1.3157894736842104
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -7595,7 +7597,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1905.4054054054054
+                      "tf": 1905.2631578947369
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -8418,7 +8420,7 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 1.3513513513513513
+                            "tf": 1.3157894736842104
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
@@ -9310,7 +9312,7 @@
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   },
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
@@ -9488,6 +9490,10 @@
                                       },
                                       "Input.html#manufacturer": {
                                         "ref": "Input.html#manufacturer",
+                                        "tf": 33.33333333333333
+                                      },
+                                      "Input.html#name": {
+                                        "ref": "Input.html#name",
                                         "tf": 33.33333333333333
                                       },
                                       "Input.html#state": {
@@ -10055,7 +10061,7 @@
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 2.7027027027027026
+                    "tf": 2.631578947368421
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -10907,7 +10913,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
@@ -10958,7 +10964,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3513513513513513
+                        "tf": 1.3157894736842104
                       },
                       "Input.html#addOneTimeListener": {
                         "ref": "Input.html#addOneTimeListener",
@@ -11606,7 +11612,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -12929,7 +12935,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -14400,7 +14406,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3513513513513513
+                        "tf": 1.3157894736842104
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -16258,7 +16264,7 @@
                                   "docs": {
                                     "Input.html": {
                                       "ref": "Input.html",
-                                      "tf": 1.3513513513513513
+                                      "tf": 1.3157894736842104
                                     },
                                     "WebMidi.html#inputs": {
                                       "ref": "WebMidi.html#inputs",
@@ -17736,7 +17742,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -18269,7 +18275,7 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 1.3513513513513513
+                            "tf": 1.3157894736842104
                           },
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
@@ -18547,7 +18553,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3513513513513513
+                        "tf": 1.3157894736842104
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -18954,7 +18960,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 1.3513513513513513
+                              "tf": 1.3157894736842104
                             }
                           }
                         }
@@ -19830,7 +19836,7 @@
                     },
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 114.05405405405405
+                      "tf": 113.94736842105263
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -19944,6 +19950,91 @@
                     "Output.html#clear": {
                       "ref": "Output.html#clear",
                       "tf": 702.2727272727273
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {
+              "Output.html#sendContinue": {
+                "ref": "Output.html#sendContinue",
+                "tf": 2.380952380952381
+              }
+            },
+            "r": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "n": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Input.html": {
+                          "ref": "Input.html",
+                          "tf": 1.3157894736842104
+                        },
+                        "Output.html#clear": {
+                          "ref": "Output.html#clear",
+                          "tf": 2.272727272727273
+                        },
+                        "Output.html#sendStart": {
+                          "ref": "Output.html#sendStart",
+                          "tf": 2.380952380952381
+                        },
+                        "Output.html#turnNotesOff": {
+                          "ref": "Output.html#turnNotesOff",
+                          "tf": 3.3333333333333335
+                        },
+                        "OutputChannel.html#turnNotesOff": {
+                          "ref": "OutputChannel.html#turnNotesOff",
+                          "tf": 3.571428571428571
+                        },
+                        "WebMidi.html#inputs": {
+                          "ref": "WebMidi.html#inputs",
+                          "tf": 10
+                        },
+                        "WebMidi.html#isNode": {
+                          "ref": "WebMidi.html#isNode",
+                          "tf": 10
+                        },
+                        "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                          "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                          "tf": 0.78125
+                        },
+                        "WebMidi.html#outputs": {
+                          "ref": "WebMidi.html#outputs",
+                          "tf": 10
+                        },
+                        "WebMidi.html#convertToTimestamp": {
+                          "ref": "WebMidi.html#convertToTimestamp",
+                          "tf": 1.6666666666666667
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.2857142857142857
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "m": {
+                    "docs": {
+                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                        "tf": 1.1235955056179776
+                      }
                     }
                   }
                 }
@@ -21564,87 +21655,6 @@
               }
             }
           },
-          "u": {
-            "docs": {
-              "Output.html#sendContinue": {
-                "ref": "Output.html#sendContinue",
-                "tf": 2.380952380952381
-              }
-            },
-            "r": {
-              "docs": {},
-              "r": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "Output.html#clear": {
-                          "ref": "Output.html#clear",
-                          "tf": 2.272727272727273
-                        },
-                        "Output.html#sendStart": {
-                          "ref": "Output.html#sendStart",
-                          "tf": 2.380952380952381
-                        },
-                        "Output.html#turnNotesOff": {
-                          "ref": "Output.html#turnNotesOff",
-                          "tf": 3.3333333333333335
-                        },
-                        "OutputChannel.html#turnNotesOff": {
-                          "ref": "OutputChannel.html#turnNotesOff",
-                          "tf": 3.571428571428571
-                        },
-                        "WebMidi.html#inputs": {
-                          "ref": "WebMidi.html#inputs",
-                          "tf": 10
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 10
-                        },
-                        "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                          "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                          "tf": 0.78125
-                        },
-                        "WebMidi.html#outputs": {
-                          "ref": "WebMidi.html#outputs",
-                          "tf": 10
-                        },
-                        "WebMidi.html#convertToTimestamp": {
-                          "ref": "WebMidi.html#convertToTimestamp",
-                          "tf": 1.6666666666666667
-                        },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "m": {
-                    "docs": {
-                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                        "tf": 1.1235955056179776
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "e": {
             "docs": {},
             "l": {
@@ -21756,7 +21766,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -22110,7 +22120,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -23177,7 +23187,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   }
                 }
               }
@@ -23259,7 +23269,7 @@
                             "docs": {
                               "Input.html": {
                                 "ref": "Input.html",
-                                "tf": 1.3513513513513513
+                                "tf": 1.3157894736842104
                               },
                               "InputChannel.html": {
                                 "ref": "InputChannel.html",
@@ -23299,7 +23309,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3513513513513513
+                        "tf": 1.3157894736842104
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
@@ -24366,7 +24376,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -25372,7 +25382,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -25887,7 +25897,7 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 2.7027027027027026
+                        "tf": 2.631578947368421
                       },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
@@ -26086,7 +26096,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
@@ -30069,7 +30079,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
@@ -31635,7 +31645,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3513513513513513
+                      "tf": 1.3157894736842104
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
@@ -31852,7 +31862,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 1.3513513513513513
+                              "tf": 1.3157894736842104
                             },
                             "Input.html#destroy": {
                               "ref": "Input.html#destroy",
@@ -31904,7 +31914,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3513513513513513
+                    "tf": 1.3157894736842104
                   },
                   "Input.html#hasListener": {
                     "ref": "Input.html#hasListener",
@@ -32009,7 +32019,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 1.3513513513513513
+                              "tf": 1.3157894736842104
                             }
                           }
                         }
@@ -32402,7 +32412,7 @@
                       },
                       "Input.html#name": {
                         "ref": "Input.html#name",
-                        "tf": 50
+                        "tf": 33.33333333333333
                       },
                       "Input.html#state": {
                         "ref": "Input.html#state",
@@ -34181,7 +34191,7 @@
                   },
                   "Input.html#name": {
                     "ref": "Input.html#name",
-                    "tf": 716.6666666666666
+                    "tf": 700
                   },
                   "InputChannel.html#getCcNameByNumber": {
                     "ref": "InputChannel.html#getCcNameByNumber",
@@ -38309,7 +38319,7 @@
           }
         }
       },
-      "length": 4365
+      "length": 4367
     },
     "corpusTokens": [
       "0",
@@ -39411,7 +39421,7 @@
       "name": "Input",
       "tags": "Input",
       "summary": "",
-      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others.",
+      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all currently available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others.",
       "body": ""
     },
     "Input.html#channels": {
@@ -39457,7 +39467,7 @@
     "Input.html#name": {
       "id": "Input.html#name",
       "kind": "member",
-      "title": "name :String",
+      "title": "&lt;readonly&gt; name :string",
       "longname": "Input#name",
       "name": "name",
       "tags": "Input#name name",
