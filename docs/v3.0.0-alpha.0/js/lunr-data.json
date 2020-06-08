@@ -62,7 +62,6 @@
         "Input.html": [
           "ad",
           "add/remov",
-          "addlisten",
           "addonetimelisten",
           "array",
           "avail",
@@ -86,6 +85,7 @@
           "host'",
           "includ",
           "input",
+          "input#addlisten",
           "inputchannel",
           "instanc",
           "instanti",
@@ -7720,6 +7720,353 @@
                       "tf": 35.6060606060606
                     }
                   },
+                  "#": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "d": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "e": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {
+                                        "Input.html": {
+                                          "ref": "Input.html",
+                                          "tf": 0.5882352941176471
+                                        },
+                                        "Input.html#addListener": {
+                                          "ref": "Input.html#addListener",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "o": {
+                            "docs": {},
+                            "n": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "l": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "s": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "e": {
+                                                  "docs": {},
+                                                  "n": {
+                                                    "docs": {
+                                                      "Input.html#addOneTimeListener": {
+                                                        "ref": "Input.html#addOneTimeListener",
+                                                        "tf": 1150
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "c": {
+                      "docs": {},
+                      "h": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "n": {
+                            "docs": {},
+                            "n": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {
+                                    "Input.html#channels": {
+                                      "ref": "Input.html#channels",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "n": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "c": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {
+                                    "Input.html#connection": {
+                                      "ref": "Input.html#connection",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "l": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "s": {
+                            "docs": {
+                              "Input.html#close": {
+                                "ref": "Input.html#close",
+                                "tf": 1150
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "i": {
+                      "docs": {},
+                      "d": {
+                        "docs": {
+                          "Input.html#id": {
+                            "ref": "Input.html#id",
+                            "tf": 1150
+                          }
+                        }
+                      }
+                    },
+                    "m": {
+                      "docs": {},
+                      "a": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "u": {
+                            "docs": {},
+                            "f": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "c": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {},
+                                    "u": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {
+                                          "Input.html#manufacturer": {
+                                            "ref": "Input.html#manufacturer",
+                                            "tf": 1150
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "n": {
+                      "docs": {},
+                      "a": {
+                        "docs": {},
+                        "m": {
+                          "docs": {
+                            "Input.html#name": {
+                              "ref": "Input.html#name",
+                              "tf": 1150
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "s": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Input.html#state": {
+                            "ref": "Input.html#state",
+                            "tf": 1150
+                          }
+                        }
+                      }
+                    },
+                    "t": {
+                      "docs": {},
+                      "y": {
+                        "docs": {},
+                        "p": {
+                          "docs": {
+                            "Input.html#type": {
+                              "ref": "Input.html#type",
+                              "tf": 1150
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "d": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "s": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "y": {
+                                  "docs": {
+                                    "Input.html#destroy": {
+                                      "ref": "Input.html#destroy",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "h": {
+                      "docs": {},
+                      "a": {
+                        "docs": {},
+                        "s": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "e": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {
+                                        "Input.html#hasListener": {
+                                          "ref": "Input.html#hasListener",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "o": {
+                      "docs": {},
+                      "p": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {
+                              "Input.html#open": {
+                                "ref": "Input.html#open",
+                                "tf": 1150
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "r": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "o": {
+                            "docs": {},
+                            "v": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "n": {
+                                            "docs": {
+                                              "Input.html#removeListener": {
+                                                "ref": "Input.html#removeListener",
+                                                "tf": 1150
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
                   "c": {
                     "docs": {},
                     "h": {
@@ -8021,349 +8368,6 @@
                                                     }
                                                   }
                                                 }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "#": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "h": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "n": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {
-                                    "Input.html#channels": {
-                                      "ref": "Input.html#channels",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "o": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "n": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "c": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {
-                                    "Input.html#connection": {
-                                      "ref": "Input.html#connection",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "l": {
-                        "docs": {},
-                        "o": {
-                          "docs": {},
-                          "s": {
-                            "docs": {
-                              "Input.html#close": {
-                                "ref": "Input.html#close",
-                                "tf": 1150
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "i": {
-                      "docs": {},
-                      "d": {
-                        "docs": {
-                          "Input.html#id": {
-                            "ref": "Input.html#id",
-                            "tf": 1150
-                          }
-                        }
-                      }
-                    },
-                    "m": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "u": {
-                            "docs": {},
-                            "f": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "c": {
-                                  "docs": {},
-                                  "t": {
-                                    "docs": {},
-                                    "u": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {
-                                          "Input.html#manufacturer": {
-                                            "ref": "Input.html#manufacturer",
-                                            "tf": 1150
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "n": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "m": {
-                          "docs": {
-                            "Input.html#name": {
-                              "ref": "Input.html#name",
-                              "tf": 1150
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "s": {
-                      "docs": {},
-                      "t": {
-                        "docs": {
-                          "Input.html#state": {
-                            "ref": "Input.html#state",
-                            "tf": 1150
-                          }
-                        }
-                      }
-                    },
-                    "t": {
-                      "docs": {},
-                      "y": {
-                        "docs": {},
-                        "p": {
-                          "docs": {
-                            "Input.html#type": {
-                              "ref": "Input.html#type",
-                              "tf": 1150
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "a": {
-                      "docs": {},
-                      "d": {
-                        "docs": {},
-                        "d": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {
-                                        "Input.html#addListener": {
-                                          "ref": "Input.html#addListener",
-                                          "tf": 1150
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "o": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "l": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "s": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {},
-                                                "e": {
-                                                  "docs": {},
-                                                  "n": {
-                                                    "docs": {
-                                                      "Input.html#addOneTimeListener": {
-                                                        "ref": "Input.html#addOneTimeListener",
-                                                        "tf": 1150
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "d": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "s": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "y": {
-                                  "docs": {
-                                    "Input.html#destroy": {
-                                      "ref": "Input.html#destroy",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "h": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "s": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {
-                                        "Input.html#hasListener": {
-                                          "ref": "Input.html#hasListener",
-                                          "tf": 1150
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "o": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "n": {
-                            "docs": {
-                              "Input.html#open": {
-                                "ref": "Input.html#open",
-                                "tf": 1150
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "r": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "m": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "v": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "e": {
-                                          "docs": {},
-                                          "n": {
-                                            "docs": {
-                                              "Input.html#removeListener": {
-                                                "ref": "Input.html#removeListener",
-                                                "tf": 1150
                                               }
                                             }
                                           }
@@ -21881,49 +21885,6 @@
                   }
                 }
               },
-              "l": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "n": {
-                          "docs": {
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 0.5882352941176471
-                            },
-                            "Input.html#addListener": {
-                              "ref": "Input.html#addListener",
-                              "tf": 670
-                            },
-                            "InputChannel.html": {
-                              "ref": "InputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 1.3888888888888888
-                            },
-                            "OutputChannel.html": {
-                              "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
-                            },
-                            "WebMidi.html": {
-                              "ref": "WebMidi.html",
-                              "tf": 0.7462686567164178
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "o": {
                 "docs": {},
                 "n": {
@@ -21964,6 +21925,45 @@
                                   }
                                 }
                               }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "l": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "Input.html#addListener": {
+                              "ref": "Input.html#addListener",
+                              "tf": 670
+                            },
+                            "InputChannel.html": {
+                              "ref": "InputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "Output.html": {
+                              "ref": "Output.html",
+                              "tf": 1.3888888888888888
+                            },
+                            "OutputChannel.html": {
+                              "ref": "OutputChannel.html",
+                              "tf": 1.2195121951219512
+                            },
+                            "WebMidi.html": {
+                              "ref": "WebMidi.html",
+                              "tf": 0.7462686567164178
                             }
                           }
                         }
@@ -39572,7 +39572,7 @@
       "name": "Input",
       "tags": "Input",
       "summary": "",
-      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others. The addListener(), addOneTimeListener(), hasListener() and removeListener() methods are being overridden in this class to include a channel parameter which makes it possible to add/remove listeners from several channels at once. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. Also note that several events are input-wide and not tied to a channel. Examples of these are \"opened\", \"midimessage\", \"sysex\", etc. In such cases, simply pass undefined as the channel parameter.",
+      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others. The Input#addListener, addOneTimeListener(), hasListener() and removeListener() methods are being overridden in this class to include a channel parameter which makes it possible to add/remove listeners from several channels at once. Note that, when adding events to channels, it is the InputChannel instance that gets a listener added and not the Input instance. Also note that several events are input-wide and not tied to a channel. Examples of these are \"opened\", \"midimessage\", \"sysex\", etc. In such cases, simply pass undefined as the channel parameter.",
       "body": ""
     },
     "Input.html#channels": {
