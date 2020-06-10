@@ -217,7 +217,8 @@ class InputChannel extends e {
   destroy() {
     this.input = null;
     this.number = null;
-    this.nrpnEventsEnabled = null;
+    this._nrpnBuffer = null;
+    this._nrpnEventsEnabled = null;
     this.removeListener();
   }
   /**
