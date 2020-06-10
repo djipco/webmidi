@@ -3,10 +3,6 @@ let WebMidiOutput;
 describe("Output Object", function() {
 
   beforeEach("Check support and enable WebMidi.js", async function () {
-    if (!WebMidi.supported) {
-      console.warn("The Web MIDI API is not supported in this environment.");
-      this.skip();
-    }
     await WebMidi.enable();
     WebMidiOutput = WebMidi.getOutputByName(config.output.name);
   });

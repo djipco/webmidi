@@ -1,12 +1,5 @@
 describe("WebMidi Object", function() {
 
-  beforeEach("Check support", function () {
-    if (!WebMidi.supported) {
-      console.warn("The Web MIDI API is not supported in this environment.");
-      this.skip();
-    }
-  });
-
   afterEach("Disable WebMidi.js", async function () {
     await WebMidi.disable();
   });
