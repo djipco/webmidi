@@ -218,7 +218,7 @@ class InputChannel extends e {
     this.input = null;
     this.number = null;
     this._nrpnBuffer = null;
-    this._nrpnEventsEnabled = null;
+    this._nrpnEventsEnabled = false;
     this.removeListener();
   }
   /**
@@ -482,8 +482,11 @@ class InputChannel extends e {
 
 
   getChannelModeByNumber(number) {
-    number = Math.floor(number);
-    if (!(number >= 120 && status <= 127)) return false;
+    if (wm.validation) {
+      number = Math.floor(number);
+    }
+
+    if (!(number >= 120 && number <= 127)) return false;
 
     for (let cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
       if (wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
