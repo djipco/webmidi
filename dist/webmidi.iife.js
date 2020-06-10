@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 8th 2020.
+ * This build was generated on June 9th 2020.
  *
  *
  *
@@ -215,6 +215,8 @@
 
     destroy() {
       this.input = null;
+      this.number = null;
+      this.nrpnEventsEnabled = null;
       this.removeListener();
     }
     /**
@@ -1251,7 +1253,7 @@
       if (wm.validation) {
         // Legacy compatibility
         if (typeof options === "function") {
-          let channels = [].concat(listener); // clone
+          let channels = listener != undefined ? [].concat(listener) : undefined; // clone
 
           listener = options;
           options = {
