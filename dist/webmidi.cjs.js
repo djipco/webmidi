@@ -228,8 +228,7 @@ class InputChannel extends e {
 
 
   _parseEvent(e) {
-    console.log(e); // Extract data bytes (unless it's a sysex message)
-
+    // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
