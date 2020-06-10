@@ -228,7 +228,8 @@ class InputChannel extends e {
 
 
   _parseEvent(e) {
-    // Extract data bytes (unless it's a sysex message)
+    console.log(e); // Extract data bytes (unless it's a sysex message)
+
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
@@ -263,6 +264,12 @@ class InputChannel extends e {
 
     this._parseEventForStandardMessages(e);
   }
+  /**
+   * Parses channel events for standard (non-NRPN) events.
+   * @param e Event
+   * @private
+   */
+
 
   _parseEventForStandardMessages(e) {
     let command = e.data[0] >> 4;
@@ -460,7 +467,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
        */
-      event.type = "pitchbend";
+      // event.type = "pitchbend";
       event.value = ((data2 << 7) + data1 - 8192) / 8192;
       event.rawValue = (data2 << 7) + data1;
     } else {
