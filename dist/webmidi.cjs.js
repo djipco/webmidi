@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 8th 2020.
+ * This build was generated on June 9th 2020.
  *
  *
  *
@@ -216,6 +216,8 @@ class InputChannel extends e {
 
   destroy() {
     this.input = null;
+    this.number = null;
+    this.nrpnEventsEnabled = null;
     this.removeListener();
   }
   /**
