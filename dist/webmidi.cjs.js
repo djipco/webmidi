@@ -338,7 +338,7 @@ class InputChannel extends e {
         octave: wm.getOctave(data1)
       };
       event.attack = data2 / 127;
-      event.rawVAttack = data2;
+      event.rawAttack = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
       /**
        * Event emitted when a key-specific aftertouch MIDI message has been received.
