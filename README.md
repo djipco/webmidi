@@ -1,98 +1,53 @@
-![WebMidi.js Logo](https://djipco.github.io/webmidi/images/webmidijs-logo.svg "WebMidi.js")
+![WebMidi.js Logo](http://webmidijs.org/media/images/webmidijs-logo-color-on-white.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
 
-## Background
 
-The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
-to the web platform that allows web developers to interact with MIDI musical instruments 
-and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
-low-level for their needs. For example, sending and receiving MIDI messages involves 
-performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
-MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
-to react upon receiving MIDI messages from external devices. For example, it only allows a 
-single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
-much easier.
+## Introduction
 
-## Important information about v3
-
-Version 3 of WebMidi.js does introduce various new functionalities. Here is an overview of the most 
-notable additions:
-
-* to be completed
-
-Many efforts have been put forth to make version 3 as backwards-compatible as possible. For most 
-people, it will work out of the box. However, there are a few breaking changes:
-
-* Support for Bower has been dropped.
-
-You can find a more extensive list of changes in the [CHANGELOG](CHANGELOG.md).
+**WebMidi.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
+the Node.js runtime. It simplifies the control of physical or virtual MIDI instruments with
+functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It also allows reacting 
+to incoming MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
+`"programchange"`.
 
 ## Browser Support
 
-This library works in all browsers that natively support the 
-[Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
-built-in support: 
+The library works in all browsers that natively support the 
+[Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following major browsers
+have native support: 
 
-* Chrome (Mac, GNU/Linux, Android & Windows)
-* Opera (Mac, GNU/Linux, Windows)
-* Android WebView component (KitKat and above) 
+* Edge
+* Chrome
+* Opera
 
-It is also possible to use this library in other browsers if you install version 1.4+ of 
-[Jazz-Plugin](http://jazz-soft.net/) together with the 
-[WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
-support for the following additional browsers:
+It is also possible to use this library in other browsers if you install 
+[Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides 
+support for the following additional web browsers:
 
-* Firefox v51 **or less** (Mac, GNU/Linux & Windows)
-* Safari (Mac)
-* Internet Explorer (Windows)
+* Firefox
+* Safari
+* Internet Explorer
 
 >For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip 
 >ahead to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) 
 >section.
 
-For **Firefox v52+ support**, you need to install two extensions made by 
-[Jazz-Soft](https://www.jazz-soft.net/):
-
-* [Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) v1.5.1+
-* [Web MIDI API extension](https://addons.mozilla.org/en-US/firefox/addon/web-midi-api/)
-
-Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
-testing will need to be done but it looks very promising.
-
 ## Node.js Support
 
-Version 3.0 of WebMidi.js introduced builtin Node.js support. Nothing special needs to be done, it 
-should just work. Big thanks to the [JZZ](https://www.npmjs.com/package/jzz) module and the good 
-folks of [Jazz-Soft](https://jazz-soft.net/).
+Version 3.0 of WebMidi.js introduced full Node.js support. Nothing special needs to be done, it 
+should just work in the following environments:
 
-While it is technically possible to use WebMidi.js in version 2.x, anyone who wants to use this 
-library inside Node.js is strongly encouraged to upgrade to version 3.
+* GNU/Linx
+* macOS
+* Windows
+* Raspberry Pi
 
-## TypeScript Support
-
-TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
-[mmmveggies](https://www.github.com/mmmveggies)).
-
-Usage:
-
-```ts
-import WebMidi from "webmidi";
-
-WebMidi.enable(...);
-```
-
-You can also import the types, if you need it:
-
-```ts
-import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
-
-input.addListener("noteon", "all", (event: InputEventNoteon) => {
-  ...
-}) 
-```
+Support for the Node.js environment has been made possible by the 
+[JZZ](https://www.npmjs.com/package/jzz) module and the good folks of 
+[Jazz-Soft](https://jazz-soft.net/).
 
 ## Installation
 
@@ -114,7 +69,7 @@ desired version at the end of the request:
 
 #### Manual Install
 
-Obviously, you can also install **WebMidi.js** the old fashioned way by downloading the
+Obviously, you can also install **WebMidi.js** the old-fashioned way by downloading the
 [latest release](https://github.com/djipco/webmidi/releases) packaged as a zip file. Uncompress the
 package, grab the `webmidi.min.js` file and copy it to your project. Link to it from your HTML page 
 as usual. 
@@ -134,7 +89,7 @@ Then, just add a `<script>` tag to your HTML page and make it point to:
 
 If you are using a bundler such as WebPack, you can import **WebMidi.js** in your project in this way:
 
-    import WebMidi from 'path/to/webmidi';
+    import {WebMidi} from 'path/to/webmidi';
 
 ## Insecure Origins
 
@@ -476,3 +431,65 @@ Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/220
 I invite academics to show their support for this project by notifying us of all papers 
 referencing the software. The best way to do that is to submit a pull request adding your paper 
 to the list above.
+
+
+
+
+
+
+
+## Background
+
+The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
+to the web platform that allows web developers to interact with MIDI musical instruments 
+and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
+low-level for their needs. For example, sending and receiving MIDI messages involves 
+performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
+MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
+to react upon receiving MIDI messages from external devices. For example, it only allows a 
+single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
+much easier.
+
+
+
+
+## Important information about v3
+
+Version 3 of WebMidi.js does introduce various new functionalities. Here is an overview of the most 
+notable additions:
+
+* to be completed
+
+Many efforts have been put forth to make version 3 as backwards-compatible as possible. For most 
+people, it will work out of the box. However, there are a few breaking changes:
+
+* Support for Bower has been dropped.
+
+You can find a more extensive list of changes in the [CHANGELOG](CHANGELOG.md).
+
+
+
+
+
+## TypeScript Support
+
+TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
+[mmmveggies](https://www.github.com/mmmveggies)).
+
+Usage:
+
+```ts
+import WebMidi from "webmidi";
+
+WebMidi.enable(...);
+```
+
+You can also import the types, if you need it:
+
+```ts
+import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
+
+input.addListener("noteon", "all", (event: InputEventNoteon) => {
+  ...
+}) 
+```
