@@ -202,8 +202,8 @@ already planned for an upcoming version by checking the
 
 ## Sponsors
 
-I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
-but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
+I would like to sincerely thank 👏 these sponsors for their support: 
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
 
