@@ -658,14 +658,15 @@ class InputChannel extends e {
     if (e.data.length > 1) {
       data1 = e.data[1];
       data2 = e.data.length > 2 ? e.data[2] : undefined;
-    } // Message not valid for NRPN
+    }
 
+    console.log("_parseEventForNrpnMessage", "A"); // Message not valid for NRPN
 
     if (!(command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && (data1 >= wm.MIDI_NRPN_MESSAGES.increment && data1 <= wm.MIDI_NRPN_MESSAGES.parammsb || data1 === wm.MIDI_NRPN_MESSAGES.entrymsb || data1 === wm.MIDI_NRPN_MESSAGES.entrylsb))) {
       return;
     }
 
-    console.log("_parseEventForNrpnMessage"); // set up a CC event to parse as NRPN part
+    console.log("_parseEventForNrpnMessage", "B"); // set up a CC event to parse as NRPN part
 
     let ccEvent = {
       target: this,
