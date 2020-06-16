@@ -313,17 +313,12 @@ class InputChannel extends e {
        * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
-      event.type = "noteoff"; // event.note = {
-      //   number: data1,
-      //   name: WebMidi.NOTES[data1 % 12],
-      //   octave: WebMidi.getOctave(data1)
-      // };
-
+      event.type = "noteoff";
       event.note = new Note(data1, {
         rawRelease: data2
       });
-      event.release = data2 / 127;
-      event.rawRelease = data2;
+      event.release = event.note.release;
+      event.rawRelease = event.note.rawRelease;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
       /**
        * Event emitted when a **note on** MIDI message has been received.
