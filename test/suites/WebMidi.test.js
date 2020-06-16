@@ -1,3 +1,6 @@
+const expect = require("chai").expect;
+const {WebMidi} = require("../../dist/webmidi.cjs.js");
+
 describe("WebMidi Object", function() {
 
   afterEach("Disable WebMidi.js", async function () {

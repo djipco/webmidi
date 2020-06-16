@@ -1,3 +1,6 @@
+const expect = require("chai").expect;
+const {Note} = require("../../dist/webmidi.cjs.js");
+
 describe("Note Object", function() {
 
   describe("constructor()", function () {

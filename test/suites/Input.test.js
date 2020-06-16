@@ -1,15 +1,246 @@
-let WebMidiInput;
+const expect = require("chai").expect;
+const midi = require("midi");
+const sinon = require("sinon");
+const {WebMidi} = require("../../dist/webmidi.cjs.js");
+
+// Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
+// an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
+// of view.
+let VIRTUAL_INPUT = {
+  port: new midi.Output(),
+  name: "Virtual input"
+};
+
+let WEBMIDI_INPUT;
 
 describe("Input Object", function() {
 
+  before(function () {
+    VIRTUAL_INPUT.port.openVirtualPort(VIRTUAL_INPUT.name);
+  });
+
+  after(function () {
+    VIRTUAL_INPUT.port.closePort();
+  });
+
   beforeEach("Check support and enable WebMidi.js", async function () {
     await WebMidi.enable();
-    WebMidiInput = WebMidi.getInputByName(config.input.name);
+    WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT.name);
   });
 
   afterEach("Disable WebMidi.js", async function () {
     await WebMidi.disable();
   });
+
+  it("should dispatch events when receiving system common MIDI messages (normal)", function (done) {
+
+    // Arrange
+    let events = [
+      // "sysex",         // RT-Midi does not seem to support these messages?!
+      // "timecode",
+      // "songposition",
+      // "songselect",
+      "tunerequest"
+    ];
+    let index = 0;
+
+    events.forEach(event => {
+      WEBMIDI_INPUT.addListener(event, assert);
+    });
+
+    // Act
+    events.forEach(event => {
+      VIRTUAL_INPUT.port.sendMessage(
+        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+      );
+    });
+
+    // Assert
+    function assert(e) {
+      let event = events[index];
+      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      index++;
+      if (index >= events.length) done();
+    }
+
+  });
+
+  it("should dispatch events when receiving system common MIDI messages (legacy)", function (done) {
+
+    // Arrange
+    let events = [
+      // "sysex",         // RT-Midi does not seem to support these messages?!
+      // "timecode",
+      // "songposition",
+      // "songselect",
+      "tunerequest"
+    ];
+    let index = 0;
+
+    events.forEach(event => {
+      WEBMIDI_INPUT.addListener(event, undefined, assert);
+    });
+
+    // Act
+    events.forEach(event => {
+      VIRTUAL_INPUT.port.sendMessage(
+        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+      );
+    });
+
+    // Assert
+    function assert(e) {
+      let event = events[index];
+      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      index++;
+      if (index >= events.length) done();
+    }
+
+  });
+
+  it("should dispatch events when receiving realtime MIDI messages (normal)", function (done) {
+
+    // Arrange
+    let events = [
+      "clock",
+      "start",
+      "continue",
+      "stop",
+      "activesensing",
+      "reset"
+    ];
+    let index = 0;
+
+    events.forEach(event => {
+      WEBMIDI_INPUT.addListener(event, assert);
+    });
+
+    // Act
+    events.forEach(event => {
+      VIRTUAL_INPUT.port.sendMessage(
+        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+      );
+    });
+
+    // Assert
+    function assert(e) {
+      let event = events[index];
+      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      index++;
+      if (index >= events.length) done();
+    }
+
+  });
+
+  it("should dispatch events when receiving realtime MIDI messages (legacy)", function (done) {
+
+    // Arrange
+    let events = [
+      "clock",
+      "start",
+      "continue",
+      "stop",
+      "activesensing",
+      "reset"
+    ];
+    let index = 0;
+
+    events.forEach(event => {
+      WEBMIDI_INPUT.addListener(event, undefined, assert);
+    });
+
+    // Act
+    events.forEach(event => {
+      VIRTUAL_INPUT.port.sendMessage(
+        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+      );
+    });
+
+    // Assert
+    function assert(e) {
+      let event = events[index];
+      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      index++;
+      if (index >= events.length) done();
+    }
+
+  });
+
+  it("should dispatch midimessage event when receiving any messages (normal)", function (done) {
+
+    // Arrange
+    let messages = [
+      [0x80, 48, 87],     // Note off
+      [0x90, 52, 64],     // Note on
+      [0xA0, 60, 83],     // Key pressure
+      [0xB0, 67, 92],     // Control change
+      [0xC0, 88],         // Program change
+      [0xD0, 93],         // Program change
+      [0xE0, 95, 101],    // Pitch bend
+      [250]               // Start
+    ];
+    let index = 0;
+
+    WEBMIDI_INPUT.addListener("midimessage", assert);
+
+    // Act
+    messages.forEach(msg => {
+      VIRTUAL_INPUT.port.sendMessage(msg);
+    });
+
+    // Assert
+    function assert(e) {
+      expect(e.data).to.have.ordered.members(messages[index]);
+      index++;
+      if (index >= messages.length) done();
+    }
+
+  });
+
+  it("should dispatch midimessage event when receiving any messages (legacy)", function (done) {
+
+    // Arrange
+    let messages = [
+      [0x80, 48, 87],     // Note off
+      [0x90, 52, 64],     // Note on
+      [0xA0, 60, 83],     // Key pressure
+      [0xB0, 67, 92],     // Control change
+      [0xC0, 88],         // Program change
+      [0xD0, 93],         // Program change
+      [0xE0, 95, 101],    // Pitch bend
+      [250]               // Start
+    ];
+    let index = 0;
+
+    WEBMIDI_INPUT.addListener("midimessage", undefined, assert);
+
+    // Act
+    messages.forEach(msg => {
+      VIRTUAL_INPUT.port.sendMessage(msg);
+    });
+
+    // Assert
+    function assert(e) {
+      expect(e.data).to.have.ordered.members(messages[index]);
+      index++;
+      if (index >= messages.length) done();
+    }
+
+  });
+
+  // it("should trigger 'opened' event", function (done) {
+  //
+  //   // Arrange
+  //   WEBMIDI_INPUT.addListener("opened", undefined, done);
+  //
+  //   // Act
+  //   // WEBMIDI_INPUT.close().then(() => WEBMIDI_INPUT.open());
+  //
+  // });
+
+  it("should trigger 'closed' event");
+
+  it("should trigger 'disconnected' event");
 
   describe("addListener()", function() {
 
@@ -21,15 +252,15 @@ describe("Input Object", function() {
       let event = "noteon";
 
       // Act
-      WebMidiInput.addListener(event, l1, {channels: channels});
+      WEBMIDI_INPUT.addListener(event, l1, {channels: channels});
 
       // Assert
-      WebMidiInput.channels.forEach(ch => {
+      WEBMIDI_INPUT.channels.forEach(ch => {
         expect(ch.hasListener(event, l1)).to.be.true;
       });
 
       expect(
-        WebMidiInput.hasListener(event, l1, {channels: channels})
+        WEBMIDI_INPUT.hasListener(event, l1, {channels: channels})
       ).to.be.true;
 
     });
@@ -42,15 +273,15 @@ describe("Input Object", function() {
       let event = "noteon";
 
       // Act
-      WebMidiInput.addListener(event, channels, l1);
+      WEBMIDI_INPUT.addListener(event, channels, l1);
 
       // Assert
-      WebMidiInput.channels.forEach(ch => {
+      WEBMIDI_INPUT.channels.forEach(ch => {
         expect(ch.hasListener(event, l1)).to.be.true;
       });
 
       expect(
-        WebMidiInput.hasListener(event, channels, l1)
+        WEBMIDI_INPUT.hasListener(event, channels, l1)
       ).to.be.true;
 
     });
@@ -62,12 +293,12 @@ describe("Input Object", function() {
 
       // Act
       Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
-        WebMidiInput.addListener(key, l1);
+        WEBMIDI_INPUT.addListener(key, l1);
       });
 
       // Assert
       Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
-        expect(WebMidiInput.hasListener(key, l1)).to.be.true;
+        expect(WEBMIDI_INPUT.hasListener(key, l1)).to.be.true;
       });
 
     });
@@ -79,12 +310,12 @@ describe("Input Object", function() {
 
       // Act
       Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
-        WebMidiInput.addListener(key, undefined, l1);
+        WEBMIDI_INPUT.addListener(key, undefined, l1);
       });
 
       // Assert
       Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
-        expect(WebMidiInput.hasListener(key, undefined, l1)).to.be.true;
+        expect(WEBMIDI_INPUT.hasListener(key, undefined, l1)).to.be.true;
       });
 
     });
@@ -101,7 +332,7 @@ describe("Input Object", function() {
       // Assert
       function assert(event) {
         expect(() => {
-          WebMidiInput.addListener(event, () => {}, {channels: channels});
+          WEBMIDI_INPUT.addListener(event, () => {}, {channels: channels});
         }).to.throw(TypeError);
       }
 
@@ -119,280 +350,8 @@ describe("Input Object", function() {
       // Assert
       function assert(event) {
         expect(() => {
-          WebMidiInput.addListener(event, channels, () => {});
+          WEBMIDI_INPUT.addListener(event, channels, () => {});
         }).to.throw(TypeError);
-      }
-
-    });
-
-    it("should return array of 'Listener' (of length 1) for system messages (normal)", function() {
-
-      // Arrange
-      let callbacks = [];
-      let listeners = [];
-
-      // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        callbacks[index] = () => {};
-        listeners[index] = WebMidiInput.addListener(key, callbacks[index]);
-      });
-
-      // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        expect(listeners[index].length).to.equal(1);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
-      });
-
-    });
-
-    it("should return array of 'Listener' (of length 1) for system messages (legacy)", function() {
-
-      // Arrange
-      let callbacks = [];
-      let listeners = [];
-
-      // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        callbacks[index] = () => {};
-        listeners[index] = WebMidiInput.addListener(key, undefined, callbacks[index]);
-      });
-
-      // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        expect(listeners[index].length).to.equal(1);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
-      });
-
-    });
-
-    it("should return an array of 'Listener' objects for channel messages (normal)", function() {
-
-      // Arrange
-      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      let callbacks = [];
-      let listeners = [];
-
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
-        callbacks[index] = () => {};
-        listeners[index] = WebMidiInput.addListener(key, callbacks[index], {channels: channels});
-      });
-
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
-        expect(listeners[index].length).to.equal(channels.length);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
-      });
-
-    });
-
-    it("should return an array of 'Listener' objects for channel messages (legacy)", function() {
-
-      // Arrange
-      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      let callbacks = [];
-      let listeners = [];
-
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
-        callbacks[index] = () => {};
-        listeners[index] = WebMidiInput.addListener(key, channels, callbacks[index]);
-      });
-
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
-        expect(listeners[index].length).to.equal(channels.length);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
-      });
-
-    });
-
-    it("should throw if channels are specified but listener not a function (normal)", function() {
-
-      // Arrange
-      let event = "noteon";
-      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
-      expect(() => {
-        WebMidiInput.addListener(event, undefined, {channels: channels});
-      }).to.throw(TypeError);
-
-    });
-
-    it("should throw if channels are specified but listener not a function (legacy)", function() {
-
-      // Arrange
-      let event = "noteon";
-      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
-      expect(() => {
-        WebMidiInput.addListener(event, channels);
-      }).to.throw(TypeError);
-
-    });
-
-    it("should ignore invalid channels (normal)", function() {
-
-      // Arrange
-      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      let invalid = [undefined, null, "", NaN, [], {}, 0];
-      let channels = valid.concat(invalid);
-
-      // Act
-      let listeners = WebMidiInput.addListener("noteon", () => {}, {channels: channels});
-
-      // Assert
-      expect(listeners.length).to.equal(valid.length);
-
-    });
-
-    it("should ignore invalid channels (legacy)", function() {
-
-      // Arrange
-      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      let invalid = [undefined, null, "", NaN, [], {}, 0];
-      let channels = valid.concat(invalid);
-
-      // Act
-      let listeners = WebMidiInput.addListener("noteon", channels, () => {});
-
-      // Assert
-      expect(listeners.length).to.equal(valid.length);
-
-    });
-
-    it("should trigger events when receiving system MIDI messages (normal)", function (done) {
-
-      // Arrange
-      let events = [
-        // "sysex",         // RT-Midi does not seem to support these messages?!
-        // "timecode",
-        // "songposition",
-        // "songselect",
-        "tunerequest",
-        "clock",
-        "start",
-        "continue",
-        "stop",
-        "activesensing",
-        "reset"
-      ];
-      let index = 0;
-
-      events.forEach(event => {
-        WebMidiInput.addListener(event, assert);
-      });
-
-      // Act
-      events.forEach(event => {
-        config.input.port.sendMessage(
-          [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
-        );
-      });
-
-      // Assert
-      function assert(e) {
-        let event = events[index];
-        expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
-        index++;
-        if (index >= events.length) done();
-      }
-
-    });
-
-    it("should trigger events when receiving system MIDI messages(legacy)", function (done) {
-
-      // Arrange
-      let events = [
-        // "sysex",         // RT-Midi does not seem to support these messages?!
-        // "timecode",
-        // "songposition",
-        // "songselect",
-        "tunerequest",
-        "clock",
-        "start",
-        "continue",
-        "stop",
-        "activesensing",
-        "reset"
-      ];
-      let index = 0;
-
-      events.forEach(event => {
-        WebMidiInput.addListener(event, undefined, assert);
-      });
-
-      // Act
-      events.forEach(event => {
-        config.input.port.sendMessage(
-          [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
-        );
-      });
-
-      // Assert
-      function assert(e) {
-        let event = events[index];
-        expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
-        index++;
-        if (index >= events.length) done();
-      }
-
-    });
-
-    it("should trigger midimessage event when receiving any messages (normal)", function (done) {
-
-      // Arrange
-      let messages = [
-        [0x80, 48, 87],     // Note off
-        [0x90, 52, 64],     // Note on
-        [0xA0, 60, 83],     // Key pressure
-        [0xB0, 67, 92],     // Control change
-        [0xC0, 88],         // Program change
-        [0xD0, 93],         // Program change
-        [0xE0, 95, 101],    // Pitch bend
-        [250]               // Start
-      ];
-      let index = 0;
-
-      WebMidiInput.addListener("midimessage", assert);
-
-      // Act
-      messages.forEach(msg => {
-        config.input.port.sendMessage(msg);
-      });
-
-      // Assert
-      function assert(e) {
-        expect(e.data).to.have.ordered.members(messages[index]);
-        index++;
-        if (index >= messages.length) done();
-      }
-
-    });
-
-    it("should trigger midimessage event when receiving any messages (legacy)", function (done) {
-
-      // Arrange
-      let messages = [
-        [0x80, 48, 87],     // Note off
-        [0x90, 52, 64],     // Note on
-        [0xA0, 60, 83],     // Key pressure
-        [0xB0, 67, 92],     // Control change
-        [0xC0, 88],         // Program change
-        [0xD0, 93],         // Program change
-        [0xE0, 95, 101],    // Pitch bend
-        [250]               // Start
-      ];
-      let index = 0;
-
-      WebMidiInput.addListener("midimessage", undefined, assert);
-
-      // Act
-      messages.forEach(msg => {
-        config.input.port.sendMessage(msg);
-      });
-
-      // Assert
-      function assert(e) {
-        expect(e.data).to.have.ordered.members(messages[index]);
-        index++;
-        if (index >= messages.length) done();
       }
 
     });
@@ -418,7 +377,7 @@ describe("Input Object", function() {
       // Assert
       function assert(event) {
         expect(() => {
-          WebMidiInput.addListener(event, assert);
+          WEBMIDI_INPUT.addListener(event, assert);
         }).to.throw();
       }
 
@@ -445,24 +404,143 @@ describe("Input Object", function() {
       // Assert
       function assert(event) {
         expect(() => {
-          WebMidiInput.addListener(event, undefined, assert);
+          WEBMIDI_INPUT.addListener(event, undefined, assert);
         }).to.throw();
       }
 
     });
 
-    // it("should trigger 'opened' event", function (done) {
-    //
-    //   // Arrange
-    //   WebMidiInput.addListener("opened", undefined, done);
-    //
-    //   // Act
-    //   // WebMidiInput.close().then(() => WebMidiInput.open());
-    //
-    // });
+    it("should return array of 'Listener' (of length 1) for system messages (normal)", function() {
 
-    it("should trigger 'closed' event");
-    it("should trigger 'disconnected' event");
+      // Arrange
+      let callbacks = [];
+      let listeners = [];
+
+      // Act
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        callbacks[index] = () => {};
+        listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index]);
+      });
+
+      // Assert
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        expect(listeners[index].length).to.equal(1);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should return array of 'Listener' (of length 1) for system messages (legacy)", function() {
+
+      // Arrange
+      let callbacks = [];
+      let listeners = [];
+
+      // Act
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        callbacks[index] = () => {};
+        listeners[index] = WEBMIDI_INPUT.addListener(key, undefined, callbacks[index]);
+      });
+
+      // Assert
+      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+        expect(listeners[index].length).to.equal(1);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should return an array of 'Listener' objects for channel messages (normal)", function() {
+
+      // Arrange
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let callbacks = [];
+      let listeners = [];
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        callbacks[index] = () => {};
+        listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index], {channels: channels});
+      });
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        expect(listeners[index].length).to.equal(channels.length);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should return an array of 'Listener' objects for channel messages (legacy)", function() {
+
+      // Arrange
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let callbacks = [];
+      let listeners = [];
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        callbacks[index] = () => {};
+        listeners[index] = WEBMIDI_INPUT.addListener(key, channels, callbacks[index]);
+      });
+
+      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+        expect(listeners[index].length).to.equal(channels.length);
+        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+      });
+
+    });
+
+    it("should throw if channels are specified but listener not a function (normal)", function() {
+
+      // Arrange
+      let event = "noteon";
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+      expect(() => {
+        WEBMIDI_INPUT.addListener(event, undefined, {channels: channels});
+      }).to.throw(TypeError);
+
+    });
+
+    it("should throw if channels are specified but listener not a function (legacy)", function() {
+
+      // Arrange
+      let event = "noteon";
+      let channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+      expect(() => {
+        WEBMIDI_INPUT.addListener(event, channels);
+      }).to.throw(TypeError);
+
+    });
+
+    it("should ignore invalid channels (normal)", function() {
+
+      // Arrange
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, "", NaN, [], {}, 0];
+      let channels = valid.concat(invalid);
+
+      // Act
+      let listeners = WEBMIDI_INPUT.addListener("noteon", () => {}, {channels: channels});
+
+      // Assert
+      expect(listeners.length).to.equal(valid.length);
+
+    });
+
+    it("should ignore invalid channels (legacy)", function() {
+
+      // Arrange
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, "", NaN, [], {}, 0];
+      let channels = valid.concat(invalid);
+
+      // Act
+      let listeners = WEBMIDI_INPUT.addListener("noteon", channels, () => {});
+
+      // Assert
+      expect(listeners.length).to.equal(valid.length);
+
+    });
 
   });
 
@@ -471,7 +549,7 @@ describe("Input Object", function() {
     it("should properly call 'addListener()' with appropriate parameters", function () {
 
       // Arrange
-      let spy = sinon.spy(WebMidiInput.channels[1], "addListener");
+      let spy = sinon.spy(WEBMIDI_INPUT.channels[1], "addListener");
       let event = "noteon";
       let listener = () => {};
       let options = {
@@ -483,7 +561,7 @@ describe("Input Object", function() {
       };
 
       // Act
-      WebMidiInput.addOneTimeListener(event, listener, options);
+      WEBMIDI_INPUT.addOneTimeListener(event, listener, options);
 
       // Assert
       let args = spy.args[0];
@@ -507,10 +585,10 @@ describe("Input Object", function() {
 
       // Act
       channels.forEach(ch => {
-        spies.push(sinon.spy(WebMidiInput.channels[ch], "addListener"));
+        spies.push(sinon.spy(WEBMIDI_INPUT.channels[ch], "addListener"));
       });
 
-      WebMidiInput.addOneTimeListener(event, listener, {channels: channels});
+      WEBMIDI_INPUT.addOneTimeListener(event, listener, {channels: channels});
 
       // Assert
       spies.forEach(spy => {
@@ -526,10 +604,10 @@ describe("Input Object", function() {
 
     it("should set up all 'InputChannel' objects", function() {
 
-      expect(WebMidiInput.channels.length).to.equal(16+1);
+      expect(WEBMIDI_INPUT.channels.length).to.equal(16+1);
 
       for (let i = 1; i <= 16; i++) {
-        expect(WebMidiInput.channels[i].number).to.equal(i);
+        expect(WEBMIDI_INPUT.channels[i].number).to.equal(i);
       }
 
     });
@@ -541,10 +619,10 @@ describe("Input Object", function() {
     it("should close the port", async function () {
 
       // Act
-      await WebMidiInput.close();
+      await WEBMIDI_INPUT.close();
 
       // Assert
-      expect(WebMidiInput.connection).to.equal("closed");
+      expect(WEBMIDI_INPUT.connection).to.equal("closed");
 
     });
 
@@ -555,17 +633,17 @@ describe("Input Object", function() {
     it("should destroy the 'Input'", async function() {
 
       // Act
-      await WebMidiInput.destroy();
+      await WEBMIDI_INPUT.destroy();
 
       // Assert
       try {
-        WebMidiInput.name;
+        WEBMIDI_INPUT.name;
       } catch (e) {
         await Promise.resolve();
       }
 
-      if (WebMidiInput.channels.length !== 0) return Promise.reject();
-      if (WebMidiInput.hasListener() === true) return Promise.reject();
+      if (WEBMIDI_INPUT.channels.length !== 0) return Promise.reject();
+      if (WEBMIDI_INPUT.hasListener() === true) return Promise.reject();
 
     });
 
@@ -583,11 +661,11 @@ describe("Input Object", function() {
 
       // Act
       channels.forEach(ch => {
-        spies.push(sinon.spy(WebMidiInput.channels[ch], "hasListener"));
+        spies.push(sinon.spy(WEBMIDI_INPUT.channels[ch], "hasListener"));
       });
 
-      WebMidiInput.addListener(event, listener, {channels: channels});
-      WebMidiInput.hasListener(event, listener, {channels: channels});
+      WEBMIDI_INPUT.addListener(event, listener, {channels: channels});
+      WEBMIDI_INPUT.hasListener(event, listener, {channels: channels});
 
       // Assert
       spies.forEach(spy => {
@@ -606,11 +684,11 @@ describe("Input Object", function() {
 
       // Act
       channels.forEach(ch => {
-        spies.push(sinon.spy(WebMidiInput.channels[ch], "hasListener"));
+        spies.push(sinon.spy(WEBMIDI_INPUT.channels[ch], "hasListener"));
       });
 
-      WebMidiInput.addListener(event, channels, listener);
-      WebMidiInput.hasListener(event, channels, listener);
+      WEBMIDI_INPUT.addListener(event, channels, listener);
+      WEBMIDI_INPUT.hasListener(event, channels, listener);
 
       // Assert
       spies.forEach(spy => {
@@ -624,11 +702,11 @@ describe("Input Object", function() {
       // Arrange
       let event = "clock";
       let listener = () => {};
-      let spy = sinon.spy(WebMidiInput, "hasListener");
+      let spy = sinon.spy(WEBMIDI_INPUT, "hasListener");
 
       // Act
-      WebMidiInput.addListener(event, listener);
-      WebMidiInput.hasListener(event, listener);
+      WEBMIDI_INPUT.addListener(event, listener);
+      WEBMIDI_INPUT.hasListener(event, listener);
 
       // Assert
       expect(spy.calledOnce).to.be.true;
@@ -644,11 +722,11 @@ describe("Input Object", function() {
     it("should open the port", async function () {
 
       // Act
-      await WebMidiInput.close();
-      await WebMidiInput.open();
+      await WEBMIDI_INPUT.close();
+      await WEBMIDI_INPUT.open();
 
       // Assert
-      expect(WebMidiInput.connection).to.equal("open");
+      expect(WEBMIDI_INPUT.connection).to.equal("open");
 
     });
 
@@ -666,10 +744,10 @@ describe("Input Object", function() {
 
       // Act
       channels.forEach(ch => {
-        spies.push(sinon.spy(WebMidiInput.channels[ch], "removeListener"));
+        spies.push(sinon.spy(WEBMIDI_INPUT.channels[ch], "removeListener"));
       });
 
-      WebMidiInput.removeListener(event, listener, {channels: channels});
+      WEBMIDI_INPUT.removeListener(event, listener, {channels: channels});
 
       // Assert
       spies.forEach(spy => {
@@ -688,10 +766,10 @@ describe("Input Object", function() {
 
       // Act
       channels.forEach(ch => {
-        spies.push(sinon.spy(WebMidiInput.channels[ch], "removeListener"));
+        spies.push(sinon.spy(WEBMIDI_INPUT.channels[ch], "removeListener"));
       });
 
-      WebMidiInput.removeListener(event, channels, listener);
+      WEBMIDI_INPUT.removeListener(event, channels, listener);
 
       // Assert
       spies.forEach(spy => {
@@ -705,10 +783,10 @@ describe("Input Object", function() {
       // Arrange
       let event = "clock";
       let listener = () => {};
-      let spy = sinon.spy(WebMidiInput, "removeListener");
+      let spy = sinon.spy(WEBMIDI_INPUT, "removeListener");
 
       // Act
-      WebMidiInput.removeListener(event, listener);
+      WEBMIDI_INPUT.removeListener(event, listener);
 
       // Assert
       expect(spy.calledOnce).to.be.true;
@@ -722,10 +800,10 @@ describe("Input Object", function() {
       // Arrange
       let event = "clock";
       let listener = () => {};
-      let spy = sinon.spy(WebMidiInput, "removeListener");
+      let spy = sinon.spy(WEBMIDI_INPUT, "removeListener");
 
       // Act
-      WebMidiInput.removeListener(event, undefined, listener);
+      WEBMIDI_INPUT.removeListener(event, undefined, listener);
 
       // Assert
       expect(spy.calledOnce).to.be.true;
