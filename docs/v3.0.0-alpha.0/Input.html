@@ -371,7 +371,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-835">line 835</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-899">line 899</a></p>
 								</div>
 							</div>
 			
@@ -417,7 +417,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-825">line 825</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-889">line 889</a></p>
 								</div>
 							</div>
 			
@@ -461,7 +461,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-845">line 845</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-909">line 909</a></p>
 								</div>
 							</div>
 			
@@ -505,7 +505,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-813">line 813</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-877">line 877</a></p>
 								</div>
 							</div>
 			
@@ -549,7 +549,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-855">line 855</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-919">line 919</a></p>
 								</div>
 							</div>
 			
@@ -593,7 +593,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-865">line 865</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-929">line 929</a></p>
 								</div>
 							</div>
 			
@@ -752,7 +752,7 @@
 													</td>
 												</tr>
 												<tr>
-														<td><code>channel</code></td>
+														<td><code>channels</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td></td>
@@ -818,15 +818,9 @@
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The callback must be a function.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The 'event' parameter must be a string or EventEmitter.ANY_EVENT.</p></div>
+									<div class="form-control-static exceptions-description"><p>For channel-specific events, 'options.channels' must be defined.</p></div>
 								</div>
 							</div>
 					</form>
@@ -862,62 +856,89 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="addOneTimeListener" class="function public"><span class="name">addOneTimeListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;Listener>}</span></h4>
+			<h4 id="addOneTimeListener" class="function public"><span class="name">addOneTimeListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;Listener>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time event listener that will trigger a function callback when the specified event
-			happens. The events that are dispatched can be channel-specific or input-wide.</p>
-			<p>This method overrides the one in
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">djipevents.EventEmitter</a>
-			by adding a <code>channel</code> parameter that makes it possible to add a listener to one or several
-			channels at once. Invalid channels will be silently ignored.</p>
-			<p>If you want to add a listener to a single channel (which is often preferable performance-wise),
-			use InputChannel.addListener() instead.</p>
-			<p>The list of events that are directly dispatched by <code>Input</code> objects can be broken down into
-			system MIDI messages and state change messages:</p>
-			<h6>System MIDI messages</h6>
+			happens. The event can be <strong>channel-bound</strong> or <strong>input-wide</strong>. Channel-bound events are
+			dispatched by <a href="InputChannel.html">InputChannel</a> objects and are tied to a specific MIDI channel while
+			input-wide events are dispatched by the <a href="Input.html">Input</a> object itself and are not tied to a
+			specific channel.</p>
+			<p>When listening for an input-wide event, you must specify the event to listen for and the
+			callback function to trigger when the event happens:</p>
+			<pre class="prettyprint source"><code>WebMidi.inputs[0].addListener(&quot;midimessage&quot;, someFunction);
+			</code></pre>
+			<p>To listen for a channel-bound event, you must also specify the event to listen for and the
+			function to trigger but you have to add the channels you wish to listen on in the <code>options</code>
+			parameter:</p>
+			<pre class="prettyprint source"><code>WebMidi.inputs[0].addListener(&quot;noteon&quot;, someFunction, {channels: [1, 2, 3]});
+			</code></pre>
+			<p>The code above will add a listener for the <code>&quot;noteon&quot;</code> event and call <code>someFunction</code> when the
+			event is triggered on MIDI channels <code>1</code>, <code>2</code> or <code>3</code>.</p>
+			<p>Note that, when adding events to channels, it is the <a href="InputChannel.html">InputChannel</a> instance that
+			actually gets a listener added and not the `<a href="Input.html">Input</a> instance.</p>
+			<p>Note: if you want to add a listener to a single MIDI channel you should probably do so directly
+			on the <a href="InputChannel.html">InputChannel</a> object itself.</p>
+			<p>There are 6 families of events you can listen to:</p>
+			<ol>
+			<li>
+			<p><strong>MIDI System Common</strong> Events (input-wide)</p>
 			<ul>
-			<li><a href="Input.html#event:sysex">sysex</a></li>
-			<li><a href="Input.html#event:timecode">timecode</a></li>
 			<li><a href="Input.html#event:songposition">songposition</a></li>
 			<li><a href="Input.html#event:songselect">songselect</a></li>
+			<li><a href="Input.html#event:sysex">sysex</a></li>
+			<li><a href="Input.html#event:timecode">timecode</a></li>
 			<li><a href="Input.html#event:tunerequest">tunerequest</a></li>
+			</ul>
+			</li>
+			<li>
+			<p><strong>MIDI System Real-Time</strong> Events (input-wide)</p>
+			<ul>
 			<li><a href="Input.html#event:clock">clock</a></li>
 			<li><a href="Input.html#event:start">start</a></li>
 			<li><a href="Input.html#event:continue">continue</a></li>
 			<li><a href="Input.html#event:stop">stop</a></li>
 			<li><a href="Input.html#event:activesensing">activesensing</a></li>
 			<li><a href="Input.html#event:reset">reset</a></li>
-			<li><a href="Input.html#event:midimessage">midimessage</a></li>
-			<li><a href="Input.html#event:unknownmidimessage">unknownmidimessage</a></li>
 			</ul>
-			<h6>State change messages</h6>
+			</li>
+			<li>
+			<p><strong>State Change</strong> Events (input-wide)</p>
 			<ul>
 			<li><a href="Input.html#event:opened">opened</a></li>
 			<li><a href="Input.html#event:closed">closed</a></li>
 			<li><a href="Input.html#event:disconnected">disconnected</a></li>
 			</ul>
-			<p>For these input-wide events, the <code>channel</code> parameter will be silently ignored. You can simply
-			use <code>undefined</code> in that case.</p>
-			<p>If you want to view all incoming MIDI traffic, you can listen to the <code>midimessage</code> event. This
-			event is dispatched for every single message that is received on that <code>Input</code> (no matter the
-			channel, if any).</p>
-			<p>By using the <code>channel</code> property, you can also add listeners to all channels specified via the
-			<code>channel</code> parameter. These are the events dispatched by individual <a href="InputChannel.html">InputChannel</a>
-			objects:</p>
+			</li>
+			<li>
+			<p><strong>Catch-All</strong> Events (input-wide)</p>
 			<ul>
+			<li><a href="Input.html#event:midimessage">midimessage</a></li>
+			<li><a href="Input.html#event:unknownmidimessage">unknownmidimessage</a></li>
+			</ul>
+			</li>
+			<li>
+			<p><strong>Channel Voice</strong> Events (channel-specific)</p>
+			<ul>
+			<li><a href="InputChannel.html#event:channelaftertouch">channelaftertouch</a></li>
+			<li><a href="InputChannel.html#event:controlchange">controlchange</a></li>
+			<li><a href="InputChannel.html#event:keyaftertouch">keyaftertouch</a></li>
 			<li><a href="InputChannel.html#event:noteoff">noteoff</a></li>
 			<li><a href="InputChannel.html#event:noteon">noteon</a></li>
-			<li><a href="InputChannel.html#event:keyaftertouch">keyaftertouch</a></li>
-			<li><a href="InputChannel.html#event:controlchange">controlchange</a></li>
 			<li><a href="InputChannel.html#event:nrpn">nrpn</a></li>
-			<li><a href="InputChannel.html#event:channelmode">channelmode</a></li>
-			<li><a href="InputChannel.html#event:programchange">programchange</a></li>
-			<li><a href="InputChannel.html#event:channelaftertouch">channelaftertouch</a></li>
 			<li><a href="InputChannel.html#event:pitchbend">pitchbend</a></li>
-			<li><a href="InputChannel.html#event:midimessage">midimessage</a></li>
-			</ul></div>
+			<li><a href="InputChannel.html#event:programchange">programchange</a></li>
+			</ul>
+			</li>
+			<li>
+			<p><strong>Channel Mode</strong> Events (channel-specific)</p>
+			<ul>
+			<li><a href="InputChannel.html#event:channelmode">channelmode</a></li>
+			<li>To be completed...</li>
+			</ul>
+			</li>
+			</ol></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -941,23 +962,13 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>An integer between 1 and 16 or an array of such integers
-			representing the channel(s) to listen on.</p>
-							</td>
-						</tr>
-						<tr>
 								<td><code>listener</code></td>
 							<td><span class="param-type">function</span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
 									<p>A callback function to execute when the specified event is detected.
-			This function will receive an event parameter object. For details on this object&quot;s properties,
+			This function will receive an event parameter object. For details on this object's properties,
 			check out the documentation for the various events (links above).</p>
 							</td>
 						</tr>
@@ -979,22 +990,34 @@
 											</thead>
 											<tbody>
 												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <code>arguments</code> property of the <code>Listener</code> object
+									and can be retrieved or modified as desired.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>channels</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An integer between 1 and 16 or an array of
+									such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
+									input-wide events.</p>
+													</td>
+												</tr>
+												<tr>
 														<td><code>context</code></td>
 													<td><span class="param-type">Object</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>this</td>
 													<td class="last">
 															<p>The value of <code>this</code> in the callback function.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>prepend</code></td>
-													<td><span class="param-type">boolean</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
-													<td class="last">
-															<p>Whether the listener should be added at the beginning
-									of the listeners array.</p>
 													</td>
 												</tr>
 												<tr>
@@ -1008,15 +1031,13 @@
 													</td>
 												</tr>
 												<tr>
-														<td><code>arguments</code></td>
-													<td><span class="param-type">array</span></td>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>false</td>
 													<td class="last">
-															<p>An array of arguments which will be passed separately to the
-									callback function. This array is stored in the <strong>arguments</strong>
-									property of the <strong>Listener</strong> object and can be retrieved or modified as
-									desired.</p>
+															<p>Whether the listener should be added at the beginning
+									of the listeners array.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1036,21 +1057,9 @@
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The &quot;channel&quot; parameter is invalid.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The specified event type is not supported.</p></div>
+									<div class="form-control-static exceptions-description"><p>For channel-specific events, 'options.channels' must be defined.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1060,13 +1069,6 @@
 			
 			
 			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">3.0.0</p>
-								</div>
-							</div>
 			
 			
 			
@@ -1081,7 +1083,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-709">line 709</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-742">line 742</a></p>
 								</div>
 							</div>
 			
@@ -1127,7 +1129,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-469">line 469</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-470">line 470</a></p>
 								</div>
 							</div>
 			
@@ -1185,19 +1187,13 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="hasListener" class="function public"><span class="name">hasListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">channel</span>, <span class="signature-param">listener</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Boolean}</span></h4>
+			<h4 id="hasListener" class="function public"><span class="name">hasListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Boolean}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Checks if the specified event type is already defined to trigger the listener function on the
-			specified channel(s). If more than one channel is specified, the function will return <code>true</code>
-			only if all channels have the listener defined.</p>
-			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
-			We suggest you use <code>undefined</code> in such cases.</p>
-			<p>This method overrides the one in
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">djipevents.EventEmitter</a>
-			by adding a <code>channel</code> parameter that makes it possible to check for the listener on one or
-			several channels at once. Invalid channels will be silently ignored.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Checks if the specified event type is already defined to trigger the listener function. For
+			channel-specific events, the function will return <code>true</code> only if all channels have the listener
+			defined.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1205,6 +1201,8 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
@@ -1212,23 +1210,49 @@
 						<tr>
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
 									<p>The type of the event.</p>
 							</td>
 						</tr>
 						<tr>
-								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td><code>listener</code></td>
+							<td><span class="param-type">function</span></td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
-									<p>An integer between 1 and 16 or an array of such integers
-			representing the channel(s) to listen on.</p>
+									<p>The callback function to check for.</p>
 							</td>
 						</tr>
 						<tr>
-								<td><code>listener</code></td>
-							<td><span class="param-type">function</span></td>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
 							<td class="last">
-									<p>The callback function to check for.</p>
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>channels</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>An integer between 1 and 16 or an array of
+									such integers representing the MIDI channel(s) to check. This parameter is ignored for
+									input-wide events.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 							</td>
 						</tr>
 					</tbody>
@@ -1245,9 +1269,9 @@
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<label class="col-sm-3 control-label exceptions-type"></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function.</p></div>
+									<div class="form-control-static exceptions-description"><p>Error For channel-specific events, 'options.channels' must be defined.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1271,7 +1295,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-749">line 749</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-777">line 777</a></p>
 								</div>
 							</div>
 			
@@ -1316,7 +1340,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-448">line 448</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-449">line 449</a></p>
 								</div>
 							</div>
 			
@@ -1328,21 +1352,15 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="removeListener" class="function public"><span class="name">removeListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">type</span>&nbsp;], <span class="signature-param">channel</span> [,&nbsp;<span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+			<h4 id="removeListener" class="function public"><span class="name">removeListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">type</span> [,&nbsp;<span class="signature-param">listener</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes the specified listener from the specified channel(s). If the <code>listener</code> parameter is
-			left undefined, all listeners for the specified <code>type</code> will be removed from all channels. If
-			the <code>channel</code> is also omitted, all listeners of the specified type will be removed from all
-			channels. If no parameters are defined, all listeners attached to any channel of the <code>Input</code>
-			will be removed.</p>
-			<p>For input-level events (<code>sysex</code>, <code>start</code>, etc.), the <code>channel</code> parameter is silently ignored.
-			You can use <code>undefined</code> in such cases.</p>
-			<p>This method overrides the one in
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">djipevents.EventEmitter</a>
-			by adding a <code>channel</code> parameter that makes it possible to remove a listener from one or several
-			channels at once. Invalid channels will be silently ignored.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes the specified listener for the specified event. If no listener is specified, all
+			listeners for the specified event will be removed. If no event is specified, all listeners for
+			the <code>Input</code> as well as all listeners for all <code>InputChannels</code> will be removed.</p>
+			<p>By default, channel-specific listeners will be removed from all channels unless the
+			<code>options.channel</code> narrows it down.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1363,16 +1381,6 @@
 								<td></td>
 							<td class="last">
 									<p>The type of the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>channel</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>An integer between 1 and 16 or an array of such integers
-			representing the channel(s) to listen on.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1401,6 +1409,16 @@
 											</thead>
 											<tbody>
 												<tr>
+														<td><code>channels</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">Array.&lt;number></span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>An integer between 1 and 16 or an array of
+									such integers representing the MIDI channel(s) to match. This parameter is ignored for
+									input-wide events.</p>
+													</td>
+												</tr>
+												<tr>
 														<td><code>context</code></td>
 													<td><span class="param-type">*</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
@@ -1424,21 +1442,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The specified event type is not supported.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The &quot;listener&quot; parameter must be a function..</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
 			
@@ -1458,7 +1462,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-793">line 793</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-833">line 833</a></p>
 								</div>
 							</div>
 			
@@ -1555,7 +1559,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-390">line 390</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-391">line 391</a></p>
 								</div>
 							</div>
 			
@@ -1649,7 +1653,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-326">line 326</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-327">line 327</a></p>
 								</div>
 							</div>
 			
@@ -1730,7 +1734,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-114">line 114</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-115">line 115</a></p>
 								</div>
 							</div>
 			
@@ -1824,7 +1828,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-358">line 358</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-359">line 359</a></p>
 								</div>
 							</div>
 			
@@ -1959,7 +1963,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-130">line 130</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-131">line 131</a></p>
 								</div>
 							</div>
 			
@@ -2083,7 +2087,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-178">line 178</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-179">line 179</a></p>
 								</div>
 							</div>
 			
@@ -2164,7 +2168,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-98">line 98</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-99">line 99</a></p>
 								</div>
 							</div>
 			
@@ -2258,7 +2262,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-406">line 406</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-407">line 407</a></p>
 								</div>
 							</div>
 			
@@ -2352,7 +2356,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-276">line 276</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-277">line 277</a></p>
 								</div>
 							</div>
 			
@@ -2453,7 +2457,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-292">line 292</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-293">line 293</a></p>
 								</div>
 							</div>
 			
@@ -2547,7 +2551,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-342">line 342</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-343">line 343</a></p>
 								</div>
 							</div>
 			
@@ -2641,7 +2645,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-374">line 374</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-375">line 375</a></p>
 								</div>
 							</div>
 			
@@ -2741,7 +2745,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-235">line 235</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-236">line 236</a></p>
 								</div>
 							</div>
 			
@@ -2836,7 +2840,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-259">line 259</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-260">line 260</a></p>
 								</div>
 							</div>
 			
@@ -2930,7 +2934,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-310">line 310</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-311">line 311</a></p>
 								</div>
 							</div>
 			
@@ -3025,7 +3029,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-422">line 422</a></p>
+									<p class="form-control-static"><a href="Input.js.html">Input.js</a>, <a href="Input.js.html#line-423">line 423</a></p>
 								</div>
 							</div>
 			
@@ -3046,7 +3050,7 @@
 	</div>
 	<footer>
 				<div class="copyright">©<a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2020. WebMidi.js v3.0.0-alpha.0 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 8th 2020 @ 10:07:22 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on June 15th 2020 @ 22:36:46 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
