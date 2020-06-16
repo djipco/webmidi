@@ -30,8 +30,9 @@
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
 
 /**
- * The `InputChannel` class represents a single input channel (1-16) from an input device. This
- * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+ * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
+ * directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -43,10 +44,12 @@ class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListene
  * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
  * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
  * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
+ * others. Check out the
+ * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
+ * details.
  *
  * @param {Input} input The `Input` this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
  * @fires InputChannel#noteoff
@@ -111,7 +114,7 @@ class InputChannel extends e {
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
 
     /**
-     * Event emitted when a MIDI message is received on the `InputChannel`
+     * Event emitted when a MIDI message of any kind is received by the `InputChannel`.
      *
      * @event InputChannel#midimessage
      * @type {Object}
@@ -145,6 +148,16 @@ class InputChannel extends e {
 
   }
 
+  getStructuredMidiMessage(data) {
+
+    return {
+      command: data[0] >> 4,
+      data1: data.length > 1 ? data[1] : undefined,
+      data2: data.length > 2 ? data[2] : undefined
+    };
+
+  }
+
   /**
    * Parses channel events for standard (non-NRPN) events.
    * @param e Event
@@ -152,13 +165,15 @@ class InputChannel extends e {
    */
   _parseEventForStandardMessages(e) {
 
-    let command = e.data[0] >> 4;
-    let data1, data2;
+    // let command = e.data[0] >> 4;
+    // let data1, data2;
+    //
+    // if (e.data.length > 1) {
+    //   data1 = e.data[1];
+    //   data2 = e.data.length > 2 ? e.data[2] : undefined;
+    // }
 
-    if (e.data.length > 1) {
-      data1 = e.data[1];
-      data2 = e.data.length > 2 ? e.data[2] : undefined;
-    }
+    let {command, data1, data2} = this.getStructuredMidiMessage(e.data);
 
     // Returned event
     let event = {
