@@ -303,7 +303,7 @@ class InputChannel extends e {
        * @type {Object}
        * @property {InputChannel} target The `InputChannel` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"noteoff"`
@@ -338,13 +338,11 @@ class InputChannel extends e {
        * 127).
        */
       event.type = "noteon";
-      event.note = {
-        number: data1,
-        name: wm.NOTES[data1 % 12],
-        octave: wm.getOctave(data1)
-      };
-      event.attack = data2 / 127;
-      event.rawAttack = data2;
+      event.note = new Note(data1, {
+        rawAttack: data2
+      });
+      event.attack = event.note.attack;
+      event.rawAttack = event.note.rawAttack;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
       /**
        * Event emitted when a key-specific aftertouch MIDI message has been received.
@@ -364,11 +362,7 @@ class InputChannel extends e {
        * 127).
        */
       event.type = "keyaftertouch";
-      event.note = {
-        number: data1,
-        name: wm.NOTES[data1 % 12],
-        octave: wm.getOctave(data1)
-      };
+      event.note = new Note(data1);
       event.value = data2 / 127;
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
