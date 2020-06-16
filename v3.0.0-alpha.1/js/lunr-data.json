@@ -1,4 +1,4 @@
-window.lunrData = {
+{
   "index": {
     "version": "1.0.0",
     "fields": [
@@ -474,63 +474,12 @@ window.lunrData = {
           "subsystem",
           "such"
         ],
-        "InputChannel.html#.NRPN_TYPES": [
-          "array",
-          "array.&lt;string&gt",
-          "inputchannel.nrpn_typ",
-          "lt;static",
-          "member",
-          "non",
-          "nrpn",
-          "nrpn_type",
-          "number",
-          "paramet",
-          "readonly&gt",
-          "regist",
-          "type",
-          "valid"
-        ],
         "InputChannel.html#input": [
           "belong",
           "channel",
           "input",
           "inputchannel#input",
           "member"
-        ],
-        "InputChannel.html#nrpnEventsEnabled": [
-          "boolean",
-          "buffer",
-          "chang",
-          "collector",
-          "compos",
-          "control",
-          "discard",
-          "dispatch",
-          "event",
-          "fall",
-          "fire",
-          "incomplet",
-          "indic",
-          "inputchannel#nrpneventsen",
-          "invalid",
-          "logic",
-          "member",
-          "messag",
-          "non",
-          "nrpn",
-          "nrpneventsen",
-          "number",
-          "order",
-          "out",
-          "paramet",
-          "receiv",
-          "regist",
-          "sequenc",
-          "specif",
-          "such",
-          "through",
-          "valid",
-          "whether"
         ],
         "InputChannel.html#number": [
           "1",
@@ -4664,7 +4613,7 @@ window.lunrData = {
           "webmidi#sanitizechannel"
         ]
       },
-      "length": 146
+      "length": 144
     },
     "tokenStore": {
       "root": {
@@ -7353,10 +7302,6 @@ window.lunrData = {
                 "docs": {},
                 "c": {
                   "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
                       "tf": 7.142857142857142
@@ -7424,34 +7369,6 @@ window.lunrData = {
                       "OutputChannel.html#setMasterTuning": {
                         "ref": "OutputChannel.html#setMasterTuning",
                         "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                }
-              },
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.7462686567164178
-                    }
-                  },
-                  "p": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "t": {
-                          "docs": {
-                            "InputChannel.html#nrpnEventsEnabled": {
-                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                              "tf": 1.1904761904761905
-                            }
-                          }
-                        }
                       }
                     }
                   }
@@ -7544,6 +7461,17 @@ window.lunrData = {
                           }
                         }
                       }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -8030,38 +7958,6 @@ window.lunrData = {
                                     "tf": 1903.061224489796
                                   }
                                 },
-                                ".": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "_": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {},
-                                              "y": {
-                                                "docs": {},
-                                                "p": {
-                                                  "docs": {
-                                                    "InputChannel.html#.NRPN_TYPES": {
-                                                      "ref": "InputChannel.html#.NRPN_TYPES",
-                                                      "tf": 1150
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
                                 "#": {
                                   "docs": {},
                                   "i": {
@@ -8086,44 +7982,6 @@ window.lunrData = {
                                   },
                                   "n": {
                                     "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "v": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "n": {
-                                                  "docs": {},
-                                                  "t": {
-                                                    "docs": {},
-                                                    "s": {
-                                                      "docs": {},
-                                                      "e": {
-                                                        "docs": {},
-                                                        "n": {
-                                                          "docs": {
-                                                            "InputChannel.html#nrpnEventsEnabled": {
-                                                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                                                              "tf": 1150
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
                                     "u": {
                                       "docs": {},
                                       "m": {
@@ -8501,38 +8359,6 @@ window.lunrData = {
                 }
               }
             },
-            "v": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
-                        },
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
-                          "tf": 1.5151515151515151
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "t": {
               "docs": {},
               "e": {
@@ -8697,6 +8523,34 @@ window.lunrData = {
                         "WebMidi.html#octaveOffset": {
                           "ref": "WebMidi.html#octaveOffset",
                           "tf": 1.3513513513513513
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "d": {
+                      "docs": {
+                        "WebMidi.html#getNoteObject": {
+                          "ref": "WebMidi.html#getNoteObject",
+                          "tf": 1.3888888888888888
+                        },
+                        "WebMidi.html#getValidNoteArray": {
+                          "ref": "WebMidi.html#getValidNoteArray",
+                          "tf": 1.5151515151515151
+                        },
+                        "WebMidi.html#guessNoteNumber": {
+                          "ref": "WebMidi.html#guessNoteNumber",
+                          "tf": 1.1363636363636365
                         }
                       }
                     }
@@ -9573,29 +9427,6 @@ window.lunrData = {
                   }
                 }
               },
-              "s": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "c": {
-                          "docs": {
-                            "InputChannel.html#.NRPN_TYPES": {
-                              "ref": "InputChannel.html#.NRPN_TYPES",
-                              "tf": 25
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "p": {
                 "docs": {},
                 "r": {
@@ -9641,20 +9472,6 @@ window.lunrData = {
           },
           "o": {
             "docs": {},
-            "g": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "c": {
-                  "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    }
-                  }
-                }
-              }
-            },
             "o": {
               "docs": {},
               "k": {
@@ -11028,16 +10845,8 @@ window.lunrData = {
                         "ref": "Input.html#type",
                         "tf": 110
                       },
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 110
-                      },
                       "InputChannel.html#input": {
                         "ref": "InputChannel.html#input",
-                        "tf": 110
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
                         "tf": 110
                       },
                       "InputChannel.html#number": {
@@ -11204,10 +11013,6 @@ window.lunrData = {
                       "Input.html#close": {
                         "ref": "Input.html#close",
                         "tf": 3.571428571428571
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 4.761904761904762
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
@@ -13494,14 +13299,6 @@ window.lunrData = {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.29069767441860467
                         },
-                        "InputChannel.html#.NRPN_TYPES": {
-                          "ref": "InputChannel.html#.NRPN_TYPES",
-                          "tf": 6.25
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
                         "Output.html#decrementRegisteredParameter": {
                           "ref": "Output.html#decrementRegisteredParameter",
                           "tf": 21.08695652173913
@@ -14125,32 +13922,6 @@ window.lunrData = {
                       "tf": 110
                     }
                   }
-                },
-                "o": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "y": {
-                        "docs": {},
-                        "&": {
-                          "docs": {},
-                          "g": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "InputChannel.html#.NRPN_TYPES": {
-                                  "ref": "InputChannel.html#.NRPN_TYPES",
-                                  "tf": 25
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
                 }
               },
               "l": {
@@ -14630,173 +14401,6 @@ window.lunrData = {
                 }
               }
             },
-            "g": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 6.25
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      },
-                      "Output.html#decrementRegisteredParameter": {
-                        "ref": "Output.html#decrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "Output.html#incrementRegisteredParameter": {
-                        "ref": "Output.html#incrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "Output.html#setNonRegisteredParameter": {
-                        "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 0.4098360655737705
-                      },
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.9868421052631579
-                      },
-                      "OutputChannel.html#decrementRegisteredParameter": {
-                        "ref": "OutputChannel.html#decrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#incrementRegisteredParameter": {
-                        "ref": "OutputChannel.html#incrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#setNonRegisteredParameter": {
-                        "ref": "OutputChannel.html#setNonRegisteredParameter",
-                        "tf": 0.4807692307692308
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.9868421052631579
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 1.5625
-                      }
-                    },
-                    "e": {
-                      "docs": {},
-                      "r": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "d": {
-                            "docs": {},
-                            "p": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "a": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "c": {
-                                                "docs": {},
-                                                "o": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "r": {
-                                                      "docs": {},
-                                                      "s": {
-                                                        "docs": {
-                                                          "Output.html#sendControlChange": {
-                                                            "ref": "Output.html#sendControlChange",
-                                                            "tf": 0.2890173410404624
-                                                          },
-                                                          "OutputChannel.html#sendControlChange": {
-                                                            "ref": "OutputChannel.html#sendControlChange",
-                                                            "tf": 0.2890173410404624
-                                                          },
-                                                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                            "tf": 0.4032258064516129
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              },
-                                              "f": {
-                                                "docs": {},
-                                                "i": {
-                                                  "docs": {},
-                                                  "n": {
-                                                    "docs": {
-                                                      "Output.html#sendControlChange": {
-                                                        "ref": "Output.html#sendControlChange",
-                                                        "tf": 0.2890173410404624
-                                                      },
-                                                      "OutputChannel.html#sendControlChange": {
-                                                        "ref": "OutputChannel.html#sendControlChange",
-                                                        "tf": 0.2890173410404624
-                                                      },
-                                                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                        "tf": 0.4032258064516129
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "v": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 2.380952380952381
-                      },
-                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                        "tf": 0.5617977528089888
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "l": {
               "docs": {
                 "WebMidi.html#convertToTimestamp": {
@@ -14964,6 +14568,144 @@ window.lunrData = {
                 }
               }
             },
+            "g": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Output.html#decrementRegisteredParameter": {
+                        "ref": "Output.html#decrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "Output.html#incrementRegisteredParameter": {
+                        "ref": "Output.html#incrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "Output.html#setNonRegisteredParameter": {
+                        "ref": "Output.html#setNonRegisteredParameter",
+                        "tf": 0.4098360655737705
+                      },
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.9868421052631579
+                      },
+                      "OutputChannel.html#decrementRegisteredParameter": {
+                        "ref": "OutputChannel.html#decrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#incrementRegisteredParameter": {
+                        "ref": "OutputChannel.html#incrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#setNonRegisteredParameter": {
+                        "ref": "OutputChannel.html#setNonRegisteredParameter",
+                        "tf": 0.4807692307692308
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.9868421052631579
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 1.5625
+                      }
+                    },
+                    "e": {
+                      "docs": {},
+                      "r": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "a": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "r": {
+                                              "docs": {},
+                                              "c": {
+                                                "docs": {},
+                                                "o": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "r": {
+                                                      "docs": {},
+                                                      "s": {
+                                                        "docs": {
+                                                          "Output.html#sendControlChange": {
+                                                            "ref": "Output.html#sendControlChange",
+                                                            "tf": 0.2890173410404624
+                                                          },
+                                                          "OutputChannel.html#sendControlChange": {
+                                                            "ref": "OutputChannel.html#sendControlChange",
+                                                            "tf": 0.2890173410404624
+                                                          },
+                                                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                            "tf": 0.4032258064516129
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "f": {
+                                                "docs": {},
+                                                "i": {
+                                                  "docs": {},
+                                                  "n": {
+                                                    "docs": {
+                                                      "Output.html#sendControlChange": {
+                                                        "ref": "Output.html#sendControlChange",
+                                                        "tf": 0.2890173410404624
+                                                      },
+                                                      "OutputChannel.html#sendControlChange": {
+                                                        "ref": "OutputChannel.html#sendControlChange",
+                                                        "tf": 0.2890173410404624
+                                                      },
+                                                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                        "tf": 0.4032258064516129
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "q": {
               "docs": {},
               "u": {
@@ -15033,6 +14775,23 @@ window.lunrData = {
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "c": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "v": {
+                    "docs": {
+                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                        "tf": 0.5617977528089888
                       }
                     }
                   }
@@ -17310,10 +17069,54 @@ window.lunrData = {
               }
             }
           },
+          "o": {
+            "docs": {},
+            "r": {
+              "docs": {},
+              "k": {
+                "docs": {
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.272727272727273
+                  },
+                  "Output.html#setMasterTuning": {
+                    "ref": "Output.html#setMasterTuning",
+                    "tf": 1.1363636363636365
+                  },
+                  "OutputChannel.html#setMasterTuning": {
+                    "ref": "OutputChannel.html#setMasterTuning",
+                    "tf": 1.1904761904761905
+                  },
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.7462686567164178
+                  }
+                }
+              }
+            }
+          },
           "h": {
             "docs": {},
             "e": {
               "docs": {},
+              "e": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "'": {
+                    "docs": {
+                      "Output.html#setModulationRange": {
+                        "ref": "Output.html#setModulationRange",
+                        "tf": 2.1739130434782608
+                      },
+                      "OutputChannel.html#setModulationRange": {
+                        "ref": "OutputChannel.html#setModulationRange",
+                        "tf": 2.380952380952381
+                      }
+                    }
+                  }
+                }
+              },
               "t": {
                 "docs": {},
                 "h": {
@@ -17322,10 +17125,6 @@ window.lunrData = {
                     "docs": {},
                     "r": {
                       "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 7.142857142857142
@@ -17350,24 +17149,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "e": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "'": {
-                    "docs": {
-                      "Output.html#setModulationRange": {
-                        "ref": "Output.html#setModulationRange",
-                        "tf": 2.1739130434782608
-                      },
-                      "OutputChannel.html#setModulationRange": {
-                        "ref": "OutputChannel.html#setModulationRange",
-                        "tf": 2.380952380952381
-                      }
-                    }
-                  }
-                }
               }
             },
             "o": {
@@ -17384,32 +17165,6 @@ window.lunrData = {
                       "ref": "WebMidi.html#getOutputByName",
                       "tf": 2
                     }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "k": {
-                "docs": {
-                  "Output.html#clear": {
-                    "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#setMasterTuning": {
-                    "ref": "Output.html#setMasterTuning",
-                    "tf": 1.1363636363636365
-                  },
-                  "OutputChannel.html#setMasterTuning": {
-                    "ref": "OutputChannel.html#setMasterTuning",
-                    "tf": 1.1904761904761905
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.7462686567164178
                   }
                 }
               }
@@ -18229,20 +17984,6 @@ window.lunrData = {
                       }
                     }
                   }
-                },
-                "a": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        }
-                      }
-                    }
-                  }
                 }
               },
               "p": {
@@ -18262,10 +18003,6 @@ window.lunrData = {
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
                             "tf": 0.5813953488372093
-                          },
-                          "InputChannel.html#nrpnEventsEnabled": {
-                            "ref": "InputChannel.html#nrpnEventsEnabled",
-                            "tf": 1.1904761904761905
                           }
                         }
                       }
@@ -20338,10 +20075,6 @@ window.lunrData = {
                       "ref": "Input.html#addOneTimeListener",
                       "tf": 0.29069767441860467
                     },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 4.761904761904762
-                    },
                     "InputChannel.html#getCcNameByNumber": {
                       "ref": "InputChannel.html#getCcNameByNumber",
                       "tf": 4.545454545454546
@@ -20628,10 +20361,6 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 4.761904761904762
-                        },
                         "InputChannel.html#getCcNameByNumber": {
                           "ref": "InputChannel.html#getCcNameByNumber",
                           "tf": 4.545454545454546
@@ -21080,17 +20809,6 @@ window.lunrData = {
                     }
                   }
                 },
-                "o": {
-                  "docs": {},
-                  "s": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                },
                 "a": {
                   "docs": {},
                   "t": {
@@ -21241,32 +20959,6 @@ window.lunrData = {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
                     "tf": 0.2857142857142857
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "c": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "r": {
-                          "docs": {
-                            "InputChannel.html#nrpnEventsEnabled": {
-                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                              "tf": 1.1904761904761905
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -21584,10 +21276,6 @@ window.lunrData = {
                       "ref": "Input.html#destroy",
                       "tf": 5
                     },
-                    "InputChannel.html#.NRPN_TYPES": {
-                      "ref": "InputChannel.html#.NRPN_TYPES",
-                      "tf": 6.25
-                    },
                     "Output.html": {
                       "ref": "Output.html",
                       "tf": 1.3888888888888888
@@ -21767,46 +21455,6 @@ window.lunrData = {
                                 }
                               }
                             },
-                            "s": {
-                              "docs": {},
-                              "t": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {},
-                                      "g": {
-                                        "docs": {},
-                                        "&": {
-                                          "docs": {},
-                                          "g": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {
-                                                "InputChannel.html#.NRPN_TYPES": {
-                                                  "ref": "InputChannel.html#.NRPN_TYPES",
-                                                  "tf": 25
-                                                },
-                                                "WebMidi.html#MIDI_INTERFACE_EVENTS": {
-                                                  "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "WebMidi.html#NOTES": {
-                                                  "ref": "WebMidi.html#NOTES",
-                                                  "tf": 33.33333333333333
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
                             "o": {
                               "docs": {},
                               "u": {
@@ -21849,6 +21497,42 @@ window.lunrData = {
                                                       }
                                                     }
                                                   }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "s": {
+                              "docs": {},
+                              "t": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {},
+                                      "g": {
+                                        "docs": {},
+                                        "&": {
+                                          "docs": {},
+                                          "g": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "WebMidi.html#MIDI_INTERFACE_EVENTS": {
+                                                  "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "WebMidi.html#NOTES": {
+                                                  "ref": "WebMidi.html#NOTES",
+                                                  "tf": 33.33333333333333
                                                 }
                                               }
                                             }
@@ -23052,10 +22736,6 @@ window.lunrData = {
                       "ref": "Input.html#removeListener",
                       "tf": 5.172413793103448
                     },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 2.380952380952381
-                    },
                     "WebMidi.html#MIDI_INTERFACE_EVENTS": {
                       "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
                       "tf": 8.333333333333332
@@ -24223,14 +23903,6 @@ window.lunrData = {
             },
             "r": {
               "docs": {},
-              "e": {
-                "docs": {
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
-                  }
-                }
-              },
               "s": {
                 "docs": {},
                 "t": {
@@ -24336,14 +24008,6 @@ window.lunrData = {
             },
             "l": {
               "docs": {},
-              "l": {
-                "docs": {
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
-                  }
-                }
-              },
               "s": {
                 "docs": {
                   "InputChannel.html#getCcNameByNumber": {
@@ -26447,10 +26111,6 @@ window.lunrData = {
                 "InputChannel.html": {
                   "ref": "InputChannel.html",
                   "tf": 1.0204081632653061
-                },
-                "InputChannel.html#nrpnEventsEnabled": {
-                  "ref": "InputChannel.html#nrpnEventsEnabled",
-                  "tf": 1.1904761904761905
                 },
                 "Output.html#clear": {
                   "ref": "Output.html#clear",
@@ -29522,60 +29182,6 @@ window.lunrData = {
               }
             }
           },
-          "r": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.6578947368421052
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.6578947368421052
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 0.78125
-                      },
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "c": {
             "docs": {},
             "t": {
@@ -29813,6 +29419,56 @@ window.lunrData = {
               }
             }
           },
+          "r": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.6578947368421052
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.6578947368421052
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 0.78125
+                      },
+                      "WebMidi.html#time": {
+                        "ref": "WebMidi.html#time",
+                        "tf": 1.5625
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.2857142857142857
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "d": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.2857142857142857
+                    }
+                  }
+                }
+              }
+            }
+          },
           "f": {
             "docs": {},
             "f": {
@@ -29887,26 +29543,6 @@ window.lunrData = {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
                       "tf": 0.7462686567164178
-                    }
-                  }
-                }
-              }
-            },
-            "q": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "c": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 2.380952380952381
-                        }
-                      }
                     }
                   }
                 }
@@ -31683,10 +31319,6 @@ window.lunrData = {
                     "ref": "InputChannel.html",
                     "tf": 1.0204081632653061
                   },
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
-                  },
                   "Output.html": {
                     "ref": "Output.html",
                     "tf": 1.3888888888888888
@@ -32485,10 +32117,6 @@ window.lunrData = {
                       "Input.html#removeListener": {
                         "ref": "Input.html#removeListener",
                         "tf": 1.7241379310344827
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
@@ -33553,14 +33181,6 @@ window.lunrData = {
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
                         "tf": 4.166666666666666
-                      },
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 6.25
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
                       },
                       "InputChannel.html#number": {
                         "ref": "InputChannel.html#number",
@@ -34635,14 +34255,6 @@ window.lunrData = {
             },
             "n": {
               "docs": {
-                "InputChannel.html#.NRPN_TYPES": {
-                  "ref": "InputChannel.html#.NRPN_TYPES",
-                  "tf": 6.25
-                },
-                "InputChannel.html#nrpnEventsEnabled": {
-                  "ref": "InputChannel.html#nrpnEventsEnabled",
-                  "tf": 1.1904761904761905
-                },
                 "Output.html#setNonRegisteredParameter": {
                   "ref": "Output.html#setNonRegisteredParameter",
                   "tf": 0.4098360655737705
@@ -34836,14 +34448,6 @@ window.lunrData = {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 0.29069767441860467
                   },
-                  "InputChannel.html#.NRPN_TYPES": {
-                    "ref": "InputChannel.html#.NRPN_TYPES",
-                    "tf": 6.25
-                  },
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 2.380952380952381
-                  },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
                     "tf": 1.639344262295082
@@ -34859,55 +34463,6 @@ window.lunrData = {
                   "WebMidi.html#MIDI_NRPN_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
                     "tf": 2
-                  }
-                },
-                "_": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "y": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {
-                            "InputChannel.html#.NRPN_TYPES": {
-                              "ref": "InputChannel.html#.NRPN_TYPES",
-                              "tf": 675
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "e": {
-                  "docs": {},
-                  "v": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {
-                                  "InputChannel.html#nrpnEventsEnabled": {
-                                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                                    "tf": 700
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -35033,10 +34588,6 @@ window.lunrData = {
                         "Input.html#channels": {
                           "ref": "Input.html#channels",
                           "tf": 4.166666666666666
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
                         },
                         "Output.html#channels": {
                           "ref": "Output.html#channels",
@@ -35196,10 +34747,6 @@ window.lunrData = {
                   "Input.html#removeListener": {
                     "ref": "Input.html#removeListener",
                     "tf": 25
-                  },
-                  "InputChannel.html#.NRPN_TYPES": {
-                    "ref": "InputChannel.html#.NRPN_TYPES",
-                    "tf": 6.25
                   },
                   "Output.html#type": {
                     "ref": "Output.html#type",
@@ -36025,10 +35572,6 @@ window.lunrData = {
                           "ref": "Input.html#hasListener",
                           "tf": 20
                         },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 50
-                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 33.33333333333333
@@ -36313,40 +35856,6 @@ window.lunrData = {
                   "Output.html#setSongPosition": {
                     "ref": "Output.html#setSongPosition",
                     "tf": 2.631578947368421
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "f": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html#supported": {
-                      "ref": "WebMidi.html#supported",
-                      "tf": 1.7241379310344827
-                    }
                   }
                 }
               }
@@ -36785,6 +36294,23 @@ window.lunrData = {
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 0.6578947368421052
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
                   }
                 }
               }
@@ -37503,14 +37029,6 @@ window.lunrData = {
                 "docs": {},
                 "d": {
                   "docs": {
-                    "InputChannel.html#.NRPN_TYPES": {
-                      "ref": "InputChannel.html#.NRPN_TYPES",
-                      "tf": 6.25
-                    },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
                     "InputChannel.html#getCcNameByNumber": {
                       "ref": "InputChannel.html#getCcNameByNumber",
                       "tf": 2.272727272727273
@@ -38037,7 +37555,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4332
+      "length": 4285
     },
     "corpusTokens": [
       "0",
@@ -38245,7 +37763,6 @@ window.lunrData = {
       "breathcontrollerfin",
       "bright",
       "browser",
-      "buffer",
       "built",
       "byte",
       "c",
@@ -38281,14 +37798,12 @@ window.lunrData = {
       "close",
       "coars",
       "code",
-      "collector",
       "combin",
       "command",
       "common",
       "commonj",
       "compat",
       "complet",
-      "compos",
       "confirm",
       "connect",
       "consid",
@@ -38335,7 +37850,6 @@ window.lunrData = {
       "differ",
       "directli",
       "disabl",
-      "discard",
       "disconnect",
       "dispatch",
       "display",
@@ -38394,14 +37908,12 @@ window.lunrData = {
       "f",
       "f#4",
       "f0",
-      "fall",
       "fals",
       "famili",
       "featur",
       "file",
       "find",
       "fine",
-      "fire",
       "first",
       "fit",
       "flat",
@@ -38479,7 +37991,6 @@ window.lunrData = {
       "includ",
       "inclus",
       "incom",
-      "incomplet",
       "increment",
       "incrementregisteredparamet",
       "index",
@@ -38506,9 +38017,7 @@ window.lunrData = {
       "inputchannel#getccnamebynumb",
       "inputchannel#getchannelmodebynumb",
       "inputchannel#input",
-      "inputchannel#nrpneventsen",
       "inputchannel#numb",
-      "inputchannel.nrpn_typ",
       "input|fals",
       "insid",
       "instal",
@@ -38547,7 +38056,6 @@ window.lunrData = {
       "local",
       "localcontrol",
       "localhost",
-      "logic",
       "longer",
       "look",
       "lsb",
@@ -38555,7 +38063,6 @@ window.lunrData = {
       "lt;protected&gt",
       "lt;readonli",
       "lt;readonly&gt",
-      "lt;static",
       "make",
       "manufactur",
       "manufacturer\"",
@@ -38627,8 +38134,6 @@ window.lunrData = {
       "novat",
       "now",
       "nrpn",
-      "nrpn_type",
-      "nrpneventsen",
       "nullable&gt",
       "nullactiveparamet",
       "number",
@@ -38821,7 +38326,6 @@ window.lunrData = {
       "rawreleas",
       "react",
       "readm",
-      "readonly&gt",
       "real",
       "reason",
       "receiv",
@@ -38881,7 +38385,6 @@ window.lunrData = {
       "sendtunerequest",
       "sens",
       "sent",
-      "sequenc",
       "serv",
       "set",
       "setchannelaftertouch",
@@ -39285,16 +38788,6 @@ window.lunrData = {
       "description": "The InputChannel class represents a single input MIDI channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
       "body": ""
     },
-    "InputChannel.html#.NRPN_TYPES": {
-      "id": "InputChannel.html#.NRPN_TYPES",
-      "kind": "member",
-      "title": "&lt;static, readonly&gt; NRPN_TYPES :Array.&lt;string&gt;",
-      "longname": "InputChannel.NRPN_TYPES",
-      "name": "NRPN_TYPES",
-      "tags": "InputChannel.NRPN_TYPES NRPN_TYPES",
-      "summary": "",
-      "description": "Array of valid non-registered parameter number (NRPNs) types."
-    },
     "InputChannel.html#input": {
       "id": "InputChannel.html#input",
       "kind": "member",
@@ -39304,16 +38797,6 @@ window.lunrData = {
       "tags": "InputChannel#input input",
       "summary": "",
       "description": "The Input this channel belongs to"
-    },
-    "InputChannel.html#nrpnEventsEnabled": {
-      "id": "InputChannel.html#nrpnEventsEnabled",
-      "kind": "member",
-      "title": "nrpnEventsEnabled :Boolean",
-      "longname": "InputChannel#nrpnEventsEnabled",
-      "name": "nrpnEventsEnabled",
-      "tags": "InputChannel#nrpnEventsEnabled nrpnEventsEnabled",
-      "summary": "",
-      "description": "Indicates whether events for Non-Registered Parameter Number should be dispatched. NRPNs are composed of a sequence of specific control change messages. When a valid sequence of such control change messages is received, an nrpn event will fire. If an invalid or out of order control change message is received, it will fall through the collector logic and all buffered control change messages will be discarded as incomplete."
     },
     "InputChannel.html#number": {
       "id": "InputChannel.html#number",
@@ -40560,4 +40043,4 @@ window.lunrData = {
       "description": "Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a single integer or an array of integers. For backwards-compatibility, passing undefined as a parameter to this method results in all channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to integers between 1 and 16 are silently ignored."
     }
   }
-};
+}
