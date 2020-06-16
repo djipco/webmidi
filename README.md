@@ -8,9 +8,9 @@
 ## Introduction
 
 **WebMidi.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
-the Node.js runtime. It simplifies the control of physical or virtual MIDI instruments with
+Node.js. It simplifies the control of physical or virtual MIDI instruments with user-friendly 
 functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It also allows reacting 
-to incoming MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
+to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
 `"programchange"`.
 
 ## Browser Support
@@ -36,14 +36,13 @@ support for the following additional web browsers:
 Version 3.0 of WebMidi.js introduced full Node.js support. Nothing special needs to be done, it 
 should just work in the following environments:
 
-* GNU/Linx
+* GNU/Linux
 * macOS
 * Windows
 * Raspberry Pi
 
-Support for the Node.js environment has been made possible by the 
-[JZZ](https://www.npmjs.com/package/jzz) module and the good folks of 
-[Jazz-Soft](https://jazz-soft.net/).
+Support for the Node.js environment has been made possible by the good folks of 
+[Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
 
 ## Flavours
 
@@ -56,10 +55,10 @@ directly in the global namespace. This is the legacy approach which is often eas
 * **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
 needed.
 
-* **CommonJS Module** (CJS): this is the flavour used by Node.js and often with packaging tools 
+* **CommonJS Module** (CJS): this is the flavour used by Node.js and often with bundling tools 
 such as WebPack.
 
-All 3 flavours also come in a minified with a sourcemap.
+All 3 flavours also come in a minified version with sourcemap.
 
 ## Installation
 
@@ -88,13 +87,13 @@ simply issue the following command to perform the install:
 
     npm install webmidi@next
     
-Then, you can any of those approaches depending on your environment:
+Then, you can use any of those approaches depending on your environment:
 
     // Script tag
     <script src="node_modules/dist/webmidi.iife.js"></script>
  
     // CommonJS require
-    const {WebMidi, Note} = require("webmidi");
+    const {WebMidi} = require("webmidi");
  
     // ES module import
     import {WebMidi} from "node_modules/dist/webmidi.esm.js";
@@ -123,8 +122,8 @@ WebMidi
   .then(() => console.log("WebMidi enabled!"))
   .catch(err => alert(err));
 ```
-To use WebMidi.js you need to know which `Input` and `Output` ports are available. Connect a MIDI 
-device and try the following:
+To interact with devices you need to know which `Input` and `Output` ports are available. Connect a
+MIDI device and try the following:
 
 ```javascript
 WebMidi
@@ -199,7 +198,17 @@ WebMidi.enable({sysex: true});
 If you would like to request a new feature, enhancement or API change, please check if it is not 
 already planned for an upcoming version by checking the 
 [Wiki](https://github.com/djipco/webmidi/wiki). Then, discuss it in the 
-[Enhancement Proposals](https://webmidijs.org/forum/categories/enhancements) forum.
+[Enhancement Proposals](https://webmidijs.org/forum/categories/enhancements) section of the forum.
+
+## Sponsors
+
+I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
+but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
+
+If you would like to support the project, you can press the 
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Contributing
 
