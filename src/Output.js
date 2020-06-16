@@ -977,7 +977,7 @@ export class Output extends EventEmitter {
    * length of 2 specifying the desired data.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
+   * representing the channel(s) to send on.
    *
    * @param {Object} [options={}]
    *
