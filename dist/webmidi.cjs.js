@@ -468,7 +468,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
        */
-      // event.type = "pitchbend";
+      event.type = "pitchbend";
       event.value = ((data2 << 7) + data1 - 8192) / 8192;
       event.rawValue = (data2 << 7) + data1;
     } else {
