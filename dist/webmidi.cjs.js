@@ -186,6 +186,15 @@ class t {
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
  *
+ * @fires InputChannel#nrpn
+ *
+ * @fires InputChannel#allnotesoff
+ * @fires InputChannel#allsoundoff
+ * @fires InputChannel#localcontrol
+ * @fires InputChannel#monomode
+ * @fires InputChannel#omnimode
+ * @fires InputChannel#resetallcontrollers
+ *
  * @since 3.0.0
  */
 
@@ -345,13 +354,13 @@ class InputChannel extends e {
       event.rawAttack = event.note.rawAttack;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
       /**
-       * Event emitted when a key-specific aftertouch MIDI message has been received.
+       * Event emitted when a **key-specific aftertouch** MIDI message has been received.
        *
        * @event InputChannel#keyaftertouch
        * @type {Object}
        * @property {InputChannel} target The `InputChannel` that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"keyaftertouch"`
@@ -367,7 +376,7 @@ class InputChannel extends e {
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
       /**
-       * Event emitted when a control change MIDI message has been received.
+       * Event emitted when a **control change** MIDI message has been received.
        *
        * @event InputChannel#controlchange
        * @type {Object}
@@ -392,7 +401,7 @@ class InputChannel extends e {
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode && data1 >= 120 && data1 <= 127) {
       /**
-       * Event emitted when a channel mode MIDI message has been received.
+       * Event emitted when a **channel mode** MIDI message has been received.
        *
        * @event InputChannel#channelmode
        * @type {Object}
@@ -406,18 +415,19 @@ class InputChannel extends e {
        * @property {Object} controller.number The number of the controller.
        * @property {Object} controller.name The usual name or function of the controller.
        * @property {number} value The value expressed as a float between 0 and 1.
+       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelmode";
       event.controller = {
         number: data1,
         name: this.getChannelModeByNumber(data1)
       };
-      event.value = data2; // Dispatch specific channel mode events
+      event.value = data2; // Also dispatch specific channel mode events
 
       this._parseChannelModeMessage(e);
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange) {
       /**
-       * Event emitted when a program change MIDI message has been received.
+       * Event emitted when a **program change** MIDI message has been received.
        *
        * @event InputChannel#programchange
        * @type {Object}
@@ -427,14 +437,12 @@ class InputChannel extends e {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"programchange"`
-       * @property {number} value The value expressed as a float between 0 and 1.
-       */
-
-      /**
-       * @param {uint} event.value The value received (between 0 and 127).
+       * @property {number} value The value expressed as an integer between 1 and 128.
+       * @property {number} rawValue The value expressed as an integer between 0 and 127.
        */
       event.type = "programchange";
-      event.value = data1;
+      event.value = data1 + 1;
+      event.rawValue = data1;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch) {
       /**
        * Event emitted when a control change MIDI message has been received.
@@ -655,8 +663,9 @@ class InputChannel extends e {
 
     if (!(command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && (data1 >= wm.MIDI_NRPN_MESSAGES.increment && data1 <= wm.MIDI_NRPN_MESSAGES.parammsb || data1 === wm.MIDI_NRPN_MESSAGES.entrymsb || data1 === wm.MIDI_NRPN_MESSAGES.entrylsb))) {
       return;
-    } // set up a CC event to parse as NRPN part
+    }
 
+    console.log("_parseEventForNrpnMessage"); // set up a CC event to parse as NRPN part
 
     let ccEvent = {
       target: this,
@@ -3520,8 +3529,9 @@ class Output extends e {
       if (typeof options === "number") options = {
         time: options
       };
-    } // Actually send the message
+    }
 
+    console.log([status].concat(data)); // Actually send the message
 
     this._midiOutput.send([status].concat(data), wm.convertToTimestamp(options.time));
 
@@ -4155,7 +4165,7 @@ class Output extends e {
    * length of 2 specifying the desired data.
    *
    * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
+   * representing the channel(s) to send on.
    *
    * @param {Object} [options={}]
    *
