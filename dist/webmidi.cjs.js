@@ -282,13 +282,6 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
-    // let command = e.data[0] >> 4;
-    // let data1, data2;
-    //
-    // if (e.data.length > 1) {
-    //   data1 = e.data[1];
-    //   data2 = e.data.length > 2 ? e.data[2] : undefined;
-    // }
     let {
       command,
       data1,
@@ -320,12 +313,15 @@ class InputChannel extends e {
        * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
-      event.type = "noteoff";
-      event.note = {
-        number: data1,
-        name: wm.NOTES[data1 % 12],
-        octave: wm.getOctave(data1)
-      };
+      event.type = "noteoff"; // event.note = {
+      //   number: data1,
+      //   name: WebMidi.NOTES[data1 % 12],
+      //   octave: WebMidi.getOctave(data1)
+      // };
+
+      event.note = new Note(data1, {
+        rawRelease: data2
+      });
       event.release = data2 / 127;
       event.rawRelease = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
@@ -5163,7 +5159,7 @@ class Output extends e {
  * @since 3.0.0
  */
 
-class Note {
+class Note$1 {
   constructor(value, options = {}) {
     if (Number.isInteger(value)) {
       this.number = value;
@@ -5995,13 +5991,13 @@ class WebMidi extends e {
 
 
   getNoteObject(note, options) {
-    if (note instanceof Note) {
+    if (note instanceof Note$1) {
       return note;
     } else {
       let number = this.guessNoteNumber(note);
 
       if (number !== false) {
-        return new Note(number, options);
+        return new Note$1(number, options);
       } else {
         throw new TypeError(`The input could not be parsed as a note (${note})`);
       }
@@ -6759,5 +6755,5 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-exports.Note = Note;
+exports.Note = Note$1;
 exports.WebMidi = wm;
