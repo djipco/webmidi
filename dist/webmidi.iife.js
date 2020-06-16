@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 9th 2020.
+ * This build was generated on June 15th 2020.
  *
  *
  *
@@ -216,7 +216,8 @@
     destroy() {
       this.input = null;
       this.number = null;
-      this.nrpnEventsEnabled = null;
+      this._nrpnBuffer = null;
+      this._nrpnEventsEnabled = false;
       this.removeListener();
     }
     /**
@@ -261,6 +262,12 @@
 
       this._parseEventForStandardMessages(e);
     }
+    /**
+     * Parses channel events for standard (non-NRPN) events.
+     * @param e Event
+     * @private
+     */
+
 
     _parseEventForStandardMessages(e) {
       let command = e.data[0] >> 4;
@@ -330,7 +337,7 @@
           octave: wm.getOctave(data1)
         };
         event.attack = data2 / 127;
-        event.rawVAttack = data2;
+        event.rawAttack = data2;
       } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
         /**
          * Event emitted when a key-specific aftertouch MIDI message has been received.
@@ -404,7 +411,9 @@
           number: data1,
           name: this.getChannelModeByNumber(data1)
         };
-        event.value = data2;
+        event.value = data2; // Dispatch specific channel mode events
+
+        this._parseChannelModeMessage(e);
       } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange) {
         /**
          * Event emitted when a program change MIDI message has been received.
@@ -458,7 +467,7 @@
          * @property {number} value The value expressed as a float between 0 and 1.
          * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
          */
-        event.type = "pitchbend";
+        // event.type = "pitchbend";
         event.value = ((data2 << 7) + data1 - 8192) / 8192;
         event.rawValue = (data2 << 7) + data1;
       } else {
@@ -480,14 +489,143 @@
 
 
     getChannelModeByNumber(number) {
-      number = Math.floor(number);
-      if (!(number >= 120 && status <= 127)) return false;
+      if (wm.validation) {
+        number = Math.floor(number);
+      }
+
+      if (!(number >= 120 && number <= 127)) return false;
 
       for (let cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
         if (wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
           return cm;
         }
       }
+    }
+
+    _parseChannelModeMessage(e) {
+      let data1, data2;
+
+      if (e.data.length > 1) {
+        data1 = e.data[1];
+        data2 = e.data.length > 2 ? e.data[2] : undefined;
+      } // Basis for the returned event
+
+
+      let event = {
+        target: this,
+        data: Array.from(e.data),
+        rawData: e.data,
+        timestamp: e.timeStamp,
+        type: this.getChannelModeByNumber(data1)
+      };
+      /**
+       * Event emitted when an "all sound off" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#allsoundoff
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"allsoundoff"`
+       */
+
+      /**
+       * Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#resetallcontrollers
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"resetallcontrollers"`
+       */
+
+      /**
+       * Event emitted when a "local control" channel-mode MIDI message has been received. The value
+       * property of the event is set to either `true` (local control on) of `false` (local control
+       * off).
+       *
+       * @event InputChannel#localcontrol
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"localcontrol"`
+       * @property {boolean} value For local control on, the value is `true`. For local control off,
+       * the value is `false`.
+       */
+
+      if (event.type === "localcontrol") {
+        event.value = data2 === 127 ? true : false;
+      }
+      /**
+       * Event emitted when an "all notes off" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#allnotesoff
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"allnotesoff"`
+       */
+
+      /**
+       * Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
+       * property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
+       *
+       * @event InputChannel#omnimode
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"omnimode"`
+       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+       */
+
+
+      if (event.type === "omnimodeon") {
+        event.type = "omnimode";
+        event.value = true;
+      } else if (event.type === "omnimodeoff") {
+        event.type = "omnimode";
+        event.value = false;
+      }
+      /**
+       * Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
+       * the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
+       * poly mode on).
+       *
+       * @event InputChannel#monomode
+       * @type {Object}
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `"monomode"`
+       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+       */
+
+
+      if (event.type === "monomodeon") {
+        event.type = "monomode";
+        event.value = true;
+      } else if (event.type === "polymodeon") {
+        event.type = "monomode";
+        event.value = false;
+      }
+
+      this.emit(event.type, event);
     }
     /**
      * Parses channel events and constructs NRPN message parts in valid sequences.
