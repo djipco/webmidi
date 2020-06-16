@@ -155,8 +155,9 @@ class t {
 }
 
 /**
- * The `InputChannel` class represents a single input channel (1-16) from an input device. This
- * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+ * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
+ * directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -168,10 +169,12 @@ class t {
  * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
  * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
  * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
+ * others. Check out the
+ * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
+ * details.
  *
  * @param {Input} input The `Input` this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
  * @fires InputChannel#noteoff
@@ -232,7 +235,7 @@ class InputChannel extends e {
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
-     * Event emitted when a MIDI message is received on the `InputChannel`
+     * Event emitted when a MIDI message of any kind is received by the `InputChannel`.
      *
      * @event InputChannel#midimessage
      * @type {Object}
@@ -263,6 +266,14 @@ class InputChannel extends e {
 
     this._parseEventForStandardMessages(e);
   }
+
+  getStructuredMidiMessage(data) {
+    return {
+      command: data[0] >> 4,
+      data1: data.length > 1 ? data[1] : undefined,
+      data2: data.length > 2 ? data[2] : undefined
+    };
+  }
   /**
    * Parses channel events for standard (non-NRPN) events.
    * @param e Event
@@ -271,14 +282,18 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
-    let command = e.data[0] >> 4;
-    let data1, data2;
-
-    if (e.data.length > 1) {
-      data1 = e.data[1];
-      data2 = e.data.length > 2 ? e.data[2] : undefined;
-    } // Returned event
-
+    // let command = e.data[0] >> 4;
+    // let data1, data2;
+    //
+    // if (e.data.length > 1) {
+    //   data1 = e.data[1];
+    //   data2 = e.data.length > 2 ? e.data[2] : undefined;
+    // }
+    let {
+      command,
+      data1,
+      data2
+    } = this.getStructuredMidiMessage(e.data); // Returned event
 
     let event = {
       target: this,
