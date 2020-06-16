@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.0
+ * WebMidi.js v3.0.0-alpha.1
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
