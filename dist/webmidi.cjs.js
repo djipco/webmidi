@@ -759,6 +759,7 @@ class InputChannel extends e {
         value: nrpnValue / 65535,
         rawValue: nrpnValue
       };
+      console.log("nrpn", nrpnEvent);
       this.emit(nrpnEvent.type, nrpnEvent);
     } else {
       // something didn't match, clear the incomplete NRPN message buffer
