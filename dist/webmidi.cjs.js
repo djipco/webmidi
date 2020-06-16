@@ -5193,7 +5193,7 @@ class Output extends e {
  * @since 3.0.0
  */
 
-class Note$1 {
+class Note {
   constructor(value, options = {}) {
     if (Number.isInteger(value)) {
       this.number = value;
@@ -6025,13 +6025,13 @@ class WebMidi extends e {
 
 
   getNoteObject(note, options) {
-    if (note instanceof Note$1) {
+    if (note instanceof Note) {
       return note;
     } else {
       let number = this.guessNoteNumber(note);
 
       if (number !== false) {
-        return new Note$1(number, options);
+        return new Note(number, options);
       } else {
         throw new TypeError(`The input could not be parsed as a note (${note})`);
       }
@@ -6789,5 +6789,5 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-exports.Note = Note$1;
+exports.Note = Note;
 exports.WebMidi = wm;
