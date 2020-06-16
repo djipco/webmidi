@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi} = require("../../dist/webmidi.cjs.js");
+const {WebMidi} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI output port. Being an external device, the virtual device's input is seen as
 // an output from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's

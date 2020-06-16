@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Note} = require("../../dist/webmidi.cjs.js");
+const {Note} = require("../dist/webmidi.cjs.js");
 
 describe("Note Object", function() {
 
