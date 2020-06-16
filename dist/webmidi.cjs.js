@@ -626,7 +626,6 @@ class InputChannel extends e {
       event.value = false;
     }
 
-    console.log("emit", event);
     this.emit(event.type, event);
   }
   /**
