@@ -33,6 +33,15 @@ import {WebMidi} from "./WebMidi.js";
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
  *
+ * @fires InputChannel#nrpn
+ *
+ * @fires InputChannel#allnotesoff
+ * @fires InputChannel#allsoundoff
+ * @fires InputChannel#localcontrol
+ * @fires InputChannel#monomode
+ * @fires InputChannel#omnimode
+ * @fires InputChannel#resetallcontrollers
+ *
  * @since 3.0.0
  */
 export class InputChannel extends EventEmitter {
