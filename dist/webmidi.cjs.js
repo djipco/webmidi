@@ -3741,13 +3741,11 @@ class Output extends e {
 
 
   sendSongPosition(value, options = {}) {
-    this.setSongPosition(value, options);
-
     if (wm.validation) {
       console.warn("The sendSongPosition() method has been deprecated. Use setSongPosition() instead.");
     }
 
-    return this;
+    return this.setSongPosition(value, options);
   }
   /**
    * Sends a **song select** MIDI message.
@@ -3794,13 +3792,11 @@ class Output extends e {
 
 
   sendSongSelect(value, options = {}) {
-    this.setSong(value, options);
-
     if (wm.validation) {
       console.warn("The sendSongSelect() method has been deprecated. Use setSong() instead.");
     }
 
-    return this;
+    return this.setSong(value, options);
   }
   /**
    * Sends a MIDI **tune request** real-time message.
@@ -3960,13 +3956,11 @@ class Output extends e {
 
 
   sendTuningRequest(options = {}) {
-    this.sendTuneRequest(options);
-
     if (wm.validation) {
       console.warn("The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead.");
     }
 
-    return this;
+    return this.sendTuneRequest(options);
   }
   /**
    * Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
@@ -3987,8 +3981,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -4030,8 +4024,8 @@ class Output extends e {
       console.warn("The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.");
     }
 
-    this.setKeyAftertouch(note, pressure, channel, options);
-    return this;
+    options.channels = channel;
+    return this.setKeyAftertouch(note, pressure, options);
   }
   /**
    * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
@@ -4114,8 +4108,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4161,8 +4155,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4235,8 +4229,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4274,8 +4268,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -4317,8 +4311,8 @@ class Output extends e {
       console.warn("The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch().");
     }
 
-    this.setChannelAftertouch(pressure, channel, options);
-    return this;
+    options.channels = channel;
+    return this.setChannelAftertouch(pressure, options);
   }
   /**
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
@@ -4341,8 +4335,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
@@ -4386,10 +4380,8 @@ class Output extends e {
       console.warn("The sendPitchBend() method has been deprecated. Use setPitchBend() instead.");
     }
 
-    this.setPitchBend(bend, options, {
-      channels: channel
-    });
-    return this;
+    options.channels = channel;
+    return this.setPitchBend(bend, options);
   }
   /**
    * Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
@@ -4403,8 +4395,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4447,7 +4439,8 @@ class Output extends e {
       console.warn("The sendProgramChange() method has been deprecated. Use setProgram() instead.");
     }
 
-    return this.setProgram(program, channel, options);
+    options.channels = channel;
+    return this.setProgram(program, options);
   }
   /**
    * Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
@@ -4462,8 +4455,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4510,8 +4503,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4554,8 +4547,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4599,8 +4592,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4666,8 +4659,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4704,8 +4697,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4741,8 +4734,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4778,8 +4771,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4816,8 +4809,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4857,8 +4850,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4898,8 +4891,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -4973,8 +4966,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5031,8 +5024,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5086,8 +5079,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5139,8 +5132,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
    * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
@@ -5304,8 +5297,8 @@ class Output extends e {
    * @param {Object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-   * also be used to use all channels (default).
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] Controls whether the attack velocity is set using
    * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
