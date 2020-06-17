@@ -4001,8 +4001,8 @@ class Output extends e {
   setKeyAftertouch(note, pressure, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        let channels = options;
+      if (Array.isArray(pressure) || Number.isInteger(pressure) || pressure === "all") {
+        let channels = pressure;
         options = legacy;
         options.channels = channels;
       }
