@@ -4121,7 +4121,8 @@ class Output extends e {
 
 
   sendControlChange(controller, value, options = {}) {
-    wm.sanitizeChannels(channel).forEach(ch => {
+    if (options.channels == undefined) options.channels = "all";
+    wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
     return this;
@@ -4580,7 +4581,8 @@ class Output extends e {
    *
    */
   sendChannelMode(command, value, options = {}) {
-    wm.sanitizeChannels(channel).forEach(ch => {
+    if (options.channels == undefined) options.channels = "all";
+    wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
     return this;
@@ -4868,7 +4870,16 @@ class Output extends e {
    */
 
 
-  incrementRegisteredParameter(parameter, options = {}) {
+  incrementRegisteredParameter(parameter, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
@@ -4916,7 +4927,16 @@ class Output extends e {
    */
 
 
-  decrementRegisteredParameter(parameter, options = {}) {
+  decrementRegisteredParameter(parameter, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
