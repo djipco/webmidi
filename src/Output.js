@@ -460,15 +460,13 @@ export class Output extends EventEmitter {
    */
   sendSongPosition(value, options = {}) {
 
-    this.setSongPosition(value, options);
-
     if (WebMidi.validation) {
       console.warn(
         "The sendSongPosition() method has been deprecated. Use setSongPosition() instead."
       );
     }
 
-    return this;
+    return this.setSongPosition(value, options);
 
   }
 
@@ -522,15 +520,13 @@ export class Output extends EventEmitter {
    */
   sendSongSelect(value, options = {}) {
 
-    this.setSong(value, options);
-
     if (WebMidi.validation) {
       console.warn(
         "The sendSongSelect() method has been deprecated. Use setSong() instead."
       );
     }
 
-    return this;
+    return this.setSong(value, options);
 
   }
 
@@ -719,17 +715,14 @@ export class Output extends EventEmitter {
    */
   sendTuningRequest(options = {}) {
 
-    this.sendTuneRequest(options);
 
     if (WebMidi.validation) {
-
       console.warn(
         "The sendTuningRequest() method has been deprecated. Use sendTuningRequest() instead."
       );
-
     }
 
-    return this;
+    return this.sendTuneRequest(options);
 
   }
 
@@ -749,10 +742,11 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -766,9 +760,23 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setKeyAftertouch(note, pressure, channel, options = {}) {
+  setKeyAftertouch(note, pressure, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(pressure) || Number.isInteger(pressure) || pressure === "all") {
+        let channels = pressure;
+        pressure = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
     });
 
@@ -788,9 +796,8 @@ export class Output extends EventEmitter {
       );
     }
 
-    this.setKeyAftertouch(note, pressure, channel, options);
-
-    return this;
+    options.channels = channel;
+    return this.setKeyAftertouch(note, pressure, options);
 
   }
 
@@ -872,10 +879,11 @@ export class Output extends EventEmitter {
    *
    * @param [value=0] {number} The value to send (0-127).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -887,9 +895,22 @@ export class Output extends EventEmitter {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-  sendControlChange(controller, value, channel, options = {}) {
+  sendControlChange(controller, value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
 
@@ -909,10 +930,11 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -926,9 +948,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setPitchBendRange(semitones, cents, channel, options = {}) {
+  setPitchBendRange(semitones, cents, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
@@ -976,10 +1011,11 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to send on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -988,9 +1024,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  setRegisteredParameter(parameter, data, channel, options = {}) {
+  setRegisteredParameter(parameter, data, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
 
@@ -1006,10 +1055,11 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -1022,9 +1072,21 @@ export class Output extends EventEmitter {
    * @return {Output} Returns the `Output` object so methods can be chained.
    * @since 3.0.0
    */
-  setChannelAftertouch(pressure, channel, options = {}) {
+  setChannelAftertouch(pressure, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
@@ -1044,8 +1106,8 @@ export class Output extends EventEmitter {
       );
     }
 
-    this.setChannelAftertouch(pressure, channel, options);
-    return this;
+    options.channels = channel;
+    return this.setChannelAftertouch(pressure, options);
 
   }
 
@@ -1067,10 +1129,11 @@ export class Output extends EventEmitter {
    * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
    * (1/100 of a semitone). An LSB of `64` also means no bend.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
@@ -1085,9 +1148,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setPitchBend(value, channel, options = {}) {
+  setPitchBend(value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
     });
 
@@ -1107,8 +1183,8 @@ export class Output extends EventEmitter {
       );
     }
 
-    this.setPitchBend(bend, channel, options);
-    return this;
+    options.channels = channel;
+    return this.setPitchBend(bend, options);
 
   }
 
@@ -1121,10 +1197,11 @@ export class Output extends EventEmitter {
    *
    * @param [program=1] {number} The MIDI patch (program) number (1-128)
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1138,9 +1215,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setProgram(program, channel, options = {}) {
+  setProgram(program, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
     });
 
@@ -1160,7 +1250,8 @@ export class Output extends EventEmitter {
       );
     }
 
-    return this.setProgram(program, channel, options);
+    options.channels = channel;
+    return this.setProgram(program, options);
 
   }
 
@@ -1174,10 +1265,11 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0 and 127).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1191,9 +1283,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setModulationRange(semitones, cents, channel, options = {}) {
+  setModulationRange(semitones, cents, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
     });
 
@@ -1212,10 +1317,11 @@ export class Output extends EventEmitter {
    *
    * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1229,9 +1335,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setMasterTuning(value, channel, options = {}) {
+  setMasterTuning(value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
 
@@ -1249,10 +1368,11 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning program (1-128).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1265,9 +1385,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setTuningProgram(value, channel, options = {}) {
+  setTuningProgram(value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
 
@@ -1285,10 +1418,11 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The desired tuning bank (1-128).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1301,9 +1435,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setTuningBank(value, channel, options = {}) {
+  setTuningBank(value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
     });
 
@@ -1342,10 +1489,11 @@ export class Output extends EventEmitter {
    *
    * @param [value] {number} The value to send (integer between 0-127).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1359,9 +1507,22 @@ export class Output extends EventEmitter {
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
-  sendChannelMode(command, value, channel, options = {}) {
+  sendChannelMode(command, value, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
 
@@ -1373,10 +1534,11 @@ export class Output extends EventEmitter {
    * Sends an **all sound off** channel mode message. This will silence all sounds playing on that
    * channel but will not prevent new sounds from being triggered.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1387,9 +1549,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  turnSoundOff(channel, options = {}) {
+  turnSoundOff(options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
     });
 
@@ -1401,10 +1576,11 @@ export class Output extends EventEmitter {
    * Sends an **all note soff** channel mode message. This will turn all currently playing notes
    * off. However, this does not prevent new notes from being played.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1415,9 +1591,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  turnNotesOff(channel, options = {}) {
+  turnNotesOff(options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
     });
 
@@ -1429,10 +1618,11 @@ export class Output extends EventEmitter {
    * Sends a **reset all controllers** channel mode message. This resets all controllers, such as
    * the pitch bend, to their default value.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1441,9 +1631,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output}
    */
-  resetAllControllers(channel, options = {}) {
+  resetAllControllers(options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
     });
 
@@ -1458,10 +1661,11 @@ export class Output extends EventEmitter {
    *
    * @param mode {string} The mode to use: `"mono"` or `"poly"`.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1472,9 +1676,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setPolyphonicMode(mode, channel, options = {}) {
+  setPolyphonicMode(mode, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
     });
 
@@ -1490,10 +1707,11 @@ export class Output extends EventEmitter {
    * @param [state=false] {boolean} Whether to activate local control (`true`) or disable it
    * (`false`).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1504,9 +1722,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setLocalControl(state, channel, options = {}) {
+  setLocalControl(state, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
     });
 
@@ -1522,10 +1753,11 @@ export class Output extends EventEmitter {
    *
    * @param [state] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1540,9 +1772,22 @@ export class Output extends EventEmitter {
    *
    * @since 3.0.0
    */
-  setOmniMode(state, channel, options = {}) {
+  setOmniMode(state, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
     });
 
@@ -1588,10 +1833,11 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1603,9 +1849,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  setNonRegisteredParameter(parameter, data, channel, options = {}) {
+  setNonRegisteredParameter(parameter, data, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
 
@@ -1637,10 +1896,11 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1649,9 +1909,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  incrementRegisteredParameter(parameter, channel, options = {}) {
+  incrementRegisteredParameter(parameter, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
     });
 
@@ -1683,10 +1956,11 @@ export class Output extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param channel {number|number[]} An integer between 1 and 16 or an array of such integers
-   * representing the channel(s) to listen on.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1697,9 +1971,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  decrementRegisteredParameter(parameter, channel, options = {}) {
+  decrementRegisteredParameter(parameter, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
     });
 
@@ -1727,10 +2014,11 @@ export class Output extends EventEmitter {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
-   * of channel numbers.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
    * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
@@ -1747,9 +2035,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendNoteOff(note, channel, options) {
+  sendNoteOff(note, options= {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
 
@@ -1763,36 +2064,30 @@ export class Output extends EventEmitter {
    * @see {@link Output#sendNoteOff}
    *
    * @param note
-   * @param channel
    * @param options
    * @returns {Output}
    */
-  stopNote(note, channel, options) {
-
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
-      this.channels[ch].stopNote(note, options);
-    });
-
-    return this;
-
+  stopNote(note, options) {
+    return this.sendNoteOff(note, options);
   }
 
   /**
-   * Plays a note or an array of notes on the specified channel(s). The first parameter is the note
-   * to play. It can be a single value or an array of the following valid values:
+   * Plays a note or an array of notes on one or more channels of this output. The first parameter
+   * is the note to play. It can be a single value or an array of the following valid values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
    *  - A {@link Note} object
    *
    * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-   * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
-   * object's [duration]{@link Note#duration} property, it will also schedule a **note off** message
-   * to end the note after said duration. If no `duration` is set, the note will simply play until
-   * a matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
+   * specified channels. If no channels are specified, it will send to all channels. If a `duration`
+   * is set in the `options` parameter or in the {@link Note} object's
+   * [duration]{@link Note#duration} property, it will also schedule a **note off** message to end
+   * the note after said duration. If no `duration` is set, the note will simply play until a
+   * matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
    * [sendNoteOff()]{@link Output#sendNoteOff}.
    *
-   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
    * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
@@ -1807,10 +2102,11 @@ export class Output extends EventEmitter {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
-   * of channel numbers.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
+   * also be used to use all channels (default).
    *
    * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
    * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
@@ -1835,11 +2131,11 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  playNote(note, channel, options = {}) {
+  playNote(note, options = {}, legacy = {}) {
 
     if (WebMidi.validation) {
 
-      // Legacy-compatibility warning
+      // Legacy-compatibility warnings
       if (options.rawVelocity) {
         console.warn("The 'rawVelocity' option is deprecated. Use 'rawAttack' instead.");
       }
@@ -1848,9 +2144,18 @@ export class Output extends EventEmitter {
         console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
       }
 
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
     }
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].playNote(note, options);
     });
 
@@ -1883,10 +2188,11 @@ export class Output extends EventEmitter {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param [channel] {number|number[]} The MIDI channel number (between `1` and `16`) or an array
-   * of channel numbers.
-   *
    * @param {Object} [options={}]
+   *
+   * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
+   * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+   * use all channels (default).
    *
    * @param {boolean} [options.rawValue=false] Controls whether the attack velocity is set using
    * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
@@ -1903,9 +2209,22 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendNoteOn(note, channel, options = {}) {
+  sendNoteOn(note, options = {}, legacy = {}) {
 
-    WebMidi.sanitizeChannels(channel).forEach(ch => {
+    if (WebMidi.validation) {
+
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+
+    }
+
+    if (options.channels == undefined) options.channels = "all";
+
+    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
 
