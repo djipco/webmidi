@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.1
+ * WebMidi.js v3.0.0-alpha.2
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
@@ -4002,8 +4002,6 @@ class Output extends e {
 
   setKeyAftertouch(note, pressure, options = {}, legacy = {}) {
     if (wm.validation) {
-      // note, channel,  pressure, options
-      // note, pressure, options,  legacy
       // Legacy compatibility
       if (Array.isArray(pressure) || Number.isInteger(pressure) || pressure === "all") {
         let channels = pressure;
