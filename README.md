@@ -71,7 +71,7 @@ The easiest way to get started is to link the WebMidi.js library from the
 [jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (content delivery network). Just add 
 this `<script>` tag to your HTML page:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.1/dist/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/webmidi.iife.js"></script>
 
 #### Manual Install
 
