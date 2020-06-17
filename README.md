@@ -136,9 +136,19 @@ function onEnabled() {
   console.log(WebMidi.outputs);
 }
 ```
+You should see your devices appear in the console. As you can probably witness, most MIDI devices 
+will make several input and/or output ports available. 
 
-Inputs and outputs all have a `channels` property containing an array of 16 `InputChannel` or 
-`OutputChannel` objects. 
+> #### About devices and channels
+>
+> MIDI input and output ports all have 16 channels. WebMidi.js reflects that. Let's break it down. 
+> The `WebMidi.inputs` property contains an array of `Input` objects. These objects have methods
+> such as `addListener()` which allows you to listen to inbound MIDI messages on all 16 channels at
+> once (or just a subset of channels should you prefer).
+>
+> Each `Input` object has a `channels` property which is an array of 16 `InputChannel` objects. The 
+> `InputChannel` objects also have an `addListener()` method which, in this case, listens for events
+> only on that particular channel.
 
 Here is a quick example of how to play a note on MIDI channel 1 of the first found output device 
 (port):
@@ -159,14 +169,17 @@ let synth = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
 synth.channels[1].playNote("C3");
 ```
 
-Receiving MIDI messages works in a similar way: you retrieve the `Input` device you want to use, and
-then add a callback function to be triggered when a specific MIDI message is received on the desired
-channel. For example, to listen for pitch bend events on channel 1 of the device:
+Receiving MIDI messages works in a similar way: you retrieve the input device and channel you want 
+to use, and then add a callback function to be triggered when a specific MIDI message is received on 
+the desired channel.
+
+For example, to listen for pitch bend events on channel 1 of the selected port:
 
 ```javascript
 let input = WebMidi.getInputByName("Axiom Pro 25 USB A In");
+let channel = input.channels[1]; // channel 1
 
-input.channels[1].addListener('pitchbend', e => {
+channel.addListener('pitchbend', e => {
  console.log("Pitch value: " + e.value);
 });
 ```
