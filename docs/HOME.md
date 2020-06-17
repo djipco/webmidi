@@ -1,14 +1,18 @@
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
 
-## Background TO COMPLETE !!!!!
 
-The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
-to the web platform that allows web developers to interact with MIDI musical instruments 
-and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
-low-level for their needs. For example, sending and receiving MIDI messages involves 
-performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
-MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
-to react upon receiving MIDI messages from external devices. For example, it only allows a 
-single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
-much easier.
+## Welcome to v3 of WebMidi.js
+
+This page is a work in progress. For now, you can access the API documentation of all library 
+objects:
+
+* [WebMidi](WebMidi.html)
+* [Input](Input.html)
+* [InputChannel](InputChannel.html)
+* [Output](Output.html)
+* [OutputChannel](OutputChannel.html)
+* [Note](Note.html)
+
+More to come later...
