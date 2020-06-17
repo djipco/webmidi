@@ -1,4 +1,4 @@
-window.lunrData = {
+{
   "index": {
     "version": "1.0.0",
     "fields": [
@@ -474,63 +474,12 @@ window.lunrData = {
           "subsystem",
           "such"
         ],
-        "InputChannel.html#.NRPN_TYPES": [
-          "array",
-          "array.&lt;string&gt",
-          "inputchannel.nrpn_typ",
-          "lt;static",
-          "member",
-          "non",
-          "nrpn",
-          "nrpn_type",
-          "number",
-          "paramet",
-          "readonly&gt",
-          "regist",
-          "type",
-          "valid"
-        ],
         "InputChannel.html#input": [
           "belong",
           "channel",
           "input",
           "inputchannel#input",
           "member"
-        ],
-        "InputChannel.html#nrpnEventsEnabled": [
-          "boolean",
-          "buffer",
-          "chang",
-          "collector",
-          "compos",
-          "control",
-          "discard",
-          "dispatch",
-          "event",
-          "fall",
-          "fire",
-          "incomplet",
-          "indic",
-          "inputchannel#nrpneventsen",
-          "invalid",
-          "logic",
-          "member",
-          "messag",
-          "non",
-          "nrpn",
-          "nrpneventsen",
-          "number",
-          "order",
-          "out",
-          "paramet",
-          "receiv",
-          "regist",
-          "sequenc",
-          "specif",
-          "such",
-          "through",
-          "valid",
-          "whether"
         ],
         "InputChannel.html#number": [
           "1",
@@ -1040,7 +989,6 @@ window.lunrData = {
           "between",
           "c3",
           "channel",
-          "channel(",
           "command",
           "db7",
           "defin",
@@ -1061,6 +1009,7 @@ window.lunrData = {
           "method",
           "method'",
           "midi",
+          "more",
           "name",
           "note",
           "number",
@@ -1342,7 +1291,6 @@ window.lunrData = {
           "bright",
           "celestelevel",
           "chang",
-          "channel",
           "channel(",
           "choruslevel",
           "common",
@@ -1437,7 +1385,6 @@ window.lunrData = {
           "array",
           "between",
           "c3",
-          "channel",
           "channel(",
           "command",
           "db7",
@@ -1487,7 +1434,6 @@ window.lunrData = {
           "attack",
           "between",
           "c3",
-          "channel",
           "channel(",
           "command",
           "db7",
@@ -1772,7 +1718,6 @@ window.lunrData = {
           "wide"
         ],
         "Output.html#setLocalControl": [
-          "channel",
           "control",
           "default",
           "disabl",
@@ -1803,7 +1748,6 @@ window.lunrData = {
           "65",
           "actual",
           "between",
-          "channel",
           "channel(",
           "coars",
           "decim",
@@ -1839,7 +1783,6 @@ window.lunrData = {
           "adjust",
           "both",
           "cent",
-          "channel",
           "channel(",
           "depth",
           "function",
@@ -1958,7 +1901,6 @@ window.lunrData = {
         ],
         "Output.html#setPitchBend": [
           "bend",
-          "channel",
           "channel(",
           "function",
           "messag",
@@ -1981,7 +1923,6 @@ window.lunrData = {
           "below",
           "bend",
           "cent",
-          "channel",
           "channel(",
           "exampl",
           "function",
@@ -2006,7 +1947,6 @@ window.lunrData = {
         ],
         "Output.html#setPolyphonicMode": [
           "be",
-          "channel",
           "default",
           "even",
           "function",
@@ -2040,7 +1980,6 @@ window.lunrData = {
           "align",
           "between",
           "chang",
-          "channel",
           "channel(",
           "devic",
           "function",
@@ -2229,7 +2168,6 @@ window.lunrData = {
           "bank",
           "between",
           "chang",
-          "channel",
           "devic",
           "function",
           "implement",
@@ -2265,7 +2203,6 @@ window.lunrData = {
           "align",
           "between",
           "chang",
-          "channel",
           "devic",
           "function",
           "implement",
@@ -2293,7 +2230,6 @@ window.lunrData = {
         ],
         "Output.html#stopNote": [
           "alia",
-          "channel",
           "function",
           "method",
           "note",
@@ -4664,7 +4600,7 @@ window.lunrData = {
           "webmidi#sanitizechannel"
         ]
       },
-      "length": 146
+      "length": 144
     },
     "tokenStore": {
       "root": {
@@ -4692,7 +4628,7 @@ window.lunrData = {
             },
             "Output.html#playNote": {
               "ref": "Output.html#playNote",
-              "tf": 0.9174311926605505
+              "tf": 0.8695652173913043
             },
             "Output.html#sendChannelMode": {
               "ref": "Output.html#sendChannelMode",
@@ -5575,7 +5511,7 @@ window.lunrData = {
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendChannelMode": {
                   "ref": "Output.html#sendChannelMode",
@@ -5952,7 +5888,7 @@ window.lunrData = {
             },
             "Output.html#playNote": {
               "ref": "Output.html#playNote",
-              "tf": 0.45871559633027525
+              "tf": 0.43478260869565216
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
@@ -7353,10 +7289,6 @@ window.lunrData = {
                 "docs": {},
                 "c": {
                   "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
                       "tf": 7.142857142857142
@@ -7429,34 +7361,6 @@ window.lunrData = {
                   }
                 }
               },
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.7462686567164178
-                    }
-                  },
-                  "p": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "t": {
-                          "docs": {
-                            "InputChannel.html#nrpnEventsEnabled": {
-                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                              "tf": 1.1904761904761905
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "r": {
                 "docs": {},
                 "e": {
@@ -7518,7 +7422,7 @@ window.lunrData = {
                                                             "docs": {
                                                               "Output.html#incrementRegisteredParameter": {
                                                                 "ref": "Output.html#incrementRegisteredParameter",
-                                                                "tf": 670
+                                                                "tf": 675
                                                               },
                                                               "OutputChannel.html#incrementRegisteredParameter": {
                                                                 "ref": "OutputChannel.html#incrementRegisteredParameter",
@@ -7544,6 +7448,17 @@ window.lunrData = {
                           }
                         }
                       }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -8030,38 +7945,6 @@ window.lunrData = {
                                     "tf": 1903.061224489796
                                   }
                                 },
-                                ".": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "_": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {},
-                                              "y": {
-                                                "docs": {},
-                                                "p": {
-                                                  "docs": {
-                                                    "InputChannel.html#.NRPN_TYPES": {
-                                                      "ref": "InputChannel.html#.NRPN_TYPES",
-                                                      "tf": 1150
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
                                 "#": {
                                   "docs": {},
                                   "i": {
@@ -8086,44 +7969,6 @@ window.lunrData = {
                                   },
                                   "n": {
                                     "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "v": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "n": {
-                                                  "docs": {},
-                                                  "t": {
-                                                    "docs": {},
-                                                    "s": {
-                                                      "docs": {},
-                                                      "e": {
-                                                        "docs": {},
-                                                        "n": {
-                                                          "docs": {
-                                                            "InputChannel.html#nrpnEventsEnabled": {
-                                                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                                                              "tf": 1150
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
                                     "u": {
                                       "docs": {},
                                       "m": {
@@ -8501,38 +8346,6 @@ window.lunrData = {
                 }
               }
             },
-            "v": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "i": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
-                        },
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
-                          "tf": 1.5151515151515151
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "t": {
               "docs": {},
               "e": {
@@ -8557,7 +8370,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -8697,6 +8510,34 @@ window.lunrData = {
                         "WebMidi.html#octaveOffset": {
                           "ref": "WebMidi.html#octaveOffset",
                           "tf": 1.3513513513513513
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "d": {
+                      "docs": {
+                        "WebMidi.html#getNoteObject": {
+                          "ref": "WebMidi.html#getNoteObject",
+                          "tf": 1.3888888888888888
+                        },
+                        "WebMidi.html#getValidNoteArray": {
+                          "ref": "WebMidi.html#getValidNoteArray",
+                          "tf": 1.5151515151515151
+                        },
+                        "WebMidi.html#guessNoteNumber": {
+                          "ref": "WebMidi.html#guessNoteNumber",
+                          "tf": 1.1363636363636365
                         }
                       }
                     }
@@ -9573,29 +9414,6 @@ window.lunrData = {
                   }
                 }
               },
-              "s": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "c": {
-                          "docs": {
-                            "InputChannel.html#.NRPN_TYPES": {
-                              "ref": "InputChannel.html#.NRPN_TYPES",
-                              "tf": 25
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "p": {
                 "docs": {},
                 "r": {
@@ -9641,20 +9459,6 @@ window.lunrData = {
           },
           "o": {
             "docs": {},
-            "g": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "c": {
-                  "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    }
-                  }
-                }
-              }
-            },
             "o": {
               "docs": {},
               "k": {
@@ -10018,7 +9822,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 1.3761467889908259
+                    "tf": 1.3043478260869565
                   },
                   "Output.html#send": {
                     "ref": "Output.html#send",
@@ -10881,7 +10685,7 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -10964,7 +10768,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#sendNoteOff": {
                           "ref": "Output.html#sendNoteOff",
@@ -11028,16 +10832,8 @@ window.lunrData = {
                         "ref": "Input.html#type",
                         "tf": 110
                       },
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 110
-                      },
                       "InputChannel.html#input": {
                         "ref": "InputChannel.html#input",
-                        "tf": 110
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
                         "tf": 110
                       },
                       "InputChannel.html#number": {
@@ -11205,10 +11001,6 @@ window.lunrData = {
                         "ref": "Input.html#close",
                         "tf": 3.571428571428571
                       },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 4.761904761904762
-                      },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
                         "tf": 2.272727272727273
@@ -11223,7 +11015,7 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 2.293577981651376
+                        "tf": 2.1739130434782608
                       },
                       "Output.html#resetAllControllers": {
                         "ref": "Output.html#resetAllControllers",
@@ -11687,7 +11479,7 @@ window.lunrData = {
                   },
                   "Output.html#setPolyphonicMode": {
                     "ref": "Output.html#setPolyphonicMode",
-                    "tf": 26.25
+                    "tf": 31.25
                   },
                   "Output.html#turnNotesOff": {
                     "ref": "Output.html#turnNotesOff",
@@ -11735,6 +11527,10 @@ window.lunrData = {
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
                     "tf": 1.0204081632653061
+                  },
+                  "Output.html#playNote": {
+                    "ref": "Output.html#playNote",
+                    "tf": 0.43478260869565216
                   }
                 }
               }
@@ -11906,7 +11702,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendChannelMode": {
                       "ref": "Output.html#sendChannelMode",
@@ -12244,7 +12040,7 @@ window.lunrData = {
                         },
                         "Output.html#setProgram": {
                           "ref": "Output.html#setProgram",
-                          "tf": 22.941176470588236
+                          "tf": 27.941176470588236
                         },
                         "Output.html#setRegisteredParameter": {
                           "ref": "Output.html#setRegisteredParameter",
@@ -12540,7 +12336,7 @@ window.lunrData = {
                           },
                           "Output.html#playNote": {
                             "ref": "Output.html#playNote",
-                            "tf": 0.9174311926605505
+                            "tf": 0.8695652173913043
                           },
                           "Output.html#sendNoteOff": {
                             "ref": "Output.html#sendNoteOff",
@@ -12649,7 +12445,7 @@ window.lunrData = {
                     "docs": {
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -12753,11 +12549,11 @@ window.lunrData = {
                       "docs": {
                         "Output.html#setChannelAftertouch": {
                           "ref": "Output.html#setChannelAftertouch",
-                          "tf": 20
+                          "tf": 25
                         },
                         "Output.html#setKeyAftertouch": {
                           "ref": "Output.html#setKeyAftertouch",
-                          "tf": 16.666666666666664
+                          "tf": 20
                         },
                         "OutputChannel.html#setChannelAftertouch": {
                           "ref": "OutputChannel.html#setChannelAftertouch",
@@ -13188,7 +12984,7 @@ window.lunrData = {
               "docs": {
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendChannelMode": {
                   "ref": "Output.html#sendChannelMode",
@@ -13286,7 +13082,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 1.3761467889908259
+                    "tf": 1.3043478260869565
                   },
                   "Output.html#setPolyphonicMode": {
                     "ref": "Output.html#setPolyphonicMode",
@@ -13325,7 +13121,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 670.4587155963303
+                          "tf": 675.4347826086956
                         },
                         "Output.html#send": {
                           "ref": "Output.html#send",
@@ -13494,25 +13290,17 @@ window.lunrData = {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.29069767441860467
                         },
-                        "InputChannel.html#.NRPN_TYPES": {
-                          "ref": "InputChannel.html#.NRPN_TYPES",
-                          "tf": 6.25
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
                         "Output.html#decrementRegisteredParameter": {
                           "ref": "Output.html#decrementRegisteredParameter",
-                          "tf": 21.08695652173913
+                          "tf": 26.08695652173913
                         },
                         "Output.html#incrementRegisteredParameter": {
                           "ref": "Output.html#incrementRegisteredParameter",
-                          "tf": 21.08695652173913
+                          "tf": 26.08695652173913
                         },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 1.834862385321101
+                          "tf": 1.7391304347826086
                         },
                         "Output.html#sendChannelMode": {
                           "ref": "Output.html#sendChannelMode",
@@ -13536,7 +13324,7 @@ window.lunrData = {
                         },
                         "Output.html#setNonRegisteredParameter": {
                           "ref": "Output.html#setNonRegisteredParameter",
-                          "tf": 17.486338797814206
+                          "tf": 20.81967213114754
                         },
                         "Output.html#setPitchBendRange": {
                           "ref": "Output.html#setPitchBendRange",
@@ -13544,7 +13332,7 @@ window.lunrData = {
                         },
                         "Output.html#setRegisteredParameter": {
                           "ref": "Output.html#setRegisteredParameter",
-                          "tf": 18.64035087719298
+                          "tf": 21.973684210526315
                         },
                         "Output.html#setTuningBank": {
                           "ref": "Output.html#setTuningBank",
@@ -14125,32 +13913,6 @@ window.lunrData = {
                       "tf": 110
                     }
                   }
-                },
-                "o": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "y": {
-                        "docs": {},
-                        "&": {
-                          "docs": {},
-                          "g": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "InputChannel.html#.NRPN_TYPES": {
-                                  "ref": "InputChannel.html#.NRPN_TYPES",
-                                  "tf": 25
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
                 }
               },
               "l": {
@@ -14351,7 +14113,7 @@ window.lunrData = {
                                       "docs": {
                                         "Output.html#resetAllControllers": {
                                           "ref": "Output.html#resetAllControllers",
-                                          "tf": 675
+                                          "tf": 683.3333333333334
                                         },
                                         "Output.html#sendChannelMode": {
                                           "ref": "Output.html#sendChannelMode",
@@ -14630,173 +14392,6 @@ window.lunrData = {
                 }
               }
             },
-            "g": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 6.25
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      },
-                      "Output.html#decrementRegisteredParameter": {
-                        "ref": "Output.html#decrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "Output.html#incrementRegisteredParameter": {
-                        "ref": "Output.html#incrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "Output.html#setNonRegisteredParameter": {
-                        "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 0.4098360655737705
-                      },
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.9868421052631579
-                      },
-                      "OutputChannel.html#decrementRegisteredParameter": {
-                        "ref": "OutputChannel.html#decrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#incrementRegisteredParameter": {
-                        "ref": "OutputChannel.html#incrementRegisteredParameter",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#setNonRegisteredParameter": {
-                        "ref": "OutputChannel.html#setNonRegisteredParameter",
-                        "tf": 0.4807692307692308
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.9868421052631579
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 1.5625
-                      }
-                    },
-                    "e": {
-                      "docs": {},
-                      "r": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "d": {
-                            "docs": {},
-                            "p": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "a": {
-                                    "docs": {},
-                                    "m": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "c": {
-                                                "docs": {},
-                                                "o": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "r": {
-                                                      "docs": {},
-                                                      "s": {
-                                                        "docs": {
-                                                          "Output.html#sendControlChange": {
-                                                            "ref": "Output.html#sendControlChange",
-                                                            "tf": 0.2890173410404624
-                                                          },
-                                                          "OutputChannel.html#sendControlChange": {
-                                                            "ref": "OutputChannel.html#sendControlChange",
-                                                            "tf": 0.2890173410404624
-                                                          },
-                                                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                            "tf": 0.4032258064516129
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              },
-                                              "f": {
-                                                "docs": {},
-                                                "i": {
-                                                  "docs": {},
-                                                  "n": {
-                                                    "docs": {
-                                                      "Output.html#sendControlChange": {
-                                                        "ref": "Output.html#sendControlChange",
-                                                        "tf": 0.2890173410404624
-                                                      },
-                                                      "OutputChannel.html#sendControlChange": {
-                                                        "ref": "OutputChannel.html#sendControlChange",
-                                                        "tf": 0.2890173410404624
-                                                      },
-                                                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                        "tf": 0.4032258064516129
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "v": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 2.380952380952381
-                      },
-                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                        "tf": 0.5617977528089888
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "l": {
               "docs": {
                 "WebMidi.html#convertToTimestamp": {
@@ -14964,6 +14559,144 @@ window.lunrData = {
                 }
               }
             },
+            "g": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Output.html#decrementRegisteredParameter": {
+                        "ref": "Output.html#decrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "Output.html#incrementRegisteredParameter": {
+                        "ref": "Output.html#incrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "Output.html#setNonRegisteredParameter": {
+                        "ref": "Output.html#setNonRegisteredParameter",
+                        "tf": 0.4098360655737705
+                      },
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.9868421052631579
+                      },
+                      "OutputChannel.html#decrementRegisteredParameter": {
+                        "ref": "OutputChannel.html#decrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#incrementRegisteredParameter": {
+                        "ref": "OutputChannel.html#incrementRegisteredParameter",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#setNonRegisteredParameter": {
+                        "ref": "OutputChannel.html#setNonRegisteredParameter",
+                        "tf": 0.4807692307692308
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.9868421052631579
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 1.5625
+                      }
+                    },
+                    "e": {
+                      "docs": {},
+                      "r": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "a": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "r": {
+                                              "docs": {},
+                                              "c": {
+                                                "docs": {},
+                                                "o": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "r": {
+                                                      "docs": {},
+                                                      "s": {
+                                                        "docs": {
+                                                          "Output.html#sendControlChange": {
+                                                            "ref": "Output.html#sendControlChange",
+                                                            "tf": 0.2890173410404624
+                                                          },
+                                                          "OutputChannel.html#sendControlChange": {
+                                                            "ref": "OutputChannel.html#sendControlChange",
+                                                            "tf": 0.2890173410404624
+                                                          },
+                                                          "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                            "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                            "tf": 0.4032258064516129
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "f": {
+                                                "docs": {},
+                                                "i": {
+                                                  "docs": {},
+                                                  "n": {
+                                                    "docs": {
+                                                      "Output.html#sendControlChange": {
+                                                        "ref": "Output.html#sendControlChange",
+                                                        "tf": 0.2890173410404624
+                                                      },
+                                                      "OutputChannel.html#sendControlChange": {
+                                                        "ref": "OutputChannel.html#sendControlChange",
+                                                        "tf": 0.2890173410404624
+                                                      },
+                                                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                        "tf": 0.4032258064516129
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "q": {
               "docs": {},
               "u": {
@@ -15033,6 +14766,23 @@ window.lunrData = {
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "c": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "v": {
+                    "docs": {
+                      "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                        "tf": 0.5617977528089888
                       }
                     }
                   }
@@ -17310,10 +17060,54 @@ window.lunrData = {
               }
             }
           },
+          "o": {
+            "docs": {},
+            "r": {
+              "docs": {},
+              "k": {
+                "docs": {
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.272727272727273
+                  },
+                  "Output.html#setMasterTuning": {
+                    "ref": "Output.html#setMasterTuning",
+                    "tf": 1.1363636363636365
+                  },
+                  "OutputChannel.html#setMasterTuning": {
+                    "ref": "OutputChannel.html#setMasterTuning",
+                    "tf": 1.1904761904761905
+                  },
+                  "WebMidi.html": {
+                    "ref": "WebMidi.html",
+                    "tf": 0.7462686567164178
+                  }
+                }
+              }
+            }
+          },
           "h": {
             "docs": {},
             "e": {
               "docs": {},
+              "e": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "'": {
+                    "docs": {
+                      "Output.html#setModulationRange": {
+                        "ref": "Output.html#setModulationRange",
+                        "tf": 2.1739130434782608
+                      },
+                      "OutputChannel.html#setModulationRange": {
+                        "ref": "OutputChannel.html#setModulationRange",
+                        "tf": 2.380952380952381
+                      }
+                    }
+                  }
+                }
+              },
               "t": {
                 "docs": {},
                 "h": {
@@ -17322,10 +17116,6 @@ window.lunrData = {
                     "docs": {},
                     "r": {
                       "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 7.142857142857142
@@ -17350,24 +17140,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "e": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "'": {
-                    "docs": {
-                      "Output.html#setModulationRange": {
-                        "ref": "Output.html#setModulationRange",
-                        "tf": 2.1739130434782608
-                      },
-                      "OutputChannel.html#setModulationRange": {
-                        "ref": "OutputChannel.html#setModulationRange",
-                        "tf": 2.380952380952381
-                      }
-                    }
-                  }
-                }
               }
             },
             "o": {
@@ -17384,32 +17156,6 @@ window.lunrData = {
                       "ref": "WebMidi.html#getOutputByName",
                       "tf": 2
                     }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "k": {
-                "docs": {
-                  "Output.html#clear": {
-                    "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#setMasterTuning": {
-                    "ref": "Output.html#setMasterTuning",
-                    "tf": 1.1363636363636365
-                  },
-                  "OutputChannel.html#setMasterTuning": {
-                    "ref": "OutputChannel.html#setMasterTuning",
-                    "tf": 1.1904761904761905
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.7462686567164178
                   }
                 }
               }
@@ -17760,7 +17506,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -17986,7 +17732,7 @@ window.lunrData = {
                                                             "docs": {
                                                               "Output.html#decrementRegisteredParameter": {
                                                                 "ref": "Output.html#decrementRegisteredParameter",
-                                                                "tf": 670
+                                                                "tf": 675
                                                               },
                                                               "OutputChannel.html#decrementRegisteredParameter": {
                                                                 "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -18036,7 +17782,7 @@ window.lunrData = {
                   "docs": {
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -18229,20 +17975,6 @@ window.lunrData = {
                       }
                     }
                   }
-                },
-                "a": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
-                        }
-                      }
-                    }
-                  }
                 }
               },
               "p": {
@@ -18262,10 +17994,6 @@ window.lunrData = {
                           "Input.html#addOneTimeListener": {
                             "ref": "Input.html#addOneTimeListener",
                             "tf": 0.5813953488372093
-                          },
-                          "InputChannel.html#nrpnEventsEnabled": {
-                            "ref": "InputChannel.html#nrpnEventsEnabled",
-                            "tf": 1.1904761904761905
                           }
                         }
                       }
@@ -18449,7 +18177,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 2.293577981651376
+                      "tf": 2.1739130434782608
                     },
                     "Output.html#sendNoteOn": {
                       "ref": "Output.html#sendNoteOn",
@@ -18485,7 +18213,7 @@ window.lunrData = {
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendNoteOff": {
                   "ref": "Output.html#sendNoteOff",
@@ -18535,11 +18263,11 @@ window.lunrData = {
                   },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 16.666666666666664
+                    "tf": 20
                   },
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
-                    "tf": 17.32456140350877
+                    "tf": 20.657894736842106
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -19357,7 +19085,7 @@ window.lunrData = {
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendNoteOff": {
                   "ref": "Output.html#sendNoteOff",
@@ -19536,7 +19264,7 @@ window.lunrData = {
               },
               "Output.html#playNote": {
                 "ref": "Output.html#playNote",
-                "tf": 0.45871559633027525
+                "tf": 0.43478260869565216
               },
               "Output.html#sendNoteOff": {
                 "ref": "Output.html#sendNoteOff",
@@ -19899,7 +19627,7 @@ window.lunrData = {
                         },
                         "Output.html#decrementRegisteredParameter": {
                           "ref": "Output.html#decrementRegisteredParameter",
-                          "tf": 21.08695652173913
+                          "tf": 1.0869565217391304
                         },
                         "Output.html#destroy": {
                           "ref": "Output.html#destroy",
@@ -19907,99 +19635,47 @@ window.lunrData = {
                         },
                         "Output.html#incrementRegisteredParameter": {
                           "ref": "Output.html#incrementRegisteredParameter",
-                          "tf": 21.08695652173913
+                          "tf": 1.0869565217391304
                         },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 20.458715596330276
+                          "tf": 1.7391304347826086
                         },
                         "Output.html#resetAllControllers": {
                           "ref": "Output.html#resetAllControllers",
-                          "tf": 28.846153846153847
+                          "tf": 3.8461538461538463
                         },
                         "Output.html#sendChannelMode": {
                           "ref": "Output.html#sendChannelMode",
-                          "tf": 19.010416666666664
-                        },
-                        "Output.html#sendControlChange": {
-                          "ref": "Output.html#sendControlChange",
-                          "tf": 16.666666666666664
-                        },
-                        "Output.html#sendNoteOff": {
-                          "ref": "Output.html#sendNoteOff",
-                          "tf": 20
-                        },
-                        "Output.html#sendNoteOn": {
-                          "ref": "Output.html#sendNoteOn",
-                          "tf": 20
+                          "tf": 2.34375
                         },
                         "Output.html#setChannelAftertouch": {
                           "ref": "Output.html#setChannelAftertouch",
-                          "tf": 23.846153846153847
+                          "tf": 3.8461538461538463
                         },
                         "Output.html#setKeyAftertouch": {
                           "ref": "Output.html#setKeyAftertouch",
-                          "tf": 19.444444444444443
-                        },
-                        "Output.html#setLocalControl": {
-                          "ref": "Output.html#setLocalControl",
-                          "tf": 20
-                        },
-                        "Output.html#setMasterTuning": {
-                          "ref": "Output.html#setMasterTuning",
-                          "tf": 20
-                        },
-                        "Output.html#setModulationRange": {
-                          "ref": "Output.html#setModulationRange",
-                          "tf": 16.666666666666664
+                          "tf": 2.7777777777777777
                         },
                         "Output.html#setNonRegisteredParameter": {
                           "ref": "Output.html#setNonRegisteredParameter",
-                          "tf": 17.896174863387976
+                          "tf": 1.2295081967213115
                         },
                         "Output.html#setOmniMode": {
                           "ref": "Output.html#setOmniMode",
-                          "tf": 22.63157894736842
-                        },
-                        "Output.html#setPitchBend": {
-                          "ref": "Output.html#setPitchBend",
-                          "tf": 20
-                        },
-                        "Output.html#setPitchBendRange": {
-                          "ref": "Output.html#setPitchBendRange",
-                          "tf": 16.666666666666664
-                        },
-                        "Output.html#setPolyphonicMode": {
-                          "ref": "Output.html#setPolyphonicMode",
-                          "tf": 20
-                        },
-                        "Output.html#setProgram": {
-                          "ref": "Output.html#setProgram",
-                          "tf": 20
+                          "tf": 2.631578947368421
                         },
                         "Output.html#setRegisteredParameter": {
                           "ref": "Output.html#setRegisteredParameter",
-                          "tf": 17.32456140350877
-                        },
-                        "Output.html#setTuningBank": {
-                          "ref": "Output.html#setTuningBank",
-                          "tf": 20
-                        },
-                        "Output.html#setTuningProgram": {
-                          "ref": "Output.html#setTuningProgram",
-                          "tf": 20
-                        },
-                        "Output.html#stopNote": {
-                          "ref": "Output.html#stopNote",
-                          "tf": 20
+                          "tf": 0.6578947368421052
                         },
                         "Output.html#turnNotesOff": {
                           "ref": "Output.html#turnNotesOff",
-                          "tf": 28.333333333333332
+                          "tf": 3.3333333333333335
                         },
                         "Output.html#turnSoundOff": {
                           "ref": "Output.html#turnSoundOff",
-                          "tf": 32.14285714285714
+                          "tf": 7.142857142857142
                         },
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
@@ -20267,10 +19943,6 @@ window.lunrData = {
                       },
                       "(": {
                         "docs": {
-                          "Output.html#playNote": {
-                            "ref": "Output.html#playNote",
-                            "tf": 0.45871559633027525
-                          },
                           "Output.html#sendChannelMode": {
                             "ref": "Output.html#sendChannelMode",
                             "tf": 0.78125
@@ -20337,10 +20009,6 @@ window.lunrData = {
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
                       "tf": 0.29069767441860467
-                    },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 4.761904761904762
                     },
                     "InputChannel.html#getCcNameByNumber": {
                       "ref": "InputChannel.html#getCcNameByNumber",
@@ -20628,10 +20296,6 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 4.761904761904762
-                        },
                         "InputChannel.html#getCcNameByNumber": {
                           "ref": "InputChannel.html#getCcNameByNumber",
                           "tf": 4.545454545454546
@@ -20642,7 +20306,7 @@ window.lunrData = {
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 18.111753371868975
+                          "tf": 21.44508670520231
                         },
                         "Output.html#setLocalControl": {
                           "ref": "Output.html#setLocalControl",
@@ -21080,17 +20744,6 @@ window.lunrData = {
                     }
                   }
                 },
-                "o": {
-                  "docs": {},
-                  "s": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                },
                 "a": {
                   "docs": {},
                   "t": {
@@ -21168,11 +20821,11 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#sendChannelMode": {
                           "ref": "Output.html#sendChannelMode",
-                          "tf": 16.666666666666664
+                          "tf": 20
                         },
                         "Output.html#sendNoteOff": {
                           "ref": "Output.html#sendNoteOff",
@@ -21241,32 +20894,6 @@ window.lunrData = {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
                     "tf": 0.2857142857142857
-                  }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "c": {
-                    "docs": {},
-                    "t": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "r": {
-                          "docs": {
-                            "InputChannel.html#nrpnEventsEnabled": {
-                              "ref": "InputChannel.html#nrpnEventsEnabled",
-                              "tf": 1.1904761904761905
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -21514,11 +21141,11 @@ window.lunrData = {
                 "docs": {
                   "Output.html#setModulationRange": {
                     "ref": "Output.html#setModulationRange",
-                    "tf": 18.840579710144926
+                    "tf": 22.17391304347826
                   },
                   "Output.html#setPitchBendRange": {
                     "ref": "Output.html#setPitchBendRange",
-                    "tf": 18.055555555555554
+                    "tf": 21.38888888888889
                   },
                   "OutputChannel.html#setModulationRange": {
                     "ref": "OutputChannel.html#setModulationRange",
@@ -21584,10 +21211,6 @@ window.lunrData = {
                       "ref": "Input.html#destroy",
                       "tf": 5
                     },
-                    "InputChannel.html#.NRPN_TYPES": {
-                      "ref": "InputChannel.html#.NRPN_TYPES",
-                      "tf": 6.25
-                    },
                     "Output.html": {
                       "ref": "Output.html",
                       "tf": 1.3888888888888888
@@ -21598,7 +21221,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.9174311926605505
+                      "tf": 0.8695652173913043
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -21767,46 +21390,6 @@ window.lunrData = {
                                 }
                               }
                             },
-                            "s": {
-                              "docs": {},
-                              "t": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {},
-                                      "g": {
-                                        "docs": {},
-                                        "&": {
-                                          "docs": {},
-                                          "g": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {
-                                                "InputChannel.html#.NRPN_TYPES": {
-                                                  "ref": "InputChannel.html#.NRPN_TYPES",
-                                                  "tf": 25
-                                                },
-                                                "WebMidi.html#MIDI_INTERFACE_EVENTS": {
-                                                  "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "WebMidi.html#NOTES": {
-                                                  "ref": "WebMidi.html#NOTES",
-                                                  "tf": 33.33333333333333
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
                             "o": {
                               "docs": {},
                               "u": {
@@ -21849,6 +21432,42 @@ window.lunrData = {
                                                       }
                                                     }
                                                   }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "s": {
+                              "docs": {},
+                              "t": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {},
+                                      "g": {
+                                        "docs": {},
+                                        "&": {
+                                          "docs": {},
+                                          "g": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "WebMidi.html#MIDI_INTERFACE_EVENTS": {
+                                                  "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "WebMidi.html#NOTES": {
+                                                  "ref": "WebMidi.html#NOTES",
+                                                  "tf": 33.33333333333333
                                                 }
                                               }
                                             }
@@ -22673,7 +22292,7 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#sendNoteOn": {
                         "ref": "Output.html#sendNoteOn",
@@ -23052,10 +22671,6 @@ window.lunrData = {
                       "ref": "Input.html#removeListener",
                       "tf": 5.172413793103448
                     },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 2.380952380952381
-                    },
                     "WebMidi.html#MIDI_INTERFACE_EVENTS": {
                       "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
                       "tf": 8.333333333333332
@@ -23373,7 +22988,7 @@ window.lunrData = {
                     "docs": {
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -23440,7 +23055,7 @@ window.lunrData = {
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
@@ -23803,7 +23418,7 @@ window.lunrData = {
               "docs": {
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendNoteOff": {
                   "ref": "Output.html#sendNoteOff",
@@ -23850,7 +23465,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#sendNoteOn": {
                           "ref": "Output.html#sendNoteOn",
@@ -24141,7 +23756,7 @@ window.lunrData = {
             },
             "Output.html#playNote": {
               "ref": "Output.html#playNote",
-              "tf": 0.45871559633027525
+              "tf": 0.43478260869565216
             },
             "Output.html#sendNoteOff": {
               "ref": "Output.html#sendNoteOff",
@@ -24223,21 +23838,13 @@ window.lunrData = {
             },
             "r": {
               "docs": {},
-              "e": {
-                "docs": {
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
-                  }
-                }
-              },
               "s": {
                 "docs": {},
                 "t": {
                   "docs": {
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -24336,14 +23943,6 @@ window.lunrData = {
             },
             "l": {
               "docs": {},
-              "l": {
-                "docs": {
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
-                  }
-                }
-              },
               "s": {
                 "docs": {
                   "InputChannel.html#getCcNameByNumber": {
@@ -24466,7 +24065,7 @@ window.lunrData = {
                           },
                           "Output.html#playNote": {
                             "ref": "Output.html#playNote",
-                            "tf": 110.45871559633028
+                            "tf": 110.43478260869566
                           },
                           "Output.html#resetAllControllers": {
                             "ref": "Output.html#resetAllControllers",
@@ -24889,7 +24488,7 @@ window.lunrData = {
                     "docs": {
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.9174311926605505
+                        "tf": 0.8695652173913043
                       },
                       "Output.html#sendChannelMode": {
                         "ref": "Output.html#sendChannelMode",
@@ -25729,7 +25328,7 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 1.3761467889908259
+                        "tf": 1.3043478260869565
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -25804,7 +25403,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
@@ -26024,19 +25623,19 @@ window.lunrData = {
                       },
                       "Output.html#decrementRegisteredParameter": {
                         "ref": "Output.html#decrementRegisteredParameter",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#incrementRegisteredParameter": {
                         "ref": "Output.html#incrementRegisteredParameter",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 21.376146788990827
+                        "tf": 26.304347826086957
                       },
                       "Output.html#resetAllControllers": {
                         "ref": "Output.html#resetAllControllers",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -26048,7 +25647,7 @@ window.lunrData = {
                       },
                       "Output.html#sendChannelMode": {
                         "ref": "Output.html#sendChannelMode",
-                        "tf": 17.447916666666664
+                        "tf": 20.78125
                       },
                       "Output.html#sendClock": {
                         "ref": "Output.html#sendClock",
@@ -26060,15 +25659,15 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
-                        "tf": 21.666666666666668
+                        "tf": 26.666666666666668
                       },
                       "Output.html#sendNoteOn": {
                         "ref": "Output.html#sendNoteOn",
-                        "tf": 21.204819277108435
+                        "tf": 26.204819277108435
                       },
                       "Output.html#sendReset": {
                         "ref": "Output.html#sendReset",
@@ -26096,51 +25695,51 @@ window.lunrData = {
                       },
                       "Output.html#setChannelAftertouch": {
                         "ref": "Output.html#setChannelAftertouch",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setKeyAftertouch": {
                         "ref": "Output.html#setKeyAftertouch",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setLocalControl": {
                         "ref": "Output.html#setLocalControl",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setMasterTuning": {
                         "ref": "Output.html#setMasterTuning",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setModulationRange": {
                         "ref": "Output.html#setModulationRange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setNonRegisteredParameter": {
                         "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setOmniMode": {
                         "ref": "Output.html#setOmniMode",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setPolyphonicMode": {
                         "ref": "Output.html#setPolyphonicMode",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setProgram": {
                         "ref": "Output.html#setProgram",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setRegisteredParameter": {
                         "ref": "Output.html#setRegisteredParameter",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setSong": {
                         "ref": "Output.html#setSong",
@@ -26152,23 +25751,23 @@ window.lunrData = {
                       },
                       "Output.html#setTuningBank": {
                         "ref": "Output.html#setTuningBank",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setTuningProgram": {
                         "ref": "Output.html#setTuningProgram",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#stopNote": {
                         "ref": "Output.html#stopNote",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#turnNotesOff": {
                         "ref": "Output.html#turnNotesOff",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "Output.html#turnSoundOff": {
                         "ref": "Output.html#turnSoundOff",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "OutputChannel.html#decrementRegisteredParameter": {
                         "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -26336,7 +25935,7 @@ window.lunrData = {
               },
               "Output.html#playNote": {
                 "ref": "Output.html#playNote",
-                "tf": 0.45871559633027525
+                "tf": 0.8695652173913043
               },
               "Output.html#send": {
                 "ref": "Output.html#send",
@@ -26448,10 +26047,6 @@ window.lunrData = {
                   "ref": "InputChannel.html",
                   "tf": 1.0204081632653061
                 },
-                "InputChannel.html#nrpnEventsEnabled": {
-                  "ref": "InputChannel.html#nrpnEventsEnabled",
-                  "tf": 1.1904761904761905
-                },
                 "Output.html#clear": {
                   "ref": "Output.html#clear",
                   "tf": 2.272727272727273
@@ -26513,7 +26108,7 @@ window.lunrData = {
                       },
                       "Output.html#decrementRegisteredParameter": {
                         "ref": "Output.html#decrementRegisteredParameter",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#destroy": {
                         "ref": "Output.html#destroy",
@@ -26521,7 +26116,7 @@ window.lunrData = {
                       },
                       "Output.html#incrementRegisteredParameter": {
                         "ref": "Output.html#incrementRegisteredParameter",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#open": {
                         "ref": "Output.html#open",
@@ -26529,11 +26124,11 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 20
+                        "tf": 25.434782608695652
                       },
                       "Output.html#resetAllControllers": {
                         "ref": "Output.html#resetAllControllers",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -26545,7 +26140,7 @@ window.lunrData = {
                       },
                       "Output.html#sendChannelMode": {
                         "ref": "Output.html#sendChannelMode",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#sendClock": {
                         "ref": "Output.html#sendClock",
@@ -26553,15 +26148,15 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#sendNoteOn": {
                         "ref": "Output.html#sendNoteOn",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#sendReset": {
                         "ref": "Output.html#sendReset",
@@ -26589,51 +26184,51 @@ window.lunrData = {
                       },
                       "Output.html#setChannelAftertouch": {
                         "ref": "Output.html#setChannelAftertouch",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setKeyAftertouch": {
                         "ref": "Output.html#setKeyAftertouch",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setLocalControl": {
                         "ref": "Output.html#setLocalControl",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setMasterTuning": {
                         "ref": "Output.html#setMasterTuning",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setModulationRange": {
                         "ref": "Output.html#setModulationRange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setNonRegisteredParameter": {
                         "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 17.076502732240435
+                        "tf": 20.40983606557377
                       },
                       "Output.html#setOmniMode": {
                         "ref": "Output.html#setOmniMode",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setPitchBend": {
                         "ref": "Output.html#setPitchBend",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setPitchBendRange": {
                         "ref": "Output.html#setPitchBendRange",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setPolyphonicMode": {
                         "ref": "Output.html#setPolyphonicMode",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setProgram": {
                         "ref": "Output.html#setProgram",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setRegisteredParameter": {
                         "ref": "Output.html#setRegisteredParameter",
-                        "tf": 16.666666666666664
+                        "tf": 20
                       },
                       "Output.html#setSong": {
                         "ref": "Output.html#setSong",
@@ -26645,23 +26240,23 @@ window.lunrData = {
                       },
                       "Output.html#setTuningBank": {
                         "ref": "Output.html#setTuningBank",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#setTuningProgram": {
                         "ref": "Output.html#setTuningProgram",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#stopNote": {
                         "ref": "Output.html#stopNote",
-                        "tf": 20
+                        "tf": 25
                       },
                       "Output.html#turnNotesOff": {
                         "ref": "Output.html#turnNotesOff",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "Output.html#turnSoundOff": {
                         "ref": "Output.html#turnSoundOff",
-                        "tf": 25
+                        "tf": 33.33333333333333
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
@@ -29522,60 +29117,6 @@ window.lunrData = {
               }
             }
           },
-          "r": {
-            "docs": {},
-            "d": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Output.html#setRegisteredParameter": {
-                        "ref": "Output.html#setRegisteredParameter",
-                        "tf": 0.6578947368421052
-                      },
-                      "OutputChannel.html#setRegisteredParameter": {
-                        "ref": "OutputChannel.html#setRegisteredParameter",
-                        "tf": 0.6578947368421052
-                      },
-                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                        "tf": 0.78125
-                      },
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "c": {
             "docs": {},
             "t": {
@@ -29594,7 +29135,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -29679,7 +29220,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
+                    "tf": 0.43478260869565216
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -29813,6 +29354,56 @@ window.lunrData = {
               }
             }
           },
+          "r": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Output.html#setRegisteredParameter": {
+                        "ref": "Output.html#setRegisteredParameter",
+                        "tf": 0.6578947368421052
+                      },
+                      "OutputChannel.html#setRegisteredParameter": {
+                        "ref": "OutputChannel.html#setRegisteredParameter",
+                        "tf": 0.6578947368421052
+                      },
+                      "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                        "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                        "tf": 0.78125
+                      },
+                      "WebMidi.html#time": {
+                        "ref": "WebMidi.html#time",
+                        "tf": 1.5625
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.2857142857142857
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "d": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.2857142857142857
+                    }
+                  }
+                }
+              }
+            }
+          },
           "f": {
             "docs": {},
             "f": {
@@ -29892,26 +29483,6 @@ window.lunrData = {
                 }
               }
             },
-            "q": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "c": {
-                      "docs": {
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 2.380952380952381
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "t": {
               "docs": {
                 "Note.html": {
@@ -29920,7 +29491,7 @@ window.lunrData = {
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.9174311926605505
+                  "tf": 0.8695652173913043
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
@@ -30029,7 +29600,7 @@ window.lunrData = {
                                         },
                                         "Output.html#setLocalControl": {
                                           "ref": "Output.html#setLocalControl",
-                                          "tf": 670
+                                          "tf": 675
                                         },
                                         "OutputChannel.html#sendChannelMode": {
                                           "ref": "OutputChannel.html#sendChannelMode",
@@ -30072,7 +29643,7 @@ window.lunrData = {
                               },
                               "Output.html#setOmniMode": {
                                 "ref": "Output.html#setOmniMode",
-                                "tf": 670
+                                "tf": 675
                               },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
@@ -30122,7 +29693,7 @@ window.lunrData = {
                                           },
                                           "Output.html#setPolyphonicMode": {
                                             "ref": "Output.html#setPolyphonicMode",
-                                            "tf": 670
+                                            "tf": 675
                                           },
                                           "OutputChannel.html#sendChannelMode": {
                                             "ref": "OutputChannel.html#sendChannelMode",
@@ -30163,7 +29734,7 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#setPitchBend": {
                                     "ref": "Output.html#setPitchBend",
-                                    "tf": 670
+                                    "tf": 675
                                   },
                                   "OutputChannel.html#setPitchBend": {
                                     "ref": "OutputChannel.html#setPitchBend",
@@ -30180,7 +29751,7 @@ window.lunrData = {
                                         "docs": {
                                           "Output.html#setPitchBendRange": {
                                             "ref": "Output.html#setPitchBendRange",
-                                            "tf": 666.6666666666666
+                                            "tf": 670
                                           },
                                           "OutputChannel.html#setPitchBendRange": {
                                             "ref": "OutputChannel.html#setPitchBendRange",
@@ -30213,7 +29784,7 @@ window.lunrData = {
                             "docs": {
                               "Output.html#setProgram": {
                                 "ref": "Output.html#setProgram",
-                                "tf": 670
+                                "tf": 675
                               },
                               "OutputChannel.html#setProgram": {
                                 "ref": "OutputChannel.html#setProgram",
@@ -30263,7 +29834,7 @@ window.lunrData = {
                                                 "docs": {
                                                   "Output.html#setChannelAftertouch": {
                                                     "ref": "Output.html#setChannelAftertouch",
-                                                    "tf": 670
+                                                    "tf": 675
                                                   },
                                                   "Output.html#setKeyAftertouch": {
                                                     "ref": "Output.html#setKeyAftertouch",
@@ -30327,7 +29898,7 @@ window.lunrData = {
                                           },
                                           "Output.html#setKeyAftertouch": {
                                             "ref": "Output.html#setKeyAftertouch",
-                                            "tf": 666.6666666666666
+                                            "tf": 670
                                           },
                                           "OutputChannel.html#setChannelAftertouch": {
                                             "ref": "OutputChannel.html#setChannelAftertouch",
@@ -30371,7 +29942,7 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#setMasterTuning": {
                                     "ref": "Output.html#setMasterTuning",
-                                    "tf": 670
+                                    "tf": 675
                                   },
                                   "OutputChannel.html#setMasterTuning": {
                                     "ref": "OutputChannel.html#setMasterTuning",
@@ -30414,7 +29985,7 @@ window.lunrData = {
                                           "docs": {
                                             "Output.html#setModulationRange": {
                                               "ref": "Output.html#setModulationRange",
-                                              "tf": 666.6666666666666
+                                              "tf": 670
                                             },
                                             "OutputChannel.html#setModulationRange": {
                                               "ref": "OutputChannel.html#setModulationRange",
@@ -30477,7 +30048,7 @@ window.lunrData = {
                                                       "docs": {
                                                         "Output.html#setNonRegisteredParameter": {
                                                           "ref": "Output.html#setNonRegisteredParameter",
-                                                          "tf": 666.6666666666666
+                                                          "tf": 670
                                                         },
                                                         "OutputChannel.html#setNonRegisteredParameter": {
                                                           "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -30540,7 +30111,7 @@ window.lunrData = {
                                                 "docs": {
                                                   "Output.html#setRegisteredParameter": {
                                                     "ref": "Output.html#setRegisteredParameter",
-                                                    "tf": 666.6666666666666
+                                                    "tf": 670
                                                   },
                                                   "OutputChannel.html#setRegisteredParameter": {
                                                     "ref": "OutputChannel.html#setRegisteredParameter",
@@ -30623,7 +30194,7 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#setTuningBank": {
                                       "ref": "Output.html#setTuningBank",
-                                      "tf": 670
+                                      "tf": 675
                                     },
                                     "OutputChannel.html#setTuningBank": {
                                       "ref": "OutputChannel.html#setTuningBank",
@@ -30650,7 +30221,7 @@ window.lunrData = {
                                         "docs": {
                                           "Output.html#setTuningProgram": {
                                             "ref": "Output.html#setTuningProgram",
-                                            "tf": 670
+                                            "tf": 675
                                           },
                                           "OutputChannel.html#setTuningProgram": {
                                             "ref": "OutputChannel.html#setTuningProgram",
@@ -30692,7 +30263,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
+                    "tf": 0.8695652173913043
                   },
                   "Output.html#resetAllControllers": {
                     "ref": "Output.html#resetAllControllers",
@@ -30899,11 +30470,11 @@ window.lunrData = {
                               "docs": {
                                 "Output.html#playNote": {
                                   "ref": "Output.html#playNote",
-                                  "tf": 0.45871559633027525
+                                  "tf": 0.43478260869565216
                                 },
                                 "Output.html#sendNoteOff": {
                                   "ref": "Output.html#sendNoteOff",
-                                  "tf": 670
+                                  "tf": 675
                                 },
                                 "Output.html#stopNote": {
                                   "ref": "Output.html#stopNote",
@@ -30928,7 +30499,7 @@ window.lunrData = {
                             "docs": {
                               "Output.html#sendNoteOn": {
                                 "ref": "Output.html#sendNoteOn",
-                                "tf": 670
+                                "tf": 675
                               },
                               "OutputChannel.html#sendNoteOn": {
                                 "ref": "OutputChannel.html#sendNoteOn",
@@ -30971,7 +30542,7 @@ window.lunrData = {
                                           },
                                           "Output.html#sendControlChange": {
                                             "ref": "Output.html#sendControlChange",
-                                            "tf": 666.6666666666666
+                                            "tf": 670
                                           },
                                           "OutputChannel.html#send": {
                                             "ref": "OutputChannel.html#send",
@@ -31031,7 +30602,7 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendChannelMode": {
                                         "ref": "Output.html#sendChannelMode",
-                                        "tf": 666.6666666666666
+                                        "tf": 670
                                       },
                                       "OutputChannel.html#sendChannelMode": {
                                         "ref": "OutputChannel.html#sendChannelMode",
@@ -31274,7 +30845,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
+                    "tf": 0.43478260869565216
                   },
                   "Output.html#sendActiveSensing": {
                     "ref": "Output.html#sendActiveSensing",
@@ -31350,11 +30921,11 @@ window.lunrData = {
                         },
                         "Output.html#setModulationRange": {
                           "ref": "Output.html#setModulationRange",
-                          "tf": 18.840579710144926
+                          "tf": 22.17391304347826
                         },
                         "Output.html#setPitchBendRange": {
                           "ref": "Output.html#setPitchBendRange",
-                          "tf": 20.83333333333333
+                          "tf": 24.166666666666664
                         },
                         "OutputChannel.html#setMasterTuning": {
                           "ref": "OutputChannel.html#setMasterTuning",
@@ -31444,7 +31015,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -31500,7 +31071,7 @@ window.lunrData = {
                     "docs": {
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
@@ -31682,10 +31253,6 @@ window.lunrData = {
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
                     "tf": 1.0204081632653061
-                  },
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 1.1904761904761905
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -31948,11 +31515,11 @@ window.lunrData = {
                     },
                     "Output.html#setLocalControl": {
                       "ref": "Output.html#setLocalControl",
-                      "tf": 20
+                      "tf": 25
                     },
                     "Output.html#setOmniMode": {
                       "ref": "Output.html#setOmniMode",
-                      "tf": 20
+                      "tf": 25
                     },
                     "OutputChannel.html#setLocalControl": {
                       "ref": "OutputChannel.html#setLocalControl",
@@ -32068,7 +31635,7 @@ window.lunrData = {
                         "docs": {
                           "Output.html#playNote": {
                             "ref": "Output.html#playNote",
-                            "tf": 0.45871559633027525
+                            "tf": 0.43478260869565216
                           },
                           "Output.html#sendClock": {
                             "ref": "Output.html#sendClock",
@@ -32301,7 +31868,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#send": {
                           "ref": "Output.html#send",
@@ -32309,7 +31876,7 @@ window.lunrData = {
                         },
                         "Output.html#stopNote": {
                           "ref": "Output.html#stopNote",
-                          "tf": 670
+                          "tf": 675
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
@@ -32486,10 +32053,6 @@ window.lunrData = {
                         "ref": "Input.html#removeListener",
                         "tf": 1.7241379310344827
                       },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
                         "tf": 2.272727272727273
@@ -32607,7 +32170,7 @@ window.lunrData = {
                         },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 1.834862385321101
+                          "tf": 1.7391304347826086
                         },
                         "Output.html#sendChannelMode": {
                           "ref": "Output.html#sendChannelMode",
@@ -33370,7 +32933,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#send": {
                           "ref": "Output.html#send",
@@ -33554,14 +33117,6 @@ window.lunrData = {
                         "ref": "Input.html#channels",
                         "tf": 4.166666666666666
                       },
-                      "InputChannel.html#.NRPN_TYPES": {
-                        "ref": "InputChannel.html#.NRPN_TYPES",
-                        "tf": 6.25
-                      },
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      },
                       "InputChannel.html#number": {
                         "ref": "InputChannel.html#number",
                         "tf": 762.5
@@ -33612,7 +33167,7 @@ window.lunrData = {
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
-                        "tf": 0.45871559633027525
+                        "tf": 0.43478260869565216
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
@@ -33970,7 +33525,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
+                    "tf": 0.43478260869565216
                   },
                   "Output.html#sendChannelMode": {
                     "ref": "Output.html#sendChannelMode",
@@ -34220,7 +33775,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 28.71559633027523
+                    "tf": 33.26086956521739
                   },
                   "Output.html#sendChannelMode": {
                     "ref": "Output.html#sendChannelMode",
@@ -34236,11 +33791,11 @@ window.lunrData = {
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
-                    "tf": 27.5
+                    "tf": 32.5
                   },
                   "Output.html#sendNoteOn": {
                     "ref": "Output.html#sendNoteOn",
-                    "tf": 27.83132530120482
+                    "tf": 32.83132530120482
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
@@ -34252,7 +33807,7 @@ window.lunrData = {
                   },
                   "Output.html#setKeyAftertouch": {
                     "ref": "Output.html#setKeyAftertouch",
-                    "tf": 16.666666666666664
+                    "tf": 20
                   },
                   "Output.html#setOmniMode": {
                     "ref": "Output.html#setOmniMode",
@@ -34288,7 +33843,7 @@ window.lunrData = {
                   },
                   "Output.html#stopNote": {
                     "ref": "Output.html#stopNote",
-                    "tf": 20
+                    "tf": 25
                   },
                   "Output.html#turnNotesOff": {
                     "ref": "Output.html#turnNotesOff",
@@ -34635,14 +34190,6 @@ window.lunrData = {
             },
             "n": {
               "docs": {
-                "InputChannel.html#.NRPN_TYPES": {
-                  "ref": "InputChannel.html#.NRPN_TYPES",
-                  "tf": 6.25
-                },
-                "InputChannel.html#nrpnEventsEnabled": {
-                  "ref": "InputChannel.html#nrpnEventsEnabled",
-                  "tf": 1.1904761904761905
-                },
                 "Output.html#setNonRegisteredParameter": {
                   "ref": "Output.html#setNonRegisteredParameter",
                   "tf": 0.4098360655737705
@@ -34836,14 +34383,6 @@ window.lunrData = {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 0.29069767441860467
                   },
-                  "InputChannel.html#.NRPN_TYPES": {
-                    "ref": "InputChannel.html#.NRPN_TYPES",
-                    "tf": 6.25
-                  },
-                  "InputChannel.html#nrpnEventsEnabled": {
-                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                    "tf": 2.380952380952381
-                  },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
                     "tf": 1.639344262295082
@@ -34859,55 +34398,6 @@ window.lunrData = {
                   "WebMidi.html#MIDI_NRPN_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
                     "tf": 2
-                  }
-                },
-                "_": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "y": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {
-                            "InputChannel.html#.NRPN_TYPES": {
-                              "ref": "InputChannel.html#.NRPN_TYPES",
-                              "tf": 675
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "e": {
-                  "docs": {},
-                  "v": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {
-                                  "InputChannel.html#nrpnEventsEnabled": {
-                                    "ref": "InputChannel.html#nrpnEventsEnabled",
-                                    "tf": 700
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -35033,10 +34523,6 @@ window.lunrData = {
                         "Input.html#channels": {
                           "ref": "Input.html#channels",
                           "tf": 4.166666666666666
-                        },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 1.1904761904761905
                         },
                         "Output.html#channels": {
                           "ref": "Output.html#channels",
@@ -35197,10 +34683,6 @@ window.lunrData = {
                     "ref": "Input.html#removeListener",
                     "tf": 25
                   },
-                  "InputChannel.html#.NRPN_TYPES": {
-                    "ref": "InputChannel.html#.NRPN_TYPES",
-                    "tf": 6.25
-                  },
                   "Output.html#type": {
                     "ref": "Output.html#type",
                     "tf": 695.8333333333334
@@ -35238,7 +34720,7 @@ window.lunrData = {
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.45871559633027525
+                    "tf": 0.43478260869565216
                   },
                   "Output.html#sendActiveSensing": {
                     "ref": "Output.html#sendActiveSensing",
@@ -35782,7 +35264,7 @@ window.lunrData = {
                                   },
                                   "Output.html#turnNotesOff": {
                                     "ref": "Output.html#turnNotesOff",
-                                    "tf": 675
+                                    "tf": 683.3333333333334
                                   },
                                   "OutputChannel.html#sendChannelMode": {
                                     "ref": "OutputChannel.html#sendChannelMode",
@@ -35823,7 +35305,7 @@ window.lunrData = {
                                   },
                                   "Output.html#turnSoundOff": {
                                     "ref": "Output.html#turnSoundOff",
-                                    "tf": 675
+                                    "tf": 683.3333333333334
                                   },
                                   "OutputChannel.html#sendChannelMode": {
                                     "ref": "OutputChannel.html#sendChannelMode",
@@ -36025,10 +35507,6 @@ window.lunrData = {
                           "ref": "Input.html#hasListener",
                           "tf": 20
                         },
-                        "InputChannel.html#nrpnEventsEnabled": {
-                          "ref": "InputChannel.html#nrpnEventsEnabled",
-                          "tf": 50
-                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 33.33333333333333
@@ -36191,7 +35669,7 @@ window.lunrData = {
                         },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
-                          "tf": 0.45871559633027525
+                          "tf": 0.43478260869565216
                         },
                         "Output.html#sendNoteOff": {
                           "ref": "Output.html#sendNoteOff",
@@ -36313,40 +35791,6 @@ window.lunrData = {
                   "Output.html#setSongPosition": {
                     "ref": "Output.html#setSongPosition",
                     "tf": 2.631578947368421
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "f": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "InputChannel.html#nrpnEventsEnabled": {
-                        "ref": "InputChannel.html#nrpnEventsEnabled",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "i": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "WebMidi.html#supported": {
-                      "ref": "WebMidi.html#supported",
-                      "tf": 1.7241379310344827
-                    }
                   }
                 }
               }
@@ -36790,6 +36234,23 @@ window.lunrData = {
               }
             }
           },
+          "u": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "t": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
+                    }
+                  }
+                }
+              }
+            }
+          },
           "#": {
             "docs": {},
             "#": {
@@ -36932,7 +36393,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
@@ -37095,7 +36556,7 @@ window.lunrData = {
               },
               "Output.html#playNote": {
                 "ref": "Output.html#playNote",
-                "tf": 0.9174311926605505
+                "tf": 0.8695652173913043
               },
               "Output.html#send": {
                 "ref": "Output.html#send",
@@ -37503,21 +36964,13 @@ window.lunrData = {
                 "docs": {},
                 "d": {
                   "docs": {
-                    "InputChannel.html#.NRPN_TYPES": {
-                      "ref": "InputChannel.html#.NRPN_TYPES",
-                      "tf": 6.25
-                    },
-                    "InputChannel.html#nrpnEventsEnabled": {
-                      "ref": "InputChannel.html#nrpnEventsEnabled",
-                      "tf": 1.1904761904761905
-                    },
                     "InputChannel.html#getCcNameByNumber": {
                       "ref": "InputChannel.html#getCcNameByNumber",
                       "tf": 2.272727272727273
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.45871559633027525
+                      "tf": 0.43478260869565216
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -37586,7 +37039,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
-                    "tf": 0.9174311926605505
+                    "tf": 0.8695652173913043
                   },
                   "Output.html#resetAllControllers": {
                     "ref": "Output.html#resetAllControllers",
@@ -37594,11 +37047,11 @@ window.lunrData = {
                   },
                   "Output.html#sendChannelMode": {
                     "ref": "Output.html#sendChannelMode",
-                    "tf": 18.229166666666664
+                    "tf": 21.5625
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 16.666666666666664
+                    "tf": 20
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -37618,7 +37071,7 @@ window.lunrData = {
                   },
                   "Output.html#setMasterTuning": {
                     "ref": "Output.html#setMasterTuning",
-                    "tf": 22.272727272727273
+                    "tf": 27.272727272727273
                   },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
@@ -37626,7 +37079,7 @@ window.lunrData = {
                   },
                   "Output.html#setPitchBend": {
                     "ref": "Output.html#setPitchBend",
-                    "tf": 20
+                    "tf": 25
                   },
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
@@ -37642,11 +37095,11 @@ window.lunrData = {
                   },
                   "Output.html#setTuningBank": {
                     "ref": "Output.html#setTuningBank",
-                    "tf": 20
+                    "tf": 25
                   },
                   "Output.html#setTuningProgram": {
                     "ref": "Output.html#setTuningProgram",
-                    "tf": 20
+                    "tf": 25
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
@@ -37787,7 +37240,7 @@ window.lunrData = {
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
-                      "tf": 0.9174311926605505
+                      "tf": 0.8695652173913043
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -37872,7 +37325,7 @@ window.lunrData = {
               "docs": {
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
-                  "tf": 0.45871559633027525
+                  "tf": 0.43478260869565216
                 },
                 "Output.html#sendNoteOff": {
                   "ref": "Output.html#sendNoteOff",
@@ -38037,7 +37490,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4332
+      "length": 4272
     },
     "corpusTokens": [
       "0",
@@ -38245,7 +37698,6 @@ window.lunrData = {
       "breathcontrollerfin",
       "bright",
       "browser",
-      "buffer",
       "built",
       "byte",
       "c",
@@ -38281,14 +37733,12 @@ window.lunrData = {
       "close",
       "coars",
       "code",
-      "collector",
       "combin",
       "command",
       "common",
       "commonj",
       "compat",
       "complet",
-      "compos",
       "confirm",
       "connect",
       "consid",
@@ -38335,7 +37785,6 @@ window.lunrData = {
       "differ",
       "directli",
       "disabl",
-      "discard",
       "disconnect",
       "dispatch",
       "display",
@@ -38394,14 +37843,12 @@ window.lunrData = {
       "f",
       "f#4",
       "f0",
-      "fall",
       "fals",
       "famili",
       "featur",
       "file",
       "find",
       "fine",
-      "fire",
       "first",
       "fit",
       "flat",
@@ -38479,7 +37926,6 @@ window.lunrData = {
       "includ",
       "inclus",
       "incom",
-      "incomplet",
       "increment",
       "incrementregisteredparamet",
       "index",
@@ -38506,9 +37952,7 @@ window.lunrData = {
       "inputchannel#getccnamebynumb",
       "inputchannel#getchannelmodebynumb",
       "inputchannel#input",
-      "inputchannel#nrpneventsen",
       "inputchannel#numb",
-      "inputchannel.nrpn_typ",
       "input|fals",
       "insid",
       "instal",
@@ -38547,7 +37991,6 @@ window.lunrData = {
       "local",
       "localcontrol",
       "localhost",
-      "logic",
       "longer",
       "look",
       "lsb",
@@ -38555,7 +37998,6 @@ window.lunrData = {
       "lt;protected&gt",
       "lt;readonli",
       "lt;readonly&gt",
-      "lt;static",
       "make",
       "manufactur",
       "manufacturer\"",
@@ -38627,8 +38069,6 @@ window.lunrData = {
       "novat",
       "now",
       "nrpn",
-      "nrpn_type",
-      "nrpneventsen",
       "nullable&gt",
       "nullactiveparamet",
       "number",
@@ -38821,7 +38261,6 @@ window.lunrData = {
       "rawreleas",
       "react",
       "readm",
-      "readonly&gt",
       "real",
       "reason",
       "receiv",
@@ -38881,7 +38320,6 @@ window.lunrData = {
       "sendtunerequest",
       "sens",
       "sent",
-      "sequenc",
       "serv",
       "set",
       "setchannelaftertouch",
@@ -39285,16 +38723,6 @@ window.lunrData = {
       "description": "The InputChannel class represents a single input MIDI channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
       "body": ""
     },
-    "InputChannel.html#.NRPN_TYPES": {
-      "id": "InputChannel.html#.NRPN_TYPES",
-      "kind": "member",
-      "title": "&lt;static, readonly&gt; NRPN_TYPES :Array.&lt;string&gt;",
-      "longname": "InputChannel.NRPN_TYPES",
-      "name": "NRPN_TYPES",
-      "tags": "InputChannel.NRPN_TYPES NRPN_TYPES",
-      "summary": "",
-      "description": "Array of valid non-registered parameter number (NRPNs) types."
-    },
     "InputChannel.html#input": {
       "id": "InputChannel.html#input",
       "kind": "member",
@@ -39304,16 +38732,6 @@ window.lunrData = {
       "tags": "InputChannel#input input",
       "summary": "",
       "description": "The Input this channel belongs to"
-    },
-    "InputChannel.html#nrpnEventsEnabled": {
-      "id": "InputChannel.html#nrpnEventsEnabled",
-      "kind": "member",
-      "title": "nrpnEventsEnabled :Boolean",
-      "longname": "InputChannel#nrpnEventsEnabled",
-      "name": "nrpnEventsEnabled",
-      "tags": "InputChannel#nrpnEventsEnabled nrpnEventsEnabled",
-      "summary": "",
-      "description": "Indicates whether events for Non-Registered Parameter Number should be dispatched. NRPNs are composed of a sequence of specific control change messages. When a valid sequence of such control change messages is received, an nrpn event will fire. If an invalid or out of order control change message is received, it will fall through the collector logic and all buffered control change messages will be discarded as incomplete."
     },
     "InputChannel.html#number": {
       "id": "InputChannel.html#number",
@@ -39550,7 +38968,7 @@ window.lunrData = {
     "Output.html#decrementRegisteredParameter": {
       "id": "Output.html#decrementRegisteredParameter",
       "kind": "function",
-      "title": "decrementRegisteredParameter( parameter, channel [, options ] ) → {Output}",
+      "title": "decrementRegisteredParameter( parameter [, options ] ) → {Output}",
       "longname": "Output#decrementRegisteredParameter",
       "name": "decrementRegisteredParameter",
       "tags": "Output#decrementRegisteredParameter decrementRegisteredParameter",
@@ -39570,7 +38988,7 @@ window.lunrData = {
     "Output.html#incrementRegisteredParameter": {
       "id": "Output.html#incrementRegisteredParameter",
       "kind": "function",
-      "title": "incrementRegisteredParameter( parameter, channel [, options ] ) → {Output}",
+      "title": "incrementRegisteredParameter( parameter [, options ] ) → {Output}",
       "longname": "Output#incrementRegisteredParameter",
       "name": "incrementRegisteredParameter",
       "tags": "Output#incrementRegisteredParameter incrementRegisteredParameter",
@@ -39590,17 +39008,17 @@ window.lunrData = {
     "Output.html#playNote": {
       "id": "Output.html#playNote",
       "kind": "function",
-      "title": "playNote( note [, channel [, options ] ] ) → {Output}",
+      "title": "playNote( note [, options ] ) → {Output}",
       "longname": "Output#playNote",
       "name": "playNote",
       "tags": "Output#playNote playNote",
       "summary": "",
-      "description": "Plays a note or an array of notes on the specified channel(s). The first parameter is the note to play. It can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object The playNote() method sends a note on MIDI message for all specified notes on all specified channels. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
+      "description": "Plays a note or an array of notes on one or more channels of this output. The first parameter is the note to play. It can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object The playNote() method sends a note on MIDI message for all specified notes on all specified channels. If no channels are specified, it will send to all channels. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
     },
     "Output.html#resetAllControllers": {
       "id": "Output.html#resetAllControllers",
       "kind": "function",
-      "title": "resetAllControllers( channel [, options ] ) → {Output}",
+      "title": "resetAllControllers( [ options ] ) → {Output}",
       "longname": "Output#resetAllControllers",
       "name": "resetAllControllers",
       "tags": "Output#resetAllControllers resetAllControllers",
@@ -39630,7 +39048,7 @@ window.lunrData = {
     "Output.html#sendChannelMode": {
       "id": "Output.html#sendChannelMode",
       "kind": "function",
-      "title": "sendChannelMode( command [, value ], channel [, options ] ) → {Output}",
+      "title": "sendChannelMode( command [, value [, options ] ] ) → {Output}",
       "longname": "Output#sendChannelMode",
       "name": "sendChannelMode",
       "tags": "Output#sendChannelMode sendChannelMode",
@@ -39660,7 +39078,7 @@ window.lunrData = {
     "Output.html#sendControlChange": {
       "id": "Output.html#sendControlChange",
       "kind": "function",
-      "title": "sendControlChange( controller [, value ], channel [, options ] ) → {Output}",
+      "title": "sendControlChange( controller [, value [, options ] ] ) → {Output}",
       "longname": "Output#sendControlChange",
       "name": "sendControlChange",
       "tags": "Output#sendControlChange sendControlChange",
@@ -39670,7 +39088,7 @@ window.lunrData = {
     "Output.html#sendNoteOff": {
       "id": "Output.html#sendNoteOff",
       "kind": "function",
-      "title": "sendNoteOff( note [, channel [, options ] ] ) → {Output}",
+      "title": "sendNoteOff( note [, options ] ) → {Output}",
       "longname": "Output#sendNoteOff",
       "name": "sendNoteOff",
       "tags": "Output#sendNoteOff sendNoteOff",
@@ -39680,7 +39098,7 @@ window.lunrData = {
     "Output.html#sendNoteOn": {
       "id": "Output.html#sendNoteOn",
       "kind": "function",
-      "title": "sendNoteOn( note [, channel [, options ] ] ) → {Output}",
+      "title": "sendNoteOn( note [, options ] ) → {Output}",
       "longname": "Output#sendNoteOn",
       "name": "sendNoteOn",
       "tags": "Output#sendNoteOn sendNoteOn",
@@ -39750,7 +39168,7 @@ window.lunrData = {
     "Output.html#setChannelAftertouch": {
       "id": "Output.html#setChannelAftertouch",
       "kind": "function",
-      "title": "setChannelAftertouch( [ pressure ], channel [, options ] ) → {Output}",
+      "title": "setChannelAftertouch( [ pressure [, options ] ] ) → {Output}",
       "longname": "Output#setChannelAftertouch",
       "name": "setChannelAftertouch",
       "tags": "Output#setChannelAftertouch setChannelAftertouch",
@@ -39760,7 +39178,7 @@ window.lunrData = {
     "Output.html#setKeyAftertouch": {
       "id": "Output.html#setKeyAftertouch",
       "kind": "function",
-      "title": "setKeyAftertouch( note [, pressure ], channel [, options ] ) → {Output}",
+      "title": "setKeyAftertouch( note [, pressure [, options ] ] ) → {Output}",
       "longname": "Output#setKeyAftertouch",
       "name": "setKeyAftertouch",
       "tags": "Output#setKeyAftertouch setKeyAftertouch",
@@ -39770,7 +39188,7 @@ window.lunrData = {
     "Output.html#setLocalControl": {
       "id": "Output.html#setLocalControl",
       "kind": "function",
-      "title": "setLocalControl( [ state ], channel [, options ] ) → {Output}",
+      "title": "setLocalControl( [ state [, options ] ] ) → {Output}",
       "longname": "Output#setLocalControl",
       "name": "setLocalControl",
       "tags": "Output#setLocalControl setLocalControl",
@@ -39780,7 +39198,7 @@ window.lunrData = {
     "Output.html#setMasterTuning": {
       "id": "Output.html#setMasterTuning",
       "kind": "function",
-      "title": "setMasterTuning( [ value ], channel [, options ] ) → {Output}",
+      "title": "setMasterTuning( [ value [, options ] ] ) → {Output}",
       "longname": "Output#setMasterTuning",
       "name": "setMasterTuning",
       "tags": "Output#setMasterTuning setMasterTuning",
@@ -39790,7 +39208,7 @@ window.lunrData = {
     "Output.html#setModulationRange": {
       "id": "Output.html#setModulationRange",
       "kind": "function",
-      "title": "setModulationRange( [ semitones [, cents ], channel [, options ] ] ) → {Output}",
+      "title": "setModulationRange( [ semitones [, cents [, options ] ] ] ) → {Output}",
       "longname": "Output#setModulationRange",
       "name": "setModulationRange",
       "tags": "Output#setModulationRange setModulationRange",
@@ -39800,7 +39218,7 @@ window.lunrData = {
     "Output.html#setNonRegisteredParameter": {
       "id": "Output.html#setNonRegisteredParameter",
       "kind": "function",
-      "title": "setNonRegisteredParameter( parameter [, data ], channel [, options ] ) → {Output}",
+      "title": "setNonRegisteredParameter( parameter [, data [, options ] ] ) → {Output}",
       "longname": "Output#setNonRegisteredParameter",
       "name": "setNonRegisteredParameter",
       "tags": "Output#setNonRegisteredParameter setNonRegisteredParameter",
@@ -39810,7 +39228,7 @@ window.lunrData = {
     "Output.html#setOmniMode": {
       "id": "Output.html#setOmniMode",
       "kind": "function",
-      "title": "setOmniMode( [ state ], channel [, options ] ) → {Output}",
+      "title": "setOmniMode( [ state [, options ] ] ) → {Output}",
       "longname": "Output#setOmniMode",
       "name": "setOmniMode",
       "tags": "Output#setOmniMode setOmniMode",
@@ -39820,7 +39238,7 @@ window.lunrData = {
     "Output.html#setPitchBend": {
       "id": "Output.html#setPitchBend",
       "kind": "function",
-      "title": "setPitchBend( value, channel [, options ] ) → {Output}",
+      "title": "setPitchBend( value [, options ] ) → {Output}",
       "longname": "Output#setPitchBend",
       "name": "setPitchBend",
       "tags": "Output#setPitchBend setPitchBend",
@@ -39830,7 +39248,7 @@ window.lunrData = {
     "Output.html#setPitchBendRange": {
       "id": "Output.html#setPitchBendRange",
       "kind": "function",
-      "title": "setPitchBendRange( semitones [, cents ], channel [, options ] ) → {Output}",
+      "title": "setPitchBendRange( semitones [, cents [, options ] ] ) → {Output}",
       "longname": "Output#setPitchBendRange",
       "name": "setPitchBendRange",
       "tags": "Output#setPitchBendRange setPitchBendRange",
@@ -39840,7 +39258,7 @@ window.lunrData = {
     "Output.html#setPolyphonicMode": {
       "id": "Output.html#setPolyphonicMode",
       "kind": "function",
-      "title": "setPolyphonicMode( mode, channel [, options ] ) → {Output}",
+      "title": "setPolyphonicMode( mode [, options ] ) → {Output}",
       "longname": "Output#setPolyphonicMode",
       "name": "setPolyphonicMode",
       "tags": "Output#setPolyphonicMode setPolyphonicMode",
@@ -39850,7 +39268,7 @@ window.lunrData = {
     "Output.html#setProgram": {
       "id": "Output.html#setProgram",
       "kind": "function",
-      "title": "setProgram( [ program ], channel [, options ] ) → {Output}",
+      "title": "setProgram( [ program [, options ] ] ) → {Output}",
       "longname": "Output#setProgram",
       "name": "setProgram",
       "tags": "Output#setProgram setProgram",
@@ -39860,7 +39278,7 @@ window.lunrData = {
     "Output.html#setRegisteredParameter": {
       "id": "Output.html#setRegisteredParameter",
       "kind": "function",
-      "title": "setRegisteredParameter( parameter [, data ], channel [, options ] ) → {Output}",
+      "title": "setRegisteredParameter( parameter [, data [, options ] ] ) → {Output}",
       "longname": "Output#setRegisteredParameter",
       "name": "setRegisteredParameter",
       "tags": "Output#setRegisteredParameter setRegisteredParameter",
@@ -39890,7 +39308,7 @@ window.lunrData = {
     "Output.html#setTuningBank": {
       "id": "Output.html#setTuningBank",
       "kind": "function",
-      "title": "setTuningBank( value, channel [, options ] ) → {Output}",
+      "title": "setTuningBank( value [, options ] ) → {Output}",
       "longname": "Output#setTuningBank",
       "name": "setTuningBank",
       "tags": "Output#setTuningBank setTuningBank",
@@ -39900,7 +39318,7 @@ window.lunrData = {
     "Output.html#setTuningProgram": {
       "id": "Output.html#setTuningProgram",
       "kind": "function",
-      "title": "setTuningProgram( value, channel [, options ] ) → {Output}",
+      "title": "setTuningProgram( value [, options ] ) → {Output}",
       "longname": "Output#setTuningProgram",
       "name": "setTuningProgram",
       "tags": "Output#setTuningProgram setTuningProgram",
@@ -39910,7 +39328,7 @@ window.lunrData = {
     "Output.html#stopNote": {
       "id": "Output.html#stopNote",
       "kind": "function",
-      "title": "stopNote( note, channel, options ) → {Output}",
+      "title": "stopNote( note, options ) → {Output}",
       "longname": "Output#stopNote",
       "name": "stopNote",
       "tags": "Output#stopNote stopNote",
@@ -39920,7 +39338,7 @@ window.lunrData = {
     "Output.html#turnNotesOff": {
       "id": "Output.html#turnNotesOff",
       "kind": "function",
-      "title": "turnNotesOff( channel [, options ] ) → {Output}",
+      "title": "turnNotesOff( [ options ] ) → {Output}",
       "longname": "Output#turnNotesOff",
       "name": "turnNotesOff",
       "tags": "Output#turnNotesOff turnNotesOff",
@@ -39930,7 +39348,7 @@ window.lunrData = {
     "Output.html#turnSoundOff": {
       "id": "Output.html#turnSoundOff",
       "kind": "function",
-      "title": "turnSoundOff( channel [, options ] ) → {Output}",
+      "title": "turnSoundOff( [ options ] ) → {Output}",
       "longname": "Output#turnSoundOff",
       "name": "turnSoundOff",
       "tags": "Output#turnSoundOff turnSoundOff",
@@ -40101,7 +39519,7 @@ window.lunrData = {
     "OutputChannel.html#setModulationRange": {
       "id": "OutputChannel.html#setModulationRange",
       "kind": "function",
-      "title": "setModulationRange( semitones, cents [, options ] ) → {OutputChannel}",
+      "title": "setModulationRange( semitones [, cents [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#setModulationRange",
       "name": "setModulationRange",
       "tags": "OutputChannel#setModulationRange setModulationRange",
@@ -40560,4 +39978,4 @@ window.lunrData = {
       "description": "Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a single integer or an array of integers. For backwards-compatibility, passing undefined as a parameter to this method results in all channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to integers between 1 and 16 are silently ignored."
     }
   }
-};
+}
