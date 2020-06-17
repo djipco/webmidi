@@ -1118,7 +1118,7 @@ export class OutputChannel extends EventEmitter {
         throw new RangeError("The semitones value must be an integer between 0 and 127.");
       }
 
-      if (!(cents == undefined) && !Number.isInteger(cents)) {
+      if (!(cents == undefined) && (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127))) {
         throw new RangeError("If specified, the cents value must be an integer between 0 and 127.");
       }
 
