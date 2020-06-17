@@ -4300,7 +4300,6 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    console.log("pressure", pressure);
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
