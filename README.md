@@ -190,19 +190,19 @@ examples below only work if WebMidi.js has been properly enabled.
 #### View available ports
 
 ```javascript
-  WebMidi.enable().then(() => {
+WebMidi.enable().then(() => {
     console.log(WebMidi.inputs);
     console.log(WebMidi.outputs);
-  });
+});
 ```
 #### Retrieve ports returned by promise
 
 ```javascript
-    WebMidi.enable().then(ports => {
-        console.log("WebMidi.js has been enabled!");
-        console.log("Inputs: ", ports.inputs);
-        console.log("Outputs: ", ports.outputs);
-    })
+WebMidi.enable().then(ports => {
+    console.log("WebMidi.js has been enabled!");
+    console.log("Inputs: ", ports.inputs);
+    console.log("Outputs: ", ports.outputs);
+})
 ```
 #### Retrieve the current time
 
@@ -210,18 +210,18 @@ This can be useful if you want to schedule playback of a note somewhere in the f
 in milliseconds (decimal) relative to the navigation start of the document.
 
 ```javascript
-    WebMidi.enable().then(ports => {
-      console.log(WebMidi.time);
-    })
+WebMidi.enable().then(ports => {
+  console.log(WebMidi.time);
+})
 ```
 #### Retrieve an output port/device using its id, name or array index
 
 Different ways to retrive an output. Beware that IDs are different from one platform to another. 
 
 ```javascript
-  let output1 = WebMidi.getOutputById("123456789");
-  let output2 = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
-  let output3 = WebMidi.outputs[0];
+let output1 = WebMidi.getOutputById("123456789");
+let output2 = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+let output3 = WebMidi.outputs[0];
 ```
 
 #### Play a note on a specific MIDI channel (1)
@@ -230,9 +230,9 @@ The `channels` property of an `Output` object contains references to 16 `OutputC
 (1-16).
 
 ```javascript
-  let output = WebMidi.outputs[0];
-  let channel = output.channels[1];
-  channel.playNote("C3");
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3");
 ```
 
 #### Play a note on multiple channels at once
@@ -241,8 +241,8 @@ You can call `playNote()` (and various other methods) directly on the `Output` o
 you to play a note on several channels at once. 
 
 ```javascript
-  let output = WebMidi.outputs[0];
-  output.playNote("Gb4", [1, 2, 3]);
+let output = WebMidi.outputs[0];
+output.playNote("Gb4", [1, 2, 3]);
 ```
 
 #### Play a chord on a specific MIDI channel (1)
@@ -250,9 +250,9 @@ you to play a note on several channels at once.
 You can pass an array of notes to play to the `playNote()` method.
 
 ```javascript
-  let output = WebMidi.outputs[0];
-  let channel = output.channels[1];
-  channel.playNote(["C3", "D#3", "G3"]);
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote(["C3", "D#3", "G3"]);
 ```
 
 #### Control note velocity
@@ -260,9 +260,9 @@ You can pass an array of notes to play to the `playNote()` method.
 You can control attack and release velocites when playing a note by using the `options` parameter.
 
 ```javascript
-  let output = WebMidi.outputs[0];
-  let channel = output.channels[1];
-  channel.playNote("C3", {attack: 0.5});
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3", {attack: 0.5});
 ```
 
 #### Specify note duration
@@ -271,9 +271,9 @@ If you specify a duration (in decimal milliseconds) for the note, it will be aut
 after duration has expired.
 
 ```javascript
-  let output = WebMidi.outputs[0];
-  let channel = output.channels[1];
-  channel.playNote("C3", {duration: 1000});
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3", {duration: 1000});
 ```
 
 #### Schedule notes
@@ -281,8 +281,8 @@ after duration has expired.
 You can specify an absolute or relative time to schedule note playback in the future:
 
 ```javascript
-  WebMidi.outputs[0].channels[1].playNote("C3", {time: WebMidi.time + 3000});
-  WebMidi.outputs[0].channels[1].playNote("C3", {time: "+2000"});
+WebMidi.outputs[0].channels[1].playNote("C3", {time: WebMidi.time + 3000});
+WebMidi.outputs[0].channels[1].playNote("C3", {time: "+2000"});
 ```
 
 #### Manually stopping playback
@@ -290,8 +290,8 @@ You can specify an absolute or relative time to schedule note playback in the fu
 You can specify stop playback of a note right away or in the future.
 
 ```javascript
-  WebMidi.outputs[0].channels[1].stopNote("C3");
-  WebMidi.outputs[0].channels[1].stopNote("C3", {time: "+2500"});
+WebMidi.outputs[0].channels[1].stopNote("C3");
+WebMidi.outputs[0].channels[1].stopNote("C3", {time: "+2500"});
 ```
 
 #### Set polyphonic aftertouch 
@@ -299,7 +299,7 @@ You can specify stop playback of a note right away or in the future.
 Send polyphonic aftertouch message to channel 8
 
 ```javascript
-  WebMidi.outputs[0].channels[8].setKeyAftertouch("B#3", 0.25);
+WebMidi.outputs[0].channels[8].setKeyAftertouch("B#3", 0.25);
 ```
 
 #### Set pitch bend value
@@ -307,7 +307,7 @@ Send polyphonic aftertouch message to channel 8
 The value is between -1 and 1 (a value of 0 means no bend).
 
 ```javascript
-  WebMidi.outputs[0].channels[8].setPitchBend(-0.25);
+WebMidi.outputs[0].channels[8].setPitchBend(-0.25);
 ```
 
 #### Use Chained Methods
@@ -315,7 +315,7 @@ The value is between -1 and 1 (a value of 0 means no bend).
 The value is between -1 and 1 (a value of 0 means no bend).
 
 ```javascript
-  WebMidi.outputs[0].channels[8]
+WebMidi.outputs[0].channels[8]
     .setPitchBend(-0.25)
     .playNote("F4");
 ```
@@ -325,46 +325,45 @@ The value is between -1 and 1 (a value of 0 means no bend).
 The value is between -1 and 1 (a value of 0 means no bend).
 
 ```javascript
-  let output1 = WebMidi.getInputById("123456789");
-  let output2 = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
-  let output3 = WebMidi.inputs[0];
+let output1 = WebMidi.getInputById("123456789");
+let output2 = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
+let output3 = WebMidi.inputs[0];
 ```
 
 #### Listen to event on single channel
 
 ```javascript
-  WebMidi.inputs[0].channels[1].addListener("noteon", e => {
-     console.log(`Received 'noteon' message (${e.note.name}${e.note.octave}).`);
-  });
+WebMidi.inputs[0].channels[1].addListener("noteon", e => {
+  console.log(`Received 'noteon' message (${e.note.name}${e.note.octave}).`);
+});
 ```
 
 #### Listen to event on multiple channels at once
 
 ```javascript
-    WebMidi.inputs[0].addListener("controlchange", e => {
-      console.log(`Received 'controlchange' message.`, e);
-    }, {channels: [1, 2, 3]});
+WebMidi.inputs[0].addListener("controlchange", e => {
+  console.log(`Received 'controlchange' message.`, e);
+}, {channels: [1, 2, 3]});
 ```
 
 #### Check for the presence of an event listener
 
 ```javascript
-    let channel = WebMidi.inputs[0].channels[1];
-    let test = e => console.log(e);
-    channel.addListener('programchange', test);
-    console.log("Has event listener: ", channel.hasListener('programchange', test));
+let channel = WebMidi.inputs[0].channels[1];
+let test = e => console.log(e);
+channel.addListener('programchange', test);
+console.log("Has event listener: ", channel.hasListener('programchange', test));
 ```
 
 #### Remove listeners
 
 ```javascript
-  let channel = WebMidi.inputs[0].channels[1];
-  let test = e => console.log(e);
-  channel.removeListener("noteoff", test);  // specifically this one
-  channel.removeListener("noteoff");        // all noteoff on this channel
-  channel.removeListener();                 // all listeners
+let channel = WebMidi.inputs[0].channels[1];
+let test = e => console.log(e);
+channel.removeListener("noteoff", test);  // specifically this one
+channel.removeListener("noteoff");        // all noteoff on this channel
+channel.removeListener();                 // all listeners
 ```
-
 
 ## About Sysex Support
 
