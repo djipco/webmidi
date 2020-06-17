@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 16th 2020.
+ * This build was generated on June 17th 2020.
  *
  *
  *
@@ -4298,6 +4298,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
+    console.log("pressure", pressure);
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
