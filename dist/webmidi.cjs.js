@@ -5155,7 +5155,7 @@ class Output extends e {
    */
 
 
-  sendNoteOff(note, options, legacy = {}) {
+  sendNoteOff(note, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
