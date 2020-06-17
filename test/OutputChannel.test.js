@@ -3,14 +3,10 @@ const midi = require("midi");
 const sinon = require("sinon");
 const {WebMidi, Note} = require("../dist/webmidi.cjs.js");
 
-// Create virtual MIDI output port. Being an external device, the virtual device's input is seen as
-// an output from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's
-// point of view.
-let VIRTUAL_OUTPUT = {
-  port: new midi.Input(),
-  name: "Virtual Output"
-};
-
+// The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
+// confusion, the naming scheme adopts WebMidi's perspective.
+let VIRTUAL_OUTPUT = new midi.Input();
+let VIRTUAL_OUTPUT_NAME = "Virtual Output";
 let WEBMIDI_OUTPUT;
 
 /**
@@ -21,17 +17,17 @@ let WEBMIDI_OUTPUT;
 describe("OutputChannel Object", function() {
 
   before(function () {
-    VIRTUAL_OUTPUT.port.openVirtualPort(VIRTUAL_OUTPUT.name);
-    VIRTUAL_OUTPUT.port.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
+    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
   });
 
   after(function () {
-    VIRTUAL_OUTPUT.port.closePort();
+    VIRTUAL_OUTPUT.closePort();
   });
 
   beforeEach("Check support and enable", async function () {
     await WebMidi.enable();
-    WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT.name);
+    WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
 
   afterEach("Disable WebMidi.js", async function () {
@@ -113,7 +109,7 @@ describe("OutputChannel Object", function() {
         expected.push([176, 100, 127]);             // deselect rpn
       });
 
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       parameters.forEach(param => {
@@ -127,7 +123,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -168,7 +164,7 @@ describe("OutputChannel Object", function() {
         expected.push([176, 100, 127]);             // deselect rpn
       });
 
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       parameters.forEach(param => {
@@ -182,7 +178,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -347,7 +343,7 @@ describe("OutputChannel Object", function() {
         expected.push([176, 100, 127]);             // deselect rpn
       });
 
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       parameters.forEach(param => {
@@ -361,7 +357,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -402,7 +398,7 @@ describe("OutputChannel Object", function() {
         expected.push([176, 100, 127]);             // deselect rpn
       });
 
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       parameters.forEach(param => {
@@ -416,7 +412,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -564,7 +560,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 121, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].resetAllControllers();
@@ -572,7 +568,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -593,7 +589,7 @@ describe("OutputChannel Object", function() {
       // Arrange
       let status = 144;
       let data = [10, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].send(status, data);
@@ -601,7 +597,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
 
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
 
         expect(message[0]).to.equal(status);
         expect(message[1]).to.equal(data[0]);
@@ -619,10 +615,10 @@ describe("OutputChannel Object", function() {
       let parameter = [144, 12, 0];
       let target = WebMidi.time + 100;
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
 
         if (JSON.stringify(message) == JSON.stringify(parameter)) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           expect(WebMidi.time - target).to.be.within(-5, 10);
           done();
         }
@@ -643,7 +639,7 @@ describe("OutputChannel Object", function() {
       let index = 0;
 
 
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       timestamps.forEach(
@@ -659,7 +655,7 @@ describe("OutputChannel Object", function() {
           index++;
 
           if (index === timestamps.length) {
-            VIRTUAL_OUTPUT.port.removeAllListeners();
+            VIRTUAL_OUTPUT.removeAllListeners();
             done();
           }
 
@@ -725,14 +721,14 @@ describe("OutputChannel Object", function() {
       let status = 144;
       let data = [10, 0];
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         expect(WebMidi.time - target).to.be.within(-5, 10);
         done();
       }
@@ -746,14 +742,14 @@ describe("OutputChannel Object", function() {
       let data = [10, 0];
       let offset = "+100";
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].send(status, data, {time: offset});
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         expect(WebMidi.time - target).to.be.within(-5, 10);
         done();
       }
@@ -774,7 +770,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 120;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 120; i < 128; i++) WEBMIDI_OUTPUT.channels[1].sendChannelMode(i, 0);
@@ -787,7 +783,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= 128) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -809,7 +805,7 @@ describe("OutputChannel Object", function() {
         "monomodeon",
         "polymodeon"
       ];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       names.forEach(name => WEBMIDI_OUTPUT.channels[1].sendChannelMode(name, 0));
@@ -821,7 +817,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= 128) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -893,7 +889,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 0; i <= 119; i++) WEBMIDI_OUTPUT.channels[1].sendControlChange(i, 123);
@@ -906,7 +902,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index > 119) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -979,7 +975,7 @@ describe("OutputChannel Object", function() {
         ["registeredparametercoarse", 100],
         ["registeredparameterfine", 101],
       ];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       map.forEach(pair => WEBMIDI_OUTPUT.channels[1].sendControlChange(pair[0], 123));
@@ -992,7 +988,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= map.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1078,7 +1074,7 @@ describe("OutputChannel Object", function() {
       let channel = 1;
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 0; i <= 127; i++) WEBMIDI_OUTPUT.channels[channel].sendNoteOff(i, options);
@@ -1089,7 +1085,7 @@ describe("OutputChannel Object", function() {
         expect(message[1]).to.equal(index);
         index++;
         if (index > 127) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       }
@@ -1103,7 +1099,7 @@ describe("OutputChannel Object", function() {
       let notes = ["C-1", "C3", "G5", "G9"];
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       notes.forEach(note => WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note, options));
@@ -1117,7 +1113,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= notes.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1132,7 +1128,7 @@ describe("OutputChannel Object", function() {
       let notes = [new Note("C-1"), new Note("C3"), new Note("G5"), new Note("G9")];
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       notes.forEach(note => WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note, options));
@@ -1145,7 +1141,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= notes.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1160,7 +1156,7 @@ describe("OutputChannel Object", function() {
       let note = 0;
       let options = {release: 1};
       let expected = [128, 0, 127];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note, options);
@@ -1168,7 +1164,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -1181,7 +1177,7 @@ describe("OutputChannel Object", function() {
       let note = 0;
       let options = {release: 1, rawRelease: 83};
       let expected = [128, 0, options.rawRelease];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note, options);
@@ -1189,7 +1185,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -1252,7 +1248,7 @@ describe("OutputChannel Object", function() {
       let channel = 1;
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 0; i <= 127; i++) {
@@ -1265,7 +1261,7 @@ describe("OutputChannel Object", function() {
         expect(message[1]).to.equal(index);
         index++;
         if (index > 127) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       }
@@ -1279,7 +1275,7 @@ describe("OutputChannel Object", function() {
       let notes = ["C-1", "C3", "G5", "G9"];
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       notes.forEach(note => WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note, options));
@@ -1293,7 +1289,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= notes.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1308,7 +1304,7 @@ describe("OutputChannel Object", function() {
       let notes = [new Note("C-1"), new Note("C3"), new Note("G5"), new Note("G9")];
       let index = 0;
       let options = {time: 0};
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       notes.forEach(note => WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note, options));
@@ -1321,7 +1317,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= notes.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1336,7 +1332,7 @@ describe("OutputChannel Object", function() {
       let note = 0;
       let options = {attack: 1};
       let expected = [144, 0, 127];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note, options);
@@ -1344,7 +1340,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -1357,7 +1353,7 @@ describe("OutputChannel Object", function() {
       let note = 0;
       let options = {attack: 1, rawAttack: 98};
       let expected = [144, 0, options.rawAttack];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note, options);
@@ -1365,7 +1361,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -1432,7 +1428,7 @@ describe("OutputChannel Object", function() {
         [208, 64],
         [208, 127],
       ];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       values.forEach(value => WEBMIDI_OUTPUT.channels[1].setChannelAftertouch(value));
@@ -1446,7 +1442,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1515,7 +1511,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 0; i <= 127; i++) WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(i, 0.5);
@@ -1527,7 +1523,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= 127) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1539,7 +1535,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 0; i <= 127; i++) {
@@ -1554,7 +1550,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= 127) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1651,7 +1647,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 122, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setLocalControl();
@@ -1659,7 +1655,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -1737,7 +1733,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setMasterTuning(coarse + fine);
@@ -1749,7 +1745,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1801,7 +1797,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setModulationRange(semitones, cents);
@@ -1813,7 +1809,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1824,7 +1820,7 @@ describe("OutputChannel Object", function() {
     it("should throw error when invalid semitones value is specified", function() {
 
       // Arrange
-      let values = [
+      let semitones = [
         -1,
         128,
         undefined,
@@ -1833,26 +1829,24 @@ describe("OutputChannel Object", function() {
       ];
 
       // Act
-      values.forEach(assert);
+      semitones.forEach(assert);
 
       // Assert
-      function assert(value) {
+      function assert(semitone) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setModulationRange(64, value);
+          WEBMIDI_OUTPUT.channels[1].setModulationRange(semitone);
         }).to.throw(RangeError);
       }
 
     });
 
-    it("should throw error when invalid cents value is specified", function() {
+    it("should throw error if cents value is specified but invalid", function() {
 
       // Arrange
       let values = [
         -1,
         128,
-        undefined,
-        NaN,
-        null
+        NaN
       ];
 
       // Act
@@ -1947,7 +1941,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data);
@@ -1959,7 +1953,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -1982,7 +1976,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data);
@@ -1994,7 +1988,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2100,7 +2094,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 125, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setOmniMode();
@@ -2108,7 +2102,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -2134,7 +2128,7 @@ describe("OutputChannel Object", function() {
         [224, 0, 64],
         [224, 127, 127]
       ];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       values.forEach(value => WEBMIDI_OUTPUT.channels[1].setPitchBend(value));
@@ -2144,7 +2138,7 @@ describe("OutputChannel Object", function() {
         expect(message).to.have.ordered.members(expected[index]);
         index++;
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       }
@@ -2172,7 +2166,7 @@ describe("OutputChannel Object", function() {
         [224, 127, 0]
       ];
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       values.forEach(value => WEBMIDI_OUTPUT.channels[1].setPitchBend(value, options));
@@ -2182,7 +2176,7 @@ describe("OutputChannel Object", function() {
         expect(message).to.have.ordered.members(expected[index]);
         index++;
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       }
@@ -2285,7 +2279,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setPitchBendRange(semitones, cents);
@@ -2297,7 +2291,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2393,7 +2387,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 126, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("mono");
@@ -2401,7 +2395,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -2411,7 +2405,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 127, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("poly");
@@ -2419,7 +2413,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -2439,7 +2433,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       for (let i = 1; i <= 128; i++) {
@@ -2452,7 +2446,7 @@ describe("OutputChannel Object", function() {
         expect(message[1]).to.equal(index);
         index++;
         if (index > 127) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       }
@@ -2560,7 +2554,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
@@ -2572,7 +2566,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2596,7 +2590,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
@@ -2608,7 +2602,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2631,7 +2625,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
@@ -2643,7 +2637,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2748,7 +2742,7 @@ describe("OutputChannel Object", function() {
       ];
 
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setTuningBank(value);
@@ -2761,7 +2755,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2831,7 +2825,7 @@ describe("OutputChannel Object", function() {
         [ 176, 100, 127 ]
       ];
       let index = 0;
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].setTuningProgram(value);
@@ -2843,7 +2837,7 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
 
@@ -2949,7 +2943,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 123, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].turnNotesOff();
@@ -2957,7 +2951,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -2991,7 +2985,7 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let expected = [176, 120, 0];
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.channels[1].turnSoundOff();
@@ -2999,7 +2993,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 

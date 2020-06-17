@@ -3,30 +3,26 @@ const midi = require("midi");
 const sinon = require("sinon");
 const {WebMidi} = require("../dist/webmidi.cjs.js");
 
-// Create virtual MIDI output port. Being an external device, the virtual device's input is seen as
-// an output from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's
-// point of view.
-let VIRTUAL_OUTPUT = {
-  port: new midi.Input(),
-  name: "Virtual Output"
-};
-
+// The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
+// confusion, the naming scheme adopts WebMidi's perspective.
+let VIRTUAL_OUTPUT = new midi.Input();
+let VIRTUAL_OUTPUT_NAME = "Virtual Output";
 let WEBMIDI_OUTPUT;
 
 describe("Output Object", function() {
 
   before(function () {
-    VIRTUAL_OUTPUT.port.openVirtualPort(VIRTUAL_OUTPUT.name);
-    VIRTUAL_OUTPUT.port.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
+    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
   });
 
   after(function () {
-    VIRTUAL_OUTPUT.port.closePort();
+    VIRTUAL_OUTPUT.closePort();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
     await WebMidi.enable();
-    WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT.name);
+    WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
 
   afterEach("Disable WebMidi.js", async function () {
@@ -55,10 +51,9 @@ describe("Output Object", function() {
 
   });
 
-  // VERIFIED
   describe("decrementRegisteredParameter()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       // Arrange
       let spies = [];
@@ -86,6 +81,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let rpn = "pitchbendrange";
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "decrementRegisteredParameter"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.decrementRegisteredParameter(rpn, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(rpn, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the 'Output' object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.decrementRegisteredParameter("pitchbendrange")
@@ -94,7 +113,6 @@ describe("Output Object", function() {
 
   });
 
-  // VERIFIED
   describe("destroy()", function () {
 
     it("should destroy the 'Output'", async function() {
@@ -116,10 +134,9 @@ describe("Output Object", function() {
 
   });
 
-  // VERIFIED
   describe("incrementRegisteredParameter()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       // Arrange
       let spies = [];
@@ -147,15 +164,38 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let rpn = "pitchbendrange";
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "incrementRegisteredParameter"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.incrementRegisteredParameter(rpn, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(rpn, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the 'Output' object for method chaining", function() {
       expect(
-        WEBMIDI_OUTPUT.decrementRegisteredParameter("pitchbendrange")
+        WEBMIDI_OUTPUT.incrementRegisteredParameter("pitchbendrange")
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
   });
 
-  // VERIFIED
   describe("open()", function () {
 
     it("should open connection", async function() {
@@ -171,10 +211,9 @@ describe("Output Object", function() {
 
   });
 
-  // VERIFIED
   describe("playNote()", function () {
 
-    it("should trigger channel method for all valid channels", function() {
+    it("should trigger channel method for all valid channels [legacy]", function() {
 
       // Arrange
       let spies = [];
@@ -195,6 +234,27 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+      WEBMIDI_OUTPUT.channels.forEach(ch => spies.push(sinon.spy(ch, "playNote")));
+
+      // Act
+      WEBMIDI_OUTPUT.playNote(note, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(note, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.playNote(64)
@@ -203,10 +263,9 @@ describe("Output Object", function() {
 
   });
 
-  // VERIFIED
   describe("resetAllControllers()", function () {
 
-    it("should trigger channel method for all valid channels", function() {
+    it("should trigger channel method for all valid channels [legacy]", function() {
 
       // Arrange
       let spies = [];
@@ -229,15 +288,37 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "resetAllControllers"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.resetAllControllers(options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
-        WEBMIDI_OUTPUT.resetAllControllers(64)
+        WEBMIDI_OUTPUT.resetAllControllers()
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
   });
 
-  // VERIFIED
   describe("send()", function () {
 
     it("should throw error if status byte is invalid", function() {
@@ -313,7 +394,7 @@ describe("Output Object", function() {
 
       // Arrange
       let expected = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
-      VIRTUAL_OUTPUT.port.on("message", assert);
+      VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       WEBMIDI_OUTPUT.send(expected[0], [expected[1], expected[2]]);
@@ -321,7 +402,7 @@ describe("Output Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.port.removeAllListeners();
+        VIRTUAL_OUTPUT.removeAllListeners();
         done();
       }
 
@@ -333,9 +414,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 254) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -353,23 +434,24 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendChannelAftertouch()", function () {
+  describe("sendChannelAftertouch() [legacy]", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let value = 0.5;
 
       WEBMIDI_OUTPUT.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "setChannelAftertouch"));
       });
 
-      WEBMIDI_OUTPUT.sendChannelAftertouch(0.5, valid.concat(invalid), options);
+      WEBMIDI_OUTPUT.sendChannelAftertouch(value, valid.concat(invalid), options);
 
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(0.5, options)).to.be.true;
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
         spy.restore();
       });
 
@@ -377,7 +459,7 @@ describe("Output Object", function() {
 
     it("should return the Output object for method chaining", function() {
       expect(
-        WEBMIDI_OUTPUT.sendChannelAftertouch(64)
+        WEBMIDI_OUTPUT.sendChannelAftertouch(0.5)
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
@@ -385,7 +467,7 @@ describe("Output Object", function() {
 
   describe("sendChannelMode()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -405,6 +487,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 42;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "sendChannelMode"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.sendChannelMode("allnotesoff", value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly("allnotesoff", value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.sendChannelMode("allnotesoff", 42, [1])
@@ -417,15 +523,19 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      // Arrange
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.sendClock();
+
+      // Assert
+      function assert(deltaTime, message) {
         if (message[0] === 248) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
-      });
-
-      // Note on (248)
-      WEBMIDI_OUTPUT.sendClock();
+      }
 
     });
 
@@ -441,9 +551,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 251) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -463,7 +573,7 @@ describe("Output Object", function() {
 
   describe("sendControlChange()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -483,6 +593,31 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+      let value = 64;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "sendControlChange"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.sendControlChange(note, value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(note, value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.sendControlChange(60, 64, [1])
@@ -491,23 +626,25 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendKeyAftertouch()", function () {
+  describe("sendKeyAftertouch() [legacy]", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let pressure = 0.75;
+      let note = 60;
 
       WEBMIDI_OUTPUT.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "setKeyAftertouch"));
       });
 
-      WEBMIDI_OUTPUT.sendKeyAftertouch(60, valid.concat(invalid), 0.5, options);
+      WEBMIDI_OUTPUT.sendKeyAftertouch(note, valid.concat(invalid), pressure, options);
 
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(60, 0.5, options)).to.be.true;
+        expect(spy.calledOnceWithExactly(note, pressure, options)).to.be.true;
         spy.restore();
       });
 
@@ -515,7 +652,7 @@ describe("Output Object", function() {
 
     it("should return the Output object for method chaining", function() {
       expect(
-        WEBMIDI_OUTPUT.sendKeyAftertouch(64)
+        WEBMIDI_OUTPUT.sendKeyAftertouch(60, 0.75)
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
@@ -523,7 +660,7 @@ describe("Output Object", function() {
 
   describe("sendNoteOff()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -543,6 +680,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "sendNoteOff"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.sendNoteOff(note, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(note, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.sendNoteOff(64)
@@ -553,7 +714,7 @@ describe("Output Object", function() {
 
   describe("sendNoteOn()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -573,6 +734,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "sendNoteOn"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.sendNoteOn(note, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(note, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.sendNoteOn(64)
@@ -581,37 +766,47 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendPitchBend()", function () {
+  describe("sendPitchBend() [legacy]", function () {
 
     it("should trigger the channel method for all valid channels", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let bend = 0.5;
 
       WEBMIDI_OUTPUT.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "setPitchBend"));
       });
 
-      WEBMIDI_OUTPUT.sendPitchBend(0.5, valid.concat(invalid), options);
+      // Act
+      WEBMIDI_OUTPUT.sendPitchBend(bend, valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(0.5, options)).to.be.true;
+        expect(spy.calledOnceWithExactly(bend, options)).to.be.true;
         spy.restore();
       });
 
     });
 
     it("should return the Output object for method chaining", function() {
+
+      // Arrange
+      let bend = 0.5;
+      let channel = 1;
+
+      // Assert
       expect(
-        WEBMIDI_OUTPUT.sendPitchBend(64)
+        WEBMIDI_OUTPUT.sendPitchBend(bend, channel)
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
   });
 
-  describe("sendProgramChange()", function () {
+  describe("sendProgramChange() [legacy]", function () {
 
     it("should trigger the channel method for all valid channels", function() {
 
@@ -645,9 +840,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 255) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -665,13 +860,13 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendSongPosition()", function () {
+  describe("sendSongPosition() [legacy]", function () {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 242) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -689,13 +884,13 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendSongSelect()", function () {
+  describe("sendSongSelect() [legacy]", function () {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 243) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -717,9 +912,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 250) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -741,9 +936,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 252) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -773,11 +968,11 @@ describe("Output Object", function() {
 
       await WebMidi.disable();
       await WebMidi.enable({sysex: true});
-      WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT.name);
+      WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
 
       await new Promise(resolve => {
 
-        VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+        VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
 
           if (
             message[0] === 240 &&
@@ -787,7 +982,7 @@ describe("Output Object", function() {
             message[4] === 0x3 &&
             message[5] === 247
           ) {
-            VIRTUAL_OUTPUT.port.removeAllListeners();
+            VIRTUAL_OUTPUT.removeAllListeners();
             resolve();
           }
 
@@ -804,7 +999,7 @@ describe("Output Object", function() {
     it("should return the Output object for method chaining", async function() {
       await WebMidi.disable();
       await WebMidi.enable({sysex: true});
-      WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT.name);
+      WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
       expect(
         WEBMIDI_OUTPUT.sendSysex(66, [1, 2, 3, 4, 5])
       ).to.equal(WEBMIDI_OUTPUT);
@@ -816,9 +1011,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 241 && message[1] === 42) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -851,9 +1046,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 246) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -871,13 +1066,13 @@ describe("Output Object", function() {
 
   });
 
-  describe("sendTuningRequest()", function () {
+  describe("sendTuningRequest() [legacy]", function () {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 246) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -897,67 +1092,138 @@ describe("Output Object", function() {
 
   describe("setChannelAftertouch()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
       let options = {time: 123};
+      let value = 0.5;
 
       WEBMIDI_OUTPUT.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "setChannelAftertouch"));
       });
 
-      WEBMIDI_OUTPUT.setChannelAftertouch(0.5, valid.concat(invalid), options);
+      // Act
+      WEBMIDI_OUTPUT.setChannelAftertouch(value, valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(0.5, options)).to.be.true;
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 0.5;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setChannelAftertouch"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setChannelAftertouch(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
         spy.restore();
       });
 
     });
 
     it("should return the Output object for method chaining", function() {
+
+      // Arrange
+      let value = 0.5;
+
+      // Assert
       expect(
-        WEBMIDI_OUTPUT.setChannelAftertouch(64)
+        WEBMIDI_OUTPUT.setChannelAftertouch(value)
       ).to.equal(WEBMIDI_OUTPUT);
+
     });
 
   });
 
   describe("setKeyAftertouch()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
-      let options = {time: 123};
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+      let value = 0.5;
 
       WEBMIDI_OUTPUT.channels.forEach(ch => {
         spies.push(sinon.spy(ch, "setKeyAftertouch"));
       });
 
-      WEBMIDI_OUTPUT.setKeyAftertouch(60, 0.5, valid.concat(invalid), options);
+      // Act
+      WEBMIDI_OUTPUT.setKeyAftertouch(note, value, valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(60, 0.5, options)).to.be.true;
+        expect(spy.calledOnceWith(note, value)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let note = 60;
+      let value = 0.5;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setKeyAftertouch"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setKeyAftertouch(note, value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWith(note, value)).to.be.true;
         spy.restore();
       });
 
     });
 
     it("should return the Output object for method chaining", function() {
+
+      // Arrange
+      let note = 60;
+      let value = 0.5;
+
+      // Assert
       expect(
-        WEBMIDI_OUTPUT.setKeyAftertouch(64)
+        WEBMIDI_OUTPUT.setKeyAftertouch(note, value)
       ).to.equal(WEBMIDI_OUTPUT);
+
     });
 
   });
 
   describe("setLocalControl()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -977,6 +1243,29 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setLocalControl"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setLocalControl(true, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(true, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setLocalControl(true)
@@ -987,7 +1276,7 @@ describe("Output Object", function() {
 
   describe("setMasterTuning()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1007,6 +1296,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 42;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setMasterTuning"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setMasterTuning(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setMasterTuning(true)
@@ -1017,8 +1330,9 @@ describe("Output Object", function() {
 
   describe("setModulationRange()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
@@ -1028,8 +1342,10 @@ describe("Output Object", function() {
         spies.push(sinon.spy(ch, "setModulationRange"));
       });
 
+      // Act
       WEBMIDI_OUTPUT.setModulationRange(42, 24, valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
         expect(spy.calledOnceWithExactly(42, 24, options)).to.be.true;
         spy.restore();
@@ -1037,9 +1353,35 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let semitones = 42;
+      let cents = 24;
+
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setModulationRange"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setModulationRange(semitones, cents, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(semitones, cents, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
-        WEBMIDI_OUTPUT.setModulationRange(true)
+        WEBMIDI_OUTPUT.setModulationRange(5)
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
@@ -1047,7 +1389,7 @@ describe("Output Object", function() {
 
   describe("setNonRegisteredParameter()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1067,6 +1409,32 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let parameter = [2, 63];
+      let data = [0, 10];
+
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setNonRegisteredParameter"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setNonRegisteredParameter(parameter, data, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(parameter, data, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setNonRegisteredParameter([2, 63], [0, 10], 1)
@@ -1077,7 +1445,7 @@ describe("Output Object", function() {
 
   describe("setOmniMode()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1097,6 +1465,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = true;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setOmniMode"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setOmniMode(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setOmniMode(true)
@@ -1107,7 +1499,7 @@ describe("Output Object", function() {
 
   describe("setProgram()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1127,6 +1519,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 60;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setProgram"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setProgram(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.sendProgramChange(64, [1])
@@ -1137,8 +1553,9 @@ describe("Output Object", function() {
 
   describe("setPitchBend()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
+      // Arrange
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
       let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
@@ -1148,8 +1565,10 @@ describe("Output Object", function() {
         spies.push(sinon.spy(ch, "setPitchBend"));
       });
 
+      // Act
       WEBMIDI_OUTPUT.setPitchBend(0.5, valid.concat(invalid), options);
 
+      // Assert
       spies.forEach(spy => {
         expect(spy.calledOnceWithExactly(0.5, options)).to.be.true;
         spy.restore();
@@ -1157,17 +1576,47 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 0.5;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setPitchBend"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setPitchBend(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
+
+      // Arrange
+      let value = -0.5;
+
+      // Assert
       expect(
-        WEBMIDI_OUTPUT.setPitchBend(64)
+        WEBMIDI_OUTPUT.setPitchBend(value)
       ).to.equal(WEBMIDI_OUTPUT);
+
     });
 
   });
 
   describe("setPitchBendRange()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1187,6 +1636,31 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let semitones = 42;
+      let cents = 24;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setPitchBendRange"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setPitchBendRange(semitones, cents, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(semitones, cents, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setPitchBendRange(42, 24)
@@ -1197,7 +1671,7 @@ describe("Output Object", function() {
 
   describe("setPolyphonicMode()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1217,6 +1691,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = "mono";
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setPolyphonicMode"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setPolyphonicMode(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setPolyphonicMode("mono")
@@ -1227,7 +1725,7 @@ describe("Output Object", function() {
 
   describe("setProgram()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1247,6 +1745,27 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 42;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setProgram"));
+      });
+
+      WEBMIDI_OUTPUT.setProgram(value, options);
+
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setProgram(42)
@@ -1257,7 +1776,7 @@ describe("Output Object", function() {
 
   describe("setRegisteredParameter()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1277,6 +1796,28 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let parameter = "modulationrange";
+      let value = 42;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setRegisteredParameter"));
+      });
+
+      WEBMIDI_OUTPUT.setRegisteredParameter(parameter, value, options);
+
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(parameter, value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setRegisteredParameter("modulationrange", 42)
@@ -1289,9 +1830,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 243) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -1313,9 +1854,9 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.port.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
         if (message[0] === 242) {
-          VIRTUAL_OUTPUT.port.removeAllListeners();
+          VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
       });
@@ -1335,7 +1876,7 @@ describe("Output Object", function() {
 
   describe("setTuningBank()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1355,6 +1896,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let bank = 60;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setTuningBank"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setTuningBank(bank, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(bank, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setTuningBank(64)
@@ -1365,7 +1930,7 @@ describe("Output Object", function() {
 
   describe("setTuningProgram()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1385,6 +1950,30 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+      let value = 60;
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "setTuningProgram"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.setTuningProgram(value, options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(value, options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.setTuningProgram(64)
@@ -1395,23 +1984,18 @@ describe("Output Object", function() {
 
   describe("stopNote()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should call 'sendNoteOff()' method", function() {
 
-      let spies = [];
-      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
-      let options = {time: 123};
+      // Arrange
+      let note = 60;
+      let options = {time: 0};
+      let spy = sinon.spy(WEBMIDI_OUTPUT, "sendNoteOff");
 
-      WEBMIDI_OUTPUT.channels.forEach(ch => {
-        spies.push(sinon.spy(ch, "stopNote"));
-      });
+      // Act
+      WEBMIDI_OUTPUT.stopNote(note, options);
 
-      WEBMIDI_OUTPUT.stopNote(60, valid.concat(invalid), options);
-
-      spies.forEach(spy => {
-        expect(spy.calledOnceWithExactly(60, options)).to.be.true;
-        spy.restore();
-      });
+      // Assert
+      expect(spy.calledOnceWithExactly(note, options)).to.be.true;
 
     });
 
@@ -1425,7 +2009,7 @@ describe("Output Object", function() {
 
   describe("turnNotesOff()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1445,6 +2029,29 @@ describe("Output Object", function() {
 
     });
 
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "turnNotesOff"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.turnNotesOff(options);
+
+      // Assert
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
     it("should return the Output object for method chaining", function() {
       expect(
         WEBMIDI_OUTPUT.turnNotesOff()
@@ -1455,7 +2062,7 @@ describe("Output Object", function() {
 
   describe("turnSoundOff()", function () {
 
-    it("should trigger the channel method for all valid channels", function() {
+    it("should trigger the channel method for all valid channels [legacy]", function() {
 
       let spies = [];
       let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -1468,6 +2075,29 @@ describe("Output Object", function() {
 
       WEBMIDI_OUTPUT.turnSoundOff(valid.concat(invalid), options);
 
+      spies.forEach(spy => {
+        expect(spy.calledOnceWithExactly(options)).to.be.true;
+        spy.restore();
+      });
+
+    });
+
+    it("should trigger the channel method for all valid channels [normal]", function() {
+
+      // Arrange
+      let spies = [];
+      let valid = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      let invalid = [undefined, null, NaN, -1, "", Infinity, -Infinity];
+      let options = {time: 123, channels: valid.concat(invalid)};
+
+      WEBMIDI_OUTPUT.channels.forEach(ch => {
+        spies.push(sinon.spy(ch, "turnSoundOff"));
+      });
+
+      // Act
+      WEBMIDI_OUTPUT.turnSoundOff(valid.concat(invalid), options);
+
+      // Assert
       spies.forEach(spy => {
         expect(spy.calledOnceWithExactly(options)).to.be.true;
         spy.restore();

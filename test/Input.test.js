@@ -3,29 +3,25 @@ const midi = require("midi");
 const sinon = require("sinon");
 const {WebMidi} = require("../dist/webmidi.cjs.js");
 
-// Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
-// an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
-// of view.
-let VIRTUAL_INPUT = {
-  port: new midi.Output(),
-  name: "Virtual input"
-};
-
+// The virtual port is an "external" device so an output is seen as an input by WebMidi. To avoid
+// confusion, the naming scheme adopts WebMidi's perspective.
+let VIRTUAL_INPUT = new midi.Output();
+let VIRTUAL_INPUT_NAME = "Virtual Input";
 let WEBMIDI_INPUT;
 
 describe("Input Object", function() {
 
   before(function () {
-    VIRTUAL_INPUT.port.openVirtualPort(VIRTUAL_INPUT.name);
+    VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
   });
 
   after(function () {
-    VIRTUAL_INPUT.port.closePort();
+    VIRTUAL_INPUT.closePort();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
     await WebMidi.enable();
-    WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT.name);
+    WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
   });
 
   afterEach("Disable WebMidi.js", async function () {
@@ -50,7 +46,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.port.sendMessage(
+      VIRTUAL_INPUT.sendMessage(
         [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -83,7 +79,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.port.sendMessage(
+      VIRTUAL_INPUT.sendMessage(
         [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -117,7 +113,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.port.sendMessage(
+      VIRTUAL_INPUT.sendMessage(
         [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -151,7 +147,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.port.sendMessage(
+      VIRTUAL_INPUT.sendMessage(
         [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -185,7 +181,7 @@ describe("Input Object", function() {
 
     // Act
     messages.forEach(msg => {
-      VIRTUAL_INPUT.port.sendMessage(msg);
+      VIRTUAL_INPUT.sendMessage(msg);
     });
 
     // Assert
@@ -216,7 +212,7 @@ describe("Input Object", function() {
 
     // Act
     messages.forEach(msg => {
-      VIRTUAL_INPUT.port.sendMessage(msg);
+      VIRTUAL_INPUT.sendMessage(msg);
     });
 
     // Assert
