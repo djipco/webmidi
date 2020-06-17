@@ -2790,10 +2790,10 @@ class OutputChannel extends e {
    * The range can be specified with the `semitones` parameter, the `cents` parameter or by
    * specifying both parameters at the same time.
    *
-   * @param semitones {number} The desired adjustment value in semitones (integer between 0 and
+   * @param {number} semitones The desired adjustment value in semitones (integer between 0 and
    * 127).
    *
-   * @param cents {number} The desired adjustment value in cents (integer between 0 and 127).
+   * @param {number} [cents=0] The desired adjustment value in cents (integer between 0 and 127).
    *
    * @param {Object} [options={}]
    *
@@ -2813,11 +2813,13 @@ class OutputChannel extends e {
         throw new RangeError("The semitones value must be an integer between 0 and 127.");
       }
 
-      if (!Number.isInteger(cents) || !(cents >= 0 && cents <= 127)) {
-        throw new RangeError("The cents value must be an integer between 0 and 127.");
+      if (!(cents == undefined) && !Number.isInteger(cents)) {
+        throw new RangeError("If specified, the cents value must be an integer between 0 and 127.");
       }
-    }
+    } // Default value for cents
 
+
+    if (!(cents >= 0 && cents <= 127)) cents = 0;
     this.setRegisteredParameter("modulationrange", [semitones, cents], options);
     return this;
   }
