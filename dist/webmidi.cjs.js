@@ -4004,7 +4004,16 @@ class Output extends e {
    */
 
 
-  setKeyAftertouch(note, pressure, options = {}) {
+  setKeyAftertouch(note, pressure, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
@@ -4120,7 +4129,16 @@ class Output extends e {
    */
 
 
-  sendControlChange(controller, value, options = {}) {
+  sendControlChange(controller, value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
@@ -4158,7 +4176,16 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setPitchBendRange(semitones, cents, options = {}) {
+  setPitchBendRange(semitones, cents, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
@@ -4220,7 +4247,16 @@ class Output extends e {
    */
 
 
-  setRegisteredParameter(parameter, data, options = {}) {
+  setRegisteredParameter(parameter, data, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
@@ -4254,7 +4290,16 @@ class Output extends e {
    */
 
 
-  setChannelAftertouch(pressure, options = {}) {
+  setChannelAftertouch(pressure, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
@@ -4314,7 +4359,16 @@ class Output extends e {
    */
 
 
-  setPitchBend(value, options = {}) {
+  setPitchBend(value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
@@ -4332,7 +4386,9 @@ class Output extends e {
       console.warn("The sendPitchBend() method has been deprecated. Use setPitchBend() instead.");
     }
 
-    this.setPitchBend(bend, channel, options);
+    this.setPitchBend(bend, options, {
+      channels: channel
+    });
     return this;
   }
   /**
@@ -4364,7 +4420,16 @@ class Output extends e {
    */
 
 
-  setProgram(program, options = {}) {
+  setProgram(program, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
@@ -4414,7 +4479,16 @@ class Output extends e {
    */
 
 
-  setModulationRange(semitones, cents, options = {}) {
+  setModulationRange(semitones, cents, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
@@ -4451,7 +4525,16 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setMasterTuning(value, options = {}) {
+  setMasterTuning(value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
@@ -4487,7 +4570,16 @@ class Output extends e {
    */
 
 
-  setTuningProgram(value, options = {}) {
+  setTuningProgram(value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
@@ -4523,7 +4615,16 @@ class Output extends e {
    */
 
 
-  setTuningBank(value, options = {}) {
+  setTuningBank(value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
@@ -4580,7 +4681,16 @@ class Output extends e {
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
-  sendChannelMode(command, value, options = {}) {
+  sendChannelMode(command, value, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
@@ -4608,7 +4718,16 @@ class Output extends e {
    */
 
 
-  turnSoundOff(options = {}) {
+  turnSoundOff(options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
@@ -4636,7 +4755,16 @@ class Output extends e {
    */
 
 
-  turnNotesOff(options = {}) {
+  turnNotesOff(options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
@@ -4662,7 +4790,16 @@ class Output extends e {
    */
 
 
-  resetAllControllers(options = {}) {
+  resetAllControllers(options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
@@ -4693,7 +4830,16 @@ class Output extends e {
    */
 
 
-  setPolyphonicMode(mode, options = {}) {
+  setPolyphonicMode(mode, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
@@ -4725,7 +4871,16 @@ class Output extends e {
    */
 
 
-  setLocalControl(state, options = {}) {
+  setLocalControl(state, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
@@ -4761,7 +4916,16 @@ class Output extends e {
    */
 
 
-  setOmniMode(state, options = {}) {
+  setOmniMode(state, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
@@ -4824,7 +4988,16 @@ class Output extends e {
    */
 
 
-  setNonRegisteredParameter(parameter, data, options = {}) {
+  setNonRegisteredParameter(parameter, data, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
@@ -4986,7 +5159,16 @@ class Output extends e {
    */
 
 
-  sendNoteOff(note, options) {
+  sendNoteOff(note, options, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
@@ -5069,7 +5251,7 @@ class Output extends e {
    */
 
 
-  playNote(note, options = {}) {
+  playNote(note, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy-compatibility warnings
       if (options.rawVelocity) {
@@ -5078,6 +5260,13 @@ class Output extends e {
 
       if (options.velocity) {
         console.warn("The 'velocity' option is deprecated. Use 'velocity' instead.");
+      } // Legacy compatibility
+
+
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
       }
     }
 
@@ -5135,7 +5324,16 @@ class Output extends e {
    */
 
 
-  sendNoteOn(note, options = {}) {
+  sendNoteOn(note, options = {}, legacy = {}) {
+    if (wm.validation) {
+      // Legacy compatibility
+      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
+        let channels = options;
+        options = legacy;
+        options.channels = channels;
+      }
+    }
+
     if (options.channels == undefined) options.channels = "all";
     wm.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
