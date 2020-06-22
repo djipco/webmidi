@@ -3,7 +3,14 @@
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 
-**[INSTALLATION](https://github.com/djipco/webmidi#user-content-installation) — [QUICK START](https://github.com/djipco/webmidi#user-content-quick-start) — [EXAMPLES](https://github.com/djipco/webmidi#user-content-more-code-examples) — [API DOCUMENTATION](https://webmidijs.org/docs/v2.5.1/) — [FORUM](https://webmidijs.org/forum/)**
+<p align="center">
+  <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
+  <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
+  <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
+  <a href="https://webmidijs.org/docs/v2.5.1/">API DOCUMENTATION</a> — 
+  <a href="https://webmidijs.org/forum/">FORUM</a>
+  
+</p>
 
 ## Background
 
