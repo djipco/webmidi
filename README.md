@@ -3,6 +3,8 @@
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 
+**[INSTALLATION](https://github.com/djipco/webmidi#user-content-installation) — [QUICK START](https://github.com/djipco/webmidi#user-content-quick-start) — [EXAMPLES](https://github.com/djipco/webmidi#user-content-more-code-examples) — [API DOCUMENTATION](https://webmidijs.org/docs/v2.5.1/) — [FORUM](https://webmidijs.org/forum/)**
+
 ## Background
 
 The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
@@ -23,6 +25,8 @@ much easier.
 > > https://forms.gle/bcahgNCGgwhcoJDD7 
 >
 > Thank you so much for your help!
+
+
 
 ## Browser Support
 
