@@ -9,7 +9,6 @@
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
   <a href="https://webmidijs.org/docs/v2.5.1/">API DOCUMENTATION</a> — 
   <a href="https://webmidijs.org/forum/">FORUM</a>
-  
 </p>
 
 ## Background
@@ -24,12 +23,16 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
 much easier.
 
-> ## ⚠️ I need your ideas for v3.0
+> ## ⚠️ About the upcoming version 3.0
 > 
-> I am currently working on version 3 and I would love to hear your ideas on how to improve the
+> I am currently working on version 3 and I would love to hear your ideas on how to improve the
 > library. If you have a few minutes to spare, please fill in this survey:
 >
 > > https://forms.gle/bcahgNCGgwhcoJDD7 
+>
+> If you would like to try out v3.0.0-alpha, you can switch to the 
+> [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
+> so.
 >
 > Thank you so much for your help!
 
