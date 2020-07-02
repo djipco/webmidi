@@ -4,6 +4,13 @@
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
 
+<p align="center">
+  <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/tree/develop#quick-start"><strong>QUICK START</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/tree/develop#more-code-examples"><strong>EXAMPLES</strong></a> — 
+  <a href="https://webmidijs.org/docs/"><strong>API DOCUMENTATION</strong></a> — 
+  <a href="https://webmidijs.org/forum/"><strong>FORUM</strong></a>
+</p>
 
 ## Introduction
 
