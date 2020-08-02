@@ -1573,8 +1573,9 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends an **all notes off** channel mode message. This will turn all currently playing notes
-   * off. However, this does not prevent new notes from being played.
+   * Sends an **all notes off** channel mode message. This will make all currently playing notes
+   * fade out just as if their key had been released. This is different from the
+   * [turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
    *
    * @param {Object} [options={}]
    *
