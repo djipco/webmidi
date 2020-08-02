@@ -868,7 +868,8 @@ export class Output extends EventEmitter {
    *
    * Note: as you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
-   * instead of their name.
+   * (0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
+   * [sendChannelMode()]{@link Output#sendChannelMode} method for more info.
    *
    * To view a list of all available `control change` messages, please consult "Table 3 - Control
    * Change Messages" from the [MIDI Messages](
