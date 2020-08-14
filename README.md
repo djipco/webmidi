@@ -259,6 +259,16 @@ WebMidi.enable(function (err) {
   // Viewing available inputs and outputs
   console.log(WebMidi.inputs);
   console.log(WebMidi.outputs);
+  
+  // Reacting when a new device becomes available
+  WebMidi.addListener("connected", function(e) {
+    console.log(e);
+  });
+  
+  // Reacting when a device becomes unavailable
+  WebMidi.addListener("disconnected", function(e) {
+    console.log(e);
+  });
 
   // Display the current time
   console.log(WebMidi.time);
