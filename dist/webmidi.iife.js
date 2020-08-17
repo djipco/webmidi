@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on June 17th 2020.
+ * This build was generated on August 17th 2020.
  *
  *
  *
@@ -1954,8 +1954,8 @@
     }
     /**
      * Sends a MIDI **control change** message to the channel at the scheduled time. The control
-     * change message to send can be specified numerically or by using one of the following common
-     * names:
+     * change message to send can be specified numerically (0 to 119) or by using one of the following
+     * common names:
      *
      *  * `bankselectcoarse` (#0)
      *  * `modulationwheelcoarse` (#1)
@@ -2019,7 +2019,8 @@
      *
      * Note: as you can see above, not all control change message have a matching common name. This
      * does not mean you cannot use the others. It simply means you will need to use their number
-     * instead of their name.
+     * (0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
+     * [sendChannelMode()]{@link OutputChannel#sendChannelMode} method for more info.
      *
      * To view a detailed list of all available **control change** messages, please consult "Table 3 -
      * Control Change Messages" from the [MIDI Messages](
@@ -3230,8 +3231,9 @@
       }
     }
     /**
-     * Sends an **all notes off** channel mode message. This will turn all currently playing notes
-     * off. However, this does not prevent new notes from being played.
+     * Sends an **all notes off** channel mode message. This will make all currently playing notes
+     * fade out just as if their key had been released. This is different from the
+     * [turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
      *
      * @param {Object} [options={}]
      *
@@ -4096,7 +4098,8 @@
      *
      * Note: as you can see above, not all control change message have a matching common name. This
      * does not mean you cannot use the others. It simply means you will need to use their number
-     * instead of their name.
+     * (0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
+     * [sendChannelMode()]{@link Output#sendChannelMode} method for more info.
      *
      * To view a list of all available `control change` messages, please consult "Table 3 - Control
      * Change Messages" from the [MIDI Messages](
@@ -4730,8 +4733,9 @@
       return this;
     }
     /**
-     * Sends an **all note soff** channel mode message. This will turn all currently playing notes
-     * off. However, this does not prevent new notes from being played.
+     * Sends an **all notes off** channel mode message. This will make all currently playing notes
+     * fade out just as if their key had been released. This is different from the
+     * [turnSoundOff()]{@link Output#turnSoundOff} method which mutes all sounds immediately.
      *
      * @param {Object} [options={}]
      *
@@ -5687,13 +5691,18 @@
        */
 
       this._stateChangeQueue = [];
-      this._octaveOffset = 0; // If we are inside Node.js, polyfill navigator.requestMIDIAccess() and import performance.now()
+      this._octaveOffset = 0; // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
 
       if (this.isNode) {
         // Important: performance must be imported before jzz because jzz checks for its existence at
         // startup and falls back to something less precise if absent.
+        global.navigator = require("jzz"); // THIS SHOULD BE TARGETED TO ONLY REQUESTMIDIACCESS !!!!
+      } // Check if performance.now() is available. In a modern browser, it should be the case. In
+      // Node.js, we must require the perf_hooks module which is available in v8.5+.
+
+
+      if (window && window.performance && typeof window.performance.now === "function") ; else if (!(global && global.performance && typeof global.performance.now === "function")) {
         global.performance = require("perf_hooks").performance;
-        global.navigator = require("jzz");
       }
     }
     /**
@@ -6550,13 +6559,29 @@
       return this._inputs;
     }
     /**
-     * Indicates whether the current environment is Node.js or not
+     * Indicates whether the current environment is Node.js or not. If you need to check if we are in
+     * browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
+     * isBrowser can both be true at the same time.
      * @type {boolean}
      */
 
 
     get isNode() {
-      return Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) === "[object process]";
+      return Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) === "[object process]"; // Alternative way to try
+      // return typeof process !== "undefined" &&
+      //   process.versions != null &&
+      //   process.versions.node != null;
+    }
+    /**
+     * Indicates whether the current environment is a browser environment or not. If you need to check
+     * if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
+     * and isBrowser can both be true at the same time.
+     * @type {boolean}
+     */
+
+
+    get isBrowser() {
+      return typeof window !== "undefined" && typeof window.document !== "undefined";
     }
     /**
      * An integer to offset the octave both in inbound and outbound messages. By default, middle C
