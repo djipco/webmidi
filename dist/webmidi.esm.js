@@ -5975,7 +5975,11 @@ class WebMidi extends e {
 
     // Check if performance.now() is available. In a modern browser, it should be the case. In
     // Node.js, we must require the perf_hooks module which is available in v8.5+.
-    if (window && window.performance && typeof window.performance.now === "function") ; else if ( !(global && global.performance && typeof global.performance.now === "function") ) {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.performance !== "undefined" &&
+      typeof window.performance.now === "function"
+    ) ; else if ( !(global && global.performance && typeof global.performance.now === "function") ) {
       global.performance = require("perf_hooks").performance;
     }
 
