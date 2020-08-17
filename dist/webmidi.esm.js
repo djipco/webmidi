@@ -5975,9 +5975,10 @@ class WebMidi extends e {
     }
 
 
-    console.warn(typeof window !== "undefined");
-    console.warn(typeof window.performance !== "undefined");
-    console.warn(typeof window.performance.now === "function");
+    console.warn("browser: ", typeof window !== "undefined" &&
+      typeof window.performance !== "undefined" &&
+      typeof window.performance.now === "function");
+
 
     // Check if performance.now() is available. In a modern browser, it should be the case. In
     // Node.js, we must require the perf_hooks module which is available in v8.5+.
