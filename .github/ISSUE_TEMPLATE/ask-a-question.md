@@ -14,3 +14,5 @@ All questions should be submitted to the **Questions & Support** section of the 
 https://webmidijs.org/forum/
 
 This opens up the question to the community while reserving GitHub strictly for bugs and issues.
+
+Thank you.
