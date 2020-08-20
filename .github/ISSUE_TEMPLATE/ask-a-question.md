@@ -7,4 +7,10 @@ assignees: ''
 
 ---
 
-**Describe the bug and how ro reproduce it**
+**Questions should be submitted to the Forum**
+
+Questions should be submitted to the **Questions & Support** section of the WebMidi.js Forum: 
+
+https://webmidijs.org/forum/
+
+This opens up the question to the community while reserving GitHub strictly for bugs and issues.
