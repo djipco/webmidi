@@ -1,6 +1,6 @@
 ---
-name: Reporting a bug or issue
-about: ''
+name: Report a bug
+about: This is to report a bug, issue or problem with the library
 title: ''
 labels: ''
 assignees: ''
@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is and how to reproduce it. If appropriate, include code samples, screenshots, etc.
 
 **Environment:**
-Specify the environment where you are witnessing the issue
+Specify the environment where you are witnessing the problem:
  - Operating system
  - Browser name and version (or Node.js version)
  - Library version
