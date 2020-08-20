@@ -9,7 +9,7 @@ assignees: ''
 
 **Questions should be submitted to the Forum**
 
-Questions should be submitted to the **Questions & Support** section of the WebMidi.js Forum: 
+All questions should be submitted to the **Questions & Support** section of the WebMidi.js Forum: 
 
 https://webmidijs.org/forum/
 
