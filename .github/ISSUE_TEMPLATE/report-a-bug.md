@@ -1,6 +1,6 @@
 ---
 name: Report a bug
-about: This is to report a bug, issue or problem with the library
+about: This is to report a bug, issue or problem
 title: ''
 labels: ''
 assignees: ''
