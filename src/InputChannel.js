@@ -389,6 +389,8 @@ export class InputChannel extends EventEmitter {
 
     }
 
+    return false;
+
   }
 
   _parseChannelModeMessage(e) {
