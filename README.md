@@ -97,13 +97,13 @@ simply issue the following command to perform the install:
 Then, you can use any of those approaches depending on your environment:
 
     // Script tag
-    <script src="node_modules/dist/webmidi.iife.js"></script>
+    <script src="node_modules/webmidi/dist/webmidi.iife.js"></script>
  
     // CommonJS require
     const {WebMidi} = require("webmidi");
  
     // ES module import
-    import {WebMidi} from "node_modules/dist/webmidi.esm.js";
+    import {WebMidi} from "node_modules/webmidi/dist/webmidi.esm.js";
 
 ## Insecure Origins
 
