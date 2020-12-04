@@ -3,6 +3,14 @@
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 
+<p align="center">
+  <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
+  <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
+  <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
+  <a href="https://webmidijs.org/docs/v2.5.1/">API DOCUMENTATION</a> — 
+  <a href="https://webmidijs.org/forum/">FORUM</a>
+</p>
+
 ## Background
 
 The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
@@ -15,15 +23,31 @@ to react upon receiving MIDI messages from external devices. For example, it onl
 single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
 much easier.
 
+> ## ⚠️ About the upcoming version 3.0
+> 
+> I am currently working on version 3 and I would love to hear your ideas on how to improve the
+> library. If you have a few minutes to spare, please fill in this survey:
+>
+> > https://forms.gle/bcahgNCGgwhcoJDD7 
+>
+> If you would like to try out v3.0.0-alpha, you can switch to the 
+> [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
+> so.
+>
+> Thank you so much for your help!
+
+
+
 ## Browser Support
 
 This library works in all browsers that natively support the 
 [Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
 built-in support: 
 
-* Chrome (Mac, GNU/Linux, Android & Windows)
-* Opera (Mac, GNU/Linux, Windows)
-* Android WebView component (KitKat and above) 
+* Chrome (macOS, GNU/Linux, Android & Windows)
+* Opera (macOS, GNU/Linux, Windows)
+* Android WebView component (KitKat and above)
+* Edge (Windows)
 
 It is also possible to use this library in other browsers if you install version 1.4+ of 
 [Jazz-Plugin](http://jazz-soft.net/) together with the 
@@ -31,7 +55,7 @@ It is also possible to use this library in other browsers if you install version
 support for the following additional browsers:
 
 * Firefox v51 **or less** (Mac, GNU/Linux & Windows)
-* Safari (Mac)
+* Safari (macOS)
 * Internet Explorer (Windows)
 
 >For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip 
@@ -46,6 +70,13 @@ For **Firefox v52+ support**, you need to install two extensions made by
 
 Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
 testing will need to be done but it looks very promising.
+
+I invite you to communicate with the Firefox and Safari teams to let them know how having native Web
+MIDI support is important for you:
+
+* Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
+* Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
+
 
 ## Node.js Support
 
@@ -93,7 +124,7 @@ version, just add this `<script>` tag to your HTML page:
 In production, it might be a better idea to target a specific version. To do that, just append the 
 desired version at the end of the request:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.1"></script>
 
 #### Manual Install
 
@@ -201,18 +232,17 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## API Documentation
 
-The [API for WebMidi.js](http://djipco.github.io/webmidi/latest/classes/WebMidi.html) is fully 
-documented and I take pride in maintaining good API documentation. If you spot an error (even 
-something minor) or think a topic should be made clearer, do not hesitate to 
+The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.1/index.html) is fully documented and I take 
+pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
+topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
-˚
-Here is a link to the full
-**[API Reference](http://djipco.github.io/webmidi/latest/classes/WebMidi.html)**. You can also find 
-the API reference in portable format inside the `docs` folder.
+
+Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.1/index.html)**. You can 
+also find  the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
-[documentation for version 1.0.0-beta.15](http://djipco.github.io/webmidi/v1.0.0-beta.15/classes/WebMidi.html)
-will also remain available online as long as necessary.
+[documentation for version 1.0.0-beta.15](https://webmidijs.org/docs/v1.0.0-beta.15/index.html) will 
+also remain available online as long as necessary.
 
 ## More code examples
 
@@ -229,6 +259,16 @@ WebMidi.enable(function (err) {
   // Viewing available inputs and outputs
   console.log(WebMidi.inputs);
   console.log(WebMidi.outputs);
+  
+  // Reacting when a new device becomes available
+  WebMidi.addListener("connected", function(e) {
+    console.log(e);
+  });
+  
+  // Reacting when a device becomes unavailable
+  WebMidi.addListener("disconnected", function(e) {
+    console.log(e);
+  });
 
   // Display the current time
   console.log(WebMidi.time);
@@ -429,6 +469,16 @@ If you would like to request a new feature, enhancement or API change, please fi
 is not already planned for an upcoming version by checking the 
 [Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
 [file an issue](https://github.com/djipco/webmidi/issues) describing your request.
+
+## Sponsors
+
+I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
+but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
+
+If you would like to support the project, you can press the 
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Contributing
 
