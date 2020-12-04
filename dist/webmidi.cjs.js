@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on August 17th 2020.
+ * This build was generated on December 3rd 2020.
  *
  *
  *
@@ -506,6 +506,8 @@ class InputChannel extends e {
         return cm;
       }
     }
+
+    return false;
   }
 
   _parseChannelModeMessage(e) {
@@ -5695,14 +5697,13 @@ class WebMidi extends e {
     this._octaveOffset = 0; // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
 
     if (this.isNode) {
-      // Important: performance must be imported before jzz because jzz checks for its existence at
-      // startup and falls back to something less precise if absent.
+      // Important: 'performance' must be imported before 'jzz' because 'jzz' checks for its
+      // existence at startup and falls back to something less precise if absent.
       // global.performance = require("perf_hooks").performance;
       global.navigator = require("jzz"); // THIS SHOULD BE TARGETED TO ONLY REQUESTMIDIACCESS !!!!
-    }
+    } // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+    // must require the perf_hooks module which is available in v8.5+.
 
-    console.warn("browser: ", typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function"); // Check if performance.now() is available. In a modern browser, it should be the case. In
-    // Node.js, we must require the perf_hooks module which is available in v8.5+.
 
     if (typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function") ; else {
       global.performance = require("perf_hooks").performance;
