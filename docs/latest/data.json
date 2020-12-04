@@ -2026,7 +2026,7 @@
             "line": 2525,
             "description": "[read-only] Type of the MIDI port (`output`)",
             "itemtype": "property",
-            "name": "state",
+            "name": "type",
             "type": "String",
             "class": "Output"
         },
