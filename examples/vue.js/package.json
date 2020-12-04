@@ -1,0 +1,19 @@
+{
+  "name": "vue-webmidi3",
+  "version": "0.0.1",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "webmidi": "^3.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
