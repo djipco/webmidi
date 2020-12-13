@@ -1,6 +1,7 @@
 ![WebMidi.js Logo](https://djipco.github.io/webmidi/images/webmidijs-logo.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
 [![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 
 <p align="center">
@@ -80,10 +81,10 @@ MIDI support is important for you:
 
 ## Node.js Support
 
-WebMidi.js is not officially supported in Node.js. However, there is hope. I managed to get most 
-parts of it working by using the [web-midi-api](https://www.npmjs.com/package/web-midi-api) npm 
-module. Check out this [comment](https://github.com/djipco/webmidi/issues/15#issuecomment-322020295)
-for more information. If anyone is interested in contributing, help would be more than welcome.
+There is no official Node.js support in WebMidi.js 2.5.x. However, version 3 (currently in alpha) 
+offers full Node.js support. You can try out version 3 in the 
+[develop branch](https://github.com/djipco/webmidi/tree/develop).
+
 
 ## TypeScript Support
 
