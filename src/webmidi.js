@@ -441,6 +441,8 @@
        * fire. The first out of order NRPN CC will fall through the collector
        * logic and all CC messages buffered will be discarded as incomplete.
        *
+       * @private
+       *
        * @property nrpnEventsEnabled
        * @type Boolean
        * @static
@@ -643,11 +645,15 @@
       throw new Error("The Web MIDI API is not supported by your browser.");
     }
 
-    this.removeListener();
+    if (this.enabled) {
 
-    this.inputs.forEach(function (input) {
-      input.removeListener();
-    });
+      this.removeListener();
+
+      this.inputs.forEach(function (input) {
+        input.removeListener();
+      });
+
+    }
 
     if (this.interface) this.interface.onstatechange = undefined;
     this.interface = undefined; // also resets enabled, sysexEnabled, nrpnEventsEnabled
@@ -1396,7 +1402,6 @@
    *    * {{#crossLink "Input/noteon:event"}}noteon{{/crossLink}}
    *    * {{#crossLink "Input/keyaftertouch:event"}}keyaftertouch{{/crossLink}}
    *    * {{#crossLink "Input/controlchange:event"}}controlchange{{/crossLink}}
-   *    * {{#crossLink "Input/nrpn:event"}}nrpn{{/crossLink}}
    *    * {{#crossLink "Input/channelmode:event"}}channelmode{{/crossLink}}
    *    * {{#crossLink "Input/programchange:event"}}programchange{{/crossLink}}
    *    * {{#crossLink "Input/channelaftertouch:event"}}channelaftertouch{{/crossLink}}
@@ -1851,6 +1856,8 @@
       /**
        * Event emitted when a valid NRPN message sequence has been received on a specific device and
        * channel.
+       *
+       * @private
        *
        * @event nrpn
        *
