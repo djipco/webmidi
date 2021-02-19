@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.5.1</em>
+            <em>API Docs for: 2.5.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -712,9 +712,9 @@
   };
 
   /**
-   * Completely disables &#x60;WebMidi&#x60; by unlinking the MIDI subsystem&quot;s interface and destroying all
-   * &#x60;Input&#x60; and &#x60;Output&#x60; objects that may be available. This also means that any listener that may
-   * have been defined on &#x60;Input&#x60; or &#x60;Output&#x60; objects will be destroyed.
+   * Completely disables &#x60;WebMidi&#x60; by unlinking the MIDI subsystem&#x27;s interface and destroying all
+   * &#x60;Input&#x60; and &#x60;Output&#x60; objects that may be available. This also means that any listener(s) that
+   * may have been defined on &#x60;WebMidi&#x60; or any &#x60;Input&#x60; objects will be destroyed.
    *
    * @method disable
    * @static
@@ -725,6 +725,16 @@
 
     if ( !this.supported ) {
       throw new Error(&quot;The Web MIDI API is not supported by your browser.&quot;);
+    }
+
+    if (this.enabled) {
+
+      this.removeListener();
+
+      this.inputs.forEach(function (input) {
+        input.removeListener();
+      });
+
     }
 
     if (this.interface) this.interface.onstatechange = undefined;
@@ -1735,13 +1745,13 @@
   Input.prototype._initializeUserHandlers = function() {
 
     for (var prop1 in wm.MIDI_CHANNEL_MESSAGES) {
-      if (wm.MIDI_CHANNEL_MESSAGES.hasOwnProperty(prop1)) {
+      if (Object.prototype.hasOwnProperty.call(wm.MIDI_CHANNEL_MESSAGES, prop1)) {
         this._userHandlers.channel[prop1] = {};
       }
     }
 
     for (var prop2 in wm.MIDI_SYSTEM_MESSAGES) {
-      if (wm.MIDI_SYSTEM_MESSAGES.hasOwnProperty(prop2)) {
+      if (Object.prototype.hasOwnProperty.call(wm.MIDI_SYSTEM_MESSAGES, prop2)) {
         this._userHandlers.system[prop2] = [];
       }
     }
@@ -2247,7 +2257,7 @@
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
 
       if (
-        wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &amp;&amp;
+        Object.prototype.hasOwnProperty.call(wm.MIDI_CONTROL_CHANGE_MESSAGES, cc) &amp;&amp;
         number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]
       ) {
         return cc;
@@ -2283,7 +2293,7 @@
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
 
       if (
-        wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &amp;&amp;
+        Object.prototype.hasOwnProperty.call(wm.MIDI_CHANNEL_MODE_MESSAGES, cm) &amp;&amp;
         number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
