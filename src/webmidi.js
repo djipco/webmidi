@@ -1657,13 +1657,13 @@
   Input.prototype._initializeUserHandlers = function() {
 
     for (var prop1 in wm.MIDI_CHANNEL_MESSAGES) {
-      if (wm.MIDI_CHANNEL_MESSAGES.hasOwnProperty(prop1)) {
+      if (Object.prototype.hasOwnProperty.call(wm.MIDI_CHANNEL_MESSAGES, prop1)) {
         this._userHandlers.channel[prop1] = {};
       }
     }
 
     for (var prop2 in wm.MIDI_SYSTEM_MESSAGES) {
-      if (wm.MIDI_SYSTEM_MESSAGES.hasOwnProperty(prop2)) {
+      if (Object.prototype.hasOwnProperty.call(wm.MIDI_SYSTEM_MESSAGES, prop2)) {
         this._userHandlers.system[prop2] = [];
       }
     }
@@ -2169,7 +2169,7 @@
     for (var cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
 
       if (
-        wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
+        Object.prototype.hasOwnProperty.call(wm.MIDI_CONTROL_CHANGE_MESSAGES, cc) &&
         number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]
       ) {
         return cc;
@@ -2205,7 +2205,7 @@
     for (var cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
 
       if (
-        wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        Object.prototype.hasOwnProperty.call(wm.MIDI_CHANNEL_MODE_MESSAGES, cm) &&
         number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
