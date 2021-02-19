@@ -628,9 +628,9 @@
   };
 
   /**
-   * Completely disables `WebMidi` by unlinking the MIDI subsystem"s interface and destroying all
-   * `Input` and `Output` objects that may be available. This also means that any listener that may
-   * have been defined on `Input` or `Output` objects will be destroyed.
+   * Completely disables `WebMidi` by unlinking the MIDI subsystem's interface and destroying all
+   * `Input` and `Output` objects that may be available. This also means that any listener(s) that
+   * may have been defined on `WebMidi` or any `Input` objects will be destroyed.
    *
    * @method disable
    * @static
@@ -642,6 +642,12 @@
     if ( !this.supported ) {
       throw new Error("The Web MIDI API is not supported by your browser.");
     }
+
+    this.removeListener();
+
+    this.inputs.forEach(function (input) {
+      input.removeListener();
+    });
 
     if (this.interface) this.interface.onstatechange = undefined;
     this.interface = undefined; // also resets enabled, sysexEnabled, nrpnEventsEnabled
