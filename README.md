@@ -8,7 +8,7 @@
   <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
-  <a href="https://webmidijs.org/docs/v2.5.1/">API DOCUMENTATION</a> — 
+  <a href="https://webmidijs.org/docs/v2.5.2/">API DOCUMENTATION</a> — 
   <a href="https://webmidijs.org/forum/">FORUM</a>
 </p>
 
