@@ -6630,10 +6630,15 @@ class WebMidi extends e {
   get supported() {
     // return (navigator && navigator.requestMIDIAccess) ? true : false;
     // Check if navigator.requestMIDIAccess is available. Under Node.js, JZZ polyfills it.
-    if (navigator && navigator.requestMIDIAccess) {
-      return true;
-    } else {
+    // if (navigator && navigator.requestMIDIAccess) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    if (typeof navigator === "undefined") {
       return false;
+    } else {
+      return true;
     }
   }
   /**
