@@ -5812,6 +5812,7 @@ class WebMidi extends e {
         const intervalID = setInterval(() => {
           if (this.supported) {
             clearInterval(intervalID);
+            console.info("resolved!!!!!!!!");
             resolve();
           } else {
             if (this.time > start + 1500) {
@@ -5851,8 +5852,7 @@ class WebMidi extends e {
       timestamp: this.time,
       target: this,
       type: "enabled"
-    };
-    console.info("enabled!!!!!!!!"); // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
+    }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
     // be listened to in callbacks tied to the 'enabled' event.
 
     this.emit("enabled", event);
