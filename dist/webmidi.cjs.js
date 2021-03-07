@@ -5694,11 +5694,17 @@ class WebMidi extends e {
      */
 
     this._stateChangeQueue = [];
-    this._octaveOffset = 0; // Check if performance.now() is unavailable. In a modern browser, it should be available. In
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
+    this._octaveOffset = 0; // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+    // must require the perf_hooks module which is available in v8.5+.
+
+    if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
+      if (this.isNode) global.performance = require("perf_hooks").performance;
+    } // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
 
 
-    if (this.isNode) ;
+    if (this.isNode) {
+      global.navigator = require("jzz");
+    }
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
@@ -6628,17 +6634,8 @@ class WebMidi extends e {
 
 
   get supported() {
-    return typeof navigator !== "undefined" && navigator.requestMIDIAccess ? true : false; // Check if navigator.requestMIDIAccess is available. Under Node.js, JZZ polyfills it.
-    // if (navigator && navigator.requestMIDIAccess) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    // if (typeof navigator !== "undefined" && navigator.requestMIDIAccess) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    // We need typeof otherwise it throws an error when checking "navigator"
+    return typeof navigator !== "undefined" && navigator.requestMIDIAccess ? true : false;
   }
   /**
    * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
