@@ -80,7 +80,7 @@ class WebMidi extends EventEmitter {
 
     this._octaveOffset = 0;
 
-    // Check if performance.now() is unavailable. In a modern browser, it should be. In Node.js, we
+    // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
     // must require the perf_hooks module which is available in v8.5+.
     if (
       !(
@@ -94,7 +94,7 @@ class WebMidi extends EventEmitter {
 
     // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
     if (this.isNode) {
-      global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
+      global.navigator = require("jzz");
     }
 
   }
@@ -1079,7 +1079,10 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    return (navigator && navigator.requestMIDIAccess) ? true : false;
+
+    // We need typeof otherwise it throws an error when checking "navigator"
+    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess) ? true : false;
+
   }
 
   /**
