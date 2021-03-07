@@ -6635,10 +6635,10 @@ class WebMidi extends e {
     // } else {
     //   return false;
     // }
-    if (typeof navigator === "undefined") {
-      return false;
-    } else {
+    if (typeof navigator !== "undefined" && navigator.requestMIDIAccess) {
       return true;
+    } else {
+      return false;
     }
   }
   /**
