@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on December 3rd 2020.
+ * This build was generated on March 7th 2021.
  *
  *
  *
@@ -5966,8 +5966,8 @@ class WebMidi extends e {
 
     this._octaveOffset = 0;
 
-    // Check if performance.now() is unavailable. In a modern browser, it should be. In Node.js, we
-    // must require the perf_hooks module which is available in v8.5+.
+    // Check if performance.now() is unavailable. In a modern browser, it should be available. In
+    // Node.js, we must require the perf_hooks module which is available in v8.5+.
     if (
       !(
         typeof window !== "undefined" &&
@@ -5980,14 +5980,8 @@ class WebMidi extends e {
 
     // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
     if (this.isNode) {
-
-      // Important: 'performance' must be imported before 'jzz' because 'jzz' checks for its
-      // existence at startup and falls back to something less precise if absent.
-      global.navigator = require("jzz"); // THIS SHOULD BE TARGETED TO ONLY REQUESTMIDIACCESS !!!!
-
+      global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
     }
-
-
 
   }
 
@@ -6076,6 +6070,7 @@ class WebMidi extends e {
    */
   async enable(options = {}, sysex = false) {
 
+    console.info(navigator);
     if (this.enabled) return Promise.resolve();
 
     this.validation = (options.validation !== false);
