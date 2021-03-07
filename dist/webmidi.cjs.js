@@ -5816,6 +5816,7 @@ class WebMidi extends e {
             resolve();
           } else {
             if (this.time > start + 1500) {
+              console.info("crash and burn!!!!!!!!");
               clearInterval(intervalID);
               let error = new Error("Web MIDI API support is not available in your environment.");
               if (typeof options.callback === "function") options.callback(error);
