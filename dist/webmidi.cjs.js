@@ -5810,15 +5810,11 @@ class WebMidi extends e {
       await new Promise((resolve, reject) => {
         const start = this.time;
         const intervalID = setInterval(() => {
-          console.info("trying!!!!!!!!");
-
           if (this.supported) {
             clearInterval(intervalID);
-            console.info("resolved!!!!!!!!");
             resolve();
           } else {
             if (this.time > start + 1500) {
-              console.info("crash and burn!!!!!!!!");
               clearInterval(intervalID);
               let error = new Error("Web MIDI API support is not available in your environment.");
               if (typeof options.callback === "function") options.callback(error);
@@ -5827,8 +5823,9 @@ class WebMidi extends e {
           }
         }, 25);
       });
-    } // Request MIDI access
+    }
 
+    console.info("prout!"); // Request MIDI access
 
     try {
       this.interface = await navigator.requestMIDIAccess({
