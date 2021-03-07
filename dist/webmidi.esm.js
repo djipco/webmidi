@@ -5966,22 +5966,8 @@ class WebMidi extends e {
 
     this._octaveOffset = 0;
 
-    // Check if performance.now() is unavailable. In a modern browser, it should be available. In
-    // Node.js, we must require the perf_hooks module which is available in v8.5+.
-    if (
-      !(
-        typeof window !== "undefined" &&
-        typeof window.performance !== "undefined" &&
-        typeof window.performance.now === "function"
-      )
-    ) {
-      if (this.isNode) global.performance = require("perf_hooks").performance;
-    }
-
     // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
-    if (this.isNode) {
-      global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
-    }
+    if (this.isNode) ;
 
   }
 
@@ -6070,7 +6056,6 @@ class WebMidi extends e {
    */
   async enable(options = {}, sysex = false) {
 
-    console.info(navigator);
     if (this.enabled) return Promise.resolve();
 
     this.validation = (options.validation !== false);
