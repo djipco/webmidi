@@ -5823,9 +5823,8 @@ class WebMidi extends e {
           }
         }, 25);
       });
-    }
+    } // Request MIDI access
 
-    console.info("prout!"); // Request MIDI access
 
     try {
       this.interface = await navigator.requestMIDIAccess({
@@ -5836,8 +5835,6 @@ class WebMidi extends e {
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
     }
-
-    console.info("prout222");
     /**
      * Event emitted once `WebMidi` has been successfully enabled.
      *
@@ -5849,6 +5846,7 @@ class WebMidi extends e {
      * @property {string} type `enabled`
      */
 
+
     let event = {
       timestamp: this.time,
       target: this,
@@ -5857,7 +5855,8 @@ class WebMidi extends e {
     // be listened to in callbacks tied to the 'enabled' event.
 
     this.emit("enabled", event);
-    if (typeof options.callback === "function") options.callback(); // We setup the statechange listener before creating the ports so that if properly catches the
+    if (typeof options.callback === "function") options.callback();
+    console.info("func", options.callback); // We setup the statechange listener before creating the ports so that if properly catches the
     // the ports' `connected` events
 
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created). If
