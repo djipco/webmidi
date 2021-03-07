@@ -5836,6 +5836,8 @@ class WebMidi extends e {
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
     }
+
+    console.info("prout222");
     /**
      * Event emitted once `WebMidi` has been successfully enabled.
      *
@@ -5846,7 +5848,6 @@ class WebMidi extends e {
      * @property {WebMidi} target The object that triggered the event
      * @property {string} type `enabled`
      */
-
 
     let event = {
       timestamp: this.time,
