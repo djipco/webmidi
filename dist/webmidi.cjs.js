@@ -5855,8 +5855,7 @@ class WebMidi extends e {
     // be listened to in callbacks tied to the 'enabled' event.
 
     this.emit("enabled", event);
-    if (typeof options.callback === "function") options.callback();
-    console.info("func", options.callback); // We setup the statechange listener before creating the ports so that if properly catches the
+    if (typeof options.callback === "function") options.callback(); // We setup the statechange listener before creating the ports so that if properly catches the
     // the ports' `connected` events
 
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created). If
