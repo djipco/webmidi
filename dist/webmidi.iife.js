@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on December 3rd 2020.
+ * This build was generated on March 7th 2021.
  *
  *
  *
@@ -5693,8 +5693,8 @@
        */
 
       this._stateChangeQueue = [];
-      this._octaveOffset = 0; // Check if performance.now() is unavailable. In a modern browser, it should be. In Node.js, we
-      // must require the perf_hooks module which is available in v8.5+.
+      this._octaveOffset = 0; // Check if performance.now() is unavailable. In a modern browser, it should be available. In
+      // Node.js, we must require the perf_hooks module which is available in v8.5+.
 
       if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
         if (this.isNode) global.performance = require("perf_hooks").performance;
@@ -5702,8 +5702,7 @@
 
 
       if (this.isNode) {
-        // existence at startup and falls back to something less precise if absent.
-        global.navigator = require("jzz"); // THIS SHOULD BE TARGETED TO ONLY REQUESTMIDIACCESS !!!!
+        global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
       }
     }
     /**
@@ -5792,6 +5791,7 @@
 
 
     async enable(options = {}, sysex = false) {
+      console.info(navigator);
       if (this.enabled) return Promise.resolve();
       this.validation = options.validation !== false;
 
