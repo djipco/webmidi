@@ -5810,6 +5810,8 @@ class WebMidi extends e {
       await new Promise((resolve, reject) => {
         const start = this.time;
         const intervalID = setInterval(() => {
+          console.info("trying!!!!!!!!");
+
           if (this.supported) {
             clearInterval(intervalID);
             console.info("resolved!!!!!!!!");
