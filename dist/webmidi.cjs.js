@@ -5851,7 +5851,8 @@ class WebMidi extends e {
       timestamp: this.time,
       target: this,
       type: "enabled"
-    }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
+    };
+    console.info("enabled!!!!!!!!"); // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
     // be listened to in callbacks tied to the 'enabled' event.
 
     this.emit("enabled", event);
