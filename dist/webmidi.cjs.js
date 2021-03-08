@@ -5866,7 +5866,6 @@ class WebMidi extends e {
     }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
     // be listened to in callbacks tied to the 'enabled' event.
 
-    this.addListener("enabled", () => console.log("coucou!!"));
     this.emit("enabled", event);
     if (typeof options.callback === "function") options.callback(); // We setup the statechange listener before creating the ports so that if properly catches the
     // the ports' `connected` events
