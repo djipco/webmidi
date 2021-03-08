@@ -5814,7 +5814,7 @@ class WebMidi extends e {
     }
 
     if (this.supported) {
-      console.info("Yes!!!");
+      console.info("après require Yes!!!");
     } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, if it's not there yet we wait a little while to give it time to load.
 
@@ -6657,11 +6657,13 @@ class WebMidi extends e {
 
 
   get supported() {
-    if (this.isNode && !this.enabled) {
-      console.warn("In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " + "resolved before you can use the 'supported' property reliably.");
-    } // We need typeof otherwise it throws an error when checking "navigator"
-
-
+    // if (this.isNode && !this.enabled) {
+    //   console.warn(
+    //     "In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " +
+    //     "resolved before you can use the 'supported' property reliably."
+    //   );
+    // }
+    // We need typeof otherwise it throws an error when checking "navigator"
     return typeof navigator !== "undefined" && navigator.requestMIDIAccess;
   }
   /**
