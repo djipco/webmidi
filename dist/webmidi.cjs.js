@@ -5905,12 +5905,15 @@ class WebMidi extends e {
 
 
   async disable() {
-    if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
     return this._destroyInputsAndOutputs().then(() => {
-      if (this.isNode) navigator.close();
+      // If it wasn't actually enabled, there's nothing more we can do.
+      if (!this.enabled) return Promise.resolve(); // This is where the library is fully disabled
+
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
+      // Under node, we close() the jzz module
 
+      if (this.isNode) navigator.close();
       /**
        * Event emitted once `WebMidi` has been successfully disabled.
        *
