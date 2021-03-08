@@ -5815,17 +5815,17 @@ class WebMidi extends e {
 
 
     if (!this.supported) {
-      console.info("jazz still not there");
+      console.info("not supported");
       await new Promise((resolve, reject) => {
         const start = this.time;
         const intervalID = setInterval(() => {
+          console.info("interval");
+
           if (this.supported) {
-            console.info("finally there");
             clearInterval(intervalID);
             resolve();
           } else {
             if (this.time > start + 1500) {
-              console.info("timeout");
               clearInterval(intervalID);
               let error = new Error("Web MIDI API support is not available in your environment.");
               if (typeof options.callback === "function") options.callback(error);
@@ -6645,7 +6645,7 @@ class WebMidi extends e {
 
 
   get supported() {
-    return navigator && navigator.requestMIDIAccess ? true : false;
+    return typeof navigator !== "undefined" && navigator.requestMIDIAccess;
   }
   /**
    * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
