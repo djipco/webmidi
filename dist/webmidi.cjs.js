@@ -5700,7 +5700,19 @@ class WebMidi extends e {
      * @private
      */
 
-    this._octaveOffset = 0;
+    this._octaveOffset = 0; // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+    // must require the perf_hooks module which is available in Node.js v8.5+.
+
+    if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
+      if (this.isNode) global.performance = require("perf_hooks").performance;
+    } // If we are inside Node.js, polyfill navigator.requestMIDIAccess(). This takes a while to
+    // complete and there is no callback or event to precisely know when it's done. That's why we
+    // check for it again in the enable() method.
+
+
+    if (this.isNode) {
+      global.navigator = require("jzz");
+    }
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
@@ -5798,19 +5810,6 @@ class WebMidi extends e {
         sysex: sysex
       };
       if (sysex) options.sysex = true;
-    } // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
-    // must require the perf_hooks module which is available in v8.5+.
-
-
-    if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
-      if (this.isNode) global.performance = require("perf_hooks").performance;
-    } // If we are inside Node.js, polyfill navigator.requestMIDIAccess(). This takes a while to
-    // complete and there is no callback or event to precisely know when it's done. That's why we
-    // check for it again in the enable() method.
-
-
-    if (this.isNode) {
-      global.navigator = require("jzz");
     } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, if it's not there yet we wait a little while to give it time to load.
 
@@ -5881,10 +5880,7 @@ class WebMidi extends e {
     } catch (err) {
       return Promise.reject(err);
     }
-  } // async _loadJzz() {
-  //
-  // }
-
+  }
   /**
    * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
    * {@link Input} and {@link Output} objects that may be available. This also means that listeners
@@ -5902,14 +5898,10 @@ class WebMidi extends e {
 
   async disable() {
     return this._destroyInputsAndOutputs().then(() => {
-      // // If it wasn't actually enabled, there's nothing more we can do.
-      // if (!this.enabled) return Promise.resolve();
-      // This is where the library is fully disabled
+      if (this.isNode && typeof navigator !== "undefined") navigator.close();
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
-      // Under node, we close() the jzz module (if it has been eactivated)
 
-      if (this.isNode && typeof navigator !== "undefined") navigator.close();
       /**
        * Event emitted once `WebMidi` has been successfully disabled.
        *
@@ -6653,13 +6645,11 @@ class WebMidi extends e {
 
 
   get supported() {
-    // if (this.isNode && !this.enabled) {
-    //   console.warn(
-    //     "In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " +
-    //     "resolved before you can use the 'supported' property reliably."
-    //   );
-    // }
-    // We need typeof otherwise it throws an error when checking "navigator"
+    if (this.isNode && !this.enabled) {
+      console.warn("In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " + "resolved before you can use the 'supported' property reliably.");
+    } // We need typeof otherwise it throws an error when checking "navigator"
+
+
     return typeof navigator !== "undefined" && navigator.requestMIDIAccess;
   }
   /**
