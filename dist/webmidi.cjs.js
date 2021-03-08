@@ -5709,9 +5709,8 @@ class WebMidi extends e {
     // while. This is why we check for it again in enable().
 
 
-    if (this.isNode) {
-      global.navigator = require("jzz");
-    }
+    if (this.isNode) global.navigator = require("jzz");
+    console.info(global.navigator);
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
@@ -5826,7 +5825,7 @@ class WebMidi extends e {
     //       } else {
     //         if (this.time > start + 1500) {
     //           clearInterval(intervalID);
-    //           let error = new Error("Web MIDI API support is not available in your environment.");
+    //           let error = new Error("The Web MIDI API is not available in your environment.");
     //           if (typeof options.callback === "function") options.callback(error);
     //           reject(error);
     //         }
