@@ -40,23 +40,22 @@ describe("WebMidi Object", function() {
 
   });
 
-  it("should trigger 'enabled' event", async function () {
+  it("should trigger 'enabled' event", function (done) {
+
+    // Arrange
+    this.timeout(10000);
 
     // Assert
-    await new Promise(resolve => {
-      WebMidi.addListener("enabled", resolve);
-      WebMidi.enable();
-    });
+    WebMidi.addListener("enabled", () => done());
+    WebMidi.enable();
 
   });
 
-  it("should trigger 'disabled' event", async function () {
+  it("should trigger 'disabled' event", function (done) {
 
     // Assert
-    await new Promise(resolve => {
-      WebMidi.addListener("disabled", resolve);
-      WebMidi.disable();
-    });
+    WebMidi.addListener("disabled", () => done());
+    WebMidi.disable();
 
   });
 
