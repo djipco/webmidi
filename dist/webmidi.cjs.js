@@ -6645,11 +6645,13 @@ class WebMidi extends e {
 
 
   get supported() {
-    if (this.isNode && !this.enabled) {
-      console.warn("In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " + "resolved before you can use the 'supported' property reliably.");
-    } // We need typeof otherwise it throws an error when checking "navigator"
-
-
+    // if (this.isNode && !this.enabled) {
+    //   console.warn(
+    //     "In the Node.js environment, you must wait after 'WebMidi.enable()' is called and " +
+    //     "resolved before you can use the 'supported' property reliably."
+    //   );
+    // }
+    // We need typeof otherwise it throws an error when checking "navigator"
     return typeof navigator !== "undefined" && navigator.requestMIDIAccess;
   }
   /**
