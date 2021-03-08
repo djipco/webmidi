@@ -5792,7 +5792,7 @@ class WebMidi extends e {
 
 
   async enable(options = {}, sysex = false) {
-    if (this.enabled) return Promise.resolve();
+    // if (this.enabled) return Promise.resolve();
     this.validation = options.validation !== false;
 
     if (this.validation) {
