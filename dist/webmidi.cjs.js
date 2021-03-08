@@ -5810,10 +5810,11 @@ class WebMidi extends e {
         sysex: sysex
       };
       if (sysex) options.sysex = true;
-    } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
+    }
+
+    console.info("inside enable"); // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
     // constructor).
-
 
     if (!this.supported) {
       console.info("jazz still not there");
