@@ -5907,9 +5907,9 @@ class WebMidi extends e {
       // This is where the library is fully disabled
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
-      // Under node, we close() the jzz module
+      // Under node, we close() the jzz module (if it has been eactivated)
 
-      if (this.isNode) navigator.close();
+      if (this.isNode && typeof navigator !== "undefined") navigator.close();
       /**
        * Event emitted once `WebMidi` has been successfully disabled.
        *
