@@ -5902,9 +5902,9 @@ class WebMidi extends e {
 
   async disable() {
     return this._destroyInputsAndOutputs().then(() => {
-      // If it wasn't actually enabled, there's nothing more we can do.
-      if (!this.enabled) return Promise.resolve(); // This is where the library is fully disabled
-
+      // // If it wasn't actually enabled, there's nothing more we can do.
+      // if (!this.enabled) return Promise.resolve();
+      // This is where the library is fully disabled
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
       // Under node, we close() the jzz module
