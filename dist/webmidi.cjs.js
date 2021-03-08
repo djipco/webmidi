@@ -5810,11 +5810,10 @@ class WebMidi extends e {
         sysex: sysex
       };
       if (sysex) options.sysex = true;
-    }
-
-    console.info("inside enable"); // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
+    } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
     // constructor).
+
 
     if (!this.supported) {
       console.info("jazz still not there");
@@ -5836,9 +5835,8 @@ class WebMidi extends e {
           }
         }, 25);
       });
-    }
+    } // Request MIDI access
 
-    console.info("after"); // Request MIDI access
 
     try {
       this.interface = await navigator.requestMIDIAccess({
@@ -5868,6 +5866,7 @@ class WebMidi extends e {
     }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
     // be listened to in callbacks tied to the 'enabled' event.
 
+    this.addListener("enabled", () => console.log("coucou!!"));
     this.emit("enabled", event);
     if (typeof options.callback === "function") options.callback(); // We setup the statechange listener before creating the ports so that if properly catches the
     // the ports' `connected` events
