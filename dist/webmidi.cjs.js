@@ -5812,29 +5812,32 @@ class WebMidi extends e {
     } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
     // constructor).
-
-
-    if (!this.supported) {
-      console.info("not supported");
-      await new Promise((resolve, reject) => {
-        const start = this.time;
-        const intervalID = setInterval(() => {
-          console.info("interval");
-
-          if (this.supported) {
-            clearInterval(intervalID);
-            resolve();
-          } else {
-            if (this.time > start + 1500) {
-              clearInterval(intervalID);
-              let error = new Error("Web MIDI API support is not available in your environment.");
-              if (typeof options.callback === "function") options.callback(error);
-              reject(error);
-            }
-          }
-        }, 25);
-      });
-    } // Request MIDI access
+    // if (!this.supported) {
+    //
+    //   await new Promise((resolve, reject) => {
+    //
+    //     const start = this.time;
+    //
+    //     const intervalID = setInterval(() => {
+    //
+    //       if (this.supported) {
+    //         clearInterval(intervalID);
+    //         resolve();
+    //       } else {
+    //         if (this.time > start + 1500) {
+    //           clearInterval(intervalID);
+    //           let error = new Error("Web MIDI API support is not available in your environment.");
+    //           if (typeof options.callback === "function") options.callback(error);
+    //           reject(error);
+    //         }
+    //       }
+    //
+    //     }, 25);
+    //
+    //   });
+    //
+    // }
+    // Request MIDI access
 
 
     try {
