@@ -78,6 +78,11 @@ class WebMidi extends EventEmitter {
      */
     this._stateChangeQueue = [];
 
+    /**
+     *
+     * @type {number}
+     * @private
+     */
     this._octaveOffset = 0;
 
     // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
@@ -92,7 +97,8 @@ class WebMidi extends EventEmitter {
       if (this.isNode) global.performance = require("perf_hooks").performance;
     }
 
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
+    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
+    // while. This is why we check for it again in enable().
     if (this.isNode) {
       global.navigator = require("jzz");
     }
@@ -195,7 +201,8 @@ class WebMidi extends EventEmitter {
     }
 
     // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
-    // fired). Therefore, we wait a little while to give it time to load.
+    // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
+    // constructor).
     if (!this.supported) {
 
       await new Promise((resolve, reject) => {
@@ -1079,10 +1086,7 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-
-    // We need typeof otherwise it throws an error when checking "navigator"
-    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess) ? true : false;
-
+    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
   }
 
   /**
