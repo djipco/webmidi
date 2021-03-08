@@ -5694,7 +5694,7 @@ class WebMidi extends e {
      */
 
     this._stateChangeQueue = [];
-    this._octaveOffset = 0; // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+    this._octaveOffset = 0; // Check if performance.now() is unavailable. In a modern browser, it should be. In Node.js, we
     // must require the perf_hooks module which is available in v8.5+.
 
     if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
@@ -5703,7 +5703,7 @@ class WebMidi extends e {
 
 
     if (this.isNode) {
-      global.navigator = require("jzz");
+      global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
     }
   }
   /**
@@ -5889,7 +5889,7 @@ class WebMidi extends e {
   async disable() {
     if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
     return this._destroyInputsAndOutputs().then(() => {
-      if (this.isNode && typeof navigator !== "undefined") navigator.close();
+      if (this.isNode) navigator.close();
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
 
@@ -6634,8 +6634,7 @@ class WebMidi extends e {
 
 
   get supported() {
-    // We need typeof otherwise it throws an error when checking "navigator"
-    return typeof navigator !== "undefined" && navigator.requestMIDIAccess ? true : false;
+    return navigator && navigator.requestMIDIAccess ? true : false;
   }
   /**
    * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
