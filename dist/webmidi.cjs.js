@@ -5836,8 +5836,9 @@ class WebMidi extends e {
           }
         }, 25);
       });
-    } // Request MIDI access
+    }
 
+    console.info("after"); // Request MIDI access
 
     try {
       this.interface = await navigator.requestMIDIAccess({
