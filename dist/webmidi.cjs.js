@@ -5710,7 +5710,6 @@ class WebMidi extends e {
 
 
     if (this.isNode) {
-      console.info("start load jzz");
       global.navigator = require("jzz");
     }
   }
