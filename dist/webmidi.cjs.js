@@ -5694,16 +5694,24 @@ class WebMidi extends e {
      */
 
     this._stateChangeQueue = [];
-    this._octaveOffset = 0; // Check if performance.now() is unavailable. In a modern browser, it should be. In Node.js, we
+    /**
+     *
+     * @type {number}
+     * @private
+     */
+
+    this._octaveOffset = 0; // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
     // must require the perf_hooks module which is available in v8.5+.
 
     if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
       if (this.isNode) global.performance = require("perf_hooks").performance;
-    } // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
+    } // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
+    // while. This is why we check for it again in enable().
 
 
     if (this.isNode) {
-      global.navigator = require("jzz"); // THIS SHOULD BE RESTRICTED TO ONLY REQUESTMIDIACCESS !!!
+      console.info("start load jzz");
+      global.navigator = require("jzz");
     }
   }
   /**
@@ -5792,7 +5800,7 @@ class WebMidi extends e {
 
 
   async enable(options = {}, sysex = false) {
-    // if (this.enabled) return Promise.resolve();
+    if (this.enabled) return Promise.resolve();
     this.validation = options.validation !== false;
 
     if (this.validation) {
@@ -5803,18 +5811,22 @@ class WebMidi extends e {
       };
       if (sysex) options.sysex = true;
     } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
-    // fired). Therefore, we wait a little while to give it time to load.
+    // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
+    // constructor).
 
 
     if (!this.supported) {
+      console.info("jazz still not there");
       await new Promise((resolve, reject) => {
         const start = this.time;
         const intervalID = setInterval(() => {
           if (this.supported) {
+            console.info("finally there");
             clearInterval(intervalID);
             resolve();
           } else {
             if (this.time > start + 1500) {
+              console.info("timeout");
               clearInterval(intervalID);
               let error = new Error("Web MIDI API support is not available in your environment.");
               if (typeof options.callback === "function") options.callback(error);
