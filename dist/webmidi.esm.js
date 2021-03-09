@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on March 7th 2021.
+ * This build was generated on March 9th 2021.
  *
  *
  *
@@ -5964,10 +5964,28 @@ class WebMidi extends e {
      */
     this._stateChangeQueue = [];
 
+    /**
+     *
+     * @type {number}
+     * @private
+     */
     this._octaveOffset = 0;
 
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess()
-    if (this.isNode) ;
+    // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+    // must require the perf_hooks module which is available in v8.5+.
+    if (
+      !(
+        typeof window !== "undefined" &&
+        typeof window.performance !== "undefined" &&
+        typeof window.performance.now === "function"
+      )
+    ) {
+      if (this.isNode) global.performance = require("perf_hooks").performance;
+    }
+
+    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
+    // while. This is why we check for it again in enable().
+    if (this.isNode) global.navigator = require("jzz");
 
   }
 
@@ -6067,32 +6085,33 @@ class WebMidi extends e {
     }
 
     // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
-    // fired). Therefore, we wait a little while to give it time to load.
-    if (!this.supported) {
-
-      await new Promise((resolve, reject) => {
-
-        const start = this.time;
-
-        const intervalID = setInterval(() => {
-
-          if (this.supported) {
-            clearInterval(intervalID);
-            resolve();
-          } else {
-            if (this.time > start + 1500) {
-              clearInterval(intervalID);
-              let error = new Error("Web MIDI API support is not available in your environment.");
-              if (typeof options.callback === "function") options.callback(error);
-              reject(error);
-            }
-          }
-
-        }, 25);
-
-      });
-
-    }
+    // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
+    // constructor).
+    // if (!this.supported) {
+    //
+    //   await new Promise((resolve, reject) => {
+    //
+    //     const start = this.time;
+    //
+    //     const intervalID = setInterval(() => {
+    //
+    //       if (this.supported) {
+    //         clearInterval(intervalID);
+    //         resolve();
+    //       } else {
+    //         if (this.time > start + 1500) {
+    //           clearInterval(intervalID);
+    //           let error = new Error("The Web MIDI API is not available in your environment.");
+    //           if (typeof options.callback === "function") options.callback(error);
+    //           reject(error);
+    //         }
+    //       }
+    //
+    //     }, 25);
+    //
+    //   });
+    //
+    // }
 
     // Request MIDI access
     try {
@@ -6158,11 +6177,9 @@ class WebMidi extends e {
    */
   async disable() {
 
-    if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
-
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (this.isNode) navigator.close();
+      if (typeof navigator.close === "function") navigator.close();
 
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
@@ -6951,7 +6968,7 @@ class WebMidi extends e {
    * @type {boolean}
    */
   get supported() {
-    return (navigator && navigator.requestMIDIAccess) ? true : false;
+    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
   }
 
   /**
