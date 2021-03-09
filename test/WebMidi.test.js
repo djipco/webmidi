@@ -217,19 +217,6 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should throw error if Web MIDI API is not supported", function(done) {
-
-      let backup = navigator.requestMIDIAccess;
-      navigator.requestMIDIAccess = undefined;
-
-      WebMidi.disable().catch(err => {
-        expect(err).to.be.an("error");
-        navigator.requestMIDIAccess = backup;
-        WebMidi.disable().then(done);
-      });
-
-    });
-
     it("should fire 'disabled' event if successful", function(done) {
       WebMidi.addListener("disabled", () => done());
       WebMidi.disable();
