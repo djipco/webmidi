@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on March 7th 2021.
+ * This build was generated on March 9th 2021.
  *
  *
  *
@@ -5710,7 +5710,6 @@ class WebMidi extends e {
 
 
     if (this.isNode) global.navigator = require("jzz");
-    console.info(global.navigator);
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
@@ -5900,7 +5899,7 @@ class WebMidi extends e {
 
 
   async disable() {
-    if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
+    // if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
     return this._destroyInputsAndOutputs().then(() => {
       if (this.isNode) navigator.close();
       if (this.interface) this.interface.onstatechange = undefined;
