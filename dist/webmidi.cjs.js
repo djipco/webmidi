@@ -5899,7 +5899,6 @@ class WebMidi extends e {
 
 
   async disable() {
-    // if (!this.supported) throw new Error("The Web MIDI API is not supported by your environment.");
     return this._destroyInputsAndOutputs().then(() => {
       if (typeof navigator.close === "function") navigator.close();
       if (this.interface) this.interface.onstatechange = undefined;
