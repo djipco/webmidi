@@ -314,7 +314,7 @@ class WebMidi extends EventEmitter {
         type: "disabled"
       };
 
-      // Finally, trigger the 'disabled' event and remove all listeners
+      // Finally, trigger the 'disabled' event and then remove all listeners.
       this.emit("disabled", event);
       this.removeListener();
 
