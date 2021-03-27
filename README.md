@@ -78,7 +78,7 @@ MIDI support is important for you:
 * Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
 * Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
 
-Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/)that they would not
+Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would not
 implement the Web MIDI API (and a host of other APIs) in Safari over fingerprinting concerns. 
 
 ## Node.js Support
