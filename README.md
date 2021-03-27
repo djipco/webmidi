@@ -38,6 +38,9 @@ support for the following additional web browsers:
 * Safari
 * Internet Explorer
 
+Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would not
+implement the Web MIDI API (and a host of other APIs) in Safari because of fingerprinting concerns. 
+
 ## Node.js Support
 
 Version 3.0 of WebMidi.js introduced full Node.js support. Nothing special needs to be done, it 
