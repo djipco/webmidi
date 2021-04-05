@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on March 9th 2021.
+ * This build was generated on April 5th 2021.
  *
  *
  *
@@ -210,7 +210,13 @@
        * @type {number}
        */
 
-      this.number = number; // /**
+      this.number = number;
+      /**
+       * @type {OutputChannel|[OutputChannel]}
+       * @private
+       */
+
+      this._forwardTo = undefined; // /**
       //  * An array of the current NRPNs being constructed for this channel
       //  *
       //  * @private
@@ -237,6 +243,10 @@
 
 
     _parseEvent(e) {
+      // @todo check if message must be forwarded
+      // if (this.forwardTo) {
+      //   this.forwardTo.forEach(channel => channel.sendRaw(e.data));
+      // }
       // Extract data bytes (unless it's a sysex message)
       let dataBytes = null;
       if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
@@ -848,6 +858,42 @@
 
       return false;
     } // /**
+    //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
+    //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
+    //  *
+    //  * To stop forwarding messages, simply set `forwardTo` to `undefined` or `null`.
+    //  *
+    //  * If you want to forward messages from all channels of an input, you should instead use the
+    //  * input's [forwardTo]{@link Input#forwardTo} property.
+    //  *
+    //  * @type {OutputChannel|[OutputChannel]}
+    //  * @readonly
+    //  */
+    // get forwardTo() {
+    //   return this._forwardTo;
+    // }
+    // set forwardTo(value) {
+    //
+    //   // @todo THIS NEEDS TO BE CoMPLETED!!!
+    //
+    //   if (value === undefined || value === null) {
+    //     this._forwardTo = undefined;
+    //     return;
+    //   }
+    //
+    //   if (!Array.isArray(value)) value = [value];
+    //
+    //   if (this.validation) {
+    //     value.forEach(v => {
+    //       // if (typeof v)
+    //       console.log(typeof v);
+    //     });
+    //   }
+    //
+    //   this._forwardTo = value;
+    //
+    // }
+    // /**
     //  * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
     //  * are composed of a sequence of specific **control change** messages. When a valid sequence of
     //  * such control change messages is received, an `nrpn` event will fire. If an invalid or out of
@@ -1887,6 +1933,30 @@
 
     send(status, data = [], options = {}) {
       this.output.send(status, data, options);
+      return this;
+    }
+    /**
+     * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. No processing at all
+     * is performed on the data which should be a list of 8bit integers or a `Uint8Array` object.
+     *
+     * Details on the format of MIDI messages are available in the summary of
+     * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
+     * from the MIDI Manufacturers Association.
+     *
+     * @param data {number[]|Uint8Array} The message to send as a list of 8bit unsigned integers or
+     * as a `Uint8Array` object
+     * @param [timestamp] {DOMHighResTimeStamp}
+     *
+     * @throws {InvalidStateError}
+     *
+     * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+     *
+     * @since 3.0
+     */
+
+
+    sendRaw(data, timestamp) {
+      this.output.sendRaw(data, timestamp);
       return this;
     }
     /**
@@ -3570,12 +3640,30 @@
         if (typeof options === "number") options = {
           time: options
         };
-      } // Actually send the message
+      } // Prepare raw MIDI message and send it
 
 
-      this._midiOutput.send([status].concat(data), wm.convertToTimestamp(options.time));
-
+      this.sendRaw([status].concat(data), wm.convertToTimestamp(options.time));
       return this;
+    }
+    /**
+     * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. No processing at all
+     * is performed on the data which should be a list of 8bit integers or a `Uint8Array` object.
+     *
+     * @param data {number[]|Uint8Array} The message to send as a list of 8bit unsigned integers or
+     * as a `Uint8Array` object
+     * @param [timestamp] {DOMHighResTimeStamp}
+     *
+     * @throws {InvalidStateError}
+     *
+     * @returns {Output} Returns the `Output` object so methods can be chained.
+     *
+     * @since 3.0
+     */
+
+
+    sendRaw(data, timestamp) {
+      this._midiOutput.send(data, timestamp);
     }
     /**
      * Sends a MIDI [system exclusive]{@link
@@ -5918,7 +6006,7 @@
           timestamp: this.time,
           target: this,
           type: "disabled"
-        }; // Finally, trigger the 'disabled' event and remove all listeners
+        }; // Finally, trigger the 'disabled' event and then remove all listeners.
 
         this.emit("disabled", event);
         this.removeListener();
