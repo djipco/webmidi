@@ -37,7 +37,16 @@ much easier.
 >
 > Thank you so much for your help!
 
+## Sponsors
 
+I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
+but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
+[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
+
+If you would like to support the project, you can press the 
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Browser Support
 
@@ -472,17 +481,6 @@ If you would like to request a new feature, enhancement or API change, please fi
 is not already planned for an upcoming version by checking the 
 [Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
 [file an issue](https://github.com/djipco/webmidi/issues) describing your request.
-
-## Sponsors
-
-I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
-but it still takes quite a bit of time to develop and maintain. Thank you! 👏
-
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
-[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
-
-If you would like to support the project, you can press the 
-[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Contributing
 
