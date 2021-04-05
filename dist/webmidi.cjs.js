@@ -3665,6 +3665,8 @@ class Output extends e {
 
   sendRaw(data, timestamp) {
     this._midiOutput.send(data, timestamp);
+
+    return this;
   }
   /**
    * Sends a MIDI [system exclusive]{@link
