@@ -20,6 +20,17 @@ functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It al
 to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
 `"programchange"`.
 
+## Sponsors
+
+WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
+I would like to sincerely thank 👏 these sponsors for their support: 
+
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
+[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
+
+If you would like to support the project, you can press the 
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
+
 ## Browser Support
 
 The library works in all browsers that natively support the 
@@ -406,17 +417,6 @@ If you would like to request a new feature, enhancement or API change, please ch
 already planned for an upcoming version by checking the 
 [Wiki](https://github.com/djipco/webmidi/wiki). Then, discuss it in the 
 [Enhancement Proposals](https://webmidijs.org/forum/categories/enhancements) section of the forum.
-
-## Sponsors
-
-WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
-I would like to sincerely thank 👏 these sponsors for their support: 
-
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
-[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
-
-If you would like to support the project, you can press the 
-[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Contributing
 
