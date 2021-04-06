@@ -609,62 +609,6 @@ describe("OutputChannel Object", function() {
 
     });
 
-    it("should schedule message according to timestamp", function (done) {
-
-      // Arrange
-      let parameter = [144, 12, 0];
-      let target = WebMidi.time + 100;
-
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
-
-        if (JSON.stringify(message) == JSON.stringify(parameter)) {
-          VIRTUAL_OUTPUT.removeAllListeners();
-          expect(WebMidi.time - target).to.be.within(-5, 10);
-          done();
-        }
-
-      });
-
-      // Act
-      WEBMIDI_OUTPUT.channels[1].send(parameter[0], parameter.slice(1), target);
-
-    });
-
-    it("should send immediately if no valid timestamp is found", function (done) {
-
-      // Arrange
-      let parameter = [144, 13, 0];
-      let sent = WebMidi.time;
-      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
-      let index = 0;
-
-
-      VIRTUAL_OUTPUT.on("message", assert);
-
-      // Act
-      timestamps.forEach(
-        stamp => WEBMIDI_OUTPUT.channels[1].send(parameter[0], parameter.slice(1), {time: stamp})
-      );
-
-      // Assert
-      function assert(deltaTime, message) {
-
-        if (JSON.stringify(message) == JSON.stringify(parameter)) {
-
-          expect(WebMidi.time - sent).to.be.within(0, 5);
-          index++;
-
-          if (index === timestamps.length) {
-            VIRTUAL_OUTPUT.removeAllListeners();
-            done();
-          }
-
-        }
-
-      }
-
-    });
-
     it("should throw error when invalid status is provided", function () {
 
       // Arrange
@@ -715,6 +659,41 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should send immediately if no valid timestamp is found", function (done) {
+
+      // Arrange
+      let parameter = [144, 13, 0];
+      let sent = WebMidi.time;
+      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
+      let index = 0;
+
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      timestamps.forEach(
+        stamp => WEBMIDI_OUTPUT.channels[1].send(parameter[0], parameter.slice(1), {time: stamp})
+      );
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(parameter)) {
+
+          expect(WebMidi.time - sent).to.be.within(0, 5);
+          index++;
+
+          if (index === timestamps.length) {
+            VIRTUAL_OUTPUT.removeAllListeners();
+            done();
+          }
+
+        }
+
+      }
+
+    });
+
     it("should schedule message according to absolute timestamp", function (done) {
 
       // Arrange
@@ -759,6 +738,136 @@ describe("OutputChannel Object", function() {
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].send(144, [127, 127])
+      ).to.equal(WEBMIDI_OUTPUT.channels[1]);
+    });
+
+  });
+
+  describe("sendRaw()", function () {
+
+    it("should actually send MIDI message", function (done) {
+
+      // Arrange
+      let data = [144, 10, 0];
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].sendRaw(data);
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        VIRTUAL_OUTPUT.removeAllListeners();
+
+        expect(message[0]).to.equal(data[0]);
+        expect(message[1]).to.equal(data[1]);
+        expect(message[2]).to.equal(data[2]);
+
+        done();
+
+      }
+
+    });
+
+    it("should send immediately if no valid timestamp is found", function (done) {
+
+      // Arrange
+      let parameter = [144, 13, 0];
+      let sent = WebMidi.time;
+      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
+      let index = 0;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      timestamps.forEach(
+        stamp => WEBMIDI_OUTPUT.channels[1].sendRaw(parameter, {time: stamp})
+      );
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(parameter)) {
+
+          expect(WebMidi.time - sent).to.be.within(0, 5);
+          index++;
+
+          if (index === timestamps.length) {
+            VIRTUAL_OUTPUT.removeAllListeners();
+            done();
+          }
+
+        }
+
+      }
+
+    });
+
+    it("should schedule message according to absolute timestamp", function (done) {
+
+      // Arrange
+      let data = [144, 10, 0];
+      let target = WebMidi.time + 100;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].sendRaw(data, {time: target});
+
+      // Assert
+      function assert() {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it("should schedule message according to relative timestamp", function (done) {
+
+      // Arrange
+      let data = [144, 10, 0];
+      let offset = "+100";
+      let target = WebMidi.time + 100;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].sendRaw(data, {time: offset});
+
+      // Assert
+      function assert() {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it("should throw error when invalid data is provided", function () {
+
+      // Arrange
+      let values = [
+        null,
+        NaN,
+        Infinity,
+        -Infinity,
+        -1
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(() => {
+          WEBMIDI_OUTPUT.channels[1].sendRaw(value);
+        }).to.throw();
+      }
+
+    });
+
+    it("should return 'OutputChannel' object for method chaining", function () {
+      expect(
+        WEBMIDI_OUTPUT.channels[1].sendRaw([144, 127, 127])
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 

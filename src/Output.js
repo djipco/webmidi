@@ -267,11 +267,40 @@ export class Output extends EventEmitter {
 
     }
 
-    // Actually send the message
-    this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
+    // Prepare raw MIDI message and send it
+    this.sendRaw([status].concat(data), options);
 
     return this;
 
+  }
+
+  /**
+   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. No processing at all
+   * is performed on the data which should be a list of 8bit integers or a `Uint8Array` object.
+   *
+   * @param data {number[]|Uint8Array} The message to send as a list of 8bit unsigned integers or
+   * as a `Uint8Array` object
+   * @param [timestamp] {DOMHighResTimeStamp}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
+   * operation will be scheduled for that time. The current time can be retrieved with
+   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
+   * will be carried out as soon as possible.
+   *
+   * @throws {InvalidStateError}
+   * @throws {TypeError}
+   * @throws {RangeError}
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @since 3.0
+   */
+  sendRaw(data, options= {}) {
+    this._midiOutput.send(data, WebMidi.convertToTimestamp(options.time));
+    return this;
   }
 
   /**
