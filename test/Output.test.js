@@ -261,9 +261,7 @@ describe("Output Object", function() {
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
-
-
-    it("should send immediately if no valid timestamp is found", function (done) {
+    it("should send immediately if no valid time is found", function (done) {
 
       // Arrange
       let note = 64;
@@ -275,7 +273,7 @@ describe("Output Object", function() {
 
       // Act
       timestamps.forEach(
-        stamp => WEBMIDI_OUTPUT.channels[1].playNote(note, {channel: 1, time: stamp})
+        stamp => WEBMIDI_OUTPUT.playNote(note, {channel: 1, time: stamp})
       );
 
       // Assert
@@ -297,48 +295,89 @@ describe("Output Object", function() {
 
     });
 
-    // it("should schedule message according to absolute timestamp", function (done) {
-    //
-    //   // Arrange
-    //   let status = 144;
-    //   let data = [10, 0];
-    //   let target = WebMidi.time + 100;
-    //   VIRTUAL_OUTPUT.on("message", assert);
-    //
-    //   // Act
-    //   WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
-    //
-    //   // Assert
-    //   function assert() {
-    //     VIRTUAL_OUTPUT.removeAllListeners();
-    //     expect(WebMidi.time - target).to.be.within(-5, 10);
-    //     done();
-    //   }
-    //
-    // });
+    it("should properly send note off according to specified relative time", function (done) {
 
-    // it("should schedule message according to relative timestamp", function (done) {
-    //
-    //   // Arrange
-    //   let status = 144;
-    //   let data = [10, 0];
-    //   let offset = "+100";
-    //   let target = WebMidi.time + 100;
-    //   VIRTUAL_OUTPUT.on("message", assert);
-    //
-    //   // Act
-    //   WEBMIDI_OUTPUT.channels[1].send(status, data, {time: offset});
-    //
-    //   // Assert
-    //   function assert() {
-    //     VIRTUAL_OUTPUT.removeAllListeners();
-    //     expect(WebMidi.time - target).to.be.within(-5, 10);
-    //     done();
-    //   }
-    //
-    // });
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let delay = 50;
+      let timestamp = "+" + delay;
+      let duration = 50;
+      let sent = WebMidi.time;
 
+      VIRTUAL_OUTPUT.on("message", assert);
 
+      // Act
+      WEBMIDI_OUTPUT.playNote(note, {channels: channel, time: timestamp, duration: duration});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - delay - duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send note off according to specified absolute time", function (done) {
+
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let delay = 50;
+      let timestamp = WebMidi.time + delay;
+      let duration = 50;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.playNote(note, {channels: channel, time: timestamp, duration: duration});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - timestamp - duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send note off when no time is specified", function (done) {
+
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let duration = 50;
+      let sent = WebMidi.time;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.playNote(note, {channels: channel, duration: duration});
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - duration).to.be.within(0, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
 
   });
 

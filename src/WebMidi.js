@@ -733,7 +733,7 @@ class WebMidi extends EventEmitter {
    * returned.
    *
    * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-   * @return {number} A positive number
+   * @return {number|false} A positive number or `false` (if the time cannot be converted)
    */
   convertToTimestamp(time) {
 

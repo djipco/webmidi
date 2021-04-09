@@ -538,6 +538,93 @@ describe("OutputChannel Object", function() {
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
+    it("should properly send note off according to specified relative time", function (done) {
+
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let delay = 100;
+      let timestamp = "+" + delay;
+      let duration = 100;
+      let sent = WebMidi.time;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
+
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - delay - duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send note off according to specified absolute time", function (done) {
+
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let delay = 100;
+      let timestamp = WebMidi.time + delay;
+      let duration = 100;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
+
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - timestamp - duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send note off when no time is specified", function (done) {
+
+      // Arrange
+      let note = 64;
+      let channel = 1;
+      let expected = [128, note, 64]; // 128 = note off on ch 1
+      let duration = 100;
+      let sent = WebMidi.time;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].playNote(note, {duration: duration});
+
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - duration).to.be.within(0, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
   });
 
   describe("resetAllControllers()", function () {
@@ -699,11 +786,14 @@ describe("OutputChannel Object", function() {
       // Arrange
       let status = 144;
       let data = [10, 0];
-      let target = WebMidi.time + 100;
+      let delay = 100;
+      let target = WebMidi.time + 50 + delay;
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
+      setTimeout(() => {
+        WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
+      }, delay);
 
       // Assert
       function assert() {
