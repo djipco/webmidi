@@ -3680,8 +3680,6 @@
 
 
     sendRaw(data, options = {}) {
-      console.info(options.time);
-
       this._midiOutput.send(data, wm.convertToTimestamp(options.time));
 
       return this;
