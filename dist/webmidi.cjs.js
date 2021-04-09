@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on April 5th 2021.
+ * This build was generated on April 9th 2021.
  *
  *
  *
@@ -3681,6 +3681,8 @@ class Output extends e {
 
 
   sendRaw(data, options = {}) {
+    console.info(options.time);
+
     this._midiOutput.send(data, wm.convertToTimestamp(options.time));
 
     return this;
