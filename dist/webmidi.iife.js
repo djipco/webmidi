@@ -2461,8 +2461,8 @@
 
       if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
         let noteOffOptions = {
-          // time: WebMidi.convertToTimestamp(options.time) + options.duration,
-          time: (wm.convertToTimestamp(options.time) || wm.time) + options.duration,
+          time: wm.convertToTimestamp(options.time) + options.duration,
+          // time: (WebMidi.convertToTimestamp(options.time) || WebMidi.time) + options.duration,
           release: options.release,
           rawRelease: options.rawRelease
         };
