@@ -796,7 +796,7 @@ class InputChannel extends e {
   // }
   // set forwardTo(value) {
   //
-  //   // @todo THIS NEEDS TO BE CoMPLETED!!!
+  //   // @todo THIS NEEDS TO BE COMPLETED!!!
   //
   //   if (value === undefined || value === null) {
   //     this._forwardTo = undefined;
@@ -2456,9 +2456,12 @@ class OutputChannel extends e {
 
       let noteOffOptions = {
         time: wm.convertToTimestamp(options.time) + options.duration,
+        // time: WebMidi.convertToTimestamp(options.time || WebMidi.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
+
+      console.info(noteOffOptions.time);
 
       this.sendNoteOff(note, noteOffOptions);
 
