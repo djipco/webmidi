@@ -2456,12 +2456,12 @@ class OutputChannel extends e {
 
       let noteOffOptions = {
         time: wm.convertToTimestamp(options.time) + options.duration,
-        // time: WebMidi.convertToTimestamp(options.time || WebMidi.time) + options.duration,
+        // time: (WebMidi.convertToTimestamp(options.time) || WebMidi.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
 
-      console.info(noteOffOptions.time);
+      console.info(wm.convertToTimestamp(options.time), noteOffOptions.time);
 
       this.sendNoteOff(note, noteOffOptions);
 
@@ -6670,7 +6670,7 @@ class WebMidi extends e {
    * returned.
    *
    * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-   * @return {number} A positive number
+   * @return {number|false} A positive number or `false` (if the time cannot be converted)
    */
   convertToTimestamp(time) {
 
