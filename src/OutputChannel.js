@@ -116,36 +116,6 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. No processing at all
-   * is performed on the data which should be a list of 8bit integers or a `Uint8Array` object.
-   *
-   * Details on the format of MIDI messages are available in the summary of
-   * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
-   * from the MIDI Manufacturers Association.
-   *
-   * @param data {number[]|Uint8Array} The message to send as a list of 8bit unsigned integers or
-   * as a `Uint8Array` object
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
-   * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
-   *
-   * @throws {InvalidStateError}
-   *
-   * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
-   *
-   * @since 3.0
-   */
-  sendRaw(data, options) {
-    this.output.sendRaw(data, options);
-    return this;
-  }
-
-  /**
    * Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
    * aftertouch. For a channel-wide aftertouch message, use
    * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
