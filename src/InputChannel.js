@@ -61,6 +61,12 @@ export class InputChannel extends EventEmitter {
      */
     this.number = number;
 
+    /**
+     * @type {OutputChannel|[OutputChannel]}
+     * @private
+     */
+    this._forwardTo = undefined;
+
     // /**
     //  * An array of the current NRPNs being constructed for this channel
     //  *
@@ -88,6 +94,12 @@ export class InputChannel extends EventEmitter {
    * @protected
    */
   _parseEvent(e) {
+
+
+    // @todo check if message must be forwarded
+    // if (this.forwardTo) {
+    //   this.forwardTo.forEach(channel => channel.sendRaw(e.data));
+    // }
 
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
@@ -739,6 +751,42 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  // /**
+  //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
+  //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
+  //  *
+  //  * To stop forwarding messages, simply set `forwardTo` to `undefined` or `null`.
+  //  *
+  //  * If you want to forward messages from all channels of an input, you should instead use the
+  //  * input's [forwardTo]{@link Input#forwardTo} property.
+  //  *
+  //  * @type {OutputChannel|[OutputChannel]}
+  //  * @readonly
+  //  */
+  // get forwardTo() {
+  //   return this._forwardTo;
+  // }
+  // set forwardTo(value) {
+  //
+  //   // @todo THIS NEEDS TO BE COMPLETED!!!
+  //
+  //   if (value === undefined || value === null) {
+  //     this._forwardTo = undefined;
+  //     return;
+  //   }
+  //
+  //   if (!Array.isArray(value)) value = [value];
+  //
+  //   if (this.validation) {
+  //     value.forEach(v => {
+  //       // if (typeof v)
+  //       console.log(typeof v);
+  //     });
+  //   }
+  //
+  //   this._forwardTo = value;
+  //
+  // }
 
   // /**
   //  * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
