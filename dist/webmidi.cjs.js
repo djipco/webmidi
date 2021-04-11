@@ -3601,7 +3601,12 @@ class Output extends e {
       // Check if using legacy syntax
       if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
         message = [message];
-        if (Array.isArray(options)) message.concat(options);
+
+        if (Array.isArray(options)) {
+          message.concat(options);
+          console.info("-----", message);
+        }
+
         if (typeof legacy === "number") options = {
           time: legacy
         };
@@ -3620,8 +3625,6 @@ class Output extends e {
       });
     } // Send message
 
-
-    console.info("-----", message);
 
     this._midiOutput.send(message, wm.convertToTimestamp(options.time));
 
