@@ -3604,7 +3604,7 @@ class Output extends e {
 
         if (Array.isArray(options)) {
           message.concat(options);
-          console.info("-----", message);
+          console.info("-----", message, options);
         }
 
         if (typeof legacy === "number") options = {
