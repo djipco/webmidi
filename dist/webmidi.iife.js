@@ -3590,9 +3590,12 @@
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
+    // send(status, data = [], options= {}) {
 
 
     send(message, options = {}, legacy = {}) {
+      console.info(message, options, legacy);
+
       if (wm.validation) {
         // Check if using legacy syntax
         if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
@@ -3608,7 +3611,7 @@
         }
 
         message.slice(1).forEach(value => {
-          value = parseInt(value); // if (isNaN(value)) throw new TypeError("Data bytes must be valid integers.");
+          value = parseInt(value);
 
           if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
             throw new RangeError("Data bytes must be integers between 0 and 255.");
