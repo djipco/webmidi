@@ -3621,6 +3621,8 @@ class Output extends e {
     } // Send message
 
 
+    console.info("-----", message);
+
     this._midiOutput.send(message, wm.convertToTimestamp(options.time));
 
     return this;
