@@ -3602,9 +3602,14 @@ class Output extends e {
       if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        if (typeof legacy === "number") options = {
-          time: legacy
-        };
+
+        if (typeof legacy === "number") {
+          options = {
+            time: legacy
+          };
+        } else {
+          options = legacy;
+        }
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
