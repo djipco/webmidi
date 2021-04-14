@@ -5768,13 +5768,10 @@ class WebMidi extends e {
 
     /*START-NODE.JS*/
     // This block of code is only relevant on Node.js and causes issues with bundlers (such as
-    // Webpack) and server-side rendering. This is why it is explicitly stripped off for the IIFE
-    // and ESM distribution versions.
+    // Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
+    // IIFE and ESM distributions.
 
-    if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
-      global.performance = require("perf_hooks").performance;
-    }
-
+    global.performance = require("perf_hooks").performance;
     global.navigator = require("jzz");
     /*END-NODE.JS*/
   }
