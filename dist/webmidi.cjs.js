@@ -3758,7 +3758,7 @@ class Output extends e {
       }
     }
 
-    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, value, {
+    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, [value], {
       time: options.time
     });
     return this;
