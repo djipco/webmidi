@@ -5671,6 +5671,15 @@ class Note {
 
 }
 
+/*START-NODE.JS*/
+// This block of code is only relevant on Node.js and causes issues with bundlers (such as
+// Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
+// IIFE and ESM distributions.
+
+global.performance = require("perf_hooks").performance;
+global.navigator = require("jzz");
+/*END-NODE.JS*/
+
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
  * sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -5765,15 +5774,6 @@ class WebMidi extends e {
     // // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
     // // while. This is why we check for it again in enable().
     // if (this.isNode) global.navigator = require("jzz");
-
-    /*START-NODE.JS*/
-    // This block of code is only relevant on Node.js and causes issues with bundlers (such as
-    // Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
-    // IIFE and ESM distributions.
-
-    global.performance = require("perf_hooks").performance;
-    global.navigator = require("jzz");
-    /*END-NODE.JS*/
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
