@@ -6038,9 +6038,6 @@ class WebMidi extends e {
     // // while. This is why we check for it again in enable().
     // if (this.isNode) global.navigator = require("jzz");
 
-
-
-
   }
 
   /**
