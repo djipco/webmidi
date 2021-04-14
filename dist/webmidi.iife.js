@@ -5764,7 +5764,6 @@
       // // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
       // // while. This is why we check for it again in enable().
       // if (this.isNode) global.navigator = require("jzz");
-
     }
     /**
      * Checks if the Web MIDI API is available in the current environment and then tries to connect to
