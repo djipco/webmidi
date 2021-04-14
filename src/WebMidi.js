@@ -3,6 +3,14 @@ import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Note} from "./Note.js";
 
+/*START-NODE.JS*/
+// This block of code is only relevant on Node.js and causes issues with bundlers (such as
+// Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
+// IIFE and ESM distributions.
+global["performance"] = require("perf_hooks").performance;
+global["navigator"] = require("jzz");
+/*END-NODE.JS*/
+
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
  * sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -84,22 +92,6 @@ class WebMidi extends EventEmitter {
      * @private
      */
     this._octaveOffset = 0;
-
-    // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
-    // must require the perf_hooks module which is available in v8.5+.
-    if (
-      !(
-        typeof window !== "undefined" &&
-        typeof window.performance !== "undefined" &&
-        typeof window.performance.now === "function"
-      )
-    ) {
-      if (this.isNode) global.performance = require("perf_hooks").performance;
-    }
-
-    // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
-    // while. This is why we check for it again in enable().
-    if (this.isNode) global.navigator = require("jzz");
 
   }
 

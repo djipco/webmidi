@@ -1,4 +1,6 @@
 import babel from "rollup-plugin-babel";
+import stripCode from "rollup-plugin-strip-code";
+
 const fs = require("fs");
 const license = require("rollup-plugin-license");
 
@@ -14,8 +16,14 @@ export default {
   },
 
   plugins: [
+    stripCode({
+      start_comment: "START-NODE.JS",
+      end_comment: "END-NODE.JS"
+    }),
     babel(),
-    license({banner: BANNER + LICENSE})
+    license({
+      banner: BANNER + LICENSE
+    })
   ]
 
 };
