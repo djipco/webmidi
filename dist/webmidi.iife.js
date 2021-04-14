@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on April 11th 2021.
+ * This build was generated on April 13th 2021.
  *
  *
  *
@@ -3594,16 +3594,19 @@
 
 
     send(message, options = {}, legacy = {}) {
-      console.info(message, options, legacy);
-
       if (wm.validation) {
         // Check if using legacy syntax
         if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
           message = [message];
-          if (Array.isArray(options)) message.concat(options);
-          if (typeof legacy === "number") options = {
-            time: legacy
-          };
+          if (Array.isArray(options)) message = message.concat(options);
+
+          if (typeof legacy === "number") {
+            options = {
+              time: legacy
+            };
+          } else {
+            options = legacy;
+          }
         }
 
         if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
@@ -5746,16 +5749,22 @@
        * @private
        */
 
-      this._octaveOffset = 0; // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
-      // must require the perf_hooks module which is available in v8.5+.
+      this._octaveOffset = 0; // // Check if performance.now() is available. In a modern browser, it should be. In Node.js, we
+      // // must require the perf_hooks module which is available in v8.5+.
+      // if (
+      //   !(
+      //     typeof window !== "undefined" &&
+      //     typeof window.performance !== "undefined" &&
+      //     typeof window.performance.now === "function"
+      //   )
+      // ) {
+      //   if (this.isNode) global.performance = require("perf_hooks").performance;
+      // }
+      //
+      // // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
+      // // while. This is why we check for it again in enable().
+      // if (this.isNode) global.navigator = require("jzz");
 
-      if (!(typeof window !== "undefined" && typeof window.performance !== "undefined" && typeof window.performance.now === "function")) {
-        if (this.isNode) global.performance = require("perf_hooks").performance;
-      } // If we are inside Node.js, polyfill navigator.requestMIDIAccess() using jzz. This takes a
-      // while. This is why we check for it again in enable().
-
-
-      if (this.isNode) global.navigator = require("jzz");
     }
     /**
      * Checks if the Web MIDI API is available in the current environment and then tries to connect to
