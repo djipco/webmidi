@@ -194,20 +194,16 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled timestamp. It is usually not
-   * necessary to use this method directly since it is often simpler to use one of the helper
-   * methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   * Sends a MIDI message on the MIDI output port, at the scheduled time. The message should be an
+   * array of 8bit unsigned integers (0-225) or a `Uint8Array` object.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (integer between 128-255).
-   *
-   * @param [data=[]] {number[]} An array of unsigned integers for the message. The number of data
-   * bytes varies depending on the status byte. It is perfectly legal to send no data for some
-   * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
-   * 255.
+   * @param message {number[]|Uint8Array} An array of 8 bit unsigned integers or a `Uint8Array`
+   * object containing the bytes for. Depending on the type of message, one to three bytes will be
+   * used (inclusively).
    *
    * @param {Object} [options={}]
    *
@@ -244,31 +240,37 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(status, data = [], options= {}) {
-
-    if (!Array.isArray(data)) data = [data];
+  send(message, options= {}, legacy = {}) {
 
     if (WebMidi.validation) {
 
-      if (!(parseInt(status) >= 128 && parseInt(status) <= 255)) {
-        throw new RangeError("The status must be an integer between 128 and 255.");
+      // Check if using legacy syntax
+      if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
+        message = [message];
+        if (Array.isArray(options)) message = message.concat(options);
+        if (typeof legacy === "number") {
+          options = {time: legacy};
+        } else {
+          options = legacy;
+        }
       }
 
-      data.forEach(value => {
+      if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
+        throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
+      }
+
+      message.slice(1).forEach(value => {
         value = parseInt(value);
-        if (isNaN(value)) throw new TypeError("Data bytes must be integers.");
         if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
-          throw new RangeError("The data bytes must be integers between 0 and 255.");
+          throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
-
-      // Legacy-compatibility
-      if (typeof options === "number") options = {time: options};
 
     }
 
     // Send message
-    this._midiOutput.send([status].concat(data), WebMidi.convertToTimestamp(options.time));
+
+    this._midiOutput.send(message, WebMidi.convertToTimestamp(options.time));
 
     return this;
 
@@ -413,7 +415,7 @@ export class Output extends EventEmitter {
 
     this.send(
       WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
-      value,
+      [value],
       {time: options.time}
     );
 

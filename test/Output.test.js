@@ -451,7 +451,7 @@ describe("Output Object", function() {
       function assert(param){
         expect(() => {
           WEBMIDI_OUTPUT.send(param);
-        }).to.throw(RangeError);
+        }).to.throw(TypeError);
       };
 
     });
