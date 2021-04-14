@@ -3691,7 +3691,7 @@ class Output extends e {
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
-        throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
+        throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
       }
 
       message.slice(1).forEach(value => {
