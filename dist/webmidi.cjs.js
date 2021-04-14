@@ -5675,8 +5675,8 @@ class Note {
 // Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
 // IIFE and ESM distributions.
 
-global.performance = require("perf_hooks").performance;
-global.navigator = require("jzz");
+global["performance"] = require("perf_hooks").performance;
+global["navigator"] = require("jzz");
 /*END-NODE.JS*/
 
 /**
