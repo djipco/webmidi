@@ -8,7 +8,7 @@
   <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
-  <a href="https://webmidijs.org/docs/v2.5.1/">API DOCUMENTATION</a> — 
+  <a href="https://webmidijs.org/docs/v2.5.2/">API DOCUMENTATION</a> — 
   <a href="https://webmidijs.org/forum/">FORUM</a>
 </p>
 
@@ -37,7 +37,16 @@ much easier.
 >
 > Thank you so much for your help!
 
+## Sponsors
 
+I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
+but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
+[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
+
+If you would like to support the project, you can press the 
+[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
 
 ## Browser Support
 
@@ -78,6 +87,8 @@ MIDI support is important for you:
 * Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
 * Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
 
+Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would not
+implement the Web MIDI API (and a host of other APIs) in Safari over fingerprinting concerns. 
 
 ## Node.js Support
 
@@ -471,17 +482,6 @@ is not already planned for an upcoming version by checking the
 [Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
 [file an issue](https://github.com/djipco/webmidi/issues) describing your request.
 
-## Sponsors
-
-I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
-but it still takes quite a bit of time to develop and maintain. Thank you! 👏
-
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
-[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
-
-If you would like to support the project, you can press the 
-[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
-
 ## Contributing
 
 If you are interested in contributing to the project, please read our 
@@ -493,7 +493,7 @@ If you use this software for research or academic purposes, please cite the proj
 references (or wherever appropriate). Here's an example of how to cite it 
 ([APA Style](https://apastyle.apa.org/)):
 
->Côté, J. P. (2019). WebMidi.js v2.5.1 [Computer Software]. Retrieved from 
+>Côté, J. P. (2020). WebMidi.js v2.5.3 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
 
 Here are a few examples of academic papers citing WebMidi.js:
