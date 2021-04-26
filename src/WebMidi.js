@@ -3,10 +3,12 @@ import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Note} from "./Note.js";
 
+// @todo ADJUST ALL CALLS TO SEND() SO THEY USE THE NEW SYNTAX
+
 /*START-NODE.JS*/
-// This block of code is only relevant on Node.js and causes issues with bundlers (such as
-// Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
-// IIFE and ESM distributions.
+// This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
+// and server-side rendering. This is why it is explicitly being stripped off for the IIFE and ESM
+// distributions.
 global["performance"] = require("perf_hooks").performance;
 global["navigator"] = require("jzz");
 /*END-NODE.JS*/
