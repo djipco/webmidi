@@ -103,9 +103,8 @@
       /**
        * [read-only] List of valid MIDI system messages and matching hexadecimal values.
        *
-       * Note: values 249 and 253 are actually dispatched by the Web MIDI API but I do not know what
-       * they are used for. They are not part of the online
-       * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
+       * Note: values 249 and 253 are actually dispatched by the Web MIDI API but the MIDI 1.0 does
+       * not say what they are used for. About those values, it only states: undefined (reserved)
        *
        * @property MIDI_SYSTEM_MESSAGES
        * @type Object
@@ -2559,10 +2558,6 @@
    * method directly. Instead, use one of the simpler helper methods: `playNote()`, `stopNote()`,
    * `sendControlChange()`, `sendSystemMessage()`, etc.
    *
-   * Details on the format of MIDI messages are available in the
-   * <a href="http://www.midi.org/techspecs/midimessages.php">summary of MIDI messages</a> of the
-   * MIDI Manufacturers Association.
-   *
    * @method send
    * @chainable
    *
@@ -2658,7 +2653,8 @@
    * @param manufacturer {Number|Array} An unsigned integer or an array of three unsigned integers
    * between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association*
    * maintains a full list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications/item/manufacturer-id-numbers).
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
+   * .
    *
    * @param [data=[]] {Array} An array of uints between 0 and 127. This is the data you wish to
    * transfer.
@@ -3350,11 +3346,6 @@
    * does not mean you cannot use the others. It simply means you will need to use their number
    * instead of their name.
    *
-   * To view a list of all available `control change` messages, please consult "Table 3 - Control
-   * Change Messages" from the [MIDI Messages](
-   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
-   * specification.
-   *
    * @method sendControlChange
    * @chainable
    *
@@ -3718,9 +3709,7 @@
   };
 
   /**
-   * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-   * increment and decrement controllers.
+   * Increments the specified MIDI registered parameter by 1.
    *
    * >Unless you are very familiar with the MIDI standard you probably should favour one of the
    * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
@@ -3793,9 +3782,7 @@
   };
 
   /**
-   * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-   * increment and decrement controllers.
+   * Decrements the specified MIDI registered parameter by 1.
    *
    * >Unless you are very familiar with the MIDI standard you probably should favour one of the
    * >simpler to use functions such as: `setPitchbendRange()`, `setModulationRange()`,
