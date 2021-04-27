@@ -857,6 +857,9 @@ class WebMidi extends EventEmitter {
    */
   async _updateInputs() {
 
+    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
+
     let promises = [];
 
     // Check for items to remove from the existing array (because they are no longer being reported
