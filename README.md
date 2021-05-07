@@ -199,7 +199,7 @@ WebMidi.enable(function (err) {
 ```
 
 To send MIDI messages to a device, you simply need to grab that device and call one of its output
-method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can can use
+method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can use
 its position in the `WebMidi.outputs` array. For instance, to grab the first output device, you 
 could use:
 
