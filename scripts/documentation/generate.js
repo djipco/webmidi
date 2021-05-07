@@ -1,5 +1,6 @@
 const fs = require("fs");
-const git = require("simple-git/promise")();
+// const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const pkg = require("../../package.json");
 const moment = require("moment");
 const rimraf = require("@alexbinary/rimraf");
@@ -81,7 +82,9 @@ const config = {
     ],
 
     dateFormat: "MMMM Do YYYY @ H:mm:ss",
-    sort: "longname, linenum, version, since"
+    sort: "longname, linenum, version, since",
+
+    collapseSymbols: true
 
   }
 
