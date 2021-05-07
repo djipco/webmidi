@@ -62,7 +62,7 @@ export class InputChannel extends EventEmitter {
     this.number = number;
 
     /**
-     * @type {OutputChannel|[OutputChannel]}
+     * @type {OutputChannel|OutputChannel[]}
      * @private
      */
     this._forwardTo = undefined;
