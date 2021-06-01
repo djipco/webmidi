@@ -101,7 +101,8 @@ offers full Node.js support. You can try out version 3 in the
 ## TypeScript Support
 
 TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
-[mmmveggies](https://www.github.com/mmmveggies)).
+[mmmveggies](https://www.github.com/mmmveggies)) but it should be noted that TypeScript IS NOT 
+officially supported at this time. 
 
 Usage:
 
@@ -120,6 +121,11 @@ input.addListener("noteon", "all", (event: InputEventNoteon) => {
   ...
 }) 
 ```
+
+I would like to add official TypeScript support in 
+[version 3](https://github.com/djipco/webmidi/tree/develop). However, this would require help
+from a knowledgeable TypeScript developer. Get in touch if you are interested in contributing.
+
 
 ## Installation
 
