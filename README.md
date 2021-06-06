@@ -101,8 +101,8 @@ offers full Node.js support. You can try out version 3 in the
 ## TypeScript Support
 
 TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
-[mmmveggies](https://www.github.com/mmmveggies)) but it should be noted that TypeScript IS NOT 
-officially supported at this time. 
+[mmmveggies](https://www.github.com/mmmveggies)) but it should be noted that **TypeScript IS NOT 
+officially supported** at this time. 
 
 Usage:
 
@@ -111,8 +111,13 @@ import WebMidi from "webmidi";
 
 WebMidi.enable(...);
 ```
+Or (thanks to [michaelcaterisano](https://www.github.com/michaelcaterisano)):
 
-You can also import the types, if you need it:
+```ts
+const WebMidi: import("webmidi").WebMidi = require("webmidi");
+```
+
+You can also import the types, if you need them:
 
 ```ts
 import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
