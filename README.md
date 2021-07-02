@@ -148,7 +148,7 @@ version, just add this `<script>` tag to your HTML page:
 In production, it might be a better idea to target a specific version. To do that, just append the 
 desired version at the end of the request:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.2"></script>
 
 #### Manual Install
 
@@ -256,12 +256,12 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## API Documentation
 
-The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.1/index.html) is fully documented and I take 
+The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.2/index.html) is fully documented and I take 
 pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
 topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
 
-Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.1/index.html)**. You can 
+Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.2/index.html)**. You can 
 also find  the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
