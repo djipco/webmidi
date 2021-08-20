@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**Describe the bug and how ro reproduce it**
-A clear and concise description of what the bug is and how to reproduce it. If appropriate, include code samples, screenshots, etc.
+**Describe the bug and how to reproduce it**
+A clear and concise description of what the problem is and how to reproduce it. If appropriate, include code samples, screenshots, etc.
 
 **Environment:**
 Specify the environment where you are witnessing the problem:

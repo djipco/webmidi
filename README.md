@@ -44,6 +44,7 @@ but it still takes quite a bit of time to develop and maintain. Thank you! 👏
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
 [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
+<img src="https://djipco.github.io/webmidi/images/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
 If you would like to support the project, you can press the 
 [Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
@@ -100,7 +101,8 @@ offers full Node.js support. You can try out version 3 in the
 ## TypeScript Support
 
 TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
-[mmmveggies](https://www.github.com/mmmveggies)).
+[mmmveggies](https://www.github.com/mmmveggies)) but it should be noted that **TypeScript IS NOT 
+officially supported** at this time. 
 
 Usage:
 
@@ -109,8 +111,13 @@ import WebMidi from "webmidi";
 
 WebMidi.enable(...);
 ```
+Or (thanks to [michaelcaterisano](https://www.github.com/michaelcaterisano)):
 
-You can also import the types, if you need it:
+```ts
+const WebMidi: import("webmidi").WebMidi = require("webmidi");
+```
+
+You can also import the types, if you need them:
 
 ```ts
 import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
@@ -119,6 +126,11 @@ input.addListener("noteon", "all", (event: InputEventNoteon) => {
   ...
 }) 
 ```
+
+I would like to add official TypeScript support in 
+[version 3](https://github.com/djipco/webmidi/tree/develop). However, this would require help
+from a knowledgeable TypeScript developer. Get in touch if you are interested in contributing.
+
 
 ## Installation
 
@@ -136,7 +148,7 @@ version, just add this `<script>` tag to your HTML page:
 In production, it might be a better idea to target a specific version. To do that, just append the 
 desired version at the end of the request:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.2"></script>
 
 #### Manual Install
 
@@ -199,7 +211,7 @@ WebMidi.enable(function (err) {
 ```
 
 To send MIDI messages to a device, you simply need to grab that device and call one of its output
-method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can can use
+method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can use
 its position in the `WebMidi.outputs` array. For instance, to grab the first output device, you 
 could use:
 
@@ -244,12 +256,12 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## API Documentation
 
-The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.1/index.html) is fully documented and I take 
+The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.2/index.html) is fully documented and I take 
 pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
 topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
 
-Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.1/index.html)**. You can 
+Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.2/index.html)**. You can 
 also find  the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
