@@ -3169,7 +3169,6 @@
 
     }.bind(this));
 
-
     // Send note off messages (only if a valid duration has been defined)
     if (!isNaN(options.duration)) {
 
