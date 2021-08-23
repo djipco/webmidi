@@ -8,7 +8,7 @@
   <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
-  <a href="https://webmidijs.org/docs/v2.5.2/">API DOCUMENTATION</a> — 
+  <a href="https://webmidijs.org/docs/">API DOCUMENTATION</a> — 
   <a href="https://webmidijs.org/forum/">FORUM</a>
 </p>
 
@@ -256,12 +256,12 @@ input.addListener('pitchbend', "all", function(e) {
 
 ## API Documentation
 
-The [API for WebMidi.js](https://webmidijs.org/docs/v2.5.2/index.html) is fully documented and I take 
-pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
-topic should be made clearer, do not hesitate to 
-[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
+The [API for WebMidi.js](https://webmidijs.org/docs/) is fully documented and I take pride in 
+maintaining good API documentation. If you spot an error (even something minor) or think a topic 
+should be made clearer, do not hesitate to [file an issue](https://github.com/djipco/webmidi/issues) or, 
+better yet, send a PR. 
 
-Here is a link to the full **[API Reference](https://webmidijs.org/docs/v2.5.2/index.html)**. You can 
+Here is a link to the full **[API Reference](https://webmidijs.org/docs/)**. You can 
 also find  the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
