@@ -17,7 +17,7 @@
                 <h1><img src="http://djipco.github.io/webmidi/images/webmidijs-logo-small.png" title="WebMidi.js"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.5.2</em>
+            <em>API Docs for: 2.5.3</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -187,9 +187,8 @@
       /**
        * [read-only] List of valid MIDI system messages and matching hexadecimal values.
        *
-       * Note: values 249 and 253 are actually dispatched by the Web MIDI API but I do not know what
-       * they are used for. They are not part of the online
-       * [MIDI 1.0 spec](http://www.midi.org/techspecs/midimessages.php).
+       * Note: values 249 and 253 are actually dispatched by the Web MIDI API but the MIDI 1.0 does
+       * not say what they are used for. About those values, it only states: undefined (reserved)
        *
        * @property MIDI_SYSTEM_MESSAGES
        * @type Object
@@ -524,6 +523,8 @@
        * If correct sequences of CC messages are received, NRPN events will
        * fire. The first out of order NRPN CC will fall through the collector
        * logic and all CC messages buffered will be discarded as incomplete.
+       *
+       * @private
        *
        * @property nrpnEventsEnabled
        * @type Boolean
@@ -1484,7 +1485,6 @@
    *    * {{#crossLink &quot;Input/noteon:event&quot;}}noteon{{/crossLink}}
    *    * {{#crossLink &quot;Input/keyaftertouch:event&quot;}}keyaftertouch{{/crossLink}}
    *    * {{#crossLink &quot;Input/controlchange:event&quot;}}controlchange{{/crossLink}}
-   *    * {{#crossLink &quot;Input/nrpn:event&quot;}}nrpn{{/crossLink}}
    *    * {{#crossLink &quot;Input/channelmode:event&quot;}}channelmode{{/crossLink}}
    *    * {{#crossLink &quot;Input/programchange:event&quot;}}programchange{{/crossLink}}
    *    * {{#crossLink &quot;Input/channelaftertouch:event&quot;}}channelaftertouch{{/crossLink}}
@@ -1939,6 +1939,8 @@
       /**
        * Event emitted when a valid NRPN message sequence has been received on a specific device and
        * channel.
+       *
+       * @private
        *
        * @event nrpn
        *
@@ -2640,10 +2642,6 @@
    * method directly. Instead, use one of the simpler helper methods: &#x60;playNote()&#x60;, &#x60;stopNote()&#x60;,
    * &#x60;sendControlChange()&#x60;, &#x60;sendSystemMessage()&#x60;, etc.
    *
-   * Details on the format of MIDI messages are available in the
-   * &lt;a href=&quot;http://www.midi.org/techspecs/midimessages.php&quot;&gt;summary of MIDI messages&lt;/a&gt; of the
-   * MIDI Manufacturers Association.
-   *
    * @method send
    * @chainable
    *
@@ -2739,7 +2737,8 @@
    * @param manufacturer {Number|Array} An unsigned integer or an array of three unsigned integers
    * between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association*
    * maintains a full list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications/item/manufacturer-id-numbers).
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
+   * .
    *
    * @param [data=[]] {Array} An array of uints between 0 and 127. This is the data you wish to
    * transfer.
@@ -3254,7 +3253,6 @@
 
     }.bind(this));
 
-
     // Send note off messages (only if a valid duration has been defined)
     if (!isNaN(options.duration)) {
 
@@ -3430,11 +3428,6 @@
    * Note: as you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
    * instead of their name.
-   *
-   * To view a list of all available &#x60;control change&#x60; messages, please consult &quot;Table 3 - Control
-   * Change Messages&quot; from the [MIDI Messages](
-   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
-   * specification.
    *
    * @method sendControlChange
    * @chainable
@@ -3799,9 +3792,7 @@
   };
 
   /**
-   * Increments the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-   * increment and decrement controllers.
+   * Increments the specified MIDI registered parameter by 1.
    *
    * &gt;Unless you are very familiar with the MIDI standard you probably should favour one of the
    * &gt;simpler to use functions such as: &#x60;setPitchbendRange()&#x60;, &#x60;setModulationRange()&#x60;,
@@ -3874,9 +3865,7 @@
   };
 
   /**
-   * Decrements the specified MIDI registered parameter by 1. For more specific MIDI usage
-   * information, check out [RP-18](http://dev.midi.org/techspecs/rp18.php) regarding the usage of
-   * increment and decrement controllers.
+   * Decrements the specified MIDI registered parameter by 1.
    *
    * &gt;Unless you are very familiar with the MIDI standard you probably should favour one of the
    * &gt;simpler to use functions such as: &#x60;setPitchbendRange()&#x60;, &#x60;setModulationRange()&#x60;,
