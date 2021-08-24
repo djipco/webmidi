@@ -1,6 +1,5 @@
 const fs = require("fs");
-const git = require("simple-git")();
-// const git = require("simple-git/promise")();
+const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
 const rimraf = require("@alexbinary/rimraf");
@@ -24,8 +23,11 @@ const GA_CONFIG = {
   domain: "https://djipco.github.io/webmidi"
 };
 
-// Version broken down by major, minor and patch
-const version = pkg.version.split(".");
+// Major version
+const VERSION = pkg.version.split(".")[0];
+
+// Target folder to save the doc in
+const SAVE_PATH = `./api/v${VERSION}`;
 
 // JSDoc configuration object to write as configuration file
 const config = {
@@ -96,9 +98,6 @@ const config = {
 
 };
 
-// Target folder to save the doc in
-const SAVE_PATH = `./api/v${version[0]}`;
-
 // Prepare jsdoc command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
@@ -123,21 +122,24 @@ async function execute() {
   await rimraf(CONF_PATH);
 
   // Get current branch
-  let ORIGINAL_BRANCH = await git.branch({"--show-current": null});
+  let results = await git.branch();
+  const ORIGINAL_BRANCH = results.current;
 
-  // Commit to gh-pages branch and push
+  // Switch to gh-pages and commit API documentation
   console.info("\x1b[32m", `Switching from '${ORIGINAL_BRANCH}' to '${TARGET_BRANCH}'`, "\x1b[0m");
-  let message = "Updated on: " + moment().format();
   await git.checkout(TARGET_BRANCH);
   await git.add([SAVE_PATH]);
+  let message = "Updated on: " + moment().format();
   await git.commit(message, [SAVE_PATH]);
   console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
+
+  // Push changes
   await git.push();
   console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
 
   // Come back to original branch
   console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
-  await git.checkout("develop");
+  await git.checkout(ORIGINAL_BRANCH);
 
 }
 
