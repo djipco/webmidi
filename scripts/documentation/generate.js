@@ -1,5 +1,4 @@
 const fs = require("fs");
-// const git = require("simple-git/promise")();
 const git = require("simple-git")();
 const pkg = require("../../package.json");
 const moment = require("moment");
