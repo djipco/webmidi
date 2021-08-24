@@ -1,22 +1,22 @@
 // Modules
 const fs = require("fs-extra");
+const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
+const path = require("path");
+const os = require("os");
 const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
 // Path to jsdoc configuration file (will be temporarily written to disk)
 const CONF_PATH = "./scripts/documentation/.jsdoc.json";
 
-// Name of the branch where the documentation will be committed
-const TARGET_BRANCH = "gh-pages";
-
 // Path to menu image (it is automatically copied into the documentation)
-const IMAGE_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
+const LOGO_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
 
 // Path to custom stylesheet linked in all pages
-const CUSTOM_STYLESHEET = "./css/custom.css";
+const CUSTOM_CSS = "./css/custom.css";
 
 // Google Analytics configuration
 const GA_CONFIG = {
@@ -28,9 +28,11 @@ const GA_CONFIG = {
 const VERSION = pkg.version.split(".")[0];
 
 // Target folders to save the documentation in
-const TMP_FOLDER = `./.api`;
-const TMP_SAVE_PATH = `./${TMP_FOLDER}/v${VERSION}`;
+// const TMP_FOLDER = `./.api`;
 const FINAL_SAVE_PATH = `./api/v${VERSION}`;
+
+// Name of the branch where the documentation will be committed
+const TARGET_BRANCH = "gh-pages";
 
 // JSDoc configuration object to write as configuration file
 const config = {
@@ -68,7 +70,7 @@ const config = {
 
     systemName: `${pkg.webmidi.name}`,
     systemSummary: pkg.webmidi.tagline,
-    systemLogo: IMAGE_PATH,
+    systemLogo: LOGO_PATH,
     systemColor: "#ffcf09",
 
     copyright: `©<a href="${pkg.author.url}">${pkg.author.name}</a>, ` +
@@ -89,7 +91,7 @@ const config = {
     analytics: GA_CONFIG,
 
     stylesheets: [
-      CUSTOM_STYLESHEET
+      CUSTOM_CSS
     ],
 
     dateFormat: "MMMM Do YYYY @ H:mm:ss",
@@ -101,17 +103,18 @@ const config = {
 
 };
 
-// Prepare jsdoc command
-const cmd = "./node_modules/.bin/jsdoc " +
-  `--configure ${CONF_PATH} ` +
-  `--destination ${TMP_SAVE_PATH}`;
-
 async function execute() {
 
   // Write temporary configuration file
   fs.writeFileSync(CONF_PATH, JSON.stringify(config));
 
-  // Generate documentation
+  // Temporary target folder
+  const TMP_SAVE_PATH = await fsPromises.mkdtemp(path.join(os.tmpdir(), "webmidi-api-doc-"));
+
+  // Prepare jsdoc command and generate documentation
+  const cmd = "./node_modules/.bin/jsdoc " +
+    `--configure ${CONF_PATH} ` +
+    `--destination ${TMP_SAVE_PATH}`;
   await system(cmd);
 
   // Print success to console
@@ -145,7 +148,7 @@ async function execute() {
   // Push changes and remove tmp folder
   await git.push();
   console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
-  await rimraf(TMP_FOLDER);
+  await rimraf(TMP_SAVE_PATH);
 
   // Come back to original branch
   console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
