@@ -2,7 +2,7 @@ const fs = require("fs");
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
-const mv = require("mv");
+const mv = require("move-file");
 const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
@@ -131,27 +131,20 @@ async function execute() {
   console.info("\x1b[32m", `Switching from '${ORIGINAL_BRANCH}' to '${TARGET_BRANCH}'`, "\x1b[0m");
   await git.checkout(TARGET_BRANCH);
 
-  mv(TMP_SAVE_PATH, FINAL_SAVE_PATH, {mkdirp: true}, async function(err) {
+  // Move dir to final destination and commit
+  await mv(TMP_SAVE_PATH, FINAL_SAVE_PATH);
+  await git.add([FINAL_SAVE_PATH]);
+  let message = "Updated on: " + moment().format();
+  await git.commit(message, [FINAL_SAVE_PATH]);
+  console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
 
-    if (err) {
-      console.error(err);
-      return;
-    }
+  // Push changes
+  await git.push();
+  console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
 
-    await git.add([FINAL_SAVE_PATH]);
-    let message = "Updated on: " + moment().format();
-    await git.commit(message, [FINAL_SAVE_PATH]);
-    console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
-
-    // Push changes
-    await git.push();
-    console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
-
-    // Come back to original branch
-    console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
-    await git.checkout(ORIGINAL_BRANCH);
-
-  });
+  // Come back to original branch
+  console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
+  await git.checkout(ORIGINAL_BRANCH);
 
 }
 
