@@ -9,16 +9,19 @@ const system = require("system-commands");
 const CONF_PATH = "./scripts/documentation/.jsdoc.json";
 
 // Path to menu image (we put it with other images in the docs directory)
-const IMAGE_PATH = "./docs/images/webmidijs3-logo-40x40.png";
+const IMAGE_PATH = "./api/images/webmidijs3-logo-40x40.png";
 
 // Path to custom stylesheet linked in all pages
-const CUSTOM_STYLESHEET = "https://djipco.github.io/webmidi/css/custom.css";
+const CUSTOM_STYLESHEET = "./css/custom.css";
 
 // Google Analytics configuration
 const GA_CONFIG = {
   ua: "UA-162785934-1",
   domain: "https://djipco.github.io/webmidi"
 };
+
+// Version broken down by major, minor and patch
+const version = pkg.version.split(".");
 
 // JSDoc configuration object to write as configuration file
 const config = {
@@ -92,7 +95,7 @@ const config = {
 // Prepare jsdoc command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
-  `--destination ./docs/v${pkg.version}`;
+  `--destination ./api/v${version[0]}`;
 
 async function execute() {
 
@@ -105,7 +108,7 @@ async function execute() {
   // Print success to console
   console.info(
     "\x1b[32m",
-    `Documentation generated in folder "./docs/v${pkg.version}/"`,
+    `Documentation generated in folder "./api/v${version[0]}/"`,
     "\x1b[0m"
   );
 
