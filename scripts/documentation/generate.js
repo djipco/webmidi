@@ -28,7 +28,8 @@ const GA_CONFIG = {
 const VERSION = pkg.version.split(".")[0];
 
 // Target folder to save the doc in
-const TMP_SAVE_PATH = `./.api/v${VERSION}`;
+const TMP_FOLDER = `./.api`;
+const TMP_SAVE_PATH = `./${TMP_FOLDER}/v${VERSION}`;
 const FINAL_SAVE_PATH = `./api/v${VERSION}`;
 
 // JSDoc configuration object to write as configuration file
@@ -142,9 +143,10 @@ async function execute() {
   await git.push();
   console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
 
-  // Come back to original branch
+  // Come back to original branch and remove tmp folder
   console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
   await git.checkout(ORIGINAL_BRANCH);
+  await rimraf(TMP_FOLDER);
 
 }
 
