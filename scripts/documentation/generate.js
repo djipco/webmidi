@@ -9,30 +9,17 @@ const os = require("os");
 const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
-// Path to jsdoc configuration file (will be temporarily written to disk)
-const CONF_PATH = "./scripts/documentation/.jsdoc.json";
-
-// Path to menu image (it is automatically copied into the documentation)
-const LOGO_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
-
-// Path to custom stylesheet linked in all pages
+// Some paths
 const CUSTOM_CSS = "./css/custom.css";
+const LOGO_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
+const TARGET_BRANCH = "gh-pages";
+const TARGET_PATH = "./api/v" + pkg.version.split(".")[0];
 
 // Google Analytics configuration
 const GA_CONFIG = {
   ua: "UA-162785934-1",
   domain: "https://djipco.github.io/webmidi"
 };
-
-// Major version
-const VERSION = pkg.version.split(".")[0];
-
-// Target folders to save the documentation in
-// const TMP_FOLDER = `./.api`;
-const FINAL_SAVE_PATH = `./api/v${VERSION}`;
-
-// Name of the branch where the documentation will be committed
-const TARGET_BRANCH = "gh-pages";
 
 // JSDoc configuration object to write as configuration file
 const config = {
@@ -103,26 +90,25 @@ const config = {
 
 };
 
-async function execute() {
+function log(message) {
+  console.info("\x1b[32m", message, "\x1b[0m");
+}
 
-  // Write temporary configuration file
-  fs.writeFileSync(CONF_PATH, JSON.stringify(config));
+async function execute() {
 
   // Temporary target folder
   const TMP_SAVE_PATH = await fsPromises.mkdtemp(path.join(os.tmpdir(), "webmidi-api-doc-"));
+  const CONF_PATH = TMP_SAVE_PATH + "/.jsdoc.json";
+
+  // Write temporary configuration file
+  fs.writeFileSync(CONF_PATH, JSON.stringify(config));
 
   // Prepare jsdoc command and generate documentation
   const cmd = "./node_modules/.bin/jsdoc " +
     `--configure ${CONF_PATH} ` +
     `--destination ${TMP_SAVE_PATH}`;
   await system(cmd);
-
-  // Print success to console
-  console.info(
-    "\x1b[32m",
-    `Documentation temporarily generated in "${TMP_SAVE_PATH}"`,
-    "\x1b[0m"
-  );
+  log(`Documentation temporarily generated in "${TMP_SAVE_PATH}"`);
 
   // Remove temporary configuration file
   await rimraf(CONF_PATH);
@@ -132,28 +118,18 @@ async function execute() {
   const ORIGINAL_BRANCH = results.current;
 
   // Switch to target branch
-  console.info(
-    "\x1b[32m",
-    `Switching from '${ORIGINAL_BRANCH}' branch to '${TARGET_BRANCH}' branch`,
-    "\x1b[0m"
-  );
+  log(`Switching from '${ORIGINAL_BRANCH}' branch to '${TARGET_BRANCH}' branch`);
   await git.checkout(TARGET_BRANCH);
 
   // Move dir to final destination and commit
-  await fs.move(TMP_SAVE_PATH, FINAL_SAVE_PATH, {overwrite: true});
-  await git.add([FINAL_SAVE_PATH]);
-  await git.commit("Updated on: " + moment().format(), [FINAL_SAVE_PATH]);
+  await fs.move(TMP_SAVE_PATH, TARGET_PATH, {overwrite: true});
+  await git.add([TARGET_PATH]);
+  await git.commit("Updated on: " + moment().format(), [TARGET_PATH]);
   await git.push();
-  console.info(
-    "\x1b[32m",
-    `Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`,
-    "\x1b[0m"
-  );
-
-  // await rimraf(TMP_SAVE_PATH);
+  log(`Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`);
 
   // Come back to original branch
-  console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
+  log(`Switching back to '${ORIGINAL_BRANCH}' branch`);
   await git.checkout(ORIGINAL_BRANCH);
 
 }
