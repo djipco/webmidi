@@ -60,7 +60,7 @@ const config = {
     systemLogo: LOGO_PATH,
     systemColor: "#ffcf09",
 
-    copyright: `©<a href="${pkg.author.url}">${pkg.author.name}</a>, ` +
+    copyright: `© <a href="${pkg.author.url}">${pkg.author.name}</a>, ` +
       `2015-${new Date().getFullYear()}. ` +
       `${pkg.webmidi.name} v${pkg.version} is released under the ${pkg.license} license.`,
 
