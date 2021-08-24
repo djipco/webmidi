@@ -26,16 +26,9 @@ much easier.
 
 > ## ⚠️ About the upcoming version 3.0
 > 
-> I am currently working on version 3 and I would love to hear your ideas on how to improve the
-> library. If you have a few minutes to spare, please fill in this survey:
->
-> > https://forms.gle/bcahgNCGgwhcoJDD7 
->
 > If you would like to try out v3.0.0-alpha, you can switch to the 
 > [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
 > so.
->
-> Thank you so much for your help!
 
 ## Sponsors
 
