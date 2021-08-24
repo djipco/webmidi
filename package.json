@@ -89,7 +89,7 @@
     "foodoc": "0.0.9",
     "ftp-deploy": "^2.3.7",
     "gh-pages": "^2.2.0",
-    "jsdoc": "^3.6.3",
+    "jsdoc": "^3.6.7",
     "markdown-it": "^10.0.0",
     "midi": "^1.0.0",
     "minimist": "^1.2.5",
