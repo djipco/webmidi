@@ -26,7 +26,7 @@ const GA_CONFIG = {
 // Major version
 const VERSION = pkg.version.split(".")[0];
 
-// Target folder to save the doc in
+// Target folders to save the documentation in
 const TMP_FOLDER = `./.api`;
 const TMP_SAVE_PATH = `./${TMP_FOLDER}/v${VERSION}`;
 const FINAL_SAVE_PATH = `./api/v${VERSION}`;
@@ -136,7 +136,7 @@ async function execute() {
   await git.add([FINAL_SAVE_PATH]);
   let message = "Updated on: " + moment().format();
   await git.commit(message, [FINAL_SAVE_PATH]);
-  console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
+  console.info("\x1b[32m", `Changes committed to '${TARGET_BRANCH}' branch`, "\x1b[0m");
 
   // Push changes and remove tmp folder
   await git.push();
