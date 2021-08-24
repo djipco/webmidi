@@ -139,14 +139,14 @@ async function execute() {
   await git.commit(message, [FINAL_SAVE_PATH]);
   console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
 
-  // Push changes
+  // Push changes and remove tmp folder
   await git.push();
   console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
+  await rimraf(TMP_FOLDER);
 
-  // Come back to original branch and remove tmp folder
+  // Come back to original branch
   console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
   await git.checkout(ORIGINAL_BRANCH);
-  await rimraf(TMP_FOLDER);
 
 }
 
