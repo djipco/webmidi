@@ -87,6 +87,7 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "foodoc": "0.0.9",
+    "fs-extra": "^10.0.0",
     "ftp-deploy": "^2.3.7",
     "gh-pages": "^2.2.0",
     "jsdoc": "^3.6.7",
