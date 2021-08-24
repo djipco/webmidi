@@ -1,3 +1,4 @@
+// Modules
 const fs = require("fs-extra");
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
@@ -123,19 +124,22 @@ async function execute() {
   // Remove temporary configuration file
   await rimraf(CONF_PATH);
 
-  // Get current branch
+  // Get current branch (so we can come back to it later)
   let results = await git.branch();
   const ORIGINAL_BRANCH = results.current;
 
-  // Switch to gh-pages
-  console.info("\x1b[32m", `Switching from '${ORIGINAL_BRANCH}' to '${TARGET_BRANCH}'`, "\x1b[0m");
+  // Switch to target branch
+  console.info(
+    "\x1b[32m",
+    `Switching from '${ORIGINAL_BRANCH}' branch to '${TARGET_BRANCH}' branch`,
+    "\x1b[0m"
+  );
   await git.checkout(TARGET_BRANCH);
 
   // Move dir to final destination and commit
   await fs.move(TMP_SAVE_PATH, FINAL_SAVE_PATH, {overwrite: true});
   await git.add([FINAL_SAVE_PATH]);
-  let message = "Updated on: " + moment().format();
-  await git.commit(message, [FINAL_SAVE_PATH]);
+  await git.commit("Updated on: " + moment().format(), [FINAL_SAVE_PATH]);
   console.info("\x1b[32m", `Changes committed to '${TARGET_BRANCH}' branch`, "\x1b[0m");
 
   // Push changes and remove tmp folder
