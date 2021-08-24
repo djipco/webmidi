@@ -116,16 +116,16 @@ async function execute() {
   await rimraf(CONF_PATH);
 
   // Commit to gh-pages branch and push
-  let message = "Updated on: " + moment().format();
-  await git.checkoutLocalBranch("gh-pages");
-  await git.add(["api"]);
-  await git.commit(message, ["api"]);
-  await git.push();
-  await git.checkoutLocalBranch("develop");
-  console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
-
-  // Remove temporary documentation output
-  await rimraf(`./api/v${version[0]}`);
+  // let message = "Updated on: " + moment().format();
+  // await git.checkoutLocalBranch("gh-pages");
+  // await git.add([`api/v${version[0]}`]);
+  // await git.commit(message, [`api/v${version[0]}`]);
+  // await git.push();
+  // console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
+  // await git.checkoutLocalBranch("develop");
+  //
+  // // Remove temporary documentation output
+  // await rimraf(`./api/v${version[0]}`);
 
 }
 
