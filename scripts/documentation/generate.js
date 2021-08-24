@@ -1,5 +1,6 @@
 const fs = require("fs");
 const git = require("simple-git")();
+// const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
 const rimraf = require("@alexbinary/rimraf");
@@ -8,7 +9,10 @@ const system = require("system-commands");
 // Path to jsdoc configuration file (will be temporarily written to disk)
 const CONF_PATH = "./scripts/documentation/.jsdoc.json";
 
-// Path to menu image (we put it with other images in the docs directory)
+// Name of the branch where the documentation will be committed
+const TARGET_BRANCH = "gh-pages";
+
+// Path to menu image (it is automatically copied into the documentation)
 const IMAGE_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
 
 // Path to custom stylesheet linked in all pages
@@ -92,10 +96,13 @@ const config = {
 
 };
 
+// Target folder to save the doc in
+const SAVE_PATH = `./api/v${version[0]}`;
+
 // Prepare jsdoc command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
-  `--destination ./api/v${version[0]}`;
+  `--destination ${SAVE_PATH}`;
 
 async function execute() {
 
@@ -108,24 +115,29 @@ async function execute() {
   // Print success to console
   console.info(
     "\x1b[32m",
-    `Documentation generated in folder "./api/v${version[0]}/"`,
+    `Documentation generated in folder "${SAVE_PATH}/`,
     "\x1b[0m"
   );
 
   // Remove temporary configuration file
   await rimraf(CONF_PATH);
 
-  // Commit to gh-pages branch and push
-  let message = "Updated on: " + moment().format();
-  await git.checkout("gh-pages");
-  await git.add([`api/v${version[0]}`]);
-  await git.commit(message, [`api/v${version[0]}`]);
-  await git.push();
-  console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
-  // await git.checkoutLocalBranch("develop");
+  // Get current branch
+  let ORIGINAL_BRANCH = await git.branch({"--show-current": null});
 
-  // Remove temporary documentation output
-  // await rimraf(`./api/v${version[0]}`);
+  // Commit to gh-pages branch and push
+  console.info("\x1b[32m", `Switching from '${ORIGINAL_BRANCH}' to '${TARGET_BRANCH}'`, "\x1b[0m");
+  let message = "Updated on: " + moment().format();
+  await git.checkout(TARGET_BRANCH);
+  await git.add([SAVE_PATH]);
+  await git.commit(message, [SAVE_PATH]);
+  console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
+  await git.push();
+  console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
+
+  // Come back to original branch
+  console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
+  await git.checkout("develop");
 
 }
 
