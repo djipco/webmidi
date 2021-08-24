@@ -9,7 +9,7 @@ const system = require("system-commands");
 const CONF_PATH = "./scripts/documentation/.jsdoc.json";
 
 // Path to menu image (we put it with other images in the docs directory)
-const IMAGE_PATH = "./api/images/webmidijs3-logo-40x40.png";
+const IMAGE_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
 
 // Path to custom stylesheet linked in all pages
 const CUSTOM_STYLESHEET = "./css/custom.css";
