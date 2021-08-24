@@ -1,4 +1,5 @@
 const fs = require("fs");
+const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
@@ -132,7 +133,7 @@ async function execute() {
   await git.checkout(TARGET_BRANCH);
 
   // Move dir to final destination and commit
-  await mv(TMP_SAVE_PATH, FINAL_SAVE_PATH);
+  await fsPromises.rename(TMP_SAVE_PATH, FINAL_SAVE_PATH);
   await git.add([FINAL_SAVE_PATH]);
   let message = "Updated on: " + moment().format();
   await git.commit(message, [FINAL_SAVE_PATH]);
