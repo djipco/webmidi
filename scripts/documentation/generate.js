@@ -3,7 +3,6 @@ const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
-const mv = require("move-file");
 const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
