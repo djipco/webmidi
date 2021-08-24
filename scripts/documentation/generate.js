@@ -115,11 +115,12 @@ async function execute() {
   // Remove temporary configuration file
   await rimraf(CONF_PATH);
 
-  // Commit and push
-  // let message = "Updated on: " + moment().format();
-  // await git.add(["api"]);
-  // await git.commit(message, ["api"]);
-  // await git.push();
+  // Commit to gh-pages branch and push
+  let message = "Updated on: " + moment().format();
+  await git.checkoutLocalBranch("gh-pages");
+  await git.add(["api"]);
+  await git.commit(message, ["api"]);
+  await git.push();
   console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
 
 }
