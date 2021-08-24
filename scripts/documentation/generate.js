@@ -2,6 +2,7 @@ const fs = require("fs");
 const git = require("simple-git/promise")();
 const pkg = require("../../package.json");
 const moment = require("moment");
+const mv = require("mv");
 const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
@@ -27,7 +28,8 @@ const GA_CONFIG = {
 const VERSION = pkg.version.split(".")[0];
 
 // Target folder to save the doc in
-const SAVE_PATH = `./api/v${VERSION}`;
+const TMP_SAVE_PATH = `./.api/v${VERSION}`;
+const FINAL_SAVE_PATH = `./api/v${VERSION}`;
 
 // JSDoc configuration object to write as configuration file
 const config = {
@@ -101,7 +103,7 @@ const config = {
 // Prepare jsdoc command
 const cmd = "./node_modules/.bin/jsdoc " +
   `--configure ${CONF_PATH} ` +
-  `--destination ${SAVE_PATH}`;
+  `--destination ${TMP_SAVE_PATH}`;
 
 async function execute() {
 
@@ -114,7 +116,7 @@ async function execute() {
   // Print success to console
   console.info(
     "\x1b[32m",
-    `Documentation generated in folder "${SAVE_PATH}/`,
+    `Documentation temporarily generated in folder "${TMP_SAVE_PATH}/`,
     "\x1b[0m"
   );
 
@@ -125,21 +127,31 @@ async function execute() {
   let results = await git.branch();
   const ORIGINAL_BRANCH = results.current;
 
-  // Switch to gh-pages and commit API documentation
+  // Switch to gh-pages
   console.info("\x1b[32m", `Switching from '${ORIGINAL_BRANCH}' to '${TARGET_BRANCH}'`, "\x1b[0m");
   await git.checkout(TARGET_BRANCH);
-  await git.add([SAVE_PATH]);
-  let message = "Updated on: " + moment().format();
-  await git.commit(message, [SAVE_PATH]);
-  console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
 
-  // Push changes
-  await git.push();
-  console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
+  mv(TMP_SAVE_PATH, FINAL_SAVE_PATH, {mkdirp: true}, async function(err) {
 
-  // Come back to original branch
-  console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
-  await git.checkout(ORIGINAL_BRANCH);
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    await git.add([FINAL_SAVE_PATH]);
+    let message = "Updated on: " + moment().format();
+    await git.commit(message, [FINAL_SAVE_PATH]);
+    console.info("\x1b[32m", `Changes committed to ${TARGET_BRANCH} branch`, "\x1b[0m");
+
+    // Push changes
+    await git.push();
+    console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
+
+    // Come back to original branch
+    console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
+    await git.checkout(ORIGINAL_BRANCH);
+
+  });
 
 }
 
