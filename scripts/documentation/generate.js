@@ -33,7 +33,7 @@ const config = {
   // The opts property is for command-line arguments passed directly in the config file
   opts: {
     template: "./node_modules/foodoc/template",
-    readme: "./docs/HOME.md"
+    readme: "./scripts/documentation/HOME.md"
   },
 
   // Source files
@@ -116,10 +116,10 @@ async function execute() {
   await rimraf(CONF_PATH);
 
   // Commit and push
-  let message = "Updated on: " + moment().format();
-  await git.add(["docs"]);
-  await git.commit(message, ["docs"]);
-  await git.push();
+  // let message = "Updated on: " + moment().format();
+  // await git.add(["api"]);
+  // await git.commit(message, ["api"]);
+  // await git.push();
   console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
 
 }
