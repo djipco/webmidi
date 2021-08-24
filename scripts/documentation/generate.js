@@ -120,7 +120,7 @@ async function execute() {
   // Print success to console
   console.info(
     "\x1b[32m",
-    `Documentation temporarily generated in folder "${TMP_SAVE_PATH}/`,
+    `Documentation temporarily generated in "${TMP_SAVE_PATH}"`,
     "\x1b[0m"
   );
 
@@ -143,12 +143,14 @@ async function execute() {
   await fs.move(TMP_SAVE_PATH, FINAL_SAVE_PATH, {overwrite: true});
   await git.add([FINAL_SAVE_PATH]);
   await git.commit("Updated on: " + moment().format(), [FINAL_SAVE_PATH]);
-  console.info("\x1b[32m", `Changes committed to '${TARGET_BRANCH}' branch`, "\x1b[0m");
-
-  // Push changes and remove tmp folder
   await git.push();
-  console.info("\x1b[32m", `Changes pushed to remote`, "\x1b[0m");
-  await rimraf(TMP_SAVE_PATH);
+  console.info(
+    "\x1b[32m",
+    `Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`,
+    "\x1b[0m"
+  );
+
+  // await rimraf(TMP_SAVE_PATH);
 
   // Come back to original branch
   console.info("\x1b[32m", `Switching back to '${ORIGINAL_BRANCH}' branch`, "\x1b[0m");
