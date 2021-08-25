@@ -435,6 +435,10 @@ https://github.com/djipco/webmidi
 
 Here are a few examples of academic papers citing WebMidi.js:
 
+* Lundh Haaland, M. (2020). The Player as a Conductor : Utilizing an Expressive Performance
+System to Create an Interactive Video Game Soundtrack (Dissertation). Retrieved from 
+http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-281324
+
 * Bazin, T. & Hadjeres, G. (2019). NONOTO: A Model-agnostic Web Interface for Interactive 
 Music Composition by Inpainting, presented at 10th International Conference on Computational
 Creativity, Charlotte, 2019. Retrieved from https://arxiv.org/abs/1907.10380
