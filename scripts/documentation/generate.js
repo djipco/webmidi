@@ -22,7 +22,7 @@ const GA_CONFIG = {
 };
 
 // JSDoc configuration object to write as configuration file
-const config = {
+const configOLD = {
 
   tags: {
     allowUnknownTags: true
@@ -88,6 +88,36 @@ const config = {
 
   }
 
+};
+
+const config = {
+  tags: {
+    allowUnknownTags: true,
+    dictionaries: ["jsdoc"]
+  },
+  source: {
+    include: ["lib", "package.json", "README.md"],
+    includePattern: ".js$",
+    excludePattern: "(node_modules/|docs)"
+  },
+  plugins: [
+    "plugins/markdown"
+  ],
+  templates: {
+    referenceTitle: "My SDK Name",
+    disableSort: false,
+    collapse: true,
+    resources: {
+      google: "https://www.google.com/"
+    }
+  },
+  opts: {
+    destination: "./docs/",
+    encoding: "utf8",
+    private: true,
+    recurse: true,
+    template: "./node_modules/jsdoc-template"
+  }
 };
 
 function log(message) {

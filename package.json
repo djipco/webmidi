@@ -91,6 +91,7 @@
     "ftp-deploy": "^2.3.7",
     "gh-pages": "^2.2.0",
     "jsdoc": "^3.6.7",
+    "jsdoc-template": "^1.2.0",
     "markdown-it": "^10.0.0",
     "midi": "^1.0.0",
     "minimist": "^1.2.5",
