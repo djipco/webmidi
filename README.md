@@ -1,4 +1,4 @@
-![WebMidi.js Logo](https://djipco.github.io/webmidi/media/images/webmidijs-logo.svg "WebMidi.js")
+![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
@@ -37,7 +37,7 @@ but it still takes quite a bit of time to develop and maintain. Thank you! 👏
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
 [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
-<img src="https://djipco.github.io/webmidi/media/images/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
+<img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
 If you would like to support the project, you can press the 
 [Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
