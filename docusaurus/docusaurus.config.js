@@ -16,7 +16,7 @@ module.exports = {
     navbar: {
       // title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'WebMidi.js',
         src: 'img/webmidijs-logo.svg',
       },
       items: [
@@ -24,10 +24,10 @@ module.exports = {
           type: 'doc',
           docId: 'intro',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documentation',
         },
         {
-          href: '/api',
+          href: 'https://djipco.github.io/webmidi/api',
           label: 'API',
           position: 'left',
         },
