@@ -31,7 +31,7 @@ const config = {
   // The opts property is for command-line arguments passed directly in the config file
   opts: {
     template: "./node_modules/foodoc/template",
-    // readme: "./scripts/documentation/HOME.md"
+    readme: "./scripts/documentation/HOME.md"
   },
 
   // Source files
@@ -55,7 +55,7 @@ const config = {
   // Configurations for the Foodoc template
   templates: {
 
-    systemName: `${pkg.webmidi.name}`,
+    systemName: `${pkg.webmidi.name} API`,
     systemSummary: pkg.webmidi.tagline,
     systemLogo: LOGO_PATH,
     systemColor: "#ffcf09",
