@@ -22,7 +22,7 @@ const GA_CONFIG = {
 };
 
 // JSDoc configuration object to write as configuration file
-const configOLD = {
+const config = {
 
   tags: {
     allowUnknownTags: true
@@ -90,41 +90,6 @@ const configOLD = {
 
 };
 
-const config = {
-  tags: {
-    allowUnknownTags: true,
-    dictionaries: ["jsdoc"]
-  },
-  source: {
-    include: [
-      "./src/WebMidi.js",
-      "./src/Output.js",
-      "./src/Input.js",
-      "./src/OutputChannel.js",
-      "./src/InputChannel.js",
-      "./src/Note.js"
-    ]
-  },
-  plugins: [
-    "plugins/markdown"
-  ],
-  templates: {
-    referenceTitle: "WebMidi.js",
-    disableSort: false,
-    collapse: true,
-    resources: {
-      google: "https://www.google.com/"
-    }
-  },
-  opts: {
-    destination: "./docs/",
-    encoding: "utf8",
-    private: true,
-    recurse: true,
-    template: "./node_modules/jsdoc-template"
-  }
-};
-
 function log(message) {
   console.info("\x1b[32m", message, "\x1b[0m");
 }
@@ -147,6 +112,13 @@ async function execute() {
 
   // Remove temporary configuration file
   await rimraf(CONF_PATH);
+
+  // Here, we remove the index.html page and replace it with the list_class.html file
+  await fs.copy(
+    TMP_SAVE_PATH + "/list_class.html",
+    TMP_SAVE_PATH + "/index.html",
+    {overwrite: true}
+  );
 
   // Get current branch (so we can come back to it later)
   let results = await git.branch();
