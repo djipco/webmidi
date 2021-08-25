@@ -38,6 +38,3 @@ playground
 
 ### Sensitive stuff ################################################################################
 .credentials
-
-### Temporary location for generated API documentation
-.api

@@ -1,0 +1,13 @@
+{
+  "name": "webmidijs.org",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Jean-Philippe Côté",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djipco/webmidi.git"
+  }
+}
