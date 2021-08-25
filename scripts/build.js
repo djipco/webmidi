@@ -28,7 +28,7 @@ async function execute() {
   }
 
   await git.add(files);
-  await git.commit("Built from Docusaurus and updated on: " + moment().format(), files);
+  await git.commit("Updated from Docusaurus build (" + moment().format("MMMM Do YYYY") + ")", files);
   await git.push();
 
 }
