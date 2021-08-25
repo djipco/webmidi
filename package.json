@@ -4,7 +4,9 @@
   "description": "",
   "author": "Jean-Philippe Côté",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "npm run --prefix docusaurus build",
+    "build-and-deploy": "npm run --prefix docusaurus build && node scripts/build.js",
+    "serve": "npm run --prefix docusaurus serve"
   },
   "repository": {
     "type": "git",
