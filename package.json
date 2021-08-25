@@ -13,6 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "fs-extra": "^10.0.0",
+    "moment": "^2.29.1",
     "simple-git": "^2.44.0"
   }
 }

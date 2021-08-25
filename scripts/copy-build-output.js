@@ -1,10 +1,12 @@
 // Modules
 const fs = require("fs-extra");
+// const fsPromises =
 const git = require("simple-git/promise")();
 const moment = require("moment");
+const path = require("path");
 
-const SOURCE_PATH = "docusaurus/build/*";
-const TARGET_PATH = "."
+const SOURCE_DIR = "docusaurus/build/";
+const TARGET_DIR = "."
 const TARGET_ELEMENTS = [
   "assets",
   "blog",
@@ -18,11 +20,19 @@ const TARGET_ELEMENTS = [
 ]
 
 async function execute() {
-  await fs.copy(SOURCE_PATH,  TARGET_PATH, {overwrite: true});
-  log(`Copied files matching '${SOURCE_PATH}' to '${TARGET_PATH}'`);
-  await git.add(TARGET_ELEMENTS);
-  await git.commit("Built from Docusaurus and updated on: " + moment().format(), TARGET_ELEMENTS);
+
+  const files = fsPromises.readdir(SOURCE_DIR);
+
+  for (const file of files) {
+    const filename = path.basename(file);
+    // await fs.copy(SOURCE_PATH,  TARGET_PATH, {overwrite: true});
+    log(`Copied '${file}' to ` + path.join(TARGET_DIR, filename));
+  }
+
+  // await git.add(files);
+  // await git.commit("Built from Docusaurus and updated on: " + moment().format(), files);
   // await git.push();
+
 }
 
 // Execute and catch errors if any (in red)
