@@ -96,15 +96,20 @@ const config = {
     dictionaries: ["jsdoc"]
   },
   source: {
-    include: ["lib", "package.json", "README.md"],
-    includePattern: ".js$",
-    excludePattern: "(node_modules/|docs)"
+    include: [
+      "./src/WebMidi.js",
+      "./src/Output.js",
+      "./src/Input.js",
+      "./src/OutputChannel.js",
+      "./src/InputChannel.js",
+      "./src/Note.js"
+    ]
   },
   plugins: [
     "plugins/markdown"
   ],
   templates: {
-    referenceTitle: "My SDK Name",
+    referenceTitle: "WebMidi.js",
     disableSort: false,
     collapse: true,
     resources: {
