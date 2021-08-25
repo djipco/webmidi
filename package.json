@@ -4,7 +4,7 @@
   "description": "",
   "author": "Jean-Philippe Côté",
   "scripts": {
-    "copy-build-output": "node scripts/copy-build-output.js"
+    "build": "node scripts/build.js"
   },
   "repository": {
     "type": "git",
