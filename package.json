@@ -4,10 +4,14 @@
   "description": "",
   "author": "Jean-Philippe Côté",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "copy-build-output": "node scripts/copy-build-output.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/djipco/webmidi.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "fs-extra": "^10.0.0"
   }
 }
