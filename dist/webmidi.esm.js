@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on April 13th 2021.
+ * This build was generated on August 26th 2021.
  *
  *
  *
@@ -90,7 +90,7 @@ class InputChannel extends e {
     this.number = number;
 
     /**
-     * @type {OutputChannel|[OutputChannel]}
+     * @type {OutputChannel|OutputChannel[]}
      * @private
      */
     this._forwardTo = undefined;
@@ -4055,7 +4055,7 @@ class Output extends e {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendContinue(options = {}) {
 
@@ -5939,6 +5939,9 @@ class Note {
 
 }
 
+// @todo ADJUST ALL CALLS TO SEND() SO THEY USE THE NEW SYNTAX
+
+
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
  * sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -6782,6 +6785,9 @@ class WebMidi extends e {
    * @private
    */
   async _updateInputs() {
+
+    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
 
     let promises = [];
 
