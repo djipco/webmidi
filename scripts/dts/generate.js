@@ -27,7 +27,6 @@ async function execute() {
     const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.source) +
       " --declaration --allowJs --emitDeclarationOnly" +
       " --module " + target.type +
-      // " --declarationMap true " +
       " --lib ES2020,DOM --outDir " + OUT_DIR;
     await system(cmd);
 
