@@ -7,10 +7,17 @@ const system = require("system-commands");
 
 const OUT_DIR = "dist";
 
-const targets = [
-  {source: "webmidi.cjs.js", type: "CommonJS"},
-  {source: "webmidi.esm.js", type: "ES2020"}
-];
+let targets = [];
+
+let type = "all";
+const argv = require("minimist")(process.argv.slice(2));
+if (["CommonJS", "ES2020"].includes(argv.t)) type = argv.t;
+
+if (type === "all" || type === "CommonJS")
+  targets.push({source: "webmidi.cjs.js", type: "CommonJS"});
+
+if (type === "all" || type === "ES2020")
+  targets.push({source: "webmidi.esm.js", type: "ES2020"});
 
 async function execute() {
 
@@ -32,7 +39,7 @@ async function execute() {
       to: ""
     };
     await replace(options);
-    log("Saved " + target.type + " declaration file to '" + file+ "'");
+    log("Saved " + target.type + " TypeScript declaration file to '" + file+ "'");
 
     // Commit
     await git.add([file]);
