@@ -621,7 +621,7 @@ export class Output extends EventEmitter {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   sendContinue(options = {}) {
 
