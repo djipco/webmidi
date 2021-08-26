@@ -440,14 +440,14 @@ declare class WebMidi {
      * @readonly
      * @type {boolean}
      */
-    readonly get enabled(): boolean;
+    get enabled(): boolean;
     /**
      * An array of all currently available MIDI inputs.
      *
      * @readonly
      * @type {Array}
      */
-    readonly get inputs(): any[];
+    get inputs(): any[];
     /**
      * Indicates whether the current environment is Node.js or not. If you need to check if we are in
      * browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
@@ -481,7 +481,7 @@ declare class WebMidi {
      * @readonly
      * @type {Array}
      */
-    readonly get outputs(): any[];
+    get outputs(): any[];
     /**
      * Indicates whether the environment provides support for the Web MIDI API or not.
      *
@@ -493,7 +493,7 @@ declare class WebMidi {
      * @readonly
      * @type {boolean}
      */
-    readonly get supported(): boolean;
+    get supported(): boolean;
     /**
      * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
      * enabled via the `enable()` method.
@@ -501,7 +501,7 @@ declare class WebMidi {
      * @readonly
      * @type Boolean
      */
-    readonly get sysexEnabled(): boolean;
+    get sysexEnabled(): boolean;
     /**
      * The elapsed time, in milliseconds, since the time
      * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
@@ -514,7 +514,7 @@ declare class WebMidi {
      * @type {DOMHighResTimeStamp}
      * @readonly
      */
-    readonly get time(): number;
+    get time(): number;
     /**
      * Enum of all MIDI channel voice messages and their associated numerical value:
      *
@@ -533,7 +533,7 @@ declare class WebMidi {
      *
      * @since 3.0.0
      */
-    readonly get MIDI_CHANNEL_VOICE_MESSAGES(): {
+    get MIDI_CHANNEL_VOICE_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
@@ -555,7 +555,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_CHANNEL_MESSAGES(): {
+    get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
@@ -583,7 +583,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_CHANNEL_MODE_MESSAGES(): {
+    get MIDI_CHANNEL_MODE_MESSAGES(): {
         allsoundoff: number;
         resetallcontrollers: number;
         localcontrol: number;
@@ -661,7 +661,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_CONTROL_CHANGE_MESSAGES(): {
+    get MIDI_CONTROL_CHANGE_MESSAGES(): {
         bankselectcoarse: number;
         modulationwheelcoarse: number;
         breathcontrollercoarse: number;
@@ -728,7 +728,7 @@ declare class WebMidi {
      * @type {string[]}
      * @readonly
      */
-    readonly get MIDI_INTERFACE_EVENTS(): string[];
+    get MIDI_INTERFACE_EVENTS(): string[];
     /**
      * Enum of all control change messages that are used to create NRPN messages and their associated
      * numerical value:
@@ -746,7 +746,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_NRPN_MESSAGES(): {
+    get MIDI_NRPN_MESSAGES(): {
         entrymsb: number;
         entrylsb: number;
         increment: number;
@@ -781,7 +781,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_REGISTERED_PARAMETER(): {
+    get MIDI_REGISTERED_PARAMETER(): {
         pitchbendrange: number[];
         channelfinetuning: number[];
         channelcoarsetuning: number[];
@@ -836,7 +836,7 @@ declare class WebMidi {
      *
      * @since 2.0.0
      */
-    readonly get MIDI_SYSTEM_MESSAGES(): {
+    get MIDI_SYSTEM_MESSAGES(): {
         sysex: number;
         timecode: number;
         songposition: number;
@@ -859,7 +859,7 @@ declare class WebMidi {
      * @type {string[]}
      * @readonly
      */
-    readonly get NOTES(): string[];
+    get NOTES(): string[];
 }
 import { Input } from "./Input.js";
 import { Output } from "./Output.js";

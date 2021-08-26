@@ -1398,7 +1398,7 @@ export class Output {
      * @type {string}
      * @readonly
      */
-    readonly get name(): string;
+    get name(): string;
     /**
      * ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
      * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -1407,34 +1407,34 @@ export class Output {
      * @type {string}
      * @readonly
      */
-    readonly get id(): string;
+    get id(): string;
     /**
      * Output port's connection state: `"pending"`, `"open"` or `"closed"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get connection(): string;
+    get connection(): string;
     /**
      * Name of the manufacturer of the device that makes this output port available.
      *
      * @type {string}
      * @readonly
      */
-    readonly get manufacturer(): string;
+    get manufacturer(): string;
     /**
      * State of the output port: `"connected"` or `"disconnected"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get state(): string;
+    get state(): string;
     /**
      * Type of the output port (`"output"`)
      *
      * @type {string}
      * @readonly
      */
-    readonly get type(): string;
+    get type(): string;
 }
 import { OutputChannel } from "./OutputChannel.js";

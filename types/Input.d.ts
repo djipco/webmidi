@@ -381,7 +381,7 @@ export class Input {
      * @type {string}
      * @readonly
      */
-    readonly get name(): string;
+    get name(): string;
     /**
      * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
      * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -390,35 +390,35 @@ export class Input {
      * @type {string}
      * @readonly
      */
-    readonly get id(): string;
+    get id(): string;
     /**
      * Input port's connection state: `"pending"`, `"open"` or `"closed"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get connection(): string;
+    get connection(): string;
     /**
      * Name of the manufacturer of the device that makes this input port available.
      *
      * @type {string}
      * @readonly
      */
-    readonly get manufacturer(): string;
+    get manufacturer(): string;
     /**
      * State of the input port: `"connected"` or `"disconnected"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get state(): string;
+    get state(): string;
     /**
      * Port type. In the case of `Input`, this is always: `"input"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get type(): string;
+    get type(): string;
     /**
      * @type {boolean}
      * @private
