@@ -64,11 +64,12 @@
     "test:Output": "mocha test/Output.test.js",
     "test:OutputChannel": "mocha test/OutputChannel.test.js",
     "test:WebMidi": "mocha test/WebMidi.test.js",
-    "types": "tsc --strict --noEmit ./webmidi.d.ts"
+    "types": "tsc"
   },
   "types": "webmidi.d.ts",
   "dependencies": {
-    "djipevents": "^1.0.0-beta.4"
+    "djipevents": "^1.0.0-beta.4",
+    "typescript": "^4.3.5"
   },
   "optionalDependencies": {
     "jzz": "^1.2.3"
@@ -103,7 +104,6 @@
     "simple-git": "^2.4.0",
     "sinon": "^9.0.1",
     "sinon-browser-only": "^1.12.1",
-    "system-commands": "^1.1.7",
-    "typescript": "^3.8.3"
+    "system-commands": "^1.1.7"
   }
 }

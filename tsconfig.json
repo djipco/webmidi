@@ -1,0 +1,13 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "allowJs": true,                      // Include JS files (normally they are ignored)
+    "declaration": true,                  // Generate d.ts files
+    "emitDeclarationOnly": true,          // Only output d.ts files
+    "outDir": "dist/types",               // Output directory
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  }
+}
