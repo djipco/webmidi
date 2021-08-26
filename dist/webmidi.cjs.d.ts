@@ -1441,11 +1441,11 @@ declare class Output extends e {
      * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
      * in the past, the operation will be carried out as soon as possible.
      *
-     * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+     * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     sendContinue(options?: {
         time?: number | string;
-    }): WebMidi;
+    }): Output;
     /**
      * Sends a **stop** real-time message. This tells the device connected to this output to stop
      * playback immediately (or at the scheduled time).
@@ -2621,7 +2621,7 @@ declare class InputChannel extends e {
      */
     number: number;
     /**
-     * @type {OutputChannel|[OutputChannel]}
+     * @type {OutputChannel|OutputChannel[]}
      * @private
      */
     private _forwardTo;
