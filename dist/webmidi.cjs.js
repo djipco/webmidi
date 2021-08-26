@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on April 13th 2021.
+ * This build was generated on August 26th 2021.
  *
  *
  *
@@ -213,7 +213,7 @@ class InputChannel extends e {
 
     this.number = number;
     /**
-     * @type {OutputChannel|[OutputChannel]}
+     * @type {OutputChannel|OutputChannel[]}
      * @private
      */
 
@@ -3930,7 +3930,7 @@ class Output extends e {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
 
 
@@ -5671,9 +5671,9 @@ class Note {
 }
 
 /*START-NODE.JS*/
-// This block of code is only relevant on Node.js and causes issues with bundlers (such as
-// Webpack) and server-side rendering. This is why it is explicitly being stripped off for the
-// IIFE and ESM distributions.
+// This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
+// and server-side rendering. This is why it is explicitly being stripped off for the IIFE and ESM
+// distributions.
 
 global["performance"] = require("perf_hooks").performance;
 global["navigator"] = require("jzz");
@@ -6488,6 +6488,8 @@ class WebMidi extends e {
    * @private
    */
   async _updateInputs() {
+    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
     let promises = []; // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
 
