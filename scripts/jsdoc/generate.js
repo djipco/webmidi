@@ -131,7 +131,7 @@ async function execute() {
   await git.add([TARGET_PATH]);
   await git.commit("Updated on: " + moment().format(), [TARGET_PATH]);
   await git.push();
-  log(`Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`);
+  log(`Changes committed to ${TARGET_PATH} folder of '${TARGET_BRANCH}' branch`);
 
   // Come back to original branch
   log(`Switching back to '${ORIGINAL_BRANCH}' branch`);
