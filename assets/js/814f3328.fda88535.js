@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome","permalink":"/webmidi/blog/welcome"},{"title":"Hello","permalink":"/webmidi/blog/hello-world"},{"title":"Hola","permalink":"/webmidi/blog/hola"}]}')}}]);
