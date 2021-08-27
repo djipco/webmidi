@@ -25,17 +25,16 @@ ol.breadcrumb {
   display: none;
 }
 
-/*.page-header .summary {*/
-/*  background-image: url(http://djipco.github.io/webmidi/images/webmidijs-logo.svg);*/
-/*  background-repeat: no-repeat;*/
-/*  height: 100px;*/
-/*}*/
 
-/*.page-header .summary p {*/
-/*  padding-top: 70px;*/
-/*}*/
+/* Remove header so we can embed within iframe */
+.page-header {
+  display: none;
+}
 
+.navbar-header {
+  display: none;
+}
 
-.page-header h1 {
-  color: red;
+ul.navbar-nav > li > a {
+  padding-left: 0;
 }
