@@ -42,5 +42,3 @@ playground
 ### Temporary location of API documentation
 .api
 
-### Ignore Docusaurus from gh-pages branch
-docusaurus
