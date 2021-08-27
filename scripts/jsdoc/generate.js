@@ -11,7 +11,6 @@ const system = require("system-commands");
 
 // Some paths
 const CUSTOM_CSS = "../css/custom.css";
-const LOGO_PATH = "./scripts/documentation/webmidijs3-logo-40x40.png";
 const TARGET_BRANCH = "gh-pages";
 const TARGET_PATH = "./api/v" + pkg.version.split(".")[0];
 
@@ -56,7 +55,7 @@ const config = {
 
     systemName: `${pkg.webmidi.name} API`,
     systemSummary: pkg.webmidi.tagline,
-    systemLogo: LOGO_PATH,
+    // systemLogo: LOGO_PATH,
     systemColor: "#ffcf09",
 
     copyright: `© <a href="${pkg.author.url}">${pkg.author.name}</a>, ` +
