@@ -1,0 +1,3 @@
+.page-header, pre.code-toolbar > .toolbar:hover {
+  background-color: red;
+}

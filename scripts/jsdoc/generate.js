@@ -10,7 +10,7 @@ const rimraf = require("@alexbinary/rimraf");
 const system = require("system-commands");
 
 // Some paths
-const CUSTOM_CSS = "../../styles/jsdoc.css";
+const CUSTOM_CSS = "../../../styles/jsdoc.css";
 const TARGET_BRANCH = "gh-pages";
 const TARGET_PATH = "./api/v" + pkg.version.split(".")[0];
 
