@@ -3,8 +3,9 @@ const fs = require("fs-extra");
 const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const moment = require("moment");
-const path = require("path");
 const os = require("os");
+const path = require("path");
+const rimraf = require("@alexbinary/rimraf");
 
 // Configuration
 const TARGET_BRANCH = "gh-pages";
@@ -23,7 +24,7 @@ async function execute() {
     const target = path.join(TMP_DIR, file);
     await fs.copy(source, target, {overwrite: true});
   }
-  log("Copied files to temp dir: " + TMP_DIR);
+  log("Copied website files to temp dir: " + TMP_DIR);
 
   // Get current branch (so we can come back to it later)
   let results = await git.branch();
@@ -42,8 +43,12 @@ async function execute() {
     await git.commit("Updated on: " + moment().format(), [target]);
   }
 
-  // await git.push();
-  log(`Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`);
+  await git.push();
+  log(`Website files committed to '${TARGET_BRANCH}' branch and pushed to remote`);
+
+  // Remove temp files
+  rimraf(TMP_DIR);
+  log(`Temp directory removed`);
 
   // Come back to original branch
   log(`Switching back to '${ORIGINAL_BRANCH}' branch`);
