@@ -1,3 +1,9 @@
+// This script builds the bundled library files (both normal and minified with sourcemaps) and
+// commits them to the 'dist' folder for later publishing. By default, CommonJS, ES Modules and IIFE
+// versions are built. Calling this script with the -t argument building only of them. Options are:
+// cjs, esm and iife
+
+// Modules
 const moment = require("moment");
 const git = require("simple-git/promise")();
 const system = require("system-commands");
@@ -42,7 +48,7 @@ async function execute() {
   );
 
   // Commit and push
-  let message = "Built on: " + moment().format();
+  let message = "Built on " + moment().format();
   await git.add(["dist"]);
   await git.commit(message, ["dist"]);
   await git.push();
