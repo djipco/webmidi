@@ -37,7 +37,7 @@ module.exports = {
           position: "left",
         },
         {
-          href: "https://github.com/djipco/webmidi/discussions/154",
+          href: "https://github.com/djipco/webmidi/discussions",
           label: "Forum",
           position: "left",
         },
