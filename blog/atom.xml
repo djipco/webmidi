@@ -13,6 +13,10 @@
         <link href="https://webmdidijs.org/webmidi/blog/welcome"/>
         <updated>2019-05-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Blog features are powered by the blog plugin. Simply add files to the blog directory. It supports tags as well!]]></summary>
+        <author>
+            <name>Yangshun Tay</name>
+            <uri>https://github.com/yangshun</uri>
+        </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello]]></title>
@@ -20,6 +24,10 @@
         <link href="https://webmdidijs.org/webmidi/blog/hello-world"/>
         <updated>2019-05-29T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Welcome to this blog. This blog is created with Docusaurus 2.]]></summary>
+        <author>
+            <name>Endilie Yacop Sucipto</name>
+            <uri>https://github.com/endiliey</uri>
+        </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hola]]></title>
@@ -27,5 +35,9 @@
         <link href="https://webmdidijs.org/webmidi/blog/hola"/>
         <updated>2019-05-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></summary>
+        <author>
+            <name>Gao Wei</name>
+            <uri>https://github.com/wgao19</uri>
+        </author>
     </entry>
 </feed>
