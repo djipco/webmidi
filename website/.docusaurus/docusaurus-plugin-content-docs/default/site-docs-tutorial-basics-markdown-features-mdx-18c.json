@@ -1,0 +1,26 @@
+{
+  "unversionedId": "tutorial-basics/markdown-features",
+  "id": "tutorial-basics/markdown-features",
+  "isDocsHomePage": false,
+  "title": "Markdown Features",
+  "description": "Docusaurus supports Markdown and a few additional features.",
+  "source": "@site/docs/tutorial-basics/markdown-features.mdx",
+  "sourceDirName": "tutorial-basics",
+  "slug": "/tutorial-basics/markdown-features",
+  "permalink": "/webmidi/docs/tutorial-basics/markdown-features",
+  "editUrl": "https://github.com/djipco/webmidi/edit/master/docusaurus/docs/tutorial-basics/markdown-features.mdx",
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Blog Post",
+    "permalink": "/webmidi/docs/tutorial-basics/create-a-blog-post"
+  },
+  "next": {
+    "title": "Deploy your site",
+    "permalink": "/webmidi/docs/tutorial-basics/deploy-your-site"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Recent posts",
+  "items": [
+    {
+      "title": "Welcome",
+      "permalink": "/webmidi/blog/welcome"
+    },
+    {
+      "title": "Hello",
+      "permalink": "/webmidi/blog/hello-world"
+    },
+    {
+      "title": "Hola",
+      "permalink": "/webmidi/blog/hola"
+    }
+  ]
+}

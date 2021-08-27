@@ -1,0 +1,22 @@
+{
+  "unversionedId": "tutorial-extras/translate-your-site",
+  "id": "tutorial-extras/translate-your-site",
+  "isDocsHomePage": false,
+  "title": "Translate your site",
+  "description": "Let's translate docs/intro.md to French.",
+  "source": "@site/docs/tutorial-extras/translate-your-site.md",
+  "sourceDirName": "tutorial-extras",
+  "slug": "/tutorial-extras/translate-your-site",
+  "permalink": "/webmidi/docs/tutorial-extras/translate-your-site",
+  "editUrl": "https://github.com/djipco/webmidi/edit/master/docusaurus/docs/tutorial-extras/translate-your-site.md",
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Manage Docs Versions",
+    "permalink": "/webmidi/docs/tutorial-extras/manage-docs-versions"
+  }
+}
