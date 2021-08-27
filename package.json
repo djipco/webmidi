@@ -49,20 +49,20 @@
   "scripts": {
 
     "library:build-all": "npm run lint && npm run library:build-cjs && npm run library:build-esm && npm run library:build-iife",
-    "library:build-cjs": "node scripts/build/build.js -t cjs && npm run typescript-declaration:generate -- -t CommonJS",
-    "library:build-esm": "node scripts/build/build.js -t esm && npm run typescript-declaration:generate -- -t ES2020",
-    "library:build-iife": "node scripts/build/build.js -t iife",
+    "library:build-cjs": "node scripts/library/build.js -t cjs && npm run typescript-declaration:generate -- -t cjs",
+    "library:build-esm": "node scripts/library/build.js -t esm && npm run typescript-declaration:generate -- -t esm",
+    "library:build-iife": "node scripts/library/build.js -t iife",
 
     "test-coverage:report-as-text": "nyc --reporter=text mocha",
     "test-coverage:report-as-html": "nyc --reporter=html mocha",
 
     "website:build-locally": "npm run --prefix website build",
     "website:generate+serve-locally": "npm run --prefix website start",
-    "website:generate+push-to-gh-pages": "npm run --prefix website build && node scripts/docusaurus/deploy.js",
+    "website:generate+push-to-gh-pages": "npm run --prefix website build && node scripts/website/deploy.js",
 
-    "jsdoc:generate+push-to-gh-pages": "node scripts/jsdoc/generate.js",
+    "jsdoc:generate+push-to-gh-pages": "node scripts/api-documentation/generate.js",
 
-    "typescript-declaration:generate": "node scripts/dts/generate.js",
+    "typescript-declaration:generate": "node scripts/typescript-declarations/generate.js",
 
     "lint": "eslint ./src/*.js",
 
