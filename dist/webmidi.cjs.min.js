@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on August 26th 2021.
+ * This build was generated on August 27th 2021.
  *
  *
  *
