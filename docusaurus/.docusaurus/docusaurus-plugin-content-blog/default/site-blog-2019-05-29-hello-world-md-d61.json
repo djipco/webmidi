@@ -1,0 +1,29 @@
+{
+  "permalink": "/webmidi/blog/hello-world",
+  "editUrl": "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/blog/2019-05-29-hello-world.md",
+  "source": "@site/blog/2019-05-29-hello-world.md",
+  "title": "Hello",
+  "description": "Welcome to this blog. This blog is created with Docusaurus 2.",
+  "date": "2019-05-29T00:00:00.000Z",
+  "formattedDate": "May 29, 2019",
+  "tags": [
+    {
+      "label": "hello",
+      "permalink": "/webmidi/blog/tags/hello"
+    },
+    {
+      "label": "docusaurus",
+      "permalink": "/webmidi/blog/tags/docusaurus"
+    }
+  ],
+  "readingTime": 0.115,
+  "truncated": true,
+  "prevItem": {
+    "title": "Welcome",
+    "permalink": "/webmidi/blog/welcome"
+  },
+  "nextItem": {
+    "title": "Hola",
+    "permalink": "/webmidi/blog/hola"
+  }
+}
