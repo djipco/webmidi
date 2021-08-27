@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on April 13th 2021.
+ * This build was generated on August 27th 2021.
  *
  *
  *
@@ -212,7 +212,7 @@
 
       this.number = number;
       /**
-       * @type {OutputChannel|[OutputChannel]}
+       * @type {OutputChannel|OutputChannel[]}
        * @private
        */
 
@@ -3929,7 +3929,7 @@
      * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
      * in the past, the operation will be carried out as soon as possible.
      *
-     * @returns {WebMidi} Returns the `WebMidi` object so methods can be chained.
+     * @returns {Output} Returns the `Output` object so methods can be chained.
      */
 
 
@@ -6478,6 +6478,8 @@
      * @private
      */
     async _updateInputs() {
+      // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+      //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
       let promises = []; // Check for items to remove from the existing array (because they are no longer being reported
       // by the MIDI back-end).
 
