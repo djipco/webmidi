@@ -1197,6 +1197,7 @@
           "messag",
           "method",
           "option",
+          "output",
           "output#sendcontinu",
           "playback",
           "posit",
@@ -1210,8 +1211,7 @@
           "start",
           "stop",
           "time",
-          "us",
-          "webmidi"
+          "us"
         ],
         "Output.html#sendControlChange": [
           "0",
@@ -16782,10 +16782,6 @@
                     "docs": {},
                     "i": {
                       "docs": {
-                        "Output.html#sendContinue": {
-                          "ref": "Output.html#sendContinue",
-                          "tf": 33.33333333333333
-                        },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
                           "tf": 1903.7313432835822
@@ -26513,6 +26509,10 @@
                       },
                       "Output.html#sendClock": {
                         "ref": "Output.html#sendClock",
+                        "tf": 33.33333333333333
+                      },
+                      "Output.html#sendContinue": {
+                        "ref": "Output.html#sendContinue",
                         "tf": 33.33333333333333
                       },
                       "Output.html#sendControlChange": {
@@ -39539,7 +39539,7 @@
     "Output.html#sendContinue": {
       "id": "Output.html#sendContinue",
       "kind": "function",
-      "title": "sendContinue( [ options ] ) → {WebMidi}",
+      "title": "sendContinue( [ options ] ) → {Output}",
       "longname": "Output#sendContinue",
       "name": "sendContinue",
       "tags": "Output#sendContinue sendContinue",
