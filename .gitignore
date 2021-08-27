@@ -32,13 +32,3 @@ node_modules
 ### Test coverage ##################################################################################
 .nyc_output
 coverage
-
-### Scratch spaces #################################################################################
-playground
-
-### Sensitive stuff ################################################################################
-.credentials
-
-### Temporary location of API documentation
-.api
-
