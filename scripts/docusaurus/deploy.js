@@ -22,8 +22,8 @@ async function execute() {
     const source = path.join(SOURCE_DIR, file);
     const target = path.join(TMP_DIR, file);
     await fs.copy(source, target, {overwrite: true});
-    log("Copied " + source + "to " + target);
   }
+  log("Copied files to temp dir: " + TMP_DIR);
 
   // Get current branch (so we can come back to it later)
   let results = await git.branch();
@@ -38,13 +38,12 @@ async function execute() {
     const source = path.join(TMP_DIR, file);
     const target = path.join(process.cwd(), file);
     await fs.copy(source, target, {overwrite: true});
-    log("Copied " + source + "to " + target);
     await git.add([target]);
     await git.commit("Updated on: " + moment().format(), [target]);
   }
 
   // await git.push();
-  // log(`Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`);
+  log(`Changes committed to '${TARGET_BRANCH}' branch and pushed to remote`);
 
   // Come back to original branch
   log(`Switching back to '${ORIGINAL_BRANCH}' branch`);
