@@ -5,6 +5,7 @@
   "author": "Jean-Philippe Côté",
   "scripts": {
     "build": "npm run --prefix docusaurus build",
+    "start": "npm run --prefix docusaurus start",
     "build-and-deploy": "npm run --prefix docusaurus build && node scripts/build.js",
     "serve": "npm run --prefix docusaurus serve"
   },
@@ -14,6 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "docusaurus": "file:docusaurus",
     "fs-extra": "^10.0.0",
     "moment": "^2.29.1",
     "simple-git": "^2.44.0"
