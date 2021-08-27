@@ -27,8 +27,13 @@ module.exports = {
           label: 'Documentation',
         },
         {
-          href: 'https://djipco.github.io/webmidi/api',
+          to: 'api',
           label: 'API',
+          position: 'left',
+        },
+        {
+          to: 'showcase',
+          label: 'Showcase',
           position: 'left',
         },
         {
