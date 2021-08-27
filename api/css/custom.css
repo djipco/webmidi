@@ -34,3 +34,8 @@ ol.breadcrumb {
 /*.page-header .summary p {*/
 /*  padding-top: 70px;*/
 /*}*/
+
+
+.page-header h1 {
+  color: red;
+}
