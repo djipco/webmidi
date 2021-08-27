@@ -1,3 +1,7 @@
+// This script generates web-based API documentation files from jsdoc comments in the source code
+// and commits them to the 'api' directory of the 'gh-pages' branch. This makes them available at
+// djipco.githib.io/webmidi/api
+
 // Modules
 const fs = require("fs-extra");
 const fsPromises = require("fs").promises;
