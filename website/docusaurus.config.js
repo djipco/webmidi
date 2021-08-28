@@ -22,7 +22,7 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "intro",
+          docId: "index",
           position: "left",
           label: "Documentation",
         },
@@ -39,12 +39,13 @@ module.exports = {
         {
           href: "https://github.com/djipco/webmidi/discussions",
           label: "Forum",
-          position: "left",
+          position: "right",
         },
         {
           href: "https://github.com/djipco/webmidi",
-          label: "GitHub",
           position: "right",
+          className: "header-github-link",
+          "aria-label": "GitHub repository"
         },
       ],
     },
