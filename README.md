@@ -1,8 +1,9 @@
 ![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo-color-on-white.svg "WebMidi.js")
 
-[![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
-[![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![npm](https://img.shields.io/npm/dm/webmidi)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
+[![](https://img.shields.io/github/stars/djipco/webmidi?style=social)](https://github.com/djipco/webmidi)
+[![npm](https://img.shields.io/npm/l/webmidi)](https://www.npmjs.com/package/webmidi)
 
 <p align="center">
   <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
