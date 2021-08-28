@@ -7,7 +7,7 @@ function Showcase() {
     <Layout title="Showcase">
       <div>
 
-        <h1>ShowcaseCOUCOU</h1>
+        <h1>Showcase</h1>
 
         <p>
           WebMidi.js is being by amazing people to create awesome projects. Here are some examples
