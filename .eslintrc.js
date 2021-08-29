@@ -48,7 +48,9 @@ module.exports = {
     "no-console": ["error", { "allow": ["info", "warn", "error"] }], // Only some (unlike Prettier)
 
     // Other rules
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+
+    "react/prop-types": "off"
 
   }
 
