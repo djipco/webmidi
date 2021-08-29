@@ -24,7 +24,11 @@ module.exports = {
     "config": "readonly"
   },
 
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:react/recommended"
+  ],
 
   // The idea here is to stick to the rules defined by Prettier (https://prettier.io/) and only make
   // exceptions in ESLint when absolutely necessary.

@@ -47,28 +47,20 @@
     "node": ">=8.5"
   },
   "scripts": {
-
     "library:build-all": "npm run lint && npm run library:build-cjs && npm run library:build-esm && npm run library:build-iife",
     "library:build-cjs": "node scripts/library/build.js -t cjs && npm run typescript-declaration:generate -- -t cjs",
     "library:build-esm": "node scripts/library/build.js -t esm && npm run typescript-declaration:generate -- -t esm",
     "library:build-iife": "node scripts/library/build.js -t iife",
-
     "test-coverage:report-as-text": "nyc --reporter=text mocha",
     "test-coverage:report-as-html": "nyc --reporter=html mocha",
-
     "website:build-locally": "npm run --prefix website build",
     "website:generate+serve-locally": "npm run --prefix website start",
     "website:generate+push-to-gh-pages": "npm run --prefix website build && node scripts/website/deploy.js",
-
     "jsdoc:generate+push-to-gh-pages": "node scripts/api-documentation/generate.js",
-
     "typescript-declaration:generate": "node scripts/typescript-declarations/generate.js",
-
     "lint": "eslint ./src/*.js",
-
     "release:next": "npm version prerelease && npm run build:all && node scripts/release/release.js && npm publish --tag next",
     "release:latest": "npm version patch && npm run build:all && node scripts/release/release.js && npm publish",
-
     "test:all": "mocha",
     "test:Input": "mocha test/Input.test.js",
     "test:InputChannel": "mocha test/InputChannel.test.js",
@@ -96,6 +88,7 @@
     "chai": "^4.3.3",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-react": "^7.25.0",
     "foodoc": "0.0.9",
     "fs-extra": "^10.0.0",
     "ftp-deploy": "^2.3.7",
