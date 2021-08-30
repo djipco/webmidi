@@ -27,9 +27,10 @@ module.exports = {
           label: "Documentation",
         },
         {
-          to: "api",
+          to: "/api",
           label: "API",
           position: "left",
+          activeBaseRegex: `/api/`,
         },
         {
           to: "showcase",
@@ -121,14 +122,16 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/djipco/webmidi/edit/master/docusaurus/",
+          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/",
+
+          path: "docs",
+          lastVersion: "current",
+          onlyIncludeVersions: ["current"],
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/",
+          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -136,4 +139,18 @@ module.exports = {
       },
     ],
   ],
+
+
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "api",
+        path: "api",
+        routeBasePath: "api",
+        sidebarPath: require.resolve("./sidebars.js"),
+      },
+    ],
+  ],
+
 };
