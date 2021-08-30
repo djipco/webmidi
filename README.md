@@ -475,7 +475,7 @@ Since Jazz-Plugin does not use the same syntax as the native Web MIDI API, it is
 install the [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. You can do that by 
 including the following in your page:
 
-    <script src='http://cwilso.github.com/WebMIDIAPIShim/WebMIDIAPI.js'></script>
+    <script src='https://cwilso.github.io/WebMIDIAPIShim/build/WebMIDIAPI.min.js'></script>
     
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
