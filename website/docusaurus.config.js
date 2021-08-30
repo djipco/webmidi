@@ -27,9 +27,10 @@ module.exports = {
           label: "Documentation",
         },
         {
-          to: "api",
+          to: "/api",
           label: "API",
           position: "left",
+          activeBaseRegex: `/api/`,
         },
         {
           to: "showcase",
@@ -114,8 +115,6 @@ module.exports = {
     //   //... other Algolia params
     // },
   },
-
-
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -125,7 +124,6 @@ module.exports = {
           // Please change this to your repo.
           editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/",
 
-          routeBasePath: "docs",
           path: "docs",
           lastVersion: "current",
           onlyIncludeVersions: ["current"],
@@ -133,8 +131,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/",
+          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -143,9 +140,8 @@ module.exports = {
     ],
   ],
 
-  plugins: [
 
-    // This section is for the additional 'doc' section which is the API
+  plugins: [
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -158,4 +154,3 @@ module.exports = {
   ],
 
 };
-
