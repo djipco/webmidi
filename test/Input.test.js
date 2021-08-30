@@ -504,7 +504,7 @@ describe("Input Object", function() {
 
       expect(() => {
         WEBMIDI_INPUT.addListener(event, channels);
-      }).to.throw(TypeError);
+      }).to.throw(Error);
 
     });
 
