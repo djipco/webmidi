@@ -114,6 +114,8 @@ module.exports = {
     //   //... other Algolia params
     // },
   },
+
+
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -121,8 +123,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/djipco/webmidi/edit/master/docusaurus/",
+          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/",
+
+          routeBasePath: "docs",
+          path: "docs",
+          lastVersion: "current",
+          onlyIncludeVersions: ["current"],
         },
         blog: {
           showReadingTime: true,
@@ -136,4 +142,20 @@ module.exports = {
       },
     ],
   ],
+
+  plugins: [
+
+    // This section is for the additional 'doc' section which is the API
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "api",
+        path: "api",
+        routeBasePath: "api",
+        sidebarPath: require.resolve("./sidebars.js"),
+      },
+    ],
+  ],
+
 };
+
