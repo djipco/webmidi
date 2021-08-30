@@ -598,7 +598,7 @@ export class Input extends EventEmitter {
    *
    * @returns {Listener[]} An array of all `Listener` objects that were created.
    */
-  addListener(event, listener, options) {
+  addListener(event, listener, options = {}) {
 
     if (WebMidi.validation) {
 
