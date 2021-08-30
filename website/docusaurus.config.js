@@ -27,10 +27,9 @@ module.exports = {
           label: "Documentation",
         },
         {
-          to: "/api",
+          to: "api/index",
           label: "API",
           position: "left",
-          activeBaseRegex: `/api/`,
         },
         {
           to: "showcase",
@@ -120,13 +119,13 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/",
-
           path: "docs",
           lastVersion: "current",
           onlyIncludeVersions: ["current"],
+          sidebarPath: require.resolve("./sidebars.js"),
+
+          // Please change this to your repo.
+          editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
         blog: {
           showReadingTime: true,
