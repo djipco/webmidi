@@ -8,7 +8,7 @@ const replace = require("replace-in-file");
 const rimraf = require("@alexbinary/rimraf");
 
 const SOURCE_PATH = path.join(process.cwd(), "src");
-const TARGET_PATH = path.join(process.cwd(), "website", "apix", "classes");
+const TARGET_PATH = path.join(process.cwd(), "website", "api", "classes");
 
 async function generate() {
 
