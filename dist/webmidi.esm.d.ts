@@ -2552,7 +2552,7 @@ declare class Output extends e {
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on August 30th 2021.
+ * This build was generated on September 3rd 2021.
  *
  *
  *
