@@ -1876,64 +1876,48 @@ class OutputChannel extends e {
     this.removeListener();
   }
   /**
-   * Sends a MIDI message at the scheduled timestamp. It is usually not necessary to use this method
-   * directly as you can use one of the simpler helper methods such as `playNote()`, `stopNote()`,
-   * `sendControlChange()`, etc.
+   * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object.
+   *
+   * Note that **you cannot use a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
+   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   *
+   * It is usually not necessary to use this method directly as you can use one of the simpler
+   * helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
-   * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
+   * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param status {Number} The MIDI status byte of the message (128-255). This is a combination of
-   * the command and the channel.
-   *
-   * @param {number[]} [data] An array of unsigned integers for the message. The number of data
-   * bytes varies depending on the status byte. It is perfectly legal to send no data for some
-   * message types (use `undefined` or an empty array in this case). Each byte must be between 0 and
-   * 255.
+   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes. Depending on the type of
+   * message, one to three bytes will be used.
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number, the
-   * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a positive
+   * number
+   * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
-   * than 0xFF.
+   * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 2 is greater
-   * than 0xFF.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-   * index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Reserved status is not allowed at
-   * index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': System exclusive message is not
-   * allowed at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected end of system
-   * exclusive message at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 1.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 2.
-   *
-   * @throw {TypeError} Failed to execute 'send' on 'MIDIOutput': ? is not a UInt8 value.
+   * @throws {RangeError} Data bytes must be integers between 0 and 255.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
 
 
-  send(status, data = [], options = {}) {
-    this.output.send(status, data, options);
+  send(message, options = {
+    time: 0
+  }) {
+    this.output.send(message, options);
     return this;
   }
   /**
@@ -1997,7 +1981,9 @@ class OutputChannel extends e {
 
     if (!options.rawValue) pressure = Math.round(pressure * 127);
     wm.getValidNoteArray(note, options).forEach(n => {
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), [n.number, pressure], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
+        time: wm.convertToTimestamp(options.time)
+      });
     });
     return this;
   }
@@ -2114,7 +2100,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), [controller, value], wm.convertToTimestamp(options.time));
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], wm.convertToTimestamp(options.time));
     return this;
   }
   /**
@@ -3545,49 +3531,39 @@ class Output extends e {
     }
   }
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled time. The message should be an
-   * array of 8bit unsigned integers (0-225) or a `Uint8Array` object.
+   * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object.
+   *
+   * Note that **you cannot use a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
+   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   *
+   * It is usually not necessary to use this method directly as you can use one of the simpler
+   * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
-   * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
+   * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8 bit unsigned integers or a `Uint8Array`
-   * object containing the bytes for. Depending on the type of message, one to three bytes will be
-   * used (inclusively).
+   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes. Depending on the type of
+   * message, one to three bytes will be used.
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a positive
+   * number
+   * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
-   * than 0xFF.
+   * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 2 is greater
-   * than 0xFF.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-   * index 2.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Reserved status is not allowed at
-   * index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': System exclusive message is not
-   * allowed at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected end of system
-   * exclusive message at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 1.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 2.
+   * @throws {RangeError} Data bytes must be integers between 0 and 255.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -3619,7 +3595,9 @@ class Output extends e {
           throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
-      if (!options) throw new TypeError("The 'options' parameter is invalid.");
+      if (!options) options = {
+        time: 0
+      };
     } // Send message and return `Output` for chaining
 
 
