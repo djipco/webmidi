@@ -3612,7 +3612,7 @@ class Output extends e {
 
 
       if (parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255) {
-        console.info("coucou");
+        console.info("coucou", message[0]);
       } else {
         throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
       }
