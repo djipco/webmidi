@@ -2534,7 +2534,9 @@ class OutputChannel extends e {
       rawRelease: parseInt(nVelocity)
     };
     wm.getValidNoteArray(note, o).forEach(n => {
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), [n.number, n.rawRelease], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
+        time: wm.convertToTimestamp(options.time)
+      });
     });
     return this;
   }
@@ -2632,7 +2634,9 @@ class OutputChannel extends e {
       rawAttack: nVelocity
     };
     wm.getValidNoteArray(note, o).forEach(n => {
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), [n.number, n.rawAttack], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
+        time: wm.convertToTimestamp(options.time)
+      });
     });
     return this;
   }
@@ -2697,7 +2701,9 @@ class OutputChannel extends e {
       }
     }
 
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
+      time: wm.convertToTimestamp(options.time)
+    });
     return this;
   }
   /**
@@ -2774,7 +2780,9 @@ class OutputChannel extends e {
       }
     }
 
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), [Math.round(pressure * 127)], wm.convertToTimestamp(options.time));
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
+      time: wm.convertToTimestamp(options.time)
+    });
     return this;
   }
   /**
@@ -3008,7 +3016,9 @@ class OutputChannel extends e {
       lsb = nLevel & 0x7F;
     }
 
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), [lsb, msb], wm.convertToTimestamp(options.time));
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
+      time: wm.convertToTimestamp(options.time)
+    });
     return this;
   }
   /**
@@ -3086,7 +3096,9 @@ class OutputChannel extends e {
       }
     }
 
-    this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), [program - 1], wm.convertToTimestamp(options.time));
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+      time: wm.convertToTimestamp(options.time)
+    });
     return this;
   }
   /**
