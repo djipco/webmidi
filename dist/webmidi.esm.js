@@ -2076,7 +2076,7 @@ class OutputChannel extends e {
         controller,
         value
       ],
-      wm.convertToTimestamp(options.time)
+      {time: wm.convertToTimestamp(options.time)}
     );
 
     return this;
