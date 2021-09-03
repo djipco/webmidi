@@ -2538,7 +2538,7 @@ declare class Output extends e {
     get type(): string;
 }
 /**
- * WebMidi.js v3.0.0-alpha.5
+ * WebMidi.js v3.0.0-alpha.7
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
