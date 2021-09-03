@@ -370,7 +370,7 @@ describe("Output Object", function() {
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
-          expect(WebMidi.time - sent - duration).to.be.within(0, 10);
+          expect(WebMidi.time - sent - duration).to.be.within(-5, 10);
           VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
