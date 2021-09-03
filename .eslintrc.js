@@ -44,7 +44,7 @@ module.exports = {
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
     "linebreak-style": ["error", "unix"], // Force \n instead of Prettier's auto-detect behaviour
     "no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }],
-    "max-len": ["error", { "code": 100 }], // Prettier's 80 is too small. Period.
+    "max-len": ["error", { "code": 100, "comments": 120 }], // Prettier's 80 is too small. Period.
     "no-console": ["error", { "allow": ["info", "warn", "error"] }], // Only some (unlike Prettier)
 
     // Other rules
