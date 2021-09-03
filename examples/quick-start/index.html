@@ -29,6 +29,10 @@
           });
         }
 
+        WebMidi.inputs[1].addListener("noteon", e => {
+          document.body.innerHTML+= `${e.note.name} <br>`;
+        });
+
       }
 
     </script>
