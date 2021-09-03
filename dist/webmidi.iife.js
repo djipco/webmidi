@@ -2099,7 +2099,9 @@
         }
       }
 
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
+        time: wm.convertToTimestamp(options.time)
+      });
       return this;
     }
     /**
