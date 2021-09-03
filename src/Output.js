@@ -194,84 +194,62 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled time. The message should be an
-   * array of 8bit unsigned integers (0-225) or a `Uint8Array` object.
+   * Sends a MIDI message on the MIDI output port. If not time is specified, the message will be
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * `Uint8Array` object.
    *
-   * Details on the format of MIDI messages are available in the summary of
-   * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
+   * Note that **you cannot use a `Uint8Array` parameter in the Node.js environment**. This is
+   * because the MIDI submodule used in this environment (JZZ.js) does not support it.
+   *
+   * Details on the format of MIDI messages are available in the summary of MIDI
+   * [messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8 bit unsigned integers or a `Uint8Array`
-   * object containing the bytes for. Depending on the type of message, one to three bytes will be
-   * used (inclusively).
+   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes. Depending on the type of
+   * message, one to three bytes will be used.
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a positive
+   * number (DOMHighResTimeStamp), the operation will be scheduled for that point time. If `time` is
+   * omitted, or in the past, the operation will be carried out as soon as possible.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
-   * than 0xFF.
+   * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 2 is greater
-   * than 0xFF.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-   * index 2.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Reserved status is not allowed at
-   * index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': System exclusive message is not
-   * allowed at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected end of system
-   * exclusive message at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 1.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 2.
+   * @throws {RangeError} Data bytes must be integers between 0 and 255.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(message, options= {}, legacy = {}) {
+  send(message, options = {time: 0}, legacy = undefined) {
 
     if (WebMidi.validation) {
 
-      // Check if using legacy syntax
-      if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
+      // If message is neither an array nor a Uint8Array, then we are in legacy mode
+      if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        if (typeof legacy === "number") {
-          options = {time: legacy};
-        } else {
-          options = legacy;
-        }
+        options = legacy ? {time: legacy} : {time: 0};
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
-        throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
+        throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
       }
 
       message.slice(1).forEach(value => {
         value = parseInt(value);
-        if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
+        if (!(value >= 0 && value <= 255)) {
           throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
 
+      if (!options) options = {time: 0};
+
     }
 
-    // Send message
-
+    // Send message and return `Output` for chaining
     this._midiOutput.send(message, WebMidi.convertToTimestamp(options.time));
-
     return this;
 
   }

@@ -439,48 +439,122 @@ describe("Output Object", function() {
 
   describe("send()", function () {
 
-    it("should throw error if status byte is invalid", function() {
+    it("should throw error if 'status' byte is invalid (legacy)", function() {
 
       // Arrange
-      let values = ["xxx", [], NaN, 127, 256, undefined, null, -1, 0, {}];
+      let values = ["xxx", NaN, 127, 256, undefined, null, -1, 0, {}];
 
       // Act
       values.forEach(assert);
 
       // Assert
-      function assert(param){
+      function assert(value){
         expect(() => {
-          WEBMIDI_OUTPUT.send(param);
+          WEBMIDI_OUTPUT.send(value);
         }).to.throw(TypeError);
       };
 
     });
 
-    it("should throw error if data bytes are invalid", function() {
+    it("should throw error if 'status' byte is invalid", function() {
+
+      // Arrange
+      const uint8Array1 = new Uint8Array(1);
+      uint8Array1[0] = 127;
+      const uint8Array2 = new Uint8Array(1);
+      uint8Array2[0] = 0;
+
+      let messages = [
+        ["xxx"],
+        [NaN],
+        [127],
+        [256],
+        [undefined],
+        [null],
+        [-1],
+        [0],
+        [{}],
+        uint8Array1,
+        uint8Array2
+      ];
+
+      // Act
+      messages.forEach(assert);
+
+      // Assert
+      function assert(value){
+        expect(() => {
+          WEBMIDI_OUTPUT.send(value);
+        }).to.throw(RangeError);
+      };
+
+    });
+
+    it("should throw error if 'data' bytes are invalid (legacy)", function() {
 
       // Arrange
       let values = [
-        "xxx",
-        -1,
-        256,
-        NaN,
-        null,
-        Infinity,
-        [],
-        [0, -1],
-        [0, 256],
-        [-1, 0],
-        [256, 0]
+        ["xxx"],
+        [-1],
+        [256],
+        [NaN],
+        [null],
+        [Infinity]
       ];
 
       // Act
       values.forEach(assert);
 
       // Assert
-      function assert(param){
+      function assert(value){
         expect(() => {
-          WEBMIDI_OUTPUT.send(128, param);
-        }).to.throw();
+          WEBMIDI_OUTPUT.send(0x90, value);
+        }).to.throw(RangeError);
+      };
+
+    });
+
+    it("should throw error if 'data' bytes are invalid", function() {
+
+      // Arrange
+      let messages = [
+        [0x90, "xxx"],
+        [0x90, -1],
+        [0x90, 256],
+        [0x90, NaN],
+        [0x90, null],
+        [0x90, Infinity]
+      ];
+
+      // Act
+      messages.forEach(assert);
+
+      // Assert
+      function assert(value){
+        expect(() => {
+          WEBMIDI_OUTPUT.send(value);
+        }).to.throw(RangeError);
+      };
+
+    });
+
+    it("should throw error if message is incomplete (legacy)", function() {
+
+      // Arrange
+      let values = [
+        undefined,
+        NaN,
+        []
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value){
+        expect(() => {
+          WEBMIDI_OUTPUT.send(0x90, value);
+        }).to.throw(TypeError);
       };
 
     });
@@ -488,34 +562,49 @@ describe("Output Object", function() {
     it("should throw error if message is incomplete", function() {
 
       // Arrange
-      let values = [0x80, 0x90, 0xA0];
+      const uint8Array = new Uint8Array(1);
+      uint8Array[0] = 0x90;
+
+      let messages = [
+        [0x90],
+        uint8Array
+      ];
 
       // Act
-      values.forEach(assert);
+      messages.forEach(assert);
 
       // Assert
-      function assert(param) {
+      function assert(value){
         expect(() => {
-          WEBMIDI_OUTPUT.send(param, []);
+          WEBMIDI_OUTPUT.send(value);
         }).to.throw(TypeError);
-      }
+      };
 
     });
 
-    it("should return the Output object for method chaining", function() {
+    it("should return the Output object for method chaining (legacy)", function() {
       expect(
         WEBMIDI_OUTPUT.send(144, [64, 64])
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
-    it("should actually send the message", function(done) {
+    it("should return the Output object for method chaining", function() {
+      expect(
+        WEBMIDI_OUTPUT.send([144, 64, 64])
+      ).to.equal(WEBMIDI_OUTPUT);
+    });
+
+    it("should actually send the message (legacy)", function(done) {
 
       // Arrange
       let expected = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.send(expected[0], [expected[1], expected[2]]);
+      WEBMIDI_OUTPUT.send(
+        expected[0],
+        [expected[1], expected[2]]
+      );
 
       // Assert
       function assert(deltaTime, message) {
@@ -526,26 +615,53 @@ describe("Output Object", function() {
 
     });
 
-    it("should send immediately if no valid timestamp is found", function (done) {
+    it("should actually send the message", function(done) {
+
+      // We cannot test sending with Uint8Array because it is not supported in Node.js
+
+      // Arrange
+      let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.send(message);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(message);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    it("should send immediately if no valid timestamp is found (legaqy) ", function (done) {
 
       // Arrange
       let status = 144;
-      let parameters = [13, 0];
+      let data = [13, 0];
       let sent = WebMidi.time;
-      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
+      let timestamps = [
+        -1,
+        0,
+        -Infinity,
+        undefined,
+        null,
+        NaN
+      ];
       let index = 0;
 
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       timestamps.forEach(
-        stamp => WEBMIDI_OUTPUT.channels[1].send(status, parameters, {time: stamp})
+        stamp => WEBMIDI_OUTPUT.send(status, data, stamp)
       );
 
       // Assert
       function assert(deltaTime, message) {
 
-        if (JSON.stringify(message) == JSON.stringify([].concat(status, parameters))) {
+        if (JSON.stringify(message) == JSON.stringify([].concat(status, data))) {
 
           expect(WebMidi.time - sent).to.be.within(0, 5);
           index++;
@@ -561,7 +677,48 @@ describe("Output Object", function() {
 
     });
 
-    it("should schedule message according to absolute timestamp", function (done) {
+    it("should send immediately if no valid timestamp is found", function (done) {
+
+      // Arrange
+      let data = [144, 13, 0];
+      let sent = WebMidi.time;
+      let timestamps = [
+        {time: -1},
+        {time: -Infinity},
+        {time: undefined},
+        {time: null},
+        {time: NaN},
+        {}
+      ];
+      let index = 0;
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      timestamps.forEach(
+        stamp => WEBMIDI_OUTPUT.send(data, stamp)
+      );
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(data)) {
+
+          expect(WebMidi.time - sent).to.be.within(0, 5);
+          index++;
+
+          if (index === timestamps.length) {
+            VIRTUAL_OUTPUT.removeAllListeners();
+            done();
+          }
+
+        }
+
+      }
+
+    });
+
+    it("should schedule message according to absolute timestamp (legacy)", function (done) {
 
       // Arrange
       let status = 144;
@@ -570,7 +727,7 @@ describe("Output Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
+      WEBMIDI_OUTPUT.send(status, data, target);
 
       // Assert
       function assert() {
@@ -581,7 +738,26 @@ describe("Output Object", function() {
 
     });
 
-    it("should schedule message according to relative timestamp", function (done) {
+    it("should schedule message according to absolute timestamp", function (done) {
+
+      // Arrange
+      let message = [144, 10, 0];
+      let target = WebMidi.time + 100;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.send(message, {time: target});
+
+      // Assert
+      function assert() {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it("should schedule message according to relative timestamp (legacy)", function (done) {
 
       // Arrange
       let status = 144;
@@ -591,7 +767,27 @@ describe("Output Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].send(status, data, {time: offset});
+      WEBMIDI_OUTPUT.send(status, data, offset);
+
+      // Assert
+      function assert() {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        expect(WebMidi.time - target).to.be.within(-5, 10);
+        done();
+      }
+
+    });
+
+    it.only("should schedule message according to relative timestamp", function (done) {
+
+      // Arrange
+      let message = [144, 10, 0];
+      let offset = "+100";
+      let target = WebMidi.time + 100;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.send(message, {time: offset});
 
       // Assert
       function assert() {
