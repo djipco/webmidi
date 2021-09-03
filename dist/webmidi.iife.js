@@ -3592,29 +3592,23 @@
      */
 
 
-    send(message, options = {}, legacy = {}) {
+    send(message, options = {
+      time: 0
+    }, legacy = undefined) {
       if (wm.validation) {
         // If message is neither an array nor a Uint8Array, then we are in legacy mode
         if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
           message = [message];
           if (Array.isArray(options)) message = message.concat(options);
-          options = typeof legacy === "number" ? {
+          options = legacy ? {
             time: legacy
-          } : legacy;
-        } // Check if using legacy syntax
-        // if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
-        //   message = [message];
-        //   if (Array.isArray(options)) message = message.concat(options);
-        //   if (typeof legacy === "number") {
-        //     options = {time: legacy};
-        //   } else {
-        //     options = legacy;
-        //   }
-        // }
-
+          } : {
+            time: 0
+          };
+        }
 
         if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
-          throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
+          throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
         }
 
         message.slice(1).forEach(value => {
@@ -3624,6 +3618,7 @@
             throw new RangeError("Data bytes must be integers between 0 and 255.");
           }
         });
+        if (!options) throw new TypeError("The 'options' parameter is invalid.");
       } // Send message and return `Output` for chaining
 
 
