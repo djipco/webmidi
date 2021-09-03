@@ -3606,9 +3606,14 @@ class Output extends e {
         } : {
           time: 0
         };
-      }
+      } // if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
+      //   throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
+      // }
 
-      if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
+
+      if (parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255) {
+        console.info("coucou");
+      } else {
         throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
       }
 
