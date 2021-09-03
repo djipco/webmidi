@@ -451,7 +451,7 @@ describe("Output Object", function() {
       function assert(value){
         expect(() => {
           WEBMIDI_OUTPUT.send(value);
-        }).to.throw(TypeError);
+        }).to.throw(RangeError);
       };
 
     });
@@ -778,7 +778,7 @@ describe("Output Object", function() {
 
     });
 
-    it.only("should schedule message according to relative timestamp", function (done) {
+    it("should schedule message according to relative timestamp", function (done) {
 
       // Arrange
       let message = [144, 10, 0];
