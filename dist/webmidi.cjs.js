@@ -3694,7 +3694,7 @@ class Output extends e {
   sendSysex(manufacturer, data, options = {}) {
     manufacturer = [].concat(manufacturer);
     data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(wm.MIDI_SYSTEM_MESSAGES.sysex, data, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {
       time: options.time
     });
     return this;
@@ -3749,7 +3749,7 @@ class Output extends e {
       }
     }
 
-    this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, [value], {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.timecode, value], {
       time: options.time
     });
     return this;
@@ -3776,7 +3776,7 @@ class Output extends e {
     value = Math.floor(value) || 0;
     var msb = value >> 7 & 0x7F;
     var lsb = value & 0x7F;
-    this.send(wm.MIDI_SYSTEM_MESSAGES.songposition, [msb, lsb], {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
       time: options.time
     });
     return this;
@@ -3827,7 +3827,7 @@ class Output extends e {
       }
     }
 
-    this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.songselect, value], {
       time: options.time
     });
     return this;
@@ -3862,7 +3862,7 @@ class Output extends e {
 
 
   sendTuneRequest(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.tunerequest, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.tunerequest], {
       time: options.time
     });
     return this;
@@ -3883,7 +3883,7 @@ class Output extends e {
 
 
   sendClock(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.clock, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.clock], {
       time: options.time
     });
     return this;
@@ -3905,7 +3905,7 @@ class Output extends e {
 
 
   sendStart(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.start], {
       time: options.time
     });
     return this;
@@ -3927,7 +3927,7 @@ class Output extends e {
 
 
   sendContinue(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.continue], {
       time: options.time
     });
     return this;
@@ -3948,7 +3948,7 @@ class Output extends e {
 
 
   sendStop(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.stop], {
       time: options.time
     });
     return this;
@@ -3970,7 +3970,7 @@ class Output extends e {
 
 
   sendActiveSensing(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.activesensing, [], {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.activesensing], {
       time: options.time
     });
     return this;
@@ -3991,7 +3991,7 @@ class Output extends e {
 
 
   sendReset(options = {}) {
-    this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, {
+    this.send([wm.MIDI_SYSTEM_MESSAGES.reset], {
       time: options.time
     });
     return this;
