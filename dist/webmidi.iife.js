@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.5
+ * WebMidi.js v3.0.0-alpha.7
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
@@ -2533,7 +2533,9 @@
         rawRelease: parseInt(nVelocity)
       };
       wm.getValidNoteArray(note, o).forEach(n => {
-        this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), [n.number, n.rawRelease], wm.convertToTimestamp(options.time));
+        this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
+          time: wm.convertToTimestamp(options.time)
+        });
       });
       return this;
     }
@@ -2631,7 +2633,9 @@
         rawAttack: nVelocity
       };
       wm.getValidNoteArray(note, o).forEach(n => {
-        this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), [n.number, n.rawAttack], wm.convertToTimestamp(options.time));
+        this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
+          time: wm.convertToTimestamp(options.time)
+        });
       });
       return this;
     }
@@ -2696,7 +2700,9 @@
         }
       }
 
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), [command, value], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
+        time: wm.convertToTimestamp(options.time)
+      });
       return this;
     }
     /**
@@ -2773,7 +2779,9 @@
         }
       }
 
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), [Math.round(pressure * 127)], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
+        time: wm.convertToTimestamp(options.time)
+      });
       return this;
     }
     /**
@@ -3007,7 +3015,9 @@
         lsb = nLevel & 0x7F;
       }
 
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), [lsb, msb], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
+        time: wm.convertToTimestamp(options.time)
+      });
       return this;
     }
     /**
@@ -3085,7 +3095,9 @@
         }
       }
 
-      this.send((wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), [program - 1], wm.convertToTimestamp(options.time));
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+        time: wm.convertToTimestamp(options.time)
+      });
       return this;
     }
     /**
@@ -3681,7 +3693,7 @@
     sendSysex(manufacturer, data, options = {}) {
       manufacturer = [].concat(manufacturer);
       data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send(wm.MIDI_SYSTEM_MESSAGES.sysex, data, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {
         time: options.time
       });
       return this;
@@ -3736,7 +3748,7 @@
         }
       }
 
-      this.send(wm.MIDI_SYSTEM_MESSAGES.timecode, [value], {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.timecode, value], {
         time: options.time
       });
       return this;
@@ -3763,7 +3775,7 @@
       value = Math.floor(value) || 0;
       var msb = value >> 7 & 0x7F;
       var lsb = value & 0x7F;
-      this.send(wm.MIDI_SYSTEM_MESSAGES.songposition, [msb, lsb], {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
         time: options.time
       });
       return this;
@@ -3814,7 +3826,7 @@
         }
       }
 
-      this.send(wm.MIDI_SYSTEM_MESSAGES.songselect, [value], {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.songselect, value], {
         time: options.time
       });
       return this;
@@ -3849,7 +3861,7 @@
 
 
     sendTuneRequest(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.tunerequest, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.tunerequest], {
         time: options.time
       });
       return this;
@@ -3870,7 +3882,7 @@
 
 
     sendClock(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.clock, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.clock], {
         time: options.time
       });
       return this;
@@ -3892,7 +3904,7 @@
 
 
     sendStart(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.start, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.start], {
         time: options.time
       });
       return this;
@@ -3914,7 +3926,7 @@
 
 
     sendContinue(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.continue, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.continue], {
         time: options.time
       });
       return this;
@@ -3935,7 +3947,7 @@
 
 
     sendStop(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.stop, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.stop], {
         time: options.time
       });
       return this;
@@ -3957,7 +3969,7 @@
 
 
     sendActiveSensing(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.activesensing, [], {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.activesensing], {
         time: options.time
       });
       return this;
@@ -3978,7 +3990,7 @@
 
 
     sendReset(options = {}) {
-      this.send(wm.MIDI_SYSTEM_MESSAGES.reset, undefined, {
+      this.send([wm.MIDI_SYSTEM_MESSAGES.reset], {
         time: options.time
       });
       return this;
