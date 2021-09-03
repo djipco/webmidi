@@ -3674,7 +3674,7 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(message, options = {}, legacy = {}) {
+  send(message, options = {time: 0}, legacy = undefined) {
 
     if (wm.validation) {
 
@@ -3682,22 +3682,11 @@ class Output extends e {
       if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        options = (typeof legacy === "number") ? {time: legacy} : legacy;
+        options = legacy ? {time: legacy} : {time: 0};
       }
 
-      // Check if using legacy syntax
-      // if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
-      //   message = [message];
-      //   if (Array.isArray(options)) message = message.concat(options);
-      //   if (typeof legacy === "number") {
-      //     options = {time: legacy};
-      //   } else {
-      //     options = legacy;
-      //   }
-      // }
-
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
-        throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
+        throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
       }
 
       message.slice(1).forEach(value => {
@@ -3706,6 +3695,8 @@ class Output extends e {
           throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
+
+      if (!options) throw new TypeError("The 'options' parameter is invalid.");
 
     }
 
