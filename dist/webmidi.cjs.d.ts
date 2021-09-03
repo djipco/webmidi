@@ -1219,7 +1219,7 @@ declare class Output extends e {
      */
     send(message: number[] | Uint8Array, options?: {
         time?: number | string;
-    }, legacy?: {}): Output;
+    }, legacy?: any): Output;
     /**
      * Sends a MIDI [system exclusive]{@link
       * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
