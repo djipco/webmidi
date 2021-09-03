@@ -671,77 +671,129 @@ describe("OutputChannel Object", function() {
 
   describe("send()", function () {
 
-    it("should actually send MIDI message", function (done) {
-
-      // Arrange
-      let status = 144;
-      let data = [10, 0];
-      VIRTUAL_OUTPUT.on("message", assert);
-
-      // Act
-      WEBMIDI_OUTPUT.channels[1].send(status, data);
-
-      // Assert
-      function assert(deltaTime, message) {
-
-        VIRTUAL_OUTPUT.removeAllListeners();
-
-        expect(message[0]).to.equal(status);
-        expect(message[1]).to.equal(data[0]);
-        expect(message[2]).to.equal(data[1]);
-
-        done();
-
-      }
-
-    });
-
     it("should throw error when invalid status is provided", function () {
 
       // Arrange
-      let values = [
-        undefined,
-        null,
-        NaN,
-        Infinity,
-        -Infinity,
-        -1,
-        0,
-        127,
-        256
+      const uint8Array1 = new Uint8Array(1);
+      uint8Array1[0] = 127;
+      const uint8Array2 = new Uint8Array(1);
+      uint8Array2[0] = 0;
+
+      let messages = [
+        ["xxx"],
+        [NaN],
+        [127],
+        [256],
+        [undefined],
+        [null],
+        [-1],
+        [0],
+        [{}],
+        uint8Array1,
+        uint8Array2
       ];
 
       // Act
-      values.forEach(assert);
+      messages.forEach(assert);
 
       // Assert
-      function assert(value) {
+      function assert(value){
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].send(value, 0);
-        }).to.throw();
-      }
+          WEBMIDI_OUTPUT.channels[1].send(value);
+        }).to.throw(RangeError);
+      };
 
     });
 
     it("should throw error when invalid data is provided", function () {
 
       // Arrange
-      let values = [
-        null,
-        NaN,
-        Infinity,
-        -Infinity,
-        -1
+      let messages = [
+        [0x90, "xxx"],
+        [0x90, -1],
+        [0x90, 256],
+        [0x90, NaN],
+        [0x90, null],
+        [0x90, Infinity]
       ];
 
       // Act
-      values.forEach(assert);
+      messages.forEach(assert);
 
       // Assert
-      function assert(value) {
+      function assert(value){
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].send(128, [value, 64]);
-        }).to.throw();
+          WEBMIDI_OUTPUT.channels[1].send(value);
+        }).to.throw(RangeError);
+      };
+
+    });
+
+    it("should actually send MIDI message", function (done) {
+
+      // We cannot test sending with Uint8Array because it is not supported in Node.js
+
+      // Arrange
+      let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].send(message);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(message);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    it("should throw error if message is incomplete", function() {
+
+      // Arrange
+      const uint8Array = new Uint8Array(1);
+      uint8Array[0] = 0x90;
+
+      let messages = [
+        [0x90],
+        uint8Array
+      ];
+
+      // Act
+      messages.forEach(assert);
+
+      // Assert
+      function assert(value){
+        expect(() => {
+          WEBMIDI_OUTPUT.channels[1].send(value);
+        }).to.throw(TypeError);
+      };
+
+    });
+
+    it("should return 'OutputChannel' object for method chaining", function () {
+      expect(
+        WEBMIDI_OUTPUT.channels[1].send([144, 127, 127])
+      ).to.equal(WEBMIDI_OUTPUT.channels[1]);
+    });
+
+    it("should actually send the message", function(done) {
+
+      // We cannot test sending with Uint8Array because it is not supported in Node.js
+
+      // Arrange
+      let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].send(message);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(message);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
       }
 
     });
@@ -749,23 +801,29 @@ describe("OutputChannel Object", function() {
     it("should send immediately if no valid timestamp is found", function (done) {
 
       // Arrange
-      let status = 144;
-      let data = [13, 0];
+      let data = [144, 13, 0];
       let sent = WebMidi.time;
-      let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
+      let timestamps = [
+        {time: -1},
+        {time: -Infinity},
+        {time: undefined},
+        {time: null},
+        {time: NaN},
+        {}
+      ];
       let index = 0;
 
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
       timestamps.forEach(
-        stamp => WEBMIDI_OUTPUT.channels[1].send(status, data, {time: stamp})
+        stamp => WEBMIDI_OUTPUT.channels[1].send(data, stamp)
       );
 
       // Assert
       function assert(deltaTime, message) {
 
-        if (JSON.stringify(message) == JSON.stringify([].concat(status, data))) {
+        if (JSON.stringify(message) == JSON.stringify(data)) {
 
           expect(WebMidi.time - sent).to.be.within(0, 5);
           index++;
@@ -784,16 +842,12 @@ describe("OutputChannel Object", function() {
     it("should schedule message according to absolute timestamp", function (done) {
 
       // Arrange
-      let status = 144;
-      let data = [10, 0];
-      let delay = 100;
-      let target = WebMidi.time + 50 + delay;
+      let message = [144, 10, 0];
+      let target = WebMidi.time + 100;
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      setTimeout(() => {
-        WEBMIDI_OUTPUT.channels[1].send(status, data, {time: target});
-      }, delay);
+      WEBMIDI_OUTPUT.channels[1].send(message, {time: target});
 
       // Assert
       function assert() {
@@ -807,14 +861,13 @@ describe("OutputChannel Object", function() {
     it("should schedule message according to relative timestamp", function (done) {
 
       // Arrange
-      let status = 144;
-      let data = [10, 0];
+      let message = [144, 10, 0];
       let offset = "+100";
       let target = WebMidi.time + 100;
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].send(status, data, {time: offset});
+      WEBMIDI_OUTPUT.channels[1].send(message, {time: offset});
 
       // Assert
       function assert() {
@@ -823,12 +876,6 @@ describe("OutputChannel Object", function() {
         done();
       }
 
-    });
-
-    it("should return 'OutputChannel' object for method chaining", function () {
-      expect(
-        WEBMIDI_OUTPUT.channels[1].send(144, [127, 127])
-      ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
@@ -1274,9 +1321,9 @@ describe("OutputChannel Object", function() {
       // Assert
       let args = spy.args[0];
       expect(spy.calledOnce).to.be.true;
-      expect(args[1][0]).to.equal(note);
-      expect(args[1][1]).to.equal(options.rawRelease);
-      expect(args[2]).to.equal(options.time);
+      expect(args[0][1]).to.equal(note);
+      expect(args[0][2]).to.equal(options.rawRelease);
+      expect(args[1].time).to.equal(options.time);
 
     });
 
@@ -1295,9 +1342,9 @@ describe("OutputChannel Object", function() {
       // Assert
       let args = spy.args[0];
       expect(spy.calledOnce).to.be.true;
-      expect(args[1][0]).to.equal(note);
-      expect(args[1][1]).to.equal(expectedRawRelease);
-      expect(args[2]).to.equal(options.time);
+      expect(args[0][1]).to.equal(note);
+      expect(args[0][2]).to.equal(expectedRawRelease);
+      expect(args[1].time).to.equal(options.time);
 
     });
 
@@ -1450,9 +1497,9 @@ describe("OutputChannel Object", function() {
       // Assert
       let args = spy.args[0];
       expect(spy.calledOnce).to.be.true;
-      expect(args[1][0]).to.equal(note);
-      expect(args[1][1]).to.equal(options.rawAttack);
-      expect(args[2]).to.equal(options.time);
+      expect(args[0][1]).to.equal(note);
+      expect(args[0][2]).to.equal(options.rawAttack);
+      expect(args[1].time).to.equal(options.time);
 
     });
 
@@ -1471,9 +1518,9 @@ describe("OutputChannel Object", function() {
       // Assert
       let args = spy.args[0];
       expect(spy.calledOnce).to.be.true;
-      expect(args[1][0]).to.equal(note);
-      expect(args[1][1]).to.equal(expectedRawAttack);
-      expect(args[2]).to.equal(options.time);
+      expect(args[0][1]).to.equal(note);
+      expect(args[0][2]).to.equal(expectedRawAttack);
+      expect(args[1].time).to.equal(options.time);
 
     });
 

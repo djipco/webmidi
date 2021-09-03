@@ -23,7 +23,7 @@ others.
     * [new OutputChannel(output, number)](#new_OutputChannel_new)
     * [.output](#OutputChannel+output) : <code>Output</code>
     * [.number](#OutputChannel+number) : <code>number</code>
-    * [.send(status, [data], [options])](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.send(message, [options])](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
     * [.setKeyAftertouch(note, [pressure], [options])](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
     * [.sendControlChange(controller, value, [options])](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
     * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
@@ -73,45 +73,37 @@ The channel's number (1-16)
 **Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 <a name="OutputChannel+send"></a>
 
-## outputChannel.send(status, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-Sends a MIDI message at the scheduled timestamp. It is usually not necessary to use this method
-directly as you can use one of the simpler helper methods such as `playNote()`, `stopNote()`,
-`sendControlChange()`, etc.
+## outputChannel.send(message, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+object.
+
+Note that **you cannot use a
+[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
+([JZZ.js](https://www.npmjs.com/package/jzz)) does not support it.
+
+It is usually not necessary to use this method directly as you can use one of the simpler
+helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
 
 Details on the format of MIDI messages are available in the summary of
-[MIDI messages](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+[MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
 **Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
-than 0xFF.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index 2 is greater
-than 0xFF.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-index 0.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Reserved status is not allowed at
-index 0.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': System exclusive message is not
-allowed at index 0.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Unexpected end of system
-exclusive message at index 0.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-1.
-- <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-2.
+- <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
+- <code>RangeError</code> Data bytes must be integers between 0 and 255.
 
-**Throw**: <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': ? is not a UInt8 value.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| status | <code>Number</code> |  | The MIDI status byte of the message (128-255). This is a combination of the command and the channel. |
-| [data] | <code>Array.&lt;number&gt;</code> |  | An array of unsigned integers for the message. The number of data bytes varies depending on the status byte. It is perfectly legal to send no data for some message types (use `undefined` or an empty array in this case). Each byte must be between 0 and 255. |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> |  | An array of 8bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes. Depending on the type of message, one to three bytes will be used. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+| [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
 <a name="OutputChannel+setKeyAftertouch"></a>
 

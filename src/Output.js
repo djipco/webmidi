@@ -194,15 +194,21 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port. If not time is specified, the message will be
+   * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
    * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
-   * `Uint8Array` object.
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object.
    *
-   * Note that **you cannot use a `Uint8Array` parameter in the Node.js environment**. This is
-   * because the MIDI submodule used in this environment (JZZ.js) does not support it.
+   * Note that **you cannot use a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
+   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
    *
-   * Details on the format of MIDI messages are available in the summary of MIDI
-   * [messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
+   * It is usually not necessary to use this method directly as you can use one of the simpler
+   * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   *
+   * Details on the format of MIDI messages are available in the summary of
+   * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
    * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
@@ -213,8 +219,10 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
-   * number (DOMHighResTimeStamp), the operation will be scheduled for that point time. If `time` is
-   * omitted, or in the past, the operation will be carried out as soon as possible.
+   * number
+   * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
@@ -329,7 +337,7 @@ export class Output extends EventEmitter {
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, {time: options.time});
+    this.send([WebMidi.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {time: options.time});
 
     return this;
 
@@ -392,8 +400,10 @@ export class Output extends EventEmitter {
     }
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
-      [value],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
+        value
+      ],
       {time: options.time}
     );
 
@@ -426,8 +436,11 @@ export class Output extends EventEmitter {
     var lsb = value & 0x7F;
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
-      [msb, lsb],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
+        msb,
+        lsb
+      ],
       {time: options.time}
     );
     return this;
@@ -485,8 +498,10 @@ export class Output extends EventEmitter {
     }
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
-      [value],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
+        value
+      ],
       {time: options.time}
     );
 
@@ -527,8 +542,7 @@ export class Output extends EventEmitter {
   sendTuneRequest(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -552,8 +566,7 @@ export class Output extends EventEmitter {
   sendClock(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.clock,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -578,8 +591,7 @@ export class Output extends EventEmitter {
   sendStart(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.start,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -604,8 +616,7 @@ export class Output extends EventEmitter {
   sendContinue(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.continue,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -629,8 +640,7 @@ export class Output extends EventEmitter {
   sendStop(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.stop,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -655,8 +665,7 @@ export class Output extends EventEmitter {
   sendActiveSensing(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
-      [],
+      [WebMidi.MIDI_SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -680,8 +689,7 @@ export class Output extends EventEmitter {
   sendReset(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.reset,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 
