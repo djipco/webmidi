@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on August 30th 2021.
+ * This build was generated on September 3rd 2021.
  *
  *
  *
@@ -3674,20 +3674,27 @@ class Output extends e {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(message, options= {}, legacy = {}) {
+  send(message, options = {}, legacy = {}) {
 
     if (wm.validation) {
 
-      // Check if using legacy syntax
-      if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
+      // If message is neither an array nor a Uint8Array, then we are in legacy mode
+      if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        if (typeof legacy === "number") {
-          options = {time: legacy};
-        } else {
-          options = legacy;
-        }
+        options = (typeof legacy === "number") ? {time: legacy} : legacy;
       }
+
+      // Check if using legacy syntax
+      // if (!Array.isArray(message) && parseInt(message) >= 128 && parseInt(message) <= 255) {
+      //   message = [message];
+      //   if (Array.isArray(options)) message = message.concat(options);
+      //   if (typeof legacy === "number") {
+      //     options = {time: legacy};
+      //   } else {
+      //     options = legacy;
+      //   }
+      // }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
         throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
@@ -3695,17 +3702,15 @@ class Output extends e {
 
       message.slice(1).forEach(value => {
         value = parseInt(value);
-        if (!(parseInt(value) >= 0 && parseInt(value) <= 255)) {
+        if (!(value >= 0 && value <= 255)) {
           throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
 
     }
 
-    // Send message
-
+    // Send message and return `Output` for chaining
     this._midiOutput.send(message, wm.convertToTimestamp(options.time));
-
     return this;
 
   }
