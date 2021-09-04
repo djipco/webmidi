@@ -1,6 +1,6 @@
 // This script generates web-based API documentation files from jsdoc comments in the source code
-// and commits them to the 'api' directory of the 'gh-pages' branch. This makes them available at
-// djipco.githib.io/webmidi/api
+// and commits them to the '/archives/api' directory of the 'gh-pages' branch. This makes them
+// available at djipco.githib.io/webmidi/archives/api/v3
 
 // Modules
 const fs = require("fs-extra");
@@ -16,7 +16,7 @@ const system = require("system-commands");
 // Some paths
 const CUSTOM_CSS = "../css/custom.css";
 const TARGET_BRANCH = "gh-pages";
-const TARGET_PATH = "./api/v" + pkg.version.split(".")[0];
+const TARGET_PATH = "./archives/api/v" + pkg.version.split(".")[0];
 
 // Google Analytics configuration
 const GA_CONFIG = {
