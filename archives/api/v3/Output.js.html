@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.5 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.7 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -297,84 +297,70 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI message on the MIDI output port, at the scheduled time. The message should be an
-   * array of 8bit unsigned integers (0-225) or a `Uint8Array` object.
+   * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object.
+   *
+   * Note that **you cannot use a
+   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
+   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   *
+   * It is usually not necessary to use this method directly as you can use one of the simpler
+   * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
    * Details on the format of MIDI messages are available in the summary of
-   * [MIDI messages]{@link https://www.midi.org/specifications/item/table-1-summary-of-midi-message}
+   * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8 bit unsigned integers or a `Uint8Array`
-   * object containing the bytes for. Depending on the type of message, one to three bytes will be
-   * used (inclusively).
+   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes. Depending on the type of
+   * message, one to three bytes will be used.
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-   * a number, the message will be delayed by that many milliseconds. If the value is a number
-   * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-   * in the past, the operation will be carried out as soon as possible.
+   * a number, the message will be delayed by that many milliseconds. If the value is a positive
+   * number
+   * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 0 is greater
-   * than 0xFF.
+   * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 2 is greater
-   * than 0xFF.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Running status is not allowed at
-   * index 2.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Message is incomplete.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Reserved status is not allowed at
-   * index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': System exclusive message is not
-   * allowed at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected end of system
-   * exclusive message at index 0.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 1.
-   *
-   * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': Unexpected status byte at index
-   * 2.
+   * @throws {RangeError} Data bytes must be integers between 0 and 255.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  send(message, options= {}, legacy = {}) {
+  send(message, options = {time: 0}, legacy = undefined) {
 
     if (WebMidi.validation) {
 
-      // Check if using legacy syntax
-      if (!Array.isArray(message) &amp;&amp; parseInt(message) >= 128 &amp;&amp; parseInt(message) &lt;= 255) {
+      // If message is neither an array nor a Uint8Array, then we are in legacy mode
+      if (!Array.isArray(message) &amp;&amp; !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        if (typeof legacy === "number") {
-          options = {time: legacy};
-        } else {
-          options = legacy;
-        }
+        options = legacy ? {time: legacy} : {time: 0};
       }
 
       if (!(parseInt(message[0]) >= 128 &amp;&amp; parseInt(message[0]) &lt;= 255)) {
-        throw new TypeError("The first byte (status) must be an integer between 128 and 255.");
+        throw new RangeError("The first byte (status) must be an integer between 128 and 255.");
       }
 
       message.slice(1).forEach(value => {
         value = parseInt(value);
-        if (!(parseInt(value) >= 0 &amp;&amp; parseInt(value) &lt;= 255)) {
+        if (!(value >= 0 &amp;&amp; value &lt;= 255)) {
           throw new RangeError("Data bytes must be integers between 0 and 255.");
         }
       });
 
+      if (!options) options = {time: 0};
+
     }
 
-    // Send message
-
+    // Send message and return `Output` for chaining
     this._midiOutput.send(message, WebMidi.convertToTimestamp(options.time));
-
     return this;
 
   }
@@ -451,10 +437,18 @@ export class Output extends EventEmitter {
    */
   sendSysex(manufacturer, data, options = {}) {
 
+    // Merging Uint8Arrays
+    // var arrayOne = new Uint8Array([2,4,8]);
+    // var arrayTwo = new Uint8Array([16,32,64]);
+    //
+    // var mergedArray = new Uint8Array(arrayOne.length + arrayTwo.length);
+    // mergedArray.set(arrayOne);
+    // mergedArray.set(arrayTwo, arrayOne.length);
+
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send(WebMidi.MIDI_SYSTEM_MESSAGES.sysex, data, {time: options.time});
+    this.send([WebMidi.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {time: options.time});
 
     return this;
 
@@ -517,8 +511,10 @@ export class Output extends EventEmitter {
     }
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
-      [value],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
+        value
+      ],
       {time: options.time}
     );
 
@@ -551,8 +547,11 @@ export class Output extends EventEmitter {
     var lsb = value &amp; 0x7F;
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
-      [msb, lsb],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
+        msb,
+        lsb
+      ],
       {time: options.time}
     );
     return this;
@@ -610,8 +609,10 @@ export class Output extends EventEmitter {
     }
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
-      [value],
+      [
+        WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
+        value
+      ],
       {time: options.time}
     );
 
@@ -652,8 +653,7 @@ export class Output extends EventEmitter {
   sendTuneRequest(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -677,8 +677,7 @@ export class Output extends EventEmitter {
   sendClock(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.clock,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -703,8 +702,7 @@ export class Output extends EventEmitter {
   sendStart(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.start,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -729,8 +727,7 @@ export class Output extends EventEmitter {
   sendContinue(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.continue,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -754,8 +751,7 @@ export class Output extends EventEmitter {
   sendStop(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.stop,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -780,8 +776,7 @@ export class Output extends EventEmitter {
   sendActiveSensing(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.activesensing,
-      [],
+      [WebMidi.MIDI_SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -805,8 +800,7 @@ export class Output extends EventEmitter {
   sendReset(options = {}) {
 
     this.send(
-      WebMidi.MIDI_SYSTEM_MESSAGES.reset,
-      undefined,
+      [WebMidi.MIDI_SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 
@@ -2408,8 +2402,8 @@ export class Output extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.5 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on August 27th 2021 @ 16:36:10 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.7 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 4th 2021 @ 8:27:20 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
