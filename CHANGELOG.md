@@ -40,6 +40,8 @@ information, etc.
 and legacy support throughout the library (for performance). This property can also be in the 
 options of `WebMidi.enable()`.
 
+- The `send()` method of `Output` and `OutputChannel` can now officially use `Uint8Array` input
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
