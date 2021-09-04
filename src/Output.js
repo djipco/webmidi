@@ -334,6 +334,14 @@ export class Output extends EventEmitter {
    */
   sendSysex(manufacturer, data, options = {}) {
 
+    // Merging Uint8Arrays
+    // var arrayOne = new Uint8Array([2,4,8]);
+    // var arrayTwo = new Uint8Array([16,32,64]);
+    //
+    // var mergedArray = new Uint8Array(arrayOne.length + arrayTwo.length);
+    // mergedArray.set(arrayOne);
+    // mergedArray.set(arrayTwo, arrayOne.length);
+
     manufacturer = [].concat(manufacturer);
 
     data = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
