@@ -1,11 +1,13 @@
 const fs = require("fs-extra");
 const fsPromises = require("fs").promises;
+const git = require("simple-git/promise")();
 const path = require("path");
 const process = require("process");
 const jsdoc2md = require("jsdoc-to-markdown");
 const os = require("os");
 const replace = require("replace-in-file");
 const rimraf = require("@alexbinary/rimraf");
+const moment = require("moment");
 
 const SOURCE_PATH = path.join(process.cwd(), "src");
 const TARGET_PATH = path.join(process.cwd(), "website", "api", "classes");
@@ -50,13 +52,18 @@ async function generate() {
       "member-index-format": "grouped" // grouped, list
     });
 
-    fs.writeFileSync("test.json", JSON.stringify(jsdocDat));
-
-    // write the markdown file
+    // Write the markdown file
     let filename = path.basename(file, ".js");
     fs.writeFileSync(path.join(TARGET_PATH, `${filename}.md`), markdown);
     console.info(`Saved markdown file to ${filename}.md`);
 
+    // Commit generated files
+    await git.add([path.join(TARGET_PATH, `${filename}.md`)]);
+    await git.commit("Automatically generated on: " + moment().format(), [TARGET_PATH]);
+    await git.push();
+    console.info(`File committed to git: ${filename}.md`);
+
+    // Remove temporary file
     await rimraf(path.join(tempPath, file));
 
   });

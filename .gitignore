@@ -32,6 +32,3 @@ node_modules
 ### Test coverage ##################################################################################
 .nyc_output
 coverage
-
-### Auto-generated documentation ###################################################################
-/website/api/classes/
