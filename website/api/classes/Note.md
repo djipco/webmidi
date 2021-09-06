@@ -10,23 +10,38 @@ no duration is set, it will play until it is explicitly stopped using
 [OutputChannel.stopNote()](OutputChannel#stopNote) or
 [Output.stopNote()](Output#stopNote).
 
-**Kind**: global class  
+<!--**Kind**: global class  
+-->
 **Since**: 3.0.0  
 
+
 * [Note](#Note)
-    * [new Note(value, [options])](#new_Note_new)
-    * [.name](#Note+name) : <code>string</code>
-    * [.number](#Note+number) : <code>number</code>
-    * [.duration](#Note+duration) : <code>number</code>
-    * [.attack](#Note+attack) : <code>number</code>
-    * [.rawAttack](#Note+rawAttack) : <code>number</code>
-    * [.release](#Note+release) : <code>number</code>
-    * [.rawRelease](#Note+rawRelease) : <code>number</code>
-    * [.octave](#Note+octave) : <code>number</code>
+
+    * [`new Note(value, [options])`](#new_Note_new)
+
+    * [`.name`](#Note+name) : <code>string</code>
+
+    * [`.number`](#Note+number) : <code>number</code>
+
+    * [`.duration`](#Note+duration) : <code>number</code>
+
+    * [`.attack`](#Note+attack) : <code>number</code>
+
+    * [`.rawAttack`](#Note+rawAttack) : <code>number</code>
+
+    * [`.release`](#Note+release) : <code>number</code>
+
+    * [`.rawRelease`](#Note+rawRelease) : <code>number</code>
+
+    * [`.octave`](#Note+octave) : <code>number</code>
+
+
+* * *
 
 <a name="new_Note_new"></a>
 
-## new Note(value, [options])
+## `new Note(value, [options])`
+<!---->
 **Throws**:
 
 - <code>Error</code> Invalid note name.
@@ -48,52 +63,87 @@ no duration is set, it will play until it is explicitly stopped using
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
 
+
+* * *
+
 <a name="Note+name"></a>
 
-## note.name : <code>string</code>
+## `note.name` : <code>string</code>
 The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+number"></a>
 
-## note.number : <code>number</code>
+## `note.number` : <code>number</code>
 The MIDI note number as an integer between 0 and 127
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+duration"></a>
 
-## note.duration : <code>number</code>
+## `note.duration` : <code>number</code>
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+attack"></a>
 
-## note.attack : <code>number</code>
+## `note.attack` : <code>number</code>
 The attack velocity of the note as a decimal number between 0 and 1.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+rawAttack"></a>
 
-## note.rawAttack : <code>number</code>
+## `note.rawAttack` : <code>number</code>
 The raw attack velocity of the note as an integer between 0 and 127.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+release"></a>
 
-## note.release : <code>number</code>
+## `note.release` : <code>number</code>
 The release velocity of the note as a decimal number between 0 and 1.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+rawRelease"></a>
 
-## note.rawRelease : <code>number</code>
+## `note.rawRelease` : <code>number</code>
 The raw release velocity of the note as an integer between 0 and 127.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+
 <a name="Note+octave"></a>
 
-## note.octave : <code>number</code>
+## `note.octave` : <code>number</code>
 The octave of the note as an integer between -1 and 9.
 
-**Kind**: instance property of [<code>Note</code>](#Note)  
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+
+* * *
+

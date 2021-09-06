@@ -18,60 +18,106 @@ it also includes methods such as
 [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
 others.
 
-**Kind**: global class  
+<!--**Kind**: global class  
+-->
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>disabled</code>](#WebMidi+event_disabled)  
 
+
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
-    * [.interface](#WebMidi+interface) : <code>MIDIAccess</code>
-    * [.validation](#WebMidi+validation) : <code>boolean</code>
-    * [.enabled](#WebMidi+enabled) : <code>boolean</code>
-    * [.inputs](#WebMidi+inputs) : <code>Array</code>
-    * [.isNode](#WebMidi+isNode) : <code>boolean</code>
-    * [.isBrowser](#WebMidi+isBrowser) : <code>boolean</code>
-    * [.octaveOffset](#WebMidi+octaveOffset) : <code>number</code>
-    * [.outputs](#WebMidi+outputs) : <code>Array</code>
-    * [.supported](#WebMidi+supported) : <code>boolean</code>
-    * [.sysexEnabled](#WebMidi+sysexEnabled) : <code>Boolean</code>
-    * [.time](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
-    * [.MIDI_INTERFACE_EVENTS](#WebMidi+MIDI_INTERFACE_EVENTS) : <code>Array.&lt;string&gt;</code>
-    * [.NOTES](#WebMidi+NOTES) : <code>Array.&lt;string&gt;</code>
-    * [.MIDI_CHANNEL_VOICE_MESSAGES](#WebMidi+MIDI_CHANNEL_VOICE_MESSAGES) : <code>enum</code>
-    * ~~[.MIDI_CHANNEL_MESSAGES](#WebMidi+MIDI_CHANNEL_MESSAGES) : <code>enum</code>~~
-    * [.MIDI_CHANNEL_MODE_MESSAGES](#WebMidi+MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
-    * [.MIDI_CONTROL_CHANGE_MESSAGES](#WebMidi+MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
-    * [.MIDI_NRPN_MESSAGES](#WebMidi+MIDI_NRPN_MESSAGES) : <code>enum</code>
-    * [.MIDI_REGISTERED_PARAMETER](#WebMidi+MIDI_REGISTERED_PARAMETER) : <code>enum</code>
-    * [.MIDI_SYSTEM_MESSAGES](#WebMidi+MIDI_SYSTEM_MESSAGES) : <code>enum</code>
-    * [.enable([options])](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
-    * [.disable()](#WebMidi+disable) ⇒ <code>Promise.&lt;void&gt;</code>
-    * [.getInputById(id)](#WebMidi+getInputById) ⇒ <code>Input</code> \| <code>false</code>
-    * [.getInputByName(name)](#WebMidi+getInputByName) ⇒ <code>Input</code> \| <code>false</code>
-    * [.getOutputByName(name)](#WebMidi+getOutputByName) ⇒ <code>Output</code> \| <code>false</code>
-    * [.getOutputById(id)](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
-    * [.getNoteNumberByName(name)](#WebMidi+getNoteNumberByName) ⇒ <code>number</code> \| <code>false</code>
-    * [.getOctave(number)](#WebMidi+getOctave) ⇒ <code>number</code> \| <code>false</code>
-    * [.sanitizeChannels([channel])](#WebMidi+sanitizeChannels) ⇒ <code>Array</code>
-    * [.guessNoteNumber(input)](#WebMidi+guessNoteNumber) ⇒ <code>number</code> \| <code>false</code>
-    * [.getValidNoteArray([notes], [options])](#WebMidi+getValidNoteArray) ⇒ <code>Array.&lt;Note&gt;</code>
-    * [.getNoteObject([notes], [options])](#WebMidi+getNoteObject) ⇒ <code>Note</code>
-    * [.convertToTimestamp([time])](#WebMidi+convertToTimestamp) ⇒ <code>number</code> \| <code>false</code>
-    * ["enabled"](#WebMidi+event_enabled)
-    * ["disabled"](#WebMidi+event_disabled)
-    * ["connected"](#WebMidi+event_connected)
-    * ["disconnected"](#WebMidi+event_disconnected)
+
+    * [`.interface`](#WebMidi+interface) : <code>MIDIAccess</code>
+
+    * [`.validation`](#WebMidi+validation) : <code>boolean</code>
+
+    * [`.enabled`](#WebMidi+enabled) : <code>boolean</code>
+
+    * [`.inputs`](#WebMidi+inputs) : <code>Array</code>
+
+    * [`.isNode`](#WebMidi+isNode) : <code>boolean</code>
+
+    * [`.isBrowser`](#WebMidi+isBrowser) : <code>boolean</code>
+
+    * [`.octaveOffset`](#WebMidi+octaveOffset) : <code>number</code>
+
+    * [`.outputs`](#WebMidi+outputs) : <code>Array</code>
+
+    * [`.supported`](#WebMidi+supported) : <code>boolean</code>
+
+    * [`.sysexEnabled`](#WebMidi+sysexEnabled) : <code>Boolean</code>
+
+    * [`.time`](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
+
+    * [`.MIDI_INTERFACE_EVENTS`](#WebMidi+MIDI_INTERFACE_EVENTS) : <code>Array.&lt;string&gt;</code>
+
+    * [`.NOTES`](#WebMidi+NOTES) : <code>Array.&lt;string&gt;</code>
+
+    * [`.MIDI_CHANNEL_VOICE_MESSAGES`](#WebMidi+MIDI_CHANNEL_VOICE_MESSAGES) : <code>enum</code>
+
+    * ~~[`.MIDI_CHANNEL_MESSAGES`](#WebMidi+MIDI_CHANNEL_MESSAGES) : <code>enum</code>~~
+
+    * [`.MIDI_CHANNEL_MODE_MESSAGES`](#WebMidi+MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
+
+    * [`.MIDI_CONTROL_CHANGE_MESSAGES`](#WebMidi+MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
+
+    * [`.MIDI_NRPN_MESSAGES`](#WebMidi+MIDI_NRPN_MESSAGES) : <code>enum</code>
+
+    * [`.MIDI_REGISTERED_PARAMETER`](#WebMidi+MIDI_REGISTERED_PARAMETER) : <code>enum</code>
+
+    * [`.MIDI_SYSTEM_MESSAGES`](#WebMidi+MIDI_SYSTEM_MESSAGES) : <code>enum</code>
+
+    * [`.enable([options])`](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+    * [`.disable()`](#WebMidi+disable) ⇒ <code>Promise.&lt;void&gt;</code>
+
+    * [`.getInputById(id)`](#WebMidi+getInputById) ⇒ <code>Input</code> \| <code>false</code>
+
+    * [`.getInputByName(name)`](#WebMidi+getInputByName) ⇒ <code>Input</code> \| <code>false</code>
+
+    * [`.getOutputByName(name)`](#WebMidi+getOutputByName) ⇒ <code>Output</code> \| <code>false</code>
+
+    * [`.getOutputById(id)`](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
+
+    * [`.getNoteNumberByName(name)`](#WebMidi+getNoteNumberByName) ⇒ <code>number</code> \| <code>false</code>
+
+    * [`.getOctave(number)`](#WebMidi+getOctave) ⇒ <code>number</code> \| <code>false</code>
+
+    * [`.sanitizeChannels([channel])`](#WebMidi+sanitizeChannels) ⇒ <code>Array</code>
+
+    * [`.guessNoteNumber(input)`](#WebMidi+guessNoteNumber) ⇒ <code>number</code> \| <code>false</code>
+
+    * [`.getValidNoteArray([notes], [options])`](#WebMidi+getValidNoteArray) ⇒ <code>Array.&lt;Note&gt;</code>
+
+    * [`.getNoteObject([notes], [options])`](#WebMidi+getNoteObject) ⇒ <code>Note</code>
+
+    * [`.convertToTimestamp([time])`](#WebMidi+convertToTimestamp) ⇒ <code>number</code> \| <code>false</code>
+
+    * [`"enabled"`](#WebMidi+event_enabled)
+
+    * [`"disabled"`](#WebMidi+event_disabled)
+
+    * [`"connected"`](#WebMidi+event_connected)
+
+    * [`"disconnected"`](#WebMidi+event_disconnected)
+
+
+* * *
 
 <a name="WebMidi+interface"></a>
 
-## webMidi.interface : <code>MIDIAccess</code>
+## `webMidi.interface` : <code>MIDIAccess</code>
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+validation"></a>
 
-## webMidi.validation : <code>boolean</code>
+## `webMidi.validation` : <code>boolean</code>
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.
 
@@ -79,58 +125,86 @@ This is an advanced setting that should be used carefully. Setting `validation` 
 improves performance but should only be done once the project has been thoroughly tested with
 validation turned on.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
+
+* * *
+
 <a name="WebMidi+enabled"></a>
 
-## webMidi.enabled : <code>boolean</code>
+## `webMidi.enabled` : <code>boolean</code>
 Indicates whether access to the host's MIDI subsystem is active or not.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+inputs"></a>
 
-## webMidi.inputs : <code>Array</code>
+## `webMidi.inputs` : <code>Array</code>
 An array of all currently available MIDI inputs.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+isNode"></a>
 
-## webMidi.isNode : <code>boolean</code>
+## `webMidi.isNode` : <code>boolean</code>
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
+
+* * *
+
 <a name="WebMidi+isBrowser"></a>
 
-## webMidi.isBrowser : <code>boolean</code>
+## `webMidi.isBrowser` : <code>boolean</code>
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
+
+* * *
+
 <a name="WebMidi+octaveOffset"></a>
 
-## webMidi.octaveOffset : <code>number</code>
+## `webMidi.octaveOffset` : <code>number</code>
 An integer to offset the octave both in inbound and outbound messages. By default, middle C
 (MIDI note number 60) is placed on the 4th octave (C4).
 
 If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
 `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Since**: 2.1  
+
+* * *
+
 <a name="WebMidi+outputs"></a>
 
-## webMidi.outputs : <code>Array</code>
+## `webMidi.outputs` : <code>Array</code>
 An array of all currently available MIDI outputs.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+supported"></a>
 
-## webMidi.supported : <code>boolean</code>
+## `webMidi.supported` : <code>boolean</code>
 Indicates whether the environment provides support for the Web MIDI API or not.
 
 **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
@@ -138,19 +212,27 @@ the `navigator.requestMIDIAccess` function is available. For example, if you hav
 WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
 not be there.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+sysexEnabled"></a>
 
-## webMidi.sysexEnabled : <code>Boolean</code>
+## `webMidi.sysexEnabled` : <code>Boolean</code>
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+time"></a>
 
-## webMidi.time : <code>DOMHighResTimeStamp</code>
+## `webMidi.time` : <code>DOMHighResTimeStamp</code>
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
 Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
@@ -159,25 +241,37 @@ floating-point number, it has sub-millisecond accuracy. According to the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+MIDI_INTERFACE_EVENTS"></a>
 
-## webMidi.MIDI\_INTERFACE\_EVENTS : <code>Array.&lt;string&gt;</code>
+## `webMidi.MIDI\_INTERFACE\_EVENTS` : <code>Array.&lt;string&gt;</code>
 Array of valid events triggered at the interface level.
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+NOTES"></a>
 
-## webMidi.NOTES : <code>Array.&lt;string&gt;</code>
+## `webMidi.NOTES` : <code>Array.&lt;string&gt;</code>
 Array of standard note names
 
-**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
+
+* * *
+
 <a name="WebMidi+MIDI_CHANNEL_VOICE_MESSAGES"></a>
 
-## webMidi.MIDI\_CHANNEL\_VOICE\_MESSAGES : <code>enum</code>
+## `webMidi.MIDI\_CHANNEL\_VOICE\_MESSAGES` : <code>enum</code>
 Enum of all MIDI channel voice messages and their associated numerical value:
 
 - `noteoff`: 0x8 (8)
@@ -190,24 +284,32 @@ Enum of all MIDI channel voice messages and their associated numerical value:
 - `channelaftertouch`: 0xD (13)
 - `pitchbend`: 0xE (14)
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 3.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_CHANNEL_MESSAGES"></a>
 
-## ~~webMidi.MIDI\_CHANNEL\_MESSAGES : <code>enum</code>~~
+## ~~`webMidi.MIDI\_CHANNEL\_MESSAGES` : <code>enum</code>~~
 ***Deprecated***
 
 Enum of all MIDI channel voice messages and their associated numerical value. Note that it
 has been deprecated since v3.0. You should now use
 [MIDI_CHANNEL_VOICE_MESSAGES](WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_CHANNEL_MODE_MESSAGES"></a>
 
-## webMidi.MIDI\_CHANNEL\_MODE\_MESSAGES : <code>enum</code>
+## `webMidi.MIDI\_CHANNEL\_MODE\_MESSAGES` : <code>enum</code>
 Enum of all channel mode messages and their associated numerical value:
 
 - `allsoundoff`: 120
@@ -219,12 +321,16 @@ Enum of all channel mode messages and their associated numerical value:
 - `monomodeon`: 126
 - `polymodeon`: 127
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_CONTROL_CHANGE_MESSAGES"></a>
 
-## webMidi.MIDI\_CONTROL\_CHANGE\_MESSAGES : <code>enum</code>
+## `webMidi.MIDI\_CONTROL\_CHANGE\_MESSAGES` : <code>enum</code>
 Enum of all control change messages and their associated numerical value:
 
 - `bankselectcoarse`: 0
@@ -287,12 +393,16 @@ Enum of all control change messages and their associated numerical value:
 - `registeredparametercoarse`: 100
 - `registeredparameterfine`: 101
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_NRPN_MESSAGES"></a>
 
-## webMidi.MIDI\_NRPN\_MESSAGES : <code>enum</code>
+## `webMidi.MIDI\_NRPN\_MESSAGES` : <code>enum</code>
 Enum of all control change messages that are used to create NRPN messages and their associated
 numerical value:
 
@@ -304,12 +414,16 @@ numerical value:
 - `parammsb`: 99
 - `nullactiveparameter`: 127
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_REGISTERED_PARAMETER"></a>
 
-## webMidi.MIDI\_REGISTERED\_PARAMETER : <code>enum</code>
+## `webMidi.MIDI\_REGISTERED\_PARAMETER` : <code>enum</code>
 Enum of all registered parameters and their associated pair of numerical values. MIDI
 registered parameters extend the original list of control change messages. Currently, there are
 only a limited number of them:
@@ -330,12 +444,16 @@ only a limited number of them:
 - `panspreadangle`: [0x3D, 0x07]
 - `rollangle`: [0x3D, 0x08]
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+MIDI_SYSTEM_MESSAGES"></a>
 
-## webMidi.MIDI\_SYSTEM\_MESSAGES : <code>enum</code>
+## `webMidi.MIDI\_SYSTEM\_MESSAGES` : <code>enum</code>
 Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
 two custom messages.
 
@@ -368,12 +486,16 @@ simply states that they are undefined/reserved.
 - `midimessage`: 0
 - `unknownsystemmessage`: -1
 
-**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Read only**: true  
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+enable"></a>
 
-## webMidi.enable([options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+## `webMidi.enable([options])` ⇒ <code>Promise.&lt;Object&gt;</code>
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
 be displayed to the user.
@@ -432,7 +554,8 @@ WebMidi.enable({callback: e => {
 });
 ```
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Promise.&lt;Object&gt;</code> - The promise is fulfilled with an object containing two properties
 (`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.  
 **Throws**:
@@ -449,30 +572,38 @@ WebMidi.enable({callback: e => {
 | [options.validation] | <code>boolean</code> | <code>true</code> | Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on. |
 | [options.software] | <code>boolean</code> | <code>false</code> | Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020. |
 
+
+* * *
+
 <a name="WebMidi+disable"></a>
 
-## webMidi.disable() ⇒ <code>Promise.&lt;void&gt;</code>
+## `webMidi.disable()` ⇒ <code>Promise.&lt;void&gt;</code>
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 [Input](Input) and [Output](Output) objects that may be available. This also means that listeners
 added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
 destroyed.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Throws**:
 
 - Error The Web MIDI API is not supported by your environment.
 
 **Since**: 2.0.0  
+
+* * *
+
 <a name="WebMidi+getInputById"></a>
 
-## webMidi.getInputById(id) ⇒ <code>Input</code> \| <code>false</code>
+## `webMidi.getInputById(id)` ⇒ <code>Input</code> \| <code>false</code>
 Returns the [Input](Input) object that matches the specified ID string or `false` if no matching
 input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Input</code> \| <code>false</code> - An [Input](Input) object matching the specified ID string. If no matching
 input can be found, the method returns `false`.  
 **Throws**:
@@ -485,14 +616,18 @@ input can be found, the method returns `false`.
 | --- | --- | --- |
 | id | <code>string</code> | The ID string of the input. IDs can be viewed by looking at the [inputs](#WebMidi+inputs) array. Even though they sometimes look like integers, IDs are strings. |
 
+
+* * *
+
 <a name="WebMidi+getInputByName"></a>
 
-## webMidi.getInputByName(name) ⇒ <code>Input</code> \| <code>false</code>
+## `webMidi.getInputByName(name)` ⇒ <code>Input</code> \| <code>false</code>
 Returns the first [Input](Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Input</code> \| <code>false</code> - The [Input](Input) that was found or `false` if no input contained the
 specified name.  
 **Throws**:
@@ -505,14 +640,18 @@ specified name.
 | --- | --- | --- |
 | name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs](#WebMidi+inputs) array). |
 
+
+* * *
+
 <a name="WebMidi+getOutputByName"></a>
 
-## webMidi.getOutputByName(name) ⇒ <code>Output</code> \| <code>false</code>
+## `webMidi.getOutputByName(name)` ⇒ <code>Output</code> \| <code>false</code>
 Returns the first [Output](Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Output</code> \| <code>false</code> - The [Output](Output) that was found or `false` if no output matched the
 specified name.  
 **Throws**:
@@ -525,9 +664,12 @@ specified name.
 | --- | --- | --- |
 | name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs](#WebMidi+outputs) array). |
 
+
+* * *
+
 <a name="WebMidi+getOutputById"></a>
 
-## webMidi.getOutputById(id) ⇒ <code>Output</code> \| <code>false</code>
+## `webMidi.getOutputById(id)` ⇒ <code>Output</code> \| <code>false</code>
 Returns the [Output](Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
@@ -535,7 +677,8 @@ integers).
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Output</code> \| <code>false</code> - An [Output](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.  
 **Throws**:
@@ -548,9 +691,12 @@ matching output can be found, the method returns `false`.
 | --- | --- | --- |
 | id | <code>string</code> | The ID string of the port. IDs can be viewed by looking at the [outputs](#WebMidi+outputs) array. |
 
+
+* * *
+
 <a name="WebMidi+getNoteNumberByName"></a>
 
-## webMidi.getNoteNumberByName(name) ⇒ <code>number</code> \| <code>false</code>
+## `webMidi.getNoteNumberByName(name)` ⇒ <code>number</code> \| <code>false</code>
 Returns a MIDI note number matching the note name passed in the form of a string parameter. The
 note name must include the octave number. The name can also optionally include a sharp (#),
 a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
@@ -566,7 +712,8 @@ value is 2, the resulting MIDI note number will be 36.
 **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
 parse the name to a number.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>number</code> \| <code>false</code> - The MIDI note number (an integer between 0 and 127) or `false` if the
 name could not successfully be parsed to a number.  
 
@@ -574,9 +721,12 @@ name could not successfully be parsed to a number.
 | --- | --- | --- |
 | name | <code>string</code> | The name of the note in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. |
 
+
+* * *
+
 <a name="WebMidi+getOctave"></a>
 
-## webMidi.getOctave(number) ⇒ <code>number</code> \| <code>false</code>
+## `webMidi.getOctave(number)` ⇒ <code>number</code> \| <code>false</code>
 Returns the octave number for the specified MIDI note number (0-127). By default, the value is
 based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
 [octaveOffset](#WebMidi+octaveOffset) property, you can offset the result as desired.
@@ -584,7 +734,8 @@ based on middle C (note number 60) being placed on the 4th octave (C4). However,
 **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
 be parsed to a valid octave.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>number</code> \| <code>false</code> - The octave (as a signed integer) or `false` if the value could not be
 parsed to a valid octave.  
 **Since**: 2.0.0-rc.6  
@@ -593,9 +744,12 @@ parsed to a valid octave.
 | --- | --- | --- |
 | number | <code>number</code> | An integer representing a valid MIDI note number (between 0 and 127). |
 
+
+* * *
+
 <a name="WebMidi+sanitizeChannels"></a>
 
-## webMidi.sanitizeChannels([channel]) ⇒ <code>Array</code>
+## `webMidi.sanitizeChannels([channel])` ⇒ <code>Array</code>
 Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
 single integer or an array of integers.
 
@@ -603,16 +757,20 @@ For backwards-compatibility, passing `undefined` as a parameter to this method r
 channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
 integers between 1 and 16 are silently ignored.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>Array</code> - An array of 0 or more valid MIDI channel numbers.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [channel] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | An integer or an array of integers to parse as channel numbers. |
 
+
+* * *
+
 <a name="WebMidi+guessNoteNumber"></a>
 
-## webMidi.guessNoteNumber(input) ⇒ <code>number</code> \| <code>false</code>
+## `webMidi.guessNoteNumber(input)` ⇒ <code>number</code> \| <code>false</code>
 Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
 string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
 and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
@@ -621,7 +779,8 @@ parsed for integer, if possible.
 **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
 is invalid.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>number</code> \| <code>false</code> - A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.  
 
@@ -629,16 +788,20 @@ successfully be parsed to a note number.
 | --- | --- | --- |
 | input | <code>string</code> \| <code>number</code> | A string to extract the note number from. An integer can also be used, in this case it will simply be returned as is (if between 0 and 127). |
 
+
+* * *
+
 <a name="WebMidi+getValidNoteArray"></a>
 
-## webMidi.getValidNoteArray([notes], [options]) ⇒ <code>Array.&lt;Note&gt;</code>
+## `webMidi.getValidNoteArray([notes], [options])` ⇒ <code>Array.&lt;Note&gt;</code>
 Converts an input value, which can be an unsigned integer (0-127), a note name, a [Note](Note)
 object or an array of the previous types, to an array of [Note](Note) objects.
 
 [Note](Note) objects are returned as is. For note numbers and names, a [Note](Note) object is
 created with the options specified. An error will be thrown when encountering invalid input.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Throws**:
 
 - TypeError An element could not be parsed as a note.
@@ -654,9 +817,12 @@ created with the options specified. An error will be thrown when encountering in
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
 
+
+* * *
+
 <a name="WebMidi+getNoteObject"></a>
 
-## webMidi.getNoteObject([notes], [options]) ⇒ <code>Note</code>
+## `webMidi.getNoteObject([notes], [options])` ⇒ <code>Note</code>
 Converts the `note` parameter to a valid [Note](Note) object. The input usually is an unsigned
 integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a [Note](Note) object,
 it will be returned as is.
@@ -666,7 +832,8 @@ optional `options` parameter.
 
 An error is thrown for invalid input.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Throws**:
 
 - TypeError The input could not be parsed as a note
@@ -682,28 +849,36 @@ An error is thrown for invalid input.
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
 
+
+* * *
+
 <a name="WebMidi+convertToTimestamp"></a>
 
-## webMidi.convertToTimestamp([time]) ⇒ <code>number</code> \| <code>false</code>
+## `webMidi.convertToTimestamp([time])` ⇒ <code>number</code> \| <code>false</code>
 Returns a valid timestamp, relative to the navigation start of the document, derived from the
 `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
 number, the resulting timestamp will be the sum of the current timestamp plus that number. If
 the parameter is a positive number, it will be returned as is. Otherwise, false will be
 returned.
 
-**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
+-->
 **Returns**: <code>number</code> \| <code>false</code> - A positive number or `false` (if the time cannot be converted)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [time] | <code>number</code> \| <code>string</code> | The time string (e.g. `"+2000"`) or number to parse |
 
+
+* * *
+
 <a name="WebMidi+event_enabled"></a>
 
-## "enabled"
+## `"enabled"`
 Event emitted once `WebMidi` has been successfully enabled.
 
-**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
 **Properties**
 
 | Name | Type | Description |
@@ -712,12 +887,16 @@ Event emitted once `WebMidi` has been successfully enabled.
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
 | type | <code>string</code> | `enabled` |
 
+
+* * *
+
 <a name="WebMidi+event_disabled"></a>
 
-## "disabled"
+## `"disabled"`
 Event emitted once `WebMidi` has been successfully disabled.
 
-**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
 **Properties**
 
 | Name | Type | Description |
@@ -726,14 +905,18 @@ Event emitted once `WebMidi` has been successfully disabled.
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
 | type | <code>string</code> | `disabled` |
 
+
+* * *
+
 <a name="WebMidi+event_connected"></a>
 
-## "connected"
+## `"connected"`
 Event emitted when an [Input](Input) or [Output](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
-**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
 **Properties**
 
 | Name | Type | Description |
@@ -742,14 +925,18 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | type | <code>string</code> | `connected` |
 | target | <code>Input</code> \| <code>Output</code> | The [Input](Input) or [Output](Output) object that triggered the event. |
 
+
+* * *
+
 <a name="WebMidi+event_disconnected"></a>
 
-## "disconnected"
+## `"disconnected"`
 Event emitted when an [Input](Input) or [Output](Output) becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
-**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
 **Properties**
 
 | Name | Type | Description |
@@ -763,4 +950,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | target.name | <code>string</code> | Name of the device that provided the input |
 | target.state | <code>string</code> | `disconnected` |
 | target.type | <code>string</code> | `input` or `output` |
+
+
+* * *
 

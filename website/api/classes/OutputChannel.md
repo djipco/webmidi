@@ -16,64 +16,110 @@ it also includes methods such as
 [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
 others.
 
-**Kind**: global class  
+<!--**Kind**: global class  
+-->
 **Since**: 3.0.0  
 
+
 * [OutputChannel](#OutputChannel)
-    * [new OutputChannel(output, number)](#new_OutputChannel_new)
-    * [.output](#OutputChannel+output) : <code>Output</code>
-    * [.number](#OutputChannel+number) : <code>number</code>
-    * [.send(message, [options])](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setKeyAftertouch(note, [pressure], [options])](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.sendControlChange(controller, value, [options])](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.incrementRegisteredParameter(parameter, [options])](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.playNote(note, [options])](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.sendNoteOff(note, [options])](#OutputChannel+sendNoteOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.stopNote(note, options)](#OutputChannel+stopNote) ⇒ <code>Output</code>
-    * [.sendNoteOn(note, [options])](#OutputChannel+sendNoteOn) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.sendChannelMode(command, value, [options])](#OutputChannel+sendChannelMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setOmniMode([state], [options])](#OutputChannel+setOmniMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setChannelAftertouch([pressure], [options])](#OutputChannel+setChannelAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setMasterTuning([value], [options])](#OutputChannel+setMasterTuning) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setModulationRange(semitones, [cents], [options])](#OutputChannel+setModulationRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setNonRegisteredParameter(parameter, [data], [options])](#OutputChannel+setNonRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setPitchBend([value], [options])](#OutputChannel+setPitchBend) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setPitchBendRange(semitones, [cents], [options])](#OutputChannel+setPitchBendRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setProgram([program], [options])](#OutputChannel+setProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setRegisteredParameter(parameter, [data], [options])](#OutputChannel+setRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setTuningBank(value, [options])](#OutputChannel+setTuningBank) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setTuningProgram(value, [options])](#OutputChannel+setTuningProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setLocalControl([state], [options])](#OutputChannel+setLocalControl) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.turnNotesOff([options])](#OutputChannel+turnNotesOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.turnSoundOff([options])](#OutputChannel+turnSoundOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.resetAllControllers([options])](#OutputChannel+resetAllControllers) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-    * [.setPolyphonicMode([mode], [options])](#OutputChannel+setPolyphonicMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`new OutputChannel(output, number)`](#new_OutputChannel_new)
+
+    * [`.output`](#OutputChannel+output) : <code>Output</code>
+
+    * [`.number`](#OutputChannel+number) : <code>number</code>
+
+    * [`.send(message, [options])`](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setKeyAftertouch(note, [pressure], [options])`](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.sendControlChange(controller, value, [options])`](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.decrementRegisteredParameter(parameter, [options])`](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.incrementRegisteredParameter(parameter, [options])`](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.playNote(note, [options])`](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.sendNoteOff(note, [options])`](#OutputChannel+sendNoteOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.stopNote(note, options)`](#OutputChannel+stopNote) ⇒ <code>Output</code>
+
+    * [`.sendNoteOn(note, [options])`](#OutputChannel+sendNoteOn) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.sendChannelMode(command, value, [options])`](#OutputChannel+sendChannelMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setOmniMode([state], [options])`](#OutputChannel+setOmniMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setChannelAftertouch([pressure], [options])`](#OutputChannel+setChannelAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setMasterTuning([value], [options])`](#OutputChannel+setMasterTuning) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setModulationRange(semitones, [cents], [options])`](#OutputChannel+setModulationRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setNonRegisteredParameter(parameter, [data], [options])`](#OutputChannel+setNonRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setPitchBend([value], [options])`](#OutputChannel+setPitchBend) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setPitchBendRange(semitones, [cents], [options])`](#OutputChannel+setPitchBendRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setProgram([program], [options])`](#OutputChannel+setProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setRegisteredParameter(parameter, [data], [options])`](#OutputChannel+setRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setTuningBank(value, [options])`](#OutputChannel+setTuningBank) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setTuningProgram(value, [options])`](#OutputChannel+setTuningProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setLocalControl([state], [options])`](#OutputChannel+setLocalControl) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.turnNotesOff([options])`](#OutputChannel+turnNotesOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.turnSoundOff([options])`](#OutputChannel+turnSoundOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.resetAllControllers([options])`](#OutputChannel+resetAllControllers) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [`.setPolyphonicMode([mode], [options])`](#OutputChannel+setPolyphonicMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+
+* * *
 
 <a name="new_OutputChannel_new"></a>
 
-## new OutputChannel(output, number)
+## `new OutputChannel(output, number)`
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | output | <code>Output</code> | The output this channel belongs to |
 | number | <code>number</code> | The channel's number (1-16) |
 
+
+* * *
+
 <a name="OutputChannel+output"></a>
 
-## outputChannel.output : <code>Output</code>
+## `outputChannel.output` : <code>Output</code>
 The [Output](Output) this channel belongs to
 
-**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+
+* * *
+
 <a name="OutputChannel+number"></a>
 
-## outputChannel.number : <code>number</code>
+## `outputChannel.number` : <code>number</code>
 The channel's number (1-16)
 
-**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+
+* * *
+
 <a name="OutputChannel+send"></a>
 
-## outputChannel.send(message, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.send(message, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -91,7 +137,8 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -105,9 +152,12 @@ from the MIDI Manufacturers Association.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setKeyAftertouch"></a>
 
-## outputChannel.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setKeyAftertouch(note, [pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](Output#setChannelAftertouch).
@@ -118,7 +168,8 @@ The note can be a single value or an array of the following valid values:
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
  - A [Note](Note) object
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -133,9 +184,12 @@ The note can be a single value or an array of the following valid values:
 | [options.useRawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+sendControlChange"></a>
 
-## outputChannel.sendControlChange(controller, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.sendControlChange(controller, value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **control change** message to the channel at the scheduled time. The control
 change message to send can be specified numerically (0 to 119) or by using one of the following
 common names:
@@ -210,7 +264,8 @@ Control Change Messages" from the [MIDI Messages](
 https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
 specification.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -225,9 +280,12 @@ specification.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+decrementRegisteredParameter"></a>
 
-## outputChannel.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.decrementRegisteredParameter(parameter, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -247,7 +305,8 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -260,9 +319,12 @@ names that can be used with this function:
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+incrementRegisteredParameter"></a>
 
-## outputChannel.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.incrementRegisteredParameter(parameter, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -282,7 +344,8 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -295,9 +358,12 @@ names that can be used with this function:
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+playNote"></a>
 
-## outputChannel.playNote(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.playNote(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
@@ -321,7 +387,8 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -335,9 +402,12 @@ functionally equivalent to a **note off** message.
 | [options.rawRelease] | <code>number</code> | <code>0.5</code> | The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set. |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+sendNoteOff"></a>
 
-## outputChannel.sendNoteOff(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.sendNoteOff(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note off** message for the specified notes on the channel. The first parameter is the
 note. It can be a single value or an array of the following valid values:
 
@@ -351,7 +421,8 @@ note. It can be a single value or an array of the following valid values:
 When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -362,12 +433,16 @@ precedence over the one specified via the method's `options` parameter.
 | [options.release] | <code>number</code> | <code>0.5</code> | The velocity at which to release the note (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `0.5`. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The velocity at which to release the note (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `64`. |
 
+
+* * *
+
 <a name="OutputChannel+stopNote"></a>
 
-## outputChannel.stopNote(note, options) ⇒ <code>Output</code>
+## `outputChannel.stopNote(note, options)` ⇒ <code>Output</code>
 This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **See**: [sendNoteOff](#OutputChannel+sendNoteOff)  
 
 | Param |
@@ -375,9 +450,12 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 | note | 
 | options | 
 
+
+* * *
+
 <a name="OutputChannel+sendNoteOn"></a>
 
-## outputChannel.sendNoteOn(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.sendNoteOn(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note on** message for the specified notes on the channel. The first parameter is the
 note. It can be a single value or an array of the following valid values:
 
@@ -396,7 +474,8 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -407,9 +486,12 @@ functionally equivalent to a **note off** message.
 | [options.attack] | <code>number</code> | <code>0.5</code> | The velocity at which to play the note (between `0` and `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `0.5`. |
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The velocity at which to release the note (between `0` and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `64`. |
 
+
+* * *
+
 <a name="OutputChannel+sendChannelMode"></a>
 
-## outputChannel.sendChannelMode(command, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.sendChannelMode(command, value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel mode** message. The channel mode message to send can be specified
 numerically or by using one of the following common names:
 
@@ -435,7 +517,8 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()](Output#setOmniMode)
   - [setPolyphonicMode()](Output#setPolyphonicMode)
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -445,15 +528,19 @@ To make it easier, all channel mode messages have a matching helper method:
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setOmniMode"></a>
 
-## outputChannel.setOmniMode([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setOmniMode([state], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
 messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -468,13 +555,17 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setChannelAftertouch"></a>
 
-## outputChannel.setChannelAftertouch([pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setChannelAftertouch([pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](Output#setKeyAftertouch).
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -488,9 +579,12 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 | [options.rawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setMasterTuning"></a>
 
-## outputChannel.setMasterTuning([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setMasterTuning([value], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **master tuning** message. The value is decimal and must be larger than -65 semitones
 and smaller than 64 semitones.
 
@@ -499,7 +593,8 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -513,14 +608,18 @@ than 64.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setModulationRange"></a>
 
-## outputChannel.setModulationRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setModulationRange(semitones, [cents], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -530,9 +629,12 @@ specifying both parameters at the same time.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setNonRegisteredParameter"></a>
 
-## outputChannel.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setNonRegisteredParameter(parameter, [data], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets a non-registered parameter (NRPN) to the specified value. The NRPN is selected by passing
 in a two-position array specifying the values of the two control bytes. The value is specified
 by passing in a single integer (most cases) or an array of two integers.
@@ -557,7 +659,8 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 
 For further implementation details, refer to the manufacturer's documentation.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -572,12 +675,16 @@ For further implementation details, refer to the manufacturer's documentation.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setPitchBend"></a>
 
-## outputChannel.setPitchBend([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setPitchBend([value], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **pitch bend** message at the scheduled time.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -587,15 +694,19 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 | [options.rawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setPitchBendRange"></a>
 
-## outputChannel.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setPitchBendRange(semitones, [cents], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -610,16 +721,20 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setProgram"></a>
 
-## outputChannel.setProgram([program], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setProgram([program], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **program change** message at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -633,9 +748,12 @@ than 0xFF.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setRegisteredParameter"></a>
 
-## outputChannel.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setRegisteredParameter(parameter, [data], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -668,7 +786,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -678,9 +797,12 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setTuningBank"></a>
 
-## outputChannel.setTuningBank(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setTuningBank(value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -688,7 +810,8 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -701,9 +824,12 @@ that use a numbering scheme starting at 1.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setTuningProgram"></a>
 
-## outputChannel.setTuningProgram(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setTuningProgram(value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -711,7 +837,8 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -724,14 +851,18 @@ that use a numbering scheme starting at 1.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setLocalControl"></a>
 
-## outputChannel.setLocalControl([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setLocalControl([state], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -740,42 +871,54 @@ its out port.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+turnNotesOff"></a>
 
-## outputChannel.turnNotesOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.turnNotesOff([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="OutputChannel+turnSoundOff"></a>
 
-## outputChannel.turnSoundOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.turnSoundOff([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="OutputChannel+resetAllControllers"></a>
 
-## outputChannel.resetAllControllers([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.resetAllControllers([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -783,14 +926,18 @@ the pitch bend, to their default value.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="OutputChannel+setPolyphonicMode"></a>
 
-## outputChannel.setPolyphonicMode([mode], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setPolyphonicMode([mode], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
 
-**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
+-->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 
 | Param | Type | Default | Description |
@@ -798,4 +945,7 @@ multiple notes are being played.
 | [mode] | <code>string</code> | <code>&quot;poly&quot;</code> | The mode to use: `"mono"` or `"poly"`. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
