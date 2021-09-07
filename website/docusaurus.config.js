@@ -126,12 +126,12 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
 
           // Please change this to your repo.
-          editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
+          editUrl: "https://github.com/djipco/webmidi/edit/develop/website/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: "https://github.com/djipco/webmidi/edit/master/docusaurus/blog/",
+          editUrl: "https://github.com/djipco/webmidi/edit/develop/website/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
