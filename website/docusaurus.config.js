@@ -98,21 +98,22 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
-    // algolia: {
-    //   apiKey: "YOUR_API_KEY",
-    //   indexName: "YOUR_INDEX_NAME",
-    //
-    //   // Optional: see doc section below
-    //   contextualSearch: true,
-    //
-    //   // Optional: see doc section below
-    //   appId: "YOUR_APP_ID",
-    //
-    //   // Optional: Algolia search parameters
-    //   searchParameters: {},
-    //
-    //   //... other Algolia params
-    // },
+    algolia: {
+      apiKey: "af63ae0f5f71033e19ac5047d02b08bb",
+      indexName: "webmidi",
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional (for custom search module)
+      appId: "YOUR_APP_ID",
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      //... other Algolia params
+      placeholder: "Search website..."
+    },
   },
   presets: [
     [
