@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 3rd 2021.
+ * This build was generated on September 8th 2021.
  *
  *
  *
@@ -1113,8 +1113,8 @@ class Input extends e {
       timestamp: e.timeStamp,
       type: "midimessage"
     };
-    this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are targeted at a channel or parsed locally
-    // for system messages.
+    this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
+    // system messages.
 
     if (e.data[0] < 240) {
       // channel-specific message
@@ -3692,6 +3692,13 @@ class Output extends e {
 
 
   sendSysex(manufacturer, data, options = {}) {
+    // Merging Uint8Arrays
+    // var arrayOne = new Uint8Array([2,4,8]);
+    // var arrayTwo = new Uint8Array([16,32,64]);
+    //
+    // var mergedArray = new Uint8Array(arrayOne.length + arrayTwo.length);
+    // mergedArray.set(arrayOne);
+    // mergedArray.set(arrayTwo, arrayOne.length);
     manufacturer = [].concat(manufacturer);
     data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
     this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {
@@ -5907,8 +5914,8 @@ class WebMidi extends e {
     }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
     // be listened to in callbacks tied to the 'enabled' event.
 
-    this.emit("enabled", event);
-    if (typeof options.callback === "function") options.callback(); // We setup the statechange listener before creating the ports so that if properly catches the
+    this.emit("enabled", event); // if (typeof options.callback === "function") options.callback();
+    // We setup the statechange listener before creating the ports so that it properly catches the
     // the ports' `connected` events
 
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created). If
@@ -5916,6 +5923,7 @@ class WebMidi extends e {
 
     try {
       let ports = await this._updateInputsAndOutputs();
+      if (typeof options.callback === "function") options.callback();
       return Promise.resolve({
         inputs: ports[0],
         outputs: ports[1]
