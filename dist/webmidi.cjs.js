@@ -5857,7 +5857,7 @@ class WebMidi extends e {
     }
 
     if (this.enabled) {
-      // if (typeof options.callback === "function") options.callback();
+      if (typeof options.callback === "function") options.callback();
       return Promise.resolve();
     } // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
     // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
