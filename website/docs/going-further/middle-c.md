@@ -17,16 +17,23 @@ considers middle C to be C4.
 
 ## Offsetting Middle C
 
-To make it easier to interface with devices using a different value for middle C, you can offset the 
-note number for middle C by using the `octaveOffset` property. Changing this property on the 
+You can offset the reported note name and octave by using the `octaveOffset` property. This will 
+make it easier to interface with devices that use a different note number for middle C.
+
+For example, by setting `WebMidi.octaveOffset` to `1`, an inbound note with a note number of 60 will
+be reported as `C5` instead of "C4". 
+
+Changing the `octaveOffset` property on the
 [WebMidi](http://localhost:3000/webmidi/api/classes/WebMidi) object has a global effect. For more
 granularity, You can also change it on the [Input](http://localhost:3000/webmidi/api/classes/Input),
 [InputChannel](http://localhost:3000/webmidi/api/classes/InputChannel), 
-[Output](http://localhost:3000/webmidi/api/classes/Output) and 
-[OutputChannel](http://localhost:3000/webmidi/api/classes/OutputChannel) objects.
+[Output](http://localhost:3000/webmidi/api/classes/Output), 
+[OutputChannel](http://localhost:3000/webmidi/api/classes/OutputChannel) and 
+[Note](http://localhost:3000/webmidi/api/classes/Note) objects.
 
 When a note-related MIDI message (note on, note off or key aftertouch) is received, the reported 
-note number is always the one hard-coded in the inbound message. However, the reported octave is 
-offset by the `octaveOffset` property. So, if you receive note number 60 and `octaveOffset` is et to
-0, the reported octave will be 4 and the note name will be C4. If you receive the same note number
-but the `octaveOffset` is set to -1, the reported octave will be 3 and the note name will be C3. 
+note number is always the one hard-coded in the inbound message. However, the reported octave and 
+note name is offset by the `octaveOffset` property. So, if you receive note number 60 and 
+`octaveOffset` is et to 0, the reported octave will be 4 and the note name will be C4. If you 
+receive the same note number but the `octaveOffset` is set to -1, the reported octave will be 3 and
+the note name will be C3. 
