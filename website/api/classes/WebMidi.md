@@ -21,7 +21,7 @@ others.
 <!--**Kind**: global class  
 -->
 **Extends**: <code>EventEmitter</code>  
-**Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>disabled</code>](#WebMidi+event_disabled), [<code>interfaceready</code>](#WebMidi+event_interfaceready)  
+**Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
 
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
@@ -94,7 +94,7 @@ others.
 
     * [`"error"`](#WebMidi+event_error)
 
-    * [`"interfaceready"`](#WebMidi+event_interfaceready)
+    * [`"midiaccessgranted"`](#WebMidi+event_midiaccessgranted)
 
     * [`"enabled"`](#WebMidi+event_enabled)
 
@@ -521,7 +521,7 @@ There are 3 ways to execute code after `WebMidi` has been enabled:
 
 In order, this is what happens towards the end of the enabling process:
 
-1. `interfaceready` event is triggered
+1. `midiaccessgranted` event is triggered
 2. `connected` events are triggered for each available input and output
 3. `enabled` event is triggered
 4. callback (if any) is executed
@@ -881,9 +881,9 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 * * *
 
-<a name="WebMidi+event_interfaceready"></a>
+<a name="WebMidi+event_midiaccessgranted"></a>
 
-## `"interfaceready"`
+## `"midiaccessgranted"`
 Event emitted once the MIDI interface has been successfully created.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -894,7 +894,7 @@ Event emitted once the MIDI interface has been successfully created.
 | --- | --- | --- |
 | timestamp | <code>DOMHighResTimeStamp</code> | The moment when the event occurred (in milliseconds since the navigation start of the document). |
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
-| type | <code>string</code> | `interfaceready` |
+| type | <code>string</code> | `midiaccessgranted` |
 
 
 * * *
