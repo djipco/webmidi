@@ -192,10 +192,11 @@ declare class WebMidi {
      *
      * In order, this is what happens towards the end of the enabling process:
      *
-     * 1. callback is executed
-     * 2. `enabled` event is triggered
-     * 3. `connected` events from available inputs and outputs are triggered
-     * 4. promise is resolved
+     * 1. `interfaceready` event is triggered
+     * 2. `connected` events are triggered for each available input and output
+     * 3. `enabled` event is triggered
+     * 4. callback (if any) is executed
+     * 5. promise is resolved
      *
      * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
      * contain arrays of available inputs and outputs, respectively.
@@ -204,7 +205,7 @@ declare class WebMidi {
      * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
      * authorize the operation (no matter if the `sysex` option is `true` or not).
      *
-     * ##### Examples
+     * ##### Example
      * ```js
      * // Enabling WebMidi and using the promise
      * WebMidi.enable().then(ports => {
@@ -212,21 +213,6 @@ declare class WebMidi {
      *   console.log("Inputs: ", ports.inputs);
      *   console.log("Outputs: ", ports.outputs);
      * })
-     * ```
-     *
-     * ```js
-     * // Enabling WebMidi and listening to 'enabled' event
-     * WebMidi.addListener("enabled", e => {
-     *   console.log("WebMidi.js has been enabled!");
-     * });
-     * WebMidi.enable();
-     * ```
-     *
-     * ```js
-     * // Enabling WebMidi and using callback function
-     * WebMidi.enable({callback: e => {
-     *   console.log("WebMidi.js has been enabled!");
-     * });
      * ```
      *
      * @param [options] {Object}
@@ -258,7 +244,7 @@ declare class WebMidi {
         sysex?: boolean;
         validation?: boolean;
         software?: boolean;
-    }, sysex?: boolean): Promise<any>;
+    }, legacy?: boolean): Promise<any>;
     /**
      * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
      * {@link Input} and {@link Output} objects that may be available. This also means that listeners
