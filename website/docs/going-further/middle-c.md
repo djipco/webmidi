@@ -24,3 +24,9 @@ granularity, You can also change it on the [Input](http://localhost:3000/webmidi
 [InputChannel](http://localhost:3000/webmidi/api/classes/InputChannel), 
 [Output](http://localhost:3000/webmidi/api/classes/Output) and 
 [OutputChannel](http://localhost:3000/webmidi/api/classes/OutputChannel) objects.
+
+When a note-related MIDI message (note on, note off or key aftertouch) is received, the reported 
+note number is always the one hard-coded in the inbound message. However, the reported octave is 
+offset by the `octaveOffset` property. So, if you receive note number 60 and `octaveOffset` is et to
+0, the reported octave will be 4 and the note name will be C4. If you receive the same note number
+but the `octaveOffset` is set to -1, the reported octave will be 3 and the note name will be C3. 
