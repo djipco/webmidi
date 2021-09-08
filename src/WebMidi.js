@@ -514,7 +514,7 @@ class WebMidi extends EventEmitter {
     let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
     let semitone = semitones[matches[1].toUpperCase()];
     let octave = parseInt(matches[3]);
-    let result = ((octave + 1 - Math.floor(this.octaveOffset)) * 12) + semitone;
+    let result = ((octave + 1 - this.octaveOffset) * 12) + semitone;
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
       result -= matches[2].length;
