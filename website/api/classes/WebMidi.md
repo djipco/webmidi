@@ -21,7 +21,7 @@ others.
 <!--**Kind**: global class  
 -->
 **Extends**: <code>EventEmitter</code>  
-**Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>disabled</code>](#WebMidi+event_disabled)  
+**Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>disabled</code>](#WebMidi+event_disabled), [<code>interfaceready</code>](#WebMidi+event_interfaceready)  
 
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
