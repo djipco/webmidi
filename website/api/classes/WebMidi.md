@@ -92,6 +92,10 @@ others.
 
     * [`.convertToTimestamp([time])`](#WebMidi+convertToTimestamp) ⇒ <code>number</code> \| <code>false</code>
 
+    * [`"error"`](#WebMidi+event_error)
+
+    * [`"interfaceready"`](#WebMidi+event_interfaceready)
+
     * [`"enabled"`](#WebMidi+event_enabled)
 
     * [`"disabled"`](#WebMidi+event_disabled)
@@ -511,16 +515,17 @@ software synths has not yet been implemented in any browser (as of April 2020).
 
 There are 3 ways to execute code after `WebMidi` has been enabled:
 
-- Pass a callback function in the options
+- Pass a callback function in the `options`
 - Listen to the `enabled` event
 - Wait for the promise to resolve
 
 In order, this is what happens towards the end of the enabling process:
 
-1. callback is executed
-2. `enabled` event is triggered
-3. `connected` events from available inputs and outputs are triggered
-4. promise is resolved
+1. `interfaceready` event is triggered
+2. `connected` events are triggered for each available input and output
+3. `enabled` event is triggered
+4. callback (if any) is executed
+5. promise is resolved
 
 The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
 contain arrays of available inputs and outputs, respectively.
@@ -529,7 +534,7 @@ contain arrays of available inputs and outputs, respectively.
 secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
 authorize the operation (no matter if the `sysex` option is `true` or not).
 
-##### Examples
+##### Example
 ```js
 // Enabling WebMidi and using the promise
 WebMidi.enable().then(ports => {
@@ -537,21 +542,6 @@ WebMidi.enable().then(ports => {
   console.log("Inputs: ", ports.inputs);
   console.log("Outputs: ", ports.outputs);
 })
-```
-
-```js
-// Enabling WebMidi and listening to 'enabled' event
-WebMidi.addListener("enabled", e => {
-  console.log("WebMidi.js has been enabled!");
-});
-WebMidi.enable();
-```
-
-```js
-// Enabling WebMidi and using callback function
-WebMidi.enable({callback: e => {
-  console.log("WebMidi.js has been enabled!");
-});
 ```
 
 <!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
@@ -872,10 +862,47 @@ returned.
 
 * * *
 
+<a name="WebMidi+event_error"></a>
+
+## `"error"`
+Event emitted when an error occurs trying to enable `WebMidi`
+
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timestamp | <code>DOMHighResTimeStamp</code> | The moment when the event occurred (in milliseconds since the navigation start of the document). |
+| target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
+| type | <code>string</code> | `error` |
+| error | <code>\*</code> | Actual error that occurred |
+
+
+* * *
+
+<a name="WebMidi+event_interfaceready"></a>
+
+## `"interfaceready"`
+Event emitted once the MIDI interface has been successfully created.
+
+<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timestamp | <code>DOMHighResTimeStamp</code> | The moment when the event occurred (in milliseconds since the navigation start of the document). |
+| target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
+| type | <code>string</code> | `interfaceready` |
+
+
+* * *
+
 <a name="WebMidi+event_enabled"></a>
 
 ## `"enabled"`
-Event emitted once `WebMidi` has been successfully enabled.
+Event emitted once `WebMidi` has been fully enabled
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
