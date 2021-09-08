@@ -4295,7 +4295,6 @@ window.lunrData = {
           "implement",
           "import",
           "input",
-          "interfacereadi",
           "jazz",
           "librari",
           "listen",
@@ -4304,6 +4303,7 @@ window.lunrData = {
           "matter",
           "messag",
           "midi",
+          "midiaccessgr",
           "note",
           "object",
           "oper",
@@ -10082,29 +10082,6 @@ window.lunrData = {
                             "ref": "WebMidi.html#disable",
                             "tf": 2.272727272727273
                           }
-                        },
-                        "e": {
-                          "docs": {},
-                          "r": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "a": {
-                                "docs": {},
-                                "d": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {
-                                      "WebMidi.html#enable": {
-                                        "ref": "WebMidi.html#enable",
-                                        "tf": 0.31645569620253167
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
                         }
                       }
                     }
@@ -11826,6 +11803,17 @@ window.lunrData = {
                               "WebMidi.html#interface": {
                                 "ref": "WebMidi.html#interface",
                                 "tf": 29.166666666666664
+                              }
+                            },
+                            "g": {
+                              "docs": {},
+                              "r": {
+                                "docs": {
+                                  "WebMidi.html#enable": {
+                                    "ref": "WebMidi.html#enable",
+                                    "tf": 0.31645569620253167
+                                  }
+                                }
                               }
                             }
                           }
@@ -38589,7 +38577,6 @@ window.lunrData = {
       "instrument",
       "integ",
       "interfac",
-      "interfacereadi",
       "invalid",
       "isbrows",
       "isnod",
@@ -38656,6 +38643,7 @@ window.lunrData = {
       "midi_registered_paramet",
       "midi_system_messag",
       "midiaccess",
+      "midiaccessgr",
       "midimessag",
       "millisecond",
       "mode",
@@ -40518,7 +40506,7 @@ window.lunrData = {
       "name": "enable",
       "tags": "WebMidi#enable enable",
       "summary": "",
-      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of April 2020). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: interfaceready event is triggered connected events are triggered for each available input and output enabled event is triggered callback (if any) is executed promise is resolved The promise is fulfilled with an object containing two properties (inputs and outputs) that contain arrays of available inputs and outputs, respectively. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of April 2020). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: midiaccessgranted event is triggered connected events are triggered for each available input and output enabled event is triggered callback (if any) is executed promise is resolved The promise is fulfilled with an object containing two properties (inputs and outputs) that contain arrays of available inputs and outputs, respectively. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
     },
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
