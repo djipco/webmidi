@@ -6104,14 +6104,17 @@ class WebMidi extends e {
    */
   async enable(options = {}, sysex = false) {
 
-    if (this.enabled) return Promise.resolve();
-
     this.validation = (options.validation !== false);
 
     if (this.validation) {
       // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
       if (typeof options === "function") options = {callback: options, sysex: sysex};
       if (sysex) options.sysex = true;
+    }
+
+    if (this.enabled) {
+      if (typeof options.callback === "function") options.callback();
+      return Promise.resolve();
     }
 
     // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
