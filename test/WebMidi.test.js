@@ -1,5 +1,13 @@
 const expect = require("chai").expect;
 const {WebMidi} = require("../dist/webmidi.cjs.js");
+const midi = require("midi");
+
+// The virtual port from the 'midi' library is an "external" device so an output is seen as an input
+// by WebMidi. To avoid confusion, the naming scheme adopts WebMidi's perspective.
+const VIRTUAL_INPUT_NAME = "Virtual Input";
+const VIRTUAL_INPUT = new midi.Output(VIRTUAL_INPUT_NAME);
+const VIRTUAL_OUTPUT_NAME = "Virtual Output";
+const VIRTUAL_OUTPUT = new midi.Input(VIRTUAL_OUTPUT_NAME);
 
 describe("WebMidi Object", function() {
 
@@ -40,54 +48,86 @@ describe("WebMidi Object", function() {
 
   });
 
-  it("should trigger 'enabled' event", function (done) {
+  // THIS WORKS BY ITSELF BUT STOPS WORKING WHEN THE OTHER TESTS ARE RUN!
+  it("should trigger 'connected' events for new inputs");
+  // it("should trigger 'connected' events for new inputs", function(done) {
+  //
+  //   WebMidi.addListener("connected", e => {
+  //     if (e.port.name === VIRTUAL_INPUT_NAME) {
+  //       WebMidi.removeListener();
+  //       VIRTUAL_INPUT.closePort();
+  //       done();
+  //     }
+  //   });
+  //
+  //   // Assert
+  //   WebMidi.enable().then(() => {
+  //     setTimeout(function () {
+  //       VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
+  //     }, 100);
+  //   });
+  //
+  // });
 
-    // Arrange
-    this.timeout(10000);
+  // THIS WORKS BY ITSELF BUT STOPS WORKING WHEN THE OTHER TESTS ARE RUN!
+  it("should trigger 'connected' events for new outputs");
+  // it("should trigger 'connected' events for new outputs", function(done) {
+  //
+  //   WebMidi.addListener("connected", e => {
+  //     if (e.port.name === VIRTUAL_OUTPUT_NAME) {
+  //       WebMidi.removeListener();
+  //       VIRTUAL_OUTPUT.closePort();
+  //       done();
+  //     }
+  //   });
+  //
+  //   // Assert
+  //   WebMidi.enable().then(() => {
+  //     setTimeout(()=>{
+  //       VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+  //     }, 250);
+  //   });
+  //
+  // });
 
-    // Assert
-    WebMidi.addListener("enabled", () => done());
-    WebMidi.enable();
+  it("should trigger 'disconnected' events for disconnected outputs");
+  // it("should trigger 'disconnected' events for disconnected outputs", function(done) {
+  //
+  //   VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+  //
+  //   WebMidi.addListener("disconnected", e => {
+  //     if (e.port.name === VIRTUAL_OUTPUT_NAME) {
+  //       WebMidi.removeListener();
+  //       done();
+  //     }
+  //   });
+  //
+  //   // Assert
+  //   WebMidi.enable().then(() => {
+  //     setTimeout(() => {
+  //       VIRTUAL_OUTPUT.closePort();
+  //     }, 250);
+  //   });
+  //
+  // });
 
-  });
-
-  it("should trigger 'disabled' event", function (done) {
-
-    // Assert
-    WebMidi.addListener("disabled", () => done());
-    WebMidi.disable();
-
-  });
-
-  it("should trigger 'connected' event for output ports");
-
-  // it("should trigger 'connected' event for output ports DOES NOT WORK!!!!!", async function () {
+  it("should trigger 'disconnected' events for disconnected inputs");
+  // it("should trigger 'disconnected' events for disconnected inputs", function(done) {
   //
-  //   // Ignore in browser
-  //   if (!WebMidi.isNode) this.skip();
+  //   VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
   //
-  //   // We disconnect the external device's input port. From WebMidi's point of view, it is an
-  //   // output port.
-  //   config.output.port.closePort();
+  //   WebMidi.addListener("disconnected", e => {
+  //     if (e.port.name === VIRTUAL_INPUT_NAME) {
+  //       WebMidi.removeListener();
+  //       done();
+  //     }
+  //   });
   //
-  //   await WebMidi.enable();
-  //
-  //   await new Promise(function(resolve) {
-  //
-  //     // resolve(); // marche
-  //
-  //     WebMidi.addListener("connected", function(e) {
-  //
-  //       // resolve(); // marche pas
-  //
-  //       if (e.target.name === config.output.name) {
-  //         console.log(e.target.name, "XXXXXXXXXXXXXXXXXXX0000000000000000000XXXXXXXXXXXXXXXX");
-  //         resolve(); // marche pas.
-  //       }
-  //     });
-  //
-  //     // config.output.port.openVirtualPort(config.output.name);
-  //
+  //   // Assert
+  //   WebMidi.enable().then(() => {
+  //     setTimeout(() => {
+  //       VIRTUAL_INPUT.closePort();
+  //     }, 250);
   //   });
   //
   // });
@@ -217,52 +257,15 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should fire 'disabled' event if successful", function(done) {
+    it("should dispatch 'disabled' event", function (done) {
       WebMidi.addListener("disabled", () => done());
       WebMidi.disable();
     });
 
   });
 
+  // VERIFIED
   describe("enable()", function() {
-
-    it("should pass error to callback upon failure");
-
-    // it("should pass error to callback upon failure", function(done) {
-    //
-    //   if (WebMidi.isNode) this.skip(); // Can't seem to be able to fake the absence RMA on Node
-    //   this.timeout = 3000;
-    //
-    //   let backup = navigator.requestMIDIAccess;
-    //   navigator.requestMIDIAccess = undefined;
-    //
-    //   WebMidi.enable({callback: err => {
-    //     expect(err).to.be.an("error");
-    //     done();
-    //   }}).catch(() => {});
-    //
-    //   navigator.requestMIDIAccess = backup;
-    //
-    // });
-
-    it("should return a rejected promise upon failure");
-
-    // it("should return a rejected promise upon failure", function(done) {
-    //
-    //   if (WebMidi.isNode) this.skip(); // Can't seem to be able to fake absence of RMA on Node
-    //   this.timeout = 3000;
-    //
-    //   let backup = navigator.requestMIDIAccess;
-    //   navigator.requestMIDIAccess = undefined;
-    //
-    //   WebMidi.enable().catch(err => {
-    //     expect(err).to.be.an("error");
-    //     done();
-    //   });
-    //
-    //   navigator.requestMIDIAccess = backup;
-    //
-    // });
 
     it("should return a resolved promise if already enabled", function(done) {
 
@@ -274,8 +277,19 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should set 'enabled' property to false if it fails", function(done) {
+    it("should execute the callback if already enabled (legacy)", function(done) {
 
+      WebMidi.enable(function() {
+        WebMidi.enable(function() {
+          done();
+        });
+      });
+
+    });
+
+    it("should pass error to callback upon failure to create interface (legacy)", function(done) {
+
+      // Arrange
       let backup;
 
       if (navigator && navigator.requestMIDIAccess) {
@@ -283,7 +297,106 @@ describe("WebMidi Object", function() {
         navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
       }
 
+      // Assert
+      WebMidi.enable(function (err) {
+        expect(err).to.be.an("error");
+        navigator.requestMIDIAccess = backup;
+        done();
+      });
+
+    });
+
+    it("should pass error to callback upon failure to create interface", function(done) {
+
+      // Arrange
+      let backup;
+
+      if (navigator && navigator.requestMIDIAccess) {
+        backup = navigator.requestMIDIAccess;
+        navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
+      }
+
+      // Assert
+      WebMidi.enable({callback: err => {
+        expect(err).to.be.an("error");
+        navigator.requestMIDIAccess = backup;
+        done();
+      }}).catch(() => {});
+
+
+    });
+
+    it("should trigger error event upon failure to create interface", function(done) {
+
+      // Arrange
+      let backup;
+
+      if (navigator && navigator.requestMIDIAccess) {
+        backup = navigator.requestMIDIAccess;
+        navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
+      }
+
+      // Assert
+      WebMidi.addListener("error", e => {
+        expect(e.error).to.be.an("error");
+        navigator.requestMIDIAccess = backup;
+        done();
+      });
+
+      // Act
+      WebMidi.enable();
+
+    });
+
+    it("should return a rejected promise upon failure to create interface", function(done) {
+
+      // Arrange
+      let backup;
+
+      if (navigator && navigator.requestMIDIAccess) {
+        backup = navigator.requestMIDIAccess;
+        navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
+      }
+
+      // Assert
+      WebMidi.enable().catch(err => {
+        navigator.requestMIDIAccess = backup;
+        expect(err).to.be.an("error");
+        done();
+      });
+
+    });
+
+    it("should set 'enabled' property to false if enable() method fails", function(done) {
+
+      // Arrange
+      let backup;
+
+      if (navigator && navigator.requestMIDIAccess) {
+        backup = navigator.requestMIDIAccess;
+        navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
+      }
+
+      // Assert
       WebMidi.enable().catch(() => {
+        expect(WebMidi.enabled).to.equal(false);
+        navigator.requestMIDIAccess = backup;
+        done();
+      });
+
+    });
+
+    it("should set 'enabled' property to false if enable() method fails (legacy)", function(done) {
+
+      // Arrange
+      let backup;
+
+      if (navigator && navigator.requestMIDIAccess) {
+        backup = navigator.requestMIDIAccess;
+        navigator.requestMIDIAccess = () => Promise.reject(new Error("Simulated failure!"));
+      }
+
+      WebMidi.enable(function () {
         expect(WebMidi.enabled).to.equal(false);
         navigator.requestMIDIAccess = backup;
         done();
@@ -307,50 +420,104 @@ describe("WebMidi Object", function() {
 
     });
 
+    it("should set 'enabled' property to true if successful (legacy)", function(done) {
+
+      WebMidi.enable(function (err) {
+
+        if (err) { // This could happen if WebMIDIAPIShim is there but not the Jazz-Plugin
+          expect(WebMidi.enabled).to.equal(false);
+        } else {
+          expect(WebMidi.enabled).to.equal(true);
+        }
+
+        done();
+
+      });
+
+    });
+
     it("should execute the callback if successful", function(done) {
       WebMidi.enable({callback: function () {
         done();
       }});
     });
 
+    it("should execute the callback if successful (legacy)", function(done) {
+      WebMidi.enable(function() {
+        done();
+      });
+    });
+
     it("should return a promise if successful", function(done) {
       WebMidi.enable().then(() => done());
     });
 
-    // it("should enable sysex only if requested (for browsers with native MIDI)", function(done) {
-    //
-    //   WebMidi.enable({sysex: true})
-    //     .then(() => {
-    //
-    //       if ( isNative(navigator.requestMIDIAccess) ) {
-    //         expect(WebMidi.sysexEnabled).to.equal(true);
-    //       } else {
-    //         expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
-    //       }
-    //
-    //       done();
-    //
-    //     });
-    //
-    // });
+    it("should trigger 'connected' events for already connected inputs", function(done) {
 
-    // it("should not enable sysex unless requested (browsers with native MIDI)", function(done) {
-    //
-    //   WebMidi.enable(function () {
-    //
-    //     if (isNative(navigator.requestMIDIAccess) ) {
-    //       expect(WebMidi.sysexEnabled).to.equal(false);
-    //     } else {
-    //       expect(WebMidi.sysexEnabled).to.be.oneOf([true, false]);
-    //     }
-    //
-    //     done();
-    //
-    //   }, false);
-    //
-    // });
+      // Arrange
+      VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
 
-    it("should continue to support the legacy syntax", function(done) {
+      WebMidi.addListener("connected", e => {
+        if (e.port.name === VIRTUAL_INPUT_NAME) {
+          WebMidi.removeListener();
+          VIRTUAL_INPUT.closePort();
+          done();
+        }
+      });
+
+      // Assert
+      WebMidi.enable();
+
+    });
+
+    it("should trigger 'connected' events for already connected outputs", function(done) {
+
+      VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+
+      WebMidi.addListener("connected", e => {
+        if (e.port.name === VIRTUAL_OUTPUT_NAME) {
+          WebMidi.removeListener();
+          VIRTUAL_OUTPUT.closePort();
+          done();
+        }
+      });
+
+      // Assert
+      WebMidi.enable();
+
+    });
+
+    it("should enable sysex only if requested", function(done) {
+      WebMidi.enable({sysex: true}).then(() => {
+        expect(WebMidi.sysexEnabled).to.equal(true);
+        done();
+      });
+    });
+
+    it("should enable sysex only if requested (legacy)", function(done) {
+      WebMidi.enable(function () {
+        expect(WebMidi.sysexEnabled).to.equal(true);
+        done();
+      }, true);
+    });
+
+    it("should not enable sysex unless requested", function(done) {
+
+      WebMidi.enable().then(() => {
+        expect(WebMidi.sysexEnabled).to.equal(false);
+        done();
+      });
+
+    });
+
+    it("should not enable sysex unless requested (legacy)", function(done) {
+      WebMidi.enable(function () {
+        expect(WebMidi.sysexEnabled).to.equal(false);
+        done();
+      });
+    });
+
+    it("should continue to support the legacy properties", function(done) {
 
       WebMidi.enable(function () {
 
@@ -367,9 +534,25 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should fire 'enabled' event if successful", function(done) {
+    it("should dispatch 'enabled' event", function (done) {
+
+      // Arrange
+      this.timeout(10000);
+
+      // Assert
       WebMidi.addListener("enabled", () => done());
       WebMidi.enable();
+
+    });
+
+    it("should dispatch 'interfaceready' event", function(done) {
+
+      // Arrange
+      WebMidi.addListener("interfaceready", () => done());
+
+      // Act
+      WebMidi.enable();
+
     });
 
   });
@@ -938,8 +1121,6 @@ describe("WebMidi Object", function() {
         expect(WebMidi._octaveOffset).to.equal(WebMidi.octaveOffset);
       });
     });
-
-
 
   });
 
