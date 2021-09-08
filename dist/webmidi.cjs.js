@@ -5892,7 +5892,7 @@ class WebMidi extends e {
       timestamp: this.time,
       target: this,
       type: "error",
-      details: undefined
+      error: undefined
     };
     /**
      * Event emitted once the MIDI interface has been successfully created.
@@ -5933,7 +5933,7 @@ class WebMidi extends e {
         software: options.software
       });
     } catch (err) {
-      errorEvent.details = err;
+      errorEvent.error = err;
       this.emit("error", errorEvent);
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
@@ -5951,7 +5951,7 @@ class WebMidi extends e {
     try {
       ports = await this._updateInputsAndOutputs();
     } catch (err) {
-      errorEvent.details = err;
+      errorEvent.error = err;
       this.emit("error", errorEvent);
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
