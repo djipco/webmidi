@@ -101,12 +101,10 @@ module.exports = {
     algolia: {
       apiKey: "af63ae0f5f71033e19ac5047d02b08bb",
       indexName: "webmidi",
+      appId: "BH4D9OD16A",
 
       // Optional: see doc section below
       contextualSearch: true,
-
-      // Optional (for custom search module)
-      appId: "YOUR_APP_ID",
 
       // Optional: Algolia search parameters
       searchParameters: {},
