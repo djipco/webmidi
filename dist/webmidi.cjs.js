@@ -5884,7 +5884,7 @@ class WebMidi extends e {
      * milliseconds since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
      * @property {string} type `error`
-     * @property {*} details Details about the error that occurred
+     * @property {*} error Actual error that occurred
      */
 
 
