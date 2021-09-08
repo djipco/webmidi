@@ -205,8 +205,8 @@ export class Input extends EventEmitter {
 
     this.emit("midimessage", event);
 
-    // Messages are forwarded to InputChannel if they are targeted at a channel or parsed locally
-    // for system messages.
+    // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
+    // system messages.
     if (e.data[0] < 240) {          // channel-specific message
       let channel = (e.data[0] & 0xf) + 1;
       this.channels[channel]._parseEvent(e);
