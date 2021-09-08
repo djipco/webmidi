@@ -119,9 +119,9 @@ class WebMidi extends EventEmitter {
    * In order, this is what happens towards the end of the enabling process:
    *
    * 1. `midiaccessgranted` event is triggered
-   * 2. `connected` events are triggered for each available input and output
-   * 3. `enabled` event is triggered
-   * 4. callback (if any) is executed
+   * 2. `connected` events are triggered (for each available input and output)
+   * 3. `enabled` event is triggered when WebMidi.js is ready
+   * 4. specified callback (if any) is executed
    * 5. promise is resolved
    *
    * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
