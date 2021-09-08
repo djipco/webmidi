@@ -4273,8 +4273,8 @@
           "contain",
           "current",
           "display",
-          "e",
           "e.g",
+          "each",
           "enabl",
           "end",
           "environ",
@@ -4295,6 +4295,7 @@
           "implement",
           "import",
           "input",
+          "interfacereadi",
           "jazz",
           "librari",
           "listen",
@@ -4348,10 +4349,7 @@
           "web",
           "webmidi",
           "webmidi#en",
-          "webmidi.addlistener(\"en",
-          "webmidi.en",
-          "webmidi.enable().then(port",
-          "webmidi.enable({callback"
+          "webmidi.enable().then(port"
         ],
         "WebMidi.html#getInputById": [
           "anoth",
@@ -6195,7 +6193,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               },
@@ -6594,7 +6592,7 @@
             },
             "WebMidi.html#enable": {
               "ref": "WebMidi.html#enable",
-              "tf": 0.2857142857142857
+              "tf": 0.31645569620253167
             }
           },
           ".": {
@@ -7460,7 +7458,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5714285714285714
+                  "tf": 0.6329113924050633
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -7480,7 +7478,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -7581,7 +7579,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     },
                     "WebMidi.html#getValidNoteArray": {
                       "ref": "WebMidi.html#getValidNoteArray",
@@ -7907,7 +7905,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.1428571428571428
+                      "tf": 1.2658227848101267
                     }
                   }
                 }
@@ -7932,7 +7930,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5714285714285714
+                      "tf": 0.6329113924050633
                     }
                   }
                 }
@@ -8269,7 +8267,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -8565,7 +8563,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.2857142857142857
+                              "tf": 0.31645569620253167
                             }
                           }
                         }
@@ -8797,7 +8795,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -9126,7 +9124,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.8571428571428572
+                      "tf": 0.949367088607595
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -10084,6 +10082,29 @@
                             "ref": "WebMidi.html#disable",
                             "tf": 2.272727272727273
                           }
+                        },
+                        "e": {
+                          "docs": {},
+                          "r": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "d": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {
+                                      "WebMidi.html#enable": {
+                                        "ref": "WebMidi.html#enable",
+                                        "tf": 0.31645569620253167
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -10292,7 +10313,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.2857142857142857
+                              "tf": 0.31645569620253167
                             }
                           }
                         }
@@ -10323,7 +10344,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -10382,7 +10403,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     },
                     "WebMidi.html#sanitizeChannels": {
                       "ref": "WebMidi.html#sanitizeChannels",
@@ -10497,7 +10518,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -10729,7 +10750,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -10851,7 +10872,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -11211,7 +11232,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.2857142857142857
+                              "tf": 0.31645569620253167
                             }
                           }
                         }
@@ -11720,7 +11741,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 1.1428571428571428
+                    "tf": 1.2658227848101267
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -12961,7 +12982,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -13477,7 +13498,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -13852,7 +13873,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 1.1428571428571428
+                        "tf": 1.2658227848101267
                       }
                     },
                     "e": {
@@ -14047,7 +14068,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -14113,7 +14134,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.5714285714285714
+                            "tf": 0.6329113924050633
                           },
                           "WebMidi.html#getOctave": {
                             "ref": "WebMidi.html#getOctave",
@@ -14139,7 +14160,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -14170,7 +14191,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -14521,7 +14542,7 @@
                               "docs": {
                                 "WebMidi.html#enable": {
                                   "ref": "WebMidi.html#enable",
-                                  "tf": 0.2857142857142857
+                                  "tf": 0.31645569620253167
                                 }
                               }
                             }
@@ -14543,7 +14564,7 @@
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.2857142857142857
+                                    "tf": 0.31645569620253167
                                   }
                                 }
                               }
@@ -14953,7 +14974,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -15392,7 +15413,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -15415,7 +15436,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   },
                   "WebMidi.html#getNoteNumberByName": {
                     "ref": "WebMidi.html#getNoteNumberByName",
@@ -15977,7 +15998,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -16011,7 +16032,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -16863,7 +16884,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5714285714285714
+                  "tf": 0.6329113924050633
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -16892,7 +16913,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 1.1428571428571428
+                          "tf": 0.6329113924050633
                         }
                       },
                       ".": {
@@ -17435,10 +17456,6 @@
                               "Output.html#sendSysex": {
                                 "ref": "Output.html#sendSysex",
                                 "tf": 0.33333333333333337
-                              },
-                              "WebMidi.html#enable": {
-                                "ref": "WebMidi.html#enable",
-                                "tf": 0.2857142857142857
                               }
                             },
                             "a": {
@@ -17472,35 +17489,6 @@
                                               }
                                             }
                                           }
-                                        },
-                                        "c": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "l": {
-                                              "docs": {},
-                                              "l": {
-                                                "docs": {},
-                                                "b": {
-                                                  "docs": {},
-                                                  "a": {
-                                                    "docs": {},
-                                                    "c": {
-                                                      "docs": {},
-                                                      "k": {
-                                                        "docs": {
-                                                          "WebMidi.html#enable": {
-                                                            "ref": "WebMidi.html#enable",
-                                                            "tf": 0.2857142857142857
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
                                         }
                                       },
                                       ")": {
@@ -17527,60 +17515,10 @@
                                                             "docs": {
                                                               "WebMidi.html#enable": {
                                                                 "ref": "WebMidi.html#enable",
-                                                                "tf": 0.2857142857142857
+                                                                "tf": 0.31645569620253167
                                                               }
                                                             }
                                                           }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "a": {
-                          "docs": {},
-                          "d": {
-                            "docs": {},
-                            "d": {
-                              "docs": {},
-                              "l": {
-                                "docs": {},
-                                "i": {
-                                  "docs": {},
-                                  "s": {
-                                    "docs": {},
-                                    "t": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "e": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "(": {
-                                                "docs": {},
-                                                "\"": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "n": {
-                                                      "docs": {
-                                                        "WebMidi.html#enable": {
-                                                          "ref": "WebMidi.html#enable",
-                                                          "tf": 0.2857142857142857
                                                         }
                                                       }
                                                     }
@@ -18755,7 +18693,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 },
                 "WebMidi.html#getInputByName": {
                   "ref": "WebMidi.html#getInputByName",
@@ -18773,7 +18711,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -19804,7 +19742,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -20957,7 +20895,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.8571428571428572
+                "tf": 0.31645569620253167
               }
             }
           },
@@ -21335,7 +21273,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -21908,7 +21846,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -21981,7 +21919,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5714285714285714
+                      "tf": 0.6329113924050633
                     }
                   }
                 }
@@ -22050,7 +21988,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.5714285714285714
+                          "tf": 0.6329113924050633
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -22235,7 +22173,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.5714285714285714
+                          "tf": 0.6329113924050633
                         }
                       }
                     }
@@ -22315,7 +22253,7 @@
                                             "docs": {
                                               "WebMidi.html#enable": {
                                                 "ref": "WebMidi.html#enable",
-                                                "tf": 0.2857142857142857
+                                                "tf": 0.31645569620253167
                                               }
                                             }
                                           }
@@ -22337,7 +22275,7 @@
                                               "docs": {
                                                 "WebMidi.html#enable": {
                                                   "ref": "WebMidi.html#enable",
-                                                  "tf": 0.2857142857142857
+                                                  "tf": 0.31645569620253167
                                                 }
                                               }
                                             }
@@ -22366,7 +22304,7 @@
                                                     "docs": {
                                                       "WebMidi.html#enable": {
                                                         "ref": "WebMidi.html#enable",
-                                                        "tf": 0.8571428571428572
+                                                        "tf": 0.31645569620253167
                                                       }
                                                     }
                                                   }
@@ -22506,7 +22444,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -22697,7 +22635,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -22821,7 +22759,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.8571428571428572
+                            "tf": 0.6329113924050633
                           }
                         }
                       }
@@ -22862,7 +22800,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -23022,10 +22960,6 @@
             "InputChannel.html#_parseEvent": {
               "ref": "InputChannel.html#_parseEvent",
               "tf": 33.33333333333333
-            },
-            "WebMidi.html#enable": {
-              "ref": "WebMidi.html#enable",
-              "tf": 0.5714285714285714
             }
           },
           "m": {
@@ -23099,7 +23033,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.1428571428571428
+                      "tf": 1.2658227848101267
                     }
                   },
                   "e": {
@@ -23250,7 +23184,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -23434,7 +23368,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -23459,7 +23393,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -23493,7 +23427,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 }
               }
             },
@@ -23529,7 +23463,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.5714285714285714
+                          "tf": 0.6329113924050633
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -23573,7 +23507,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 679
+                      "tf": 677.8481012658228
                     }
                   }
                 }
@@ -23904,7 +23838,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 }
               }
             }
@@ -23994,6 +23928,10 @@
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 0.3289473684210526
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -24370,7 +24308,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 }
               }
@@ -24794,7 +24732,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 110.57142857142857
+                            "tf": 110.31645569620254
                           },
                           "WebMidi.html#getInputById": {
                             "ref": "WebMidi.html#getInputById",
@@ -24873,7 +24811,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -24912,7 +24850,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -25243,7 +25181,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.5714285714285714
+                    "tf": 0.6329113924050633
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -25278,7 +25216,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -25358,7 +25296,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -25513,7 +25451,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   }
                 },
                 "s": {
@@ -25853,7 +25791,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -26073,7 +26011,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.5714285714285714
+                    "tf": 0.6329113924050633
                   }
                 }
               }
@@ -26356,7 +26294,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 26.714285714285715
+                        "tf": 26.89873417721519
                       },
                       "WebMidi.html#getNoteNumberByName": {
                         "ref": "WebMidi.html#getNoteNumberByName",
@@ -26777,7 +26715,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.8571428571428572
+                        "tf": 0.949367088607595
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -29879,7 +29817,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -29894,7 +29832,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -30064,7 +30002,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5714285714285714
+                  "tf": 0.6329113924050633
                 }
               },
               "l": {
@@ -31491,7 +31429,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5714285714285714
+                      "tf": 0.6329113924050633
                     }
                   }
                 }
@@ -31737,7 +31675,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.2857142857142857
+                              "tf": 0.31645569620253167
                             }
                           },
                           "'": {
@@ -32001,7 +31939,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -32163,7 +32101,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -33072,7 +33010,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.8571428571428572
+                          "tf": 0.949367088607595
                         }
                       }
                     }
@@ -33374,7 +33312,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.8571428571428572
+                      "tf": 0.949367088607595
                     }
                   },
                   "e": {
@@ -33387,7 +33325,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       },
                       "d": {
@@ -33430,7 +33368,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5714285714285714
+                        "tf": 0.6329113924050633
                       }
                     }
                   }
@@ -33445,7 +33383,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   },
                   "e": {
@@ -33454,7 +33392,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -34488,7 +34426,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.2857142857142857
+                    "tf": 0.31645569620253167
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -35505,7 +35443,7 @@
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 }
               },
               "g": {
@@ -35550,7 +35488,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.5714285714285714
+                          "tf": 0.949367088607595
                         }
                       }
                     }
@@ -35584,7 +35522,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.8571428571428572
+                    "tf": 0.949367088607595
                   }
                 }
               }
@@ -36051,7 +35989,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 }
               }
             }
@@ -36068,7 +36006,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.2857142857142857
+                        "tf": 0.31645569620253167
                       }
                     }
                   }
@@ -36445,7 +36383,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.2857142857142857
+                          "tf": 0.31645569620253167
                         }
                       }
                     }
@@ -37164,7 +37102,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.2857142857142857
+                      "tf": 0.31645569620253167
                     }
                   }
                 }
@@ -37371,7 +37309,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 1.1428571428571428
+                "tf": 0.949367088607595
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
@@ -37449,7 +37387,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.5714285714285714
+                    "tf": 0.6329113924050633
                   }
                 }
               }
@@ -37544,7 +37482,7 @@
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.2857142857142857
+                  "tf": 0.31645569620253167
                 }
               }
             },
@@ -38173,7 +38111,7 @@
           }
         }
       },
-      "length": 4375
+      "length": 4373
     },
     "corpusTokens": [
       "0",
@@ -38651,6 +38589,7 @@
       "instrument",
       "integ",
       "interfac",
+      "interfacereadi",
       "invalid",
       "isbrows",
       "isnod",
@@ -39191,10 +39130,8 @@
       "webmidi#sysexen",
       "webmidi#tim",
       "webmidi#valid",
-      "webmidi.addlistener(\"en",
       "webmidi.en",
       "webmidi.enable().then(port",
-      "webmidi.enable({callback",
       "webmidi.enable({sysex",
       "webmidi.inputs[0].addlistener(\"midimessag",
       "webmidi.inputs[0].addlistener(\"noteon",
@@ -40581,7 +40518,7 @@
       "name": "enable",
       "tags": "WebMidi#enable enable",
       "summary": "",
-      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of April 2020). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: callback is executed enabled event is triggered connected events from available inputs and outputs are triggered promise is resolved The promise is fulfilled with an object containing two properties (inputs and outputs) that contain arrays of available inputs and outputs, respectively. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Examples // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); }) // Enabling WebMidi and listening to 'enabled' event WebMidi.addListener(\"enabled\", e =&gt; { console.log(\"WebMidi.js has been enabled!\"); }); WebMidi.enable(); // Enabling WebMidi and using callback function WebMidi.enable({callback: e =&gt; { console.log(\"WebMidi.js has been enabled!\"); });"
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of April 2020). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: interfaceready event is triggered connected events are triggered for each available input and output enabled event is triggered callback (if any) is executed promise is resolved The promise is fulfilled with an object containing two properties (inputs and outputs) that contain arrays of available inputs and outputs, respectively. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
     },
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
