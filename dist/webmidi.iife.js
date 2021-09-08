@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.7
+ * WebMidi.js v3.0.0-alpha.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
@@ -5765,7 +5765,7 @@
      *
      * There are 3 ways to execute code after `WebMidi` has been enabled:
      *
-     * - Pass a callback function in the options
+     * - Pass a callback function in the `options`
      * - Listen to the `enabled` event
      * - Wait for the promise to resolve
      *
