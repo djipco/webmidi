@@ -5781,10 +5781,11 @@ class WebMidi extends e {
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. callback is executed
-   * 2. `enabled` event is triggered
-   * 3. `connected` events from available inputs and outputs are triggered
-   * 4. promise is resolved
+   * 1. `interfaceready` event is triggered
+   * 2. `connected` events are triggered for each available input and output
+   * 3. `enabled` event is triggered
+   * 4. callback (if any) is executed
+   * 5. promise is resolved
    *
    * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
    * contain arrays of available inputs and outputs, respectively.
@@ -5793,7 +5794,7 @@ class WebMidi extends e {
    * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
    * authorize the operation (no matter if the `sysex` option is `true` or not).
    *
-   * ##### Examples
+   * ##### Example
    * ```js
    * // Enabling WebMidi and using the promise
    * WebMidi.enable().then(ports => {
@@ -5801,21 +5802,6 @@ class WebMidi extends e {
    *   console.log("Inputs: ", ports.inputs);
    *   console.log("Outputs: ", ports.outputs);
    * })
-   * ```
-   *
-   * ```js
-   * // Enabling WebMidi and listening to 'enabled' event
-   * WebMidi.addListener("enabled", e => {
-   *   console.log("WebMidi.js has been enabled!");
-   * });
-   * WebMidi.enable();
-   * ```
-   *
-   * ```js
-   * // Enabling WebMidi and using callback function
-   * WebMidi.enable({callback: e => {
-   *   console.log("WebMidi.js has been enabled!");
-   * });
    * ```
    *
    * @param [options] {Object}
@@ -5844,16 +5830,16 @@ class WebMidi extends e {
    */
 
 
-  async enable(options = {}, sysex = false) {
+  async enable(options = {}, legacy = false) {
     this.validation = options.validation !== false;
 
     if (this.validation) {
       // Backwards-compatibility. Previous syntax was: enable(callback, sysex)
       if (typeof options === "function") options = {
         callback: options,
-        sysex: sysex
+        sysex: legacy
       };
-      if (sysex) options.sysex = true;
+      if (legacy) options.sysex = true;
     }
 
     if (this.enabled) {
@@ -5898,9 +5884,60 @@ class WebMidi extends e {
     } catch (err) {
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
-    }
+    } // Now that the Web MIDI API interface has been created, we trigger the 'interfaceready' event.
+    // This allows the developer an occasion to assign listeners on 'connected' events.
+
     /**
-     * Event emitted once `WebMidi` has been successfully enabled.
+     * Event emitted once the MIDI interface has been successfully created.
+     *
+     * @event WebMidi#interfaceready
+     * @type {Object}
+     * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
+     * since the navigation start of the document).
+     * @property {WebMidi} target The object that triggered the event
+     * @property {string} type `interfaceready`
+     */
+
+
+    const interfaceReadyEvent = {
+      timestamp: this.time,
+      target: this,
+      type: "interfaceready"
+    };
+    this.emit("interfaceready", interfaceReadyEvent); // We setup the statechange listener before creating the ports so that it properly catches the
+    // the ports' `connected` events
+
+    this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created).
+
+    let ports;
+
+    try {
+      ports = await this._updateInputsAndOutputs();
+    } catch (err) {
+      // If an error occurs trying to set up the port, we trigger an 'error' event
+
+      /**
+       * Event emitted when an error occurs trying to enable `WebMidi`
+       *
+       * @event WebMidi#error
+       * @type {Object}
+       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {WebMidi} target The object that triggered the event
+       * @property {string} type `error`
+       */
+      let errorEvent = {
+        timestamp: this.time,
+        target: this,
+        type: "error"
+      };
+      this.emit("error", errorEvent);
+      if (typeof options.callback === "function") options.callback(err);
+      return Promise.reject(err);
+    } // If the ports are successfully created, we trigger the 'enabled' event
+
+    /**
+     * Event emitted once `WebMidi` has been successfully enabled
      *
      * @event WebMidi#enabled
      * @type {Object}
@@ -5911,30 +5948,19 @@ class WebMidi extends e {
      */
 
 
-    let event = {
+    let enabledEvent = {
       timestamp: this.time,
       target: this,
       type: "enabled"
-    }; // Trigger the 'enabled' event. We do it before emitting the 'connected' events so that they can
-    // be listened to in callbacks tied to the 'enabled' event.
+    };
+    this.emit("enabled", enabledEvent); // Execute the callback (if any) and resolve the promise with an object containing inputs and
+    // outputs
 
-    this.emit("enabled", event); // if (typeof options.callback === "function") options.callback();
-    // We setup the statechange listener before creating the ports so that it properly catches the
-    // the ports' `connected` events
-
-    this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created). If
-    // successful, we return a promise fulfilled with all the input/output ports that were found.
-
-    try {
-      let ports = await this._updateInputsAndOutputs();
-      if (typeof options.callback === "function") options.callback();
-      return Promise.resolve({
-        inputs: ports[0],
-        outputs: ports[1]
-      });
-    } catch (err) {
-      return Promise.reject(err);
-    }
+    if (typeof options.callback === "function") options.callback();
+    return Promise.resolve({
+      inputs: ports[0],
+      outputs: ports[1]
+    });
   }
   /**
    * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
