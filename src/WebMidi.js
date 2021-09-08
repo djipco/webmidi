@@ -30,9 +30,10 @@ global["navigator"] = require("jzz");
  * others.
  *
  * @fires WebMidi#connected
+ * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
- * @fires WebMidi#disabled
+ * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
  */
@@ -117,7 +118,7 @@ class WebMidi extends EventEmitter {
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. `interfaceready` event is triggered
+   * 1. `midiaccessgranted` event is triggered
    * 2. `connected` events are triggered for each available input and output
    * 3. `enabled` event is triggered
    * 4. callback (if any) is executed
@@ -230,17 +231,17 @@ class WebMidi extends EventEmitter {
     /**
      * Event emitted once the MIDI interface has been successfully created.
      *
-     * @event WebMidi#interfaceready
+     * @event WebMidi#midiaccessgranted
      * @type {Object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
-     * @property {string} type `interfaceready`
+     * @property {string} type `midiaccessgranted`
      */
-    const interfaceReadyEvent = {
+    const midiAccessGrantedEvent = {
       timestamp: this.time,
       target: this,
-      type: "interfaceready"
+      type: "midiaccessgranted"
     };
 
     /**
@@ -271,9 +272,9 @@ class WebMidi extends EventEmitter {
       return Promise.reject(err);
     }
 
-    // Now that the Web MIDI API interface has been created, we trigger the 'interfaceready' event.
+    // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted' event.
     // This allows the developer an occasion to assign listeners on 'connected' events.
-    this.emit("interfaceready", interfaceReadyEvent);
+    this.emit("midiaccessgranted", midiAccessGrantedEvent);
 
     // We setup the statechange listener before creating the ports so that it properly catches the
     // the ports' `connected` events
