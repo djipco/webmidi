@@ -186,7 +186,7 @@ declare class WebMidi {
      *
      * There are 3 ways to execute code after `WebMidi` has been enabled:
      *
-     * - Pass a callback function in the options
+     * - Pass a callback function in the `options`
      * - Listen to the `enabled` event
      * - Wait for the promise to resolve
      *
