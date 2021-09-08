@@ -5840,7 +5840,8 @@ class WebMidi extends e {
         sysex: legacy
       };
       if (legacy) options.sysex = true;
-    }
+    } // If already enabled, trigger callback and resolve promise but to not dispatch events
+
 
     if (this.enabled) {
       if (typeof options.callback === "function") options.callback();
@@ -5873,20 +5874,26 @@ class WebMidi extends e {
     //   });
     //
     // }
-    // Request MIDI access
+
+    /**
+     * Event emitted when an error occurs trying to enable `WebMidi`
+     *
+     * @event WebMidi#error
+     * @type {Object}
+     * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {WebMidi} target The object that triggered the event
+     * @property {string} type `error`
+     * @property {*} details Details about the error that occurred
+     */
 
 
-    try {
-      this.interface = await navigator.requestMIDIAccess({
-        sysex: options.sysex,
-        software: options.software
-      });
-    } catch (err) {
-      if (typeof options.callback === "function") options.callback(err);
-      return Promise.reject(err);
-    } // Now that the Web MIDI API interface has been created, we trigger the 'interfaceready' event.
-    // This allows the developer an occasion to assign listeners on 'connected' events.
-
+    const errorEvent = {
+      timestamp: this.time,
+      target: this,
+      type: "error",
+      details: undefined
+    };
     /**
      * Event emitted once the MIDI interface has been successfully created.
      *
@@ -5898,12 +5905,42 @@ class WebMidi extends e {
      * @property {string} type `interfaceready`
      */
 
-
     const interfaceReadyEvent = {
       timestamp: this.time,
       target: this,
       type: "interfaceready"
     };
+    /**
+     * Event emitted once `WebMidi` has been fully enabled
+     *
+     * @event WebMidi#enabled
+     * @type {Object}
+     * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
+     * since the navigation start of the document).
+     * @property {WebMidi} target The object that triggered the event
+     * @property {string} type `enabled`
+     */
+
+    const enabledEvent = {
+      timestamp: this.time,
+      target: this,
+      type: "enabled"
+    }; // Request MIDI access
+
+    try {
+      this.interface = await navigator.requestMIDIAccess({
+        sysex: options.sysex,
+        software: options.software
+      });
+    } catch (err) {
+      errorEvent.details = err;
+      this.emit("error", errorEvent);
+      if (typeof options.callback === "function") options.callback(err);
+      return Promise.reject(err);
+    } // Now that the Web MIDI API interface has been created, we trigger the 'interfaceready' event.
+    // This allows the developer an occasion to assign listeners on 'connected' events.
+
+
     this.emit("interfaceready", interfaceReadyEvent); // We setup the statechange listener before creating the ports so that it properly catches the
     // the ports' `connected` events
 
@@ -5914,45 +5951,13 @@ class WebMidi extends e {
     try {
       ports = await this._updateInputsAndOutputs();
     } catch (err) {
-      // If an error occurs trying to set up the port, we trigger an 'error' event
-
-      /**
-       * Event emitted when an error occurs trying to enable `WebMidi`
-       *
-       * @event WebMidi#error
-       * @type {Object}
-       * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {WebMidi} target The object that triggered the event
-       * @property {string} type `error`
-       */
-      let errorEvent = {
-        timestamp: this.time,
-        target: this,
-        type: "error"
-      };
+      errorEvent.details = err;
       this.emit("error", errorEvent);
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
     } // If the ports are successfully created, we trigger the 'enabled' event
 
-    /**
-     * Event emitted once `WebMidi` has been successfully enabled
-     *
-     * @event WebMidi#enabled
-     * @type {Object}
-     * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
-     * since the navigation start of the document).
-     * @property {WebMidi} target The object that triggered the event
-     * @property {string} type `enabled`
-     */
 
-
-    let enabledEvent = {
-      timestamp: this.time,
-      target: this,
-      type: "enabled"
-    };
     this.emit("enabled", enabledEvent); // Execute the callback (if any) and resolve the promise with an object containing inputs and
     // outputs
 
