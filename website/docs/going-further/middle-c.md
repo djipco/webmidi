@@ -37,3 +37,7 @@ note name is offset by the `octaveOffset` property. So, if you receive note numb
 `octaveOffset` is et to 0, the reported octave will be 4 and the note name will be C4. If you 
 receive the same note number but the `octaveOffset` is set to -1, the reported octave will be 3 and
 the note name will be C3. 
+
+SI la note qui entre est 60 / C2 et que le synth qui l'envoie dit que c'est 60 / C3, le décalage entre externet et web midi est de 1. Donc, pour corriger ce décalage, on utilise unj offset de -1.
+
+À l'inverse, si la note qu'on envoie est supposée être 60 / C4 mais que l'autre dit 60 / C
