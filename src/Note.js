@@ -61,7 +61,11 @@ export class Note {
   }
 
   /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
+   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+   *
+   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
+   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
+   * be reported as `C5` if the  `octaveOffset` is `1`.
    *
    * @type {string}
    */
