@@ -5687,12 +5687,7 @@ class Note {
 
   set name(value) {
     if (wm.validation) {
-      // if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-      if (utils.guessNoteNumber(value, {
-        octaveOffset: wm.octaveOffset
-      }) === false) {
-        throw new Error("Invalid note name.");
-      }
+      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
     } // this._number = WebMidi.guessNoteNumber(value);
 
 
