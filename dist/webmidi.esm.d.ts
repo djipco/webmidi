@@ -369,6 +369,8 @@ declare class WebMidi {
      *
      * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
      * name could not successfully be parsed to a number.
+     *
+     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
      */
     getNoteNumberByName(name: string): number | false;
     /**
@@ -417,7 +419,10 @@ declare class WebMidi {
      * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
      * parsed for integer, if possible.
      *
-     * This method ignores any `octaveOffset` that has been defined.
+     * If the input is a tring, the resulting note number is offset by the
+     * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
+     * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
+     * number will be 36.
      *
      * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
      * is invalid.
