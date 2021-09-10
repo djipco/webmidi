@@ -1,4 +1,5 @@
 import {WebMidi} from "./WebMidi.js";
+import {Utilities} from "./Utilities.js";
 
 /**
  * The `Note` class represents a single note to be played. The `Note` can be played on a single
@@ -79,10 +80,12 @@ export class Note {
   set name(value) {
 
     if (WebMidi.validation) {
-      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+      if (Utilities.guessNoteNumber(value, {octaveOffset: WebMidi.octaveOffset}) === false) {
+        throw new Error("Invalid note name.");
+      }
     }
 
-    this._number = WebMidi.guessNoteNumber(value);
+    this._number = Utilities.getNoteNumberByName(value, {octaveOffset: WebMidi.octaveOffset});
 
   }
 
@@ -96,10 +99,12 @@ export class Note {
   set number(value) {
 
     if (WebMidi.validation) {
-      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+      if (Utilities.guessNoteNumber(value, {octaveOffset: WebMidi.octaveOffset}) === false) {
+        throw new Error("Invalid note number.");
+      }
     }
 
-    this._number = WebMidi.guessNoteNumber(value);
+    this._number = Utilities.guessNoteNumber(value, {octaveOffset: WebMidi.octaveOffset});
 
   }
 

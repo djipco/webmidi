@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi, Note} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Note, Utilities} = require("../dist/webmidi.cjs.js");
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
@@ -616,7 +616,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
-          expect(WebMidi.time - sent - duration).to.be.within(0, 10);
+          expect(WebMidi.time - sent - duration).to.be.within(-5, 15);
           VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
@@ -1224,7 +1224,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         expect(message[0]).to.equal(128);
-        expect(message[1]).to.equal(WebMidi.getNoteNumberByName(notes[index]));
+        expect(message[1]).to.equal(Utilities.getNoteNumberByName(notes[index]));
 
         index++;
 
@@ -1400,7 +1400,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         expect(message[0]).to.equal(144);
-        expect(message[1]).to.equal(WebMidi.getNoteNumberByName(notes[index]));
+        expect(message[1]).to.equal(Utilities.getNoteNumberByName(notes[index]));
 
         index++;
 

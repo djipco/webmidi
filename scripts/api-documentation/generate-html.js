@@ -44,7 +44,8 @@ const config = {
       "./src/Input.js",
       "./src/OutputChannel.js",
       "./src/InputChannel.js",
-      "./src/Note.js"
+      "./src/Note.js",
+      "./src/Utilities.js"
     ]
   },
 

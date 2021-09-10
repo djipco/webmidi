@@ -1,6 +1,7 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 import {InputChannel} from "./InputChannel.js";
+import {Utilities} from "./Utilities.js";
 
 /**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
@@ -631,7 +632,7 @@ export class Input extends EventEmitter {
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
       listeners.push(super.addListener(event, listener, options));
     } else {
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
     }
@@ -803,7 +804,7 @@ export class Input extends EventEmitter {
 
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      return WebMidi.sanitizeChannels(options.channels).every(ch => {
+      return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
 
@@ -855,14 +856,16 @@ export class Input extends EventEmitter {
 
     // If the event is not specified, remove everything (channel-specific and input-wide)!
     if (event == undefined) {
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+      Utilities.sanitizeChannels(
+        options.channels).forEach(ch => this.channels[ch].removeListener()
+      );
       return super.removeListener();
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
 

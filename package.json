@@ -68,6 +68,7 @@
     "test:Note": "mocha test/Note.test.js",
     "test:Output": "mocha test/Output.test.js",
     "test:OutputChannel": "mocha test/OutputChannel.test.js",
+    "test:Utilities": "mocha test/Utilities.test.js",
     "test:WebMidi": "mocha test/WebMidi.test.js"
   },
   "types": "dist/webmidi.cjs.d.ts",

@@ -1,6 +1,7 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {OutputChannel} from "./OutputChannel.js";
 import {WebMidi} from "./WebMidi.js";
+import {Utilities} from "./Utilities.js";
 
 /**
  * The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
@@ -257,7 +258,7 @@ export class Output extends EventEmitter {
     }
 
     // Send message and return `Output` for chaining
-    this._midiOutput.send(message, WebMidi.convertToTimestamp(options.time));
+    this._midiOutput.send(message, Utilities.convertToTimestamp(options.time));
     return this;
 
   }
@@ -772,7 +773,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
     });
 
@@ -907,7 +908,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
 
@@ -960,7 +961,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
@@ -1036,7 +1037,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
 
@@ -1083,7 +1084,7 @@ export class Output extends EventEmitter {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
@@ -1160,7 +1161,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
     });
 
@@ -1227,7 +1228,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
     });
 
@@ -1295,7 +1296,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
     });
 
@@ -1347,7 +1348,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
 
@@ -1397,7 +1398,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
 
@@ -1519,7 +1520,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
 
@@ -1561,7 +1562,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
     });
 
@@ -1604,7 +1605,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
     });
 
@@ -1644,7 +1645,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
     });
 
@@ -1689,7 +1690,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
     });
 
@@ -1735,7 +1736,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
     });
 
@@ -1785,7 +1786,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
     });
 
@@ -1862,7 +1863,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
 
@@ -1922,7 +1923,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
     });
 
@@ -1984,7 +1985,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
     });
 
@@ -2048,7 +2049,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
 
@@ -2153,7 +2154,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].playNote(note, options);
     });
 
