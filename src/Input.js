@@ -51,6 +51,12 @@ export class Input extends EventEmitter {
     this._midiInput = midiInput;
 
     /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
+
+    /**
      * Array containing the 16 {@link InputChannel} objects available for this `Input`. The
      * channels are numbered 1 through 16.
      *
@@ -908,6 +914,34 @@ export class Input extends EventEmitter {
    */
   get manufacturer() {
     return this._midiInput.manufacturer;
+  }
+
+  /**
+   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+   * number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
   }
 
   /**

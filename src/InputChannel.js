@@ -67,6 +67,12 @@ export class InputChannel extends EventEmitter {
      */
     this._forwardTo = undefined;
 
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
+
     // /**
     //  * An array of the current NRPNs being constructed for this channel
     //  *
@@ -94,7 +100,6 @@ export class InputChannel extends EventEmitter {
    * @protected
    */
   _parseEvent(e) {
-
 
     // @todo check if message must be forwarded
     // if (this.forwardTo) {
@@ -190,7 +195,13 @@ export class InputChannel extends EventEmitter {
        * 127).
        */
       event.type = "noteoff";
-      event.note = new Note(data1, {rawRelease: data2});
+      event.note = new Note(
+        data1,
+        {
+          rawRelease: data2,
+          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+        }
+      );
       event.release = event.note.release;
       event.rawRelease = event.note.rawRelease;
 
@@ -214,7 +225,13 @@ export class InputChannel extends EventEmitter {
        * 127).
        */
       event.type = "noteon";
-      event.note = new Note(data1, {rawAttack: data2});
+      event.note = new Note(
+        data1,
+        {
+          rawAttack: data2,
+          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+        }
+      );
       event.attack = event.note.attack;
       event.rawAttack = event.note.rawAttack;
 
@@ -238,7 +255,10 @@ export class InputChannel extends EventEmitter {
        * 127).
        */
       event.type = "keyaftertouch";
-      event.note = new Note(data1);
+      event.note = new Note(
+        data1,
+        {octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset}
+      );
       event.value = data2 / 127;
       event.rawValue = data2;
 
@@ -748,6 +768,34 @@ export class InputChannel extends EventEmitter {
     }
 
     return false;
+
+  }
+
+  /**
+   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+   * number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
 
   }
 

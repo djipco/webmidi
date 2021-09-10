@@ -23,6 +23,8 @@ import {WebMidi} from "./WebMidi.js";
  * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
  * 1.
  *
+ * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ *
  * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
  * and 1.
  *
@@ -55,6 +57,8 @@ export class Note {
     this.duration = (options.duration == undefined) ? Infinity : options.duration;
     this.attack = (options.attack == undefined) ? 0.5 : options.attack;
     this.release = (options.release == undefined) ? 0.5 : options.release;
+    this.octaveOffset = (options.octaveOffset == undefined) ? 0 : options.octaveOffset;
+
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
 
@@ -70,7 +74,7 @@ export class Note {
    * @type {string}
    */
   get name() {
-    return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(this.number);
+    return WebMidi.NOTES[this._number % 12] + this.octave.toString();
   }
   set name(value) {
 
@@ -96,6 +100,31 @@ export class Note {
     }
 
     this._number = WebMidi.guessNoteNumber(value);
+
+  }
+
+  /**
+   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
+   * 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
 
   }
 
@@ -204,7 +233,7 @@ export class Note {
    * @type {number}
    */
   get octave() {
-    return Math.floor(Math.floor(this._number) / 12 - 1);
+    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
   }
 
 }

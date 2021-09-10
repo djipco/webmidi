@@ -14,7 +14,8 @@ describe("Note Object", function() {
         attack: 0.25,
         release: 0.5,
         rawAttack: 127,
-        rawRelease: 64
+        rawRelease: 64,
+        octaveOffset: -1
       };
 
       // Act
@@ -26,6 +27,7 @@ describe("Note Object", function() {
         expect(note.number).to.equal(index);
         expect(note.rawAttack).to.equal(options.rawAttack);
         expect(note.rawRelease).to.equal(options.rawRelease);
+        expect(note.octaveOffset).to.equal(options.octaveOffset);
       });
 
     });
@@ -191,6 +193,21 @@ describe("Note Object", function() {
       highValues.forEach(param => {
         let note = new Note(param);
         expect(note.octave).to.equal(highTarget);
+      });
+
+    });
+
+    it("should report the correct octave value when using octaveOffset", function() {
+
+      // Arrange
+      const noteNumber = 60;
+      const defaultOctave = 4;
+      const values = [-10, -5, -2, -1, 0, 1, 2, 5, 10];
+
+      // Assert
+      values.forEach(param => {
+        const note = new Note(noteNumber, {octaveOffset: param});
+        expect(note.octave).to.equal(defaultOctave + param);
       });
 
     });

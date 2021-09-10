@@ -29,6 +29,7 @@ describe("InputChannel Object", function() {
 
   afterEach("Disable WebMidi.js", async function () {
     await WebMidi.disable();
+    WEBMIDI_INPUT = undefined;
   });
 
   it("should dispatch 'midimessage' events for all channel voice MIDI messages", function (done) {
@@ -103,6 +104,30 @@ describe("InputChannel Object", function() {
 
   });
 
+  it("should report correct octave in 'noteoff' event (with octaveOffset)", function (done) {
+
+    // Arrange
+    const channel = WEBMIDI_INPUT.channels[1];
+    const event = "noteoff";
+    const message = [0x80, 60, 64];
+    WebMidi.octaveOffset = -1;
+    WEBMIDI_INPUT.octaveOffset = -1;
+    channel.octaveOffset = -1;
+    const result = 4 + WebMidi.octaveOffset + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
+
+    // Act
+    channel.addListener(event, assert);
+    VIRTUAL_INPUT.PORT.sendMessage(message);
+
+    // Assert
+    function assert(e) {
+      expect(e.note.octave).to.equal(result);
+      WebMidi.octaveOffset = 0;
+      done();
+    }
+
+  });
+
   it("should dispatch event for inbound 'noteon' MIDI message", function (done) {
 
     // Arrange
@@ -134,6 +159,28 @@ describe("InputChannel Object", function() {
 
   });
 
+  it("should report correct octave in 'noteon' event (with octaveOffset)", function (done) {
+
+    // Arrange
+    const channel = WEBMIDI_INPUT.channels[1];
+    const event = "noteon";
+    const message = [0x90, 60, 64];
+    WEBMIDI_INPUT.octaveOffset = -1;
+    channel.octaveOffset = -1;
+    const result = 4 + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
+
+    // Act
+    channel.addListener(event, assert);
+    VIRTUAL_INPUT.PORT.sendMessage(message);
+
+    // Assert
+    function assert(e) {
+      expect(e.note.octave).to.equal(result);
+      done();
+    }
+
+  });
+
   it("should dispatch event for inbound 'keyaftertouch' MIDI message", function (done) {
 
     // Arrange
@@ -160,6 +207,27 @@ describe("InputChannel Object", function() {
       index++;
       if (index >= 127) done();
 
+    }
+
+  });
+
+  it("should report correct octave in 'keyaftertouch' event (with octaveOffset)", function (done) {
+
+    // Arrange
+    const channel = WEBMIDI_INPUT.channels[1];
+    const event = "keyaftertouch";
+    const message = [0xA0, 60, 64];
+    channel.octaveOffset = -1;
+    const result = 4 + channel.octaveOffset;
+
+    // Act
+    channel.addListener(event, assert);
+    VIRTUAL_INPUT.PORT.sendMessage(message);
+
+    // Assert
+    function assert(e) {
+      expect(e.note.octave).to.equal(result);
+      done();
     }
 
   });
