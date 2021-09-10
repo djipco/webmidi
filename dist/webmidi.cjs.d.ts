@@ -82,18 +82,6 @@ export class Note {
      * @type {number}
      */
     get release(): number;
-    set rawAttack(arg: number);
-    /**
-     * The raw attack velocity of the note as an integer between 0 and 127.
-     * @type {number}
-     */
-    get rawAttack(): number;
-    set rawRelease(arg: number);
-    /**
-     * The raw release velocity of the note as an integer between 0 and 127.
-     * @type {number}
-     */
-    get rawRelease(): number;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
@@ -107,6 +95,18 @@ export class Note {
      * @since 3.0
      */
     get octaveOffset(): number;
+    set rawAttack(arg: number);
+    /**
+     * The raw attack velocity of the note as an integer between 0 and 127.
+     * @type {number}
+     */
+    get rawAttack(): number;
+    set rawRelease(arg: number);
+    /**
+     * The raw release velocity of the note as an integer between 0 and 127.
+     * @type {number}
+     */
+    get rawRelease(): number;
     _number: number | false;
     _octaveOffset: number;
     _duration: number;
