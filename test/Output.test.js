@@ -281,7 +281,7 @@ describe("Output Object", function() {
 
         if (JSON.stringify(message) == JSON.stringify([144, 64, 64])) {
 
-          expect(WebMidi.time - sent).to.be.within(0, 10);
+          expect(WebMidi.time - sent).to.be.within(-5, 15);
           index++;
 
           if (index === timestamps.length) {
