@@ -157,7 +157,7 @@ class t {
 /**
  * Utilities
  */
-class Utilities$1 {
+class Utilities {
   constructor() {}
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
@@ -290,7 +290,7 @@ class Utilities$1 {
 // extensible (properties can be added at will).
 
 
-const utils = new Utilities$1();
+const utils = new Utilities();
 utils.constructor = null;
 
 /**
@@ -2435,7 +2435,7 @@ class OutputChannel extends e {
     if (!options.rawValue) pressure = Math.round(pressure * 127);
     wm.getValidNoteArray(note, options).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
-        time: Utilities.convertToTimestamp(options.time)
+        time: utils.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -2554,7 +2554,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
-      time: Utilities.convertToTimestamp(options.time)
+      time: utils.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -2903,7 +2903,7 @@ class OutputChannel extends e {
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
       let noteOffOptions = {
-        time: (Utilities.convertToTimestamp(options.time) || wm.time) + options.duration,
+        time: (utils.convertToTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease
       };
@@ -2988,7 +2988,7 @@ class OutputChannel extends e {
     };
     wm.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
-        time: Utilities.convertToTimestamp(options.time)
+        time: utils.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -3088,7 +3088,7 @@ class OutputChannel extends e {
     };
     wm.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
-        time: Utilities.convertToTimestamp(options.time)
+        time: utils.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -3155,7 +3155,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
-      time: Utilities.convertToTimestamp(options.time)
+      time: utils.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3234,7 +3234,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
-      time: Utilities.convertToTimestamp(options.time)
+      time: utils.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3470,7 +3470,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
-      time: Utilities.convertToTimestamp(options.time)
+      time: utils.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3550,7 +3550,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
-      time: Utilities.convertToTimestamp(options.time)
+      time: utils.convertToTimestamp(options.time)
     });
     return this;
   }
