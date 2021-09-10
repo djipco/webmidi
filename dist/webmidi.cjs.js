@@ -238,7 +238,8 @@ class InputChannel extends e {
 
   destroy() {
     this.input = null;
-    this.number = null; // this._nrpnBuffer = null;
+    this.number = null;
+    this._octaveOffset = 0; // this._nrpnBuffer = null;
     // this._nrpnEventsEnabled = false;
 
     this.removeListener();
@@ -6540,7 +6541,6 @@ class WebMidi extends e {
     this.inputs.forEach(input => promises.push(input.destroy()));
     this.outputs.forEach(output => promises.push(output.destroy()));
     return Promise.all(promises).then(() => {
-      console.log("delete inputs outputs");
       this._inputs = [];
       this._outputs = [];
     });
