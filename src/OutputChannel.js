@@ -593,9 +593,9 @@ export class OutputChannel extends EventEmitter {
    * Plays a note or an array of notes on the channel. The first parameter is the note to play. It
    * can be a single value or an array of the following valid values:
    *
+   *  - A {@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
    *
    * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
    * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
@@ -778,12 +778,12 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a **note on** message for the specified notes on the channel. The first parameter is the
-   * note. It can be a single value or an array of the following valid values:
+   * Sends a **note on** message for the specified note(s) on the channel. The first parameter is
+   * the note. It can be a single value or an array of the following valid values:
    *
+   *  - A {@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
    *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
