@@ -7309,4 +7309,5 @@ const wm = new WebMidi();
 wm.constructor = null;
 
 exports.Note = Note;
+exports.Utilities = utils;
 exports.WebMidi = wm;
