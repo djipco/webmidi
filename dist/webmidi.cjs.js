@@ -5607,7 +5607,7 @@ class Note {
 
 
   get name() {
-    return wm.NOTES[this._number % 12] + wm.getOctave(this.number) + this.octaveOffset;
+    return wm.NOTES[this._number % 12] + this.octave.toString();
   }
 
   set name(value) {
@@ -5773,7 +5773,7 @@ class Note {
 
 
   get octave() {
-    return Math.floor(Math.floor(this._number) / 12 - 1);
+    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
   }
 
 }
