@@ -373,7 +373,7 @@ class Utilities {
     if (input instanceof Note) {
       return input;
     } else {
-      let number = Utilities.guessNoteNumber(input, {
+      let number = this.guessNoteNumber(input, {
         octaveOffset: options.octaveOffset
       });
 
@@ -420,7 +420,7 @@ class Utilities {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
     notes.forEach(note => {
-      result.push(Utilities.getNoteObject(note, options));
+      result.push(this.getNoteObject(note, options));
     });
     return result;
   }
