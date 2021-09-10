@@ -2705,7 +2705,6 @@
         rawAttack: nVelocity
       };
       wm.getValidNoteArray(note, o).forEach(n => {
-        console.info(n);
         this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
           time: wm.convertToTimestamp(options.time)
         });
