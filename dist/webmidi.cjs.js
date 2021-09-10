@@ -5569,7 +5569,7 @@ class Utilities {
     if (options.octaveOffset === undefined) options.octaveOffset = 0;
 
     if (this.validation) {
-      if (typeof name !== "string") name = "";
+      if (typeof name !== "string") return false;
       options.octaveOffset = parseInt(options.octaveOffset);
 
       if (isNaN(options.octaveOffset)) {
