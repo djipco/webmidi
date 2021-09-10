@@ -157,6 +157,7 @@ class t {
 /**
  * Utilities
  */
+
 class Utilities {
   constructor() {}
   /**
@@ -326,6 +327,62 @@ class Utilities {
 
     if (output === false) return false;
     return output;
+  }
+  /**
+   * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
+   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
+   * it will be returned as is.
+   *
+   * If the input is a note number or name, it is possible to specify options by providing the
+   * optional `options` parameter.
+   *
+   * An error is thrown for invalid input.
+   *
+   * @param [input] {number|string|Note}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+   *
+   * @returns {Note}
+   *
+   * @throws TypeError The input could not be parsed as a note
+   *
+   * @since version 3
+   */
+
+
+  getNoteObject(input, options = {}) {
+    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+
+    if (input instanceof Note) {
+      return input;
+    } else {
+      let number = Utilities.guessNoteNumber(input, {
+        octaveOffset: options.octaveOffset
+      });
+
+      if (number !== false) {
+        return new Note(number, options);
+      } else {
+        throw new TypeError(`The input could not be parsed as a note (${input})`);
+      }
+    }
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
@@ -6577,62 +6634,11 @@ class WebMidi extends e {
   getValidNoteArray(notes, options = {}) {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
+    options.octaveOffset = WebMidi.octaveOffset;
     notes.forEach(note => {
-      result.push(this.getNoteObject(note, options));
+      result.push(utils.getNoteObject(note, options));
     });
     return result;
-  }
-  /**
-   * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
-   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
-   * it will be returned as is.
-   *
-   * If the input is a note number or name, it is possible to specify options by providing the
-   * optional `options` parameter.
-   *
-   * An error is thrown for invalid input.
-   *
-   * @param [notes] {number|string|Note}
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-   * be explicitly stopped.
-   *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
-   *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
-   *
-   * @returns {Note}
-   *
-   * @throws TypeError The input could not be parsed as a note
-   *
-   * @since version 3
-   */
-
-
-  getNoteObject(note, options) {
-    if (note instanceof Note) {
-      return note;
-    } else {
-      let number = utils.guessNoteNumber(note, {
-        octaveOffset: WebMidi.octaveOffset
-      });
-
-      if (number !== false) {
-        return new Note(number, options);
-      } else {
-        throw new TypeError(`The input could not be parsed as a note (${note})`);
-      }
-    }
   }
   /**
    * @private
