@@ -5569,7 +5569,7 @@ class Utilities {
     if (options.octaveOffset === undefined) options.octaveOffset = 0;
 
     if (this.validation) {
-      if (typeof name !== "string") return false;
+      if (typeof name !== "string") name = "";
       options.octaveOffset = parseInt(options.octaveOffset);
 
       if (isNaN(options.octaveOffset)) {
@@ -6314,65 +6314,14 @@ class WebMidi extends e {
   }
 
   /**
-   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number. The name can also optionally include a sharp (#),
-   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-   * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-   *
-   * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-   * per the scientific pitch notation standard.
-   *
-   * The resulting note number is offset by the [octaveOffset]{@link WebMidi#octaveOffset} value (if
-   * not zero). For example, if you pass in "C4" and the [octaveOffset]{@link WebMidi#octaveOffset}
-   * value is 2, the resulting MIDI note number will be 36.
-   *
-   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-   * parse the name to a number.
-   *
-   * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
-   *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-   * name could not successfully be parsed to a number.
-   *
+   * @private
    * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
    */
-  getNoteNumberByName(name) {
+  noteNameToNumber(name) {
     console.warn("The getNoteNumberByName() method has been moved to the Utilities class in version 3.");
-    console.log(name);
     return utils.getNoteNumberByName(name, {
       octaveOffset: this.octaveOffset
-    }); // if (this.validation) {
-    //   if (typeof name !== "string") name = "";
-    // }
-    //
-    // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    // if(!matches) return false;
-    //
-    // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-    // let semitone = semitones[matches[1].toUpperCase()];
-    // let octave = parseInt(matches[3]);
-    // let result = ((octave + 1 - this.octaveOffset) * 12) + semitone;
-    //
-    // if (matches[2].toLowerCase().indexOf("b") > -1) {
-    //   result -= matches[2].length;
-    // } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-    //   result += matches[2].length;
-    // }
-    //
-    // if (result < 0 || result > 127) return false;
-    //
-    // return result;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0. Use getNoteNumberByName() instead.
-   */
-
-
-  noteNameToNumber(name) {
-    console.warn("The noteNameToNumber() method has been deprecated. Use getNoteNumberByName() instead.");
-    return this.getNoteNumberByName(name);
+    });
   }
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
@@ -6493,7 +6442,9 @@ class WebMidi extends e {
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {
       // string
-      output = this.getNoteNumberByName(input);
+      output = utils.getNoteNumberByName(input, {
+        octaveOffset: this.octaveOffset
+      });
     }
 
     if (output === false) return false;
