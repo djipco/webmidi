@@ -6539,9 +6539,10 @@ class WebMidi extends e {
     let promises = [];
     this.inputs.forEach(input => promises.push(input.destroy()));
     this.outputs.forEach(output => promises.push(output.destroy()));
-    return Promise.all(promises).then(() => {
-      this._inputs = [];
-      this._outputs = [];
+    this._inputs = [];
+    this._outputs = [];
+    return Promise.all(promises).then(() => {// this._inputs = [];
+      // this._outputs = [];
     });
   }
   /**
