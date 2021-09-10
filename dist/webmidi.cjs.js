@@ -5593,6 +5593,51 @@ class Utilities {
     if (result < 0 || result > 127) return false;
     return result;
   }
+  /**
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+   * single integer or an array of integers.
+   *
+   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+   * integers between 1 and 16 are silently ignored.
+   *
+   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+   * numbers.
+   *
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   */
+
+
+  sanitizeChannels(channel) {
+    let channels;
+
+    if (this.validation) {
+      if (channel === "all") {
+        // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") {
+        // backwards-compatibility
+        return [];
+      }
+    }
+
+    if (!Array.isArray(channel)) {
+      channels = [channel];
+    } else {
+      channels = channel;
+    } // In order to preserve backwards-compatibility, we let this assignment as it is.
+
+
+    if (channels.indexOf("all") > -1) {
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    }
+
+    return channels.map(function (ch) {
+      return parseInt(ch);
+    }).filter(function (ch) {
+      return ch >= 1 && ch <= 16;
+    });
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -6310,7 +6355,10 @@ class WebMidi extends e {
    * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
    */
   noteNameToNumber(name) {
-    console.warn("The getNoteNumberByName() method has been moved to the Utilities class in version 3.");
+    if (this.validation) {
+      console.warn("The getNoteNumberByName() method has been moved to the Utilities class in version 3.");
+    }
+
     return utils.getNoteNumberByName(name, {
       octaveOffset: this.octaveOffset
     });
@@ -6344,49 +6392,46 @@ class WebMidi extends e {
     }
   }
   /**
-   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-   * single integer or an array of integers.
-   *
-   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-   * integers between 1 and 16 are silently ignored.
-   *
-   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
-   * numbers.
-   *
-   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   * @private
+   * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
    */
 
 
   sanitizeChannels(channel) {
-    let channels;
-
     if (this.validation) {
-      if (channel === "all") {
-        // backwards-compatibility
-        channels = ["all"];
-      } else if (channel === "none") {
-        // backwards-compatibility
-        return [];
-      }
+      console.warn("The sanitizeChannels() method has been moved to the utilities class.");
     }
 
-    if (!Array.isArray(channel)) {
-      channels = [channel];
-    } else {
-      channels = channel;
-    } // In order to preserve backwards-compatibility, we let this assignment as it is.
-
-
-    if (channels.indexOf("all") > -1) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    }
-
-    return channels.map(function (ch) {
-      return parseInt(ch);
-    }).filter(function (ch) {
-      return ch >= 1 && ch <= 16;
-    });
+    return utils.sanitizeChannels(channel); // let channels;
+    //
+    // if (this.validation) {
+    //
+    //   if (channel === "all") { // backwards-compatibility
+    //     channels = ["all"];
+    //   } else if (channel === "none") { // backwards-compatibility
+    //     return [];
+    //   }
+    //
+    // }
+    //
+    // if (!Array.isArray(channel)) {
+    //   channels = [channel];
+    // } else {
+    //   channels = channel;
+    // }
+    //
+    // // In order to preserve backwards-compatibility, we let this assignment as it is.
+    // if (channels.indexOf("all") > -1) {
+    //   channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    // }
+    //
+    // return channels
+    //   .map(function(ch) {
+    //     return parseInt(ch);
+    //   })
+    //   .filter(function(ch) {
+    //     return (ch >= 1 && ch <= 16);
+    //   });
   }
   /**
    * @private
@@ -6950,7 +6995,10 @@ class WebMidi extends e {
 
 
   get MIDI_CHANNEL_MESSAGES() {
-    console.warn("MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead.");
+    if (this.validation) {
+      console.warn("MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead.");
+    }
+
     return this.MIDI_CHANNEL_VOICE_MESSAGES;
   }
   /**
