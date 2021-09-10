@@ -6338,6 +6338,7 @@ class WebMidi extends e {
    * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
    */
   getNoteNumberByName(name) {
+    console.warn("The getNoteNumberByName() method has been moved to the Utilities class.");
     return utils.getNoteNumberByName(name, {
       octaveOffset: this.octaveOffset
     }); // if (this.validation) {
