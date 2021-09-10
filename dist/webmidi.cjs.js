@@ -5576,12 +5576,11 @@ class Output extends e {
 
 class Note {
   constructor(value, options = {}) {
-    /**
-     * @type {number}
-     * @private
-     */
-    this._octaveOffset = 0;
-
+    // /**
+    //  * @type {number}
+    //  * @private
+    //  */
+    // this._octaveOffset = 0;
     if (Number.isInteger(value)) {
       this.number = value;
     } else {
@@ -5592,8 +5591,9 @@ class Note {
     this.attack = options.attack == undefined ? 0.5 : options.attack;
     this.release = options.release == undefined ? 0.5 : options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
-    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
-    if (options.octaveOffset != undefined) this.octaveOffset = options.octaveOffset;
+    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease; // if (options.octaveOffset != undefined) this.octaveOffset = options.octaveOffset;
+
+    this.octaveOffset = options.octaveOffset == undefined ? 0 : options.octaveOffset;
   }
   /**
    * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
@@ -5640,9 +5640,6 @@ class Note {
    *
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * (if any).
    *
    * @type {number}
    *
@@ -6390,6 +6387,8 @@ class WebMidi extends e {
    * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
    * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
    * parsed for integer, if possible.
+   *
+   * This method ignores any `octaveOffset` that has been defined.
    *
    * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
    * is invalid.
