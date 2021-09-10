@@ -152,6 +152,20 @@ declare class Utilities {
     getNoteNumberByName(name: string, options?: {
         octaveOffset?: number;
     }): number | false;
+    /**
+     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+     * single integer or an array of integers.
+     *
+     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+     * integers between 1 and 16 are silently ignored.
+     *
+     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+     * numbers.
+     *
+     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     */
+    sanitizeChannels(channel?: number | number[]): any[];
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -405,19 +419,10 @@ declare class WebMidi {
      */
     getOctave(number: number): number | false;
     /**
-     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-     * single integer or an array of integers.
-     *
-     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-     * integers between 1 and 16 are silently ignored.
-     *
-     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
-     * numbers.
-     *
-     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     * @private
+     * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
      */
-    sanitizeChannels(channel?: number | number[]): any[];
+    private sanitizeChannels;
     /**
      * @private
      * @deprecated since version 3.0. Use sanitizeChannels() instead.
