@@ -337,7 +337,8 @@ class InputChannel extends e {
        */
       event.type = "noteoff";
       event.note = new Note(data1, {
-        rawRelease: data2
+        rawRelease: data2,
+        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
       event.release = event.note.release;
       event.rawRelease = event.note.rawRelease;
@@ -361,7 +362,8 @@ class InputChannel extends e {
        */
       event.type = "noteon";
       event.note = new Note(data1, {
-        rawAttack: data2
+        rawAttack: data2,
+        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
       event.attack = event.note.attack;
       event.rawAttack = event.note.rawAttack;
@@ -384,7 +386,9 @@ class InputChannel extends e {
        * 127).
        */
       event.type = "keyaftertouch";
-      event.note = new Note(data1);
+      event.note = new Note(data1, {
+        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
+      });
       event.value = data2 / 127;
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
@@ -5576,11 +5580,6 @@ class Output extends e {
 
 class Note {
   constructor(value, options = {}) {
-    // /**
-    //  * @type {number}
-    //  * @private
-    //  */
-    // this._octaveOffset = 0;
     if (Number.isInteger(value)) {
       this.number = value;
     } else {
@@ -5590,10 +5589,9 @@ class Note {
     this.duration = options.duration == undefined ? Infinity : options.duration;
     this.attack = options.attack == undefined ? 0.5 : options.attack;
     this.release = options.release == undefined ? 0.5 : options.release;
-    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
-    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease; // if (options.octaveOffset != undefined) this.octaveOffset = options.octaveOffset;
-
     this.octaveOffset = options.octaveOffset == undefined ? 0 : options.octaveOffset;
+    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
+    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
   }
   /**
    * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
