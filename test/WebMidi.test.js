@@ -545,10 +545,10 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should dispatch 'interfaceready' event", function(done) {
+    it("should dispatch 'midiaccessgranted' event", function(done) {
 
       // Arrange
-      WebMidi.addListener("interfaceready", () => done());
+      WebMidi.addListener("midiaccessgranted", () => done());
 
       // Act
       WebMidi.enable();
