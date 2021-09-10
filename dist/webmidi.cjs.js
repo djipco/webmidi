@@ -7347,7 +7347,7 @@ class WebMidi extends e {
 
 const wm = new WebMidi();
 wm.constructor = null;
- // export {Utilities} from "./Utilities.js";
 
 exports.Note = Note;
+exports.Utilities = utils;
 exports.WebMidi = wm;
