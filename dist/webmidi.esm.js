@@ -30,6 +30,385 @@
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
 
 /**
+ * Utilities
+ */
+class Utilities {
+
+  constructor() {}
+
+  /**
+   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
+   * note name must include the octave number. The name can also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+   * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   *
+   * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
+   * per the scientific pitch notation standard.
+   *
+   * The resulting note number is offset by the value of the `octaveOffset` property of the options
+   * object (if any).
+   *
+   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
+   * parse the name to a number.
+   *
+   * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
+   * "##", "b" or "bb" followed by the octave number.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+   *
+   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
+   * name could not successfully be parsed to a number.
+   */
+  getNoteNumberByName(name, options = {}) {
+
+    if (options.octaveOffset === undefined) options.octaveOffset = 0;
+    options.octaveOffset = parseInt(options.octaveOffset);
+
+    if (typeof name !== "string") name = "";
+
+    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+    if(!matches) return false;
+
+    let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    let semitone = semitones[matches[1].toUpperCase()];
+    let octave = parseInt(matches[3]);
+    let result = ((octave + 1 - options.octaveOffset) * 12) + semitone;
+
+    if (matches[2].toLowerCase().indexOf("b") > -1) {
+      result -= matches[2].length;
+    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+      result += matches[2].length;
+    }
+
+    if (result < 0 || result > 127) return false;
+
+    return result;
+
+  }
+
+  /**
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+   * single integer or an array of integers.
+   *
+   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+   * integers between 1 and 16 are silently ignored.
+   *
+   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+   * numbers.
+   *
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   */
+  sanitizeChannels(channel) {
+
+    let channels;
+
+    if (this.validation) {
+
+      if (channel === "all") { // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") { // backwards-compatibility
+        return [];
+      }
+
+    }
+
+    if (!Array.isArray(channel)) {
+      channels = [channel];
+    } else {
+      channels = channel;
+    }
+
+    // In order to preserve backwards-compatibility, we let this assignment as it is.
+    if (channels.indexOf("all") > -1) {
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    }
+
+    return channels
+      .map(function(ch) {
+        return parseInt(ch);
+      })
+      .filter(function(ch) {
+        return (ch >= 1 && ch <= 16);
+      });
+
+  }
+
+  /**
+   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+   * returned.
+   *
+   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+   * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   */
+  convertToTimestamp(time) {
+
+    let value = false;
+    let parsed = parseFloat(time);
+    if (isNaN(parsed)) return false;
+
+    if (typeof time === "string" && time.substring(0, 1) === "+") {
+      if (parsed >= 0) value = this.time + parsed;
+    } else {
+      if (parsed >= 0) value = parsed;
+    }
+
+    return value;
+
+  }
+
+}
+
+// Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
+// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
+// extensible (properties can be added at will).
+const utils = new Utilities();
+utils.constructor = null;
+
+/**
+ * The `Note` class represents a single note to be played. The `Note` can be played on a single
+ * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
+ * channels at once by using [Output.playNote()]{@link Output#playNote}.
+ *
+ * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
+ * no duration is set, it will play until it is explicitly stopped using
+ * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
+ * [Output.stopNote()]{@link Output#stopNote}.
+ *
+ * @param value {string|number} The name or note number of the note to create. If a number is used,
+ * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
+ * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
+ * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+ *
+ * @param {Object} [options={}]
+ *
+ * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+ * explicitly stopped.
+ *
+ * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
+ * 1.
+ *
+ * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ *
+ * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+ * and 1.
+ *
+ * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+ * 127.
+ *
+ * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+ * 127.
+ *
+ * @throws {Error} Invalid note name.
+ * @throws {Error} Invalid note number.
+ * @throws {RangeError} Invalid duration.
+ * @throws {RangeError} Invalid attack value.
+ * @throws {RangeError} Invalid rawAttack value.
+ * @throws {RangeError} Invalid release value.
+ * @throws {RangeError} Invalid rawRelease value.
+ *
+ * @since 3.0.0
+ */
+class Note {
+
+  constructor(value, options = {}) {
+
+    if (Number.isInteger(value)) {
+      this.number = value;
+    } else {
+      this.name = value;
+    }
+
+    this.duration = (options.duration == undefined) ? Infinity : options.duration;
+    this.attack = (options.attack == undefined) ? 0.5 : options.attack;
+    this.release = (options.release == undefined) ? 0.5 : options.release;
+    this.octaveOffset = (options.octaveOffset == undefined) ? 0 : options.octaveOffset;
+
+    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
+    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
+
+  }
+
+  /**
+   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+   *
+   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
+   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
+   * be reported as `C5` if the  `octaveOffset` is `1`.
+   *
+   * @type {string}
+   */
+  get name() {
+    return wm.NOTES[this._number % 12] + this.octave.toString();
+  }
+  set name(value) {
+
+    if (wm.validation) {
+      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+    }
+
+    this._number = utils.getNoteNumberByName(value, {octaveOffset: wm.octaveOffset});
+
+  }
+
+  /**
+   * The MIDI note number as an integer between 0 and 127
+   * @type {number}
+   */
+  get number() {
+    return this._number;
+  }
+  set number(value) {
+
+    if (wm.validation) {
+      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+    }
+
+    this._number = wm.guessNoteNumber(value);
+
+  }
+
+  /**
+   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
+   * 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
+  }
+
+  /**
+   * The duration of the note as a positive decimal number representing the number of milliseconds
+   * that the note should play for.
+   *
+   * @type {number}
+   */
+  get duration() {
+    return this._duration;
+  }
+  set duration(value) {
+
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    }
+
+    this._duration = value;
+
+  }
+
+  /**
+   * The attack velocity of the note as a decimal number between 0 and 1.
+   * @type {number}
+   */
+  get attack() {
+    return this._rawAttack / 127;
+  }
+  set attack(value) {
+
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid attack value.");
+      }
+    }
+
+    this._rawAttack = Math.round(value * 127);
+
+  }
+
+  /**
+   * The raw attack velocity of the note as an integer between 0 and 127.
+   * @type {number}
+   */
+  get rawAttack() {
+    return this._rawAttack;
+  }
+  set rawAttack(value) {
+
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawAttack value.");
+      }
+    }
+
+    this._rawAttack = value;
+
+  }
+
+  /**
+   * The release velocity of the note as a decimal number between 0 and 1.
+   * @type {number}
+   */
+  get release() {
+    return this._rawRelease / 127;
+  }
+  set release(value) {
+
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid release value.");
+      }
+    }
+
+    this._rawRelease = Math.round(value * 127);
+
+  }
+
+  /**
+   * The raw release velocity of the note as an integer between 0 and 127.
+   * @type {number}
+   */
+  get rawRelease() {
+    return this._rawRelease;
+  }
+  set rawRelease(value) {
+
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid rawRelease value.");
+      }
+    }
+
+    this._rawRelease = value;
+
+  }
+
+  /**
+   * The octave of the note as an integer between -1 and 9.
+   * @type {number}
+   */
+  get octave() {
+    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
+  }
+
+}
+
+/**
  * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
  * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
  * directly.
@@ -1519,7 +1898,7 @@ class Input extends e {
     if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
       listeners.push(super.addListener(event, listener, options));
     } else {
-      wm.sanitizeChannels(options.channels).forEach(ch => {
+      utils.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
     }
@@ -1691,7 +2070,7 @@ class Input extends e {
 
     if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      return wm.sanitizeChannels(options.channels).every(ch => {
+      return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
 
@@ -1743,14 +2122,16 @@ class Input extends e {
 
     // If the event is not specified, remove everything (channel-specific and input-wide)!
     if (event == undefined) {
-      wm.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+      utils.sanitizeChannels(
+        options.channels).forEach(ch => this.channels[ch].removeListener()
+      );
       return super.removeListener();
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
     if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      wm.sanitizeChannels(options.channels).forEach(ch => {
+      utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
 
@@ -2030,7 +2411,7 @@ class OutputChannel extends e {
           n.number,
           pressure
         ],
-        {time: wm.convertToTimestamp(options.time)}
+        {time: utils.convertToTimestamp(options.time)}
       );
     });
 
@@ -2158,7 +2539,7 @@ class OutputChannel extends e {
         controller,
         value
       ],
-      {time: wm.convertToTimestamp(options.time)}
+      {time: utils.convertToTimestamp(options.time)}
     );
 
     return this;
@@ -2525,7 +2906,7 @@ class OutputChannel extends e {
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
 
       let noteOffOptions = {
-        time: (wm.convertToTimestamp(options.time) || wm.time) + options.duration,
+        time: (utils.convertToTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
@@ -2621,7 +3002,7 @@ class OutputChannel extends e {
           n.number,
           n.rawRelease,
         ],
-        {time: wm.convertToTimestamp(options.time)}
+        {time: utils.convertToTimestamp(options.time)}
       );
     });
 
@@ -2727,7 +3108,7 @@ class OutputChannel extends e {
           n.number,
           n.rawAttack
         ],
-        {time: wm.convertToTimestamp(options.time)}
+        {time: utils.convertToTimestamp(options.time)}
       );
     });
 
@@ -2803,7 +3184,7 @@ class OutputChannel extends e {
         command,
         value
       ],
-      {time: wm.convertToTimestamp(options.time)}
+      {time: utils.convertToTimestamp(options.time)}
     );
 
     return this;
@@ -2893,7 +3274,7 @@ class OutputChannel extends e {
         (wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
-      {time: wm.convertToTimestamp(options.time)}
+      {time: utils.convertToTimestamp(options.time)}
     );
 
     return this;
@@ -3158,7 +3539,7 @@ class OutputChannel extends e {
         lsb,
         msb
       ],
-      {time: wm.convertToTimestamp(options.time)}
+      {time: utils.convertToTimestamp(options.time)}
     );
 
     return this;
@@ -3249,7 +3630,7 @@ class OutputChannel extends e {
         (wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
         program - 1
       ],
-      {time: wm.convertToTimestamp(options.time)}
+      {time: utils.convertToTimestamp(options.time)}
     );
 
     return this;
@@ -3775,7 +4156,7 @@ class Output extends e {
     }
 
     // Send message and return `Output` for chaining
-    this._midiOutput.send(message, wm.convertToTimestamp(options.time));
+    this._midiOutput.send(message, utils.convertToTimestamp(options.time));
     return this;
 
   }
@@ -4290,7 +4671,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
     });
 
@@ -4425,7 +4806,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
 
@@ -4478,7 +4859,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
@@ -4554,7 +4935,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
 
@@ -4601,7 +4982,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
@@ -4678,7 +5059,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
     });
 
@@ -4745,7 +5126,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
     });
 
@@ -4813,7 +5194,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
     });
 
@@ -4865,7 +5246,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
 
@@ -4915,7 +5296,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
 
@@ -5037,7 +5418,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
 
@@ -5079,7 +5460,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
     });
 
@@ -5122,7 +5503,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
     });
 
@@ -5162,7 +5543,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
     });
 
@@ -5207,7 +5588,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
     });
 
@@ -5253,7 +5634,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
     });
 
@@ -5303,7 +5684,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
     });
 
@@ -5380,7 +5761,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
 
@@ -5440,7 +5821,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
     });
 
@@ -5502,7 +5883,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
     });
 
@@ -5566,7 +5947,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
 
@@ -5671,7 +6052,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].playNote(note, options);
     });
 
@@ -5808,316 +6189,6 @@ class Output extends e {
    */
   get type() {
     return this._midiOutput.type;
-  }
-
-}
-
-/**
- * Utilities
- */
-class Utilities {
-
-  constructor() {}
-
-  /**
-   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number. The name can also optionally include a sharp (#),
-   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-   * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-   *
-   * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-   * per the scientific pitch notation standard.
-   *
-   * The resulting note number is offset by the value of the `octaveOffset` property of the options
-   * object (if any).
-   *
-   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-   * parse the name to a number.
-   *
-   * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.octaveOffset=0] A integer to offset the octave by
-   *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-   * name could not successfully be parsed to a number.
-   */
-  getNoteNumberByName(name, options = {}) {
-
-    if (options.octaveOffset == undefined) options.octaveOffset = 0;
-
-    if (this.validation) {
-      if (typeof name !== "string") name = "";
-      options.octaveOffset = parseInt(options.octaveOffset);
-      if (isNaN(options.octaveOffset)) {
-        throw new TypeError(`The octaveOffset is invalid`);
-      }
-    }
-
-    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) return false;
-
-    let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-    let semitone = semitones[matches[1].toUpperCase()];
-    let octave = parseInt(matches[3]);
-    let result = ((octave + 1 - options.octaveOffset) * 12) + semitone;
-
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
-    }
-
-    if (result < 0 || result > 127) return false;
-
-    return result;
-
-  }
-
-}
-
-// Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
-// extensible (properties can be added at will).
-const utils = new Utilities();
-utils.constructor = null;
-
-/**
- * The `Note` class represents a single note to be played. The `Note` can be played on a single
- * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
- * channels at once by using [Output.playNote()]{@link Output#playNote}.
- *
- * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitly stopped using
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
- * [Output.stopNote()]{@link Output#stopNote}.
- *
- * @param value {string|number} The name or note number of the note to create. If a number is used,
- * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
- * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
- * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
- *
- * @param {Object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
- * 1.
- *
- * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
- *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127.
- *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127.
- *
- * @throws {Error} Invalid note name.
- * @throws {Error} Invalid note number.
- * @throws {RangeError} Invalid duration.
- * @throws {RangeError} Invalid attack value.
- * @throws {RangeError} Invalid rawAttack value.
- * @throws {RangeError} Invalid release value.
- * @throws {RangeError} Invalid rawRelease value.
- *
- * @since 3.0.0
- */
-class Note {
-
-  constructor(value, options = {}) {
-
-    if (Number.isInteger(value)) {
-      this.number = value;
-    } else {
-      this.name = value;
-    }
-
-    this.duration = (options.duration == undefined) ? Infinity : options.duration;
-    this.attack = (options.attack == undefined) ? 0.5 : options.attack;
-    this.release = (options.release == undefined) ? 0.5 : options.release;
-    this.octaveOffset = (options.octaveOffset == undefined) ? 0 : options.octaveOffset;
-
-    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
-    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
-
-  }
-
-  /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
-   *
-   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
-   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
-   * be reported as `C5` if the  `octaveOffset` is `1`.
-   *
-   * @type {string}
-   */
-  get name() {
-    return wm.NOTES[this._number % 12] + this.octave.toString();
-  }
-  set name(value) {
-
-    if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    }
-
-    this._number = utils.getNoteNumberByName(value, {octaveOffset: wm.octaveOffset});
-
-  }
-
-  /**
-   * The MIDI note number as an integer between 0 and 127
-   * @type {number}
-   */
-  get number() {
-    return this._number;
-  }
-  set number(value) {
-
-    if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
-    }
-
-    this._number = wm.guessNoteNumber(value);
-
-  }
-
-  /**
-   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
-   * 60) is placed on the 4th octave (C4).
-   *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * @type {number}
-   *
-   * @since 3.0
-   */
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-  set octaveOffset(value) {
-
-    if (this.validation) {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-    }
-
-    this._octaveOffset = value;
-
-  }
-
-  /**
-   * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for.
-   *
-   * @type {number}
-   */
-  get duration() {
-    return this._duration;
-  }
-  set duration(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
-    }
-
-    this._duration = value;
-
-  }
-
-  /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   */
-  get attack() {
-    return this._rawAttack / 127;
-  }
-  set attack(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid attack value.");
-      }
-    }
-
-    this._rawAttack = Math.round(value * 127);
-
-  }
-
-  /**
-   * The raw attack velocity of the note as an integer between 0 and 127.
-   * @type {number}
-   */
-  get rawAttack() {
-    return this._rawAttack;
-  }
-  set rawAttack(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawAttack value.");
-      }
-    }
-
-    this._rawAttack = value;
-
-  }
-
-  /**
-   * The release velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   */
-  get release() {
-    return this._rawRelease / 127;
-  }
-  set release(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid release value.");
-      }
-    }
-
-    this._rawRelease = Math.round(value * 127);
-
-  }
-
-  /**
-   * The raw release velocity of the note as an integer between 0 and 127.
-   * @type {number}
-   */
-  get rawRelease() {
-    return this._rawRelease;
-  }
-  set rawRelease(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawRelease value.");
-      }
-    }
-
-    this._rawRelease = value;
-
-  }
-
-  /**
-   * The octave of the note as an integer between -1 and 9.
-   * @type {number}
-   */
-  get octave() {
-    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
   }
 
 }
@@ -6591,70 +6662,16 @@ class WebMidi extends e {
   };
 
   /**
-   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-   * note name must include the octave number. The name can also optionally include a sharp (#),
-   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-   * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-   *
-   * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-   * per the scientific pitch notation standard.
-   *
-   * The resulting note number is offset by the [octaveOffset]{@link WebMidi#octaveOffset} value (if
-   * not zero). For example, if you pass in "C4" and the [octaveOffset]{@link WebMidi#octaveOffset}
-   * value is 2, the resulting MIDI note number will be 36.
-   *
-   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-   * parse the name to a number.
-   *
-   * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
-   *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-   * name could not successfully be parsed to a number.
-   *
+   * @private
    * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
    */
-  getNoteNumberByName(name) {
-
-    console.warn(
-      "The getNoteNumberByName() method has been moved to the Utilities class."
-    );
-
-    return utils.getNoteNumberByName(name, {octaveOffset: this.octaveOffset});
-
-    // if (this.validation) {
-    //   if (typeof name !== "string") name = "";
-    // }
-    //
-    // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    // if(!matches) return false;
-    //
-    // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-    // let semitone = semitones[matches[1].toUpperCase()];
-    // let octave = parseInt(matches[3]);
-    // let result = ((octave + 1 - this.octaveOffset) * 12) + semitone;
-    //
-    // if (matches[2].toLowerCase().indexOf("b") > -1) {
-    //   result -= matches[2].length;
-    // } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-    //   result += matches[2].length;
-    // }
-    //
-    // if (result < 0 || result > 127) return false;
-    //
-    // return result;
-
-  }
-
-  /**
-   * @private
-   * @deprecated since version 3.0. Use getNoteNumberByName() instead.
-   */
   noteNameToNumber(name) {
-    console.warn(
-      "The noteNameToNumber() method has been deprecated. Use getNoteNumberByName() instead."
-    );
-    return this.getNoteNumberByName(name);
+    if (this.validation) {
+      console.warn(
+        "The getNoteNumberByName() method has been moved to the Utilities class in version 3."
+      );
+    }
+    return utils.getNoteNumberByName(name, {octaveOffset: this.octaveOffset});
   }
 
   /**
@@ -6687,50 +6704,47 @@ class WebMidi extends e {
   }
 
   /**
-   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-   * single integer or an array of integers.
-   *
-   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-   * integers between 1 and 16 are silently ignored.
-   *
-   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
-   * numbers.
-   *
-   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   * @private
+   * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
    */
   sanitizeChannels(channel) {
 
-    let channels;
-
     if (this.validation) {
-
-      if (channel === "all") { // backwards-compatibility
-        channels = ["all"];
-      } else if (channel === "none") { // backwards-compatibility
-        return [];
-      }
-
+      console.warn("The sanitizeChannels() method has been moved to the utilities class.");
     }
 
-    if (!Array.isArray(channel)) {
-      channels = [channel];
-    } else {
-      channels = channel;
-    }
+    return utils.sanitizeChannels(channel);
 
-    // In order to preserve backwards-compatibility, we let this assignment as it is.
-    if (channels.indexOf("all") > -1) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    }
-
-    return channels
-      .map(function(ch) {
-        return parseInt(ch);
-      })
-      .filter(function(ch) {
-        return (ch >= 1 && ch <= 16);
-      });
+    // let channels;
+    //
+    // if (this.validation) {
+    //
+    //   if (channel === "all") { // backwards-compatibility
+    //     channels = ["all"];
+    //   } else if (channel === "none") { // backwards-compatibility
+    //     return [];
+    //   }
+    //
+    // }
+    //
+    // if (!Array.isArray(channel)) {
+    //   channels = [channel];
+    // } else {
+    //   channels = channel;
+    // }
+    //
+    // // In order to preserve backwards-compatibility, we let this assignment as it is.
+    // if (channels.indexOf("all") > -1) {
+    //   channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    // }
+    //
+    // return channels
+    //   .map(function(ch) {
+    //     return parseInt(ch);
+    //   })
+    //   .filter(function(ch) {
+    //     return (ch >= 1 && ch <= 16);
+    //   });
 
   }
 
@@ -6746,7 +6760,7 @@ class WebMidi extends e {
       );
     }
 
-    return this.sanitizeChannels(channel);
+    return utils.sanitizeChannels(channel);
 
   }
 
@@ -6779,7 +6793,7 @@ class WebMidi extends e {
     } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // float or uint as string
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
-      output = this.getNoteNumberByName(input);
+      output = utils.getNoteNumberByName(input, {octaveOffset: this.octaveOffset});
     }
 
     if (output === false) return false;
@@ -6862,6 +6876,8 @@ class WebMidi extends e {
    * @returns {Note}
    *
    * @throws TypeError The input could not be parsed as a note
+   *
+   * @since version 3
    */
   getNoteObject(note, options) {
 
@@ -6879,30 +6895,20 @@ class WebMidi extends e {
   }
 
   /**
-   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
-   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
-   * returned.
-   *
-   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-   * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   * @private
+   * @deprecated moved to Utilities class.
    */
   convertToTimestamp(time) {
 
-    let value = false;
-    let parsed = parseFloat(time);
-    if (isNaN(parsed)) return false;
-
-    if (typeof time === "string" && time.substring(0, 1) === "+") {
-      if (parsed >= 0) value = this.time + parsed;
-    } else {
-      if (parsed >= 0) value = parsed;
+    if (this.validation) {
+      console.warn(
+        "The convertToTimestamp() method has been moved to the utilities class."
+      );
     }
 
-    return value;
+    return utils.convertToTimestamp(time);
 
-  };
+  }
 
   /**
    *
@@ -7314,9 +7320,11 @@ class WebMidi extends e {
    * @since 2.0.0
    */
   get MIDI_CHANNEL_MESSAGES() {
-    console.warn(
-      "MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead."
-    );
+    if (this.validation) {
+      console.warn(
+        "MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead."
+      );
+    }
     return this.MIDI_CHANNEL_VOICE_MESSAGES;
   }
 
@@ -7660,4 +7668,4 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-export { Note, wm as WebMidi };
+export { Note, utils as Utilities, wm as WebMidi };
