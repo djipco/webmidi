@@ -384,6 +384,46 @@ class Utilities {
       }
     }
   }
+  /**
+   * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
+   * object or an array of the previous types, to an array of {@link Note} objects.
+   *
+   * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
+   * created with the options specified. An error will be thrown when encountering invalid input.
+   *
+   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
+   */
+
+
+  getValidNoteArray(notes, options = {}) {
+    let result = [];
+    if (!Array.isArray(notes)) notes = [notes];
+    notes.forEach(note => {
+      result.push(Utilities.getNoteObject(note, options));
+    });
+    return result;
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -2543,7 +2583,8 @@ class OutputChannel extends e {
 
 
     if (!options.rawValue) pressure = Math.round(pressure * 127);
-    wm.getValidNoteArray(note, options).forEach(n => {
+    options.octaveOffset = wm.octaveOffset;
+    utils.getValidNoteArray(note, options).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
         time: utils.convertToTimestamp(options.time)
       });
@@ -3096,7 +3137,8 @@ class OutputChannel extends e {
     let o = {
       rawRelease: parseInt(nVelocity)
     };
-    wm.getValidNoteArray(note, o).forEach(n => {
+    o.octaveOffset = wm.octaveOffset;
+    utils.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
         time: utils.convertToTimestamp(options.time)
       });
@@ -3196,7 +3238,8 @@ class OutputChannel extends e {
     let o = {
       rawAttack: nVelocity
     };
-    wm.getValidNoteArray(note, o).forEach(n => {
+    o.octaveOffset = wm.octaveOffset;
+    utils.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
         time: utils.convertToTimestamp(options.time)
       });
@@ -6597,48 +6640,17 @@ class WebMidi extends e {
     });
   }
   /**
-   * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
-   * object or an array of the previous types, to an array of {@link Note} objects.
-   *
-   * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. An error will be thrown when encountering invalid input.
-   *
-   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-   * be explicitly stopped.
-   *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
-   *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
-   *
-   * @returns {Note[]}
-   *
-   * @throws TypeError An element could not be parsed as a note.
-   *
    * @private
-   * @deprecated moved to Utilities class.
+   * @deprecated since version 3. Moved to Utilities class.
    */
 
 
   getValidNoteArray(notes, options = {}) {
-    let result = [];
-    if (!Array.isArray(notes)) notes = [notes];
-    options.octaveOffset = WebMidi.octaveOffset;
-    notes.forEach(note => {
-      result.push(utils.getNoteObject(note, options));
-    });
-    return result;
+    if (this.validation) {
+      console.warn("The getValidNoteArray() method has been moved to the Utilities class.");
+    }
+
+    return utils.getValidNoteArray(notes, options);
   }
   /**
    * @private
@@ -6654,7 +6666,6 @@ class WebMidi extends e {
     return utils.convertToTimestamp(time);
   }
   /**
-   *
    * @return {Promise<void>}
    * @private
    */
