@@ -5577,6 +5577,7 @@ class Utilities {
       }
     }
 
+    console.log(name);
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if (!matches) return false;
     let semitones = {
