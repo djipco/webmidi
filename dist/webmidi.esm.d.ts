@@ -117,7 +117,66 @@ export class Note {
      */
     get octave(): number;
 }
+declare const utils: Utilities;
 declare const wm: WebMidi;
+/**
+ * Utilities
+ */
+declare class Utilities {
+    /**
+     * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
+     * note name must include the octave number. The name can also optionally include a sharp (#),
+     * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+     * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+     *
+     * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
+     * per the scientific pitch notation standard.
+     *
+     * The resulting note number is offset by the value of the `octaveOffset` property of the options
+     * object (if any).
+     *
+     * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
+     * parse the name to a number.
+     *
+     * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
+     * "##", "b" or "bb" followed by the octave number.
+     *
+     * @param {Object} [options={}]
+     *
+     * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+     *
+     * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
+     * name could not successfully be parsed to a number.
+     */
+    getNoteNumberByName(name: string, options?: {
+        octaveOffset?: number;
+    }): number | false;
+    /**
+     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+     * single integer or an array of integers.
+     *
+     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+     * integers between 1 and 16 are silently ignored.
+     *
+     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+     * numbers.
+     *
+     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     */
+    sanitizeChannels(channel?: number | number[]): any[];
+    /**
+     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+     * returned.
+     *
+     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+     * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     */
+    convertToTimestamp(time?: number | string): number | false;
+}
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
  * sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -349,33 +408,8 @@ declare class WebMidi {
      */
     getOutputById(id: string): Output | false;
     /**
-     * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-     * note name must include the octave number. The name can also optionally include a sharp (#),
-     * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-     * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-     *
-     * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-     * per the scientific pitch notation standard.
-     *
-     * The resulting note number is offset by the [octaveOffset]{@link WebMidi#octaveOffset} value (if
-     * not zero). For example, if you pass in "C4" and the [octaveOffset]{@link WebMidi#octaveOffset}
-     * value is 2, the resulting MIDI note number will be 36.
-     *
-     * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-     * parse the name to a number.
-     *
-     * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-     * "##", "b" or "bb" followed by the octave number.
-     *
-     * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-     * name could not successfully be parsed to a number.
-     *
-     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
-     */
-    getNoteNumberByName(name: string): number | false;
-    /**
      * @private
-     * @deprecated since version 3.0. Use getNoteNumberByName() instead.
+     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
      */
     private noteNameToNumber;
     /**
@@ -395,19 +429,10 @@ declare class WebMidi {
      */
     getOctave(number: number): number | false;
     /**
-     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-     * single integer or an array of integers.
-     *
-     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-     * integers between 1 and 16 are silently ignored.
-     *
-     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
-     * numbers.
-     *
-     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     * @private
+     * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
      */
-    sanitizeChannels(channel?: number | number[]): any[];
+    private sanitizeChannels;
     /**
      * @private
      * @deprecated since version 3.0. Use sanitizeChannels() instead.
@@ -503,6 +528,8 @@ declare class WebMidi {
      * @returns {Note}
      *
      * @throws TypeError The input could not be parsed as a note
+     *
+     * @since version 3
      */
     getNoteObject(note: any, options?: {
         duration?: number;
@@ -512,16 +539,10 @@ declare class WebMidi {
         rawRelease?: number;
     }): Note;
     /**
-     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
-     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
-     * returned.
-     *
-     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-     * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     * @private
+     * @deprecated moved to Utilities class.
      */
-    convertToTimestamp(time?: number | string): number | false;
+    private convertToTimestamp;
     /**
      *
      * @return {Promise<void>}
@@ -3791,4 +3812,4 @@ declare class t {
     suspended: boolean;
     remove(): void;
 }
-export { wm as WebMidi };
+export { utils as Utilities, wm as WebMidi };
