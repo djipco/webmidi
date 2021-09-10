@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 8th 2021.
+ * This build was generated on September 10th 2021.
  *
  *
  *
@@ -217,7 +217,13 @@ class InputChannel extends e {
      * @private
      */
 
-    this._forwardTo = undefined; // /**
+    this._forwardTo = undefined;
+    /**
+     * @type {number}
+     * @private
+     */
+
+    this._octaveOffset = 0; // /**
     //  * An array of the current NRPNs being constructed for this channel
     //  *
     //  * @private
@@ -858,6 +864,34 @@ class InputChannel extends e {
     }
 
     return false;
+  }
+  /**
+   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+   * number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+
+
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+
+  set octaveOffset(value) {
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
   } // /**
   //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
   //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
@@ -968,6 +1002,12 @@ class Input extends e {
      */
 
     this._midiInput = midiInput;
+    /**
+     * @type {number}
+     * @private
+     */
+
+    this._octaveOffset = 0;
     /**
      * Array containing the 16 {@link InputChannel} objects available for this `Input`. The
      * channels are numbered 1 through 16.
@@ -1783,6 +1823,34 @@ class Input extends e {
 
   get manufacturer() {
     return this._midiInput.manufacturer;
+  }
+  /**
+   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+   * number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+
+
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+
+  set octaveOffset(value) {
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
   }
   /**
    * State of the input port: `"connected"` or `"disconnected"`.
@@ -5484,6 +5552,8 @@ class Output extends e {
  * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
  * 1.
  *
+ * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ *
  * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
  * and 1.
  *
@@ -5506,6 +5576,12 @@ class Output extends e {
 
 class Note {
   constructor(value, options = {}) {
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
+
     if (Number.isInteger(value)) {
       this.number = value;
     } else {
@@ -5517,16 +5593,21 @@ class Note {
     this.release = options.release == undefined ? 0.5 : options.release;
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
+    if (options.octaveOffset != undefined) this.octaveOffset = options.octaveOffset;
   }
   /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
+   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+   *
+   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
+   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
+   * be reported as `C5` if the  `octaveOffset` is `1`.
    *
    * @type {string}
    */
 
 
   get name() {
-    return wm.NOTES[this._number % 12] + wm.getOctave(this.number);
+    return wm.NOTES[this._number % 12] + wm.getOctave(this.number) + this.octaveOffset;
   }
 
   set name(value) {
@@ -5552,6 +5633,34 @@ class Note {
     }
 
     this._number = wm.guessNoteNumber(value);
+  }
+  /**
+   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
+   * 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+
+
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+
+  set octaveOffset(value) {
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -5697,9 +5806,10 @@ global["navigator"] = require("jzz");
  * others.
  *
  * @fires WebMidi#connected
+ * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
- * @fires WebMidi#disabled
+ * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
  */
@@ -5752,7 +5862,6 @@ class WebMidi extends e {
 
     this._stateChangeQueue = [];
     /**
-     *
      * @type {number}
      * @private
      */
@@ -5781,10 +5890,10 @@ class WebMidi extends e {
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. `interfaceready` event is triggered
-   * 2. `connected` events are triggered for each available input and output
-   * 3. `enabled` event is triggered
-   * 4. callback (if any) is executed
+   * 1. `midiaccessgranted` event is triggered
+   * 2. `connected` events are triggered (for each available input and output)
+   * 3. `enabled` event is triggered when WebMidi.js is ready
+   * 4. specified callback (if any) is executed
    * 5. promise is resolved
    *
    * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
@@ -5897,18 +6006,18 @@ class WebMidi extends e {
     /**
      * Event emitted once the MIDI interface has been successfully created.
      *
-     * @event WebMidi#interfaceready
+     * @event WebMidi#midiaccessgranted
      * @type {Object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
-     * @property {string} type `interfaceready`
+     * @property {string} type `midiaccessgranted`
      */
 
-    const interfaceReadyEvent = {
+    const midiAccessGrantedEvent = {
       timestamp: this.time,
       target: this,
-      type: "interfaceready"
+      type: "midiaccessgranted"
     };
     /**
      * Event emitted once `WebMidi` has been fully enabled
@@ -5937,11 +6046,11 @@ class WebMidi extends e {
       this.emit("error", errorEvent);
       if (typeof options.callback === "function") options.callback(err);
       return Promise.reject(err);
-    } // Now that the Web MIDI API interface has been created, we trigger the 'interfaceready' event.
+    } // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted' event.
     // This allows the developer an occasion to assign listeners on 'connected' events.
 
 
-    this.emit("interfaceready", interfaceReadyEvent); // We setup the statechange listener before creating the ports so that it properly catches the
+    this.emit("midiaccessgranted", midiAccessGrantedEvent); // We setup the statechange listener before creating the ports so that it properly catches the
     // the ports' `connected` events
 
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this); // Update inputs and outputs (this is where `Input` and `Output` objects are created).
@@ -6170,7 +6279,7 @@ class WebMidi extends e {
     };
     let semitone = semitones[matches[1].toUpperCase()];
     let octave = parseInt(matches[3]);
-    let result = (octave + 1 - Math.floor(this.octaveOffset)) * 12 + semitone;
+    let result = (octave + 1 - this.octaveOffset) * 12 + semitone;
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
       result -= matches[2].length;
@@ -6682,8 +6791,8 @@ class WebMidi extends e {
     return typeof window !== "undefined" && typeof window.document !== "undefined";
   }
   /**
-   * An integer to offset the octave both in inbound and outbound messages. By default, middle C
-   * (MIDI note number 60) is placed on the 4th octave (C4).
+   * An integer to globally offset the octave of both inbound and outbound messages. By default,
+   * middle C (MIDI note number 60) is placed on the 4th octave (C4).
    *
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
@@ -6701,7 +6810,7 @@ class WebMidi extends e {
   set octaveOffset(value) {
     if (this.validation) {
       value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
     }
 
     this._octaveOffset = value;
