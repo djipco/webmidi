@@ -5534,6 +5534,83 @@ class Output extends e {
 }
 
 /**
+ * Utilities
+ */
+class Utilities {
+  constructor() {}
+  /**
+   * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
+   * note name must include the octave number. The name can also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+   * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   *
+   * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
+   * per the scientific pitch notation standard.
+   *
+   * The resulting note number is offset by the value of the `octaveOffset` property of the options
+   * object (if any).
+   *
+   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
+   * parse the name to a number.
+   *
+   * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
+   * "##", "b" or "bb" followed by the octave number.
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+   *
+   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
+   * name could not successfully be parsed to a number.
+   */
+
+
+  getNoteNumberByName(name, options = {}) {
+    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+
+    if (this.validation) {
+      if (typeof name !== "string") name = "";
+      options.octaveOffset = parseInt(options.octaveOffset);
+
+      if (isNaN(options.octaveOffset)) {
+        throw new TypeError(`The octaveOffset is invalid`);
+      }
+    }
+
+    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+    if (!matches) return false;
+    let semitones = {
+      C: 0,
+      D: 2,
+      E: 4,
+      F: 5,
+      G: 7,
+      A: 9,
+      B: 11
+    };
+    let semitone = semitones[matches[1].toUpperCase()];
+    let octave = parseInt(matches[3]);
+    let result = (octave + 1 - options.octaveOffset) * 12 + semitone;
+
+    if (matches[2].toLowerCase().indexOf("b") > -1) {
+      result -= matches[2].length;
+    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+      result += matches[2].length;
+    }
+
+    if (result < 0 || result > 127) return false;
+    return result;
+  }
+
+} // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
+// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
+// extensible (properties can be added at will).
+
+
+const utils = new Utilities();
+utils.constructor = null;
+
+/**
  * The `Note` class represents a single note to be played. The `Note` can be played on a single
  * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
  * channels at once by using [Output.playNote()]{@link Output#playNote}.
@@ -5610,10 +5687,18 @@ class Note {
 
   set name(value) {
     if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    }
+      // if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+      if (utils.guessNoteNumber(value, {
+        octaveOffset: wm.octaveOffset
+      }) === false) {
+        throw new Error("Invalid note name.");
+      }
+    } // this._number = WebMidi.guessNoteNumber(value);
 
-    this._number = wm.guessNoteNumber(value);
+
+    this._number = utils.getNoteNumberByName(value, {
+      octaveOffset: wm.octaveOffset
+    });
   }
   /**
    * The MIDI note number as an integer between 0 and 127
@@ -6285,11 +6370,12 @@ class WebMidi extends e {
     if (result < 0 || result > 127) return false;
     return result;
   }
-
   /**
    * @private
    * @deprecated since version 3.0. Use getNoteNumberByName() instead.
    */
+
+
   noteNameToNumber(name) {
     console.warn("The noteNameToNumber() method has been deprecated. Use getNoteNumberByName() instead.");
     return this.getNoteNumberByName(name);
@@ -6386,7 +6472,10 @@ class WebMidi extends e {
    * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
    * parsed for integer, if possible.
    *
-   * This method ignores any `octaveOffset` that has been defined.
+   * If the input is a tring, the resulting note number is offset by the
+   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
+   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
+   * number will be 36.
    *
    * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
    * is invalid.
