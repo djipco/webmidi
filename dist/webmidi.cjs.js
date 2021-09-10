@@ -157,7 +157,7 @@ class t {
 /**
  * Utilities
  */
-class Utilities {
+class Utilities$1 {
   constructor() {}
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
@@ -259,13 +259,38 @@ class Utilities {
       return ch >= 1 && ch <= 16;
     });
   }
+  /**
+   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+   * returned.
+   *
+   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+   * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   */
+
+
+  convertToTimestamp(time) {
+    let value = false;
+    let parsed = parseFloat(time);
+    if (isNaN(parsed)) return false;
+
+    if (typeof time === "string" && time.substring(0, 1) === "+") {
+      if (parsed >= 0) value = this.time + parsed;
+    } else {
+      if (parsed >= 0) value = parsed;
+    }
+
+    return value;
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
 // extensible (properties can be added at will).
 
 
-const utils = new Utilities();
+const utils = new Utilities$1();
 utils.constructor = null;
 
 /**
@@ -2410,7 +2435,7 @@ class OutputChannel extends e {
     if (!options.rawValue) pressure = Math.round(pressure * 127);
     wm.getValidNoteArray(note, options).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
-        time: wm.convertToTimestamp(options.time)
+        time: Utilities.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -2529,7 +2554,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
-      time: wm.convertToTimestamp(options.time)
+      time: Utilities.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -2878,7 +2903,7 @@ class OutputChannel extends e {
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
       let noteOffOptions = {
-        time: (wm.convertToTimestamp(options.time) || wm.time) + options.duration,
+        time: (Utilities.convertToTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease
       };
@@ -2963,7 +2988,7 @@ class OutputChannel extends e {
     };
     wm.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
-        time: wm.convertToTimestamp(options.time)
+        time: Utilities.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -3063,7 +3088,7 @@ class OutputChannel extends e {
     };
     wm.getValidNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
-        time: wm.convertToTimestamp(options.time)
+        time: Utilities.convertToTimestamp(options.time)
       });
     });
     return this;
@@ -3130,7 +3155,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
-      time: wm.convertToTimestamp(options.time)
+      time: Utilities.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3209,7 +3234,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
-      time: wm.convertToTimestamp(options.time)
+      time: Utilities.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3445,7 +3470,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
-      time: wm.convertToTimestamp(options.time)
+      time: Utilities.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -3525,7 +3550,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
-      time: wm.convertToTimestamp(options.time)
+      time: Utilities.convertToTimestamp(options.time)
     });
     return this;
   }
@@ -4043,7 +4068,7 @@ class Output extends e {
     } // Send message and return `Output` for chaining
 
 
-    this._midiOutput.send(message, wm.convertToTimestamp(options.time));
+    this._midiOutput.send(message, utils.convertToTimestamp(options.time));
 
     return this;
   }
@@ -6559,6 +6584,8 @@ class WebMidi extends e {
    * @returns {Note}
    *
    * @throws TypeError The input could not be parsed as a note
+   *
+   * @since version 3
    */
 
 
@@ -6576,36 +6603,25 @@ class WebMidi extends e {
     }
   }
   /**
-   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
-   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
-   * returned.
-   *
-   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-   * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   * @private
+   * @deprecated moved to Utilities class.
    */
 
 
   convertToTimestamp(time) {
-    let value = false;
-    let parsed = parseFloat(time);
-    if (isNaN(parsed)) return false;
-
-    if (typeof time === "string" && time.substring(0, 1) === "+") {
-      if (parsed >= 0) value = this.time + parsed;
-    } else {
-      if (parsed >= 0) value = parsed;
+    if (this.validation) {
+      console.warn("The convertToTimestamp() method has been moved to the utilities class.");
     }
 
-    return value;
+    return utils.convertToTimestamp(time);
   }
-
   /**
    *
    * @return {Promise<void>}
    * @private
    */
+
+
   async _destroyInputsAndOutputs() {
     let promises = [];
     this.inputs.forEach(input => promises.push(input.destroy()));
