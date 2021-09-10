@@ -121,7 +121,10 @@ export class Note {
 declare const utils: Utilities;
 declare const wm: WebMidi;
 /**
- * Utilities
+ * The `Utilities` class contains all the general-purpose utility functions of the library. The
+ * class is a singleton and is not meant to be instantiated. Its methods are static.
+ *
+ * @since 3.0.0
  */
 declare class Utilities {
     /**
@@ -149,9 +152,7 @@ declare class Utilities {
      * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
      * name could not successfully be parsed to a number.
      */
-    getNoteNumberByName(name: string, options?: {
-        octaveOffset?: number;
-    }): number | false;
+    getNoteNumberByName(name: string, octaveOffset?: number): number | false;
     /**
      * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
      * single integer or an array of integers.
