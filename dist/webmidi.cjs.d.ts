@@ -198,6 +198,51 @@ declare class Utilities {
      * successfully be parsed to a note number.
      */
     guessNoteNumber(input: string | number, options?: {}): number | false;
+    /**
+     * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
+     * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
+     * it will be returned as is.
+     *
+     * If the input is a note number or name, it is possible to specify options by providing the
+     * optional `options` parameter.
+     *
+     * An error is thrown for invalid input.
+     *
+     * @param [input] {number|string|Note}
+     *
+     * @param {Object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+     * be explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+     * and 1.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+     * and 1.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127.
+     *
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+     *
+     * @returns {Note}
+     *
+     * @throws TypeError The input could not be parsed as a note
+     *
+     * @since version 3
+     */
+    getNoteObject(input?: number | string | Note, options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+        octaveOffset?: number;
+    }): Note;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -499,48 +544,6 @@ declare class WebMidi {
      * @deprecated moved to Utilities class.
      */
     private getValidNoteArray;
-    /**
-     * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
-     * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
-     * it will be returned as is.
-     *
-     * If the input is a note number or name, it is possible to specify options by providing the
-     * optional `options` parameter.
-     *
-     * An error is thrown for invalid input.
-     *
-     * @param [notes] {number|string|Note}
-     *
-     * @param {Object} [options={}]
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-     * be explicitly stopped.
-     *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-     * and 1.
-     *
-     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-     * and 1.
-     *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-     * 127.
-     *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127.
-     *
-     * @returns {Note}
-     *
-     * @throws TypeError The input could not be parsed as a note
-     *
-     * @since version 3
-     */
-    getNoteObject(note: any, options?: {
-        duration?: number;
-        attack?: number;
-        release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
-    }): Note;
     /**
      * @private
      * @deprecated moved to Utilities class.
