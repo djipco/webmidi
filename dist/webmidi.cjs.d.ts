@@ -118,12 +118,12 @@ export class Note {
      */
     get octave(): number;
 }
-declare const utils: Utilities$1;
+declare const utils: Utilities;
 declare const wm: WebMidi;
 /**
  * Utilities
  */
-declare class Utilities$1 {
+declare class Utilities {
     /**
      * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
      * note name must include the octave number. The name can also optionally include a sharp (#),
