@@ -243,6 +243,43 @@ declare class Utilities {
         rawRelease?: number;
         octaveOffset?: number;
     }): Note;
+    /**
+     * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
+     * object or an array of the previous types, to an array of {@link Note} objects.
+     *
+     * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
+     * created with the options specified. An error will be thrown when encountering invalid input.
+     *
+     * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+     *
+     * @param {Object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+     * be explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+     * and 1.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+     * and 1.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127.
+     *
+     * @returns {Note[]}
+     *
+     * @throws TypeError An element could not be parsed as a note.
+     */
+    getValidNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+    }): Note[];
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -511,37 +548,8 @@ declare class WebMidi {
      */
     private guessNoteNumber;
     /**
-     * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
-     * object or an array of the previous types, to an array of {@link Note} objects.
-     *
-     * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-     * created with the options specified. An error will be thrown when encountering invalid input.
-     *
-     * @param [notes] {number|string|Note|number[]|string[]|Note[]}
-     *
-     * @param {Object} [options={}]
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-     * be explicitly stopped.
-     *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-     * and 1.
-     *
-     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-     * and 1.
-     *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-     * 127.
-     *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127.
-     *
-     * @returns {Note[]}
-     *
-     * @throws TypeError An element could not be parsed as a note.
-     *
      * @private
-     * @deprecated moved to Utilities class.
+     * @deprecated since version 3. Moved to Utilities class.
      */
     private getValidNoteArray;
     /**
@@ -550,7 +558,6 @@ declare class WebMidi {
      */
     private convertToTimestamp;
     /**
-     *
      * @return {Promise<void>}
      * @private
      */
