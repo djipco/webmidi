@@ -104,7 +104,7 @@ module.exports = {
       appId: "BH4D9OD16A",
 
       // Optional: see doc section below
-      contextualSearch: false,
+      contextualSearch: true,
 
       // Optional: Algolia search parameters
       searchParameters: {},
