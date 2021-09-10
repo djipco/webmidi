@@ -155,11 +155,13 @@ class t {
 }
 
 /**
- * Utilities
+ * The `Utilities` class contains all the general-purpose utility functions of the library. The
+ * class is a singleton and is not meant to be instantiated. Its methods are static.
+ *
+ * @since 3.0.0
  */
 
 class Utilities {
-  constructor() {}
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
    * note name must include the octave number. The name can also optionally include a sharp (#),
@@ -185,11 +187,10 @@ class Utilities {
    * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
    * name could not successfully be parsed to a number.
    */
-
-
-  getNoteNumberByName(name, options = {}) {
-    if (options.octaveOffset === undefined) options.octaveOffset = 0;
-    options.octaveOffset = parseInt(options.octaveOffset);
+  getNoteNumberByName(name, octaveOffset = 0) {
+    // Validation
+    octaveOffset = parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if (!matches) return false;
@@ -204,7 +205,7 @@ class Utilities {
     };
     let semitone = semitones[matches[1].toUpperCase()];
     let octave = parseInt(matches[3]);
-    let result = (octave + 1 - options.octaveOffset) * 12 + semitone;
+    let result = (octave + 1 - octaveOffset) * 12 + semitone;
 
     if (matches[2].toLowerCase().indexOf("b") > -1) {
       result -= matches[2].length;
