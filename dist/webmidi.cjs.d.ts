@@ -370,6 +370,8 @@ declare class WebMidi {
      *
      * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
      * name could not successfully be parsed to a number.
+     *
+     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
      */
     getNoteNumberByName(name: string): number | false;
     /**
