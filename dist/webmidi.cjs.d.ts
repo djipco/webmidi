@@ -118,12 +118,12 @@ export class Note {
      */
     get octave(): number;
 }
-declare const utils: Utilities;
+declare const utils: Utilities$1;
 declare const wm: WebMidi;
 /**
  * Utilities
  */
-declare class Utilities {
+declare class Utilities$1 {
     /**
      * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
      * note name must include the octave number. The name can also optionally include a sharp (#),
@@ -166,6 +166,17 @@ declare class Utilities {
      * @returns {Array} An array of 0 or more valid MIDI channel numbers.
      */
     sanitizeChannels(channel?: number | number[]): any[];
+    /**
+     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+     * returned.
+     *
+     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+     * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     */
+    convertToTimestamp(time?: number | string): number | false;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -518,6 +529,8 @@ declare class WebMidi {
      * @returns {Note}
      *
      * @throws TypeError The input could not be parsed as a note
+     *
+     * @since version 3
      */
     getNoteObject(note: any, options?: {
         duration?: number;
@@ -527,16 +540,10 @@ declare class WebMidi {
         rawRelease?: number;
     }): Note;
     /**
-     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
-     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
-     * returned.
-     *
-     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-     * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     * @private
+     * @deprecated moved to Utilities class.
      */
-    convertToTimestamp(time?: number | string): number | false;
+    private convertToTimestamp;
     /**
      *
      * @return {Promise<void>}
