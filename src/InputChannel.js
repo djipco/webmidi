@@ -1,5 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
-import {WebMidi, Note} from "./WebMidi.js";
+import {WebMidi} from "./WebMidi.js";
+import {Note} from "./Note.js";
 
 /**
  * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
