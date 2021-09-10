@@ -284,6 +284,49 @@ class Utilities {
 
     return value;
   }
+  /**
+   * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
+   * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
+   * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
+   * parsed for integer, if possible.
+   *
+   * If the input is a string, the resulting note number is offset by the
+   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
+   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
+   * number will be 36.
+   *
+   * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
+   * is invalid.
+   *
+   * @param input {string|number} A string to extract the note number from. An integer can also be
+   * used, in this case it will simply be returned as is (if between 0 and 127).
+   *
+   * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
+   * successfully be parsed to a note number.
+   */
+
+
+  guessNoteNumber(input, options = {}) {
+    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+    options.octaveOffset = parseInt(options.octaveOffset);
+    let output = false;
+
+    if (Number.isInteger(input) && input >= 0 && input <= 127) {
+      // uint
+      output = parseInt(input);
+    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {
+      // float or uint as string
+      output = parseInt(input);
+    } else if (typeof input === "string" || input instanceof String) {
+      // string
+      output = this.getNoteNumberByName(input, {
+        octaveOffset: this.octaveOffset
+      });
+    }
+
+    if (output === false) return false;
+    return output;
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -370,7 +413,11 @@ class Note {
 
   set name(value) {
     if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+      if (utils.guessNoteNumber(value, {
+        octaveOffset: wm.octaveOffset
+      }) === false) {
+        throw new Error("Invalid note name.");
+      }
     }
 
     this._number = utils.getNoteNumberByName(value, {
@@ -389,10 +436,16 @@ class Note {
 
   set number(value) {
     if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+      if (utils.guessNoteNumber(value, {
+        octaveOffset: wm.octaveOffset
+      }) === false) {
+        throw new Error("Invalid note number.");
+      }
     }
 
-    this._number = wm.guessNoteNumber(value);
+    this._number = utils.guessNoteNumber(value, {
+      octaveOffset: wm.octaveOffset
+    });
   }
   /**
    * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
@@ -6472,45 +6525,19 @@ class WebMidi extends e {
     return utils.sanitizeChannels(channel);
   }
   /**
-   * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-   * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-   * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-   * parsed for integer, if possible.
-   *
-   * If the input is a tring, the resulting note number is offset by the
-   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-   * number will be 36.
-   *
-   * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-   * is invalid.
-   *
-   * @param input {string|number} A string to extract the note number from. An integer can also be
-   * used, in this case it will simply be returned as is (if between 0 and 127).
-   *
-   * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
-   * successfully be parsed to a note number.
+   * @private
+   * @deprecated since version 3. Moved to Utilities class.
    */
 
 
   guessNoteNumber(input) {
-    let output = false;
-
-    if (Number.isInteger(input) && input >= 0 && input <= 127) {
-      // uint
-      output = parseInt(input);
-    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {
-      // float or uint as string
-      output = parseInt(input);
-    } else if (typeof input === "string" || input instanceof String) {
-      // string
-      output = utils.getNoteNumberByName(input, {
-        octaveOffset: this.octaveOffset
-      });
+    if (this.validation) {
+      console.warn("The guessNoteNumber() method has been moved to the Utilities class.");
     }
 
-    if (output === false) return false;
-    return output;
+    return utils.guessNoteNumber(input, {
+      octaveOffset: this.octaveOffset
+    });
   }
   /**
    * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
@@ -6541,6 +6568,9 @@ class WebMidi extends e {
    * @returns {Note[]}
    *
    * @throws TypeError An element could not be parsed as a note.
+   *
+   * @private
+   * @deprecated moved to Utilities class.
    */
 
 
@@ -6593,7 +6623,9 @@ class WebMidi extends e {
     if (note instanceof Note) {
       return note;
     } else {
-      let number = this.guessNoteNumber(note);
+      let number = utils.guessNoteNumber(note, {
+        octaveOffset: WebMidi.octaveOffset
+      });
 
       if (number !== false) {
         return new Note(number, options);
