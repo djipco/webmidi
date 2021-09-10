@@ -88,7 +88,6 @@ class WebMidi extends EventEmitter {
     this._stateChangeQueue = [];
 
     /**
-     *
      * @type {number}
      * @private
      */
@@ -638,6 +637,8 @@ class WebMidi extends EventEmitter {
    * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
    * parsed for integer, if possible.
    *
+   * This method ignores any `octaveOffset` that has been defined.
+   *
    * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
    * is invalid.
    *
@@ -1069,8 +1070,8 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * An integer to offset the octave both in inbound and outbound messages. By default, middle C
-   * (MIDI note number 60) is placed on the 4th octave (C4).
+   * An integer to globally offset the octave of both inbound and outbound messages. By default,
+   * middle C (MIDI note number 60) is placed on the 4th octave (C4).
    *
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
@@ -1086,7 +1087,7 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be a valid number.");
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
     }
 
     this._octaveOffset = value;
