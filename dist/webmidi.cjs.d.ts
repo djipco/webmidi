@@ -22,6 +22,8 @@ export var __esModule: boolean;
  * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
  * 1.
  *
+ * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ *
  * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
  * and 1.
  *
@@ -43,6 +45,11 @@ export var __esModule: boolean;
  */
 export class Note {
     constructor(value: any, options?: {});
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     set number(arg: number);
     /**
      * The MIDI note number as an integer between 0 and 127
@@ -51,7 +58,11 @@ export class Note {
     get number(): number;
     set name(arg: string);
     /**
-     * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
+     * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+     *
+     * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
+     * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
+     * be reported as `C5` if the  `octaveOffset` is `1`.
      *
      * @type {string}
      */
@@ -88,6 +99,22 @@ export class Note {
      * @type {number}
      */
     get rawRelease(): number;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
+     * 60) is placed on the 4th octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
     _number: number | false;
     _duration: number;
     _rawAttack: number;
@@ -118,9 +145,10 @@ declare const wm: WebMidi;
  * others.
  *
  * @fires WebMidi#connected
+ * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
- * @fires WebMidi#disabled
+ * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
  */
@@ -165,7 +193,6 @@ declare class WebMidi {
      */
     private _stateChangeQueue;
     /**
-     *
      * @type {number}
      * @private
      */
@@ -192,10 +219,10 @@ declare class WebMidi {
      *
      * In order, this is what happens towards the end of the enabling process:
      *
-     * 1. `interfaceready` event is triggered
-     * 2. `connected` events are triggered for each available input and output
-     * 3. `enabled` event is triggered
-     * 4. callback (if any) is executed
+     * 1. `midiaccessgranted` event is triggered
+     * 2. `connected` events are triggered (for each available input and output)
+     * 3. `enabled` event is triggered when WebMidi.js is ready
+     * 4. specified callback (if any) is executed
      * 5. promise is resolved
      *
      * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
@@ -548,8 +575,8 @@ declare class WebMidi {
     get isBrowser(): boolean;
     set octaveOffset(arg: number);
     /**
-     * An integer to offset the octave both in inbound and outbound messages. By default, middle C
-     * (MIDI note number 60) is placed on the 4th octave (C4).
+     * An integer to globally offset the octave of both inbound and outbound messages. By default,
+     * middle C (MIDI note number 60) is placed on the 4th octave (C4).
      *
      * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
      * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
@@ -989,6 +1016,11 @@ declare class Input extends e {
      */
     private _midiInput;
     /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
+    /**
      * Array containing the 16 {@link InputChannel} objects available for this `Input`. The
      * channels are numbered 1 through 16.
      *
@@ -1074,6 +1106,22 @@ declare class Input extends e {
      * @readonly
      */
     get manufacturer(): string;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+     * number 60) is placed on the 4th octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
     /**
      * State of the input port: `"connected"` or `"disconnected"`.
      *
@@ -2601,6 +2649,11 @@ declare class InputChannel extends e {
      * @private
      */
     private _forwardTo;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     destroy(): void;
     /**
      * @param e Event
@@ -2644,6 +2697,22 @@ declare class InputChannel extends e {
      * @since 2.0.0
      */
     getCcNameByNumber(number: number): string | false;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+     * number 60) is placed on the 4th octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
 }
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
