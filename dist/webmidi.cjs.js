@@ -5688,8 +5688,7 @@ class Note {
   set name(value) {
     if (wm.validation) {
       if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    } // this._number = WebMidi.guessNoteNumber(value);
-
+    }
 
     this._number = utils.getNoteNumberByName(value, {
       octaveOffset: wm.octaveOffset
@@ -6335,35 +6334,33 @@ class WebMidi extends e {
    *
    * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
    * name could not successfully be parsed to a number.
+   *
+   * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
    */
   getNoteNumberByName(name) {
-    if (this.validation) {
-      if (typeof name !== "string") name = "";
-    }
-
-    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if (!matches) return false;
-    let semitones = {
-      C: 0,
-      D: 2,
-      E: 4,
-      F: 5,
-      G: 7,
-      A: 9,
-      B: 11
-    };
-    let semitone = semitones[matches[1].toUpperCase()];
-    let octave = parseInt(matches[3]);
-    let result = (octave + 1 - this.octaveOffset) * 12 + semitone;
-
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
-    }
-
-    if (result < 0 || result > 127) return false;
-    return result;
+    return utils.getNoteNumberByName(name, {
+      octaveOffset: this.octaveOffset
+    }); // if (this.validation) {
+    //   if (typeof name !== "string") name = "";
+    // }
+    //
+    // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+    // if(!matches) return false;
+    //
+    // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    // let semitone = semitones[matches[1].toUpperCase()];
+    // let octave = parseInt(matches[3]);
+    // let result = ((octave + 1 - this.octaveOffset) * 12) + semitone;
+    //
+    // if (matches[2].toLowerCase().indexOf("b") > -1) {
+    //   result -= matches[2].length;
+    // } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+    //   result += matches[2].length;
+    // }
+    //
+    // if (result < 0 || result > 127) return false;
+    //
+    // return result;
   }
   /**
    * @private
