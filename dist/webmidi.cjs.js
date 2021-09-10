@@ -5569,7 +5569,7 @@ class Utilities {
     if (options.octaveOffset === undefined) options.octaveOffset = 0;
 
     if (this.validation) {
-      if (typeof name !== "string") {
+      if (typeof name !== "string" || name == null) {
         name = "";
         console.log("allo", name);
       }
