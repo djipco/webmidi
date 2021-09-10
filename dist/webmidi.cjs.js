@@ -5567,20 +5567,8 @@ class Utilities {
 
   getNoteNumberByName(name, options = {}) {
     if (options.octaveOffset === undefined) options.octaveOffset = 0;
-
-    if (this.validation) {
-      if (typeof name !== "string" || name == null) {
-        name = "";
-        console.log("allo", name);
-      }
-
-      options.octaveOffset = parseInt(options.octaveOffset);
-
-      if (isNaN(options.octaveOffset)) {
-        throw new TypeError(`The octaveOffset is invalid`);
-      }
-    }
-
+    options.octaveOffset = parseInt(options.octaveOffset);
+    if (typeof name !== "string") name = "";
     let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
     if (!matches) return false;
     let semitones = {
