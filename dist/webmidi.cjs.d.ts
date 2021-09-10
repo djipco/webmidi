@@ -177,6 +177,27 @@ declare class Utilities {
      * @return {number|false} A positive number or `false` (if the time cannot be converted)
      */
     convertToTimestamp(time?: number | string): number | false;
+    /**
+     * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
+     * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
+     * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
+     * parsed for integer, if possible.
+     *
+     * If the input is a string, the resulting note number is offset by the
+     * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
+     * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
+     * number will be 36.
+     *
+     * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
+     * is invalid.
+     *
+     * @param input {string|number} A string to extract the note number from. An integer can also be
+     * used, in this case it will simply be returned as is (if between 0 and 127).
+     *
+     * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
+     * successfully be parsed to a note number.
+     */
+    guessNoteNumber(input: string | number, options?: {}): number | false;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -440,26 +461,10 @@ declare class WebMidi {
      */
     private toMIDIChannels;
     /**
-     * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-     * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-     * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-     * parsed for integer, if possible.
-     *
-     * If the input is a tring, the resulting note number is offset by the
-     * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-     * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-     * number will be 36.
-     *
-     * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-     * is invalid.
-     *
-     * @param input {string|number} A string to extract the note number from. An integer can also be
-     * used, in this case it will simply be returned as is (if between 0 and 127).
-     *
-     * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
-     * successfully be parsed to a note number.
+     * @private
+     * @deprecated since version 3. Moved to Utilities class.
      */
-    guessNoteNumber(input: string | number): number | false;
+    private guessNoteNumber;
     /**
      * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
      * object or an array of the previous types, to an array of {@link Note} objects.
@@ -489,14 +494,11 @@ declare class WebMidi {
      * @returns {Note[]}
      *
      * @throws TypeError An element could not be parsed as a note.
+     *
+     * @private
+     * @deprecated moved to Utilities class.
      */
-    getValidNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
-        duration?: number;
-        attack?: number;
-        release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
-    }): Note[];
+    private getValidNoteArray;
     /**
      * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
