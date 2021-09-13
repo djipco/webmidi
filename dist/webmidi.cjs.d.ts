@@ -84,7 +84,7 @@ export class Note {
     get normalizedRelease(): number;
 }
 declare const utils: Utilities;
-declare const wm: WebMidi$1;
+declare const wm: WebMidi;
 /**
  * The `Utilities` class contains all the general-purpose utility functions of the library. The
  * class is a singleton and is not meant to be instantiated. Its methods are static.
@@ -298,7 +298,7 @@ declare class Utilities {
  *
  * @extends EventEmitter
  */
-declare class WebMidi$1 {
+declare class WebMidi {
     /**
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
