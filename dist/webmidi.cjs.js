@@ -155,8 +155,8 @@ class t {
 }
 
 /**
- * The `Utilities` class contains all the general-purpose utility functions of the library. The
- * class is a singleton and is not meant to be instantiated. Its methods are static.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
+ * methode are static) and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
@@ -171,29 +171,30 @@ class Utilities {
    * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
    * per the scientific pitch notation standard.
    *
-   * The resulting note number is offset by the value of the `octaveOffset` property of the options
-   * object (if any).
-   *
-   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-   * parse the name to a number.
+   * The resulting note number can be offset by using the `octaveOffset` parameter.
    *
    * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
+   * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
    *
-   * @param {Object} [options={}]
+   * @param {number} [octaveOffset=0] A integer to offset the octave by.
    *
-   * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+   * @returns {number} The MIDI note number (an integer between 0 and 127).
    *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-   * name could not successfully be parsed to a number.
+   * @throws RangeError Invalid 'octaveOffset' value
+   *
+   * @throws TypeError Invalid note name
+   *
+   * @since 3.0.0
    */
   getNoteNumberByName(name, octaveOffset = 0) {
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
-    if (isNaN(octaveOffset)) return false;
+    console.log(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
-    if (!fragments) throw new TypeError("Invalid note name.");
+    if (!fragments) throw new TypeError("Invalid note name");
     const notes = {
       C: 0,
       D: 2,
@@ -222,6 +223,8 @@ class Utilities {
    *
    * @param name
    * @returns {{octave: number, letter: string, accidental: string}|false}
+   *
+   * @since 3.0.0
    */
 
 
@@ -250,6 +253,8 @@ class Utilities {
    * numbers.
    *
    * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   *
+   * @since 3.0.0
    */
 
 
@@ -292,6 +297,8 @@ class Utilities {
    *
    * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
    * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   *
+   * @since 3.0.0
    */
 
 
@@ -327,6 +334,8 @@ class Utilities {
    *
    * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
    * successfully be parsed to a note number.
+   *
+   * @since 3.0.0
    */
 
 
@@ -386,7 +395,7 @@ class Utilities {
    *
    * @throws TypeError The input could not be parsed as a note
    *
-   * @since version 3
+   * @since version 3.0.0
    */
 
 
@@ -436,6 +445,8 @@ class Utilities {
    * @returns {Note[]}
    *
    * @throws TypeError An element could not be parsed as a note.
+   *
+   * @since 3.0.0
    */
 
 
@@ -457,6 +468,8 @@ class Utilities {
    *
    * @throws RangeError Invalid note number
    * @throws RangeError Invalid octaveOffset value
+   *
+   * @since 3.0.0
    */
 
 
@@ -478,16 +491,18 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. A
- * `Note` object does not have a MIDI number per se. The MIDI note number is determined when the
- * note is played. This is because, the `octaveOffset` property of various objects can be used to
- * offset the note number to match external devices where middle C is not equal to C4.
+ * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
+ *
+ * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
+ * when the note is played. This is because, the `octaveOffset` property of various objects
+ * (`WebMidi`, `OutputChannel`, `Output`, etc.) can be used to offset the note number to match
+ * external devices where middle C is not equal to C4.
  *
  * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
  * However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
  * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
  *
  * The note has attack and release velocities set at 64 by default. These can be changed by passing
@@ -497,13 +512,14 @@ utils.constructor = null;
  * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
  * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
  * this case, it will never stop playing unless explicitly stopped by calling a method such as
- * OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
+ * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If a string is used, it must be
  * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
  * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
- * converted to a note name. In this case, middle C is considered to be C4 (note number 60).
+ * converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that
+ * can be offset with the `octaveOffset`property.
  *
  * @param {Object} [options={}]
  *
@@ -549,10 +565,9 @@ class Note {
     }
   }
   /**
-   * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for.
-   *
-   * @type {number}
+   * The name of the note as a string combining the note, an optional accidental and the octave.
+   * @type {string}
+   * @since 3.0.0
    */
 
 
@@ -573,6 +588,7 @@ class Note {
    * that the note should play for.
    *
    * @type {number}
+   * @since 3.0.0
    */
 
 
@@ -591,6 +607,7 @@ class Note {
   /**
    * The attack velocity of the note as an integer between 0 and 127.
    * @type {number}
+   * @since 3.0.0
    */
 
 
@@ -612,6 +629,7 @@ class Note {
   /**
    * The release velocity of the note as an integer between 0 and 127.
    * @type {number}
+   * @since 3.0.0
    */
 
 
@@ -633,19 +651,21 @@ class Note {
   /**
    * The attack velocity of the note as a decimal number between 0 and 1.
    * @type {number}
+   * @since 3.0.0
    */
 
 
-  get normalizedAttack() {
+  get attackNormalized() {
     return this._attack / 127;
   }
   /**
    * The release velocity of the note as a decimal number between 0 and 1.
    * @type {number}
+   * @since 3.0.0
    */
 
 
-  get normalizedRelease() {
+  get releaseNormalized() {
     return this._release / 127;
   }
 
