@@ -193,7 +193,7 @@ class Utilities {
     if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
-    console.log(fragments);
+    console.info(fragments);
     if (!fragments) return false;
     const notes = {
       C: 0,
