@@ -192,6 +192,9 @@ class Utilities {
     octaveOffset = parseInt(octaveOffset);
     if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
+    const fragments = this.getNoteFragments(name);
+    console.log(fragments);
+    if (!fragments) return false;
     const notes = {
       C: 0,
       D: 2,
@@ -201,9 +204,6 @@ class Utilities {
       A: 9,
       B: 11
     };
-    const fragments = this.getNoteFragments(name);
-    console.log(fragments);
-    if (!fragments) return false;
     let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += notes[fragments.letter];
 
@@ -228,17 +228,12 @@ class Utilities {
 
   getNoteFragments(name) {
     const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
-    const letter = matches[1].toUpperCase();
-
-    if (matches) {
-      return {
-        letter: letter,
-        accidental: matches[2].toLowerCase(),
-        octave: parseInt(matches[3])
-      };
-    }
-
-    return false;
+    if (!matches) return false;
+    return {
+      letter: matches[1].toUpperCase(),
+      accidental: matches[2].toLowerCase(),
+      octave: parseInt(matches[3])
+    };
   }
   /**
    * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
