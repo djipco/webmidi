@@ -200,7 +200,6 @@ class Utilities {
     // let result = ((octave + 1 - octaveOffset) * 12) + semitone;
 
     const fragments = this.getNoteFragments(name);
-    console.log(fragments, octaveOffset);
     let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += {
       C: 0,
@@ -211,6 +210,7 @@ class Utilities {
       A: 9,
       B: 11
     }[fragments.letter];
+    console.log(fragments, octaveOffset, result);
 
     if (fragments.accidental.startsWith("b")) {
       result -= fragments.accidental.length;
