@@ -232,7 +232,7 @@ describe("Note Object", function() {
 
     });
 
-    it.only("should throw when using invalid octaveOffset", function() {
+    it("should throw when using invalid octaveOffset", function() {
 
       // Arrange
       let values = [
@@ -295,7 +295,7 @@ describe("Note Object", function() {
 
   });
 
-  describe("set attack() amd set release()", function () {
+  describe("set attack()", function () {
 
     it("should throw error if setting to an invalid value", function() {
 
@@ -317,6 +317,33 @@ describe("Note Object", function() {
       // Assert
       function assert(value) {
         expect(() => note.attack = value).to.throw(RangeError);
+      }
+
+    });
+
+  });
+
+  describe("set release()", function () {
+
+    it("should throw error if setting to an invalid value", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        -1,
+        128,
+        -Infinity,
+        "test",
+        [],
+        {},
+        NaN
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
         expect(() => note.release = value).to.throw(RangeError);
       }
 
