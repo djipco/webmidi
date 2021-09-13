@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 10th 2021.
+ * This build was generated on September 13th 2021.
  *
  *
  *
@@ -30,11 +30,12 @@
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
 
 /**
- * Utilities
+ * The `Utilities` class contains all the general-purpose utility functions of the library. The
+ * class is a singleton and is not meant to be instantiated. Its methods are static.
+ *
+ * @since 3.0.0
  */
 class Utilities {
-
-  constructor() {}
 
   /**
    * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
@@ -61,30 +62,56 @@ class Utilities {
    * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
    * name could not successfully be parsed to a number.
    */
-  getNoteNumberByName(name, options = {}) {
+  getNoteNumberByName(name, octaveOffset = 0) {
 
-    if (options.octaveOffset === undefined) options.octaveOffset = 0;
-    options.octaveOffset = parseInt(options.octaveOffset);
-
+    // Validation
+    octaveOffset = parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
 
-    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) return false;
+    const fragments = this.getNoteFragments(name);
+    console.info(fragments);
+    if (!fragments) return false;
 
-    let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-    let semitone = semitones[matches[1].toUpperCase()];
-    let octave = parseInt(matches[3]);
-    let result = ((octave + 1 - options.octaveOffset) * 12) + semitone;
+    const notes = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
+
+
+    let result = (fragments.octave + 1 + octaveOffset) * 12;
+    result += notes[fragments.letter];
+
+    if (fragments.accidental.startsWith("b")) {
+      result -= fragments.accidental.length;
+    } else {
+      result += fragments.accidental.length;
     }
 
     if (result < 0 || result > 127) return false;
 
     return result;
+
+  }
+
+  /**
+   * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
+   * fragments composing it (uppercase letter, accidental and octave). If the name is invalid,
+   * `false` is returned.
+   *
+   * @param name
+   * @returns {{octave: number, letter: string, accidental: string}|false}
+   */
+  getNoteFragments(name) {
+
+    const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    if (!matches) return false;
+
+    console.log(matches);
+
+    return {
+      letter: matches[1].toUpperCase(),
+      accidental: matches[2].toLowerCase(),
+      octave: parseInt(matches[3])
+    };
 
   }
 
@@ -162,6 +189,163 @@ class Utilities {
 
   }
 
+  /**
+   * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
+   * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
+   * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
+   * parsed for integer, if possible.
+   *
+   * If the input is a string, the resulting note number is offset by the
+   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
+   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
+   * number will be 36.
+   *
+   * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
+   * is invalid.
+   *
+   * @param input {string|number} A string to extract the note number from. An integer can also be
+   * used, in this case it will simply be returned as is (if between 0 and 127).
+   *
+   * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
+   * successfully be parsed to a note number.
+   */
+  guessNoteNumber(input, options = {}) {
+
+    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+    options.octaveOffset = parseInt(options.octaveOffset);
+
+    let output = false;
+
+    if (Number.isInteger(input) && input >= 0 && input <= 127) {        // uint
+      output = parseInt(input);
+    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // float or uint as string
+      output = parseInt(input);
+    } else if (typeof input === "string" || input instanceof String) {  // string
+      output = this.getNoteNumberByName(input, {octaveOffset: this.octaveOffset});
+    }
+
+    if (output === false) return false;
+    return output;
+
+  }
+
+  /**
+   * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
+   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
+   * it will be returned as is.
+   *
+   * If the input is a note number or name, it is possible to specify options by providing the
+   * optional `options` parameter.
+   *
+   * An error is thrown for invalid input.
+   *
+   * @param [input] {number|string|Note}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+   *
+   * @returns {Note}
+   *
+   * @throws TypeError The input could not be parsed as a note
+   *
+   * @since version 3
+   */
+  getNoteObject(input, options= {}) {
+
+    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+
+    if (input instanceof Note) {
+      return input;
+    } else {
+      let number = this.guessNoteNumber(input, {octaveOffset: options.octaveOffset});
+      if (number !== false) {
+        return new Note(number, options);
+      } else {
+        throw new TypeError(`The input could not be parsed as a note (${input})`);
+      }
+    }
+
+  }
+
+  /**
+   * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
+   * object or an array of the previous types, to an array of {@link Note} objects.
+   *
+   * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
+   * created with the options specified. An error will be thrown when encountering invalid input.
+   *
+   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
+   */
+  getValidNoteArray(notes, options = {}) {
+
+    let result = [];
+    if (!Array.isArray(notes)) notes = [notes];
+
+    notes.forEach(note => {
+      result.push(this.getNoteObject(note, options));
+    });
+
+    return result;
+
+  }
+
+  /**
+   *
+   * @param {number}
+   * @param {octaveOffset}
+   * @returns {string}
+   */
+  getNoteNameByNumber(number, octaveOffset) {
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (isNaN(number) || number < 0 || number > 127) throw new Error("Invalid note number");
+      octaveOffset = parseInt(octaveOffset);
+      if (isNaN(octaveOffset)) throw new Error("Invalid octaveOffset value");
+    }
+
+    const octave = Math.floor(number / 12 - 1) + octaveOffset;
+    return WebMidi.NOTES[number % 12] + octave.toString();
+
+  }
+
 }
 
 // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
@@ -171,38 +355,49 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `Note` class represents a single note to be played. The `Note` can be played on a single
- * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
- * channels at once by using [Output.playNote()]{@link Output#playNote}.
+ * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. The
+ * actual MIDI note number associated with the note is determined when the note is played or
+ * received. This is because, the `octaveOffset` property can be used to offset the note number to
+ * match external devices where middle C is not equal to C4.
  *
- * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitly stopped using
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
- * [Output.stopNote()]{@link Output#stopNote}.
+ * `Note` objects can be played back on a single channel by calling
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
+ * multiple channels of the same output by using [Output.playNote()]{@link Output#playNote}.
  *
- * @param value {string|number} The name or note number of the note to create. If a number is used,
- * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
- * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
- * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+ * The note has attack and release velocities set at 0.5 by default. This can be changed by passing
+ * in the appropriate option. It is also possible to set a system-wide default for attack and
+ * release velocities by using the `WebMidi.defaults` property.
+ *
+ * The note also has a duration. Playback will be stopped (by sending **noteoff** sent) event the
+ * duration has elapsed. By default, the duration is set to `Infinity`. In this case, it will never
+ * stop playing unless explicitly stopped by calling a method such as
+ * OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
+ * [Output.stopNote()]{@link Output#stopNote} or similar.
+ *
+ * @param value {string} The value used to create the note. If a string is used, it must be the note
+ * name followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it
+ * must be an integer between 0 and 127. When converting the number to a note name, middle C is
+ * considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
  *
  * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
  * 1.
  *
- * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+ * explicitly stopped.
  *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
+ * @param {number} [options.octaveOffset=0] An integer to offset the octave value. This is only used
+ * when the note is specified using a MIDI note number.
  *
  * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
  * 127.
  *
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
  * 127.
+ *
+ * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+ * and 1.
  *
  * @throws {Error} Invalid note name.
  * @throws {Error} Invalid note number.
@@ -218,16 +413,29 @@ class Note {
 
   constructor(value, options = {}) {
 
-    if (Number.isInteger(value)) {
-      this.number = value;
-    } else {
-      this.name = value;
-    }
-
+    // Defaults
+    const octaveOffset = (options.octaveOffset == undefined) ? 0 : options.octaveOffset;
     this.duration = (options.duration == undefined) ? Infinity : options.duration;
     this.attack = (options.attack == undefined) ? 0.5 : options.attack;
     this.release = (options.release == undefined) ? 0.5 : options.release;
-    this.octaveOffset = (options.octaveOffset == undefined) ? 0 : options.octaveOffset;
+
+    if (Number.isInteger(value)) {
+      this.name = utils.getNoteNameByNumber(value, octaveOffset);
+    } else {
+
+      let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+      if(!matches) return false;
+
+      let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+      let semitone = semitones[matches[1].toUpperCase()];
+      let octave = parseInt(matches[3]);
+
+
+
+
+
+      this.name = value;
+    }
 
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
@@ -235,66 +443,38 @@ class Note {
   }
 
   /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+   * Returns the MIDI note number of the note (0-127). To calculate the MIDI note number, middle C
+   * is considered to be C4 (MIDI note number 60). The returned MIDI note number is offset by the
+   * value of the `octaveOffset` parameter (if any).
    *
-   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
-   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
-   * be reported as `C5` if the  `octaveOffset` is `1`.
+   * @param {number} [octaveOffset=0] A integer to offset the octave by
    *
-   * @type {string}
+   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` (if the
+   * offset causes the note to fall outside the MIDI range).
+   *
+   * @since 3.0.0
    */
-  get name() {
-    return wm.NOTES[this._number % 12] + this.octave.toString();
-  }
-  set name(value) {
-
-    if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
-    }
-
-    this._number = utils.getNoteNumberByName(value, {octaveOffset: wm.octaveOffset});
-
+  getNumber(octaveOffset = 0) {
+    return utils.getNoteNumberByName(this.name, octaveOffset);
   }
 
   /**
-   * The MIDI note number as an integer between 0 and 127
+   * The attack velocity of the note as a decimal number between 0 and 1.
    * @type {number}
    */
-  get number() {
-    return this._number;
+  get attack() {
+    return this._rawAttack / 127;
   }
-  set number(value) {
+  set attack(value) {
 
     if (wm.validation) {
-      if (wm.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
+        throw new RangeError("Invalid attack value.");
+      }
     }
 
-    this._number = wm.guessNoteNumber(value);
-
-  }
-
-  /**
-   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
-   * 60) is placed on the 4th octave (C4).
-   *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * @type {number}
-   *
-   * @since 3.0
-   */
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-  set octaveOffset(value) {
-
-    if (this.validation) {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-    }
-
-    this._octaveOffset = value;
+    this._rawAttack = Math.round(value * 127);
 
   }
 
@@ -315,26 +495,6 @@ class Note {
     }
 
     this._duration = value;
-
-  }
-
-  /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   */
-  get attack() {
-    return this._rawAttack / 127;
-  }
-  set attack(value) {
-
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid attack value.");
-      }
-    }
-
-    this._rawAttack = Math.round(value * 127);
 
   }
 
@@ -396,14 +556,6 @@ class Note {
 
     this._rawRelease = value;
 
-  }
-
-  /**
-   * The octave of the note as an integer between -1 and 9.
-   * @type {number}
-   */
-  get octave() {
-    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
   }
 
 }
@@ -2404,7 +2556,9 @@ class OutputChannel extends e {
     // Normalize to integer
     if (!options.rawValue) pressure = Math.round(pressure * 127);
 
-    wm.getValidNoteArray(note, options).forEach(n => {
+    options.octaveOffset = wm.octaveOffset;
+
+    utils.getValidNoteArray(note, options).forEach(n => {
       this.send(
         [
           (wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
@@ -2994,8 +3148,9 @@ class OutputChannel extends e {
 
     // Send note off messages
     let o = {rawRelease: parseInt(nVelocity)};
+    o.octaveOffset = wm.octaveOffset;
 
-    wm.getValidNoteArray(note, o).forEach(n => {
+    utils.getValidNoteArray(note, o).forEach(n => {
       this.send(
         [
           (wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
@@ -3100,8 +3255,9 @@ class OutputChannel extends e {
     }
 
     let o = {rawAttack: nVelocity};
+    o.octaveOffset = wm.octaveOffset;
 
-    wm.getValidNoteArray(note, o).forEach(n => {
+    utils.getValidNoteArray(note, o).forEach(n => {
       this.send(
         [
           (wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
@@ -6219,11 +6375,33 @@ class Output extends e {
  *
  * @extends EventEmitter
  */
-class WebMidi extends e {
+class WebMidi$1 extends e {
 
   constructor() {
 
     super();
+
+    /**
+     * Object containing system-wide default values that can be changed to customize how the library
+     * works.
+     *
+     * @type {Object}
+     *
+     * @property {object}  defaults.note - Default values relating to note
+     * @property {number}  defaults.note.attackVelocity - A number between 0 and 1 representing the
+     * default attack velocity of notes. Initial value is 0.5.
+     * @property {number}  defaults.note.releaseVelocity - A number between 0 and 1 representing the
+     * default release velocity of notes. Initial value is 0.5.
+     * @property {number}  defaults.note.duration - A number representing the default
+     * duration of notes (in seconds). Initial value is Infinity.
+     */
+    this.defaults = {
+      note: {
+        attackVelocity: 0.5,
+        releaseVelocity: 0.5,
+        duration: Infinity
+      }
+    };
 
     /**
      * The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
@@ -6676,8 +6854,7 @@ class WebMidi extends e {
 
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-   * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
-   * [octaveOffset]{@link WebMidi#octaveOffset} property, you can offset the result as desired.
+   * based on middle C (note number 60) being placed on the 4th octave (C4).
    *
    * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
    * be parsed to a valid octave.
@@ -6765,133 +6942,32 @@ class WebMidi extends e {
   }
 
   /**
-   * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-   * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-   * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-   * parsed for integer, if possible.
-   *
-   * If the input is a tring, the resulting note number is offset by the
-   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-   * number will be 36.
-   *
-   * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-   * is invalid.
-   *
-   * @param input {string|number} A string to extract the note number from. An integer can also be
-   * used, in this case it will simply be returned as is (if between 0 and 127).
-   *
-   * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
-   * successfully be parsed to a note number.
+   * @private
+   * @deprecated since version 3. Moved to Utilities class.
    */
   guessNoteNumber(input) {
 
-    let output = false;
-
-    if (Number.isInteger(input) && input >= 0 && input <= 127) {        // uint
-      output = parseInt(input);
-    } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // float or uint as string
-      output = parseInt(input);
-    } else if (typeof input === "string" || input instanceof String) {  // string
-      output = utils.getNoteNumberByName(input, {octaveOffset: this.octaveOffset});
+    if (this.validation) {
+      console.warn(
+        "The guessNoteNumber() method has been moved to the Utilities class."
+      );
     }
 
-    if (output === false) return false;
-    return output;
+    return utils.guessNoteNumber(input, {octaveOffset: this.octaveOffset});
 
   }
 
   /**
-   * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
-   * object or an array of the previous types, to an array of {@link Note} objects.
-   *
-   * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-   * created with the options specified. An error will be thrown when encountering invalid input.
-   *
-   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-   * be explicitly stopped.
-   *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
-   *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
-   *
-   * @returns {Note[]}
-   *
-   * @throws TypeError An element could not be parsed as a note.
+   * @private
+   * @deprecated since version 3. Moved to Utilities class.
    */
   getValidNoteArray(notes, options = {}) {
-
-    let result = [];
-    if (!Array.isArray(notes)) notes = [notes];
-
-    notes.forEach(note => {
-      result.push(this.getNoteObject(note, options));
-    });
-
-    return result;
-
-  }
-
-  /**
-   * Converts the `note` parameter to a valid {@link Note} object. The input usually is an unsigned
-   * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
-   * it will be returned as is.
-   *
-   * If the input is a note number or name, it is possible to specify options by providing the
-   * optional `options` parameter.
-   *
-   * An error is thrown for invalid input.
-   *
-   * @param [notes] {number|string|Note}
-   *
-   * @param {Object} [options={}]
-   *
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-   * be explicitly stopped.
-   *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
-   *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
-   *
-   * @returns {Note}
-   *
-   * @throws TypeError The input could not be parsed as a note
-   *
-   * @since version 3
-   */
-  getNoteObject(note, options) {
-
-    if (note instanceof Note) {
-      return note;
-    } else {
-      let number = this.guessNoteNumber(note);
-      if (number !== false) {
-        return new Note(number, options);
-      } else {
-        throw new TypeError(`The input could not be parsed as a note (${note})`);
-      }
+    if (this.validation) {
+      console.warn(
+        "The getValidNoteArray() method has been moved to the Utilities class."
+      );
     }
-
+    return utils.getValidNoteArray(notes, options);
   }
 
   /**
@@ -6911,7 +6987,6 @@ class WebMidi extends e {
   }
 
   /**
-   *
    * @return {Promise<void>}
    * @private
    */
@@ -7665,7 +7740,7 @@ class WebMidi extends e {
 // Export singleton instance of WebMidi class. The 'constructor' is nulled so that it cannot be used
 // to instantiate a new WebMidi object or extend it. However, it is not freezed so it remains
 // extensible (properties can be added at will).
-const wm = new WebMidi();
+const wm = new WebMidi$1();
 wm.constructor = null;
 
 export { Note, utils as Utilities, wm as WebMidi };
