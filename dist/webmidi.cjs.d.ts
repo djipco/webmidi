@@ -149,11 +149,11 @@ declare class Utilities {
      * @param name
      * @returns {{octave: number, letter: string, accidental: string}|false}
      */
-    getNoteFragments(name: any): {
+    getNoteFragments(name: any): false | {
         octave: number;
         letter: string;
         accidental: string;
-    } | false;
+    };
     /**
      * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
      * single integer or an array of integers.
