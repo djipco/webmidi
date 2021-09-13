@@ -535,6 +535,7 @@ class Note {
     this.attack = wm.defaults.note.attack;
     this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
 
+    console.log(this.duration, options.duration);
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
     if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
