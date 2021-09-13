@@ -228,10 +228,14 @@ class Utilities {
   getNoteFragments(name) {
     const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) return false;
+    const letter = matches[1].toUpperCase();
+    const accidental = matches[2].toLowerCase();
+    const octave = parseInt(matches[3]);
     return {
-      letter: matches[1].toUpperCase(),
-      accidental: matches[2].toLowerCase(),
-      octave: parseInt(matches[3])
+      letter: letter,
+      accidental: accidental,
+      octave: octave,
+      name: letter + accidental + octave
     };
   }
   /**
@@ -538,20 +542,17 @@ class Note {
     if (Number.isInteger(value)) {
       this.name = utils.getNoteNameByNumber(value, octaveOffset);
     } else {
+      // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+      // if(!matches) return false;
+      //
+      // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+      // let semitone = semitones[matches[1].toUpperCase()];
+      // let octave = parseInt(matches[3]);
+      // let result = ((octave + 1 - octaveOffset) * 12) + semitone;
+      if (wm.validation) {
+        if (!utils.getNoteFragments(value)) throw new TypeError("Invalid note name");
+      }
 
-      let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-      if (!matches) return false;
-      let semitones = {
-        C: 0,
-        D: 2,
-        E: 4,
-        F: 5,
-        G: 7,
-        A: 9,
-        B: 11
-      };
-      let semitone = semitones[matches[1].toUpperCase()];
-      let octave = parseInt(matches[3]);
       this.name = value;
     }
 
