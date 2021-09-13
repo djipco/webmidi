@@ -212,7 +212,6 @@ class Utilities {
       result += fragments.accidental.length;
     }
 
-    console.log(fragments);
     if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
     return result;
   }
@@ -484,6 +483,9 @@ utils.constructor = null;
  * note is played. This is because, the `octaveOffset` property of various objects can be used to
  * offset the note number to match external devices where middle C is not equal to C4.
  *
+ * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
+ * However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
+ *
  * `Note` objects can be played back on a single channel by calling
  * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
  * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
@@ -544,7 +546,7 @@ class Note {
       this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
     } else {
       if (wm.validation) {
-        value = utils.getNoteFragments(value);
+        value = utils.getNoteFragments(value).name;
         if (!value) throw new Error("Invalid note name");
       }
 
