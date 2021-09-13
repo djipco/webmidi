@@ -200,7 +200,7 @@ class Utilities {
     // let result = ((octave + 1 - octaveOffset) * 12) + semitone;
 
     const fragments = this.getNoteFragments(name);
-    let result = (fragments.octave + 1 - octaveOffset) * 12;
+    let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += {
       C: 0,
       D: 2,
