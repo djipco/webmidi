@@ -536,7 +536,6 @@ class Note {
     this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
 
     if (options.duration != undefined) this.duration = options.duration;
-    console.log(this.duration, options.duration);
     if (options.attack != undefined) this.attack = options.attack;
     if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
 
@@ -546,13 +545,28 @@ class Note {
     if (Number.isInteger(value)) {
       this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
     } else {
-      if (wm.validation) {
-        value = utils.getNoteFragments(value).name;
-        if (!value) throw new Error("Invalid note name");
-      }
-
       this.name = value;
     }
+  }
+  /**
+   * The duration of the note as a positive decimal number representing the number of milliseconds
+   * that the note should play for.
+   *
+   * @type {number}
+   */
+
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (wm.validation) {
+      value = utils.getNoteFragments(value).name;
+      if (!value) throw new Error("Invalid note name");
+    }
+
+    this._name = value;
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
