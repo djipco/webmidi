@@ -478,80 +478,75 @@ utils.constructor = null;
 /**
  * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. The
  * actual MIDI note number associated with the note is determined when the note is played or
- * received. This is because, the `octaveOffset` property can be used to offset the note number to
- * match external devices where middle C is not equal to C4.
+ * received. This is because, the `octaveOffset` property of various objects can be used to offset
+ * the note number to match external devices where middle C is not equal to C4.
  *
  * `Note` objects can be played back on a single channel by calling
  * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
- * multiple channels of the same output by using [Output.playNote()]{@link Output#playNote}.
+ * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 0.5 by default. This can be changed by passing
+ * The note has attack and release velocities set at 64 by default. These can be changed by passing
  * in the appropriate option. It is also possible to set a system-wide default for attack and
  * release velocities by using the `WebMidi.defaults` property.
  *
- * The note also has a duration. Playback will be stopped (by sending **noteoff** sent) event the
- * duration has elapsed. By default, the duration is set to `Infinity`. In this case, it will never
- * stop playing unless explicitly stopped by calling a method such as
+ * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
+ * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
+ * this case, it will never stop playing unless explicitly stopped by calling a method such as
  * OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
- * @param value {string} The value used to create the note. If a string is used, it must be the note
- * name followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it
- * must be an integer between 0 and 127. When converting the number to a note name, middle C is
- * considered to be C4 (note number 60).
+ * @param value {string|number} The value used to create the note. If a string is used, it must be
+ * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
+ * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
+ * converted to a note name. In this case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
- * 1.
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number} [options.octaveOffset=0] An integer to offset the octave value. This is only used
- * when the note is specified using a MIDI note number.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+ * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and
  * 127.
  *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+ * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
  * 127.
  *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
+ * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
+ * used when the note is specified using a MIDI note number.**
  *
- * @throws {Error} Invalid note name.
- * @throws {Error} Invalid note number.
- * @throws {RangeError} Invalid duration.
- * @throws {RangeError} Invalid attack value.
- * @throws {RangeError} Invalid rawAttack value.
- * @throws {RangeError} Invalid release value.
- * @throws {RangeError} Invalid rawRelease value.
+ * @throws {Error} Invalid note name
+ * @throws {RangeError} Invalid duration
+ * @throws {RangeError} Invalid attack value
+ * @throws {RangeError} Invalid release value
+ * @throws {RangeError} Invalid 'octaveOffset' value
  *
  * @since 3.0.0
  */
 
 class Note {
   constructor(value, options = {}) {
-    // Defaults
-    const octaveOffset = options.octaveOffset == undefined ? 0 : options.octaveOffset;
-    this.duration = options.duration == undefined ? Infinity : options.duration;
-    this.attack = options.attack == undefined ? 0.5 : options.attack;
-    this.release = options.release == undefined ? 0.5 : options.release;
+    // Assign property defaults
+    this.duration = wm.defaults.note.duration;
+    this.attack = wm.defaults.note.attack;
+    this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
+
+    if (options.duration != undefined) this.duration = options.duration;
+    if (options.attack != undefined) this.attack = options.attack;
+    if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
+
+    options.octaveOffset = parseInt(options.octaveOffset);
+    if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
-      this.name = utils.getNoteNameByNumber(value, octaveOffset);
+      this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
     } else {
       if (wm.validation) {
         value = utils.getNoteFragments(value);
-        if (!value) throw new TypeError("Invalid note name");
+        if (!value) throw new Error("Invalid note name");
       }
 
       this.name = value;
     }
-
-    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
-    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
   }
   /**
    * Returns the MIDI note number of the note (0-127). To calculate the MIDI note number, middle C
@@ -567,29 +562,8 @@ class Note {
    */
 
 
-  getNumber(octaveOffset = 0) {
+  getMidiNumber(octaveOffset = 0) {
     return utils.getNoteNumberByName(this.name, octaveOffset);
-  }
-  /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   */
-
-
-  get attack() {
-    return this._rawAttack / 127;
-  }
-
-  set attack(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid attack value.");
-      }
-    }
-
-    this._rawAttack = Math.round(value * 127);
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -612,25 +586,55 @@ class Note {
     this._duration = value;
   }
   /**
-   * The raw attack velocity of the note as an integer between 0 and 127.
+   * The attack velocity of the note as an integer between 0 and 127.
    * @type {number}
    */
 
 
-  get rawAttack() {
-    return this._rawAttack;
+  get attack() {
+    return this._attack;
   }
 
-  set rawAttack(value) {
+  set attack(value) {
     if (wm.validation) {
       value = parseFloat(value);
 
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawAttack value.");
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid attack value.");
       }
     }
 
-    this._rawAttack = value;
+    this._attack = value;
+  }
+  /**
+   * The release velocity of the note as an integer between 0 and 127.
+   * @type {number}
+   */
+
+
+  get release() {
+    return this._release;
+  }
+
+  set release(value) {
+    if (wm.validation) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid release value.");
+      }
+    }
+
+    this._release = value;
+  }
+  /**
+   * The attack velocity of the note as a decimal number between 0 and 1.
+   * @type {number}
+   */
+
+
+  get normalizedAttack() {
+    return this._attack / 127;
   }
   /**
    * The release velocity of the note as a decimal number between 0 and 1.
@@ -638,41 +642,8 @@ class Note {
    */
 
 
-  get release() {
-    return this._rawRelease / 127;
-  }
-
-  set release(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 1)) {
-        throw new RangeError("Invalid release value.");
-      }
-    }
-
-    this._rawRelease = Math.round(value * 127);
-  }
-  /**
-   * The raw release velocity of the note as an integer between 0 and 127.
-   * @type {number}
-   */
-
-
-  get rawRelease() {
-    return this._rawRelease;
-  }
-
-  set rawRelease(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-
-      if (isNaN(value) || value === null || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid rawRelease value.");
-      }
-    }
-
-    this._rawRelease = value;
+  get normalizedRelease() {
+    return this._release / 127;
   }
 
 }
@@ -6105,18 +6076,18 @@ class WebMidi$1 extends e {
      * @type {Object}
      *
      * @property {object}  defaults.note - Default values relating to note
-     * @property {number}  defaults.note.attackVelocity - A number between 0 and 1 representing the
-     * default attack velocity of notes. Initial value is 0.5.
-     * @property {number}  defaults.note.releaseVelocity - A number between 0 and 1 representing the
-     * default release velocity of notes. Initial value is 0.5.
+     * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
+     * default attack velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.release - A number between 0 and 127 representing the
+     * default release velocity of notes. Initial value is 64.
      * @property {number}  defaults.note.duration - A number representing the default
      * duration of notes (in seconds). Initial value is Infinity.
      */
 
     this.defaults = {
       note: {
-        attackVelocity: 0.5,
-        releaseVelocity: 0.5,
+        attack: 64,
+        release: 64,
         duration: Infinity
       }
     };
