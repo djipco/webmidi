@@ -193,7 +193,7 @@ class Utilities {
     if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
-    if (!fragments) return false;
+    if (!fragments) throw new TypeError("Invalid note name.");
     const notes = {
       C: 0,
       D: 2,
@@ -212,7 +212,7 @@ class Utilities {
       result += fragments.accidental.length;
     }
 
-    if (result < 0 || result > 127) return false;
+    if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
     return result;
   }
   /**
@@ -542,15 +542,9 @@ class Note {
     if (Number.isInteger(value)) {
       this.name = utils.getNoteNameByNumber(value, octaveOffset);
     } else {
-      // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-      // if(!matches) return false;
-      //
-      // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-      // let semitone = semitones[matches[1].toUpperCase()];
-      // let octave = parseInt(matches[3]);
-      // let result = ((octave + 1 - octaveOffset) * 12) + semitone;
       if (wm.validation) {
-        if (!utils.getNoteFragments(value)) throw new TypeError("Invalid note name");
+        value = utils.getNoteFragments(value);
+        if (!value) throw new TypeError("Invalid note name");
       }
 
       this.name = value;
