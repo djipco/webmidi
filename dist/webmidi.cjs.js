@@ -356,7 +356,11 @@ class Utilities {
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {
       // string
-      output = this.getNoteNumberByName(input, octaveOffset);
+      try {
+        output = this.getNoteNumberByName(input, octaveOffset);
+      } catch (e) {
+        return false;
+      }
     }
 
     if (output === false) return false;
