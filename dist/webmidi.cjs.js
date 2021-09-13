@@ -343,9 +343,9 @@ class Utilities {
    */
 
 
-  guessNoteNumber(input, options = {}) {
-    if (options.octaveOffset == undefined) options.octaveOffset = 0;
-    options.octaveOffset = parseInt(options.octaveOffset);
+  guessNoteNumber(input, octaveOffset) {
+    if (octaveOffset == undefined) octaveOffset = 0;
+    octaveOffset = parseInt(octaveOffset);
     let output = false;
 
     if (Number.isInteger(input) && input >= 0 && input <= 127) {
@@ -356,9 +356,7 @@ class Utilities {
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {
       // string
-      output = this.getNoteNumberByName(input, {
-        octaveOffset: this.octaveOffset
-      });
+      output = this.getNoteNumberByName(input, octaveOffset);
     }
 
     if (output === false) return false;
@@ -6637,18 +6635,16 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since version 3. Moved to Utilities class.
+   * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
    */
 
 
   guessNoteNumber(input) {
     if (this.validation) {
-      console.warn("The guessNoteNumber() method has been moved to the Utilities class.");
+      console.warn("The guessNoteNumber() method has been deprecated. Use Utilities.guessNoteNumber() instead.");
     }
 
-    return utils.guessNoteNumber(input, {
-      octaveOffset: this.octaveOffset
-    });
+    return utils.guessNoteNumber(input, this.octaveOffset);
   }
   /**
    * @private
