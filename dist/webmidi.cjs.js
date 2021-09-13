@@ -212,6 +212,7 @@ class Utilities {
       result += fragments.accidental.length;
     }
 
+    console.log(fragments);
     if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
     return result;
   }
