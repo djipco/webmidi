@@ -466,7 +466,7 @@ class Utilities {
     octaveOffset = parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
-    return WebMidi.NOTES[number % 12] + octave.toString();
+    return wm.NOTES[number % 12] + octave.toString();
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
@@ -6051,7 +6051,7 @@ global["navigator"] = require("jzz");
  * @extends EventEmitter
  */
 
-class WebMidi$1 extends e {
+class WebMidi extends e {
   constructor() {
     super();
     /**
@@ -7379,7 +7379,7 @@ class WebMidi$1 extends e {
 // extensible (properties can be added at will).
 
 
-const wm = new WebMidi$1();
+const wm = new WebMidi();
 wm.constructor = null;
 
 exports.Note = Note;
