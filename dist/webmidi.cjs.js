@@ -194,6 +194,7 @@ class Utilities {
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
     console.info(fragments);
+    console.info("COUCOUCOUCOUC");
     if (!fragments) return false;
     const notes = {
       C: 0,
