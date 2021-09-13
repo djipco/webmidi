@@ -537,7 +537,7 @@ class Note {
     if (options.attack != undefined) this.attack = options.attack;
     if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
 
-    options.octaveOffset = parseInt(options.octaveOffset);
+    options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
