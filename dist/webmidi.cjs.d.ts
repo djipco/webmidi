@@ -71,7 +71,15 @@ export class Note {
      * @type {number}
      */
     get release(): number;
-    name: any;
+    set name(arg: number);
+    /**
+     * The duration of the note as a positive decimal number representing the number of milliseconds
+     * that the note should play for.
+     *
+     * @type {number}
+     */
+    get name(): number;
+    _name: number;
     _duration: number;
     _attack: number;
     _release: number;
