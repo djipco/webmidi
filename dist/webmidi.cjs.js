@@ -463,7 +463,7 @@ class Utilities {
   getNoteNameByNumber(number, octaveOffset) {
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
-    octaveOffset = parseInt(octaveOffset);
+    octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
     return wm.NOTES[number % 12] + octave.toString();
