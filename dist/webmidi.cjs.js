@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 10th 2021.
+ * This build was generated on September 13th 2021.
  *
  *
  *
@@ -191,10 +191,17 @@ class Utilities {
     // Validation
     octaveOffset = parseInt(octaveOffset);
     if (isNaN(octaveOffset)) return false;
-    if (typeof name !== "string") name = "";
-    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if (!matches) return false;
-    let semitones = {
+    if (typeof name !== "string") name = ""; // let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+    // if(!matches) return false;
+    //
+    // let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    // let semitone = semitones[matches[1].toUpperCase()];
+    // let octave = parseInt(matches[3]);
+    // let result = ((octave + 1 - octaveOffset) * 12) + semitone;
+
+    const fragments = this.getNoteFragments(name);
+    let result = (fragments.octave + 1 - octaveOffset) * 12;
+    result += {
       C: 0,
       D: 2,
       E: 4,
@@ -202,19 +209,45 @@ class Utilities {
       G: 7,
       A: 9,
       B: 11
-    };
-    let semitone = semitones[matches[1].toUpperCase()];
-    let octave = parseInt(matches[3]);
-    let result = (octave + 1 - octaveOffset) * 12 + semitone;
+    }[fragments.letter];
 
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
-    }
+    if (fragments.accidental.startsWith("b")) {
+      result -= fragments.accidental.length;
+    } else {
+      result += fragments.accidental.length;
+    } // if (matches[2].toLowerCase().indexOf("b") > -1) {
+    //   result -= matches[2].length;
+    // } else if (matches[2].toLowerCase().indexOf("#") > -1) {
+    //   result += matches[2].length;
+    // }
+
 
     if (result < 0 || result > 127) return false;
     return result;
+  }
+  /**
+   * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
+   * fragments composing it (uppercase letter, accidental and octave). If the name is invalid,
+   * `false` is returned.
+   *
+   * @param name
+   * @returns {{octave: number, letter: string, accidental: string}|false}
+   */
+
+
+  getNoteFragments(name) {
+    const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    const letter = matches[1].toUpperCase();
+
+    if (matches) {
+      return {
+        letter: letter,
+        accidental: matches[2].toLowerCase(),
+        octave: matches[3]
+      };
+    }
+
+    return false;
   }
   /**
    * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
@@ -425,6 +458,25 @@ class Utilities {
     });
     return result;
   }
+  /**
+   *
+   * @param {number}
+   * @param {octaveOffset}
+   * @returns {string}
+   */
+
+
+  getNoteNameByNumber(number, octaveOffset) {
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (isNaN(number) || number < 0 || number > 127) throw new Error("Invalid note number");
+      octaveOffset = parseInt(octaveOffset);
+      if (isNaN(octaveOffset)) throw new Error("Invalid octaveOffset value");
+    }
+
+    const octave = Math.floor(number / 12 - 1) + octaveOffset;
+    return WebMidi.NOTES[number % 12] + octave.toString();
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -435,38 +487,49 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `Note` class represents a single note to be played. The `Note` can be played on a single
- * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
- * channels at once by using [Output.playNote()]{@link Output#playNote}.
+ * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. The
+ * actual MIDI note number associated with the note is determined when the note is played or
+ * received. This is because, the `octaveOffset` property can be used to offset the note number to
+ * match external devices where middle C is not equal to C4.
  *
- * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitly stopped using
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
- * [Output.stopNote()]{@link Output#stopNote}.
+ * `Note` objects can be played back on a single channel by calling
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
+ * multiple channels of the same output by using [Output.playNote()]{@link Output#playNote}.
  *
- * @param value {string|number} The name or note number of the note to create. If a number is used,
- * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
- * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
- * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+ * The note has attack and release velocities set at 0.5 by default. This can be changed by passing
+ * in the appropriate option. It is also possible to set a system-wide default for attack and
+ * release velocities by using the `WebMidi.defaults` property.
+ *
+ * The note also has a duration. Playback will be stopped (by sending **noteoff** sent) event the
+ * duration has elapsed. By default, the duration is set to `Infinity`. In this case, it will never
+ * stop playing unless explicitly stopped by calling a method such as
+ * OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
+ * [Output.stopNote()]{@link Output#stopNote} or similar.
+ *
+ * @param value {string} The value used to create the note. If a string is used, it must be the note
+ * name followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it
+ * must be an integer between 0 and 127. When converting the number to a note name, middle C is
+ * considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
  *
  * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
  * 1.
  *
- * @param {number} [options.octaveOffset=0] The offset to apply to the reported octave
+ * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+ * explicitly stopped.
  *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
+ * @param {number} [options.octaveOffset=0] An integer to offset the octave value. This is only used
+ * when the note is specified using a MIDI note number.
  *
  * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
  * 127.
  *
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
  * 127.
+ *
+ * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+ * and 1.
  *
  * @throws {Error} Invalid note name.
  * @throws {Error} Invalid note number.
@@ -481,114 +544,51 @@ utils.constructor = null;
 
 class Note {
   constructor(value, options = {}) {
-    if (Number.isInteger(value)) {
-      this.number = value;
-    } else {
-      this.name = value;
-    }
-
+    // Defaults
+    const octaveOffset = options.octaveOffset == undefined ? 0 : options.octaveOffset;
     this.duration = options.duration == undefined ? Infinity : options.duration;
     this.attack = options.attack == undefined ? 0.5 : options.attack;
     this.release = options.release == undefined ? 0.5 : options.release;
-    this.octaveOffset = options.octaveOffset == undefined ? 0 : options.octaveOffset;
+
+    if (Number.isInteger(value)) {
+      this.name = utils.getNoteNameByNumber(value, octaveOffset);
+    } else {
+
+      let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
+      if (!matches) return false;
+      let semitones = {
+        C: 0,
+        D: 2,
+        E: 4,
+        F: 5,
+        G: 7,
+        A: 9,
+        B: 11
+      };
+      let semitone = semitones[matches[1].toUpperCase()];
+      let octave = parseInt(matches[3]);
+      this.name = value;
+    }
+
     if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
     if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
   }
   /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.).
+   * Returns the MIDI note number of the note (0-127). To calculate the MIDI note number, middle C
+   * is considered to be C4 (MIDI note number 60). The returned MIDI note number is offset by the
+   * value of the `octaveOffset` parameter (if any).
    *
-   * The name is affected by the `octaveOffset` property. For instance, a `Note` with a MIDI note
-   * number of 60 will be reported as `C4` if the `octaveOffset` property is `0`. However, it will
-   * be reported as `C5` if the  `octaveOffset` is `1`.
+   * @param {number} [octaveOffset=0] A integer to offset the octave by
    *
-   * @type {string}
+   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` (if the
+   * offset causes the note to fall outside the MIDI range).
+   *
+   * @since 3.0.0
    */
 
 
-  get name() {
-    return wm.NOTES[this._number % 12] + this.octave.toString();
-  }
-
-  set name(value) {
-    if (wm.validation) {
-      if (utils.guessNoteNumber(value, {
-        octaveOffset: wm.octaveOffset
-      }) === false) {
-        throw new Error("Invalid note name.");
-      }
-    }
-
-    this._number = utils.getNoteNumberByName(value, {
-      octaveOffset: wm.octaveOffset
-    });
-  }
-  /**
-   * The MIDI note number as an integer between 0 and 127
-   * @type {number}
-   */
-
-
-  get number() {
-    return this._number;
-  }
-
-  set number(value) {
-    if (wm.validation) {
-      if (utils.guessNoteNumber(value, {
-        octaveOffset: wm.octaveOffset
-      }) === false) {
-        throw new Error("Invalid note number.");
-      }
-    }
-
-    this._number = utils.guessNoteNumber(value, {
-      octaveOffset: wm.octaveOffset
-    });
-  }
-  /**
-   * An integer to offset the reported octave of the note. By default, middle C (MIDI note number
-   * 60) is placed on the 4th octave (C4).
-   *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * @type {number}
-   *
-   * @since 3.0
-   */
-
-
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-
-  set octaveOffset(value) {
-    if (this.validation) {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-    }
-
-    this._octaveOffset = value;
-  }
-  /**
-   * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for.
-   *
-   * @type {number}
-   */
-
-
-  get duration() {
-    return this._duration;
-  }
-
-  set duration(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
-    }
-
-    this._duration = value;
+  getNumber(octaveOffset = 0) {
+    return utils.getNoteNumberByName(this.name, octaveOffset);
   }
   /**
    * The attack velocity of the note as a decimal number between 0 and 1.
@@ -610,6 +610,26 @@ class Note {
     }
 
     this._rawAttack = Math.round(value * 127);
+  }
+  /**
+   * The duration of the note as a positive decimal number representing the number of milliseconds
+   * that the note should play for.
+   *
+   * @type {number}
+   */
+
+
+  get duration() {
+    return this._duration;
+  }
+
+  set duration(value) {
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    }
+
+    this._duration = value;
   }
   /**
    * The raw attack velocity of the note as an integer between 0 and 127.
@@ -673,15 +693,6 @@ class Note {
     }
 
     this._rawRelease = value;
-  }
-  /**
-   * The octave of the note as an integer between -1 and 9.
-   * @type {number}
-   */
-
-
-  get octave() {
-    return Math.floor(this._number / 12 - 1) + this.octaveOffset;
   }
 
 }
@@ -6104,9 +6115,31 @@ global["navigator"] = require("jzz");
  * @extends EventEmitter
  */
 
-class WebMidi extends e {
+class WebMidi$1 extends e {
   constructor() {
     super();
+    /**
+     * Object containing system-wide default values that can be changed to customize how the library
+     * works.
+     *
+     * @type {Object}
+     *
+     * @property {object}  defaults.note - Default values relating to note
+     * @property {number}  defaults.note.attackVelocity - A number between 0 and 1 representing the
+     * default attack velocity of notes. Initial value is 0.5.
+     * @property {number}  defaults.note.releaseVelocity - A number between 0 and 1 representing the
+     * default release velocity of notes. Initial value is 0.5.
+     * @property {number}  defaults.note.duration - A number representing the default
+     * duration of notes (in seconds). Initial value is Infinity.
+     */
+
+    this.defaults = {
+      note: {
+        attackVelocity: 0.5,
+        releaseVelocity: 0.5,
+        duration: Infinity
+      }
+    };
     /**
      * The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
      * unless you know what you are doing.
@@ -6544,8 +6577,7 @@ class WebMidi extends e {
   }
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-   * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
-   * [octaveOffset]{@link WebMidi#octaveOffset} property, you can offset the result as desired.
+   * based on middle C (note number 60) being placed on the 4th octave (C4).
    *
    * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
    * be parsed to a valid octave.
@@ -7411,7 +7443,7 @@ class WebMidi extends e {
 // extensible (properties can be added at will).
 
 
-const wm = new WebMidi();
+const wm = new WebMidi$1();
 wm.constructor = null;
 
 exports.Note = Note;
