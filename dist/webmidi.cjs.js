@@ -245,7 +245,7 @@ class Utilities {
       return {
         letter: letter,
         accidental: matches[2].toLowerCase(),
-        octave: matches[3]
+        octave: parseInt(matches[3])
       };
     }
 
