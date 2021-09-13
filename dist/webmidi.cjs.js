@@ -235,12 +235,14 @@ class Utilities {
     const octave = parseInt(matches[3]);
     let accidental = matches[2].toLowerCase();
     accidental = accidental === "" ? undefined : accidental;
-    return {
+    const fragments = {
       letter: letter,
       accidental: accidental,
       octave: octave,
-      name: letter + accidental + octave
-    };
+      name: letter + (accidental || "") + octave
+    }; // fragments.accidental = accidental
+
+    return fragments;
   }
   /**
    * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
