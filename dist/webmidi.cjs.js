@@ -202,6 +202,7 @@ class Utilities {
       B: 11
     };
     const fragments = this.getNoteFragments(name);
+    console.log(fragments);
     if (!fragments) return false;
     let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += notes[fragments.letter];
