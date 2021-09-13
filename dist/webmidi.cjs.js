@@ -6544,16 +6544,14 @@ class WebMidi extends e {
 
   /**
    * @private
-   * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
+   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByName() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
       console.warn("The getNoteNumberByName() method has been moved to the Utilities class in version 3.");
     }
 
-    return utils.getNoteNumberByName(name, {
-      octaveOffset: this.octaveOffset
-    });
+    return utils.getNoteNumberByName(name, this.octaveOffset);
   }
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
