@@ -188,13 +188,11 @@ class Utilities {
    * name could not successfully be parsed to a number.
    */
   getNoteNumberByName(name, octaveOffset = 0) {
-    console.info("COUCOUCOUCOUC"); // Validation
-
+    // Validation
     octaveOffset = parseInt(octaveOffset);
     if (isNaN(octaveOffset)) return false;
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
-    console.info(fragments);
     if (!fragments) return false;
     const notes = {
       C: 0,
