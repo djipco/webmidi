@@ -206,7 +206,7 @@ class Utilities {
     let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += notes[fragments.letter];
 
-    if (fragments.accidental.startsWith("b")) {
+    if (fragments.accidental && fragments.accidental.startsWith("b")) {
       result -= fragments.accidental.length;
     } else {
       result += fragments.accidental.length;
@@ -240,8 +240,7 @@ class Utilities {
       accidental: accidental,
       octave: octave,
       name: letter + (accidental || "") + octave
-    }; // fragments.accidental = accidental
-
+    };
     return fragments;
   }
   /**
