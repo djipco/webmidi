@@ -138,15 +138,16 @@ declare class Utilities {
     getNoteNumberByName(name: string, octaveOffset?: number): number;
     /**
      * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-     * fragments composing it (uppercase letter, accidental and octave). If the name is invalid,
-     * `false` is returned.
+     * fragments composing it (uppercase letter, accidental and octave).
      *
      * @param name
-     * @returns {{octave: number, letter: string, accidental: string}|false}
+     * @returns {{octave: number, letter: string, accidental: string}}
+     *
+     * @throws TypeError Invalid note name
      *
      * @since 3.0.0
      */
-    getNoteFragments(name: any): false | {
+    getNoteFragments(name: any): {
         octave: number;
         letter: string;
         accidental: string;
