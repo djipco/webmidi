@@ -203,7 +203,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    guessNoteNumber(input: string | number, options?: {}): number | false;
+    guessNoteNumber(input: string | number, octaveOffset: any): number | false;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
@@ -580,7 +580,7 @@ declare class WebMidi {
     private toMIDIChannels;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities class.
+     * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
      */
     private guessNoteNumber;
     /**
