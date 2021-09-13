@@ -1,127 +1,163 @@
 const expect = require("chai").expect;
-const {Note} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Note} = require("../dist/webmidi.cjs.js");
 
 describe("Note Object", function() {
 
   describe("constructor()", function () {
 
-    it("should return 'Note' object with correct values", function() {
+    it("should return 'Note' with defaults when using number and no options", function() {
 
       // Arrange
       let notes = [];
-      let options = {
-        duration: 10,
-        attack: 0.25,
-        release: 0.5,
-        rawAttack: 127,
-        rawRelease: 64,
-        octaveOffset: -1
-      };
+
+      // Act
+      for (let i = 0; i <= 127; i++) notes.push(new Note(i));
+
+      // Assert
+      notes.forEach(note => {
+        expect(note).to.be.an.instanceof(Note);
+        expect(note.attack).to.equal(WebMidi.defaults.note.attack);
+        expect(note.release).to.equal(WebMidi.defaults.note.release);
+        expect(note.duration).to.equal(WebMidi.defaults.note.duration);
+      });
+
+    });
+
+    it("should return 'Note' with defaults when using name and no options", function() {
+
+      // Arrange
+      let values = [
+        "C-1",
+        "D#0",
+        "E##1",
+        "Fb2",
+        "Fbb3",
+        "G9",
+      ];
+
+      // Act
+      values.forEach(value => {
+        assert(new Note(value));
+      });
+
+      // Assert
+      function assert(note) {
+        expect(note).to.be.an.instanceof(Note);
+        expect(note.attack).to.equal(WebMidi.defaults.note.attack);
+        expect(note.release).to.equal(WebMidi.defaults.note.release);
+        expect(note.duration).to.equal(WebMidi.defaults.note.duration);
+      }
+
+    });
+
+    it("should return 'Note' with correct props when using number and options", function() {
+
+      // Arrange
+      let notes = [];
+      let options = {duration: 12.34, attack: 56, release: 78};
 
       // Act
       for (let i = 0; i <= 127; i++) notes.push(new Note(i, options));
 
       // Assert
-      notes.forEach((note, index) => {
+      notes.forEach(note => {
         expect(note).to.be.an.instanceof(Note);
-        expect(note.number).to.equal(index);
-        expect(note.rawAttack).to.equal(options.rawAttack);
-        expect(note.rawRelease).to.equal(options.rawRelease);
-        expect(note.octaveOffset).to.equal(options.octaveOffset);
+        expect(note.attack).to.equal(options.attack);
+        expect(note.release).to.equal(options.release);
+        expect(note.duration).to.equal(options.duration);
       });
 
     });
 
-    it("should throw error if 'value' parameter is invalid", function() {
+    it("should return 'Note' with correct props when using name and options", function() {
 
       // Arrange
-      let values = [-1, 128, "B-2", "G#9", "xxx", "", [], {}, NaN, undefined, null, Infinity];
+      let values = [
+        "C-1",
+        "D#0",
+        "E##1",
+        "Fb2",
+        "Fbb3",
+        "G9",
+      ];
+      let options = {duration: 12.34, attack: 56, release: 78};
 
       // Act
-      values.forEach(assert);
+      values.forEach(value => {
+        assert(new Note(value, options));
+      });
 
       // Assert
-      function assert(value) {
-        expect(
-          () => new Note(value)
-        ).to.throw(Error);
+      function assert(note) {
+        expect(note).to.be.an.instanceof(Note);
+        expect(note.attack).to.equal(options.attack);
+        expect(note.release).to.equal(options.release);
+        expect(note.duration).to.equal(options.duration);
       }
 
     });
 
-    it("should throw error for invalid durations", function() {
+    it("should offset 'Note' if 'octaveOffset' is specified when using number", function() {
 
       // Arrange
-      let values = [
-        -Infinity,
-        -1,
-        -1.5,
-        -0.6,
-        "xxx",
-        [],
-        {},
-        NaN
+      let triplets = [
+        {number: 0, octaveOffset: 0, name: "C-1"},
+        {number: 0, octaveOffset: 1, name: "C0"},
+        {number: 60, octaveOffset: 0, name: "C4"},
+        {number: 60, octaveOffset: -1, name: "C3"},
+        {number: 127, octaveOffset: 0, name: "G9"},
+        {number: 127, octaveOffset: -1, name: "G8"}
       ];
-      let note = 60;
 
       // Act
-      values.forEach(assert);
+      triplets.forEach(assert);
 
       // Assert
-      function assert(value) {
-        expect(
-          () => {
-            new Note(note, {duration: value});
-          }
-        ).to.throw();
-      };
+      function assert(triplet) {
+        const note = new Note(triplet.number, {octaveOffset: triplet.octaveOffset});
+        expect(note.name).to.equal(triplet.name);
+      }
 
     });
 
-    it("should set correct default value for velocities", function() {
+    it("should ignore 'octaveOffset' for notes specified by name", function() {
 
       // Arrange
-      let number = 60;
+      let triplets = [
+        {number: 0, octaveOffset: -1, name: "C0"},
+        {number: 0, octaveOffset: 2, name: "C0"},
+        {number: 60, octaveOffset: -3, name: "C4"},
+        {number: 60, octaveOffset: 4, name: "C4"},
+        {number: 127, octaveOffset: -5, name: "G9"},
+        {number: 127, octaveOffset: 6, name: "G9"}
+      ];
 
       // Act
-      let note = new Note(number);
+      triplets.forEach(assert);
 
       // Assert
-      expect(note.rawAttack).to.equal(64);
-      expect(note.rawRelease).to.equal(64);
+      function assert(triplet) {
+        const note = new Note(triplet.name, {octaveOffset: triplet.octaveOffset});
+        expect(note.name).to.equal(triplet.name);
+      }
 
     });
 
-    it("should give priority to rawAttack/rawRelease over attack/release", function() {
+    it("should throw when using invalid value", function() {
 
       // Arrange
-      let number = 60;
-      let options = {
-        attack: 0,
-        release: 0,
-        rawAttack: 127,
-        rawRelease: 127
-      };
-
-      // Act
-      let note = new Note(number, options);
-
-      // Assert
-      expect(note.attack).to.equal(1);
-      expect(note.release).to.equal(1);
-      expect(note.rawAttack).to.equal(options.rawAttack);
-      expect(note.rawRelease).to.equal(options.rawRelease);
-
-    });
-
-    it("should throw error for invalid rawAttack and rawRelease velocities", function() {
-
-      // Arrange
-      let number = 60;
       let values = [
         -1,
         128,
-        "xxx",
+        Infinity,
+        -Infinity,
+        "0",
+        "127",
+        undefined,
+        null,
+        "X2",
+        "Cbbb4",
+        "test",
         [],
         {},
         NaN
@@ -132,27 +168,47 @@ describe("Note Object", function() {
 
       // Assert
       function assert(value) {
-
-        expect(() => {
-          new Note(number, {rawAttack: value});
+        expect(function() {
+          new Note(value);
         }).to.throw();
-
-        expect(() => {
-          new Note(number, {rawRelease: value});
-        }).to.throw();
-
       }
 
     });
 
-    it("should throw error for invalid attack and release velocities", function() {
+    it("should throw when using invalid duration", function() {
 
       // Arrange
-      let number = 60;
       let values = [
         -1,
-        2,
-        "xxx",
+        -Infinity,
+        "test",
+        [],
+        -1.5,
+        -0.6,
+        {},
+        NaN
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(function() {
+          new Note("B3", {duration: value});
+        }).to.throw(RangeError);
+      }
+
+    });
+
+    it("should throw when using invalid attack or release", function() {
+
+      // Arrange
+      let values = [
+        -1,
+        128,
+        -Infinity,
+        "test",
         [],
         {},
         NaN
@@ -164,51 +220,41 @@ describe("Note Object", function() {
       // Assert
       function assert(value) {
 
-        expect(() => {
-          new Note(number, {attack: value});
-        }).to.throw();
+        expect(function() {
+          new Note("Db5", {attack: value});
+        }).to.throw(RangeError);
 
-        expect(() => {
-          new Note(number, {release: value});
-        }).to.throw();
+        expect(function() {
+          new Note("E##5", {release: value});
+        }).to.throw(RangeError);
 
       }
 
     });
 
-    it("should report the correct octave value", function() {
+    it.only("should throw when using invalid octaveOffset", function() {
 
       // Arrange
-      let lowValues = ["C-1", 0];
-      let lowTarget = -1;
-      let highValues = ["G9", 127];
-      let highTarget = 9;
+      let values = [
+        Infinity,
+        -Infinity,
+        "test",
+        [],
+        {},
+        NaN
+      ];
+
+      // Act
+      values.forEach(assert);
 
       // Assert
-      lowValues.forEach(param => {
-        let note = new Note(param);
-        expect(note.octave).to.equal(lowTarget);
-      });
+      function assert(value) {
 
-      highValues.forEach(param => {
-        let note = new Note(param);
-        expect(note.octave).to.equal(highTarget);
-      });
+        expect(function() {
+          new Note(123, {octaveOffset: value});
+        }).to.throw(RangeError);
 
-    });
-
-    it("should report the correct octave value when using octaveOffset", function() {
-
-      // Arrange
-      const noteNumber = 60;
-      const defaultOctave = 4;
-      const values = [-10, -5, -2, -1, 0, 1, 2, 5, 10];
-
-      // Assert
-      values.forEach(param => {
-        const note = new Note(noteNumber, {octaveOffset: param});
-        expect(note.octave).to.equal(defaultOctave + param);
-      });
+      }
 
     });
 
@@ -216,11 +262,26 @@ describe("Note Object", function() {
 
   describe("set name()", function () {
 
-    it("should throw error if passing invalid note name", function() {
+    it("should throw error if setting to an invalid value", function() {
 
       // Arrange
       let note = new Note(42);
-      let values = [-1, 128, undefined, null, NaN, "xxx", "C-2", "G10"];
+      let values = [
+        -1,
+        128,
+        Infinity,
+        -Infinity,
+        "0",
+        "127",
+        undefined,
+        null,
+        "X2",
+        "Cbbb4",
+        "test",
+        [],
+        {},
+        NaN
+      ];
 
       // Act
       values.forEach(assert);
@@ -234,34 +295,30 @@ describe("Note Object", function() {
 
   });
 
-  describe("set number()", function () {
+  describe("set attack() amd set release()", function () {
 
-    it("should throw error if passing invalid note number", function() {
+    it("should throw error if setting to an invalid value", function() {
 
       // Arrange
       let note = new Note(42);
       let values = [
-        "abc",
-        null,
-        undefined,
         -1,
         128,
-        function () {},
+        -Infinity,
+        "test",
+        [],
         {},
-        "555",
-        "H3",
-        "Z#8",
-        Infinity,
-        -Infinity
+        NaN
       ];
 
       // Act
       values.forEach(assert);
 
       // Assert
-      function assert(param) {
-        expect(() => note.number = param).to.be.throw(Error);
-      };
+      function assert(value) {
+        expect(() => note.attack = value).to.throw(RangeError);
+        expect(() => note.release = value).to.throw(RangeError);
+      }
 
     });
 
@@ -274,7 +331,16 @@ describe("Note Object", function() {
       // Arrange
       let note = new Note(42);
       let values = [
-        "abc", null, function () {}, {}, "H3", NaN, "-1", -1, -Infinity
+        -1,
+        -Infinity,
+        "test",
+        [],
+        -1.5,
+        -0.6,
+        {},
+        NaN,
+        null,
+        undefined
       ];
 
       // Act

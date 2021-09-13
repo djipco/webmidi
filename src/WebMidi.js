@@ -44,6 +44,28 @@ class WebMidi extends EventEmitter {
     super();
 
     /**
+     * Object containing system-wide default values that can be changed to customize how the library
+     * works.
+     *
+     * @type {Object}
+     *
+     * @property {object}  defaults.note - Default values relating to note
+     * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
+     * default attack velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.release - A number between 0 and 127 representing the
+     * default release velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.duration - A number representing the default
+     * duration of notes (in seconds). Initial value is Infinity.
+     */
+    this.defaults = {
+      note: {
+        attack: 64,
+        release: 64,
+        duration: Infinity
+      }
+    };
+
+    /**
      * The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
@@ -494,8 +516,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-   * based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
-   * [octaveOffset]{@link WebMidi#octaveOffset} property, you can offset the result as desired.
+   * based on middle C (note number 60) being placed on the 4th octave (C4).
    *
    * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
    * be parsed to a valid octave.
