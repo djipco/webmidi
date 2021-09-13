@@ -550,7 +550,7 @@ declare class WebMidi {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
+     * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByName() instead.
      */
     private noteNameToNumber;
     /**
