@@ -190,7 +190,6 @@ class Utilities {
   getNoteNumberByName(name, octaveOffset = 0) {
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
-    console.log(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof name !== "string") name = "";
     const fragments = this.getNoteFragments(name);
@@ -218,11 +217,12 @@ class Utilities {
   }
   /**
    * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-   * fragments composing it (uppercase letter, accidental and octave). If the name is invalid,
-   * `false` is returned.
+   * fragments composing it (uppercase letter, accidental and octave).
    *
    * @param name
-   * @returns {{octave: number, letter: string, accidental: string}|false}
+   * @returns {{octave: number, letter: string, accidental: string}}
+   *
+   * @throws TypeError Invalid note name
    *
    * @since 3.0.0
    */
@@ -230,7 +230,7 @@ class Utilities {
 
   getNoteFragments(name) {
     const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
-    if (!matches) return false;
+    if (!matches) throw new TypeError("Invalid note name");
     const letter = matches[1].toUpperCase();
     const accidental = matches[2].toLowerCase();
     const octave = parseInt(matches[3]);
