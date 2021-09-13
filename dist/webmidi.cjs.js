@@ -206,10 +206,12 @@ class Utilities {
     let result = (fragments.octave + 1 + octaveOffset) * 12;
     result += notes[fragments.letter];
 
-    if (fragments.accidental && fragments.accidental.startsWith("b")) {
-      result -= fragments.accidental.length;
-    } else {
-      result += fragments.accidental.length;
+    if (fragments.accidental) {
+      if (fragments.accidental.startsWith("b")) {
+        result -= fragments.accidental.length;
+      } else {
+        result += fragments.accidental.length;
+      }
     }
 
     if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
