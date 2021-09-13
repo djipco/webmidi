@@ -232,8 +232,9 @@ class Utilities {
     const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note name");
     const letter = matches[1].toUpperCase();
-    const accidental = matches[2].toLowerCase();
     const octave = parseInt(matches[3]);
+    let accidental = matches[2].toLowerCase();
+    accidental = accidental === "" ? undefined : accidental;
     return {
       letter: letter,
       accidental: accidental,
