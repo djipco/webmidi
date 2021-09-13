@@ -411,9 +411,7 @@ class Utilities {
     if (input instanceof Note) {
       return input;
     } else {
-      let number = this.guessNoteNumber(input, {
-        octaveOffset: options.octaveOffset
-      });
+      let number = this.guessNoteNumber(input, options.octaveOffset);
 
       if (number !== false) {
         return new Note(number, options);
