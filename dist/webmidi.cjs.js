@@ -448,21 +448,23 @@ class Utilities {
     return result;
   }
   /**
+   * Returns a string representing a note name (with optional accidental) followed by an octave
+   * number. The octave can be offset by using the `octaveOffset` parameter.
    *
-   * @param {number}
+   * @param {number} The MIDI note number to convert to a note name
    * @param {octaveOffset}
    * @returns {string}
+   *
+   * @throws RangeError Invalid note number
+   * @throws RangeError Invalid octaveOffset value
    */
 
 
   getNoteNameByNumber(number, octaveOffset) {
-    if (WebMidi.validation) {
-      number = parseInt(number);
-      if (isNaN(number) || number < 0 || number > 127) throw new Error("Invalid note number");
-      octaveOffset = parseInt(octaveOffset);
-      if (isNaN(octaveOffset)) throw new Error("Invalid octaveOffset value");
-    }
-
+    number = parseInt(number);
+    if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
+    octaveOffset = parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
     return WebMidi.NOTES[number % 12] + octave.toString();
   }
@@ -476,10 +478,10 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. The
- * actual MIDI note number associated with the note is determined when the note is played or
- * received. This is because, the `octaveOffset` property of various objects can be used to offset
- * the note number to match external devices where middle C is not equal to C4.
+ * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. A
+ * `Note` object does not have a MIDI number per se. The MIDI note number is determined when the
+ * note is played. This is because, the `octaveOffset` property of various objects can be used to
+ * offset the note number to match external devices where middle C is not equal to C4.
  *
  * `Note` objects can be played back on a single channel by calling
  * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
@@ -547,23 +549,6 @@ class Note {
 
       this.name = value;
     }
-  }
-  /**
-   * Returns the MIDI note number of the note (0-127). To calculate the MIDI note number, middle C
-   * is considered to be C4 (MIDI note number 60). The returned MIDI note number is offset by the
-   * value of the `octaveOffset` parameter (if any).
-   *
-   * @param {number} [octaveOffset=0] A integer to offset the octave by
-   *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` (if the
-   * offset causes the note to fall outside the MIDI range).
-   *
-   * @since 3.0.0
-   */
-
-
-  getMidiNumber(octaveOffset = 0) {
-    return utils.getNoteNumberByName(this.name, octaveOffset);
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
