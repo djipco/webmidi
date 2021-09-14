@@ -399,14 +399,13 @@ class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
    *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
+   * 127.
    *
    * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
-   * used when the input value is a number.**
+   * used when the input value is a note name.**
    *
    * @returns {Note}
    *
@@ -422,14 +421,15 @@ class Utilities {
     if (input instanceof Note) return input;
     let number = this.guessNoteNumber(input, options.octaveOffset);
 
-    if (number !== false) {
-      // the note can be 0 which equates to false
-      options.octaveOffset = undefined; // offset has been taken care of by guessNoteNumber()
-
-      return new Note(number, options);
-    } else {
+    if (number === false) {
+      // We use a comparison b/c the note can be 0 (which equates to false)
       throw new TypeError(`The input could not be parsed as a note (${input})`);
-    }
+    } // If we got here, we have a proper note number. Before creating the new note, we strip out
+    // 'octaveOffset' because it has already been factored in when calling guessNoteNumber().
+
+
+    options.octaveOffset = undefined;
+    return new Note(number, options);
   }
   /**
    * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
@@ -472,6 +472,13 @@ class Utilities {
       result.push(this.getNoteObject(note, options));
     });
     return result;
+  }
+
+  normalizeFrom7Bit(value = 0) {
+    return Math.min(Math.max(value / 127, 0), 127);
+  }
+
+  normalizeFromMsbLsb(value = 0) {// to do
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
@@ -6924,11 +6931,16 @@ class WebMidi extends e {
     return typeof window !== "undefined" && typeof window.document !== "undefined";
   }
   /**
-   * An integer to globally offset the octave of both inbound and outbound messages. By default,
-   * middle C (MIDI note number 60) is placed on the 4th octave (C4).
+   * An integer to offset the octave of notes received from external devices or sent to external
+   * devices.
    *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   * When a MIDI message comes in on an input channel the reported note name will be offset. For
+   * example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
+   * comes in, the note will be reported as C3 (instead of C4).
+   *
+   * By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
+   * will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
+   * of 60).
    *
    * @type {number}
    *
