@@ -422,7 +422,8 @@ class Utilities {
     if (input instanceof Note) return input;
     let number = this.guessNoteNumber(input, options.octaveOffset);
 
-    if (number) {
+    if (number === false) {
+      // the note can be 0
       return new Note(number, options);
     } else {
       throw new TypeError(`The input could not be parsed as a note (${input})`);
