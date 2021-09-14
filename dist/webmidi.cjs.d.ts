@@ -289,12 +289,14 @@ declare class Utilities {
         rawRelease?: number;
     }): Note[];
     /**
+     * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+     * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+     * smaller than 0.
      *
-     * @param value
-     * @returns {number}
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
      */
-    normalizeFrom7Bit(value?: number): number;
-    normalizeFromMsbLsb(value?: number): void;
+    normalizeFrom7Bit(value: any): number;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
