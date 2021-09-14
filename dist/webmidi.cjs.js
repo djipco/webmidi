@@ -390,7 +390,7 @@ class Utilities {
    * it will be returned as is.
    *
    * If the input is a note number or name, it is possible to specify options by providing the
-   * optional `options` parameter.
+   * `options` parameter.
    *
    * @param [input] {number|string|Note}
    *
@@ -405,8 +405,8 @@ class Utilities {
    * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
    * and 1.
    *
-   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. This is only used
-   * when the input value is a number.
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only used
+   * when the input value is a number.**
    *
    * @returns {Note}
    *
@@ -417,18 +417,15 @@ class Utilities {
 
 
   getNoteObject(input, options = {}) {
-    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+    options.octaveOffset = parseInt(options.octaveOffset) || 0; // If it's already a Note, we're done
 
-    if (input instanceof Note) {
-      return input;
+    if (input instanceof Note) return input;
+    let number = this.guessNoteNumber(input, options.octaveOffset);
+
+    if (number) {
+      return new Note(number, options);
     } else {
-      let number = this.guessNoteNumber(input, options.octaveOffset);
-
-      if (number !== false) {
-        return new Note(number, options);
-      } else {
-        throw new TypeError(`The input could not be parsed as a note (${input})`);
-      }
+      throw new TypeError(`The input could not be parsed as a note (${input})`);
     }
   }
   /**
