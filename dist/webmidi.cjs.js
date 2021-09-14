@@ -667,6 +667,22 @@ class Utilities {
   normalizeFrom7Bit(value) {
     return Math.min(Math.max(parseInt(value) / 127, 0), 1);
   }
+  /**
+   * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
+   * `data2` properties.
+   *
+   * @param data A MIDI message
+   * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
+   */
+
+
+  buildStructuredMidiMessage(data) {
+    return {
+      command: data[0] >> 4,
+      data1: data.length > 1 ? data[1] : undefined,
+      data2: data.length > 2 ? data[2] : undefined
+    };
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -735,12 +751,6 @@ class InputChannel extends e {
 
     this.number = number;
     /**
-     * @type {OutputChannel|OutputChannel[]}
-     * @private
-     */
-
-    this._forwardTo = undefined;
-    /**
      * @type {number}
      * @private
      */
@@ -757,25 +767,29 @@ class InputChannel extends e {
     // // Enable NRPN events by default
     // this.nrpnEventsEnabled = true;
   }
+  /**
+   * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+   * input.
+   *
+   * @returns {Promise<void>}
+   */
+
 
   destroy() {
     this.input = null;
-    this.number = null; // this._nrpnBuffer = null;
+    this.number = null;
+    this._octaveOffset = 0; // this._nrpnBuffer = null;
     // this._nrpnEventsEnabled = false;
 
     this.removeListener();
   }
   /**
    * @param e Event
-   * @protected
+   * @private
    */
 
 
   _parseEvent(e) {
-    // @todo check if message must be forwarded
-    // if (this.forwardTo) {
-    //   this.forwardTo.forEach(channel => channel.sendRaw(e.data));
-    // }
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
@@ -810,14 +824,6 @@ class InputChannel extends e {
 
     this._parseEventForStandardMessages(e);
   }
-
-  getStructuredMidiMessage(data) {
-    return {
-      command: data[0] >> 4,
-      data1: data.length > 1 ? data[1] : undefined,
-      data2: data.length > 2 ? data[2] : undefined
-    };
-  }
   /**
    * Parses channel events for standard (non-NRPN) events.
    * @param e Event
@@ -830,7 +836,7 @@ class InputChannel extends e {
       command,
       data1,
       data2
-    } = this.getStructuredMidiMessage(e.data); // Returned event
+    } = utils.getStructuredMidiMessage(e.data); // Returned event
 
     let event = {
       target: this,
