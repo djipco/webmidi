@@ -297,6 +297,18 @@ declare class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      */
     normalizeFrom7Bit(value: any): number;
+    /**
+     * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
+     * `data2` properties.
+     *
+     * @param data A MIDI message
+     * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
+     */
+    buildStructuredMidiMessage(data: any): {
+        data2: (number | undefined);
+        data1: (number | undefined);
+        command: number;
+    };
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -2714,26 +2726,22 @@ declare class InputChannel extends e {
      */
     number: number;
     /**
-     * @type {OutputChannel|OutputChannel[]}
-     * @private
-     */
-    private _forwardTo;
-    /**
      * @type {number}
      * @private
      */
     private _octaveOffset;
-    destroy(): void;
+    /**
+     * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+     * input.
+     *
+     * @returns {Promise<void>}
+     */
+    destroy(): Promise<void>;
     /**
      * @param e Event
-     * @protected
+     * @private
      */
-    protected _parseEvent(e: any): void;
-    getStructuredMidiMessage(data: any): {
-        command: number;
-        data1: any;
-        data2: any;
-    };
+    private _parseEvent;
     /**
      * Parses channel events for standard (non-NRPN) events.
      * @param e Event
