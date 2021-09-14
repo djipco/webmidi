@@ -155,6 +155,187 @@ class t {
 }
 
 /**
+ * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
+ *
+ * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
+ * when the note is played. This is because, the `octaveOffset` property of various objects
+ * (`WebMidi`, `OutputChannel`, `Output`, etc.) can be used to offset the note number to match
+ * external devices where middle C is not equal to C4.
+ *
+ * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
+ * However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
+ *
+ * `Note` objects can be played back on a single channel by calling
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
+ * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
+ *
+ * The note has attack and release velocities set at 64 by default. These can be changed by passing
+ * in the appropriate option. It is also possible to set a system-wide default for attack and
+ * release velocities by using the `WebMidi.defaults` property.
+ *
+ * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
+ * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
+ * this case, it will never stop playing unless explicitly stopped by calling a method such as
+ * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
+ * [Output.stopNote()]{@link Output#stopNote} or similar.
+ *
+ * @param value {string|number} The value used to create the note. If a string is used, it must be
+ * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
+ * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
+ * converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that
+ * can be offset with the `octaveOffset`property.
+ *
+ * @param {Object} [options={}]
+ *
+ * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+ * explicitly stopped.
+ *
+ * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and
+ * 127.
+ *
+ * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
+ * 127.
+ *
+ * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
+ * used when the note is specified using a MIDI note number.**
+ *
+ * @throws {Error} Invalid note name
+ * @throws {RangeError} Invalid duration
+ * @throws {RangeError} Invalid attack value
+ * @throws {RangeError} Invalid release value
+ * @throws {RangeError} Invalid 'octaveOffset' value
+ *
+ * @since 3.0.0
+ */
+
+class Note {
+  constructor(value, options = {}) {
+    // Assign property defaults
+    this.duration = wm.defaults.note.duration;
+    this.attack = wm.defaults.note.attack;
+    this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
+
+    if (options.duration != undefined) this.duration = options.duration;
+    if (options.attack != undefined) this.attack = options.attack;
+    if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
+
+    options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
+    if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
+
+    if (Number.isInteger(value)) {
+      this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
+    } else {
+      this.name = value;
+    }
+  }
+  /**
+   * The name of the note as a string combining the note, an optional accidental and the octave.
+   * @type {string}
+   * @since 3.0.0
+   */
+
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (wm.validation) {
+      value = utils.getNoteFragments(value).name;
+      if (!value) throw new Error("Invalid note name");
+    }
+
+    this._name = value;
+  }
+  /**
+   * The duration of the note as a positive decimal number representing the number of milliseconds
+   * that the note should play for.
+   *
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get duration() {
+    return this._duration;
+  }
+
+  set duration(value) {
+    if (wm.validation) {
+      value = parseFloat(value);
+      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+    }
+
+    this._duration = value;
+  }
+  /**
+   * The attack velocity of the note as an integer between 0 and 127.
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get attack() {
+    return this._attack;
+  }
+
+  set attack(value) {
+    if (wm.validation) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid attack value.");
+      }
+    }
+
+    this._attack = value;
+  }
+  /**
+   * The release velocity of the note as an integer between 0 and 127.
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get release() {
+    return this._release;
+  }
+
+  set release(value) {
+    if (wm.validation) {
+      value = parseFloat(value);
+
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("Invalid release value.");
+      }
+    }
+
+    this._release = value;
+  }
+  /**
+   * The attack velocity of the note as a decimal number between 0 and 1.
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get attackNormalized() {
+    return utils.normalizeFrom7Bit(this._attack);
+  }
+  /**
+   * The release velocity of the note as a decimal number between 0 and 1.
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get releaseNormalized() {
+    return utils.normalizeFrom7Bit(this._release);
+  }
+
+}
+
+/**
  * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
  * methode are static) and is not meant to be instantiated.
  *
@@ -474,17 +655,17 @@ class Utilities {
     return result;
   }
   /**
+   * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+   * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+   * smaller than 0.
    *
-   * @param value
-   * @returns {number}
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
    */
 
 
-  normalizeFrom7Bit(value = 0) {
+  normalizeFrom7Bit(value) {
     return Math.min(Math.max(parseInt(value) / 127, 0), 1);
-  }
-
-  normalizeFromMsbLsb(value = 0) {// to do
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
@@ -494,187 +675,6 @@ class Utilities {
 
 const utils = new Utilities();
 utils.constructor = null;
-
-/**
- * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
- *
- * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
- * when the note is played. This is because, the `octaveOffset` property of various objects
- * (`WebMidi`, `OutputChannel`, `Output`, etc.) can be used to offset the note number to match
- * external devices where middle C is not equal to C4.
- *
- * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
- * However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
- *
- * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
- * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
- *
- * The note has attack and release velocities set at 64 by default. These can be changed by passing
- * in the appropriate option. It is also possible to set a system-wide default for attack and
- * release velocities by using the `WebMidi.defaults` property.
- *
- * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
- * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
- * this case, it will never stop playing unless explicitly stopped by calling a method such as
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
- * [Output.stopNote()]{@link Output#stopNote} or similar.
- *
- * @param value {string|number} The value used to create the note. If a string is used, it must be
- * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
- * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
- * converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that
- * can be offset with the `octaveOffset`property.
- *
- * @param {Object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and
- * 127.
- *
- * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
- * 127.
- *
- * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
- * used when the note is specified using a MIDI note number.**
- *
- * @throws {Error} Invalid note name
- * @throws {RangeError} Invalid duration
- * @throws {RangeError} Invalid attack value
- * @throws {RangeError} Invalid release value
- * @throws {RangeError} Invalid 'octaveOffset' value
- *
- * @since 3.0.0
- */
-
-class Note {
-  constructor(value, options = {}) {
-    // Assign property defaults
-    this.duration = wm.defaults.note.duration;
-    this.attack = wm.defaults.note.attack;
-    this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
-
-    if (options.duration != undefined) this.duration = options.duration;
-    if (options.attack != undefined) this.attack = options.attack;
-    if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
-
-    options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
-    if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
-
-    if (Number.isInteger(value)) {
-      this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
-    } else {
-      this.name = value;
-    }
-  }
-  /**
-   * The name of the note as a string combining the note, an optional accidental and the octave.
-   * @type {string}
-   * @since 3.0.0
-   */
-
-
-  get name() {
-    return this._name;
-  }
-
-  set name(value) {
-    if (wm.validation) {
-      value = utils.getNoteFragments(value).name;
-      if (!value) throw new Error("Invalid note name");
-    }
-
-    this._name = value;
-  }
-  /**
-   * The duration of the note as a positive decimal number representing the number of milliseconds
-   * that the note should play for.
-   *
-   * @type {number}
-   * @since 3.0.0
-   */
-
-
-  get duration() {
-    return this._duration;
-  }
-
-  set duration(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
-    }
-
-    this._duration = value;
-  }
-  /**
-   * The attack velocity of the note as an integer between 0 and 127.
-   * @type {number}
-   * @since 3.0.0
-   */
-
-
-  get attack() {
-    return this._attack;
-  }
-
-  set attack(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid attack value.");
-      }
-    }
-
-    this._attack = value;
-  }
-  /**
-   * The release velocity of the note as an integer between 0 and 127.
-   * @type {number}
-   * @since 3.0.0
-   */
-
-
-  get release() {
-    return this._release;
-  }
-
-  set release(value) {
-    if (wm.validation) {
-      value = parseFloat(value);
-
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
-        throw new RangeError("Invalid release value.");
-      }
-    }
-
-    this._release = value;
-  }
-  /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   * @since 3.0.0
-   */
-
-
-  get attackNormalized() {
-    return this._attack / 127;
-  }
-  /**
-   * The release velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
-   * @since 3.0.0
-   */
-
-
-  get releaseNormalized() {
-    return this._release / 127;
-  }
-
-}
 
 /**
  * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
@@ -911,7 +911,7 @@ class InputChannel extends e {
       event.note = new Note(data1, {
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.value = data2 / 127;
+      event.value = utils.normalizeFrom7Bit(data2);
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
       /**
@@ -936,7 +936,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = data2 / 127;
+      event.value = utils.normalizeFrom7Bit(data2);
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode && data1 >= 120 && data1 <= 127) {
       /**
@@ -998,7 +998,7 @@ class InputChannel extends e {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelaftertouch";
-      event.value = data1 / 127;
+      event.value = utils.normalizeFrom7Bit(data1);
       event.rawValue = data1;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {
       /**
