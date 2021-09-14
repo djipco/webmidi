@@ -247,7 +247,7 @@ export class InputChannel extends EventEmitter {
         data1,
         {octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset}
       );
-      event.value = Utilities.normalizeFrom7Bit(data2);
+      event.value = Utilities.from7Bit(data2);
       event.rawValue = data2;
 
     } else if (
@@ -277,7 +277,7 @@ export class InputChannel extends EventEmitter {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = Utilities.normalizeFrom7Bit(data2);
+      event.value = Utilities.from7Bit(data2);
       event.rawValue = data2;
 
     } else if (
@@ -349,7 +349,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelaftertouch";
-      event.value = Utilities.normalizeFrom7Bit(data1);
+      event.value = Utilities.from7Bit(data1);
       event.rawValue = data1;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {

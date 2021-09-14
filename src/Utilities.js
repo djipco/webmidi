@@ -345,7 +345,7 @@ class Utilities {
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    */
-  normalizeFrom7Bit(value) {
+  from7Bit(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);

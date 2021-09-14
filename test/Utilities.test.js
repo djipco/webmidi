@@ -872,7 +872,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("normalizeFrom7Bit()", function() {
+  describe("from7Bit()", function() {
 
     it("should return the correct value for normal input", function () {
 
@@ -889,7 +889,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.normalizeFrom7Bit(item.input)
+          Utilities.from7Bit(item.input)
         ).to.equal(item.output);
       }
 
@@ -914,7 +914,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.normalizeFrom7Bit(item.input)
+          Utilities.from7Bit(item.input)
         ).to.equal(item.output);
       }
 
@@ -923,7 +923,7 @@ describe("Utilities Object", function() {
   });
 
   // TO DO
-  describe("normalizeFrom7Bit()", function() {
+  describe("buildStructuredMidiMessage()", function() {
 
     it("should have some tests!!");
 
