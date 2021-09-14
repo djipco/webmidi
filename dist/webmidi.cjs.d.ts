@@ -229,14 +229,13 @@ declare class Utilities {
      * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
      * be explicitly stopped.
      *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-     * and 1.
+     * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
      *
-     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-     * and 1.
+     * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
+     * 127.
      *
      * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
-     * used when the input value is a number.**
+     * used when the input value is a note name.**
      *
      * @returns {Note}
      *
@@ -289,6 +288,8 @@ declare class Utilities {
         rawAttack?: number;
         rawRelease?: number;
     }): Note[];
+    normalizeFrom7Bit(value?: number): number;
+    normalizeFromMsbLsb(value?: number): void;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -631,11 +632,16 @@ declare class WebMidi {
     get isBrowser(): boolean;
     set octaveOffset(arg: number);
     /**
-     * An integer to globally offset the octave of both inbound and outbound messages. By default,
-     * middle C (MIDI note number 60) is placed on the 4th octave (C4).
+     * An integer to offset the octave of notes received from external devices or sent to external
+     * devices.
      *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     * When a MIDI message comes in on an input channel the reported note name will be offset. For
+     * example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
+     * comes in, the note will be reported as C3 (instead of C4).
+     *
+     * By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
+     * will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
+     * of 60).
      *
      * @type {number}
      *
