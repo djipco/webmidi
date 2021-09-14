@@ -235,8 +235,8 @@ declare class Utilities {
      * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
      * and 1.
      *
-     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only used
-     * when the input value is a number.**
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a number.**
      *
      * @returns {Note}
      *
