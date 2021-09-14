@@ -182,21 +182,16 @@ declare class Utilities {
      */
     convertToTimestamp(time?: number | string): number | false;
     /**
-     * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
+     * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
      * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
      * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-     * parsed for integer, if possible.
+     * parsed for integer value, if possible.
      *
-     * If the input is a string, the resulting note number is offset by the
-     * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-     * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-     * number will be 36.
+     * If the input is a note name, the resulting note number is offset by the `octaveOffset`
+     * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
+     * -2, the resulting MIDI note number will be 36.
      *
-     * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-     * is invalid.
-     *
-     * @param input {string|number} A string to extract the note number from. An integer can also be
-     * used, in this case it will simply be returned as is (if between 0 and 127).
+     * @param input {string|number} A string or number to extract the MIDI note number from.
      *
      * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
      * successfully be parsed to a note number.
@@ -205,14 +200,27 @@ declare class Utilities {
      */
     guessNoteNumber(input: string | number, octaveOffset: any): number | false;
     /**
+     * Returns a string representing a note name (with optional accidental) followed by an octave
+     * number. The octave can be offset by using the `octaveOffset` parameter.
+     *
+     * @param {number} The MIDI note number to convert to a note name
+     * @param {octaveOffset} An offset to apply to the resulting octave
+     *
+     * @returns {string}
+     *
+     * @throws RangeError Invalid note number
+     * @throws RangeError Invalid octaveOffset value
+     *
+     * @since 3.0.0
+     */
+    getNoteNameByNumber(number: any, octaveOffset: any): string;
+    /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
      * it will be returned as is.
      *
      * If the input is a note number or name, it is possible to specify options by providing the
      * optional `options` parameter.
-     *
-     * An error is thrown for invalid input.
      *
      * @param [input] {number|string|Note}
      *
@@ -227,17 +235,12 @@ declare class Utilities {
      * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
      * and 1.
      *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-     * 127.
-     *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127.
-     *
-     * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. This is only used
+     * when the input value is a number.
      *
      * @returns {Note}
      *
-     * @throws TypeError The input could not be parsed as a note
+     * @throws TypeError The input could not be parsed to a note
      *
      * @since version 3.0.0
      */
@@ -245,8 +248,6 @@ declare class Utilities {
         duration?: number;
         attack?: number;
         release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
         octaveOffset?: number;
     }): Note;
     /**
@@ -288,20 +289,6 @@ declare class Utilities {
         rawAttack?: number;
         rawRelease?: number;
     }): Note[];
-    /**
-     * Returns a string representing a note name (with optional accidental) followed by an octave
-     * number. The octave can be offset by using the `octaveOffset` parameter.
-     *
-     * @param {number} The MIDI note number to convert to a note name
-     * @param {octaveOffset}
-     * @returns {string}
-     *
-     * @throws RangeError Invalid note number
-     * @throws RangeError Invalid octaveOffset value
-     *
-     * @since 3.0.0
-     */
-    getNoteNameByNumber(number: any, octaveOffset: any): string;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -3303,6 +3290,11 @@ declare class OutputChannel extends e {
      *  - A {@link Note} object
      *  - A MIDI note number (integer between `0` and `127`)
      *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+     *
+     *  When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
+     *  not the case when using a note number number. In this case, we assume you know exactly which
+     *  MIDI note number should be sent out.
+     *
      *
      *  The execution of the **note on** command can be delayed by using the `time` property of the
      * `options` parameter.
