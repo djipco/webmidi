@@ -288,6 +288,11 @@ declare class Utilities {
         rawAttack?: number;
         rawRelease?: number;
     }): Note[];
+    /**
+     *
+     * @param value
+     * @returns {number}
+     */
     normalizeFrom7Bit(value?: number): number;
     normalizeFromMsbLsb(value?: number): void;
 }
