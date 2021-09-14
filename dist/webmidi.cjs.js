@@ -217,7 +217,9 @@ class Note {
 
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.release != undefined) this.release = options.release; // Validate and assign options.octaveOffset value
+    if (options.rawAttack != undefined) this.attack = utils.from7Bit(options.attack);
+    if (options.release != undefined) this.release = options.release;
+    if (options.rawRelease != undefined) this.release = utils.from7Bit(options.release); // Validate and assign octaveOffset value
 
     options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
@@ -283,7 +285,7 @@ class Note {
     if (wm.validation) {
       value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+      if (isNaN(value) || !(value >= 0 && value <= 1)) {
         throw new RangeError("Invalid attack value.");
       }
     }
@@ -305,7 +307,7 @@ class Note {
     if (wm.validation) {
       value = parseFloat(value);
 
-      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+      if (isNaN(value) || !(value >= 0 && value <= 1)) {
         throw new RangeError("Invalid release value.");
       }
     }
@@ -313,24 +315,22 @@ class Note {
     this._release = value;
   }
   /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
+   * The attack velocity of the note as a positive integer between 0 and 127.
    * @type {number}
    * @since 3.0.0
    */
 
 
-  get attackNormalized() {
-    return utils.normalizeFrom7Bit(this._attack);
-  }
+  get rawAttack() {} // return Utilities.from7Bit(this._attack);
+
   /**
-   * The release velocity of the note as a decimal number between 0 and 1.
+   * The release velocity of the note as a positive integer between 0 and 127.
    * @type {number}
    * @since 3.0.0
    */
 
 
-  get releaseNormalized() {
-    return utils.normalizeFrom7Bit(this._release);
+  get rawRelease() {// return Utilities.from7Bit(this._release);
   }
 
 }
@@ -667,10 +667,28 @@ class Utilities {
    */
 
 
-  normalizeFrom7Bit(value) {
+  from7Bit(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
+  }
+  /**
+   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+   *
+   * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+   * the input value cannot be converted to a number, the method returns 0.
+   *
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
+   */
+
+
+  to7Bit(value) {
+    if (value === Infinity) value = 1;
+    value = parseFloat(value) || 0;
+    return Math.min(Math.max(Math.round(value * 127), 0), 127);
   }
   /**
    * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
@@ -922,7 +940,7 @@ class InputChannel extends e {
       event.note = new Note(data1, {
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.value = utils.normalizeFrom7Bit(data2);
+      event.value = utils.from7Bit(data2);
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
       /**
@@ -947,7 +965,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = utils.normalizeFrom7Bit(data2);
+      event.value = utils.from7Bit(data2);
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode && data1 >= 120 && data1 <= 127) {
       /**
@@ -1009,7 +1027,7 @@ class InputChannel extends e {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelaftertouch";
-      event.value = utils.normalizeFrom7Bit(data1);
+      event.value = utils.from7Bit(data1);
       event.rawValue = data1;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {
       /**
