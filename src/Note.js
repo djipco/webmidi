@@ -169,7 +169,7 @@ export class Note {
    * @since 3.0.0
    */
   get attackNormalized() {
-    return this._attack / 127;
+    return Utilities.normalizeFrom7Bit(this._attack);
   }
 
   /**
@@ -178,7 +178,7 @@ export class Note {
    * @since 3.0.0
    */
   get releaseNormalized() {
-    return this._release / 127;
+    return Utilities.normalizeFrom7Bit(this._release);
   }
 
 }

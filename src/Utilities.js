@@ -334,12 +334,16 @@ class Utilities {
 
   }
 
-  normalize7Bit(value = 0) {
-    return value / 127;
-  }
-
-  normalizeMsbLsb(value = 0) {
-    // to do
+  /**
+   * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+   * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+   * smaller than 0.
+   *
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
+   */
+  normalizeFrom7Bit(value) {
+    return Math.min(Math.max(parseInt(value) / 127, 0), 1);
   }
 
 }

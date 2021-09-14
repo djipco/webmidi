@@ -872,4 +872,54 @@ describe("Utilities Object", function() {
 
   });
 
+  describe("normalizeFrom7Bit()", function() {
+
+    it("should return the correct value for normal input", function () {
+
+      // Arrange
+      const items = [
+        {input: 0, output: 0},
+        {input: 64, output: 64/127},
+        {input: 127, output: 1},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.normalizeFrom7Bit(item.input)
+        ).to.equal(item.output);
+      }
+
+    });
+
+    it("should return the correct value for out of bounds input", function () {
+
+      // Arrange
+      const items = [
+        {input: -1, output: 0},
+        {input: -10, output: 0},
+        {input: 128, output: 1},
+        {input: 1280, output: 1},
+        {input: Infinity, output: 1},
+        {input: -Infinity, output: 0},
+        {input: 127.1, output: 1},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.normalizeFrom7Bit(item.input)
+        ).to.equal(item.output);
+      }
+
+    });
+
+  });
+
 });

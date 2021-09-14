@@ -1,5 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
+import {Utilities} from "./Utilities.js";
 import {Note} from "./Note.js";
 
 /**
@@ -260,7 +261,7 @@ export class InputChannel extends EventEmitter {
         data1,
         {octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset}
       );
-      event.value = data2 / 127;
+      event.value = Utilities.normalizeFrom7Bit(data2);
       event.rawValue = data2;
 
     } else if (
@@ -290,7 +291,7 @@ export class InputChannel extends EventEmitter {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = data2 / 127;
+      event.value = Utilities.normalizeFrom7Bit(data2);
       event.rawValue = data2;
 
     } else if (
@@ -362,7 +363,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelaftertouch";
-      event.value = data1 / 127;
+      event.value = Utilities.normalizeFrom7Bit(data1);
       event.rawValue = data1;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {
