@@ -100,7 +100,7 @@ export class InputChannel extends EventEmitter {
 
   /**
    * @param e Event
-   * @protected
+   * @private
    */
   _parseEvent(e) {
 
