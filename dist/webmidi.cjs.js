@@ -6150,8 +6150,8 @@ class WebMidi extends e {
 
     this.defaults = {
       note: {
-        attack: 64,
-        release: 64,
+        attack: utils.from7Bit(64),
+        release: utils.from7Bit(64),
         duration: Infinity
       }
     };
