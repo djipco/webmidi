@@ -352,6 +352,23 @@ class Utilities {
   }
 
   /**
+   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+   *
+   * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+   * the input value cannot be converted to a number, the method returns 0.
+   *
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
+   */
+  to7Bit(value) {
+    if (value === Infinity) value = 1;
+    value = parseFloat(value) || 0;
+    return Math.min(Math.max(Math.round(value * 127), 0), 127);
+  }
+
+  /**
    * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
    * `data2` properties.
    *

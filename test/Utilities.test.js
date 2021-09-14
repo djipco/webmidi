@@ -922,6 +922,56 @@ describe("Utilities Object", function() {
 
   });
 
+  describe("to7Bit()", function() {
+
+    it("should return the correct value for normal input", function () {
+
+      // Arrange
+      const items = [
+        {input: 0, output: 0},
+        {input: 0.5, output: 64},
+        {input: 1, output: 127},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.to7Bit(item.input)
+        ).to.equal(item.output);
+      }
+
+    });
+
+    it("should return the correct value for out of bounds input", function () {
+
+      // Arrange
+      const items = [
+        {input: -1, output: 0},
+        {input: -10, output: 0},
+        {input: 2, output: 127},
+        {input: 20, output: 127},
+        {input: Infinity, output: 127},
+        {input: -Infinity, output: 0},
+        {input: 1.1, output: 127},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.to7Bit(item.input)
+        ).to.equal(item.output);
+      }
+
+    });
+
+  });
+
   // TO DO
   describe("buildStructuredMidiMessage()", function() {
 
