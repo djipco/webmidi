@@ -339,11 +339,16 @@ class Utilities {
    * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
    * smaller than 0.
    *
+   * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
+   * input value cannot be converted to an integer, the method returns 0.
+   *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    */
   normalizeFrom7Bit(value) {
-    return Math.min(Math.max(parseInt(value) / 127, 0), 1);
+    if (value === Infinity) value = 127;
+    value = parseInt(value) || 0;
+    return Math.min(Math.max(value / 127, 0), 1);
   }
 
   /**
