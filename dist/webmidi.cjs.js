@@ -321,8 +321,9 @@ class Note {
    */
 
 
-  get rawAttack() {} // return Utilities.from7Bit(this._attack);
-
+  get rawAttack() {
+    return utils.to7Bit(this._attack);
+  }
   /**
    * The release velocity of the note as a positive integer between 0 and 127.
    * @type {number}
@@ -330,7 +331,8 @@ class Note {
    */
 
 
-  get rawRelease() {// return Utilities.from7Bit(this._release);
+  get rawRelease() {
+    return utils.to7Bit(this._release);
   }
 
 }
