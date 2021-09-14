@@ -422,7 +422,7 @@ class Utilities {
     if (input instanceof Note) return input;
     let number = this.guessNoteNumber(input, options.octaveOffset);
 
-    if (number === false) {
+    if (number !== false) {
       // the note can be 0
       return new Note(number, options);
     } else {
