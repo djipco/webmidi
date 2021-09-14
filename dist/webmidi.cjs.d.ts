@@ -89,17 +89,17 @@ export class Note {
     _attack: number;
     _release: number;
     /**
-     * The attack velocity of the note as a decimal number between 0 and 1.
+     * The attack velocity of the note as a positive integer between 0 and 127.
      * @type {number}
      * @since 3.0.0
      */
-    get attackNormalized(): number;
+    get rawAttack(): number;
     /**
-     * The release velocity of the note as a decimal number between 0 and 1.
+     * The release velocity of the note as a positive integer between 0 and 127.
      * @type {number}
      * @since 3.0.0
      */
-    get releaseNormalized(): number;
+    get rawRelease(): number;
 }
 declare const utils: Utilities;
 declare const wm: WebMidi;
@@ -299,7 +299,19 @@ declare class Utilities {
      * @param value A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
      */
-    normalizeFrom7Bit(value: any): number;
+    from7Bit(value: any): number;
+    /**
+     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+     * The input value should be number between 0 and 1 (inclusively). The returned value is
+     * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+     *
+     * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+     * the input value cannot be converted to a number, the method returns 0.
+     *
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
+     */
+    to7Bit(value: any): number;
     /**
      * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
      * `data2` properties.
