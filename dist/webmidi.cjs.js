@@ -657,7 +657,7 @@ class Utilities {
   /**
    * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
    * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
-   * smaller than 0. For invalid input values, the method returns 0.
+   * smaller than 0. When the input value cannot be converted to an integer, the method returns 0.
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
@@ -665,6 +665,7 @@ class Utilities {
 
 
   normalizeFrom7Bit(value) {
+    if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
   }
