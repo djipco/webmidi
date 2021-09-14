@@ -352,7 +352,7 @@ class Utilities {
     } else if (typeof input === "string" || input instanceof String) {
       // string
       try {
-        output = this.getNoteNumberByName(input, octaveOffset);
+        output = this.getNoteNumberByName(input.trim(), octaveOffset);
       } catch (e) {
         return false;
       }
