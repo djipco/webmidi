@@ -1,8 +1,9 @@
 import {Note} from "./Note.js";
+import {WebMidi} from "./WebMidi.js";
 
 /**
- * The `Utilities` class contains all the general-purpose utility functions of the library. The
- * class is a singleton and is not meant to be instantiated. Its methods are static.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
+ * methode are static) and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
@@ -17,46 +18,79 @@ class Utilities {
    * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
    * per the scientific pitch notation standard.
    *
-   * The resulting note number is offset by the value of the `octaveOffset` property of the options
-   * object (if any).
-   *
-   * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-   * parse the name to a number.
+   * The resulting note number can be offset by using the `octaveOffset` parameter.
    *
    * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-   * "##", "b" or "bb" followed by the octave number.
+   * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
    *
-   * @param {Object} [options={}]
+   * @param {number} [octaveOffset=0] A integer to offset the octave by.
    *
-   * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+   * @returns {number} The MIDI note number (an integer between 0 and 127).
    *
-   * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-   * name could not successfully be parsed to a number.
+   * @throws RangeError Invalid 'octaveOffset' value
+   *
+   * @throws TypeError Invalid note name
+   *
+   * @since 3.0.0
    */
   getNoteNumberByName(name, octaveOffset = 0) {
 
     // Validation
-    octaveOffset = parseInt(octaveOffset);
-    if (isNaN(octaveOffset)) return false;
+    octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof name !== "string") name = "";
 
-    let matches = name.match(/([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)/i);
-    if(!matches) return false;
+    const fragments = this.getNoteFragments(name);
+    if (!fragments) throw new TypeError("Invalid note name");
 
-    let semitones = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
-    let semitone = semitones[matches[1].toUpperCase()];
-    let octave = parseInt(matches[3]);
-    let result = ((octave + 1 - octaveOffset) * 12) + semitone;
+    const notes = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    let result = (fragments.octave + 1 + octaveOffset) * 12;
+    result += notes[fragments.letter];
 
-    if (matches[2].toLowerCase().indexOf("b") > -1) {
-      result -= matches[2].length;
-    } else if (matches[2].toLowerCase().indexOf("#") > -1) {
-      result += matches[2].length;
+    if (fragments.accidental) {
+      if (fragments.accidental.startsWith("b")) {
+        result -= fragments.accidental.length;
+      } else {
+        result += fragments.accidental.length;
+      }
     }
 
-    if (result < 0 || result > 127) return false;
+    if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
 
     return result;
+
+  }
+
+  /**
+   * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
+   * fragments composing it (uppercase letter, accidental and octave).
+   *
+   * @param name
+   * @returns {{octave: number, letter: string, accidental: string}}
+   *
+   * @throws TypeError Invalid note name
+   *
+   * @since 3.0.0
+   */
+  getNoteFragments(name) {
+
+    const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    if (!matches) throw new TypeError("Invalid note name");
+
+    const letter = matches[1].toUpperCase();
+    const octave = parseInt(matches[3]);
+    let accidental = matches[2].toLowerCase();
+    accidental = accidental === "" ? undefined : accidental;
+
+    const fragments = {
+      letter: letter,
+      accidental: accidental,
+      octave: octave,
+      name: letter + (accidental || "") + octave
+    };
+
+    return fragments;
 
   }
 
@@ -72,6 +106,8 @@ class Utilities {
    * numbers.
    *
    * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   *
+   * @since 3.0.0
    */
   sanitizeChannels(channel) {
 
@@ -117,6 +153,8 @@ class Utilities {
    *
    * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
    * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   *
+   * @since 3.0.0
    */
   convertToTimestamp(time) {
 
@@ -135,42 +173,70 @@ class Utilities {
   }
 
   /**
-   * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
+   * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
    * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
    * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-   * parsed for integer, if possible.
+   * parsed for integer value, if possible.
    *
-   * If the input is a string, the resulting note number is offset by the
-   * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-   * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-   * number will be 36.
+   * If the input is a note name, the resulting note number is offset by the `octaveOffset`
+   * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
+   * -2, the resulting MIDI note number will be 36.
    *
-   * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-   * is invalid.
-   *
-   * @param input {string|number} A string to extract the note number from. An integer can also be
-   * used, in this case it will simply be returned as is (if between 0 and 127).
+   * @param input {string|number} A string or number to extract the MIDI note number from.
    *
    * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
    * successfully be parsed to a note number.
+   *
+   * @since 3.0.0
    */
-  guessNoteNumber(input, options = {}) {
+  guessNoteNumber(input, octaveOffset) {
 
-    if (options.octaveOffset == undefined) options.octaveOffset = 0;
-    options.octaveOffset = parseInt(options.octaveOffset);
+    // Validate and, if necessary, assign default
+    octaveOffset = parseInt(octaveOffset) || 0;
 
     let output = false;
 
+    // Check input type
     if (Number.isInteger(input) && input >= 0 && input <= 127) {        // uint
       output = parseInt(input);
     } else if (parseInt(input) >= 0 && parseInt(input) <= 127) {        // float or uint as string
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
-      output = this.getNoteNumberByName(input, {octaveOffset: this.octaveOffset});
+      try {
+        output = this.getNoteNumberByName(input.trim(), octaveOffset);
+      } catch (e) {
+        return false;
+      }
     }
 
-    if (output === false) return false;
     return output;
+
+  }
+
+  /**
+   * Returns a string representing a note name (with optional accidental) followed by an octave
+   * number. The octave can be offset by using the `octaveOffset` parameter.
+   *
+   * @param {number} The MIDI note number to convert to a note name
+   * @param {octaveOffset} An offset to apply to the resulting octave
+   *
+   * @returns {string}
+   *
+   * @throws RangeError Invalid note number
+   * @throws RangeError Invalid octaveOffset value
+   *
+   * @since 3.0.0
+   */
+  getNoteNameByNumber(number, octaveOffset) {
+
+    number = parseInt(number);
+    if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
+
+    octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
+
+    const octave = Math.floor(number / 12 - 1) + octaveOffset;
+    return WebMidi.NOTES[number % 12] + octave.toString();
 
   }
 
@@ -180,9 +246,7 @@ class Utilities {
    * it will be returned as is.
    *
    * If the input is a note number or name, it is possible to specify options by providing the
-   * optional `options` parameter.
-   *
-   * An error is thrown for invalid input.
+   * `options` parameter.
    *
    * @param [input] {number|string|Note}
    *
@@ -191,40 +255,37 @@ class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
    *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
    * 127.
    *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
-   *
-   * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a note name.**
    *
    * @returns {Note}
    *
-   * @throws TypeError The input could not be parsed as a note
+   * @throws TypeError The input could not be parsed to a note
    *
-   * @since version 3
+   * @since version 3.0.0
    */
   getNoteObject(input, options= {}) {
 
-    if (options.octaveOffset == undefined) options.octaveOffset = 0;
+    options.octaveOffset = parseInt(options.octaveOffset) || 0;
 
-    if (input instanceof Note) {
-      return input;
-    } else {
-      let number = this.guessNoteNumber(input, {octaveOffset: options.octaveOffset});
-      if (number !== false) {
-        return new Note(number, options);
-      } else {
-        throw new TypeError(`The input could not be parsed as a note (${input})`);
-      }
+    // If it's already a Note, we're done
+    if (input instanceof Note) return input;
+
+    let number = this.guessNoteNumber(input, options.octaveOffset);
+
+    if (number === false) { // We use a comparison b/c the note can be 0 (which equates to false)
+      throw new TypeError(`The input could not be parsed as a note (${input})`);
     }
+
+    // If we got here, we have a proper note number. Before creating the new note, we strip out
+    // 'octaveOffset' because it has already been factored in when calling guessNoteNumber().
+    options.octaveOffset = undefined;
+    return new Note(number, options);
 
   }
 
@@ -257,6 +318,8 @@ class Utilities {
    * @returns {Note[]}
    *
    * @throws TypeError An element could not be parsed as a note.
+   *
+   * @since 3.0.0
    */
   getValidNoteArray(notes, options = {}) {
 
@@ -269,6 +332,14 @@ class Utilities {
 
     return result;
 
+  }
+
+  normalize7Bit(value = 0) {
+    return value / 127;
+  }
+
+  normalizeMsbLsb(value = 0) {
+    // to do
   }
 
 }

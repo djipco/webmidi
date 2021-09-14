@@ -150,50 +150,6 @@ describe("WebMidi Object", function() {
   });
 
   // VERIFIED
-  describe("convertToTimestamp()", function() {
-
-    beforeEach("Enable WebMidi", async function() {
-      await WebMidi.enable({sysex: true});
-    });
-
-    it("should return timestamp when passed string starting with '+'", function() {
-      // Assert
-      expect(WebMidi.convertToTimestamp("+1000")).to.be.a("number");
-    });
-
-    it("should return false for invalid input", function() {
-
-      // Arrange
-      let values = [undefined, null, false, [], {}, "", "-1", "+", -1, -Infinity];
-
-      // Act
-      values.forEach(assert);
-
-      // Assert
-      function assert(value) {
-        expect(WebMidi.convertToTimestamp(value)).to.be.false;
-      }
-
-    });
-
-    it("should return a positive number as is", function() {
-
-      // Arrange
-      let values = [0, 1, Infinity];
-
-      // Act
-      values.forEach(assert);
-
-      // Assert
-      function assert(value) {
-        expect(WebMidi.convertToTimestamp(value)).to.equal(value);
-      }
-
-    });
-
-  });
-
-  // VERIFIED
   describe("disable()", function() {
 
     beforeEach("Enable WebMidi", async function() {
@@ -825,137 +781,6 @@ describe("WebMidi Object", function() {
 
   });
 
-  describe("getValidNoteArray()", function() {
-
-    it("should throw error for invalid values", function() {
-
-      // Arrange
-      let values = ["abc", null, undefined, -1, 128, {}, "555", "H3", "Z#8", Infinity, -Infinity];
-
-      // Act
-      values.forEach(assert);
-
-      // Assert
-      function assert(value) {
-        expect(() => {
-          Utilities.getValidNoteArray(value);
-        }).to.throw();
-      }
-
-    });
-
-    it("should pass on options to values that aren't 'Note' objects", function() {
-
-      let options1 = {
-        duration: 1000,
-        attack: 1,
-        release: 1
-      };
-
-      let notes1 = Utilities.getValidNoteArray([60], options1);
-      expect(notes1[0].duration).to.equal(1000);
-      expect(notes1[0].attack).to.equal(1);
-      expect(notes1[0].release).to.equal(1);
-
-      let options2 = {
-        attack: 0.1,
-        release: 0.1,
-        rawAttack: 127,
-        rawRelease: 127,
-      };
-
-      let notes2 = Utilities.getValidNoteArray([60], options2);
-      expect(notes2[0].duration).to.equal(Infinity);
-      expect(notes2[0].attack).to.equal(1);
-      expect(notes2[0].release).to.equal(1);
-
-
-    });
-
-  });
-
-  describe("guessNoteNumber()", function() {
-
-    it("should return false if invalid input is provided", function() {
-
-      [
-        "abc", null, undefined, -1, 128, function () {}, {}, "555", "H3", "Z#8", Infinity, -Infinity
-      ].forEach(function (param) {
-        expect(WebMidi.guessNoteNumber(param)).to.be.false;
-      });
-
-    });
-
-    it("should provide the correct value for numerical values", function() {
-
-      for (var i = 0; i <= 127; i++) {
-        expect(WebMidi.guessNoteNumber(i)).to.equal(i);
-        expect(WebMidi.guessNoteNumber(i + "")).to.equal(i);
-        expect(WebMidi.guessNoteNumber(i + 0.1)).to.equal(i);
-        expect(WebMidi.guessNoteNumber(i + 0.5)).to.equal(Math.min(i, 127));
-      }
-
-    });
-
-    it("should return matching number for strings containing valid numbers", function() {
-      expect(WebMidi.guessNoteNumber("127")).to.equal(127);
-      expect(WebMidi.guessNoteNumber("0")).to.equal(0);
-      expect(WebMidi.guessNoteNumber("1")).to.equal(1);
-    });
-
-    // it("should provide correct value for note names with varying octave offsets", function() {
-    //
-    //   let value = 0;
-    //
-    //   [-20, -15, -9, 0, 7, 13, 20].forEach(function (offset) {
-    //
-    //     WebMidi.octaveOffset = offset;
-    //
-    //     // Sharps
-    //     for (var octave = -1 + offset; octave <= 9 + offset; octave++) {
-    //
-    //       for (var k = 0; k < WebMidi.NOTES.length; k++) {
-    //         if (value > 127) break;
-    //         expect(Utilities.guessNoteNumber(WebMidi.NOTES[k] + octave)).to.equal(value);
-    //         value++;
-    //       }
-    //
-    //     }
-    //
-    //     // Flats
-    //     var flats = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
-    //     value = 0;
-    //
-    //     for (octave = -1 + offset; octave <= 9 + offset; octave++) {
-    //
-    //       for (k = 0; k < flats.length; k++) {
-    //         if (value > 127) break;
-    //         expect(WebMidi.guessNoteNumber(flats[k] + octave)).to.equal(value);
-    //         value++;
-    //       }
-    //
-    //     }
-    //
-    //   });
-    //
-    //   WebMidi.octaveOffset = 0;
-    //
-    // });
-
-    // it("should return false if note is outside range, given current octave offset", function() {
-    //
-    //   expect(Utilities.guessNoteNumber("C-2", {octaveOffset: 0})).to.be.false;
-    //   expect(Utilities.guessNoteNumber("G#9", {octaveOffset: 0})).to.be.false;
-    //   expect(Utilities.guessNoteNumber("C10", {octaveOffset: 0})).to.be.false;
-    //
-    //   expect(Utilities.guessNoteNumber("C-3", {octaveOffset: -1})).to.be.false;
-    //   expect(Utilities.guessNoteNumber("G#8", {octaveOffset: -1})).to.be.false;
-    //   expect(Utilities.guessNoteNumber("C9", {octaveOffset: -1})).to.be.false;
-    //
-    // });
-
-  });
-
   describe("noteNameToNumber()", function() {
 
     it("should return the same as getNoteNumberByName()", function() {
@@ -971,12 +796,12 @@ describe("WebMidi Object", function() {
 
     it("should return the correct number given the current octave", function() {
 
-      expect(Utilities.getNoteNumberByName("C-1", {octaveOffset: 0})).to.equal(0);
-      expect(Utilities.getNoteNumberByName("B-1", {octaveOffset: 0})).to.equal(11);
-      expect(Utilities.getNoteNumberByName("C-1", {octaveOffset: -1})).to.equal(12);
-      expect(Utilities.getNoteNumberByName("B-1", {octaveOffset: -1})).to.equal(23);
-      expect(Utilities.getNoteNumberByName("C-1", {octaveOffset: -10})).to.equal(120);
-      expect(Utilities.getNoteNumberByName("B-1", {octaveOffset: -10})).to.be.false;
+      expect(Utilities.getNoteNumberByName("C-1", 0)).to.equal(0);
+      expect(Utilities.getNoteNumberByName("B-1", 0)).to.equal(11);
+      expect(Utilities.getNoteNumberByName("C-1", -1)).to.equal(12);
+      expect(Utilities.getNoteNumberByName("B-1", -1)).to.equal(23);
+      expect(Utilities.getNoteNumberByName("C-1", -10)).to.equal(120);
+      expect(Utilities.getNoteNumberByName("B-1", -10)).to.be.false;
 
     });
 
@@ -985,33 +810,6 @@ describe("WebMidi Object", function() {
   describe("set octaveOffset()", function() {
 
     it("should be tested!");
-
-  });
-
-  describe("sanitizeChannels()", function() {
-
-    it("should return only valid MIDI channel numbers", function() {
-
-      // Valid values are 1, 8 and 16
-      let channels = [
-        1, -1, -2.3, 0, 17, "x", NaN, null, Infinity, 8, -Infinity, {}, true, false, [undefined],
-        4e2, 16
-      ];
-      expect(Utilities.sanitizeChannels(channels).length).to.equal(3);
-      expect(Utilities.sanitizeChannels([]).length).to.equal(0);
-      expect(Utilities.sanitizeChannels([9.7])[0]).to.equal(9);
-      expect(Utilities.sanitizeChannels([1e1])[0]).to.equal(10);
-      expect(Utilities.sanitizeChannels("none").length).to.equal(0);
-
-    });
-
-    it('should return all channels when "all" is specified', function() {
-      expect(Utilities.sanitizeChannels("all").length).to.equal(16);
-    });
-
-    it("should return an empty array when 'none' is passed", function() {
-      expect(WebMidi.sanitizeChannels("none").length).to.equal(0);
-    });
 
   });
 
