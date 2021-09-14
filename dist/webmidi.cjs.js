@@ -405,8 +405,8 @@ class Utilities {
    * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
    * and 1.
    *
-   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only used
-   * when the input value is a number.**
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a number.**
    *
    * @returns {Note}
    *
@@ -423,7 +423,9 @@ class Utilities {
     let number = this.guessNoteNumber(input, options.octaveOffset);
 
     if (number !== false) {
-      // the note can be 0
+      // the note can be 0 which equates to false
+      options.octaveOffset = undefined; // offset has been taken care of by guessNoteNumber()
+
       return new Note(number, options);
     } else {
       throw new TypeError(`The input could not be parsed as a note (${input})`);
