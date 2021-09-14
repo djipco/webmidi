@@ -346,6 +346,23 @@ class Utilities {
     return Math.min(Math.max(parseInt(value) / 127, 0), 1);
   }
 
+  /**
+   * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
+   * `data2` properties.
+   *
+   * @param data A MIDI message
+   * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
+   */
+  buildStructuredMidiMessage(data) {
+
+    return {
+      command: data[0] >> 4,
+      data1: data.length > 1 ? data[1] : undefined,
+      data2: data.length > 2 ? data[2] : undefined
+    };
+
+  }
+
 }
 
 // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be

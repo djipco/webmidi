@@ -922,4 +922,11 @@ describe("Utilities Object", function() {
 
   });
 
+  // TO DO
+  describe("normalizeFrom7Bit()", function() {
+
+    it("should have some tests!!");
+
+  });
+
 });

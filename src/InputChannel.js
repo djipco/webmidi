@@ -64,12 +64,6 @@ export class InputChannel extends EventEmitter {
     this.number = number;
 
     /**
-     * @type {OutputChannel|OutputChannel[]}
-     * @private
-     */
-    this._forwardTo = undefined;
-
-    /**
      * @type {number}
      * @private
      */
@@ -89,9 +83,16 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  /**
+   * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+   * input.
+   *
+   * @returns {Promise<void>}
+   */
   destroy() {
     this.input = null;
     this.number = null;
+    this._octaveOffset = 0;
     // this._nrpnBuffer = null;
     // this._nrpnEventsEnabled = false;
     this.removeListener();
@@ -102,11 +103,6 @@ export class InputChannel extends EventEmitter {
    * @protected
    */
   _parseEvent(e) {
-
-    // @todo check if message must be forwarded
-    // if (this.forwardTo) {
-    //   this.forwardTo.forEach(channel => channel.sendRaw(e.data));
-    // }
 
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
@@ -147,16 +143,6 @@ export class InputChannel extends EventEmitter {
 
   }
 
-  getStructuredMidiMessage(data) {
-
-    return {
-      command: data[0] >> 4,
-      data1: data.length > 1 ? data[1] : undefined,
-      data2: data.length > 2 ? data[2] : undefined
-    };
-
-  }
-
   /**
    * Parses channel events for standard (non-NRPN) events.
    * @param e Event
@@ -164,7 +150,7 @@ export class InputChannel extends EventEmitter {
    */
   _parseEventForStandardMessages(e) {
 
-    let {command, data1, data2} = this.getStructuredMidiMessage(e.data);
+    let {command, data1, data2} = Utilities.getStructuredMidiMessage(e.data);
 
     // Returned event
     let event = {
