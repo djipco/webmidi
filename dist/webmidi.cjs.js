@@ -473,9 +473,15 @@ class Utilities {
     });
     return result;
   }
+  /**
+   *
+   * @param value
+   * @returns {number}
+   */
+
 
   normalizeFrom7Bit(value = 0) {
-    return Math.min(Math.max(value / 127, 0), 1);
+    return Math.min(Math.max(parseInt(value) / 127, 0), 1);
   }
 
   normalizeFromMsbLsb(value = 0) {// to do
