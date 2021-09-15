@@ -282,8 +282,6 @@ class Note {
   }
 
   set attack(value) {
-    console.log(value);
-
     if (wm.validation) {
       value = parseFloat(value);
 
@@ -292,6 +290,7 @@ class Note {
       }
     }
 
+    console.log("bbb", value);
     this._attack = value;
   }
   /**
