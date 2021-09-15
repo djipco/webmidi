@@ -855,8 +855,7 @@ class InputChannel extends e {
     };
     this.emit("midimessage", midiMessageEvent); // Parse the event to see if its part of an NRPN sequence
     // this._parseEventForNrpnMessage(e);
-
-    console.log("xxx!!!!!!!!!!!"); // Parse the inbound event for regular messages
+    // Parse the inbound event for regular messages
 
     this._parseEventForStandardMessages(e);
   }
@@ -868,11 +867,13 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
+    console.log("aaa!!!!!!!!!!!");
     let {
       command,
       data1,
       data2
-    } = utils.getStructuredMidiMessage(e.data); // Returned event
+    } = utils.getStructuredMidiMessage(e.data);
+    console.log("bbb!!!!!!!!!!!"); // Returned event
 
     let event = {
       target: this,
