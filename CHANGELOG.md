@@ -42,6 +42,8 @@ options of `WebMidi.enable()`.
 
 - The `send()` method of `Output` and `OutputChannel` can now officially use `Uint8Array` input
 
+- Licence has been changed to Apache 2.0
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
@@ -98,6 +100,9 @@ performance reasons. It has been removed from the documentation.
 - The event received by listeners registered on `Input` and `InputChannel` objects has been slightly 
 changed. Its `data` property now contains a regular array (instead of a `Uint8Array`). Its `rawData` 
 property now contains the `Uint8Array`.
+
+- Several methods have been moved from the `WebMidi` object to the `Utilities` object. Using the old
+methods will continue to work but will trigger a deprecation warning in the console.
 
 ### Deprecated
 
