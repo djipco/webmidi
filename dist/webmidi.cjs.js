@@ -900,6 +900,7 @@ class InputChannel extends e {
        */
       event.type = "noteoff";
       event.note = new Note(data1, {
+        rawAttack: 0,
         rawRelease: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
