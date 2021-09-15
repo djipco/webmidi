@@ -879,9 +879,9 @@ class InputChannel extends e {
       rawData: e.data,
       timestamp: e.timeStamp
     };
+    console.log("noteoff");
 
     if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff || command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon && data2 === 0) {
-      console.log("noteoff");
       /**
        * Event emitted when a **note off** MIDI message has been received.
        *
@@ -899,7 +899,6 @@ class InputChannel extends e {
        * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
-
       event.type = "noteoff";
       event.note = new Note(data1, {
         rawRelease: data2,
