@@ -14,7 +14,7 @@ export var __esModule: boolean;
  * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
  * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 64 by default. These can be changed by passing
+ * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
  * in the appropriate option. It is also possible to set a system-wide default for attack and
  * release velocities by using the `WebMidi.defaults` property.
  *
@@ -35,11 +35,21 @@ export var __esModule: boolean;
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and
- * 127.
+ * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
  *
- * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
- * 127.
+ * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
+ *
+ * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
+ *
+ * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
  *
  * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
  * used when the note is specified using a MIDI note number.**
