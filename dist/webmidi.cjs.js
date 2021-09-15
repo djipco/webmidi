@@ -217,9 +217,9 @@ class Note {
 
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = utils.from7Bit(options.attack);
+    if (options.rawAttack != undefined) this.attack = utils.from7Bit(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = utils.from7Bit(options.release); // Validate and assign octaveOffset value
+    if (options.rawRelease != undefined) this.release = utils.from7Bit(options.rawRelease); // Validate and assign octaveOffset value
 
     options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
