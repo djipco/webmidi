@@ -867,13 +867,11 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
-    console.log("aaa!!!!!!!!!!!");
     let {
       command,
       data1,
       data2
-    } = utils.getStructuredMidiMessage(e.data);
-    console.log("bbb!!!!!!!!!!!"); // Returned event
+    } = utils.buildStructuredMidiMessage(e.data); // Returned event
 
     let event = {
       target: this,
