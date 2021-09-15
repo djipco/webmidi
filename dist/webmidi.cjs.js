@@ -825,7 +825,8 @@ class InputChannel extends e {
 
 
   _parseEvent(e) {
-    // Extract data bytes (unless it's a sysex message)
+    console.log("allo!!!!!!!!!!!"); // Extract data bytes (unless it's a sysex message)
+
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
@@ -879,7 +880,6 @@ class InputChannel extends e {
       rawData: e.data,
       timestamp: e.timeStamp
     };
-    console.log("noteoff");
 
     if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff || command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon && data2 === 0) {
       /**
