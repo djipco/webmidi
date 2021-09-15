@@ -825,8 +825,7 @@ class InputChannel extends e {
 
 
   _parseEvent(e) {
-    console.log("allo!!!!!!!!!!!"); // Extract data bytes (unless it's a sysex message)
-
+    // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
     /**
@@ -856,7 +855,8 @@ class InputChannel extends e {
     };
     this.emit("midimessage", midiMessageEvent); // Parse the event to see if its part of an NRPN sequence
     // this._parseEventForNrpnMessage(e);
-    // Parse the inbound event for regular messages
+
+    console.log("xxx!!!!!!!!!!!"); // Parse the inbound event for regular messages
 
     this._parseEventForStandardMessages(e);
   }
