@@ -1,4 +1,3 @@
-       
 # Showcase
 
 WebMidi.js is being used by amazing people to create awesome projects. Here are some examples of 
