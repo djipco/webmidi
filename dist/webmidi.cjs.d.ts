@@ -147,17 +147,17 @@ declare const wm: WebMidi;
  */
 declare class Utilities {
     /**
-     * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-     * note name must include the octave number. The name can also optionally include a sharp (#),
+     * Returns a MIDI note number matching the identifier passed in the form of a string. The
+     * identifier must include the octave number. The identifier also optionally include a sharp (#),
      * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-     * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+     * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
      *
-     * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-     * per the scientific pitch notation standard.
+     * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
+     * 60) as per the scientific pitch notation standard.
      *
      * The resulting note number can be offset by using the `octaveOffset` parameter.
      *
-     * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
+     * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
      * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
      * Abb4, B##6, etc.
      *
@@ -167,11 +167,11 @@ declare class Utilities {
      *
      * @throws RangeError Invalid 'octaveOffset' value
      *
-     * @throws TypeError Invalid note name
+     * @throws TypeError Invalid note identifier
      *
      * @since 3.0.0
      */
-    getNoteNumberByIdentifier(name: string, octaveOffset?: number): number;
+    getNoteNumberByIdentifier(identifier: string, octaveOffset?: number): number;
     /**
      * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
      * the fragments composing it (uppercase letter, accidental and octave).
@@ -219,11 +219,11 @@ declare class Utilities {
     convertToTimestamp(time?: number | string): number | false;
     /**
      * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
-     * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-     * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-     * parsed for integer value, if possible.
+     * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
+     * between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
+     * will be parsed for integer value, if possible.
      *
-     * If the input is a note name, the resulting note number is offset by the `octaveOffset`
+     * If the input is an identifier, the resulting note number is offset by the `octaveOffset`
      * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
      * -2, the resulting MIDI note number will be 36.
      *
@@ -252,10 +252,10 @@ declare class Utilities {
     getNoteIdentifierByNumber(number: any, octaveOffset: any): string;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
-     * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
-     * it will be returned as is.
+     * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
+     * object, it will be returned as is.
      *
-     * If the input is a note number or name, it is possible to specify options by providing the
+     * If the input is a note number or identifier, it is possible to specify options by providing the
      * `options` parameter.
      *
      * @param [input] {number|string|Note}
@@ -271,7 +271,7 @@ declare class Utilities {
      * 127.
      *
      * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
-     * used when the input value is a note name.**
+     * used when the input value is a note identifier.**
      *
      * @returns {Note}
      *
@@ -286,11 +286,12 @@ declare class Utilities {
         octaveOffset?: number;
     }): Note;
     /**
-     * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
-     * object or an array of the previous types, to an array of {@link Note} objects.
+     * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
+     * {@link Note} object or an array of the previous types, to an array of {@link Note} objects.
      *
-     * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-     * created with the options specified. An error will be thrown when encountering invalid input.
+     * {@link Note} objects are returned as is. For note numbers and identifiers, a {@link Note}
+     * object is created with the options specified. An error will be thrown when encountering invalid
+     * input.
      *
      * @param [notes] {number|string|Note|number[]|string[]|Note[]}
      *
