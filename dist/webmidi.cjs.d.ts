@@ -4,7 +4,7 @@ export var __esModule: boolean;
  *
  * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
  * when the note is played. This is because, the `octaveOffset` property of various objects
- * (`WebMidi`, `OutputChannel`, `Output`, etc.) can be used to offset the note number to match
+ * (`WebMidi`, `InputChannel`, `Output`, etc.) can be used to offset the note number to match
  * external devices where middle C is not equal to C4.
  *
  * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
@@ -24,11 +24,11 @@ export var __esModule: boolean;
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
- * @param value {string|number} The value used to create the note. If a string is used, it must be
- * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
- * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
- * converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that
- * can be offset with the `octaveOffset`property.
+ * @param value {string|number} The value used to create the note. If an identifier string is used,
+ * it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
+ * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number
+ * will be converted to a note name. In this case, middle C is considered to be C4 (note number 60)
+ * but that can be offset with the `octaveOffset`property.
  *
  * @param {Object} [options={}]
  *
@@ -54,8 +54,11 @@ export var __esModule: boolean;
  * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
  * used when the note is specified using a MIDI note number.**
  *
- * @throws {Error} Invalid note name
- * @throws {RangeError} Invalid duration
+ * @throws {Error} Invalid note identifier
+ * @throws {RangeError} Invalid name value
+ * @throws {RangeError} Invalid accidental value
+ * @throws {RangeError} Invalid octave value
+ * @throws {RangeError} Invalid duration value
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  * @throws {RangeError} Invalid 'octaveOffset' value
@@ -87,14 +90,37 @@ export class Note {
      * @since 3.0.0
      */
     get release(): number;
+    set identifier(arg: string);
+    /**
+     * The name, optional accidental and octave of the note, as a string.
+     * @type {string}
+     * @since 3.0.0
+     */
+    get identifier(): string;
+    _name: any;
+    _accidental: string;
+    _octave: number;
     set name(arg: string);
     /**
-     * The name of the note as a string combining the note, an optional accidental and the octave.
+     * The name (letter) of the note
      * @type {string}
      * @since 3.0.0
      */
     get name(): string;
-    _name: string;
+    set accidental(arg: string);
+    /**
+     * The accidental (#, ##, b or bb) of the note
+     * @type {string}
+     * @since 3.0.0
+     */
+    get accidental(): string;
+    set octave(arg: number);
+    /**
+     * The octave of the note
+     * @type {number}
+     * @since 3.0.0
+     */
+    get octave(): number;
     _duration: number;
     _attack: number;
     _release: number;
@@ -145,19 +171,19 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getNoteNumberByName(name: string, octaveOffset?: number): number;
+    getNoteNumberByIdentifier(name: string, octaveOffset?: number): number;
     /**
-     * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-     * fragments composing it (uppercase letter, accidental and octave).
+     * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
+     * the fragments composing it (uppercase letter, accidental and octave).
      *
-     * @param name
+     * @param identifier
      * @returns {{octave: number, letter: string, accidental: string}}
      *
-     * @throws TypeError Invalid note name
+     * @throws TypeError Invalid note identifier
      *
      * @since 3.0.0
      */
-    getNoteFragments(name: any): {
+    getNoteFragments(identifier: any): {
         octave: number;
         letter: string;
         accidental: string;
@@ -210,10 +236,10 @@ declare class Utilities {
      */
     guessNoteNumber(input: string | number, octaveOffset: any): number | false;
     /**
-     * Returns a string representing a note name (with optional accidental) followed by an octave
-     * number. The octave can be offset by using the `octaveOffset` parameter.
+     * Returns an identifier string representing a note name (with optional accidental) followed by an
+     * octave number. The octave can be offset by using the `octaveOffset` parameter.
      *
-     * @param {number} The MIDI note number to convert to a note name
+     * @param {number} The MIDI note number to convert to a note identifier
      * @param {octaveOffset} An offset to apply to the resulting octave
      *
      * @returns {string}
@@ -223,7 +249,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getNoteNameByNumber(number: any, octaveOffset: any): string;
+    getNoteIdentifierByNumber(number: any, octaveOffset: any): string;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
@@ -582,7 +608,7 @@ declare class WebMidi {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByName() instead.
+     * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
      */
     private noteNameToNumber;
     /**
