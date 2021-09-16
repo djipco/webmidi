@@ -63,19 +63,19 @@ class Utilities {
   }
 
   /**
-   * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-   * fragments composing it (uppercase letter, accidental and octave).
+   * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
+   * the fragments composing it (uppercase letter, accidental and octave).
    *
-   * @param name
+   * @param identifier
    * @returns {{octave: number, letter: string, accidental: string}}
    *
    * @throws TypeError Invalid note name
    *
    * @since 3.0.0
    */
-  getNoteFragments(name) {
+  getNoteFragments(identifier) {
 
-    const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note name");
 
     const letter = matches[1].toUpperCase();
