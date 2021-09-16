@@ -622,7 +622,7 @@ class Utilities {
       B: 11
     };
     let result = (fragments.octave + 1 + octaveOffset) * 12;
-    result += notes[fragments.letter];
+    result += notes[fragments.name];
 
     if (fragments.accidental) {
       if (fragments.accidental.startsWith("b")) {
