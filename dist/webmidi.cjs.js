@@ -3,28 +3,184 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 14th 2021.
+ * This build was generated on September 16th 2021.
  *
  *
  *
- * The MIT License (MIT)
+ * Apache License
+ * Version 2.0, January 2004
+ * http://www.apache.org/licenses/
  *
- * Copyright (c) 2015-2020, Jean-Philippe Côté
+ * TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
- * and associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * 1. Definitions.
  *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
+ * "License" shall mean the terms and conditions for use, reproduction,
+ * and distribution as defined by Sections 1 through 9 of this document.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * "Licensor" shall mean the copyright owner or entity authorized by
+ * the copyright owner that is granting the License.
+ *
+ * "Legal Entity" shall mean the union of the acting entity and all
+ * other entities that control, are controlled by, or are under common
+ * control with that entity. For the purposes of this definition,
+ * "control" means (i) the power, direct or indirect, to cause the
+ * direction or management of such entity, whether by contract or
+ * otherwise, or (ii) ownership of fifty percent (50%) or more of the
+ * outstanding shares, or (iii) beneficial ownership of such entity.
+ *
+ * "You" (or "Your") shall mean an individual or Legal Entity
+ * exercising permissions granted by this License.
+ *
+ * "Source" form shall mean the preferred form for making modifications,
+ * including but not limited to software source code, documentation
+ * source, and configuration files.
+ *
+ * "Object" form shall mean any form resulting from mechanical
+ * transformation or translation of a Source form, including but
+ * not limited to compiled object code, generated documentation,
+ * and conversions to other media types.
+ *
+ * "Work" shall mean the work of authorship, whether in Source or
+ * Object form, made available under the License, as indicated by a
+ * copyright notice that is included in or attached to the work
+ * (an example is provided in the Appendix below).
+ *
+ * "Derivative Works" shall mean any work, whether in Source or Object
+ * form, that is based on (or derived from) the Work and for which the
+ * editorial revisions, annotations, elaborations, or other modifications
+ * represent, as a whole, an original work of authorship. For the purposes
+ * of this License, Derivative Works shall not include works that remain
+ * separable from, or merely link (or bind by name) to the interfaces of,
+ * the Work and Derivative Works thereof.
+ *
+ * "Contribution" shall mean any work of authorship, including
+ * the original version of the Work and any modifications or additions
+ * to that Work or Derivative Works thereof, that is intentionally
+ * submitted to Licensor for inclusion in the Work by the copyright owner
+ * or by an individual or Legal Entity authorized to submit on behalf of
+ * the copyright owner. For the purposes of this definition, "submitted"
+ * means any form of electronic, verbal, or written communication sent
+ * to the Licensor or its representatives, including but not limited to
+ * communication on electronic mailing lists, source code control systems,
+ * and issue tracking systems that are managed by, or on behalf of, the
+ * Licensor for the purpose of discussing and improving the Work, but
+ * excluding communication that is conspicuously marked or otherwise
+ * designated in writing by the copyright owner as "Not a Contribution."
+ *
+ * "Contributor" shall mean Licensor and any individual or Legal Entity
+ * on behalf of whom a Contribution has been received by Licensor and
+ * subsequently incorporated within the Work.
+ *
+ * 2. Grant of Copyright License. Subject to the terms and conditions of
+ * this License, each Contributor hereby grants to You a perpetual,
+ * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ * copyright license to reproduce, prepare Derivative Works of,
+ * publicly display, publicly perform, sublicense, and distribute the
+ * Work and such Derivative Works in Source or Object form.
+ *
+ * 3. Grant of Patent License. Subject to the terms and conditions of
+ * this License, each Contributor hereby grants to You a perpetual,
+ * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ * (except as stated in this section) patent license to make, have made,
+ * use, offer to sell, sell, import, and otherwise transfer the Work,
+ * where such license applies only to those patent claims licensable
+ * by such Contributor that are necessarily infringed by their
+ * Contribution(s) alone or by combination of their Contribution(s)
+ * with the Work to which such Contribution(s) was submitted. If You
+ * institute patent litigation against any entity (including a
+ * cross-claim or counterclaim in a lawsuit) alleging that the Work
+ * or a Contribution incorporated within the Work constitutes direct
+ * or contributory patent infringement, then any patent licenses
+ * granted to You under this License for that Work shall terminate
+ * as of the date such litigation is filed.
+ *
+ * 4. Redistribution. You may reproduce and distribute copies of the
+ * Work or Derivative Works thereof in any medium, with or without
+ * modifications, and in Source or Object form, provided that You
+ * meet the following conditions:
+ *
+ * (a) You must give any other recipients of the Work or
+ * Derivative Works a copy of this License; and
+ *
+ * (b) You must cause any modified files to carry prominent notices
+ * stating that You changed the files; and
+ *
+ * (c) You must retain, in the Source form of any Derivative Works
+ * that You distribute, all copyright, patent, trademark, and
+ * attribution notices from the Source form of the Work,
+ * excluding those notices that do not pertain to any part of
+ * the Derivative Works; and
+ *
+ * (d) If the Work includes a "NOTICE" text file as part of its
+ * distribution, then any Derivative Works that You distribute must
+ * include a readable copy of the attribution notices contained
+ * within such NOTICE file, excluding those notices that do not
+ * pertain to any part of the Derivative Works, in at least one
+ * of the following places: within a NOTICE text file distributed
+ * as part of the Derivative Works; within the Source form or
+ * documentation, if provided along with the Derivative Works; or,
+ * within a display generated by the Derivative Works, if and
+ * wherever such third-party notices normally appear. The contents
+ * of the NOTICE file are for informational purposes only and
+ * do not modify the License. You may add Your own attribution
+ * notices within Derivative Works that You distribute, alongside
+ * or as an addendum to the NOTICE text from the Work, provided
+ * that such additional attribution notices cannot be construed
+ * as modifying the License.
+ *
+ * You may add Your own copyright statement to Your modifications and
+ * may provide additional or different license terms and conditions
+ * for use, reproduction, or distribution of Your modifications, or
+ * for any such Derivative Works as a whole, provided Your use,
+ * reproduction, and distribution of the Work otherwise complies with
+ * the conditions stated in this License.
+ *
+ * 5. Submission of Contributions. Unless You explicitly state otherwise,
+ * any Contribution intentionally submitted for inclusion in the Work
+ * by You to the Licensor shall be under the terms and conditions of
+ * this License, without any additional terms or conditions.
+ * Notwithstanding the above, nothing herein shall supersede or modify
+ * the terms of any separate license agreement you may have executed
+ * with Licensor regarding such Contributions.
+ *
+ * 6. Trademarks. This License does not grant permission to use the trade
+ * names, trademarks, service marks, or product names of the Licensor,
+ * except as required for reasonable and customary use in describing the
+ * origin of the Work and reproducing the content of the NOTICE file.
+ *
+ * 7. Disclaimer of Warranty. Unless required by applicable law or
+ * agreed to in writing, Licensor provides the Work (and each
+ * Contributor provides its Contributions) on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied, including, without limitation, any warranties or conditions
+ * of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+ * PARTICULAR PURPOSE. You are solely responsible for determining the
+ * appropriateness of using or redistributing the Work and assume any
+ * risks associated with Your exercise of permissions under this License.
+ *
+ * 8. Limitation of Liability. In no event and under no legal theory,
+ * whether in tort (including negligence), contract, or otherwise,
+ * unless required by applicable law (such as deliberate and grossly
+ * negligent acts) or agreed to in writing, shall any Contributor be
+ * liable to You for damages, including any direct, indirect, special,
+ * incidental, or consequential damages of any character arising as a
+ * result of this License or out of the use or inability to use the
+ * Work (including but not limited to damages for loss of goodwill,
+ * work stoppage, computer failure or malfunction, or any and all
+ * other commercial damages or losses), even if such Contributor
+ * has been advised of the possibility of such damages.
+ *
+ * 9. Accepting Warranty or Additional Liability. While redistributing
+ * the Work or Derivative Works thereof, You may choose to offer,
+ * and charge a fee for, acceptance of support, warranty, indemnity,
+ * or other liability obligations and/or rights consistent with this
+ * License. However, in accepting such obligations, You may act only
+ * on Your own behalf and on Your sole responsibility, not on behalf
+ * of any other Contributor, and only if You agree to indemnify,
+ * defend, and hold each Contributor harmless for any liability
+ * incurred by, or claims asserted against, such Contributor by reason
+ * of your accepting any such warranty or additional liability.
  */
 
 'use strict';
@@ -159,7 +315,7 @@ class t {
  *
  * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
  * when the note is played. This is because, the `octaveOffset` property of various objects
- * (`WebMidi`, `OutputChannel`, `Output`, etc.) can be used to offset the note number to match
+ * (`WebMidi`, `InputChannel`, `Output`, etc.) can be used to offset the note number to match
  * external devices where middle C is not equal to C4.
  *
  * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
@@ -179,11 +335,11 @@ class t {
  * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
- * @param value {string|number} The value used to create the note. If a string is used, it must be
- * the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`,
- * `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be
- * converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that
- * can be offset with the `octaveOffset`property.
+ * @param value {string|number} The value used to create the note. If an identifier string is used,
+ * it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
+ * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number
+ * will be converted to a note name. In this case, middle C is considered to be C4 (note number 60)
+ * but that can be offset with the `octaveOffset`property.
  *
  * @param {Object} [options={}]
  *
@@ -209,8 +365,11 @@ class t {
  * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
  * used when the note is specified using a MIDI note number.**
  *
- * @throws {Error} Invalid note name
- * @throws {RangeError} Invalid duration
+ * @throws {Error} Invalid note identifier
+ * @throws {RangeError} Invalid name value
+ * @throws {RangeError} Invalid accidental value
+ * @throws {RangeError} Invalid octave value
+ * @throws {RangeError} Invalid duration value
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  * @throws {RangeError} Invalid 'octaveOffset' value
@@ -235,13 +394,35 @@ class Note {
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
-      this.name = utils.getNoteNameByNumber(value, options.octaveOffset);
+      this.identifier = utils.getNoteIdentifierByNumber(value, options.octaveOffset);
     } else {
-      this.name = value;
+      this.identifier = value;
     }
   }
   /**
-   * The name of the note as a string combining the note, an optional accidental and the octave.
+   * The name, optional accidental and octave of the note, as a string.
+   * @type {string}
+   * @since 3.0.0
+   */
+
+
+  get identifier() {
+    return this._name + (this._accidental || "") + this._octave;
+  }
+
+  set identifier(value) {
+    const fragments = utils.getNoteFragments(value);
+
+    if (wm.validation) {
+      if (!value) throw new Error("Invalid note identifier");
+    }
+
+    this._name = fragments.name;
+    this._accidental = fragments.accidental;
+    this._octave = fragments.octave;
+  }
+  /**
+   * The name (letter) of the note
    * @type {string}
    * @since 3.0.0
    */
@@ -253,11 +434,52 @@ class Note {
 
   set name(value) {
     if (wm.validation) {
-      value = utils.getNoteFragments(value).name;
-      if (!value) throw new Error("Invalid note name");
+      value = value.toUpperCase();
+
+      if (!["C", "D", "E", "F", "G", "A", "B"].includes(value)) {
+        throw new Error("Invalid name value");
+      }
     }
 
     this._name = value;
+  }
+  /**
+   * The accidental (#, ##, b or bb) of the note
+   * @type {string}
+   * @since 3.0.0
+   */
+
+
+  get accidental() {
+    return this._accidental;
+  }
+
+  set accidental(value) {
+    if (wm.validation) {
+      value = value.toLowerCase();
+      if (!["#", "##", "b", "bb"].includes(value)) throw new Error("Invalid accidental value");
+    }
+
+    this._accidental = value;
+  }
+  /**
+   * The octave of the note
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get octave() {
+    return this._octave;
+  }
+
+  set octave(value) {
+    if (wm.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new Error("Invalid octave value");
+    }
+
+    this._octave = value;
   }
   /**
    * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -275,7 +497,10 @@ class Note {
   set duration(value) {
     if (wm.validation) {
       value = parseFloat(value);
-      if (isNaN(value) || value === null || value < 0) throw new RangeError("Invalid duration.");
+
+      if (isNaN(value) || value === null || value < 0) {
+        throw new RangeError("Invalid duration value.");
+      }
     }
 
     this._duration = value;
@@ -380,7 +605,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getNoteNumberByName(name, octaveOffset = 0) {
+  getNoteNumberByIdentifier(name, octaveOffset = 0) {
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
@@ -411,30 +636,30 @@ class Utilities {
     return result;
   }
   /**
-   * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-   * fragments composing it (uppercase letter, accidental and octave).
+   * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
+   * the fragments composing it (uppercase letter, accidental and octave).
    *
-   * @param name
+   * @param identifier
    * @returns {{octave: number, letter: string, accidental: string}}
    *
-   * @throws TypeError Invalid note name
+   * @throws TypeError Invalid note identifier
    *
    * @since 3.0.0
    */
 
 
-  getNoteFragments(name) {
-    const matches = name.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
-    if (!matches) throw new TypeError("Invalid note name");
-    const letter = matches[1].toUpperCase();
+  getNoteFragments(identifier) {
+    const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    if (!matches) throw new TypeError("Invalid note identifier");
+    const name = matches[1].toUpperCase();
     const octave = parseInt(matches[3]);
     let accidental = matches[2].toLowerCase();
     accidental = accidental === "" ? undefined : accidental;
     const fragments = {
-      letter: letter,
+      name: name,
       accidental: accidental,
       octave: octave,
-      name: letter + (accidental || "") + octave
+      identifier: name + (accidental || "") + octave
     };
     return fragments;
   }
@@ -545,7 +770,7 @@ class Utilities {
     } else if (typeof input === "string" || input instanceof String) {
       // string
       try {
-        output = this.getNoteNumberByName(input.trim(), octaveOffset);
+        output = this.getNoteNumberByIdentifier(input.trim(), octaveOffset);
       } catch (e) {
         return false;
       }
@@ -554,10 +779,10 @@ class Utilities {
     return output;
   }
   /**
-   * Returns a string representing a note name (with optional accidental) followed by an octave
-   * number. The octave can be offset by using the `octaveOffset` parameter.
+   * Returns an identifier string representing a note name (with optional accidental) followed by an
+   * octave number. The octave can be offset by using the `octaveOffset` parameter.
    *
-   * @param {number} The MIDI note number to convert to a note name
+   * @param {number} The MIDI note number to convert to a note identifier
    * @param {octaveOffset} An offset to apply to the resulting octave
    *
    * @returns {string}
@@ -569,7 +794,7 @@ class Utilities {
    */
 
 
-  getNoteNameByNumber(number, octaveOffset) {
+  getNoteIdentifierByNumber(number, octaveOffset) {
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -898,7 +1123,8 @@ class InputChannel extends e {
        * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
        * 127).
        */
-      event.type = "noteoff";
+      event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
+
       event.note = new Note(data1, {
         rawAttack: 0,
         rawRelease: data2,
@@ -6590,14 +6816,14 @@ class WebMidi extends e {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByName() instead.
+   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
-      console.warn("The getNoteNumberByName() method has been moved to the Utilities class in version 3.");
+      console.warn("The noteNameToNumber() method is deprecated. Use Utilities.getNoteNumberByIdentifier() " + "instead.");
     }
 
-    return utils.getNoteNumberByName(name, this.octaveOffset);
+    return utils.getNoteNumberByIdentifier(name, this.octaveOffset);
   }
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
