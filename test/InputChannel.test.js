@@ -243,7 +243,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it.only("should dispatch event for inbound 'controlchange' MIDI message", function (done) {
+  it("should dispatch event for inbound 'controlchange' MIDI message", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -261,8 +261,6 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
 
-      console.log(e.controller);
-
       expect(e.type).to.equal(event);
       expect(e.controller.number).to.equal(index);
       expect(e.rawValue).to.equal(value);
@@ -270,6 +268,36 @@ describe("InputChannel Object", function() {
 
       index++;
       if (index >= 119) done();
+
+    }
+
+  });
+
+  it("should dispatch event for all inbound 'channelmode' MIDI message", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "channelmode";
+    let status = 0xB0;
+    let value = 34;
+    let index = 120;
+    channel.addListener(event, assert);
+
+    // Act
+    for (let i = 120; i <= 127; i++) {
+      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
+    }
+
+    // Assert
+    function assert(e) {
+
+      expect(e.type).to.equal(event);
+      expect(e.controller.number).to.equal(index);
+      expect(e.rawValue).to.equal(value);
+      expect(e.target).to.equal(channel);
+
+      index++;
+      if (index >= 127) done();
 
     }
 
@@ -344,35 +372,6 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch event for all inbound 'channelmode' MIDI message", function (done) {
-
-    // Arrange
-    let channel = WEBMIDI_INPUT.channels[1];
-    let event = "channelmode";
-    let status = 0xB0;
-    let value = 34;
-    let index = 120;
-    channel.addListener(event, assert);
-
-    // Act
-    for (let i = 120; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
-    }
-
-    // Assert
-    function assert(e) {
-
-      expect(e.type).to.equal(event);
-      expect(e.controller.number).to.equal(index);
-      expect(e.value).to.equal(value);
-      expect(e.target).to.equal(channel);
-
-      index++;
-      if (index >= 127) done();
-
-    }
-
-  });
 
   it("should dispatch event for inbound 'all sound off' MIDI message", function (done) {
 
@@ -697,7 +696,7 @@ describe("InputChannel Object", function() {
 
     });
 
-    it("should return 'false' for numbers with no predefined purpose", function () {
+    it("should return 'undefined' for numbers with no predefined purpose", function () {
 
       // Arrange
       let channel = WEBMIDI_INPUT.channels[1];
@@ -719,7 +718,7 @@ describe("InputChannel Object", function() {
 
       // Assert
       results.forEach(result => {
-        expect(result).to.be.false;
+        expect(result).to.be.undefined;
       });
 
     });

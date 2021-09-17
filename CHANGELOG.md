@@ -90,7 +90,7 @@ work in version 3.0:
 `InputChannel` class. Trying to access it will trigger a warning in the console.
 
 - [BREAKING CHANGE] The `getCcNameByNumber()` method has been moved from the `Input` class to the 
-`InputChannel` class.
+`InputChannel` class and now returns `undefined` instead of `false` when no matching name is found.
 
 - [BREAKING CHANGE] The `"tuningrequest"` event has been renamed `"tunerequest"`. 
 
