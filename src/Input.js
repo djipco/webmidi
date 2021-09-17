@@ -449,9 +449,10 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Opens the input for usage.
+   * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+   * WebMidi is enabled.
    *
-   * @returns {Promise<Input>} The promise is fulfilled with the `Input`
+   * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
    */
   async open() {
 
@@ -461,10 +462,11 @@ export class Input extends EventEmitter {
     // are dispatched immediately and that we are ready to listen.
     try {
       await this._midiInput.open();
-      return Promise.resolve(this);
     } catch (err) {
       return Promise.reject(err);
     }
+
+    return Promise.resolve(this);
 
   }
 
@@ -472,17 +474,21 @@ export class Input extends EventEmitter {
    * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
    * the input is opened again by calling [Input.open()]{@link Input#open}.
    *
-   * @returns {Promise<void|*>}
+   * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
    */
   async close() {
 
     // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
     // event.
-    if (this._midiInput) {
-      return this._midiInput.close();
-    } else {
-      return Promise.resolve();
+    if (!this._midiInput) return Promise.resolve(this);
+
+    try {
+      await this._midiInput.close();
+    } catch (err) {
+      return Promise.reject(err);
     }
+
+    return Promise.resolve(this);
 
   }
 
