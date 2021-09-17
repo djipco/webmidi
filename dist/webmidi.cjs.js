@@ -1209,11 +1209,20 @@ class InputChannel extends e {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
+       * @property {string} identifier The note identifier of the key to apply the aftertouch to.
+       * This includes any octave offset applied at the channel, input or global level.
+       * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
+       * includes any octave offset applied at the channel, input or global level.
+       * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
+       * excludes any octave offset defined at the channel, input or global level.
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
       event.type = "keyaftertouch";
+      event.identifier = utils.getNoteIdentifierByNumber(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+      event.key = utils.getNoteNumberByIdentifier(event.identifier);
+      event.rawKey = data1;
       event.value = utils.from7Bit(data2);
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
