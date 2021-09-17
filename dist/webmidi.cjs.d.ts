@@ -1185,18 +1185,19 @@ declare class Input extends e {
      */
     private _parseEvent;
     /**
-     * Opens the input for usage.
+     * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+     * WebMidi is enabled.
      *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input`
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
      */
     open(): Promise<Input>;
     /**
      * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
      * the input is opened again by calling [Input.open()]{@link Input#open}.
      *
-     * @returns {Promise<void|*>}
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
      */
-    close(): Promise<void | any>;
+    close(): Promise<Input>;
     /**
      * @private
      * @deprecated since v3.0.0 (moved to 'InputChannel' class)
@@ -2826,14 +2827,15 @@ declare class InputChannel extends e {
     getCcNameByNumber(number: number): string | undefined;
     set octaveOffset(arg: number);
     /**
-     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-     * number 60) is placed on the 4th octave (C4).
+     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
      *
      * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
      * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
      *
      * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * (if any).
+     * and with the value defined on the parent `Input` object.
      *
      * @type {number}
      *
