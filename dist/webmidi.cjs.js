@@ -1719,7 +1719,8 @@ class InputChannel extends e {
    * In this case, the method returns `false`.
    *
    * @param {number} number An integer representing the control change message
-   * @returns {string|false} The matching control change name or `false` if not match was found
+   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * found.
    *
    * @throws {RangeError} Invalid control change number.
    *
@@ -1730,10 +1731,7 @@ class InputChannel extends e {
   getCcNameByNumber(number) {
     if (wm.validation) {
       number = parseInt(number);
-
-      if (!(number >= 0 && number <= 119)) {
-        throw new RangeError("Invalid control change number.");
-      }
+      if (!(number >= 0 && number <= 119)) throw new RangeError("Invalid control change number.");
     }
 
     for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
@@ -1742,7 +1740,7 @@ class InputChannel extends e {
       }
     }
 
-    return false;
+    return undefined;
   }
   /**
    * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
