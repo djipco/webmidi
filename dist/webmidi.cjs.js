@@ -1146,8 +1146,8 @@ class InputChannel extends e {
       console.log("bbb", data1, data2);
       event.note = new Note(data1, {
         rawAttack: 0,
-        rawRelease: data2,
-        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
+        rawRelease: data2 // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+
       });
       console.log("b22", event.note);
       event.value = utils.from7Bit(data2);
