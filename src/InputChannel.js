@@ -103,7 +103,6 @@ export class InputChannel extends EventEmitter {
    * @private
    */
   _parseEvent(e) {
-
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
@@ -150,7 +149,7 @@ export class InputChannel extends EventEmitter {
    */
   _parseEventForStandardMessages(e) {
 
-    let {command, data1, data2} = Utilities.getStructuredMidiMessage(e.data);
+    let {command, data1, data2} = Utilities.buildStructuredMidiMessage(e.data);
 
     // Returned event
     let event = {
@@ -183,9 +182,12 @@ export class InputChannel extends EventEmitter {
        * 127).
        */
       event.type = "noteoff";
+
+      // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
       event.note = new Note(
         data1,
         {
+          rawAttack: 0,
           rawRelease: data2,
           octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
         }

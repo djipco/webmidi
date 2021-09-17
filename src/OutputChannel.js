@@ -789,6 +789,11 @@ export class OutputChannel extends EventEmitter {
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
    *
+   *  When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
+   *  not the case when using a note number number. In this case, we assume you know exactly which
+   *  MIDI note number should be sent out.
+   *
+   *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
