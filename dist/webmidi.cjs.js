@@ -1116,7 +1116,6 @@ class InputChannel extends e {
     };
 
     if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff || command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon && data2 === 0) {
-      console.log("bbb", e);
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
        *
@@ -1142,7 +1141,6 @@ class InputChannel extends e {
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
        * and 127).
        */
-
       event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
 
       event.note = new Note(data1, {
@@ -1150,6 +1148,7 @@ class InputChannel extends e {
         rawRelease: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
+      console.log("bbb", e.data);
       event.value = utils.from7Bit(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
@@ -1369,7 +1368,7 @@ class InputChannel extends e {
       event.type = "unknownmessage";
     }
 
-    console.log("ccc", event.name);
+    console.log("ccc", event.type);
     this.emit(event.type, event);
   }
   /**
