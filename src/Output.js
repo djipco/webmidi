@@ -31,20 +31,18 @@ export class Output extends EventEmitter {
 
     super();
 
-    if (WebMidi.validation) {
-
-      if (!midiOutput || midiOutput.type !== "output") {
-        throw new TypeError("The supplied MIDIOutput is invalid.");
-      }
-
-    }
-
     /**
      * A reference to the `MIDIOutput` object
      * @type {MIDIOutput}
      * @private
      */
     this._midiOutput = midiOutput;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
 
     /**
      * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
@@ -2291,6 +2289,31 @@ export class Output extends EventEmitter {
    */
   get type() {
     return this._midiOutput.type;
+  }
+
+  /**
+   * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+   * is placed on the 4th octave (C4).
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
   }
 
 }
