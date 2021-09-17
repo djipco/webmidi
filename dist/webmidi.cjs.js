@@ -1142,13 +1142,11 @@ class InputChannel extends e {
        */
       event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
 
-      console.log("bbb", this.octaveOffset, this.input.octaveOffset, wm.octaveOffset);
       event.note = new Note(data1, {
         rawAttack: 0,
         rawRelease: data2 // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
 
       });
-      console.log("b22", event.note);
       event.value = utils.from7Bit(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
@@ -1368,7 +1366,6 @@ class InputChannel extends e {
       event.type = "unknownmessage";
     }
 
-    console.log("ccc", event.type);
     this.emit(event.type, event);
   }
   /**
@@ -1774,7 +1771,7 @@ class InputChannel extends e {
 
 
   get input() {
-    return this._octaveOffset;
+    return this._input;
   }
   /**
    * This channel's MIDI number (1-16)
