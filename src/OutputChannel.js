@@ -6,8 +6,8 @@ import {Utilities} from "./Utilities.js";
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `OutputChannel` objects can be found inside the output's [channels]{@link Output#channels}
- * property.
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [channels]{@link Output#channels} property.
  *
  * The `OutputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -19,7 +19,7 @@ import {Utilities} from "./Utilities.js";
  * others.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The channel number (1-16)
  *
  * @since 3.0.0
  */
@@ -30,16 +30,16 @@ export class OutputChannel extends EventEmitter {
     super();
 
     /**
-     * The {@link Output} this channel belongs to
      * @type {Output}
+     * @private
      */
-    this.output = output;
+    this._output = output;
 
     /**
-     * The channel's number (1-16)
      * @type {number}
+     * @private
      */
-    this.number = number;
+    this._number = number;
 
   }
 
@@ -51,8 +51,8 @@ export class OutputChannel extends EventEmitter {
    * @private
    */
   destroy() {
-    this.output = null;
-    this.number = null;
+    this._output = null;
+    this._number = null;
     this.removeListener();
   }
 
@@ -1663,6 +1663,24 @@ export class OutputChannel extends EventEmitter {
     } else {
       return this.sendChannelMode("polymodeon", 0, options);
     }
+  }
+
+  /**
+   * The parent {@link Output} this channel belongs to
+   * @type {Output}
+   * @since 3.0
+   */
+  get output() {
+    return this._output;
+  }
+
+  /**
+   * This channel's MIDI number (1-16)
+   * @type {number}
+   * @since 3.0
+   */
+  get number() {
+    return this._number;
   }
 
 }
