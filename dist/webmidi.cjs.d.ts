@@ -2816,13 +2816,14 @@ declare class InputChannel extends e {
      * In this case, the method returns `false`.
      *
      * @param {number} number An integer representing the control change message
-     * @returns {string|false} The matching control change name or `false` if not match was found
+     * @returns {string|undefined} The matching control change name or `undefined` if not match was
+     * found.
      *
      * @throws {RangeError} Invalid control change number.
      *
      * @since 2.0.0
      */
-    getCcNameByNumber(number: number): string | false;
+    getCcNameByNumber(number: number): string | undefined;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
