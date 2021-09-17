@@ -863,14 +863,15 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-   * number 60) is placed on the 4th octave (C4).
+   * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+   * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+   * octave (C4).
    *
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
    *
    * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * (if any).
+   * and with the value defined on the parent `Input` object.
    *
    * @type {number}
    *
