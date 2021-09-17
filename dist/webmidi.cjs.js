@@ -2959,14 +2959,16 @@ class OutputChannel extends e {
           throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
         }
       }
-    } // Normalize to integer
+    } // Normalize pressure to integer
 
 
-    if (!options.rawValue) pressure = utils.to7Bit(pressure);
-    console.log(pressure);
-    options.octaveOffset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    utils.getValidNoteArray(target, options).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
+    if (!options.rawValue) pressure = utils.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
+
+    const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    if (!Array.isArray(target)) target = [];
+    target = target.map(item => utils.guessNoteNumber(item, offset));
+    target.forEach(n => {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n, pressure], {
         time: utils.convertToTimestamp(options.time)
       });
     });
