@@ -110,17 +110,18 @@ export class OutputChannel extends EventEmitter {
    * aftertouch. For a channel-wide aftertouch message, use
    * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
    *
-   * The note can be a single value or an array of the following valid values:
+   * The key can be a single value or an array of the following valid values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
    *
-   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
-   * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-   * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
-   * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-   * number 0) and the highest note is G9 (MIDI note number 127).
+   * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
+   * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+   * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
+   *
+   * When using a note identifier, the octave value will be offset by the combined value of
+   * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
+   * are not `0`). When using a key number, octaveOffset values are ignored.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -141,7 +142,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @throws RangeError Invalid key aftertouch value.
    */
-  setKeyAftertouch(note, pressure, options = {}) {
+  setKeyAftertouch(target, pressure, options = {}) {
 
     if (WebMidi.validation) {
 
@@ -164,11 +165,11 @@ export class OutputChannel extends EventEmitter {
     }
 
     // Normalize to integer
-    if (!options.rawValue) pressure = Math.round(pressure * 127);
+    if (!options.rawValue) pressure = Utilities.to7Bit(pressure);
 
-    options.octaveOffset = WebMidi.octaveOffset;
+    options.octaveOffset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    Utilities.getValidNoteArray(note, options).forEach(n => {
+    Utilities.getValidNoteArray(target, options).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
