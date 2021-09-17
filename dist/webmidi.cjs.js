@@ -876,6 +876,9 @@ class Utilities {
    * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
    * 127.
    *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a note identifier.**
+   *
    * @returns {Note[]}
    *
    * @throws TypeError An element could not be parsed as a note.
@@ -2280,26 +2283,7 @@ class Input extends e {
       await this._midiInput.open();
     } catch (err) {
       return Promise.reject(err);
-    } // /**
-    //  * Event emitted after the channel was successfully opened. Note that you can also listen to the
-    //  * `inputopened` event on the `WebMidi` object.
-    //  *
-    //  * @event Input#opened
-    //  *
-    //  * @type {Object}
-    //  *
-    //  * @property {string} type `"opened"`
-    //  *
-    //  * @property {InputChannel} target The object that triggered the event (the `Input` object).
-    //  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-    //  * milliseconds since the navigation start of the document).
-    //  */
-    // this.emit("opened", {
-    //   target: this,
-    //   timestamp: WebMidi.time,
-    //   type: "opened"
-    // });
-
+    }
 
     return Promise.resolve(this);
   }
@@ -2320,26 +2304,7 @@ class Input extends e {
       await this._midiInput.close();
     } catch (err) {
       return Promise.reject(err);
-    } // /**
-    //  * Event emitted after the channel was successfully closed. Note that you can also listen to the
-    //  * `inputclosed` event on the `WebMidi` object.
-    //  *
-    //  * @event Input#closed
-    //  *
-    //  * @type {Object}
-    //  *
-    //  * @property {string} type `"closed"`
-    //  *
-    //  * @property {InputChannel} target The object that triggered the event (the `Input` object).
-    //  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-    //  * milliseconds since the navigation start of the document).
-    //  */
-    // this.emit("closed", {
-    //   target: this,
-    //   timestamp: WebMidi.time,
-    //   type: "closed"
-    // });
-
+    }
 
     return Promise.resolve(this);
   }
@@ -2837,8 +2802,8 @@ class Input extends e {
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `OutputChannel` objects can be found inside the output's [channels]{@link Output#channels}
- * property.
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [channels]{@link Output#channels} property.
  *
  * The `OutputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -2850,7 +2815,7 @@ class Input extends e {
  * others.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The channel number (1-16)
  *
  * @since 3.0.0
  */
@@ -2859,17 +2824,23 @@ class OutputChannel extends e {
   constructor(output, number) {
     super();
     /**
-     * The {@link Output} this channel belongs to
      * @type {Output}
+     * @private
      */
 
-    this.output = output;
+    this._output = output;
     /**
-     * The channel's number (1-16)
      * @type {number}
+     * @private
      */
 
-    this.number = number;
+    this._number = number;
+    /**
+     * @type {number}
+     * @private
+     */
+
+    this._octaveOffset = 0;
   }
   /**
    * Unlinks the MIDI subsystem, removes all listeners attached to the channel and nulls the channel
@@ -2881,8 +2852,9 @@ class OutputChannel extends e {
 
 
   destroy() {
-    this.output = null;
-    this.number = null;
+    this._output = null;
+    this._number = null;
+    this._octaveOffset = 0;
     this.removeListener();
   }
   /**
@@ -2935,17 +2907,18 @@ class OutputChannel extends e {
    * aftertouch. For a channel-wide aftertouch message, use
    * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
    *
-   * The note can be a single value or an array of the following valid values:
+   * The key can be a single value or an array of the following valid values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
    *
-   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
-   * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-   * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
-   * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-   * number 0) and the highest note is G9 (MIDI note number 127).
+   * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
+   * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+   * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
+   *
+   * When using a note identifier, the octave value will be offset by the combined value of
+   * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
+   * are not `0`). When using a key number, octaveOffset values are ignored.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -2968,7 +2941,7 @@ class OutputChannel extends e {
    */
 
 
-  setKeyAftertouch(note, pressure, options = {}) {
+  setKeyAftertouch(target, pressure, options = {}) {
     if (wm.validation) {
       // Legacy support
       if (options.useRawValue) options.rawValue = options.useRawValue;
@@ -2989,9 +2962,10 @@ class OutputChannel extends e {
     } // Normalize to integer
 
 
-    if (!options.rawValue) pressure = Math.round(pressure * 127);
-    options.octaveOffset = wm.octaveOffset;
-    utils.getValidNoteArray(note, options).forEach(n => {
+    if (!options.rawValue) pressure = utils.to7Bit(pressure);
+    console.log(pressure);
+    options.octaveOffset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    utils.getValidNoteArray(target, options).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.number, pressure], {
         time: utils.convertToTimestamp(options.time)
       });
@@ -4381,6 +4355,52 @@ class OutputChannel extends e {
       return this.sendChannelMode("polymodeon", 0, options);
     }
   }
+  /**
+   * An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+   * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+   * octave (C4).
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * and with the value defined on the parent `Output` object.
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+
+
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+
+  set octaveOffset(value) {
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+  }
+  /**
+   * The parent {@link Output} this channel belongs to
+   * @type {Output}
+   * @since 3.0
+   */
+
+
+  get output() {
+    return this._output;
+  }
+  /**
+   * This channel's MIDI number (1-16)
+   * @type {number}
+   * @since 3.0
+   */
+
+
+  get number() {
+    return this._number;
+  }
 
 }
 
@@ -4410,20 +4430,19 @@ class OutputChannel extends e {
 class Output extends e {
   constructor(midiOutput) {
     super();
-
-    if (wm.validation) {
-      if (!midiOutput || midiOutput.type !== "output") {
-        throw new TypeError("The supplied MIDIOutput is invalid.");
-      }
-    }
     /**
      * A reference to the `MIDIOutput` object
      * @type {MIDIOutput}
      * @private
      */
 
-
     this._midiOutput = midiOutput;
+    /**
+     * @type {number}
+     * @private
+     */
+
+    this._octaveOffset = 0;
     /**
      * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
      * channels are numbered 1 through 16.
@@ -6475,6 +6494,31 @@ class Output extends e {
 
   get type() {
     return this._midiOutput.type;
+  }
+  /**
+   * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+   * is placed on the 4th octave (C4).
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+
+
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+
+  set octaveOffset(value) {
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
   }
 
 }
