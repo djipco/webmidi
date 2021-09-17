@@ -2724,9 +2724,8 @@ declare class e {
     get eventCount(): number;
 }
 /**
- * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
- * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
- * directly.
+ * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -2742,7 +2741,7 @@ declare class e {
  * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
  * details.
  *
- * @param {Input} input The `Input` this channel belongs to
+ * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
@@ -2768,34 +2767,32 @@ declare class e {
 declare class InputChannel extends e {
     constructor(input: any, number: any);
     /**
-     * The {@link Input} this channel belongs to
      * @type {Input}
+     * @private
      */
-    input: Input;
+    private _input;
     /**
-     * This channel's number (1-16)
      * @type {number}
+     * @private
      */
-    number: number;
+    private _number;
     /**
      * @type {number}
      * @private
      */
     private _octaveOffset;
     /**
-     * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+     * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
      * input.
-     *
-     * @returns {Promise<void>}
      */
-    destroy(): Promise<void>;
+    destroy(): void;
     /**
-     * @param e Event
+     * @param e MIDIMessageEvent
      * @private
      */
-    private _parseEvent;
+    private _processMidiMessageEvent;
     /**
-     * Parses channel events for standard (non-NRPN) events.
+     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
      * @param e Event
      * @private
      */
@@ -2842,6 +2839,18 @@ declare class InputChannel extends e {
      * @since 3.0
      */
     get octaveOffset(): number;
+    /**
+     * The {@link Input} this channel belongs to
+     * @type {Input}
+     * @since 3.0
+     */
+    get input(): Input;
+    /**
+     * This channel's MIDI number (1-16)
+     * @type {number}
+     * @since 3.0
+     */
+    get number(): number;
 }
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
