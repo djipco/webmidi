@@ -206,7 +206,7 @@ export class InputChannel extends EventEmitter {
         {
           rawAttack: 0,
           rawRelease: data2,
-          // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
         }
       );
 
@@ -282,11 +282,25 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
+       * @property {string} identifier The note identifier of the key to apply the aftertouch to.
+       * This includes any octave offset applied at the channel, input or global level.
+       * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
+       * includes any octave offset applied at the channel, input or global level.
+       * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
+       * excludes any octave offset defined at the channel, input or global level.
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
       event.type = "keyaftertouch";
+
+      event.identifier = Utilities.getNoteIdentifierByNumber(
+        data1, WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
+      );
+
+      event.key = Utilities.getNoteNumberByIdentifier(event.identifier);
+      event.rawKey = data1;
+
       event.value = Utilities.from7Bit(data2);
       event.rawValue = data2;
 
@@ -819,7 +833,8 @@ export class InputChannel extends EventEmitter {
    * In this case, the method returns `false`.
    *
    * @param {number} number An integer representing the control change message
-   * @returns {string|false} The matching control change name or `false` if not match was found
+   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * found.
    *
    * @throws {RangeError} Invalid control change number.
    *
@@ -829,9 +844,7 @@ export class InputChannel extends EventEmitter {
 
     if (WebMidi.validation) {
       number = parseInt(number);
-      if ( !(number >= 0 && number <= 119) ) {
-        throw new RangeError("Invalid control change number.");
-      }
+      if ( !(number >= 0 && number <= 119) ) throw new RangeError("Invalid control change number.");
     }
 
     for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
@@ -845,7 +858,7 @@ export class InputChannel extends EventEmitter {
 
     }
 
-    return false;
+    return undefined;
 
   }
 
@@ -883,7 +896,7 @@ export class InputChannel extends EventEmitter {
    * @since 3.0
    */
   get input() {
-    return this._octaveOffset;
+    return this._input;
   }
 
   /**

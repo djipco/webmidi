@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const midi = require("midi");
-const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities, Note} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
@@ -97,8 +97,8 @@ describe("InputChannel Object", function() {
       expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
       expect(e.note.rawRelease).to.equal(velocity);
       expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
-      expect(e.release).to.equal(Utilities.from7Bit(velocity));
-      expect(e.rawRelease).to.equal(velocity);
+      expect(e.value).to.equal(Utilities.from7Bit(velocity));
+      expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
       index++;
@@ -117,7 +117,8 @@ describe("InputChannel Object", function() {
     WebMidi.octaveOffset = -1;
     WEBMIDI_INPUT.octaveOffset = -1;
     channel.octaveOffset = -1;
-    const result = 4 + WebMidi.octaveOffset + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
+    const offset = WebMidi.octaveOffset + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
+    const result = 4 + offset;
 
     // Act
     channel.addListener(event, assert);
@@ -153,7 +154,7 @@ describe("InputChannel Object", function() {
 
       expect(e.type).to.equal(event);
       expect(Utilities.getNoteNumberByIdentifier(e.note.identifier)).to.equal(index);
-      expect(e.rawAttack).to.equal(velocity);
+      expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
       index++;
@@ -169,9 +170,10 @@ describe("InputChannel Object", function() {
     const channel = WEBMIDI_INPUT.channels[1];
     const event = "noteon";
     const message = [0x90, 60, 64];
+    WebMidi.octaveOffset = -1;
     WEBMIDI_INPUT.octaveOffset = -1;
     channel.octaveOffset = -1;
-    const result = 4 + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
+    const result = 4 + WebMidi.octaveOffset + WEBMIDI_INPUT.octaveOffset + channel.octaveOffset;
 
     // Act
     channel.addListener(event, assert);
@@ -180,6 +182,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.note.octave).to.equal(result);
+      WebMidi.octaveOffset = 0;
       done();
     }
 
@@ -204,7 +207,7 @@ describe("InputChannel Object", function() {
     function assert(e) {
 
       expect(e.type).to.equal(event);
-      expect(Utilities.getNoteNumberByIdentifier(e.note.identifier)).to.equal(index);
+      expect(e.rawKey).to.equal(index);
       expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
@@ -221,8 +224,11 @@ describe("InputChannel Object", function() {
     const channel = WEBMIDI_INPUT.channels[1];
     const event = "keyaftertouch";
     const message = [0xA0, 60, 64];
-    channel.octaveOffset = -1;
-    const result = 4 + channel.octaveOffset;
+    WebMidi.octaveOffset = 1;
+    channel.input.octaveOffset = 1;
+    channel.octaveOffset = 1;
+    const offset = WebMidi.octaveOffset + channel.octaveOffset + channel.input.octaveOffset;
+    const result = 4 + offset;
 
     // Act
     channel.addListener(event, assert);
@@ -231,12 +237,13 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.note.octave).to.equal(result);
+      WebMidi.octaveOffset = 0;
       done();
     }
 
   });
 
-  it("should dispatch event for inbound 'controlchange' MIDI message", function (done) {
+  it.only("should dispatch event for inbound 'controlchange' MIDI message", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -253,6 +260,8 @@ describe("InputChannel Object", function() {
 
     // Assert
     function assert(e) {
+
+      console.log(e.controller);
 
       expect(e.type).to.equal(event);
       expect(e.controller.number).to.equal(index);
