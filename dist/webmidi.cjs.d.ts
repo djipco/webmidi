@@ -312,6 +312,9 @@ declare class Utilities {
      * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
      * 127.
      *
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a note identifier.**
+     *
      * @returns {Note[]}
      *
      * @throws TypeError An element could not be parsed as a note.
@@ -324,6 +327,7 @@ declare class Utilities {
         release?: number;
         rawAttack?: number;
         rawRelease?: number;
+        octaveOffset?: number;
     }): Note[];
     /**
      * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
@@ -1307,6 +1311,11 @@ declare class Output extends e {
      * @private
      */
     private _midiOutput;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     /**
      * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
      * channels are numbered 1 through 16.
@@ -2705,6 +2714,19 @@ declare class Output extends e {
      * @readonly
      */
     get type(): string;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+     * is placed on the 4th octave (C4).
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
 }
 declare class e {
     static get ANY_EVENT(): symbol;
@@ -2859,8 +2881,8 @@ declare class InputChannel extends e {
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `OutputChannel` objects can be found inside the output's [channels]{@link Output#channels}
- * property.
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [channels]{@link Output#channels} property.
  *
  * The `OutputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -2872,22 +2894,27 @@ declare class InputChannel extends e {
  * others.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The channel number (1-16)
  *
  * @since 3.0.0
  */
 declare class OutputChannel extends e {
     constructor(output: any, number: any);
     /**
-     * The {@link Output} this channel belongs to
      * @type {Output}
+     * @private
      */
-    output: Output;
+    private _output;
     /**
-     * The channel's number (1-16)
      * @type {number}
+     * @private
      */
-    number: number;
+    private _number;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     /**
      * Unlinks the MIDI subsystem, removes all listeners attached to the channel and nulls the channel
      * number. This method is mostly for internal use. It has not been prefixed with an underscore
@@ -2941,17 +2968,18 @@ declare class OutputChannel extends e {
      * aftertouch. For a channel-wide aftertouch message, use
      * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
      *
-     * The note can be a single value or an array of the following valid values:
+     * The key can be a single value or an array of the following valid values:
      *
      *  - A MIDI note number (integer between `0` and `127`)
-     *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-     *  - A {@link Note} object
+     *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
      *
-     * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
-     * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-     * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
-     * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-     * number 0) and the highest note is G9 (MIDI note number 127).
+     * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
+     * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+     * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
+     *
+     * When using a note identifier, the octave value will be offset by the combined value of
+     * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
+     * are not `0`). When using a key number, octaveOffset values are ignored.
      *
      * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
      * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -2972,7 +3000,7 @@ declare class OutputChannel extends e {
      *
      * @throws RangeError Invalid key aftertouch value.
      */
-    setKeyAftertouch(note: number | string | Note | number[] | string[] | Note[], pressure?: number, options?: {
+    setKeyAftertouch(target: number | string | number[] | string[], pressure?: number, options?: {
         useRawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -3897,6 +3925,32 @@ declare class OutputChannel extends e {
     setPolyphonicMode(mode?: string, options?: {
         time?: number | string;
     }): OutputChannel;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * and with the value defined on the parent `Output` object.
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
+    /**
+     * The parent {@link Output} this channel belongs to
+     * @type {Output}
+     * @since 3.0
+     */
+    get output(): Output;
+    /**
+     * This channel's MIDI number (1-16)
+     * @type {number}
+     * @since 3.0
+     */
+    get number(): number;
 }
 declare class t {
     constructor(t: any, n: any, r: any, i?: {}, ...args: any[]);
