@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 16th 2021.
+ * This build was generated on September 17th 2021.
  *
  *
  *
@@ -954,9 +954,8 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
- * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
- * directly.
+ * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -972,7 +971,7 @@ utils.constructor = null;
  * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
  * details.
  *
- * @param {Input} input The `Input` this channel belongs to
+ * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
@@ -1000,17 +999,17 @@ class InputChannel extends e {
   constructor(input, number) {
     super();
     /**
-     * The {@link Input} this channel belongs to
      * @type {Input}
+     * @private
      */
 
-    this.input = input;
+    this._input = input;
     /**
-     * This channel's number (1-16)
      * @type {number}
+     * @private
      */
 
-    this.number = number;
+    this._number = number;
     /**
      * @type {number}
      * @private
@@ -1029,28 +1028,26 @@ class InputChannel extends e {
     // this.nrpnEventsEnabled = true;
   }
   /**
-   * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+   * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
    * input.
-   *
-   * @returns {Promise<void>}
    */
 
 
   destroy() {
-    this.input = null;
-    this.number = null;
+    this._input = null;
+    this._number = null;
     this._octaveOffset = 0; // this._nrpnBuffer = null;
     // this._nrpnEventsEnabled = false;
 
     this.removeListener();
   }
   /**
-   * @param e Event
+   * @param e MIDIMessageEvent
    * @private
    */
 
 
-  _parseEvent(e) {
+  _processMidiMessageEvent(e) {
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
@@ -1058,35 +1055,44 @@ class InputChannel extends e {
      * Event emitted when a MIDI message of any kind is received by the `InputChannel`.
      *
      * @event InputChannel#midimessage
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     *
+     * @property {string} type `"midimessage"`
+     *
+     * @property {InputChannel} channel The `InputChannel` object that triggered the event.
      * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
-     * @property {number} event.statusByte The message's status byte.
      * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
      * integers. This will be null for `sysex` messages.
+     * @property {InputChannel} input The `Input` object where through which the message was
+     * received.
+     * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+     * @property {number} event.statusByte The message's status byte.
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"midimessage"`
      */
 
     let midiMessageEvent = {
-      target: this,
+      channel: this,
       data: Array.from(e.data),
+      dataBytes: dataBytes,
+      input: this.input,
       rawData: e.data,
       statusByte: e.data[0],
-      dataBytes: dataBytes,
+      target: this,
       timestamp: e.timeStamp,
       type: "midimessage"
     };
-    this.emit("midimessage", midiMessageEvent); // Parse the event to see if its part of an NRPN sequence
-    // this._parseEventForNrpnMessage(e);
-    // Parse the inbound event for regular messages
+    this.emit("midimessage", midiMessageEvent); // Parse the inbound event for regular messages
 
-    this._parseEventForStandardMessages(e);
+    this._parseEventForStandardMessages(e); // Parse the event to see if its part of an NRPN sequence
+    // this._parseEventForNrpnMessage(e);
+
   }
   /**
-   * Parses channel events for standard (non-NRPN) events.
+   * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
    * @param e Event
    * @private
    */
@@ -1100,29 +1106,39 @@ class InputChannel extends e {
     } = utils.buildStructuredMidiMessage(e.data); // Returned event
 
     let event = {
-      target: this,
+      channel: this,
       data: Array.from(e.data),
+      input: this.input,
       rawData: e.data,
+      target: this,
       timestamp: e.timeStamp
     };
 
     if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff || command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon && data2 === 0) {
       /**
-       * Event emitted when a **note off** MIDI message has been received.
+       * Event emitted when a **note off** MIDI message has been received on the channel.
        *
        * @event InputChannel#noteoff
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"noteoff"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
        * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"noteoff"`
-       * @property {Object} note A {@link Note} object containing information such as note number,
-       * note name and octave.
-       * @property {number} release The release velocity expressed as a float between 0 and 1.
-       * @property {number} rawRelease The release velocity expressed as an integer (between 0 and
-       * 127).
+       *
+       * @property {Object} note A {@link Note} object containing information such as note name,
+       * octave and release velocity.
+       *
+       * @property {number} value The release velocity amount expressed as a float between 0 and 1.
+       * @property {number} rawValue The release velocity amount expressed as an integer (between 0
+       * and 127).
        */
       event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
 
@@ -1131,69 +1147,99 @@ class InputChannel extends e {
         rawRelease: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.release = event.note.release;
-      event.rawRelease = event.note.rawRelease;
+      event.value = utils.from7Bit(data2);
+      event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
+      // be removed in future versions (@deprecated).
+
+      event.velocity = event.note.release;
+      event.rawVelocity = event.note.rawRelease;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
       /**
        * Event emitted when a **note on** MIDI message has been received.
        *
        * @event InputChannel#noteon
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"noteon"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"noteon"`
-       * @property {Object} note A {@link Note} object containing information such as note number,
-       * note name and octave.
-       * @property {number} attack The attack velocity expressed as a float between 0 and 1.
-       * @property {number} rawAttack The attack velocity expressed as an integer (between 0 and
-       * 127).
+       *
+       * @property {Object} note A {@link Note} object containing information such as note name,
+       * octave and attack velocity.
+       *
+       * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
+       * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
+       * and 127).
        */
       event.type = "noteon";
       event.note = new Note(data1, {
         rawAttack: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.attack = event.note.attack;
-      event.rawAttack = event.note.rawAttack;
+      event.value = utils.from7Bit(data2);
+      event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
+      // be removed in future versions (@deprecated).
+
+      event.velocity = event.note.attack;
+      event.rawVelocity = event.note.rawAttack;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
       /**
        * Event emitted when a **key-specific aftertouch** MIDI message has been received.
        *
        * @event InputChannel#keyaftertouch
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"keyaftertouch"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
        * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"keyaftertouch"`
-       * @property {Object} note A {@link Note} object containing information such as note number,
-       * note name and octave.
+       *
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
       event.type = "keyaftertouch";
+      event.value = utils.from7Bit(data2);
+      event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
+      // removed from future versions (@deprecated).
+
       event.note = new Note(data1, {
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.value = utils.from7Bit(data2);
-      event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
        * @event InputChannel#controlchange
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"controlchange"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"controlchange"`
+       *
        * @property {Object} controller
        * @property {Object} controller.number The number of the controller.
        * @property {Object} controller.name The usual name or function of the controller.
@@ -1212,13 +1258,20 @@ class InputChannel extends e {
        * Event emitted when a **channel mode** MIDI message has been received.
        *
        * @event InputChannel#channelmode
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"channelmode"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"channelmode"`
+       *
        * @property {Object} controller
        * @property {Object} controller.number The number of the controller.
        * @property {Object} controller.name The usual name or function of the controller.
@@ -1230,7 +1283,8 @@ class InputChannel extends e {
         number: data1,
         name: this.getChannelModeByNumber(data1)
       };
-      event.value = data2; // Also dispatch specific channel mode events
+      event.value = utils.from7Bit(data2);
+      event.rawValue = data2; // Also dispatch specific channel mode events
 
       this._parseChannelModeMessage(e);
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange) {
@@ -1238,13 +1292,20 @@ class InputChannel extends e {
        * Event emitted when a **program change** MIDI message has been received.
        *
        * @event InputChannel#programchange
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"programchange"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"programchange"`
+       *
        * @property {number} value The value expressed as an integer between 1 and 128.
        * @property {number} rawValue The value expressed as an integer between 0 and 127.
        */
@@ -1256,13 +1317,20 @@ class InputChannel extends e {
        * Event emitted when a control change MIDI message has been received.
        *
        * @event InputChannel#channelaftertouch
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"channelaftertouch"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"channelaftertouch"`
+       *
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1274,13 +1342,20 @@ class InputChannel extends e {
        * Event emitted when a pitch bend MIDI message has been received.
        *
        * @event InputChannel#pitchbend
+       *
        * @type {Object}
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {string} type `"pitchbend"`
+       *
+       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       * @property {InputChannel} input The `Input` object where through which the message was
+       * received.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"pitchbend"`
+       *
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
        */
@@ -1687,6 +1762,26 @@ class InputChannel extends e {
     }
 
     this._octaveOffset = value;
+  }
+  /**
+   * The {@link Input} this channel belongs to
+   * @type {Input}
+   * @since 3.0
+   */
+
+
+  get input() {
+    return this._octaveOffset;
+  }
+  /**
+   * This channel's MIDI number (1-16)
+   * @type {number}
+   * @since 3.0
+   */
+
+
+  get number() {
+    return this._number;
   } // /**
   //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
   //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
@@ -1955,7 +2050,7 @@ class Input extends e {
       // channel-specific message
       let channel = (e.data[0] & 0xf) + 1;
 
-      this.channels[channel]._parseEvent(e);
+      this.channels[channel]._processMidiMessageEvent(e);
     } else if (e.data[0] <= 255) {
       // system message
       this._parseEvent(e);
