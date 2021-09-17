@@ -1099,7 +1099,6 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
-    console.log("aaa", e);
     let {
       command,
       data1,
@@ -1143,7 +1142,7 @@ class InputChannel extends e {
        */
       event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
 
-      console.log("bbb", data1, data2);
+      console.log("bbb", this.octaveOffset, this.input.octaveOffset, wm.octaveOffset);
       event.note = new Note(data1, {
         rawAttack: 0,
         rawRelease: data2 // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
