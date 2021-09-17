@@ -1149,6 +1149,7 @@ class InputChannel extends e {
         rawRelease: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
+      console.log("b22", event.note);
       event.value = utils.from7Bit(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
