@@ -59,8 +59,8 @@ class WebMidi extends EventEmitter {
      */
     this.defaults = {
       note: {
-        attack: 64,
-        release: 64,
+        attack: Utilities.from7Bit(64),
+        release: Utilities.from7Bit(64),
         duration: Infinity
       }
     };
@@ -503,15 +503,16 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByName() instead.
+   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
       console.warn(
-        "The getNoteNumberByName() method has been moved to the Utilities class in version 3."
+        "The noteNameToNumber() method is deprecated. Use Utilities.getNoteNumberByIdentifier() " +
+        "instead."
       );
     }
-    return Utilities.getNoteNumberByName(name, this.octaveOffset);
+    return Utilities.getNoteNumberByIdentifier(name, this.octaveOffset);
   }
 
   /**

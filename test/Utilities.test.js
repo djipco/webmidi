@@ -4,15 +4,15 @@ const {Utilities, WebMidi, Note} = require("../dist/webmidi.cjs.js");
 // VERIFIED
 describe("Utilities Object", function() {
 
-  describe("getNoteNumberByName()", function() {
+  describe("getNoteNumberByIdentifier()", function() {
 
     it("should return the correct MIDI note number", function() {
 
       // Arrange
       const pairs = [
-        {name: "C-1", number: 0},
-        {name: "C4", number: 60},
-        {name: "G9", number: 127}
+        {identifier: "C-1", number: 0},
+        {identifier: "C4", number: 60},
+        {identifier: "G9", number: 127}
       ];
 
       // Act
@@ -20,12 +20,12 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(pair) {
-        expect(Utilities.getNoteNumberByName(pair.name)).to.equal(pair.number);
+        expect(Utilities.getNoteNumberByIdentifier(pair.identifier)).to.equal(pair.number);
       }
 
     });
 
-    it("should throw error if invalid name is provided", function() {
+    it("should throw error if invalid identifier is provided", function() {
 
       // Arrange
       const values = [
@@ -52,7 +52,7 @@ describe("Utilities Object", function() {
 
       function assert(value) {
         expect(function() {
-          Utilities.getNoteNumberByName(value);
+          Utilities.getNoteNumberByIdentifier(value);
         }).to.throw();
       }
 
@@ -62,10 +62,10 @@ describe("Utilities Object", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", octaveOffset: 1, number: 12},
-        {name: "C4", octaveOffset: -1, number: 48},
-        {name: "C4", octaveOffset: 1, number: 72},
-        {name: "G9", octaveOffset: -1, number: 115},
+        {identifier: "C-1", octaveOffset: 1, number: 12},
+        {identifier: "C4", octaveOffset: -1, number: 48},
+        {identifier: "C4", octaveOffset: 1, number: 72},
+        {identifier: "G9", octaveOffset: -1, number: 115},
       ];
 
       // Act
@@ -74,7 +74,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.getNoteNumberByName(item.name, item.octaveOffset)
+          Utilities.getNoteNumberByIdentifier(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 
@@ -99,7 +99,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteNumberByName("C-1", item);
+          Utilities.getNoteNumberByIdentifier("C-1", item);
         }).to.throw(RangeError);
       }
 
@@ -113,12 +113,12 @@ describe("Utilities Object", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", letter: "C", accidental: undefined, octave: -1},
-        {name: "D##0", letter: "D", accidental: "##", octave: 0},
-        {name: "E#1", letter: "E", accidental: "#", octave: 1},
-        {name: "Fb8", letter: "F", accidental: "b", octave: 8},
-        {name: "Fbb9", letter: "F", accidental: "bb", octave: 9},
-        {name: "G9", letter: "G", accidental: undefined, octave: 9},
+        {identifier: "C-1", name: "C", accidental: undefined, octave: -1},
+        {identifier: "D##0", name: "D", accidental: "##", octave: 0},
+        {identifier: "E#1", name: "E", accidental: "#", octave: 1},
+        {identifier: "Fb8", name: "F", accidental: "b", octave: 8},
+        {identifier: "Fbb9", name: "F", accidental: "bb", octave: 9},
+        {identifier: "G9", name: "G", accidental: undefined, octave: 9},
       ];
 
       // Act
@@ -126,16 +126,16 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const fragments = Utilities.getNoteFragments(item.name);
+        const fragments = Utilities.getNoteFragments(item.identifier);
+        expect(fragments.identifier).to.equal(item.identifier);
         expect(fragments.name).to.equal(item.name);
-        expect(fragments.letter).to.equal(item.letter);
         expect(fragments.accidental).to.equal(item.accidental);
         expect(fragments.octave).to.equal(item.octave);
       }
 
     });
 
-    it("should should throw when passing invalid note name", function () {
+    it("should should throw when passing invalid note identifier", function () {
 
       // Arrange
       const items = [
@@ -157,7 +157,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteNumberByName(item);
+          Utilities.getNoteNumberByIdentifier(item);
         }).to.throw(TypeError);
       }
 
@@ -235,15 +235,15 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getNoteNameByNumber()", function() {
+  describe("getNoteIdentifierByNumber()", function() {
 
-    it("should return the correct note name", function() {
+    it("should return the correct note identifier", function() {
 
       // Arrange
       const items = [
-        {number: 0, name: "C-1"},
-        {number: 60, name: "C4"},
-        {number: 127, name: "G9"},
+        {number: 0, identifier: "C-1"},
+        {number: 60, identifier: "C4"},
+        {number: 127, identifier: "G9"},
       ];
 
       // Act
@@ -251,19 +251,19 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        expect(Utilities.getNoteNameByNumber(item.number)).to.equal(item.name);
+        expect(Utilities.getNoteIdentifierByNumber(item.number)).to.equal(item.identifier);
       }
 
     });
 
-    it("should return the correct name when using 'octaveOffset'", function() {
+    it("should return the correct identifier when using 'octaveOffset'", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", octaveOffset: 1, number: 12},
-        {name: "C4", octaveOffset: -1, number: 48},
-        {name: "C4", octaveOffset: 1, number: 72},
-        {name: "G9", octaveOffset: -1, number: 115},
+        {identifier: "C-1", octaveOffset: 1, number: 12},
+        {identifier: "C4", octaveOffset: -1, number: 48},
+        {identifier: "C4", octaveOffset: 1, number: 72},
+        {identifier: "G9", octaveOffset: -1, number: 115},
       ];
 
       // Act
@@ -272,7 +272,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.getNoteNumberByName(item.name, item.octaveOffset)
+          Utilities.getNoteNumberByIdentifier(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 
@@ -299,7 +299,7 @@ describe("Utilities Object", function() {
 
       function assert(value) {
         expect(function() {
-          Utilities.getNoteNameByNumber(value);
+          Utilities.getNoteIdentifierByNumber(value);
         }).to.throw();
       }
 
@@ -323,7 +323,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteNameByNumber(60, item);
+          Utilities.getNoteIdentifierByNumber(60, item);
         }).to.throw(RangeError);
       }
 
@@ -390,17 +390,17 @@ describe("Utilities Object", function() {
 
     });
 
-    it("should return the correct number for note names", function() {
+    it("should return the correct number for note identifiers", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", number: 0},
-        {name: "D#0", number: 15},
-        {name: "D##0", number: 16},
-        {name: "C4", number: 60},
-        {name: "Eb4", number: 63},
-        {name: "Ebb4", number: 62},
-        {name: "G9", number: 127},
+        {identifier: "C-1", number: 0},
+        {identifier: "D#0", number: 15},
+        {identifier: "D##0", number: 16},
+        {identifier: "C4", number: 60},
+        {identifier: "Eb4", number: 63},
+        {identifier: "Ebb4", number: 62},
+        {identifier: "G9", number: 127},
       ];
 
       // Act
@@ -409,23 +409,23 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.guessNoteNumber(item.name)
+          Utilities.guessNoteNumber(item.identifier)
         ).to.equal(item.number);
       }
 
     });
 
-    it("should strip whitespace for note names", function() {
+    it("should strip whitespace for note identifiers", function() {
 
       // Arrange
       const items = [
-        {name: " C-1 ", number: 0},
-        {name: "\nD#0", number: 15},
-        {name: "D##0\t", number: 16},
-        {name: "\rC4", number: 60},
-        {name: "\rEb4\r", number: 63},
-        {name: "\n\r\t Ebb4", number: 62},
-        {name: "G9\n\r\t ", number: 127},
+        {identifier: " C-1 ", number: 0},
+        {identifier: "\nD#0", number: 15},
+        {identifier: "D##0\t", number: 16},
+        {identifier: "\rC4", number: 60},
+        {identifier: "\rEb4\r", number: 63},
+        {identifier: "\n\r\t Ebb4", number: 62},
+        {identifier: "G9\n\r\t ", number: 127},
       ];
 
       // Act
@@ -434,23 +434,23 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.guessNoteNumber(item.name)
+          Utilities.guessNoteNumber(item.identifier)
         ).to.equal(item.number);
       }
 
     });
 
-    it("should return the correct number for note names when using octaveOffset", function() {
+    it("should return the correct number for note identifiers when using octaveOffset", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", number: 0, offset: 0},
-        {name: "C-1", number: 12, offset: 1},
-        {name: "C4", number: 60, offset: 0},
-        {name: "C4", number: 48, offset: -1},
-        {name: "C4", number: 72, offset: 1},
-        {name: "G9", number: 127, offset: 0},
-        {name: "G9", number: 115, offset: -1},
+        {identifier: "C-1", number: 0, offset: 0},
+        {identifier: "C-1", number: 12, offset: 1},
+        {identifier: "C4", number: 60, offset: 0},
+        {identifier: "C4", number: 48, offset: -1},
+        {identifier: "C4", number: 72, offset: 1},
+        {identifier: "G9", number: 127, offset: 0},
+        {identifier: "G9", number: 115, offset: -1},
       ];
 
       // Act
@@ -459,7 +459,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.guessNoteNumber(item.name, item.offset)
+          Utilities.guessNoteNumber(item.identifier, item.offset)
         ).to.equal(item.number);
       }
 
@@ -492,16 +492,16 @@ describe("Utilities Object", function() {
 
     });
 
-    it("should return false for note names when using out-of-bounds octaveOffset", function() {
+    it("should return false for identifiers when using out-of-bounds octaveOffset", function() {
 
       // Arrange
       const items = [
-        {name: "C-1", offset: -10},
-        {name: "C-1", offset: -1},
-        {name: "G9", offset: 1},
-        {name: "G9", offset: 10},
-        {name: "C4", offset: 100},
-        {name: "C4", offset: -100}
+        {identifier: "C-1", offset: -10},
+        {identifier: "C-1", offset: -1},
+        {identifier: "G9", offset: 1},
+        {identifier: "G9", offset: 10},
+        {identifier: "C4", offset: 100},
+        {identifier: "C4", offset: -100}
       ];
 
       // Act
@@ -510,7 +510,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.guessNoteNumber(item.name, item.offset)
+          Utilities.guessNoteNumber(item.identifier, item.offset)
         ).to.be.false;
       }
 
@@ -556,45 +556,45 @@ describe("Utilities Object", function() {
     it("should return the same note if a note is passed in", function () {
 
       // Arrange
-      const note = new Note("C4", {attack: 123, release: 45, duration: 56});
+      const note = new Note("C4", {attack: 0.12, release: 0.34, duration: 56});
 
       // Act
       const result = Utilities.getNoteObject(note);
 
       // Assert
       expect(result).to.equal(note);
-      expect(result.name).to.equal(note.name);
+      expect(result.identifier).to.equal(note.identifier);
       expect(result.attack).to.equal(note.attack);
       expect(result.release).to.equal(note.release);
       expect(result.duration).to.equal(note.duration);
 
     });
 
-    it("should return the right note when passing name", function () {
+    it("should return the right note when passing identifier", function () {
 
       // Arrange
-      const name = "C4";
-      const options = {attack: 123, release: 45, duration: 56};
+      const identifier = "C4";
+      const options = {attack: 0.12, release: 0.34, duration: 56};
 
       // Act
-      const result = Utilities.getNoteObject(name, options);
+      const result = Utilities.getNoteObject(identifier, options);
 
       // Assert
-      expect(result.name).to.equal(name);
+      expect(result.identifier).to.equal(identifier);
       expect(result.attack).to.equal(options.attack);
       expect(result.release).to.equal(options.release);
       expect(result.duration).to.equal(options.duration);
 
     });
 
-    it("should return the right note when passing name and octaveOffset", function () {
+    it("should return the right note when passing identifier and octaveOffset", function () {
 
       // Arrange
       const items = [
-        {target: "C0", offset: 1, name: "C-1"},
-        {target: "C2", offset: -2, name: "C4"},
-        {target: "C6", offset: 2, name: "C4"},
-        {target: "G8", offset: -1, name: "G9"}
+        {target: "C0", offset: 1, identifier: "C-1"},
+        {target: "C2", offset: -2, identifier: "C4"},
+        {target: "C6", offset: 2, identifier: "C4"},
+        {target: "G8", offset: -1, identifier: "G9"}
       ];
 
       // Act
@@ -602,8 +602,8 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const n = Utilities.getNoteObject(item.name, {octaveOffset: item.offset});
-        expect(n.name).to.equal(item.target);
+        const n = Utilities.getNoteObject(item.identifier, {octaveOffset: item.offset});
+        expect(n.identifier).to.equal(item.target);
       }
 
     });
@@ -612,14 +612,14 @@ describe("Utilities Object", function() {
 
       // Arrange
       const number = 60;
-      const name = "C4";
-      const options = {attack: 123, release: 45, duration: 56};
+      const identifier = "C4";
+      const options = {attack: 0.98, release: 0.76, duration: 56};
 
       // Act
       const result = Utilities.getNoteObject(number, options);
 
       // Assert
-      expect(result.name).to.equal(name);
+      expect(result.identifier).to.equal(identifier);
       expect(result.attack).to.equal(options.attack);
       expect(result.release).to.equal(options.release);
       expect(result.duration).to.equal(options.duration);
@@ -630,15 +630,15 @@ describe("Utilities Object", function() {
 
       // Arrange
       const items = [
-        {number: 0, offset: -3, name: "C-1"},
-        {number: 64, offset: -2, name: "E4"},
-        {number: 127, offset: -1, name: "G9"},
-        {number: "0", offset: 1, name: "C-1"},
-        {number: "64.0", offset: 2, name: "E4"},
-        {number: "127x", offset: 3, name: "G9"},
-        {number: 0.1, offset: 4, name: "C-1"},
-        {number: 64.5, offset: 5, name: "E4"},
-        {number: 127.9, offset: -6, name: "G9"}
+        {number: 0, offset: -3, identifier: "C-1"},
+        {number: 64, offset: -2, identifier: "E4"},
+        {number: 127, offset: -1, identifier: "G9"},
+        {number: "0", offset: 1, identifier: "C-1"},
+        {number: "64.0", offset: 2, identifier: "E4"},
+        {number: "127x", offset: 3, identifier: "G9"},
+        {number: 0.1, offset: 4, identifier: "C-1"},
+        {number: 64.5, offset: 5, identifier: "E4"},
+        {number: 127.9, offset: -6, identifier: "G9"}
       ];
 
       // Act
@@ -647,7 +647,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         const n = Utilities.getNoteObject(item.number, {octaveOffset: item.offset});
-        expect(n.name).to.equal(item.name);
+        expect(n.identifier).to.equal(item.identifier);
       }
 
     });
@@ -710,12 +710,12 @@ describe("Utilities Object", function() {
 
       // Assert
       results.forEach((result, index) => {
-        expect(result.name).to.equal(targets[index]);
+        expect(result.identifier).to.equal(targets[index]);
       });
 
     });
 
-    it("should return an array of valid notes when passing name array", function () {
+    it("should return an array of valid notes when passing identifier array", function () {
 
       // Arrange
       const items = [
@@ -729,7 +729,7 @@ describe("Utilities Object", function() {
 
       // Assert
       results.forEach((result, index) => {
-        expect(result.name).to.equal(items[index]);
+        expect(result.identifier).to.equal(items[index]);
       });
 
     });
@@ -775,12 +775,12 @@ describe("Utilities Object", function() {
 
       // Assert
       results.forEach((result, index) => {
-        expect(result[0].name).to.equal(targets[index]);
+        expect(result[0].identifier).to.equal(targets[index]);
       });
 
     });
 
-    it("should return an array of valid notes when passing single name", function () {
+    it("should return an array of valid notes when passing single identifier", function () {
 
       // Arrange
       const items = [
@@ -797,7 +797,7 @@ describe("Utilities Object", function() {
 
       // Assert
       results.forEach((result, index) => {
-        expect(result[0].name).to.equal(items[index]);
+        expect(result[0].identifier).to.equal(items[index]);
       });
 
     });
@@ -819,7 +819,7 @@ describe("Utilities Object", function() {
 
       // Assert
       results.forEach((result, index) => {
-        expect(result[0].name).to.equal(items[index].name);
+        expect(result[0].identifier).to.equal(items[index].identifier);
       });
 
     });
@@ -857,16 +857,16 @@ describe("Utilities Object", function() {
 
     it("should pass on options to values that aren't 'Note' objects", function() {
 
-      let options1 = {
+      let options = {
         duration: 1000,
-        attack: 123,
-        release: 45
+        attack: 0.56,
+        release: 0.78
       };
 
-      let notes1 = Utilities.getValidNoteArray([60], options1);
+      let notes1 = Utilities.getValidNoteArray([60], options);
       expect(notes1[0].duration).to.equal(1000);
-      expect(notes1[0].attack).to.equal(123);
-      expect(notes1[0].release).to.equal(45);
+      expect(notes1[0].attack).to.equal(options.attack);
+      expect(notes1[0].release).to.equal(options.release);
 
     });
 

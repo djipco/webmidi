@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const midi = require("midi");
-const {WebMidi} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
@@ -93,7 +93,11 @@ describe("InputChannel Object", function() {
     function assert(e) {
 
       expect(e.type).to.equal(event);
-      expect(e.note.number).to.equal(index);
+      expect(e.note.identifier).to.equal(Utilities.getNoteIdentifierByNumber(index));
+      expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
+      expect(e.note.rawRelease).to.equal(velocity);
+      expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
+      expect(e.release).to.equal(Utilities.from7Bit(velocity));
       expect(e.rawRelease).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
@@ -104,7 +108,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should report correct octave in 'noteoff' event (with octaveOffset)", function (done) {
+  it("should report correct octave for 'noteoff' event (with octaveOffset)", function (done) {
 
     // Arrange
     const channel = WEBMIDI_INPUT.channels[1];
@@ -148,7 +152,7 @@ describe("InputChannel Object", function() {
     function assert(e) {
 
       expect(e.type).to.equal(event);
-      expect(e.note.number).to.equal(index);
+      expect(Utilities.getNoteNumberByIdentifier(e.note.identifier)).to.equal(index);
       expect(e.rawAttack).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
@@ -200,7 +204,7 @@ describe("InputChannel Object", function() {
     function assert(e) {
 
       expect(e.type).to.equal(event);
-      expect(e.note.number).to.equal(index);
+      expect(Utilities.getNoteNumberByIdentifier(e.note.identifier)).to.equal(index);
       expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
