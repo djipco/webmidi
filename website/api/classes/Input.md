@@ -35,6 +35,8 @@ others.
 
     * [`.manufacturer`](#Input+manufacturer) : <code>string</code>
 
+    * [`.octaveOffset`](#Input+octaveOffset) : <code>number</code>
+
     * [`.state`](#Input+state) : <code>string</code>
 
     * [`.type`](#Input+type) : <code>string</code>
@@ -154,6 +156,24 @@ Name of the manufacturer of the device that makes this input port available.
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
 **Read only**: true  
+
+* * *
+
+<a name="Input+octaveOffset"></a>
+
+## `input.octaveOffset` : <code>number</code>
+An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+number 60) is placed on the 4th octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Since**: 3.0  
 
 * * *
 

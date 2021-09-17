@@ -33,7 +33,9 @@ details.
 
     * [`.number`](#InputChannel+number) : <code>number</code>
 
-    * [`._parseEvent(e)`](#InputChannel+_parseEvent)
+    * [`.octaveOffset`](#InputChannel+octaveOffset) : <code>number</code>
+
+    * [`.destroy()`](#InputChannel+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
 
     * [`.getChannelModeByNumber(number)`](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
 
@@ -105,17 +107,32 @@ This channel's number (1-16)
 
 * * *
 
-<a name="InputChannel+_parseEvent"></a>
+<a name="InputChannel+octaveOffset"></a>
 
-## `inputChannel.\_parseEvent(e)`
+## `inputChannel.octaveOffset` : <code>number</code>
+An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+number 60) is placed on the 4th octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+
+* * *
+
+<a name="InputChannel+destroy"></a>
+
+## `inputChannel.destroy()` ⇒ <code>Promise.&lt;void&gt;</code>
+Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+input.
+
 <!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 -->
-**Access**: protected  
-
-| Param | Description |
-| --- | --- |
-| e | Event |
-
 
 * * *
 

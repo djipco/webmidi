@@ -367,9 +367,9 @@ names that can be used with this function:
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
+ - A [Note](Note) object
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
 
 The `playNote()` method sends a **note on** MIDI message for all specified notes on all
 specified channels. If a `duration` is set in the `options` parameter or in the [Note](Note)
@@ -456,12 +456,17 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 <a name="OutputChannel+sendNoteOn"></a>
 
 ## `outputChannel.sendNoteOn(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
-Sends a **note on** message for the specified notes on the channel. The first parameter is the
-note. It can be a single value or an array of the following valid values:
+Sends a **note on** message for the specified note(s) on the channel. The first parameter is
+the note. It can be a single value or an array of the following valid values:
 
+ - A [Note](Note) object
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
+
+ When passing a [Note](Note) object or a note name, the `octaveOffset` will be applied. This is
+ not the case when using a note number number. In this case, we assume you know exactly which
+ MIDI note number should be sent out.
+
 
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.

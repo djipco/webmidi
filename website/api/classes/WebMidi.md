@@ -26,6 +26,8 @@ others.
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
 
+    * [`.defaults`](#WebMidi+defaults) : <code>Object</code>
+
     * [`.interface`](#WebMidi+interface) : <code>MIDIAccess</code>
 
     * [`.validation`](#WebMidi+validation) : <code>boolean</code>
@@ -78,19 +80,7 @@ others.
 
     * [`.getOutputById(id)`](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
 
-    * [`.getNoteNumberByName(name)`](#WebMidi+getNoteNumberByName) ⇒ <code>number</code> \| <code>false</code>
-
     * [`.getOctave(number)`](#WebMidi+getOctave) ⇒ <code>number</code> \| <code>false</code>
-
-    * [`.sanitizeChannels([channel])`](#WebMidi+sanitizeChannels) ⇒ <code>Array</code>
-
-    * [`.guessNoteNumber(input)`](#WebMidi+guessNoteNumber) ⇒ <code>number</code> \| <code>false</code>
-
-    * [`.getValidNoteArray([notes], [options])`](#WebMidi+getValidNoteArray) ⇒ <code>Array.&lt;Note&gt;</code>
-
-    * [`.getNoteObject([notes], [options])`](#WebMidi+getNoteObject) ⇒ <code>Note</code>
-
-    * [`.convertToTimestamp([time])`](#WebMidi+convertToTimestamp) ⇒ <code>number</code> \| <code>false</code>
 
     * [`"error"`](#WebMidi+event_error)
 
@@ -103,6 +93,26 @@ others.
     * [`"connected"`](#WebMidi+event_connected)
 
     * [`"disconnected"`](#WebMidi+event_disconnected)
+
+
+* * *
+
+<a name="WebMidi+defaults"></a>
+
+## `webMidi.defaults` : <code>Object</code>
+Object containing system-wide default values that can be changed to customize how the library
+works.
+
+<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| defaults.note | <code>object</code> | Default values relating to note |
+| defaults.note.attack | <code>number</code> | A number between 0 and 127 representing the default attack velocity of notes. Initial value is 64. |
+| defaults.note.release | <code>number</code> | A number between 0 and 127 representing the default release velocity of notes. Initial value is 64. |
+| defaults.note.duration | <code>number</code> | A number representing the default duration of notes (in seconds). Initial value is Infinity. |
 
 
 * * *
@@ -183,11 +193,16 @@ and isBrowser can both be true at the same time.
 <a name="WebMidi+octaveOffset"></a>
 
 ## `webMidi.octaveOffset` : <code>number</code>
-An integer to offset the octave both in inbound and outbound messages. By default, middle C
-(MIDI note number 60) is placed on the 4th octave (C4).
+An integer to offset the octave of notes received from external devices or sent to external
+devices.
 
-If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+When a MIDI message comes in on an input channel the reported note name will be offset. For
+example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
+comes in, the note will be reported as C3 (instead of C4).
+
+By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
+will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
+of 60).
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
@@ -522,9 +537,9 @@ There are 3 ways to execute code after `WebMidi` has been enabled:
 In order, this is what happens towards the end of the enabling process:
 
 1. `midiaccessgranted` event is triggered
-2. `connected` events are triggered for each available input and output
-3. `enabled` event is triggered
-4. callback (if any) is executed
+2. `connected` events are triggered (for each available input and output)
+3. `enabled` event is triggered when WebMidi.js is ready
+4. specified callback (if any) is executed
 5. promise is resolved
 
 The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
@@ -684,42 +699,11 @@ matching output can be found, the method returns `false`.
 
 * * *
 
-<a name="WebMidi+getNoteNumberByName"></a>
-
-## `webMidi.getNoteNumberByName(name)` ⇒ <code>number</code> \| <code>false</code>
-Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-note name must include the octave number. The name can also optionally include a sharp (#),
-a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-
-When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-per the scientific pitch notation standard.
-
-The resulting note number is offset by the [octaveOffset](#WebMidi+octaveOffset) value (if
-not zero). For example, if you pass in "C4" and the [octaveOffset](#WebMidi+octaveOffset)
-value is 2, the resulting MIDI note number will be 36.
-
-**Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-parse the name to a number.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Returns**: <code>number</code> \| <code>false</code> - The MIDI note number (an integer between 0 and 127) or `false` if the
-name could not successfully be parsed to a number.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | The name of the note in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. |
-
-
-* * *
-
 <a name="WebMidi+getOctave"></a>
 
 ## `webMidi.getOctave(number)` ⇒ <code>number</code> \| <code>false</code>
 Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the
-[octaveOffset](#WebMidi+octaveOffset) property, you can offset the result as desired.
+based on middle C (note number 60) being placed on the 4th octave (C4).
 
 **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
 be parsed to a valid octave.
@@ -733,131 +717,6 @@ parsed to a valid octave.
 | Param | Type | Description |
 | --- | --- | --- |
 | number | <code>number</code> | An integer representing a valid MIDI note number (between 0 and 127). |
-
-
-* * *
-
-<a name="WebMidi+sanitizeChannels"></a>
-
-## `webMidi.sanitizeChannels([channel])` ⇒ <code>Array</code>
-Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-single integer or an array of integers.
-
-For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-integers between 1 and 16 are silently ignored.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Returns**: <code>Array</code> - An array of 0 or more valid MIDI channel numbers.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [channel] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | An integer or an array of integers to parse as channel numbers. |
-
-
-* * *
-
-<a name="WebMidi+guessNoteNumber"></a>
-
-## `webMidi.guessNoteNumber(input)` ⇒ <code>number</code> \| <code>false</code>
-Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-parsed for integer, if possible.
-
-**Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-is invalid.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Returns**: <code>number</code> \| <code>false</code> - A valid MIDI note number (0-127) or `false` if the input could not
-successfully be parsed to a note number.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| input | <code>string</code> \| <code>number</code> | A string to extract the note number from. An integer can also be used, in this case it will simply be returned as is (if between 0 and 127). |
-
-
-* * *
-
-<a name="WebMidi+getValidNoteArray"></a>
-
-## `webMidi.getValidNoteArray([notes], [options])` ⇒ <code>Array.&lt;Note&gt;</code>
-Converts an input value, which can be an unsigned integer (0-127), a note name, a [Note](Note)
-object or an array of the previous types, to an array of [Note](Note) objects.
-
-[Note](Note) objects are returned as is. For note numbers and names, a [Note](Note) object is
-created with the options specified. An error will be thrown when encountering invalid input.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Throws**:
-
-- TypeError An element could not be parsed as a note.
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [notes] | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  |  |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
-| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a decimal number between 0 and 1. |
-| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a decimal number between 0 and 1. |
-| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
-| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
-
-
-* * *
-
-<a name="WebMidi+getNoteObject"></a>
-
-## `webMidi.getNoteObject([notes], [options])` ⇒ <code>Note</code>
-Converts the `note` parameter to a valid [Note](Note) object. The input usually is an unsigned
-integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a [Note](Note) object,
-it will be returned as is.
-
-If the input is a note number or name, it is possible to specify options by providing the
-optional `options` parameter.
-
-An error is thrown for invalid input.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Throws**:
-
-- TypeError The input could not be parsed as a note
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [notes] | <code>number</code> \| <code>string</code> \| <code>Note</code> |  |  |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
-| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a decimal number between 0 and 1. |
-| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a decimal number between 0 and 1. |
-| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
-| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
-
-
-* * *
-
-<a name="WebMidi+convertToTimestamp"></a>
-
-## `webMidi.convertToTimestamp([time])` ⇒ <code>number</code> \| <code>false</code>
-Returns a valid timestamp, relative to the navigation start of the document, derived from the
-`time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-the parameter is a positive number, it will be returned as is. Otherwise, false will be
-returned.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Returns**: <code>number</code> \| <code>false</code> - A positive number or `false` (if the time cannot be converted)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [time] | <code>number</code> \| <code>string</code> | The time string (e.g. `"+2000"`) or number to parse |
 
 
 * * *

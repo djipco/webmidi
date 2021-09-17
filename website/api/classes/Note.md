@@ -1,14 +1,29 @@
 <a name="Note"></a>
 
 # Note
-The `Note` class represents a single note to be played. The `Note` can be played on a single
-channel by using [OutputChannel.playNote()](OutputChannel#playNote) or on multiple
-channels at once by using [Output.playNote()](Output#playNote).
+The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
-If the note's `duration` property is set, the note will be stopped at the end of the duration. If
-no duration is set, it will play until it is explicitly stopped using
-[OutputChannel.stopNote()](OutputChannel#stopNote) or
-[Output.stopNote()](Output#stopNote).
+Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
+when the note is played. This is because, the `octaveOffset` property of various objects
+(`WebMidi`, `InputChannel`, `Output`, etc.) can be used to offset the note number to match
+external devices where middle C is not equal to C4.
+
+The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
+However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
+
+`Note` objects can be played back on a single channel by calling
+[OutputChannel.playNote()](OutputChannel#playNote). A note can also be played back on the
+multiple channels of an output by using [Output.playNote()](Output#playNote).
+
+The note has attack and release velocities set at 0.5 by default. These can be changed by passing
+in the appropriate option. It is also possible to set a system-wide default for attack and
+release velocities by using the `WebMidi.defaults` property.
+
+The note may have a duration. If it does, playback will be stopped when the duration has elapsed
+by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
+this case, it will never stop playing unless explicitly stopped by calling a method such as
+[OutputChannel.stopNote()](OutputChannel#stopNote),
+[Output.stopNote()](Output#stopNote) or similar.
 
 <!--**Kind**: global class  
 -->
@@ -19,21 +34,23 @@ no duration is set, it will play until it is explicitly stopped using
 
     * [`new Note(value, [options])`](#new_Note_new)
 
+    * [`.identifier`](#Note+identifier) : <code>string</code>
+
     * [`.name`](#Note+name) : <code>string</code>
 
-    * [`.number`](#Note+number) : <code>number</code>
+    * [`.accidental`](#Note+accidental) : <code>string</code>
+
+    * [`.octave`](#Note+octave) : <code>number</code>
 
     * [`.duration`](#Note+duration) : <code>number</code>
 
     * [`.attack`](#Note+attack) : <code>number</code>
 
-    * [`.rawAttack`](#Note+rawAttack) : <code>number</code>
-
     * [`.release`](#Note+release) : <code>number</code>
 
-    * [`.rawRelease`](#Note+rawRelease) : <code>number</code>
+    * [`.rawAttack`](#Note+rawAttack) : <code>number</code>
 
-    * [`.octave`](#Note+octave) : <code>number</code>
+    * [`.rawRelease`](#Note+rawRelease) : <code>number</code>
 
 
 * * *
@@ -44,45 +61,71 @@ no duration is set, it will play until it is explicitly stopped using
 <!---->
 **Throws**:
 
-- <code>Error</code> Invalid note name.
-- <code>Error</code> Invalid note number.
-- <code>RangeError</code> Invalid duration.
-- <code>RangeError</code> Invalid attack value.
-- <code>RangeError</code> Invalid rawAttack value.
-- <code>RangeError</code> Invalid release value.
-- <code>RangeError</code> Invalid rawRelease value.
+- <code>Error</code> Invalid note identifier
+- <code>RangeError</code> Invalid name value
+- <code>RangeError</code> Invalid accidental value
+- <code>RangeError</code> Invalid octave value
+- <code>RangeError</code> Invalid duration value
+- <code>RangeError</code> Invalid attack value
+- <code>RangeError</code> Invalid release value
+- <code>RangeError</code> Invalid 'octaveOffset' value
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| value | <code>string</code> \| <code>number</code> |  | The name or note number of the note to create. If a number is used, it must be an integer between 0 and 127. If a string is used, it must be the note name followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). |
+| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that can be offset with the `octaveOffset`property. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
-| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a decimal number between 0 and 1. |
-| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a decimal number between 0 and 1. |
-| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
-| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
+| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
+| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
+| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
+| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
+| [options.octaveOffset] | <code>number</code> | <code>0</code> | An integer to offset the octave value. **This is only used when the note is specified using a MIDI note number.** |
 
+
+* * *
+
+<a name="Note+identifier"></a>
+
+## `note.identifier` : <code>string</code>
+The name, optional accidental and octave of the note, as a string.
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
 
 * * *
 
 <a name="Note+name"></a>
 
 ## `note.name` : <code>string</code>
-The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
+The name (letter) of the note
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
+**Since**: 3.0.0  
 
 * * *
 
-<a name="Note+number"></a>
+<a name="Note+accidental"></a>
 
-## `note.number` : <code>number</code>
-The MIDI note number as an integer between 0 and 127
+## `note.accidental` : <code>string</code>
+The accidental (#, ##, b or bb) of the note
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
+**Since**: 3.0.0  
+
+* * *
+
+<a name="Note+octave"></a>
+
+## `note.octave` : <code>number</code>
+The octave of the note
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
 
 * * *
 
@@ -94,56 +137,51 @@ that the note should play for.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
+**Since**: 3.0.0  
 
 * * *
 
 <a name="Note+attack"></a>
 
 ## `note.attack` : <code>number</code>
-The attack velocity of the note as a decimal number between 0 and 1.
+The attack velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
-
-* * *
-
-<a name="Note+rawAttack"></a>
-
-## `note.rawAttack` : <code>number</code>
-The raw attack velocity of the note as an integer between 0 and 127.
-
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Since**: 3.0.0  
 
 * * *
 
 <a name="Note+release"></a>
 
 ## `note.release` : <code>number</code>
-The release velocity of the note as a decimal number between 0 and 1.
+The release velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
+**Since**: 3.0.0  
+
+* * *
+
+<a name="Note+rawAttack"></a>
+
+## `note.rawAttack` : <code>number</code>
+The attack velocity of the note as a positive integer between 0 and 127.
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
 
 * * *
 
 <a name="Note+rawRelease"></a>
 
 ## `note.rawRelease` : <code>number</code>
-The raw release velocity of the note as an integer between 0 and 127.
+The release velocity of the note as a positive integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
-
-* * *
-
-<a name="Note+octave"></a>
-
-## `note.octave` : <code>number</code>
-The octave of the note as an integer between -1 and 9.
-
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Since**: 3.0.0  
 
 * * *
 
