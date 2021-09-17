@@ -41,6 +41,12 @@ export class OutputChannel extends EventEmitter {
      */
     this._number = number;
 
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
+
   }
 
   /**
@@ -53,6 +59,7 @@ export class OutputChannel extends EventEmitter {
   destroy() {
     this._output = null;
     this._number = null;
+    this._octaveOffset = 0;
     this.removeListener();
   }
 
@@ -1663,6 +1670,32 @@ export class OutputChannel extends EventEmitter {
     } else {
       return this.sendChannelMode("polymodeon", 0, options);
     }
+  }
+
+  /**
+   * An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+   * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+   * octave (C4).
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * and with the value defined on the parent `Output` object.
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
   }
 
   /**
