@@ -1366,6 +1366,7 @@ class InputChannel extends e {
       event.type = "unknownmessage";
     }
 
+    console.log(event);
     this.emit(event.type, event);
   }
   /**
