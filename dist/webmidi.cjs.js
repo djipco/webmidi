@@ -1743,14 +1743,15 @@ class InputChannel extends e {
     return undefined;
   }
   /**
-   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-   * number 60) is placed on the 4th octave (C4).
+   * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+   * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+   * octave (C4).
    *
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
    *
    * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * (if any).
+   * and with the value defined on the parent `Input` object.
    *
    * @type {number}
    *
@@ -2263,9 +2264,10 @@ class Input extends e {
     this.emit(event.type, event);
   }
   /**
-   * Opens the input for usage.
+   * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+   * WebMidi is enabled.
    *
-   * @returns {Promise<Input>} The promise is fulfilled with the `Input`
+   * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
    */
 
 
@@ -2276,27 +2278,70 @@ class Input extends e {
     // are dispatched immediately and that we are ready to listen.
     try {
       await this._midiInput.open();
-      return Promise.resolve(this);
     } catch (err) {
       return Promise.reject(err);
-    }
+    } // /**
+    //  * Event emitted after the channel was successfully opened. Note that you can also listen to the
+    //  * `inputopened` event on the `WebMidi` object.
+    //  *
+    //  * @event Input#opened
+    //  *
+    //  * @type {Object}
+    //  *
+    //  * @property {string} type `"opened"`
+    //  *
+    //  * @property {InputChannel} target The object that triggered the event (the `Input` object).
+    //  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+    //  * milliseconds since the navigation start of the document).
+    //  */
+    // this.emit("opened", {
+    //   target: this,
+    //   timestamp: WebMidi.time,
+    //   type: "opened"
+    // });
+
+
+    return Promise.resolve(this);
   }
   /**
    * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
    * the input is opened again by calling [Input.open()]{@link Input#open}.
    *
-   * @returns {Promise<void|*>}
+   * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
    */
 
 
   async close() {
     // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
     // event.
-    if (this._midiInput) {
-      return this._midiInput.close();
-    } else {
-      return Promise.resolve();
-    }
+    if (!this._midiInput) return Promise.resolve(this);
+
+    try {
+      await this._midiInput.close();
+    } catch (err) {
+      return Promise.reject(err);
+    } // /**
+    //  * Event emitted after the channel was successfully closed. Note that you can also listen to the
+    //  * `inputclosed` event on the `WebMidi` object.
+    //  *
+    //  * @event Input#closed
+    //  *
+    //  * @type {Object}
+    //  *
+    //  * @property {string} type `"closed"`
+    //  *
+    //  * @property {InputChannel} target The object that triggered the event (the `Input` object).
+    //  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+    //  * milliseconds since the navigation start of the document).
+    //  */
+    // this.emit("closed", {
+    //   target: this,
+    //   timestamp: WebMidi.time,
+    //   type: "closed"
+    // });
+
+
+    return Promise.resolve(this);
   }
   /**
    * @private
