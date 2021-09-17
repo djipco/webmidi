@@ -52,16 +52,16 @@ export class InputChannel extends EventEmitter {
     super();
 
     /**
-     * The {@link Input} this channel belongs to
      * @type {Input}
+     * @private
      */
-    this.input = input;
+    this._input = input;
 
     /**
-     * This channel's number (1-16)
      * @type {number}
+     * @private
      */
-    this.number = number;
+    this._number = number;
 
     /**
      * @type {number}
@@ -90,8 +90,8 @@ export class InputChannel extends EventEmitter {
    * @returns {Promise<void>}
    */
   destroy() {
-    this.input = null;
-    this.number = null;
+    this._input = null;
+    this._number = null;
     this._octaveOffset = 0;
     // this._nrpnBuffer = null;
     // this._nrpnEventsEnabled = false;
@@ -877,6 +877,24 @@ export class InputChannel extends EventEmitter {
 
     this._octaveOffset = value;
 
+  }
+
+  /**
+   * The {@link Input} this channel belongs to
+   * @type {Input}
+   * @since 3.0
+   */
+  get input() {
+    return this._octaveOffset;
+  }
+
+  /**
+   * This channel's MIDI number (1-16)
+   * @type {number}
+   * @since 3.0
+   */
+  get number() {
+    return this._number;
   }
 
   // /**
