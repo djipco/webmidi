@@ -224,19 +224,44 @@ describe("Input Object", function() {
 
   });
 
-  // it("should trigger 'opened' event", function (done) {
+  it("should trigger 'opened' event", function (done) {
+
+    // Arrange
+    const input = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
+    input.addListener("opened", () => done());
+    input.addListener("closed", () => input.open());
+
+    // Act
+    input.close();
+
+  });
+
+  it("should trigger 'closed' event", function (done) {
+
+    // Arrange
+    const input = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
+    input.addListener("closed", () => done());
+
+    // Act
+    input.close();
+
+  });
+
+  it.only("should trigger 'disconnected' event"); // below does not work...
+  // it.only("should trigger 'disconnected' event", function (done) {
   //
   //   // Arrange
-  //   WEBMIDI_INPUT.addListener("opened", undefined, done);
+  //   const input = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
+  //   input.addListener("disconnected", () => done());
   //
   //   // Act
-  //   // WEBMIDI_INPUT.close().then(() => WEBMIDI_INPUT.open());
+  //   VIRTUAL_INPUT.closePort();
+  //
+  //   setTimeout(() => {
+  //     VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
+  //   }, 100);
   //
   // });
-
-  it("should trigger 'closed' event");
-
-  it("should trigger 'disconnected' event");
 
   describe("addListener()", function() {
 
