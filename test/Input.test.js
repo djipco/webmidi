@@ -247,7 +247,7 @@ describe("Input Object", function() {
 
   });
 
-  it.only("should trigger 'disconnected' event"); // below does not work...
+  it("should trigger 'disconnected' event"); // below does not work...
   // it.only("should trigger 'disconnected' event", function (done) {
   //
   //   // Arrange
