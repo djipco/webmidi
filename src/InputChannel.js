@@ -4,9 +4,8 @@ import {Utilities} from "./Utilities.js";
 import {Note} from "./Note.js";
 
 /**
- * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
- * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
- * directly.
+ * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -22,7 +21,7 @@ import {Note} from "./Note.js";
  * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
  * details.
  *
- * @param {Input} input The `Input` this channel belongs to
+ * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
@@ -84,10 +83,8 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * Destroys the `Input` by removing all listeners and severing the link with the subsystem's MIDI
+   * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
    * input.
-   *
-   * @returns {Promise<void>}
    */
   destroy() {
     this._input = null;
@@ -99,10 +96,11 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * @param e Event
+   * @param e MIDIMessageEvent
    * @private
    */
-  _parseEvent(e) {
+  _processMidiMessageEvent(e) {
+
     // Extract data bytes (unless it's a sysex message)
     let dataBytes = null;
     if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
@@ -143,16 +141,16 @@ export class InputChannel extends EventEmitter {
 
     this.emit("midimessage", midiMessageEvent);
 
-    // Parse the event to see if its part of an NRPN sequence
-    // this._parseEventForNrpnMessage(e);
-
     // Parse the inbound event for regular messages
     this._parseEventForStandardMessages(e);
+
+    // Parse the event to see if its part of an NRPN sequence
+    // this._parseEventForNrpnMessage(e);
 
   }
 
   /**
-   * Parses channel events for standard (non-NRPN) events.
+   * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
    * @param e Event
    * @private
    */
@@ -208,7 +206,7 @@ export class InputChannel extends EventEmitter {
         {
           rawAttack: 0,
           rawRelease: data2,
-          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+          // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
         }
       );
 
