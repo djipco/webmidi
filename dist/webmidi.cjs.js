@@ -1099,6 +1099,7 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
+    console.log(e);
     let {
       command,
       data1,
@@ -1366,7 +1367,6 @@ class InputChannel extends e {
       event.type = "unknownmessage";
     }
 
-    console.log(event);
     this.emit(event.type, event);
   }
   /**
