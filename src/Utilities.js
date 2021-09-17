@@ -316,6 +316,9 @@ class Utilities {
    * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
    * 127.
    *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a note identifier.**
+   *
    * @returns {Note[]}
    *
    * @throws TypeError An element could not be parsed as a note.
