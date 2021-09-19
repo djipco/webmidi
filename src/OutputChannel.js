@@ -164,16 +164,19 @@ export class OutputChannel extends EventEmitter {
 
     }
 
-    // Normalize to integer
+    // Normalize pressure to integer
     if (!options.rawValue) pressure = Utilities.to7Bit(pressure);
 
-    options.octaveOffset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    // Retrieve key number. If identifier specified, offset by total offset value
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    if (!Array.isArray(target)) target = [];
+    target = target.map(item => Utilities.guessNoteNumber(item, offset));
 
-    Utilities.getValidNoteArray(target, options).forEach(n => {
+    target.forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-          n.number,
+          n,
           pressure
         ],
         {time: Utilities.convertToTimestamp(options.time)}

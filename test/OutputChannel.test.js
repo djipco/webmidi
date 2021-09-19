@@ -478,7 +478,7 @@ describe("OutputChannel Object", function() {
 
   describe("playNote()", function () {
 
-    it("should call 'sendNoteOn()' with correct parameters", function () {
+    it.only("should call 'sendNoteOn()' with correct parameters", function () {
 
       // Arrange
       let note = "G5";
@@ -1625,6 +1625,8 @@ describe("OutputChannel Object", function() {
 
     it("should send correct MIDI message when using note number", function(done) {
 
+      this.timeout(5000);
+
       // Arrange
       let index = 0;
       VIRTUAL_OUTPUT.on("message", assert);
@@ -1634,14 +1636,14 @@ describe("OutputChannel Object", function() {
 
       // Assert
       function assert(deltaTime, message) {
+        // expect(message).to.have.ordered.members([160, index, 64]);
+        // index++;
 
-        expect(message).to.have.ordered.members([160, index, 64]);
-        index++;
-
-        if (index >= 127) {
+        // if (index >= 127) {
           VIRTUAL_OUTPUT.removeAllListeners();
+console.log(index);
           done();
-        }
+        // }
 
       }
 
