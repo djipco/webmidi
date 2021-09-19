@@ -16,7 +16,7 @@ module.exports = {
 
   scripts: [
     {
-      src: "/scripts/mailchimp/newsletter-exit-prompt.js",
+      src: "/webmidi/scripts/mailchimp/newsletter-exit-prompt.js",
       async: true,
       id: "mcjs"
     }
