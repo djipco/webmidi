@@ -3,6 +3,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
+
   title: "WebMidi.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
   url: "https://webmdidijs.org",
@@ -12,6 +13,15 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "djipco",
   projectName: "webmidi",
+
+  scripts: [
+    {
+      src: "/scripts/mailchimp/newsletter-exit-prompt.js",
+      async: true,
+      id: "mcjs"
+    }
+  ],
+
   themeConfig: {
     navbar: {
       // title: "My Site",
@@ -113,6 +123,7 @@ module.exports = {
       placeholder: "Search website..."
     },
   },
+
   presets: [
     [
       "@docusaurus/preset-classic",
