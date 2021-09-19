@@ -29,8 +29,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="A JavaScript library to kickstart your MIDI projects on the web and in Node.js.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
