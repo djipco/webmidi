@@ -15,6 +15,7 @@ module.exports = {
   projectName: "webmidi",
 
   scripts: [
+    // Inject MailChimp newsletter pop-up in <head>
     {
       src: "/scripts/mailchimp/newsletter-exit-prompt.js",
       async: true,
