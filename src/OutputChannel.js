@@ -169,7 +169,7 @@ export class OutputChannel extends EventEmitter {
 
     // Retrieve key number. If identifier specified, offset by total offset value
     const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    if (!Array.isArray(target)) target = [];
+    if (!Array.isArray(target)) target = [target];
     target = target.map(item => Utilities.guessNoteNumber(item, offset));
 
     target.forEach(n => {
@@ -760,15 +760,14 @@ export class OutputChannel extends EventEmitter {
       if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
     }
 
-    // Send note off messages
-    let o = {rawRelease: parseInt(nVelocity)};
-    o.octaveOffset = WebMidi.octaveOffset;
+    // Plot total octave offset
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    Utilities.buildNoteArray(note, o).forEach(n => {
+    Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
-          n.number,
+          Utilities.toNoteNumber(n.identifier, offset),
           n.rawRelease,
         ],
         {time: Utilities.toTimestamp(options.time)}
@@ -817,10 +816,8 @@ export class OutputChannel extends EventEmitter {
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types.
    *
    * @param {Object} [options={}]
    *
@@ -873,15 +870,14 @@ export class OutputChannel extends EventEmitter {
       if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
     }
 
-    let o = {rawAttack: nVelocity};
-    o.octaveOffset = WebMidi.octaveOffset;
+    // Plot total octave offset
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-
-    Utilities.buildNoteArray(note, o).forEach(n => {
+    Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
-          n.number,
+          Utilities.toNoteNumber(n.identifier, offset),
           n.rawAttack
         ],
         {time: Utilities.toTimestamp(options.time)}
