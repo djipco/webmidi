@@ -1192,8 +1192,7 @@ class InputChannel extends e {
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: 0,
-        rawRelease: data2 // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
-
+        rawRelease: data2
       });
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -1228,9 +1227,8 @@ class InputChannel extends e {
        * and 127).
        */
       event.type = "noteon";
-      event.note = new Note(data1, {
-        rawAttack: data2,
-        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
+      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+        rawAttack: data2
       });
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
