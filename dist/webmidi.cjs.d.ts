@@ -144,7 +144,7 @@ export class Note {
      * @param offset
      * @returns {number} An integer between 0 and 127
      */
-    getOffsetNumber(offset?: number): number;
+    getOffsetNumber(octaveOffset?: number, semitoneOffset?: number): number;
 }
 declare const utils: Utilities;
 declare const wm: WebMidi;
