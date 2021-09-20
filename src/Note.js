@@ -262,4 +262,22 @@ export class Note {
     return Utilities.toNoteNumber(this.identifier);
   }
 
+  /**
+   * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+   * value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+   * returned. If an invalid value is supplied, 0 will be used.
+   *
+   * @param offset
+   * @returns {number} An integer between 0 and 127
+   */
+  getOffsetNumber(offset = 0) {
+
+    if (WebMidi.validation) {
+      offset = parseInt(offset) || 0;
+    }
+
+    return Math.min(Math.max(this.number + offset, 0), 127);
+
+  }
+
 }
