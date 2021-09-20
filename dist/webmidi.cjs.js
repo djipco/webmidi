@@ -1190,10 +1190,10 @@ class InputChannel extends e {
        */
       event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
 
-      event.note = new Note(data1, {
+      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: 0,
-        rawRelease: data2,
-        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
+        rawRelease: data2 // octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+
       });
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
