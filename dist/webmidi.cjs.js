@@ -2946,8 +2946,6 @@ class OutputChannel extends e {
 
 
   setKeyAftertouch(target, pressure, options = {}) {
-    console.log("aa");
-
     if (wm.validation) {
       // Legacy support
       if (options.useRawValue) options.rawValue = options.useRawValue;
@@ -2969,12 +2967,12 @@ class OutputChannel extends e {
 
     console.log("bb"); // Normalize pressure to integer
 
-    if (!options.rawValue) pressure = utils.to7Bit(pressure);
-    console.log("cc"); // Retrieve key number. If identifier specified, offset by total offset value
+    if (!options.rawValue) pressure = utils.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [];
     target = target.map(item => utils.guessNoteNumber(item, offset));
+    console.log("cc");
     target.forEach(n => {
       console.log("allo", (wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n, pressure);
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n, pressure], {
