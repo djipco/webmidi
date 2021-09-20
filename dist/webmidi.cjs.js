@@ -3518,6 +3518,7 @@ class OutputChannel extends e {
 
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    console.log(options.time, utils.toTimestamp(options.time));
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
