@@ -1273,9 +1273,7 @@ class InputChannel extends e {
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
-      event.note = new Note(data1, {
-        octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
-      });
+      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
       /**
        * Event emitted when a **control change** MIDI message has been received.
