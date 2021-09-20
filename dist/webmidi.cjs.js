@@ -313,14 +313,6 @@ class t {
 /**
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
- * Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
- * when the note is played. This is because, the `octaveOffset` property of various objects
- * (`WebMidi`, `InputChannel`, `Output`, etc.) can be used to offset the note number to match
- * external devices where middle C is not equal to C4.
- *
- * The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
- * However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
- *
  * `Note` objects can be played back on a single channel by calling
  * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
  * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
@@ -337,9 +329,9 @@ class t {
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
  * it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
- * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number
- * will be converted to a note name. In this case, middle C is considered to be C4 (note number 60)
- * but that can be offset with the `octaveOffset`property.
+ * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this
+ * case, middle C is considered to be C4 (note number 60) but that can be offset with the
+ * `octaveOffset`property.
  *
  * @param {Object} [options={}]
  *
@@ -568,6 +560,18 @@ class Note {
 
   get rawRelease() {
     return utils.to7Bit(this._release);
+  }
+  /**
+   * The MIDI number of the note. This number is derived from the note identifier using C4 as a
+   * reference for middle C.
+   *
+   * @type {number}
+   * @since 3.0.0
+   */
+
+
+  get number() {
+    return utils.toNoteNumber(this.identifier);
   }
 
 }
@@ -3436,7 +3440,6 @@ class OutputChannel extends e {
     this.sendNoteOn(note, options); // https://stackoverflow.com/questions/600763#answer-601877
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
-      console.log(options.time, wm.time, utils.toTimestamp(options.time));
       let noteOffOptions = {
         time: (utils.toTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
@@ -3519,7 +3522,6 @@ class OutputChannel extends e {
 
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    console.log(options.time, utils.toTimestamp(options.time));
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
