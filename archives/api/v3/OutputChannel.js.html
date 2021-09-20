@@ -72,6 +72,7 @@
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -103,13 +104,14 @@
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
+import {Utilities} from "./Utilities.js";
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `OutputChannel` objects can be found inside the output's [channels]{@link Output#channels}
- * property.
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [channels]{@link Output#channels} property.
  *
  * The `OutputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -121,7 +123,7 @@ import {WebMidi} from "./WebMidi.js";
  * others.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The channel number (1-16)
  *
  * @since 3.0.0
  */
@@ -132,16 +134,22 @@ export class OutputChannel extends EventEmitter {
     super();
 
     /**
-     * The {@link Output} this channel belongs to
      * @type {Output}
+     * @private
      */
-    this.output = output;
+    this._output = output;
 
     /**
-     * The channel's number (1-16)
      * @type {number}
+     * @private
      */
-    this.number = number;
+    this._number = number;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
 
   }
 
@@ -153,8 +161,9 @@ export class OutputChannel extends EventEmitter {
    * @private
    */
   destroy() {
-    this.output = null;
-    this.number = null;
+    this._output = null;
+    this._number = null;
+    this._octaveOffset = 0;
     this.removeListener();
   }
 
@@ -205,17 +214,18 @@ export class OutputChannel extends EventEmitter {
    * aftertouch. For a channel-wide aftertouch message, use
    * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
    *
-   * The note can be a single value or an array of the following valid values:
+   * The key can be a single value or an array of the following valid values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
    *
-   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
-   * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-   * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
-   * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-   * number 0) and the highest note is G9 (MIDI note number 127).
+   * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
+   * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+   * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
+   *
+   * When using a note identifier, the octave value will be offset by the combined value of
+   * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
+   * are not `0`). When using a key number, octaveOffset values are ignored.
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -236,7 +246,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @throws RangeError Invalid key aftertouch value.
    */
-  setKeyAftertouch(note, pressure, options = {}) {
+  setKeyAftertouch(target, pressure, options = {}) {
 
     if (WebMidi.validation) {
 
@@ -258,21 +268,43 @@ export class OutputChannel extends EventEmitter {
 
     }
 
-    // Normalize to integer
-    if (!options.rawValue) pressure = Math.round(pressure * 127);
+    // Normalize pressure to integer
+    if (!options.rawValue) pressure = Utilities.to7Bit(pressure);
 
-    WebMidi.getValidNoteArray(note, options).forEach(n => {
+    // Retrieve key number. If identifier specified, offset by total offset value
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    if (!Array.isArray(target)) target = [target];
+    target = target.map(item => Utilities.guessNoteNumber(item));
+
+    target.forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch &lt;&lt; 4) + (this.number - 1),
-          n.number,
+          Utilities.offsetNumber(n, offset),
           pressure
         ],
-        {time: WebMidi.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
     return this;
+
+
+
+
+
+    //
+    // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
+    //   this.send(
+    //     [
+    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
+    //       n.getOffsetNumber(offset),
+    //       n.rawAttack
+    //     ],
+    //     {time: Utilities.toTimestamp(options.time)}
+    //   );
+    // });
+
 
   }
 
@@ -396,7 +428,7 @@ export class OutputChannel extends EventEmitter {
         controller,
         value
       ],
-      {time: WebMidi.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -696,9 +728,9 @@ export class OutputChannel extends EventEmitter {
    * Plays a note or an array of notes on the channel. The first parameter is the note to play. It
    * can be a single value or an array of the following valid values:
    *
+   *  - A {@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
    *
    * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
    * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
@@ -763,7 +795,7 @@ export class OutputChannel extends EventEmitter {
     if (options.duration > 0 &amp;&amp; isFinite(String(options.duration).trim() || NaN)) {
 
       let noteOffOptions = {
-        time: (WebMidi.convertToTimestamp(options.time) || WebMidi.time) + options.duration,
+        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
@@ -849,17 +881,17 @@ export class OutputChannel extends EventEmitter {
       if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
     }
 
-    // Send note off messages
-    let o = {rawRelease: parseInt(nVelocity)};
+    // Plot total octave offset
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    WebMidi.getValidNoteArray(note, o).forEach(n => {
+    Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff &lt;&lt; 4) + (this.number - 1),
-          n.number,
+          n.getOffsetNumber(offset),
           n.rawRelease,
         ],
-        {time: WebMidi.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -881,12 +913,17 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a **note on** message for the specified notes on the channel. The first parameter is the
-   * note. It can be a single value or an array of the following valid values:
+   * Sends a **note on** message for the specified note(s) on the channel. The first parameter is
+   * the note. It can be a single value or an array of the following valid values:
    *
+   *  - A {@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *
+   *  When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
+   *  not the case when using a note number number. In this case, we assume you know exactly which
+   *  MIDI note number should be sent out.
+   *
    *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
@@ -900,10 +937,8 @@ export class OutputChannel extends EventEmitter {
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types.
    *
    * @param {Object} [options={}]
    *
@@ -956,16 +991,17 @@ export class OutputChannel extends EventEmitter {
       if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
     }
 
-    let o = {rawAttack: nVelocity};
+    // Plot total octave offset
+    const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    WebMidi.getValidNoteArray(note, o).forEach(n => {
+    Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
-          n.number,
+          n.getOffsetNumber(offset),
           n.rawAttack
         ],
-        {time: WebMidi.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -1041,7 +1077,7 @@ export class OutputChannel extends EventEmitter {
         command,
         value
       ],
-      {time: WebMidi.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1131,7 +1167,7 @@ export class OutputChannel extends EventEmitter {
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch &lt;&lt; 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
-      {time: WebMidi.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1396,7 +1432,7 @@ export class OutputChannel extends EventEmitter {
         lsb,
         msb
       ],
-      {time: WebMidi.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1487,7 +1523,7 @@ export class OutputChannel extends EventEmitter {
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange &lt;&lt; 4) + (this.number - 1),
         program - 1
       ],
-      {time: WebMidi.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1758,6 +1794,50 @@ export class OutputChannel extends EventEmitter {
     }
   }
 
+  /**
+   * An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+   * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+   * octave (C4).
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * and with the value defined on the parent `Output` object.
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
+  }
+
+  /**
+   * The parent {@link Output} this channel belongs to
+   * @type {Output}
+   * @since 3.0
+   */
+  get output() {
+    return this._output;
+  }
+
+  /**
+   * This channel's MIDI number (1-16)
+   * @type {number}
+   * @since 3.0
+   */
+  get number() {
+    return this._number;
+  }
+
 }
 </code></pre>
 		</section>
@@ -1766,7 +1846,7 @@ export class OutputChannel extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 8th 2021 @ 16:05:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

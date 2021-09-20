@@ -1,0 +1,571 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>Utilities.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<link type="text/css" rel="stylesheet" href="../css/custom.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #ffcf09;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #ffcf09;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #ffcf09;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #ffcf09;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					WebMidi.js API
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="Input.html">Input</a></li>
+											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Note.html">Note</a></li>
+											<li><a href="Output.html">Output</a></li>
+											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
+											<li><a href="WebMidi.html">WebMidi</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">Utilities.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {Note} from "./Note.js";
+import {WebMidi} from "./WebMidi.js";
+
+/**
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
+ * methode are static) and is not meant to be instantiated.
+ *
+ * @since 3.0.0
+ */
+class Utilities {
+
+  /**
+   * Returns a MIDI note number matching the identifier passed in the form of a string. The
+   * identifier must include the octave number. The identifier also optionally include a sharp (#),
+   * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+   * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+   *
+   * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
+   * 60) as per the scientific pitch notation standard.
+   *
+   * The resulting note number can be offset by using the `octaveOffset` parameter.
+   *
+   * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
+   * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+   * Abb4, B##6, etc.
+   *
+   * @param {number} [octaveOffset=0] A integer to offset the octave by.
+   *
+   * @returns {number} The MIDI note number (an integer between 0 and 127).
+   *
+   * @throws RangeError Invalid 'octaveOffset' value
+   *
+   * @throws TypeError Invalid note identifier
+   *
+   * @since 3.0.0
+   */
+  toNoteNumber(identifier, octaveOffset = 0) {
+
+    // Validation
+    octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
+    if (typeof identifier !== "string") identifier = "";
+
+    const fragments = this.getFragments(identifier);
+    if (!fragments) throw new TypeError("Invalid note identifier");
+
+    const notes = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    let result = (fragments.octave + 1 + octaveOffset) * 12;
+    result += notes[fragments.name];
+
+    if (fragments.accidental) {
+      if (fragments.accidental.startsWith("b")) {
+        result -= fragments.accidental.length;
+      } else {
+        result += fragments.accidental.length;
+      }
+    }
+
+    if (result &lt; 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
+
+    return result;
+
+  }
+
+  /**
+   * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
+   * the fragments composing it (uppercase letter, accidental and octave).
+   *
+   * @param identifier
+   * @returns {{octave: number, letter: string, accidental: string}}
+   *
+   * @throws TypeError Invalid note identifier
+   *
+   * @since 3.0.0
+   */
+  getFragments(identifier) {
+
+    const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    if (!matches) throw new TypeError("Invalid note identifier");
+
+    const name = matches[1].toUpperCase();
+    const octave = parseInt(matches[3]);
+    let accidental = matches[2].toLowerCase();
+    accidental = accidental === "" ? undefined : accidental;
+
+    const fragments = {
+      name: name,
+      accidental: accidental,
+      octave: octave,
+      identifier: name + (accidental || "") + octave
+    };
+
+    return fragments;
+
+  }
+
+  /**
+   * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+   * single integer or an array of integers.
+   *
+   * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+   * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+   * integers between 1 and 16 are silently ignored.
+   *
+   * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+   * numbers.
+   *
+   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   *
+   * @since 3.0.0
+   */
+  sanitizeChannels(channel) {
+
+    let channels;
+
+    if (this.validation) {
+
+      if (channel === "all") { // backwards-compatibility
+        channels = ["all"];
+      } else if (channel === "none") { // backwards-compatibility
+        return [];
+      }
+
+    }
+
+    if (!Array.isArray(channel)) {
+      channels = [channel];
+    } else {
+      channels = channel;
+    }
+
+    // In order to preserve backwards-compatibility, we let this assignment as it is.
+    if (channels.indexOf("all") > -1) {
+      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    }
+
+    return channels
+      .map(function(ch) {
+        return parseInt(ch);
+      })
+      .filter(function(ch) {
+        return (ch >= 1 &amp;&amp; ch &lt;= 16);
+      });
+
+  }
+
+  /**
+   * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+   * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+   * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+   * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+   * returned.
+   *
+   * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+   * @return {number|false} A positive number or `false` (if the time cannot be converted)
+   *
+   * @since 3.0.0
+   */
+  toTimestamp(time) {
+
+    let value = false;
+
+    const parsed = parseFloat(time);
+    if (isNaN(parsed)) return false;
+
+    if (typeof time === "string" &amp;&amp; time.substring(0, 1) === "+") {
+      if (parsed >= 0) value = WebMidi.time + parsed;
+    } else {
+      if (parsed >= 0) value = parsed;
+    }
+
+    return value;
+
+  }
+
+  /**
+   * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
+   * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
+   * between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
+   * will be parsed for integer value, if possible.
+   *
+   * If the input is an identifier, the resulting note number is offset by the `octaveOffset`
+   * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
+   * -2, the resulting MIDI note number will be 36.
+   *
+   * @param input {string|number} A string or number to extract the MIDI note number from.
+   *
+   * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
+   * successfully be parsed to a note number.
+   *
+   * @since 3.0.0
+   */
+  guessNoteNumber(input, octaveOffset) {
+
+    // Validate and, if necessary, assign default
+    octaveOffset = parseInt(octaveOffset) || 0;
+
+    let output = false;
+
+    // Check input type
+    if (Number.isInteger(input) &amp;&amp; input >= 0 &amp;&amp; input &lt;= 127) {        // uint
+      output = parseInt(input);
+    } else if (parseInt(input) >= 0 &amp;&amp; parseInt(input) &lt;= 127) {        // float or uint as string
+      output = parseInt(input);
+    } else if (typeof input === "string" || input instanceof String) {  // string
+      try {
+        output = this.toNoteNumber(input.trim(), octaveOffset);
+      } catch (e) {
+        return false;
+      }
+    }
+
+    return output;
+
+  }
+
+  /**
+   * Returns an identifier string representing a note name (with optional accidental) followed by an
+   * octave number. The octave can be offset by using the `octaveOffset` parameter.
+   *
+   * @param {number} The MIDI note number to convert to a note identifier
+   * @param {octaveOffset} An offset to apply to the resulting octave
+   *
+   * @returns {string}
+   *
+   * @throws RangeError Invalid note number
+   * @throws RangeError Invalid octaveOffset value
+   *
+   * @since 3.0.0
+   */
+  toNoteIdentifier(number, octaveOffset) {
+
+    number = parseInt(number);
+    if (isNaN(number) || number &lt; 0 || number > 127) throw new RangeError("Invalid note number");
+
+    octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
+    if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
+
+    const octave = Math.floor(number / 12 - 1) + octaveOffset;
+    return WebMidi.NOTES[number % 12] + octave.toString();
+
+  }
+
+  /**
+   * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
+   * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
+   * object, it will be returned as is.
+   *
+   * If the input is a note number or identifier, it is possible to specify options by providing the
+   * `options` parameter.
+   *
+   * @param [input] {number|string|Note}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
+   *
+   * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a note identifier.**
+   *
+   * @returns {Note}
+   *
+   * @throws TypeError The input could not be parsed to a note
+   *
+   * @since version 3.0.0
+   */
+  buildNote(input, options= {}) {
+
+    options.octaveOffset = parseInt(options.octaveOffset) || 0;
+
+    // If it's already a Note, we're done
+    if (input instanceof Note) return input;
+
+    let number = this.guessNoteNumber(input, options.octaveOffset);
+
+    if (number === false) { // We use a comparison b/c the note can be 0 (which equates to false)
+      throw new TypeError(`The input could not be parsed as a note (${input})`);
+    }
+
+    // If we got here, we have a proper note number. Before creating the new note, we strip out
+    // 'octaveOffset' because it has already been factored in when calling guessNoteNumber().
+    options.octaveOffset = undefined;
+    return new Note(number, options);
+
+  }
+
+  /**
+   * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
+   * {@link Note} object or an array of the previous types, to an array of {@link Note} objects.
+   *
+   * {@link Note} objects are returned as is. For note numbers and identifiers, a {@link Note}
+   * object is created with the options specified. An error will be thrown when encountering invalid
+   * input.
+   *
+   * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+   * be explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
+   * and 1.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127.
+   *
+   * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+   * used when the input value is a note identifier.**
+   *
+   * @returns {Note[]}
+   *
+   * @throws TypeError An element could not be parsed as a note.
+   *
+   * @since 3.0.0
+   */
+  buildNoteArray(notes, options = {}) {
+
+    let result = [];
+    if (!Array.isArray(notes)) notes = [notes];
+
+    notes.forEach(note => {
+      result.push(this.buildNote(note, options));
+    });
+
+    return result;
+
+  }
+
+  /**
+   * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+   * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+   * smaller than 0.
+   *
+   * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
+   * input value cannot be converted to an integer, the method returns 0.
+   *
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
+   */
+  toNormalized(value) {
+    if (value === Infinity) value = 127;
+    value = parseInt(value) || 0;
+    return Math.min(Math.max(value / 127, 0), 1);
+  }
+
+  /**
+   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+   *
+   * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+   * the input value cannot be converted to a number, the method returns 0.
+   *
+   * @param value A positive integer between 0 and 127 (inclusive)
+   * @returns {number} A number between 0 and 1 (inclusive)
+   */
+  to7Bit(value) {
+    if (value === Infinity) value = 1;
+    value = parseFloat(value) || 0;
+    return Math.min(Math.max(Math.round(value * 127), 0), 127);
+  }
+
+  /**
+   * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
+   * `data2` properties.
+   *
+   * @param data A MIDI message
+   * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
+   */
+  getMessage(data) {
+
+    return {
+      command: data[0] >> 4,
+      data1: data.length > 1 ? data[1] : undefined,
+      data2: data.length > 2 ? data[2] : undefined
+    };
+
+  }
+
+  /**
+   * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+   * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+   * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+   *
+   * @param offset
+   * @returns {number} An integer between 0 and 127
+   *
+   * @throws {Error} Invalid note number
+   */
+  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (isNaN(number)) throw new Error("Invalid note number");
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
+    }
+
+    return Math.min(Math.max(number + (octaveOffset * 12) + semitoneOffset, 0), 127);
+
+  }
+
+}
+
+// Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
+// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
+// extensible (properties can be added at will).
+const utils = new Utilities();
+utils.constructor = null;
+export {utils as Utilities};
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-162785934-1', 'https://djipco.github.io/webmidi');
+			ga('send', 'pageview');
+		</script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

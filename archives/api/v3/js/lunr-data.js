@@ -166,6 +166,38 @@ window.lunrData = {
           "name",
           "string"
         ],
+        "Input.html#octaveOffset": [
+          "1",
+          "2",
+          "4th",
+          "60",
+          "c",
+          "c3",
+          "c4",
+          "c6",
+          "combin",
+          "default",
+          "defin",
+          "exampl",
+          "global",
+          "incom",
+          "input#octaveoffset",
+          "integ",
+          "member",
+          "middl",
+          "midi",
+          "note",
+          "number",
+          "object",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "place",
+          "report",
+          "set",
+          "valu",
+          "webmidi"
+        ],
         "Input.html#state": [
           "connect",
           "disconnect",
@@ -366,7 +398,7 @@ window.lunrData = {
           "messag",
           "midi",
           "open",
-          "promise.&lt;(void|*)&gt",
+          "promise.&lt;input&gt",
           "until",
           "us"
         ],
@@ -406,13 +438,19 @@ window.lunrData = {
           "type"
         ],
         "Input.html#open": [
+          "automat",
+          "enabl",
           "function",
           "input",
           "input#open",
           "lt;async&gt",
           "open",
+          "port",
           "promise.&lt;input&gt",
-          "usag"
+          "unnecessari",
+          "usag",
+          "usual",
+          "webmidi"
         ],
         "Input.html#removeListener": [
           "channel",
@@ -488,14 +526,59 @@ window.lunrData = {
           "channel'",
           "inputchannel#numb",
           "member",
+          "midi",
           "number"
         ],
-        "InputChannel.html#_parseEvent": [
-          "_parseev",
-          "e",
+        "InputChannel.html#octaveOffset": [
+          "1",
+          "2",
+          "4th",
+          "60",
+          "c",
+          "c3",
+          "c4",
+          "c6",
+          "combin",
+          "default",
+          "defin",
+          "exampl",
+          "global",
+          "incom",
+          "input",
+          "inputchannel#octaveoffset",
+          "integ",
+          "keyaftertouch",
+          "member",
+          "messag",
+          "middl",
+          "midi",
+          "note",
+          "noteoff",
+          "noteon",
+          "number",
+          "object",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "parent",
+          "place",
+          "report",
+          "set",
+          "specif",
+          "valu",
+          "webmidi"
+        ],
+        "InputChannel.html#destroy": [
+          "destroy",
           "function",
-          "inputchannel#_parseev",
-          "lt;protected&gt"
+          "input",
+          "inputchannel#destroy",
+          "link",
+          "listen",
+          "midi",
+          "remov",
+          "sever",
+          "subsystem'"
         ],
         "InputChannel.html#getCcNameByNumber": [
           "assign",
@@ -517,7 +600,7 @@ window.lunrData = {
           "spec",
           "specif",
           "specifi",
-          "string|fals",
+          "string|undefin",
           "valid"
         ],
         "InputChannel.html#getChannelModeByNumber": [
@@ -536,34 +619,76 @@ window.lunrData = {
           "string|fals"
         ],
         "Note.html": [
+          "0.5",
+          "1",
+          "appropri",
+          "attack",
+          "automat",
+          "back",
+          "call",
+          "case",
+          "chang",
           "channel",
           "class",
+          "d3",
+          "default",
           "durat",
-          "end",
+          "elaps",
+          "etc",
+          "event",
           "explicitli",
+          "f",
+          "g#4",
+          "gb7",
+          "infin",
+          "method",
           "multipl",
+          "music",
+          "never",
           "note",
-          "note'",
-          "onc",
+          "noteoff",
+          "object",
+          "option",
+          "output",
           "output.playnot",
           "output.stopnot",
           "outputchannel.playnot",
           "outputchannel.stopnot",
+          "pass",
           "play",
+          "playback",
+          "possibl",
           "properti",
+          "releas",
           "repres",
+          "send",
           "set",
+          "similar",
           "singl",
           "stop",
-          "until",
-          "us"
+          "such",
+          "system",
+          "unless",
+          "us",
+          "veloc",
+          "webmidi.default",
+          "wide"
+        ],
+        "Note.html#accidental": [
+          "accident",
+          "b",
+          "bb",
+          "member",
+          "note",
+          "note#accident",
+          "string"
         ],
         "Note.html#attack": [
           "0",
-          "1",
+          "127",
           "attack",
           "between",
-          "decim",
+          "integ",
           "member",
           "note",
           "note#attack",
@@ -582,37 +707,40 @@ window.lunrData = {
           "posit",
           "repres"
         ],
+        "Note.html#identifier": [
+          "accident",
+          "identifi",
+          "member",
+          "name",
+          "note",
+          "note#identifi",
+          "octav",
+          "option",
+          "string"
+        ],
         "Note.html#name": [
-          "1",
-          "c3",
-          "db7",
-          "etc",
-          "f",
-          "g#4",
+          "letter",
           "member",
           "name",
           "note",
           "note#nam",
-          "number",
-          "octav",
           "string"
         ],
         "Note.html#number": [
-          "0",
-          "127",
-          "between",
-          "integ",
+          "c",
+          "c4",
+          "deriv",
+          "identifi",
           "member",
+          "middl",
           "midi",
           "note",
           "note#numb",
-          "number"
+          "number",
+          "refer",
+          "us"
         ],
         "Note.html#octave": [
-          "1",
-          "9",
-          "between",
-          "integ",
           "member",
           "note",
           "note#octav",
@@ -629,7 +757,7 @@ window.lunrData = {
           "note",
           "note#rawattack",
           "number",
-          "raw",
+          "posit",
           "rawattack",
           "veloc"
         ],
@@ -642,22 +770,44 @@ window.lunrData = {
           "note",
           "note#rawreleas",
           "number",
-          "raw",
+          "posit",
           "rawreleas",
           "releas",
           "veloc"
         ],
         "Note.html#release": [
           "0",
-          "1",
+          "127",
           "between",
-          "decim",
+          "integ",
           "member",
           "note",
           "note#releas",
           "number",
           "releas",
           "veloc"
+        ],
+        "Note.html#getOffsetNumber": [
+          "0",
+          "127",
+          "calcul",
+          "function",
+          "getoffsetnumb",
+          "integ",
+          "invalid",
+          "less",
+          "midi",
+          "more",
+          "note",
+          "note#getoffsetnumb",
+          "number",
+          "offset",
+          "paramet",
+          "return",
+          "specifi",
+          "suppli",
+          "us",
+          "valu"
         ],
         "Output.html": [
           "addlisten",
@@ -763,6 +913,31 @@ window.lunrData = {
           "output",
           "output#nam",
           "string"
+        ],
+        "Output.html#octaveOffset": [
+          "4th",
+          "60",
+          "c",
+          "c4",
+          "combin",
+          "default",
+          "defin",
+          "global",
+          "integ",
+          "member",
+          "middl",
+          "midi",
+          "note",
+          "number",
+          "object",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "outgo",
+          "output#octaveoffset",
+          "place",
+          "valu",
+          "webmidi"
         ],
         "Output.html#state": [
           "connect",
@@ -2336,6 +2511,7 @@ window.lunrData = {
           "output",
           "output'",
           "outputchannel",
+          "parent",
           "properti",
           "removelisten",
           "repres",
@@ -2349,15 +2525,50 @@ window.lunrData = {
           "16",
           "channel'",
           "member",
+          "midi",
           "number",
           "outputchannel#numb"
+        ],
+        "OutputChannel.html#octaveOffset": [
+          "4th",
+          "60",
+          "c",
+          "c4",
+          "combin",
+          "default",
+          "defin",
+          "global",
+          "integ",
+          "keyaftertouch",
+          "member",
+          "messag",
+          "middl",
+          "midi",
+          "note",
+          "noteoff",
+          "noteon",
+          "number",
+          "object",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "outgo",
+          "output",
+          "outputchannel#octaveoffset",
+          "parent",
+          "place",
+          "report",
+          "specif",
+          "valu",
+          "webmidi"
         ],
         "OutputChannel.html#output": [
           "belong",
           "channel",
           "member",
           "output",
-          "outputchannel#output"
+          "outputchannel#output",
+          "parent"
         ],
         "OutputChannel.html#decrementRegisteredParameter": [
           "0x00",
@@ -2893,10 +3104,13 @@ window.lunrData = {
           "0",
           "1",
           "127",
+          "appli",
           "array",
+          "assum",
           "attack",
           "between",
           "c3",
+          "case",
           "channel",
           "command",
           "db7",
@@ -2905,6 +3119,7 @@ window.lunrData = {
           "durat",
           "e.g",
           "equival",
+          "exactli",
           "execut",
           "f",
           "first",
@@ -2914,27 +3129,33 @@ window.lunrData = {
           "ignor",
           "instead",
           "integ",
+          "know",
           "messag",
           "method",
           "method'",
           "midi",
           "name",
           "note",
+          "note(",
           "number",
           "object",
           "octav",
+          "octaveoffset",
           "on",
           "option",
+          "out",
           "outputchannel",
           "outputchannel#sendnoteon",
           "over",
           "paramet",
+          "pass",
           "per",
           "playnot",
           "preced",
           "properti",
           "send",
           "sendnoteon",
+          "sent",
           "singl",
           "specifi",
           "standard",
@@ -2974,20 +3195,18 @@ window.lunrData = {
           "c3",
           "channel",
           "db7",
-          "e.g",
+          "etc",
           "f",
           "follow",
           "function",
           "g#4",
+          "identifi",
           "integ",
           "key",
           "messag",
           "midi",
-          "name",
           "note",
           "number",
-          "object",
-          "octav",
           "option",
           "outputchannel",
           "outputchannel#setkeyaftertouch",
@@ -2998,6 +3217,8 @@ window.lunrData = {
           "setkeyaftertouch",
           "singl",
           "specif",
+          "such",
+          "target",
           "time",
           "us",
           "valid",
@@ -3499,6 +3720,358 @@ window.lunrData = {
           "trigger",
           "turnsoundoff"
         ],
+        "Utilities.html": [
+          "class",
+          "contain",
+          "function",
+          "gener",
+          "instanti",
+          "meant",
+          "method",
+          "purpos",
+          "singleton",
+          "static",
+          "util"
+        ],
+        "Utilities.html#buildNote": [
+          "0",
+          "127",
+          "buildnot",
+          "c4",
+          "convert",
+          "etc",
+          "function",
+          "g#5",
+          "identifi",
+          "input",
+          "integ",
+          "note",
+          "number",
+          "object",
+          "option",
+          "paramet",
+          "possibl",
+          "provid",
+          "return",
+          "specifi",
+          "unsign",
+          "usual",
+          "utilities#buildnot",
+          "valid"
+        ],
+        "Utilities.html#buildNoteArray": [
+          "0",
+          "127",
+          "array",
+          "array.&lt;note&gt",
+          "buildnotearray",
+          "convert",
+          "creat",
+          "encount",
+          "error",
+          "function",
+          "identifi",
+          "input",
+          "integ",
+          "invalid",
+          "note",
+          "number",
+          "object",
+          "option",
+          "previou",
+          "return",
+          "specifi",
+          "thrown",
+          "type",
+          "unsign",
+          "utilities#buildnotearray",
+          "valu"
+        ],
+        "Utilities.html#getFragments": [
+          "1",
+          "accident",
+          "c#4",
+          "compos",
+          "contain",
+          "etc",
+          "fragment",
+          "function",
+          "gb",
+          "getfrag",
+          "given",
+          "identifi",
+          "letter",
+          "method",
+          "note",
+          "object",
+          "octav",
+          "proper",
+          "return",
+          "uppercas",
+          "utilities#getfrag"
+        ],
+        "Utilities.html#getMessage": [
+          "broken",
+          "byte",
+          "command",
+          "data",
+          "data1",
+          "data2",
+          "function",
+          "getmessag",
+          "insid",
+          "object",
+          "properti",
+          "return",
+          "three",
+          "up",
+          "utilities#getmessag"
+        ],
+        "Utilities.html#guessNoteNumber": [
+          "0",
+          "127",
+          "2",
+          "36",
+          "60",
+          "between",
+          "c3",
+          "c4",
+          "contain",
+          "conveni",
+          "d",
+          "etc",
+          "exampl",
+          "f#4",
+          "function",
+          "g8",
+          "given",
+          "guessnotenumb",
+          "identifi",
+          "input",
+          "integ",
+          "midi",
+          "note",
+          "number",
+          "number|fals",
+          "octaveoffset",
+          "offset",
+          "paramet",
+          "pars",
+          "pass",
+          "possibl",
+          "result",
+          "return",
+          "simpli",
+          "specifi",
+          "string",
+          "usual",
+          "utilities#guessnotenumb",
+          "valid",
+          "valu"
+        ],
+        "Utilities.html#offsetNumber": [
+          "0",
+          "127",
+          "calcul",
+          "function",
+          "invalid",
+          "less",
+          "midi",
+          "more",
+          "note",
+          "number",
+          "octav",
+          "offset",
+          "offsetnumb",
+          "request",
+          "return",
+          "semiton",
+          "suppli",
+          "us",
+          "utilities#offsetnumb",
+          "valu"
+        ],
+        "Utilities.html#sanitizeChannels": [
+          "1",
+          "16",
+          "array",
+          "backward",
+          "be",
+          "between",
+          "channel",
+          "compat",
+          "function",
+          "ignor",
+          "integ",
+          "method",
+          "midi",
+          "number",
+          "otherwis",
+          "paramet",
+          "pars",
+          "pass",
+          "result",
+          "return",
+          "sanit",
+          "sanitizechannel",
+          "silent",
+          "singl",
+          "successfulli",
+          "undefin",
+          "utilities#sanitizechannel",
+          "valid"
+        ],
+        "Utilities.html#to7Bit": [
+          "0",
+          "1",
+          "127",
+          "between",
+          "convert",
+          "even",
+          "function",
+          "greater",
+          "inclus",
+          "infin",
+          "input",
+          "method",
+          "multipli",
+          "number",
+          "otherwis",
+          "pass",
+          "restrict",
+          "result",
+          "return",
+          "smaller",
+          "to7bit",
+          "utilities#to7bit",
+          "valu"
+        ],
+        "Utilities.html#toNormalized": [
+          "0",
+          "1",
+          "127",
+          "7",
+          "between",
+          "bit",
+          "convert",
+          "divid",
+          "even",
+          "function",
+          "greater",
+          "infin",
+          "input",
+          "integ",
+          "method",
+          "number",
+          "otherwis",
+          "pass",
+          "ratio",
+          "repres",
+          "restrict",
+          "return",
+          "smaller",
+          "tonorm",
+          "utilities#tonorm",
+          "valu"
+        ],
+        "Utilities.html#toNoteIdentifier": [
+          "accident",
+          "follow",
+          "function",
+          "identifi",
+          "name",
+          "note",
+          "number",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "option",
+          "paramet",
+          "repres",
+          "return",
+          "string",
+          "tonoteidentifi",
+          "us",
+          "utilities#tonoteidentifi"
+        ],
+        "Utilities.html#toNoteNumber": [
+          "1",
+          "60",
+          "abb4",
+          "b",
+          "b##6",
+          "bb",
+          "c",
+          "c4",
+          "c5",
+          "consid",
+          "convert",
+          "d",
+          "doubl",
+          "eb",
+          "etc",
+          "exampl",
+          "f0",
+          "flat",
+          "form",
+          "function",
+          "g4",
+          "gb7",
+          "identifi",
+          "includ",
+          "match",
+          "middl",
+          "midi",
+          "notat",
+          "note",
+          "number",
+          "octav",
+          "octaveoffset",
+          "offset",
+          "option",
+          "paramet",
+          "pass",
+          "per",
+          "pitch",
+          "result",
+          "return",
+          "scientif",
+          "sharp",
+          "standard",
+          "string",
+          "symbol",
+          "tonotenumb",
+          "us",
+          "utilities#tonotenumb",
+          "valid"
+        ],
+        "Utilities.html#toTimestamp": [
+          "current",
+          "deriv",
+          "document",
+          "fals",
+          "follow",
+          "function",
+          "navig",
+          "number",
+          "number|fals",
+          "otherwis",
+          "paramet",
+          "plu",
+          "posit",
+          "rel",
+          "result",
+          "return",
+          "sign",
+          "start",
+          "string",
+          "sum",
+          "time",
+          "timestamp",
+          "totimestamp",
+          "utilities#totimestamp",
+          "valid"
+        ],
         "WebMidi.html": [
           "addlisten",
           "alreadi",
@@ -3545,6 +4118,20 @@ window.lunrData = {
           "web",
           "webmidi",
           "webmidi.j",
+          "work"
+        ],
+        "WebMidi.html#defaults": [
+          "chang",
+          "contain",
+          "custom",
+          "default",
+          "librari",
+          "member",
+          "object",
+          "system",
+          "valu",
+          "webmidi#default",
+          "wide",
           "work"
         ],
         "WebMidi.html#enabled": [
@@ -4049,31 +4636,36 @@ window.lunrData = {
         ],
         "WebMidi.html#octaveOffset": [
           "1",
-          "2",
-          "4th",
           "60",
-          "both",
-          "c",
+          "72",
+          "be",
           "c3",
           "c4",
-          "c6",
-          "default",
+          "call",
+          "channel",
+          "come",
+          "devic",
           "exampl",
-          "inbound",
+          "extern",
+          "input",
+          "instead",
           "integ",
           "member",
           "messag",
-          "middl",
           "midi",
+          "name",
           "note",
           "number",
           "octav",
           "octaveoffset",
           "offset",
-          "outbound",
-          "place",
+          "outputchannel.playnot",
+          "receiv",
           "report",
+          "same",
+          "sent",
           "set",
+          "token",
           "webmidi#octaveoffset"
         ],
         "WebMidi.html#outputs": [
@@ -4197,33 +4789,6 @@ window.lunrData = {
           "webmidi.j",
           "whether"
         ],
-        "WebMidi.html#convertToTimestamp": [
-          "converttotimestamp",
-          "current",
-          "deriv",
-          "document",
-          "fals",
-          "follow",
-          "function",
-          "navig",
-          "number",
-          "number|fals",
-          "otherwis",
-          "paramet",
-          "plu",
-          "posit",
-          "rel",
-          "result",
-          "return",
-          "sign",
-          "start",
-          "string",
-          "sum",
-          "time",
-          "timestamp",
-          "valid",
-          "webmidi#converttotimestamp"
-        ],
         "WebMidi.html#disable": [
           "ad",
           "avail",
@@ -4249,13 +4814,11 @@ window.lunrData = {
           "webmidi.j"
         ],
         "WebMidi.html#enable": [
-          "2020",
+          "2021",
           "3",
           "access",
           "alway",
           "api",
-          "april",
-          "array",
           "asynchron",
           "author",
           "avail",
@@ -4270,7 +4833,6 @@ window.lunrData = {
           "console.log(\"input",
           "console.log(\"output",
           "console.log(\"webmidi.j",
-          "contain",
           "current",
           "display",
           "e.g",
@@ -4322,11 +4884,13 @@ window.lunrData = {
           "prompt",
           "proof",
           "properti",
+          "readi",
           "resolv",
-          "respect",
           "secur",
+          "septemb",
           "set",
           "softwar",
+          "specifi",
           "start",
           "subsystem",
           "support",
@@ -4339,7 +4903,6 @@ window.lunrData = {
           "tri",
           "trigger",
           "true",
-          "two",
           "under",
           "us",
           "user",
@@ -4349,7 +4912,8 @@ window.lunrData = {
           "web",
           "webmidi",
           "webmidi#en",
-          "webmidi.enable().then(port"
+          "webmidi.enable().then(port",
+          "webmidi.j"
         ],
         "WebMidi.html#getInputById": [
           "anoth",
@@ -4413,96 +4977,6 @@ window.lunrData = {
           "webmidi#getinputbynam",
           "whose"
         ],
-        "WebMidi.html#getNoteNumberByName": [
-          "1",
-          "2",
-          "36",
-          "60",
-          "abb4",
-          "b",
-          "b##6",
-          "bb",
-          "c",
-          "c4",
-          "c5",
-          "consid",
-          "convert",
-          "d",
-          "doubl",
-          "eb",
-          "error",
-          "etc",
-          "exampl",
-          "f0",
-          "fals",
-          "flat",
-          "form",
-          "function",
-          "g4",
-          "gb7",
-          "getnotenumberbynam",
-          "includ",
-          "instead",
-          "match",
-          "middl",
-          "midi",
-          "name",
-          "notat",
-          "note",
-          "number",
-          "number|fals",
-          "octav",
-          "octaveoffset",
-          "offset",
-          "option",
-          "paramet",
-          "pars",
-          "pass",
-          "per",
-          "pitch",
-          "result",
-          "return",
-          "scientif",
-          "sharp",
-          "standard",
-          "string",
-          "symbol",
-          "throw",
-          "v3.x",
-          "valid",
-          "valu",
-          "webmidi#getnotenumberbynam",
-          "zero"
-        ],
-        "WebMidi.html#getNoteObject": [
-          "0",
-          "127",
-          "c4",
-          "convert",
-          "error",
-          "etc",
-          "function",
-          "g#5",
-          "getnoteobject",
-          "input",
-          "integ",
-          "invalid",
-          "name",
-          "note",
-          "number",
-          "object",
-          "option",
-          "paramet",
-          "possibl",
-          "provid",
-          "return",
-          "specifi",
-          "thrown",
-          "unsign",
-          "usual",
-          "valid",
-          "webmidi#getnoteobject"
-        ],
         "WebMidi.html#getOctave": [
           "0",
           "127",
@@ -4513,7 +4987,6 @@ window.lunrData = {
           "c",
           "c4",
           "default",
-          "desir",
           "fals",
           "function",
           "getoctav",
@@ -4525,16 +4998,11 @@ window.lunrData = {
           "number",
           "number|fals",
           "octav",
-          "octaveoffset",
-          "offset",
           "pars",
           "place",
-          "properti",
-          "result",
           "return",
           "specifi",
           "undefin",
-          "us",
           "v3.x",
           "valid",
           "valu",
@@ -4602,108 +5070,9 @@ window.lunrData = {
           "way",
           "webmidi#getoutputbynam",
           "whose"
-        ],
-        "WebMidi.html#getValidNoteArray": [
-          "0",
-          "127",
-          "array",
-          "array.&lt;note&gt",
-          "convert",
-          "creat",
-          "encount",
-          "error",
-          "function",
-          "getvalidnotearray",
-          "input",
-          "integ",
-          "invalid",
-          "name",
-          "note",
-          "number",
-          "object",
-          "option",
-          "previou",
-          "return",
-          "specifi",
-          "thrown",
-          "type",
-          "unsign",
-          "valu",
-          "webmidi#getvalidnotearray"
-        ],
-        "WebMidi.html#guessNoteNumber": [
-          "0",
-          "127",
-          "2",
-          "between",
-          "c3",
-          "contain",
-          "conveni",
-          "d",
-          "error",
-          "etc",
-          "f#4",
-          "fals",
-          "function",
-          "g8",
-          "given",
-          "guessnotenumb",
-          "input",
-          "instead",
-          "integ",
-          "invalid",
-          "method",
-          "midi",
-          "name",
-          "note",
-          "number",
-          "number|fals",
-          "paramet",
-          "pars",
-          "pass",
-          "possibl",
-          "return",
-          "simpli",
-          "specifi",
-          "string",
-          "throw",
-          "usual",
-          "v3.x",
-          "valid",
-          "webmidi#guessnotenumb"
-        ],
-        "WebMidi.html#sanitizeChannels": [
-          "1",
-          "16",
-          "array",
-          "backward",
-          "be",
-          "between",
-          "channel",
-          "compat",
-          "function",
-          "ignor",
-          "integ",
-          "method",
-          "midi",
-          "number",
-          "otherwis",
-          "paramet",
-          "pars",
-          "pass",
-          "result",
-          "return",
-          "sanit",
-          "sanitizechannel",
-          "silent",
-          "singl",
-          "successfulli",
-          "undefin",
-          "valid",
-          "webmidi#sanitizechannel"
         ]
       },
-      "length": 145
+      "length": 160
     },
     "tokenStore": {
       "root": {
@@ -4711,10 +5080,6 @@ window.lunrData = {
           "docs": {
             "Note.html#attack": {
               "ref": "Note.html#attack",
-              "tf": 6.25
-            },
-            "Note.html#number": {
-              "ref": "Note.html#number",
               "tf": 7.142857142857142
             },
             "Note.html#rawAttack": {
@@ -4727,7 +5092,11 @@ window.lunrData = {
             },
             "Note.html#release": {
               "ref": "Note.html#release",
-              "tf": 6.25
+              "tf": 7.142857142857142
+            },
+            "Note.html#getOffsetNumber": {
+              "ref": "Note.html#getOffsetNumber",
+              "tf": 6
             },
             "Output.html#playNote": {
               "ref": "Output.html#playNote",
@@ -4807,11 +5176,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 1.2195121951219512
+              "tf": 0.9708737864077669
             },
             "OutputChannel.html#setKeyAftertouch": {
               "ref": "OutputChannel.html#setKeyAftertouch",
-              "tf": 1.1904761904761905
+              "tf": 1.282051282051282
             },
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -4833,6 +5202,30 @@ window.lunrData = {
               "ref": "OutputChannel.html#setTuningProgram",
               "tf": 1.25
             },
+            "Utilities.html#buildNote": {
+              "ref": "Utilities.html#buildNote",
+              "tf": 1.6129032258064515
+            },
+            "Utilities.html#buildNoteArray": {
+              "ref": "Utilities.html#buildNoteArray",
+              "tf": 1.5151515151515151
+            },
+            "Utilities.html#guessNoteNumber": {
+              "ref": "Utilities.html#guessNoteNumber",
+              "tf": 1.7543859649122806
+            },
+            "Utilities.html#offsetNumber": {
+              "ref": "Utilities.html#offsetNumber",
+              "tf": 5.357142857142857
+            },
+            "Utilities.html#to7Bit": {
+              "ref": "Utilities.html#to7Bit",
+              "tf": 6.666666666666667
+            },
+            "Utilities.html#toNormalized": {
+              "ref": "Utilities.html#toNormalized",
+              "tf": 6.097560975609756
+            },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
               "tf": 0.4032258064516129
@@ -4841,22 +5234,21 @@ window.lunrData = {
               "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
               "tf": 0.5617977528089888
             },
-            "WebMidi.html#getNoteObject": {
-              "ref": "WebMidi.html#getNoteObject",
-              "tf": 1.3888888888888888
-            },
             "WebMidi.html#getOctave": {
               "ref": "WebMidi.html#getOctave",
-              "tf": 1.282051282051282
-            },
-            "WebMidi.html#getValidNoteArray": {
-              "ref": "WebMidi.html#getValidNoteArray",
               "tf": 1.5151515151515151
-            },
-            "WebMidi.html#guessNoteNumber": {
-              "ref": "WebMidi.html#guessNoteNumber",
-              "tf": 2.272727272727273
             }
+          },
+          ".": {
+            "5": {
+              "docs": {
+                "Note.html": {
+                  "ref": "Note.html",
+                  "tf": 0.641025641025641
+                }
+              }
+            },
+            "docs": {}
           },
           "x": {
             "0": {
@@ -5628,8 +6020,8 @@ window.lunrData = {
             },
             "7": {
               "docs": {
-                "Note.html#number": {
-                  "ref": "Note.html#number",
+                "Note.html#attack": {
+                  "ref": "Note.html#attack",
                   "tf": 7.142857142857142
                 },
                 "Note.html#rawAttack": {
@@ -5639,6 +6031,14 @@ window.lunrData = {
                 "Note.html#rawRelease": {
                   "ref": "Note.html#rawRelease",
                   "tf": 6.25
+                },
+                "Note.html#release": {
+                  "ref": "Note.html#release",
+                  "tf": 7.142857142857142
+                },
+                "Note.html#getOffsetNumber": {
+                  "ref": "Note.html#getOffsetNumber",
+                  "tf": 4
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
@@ -5698,11 +6098,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
+                  "tf": 0.48543689320388345
                 },
                 "OutputChannel.html#setKeyAftertouch": {
                   "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 1.1904761904761905
+                  "tf": 1.282051282051282
                 },
                 "OutputChannel.html#setProgram": {
                   "ref": "OutputChannel.html#setProgram",
@@ -5720,6 +6120,30 @@ window.lunrData = {
                   "ref": "OutputChannel.html#setTuningProgram",
                   "tf": 1.25
                 },
+                "Utilities.html#buildNote": {
+                  "ref": "Utilities.html#buildNote",
+                  "tf": 1.6129032258064515
+                },
+                "Utilities.html#buildNoteArray": {
+                  "ref": "Utilities.html#buildNoteArray",
+                  "tf": 1.5151515151515151
+                },
+                "Utilities.html#guessNoteNumber": {
+                  "ref": "Utilities.html#guessNoteNumber",
+                  "tf": 1.7543859649122806
+                },
+                "Utilities.html#offsetNumber": {
+                  "ref": "Utilities.html#offsetNumber",
+                  "tf": 3.571428571428571
+                },
+                "Utilities.html#to7Bit": {
+                  "ref": "Utilities.html#to7Bit",
+                  "tf": 4.444444444444445
+                },
+                "Utilities.html#toNormalized": {
+                  "ref": "Utilities.html#toNormalized",
+                  "tf": 2.4390243902439024
+                },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
                   "tf": 2.1739130434782608
@@ -5728,21 +6152,9 @@ window.lunrData = {
                   "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
                   "tf": 2
                 },
-                "WebMidi.html#getNoteObject": {
-                  "ref": "WebMidi.html#getNoteObject",
-                  "tf": 1.3888888888888888
-                },
                 "WebMidi.html#getOctave": {
                   "ref": "WebMidi.html#getOctave",
-                  "tf": 1.282051282051282
-                },
-                "WebMidi.html#getValidNoteArray": {
-                  "ref": "WebMidi.html#getValidNoteArray",
                   "tf": 1.5151515151515151
-                },
-                "WebMidi.html#guessNoteNumber": {
-                  "ref": "WebMidi.html#guessNoteNumber",
-                  "tf": 2.272727272727273
                 }
               }
             },
@@ -5881,11 +6293,11 @@ window.lunrData = {
               },
               "InputChannel.html": {
                 "ref": "InputChannel.html",
-                "tf": 2.0408163265306123
+                "tf": 2.083333333333333
               },
               "InputChannel.html#number": {
                 "ref": "InputChannel.html#number",
-                "tf": 12.5
+                "tf": 10
               },
               "Output.html#channels": {
                 "ref": "Output.html#channels",
@@ -5897,23 +6309,23 @@ window.lunrData = {
               },
               "OutputChannel.html": {
                 "ref": "OutputChannel.html",
-                "tf": 2.4390243902439024
+                "tf": 2.380952380952381
               },
               "OutputChannel.html#number": {
                 "ref": "OutputChannel.html#number",
-                "tf": 12.5
+                "tf": 10
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
                 "tf": 0.26455026455026454
               },
+              "Utilities.html#sanitizeChannels": {
+                "ref": "Utilities.html#sanitizeChannels",
+                "tf": 4.166666666666666
+              },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
                 "tf": 0.4032258064516129
-              },
-              "WebMidi.html#sanitizeChannels": {
-                "ref": "WebMidi.html#sanitizeChannels",
-                "tf": 4.166666666666666
               }
             },
             "t": {
@@ -5981,6 +6393,10 @@ window.lunrData = {
               "ref": "Input.html#channels",
               "tf": 4.166666666666666
             },
+            "Input.html#octaveOffset": {
+              "ref": "Input.html#octaveOffset",
+              "tf": 1.1111111111111112
+            },
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
               "tf": 0.5882352941176471
@@ -5991,27 +6407,19 @@ window.lunrData = {
             },
             "InputChannel.html": {
               "ref": "InputChannel.html",
-              "tf": 1.0204081632653061
+              "tf": 1.0416666666666665
             },
             "InputChannel.html#number": {
               "ref": "InputChannel.html#number",
-              "tf": 12.5
+              "tf": 10
             },
-            "Note.html#attack": {
-              "ref": "Note.html#attack",
-              "tf": 6.25
+            "InputChannel.html#octaveOffset": {
+              "ref": "InputChannel.html#octaveOffset",
+              "tf": 0.9090909090909091
             },
-            "Note.html#name": {
-              "ref": "Note.html#name",
-              "tf": 5
-            },
-            "Note.html#octave": {
-              "ref": "Note.html#octave",
-              "tf": 8.333333333333332
-            },
-            "Note.html#release": {
-              "ref": "Note.html#release",
-              "tf": 6.25
+            "Note.html": {
+              "ref": "Note.html",
+              "tf": 0.641025641025641
             },
             "Output.html#channels": {
               "ref": "Output.html#channels",
@@ -6067,11 +6475,11 @@ window.lunrData = {
             },
             "OutputChannel.html": {
               "ref": "OutputChannel.html",
-              "tf": 1.2195121951219512
+              "tf": 1.1904761904761905
             },
             "OutputChannel.html#number": {
               "ref": "OutputChannel.html#number",
-              "tf": 12.5
+              "tf": 10
             },
             "OutputChannel.html#decrementRegisteredParameter": {
               "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -6095,11 +6503,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 0.6097560975609756
+              "tf": 0.48543689320388345
             },
             "OutputChannel.html#setKeyAftertouch": {
               "ref": "OutputChannel.html#setKeyAftertouch",
-              "tf": 1.1904761904761905
+              "tf": 1.282051282051282
             },
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -6117,6 +6525,26 @@ window.lunrData = {
               "ref": "OutputChannel.html#setTuningProgram",
               "tf": 2.5
             },
+            "Utilities.html#getFragments": {
+              "ref": "Utilities.html#getFragments",
+              "tf": 2.7777777777777777
+            },
+            "Utilities.html#sanitizeChannels": {
+              "ref": "Utilities.html#sanitizeChannels",
+              "tf": 4.166666666666666
+            },
+            "Utilities.html#to7Bit": {
+              "ref": "Utilities.html#to7Bit",
+              "tf": 2.2222222222222223
+            },
+            "Utilities.html#toNormalized": {
+              "ref": "Utilities.html#toNormalized",
+              "tf": 3.6585365853658534
+            },
+            "Utilities.html#toNoteNumber": {
+              "ref": "Utilities.html#toNoteNumber",
+              "tf": 1.5873015873015872
+            },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
               "tf": 0.4032258064516129
@@ -6127,15 +6555,7 @@ window.lunrData = {
             },
             "WebMidi.html#octaveOffset": {
               "ref": "WebMidi.html#octaveOffset",
-              "tf": 1.3513513513513513
-            },
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 1.1363636363636365
-            },
-            "WebMidi.html#sanitizeChannels": {
-              "ref": "WebMidi.html#sanitizeChannels",
-              "tf": 4.166666666666666
+              "tf": 1.8518518518518516
             }
           },
           ".": {
@@ -6189,11 +6609,11 @@ window.lunrData = {
         "2": {
           "0": {
             "2": {
-              "0": {
+              "1": {
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               },
@@ -6340,6 +6760,10 @@ window.lunrData = {
             "docs": {}
           },
           "docs": {
+            "Input.html#octaveOffset": {
+              "ref": "Input.html#octaveOffset",
+              "tf": 1.1111111111111112
+            },
             "Input.html#addListener": {
               "ref": "Input.html#addListener",
               "tf": 0.5882352941176471
@@ -6347,6 +6771,10 @@ window.lunrData = {
             "Input.html#addOneTimeListener": {
               "ref": "Input.html#addOneTimeListener",
               "tf": 0.5813953488372093
+            },
+            "InputChannel.html#octaveOffset": {
+              "ref": "InputChannel.html#octaveOffset",
+              "tf": 0.9090909090909091
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
@@ -6376,21 +6804,13 @@ window.lunrData = {
               "ref": "OutputChannel.html#setRegisteredParameter",
               "tf": 0.3289473684210526
             },
+            "Utilities.html#guessNoteNumber": {
+              "ref": "Utilities.html#guessNoteNumber",
+              "tf": 1.7543859649122806
+            },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
               "tf": 0.4032258064516129
-            },
-            "WebMidi.html#octaveOffset": {
-              "ref": "WebMidi.html#octaveOffset",
-              "tf": 1.3513513513513513
-            },
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 0.5681818181818182
-            },
-            "WebMidi.html#guessNoteNumber": {
-              "ref": "WebMidi.html#guessNoteNumber",
-              "tf": 1.1363636363636365
             }
           },
           ".": {
@@ -6499,13 +6919,13 @@ window.lunrData = {
                 "ref": "OutputChannel.html#sendControlChange",
                 "tf": 0.26455026455026454
               },
+              "Utilities.html#guessNoteNumber": {
+                "ref": "Utilities.html#guessNoteNumber",
+                "tf": 0.8771929824561403
+              },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
                 "tf": 0.4032258064516129
-              },
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
               }
             }
           },
@@ -6592,7 +7012,7 @@ window.lunrData = {
             },
             "WebMidi.html#enable": {
               "ref": "WebMidi.html#enable",
-              "tf": 0.31645569620253167
+              "tf": 0.33112582781456956
             }
           },
           ".": {
@@ -6750,13 +7170,25 @@ window.lunrData = {
             "docs": {},
             "h": {
               "docs": {
-                "WebMidi.html#octaveOffset": {
-                  "ref": "WebMidi.html#octaveOffset",
-                  "tf": 1.3513513513513513
+                "Input.html#octaveOffset": {
+                  "ref": "Input.html#octaveOffset",
+                  "tf": 1.1111111111111112
+                },
+                "InputChannel.html#octaveOffset": {
+                  "ref": "InputChannel.html#octaveOffset",
+                  "tf": 0.9090909090909091
+                },
+                "Output.html#octaveOffset": {
+                  "ref": "Output.html#octaveOffset",
+                  "tf": 2
+                },
+                "OutputChannel.html#octaveOffset": {
+                  "ref": "OutputChannel.html#octaveOffset",
+                  "tf": 1.3888888888888888
                 },
                 "WebMidi.html#getOctave": {
                   "ref": "WebMidi.html#getOctave",
-                  "tf": 1.282051282051282
+                  "tf": 1.5151515151515151
                 }
               }
             }
@@ -6789,17 +7221,37 @@ window.lunrData = {
         "6": {
           "0": {
             "docs": {
+              "Input.html#octaveOffset": {
+                "ref": "Input.html#octaveOffset",
+                "tf": 3.3333333333333335
+              },
+              "InputChannel.html#octaveOffset": {
+                "ref": "InputChannel.html#octaveOffset",
+                "tf": 2.727272727272727
+              },
+              "Output.html#octaveOffset": {
+                "ref": "Output.html#octaveOffset",
+                "tf": 2
+              },
+              "OutputChannel.html#octaveOffset": {
+                "ref": "OutputChannel.html#octaveOffset",
+                "tf": 1.3888888888888888
+              },
+              "Utilities.html#guessNoteNumber": {
+                "ref": "Utilities.html#guessNoteNumber",
+                "tf": 0.8771929824561403
+              },
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
+              },
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
-                "tf": 4.054054054054054
-              },
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
+                "tf": 1.8518518518518516
               },
               "WebMidi.html#getOctave": {
                 "ref": "WebMidi.html#getOctave",
-                "tf": 1.282051282051282
+                "tf": 1.5151515151515151
               }
             }
           },
@@ -7023,6 +7475,10 @@ window.lunrData = {
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
                 "tf": 0.4032258064516129
+              },
+              "WebMidi.html#octaveOffset": {
+                "ref": "WebMidi.html#octaveOffset",
+                "tf": 0.9259259259259258
               }
             }
           },
@@ -7150,6 +7606,10 @@ window.lunrData = {
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
               "tf": 0.4807692307692308
+            },
+            "Utilities.html#toNormalized": {
+              "ref": "Utilities.html#toNormalized",
+              "tf": 1.2195121951219512
             },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7419,10 +7879,6 @@ window.lunrData = {
             }
           },
           "docs": {
-            "Note.html#octave": {
-              "ref": "Note.html#octave",
-              "tf": 8.333333333333332
-            },
             "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
               "tf": 1.4285714285714286
@@ -7458,7 +7914,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6329113924050633
+                  "tf": 0.6622516556291391
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -7470,15 +7926,35 @@ window.lunrData = {
                 }
               }
             },
-            "r": {
+            "p": {
               "docs": {},
-              "i": {
+              "r": {
                 "docs": {},
-                "l": {
+                "o": {
+                  "docs": {},
+                  "p": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "Note.html": {
+                            "ref": "Note.html",
+                            "tf": 0.641025641025641
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "l": {
+                "docs": {},
+                "i": {
                   "docs": {
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
                     }
                   }
                 }
@@ -7551,15 +8027,23 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     },
                     "OutputChannel.html#setKeyAftertouch": {
                       "ref": "OutputChannel.html#setKeyAftertouch",
-                      "tf": 1.1904761904761905
+                      "tf": 1.282051282051282
                     },
                     "OutputChannel.html#setNonRegisteredParameter": {
                       "ref": "OutputChannel.html#setNonRegisteredParameter",
                       "tf": 1.4423076923076923
+                    },
+                    "Utilities.html#buildNoteArray": {
+                      "ref": "Utilities.html#buildNoteArray",
+                      "tf": 3.0303030303030303
+                    },
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
+                      "tf": 36.11111111111111
                     },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
@@ -7576,18 +8060,6 @@ window.lunrData = {
                     "WebMidi.html#outputs": {
                       "ref": "WebMidi.html#outputs",
                       "tf": 43.33333333333333
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
-                    },
-                    "WebMidi.html#getValidNoteArray": {
-                      "ref": "WebMidi.html#getValidNoteArray",
-                      "tf": 3.0303030303030303
-                    },
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
-                      "tf": 36.11111111111111
                     }
                   },
                   ".": {
@@ -7745,6 +8217,32 @@ window.lunrData = {
                                 }
                               }
                             },
+                            "n": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "e": {
+                                    "docs": {},
+                                    "&": {
+                                      "docs": {},
+                                      "g": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {
+                                            "Utilities.html#buildNoteArray": {
+                                              "ref": "Utilities.html#buildNoteArray",
+                                              "tf": 25
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "s": {
                               "docs": {},
                               "t": {
@@ -7772,32 +8270,6 @@ window.lunrData = {
                                                   "tf": 33.33333333333333
                                                 }
                                               }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "n": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "&": {
-                                      "docs": {},
-                                      "g": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {
-                                            "WebMidi.html#getValidNoteArray": {
-                                              "ref": "WebMidi.html#getValidNoteArray",
-                                              "tf": 25
                                             }
                                           }
                                         }
@@ -7905,7 +8377,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.2658227848101267
+                      "tf": 0.9933774834437087
                     }
                   }
                 }
@@ -7930,7 +8402,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6329113924050633
+                      "tf": 0.6622516556291391
                     }
                   }
                 }
@@ -8128,9 +8600,9 @@ window.lunrData = {
             "b": {
               "4": {
                 "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 0.7936507936507936
                   }
                 }
               },
@@ -8225,6 +8697,38 @@ window.lunrData = {
             },
             "c": {
               "docs": {},
+              "i": {
+                "docs": {},
+                "d": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Note.html#accidental": {
+                            "ref": "Note.html#accidental",
+                            "tf": 712.5
+                          },
+                          "Note.html#identifier": {
+                            "ref": "Note.html#identifier",
+                            "tf": 8.333333333333332
+                          },
+                          "Utilities.html#getFragments": {
+                            "ref": "Utilities.html#getFragments",
+                            "tf": 2.7777777777777777
+                          },
+                          "Utilities.html#toNoteIdentifier": {
+                            "ref": "Utilities.html#toNoteIdentifier",
+                            "tf": 3.125
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
               "o": {
                 "docs": {},
                 "r": {
@@ -8267,7 +8771,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -8352,7 +8856,7 @@ window.lunrData = {
                             },
                             "InputChannel.html": {
                               "ref": "InputChannel.html",
-                              "tf": 1.0204081632653061
+                              "tf": 1.0416666666666665
                             },
                             "Output.html": {
                               "ref": "Output.html",
@@ -8360,7 +8864,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html": {
                               "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
+                              "tf": 1.1904761904761905
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
@@ -8486,6 +8990,51 @@ window.lunrData = {
               }
             }
           },
+          "u": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Input.html#open": {
+                          "ref": "Input.html#open",
+                          "tf": 5
+                        },
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 0.641025641025641
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.33333333333333337
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "h": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.33112582781456956
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "s": {
             "docs": {},
             "s": {
@@ -8545,6 +9094,17 @@ window.lunrData = {
                     }
                   }
                 }
+              },
+              "u": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
+                    }
+                  }
+                }
               }
             },
             "y": {
@@ -8563,7 +9123,7 @@ window.lunrData = {
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.31645569620253167
+                              "tf": 0.33112582781456956
                             }
                           }
                         }
@@ -8584,9 +9144,13 @@ window.lunrData = {
                   "docs": {},
                   "k": {
                     "docs": {
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 1.282051282051282
+                      },
                       "Note.html#attack": {
                         "ref": "Note.html#attack",
-                        "tf": 706.25
+                        "tf": 707.1428571428571
                       },
                       "Note.html#rawAttack": {
                         "ref": "Note.html#rawAttack",
@@ -8606,7 +9170,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.2195121951219512
+                        "tf": 0.9708737864077669
                       }
                     }
                   }
@@ -8766,43 +9330,6 @@ window.lunrData = {
               }
             }
           },
-          "u": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.33333333333333337
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "h": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "f": {
             "docs": {},
             "t": {
@@ -8835,7 +9362,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html#setKeyAftertouch": {
                                 "ref": "OutputChannel.html#setKeyAftertouch",
-                                "tf": 3.571428571428571
+                                "tf": 3.8461538461538463
                               }
                             }
                           }
@@ -8911,7 +9438,7 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "Output.html": {
                         "ref": "Output.html",
@@ -8919,15 +9446,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.2195121951219512
+                        "tf": 1.1904761904761905
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 1.5873015873015872
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
                         "tf": 0.7462686567164178
-                      },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 1.1363636363636365
                       }
                     }
                   },
@@ -8940,7 +9467,30 @@ window.lunrData = {
                       "OutputChannel.html#setMasterTuning": {
                         "ref": "OutputChannel.html#setMasterTuning",
                         "tf": 1.1904761904761905
+                      },
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 1.1111111111111112
                       }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
+                    },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.9090909090909091
+                    },
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.7462686567164178
                     }
                   }
                 }
@@ -9035,17 +9585,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.7462686567164178
-                    }
-                  }
-                }
               }
             },
             "p": {
@@ -9100,7 +9639,7 @@ window.lunrData = {
                     },
                     "Input.html#open": {
                       "ref": "Input.html#open",
-                      "tf": 16.666666666666664
+                      "tf": 5
                     },
                     "Input.html#removeListener": {
                       "ref": "Input.html#removeListener",
@@ -9108,15 +9647,47 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 2.0408163265306123
+                      "tf": 2.083333333333333
                     },
                     "InputChannel.html#input": {
                       "ref": "InputChannel.html#input",
                       "tf": 766.6666666666666
                     },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.9090909090909091
+                    },
+                    "InputChannel.html#destroy": {
+                      "ref": "InputChannel.html#destroy",
+                      "tf": 11.11111111111111
+                    },
+                    "Utilities.html#buildNote": {
+                      "ref": "Utilities.html#buildNote",
+                      "tf": 31.451612903225808
+                    },
+                    "Utilities.html#buildNoteArray": {
+                      "ref": "Utilities.html#buildNoteArray",
+                      "tf": 3.0303030303030303
+                    },
+                    "Utilities.html#guessNoteNumber": {
+                      "ref": "Utilities.html#guessNoteNumber",
+                      "tf": 35.964912280701746
+                    },
+                    "Utilities.html#to7Bit": {
+                      "ref": "Utilities.html#to7Bit",
+                      "tf": 4.444444444444445
+                    },
+                    "Utilities.html#toNormalized": {
+                      "ref": "Utilities.html#toNormalized",
+                      "tf": 3.6585365853658534
+                    },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
                       "tf": 693.3333333333334
+                    },
+                    "WebMidi.html#octaveOffset": {
+                      "ref": "WebMidi.html#octaveOffset",
+                      "tf": 0.9259259259259258
                     },
                     "WebMidi.html#disable": {
                       "ref": "WebMidi.html#disable",
@@ -9124,7 +9695,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.949367088607595
+                      "tf": 0.33112582781456956
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -9134,21 +9705,9 @@ window.lunrData = {
                       "ref": "WebMidi.html#getInputByName",
                       "tf": 4
                     },
-                    "WebMidi.html#getNoteObject": {
-                      "ref": "WebMidi.html#getNoteObject",
-                      "tf": 5.555555555555555
-                    },
                     "WebMidi.html#getOutputByName": {
                       "ref": "WebMidi.html#getOutputByName",
                       "tf": 2
-                    },
-                    "WebMidi.html#getValidNoteArray": {
-                      "ref": "WebMidi.html#getValidNoteArray",
-                      "tf": 3.0303030303030303
-                    },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 35.6060606060606
                     }
                   },
                   "#": {
@@ -9271,6 +9830,61 @@ window.lunrData = {
                             "Input.html#name": {
                               "ref": "Input.html#name",
                               "tf": 1150
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "o": {
+                      "docs": {},
+                      "c": {
+                        "docs": {},
+                        "t": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "v": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "o": {
+                                  "docs": {},
+                                  "f": {
+                                    "docs": {},
+                                    "f": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {
+                                              "Input.html#octaveOffset": {
+                                                "ref": "Input.html#octaveOffset",
+                                                "tf": 1150
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "p": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {
+                              "Input.html#open": {
+                                "ref": "Input.html#open",
+                                "tf": 1150
+                              }
                             }
                           }
                         }
@@ -9435,23 +10049,6 @@ window.lunrData = {
                         }
                       }
                     },
-                    "o": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "n": {
-                            "docs": {
-                              "Input.html#open": {
-                                "ref": "Input.html#open",
-                                "tf": 1150
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
                     "r": {
                       "docs": {},
                       "e": {
@@ -9526,7 +10123,7 @@ window.lunrData = {
                                   },
                                   "InputChannel.html": {
                                     "ref": "InputChannel.html",
-                                    "tf": 1903.061224489796
+                                    "tf": 1903.125
                                   }
                                 },
                                 "#": {
@@ -9568,26 +10165,64 @@ window.lunrData = {
                                       }
                                     }
                                   },
-                                  "_": {
+                                  "o": {
                                     "docs": {},
-                                    "p": {
+                                    "c": {
                                       "docs": {},
-                                      "a": {
+                                      "t": {
                                         "docs": {},
-                                        "r": {
+                                        "a": {
                                           "docs": {},
-                                          "s": {
+                                          "v": {
                                             "docs": {},
                                             "e": {
                                               "docs": {},
-                                              "e": {
+                                              "o": {
                                                 "docs": {},
-                                                "v": {
-                                                  "docs": {
-                                                    "InputChannel.html#_parseEvent": {
-                                                      "ref": "InputChannel.html#_parseEvent",
-                                                      "tf": 1150
+                                                "f": {
+                                                  "docs": {},
+                                                  "f": {
+                                                    "docs": {},
+                                                    "s": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "t": {
+                                                          "docs": {
+                                                            "InputChannel.html#octaveOffset": {
+                                                              "ref": "InputChannel.html#octaveOffset",
+                                                              "tf": 1150
+                                                            }
+                                                          }
+                                                        }
+                                                      }
                                                     }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "d": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "r": {
+                                            "docs": {},
+                                            "o": {
+                                              "docs": {},
+                                              "y": {
+                                                "docs": {
+                                                  "InputChannel.html#destroy": {
+                                                    "ref": "InputChannel.html#destroy",
+                                                    "tf": 1150
                                                   }
                                                 }
                                               }
@@ -9732,7 +10367,7 @@ window.lunrData = {
                     "docs": {
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       }
                     }
                   },
@@ -9781,7 +10416,7 @@ window.lunrData = {
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0204081632653061
+                            "tf": 1.0416666666666665
                           },
                           "Output.html": {
                             "ref": "Output.html",
@@ -9789,7 +10424,11 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.2195121951219512
+                            "tf": 1.1904761904761905
+                          },
+                          "Utilities.html": {
+                            "ref": "Utilities.html",
+                            "tf": 3.8461538461538463
                           },
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
@@ -9852,23 +10491,19 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         },
                         "OutputChannel.html#setChannelAftertouch": {
                           "ref": "OutputChannel.html#setChannelAftertouch",
                           "tf": 4.545454545454546
                         },
-                        "WebMidi.html#getNoteNumberByName": {
-                          "ref": "WebMidi.html#getNoteNumberByName",
-                          "tf": 0.5681818181818182
+                        "WebMidi.html#octaveOffset": {
+                          "ref": "WebMidi.html#octaveOffset",
+                          "tf": 1.8518518518518516
                         },
                         "WebMidi.html#getOctave": {
                           "ref": "WebMidi.html#getOctave",
-                          "tf": 1.282051282051282
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
+                          "tf": 1.5151515151515151
                         }
                       }
                     }
@@ -9920,11 +10555,15 @@ window.lunrData = {
                   "docs": {
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
+                    },
+                    "Utilities.html#getMessage": {
+                      "ref": "Utilities.html#getMessage",
+                      "tf": 4.545454545454546
                     }
                   }
                 }
@@ -9936,13 +10575,17 @@ window.lunrData = {
                 "docs": {},
                 "g": {
                   "docs": {
-                    "Note.html#number": {
-                      "ref": "Note.html#number",
-                      "tf": 7.142857142857142
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
                     },
-                    "Note.html#octave": {
-                      "ref": "Note.html#octave",
-                      "tf": 8.333333333333332
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.9090909090909091
+                    },
+                    "Note.html#attack": {
+                      "ref": "Note.html#attack",
+                      "tf": 7.142857142857142
                     },
                     "Note.html#rawAttack": {
                       "ref": "Note.html#rawAttack",
@@ -9951,6 +10594,18 @@ window.lunrData = {
                     "Note.html#rawRelease": {
                       "ref": "Note.html#rawRelease",
                       "tf": 6.25
+                    },
+                    "Note.html#release": {
+                      "ref": "Note.html#release",
+                      "tf": 7.142857142857142
+                    },
+                    "Note.html#getOffsetNumber": {
+                      "ref": "Note.html#getOffsetNumber",
+                      "tf": 2
+                    },
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 2
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
@@ -9992,6 +10647,10 @@ window.lunrData = {
                       "ref": "Output.html#setTuningProgram",
                       "tf": 1.25
                     },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 1.3888888888888888
+                    },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
                       "tf": 0.4629629629629629
@@ -10006,11 +10665,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     },
                     "OutputChannel.html#setKeyAftertouch": {
                       "ref": "OutputChannel.html#setKeyAftertouch",
-                      "tf": 1.1904761904761905
+                      "tf": 1.282051282051282
                     },
                     "OutputChannel.html#setMasterTuning": {
                       "ref": "OutputChannel.html#setMasterTuning",
@@ -10032,33 +10691,37 @@ window.lunrData = {
                       "ref": "OutputChannel.html#setTuningProgram",
                       "tf": 1.25
                     },
+                    "Utilities.html#buildNote": {
+                      "ref": "Utilities.html#buildNote",
+                      "tf": 1.6129032258064515
+                    },
+                    "Utilities.html#buildNoteArray": {
+                      "ref": "Utilities.html#buildNoteArray",
+                      "tf": 1.5151515151515151
+                    },
+                    "Utilities.html#guessNoteNumber": {
+                      "ref": "Utilities.html#guessNoteNumber",
+                      "tf": 1.7543859649122806
+                    },
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
+                      "tf": 4.166666666666666
+                    },
+                    "Utilities.html#toNormalized": {
+                      "ref": "Utilities.html#toNormalized",
+                      "tf": 1.2195121951219512
+                    },
                     "WebMidi.html#octaveOffset": {
                       "ref": "WebMidi.html#octaveOffset",
-                      "tf": 1.3513513513513513
+                      "tf": 0.9259259259259258
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
                       "tf": 1.4705882352941175
                     },
-                    "WebMidi.html#getNoteObject": {
-                      "ref": "WebMidi.html#getNoteObject",
-                      "tf": 1.3888888888888888
-                    },
                     "WebMidi.html#getOutputById": {
                       "ref": "WebMidi.html#getOutputById",
                       "tf": 1.4705882352941175
-                    },
-                    "WebMidi.html#getValidNoteArray": {
-                      "ref": "WebMidi.html#getValidNoteArray",
-                      "tf": 1.5151515151515151
-                    },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 2.272727272727273
-                    },
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
-                      "tf": 4.166666666666666
                     }
                   }
                 },
@@ -10091,6 +10754,25 @@ window.lunrData = {
             },
             "f": {
               "docs": {},
+              "i": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
+                    },
+                    "Utilities.html#to7Bit": {
+                      "ref": "Utilities.html#to7Bit",
+                      "tf": 2.2222222222222223
+                    },
+                    "Utilities.html#toNormalized": {
+                      "ref": "Utilities.html#toNormalized",
+                      "tf": 2.4390243902439024
+                    }
+                  }
+                }
+              },
               "o": {
                 "docs": {
                   "Output.html#sendControlChange": {
@@ -10100,26 +10782,6 @@ window.lunrData = {
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
                     "tf": 0.26455026455026454
-                  }
-                }
-              }
-            },
-            "b": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "d": {
-                      "docs": {
-                        "WebMidi.html#octaveOffset": {
-                          "ref": "WebMidi.html#octaveOffset",
-                          "tf": 1.3513513513513513
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -10134,17 +10796,17 @@ window.lunrData = {
                     "docs": {},
                     "d": {
                       "docs": {
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
+                        "Note.html#getOffsetNumber": {
+                          "ref": "Note.html#getOffsetNumber",
+                          "tf": 2
                         },
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
+                        "Utilities.html#buildNoteArray": {
+                          "ref": "Utilities.html#buildNoteArray",
                           "tf": 1.5151515151515151
                         },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
+                        "Utilities.html#offsetNumber": {
+                          "ref": "Utilities.html#offsetNumber",
+                          "tf": 1.7857142857142856
                         }
                       }
                     }
@@ -10184,6 +10846,14 @@ window.lunrData = {
                       "docs": {},
                       "i": {
                         "docs": {
+                          "Note.html#identifier": {
+                            "ref": "Note.html#identifier",
+                            "tf": 700
+                          },
+                          "Note.html#number": {
+                            "ref": "Note.html#number",
+                            "tf": 4.166666666666666
+                          },
                           "Output.html#sendSysex": {
                             "ref": "Output.html#sendSysex",
                             "tf": 0.33333333333333337
@@ -10192,9 +10862,37 @@ window.lunrData = {
                             "ref": "Output.html#setRegisteredParameter",
                             "tf": 0.3289473684210526
                           },
+                          "OutputChannel.html#setKeyAftertouch": {
+                            "ref": "OutputChannel.html#setKeyAftertouch",
+                            "tf": 1.282051282051282
+                          },
                           "OutputChannel.html#setRegisteredParameter": {
                             "ref": "OutputChannel.html#setRegisteredParameter",
                             "tf": 0.3289473684210526
+                          },
+                          "Utilities.html#buildNote": {
+                            "ref": "Utilities.html#buildNote",
+                            "tf": 3.225806451612903
+                          },
+                          "Utilities.html#buildNoteArray": {
+                            "ref": "Utilities.html#buildNoteArray",
+                            "tf": 3.0303030303030303
+                          },
+                          "Utilities.html#getFragments": {
+                            "ref": "Utilities.html#getFragments",
+                            "tf": 36.11111111111111
+                          },
+                          "Utilities.html#guessNoteNumber": {
+                            "ref": "Utilities.html#guessNoteNumber",
+                            "tf": 1.7543859649122806
+                          },
+                          "Utilities.html#toNoteIdentifier": {
+                            "ref": "Utilities.html#toNoteIdentifier",
+                            "tf": 3.125
+                          },
+                          "Utilities.html#toNoteNumber": {
+                            "ref": "Utilities.html#toNoteNumber",
+                            "tf": 28.96825396825397
                           }
                         }
                       }
@@ -10290,7 +10988,7 @@ window.lunrData = {
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.31645569620253167
+                              "tf": 0.33112582781456956
                             }
                           }
                         }
@@ -10321,7 +11019,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -10376,15 +11074,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
+                    },
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
+                      "tf": 1.3888888888888888
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
-                    },
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
-                      "tf": 1.3888888888888888
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -10495,7 +11193,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -10607,7 +11305,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#setKeyAftertouch": {
                   "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 2.380952380952381
+                  "tf": 3.8461538461538463
                 },
                 "OutputChannel.html#turnNotesOff": {
                   "ref": "OutputChannel.html#turnNotesOff",
@@ -10641,6 +11339,14 @@ window.lunrData = {
                                     "Input.html#addOneTimeListener": {
                                       "ref": "Input.html#addOneTimeListener",
                                       "tf": 0.29069767441860467
+                                    },
+                                    "InputChannel.html#octaveOffset": {
+                                      "ref": "InputChannel.html#octaveOffset",
+                                      "tf": 0.9090909090909091
+                                    },
+                                    "OutputChannel.html#octaveOffset": {
+                                      "ref": "OutputChannel.html#octaveOffset",
+                                      "tf": 1.3888888888888888
                                     },
                                     "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -10690,6 +11396,10 @@ window.lunrData = {
               "docs": {},
               "w": {
                 "docs": {
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.48543689320388345
+                  },
                   "WebMidi.html#interface": {
                     "ref": "WebMidi.html#interface",
                     "tf": 4.166666666666666
@@ -10721,13 +11431,17 @@ window.lunrData = {
                           "ref": "WebMidi.html",
                           "tf": 0.7462686567164178
                         },
+                        "WebMidi.html#defaults": {
+                          "ref": "WebMidi.html#defaults",
+                          "tf": 5
+                        },
                         "WebMidi.html#validation": {
                           "ref": "WebMidi.html#validation",
                           "tf": 1.6129032258064515
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       }
                     }
@@ -10839,6 +11553,10 @@ window.lunrData = {
                         "ref": "Input.html#removeListener",
                         "tf": 35.3448275862069
                       },
+                      "InputChannel.html#destroy": {
+                        "ref": "InputChannel.html#destroy",
+                        "tf": 5.555555555555555
+                      },
                       "Output.html#destroy": {
                         "ref": "Output.html#destroy",
                         "tf": 5.555555555555555
@@ -10849,9 +11567,20 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "k": {
+                "docs": {
+                  "InputChannel.html#destroy": {
+                    "ref": "InputChannel.html#destroy",
+                    "tf": 5.555555555555555
                   }
                 }
               }
@@ -11093,44 +11822,123 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "p": {
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "t": {
                 "docs": {},
-                "r": {
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Note.html#name": {
+                        "ref": "Note.html#name",
+                        "tf": 16.666666666666664
+                      },
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 2.7777777777777777
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "s": {
+                "docs": {
+                  "Note.html#getOffsetNumber": {
+                    "ref": "Note.html#getOffsetNumber",
+                    "tf": 2
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "Utilities.html#offsetNumber": {
+                    "ref": "Utilities.html#offsetNumber",
+                    "tf": 1.7857142857142856
+                  }
+                }
+              }
+            },
+            "g": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "t": {
                   "docs": {},
                   "o": {
                     "docs": {},
-                    "t": {
+                    "p": {
                       "docs": {},
                       "e": {
                         "docs": {},
-                        "c": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "d": {
-                                "docs": {},
-                                "&": {
-                                  "docs": {},
-                                  "g": {
-                                    "docs": {},
-                                    "t": {
-                                      "docs": {
-                                        "InputChannel.html#_parseEvent": {
-                                          "ref": "InputChannel.html#_parseEvent",
-                                          "tf": 33.33333333333333
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
+                        "d": {
+                          "docs": {
+                            "Output.html#sendControlChange": {
+                              "ref": "Output.html#sendControlChange",
+                              "tf": 0.267379679144385
+                            },
+                            "OutputChannel.html#sendControlChange": {
+                              "ref": "OutputChannel.html#sendControlChange",
+                              "tf": 0.26455026455026454
+                            },
+                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                              "tf": 0.4032258064516129
                             }
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "h": {
+                    "docs": {
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.33333333333333337
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Output.html#setPitchBendRange": {
+                      "ref": "Output.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    },
+                    "OutputChannel.html#setPitchBendRange": {
+                      "ref": "OutputChannel.html#setPitchBendRange",
+                      "tf": 1.3888888888888888
+                    }
+                  }
+                },
+                "l": {
+                  "docs": {
+                    "WebMidi.html#MIDI_INTERFACE_EVENTS": {
+                      "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
+                      "tf": 8.333333333333332
                     }
                   }
                 }
@@ -11209,7 +12017,7 @@ window.lunrData = {
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.31645569620253167
+                              "tf": 0.33112582781456956
                             }
                           }
                         }
@@ -11305,97 +12113,6 @@ window.lunrData = {
               }
             }
           },
-          "e": {
-            "docs": {},
-            "g": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "p": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "d": {
-                          "docs": {
-                            "Output.html#sendControlChange": {
-                              "ref": "Output.html#sendControlChange",
-                              "tf": 0.267379679144385
-                            },
-                            "OutputChannel.html#sendControlChange": {
-                              "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.26455026455026454
-                            },
-                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                              "tf": 0.4032258064516129
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "h": {
-                    "docs": {
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 0.33333333333333337
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  }
-                }
-              }
-            },
-            "v": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "Output.html#setPitchBendRange": {
-                      "ref": "Output.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    },
-                    "OutputChannel.html#setPitchBendRange": {
-                      "ref": "OutputChannel.html#setPitchBendRange",
-                      "tf": 1.3888888888888888
-                    }
-                  }
-                },
-                "l": {
-                  "docs": {
-                    "WebMidi.html#MIDI_INTERFACE_EVENTS": {
-                      "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
-                      "tf": 8.333333333333332
-                    }
-                  }
-                }
-              }
-            }
-          },
           "s": {
             "docs": {},
             "b": {
@@ -11444,6 +12161,10 @@ window.lunrData = {
                     "ref": "Input.html#name",
                     "tf": 16.666666666666664
                   },
+                  "Input.html#octaveOffset": {
+                    "ref": "Input.html#octaveOffset",
+                    "tf": 3.3333333333333335
+                  },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
                     "tf": 1.4705882352941175
@@ -11462,7 +12183,19 @@ window.lunrData = {
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
-                    "tf": 2.0408163265306123
+                    "tf": 2.083333333333333
+                  },
+                  "InputChannel.html#number": {
+                    "ref": "InputChannel.html#number",
+                    "tf": 10
+                  },
+                  "InputChannel.html#octaveOffset": {
+                    "ref": "InputChannel.html#octaveOffset",
+                    "tf": 2.727272727272727
+                  },
+                  "InputChannel.html#destroy": {
+                    "ref": "InputChannel.html#destroy",
+                    "tf": 5.555555555555555
                   },
                   "InputChannel.html#getCcNameByNumber": {
                     "ref": "InputChannel.html#getCcNameByNumber",
@@ -11470,7 +12203,11 @@ window.lunrData = {
                   },
                   "Note.html#number": {
                     "ref": "Note.html#number",
-                    "tf": 7.142857142857142
+                    "tf": 4.166666666666666
+                  },
+                  "Note.html#getOffsetNumber": {
+                    "ref": "Note.html#getOffsetNumber",
+                    "tf": 2
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -11483,6 +12220,10 @@ window.lunrData = {
                   "Output.html#name": {
                     "ref": "Output.html#name",
                     "tf": 16.666666666666664
+                  },
+                  "Output.html#octaveOffset": {
+                    "ref": "Output.html#octaveOffset",
+                    "tf": 2
                   },
                   "Output.html#close": {
                     "ref": "Output.html#close",
@@ -11594,7 +12335,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html": {
                     "ref": "OutputChannel.html",
-                    "tf": 1.2195121951219512
+                    "tf": 1.1904761904761905
+                  },
+                  "OutputChannel.html#number": {
+                    "ref": "OutputChannel.html#number",
+                    "tf": 10
+                  },
+                  "OutputChannel.html#octaveOffset": {
+                    "ref": "OutputChannel.html#octaveOffset",
+                    "tf": 1.3888888888888888
                   },
                   "OutputChannel.html#decrementRegisteredParameter": {
                     "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -11626,7 +12375,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 1.2195121951219512
+                    "tf": 1.4563106796116505
                   },
                   "OutputChannel.html#setChannelAftertouch": {
                     "ref": "OutputChannel.html#setChannelAftertouch",
@@ -11634,7 +12383,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#setKeyAftertouch": {
                     "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 2.380952380952381
+                    "tf": 2.564102564102564
                   },
                   "OutputChannel.html#setLocalControl": {
                     "ref": "OutputChannel.html#setLocalControl",
@@ -11663,6 +12412,22 @@ window.lunrData = {
                   "OutputChannel.html#setTuningProgram": {
                     "ref": "OutputChannel.html#setTuningProgram",
                     "tf": 2.5
+                  },
+                  "Utilities.html#guessNoteNumber": {
+                    "ref": "Utilities.html#guessNoteNumber",
+                    "tf": 1.7543859649122806
+                  },
+                  "Utilities.html#offsetNumber": {
+                    "ref": "Utilities.html#offsetNumber",
+                    "tf": 1.7857142857142856
+                  },
+                  "Utilities.html#sanitizeChannels": {
+                    "ref": "Utilities.html#sanitizeChannels",
+                    "tf": 1.3888888888888888
+                  },
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 1.5873015873015872
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
@@ -11698,7 +12463,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
-                    "tf": 4.054054054054054
+                    "tf": 3.7037037037037033
                   },
                   "WebMidi.html#outputs": {
                     "ref": "WebMidi.html#outputs",
@@ -11718,31 +12483,19 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 1.2658227848101267
+                    "tf": 1.3245033112582782
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
                     "tf": 1.4705882352941175
                   },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 1.7045454545454544
-                  },
                   "WebMidi.html#getOctave": {
                     "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
+                    "tf": 1.5151515151515151
                   },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
                     "tf": 1.4705882352941175
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#sanitizeChannels": {
-                    "ref": "WebMidi.html#sanitizeChannels",
-                    "tf": 1.3888888888888888
                   }
                 },
                 "m": {
@@ -11811,7 +12564,7 @@ window.lunrData = {
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.31645569620253167
+                                    "tf": 0.33112582781456956
                                   }
                                 }
                               }
@@ -12204,17 +12957,33 @@ window.lunrData = {
                 "docs": {},
                 "l": {
                   "docs": {
-                    "WebMidi.html#octaveOffset": {
-                      "ref": "WebMidi.html#octaveOffset",
-                      "tf": 1.3513513513513513
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
                     },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.9090909090909091
+                    },
+                    "Note.html#number": {
+                      "ref": "Note.html#number",
+                      "tf": 4.166666666666666
+                    },
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 2
+                    },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 1.3888888888888888
+                    },
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
                     },
                     "WebMidi.html#getOctave": {
                       "ref": "WebMidi.html#getOctave",
-                      "tf": 1.282051282051282
+                      "tf": 1.5151515151515151
                     }
                   }
                 }
@@ -12301,7 +13070,7 @@ window.lunrData = {
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
-                    "tf": 1.0204081632653061
+                    "tf": 1.0416666666666665
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -12317,7 +13086,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html": {
                     "ref": "OutputChannel.html",
-                    "tf": 1.2195121951219512
+                    "tf": 1.1904761904761905
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
@@ -12334,6 +13103,14 @@ window.lunrData = {
                   "WebMidi.html#disable": {
                     "ref": "WebMidi.html#disable",
                     "tf": 2.272727272727273
+                  }
+                },
+                "t": {
+                  "docs": {
+                    "Utilities.html": {
+                      "ref": "Utilities.html",
+                      "tf": 3.8461538461538463
+                    }
                   }
                 }
               }
@@ -12352,11 +13129,15 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
                         "tf": 2.272727272727273
+                      },
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
                       },
                       "Output.html": {
                         "ref": "Output.html",
@@ -12416,7 +13197,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.2195121951219512
+                        "tf": 1.1904761904761905
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
@@ -12436,7 +13217,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.6097560975609756
+                        "tf": 0.48543689320388345
                       },
                       "OutputChannel.html#stopNote": {
                         "ref": "OutputChannel.html#stopNote",
@@ -12445,6 +13226,26 @@ window.lunrData = {
                       "OutputChannel.html#turnNotesOff": {
                         "ref": "OutputChannel.html#turnNotesOff",
                         "tf": 2.631578947368421
+                      },
+                      "Utilities.html": {
+                        "ref": "Utilities.html",
+                        "tf": 3.8461538461538463
+                      },
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 2.7777777777777777
+                      },
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
+                        "tf": 1.3888888888888888
+                      },
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 1.1111111111111112
+                      },
+                      "Utilities.html#toNormalized": {
+                        "ref": "Utilities.html#toNormalized",
+                        "tf": 1.2195121951219512
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -12460,15 +13261,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#getOctave": {
                         "ref": "WebMidi.html#getOctave",
-                        "tf": 1.282051282051282
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 1.1363636363636365
-                      },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
-                        "tf": 1.3888888888888888
+                        "tf": 1.5151515151515151
                       }
                     },
                     "'": {
@@ -12495,7 +13288,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         }
                       }
                     }
@@ -12531,6 +13324,10 @@ window.lunrData = {
                         "ref": "Input.html#name",
                         "tf": 110
                       },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 110
+                      },
                       "Input.html#state": {
                         "ref": "Input.html#state",
                         "tf": 110
@@ -12547,12 +13344,24 @@ window.lunrData = {
                         "ref": "InputChannel.html#number",
                         "tf": 110
                       },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 110
+                      },
+                      "Note.html#accidental": {
+                        "ref": "Note.html#accidental",
+                        "tf": 110
+                      },
                       "Note.html#attack": {
                         "ref": "Note.html#attack",
                         "tf": 110
                       },
                       "Note.html#duration": {
                         "ref": "Note.html#duration",
+                        "tf": 110
+                      },
+                      "Note.html#identifier": {
+                        "ref": "Note.html#identifier",
                         "tf": 110
                       },
                       "Note.html#name": {
@@ -12599,6 +13408,10 @@ window.lunrData = {
                         "ref": "Output.html#name",
                         "tf": 110
                       },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 110
+                      },
                       "Output.html#state": {
                         "ref": "Output.html#state",
                         "tf": 110
@@ -12611,8 +13424,16 @@ window.lunrData = {
                         "ref": "OutputChannel.html#number",
                         "tf": 110
                       },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 110
+                      },
                       "OutputChannel.html#output": {
                         "ref": "OutputChannel.html#output",
+                        "tf": 110
+                      },
+                      "WebMidi.html#defaults": {
+                        "ref": "WebMidi.html#defaults",
                         "tf": 110
                       },
                       "WebMidi.html#enabled": {
@@ -12711,6 +13532,10 @@ window.lunrData = {
                       "Input.html#close": {
                         "ref": "Input.html#close",
                         "tf": 3.571428571428571
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
@@ -12848,6 +13673,10 @@ window.lunrData = {
                         "ref": "Output.html#turnSoundOff",
                         "tf": 3.571428571428571
                       },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
+                      },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
                         "tf": 2.314814814814815
@@ -12874,7 +13703,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 2.4390243902439024
+                        "tf": 1.9417475728155338
                       },
                       "OutputChannel.html#setChannelAftertouch": {
                         "ref": "OutputChannel.html#setChannelAftertouch",
@@ -12882,7 +13711,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#setKeyAftertouch": {
                         "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 2.380952380952381
+                        "tf": 2.564102564102564
                       },
                       "OutputChannel.html#setLocalControl": {
                         "ref": "OutputChannel.html#setLocalControl",
@@ -12962,7 +13791,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
-                        "tf": 1.3513513513513513
+                        "tf": 1.8518518518518516
                       },
                       "WebMidi.html#sysexEnabled": {
                         "ref": "WebMidi.html#sysexEnabled",
@@ -12970,7 +13799,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -12992,7 +13821,7 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -13016,7 +13845,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "OutputChannel.html#decrementRegisteredParameter": {
                       "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -13245,7 +14074,11 @@ window.lunrData = {
                 "docs": {
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
-                    "tf": 1.0204081632653061
+                    "tf": 1.0416666666666665
+                  },
+                  "Note.html#getOffsetNumber": {
+                    "ref": "Note.html#getOffsetNumber",
+                    "tf": 2
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
@@ -13258,6 +14091,10 @@ window.lunrData = {
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
                     "tf": 0.26455026455026454
+                  },
+                  "Utilities.html#offsetNumber": {
+                    "ref": "Utilities.html#offsetNumber",
+                    "tf": 1.7857142857142856
                   }
                 }
               }
@@ -13459,6 +14296,10 @@ window.lunrData = {
                       "ref": "OutputChannel.html#sendControlChange",
                       "tf": 0.26455026455026454
                     },
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
+                    },
                     "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                       "tf": 0.5617977528089888
@@ -13466,10 +14307,6 @@ window.lunrData = {
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
                       "tf": 2.941176470588235
-                    },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
                     },
                     "WebMidi.html#getOutputById": {
                       "ref": "WebMidi.html#getOutputById",
@@ -13486,7 +14323,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -13663,7 +14500,7 @@ window.lunrData = {
                       "docs": {
                         "Note.html": {
                           "ref": "Note.html",
-                          "tf": 1.4705882352941175
+                          "tf": 0.641025641025641
                         },
                         "Output.html#setPolyphonicMode": {
                           "ref": "Output.html#setPolyphonicMode",
@@ -13673,7 +14510,29 @@ window.lunrData = {
                           "ref": "OutputChannel.html#setPolyphonicMode",
                           "tf": 4.166666666666666
                         }
+                      },
+                      "i": {
+                        "docs": {
+                          "Utilities.html#to7Bit": {
+                            "ref": "Utilities.html#to7Bit",
+                            "tf": 1.1111111111111112
+                          }
+                        }
                       }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "c": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
                     }
                   }
                 }
@@ -13861,7 +14720,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 1.2658227848101267
+                        "tf": 1.3245033112582782
                       }
                     },
                     "e": {
@@ -13876,34 +14735,29 @@ window.lunrData = {
                               "docs": {},
                               ";": {
                                 "docs": {},
-                                "(": {
+                                "i": {
                                   "docs": {},
-                                  "v": {
+                                  "n": {
                                     "docs": {},
-                                    "o": {
+                                    "p": {
                                       "docs": {},
-                                      "i": {
+                                      "u": {
                                         "docs": {},
-                                        "d": {
+                                        "t": {
                                           "docs": {},
-                                          "|": {
+                                          "&": {
                                             "docs": {},
-                                            "*": {
+                                            "g": {
                                               "docs": {},
-                                              ")": {
-                                                "docs": {},
-                                                "&": {
-                                                  "docs": {},
-                                                  "g": {
-                                                    "docs": {},
-                                                    "t": {
-                                                      "docs": {
-                                                        "Input.html#close": {
-                                                          "ref": "Input.html#close",
-                                                          "tf": 33.33333333333333
-                                                        }
-                                                      }
-                                                    }
+                                              "t": {
+                                                "docs": {
+                                                  "Input.html#close": {
+                                                    "ref": "Input.html#close",
+                                                    "tf": 33.33333333333333
+                                                  },
+                                                  "Input.html#open": {
+                                                    "ref": "Input.html#open",
+                                                    "tf": 33.33333333333333
                                                   }
                                                 }
                                               }
@@ -13943,35 +14797,6 @@ window.lunrData = {
                                                 "WebMidi.html#disable": {
                                                   "ref": "WebMidi.html#disable",
                                                   "tf": 33.33333333333333
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                "i": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "p": {
-                                      "docs": {},
-                                      "u": {
-                                        "docs": {},
-                                        "t": {
-                                          "docs": {},
-                                          "&": {
-                                            "docs": {},
-                                            "g": {
-                                              "docs": {},
-                                              "t": {
-                                                "docs": {
-                                                  "Input.html#open": {
-                                                    "ref": "Input.html#open",
-                                                    "tf": 33.33333333333333
-                                                  }
                                                 }
                                               }
                                             }
@@ -14056,7 +14881,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -14067,18 +14892,23 @@ window.lunrData = {
                 "e": {
                   "docs": {},
                   "r": {
-                    "docs": {},
+                    "docs": {
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 2.7777777777777777
+                      }
+                    },
                     "t": {
                       "docs": {},
                       "i": {
                         "docs": {
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0204081632653061
+                            "tf": 1.0416666666666665
                           },
                           "Note.html": {
                             "ref": "Note.html",
-                            "tf": 1.4705882352941175
+                            "tf": 0.641025641025641
                           },
                           "Output.html#close": {
                             "ref": "Output.html#close",
@@ -14098,7 +14928,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.2195121951219512
+                            "tf": 1.1904761904761905
                           },
                           "OutputChannel.html#playNote": {
                             "ref": "OutputChannel.html#playNote",
@@ -14110,7 +14940,11 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 0.6097560975609756
+                            "tf": 0.48543689320388345
+                          },
+                          "Utilities.html#getMessage": {
+                            "ref": "Utilities.html#getMessage",
+                            "tf": 4.545454545454546
                           },
                           "WebMidi.html#supported": {
                             "ref": "WebMidi.html#supported",
@@ -14122,11 +14956,7 @@ window.lunrData = {
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.6329113924050633
-                          },
-                          "WebMidi.html#getOctave": {
-                            "ref": "WebMidi.html#getOctave",
-                            "tf": 1.282051282051282
+                            "tf": 0.33112582781456956
                           }
                         }
                       }
@@ -14148,7 +14978,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       }
                     }
@@ -14161,13 +14991,13 @@ window.lunrData = {
                   "docs": {},
                   "d": {
                     "docs": {
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 1.6129032258064515
+                      },
                       "WebMidi.html#supported": {
                         "ref": "WebMidi.html#supported",
                         "tf": 1.7241379310344827
-                      },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
                       }
                     }
                   }
@@ -14179,7 +15009,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -14215,7 +15045,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.6097560975609756
+                        "tf": 0.48543689320388345
                       }
                     }
                   }
@@ -14229,8 +15059,8 @@ window.lunrData = {
                     "docs": {},
                     "u": {
                       "docs": {
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
+                        "Utilities.html#buildNoteArray": {
+                          "ref": "Utilities.html#buildNoteArray",
                           "tf": 1.5151515151515151
                         }
                       },
@@ -14337,6 +15167,10 @@ window.lunrData = {
                   "Input.html#type": {
                     "ref": "Input.html#type",
                     "tf": 8.333333333333332
+                  },
+                  "Input.html#open": {
+                    "ref": "Input.html#open",
+                    "tf": 5
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -14530,7 +15364,7 @@ window.lunrData = {
                               "docs": {
                                 "WebMidi.html#enable": {
                                   "ref": "WebMidi.html#enable",
-                                  "tf": 0.31645569620253167
+                                  "tf": 0.33112582781456956
                                 }
                               }
                             }
@@ -14552,7 +15386,7 @@ window.lunrData = {
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.31645569620253167
+                                    "tf": 0.33112582781456956
                                   }
                                 }
                               }
@@ -14567,6 +15401,31 @@ window.lunrData = {
             },
             "s": {
               "docs": {},
+              "s": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "b": {
+                    "docs": {},
+                    "l": {
+                      "docs": {
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 0.641025641025641
+                        },
+                        "Utilities.html#buildNote": {
+                          "ref": "Utilities.html#buildNote",
+                          "tf": 1.6129032258064515
+                        },
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
+                        }
+                      }
+                    }
+                  }
+                }
+              },
               "i": {
                 "docs": {},
                 "t": {
@@ -14574,6 +15433,14 @@ window.lunrData = {
                     "Note.html#duration": {
                       "ref": "Note.html#duration",
                       "tf": 5
+                    },
+                    "Note.html#rawAttack": {
+                      "ref": "Note.html#rawAttack",
+                      "tf": 6.25
+                    },
+                    "Note.html#rawRelease": {
+                      "ref": "Note.html#rawRelease",
+                      "tf": 6.25
                     },
                     "Output.html#sendContinue": {
                       "ref": "Output.html#sendContinue",
@@ -14595,30 +15462,9 @@ window.lunrData = {
                       "ref": "OutputChannel.html#setNonRegisteredParameter",
                       "tf": 0.9615384615384616
                     },
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
+                    "Utilities.html#toTimestamp": {
+                      "ref": "Utilities.html#toTimestamp",
                       "tf": 1.6666666666666667
-                    }
-                  }
-                }
-              },
-              "s": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "b": {
-                    "docs": {},
-                    "l": {
-                      "docs": {
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        }
-                      }
                     }
                   }
                 }
@@ -14750,15 +15596,15 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
+                  "tf": 0.48543689320388345
+                },
+                "Utilities.html#toNoteNumber": {
+                  "ref": "Utilities.html#toNoteNumber",
+                  "tf": 0.7936507936507936
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
                   "tf": 1.4705882352941175
-                },
-                "WebMidi.html#getNoteNumberByName": {
-                  "ref": "WebMidi.html#getNoteNumberByName",
-                  "tf": 0.5681818181818182
                 },
                 "WebMidi.html#getOutputById": {
                   "ref": "WebMidi.html#getOutputById",
@@ -14816,11 +15662,38 @@ window.lunrData = {
                   }
                 }
               },
+              "c": {
+                "docs": {},
+                "e": {
+                  "docs": {
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
+                    },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.9090909090909091
+                    },
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 2
+                    },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 1.3888888888888888
+                    },
+                    "WebMidi.html#getOctave": {
+                      "ref": "WebMidi.html#getOctave",
+                      "tf": 1.5151515151515151
+                    }
+                  }
+                }
+              },
               "y": {
                 "docs": {
                   "Note.html": {
                     "ref": "Note.html",
-                    "tf": 4.411764705882353
+                    "tf": 1.9230769230769231
                   },
                   "Note.html#duration": {
                     "ref": "Note.html#duration",
@@ -14859,6 +15732,35 @@ window.lunrData = {
                     "tf": 3.571428571428571
                   }
                 },
+                "b": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "k": {
+                        "docs": {
+                          "Note.html": {
+                            "ref": "Note.html",
+                            "tf": 0.641025641025641
+                          },
+                          "Output.html#sendContinue": {
+                            "ref": "Output.html#sendContinue",
+                            "tf": 4.761904761904762
+                          },
+                          "Output.html#sendStart": {
+                            "ref": "Output.html#sendStart",
+                            "tf": 4.761904761904762
+                          },
+                          "Output.html#sendStop": {
+                            "ref": "Output.html#sendStop",
+                            "tf": 3.571428571428571
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
                 "n": {
                   "docs": {},
                   "o": {
@@ -14887,49 +15789,9 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         }
                       }
-                    }
-                  }
-                },
-                "b": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "k": {
-                        "docs": {
-                          "Output.html#sendContinue": {
-                            "ref": "Output.html#sendContinue",
-                            "tf": 4.761904761904762
-                          },
-                          "Output.html#sendStart": {
-                            "ref": "Output.html#sendStart",
-                            "tf": 4.761904761904762
-                          },
-                          "Output.html#sendStop": {
-                            "ref": "Output.html#sendStop",
-                            "tf": 3.571428571428571
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "c": {
-                "docs": {},
-                "e": {
-                  "docs": {
-                    "WebMidi.html#octaveOffset": {
-                      "ref": "WebMidi.html#octaveOffset",
-                      "tf": 1.3513513513513513
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.282051282051282
                     }
                   }
                 }
@@ -14937,8 +15799,8 @@ window.lunrData = {
             },
             "u": {
               "docs": {
-                "WebMidi.html#convertToTimestamp": {
-                  "ref": "WebMidi.html#convertToTimestamp",
+                "Utilities.html#toTimestamp": {
+                  "ref": "Utilities.html#toTimestamp",
                   "tf": 1.6666666666666667
                 }
               },
@@ -14962,7 +15824,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -15035,6 +15897,10 @@ window.lunrData = {
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.29069767441860467
+                        },
+                        "Note.html#getOffsetNumber": {
+                          "ref": "Note.html#getOffsetNumber",
+                          "tf": 2
                         },
                         "Output.html#decrementRegisteredParameter": {
                           "ref": "Output.html#decrementRegisteredParameter",
@@ -15118,7 +15984,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 1.8292682926829267
+                          "tf": 1.4563106796116505
                         },
                         "OutputChannel.html#setModulationRange": {
                           "ref": "OutputChannel.html#setModulationRange",
@@ -15144,29 +16010,33 @@ window.lunrData = {
                           "ref": "OutputChannel.html#setTuningProgram",
                           "tf": 1.25
                         },
+                        "Utilities.html#buildNote": {
+                          "ref": "Utilities.html#buildNote",
+                          "tf": 3.225806451612903
+                        },
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
+                        },
+                        "Utilities.html#sanitizeChannels": {
+                          "ref": "Utilities.html#sanitizeChannels",
+                          "tf": 4.166666666666666
+                        },
+                        "Utilities.html#toNoteIdentifier": {
+                          "ref": "Utilities.html#toNoteIdentifier",
+                          "tf": 3.125
+                        },
+                        "Utilities.html#toNoteNumber": {
+                          "ref": "Utilities.html#toNoteNumber",
+                          "tf": 0.7936507936507936
+                        },
+                        "Utilities.html#toTimestamp": {
+                          "ref": "Utilities.html#toTimestamp",
+                          "tf": 5
+                        },
                         "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
                           "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
                           "tf": 1.5625
-                        },
-                        "WebMidi.html#convertToTimestamp": {
-                          "ref": "WebMidi.html#convertToTimestamp",
-                          "tf": 5
-                        },
-                        "WebMidi.html#getNoteNumberByName": {
-                          "ref": "WebMidi.html#getNoteNumberByName",
-                          "tf": 0.5681818181818182
-                        },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 2.7777777777777777
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
-                        },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
-                          "tf": 4.166666666666666
                         }
                       }
                     }
@@ -15196,6 +16066,32 @@ window.lunrData = {
                             "tf": 2
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
+                      "OutputChannel.html": {
+                        "ref": "OutputChannel.html",
+                        "tf": 1.1904761904761905
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
+                      },
+                      "OutputChannel.html#output": {
+                        "ref": "OutputChannel.html#output",
+                        "tf": 12.5
                       }
                     }
                   }
@@ -15231,21 +16127,68 @@ window.lunrData = {
               },
               "s": {
                 "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
+                  "Utilities.html#guessNoteNumber": {
+                    "ref": "Utilities.html#guessNoteNumber",
+                    "tf": 0.8771929824561403
+                  },
+                  "Utilities.html#sanitizeChannels": {
+                    "ref": "Utilities.html#sanitizeChannels",
+                    "tf": 1.3888888888888888
                   },
                   "WebMidi.html#getOctave": {
                     "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
+                    "tf": 1.5151515151515151
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "s": {
+                "docs": {
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 0.641025641025641
                   },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 0.819672131147541
                   },
-                  "WebMidi.html#sanitizeChannels": {
-                    "ref": "WebMidi.html#sanitizeChannels",
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.48543689320388345
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 0.9615384615384616
+                  },
+                  "Utilities.html#guessNoteNumber": {
+                    "ref": "Utilities.html#guessNoteNumber",
+                    "tf": 1.7543859649122806
+                  },
+                  "Utilities.html#sanitizeChannels": {
+                    "ref": "Utilities.html#sanitizeChannels",
                     "tf": 1.3888888888888888
+                  },
+                  "Utilities.html#to7Bit": {
+                    "ref": "Utilities.html#to7Bit",
+                    "tf": 2.2222222222222223
+                  },
+                  "Utilities.html#toNormalized": {
+                    "ref": "Utilities.html#toNormalized",
+                    "tf": 2.4390243902439024
+                  },
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 0.7936507936507936
+                  },
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 1.5625
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -15401,42 +16344,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 0.819672131147541
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 0.9615384615384616
-                  },
-                  "WebMidi.html#time": {
-                    "ref": "WebMidi.html#time",
-                    "tf": 1.5625
-                  },
-                  "WebMidi.html#enable": {
-                    "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#sanitizeChannels": {
-                    "ref": "WebMidi.html#sanitizeChannels",
-                    "tf": 1.3888888888888888
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -15485,9 +16393,9 @@ window.lunrData = {
                       "ref": "OutputChannel.html#setPitchBendRange",
                       "tf": 5.555555555555555
                     },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
                     }
                   },
                   "b": {
@@ -15598,6 +16506,10 @@ window.lunrData = {
                         "ref": "InputChannel.html#getCcNameByNumber",
                         "tf": 2.272727272727273
                       },
+                      "Utilities.html": {
+                        "ref": "Utilities.html",
+                        "tf": 3.8461538461538463
+                      },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                         "tf": 0.5617977528089888
@@ -15665,6 +16577,14 @@ window.lunrData = {
                     "index.html": {
                       "ref": "index.html",
                       "tf": 110
+                    }
+                  }
+                },
+                "i": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -15757,11 +16677,11 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "Note.html": {
                         "ref": "Note.html",
-                        "tf": 1.4705882352941175
+                        "tf": 0.641025641025641
                       },
                       "Note.html#duration": {
                         "ref": "Note.html#duration",
@@ -15773,7 +16693,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
+                        "tf": 1.1904761904761905
+                      },
+                      "Utilities.html#toNormalized": {
+                        "ref": "Utilities.html#toNormalized",
                         "tf": 1.2195121951219512
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
                       }
                     }
                   }
@@ -15789,13 +16717,25 @@ window.lunrData = {
                         "ref": "Input.html#id",
                         "tf": 2.1739130434782608
                       },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 3.3333333333333335
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 2.727272727272727
+                      },
                       "Output.html#id": {
                         "ref": "Output.html#id",
                         "tf": 2.1739130434782608
                       },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
+                      },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
-                        "tf": 2.7027027027027026
+                        "tf": 1.8518518518518516
                       },
                       "WebMidi.html#supported": {
                         "ref": "WebMidi.html#supported",
@@ -15927,21 +16867,25 @@ window.lunrData = {
                   "docs": {},
                   "t": {
                     "docs": {
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
-                        "tf": 1.6666666666666667
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 1.7543859649122806
                       },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 1.1363636363636365
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 1.282051282051282
-                      },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
                         "tf": 1.3888888888888888
+                      },
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 1.1111111111111112
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
+                      "Utilities.html#toTimestamp": {
+                        "ref": "Utilities.html#toTimestamp",
+                        "tf": 1.6666666666666667
                       }
                     }
                   }
@@ -15986,7 +16930,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -16011,16 +16955,26 @@ window.lunrData = {
                       }
                     }
                   }
-                },
-                "e": {
+                }
+              },
+              "t": {
+                "docs": {},
+                "r": {
                   "docs": {},
-                  "c": {
+                  "i": {
                     "docs": {},
-                    "t": {
-                      "docs": {
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                    "c": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Utilities.html#to7Bit": {
+                            "ref": "Utilities.html#to7Bit",
+                            "tf": 1.1111111111111112
+                          },
+                          "Utilities.html#toNormalized": {
+                            "ref": "Utilities.html#toNormalized",
+                            "tf": 1.2195121951219512
+                          }
                         }
                       }
                     }
@@ -16041,6 +16995,10 @@ window.lunrData = {
                     "Input.html#removeListener": {
                       "ref": "Input.html#removeListener",
                       "tf": 6.896551724137931
+                    },
+                    "InputChannel.html#destroy": {
+                      "ref": "InputChannel.html#destroy",
+                      "tf": 5.555555555555555
                     },
                     "Output.html#destroy": {
                       "ref": "Output.html#destroy",
@@ -16067,7 +17025,7 @@ window.lunrData = {
                                   },
                                   "InputChannel.html": {
                                     "ref": "InputChannel.html",
-                                    "tf": 1.0204081632653061
+                                    "tf": 1.0416666666666665
                                   },
                                   "Output.html": {
                                     "ref": "Output.html",
@@ -16075,7 +17033,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html": {
                                     "ref": "OutputChannel.html",
-                                    "tf": 1.2195121951219512
+                                    "tf": 1.1904761904761905
                                   },
                                   "WebMidi.html": {
                                     "ref": "WebMidi.html",
@@ -16112,8 +17070,56 @@ window.lunrData = {
                         "ref": "InputChannel.html#getChannelModeByNumber",
                         "tf": 8.333333333333332
                       },
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 6
+                      },
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 1.6129032258064515
+                      },
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
+                        "tf": 1.5151515151515151
+                      },
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 2.7777777777777777
+                      },
+                      "Utilities.html#getMessage": {
+                        "ref": "Utilities.html#getMessage",
+                        "tf": 4.545454545454546
+                      },
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 1.7543859649122806
+                      },
+                      "Utilities.html#offsetNumber": {
+                        "ref": "Utilities.html#offsetNumber",
+                        "tf": 5.357142857142857
+                      },
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
+                        "tf": 2.7777777777777777
+                      },
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 5.555555555555555
+                      },
+                      "Utilities.html#toNormalized": {
+                        "ref": "Utilities.html#toNormalized",
+                        "tf": 6.097560975609756
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
+                      "Utilities.html#toTimestamp": {
+                        "ref": "Utilities.html#toTimestamp",
                         "tf": 5
                       },
                       "WebMidi.html#getInputById": {
@@ -16124,17 +17130,9 @@ window.lunrData = {
                         "ref": "WebMidi.html#getInputByName",
                         "tf": 2
                       },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 1.1363636363636365
-                      },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
-                      },
                       "WebMidi.html#getOctave": {
                         "ref": "WebMidi.html#getOctave",
-                        "tf": 2.564102564102564
+                        "tf": 3.0303030303030303
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -16143,18 +17141,6 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
-                        "tf": 1.5151515151515151
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 3.4090909090909087
-                      },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
-                        "tf": 2.7777777777777777
                       }
                     }
                   }
@@ -16163,8 +17149,8 @@ window.lunrData = {
             },
             "l": {
               "docs": {
-                "WebMidi.html#convertToTimestamp": {
-                  "ref": "WebMidi.html#convertToTimestamp",
+                "Utilities.html#toTimestamp": {
+                  "ref": "Utilities.html#toTimestamp",
                   "tf": 1.6666666666666667
                 }
               },
@@ -16174,13 +17160,17 @@ window.lunrData = {
                   "docs": {},
                   "s": {
                     "docs": {
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 1.282051282051282
+                      },
                       "Note.html#rawRelease": {
                         "ref": "Note.html#rawRelease",
                         "tf": 6.25
                       },
                       "Note.html#release": {
                         "ref": "Note.html#release",
-                        "tf": 706.25
+                        "tf": 707.1428571428571
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -16220,6 +17210,10 @@ window.lunrData = {
                 "docs": {},
                 "r": {
                   "docs": {
+                    "Note.html#number": {
+                      "ref": "Note.html#number",
+                      "tf": 4.166666666666666
+                    },
                     "Output.html#decrementRegisteredParameter": {
                       "ref": "Output.html#decrementRegisteredParameter",
                       "tf": 0.5434782608695652
@@ -16502,6 +17496,10 @@ window.lunrData = {
                         "Output.html#sendTuneRequest": {
                           "ref": "Output.html#sendTuneRequest",
                           "tf": 7.142857142857142
+                        },
+                        "Utilities.html#offsetNumber": {
+                          "ref": "Utilities.html#offsetNumber",
+                          "tf": 1.7857142857142856
                         }
                       }
                     }
@@ -16560,6 +17558,10 @@ window.lunrData = {
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                         "tf": 0.5617977528089888
+                      },
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 0.9259259259259258
                       }
                     }
                   }
@@ -16570,16 +17572,7 @@ window.lunrData = {
           "a": {
             "docs": {},
             "w": {
-              "docs": {
-                "Note.html#rawAttack": {
-                  "ref": "Note.html#rawAttack",
-                  "tf": 6.25
-                },
-                "Note.html#rawRelease": {
-                  "ref": "Note.html#rawRelease",
-                  "tf": 6.25
-                }
-              },
+              "docs": {},
               "a": {
                 "docs": {},
                 "t": {
@@ -16703,6 +17696,10 @@ window.lunrData = {
                     "OutputChannel.html#setRegisteredParameter": {
                       "ref": "OutputChannel.html#setRegisteredParameter",
                       "tf": 0.6578947368421052
+                    },
+                    "Utilities.html#toNormalized": {
+                      "ref": "Utilities.html#toNormalized",
+                      "tf": 1.2195121951219512
                     }
                   }
                 }
@@ -16872,7 +17869,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6329113924050633
+                  "tf": 0.6622516556291391
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -16891,6 +17888,26 @@ window.lunrData = {
                     "docs": {},
                     "i": {
                       "docs": {
+                        "Input.html#octaveOffset": {
+                          "ref": "Input.html#octaveOffset",
+                          "tf": 1.1111111111111112
+                        },
+                        "Input.html#open": {
+                          "ref": "Input.html#open",
+                          "tf": 5
+                        },
+                        "InputChannel.html#octaveOffset": {
+                          "ref": "InputChannel.html#octaveOffset",
+                          "tf": 0.9090909090909091
+                        },
+                        "Output.html#octaveOffset": {
+                          "ref": "Output.html#octaveOffset",
+                          "tf": 2
+                        },
+                        "OutputChannel.html#octaveOffset": {
+                          "ref": "OutputChannel.html#octaveOffset",
+                          "tf": 1.3888888888888888
+                        },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
                           "tf": 1903.7313432835822
@@ -16901,7 +17918,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.6329113924050633
+                          "tf": 0.9933774834437087
                         }
                       },
                       ".": {
@@ -16959,6 +17976,10 @@ window.lunrData = {
                             "WebMidi.html#disable": {
                               "ref": "WebMidi.html#disable",
                               "tf": 2.272727272727273
+                            },
+                            "WebMidi.html#enable": {
+                              "ref": "WebMidi.html#enable",
+                              "tf": 0.33112582781456956
                             }
                           }
                         },
@@ -17090,6 +18111,32 @@ window.lunrData = {
                                         }
                                       },
                                       "docs": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "d": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "f": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "u": {
+                                  "docs": {},
+                                  "l": {
+                                    "docs": {},
+                                    "t": {
+                                      "docs": {
+                                        "Note.html": {
+                                          "ref": "Note.html",
+                                          "tf": 0.641025641025641
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -17503,7 +18550,7 @@ window.lunrData = {
                                                             "docs": {
                                                               "WebMidi.html#enable": {
                                                                 "ref": "WebMidi.html#enable",
-                                                                "tf": 0.31645569620253167
+                                                                "tf": 0.33112582781456956
                                                               }
                                                             }
                                                           }
@@ -17606,6 +18653,43 @@ window.lunrData = {
                                       "tf": 1150
                                     }
                                   }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "d": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "f": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "u": {
+                                  "docs": {},
+                                  "l": {
+                                    "docs": {},
+                                    "t": {
+                                      "docs": {
+                                        "WebMidi.html#defaults": {
+                                          "ref": "WebMidi.html#defaults",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "i": {
+                            "docs": {},
+                            "s": {
+                              "docs": {
+                                "WebMidi.html#disable": {
+                                  "ref": "WebMidi.html#disable",
+                                  "tf": 1150
                                 }
                               }
                             }
@@ -18133,53 +19217,6 @@ window.lunrData = {
                                 }
                               }
                             }
-                          },
-                          "a": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "i": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "z": {
-                                      "docs": {},
-                                      "e": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "h": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "n": {
-                                                "docs": {},
-                                                "n": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "l": {
-                                                      "docs": {
-                                                        "WebMidi.html#sanitizeChannels": {
-                                                          "ref": "WebMidi.html#sanitizeChannels",
-                                                          "tf": 1150
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
                           }
                         },
                         "t": {
@@ -18211,79 +19248,6 @@ window.lunrData = {
                                       "tf": 1150
                                     }
                                   }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "c": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "v": {
-                                "docs": {},
-                                "e": {
-                                  "docs": {},
-                                  "r": {
-                                    "docs": {},
-                                    "t": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "o": {
-                                          "docs": {},
-                                          "t": {
-                                            "docs": {},
-                                            "i": {
-                                              "docs": {},
-                                              "m": {
-                                                "docs": {},
-                                                "e": {
-                                                  "docs": {},
-                                                  "s": {
-                                                    "docs": {},
-                                                    "t": {
-                                                      "docs": {},
-                                                      "a": {
-                                                        "docs": {},
-                                                        "m": {
-                                                          "docs": {},
-                                                          "p": {
-                                                            "docs": {
-                                                              "WebMidi.html#convertToTimestamp": {
-                                                                "ref": "WebMidi.html#convertToTimestamp",
-                                                                "tf": 1150
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "d": {
-                          "docs": {},
-                          "i": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "WebMidi.html#disable": {
-                                  "ref": "WebMidi.html#disable",
-                                  "tf": 1150
                                 }
                               }
                             }
@@ -18328,79 +19292,6 @@ window.lunrData = {
                                                   "docs": {
                                                     "WebMidi.html#getInputByName": {
                                                       "ref": "WebMidi.html#getInputByName",
-                                                      "tf": 1150
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "n": {
-                                "docs": {},
-                                "o": {
-                                  "docs": {},
-                                  "t": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "n": {
-                                        "docs": {},
-                                        "u": {
-                                          "docs": {},
-                                          "m": {
-                                            "docs": {},
-                                            "b": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "r": {
-                                                  "docs": {},
-                                                  "b": {
-                                                    "docs": {},
-                                                    "y": {
-                                                      "docs": {},
-                                                      "n": {
-                                                        "docs": {},
-                                                        "a": {
-                                                          "docs": {},
-                                                          "m": {
-                                                            "docs": {
-                                                              "WebMidi.html#getNoteNumberByName": {
-                                                                "ref": "WebMidi.html#getNoteNumberByName",
-                                                                "tf": 1150
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      },
-                                      "o": {
-                                        "docs": {},
-                                        "b": {
-                                          "docs": {},
-                                          "j": {
-                                            "docs": {},
-                                            "e": {
-                                              "docs": {},
-                                              "c": {
-                                                "docs": {},
-                                                "t": {
-                                                  "docs": {
-                                                    "WebMidi.html#getNoteObject": {
-                                                      "ref": "WebMidi.html#getNoteObject",
                                                       "tf": 1150
                                                     }
                                                   }
@@ -18468,94 +19359,6 @@ window.lunrData = {
                                                         "ref": "WebMidi.html#getOutputByName",
                                                         "tf": 1150
                                                       }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              },
-                              "v": {
-                                "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "l": {
-                                    "docs": {},
-                                    "i": {
-                                      "docs": {},
-                                      "d": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {},
-                                          "o": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "a": {
-                                                  "docs": {},
-                                                  "r": {
-                                                    "docs": {},
-                                                    "r": {
-                                                      "docs": {},
-                                                      "a": {
-                                                        "docs": {},
-                                                        "y": {
-                                                          "docs": {
-                                                            "WebMidi.html#getValidNoteArray": {
-                                                              "ref": "WebMidi.html#getValidNoteArray",
-                                                              "tf": 1150
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "u": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                "s": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "o": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "e": {
-                                          "docs": {},
-                                          "n": {
-                                            "docs": {},
-                                            "u": {
-                                              "docs": {},
-                                              "m": {
-                                                "docs": {},
-                                                "b": {
-                                                  "docs": {
-                                                    "WebMidi.html#guessNoteNumber": {
-                                                      "ref": "WebMidi.html#guessNoteNumber",
-                                                      "tf": 1150
                                                     }
                                                   }
                                                 }
@@ -18645,7 +19448,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.6097560975609756
+                    "tf": 0.48543689320388345
                   }
                 }
               }
@@ -18681,7 +19484,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
+                  "tf": 0.33112582781456956
                 },
                 "WebMidi.html#getInputByName": {
                   "ref": "WebMidi.html#getInputByName",
@@ -18699,7 +19502,7 @@ window.lunrData = {
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -18719,6 +19522,10 @@ window.lunrData = {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 2.0348837209302326
                   },
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 0.641025641025641
+                  },
                   "Output.html#setKeyAftertouch": {
                     "ref": "Output.html#setKeyAftertouch",
                     "tf": 2.7777777777777777
@@ -18737,7 +19544,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#setKeyAftertouch": {
                     "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
+                    "tf": 1.282051282051282
                   },
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
@@ -18750,6 +19557,10 @@ window.lunrData = {
                   "OutputChannel.html#setTuningProgram": {
                     "ref": "OutputChannel.html#setTuningProgram",
                     "tf": 1.25
+                  },
+                  "WebMidi.html#defaults": {
+                    "ref": "WebMidi.html#defaults",
+                    "tf": 5
                   }
                 }
               }
@@ -18791,6 +19602,10 @@ window.lunrData = {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
                     "tf": 0.7462686567164178
+                  },
+                  "WebMidi.html#defaults": {
+                    "ref": "WebMidi.html#defaults",
+                    "tf": 5
                   }
                 }
               }
@@ -18877,14 +19692,22 @@ window.lunrData = {
           }
         },
         "d": {
+          "3": {
+            "docs": {
+              "Note.html": {
+                "ref": "Note.html",
+                "tf": 0.641025641025641
+              }
+            }
+          },
           "docs": {
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 0.5681818181818182
+            "Utilities.html#guessNoteNumber": {
+              "ref": "Utilities.html#guessNoteNumber",
+              "tf": 0.8771929824561403
             },
-            "WebMidi.html#guessNoteNumber": {
-              "ref": "WebMidi.html#guessNoteNumber",
-              "tf": 1.1363636363636365
+            "Utilities.html#toNoteNumber": {
+              "ref": "Utilities.html#toNoteNumber",
+              "tf": 0.7936507936507936
             }
           },
           "o": {
@@ -18916,7 +19739,7 @@ window.lunrData = {
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0204081632653061
+                            "tf": 1.0416666666666665
                           },
                           "Output.html#setNonRegisteredParameter": {
                             "ref": "Output.html#setNonRegisteredParameter",
@@ -18926,13 +19749,13 @@ window.lunrData = {
                             "ref": "OutputChannel.html#setNonRegisteredParameter",
                             "tf": 0.4807692307692308
                           },
+                          "Utilities.html#toTimestamp": {
+                            "ref": "Utilities.html#toTimestamp",
+                            "tf": 1.6666666666666667
+                          },
                           "WebMidi.html#time": {
                             "ref": "WebMidi.html#time",
                             "tf": 1.5625
-                          },
-                          "WebMidi.html#convertToTimestamp": {
-                            "ref": "WebMidi.html#convertToTimestamp",
-                            "tf": 1.6666666666666667
                           }
                         }
                       }
@@ -18963,6 +19786,20 @@ window.lunrData = {
                   "WebMidi.html#validation": {
                     "ref": "WebMidi.html#validation",
                     "tf": 1.6129032258064515
+                  }
+                }
+              }
+            },
+            "u": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 1.5873015873015872
+                    }
                   }
                 }
               }
@@ -19022,20 +19859,6 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "u": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 1.1363636363636365
-                    }
-                  }
-                }
-              }
             }
           },
           "e": {
@@ -19052,7 +19875,11 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
+                    },
+                    "Note.html#number": {
+                      "ref": "Note.html#number",
+                      "tf": 4.166666666666666
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -19060,10 +19887,10 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
+                    "Utilities.html#toTimestamp": {
+                      "ref": "Utilities.html#toTimestamp",
                       "tf": 1.6666666666666667
                     }
                   }
@@ -19082,7 +19909,7 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "Output.html#manufacturer": {
                       "ref": "Output.html#manufacturer",
@@ -19122,7 +19949,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "OutputChannel.html#setProgram": {
                       "ref": "OutputChannel.html#setProgram",
@@ -19135,6 +19962,10 @@ window.lunrData = {
                     "OutputChannel.html#setTuningProgram": {
                       "ref": "OutputChannel.html#setTuningProgram",
                       "tf": 1.25
+                    },
+                    "WebMidi.html#octaveOffset": {
+                      "ref": "WebMidi.html#octaveOffset",
+                      "tf": 1.8518518518518516
                     }
                   }
                 }
@@ -19157,6 +19988,153 @@ window.lunrData = {
                 }
               }
             },
+            "f": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "l": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Input.html#octaveOffset": {
+                          "ref": "Input.html#octaveOffset",
+                          "tf": 1.1111111111111112
+                        },
+                        "Input.html#removeListener": {
+                          "ref": "Input.html#removeListener",
+                          "tf": 1.7241379310344827
+                        },
+                        "InputChannel.html#octaveOffset": {
+                          "ref": "InputChannel.html#octaveOffset",
+                          "tf": 0.9090909090909091
+                        },
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 1.9230769230769231
+                        },
+                        "Output.html#octaveOffset": {
+                          "ref": "Output.html#octaveOffset",
+                          "tf": 2
+                        },
+                        "Output.html#resetAllControllers": {
+                          "ref": "Output.html#resetAllControllers",
+                          "tf": 3.8461538461538463
+                        },
+                        "Output.html#sendChannelMode": {
+                          "ref": "Output.html#sendChannelMode",
+                          "tf": 0.78125
+                        },
+                        "Output.html#sendReset": {
+                          "ref": "Output.html#sendReset",
+                          "tf": 3.8461538461538463
+                        },
+                        "Output.html#setLocalControl": {
+                          "ref": "Output.html#setLocalControl",
+                          "tf": 2.7777777777777777
+                        },
+                        "Output.html#setPolyphonicMode": {
+                          "ref": "Output.html#setPolyphonicMode",
+                          "tf": 2.083333333333333
+                        },
+                        "OutputChannel.html#octaveOffset": {
+                          "ref": "OutputChannel.html#octaveOffset",
+                          "tf": 1.3888888888888888
+                        },
+                        "OutputChannel.html#resetAllControllers": {
+                          "ref": "OutputChannel.html#resetAllControllers",
+                          "tf": 3.8461538461538463
+                        },
+                        "OutputChannel.html#sendChannelMode": {
+                          "ref": "OutputChannel.html#sendChannelMode",
+                          "tf": 0.8064516129032258
+                        },
+                        "OutputChannel.html#setLocalControl": {
+                          "ref": "OutputChannel.html#setLocalControl",
+                          "tf": 2.7777777777777777
+                        },
+                        "OutputChannel.html#setPolyphonicMode": {
+                          "ref": "OutputChannel.html#setPolyphonicMode",
+                          "tf": 2.083333333333333
+                        },
+                        "WebMidi.html#defaults": {
+                          "ref": "WebMidi.html#defaults",
+                          "tf": 705
+                        },
+                        "WebMidi.html#getOctave": {
+                          "ref": "WebMidi.html#getOctave",
+                          "tf": 1.5151515151515151
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "i": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
+                    },
+                    "Input.html#hasListener": {
+                      "ref": "Input.html#hasListener",
+                      "tf": 5.555555555555555
+                    },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 1.8181818181818181
+                    },
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 2
+                    },
+                    "Output.html#clear": {
+                      "ref": "Output.html#clear",
+                      "tf": 2.272727272727273
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 0.43478260869565216
+                    },
+                    "Output.html#sendNoteOff": {
+                      "ref": "Output.html#sendNoteOff",
+                      "tf": 0.8333333333333334
+                    },
+                    "Output.html#sendNoteOn": {
+                      "ref": "Output.html#sendNoteOn",
+                      "tf": 0.6024096385542169
+                    },
+                    "Output.html#setRegisteredParameter": {
+                      "ref": "Output.html#setRegisteredParameter",
+                      "tf": 0.3289473684210526
+                    },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 2.7777777777777777
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 0.4629629629629629
+                    },
+                    "OutputChannel.html#sendNoteOff": {
+                      "ref": "OutputChannel.html#sendNoteOff",
+                      "tf": 0.847457627118644
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
+                    },
+                    "OutputChannel.html#setRegisteredParameter": {
+                      "ref": "OutputChannel.html#setRegisteredParameter",
+                      "tf": 0.3289473684210526
+                    }
+                  }
+                }
+              }
+            },
             "s": {
               "docs": {},
               "t": {
@@ -19170,6 +20148,10 @@ window.lunrData = {
                         "Input.html#destroy": {
                           "ref": "Input.html#destroy",
                           "tf": 688.3333333333334
+                        },
+                        "InputChannel.html#destroy": {
+                          "ref": "InputChannel.html#destroy",
+                          "tf": 755.5555555555555
                         },
                         "Output.html#destroy": {
                           "ref": "Output.html#destroy",
@@ -19195,121 +20177,6 @@ window.lunrData = {
                     "OutputChannel.html#setRegisteredParameter": {
                       "ref": "OutputChannel.html#setRegisteredParameter",
                       "tf": 0.3289473684210526
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.282051282051282
-                    }
-                  }
-                }
-              }
-            },
-            "f": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "n": {
-                  "docs": {
-                    "Input.html#hasListener": {
-                      "ref": "Input.html#hasListener",
-                      "tf": 5.555555555555555
-                    },
-                    "Output.html#clear": {
-                      "ref": "Output.html#clear",
-                      "tf": 2.272727272727273
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 0.43478260869565216
-                    },
-                    "Output.html#sendNoteOff": {
-                      "ref": "Output.html#sendNoteOff",
-                      "tf": 0.8333333333333334
-                    },
-                    "Output.html#sendNoteOn": {
-                      "ref": "Output.html#sendNoteOn",
-                      "tf": 0.6024096385542169
-                    },
-                    "Output.html#setRegisteredParameter": {
-                      "ref": "Output.html#setRegisteredParameter",
-                      "tf": 0.3289473684210526
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendNoteOff": {
-                      "ref": "OutputChannel.html#sendNoteOff",
-                      "tf": 0.847457627118644
-                    },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
-                    },
-                    "OutputChannel.html#setRegisteredParameter": {
-                      "ref": "OutputChannel.html#setRegisteredParameter",
-                      "tf": 0.3289473684210526
-                    }
-                  }
-                }
-              },
-              "a": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "l": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "Input.html#removeListener": {
-                          "ref": "Input.html#removeListener",
-                          "tf": 1.7241379310344827
-                        },
-                        "Output.html#resetAllControllers": {
-                          "ref": "Output.html#resetAllControllers",
-                          "tf": 3.8461538461538463
-                        },
-                        "Output.html#sendChannelMode": {
-                          "ref": "Output.html#sendChannelMode",
-                          "tf": 0.78125
-                        },
-                        "Output.html#sendReset": {
-                          "ref": "Output.html#sendReset",
-                          "tf": 3.8461538461538463
-                        },
-                        "Output.html#setLocalControl": {
-                          "ref": "Output.html#setLocalControl",
-                          "tf": 2.7777777777777777
-                        },
-                        "Output.html#setPolyphonicMode": {
-                          "ref": "Output.html#setPolyphonicMode",
-                          "tf": 2.083333333333333
-                        },
-                        "OutputChannel.html#resetAllControllers": {
-                          "ref": "OutputChannel.html#resetAllControllers",
-                          "tf": 3.8461538461538463
-                        },
-                        "OutputChannel.html#sendChannelMode": {
-                          "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.8064516129032258
-                        },
-                        "OutputChannel.html#setLocalControl": {
-                          "ref": "OutputChannel.html#setLocalControl",
-                          "tf": 2.7777777777777777
-                        },
-                        "OutputChannel.html#setPolyphonicMode": {
-                          "ref": "OutputChannel.html#setPolyphonicMode",
-                          "tf": 2.083333333333333
-                        },
-                        "WebMidi.html#octaveOffset": {
-                          "ref": "WebMidi.html#octaveOffset",
-                          "tf": 1.3513513513513513
-                        },
-                        "WebMidi.html#getOctave": {
-                          "ref": "WebMidi.html#getOctave",
-                          "tf": 1.282051282051282
-                        }
-                      }
                     }
                   }
                 }
@@ -19325,7 +20192,7 @@ window.lunrData = {
                     "docs": {
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -19358,17 +20225,9 @@ window.lunrData = {
                 "docs": {},
                 "m": {
                   "docs": {
-                    "Note.html#attack": {
-                      "ref": "Note.html#attack",
-                      "tf": 6.25
-                    },
                     "Note.html#duration": {
                       "ref": "Note.html#duration",
                       "tf": 5
-                    },
-                    "Note.html#release": {
-                      "ref": "Note.html#release",
-                      "tf": 6.25
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
@@ -19516,7 +20375,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     }
                   }
                 }
@@ -19597,7 +20456,7 @@ window.lunrData = {
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0204081632653061
+                            "tf": 1.0416666666666665
                           },
                           "Output.html": {
                             "ref": "Output.html",
@@ -19609,7 +20468,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.2195121951219512
+                            "tf": 1.1904761904761905
                           },
                           "OutputChannel.html#send": {
                             "ref": "OutputChannel.html#send",
@@ -19730,7 +20589,7 @@ window.lunrData = {
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       }
                     }
@@ -19843,6 +20702,20 @@ window.lunrData = {
                   }
                 }
               }
+            },
+            "v": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "d": {
+                  "docs": {
+                    "Utilities.html#toNormalized": {
+                      "ref": "Utilities.html#toNormalized",
+                      "tf": 1.2195121951219512
+                    }
+                  }
+                }
+              }
             }
           },
           "j": {
@@ -19861,7 +20734,7 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "Output.html": {
                         "ref": "Output.html",
@@ -19869,7 +20742,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.2195121951219512
+                        "tf": 1.1904761904761905
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -19891,7 +20764,7 @@ window.lunrData = {
                   "docs": {
                     "Note.html": {
                       "ref": "Note.html",
-                      "tf": 4.411764705882353
+                      "tf": 1.9230769230769231
                     },
                     "Note.html#duration": {
                       "ref": "Note.html#duration",
@@ -19911,7 +20784,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     }
                   }
                 }
@@ -19929,10 +20802,6 @@ window.lunrData = {
           "b": {
             "7": {
               "docs": {
-                "Note.html#name": {
-                  "ref": "Note.html#name",
-                  "tf": 5
-                },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
                   "tf": 0.43478260869565216
@@ -19955,11 +20824,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
+                  "tf": 0.48543689320388345
                 },
                 "OutputChannel.html#setKeyAftertouch": {
                   "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 1.1904761904761905
+                  "tf": 1.282051282051282
                 }
               }
             },
@@ -19970,6 +20839,22 @@ window.lunrData = {
             "t": {
               "docs": {},
               "a": {
+                "1": {
+                  "docs": {
+                    "Utilities.html#getMessage": {
+                      "ref": "Utilities.html#getMessage",
+                      "tf": 4.545454545454546
+                    }
+                  }
+                },
+                "2": {
+                  "docs": {
+                    "Utilities.html#getMessage": {
+                      "ref": "Utilities.html#getMessage",
+                      "tf": 4.545454545454546
+                    }
+                  }
+                },
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
@@ -19994,6 +20879,10 @@ window.lunrData = {
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 20.657894736842106
+                  },
+                  "Utilities.html#getMessage": {
+                    "ref": "Utilities.html#getMessage",
+                    "tf": 33.33333333333333
                   }
                 },
                 "b": {
@@ -20136,17 +21025,17 @@ window.lunrData = {
         "g": {
           "4": {
             "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
               }
             }
           },
           "8": {
             "docs": {
-              "WebMidi.html#guessNoteNumber": {
-                "ref": "WebMidi.html#guessNoteNumber",
-                "tf": 1.1363636363636365
+              "Utilities.html#guessNoteNumber": {
+                "ref": "Utilities.html#guessNoteNumber",
+                "tf": 0.8771929824561403
               }
             }
           },
@@ -20164,6 +21053,22 @@ window.lunrData = {
                       "global.html": {
                         "ref": "global.html",
                         "tf": 2045
+                      },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 1.1111111111111112
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 2
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -20305,39 +21210,28 @@ window.lunrData = {
                   }
                 }
               },
-              "i": {
+              "o": {
                 "docs": {},
-                "n": {
+                "f": {
                   "docs": {},
-                  "p": {
+                  "f": {
                     "docs": {},
-                    "u": {
+                    "s": {
                       "docs": {},
-                      "t": {
+                      "e": {
                         "docs": {},
-                        "b": {
+                        "t": {
                           "docs": {},
-                          "y": {
+                          "n": {
                             "docs": {},
-                            "i": {
+                            "u": {
                               "docs": {},
-                              "d": {
-                                "docs": {
-                                  "WebMidi.html#getInputById": {
-                                    "ref": "WebMidi.html#getInputById",
-                                    "tf": 683.3333333333334
-                                  }
-                                }
-                              }
-                            },
-                            "n": {
-                              "docs": {},
-                              "a": {
+                              "m": {
                                 "docs": {},
-                                "m": {
+                                "b": {
                                   "docs": {
-                                    "WebMidi.html#getInputByName": {
-                                      "ref": "WebMidi.html#getInputByName",
+                                    "Note.html#getOffsetNumber": {
+                                      "ref": "Note.html#getOffsetNumber",
                                       "tf": 683.3333333333334
                                     }
                                   }
@@ -20349,83 +21243,7 @@ window.lunrData = {
                       }
                     }
                   }
-                }
-              },
-              "n": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "u": {
-                          "docs": {},
-                          "m": {
-                            "docs": {},
-                            "b": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "b": {
-                                    "docs": {},
-                                    "y": {
-                                      "docs": {},
-                                      "n": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "m": {
-                                            "docs": {
-                                              "WebMidi.html#getNoteNumberByName": {
-                                                "ref": "WebMidi.html#getNoteNumberByName",
-                                                "tf": 683.3333333333334
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "o": {
-                        "docs": {},
-                        "b": {
-                          "docs": {},
-                          "j": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "c": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {
-                                    "WebMidi.html#getNoteObject": {
-                                      "ref": "WebMidi.html#getNoteObject",
-                                      "tf": 675
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "o": {
-                "docs": {},
+                },
                 "c": {
                   "docs": {},
                   "t": {
@@ -20490,41 +21308,80 @@ window.lunrData = {
                   }
                 }
               },
-              "v": {
+              "f": {
                 "docs": {},
-                "a": {
+                "r": {
                   "docs": {},
-                  "l": {
+                  "a": {
                     "docs": {},
-                    "i": {
+                    "g": {
+                      "docs": {
+                        "Utilities.html#getFragments": {
+                          "ref": "Utilities.html#getFragments",
+                          "tf": 683.3333333333334
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "m": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "s": {
+                    "docs": {},
+                    "s": {
                       "docs": {},
-                      "d": {
+                      "a": {
                         "docs": {},
-                        "n": {
+                        "g": {
+                          "docs": {
+                            "Utilities.html#getMessage": {
+                              "ref": "Utilities.html#getMessage",
+                              "tf": 683.3333333333334
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "i": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "p": {
+                    "docs": {},
+                    "u": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "b": {
                           "docs": {},
-                          "o": {
+                          "y": {
                             "docs": {},
-                            "t": {
+                            "i": {
                               "docs": {},
-                              "e": {
+                              "d": {
+                                "docs": {
+                                  "WebMidi.html#getInputById": {
+                                    "ref": "WebMidi.html#getInputById",
+                                    "tf": 683.3333333333334
+                                  }
+                                }
+                              }
+                            },
+                            "n": {
+                              "docs": {},
+                              "a": {
                                 "docs": {},
-                                "a": {
-                                  "docs": {},
-                                  "r": {
-                                    "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "a": {
-                                        "docs": {},
-                                        "y": {
-                                          "docs": {
-                                            "WebMidi.html#getValidNoteArray": {
-                                              "ref": "WebMidi.html#getValidNoteArray",
-                                              "tf": 675
-                                            }
-                                          }
-                                        }
-                                      }
+                                "m": {
+                                  "docs": {
+                                    "WebMidi.html#getInputByName": {
+                                      "ref": "WebMidi.html#getInputByName",
+                                      "tf": 683.3333333333334
                                     }
                                   }
                                 }
@@ -20555,6 +21412,10 @@ window.lunrData = {
                     "OutputChannel.html#setMasterTuning": {
                       "ref": "OutputChannel.html#setMasterTuning",
                       "tf": 1.1904761904761905
+                    },
+                    "Utilities.html": {
+                      "ref": "Utilities.html",
+                      "tf": 3.8461538461538463
                     }
                   },
                   "a": {
@@ -20793,9 +21654,9 @@ window.lunrData = {
           "#": {
             "4": {
               "docs": {
-                "Note.html#name": {
-                  "ref": "Note.html#name",
-                  "tf": 5
+                "Note.html": {
+                  "ref": "Note.html",
+                  "tf": 0.641025641025641
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
@@ -20819,23 +21680,43 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
+                  "tf": 0.48543689320388345
                 },
                 "OutputChannel.html#setKeyAftertouch": {
                   "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 1.1904761904761905
+                  "tf": 1.282051282051282
                 }
               }
             },
             "5": {
               "docs": {
-                "WebMidi.html#getNoteObject": {
-                  "ref": "WebMidi.html#getNoteObject",
-                  "tf": 1.3888888888888888
+                "Utilities.html#buildNote": {
+                  "ref": "Utilities.html#buildNote",
+                  "tf": 1.6129032258064515
                 }
               }
             },
             "docs": {}
+          },
+          "b": {
+            "7": {
+              "docs": {
+                "Note.html": {
+                  "ref": "Note.html",
+                  "tf": 0.641025641025641
+                },
+                "Utilities.html#toNoteNumber": {
+                  "ref": "Utilities.html#toNoteNumber",
+                  "tf": 0.7936507936507936
+                }
+              }
+            },
+            "docs": {
+              "Utilities.html#getFragments": {
+                "ref": "Utilities.html#getFragments",
+                "tf": 2.7777777777777777
+              }
+            }
           },
           "a": {
             "docs": {},
@@ -20883,7 +21764,7 @@ window.lunrData = {
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.31645569620253167
+                "tf": 0.33112582781456956
               }
             }
           },
@@ -20899,17 +21780,6 @@ window.lunrData = {
               }
             }
           },
-          "b": {
-            "7": {
-              "docs": {
-                "WebMidi.html#getNoteNumberByName": {
-                  "ref": "WebMidi.html#getNoteNumberByName",
-                  "tf": 0.5681818181818182
-                }
-              }
-            },
-            "docs": {}
-          },
           "i": {
             "docs": {},
             "v": {
@@ -20918,9 +21788,13 @@ window.lunrData = {
                 "docs": {},
                 "n": {
                   "docs": {
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 1.1363636363636365
+                    "Utilities.html#getFragments": {
+                      "ref": "Utilities.html#getFragments",
+                      "tf": 2.7777777777777777
+                    },
+                    "Utilities.html#guessNoteNumber": {
+                      "ref": "Utilities.html#guessNoteNumber",
+                      "tf": 0.8771929824561403
                     }
                   }
                 }
@@ -20951,8 +21825,8 @@ window.lunrData = {
                                 "docs": {},
                                 "b": {
                                   "docs": {
-                                    "WebMidi.html#guessNoteNumber": {
-                                      "ref": "WebMidi.html#guessNoteNumber",
+                                    "Utilities.html#guessNoteNumber": {
+                                      "ref": "Utilities.html#guessNoteNumber",
                                       "tf": 683.3333333333334
                                     }
                                   }
@@ -20967,14 +21841,45 @@ window.lunrData = {
                 }
               }
             }
+          },
+          "r": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "Utilities.html#to7Bit": {
+                          "ref": "Utilities.html#to7Bit",
+                          "tf": 1.1111111111111112
+                        },
+                        "Utilities.html#toNormalized": {
+                          "ref": "Utilities.html#toNormalized",
+                          "tf": 1.2195121951219512
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "c": {
           "3": {
             "docs": {
-              "Note.html#name": {
-                "ref": "Note.html#name",
-                "tf": 5
+              "Input.html#octaveOffset": {
+                "ref": "Input.html#octaveOffset",
+                "tf": 1.1111111111111112
+              },
+              "InputChannel.html#octaveOffset": {
+                "ref": "InputChannel.html#octaveOffset",
+                "tf": 0.9090909090909091
               },
               "Output.html#playNote": {
                 "ref": "Output.html#playNote",
@@ -20998,70 +21903,114 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 0.6097560975609756
+                "tf": 0.48543689320388345
               },
               "OutputChannel.html#setKeyAftertouch": {
                 "ref": "OutputChannel.html#setKeyAftertouch",
-                "tf": 1.1904761904761905
+                "tf": 1.282051282051282
+              },
+              "Utilities.html#guessNoteNumber": {
+                "ref": "Utilities.html#guessNoteNumber",
+                "tf": 0.8771929824561403
               },
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
-                "tf": 1.3513513513513513
-              },
-              "WebMidi.html#guessNoteNumber": {
-                "ref": "WebMidi.html#guessNoteNumber",
-                "tf": 1.1363636363636365
+                "tf": 0.9259259259259258
               }
             }
           },
           "4": {
             "docs": {
+              "Input.html#octaveOffset": {
+                "ref": "Input.html#octaveOffset",
+                "tf": 1.1111111111111112
+              },
+              "InputChannel.html#octaveOffset": {
+                "ref": "InputChannel.html#octaveOffset",
+                "tf": 0.9090909090909091
+              },
+              "Note.html#number": {
+                "ref": "Note.html#number",
+                "tf": 4.166666666666666
+              },
+              "Output.html#octaveOffset": {
+                "ref": "Output.html#octaveOffset",
+                "tf": 2
+              },
+              "OutputChannel.html#octaveOffset": {
+                "ref": "OutputChannel.html#octaveOffset",
+                "tf": 1.3888888888888888
+              },
+              "Utilities.html#buildNote": {
+                "ref": "Utilities.html#buildNote",
+                "tf": 1.6129032258064515
+              },
+              "Utilities.html#guessNoteNumber": {
+                "ref": "Utilities.html#guessNoteNumber",
+                "tf": 0.8771929824561403
+              },
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
+              },
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
-                "tf": 1.3513513513513513
-              },
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 1.1363636363636365
-              },
-              "WebMidi.html#getNoteObject": {
-                "ref": "WebMidi.html#getNoteObject",
-                "tf": 1.3888888888888888
+                "tf": 0.9259259259259258
               },
               "WebMidi.html#getOctave": {
                 "ref": "WebMidi.html#getOctave",
-                "tf": 1.282051282051282
+                "tf": 1.5151515151515151
               }
             }
           },
           "5": {
             "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
               }
             }
           },
           "6": {
             "docs": {
-              "WebMidi.html#octaveOffset": {
-                "ref": "WebMidi.html#octaveOffset",
-                "tf": 1.3513513513513513
+              "Input.html#octaveOffset": {
+                "ref": "Input.html#octaveOffset",
+                "tf": 1.1111111111111112
+              },
+              "InputChannel.html#octaveOffset": {
+                "ref": "InputChannel.html#octaveOffset",
+                "tf": 0.9090909090909091
               }
             }
           },
           "docs": {
-            "WebMidi.html#octaveOffset": {
-              "ref": "WebMidi.html#octaveOffset",
-              "tf": 1.3513513513513513
+            "Input.html#octaveOffset": {
+              "ref": "Input.html#octaveOffset",
+              "tf": 1.1111111111111112
             },
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 0.5681818181818182
+            "InputChannel.html#octaveOffset": {
+              "ref": "InputChannel.html#octaveOffset",
+              "tf": 0.9090909090909091
+            },
+            "Note.html#number": {
+              "ref": "Note.html#number",
+              "tf": 4.166666666666666
+            },
+            "Output.html#octaveOffset": {
+              "ref": "Output.html#octaveOffset",
+              "tf": 2
+            },
+            "OutputChannel.html#octaveOffset": {
+              "ref": "OutputChannel.html#octaveOffset",
+              "tf": 1.3888888888888888
+            },
+            "Utilities.html#toNoteNumber": {
+              "ref": "Utilities.html#toNoteNumber",
+              "tf": 0.7936507936507936
             },
             "WebMidi.html#getOctave": {
               "ref": "WebMidi.html#getOctave",
-              "tf": 1.282051282051282
+              "tf": 1.5151515151515151
             }
           },
           "l": {
@@ -21082,11 +22031,11 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 113.06122448979592
+                      "tf": 113.125
                     },
                     "Note.html": {
                       "ref": "Note.html",
-                      "tf": 111.47058823529412
+                      "tf": 110.64102564102564
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -21094,7 +22043,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 113.65853658536585
+                      "tf": 113.57142857142857
+                    },
+                    "Utilities.html": {
+                      "ref": "Utilities.html",
+                      "tf": 117.6923076923077
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -21235,6 +22188,10 @@ window.lunrData = {
                           "ref": "OutputChannel.html#turnNotesOff",
                           "tf": 2.631578947368421
                         },
+                        "Utilities.html#toTimestamp": {
+                          "ref": "Utilities.html#toTimestamp",
+                          "tf": 1.6666666666666667
+                        },
                         "WebMidi.html#inputs": {
                           "ref": "WebMidi.html#inputs",
                           "tf": 10
@@ -21255,13 +22212,9 @@ window.lunrData = {
                           "ref": "WebMidi.html#outputs",
                           "tf": 10
                         },
-                        "WebMidi.html#convertToTimestamp": {
-                          "ref": "WebMidi.html#convertToTimestamp",
-                          "tf": 1.6666666666666667
-                        },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       }
                     }
@@ -21277,6 +22230,10 @@ window.lunrData = {
                   "docs": {},
                   "m": {
                     "docs": {
+                      "WebMidi.html#defaults": {
+                        "ref": "WebMidi.html#defaults",
+                        "tf": 5
+                      },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                         "tf": 1.1235955056179776
@@ -21325,7 +22282,7 @@ window.lunrData = {
                         },
                         "InputChannel.html": {
                           "ref": "InputChannel.html",
-                          "tf": 2.0408163265306123
+                          "tf": 2.083333333333333
                         },
                         "InputChannel.html#input": {
                           "ref": "InputChannel.html#input",
@@ -21337,7 +22294,7 @@ window.lunrData = {
                         },
                         "Note.html": {
                           "ref": "Note.html",
-                          "tf": 2.941176470588235
+                          "tf": 1.282051282051282
                         },
                         "Output.html#channels": {
                           "ref": "Output.html#channels",
@@ -21401,11 +22358,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 2.4390243902439024
+                          "tf": 2.380952380952381
                         },
                         "OutputChannel.html#output": {
                           "ref": "OutputChannel.html#output",
-                          "tf": 16.666666666666664
+                          "tf": 12.5
                         },
                         "OutputChannel.html#decrementRegisteredParameter": {
                           "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -21437,7 +22394,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         },
                         "OutputChannel.html#setChannelAftertouch": {
                           "ref": "OutputChannel.html#setChannelAftertouch",
@@ -21445,7 +22402,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#setKeyAftertouch": {
                           "ref": "OutputChannel.html#setKeyAftertouch",
-                          "tf": 1.1904761904761905
+                          "tf": 1.282051282051282
                         },
                         "OutputChannel.html#setOmniMode": {
                           "ref": "OutputChannel.html#setOmniMode",
@@ -21463,6 +22420,10 @@ window.lunrData = {
                           "ref": "OutputChannel.html#turnSoundOff",
                           "tf": 7.142857142857142
                         },
+                        "Utilities.html#sanitizeChannels": {
+                          "ref": "Utilities.html#sanitizeChannels",
+                          "tf": 36.11111111111111
+                        },
                         "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
                           "tf": 3.571428571428571
@@ -21475,9 +22436,9 @@ window.lunrData = {
                           "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
                           "tf": 1.4285714285714286
                         },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
-                          "tf": 36.11111111111111
+                        "WebMidi.html#octaveOffset": {
+                          "ref": "WebMidi.html#octaveOffset",
+                          "tf": 0.9259259259259258
                         }
                       },
                       "a": {
@@ -21549,11 +22510,11 @@ window.lunrData = {
                         "docs": {
                           "InputChannel.html#number": {
                             "ref": "InputChannel.html#number",
-                            "tf": 12.5
+                            "tf": 10
                           },
                           "OutputChannel.html#number": {
                             "ref": "OutputChannel.html#number",
-                            "tf": 12.5
+                            "tf": 10
                           }
                         }
                       },
@@ -21736,6 +22697,10 @@ window.lunrData = {
                       "ref": "InputChannel.html#getCcNameByNumber",
                       "tf": 4.545454545454546
                     },
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
+                    },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
                       "tf": 1.3368983957219251
@@ -21779,6 +22744,10 @@ window.lunrData = {
                     "OutputChannel.html#setTuningProgram": {
                       "ref": "OutputChannel.html#setTuningProgram",
                       "tf": 1.25
+                    },
+                    "WebMidi.html#defaults": {
+                      "ref": "WebMidi.html#defaults",
+                      "tf": 5
                     },
                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21834,7 +22803,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -21883,7 +22852,7 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "Output.html#clear": {
                       "ref": "Output.html#clear",
@@ -21907,7 +22876,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6329113924050633
+                      "tf": 0.6622516556291391
                     }
                   }
                 }
@@ -21974,9 +22943,21 @@ window.lunrData = {
                           "ref": "Output.html#channels",
                           "tf": 4.166666666666666
                         },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.6329113924050633
+                        "Utilities.html": {
+                          "ref": "Utilities.html",
+                          "tf": 3.8461538461538463
+                        },
+                        "Utilities.html#getFragments": {
+                          "ref": "Utilities.html#getFragments",
+                          "tf": 2.7777777777777777
+                        },
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
+                        },
+                        "WebMidi.html#defaults": {
+                          "ref": "WebMidi.html#defaults",
+                          "tf": 5
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -21985,10 +22966,6 @@ window.lunrData = {
                         "WebMidi.html#getOutputByName": {
                           "ref": "WebMidi.html#getOutputByName",
                           "tf": 2
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
                         }
                       }
                     }
@@ -22161,7 +23138,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.6329113924050633
+                          "tf": 0.6622516556291391
                         }
                       }
                     }
@@ -22241,7 +23218,7 @@ window.lunrData = {
                                             "docs": {
                                               "WebMidi.html#enable": {
                                                 "ref": "WebMidi.html#enable",
-                                                "tf": 0.31645569620253167
+                                                "tf": 0.33112582781456956
                                               }
                                             }
                                           }
@@ -22263,7 +23240,7 @@ window.lunrData = {
                                               "docs": {
                                                 "WebMidi.html#enable": {
                                                   "ref": "WebMidi.html#enable",
-                                                  "tf": 0.31645569620253167
+                                                  "tf": 0.33112582781456956
                                                 }
                                               }
                                             }
@@ -22292,7 +23269,7 @@ window.lunrData = {
                                                     "docs": {
                                                       "WebMidi.html#enable": {
                                                         "ref": "WebMidi.html#enable",
-                                                        "tf": 0.31645569620253167
+                                                        "tf": 0.33112582781456956
                                                       }
                                                     }
                                                   }
@@ -22309,6 +23286,17 @@ window.lunrData = {
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                },
+                "i": {
+                  "docs": {},
+                  "d": {
+                    "docs": {
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
                       }
                     }
                   }
@@ -22335,17 +23323,6 @@ window.lunrData = {
                       }
                     }
                   }
-                },
-                "i": {
-                  "docs": {},
-                  "d": {
-                    "docs": {
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
-                      }
-                    }
-                  }
                 }
               },
               "v": {
@@ -22356,55 +23333,25 @@ window.lunrData = {
                     "docs": {},
                     "t": {
                       "docs": {
-                        "WebMidi.html#getNoteNumberByName": {
-                          "ref": "WebMidi.html#getNoteNumberByName",
-                          "tf": 0.5681818181818182
+                        "Utilities.html#buildNote": {
+                          "ref": "Utilities.html#buildNote",
+                          "tf": 1.6129032258064515
                         },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
-                        },
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
+                        "Utilities.html#buildNoteArray": {
+                          "ref": "Utilities.html#buildNoteArray",
                           "tf": 1.5151515151515151
-                        }
-                      },
-                      "t": {
-                        "docs": {},
-                        "o": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "m": {
-                                "docs": {},
-                                "e": {
-                                  "docs": {},
-                                  "s": {
-                                    "docs": {},
-                                    "t": {
-                                      "docs": {},
-                                      "a": {
-                                        "docs": {},
-                                        "m": {
-                                          "docs": {},
-                                          "p": {
-                                            "docs": {
-                                              "WebMidi.html#convertToTimestamp": {
-                                                "ref": "WebMidi.html#convertToTimestamp",
-                                                "tf": 683.3333333333334
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
+                        },
+                        "Utilities.html#to7Bit": {
+                          "ref": "Utilities.html#to7Bit",
+                          "tf": 1.1111111111111112
+                        },
+                        "Utilities.html#toNormalized": {
+                          "ref": "Utilities.html#toNormalized",
+                          "tf": 1.2195121951219512
+                        },
+                        "Utilities.html#toNoteNumber": {
+                          "ref": "Utilities.html#toNoteNumber",
+                          "tf": 0.7936507936507936
                         }
                       }
                     }
@@ -22413,9 +23360,9 @@ window.lunrData = {
                     "docs": {},
                     "i": {
                       "docs": {
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
                         }
                       }
                     }
@@ -22432,7 +23379,7 @@ window.lunrData = {
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       }
                     }
@@ -22474,17 +23421,62 @@ window.lunrData = {
                     }
                   }
                 },
+                "o": {
+                  "docs": {},
+                  "s": {
+                    "docs": {
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 2.7777777777777777
+                      }
+                    }
+                  }
+                },
                 "a": {
                   "docs": {},
                   "t": {
                     "docs": {
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
+                        "tf": 1.3888888888888888
+                      },
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
                         "tf": 1.6129032258064515
+                      }
+                    }
+                  }
+                }
+              },
+              "b": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 1.1111111111111112
                       },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 2
+                      },
+                      "Output.html#setNonRegisteredParameter": {
+                        "ref": "Output.html#setNonRegisteredParameter",
+                        "tf": 0.4098360655737705
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
                         "tf": 1.3888888888888888
+                      },
+                      "OutputChannel.html#setNonRegisteredParameter": {
+                        "ref": "OutputChannel.html#setNonRegisteredParameter",
+                        "tf": 0.4807692307692308
                       }
                     }
                   }
@@ -22579,28 +23571,22 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
+                        },
+                        "Utilities.html#getMessage": {
+                          "ref": "Utilities.html#getMessage",
+                          "tf": 4.545454545454546
                         }
                       }
                     }
                   }
                 }
               },
-              "b": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Output.html#setNonRegisteredParameter": {
-                        "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 0.4098360655737705
-                      },
-                      "OutputChannel.html#setNonRegisteredParameter": {
-                        "ref": "OutputChannel.html#setNonRegisteredParameter",
-                        "tf": 0.4807692307692308
-                      }
-                    }
+              "e": {
+                "docs": {
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 1.8518518518518516
                   }
                 }
               }
@@ -22623,7 +23609,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -22685,6 +23671,10 @@ window.lunrData = {
                     "ref": "InputChannel.html#getCcNameByNumber",
                     "tf": 2.272727272727273
                   },
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 0.641025641025641
+                  },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
                     "tf": 0.33333333333333337
@@ -22692,6 +23682,10 @@ window.lunrData = {
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
                     "tf": 1.2295081967213115
+                  },
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.9708737864077669
                   },
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -22716,6 +23710,10 @@ window.lunrData = {
                     "ref": "Input.html#close",
                     "tf": 3.571428571428571
                   },
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 1.282051282051282
+                  },
                   "Output.html#close": {
                     "ref": "Output.html#close",
                     "tf": 2.380952380952381
@@ -22727,6 +23725,10 @@ window.lunrData = {
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
                     "tf": 0.7462686567164178
+                  },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 0.9259259259259258
                   }
                 },
                 "b": {
@@ -22747,9 +23749,27 @@ window.lunrData = {
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.6329113924050633
+                            "tf": 0.6622516556291391
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              },
+              "c": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 4
+                      },
+                      "Utilities.html#offsetNumber": {
+                        "ref": "Utilities.html#offsetNumber",
+                        "tf": 3.571428571428571
                       }
                     }
                   }
@@ -22788,7 +23808,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -22913,14 +23933,6 @@ window.lunrData = {
               }
             }
           },
-          "j": {
-            "docs": {
-              "WebMidi.html": {
-                "ref": "WebMidi.html",
-                "tf": 0.7462686567164178
-              }
-            }
-          },
           "r": {
             "docs": {},
             "e": {
@@ -22929,27 +23941,41 @@ window.lunrData = {
                 "docs": {},
                 "t": {
                   "docs": {
+                    "Utilities.html#buildNoteArray": {
+                      "ref": "Utilities.html#buildNoteArray",
+                      "tf": 1.5151515151515151
+                    },
                     "WebMidi.html#MIDI_NRPN_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
                       "tf": 2
-                    },
-                    "WebMidi.html#getValidNoteArray": {
-                      "ref": "WebMidi.html#getValidNoteArray",
-                      "tf": 1.5151515151515151
                     }
                   }
                 }
               }
             }
+          },
+          "#": {
+            "4": {
+              "docs": {
+                "Utilities.html#getFragments": {
+                  "ref": "Utilities.html#getFragments",
+                  "tf": 2.7777777777777777
+                }
+              }
+            },
+            "docs": {}
+          },
+          "j": {
+            "docs": {
+              "WebMidi.html": {
+                "ref": "WebMidi.html",
+                "tf": 0.7462686567164178
+              }
+            }
           }
         },
         "e": {
-          "docs": {
-            "InputChannel.html#_parseEvent": {
-              "ref": "InputChannel.html#_parseEvent",
-              "tf": 33.33333333333333
-            }
-          },
+          "docs": {},
           "m": {
             "docs": {},
             "i": {
@@ -22992,6 +24018,14 @@ window.lunrData = {
                     "ref": "OutputChannel.html#setPolyphonicMode",
                     "tf": 2.083333333333333
                   },
+                  "Utilities.html#to7Bit": {
+                    "ref": "Utilities.html#to7Bit",
+                    "tf": 1.1111111111111112
+                  },
+                  "Utilities.html#toNormalized": {
+                    "ref": "Utilities.html#toNormalized",
+                    "tf": 1.2195121951219512
+                  },
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
                     "tf": 1.7241379310344827
@@ -23015,13 +24049,17 @@ window.lunrData = {
                       "ref": "Input.html#removeListener",
                       "tf": 5.172413793103448
                     },
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
+                    },
                     "WebMidi.html#MIDI_INTERFACE_EVENTS": {
                       "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
                       "tf": 8.333333333333332
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.2658227848101267
+                      "tf": 1.3245033112582782
                     }
                   },
                   "e": {
@@ -23040,7 +24078,7 @@ window.lunrData = {
                               },
                               "InputChannel.html": {
                                 "ref": "InputChannel.html",
-                                "tf": 2.0408163265306123
+                                "tf": 2.083333333333333
                               },
                               "Output.html": {
                                 "ref": "Output.html",
@@ -23048,7 +24086,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html": {
                                 "ref": "OutputChannel.html",
-                                "tf": 1.2195121951219512
+                                "tf": 1.1904761904761905
                               },
                               "WebMidi.html": {
                                 "ref": "WebMidi.html",
@@ -23080,7 +24118,7 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0204081632653061
+                        "tf": 1.0416666666666665
                       },
                       "Output.html": {
                         "ref": "Output.html",
@@ -23092,7 +24130,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.2195121951219512
+                        "tf": 1.1904761904761905
                       },
                       "OutputChannel.html#setRegisteredParameter": {
                         "ref": "OutputChannel.html#setRegisteredParameter",
@@ -23105,6 +24143,17 @@ window.lunrData = {
                       "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
                         "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
                         "tf": 0.78125
+                      }
+                    }
+                  }
+                },
+                "r": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 1.8518518518518516
                       }
                     }
                   }
@@ -23138,6 +24187,14 @@ window.lunrData = {
                         "ref": "Input.html#id",
                         "tf": 2.1739130434782608
                       },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 1.1111111111111112
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
                       "Output.html#id": {
                         "ref": "Output.html#id",
                         "tf": 2.1739130434782608
@@ -23162,9 +24219,17 @@ window.lunrData = {
                         "ref": "OutputChannel.html#setPitchBendRange",
                         "tf": 1.3888888888888888
                       },
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 0.8771929824561403
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
-                        "tf": 1.3513513513513513
+                        "tf": 0.9259259259259258
                       },
                       "WebMidi.html#supported": {
                         "ref": "WebMidi.html#supported",
@@ -23172,7 +24237,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -23182,10 +24247,6 @@ window.lunrData = {
                         "ref": "WebMidi.html#getInputByName",
                         "tf": 2
                       },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 1.1363636363636365
-                      },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
                         "tf": 1.4705882352941175
@@ -23193,6 +24254,23 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
+                      }
+                    }
+                  }
+                }
+              },
+              "c": {
+                "docs": {},
+                "t": {
+                  "docs": {},
+                  "l": {
+                    "docs": {},
+                    "i": {
+                      "docs": {
+                        "OutputChannel.html#sendNoteOn": {
+                          "ref": "OutputChannel.html#sendNoteOn",
+                          "tf": 0.48543689320388345
+                        }
                       }
                     }
                   }
@@ -23235,7 +24313,7 @@ window.lunrData = {
                             "docs": {
                               "Note.html": {
                                 "ref": "Note.html",
-                                "tf": 1.4705882352941175
+                                "tf": 0.641025641025641
                               }
                             }
                           }
@@ -23352,11 +24430,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.6097560975609756
+                        "tf": 0.48543689320388345
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -23381,7 +24459,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -23391,12 +24469,46 @@ window.lunrData = {
           },
           "n": {
             "docs": {},
+            "a": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "Input.html#open": {
+                      "ref": "Input.html#open",
+                      "tf": 5
+                    },
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 1
+                    },
+                    "Output.html#setLocalControl": {
+                      "ref": "Output.html#setLocalControl",
+                      "tf": 2.7777777777777777
+                    },
+                    "OutputChannel.html#setLocalControl": {
+                      "ref": "OutputChannel.html#setLocalControl",
+                      "tf": 2.7777777777777777
+                    },
+                    "WebMidi.html#enabled": {
+                      "ref": "WebMidi.html#enabled",
+                      "tf": 683.3333333333334
+                    },
+                    "WebMidi.html#sysexEnabled": {
+                      "ref": "WebMidi.html#sysexEnabled",
+                      "tf": 8.333333333333332
+                    },
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 677.9801324503311
+                    }
+                  }
+                }
+              }
+            },
             "d": {
               "docs": {
-                "Note.html": {
-                  "ref": "Note.html",
-                  "tf": 1.4705882352941175
-                },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
                   "tf": 0.43478260869565216
@@ -23415,7 +24527,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
+                  "tf": 0.33112582781456956
                 }
               }
             },
@@ -23451,7 +24563,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.6329113924050633
+                          "tf": 0.6622516556291391
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -23462,40 +24574,6 @@ window.lunrData = {
                           "tf": 2
                         }
                       }
-                    }
-                  }
-                }
-              }
-            },
-            "a": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 1
-                    },
-                    "Output.html#setLocalControl": {
-                      "ref": "Output.html#setLocalControl",
-                      "tf": 2.7777777777777777
-                    },
-                    "OutputChannel.html#setLocalControl": {
-                      "ref": "OutputChannel.html#setLocalControl",
-                      "tf": 2.7777777777777777
-                    },
-                    "WebMidi.html#enabled": {
-                      "ref": "WebMidi.html#enabled",
-                      "tf": 683.3333333333334
-                    },
-                    "WebMidi.html#sysexEnabled": {
-                      "ref": "WebMidi.html#sysexEnabled",
-                      "tf": 8.333333333333332
-                    },
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 677.8481012658228
                     }
                   }
                 }
@@ -23523,8 +24601,8 @@ window.lunrData = {
                     "docs": {},
                     "t": {
                       "docs": {
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
+                        "Utilities.html#buildNoteArray": {
+                          "ref": "Utilities.html#buildNoteArray",
                           "tf": 1.5151515151515151
                         }
                       }
@@ -23606,43 +24684,26 @@ window.lunrData = {
               }
             }
           },
-          "t": {
-            "docs": {},
-            "c": {
-              "docs": {
-                "Note.html#name": {
-                  "ref": "Note.html#name",
-                  "tf": 5
-                },
-                "Output.html#send": {
-                  "ref": "Output.html#send",
-                  "tf": 0.847457627118644
-                },
-                "Output.html#sendSysex": {
-                  "ref": "Output.html#sendSysex",
-                  "tf": 0.33333333333333337
-                },
-                "OutputChannel.html#send": {
-                  "ref": "OutputChannel.html#send",
-                  "tf": 0.847457627118644
-                },
-                "WebMidi.html#getNoteNumberByName": {
-                  "ref": "WebMidi.html#getNoteNumberByName",
-                  "tf": 0.5681818181818182
-                },
-                "WebMidi.html#getNoteObject": {
-                  "ref": "WebMidi.html#getNoteObject",
-                  "tf": 1.3888888888888888
-                },
-                "WebMidi.html#guessNoteNumber": {
-                  "ref": "WebMidi.html#guessNoteNumber",
-                  "tf": 1.1363636363636365
-                }
-              }
-            }
-          },
           "l": {
             "docs": {},
+            "a": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "s": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
+                    },
+                    "WebMidi.html#time": {
+                      "ref": "WebMidi.html#time",
+                      "tf": 1.5625
+                    }
+                  }
+                }
+              }
+            },
             "e": {
               "docs": {},
               "v": {
@@ -23776,18 +24837,47 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "a": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "s": {
-                  "docs": {
-                    "WebMidi.html#time": {
-                      "ref": "WebMidi.html#time",
-                      "tf": 1.5625
-                    }
-                  }
+            }
+          },
+          "t": {
+            "docs": {},
+            "c": {
+              "docs": {
+                "Note.html": {
+                  "ref": "Note.html",
+                  "tf": 0.641025641025641
+                },
+                "Output.html#send": {
+                  "ref": "Output.html#send",
+                  "tf": 0.847457627118644
+                },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.33333333333333337
+                },
+                "OutputChannel.html#send": {
+                  "ref": "OutputChannel.html#send",
+                  "tf": 0.847457627118644
+                },
+                "OutputChannel.html#setKeyAftertouch": {
+                  "ref": "OutputChannel.html#setKeyAftertouch",
+                  "tf": 1.282051282051282
+                },
+                "Utilities.html#buildNote": {
+                  "ref": "Utilities.html#buildNote",
+                  "tf": 1.6129032258064515
+                },
+                "Utilities.html#getFragments": {
+                  "ref": "Utilities.html#getFragments",
+                  "tf": 2.7777777777777777
+                },
+                "Utilities.html#guessNoteNumber": {
+                  "ref": "Utilities.html#guessNoteNumber",
+                  "tf": 0.8771929824561403
+                },
+                "Utilities.html#toNoteNumber": {
+                  "ref": "Utilities.html#toNoteNumber",
+                  "tf": 0.7936507936507936
                 }
               }
             }
@@ -23818,15 +24908,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
-                },
-                "OutputChannel.html#setKeyAftertouch": {
-                  "ref": "OutputChannel.html#setKeyAftertouch",
-                  "tf": 1.1904761904761905
+                  "tf": 0.48543689320388345
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
+                  "tf": 0.33112582781456956
                 }
               }
             }
@@ -23861,7 +24947,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         }
                       }
                     }
@@ -23919,7 +25005,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -24067,6 +25153,31 @@ window.lunrData = {
               }
             }
           },
+          "r": {
+            "docs": {},
+            "r": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Utilities.html#buildNoteArray": {
+                      "ref": "Utilities.html#buildNoteArray",
+                      "tf": 1.5151515151515151
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "b": {
+            "docs": {
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
+              }
+            }
+          },
           "s": {
             "6": {
               "docs": {
@@ -24085,58 +25196,21 @@ window.lunrData = {
                 }
               }
             }
-          },
-          "b": {
-            "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
-              }
-            }
-          },
-          "r": {
-            "docs": {},
-            "r": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    },
-                    "WebMidi.html#getNoteObject": {
-                      "ref": "WebMidi.html#getNoteObject",
-                      "tf": 1.3888888888888888
-                    },
-                    "WebMidi.html#getValidNoteArray": {
-                      "ref": "WebMidi.html#getValidNoteArray",
-                      "tf": 1.5151515151515151
-                    },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 1.1363636363636365
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "f": {
           "0": {
             "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
               }
             }
           },
           "docs": {
-            "Note.html#name": {
-              "ref": "Note.html#name",
-              "tf": 5
+            "Note.html": {
+              "ref": "Note.html",
+              "tf": 0.641025641025641
             },
             "Output.html#playNote": {
               "ref": "Output.html#playNote",
@@ -24160,11 +25234,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 0.6097560975609756
+              "tf": 0.48543689320388345
             },
             "OutputChannel.html#setKeyAftertouch": {
               "ref": "OutputChannel.html#setKeyAftertouch",
-              "tf": 1.1904761904761905
+              "tf": 1.282051282051282
             }
           },
           "i": {
@@ -24260,7 +25334,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     },
                     "OutputChannel.html#setRegisteredParameter": {
                       "ref": "OutputChannel.html#setRegisteredParameter",
@@ -24296,7 +25370,7 @@ window.lunrData = {
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 }
               }
@@ -24337,33 +25411,25 @@ window.lunrData = {
                     "ref": "InputChannel.html#getChannelModeByNumber",
                     "tf": 4.166666666666666
                   },
+                  "Utilities.html#toTimestamp": {
+                    "ref": "Utilities.html#toTimestamp",
+                    "tf": 1.6666666666666667
+                  },
                   "WebMidi.html#validation": {
                     "ref": "WebMidi.html#validation",
                     "tf": 1.6129032258064515
-                  },
-                  "WebMidi.html#convertToTimestamp": {
-                    "ref": "WebMidi.html#convertToTimestamp",
-                    "tf": 1.6666666666666667
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
                     "tf": 1.4705882352941175
                   },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
-                  },
                   "WebMidi.html#getOctave": {
                     "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
+                    "tf": 1.5151515151515151
                   },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
                     "tf": 1.4705882352941175
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
                   }
                 }
               }
@@ -24426,8 +25492,8 @@ window.lunrData = {
                             "ref": "Input.html#removeListener",
                             "tf": 110
                           },
-                          "InputChannel.html#_parseEvent": {
-                            "ref": "InputChannel.html#_parseEvent",
+                          "InputChannel.html#destroy": {
+                            "ref": "InputChannel.html#destroy",
                             "tf": 110
                           },
                           "InputChannel.html#getCcNameByNumber": {
@@ -24437,6 +25503,10 @@ window.lunrData = {
                           "InputChannel.html#getChannelModeByNumber": {
                             "ref": "InputChannel.html#getChannelModeByNumber",
                             "tf": 114.16666666666667
+                          },
+                          "Note.html#getOffsetNumber": {
+                            "ref": "Note.html#getOffsetNumber",
+                            "tf": 110
                           },
                           "Output.html#clear": {
                             "ref": "Output.html#clear",
@@ -24636,7 +25706,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 110.60975609756098
+                            "tf": 110.48543689320388
                           },
                           "OutputChannel.html#setChannelAftertouch": {
                             "ref": "OutputChannel.html#setChannelAftertouch",
@@ -24706,13 +25776,61 @@ window.lunrData = {
                             "ref": "OutputChannel.html#turnSoundOff",
                             "tf": 110
                           },
+                          "Utilities.html": {
+                            "ref": "Utilities.html",
+                            "tf": 3.8461538461538463
+                          },
+                          "Utilities.html#buildNote": {
+                            "ref": "Utilities.html#buildNote",
+                            "tf": 110
+                          },
+                          "Utilities.html#buildNoteArray": {
+                            "ref": "Utilities.html#buildNoteArray",
+                            "tf": 110
+                          },
+                          "Utilities.html#getFragments": {
+                            "ref": "Utilities.html#getFragments",
+                            "tf": 110
+                          },
+                          "Utilities.html#getMessage": {
+                            "ref": "Utilities.html#getMessage",
+                            "tf": 110
+                          },
+                          "Utilities.html#guessNoteNumber": {
+                            "ref": "Utilities.html#guessNoteNumber",
+                            "tf": 110
+                          },
+                          "Utilities.html#offsetNumber": {
+                            "ref": "Utilities.html#offsetNumber",
+                            "tf": 110
+                          },
+                          "Utilities.html#sanitizeChannels": {
+                            "ref": "Utilities.html#sanitizeChannels",
+                            "tf": 110
+                          },
+                          "Utilities.html#to7Bit": {
+                            "ref": "Utilities.html#to7Bit",
+                            "tf": 110
+                          },
+                          "Utilities.html#toNormalized": {
+                            "ref": "Utilities.html#toNormalized",
+                            "tf": 110
+                          },
+                          "Utilities.html#toNoteIdentifier": {
+                            "ref": "Utilities.html#toNoteIdentifier",
+                            "tf": 110
+                          },
+                          "Utilities.html#toNoteNumber": {
+                            "ref": "Utilities.html#toNoteNumber",
+                            "tf": 110
+                          },
+                          "Utilities.html#toTimestamp": {
+                            "ref": "Utilities.html#toTimestamp",
+                            "tf": 110
+                          },
                           "WebMidi.html#supported": {
                             "ref": "WebMidi.html#supported",
                             "tf": 1.7241379310344827
-                          },
-                          "WebMidi.html#convertToTimestamp": {
-                            "ref": "WebMidi.html#convertToTimestamp",
-                            "tf": 110
                           },
                           "WebMidi.html#disable": {
                             "ref": "WebMidi.html#disable",
@@ -24720,7 +25838,7 @@ window.lunrData = {
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 110.31645569620254
+                            "tf": 110.33112582781457
                           },
                           "WebMidi.html#getInputById": {
                             "ref": "WebMidi.html#getInputById",
@@ -24728,14 +25846,6 @@ window.lunrData = {
                           },
                           "WebMidi.html#getInputByName": {
                             "ref": "WebMidi.html#getInputByName",
-                            "tf": 110
-                          },
-                          "WebMidi.html#getNoteNumberByName": {
-                            "ref": "WebMidi.html#getNoteNumberByName",
-                            "tf": 110.56818181818181
-                          },
-                          "WebMidi.html#getNoteObject": {
-                            "ref": "WebMidi.html#getNoteObject",
                             "tf": 110
                           },
                           "WebMidi.html#getOctave": {
@@ -24748,18 +25858,6 @@ window.lunrData = {
                           },
                           "WebMidi.html#getOutputByName": {
                             "ref": "WebMidi.html#getOutputByName",
-                            "tf": 110
-                          },
-                          "WebMidi.html#getValidNoteArray": {
-                            "ref": "WebMidi.html#getValidNoteArray",
-                            "tf": 110
-                          },
-                          "WebMidi.html#guessNoteNumber": {
-                            "ref": "WebMidi.html#guessNoteNumber",
-                            "tf": 110
-                          },
-                          "WebMidi.html#sanitizeChannels": {
-                            "ref": "WebMidi.html#sanitizeChannels",
                             "tf": 110
                           }
                         }
@@ -24799,7 +25897,7 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -24838,7 +25936,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -24855,7 +25953,7 @@ window.lunrData = {
                   "docs": {
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "InputChannel.html#getChannelModeByNumber": {
                       "ref": "InputChannel.html#getChannelModeByNumber",
@@ -24863,7 +25961,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -24927,14 +26025,18 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.2195121951219512
+                        "tf": 0.9708737864077669
                       },
                       "OutputChannel.html#setKeyAftertouch": {
                         "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 2.380952380952381
+                        "tf": 1.282051282051282
                       },
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#toTimestamp": {
+                        "ref": "Utilities.html#toTimestamp",
                         "tf": 1.6666666666666667
                       }
                     }
@@ -24946,9 +26048,9 @@ window.lunrData = {
               "docs": {},
               "m": {
                 "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 0.7936507936507936
                   }
                 },
                 "a": {
@@ -25093,6 +26195,26 @@ window.lunrData = {
                     }
                   }
                 }
+              },
+              "g": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Utilities.html#getFragments": {
+                            "ref": "Utilities.html#getFragments",
+                            "tf": 2.7777777777777777
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             },
             "e": {
@@ -25111,8 +26233,30 @@ window.lunrData = {
               }
             }
           },
+          "#": {
+            "4": {
+              "docs": {
+                "Utilities.html#guessNoteNumber": {
+                  "ref": "Utilities.html#guessNoteNumber",
+                  "tf": 0.8771929824561403
+                }
+              }
+            },
+            "docs": {}
+          },
           "l": {
             "docs": {},
+            "a": {
+              "docs": {},
+              "t": {
+                "docs": {
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 1.5873015873015872
+                  }
+                }
+              }
+            },
             "o": {
               "docs": {},
               "a": {
@@ -25126,29 +26270,7 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "a": {
-              "docs": {},
-              "t": {
-                "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 1.1363636363636365
-                  }
-                }
-              }
             }
-          },
-          "#": {
-            "4": {
-              "docs": {
-                "WebMidi.html#guessNoteNumber": {
-                  "ref": "WebMidi.html#guessNoteNumber",
-                  "tf": 1.1363636363636365
-                }
-              }
-            },
-            "docs": {}
           }
         },
         "h": {
@@ -25169,7 +26291,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6329113924050633
+                    "tf": 0.6622516556291391
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -25188,7 +26310,7 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -25196,7 +26318,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
@@ -25204,7 +26326,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -25284,7 +26406,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -25311,7 +26433,7 @@ window.lunrData = {
                             },
                             "InputChannel.html": {
                               "ref": "InputChannel.html",
-                              "tf": 1.0204081632653061
+                              "tf": 1.0416666666666665
                             },
                             "Output.html": {
                               "ref": "Output.html",
@@ -25319,7 +26441,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html": {
                               "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
+                              "tf": 1.1904761904761905
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
@@ -25439,7 +26561,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   }
                 },
                 "s": {
@@ -25705,6 +26827,10 @@ window.lunrData = {
                         "ref": "Input.html#channels",
                         "tf": 4.166666666666666
                       },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 1.1111111111111112
+                      },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 0.8823529411764706
@@ -25715,7 +26841,15 @@ window.lunrData = {
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 2.0408163265306123
+                        "tf": 2.083333333333333
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 1.8181818181818181
+                      },
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
                       },
                       "Output.html": {
                         "ref": "Output.html",
@@ -25724,6 +26858,10 @@ window.lunrData = {
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
                         "tf": 4.166666666666666
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 2
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
@@ -25743,7 +26881,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 2.4390243902439024
+                        "tf": 2.380952380952381
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 2.7777777777777777
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
@@ -25759,15 +26901,31 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.8292682926829267
+                        "tf": 1.9417475728155338
                       },
-                      "OutputChannel.html#setKeyAftertouch": {
-                        "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 1.1904761904761905
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 3.225806451612903
+                      },
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
+                        "tf": 6.0606060606060606
+                      },
+                      "Utilities.html#getFragments": {
+                        "ref": "Utilities.html#getFragments",
+                        "tf": 36.11111111111111
+                      },
+                      "Utilities.html#getMessage": {
+                        "ref": "Utilities.html#getMessage",
+                        "tf": 37.878787878787875
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
                         "tf": 3.731343283582089
+                      },
+                      "WebMidi.html#defaults": {
+                        "ref": "WebMidi.html#defaults",
+                        "tf": 55
                       },
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
@@ -25779,7 +26937,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -25789,10 +26947,6 @@ window.lunrData = {
                         "ref": "WebMidi.html#getInputByName",
                         "tf": 2
                       },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 2.7777777777777777
-                      },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
                         "tf": 1.4705882352941175
@@ -25800,10 +26954,6 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
-                        "tf": 6.0606060606060606
                       }
                     },
                     "'": {
@@ -25910,7 +27060,7 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -25922,7 +27072,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
@@ -25939,13 +27089,21 @@ window.lunrData = {
                       "docs": {},
                       "s": {
                         "docs": {
-                          "WebMidi.html#convertToTimestamp": {
-                            "ref": "WebMidi.html#convertToTimestamp",
-                            "tf": 1.6666666666666667
-                          },
-                          "WebMidi.html#sanitizeChannels": {
-                            "ref": "WebMidi.html#sanitizeChannels",
+                          "Utilities.html#sanitizeChannels": {
+                            "ref": "Utilities.html#sanitizeChannels",
                             "tf": 1.3888888888888888
+                          },
+                          "Utilities.html#to7Bit": {
+                            "ref": "Utilities.html#to7Bit",
+                            "tf": 1.1111111111111112
+                          },
+                          "Utilities.html#toNormalized": {
+                            "ref": "Utilities.html#toNormalized",
+                            "tf": 1.2195121951219512
+                          },
+                          "Utilities.html#toTimestamp": {
+                            "ref": "Utilities.html#toTimestamp",
+                            "tf": 1.6666666666666667
                           }
                         }
                       }
@@ -25979,7 +27137,7 @@ window.lunrData = {
                   },
                   "Input.html#open": {
                     "ref": "Input.html#open",
-                    "tf": 700
+                    "tf": 693.3333333333334
                   },
                   "Output.html#connection": {
                     "ref": "Output.html#connection",
@@ -25999,7 +27157,7 @@ window.lunrData = {
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6329113924050633
+                    "tf": 0.6622516556291391
                   }
                 }
               }
@@ -26027,6 +27185,14 @@ window.lunrData = {
                       "Input.html#removeListener": {
                         "ref": "Input.html#removeListener",
                         "tf": 25
+                      },
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
+                      },
+                      "Note.html#identifier": {
+                        "ref": "Note.html#identifier",
+                        "tf": 8.333333333333332
                       },
                       "Output.html#decrementRegisteredParameter": {
                         "ref": "Output.html#decrementRegisteredParameter",
@@ -26210,7 +27376,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 26.21951219512195
+                        "tf": 25.97087378640777
                       },
                       "OutputChannel.html#setChannelAftertouch": {
                         "ref": "OutputChannel.html#setChannelAftertouch",
@@ -26280,21 +27446,25 @@ window.lunrData = {
                         "ref": "OutputChannel.html#turnSoundOff",
                         "tf": 33.33333333333333
                       },
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 28.225806451612904
+                      },
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
+                        "tf": 26.515151515151516
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 26.89873417721519
-                      },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
-                      },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 29.166666666666664
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
-                        "tf": 26.515151515151516
+                        "tf": 26.986754966887418
                       }
                     },
                     "s": {
@@ -26328,6 +27498,233 @@ window.lunrData = {
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "c": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "v": {
+                  "docs": {
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 2.2222222222222223
+                    },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 1.8181818181818181
+                    },
+                    "Note.html#identifier": {
+                      "ref": "Note.html#identifier",
+                      "tf": 8.333333333333332
+                    },
+                    "Note.html#octave": {
+                      "ref": "Note.html#octave",
+                      "tf": 725
+                    },
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 4
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 0.43478260869565216
+                    },
+                    "Output.html#sendNoteOff": {
+                      "ref": "Output.html#sendNoteOff",
+                      "tf": 0.8333333333333334
+                    },
+                    "Output.html#sendNoteOn": {
+                      "ref": "Output.html#sendNoteOn",
+                      "tf": 0.6024096385542169
+                    },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 2.7777777777777777
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 0.4629629629629629
+                    },
+                    "OutputChannel.html#sendNoteOff": {
+                      "ref": "OutputChannel.html#sendNoteOff",
+                      "tf": 0.847457627118644
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
+                    },
+                    "Utilities.html#getFragments": {
+                      "ref": "Utilities.html#getFragments",
+                      "tf": 2.7777777777777777
+                    },
+                    "Utilities.html#offsetNumber": {
+                      "ref": "Utilities.html#offsetNumber",
+                      "tf": 1.7857142857142856
+                    },
+                    "Utilities.html#toNoteIdentifier": {
+                      "ref": "Utilities.html#toNoteIdentifier",
+                      "tf": 6.25
+                    },
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
+                    },
+                    "WebMidi.html#octaveOffset": {
+                      "ref": "WebMidi.html#octaveOffset",
+                      "tf": 0.9259259259259258
+                    },
+                    "WebMidi.html#getOctave": {
+                      "ref": "WebMidi.html#getOctave",
+                      "tf": 4.545454545454546
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "o": {
+                      "docs": {},
+                      "f": {
+                        "docs": {},
+                        "f": {
+                          "docs": {},
+                          "s": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "t": {
+                                "docs": {
+                                  "Input.html#octaveOffset": {
+                                    "ref": "Input.html#octaveOffset",
+                                    "tf": 702.2222222222222
+                                  },
+                                  "InputChannel.html#octaveOffset": {
+                                    "ref": "InputChannel.html#octaveOffset",
+                                    "tf": 701.8181818181819
+                                  },
+                                  "Output.html#octaveOffset": {
+                                    "ref": "Output.html#octaveOffset",
+                                    "tf": 700
+                                  },
+                                  "OutputChannel.html#octaveOffset": {
+                                    "ref": "OutputChannel.html#octaveOffset",
+                                    "tf": 700
+                                  },
+                                  "OutputChannel.html#sendNoteOn": {
+                                    "ref": "OutputChannel.html#sendNoteOn",
+                                    "tf": 0.48543689320388345
+                                  },
+                                  "Utilities.html#guessNoteNumber": {
+                                    "ref": "Utilities.html#guessNoteNumber",
+                                    "tf": 1.7543859649122806
+                                  },
+                                  "Utilities.html#toNoteIdentifier": {
+                                    "ref": "Utilities.html#toNoteIdentifier",
+                                    "tf": 3.125
+                                  },
+                                  "Utilities.html#toNoteNumber": {
+                                    "ref": "Utilities.html#toNoteNumber",
+                                    "tf": 25.793650793650794
+                                  },
+                                  "WebMidi.html#octaveOffset": {
+                                    "ref": "WebMidi.html#octaveOffset",
+                                    "tf": 701.8518518518518
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "f": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 2.2222222222222223
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 1.8181818181818181
+                      },
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 35.33333333333333
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 4
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 2.7777777777777777
+                      },
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 0.8771929824561403
+                      },
+                      "Utilities.html#offsetNumber": {
+                        "ref": "Utilities.html#offsetNumber",
+                        "tf": 36.9047619047619
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 2.7777777777777777
+                      }
+                    },
+                    "n": {
+                      "docs": {},
+                      "u": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "b": {
+                            "docs": {
+                              "Utilities.html#offsetNumber": {
+                                "ref": "Utilities.html#offsetNumber",
+                                "tf": 683.3333333333334
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
                     }
                   }
                 }
@@ -26390,7 +27787,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 0.6097560975609756
+                "tf": 0.48543689320388345
               },
               "OutputChannel.html#setPolyphonicMode": {
                 "ref": "OutputChannel.html#setPolyphonicMode",
@@ -26419,10 +27816,6 @@ window.lunrData = {
             },
             "c": {
               "docs": {
-                "Note.html": {
-                  "ref": "Note.html",
-                  "tf": 1.4705882352941175
-                },
                 "Output.html#setPolyphonicMode": {
                   "ref": "Output.html#setPolyphonicMode",
                   "tf": 2.083333333333333
@@ -26452,7 +27845,7 @@ window.lunrData = {
               "docs": {
                 "InputChannel.html": {
                   "ref": "InputChannel.html",
-                  "tf": 1.0204081632653061
+                  "tf": 1.0416666666666665
                 },
                 "Output.html#clear": {
                   "ref": "Output.html#clear",
@@ -26465,6 +27858,10 @@ window.lunrData = {
                 "Output.html#turnNotesOff": {
                   "ref": "Output.html#turnNotesOff",
                   "tf": 2.631578947368421
+                },
+                "OutputChannel.html#sendNoteOn": {
+                  "ref": "OutputChannel.html#sendNoteOn",
+                  "tf": 0.48543689320388345
                 },
                 "OutputChannel.html#setLocalControl": {
                   "ref": "OutputChannel.html#setLocalControl",
@@ -26481,6 +27878,10 @@ window.lunrData = {
                   "docs": {},
                   "t": {
                     "docs": {
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
+                      },
                       "Output.html": {
                         "ref": "Output.html",
                         "tf": 1905.5555555555557
@@ -26679,11 +28080,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 2.4390243902439024
+                        "tf": 2.380952380952381
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
                       },
                       "OutputChannel.html#output": {
                         "ref": "OutputChannel.html#output",
-                        "tf": 766.6666666666666
+                        "tf": 762.5
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -26703,7 +28108,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.949367088607595
+                        "tf": 0.33112582781456956
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -26732,7 +28137,7 @@ window.lunrData = {
                                     "docs": {
                                       "Note.html": {
                                         "ref": "Note.html",
-                                        "tf": 1.4705882352941175
+                                        "tf": 0.641025641025641
                                       }
                                     }
                                   }
@@ -26758,7 +28163,7 @@ window.lunrData = {
                                     "docs": {
                                       "Note.html": {
                                         "ref": "Note.html",
-                                        "tf": 1.4705882352941175
+                                        "tf": 0.641025641025641
                                       }
                                     }
                                   }
@@ -26806,7 +28211,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html": {
                                       "ref": "OutputChannel.html",
-                                      "tf": 1903.658536585366
+                                      "tf": 1903.5714285714287
                                     },
                                     "OutputChannel.html#decrementRegisteredParameter": {
                                       "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -26927,7 +28332,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Note.html": {
                                                       "ref": "Note.html",
-                                                      "tf": 1.4705882352941175
+                                                      "tf": 0.641025641025641
+                                                    },
+                                                    "WebMidi.html#octaveOffset": {
+                                                      "ref": "WebMidi.html#octaveOffset",
+                                                      "tf": 0.9259259259259258
                                                     }
                                                   }
                                                 }
@@ -26953,7 +28362,7 @@ window.lunrData = {
                                                   "docs": {
                                                     "Note.html": {
                                                       "ref": "Note.html",
-                                                      "tf": 1.4705882352941175
+                                                      "tf": 0.641025641025641
                                                     }
                                                   }
                                                 }
@@ -26985,6 +28394,44 @@ window.lunrData = {
                                     },
                                     "o": {
                                       "docs": {},
+                                      "c": {
+                                        "docs": {},
+                                        "t": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "v": {
+                                              "docs": {},
+                                              "e": {
+                                                "docs": {},
+                                                "o": {
+                                                  "docs": {},
+                                                  "f": {
+                                                    "docs": {},
+                                                    "f": {
+                                                      "docs": {},
+                                                      "s": {
+                                                        "docs": {},
+                                                        "e": {
+                                                          "docs": {},
+                                                          "t": {
+                                                            "docs": {
+                                                              "OutputChannel.html#octaveOffset": {
+                                                                "ref": "OutputChannel.html#octaveOffset",
+                                                                "tf": 1150
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
                                       "u": {
                                         "docs": {},
                                         "t": {
@@ -28233,6 +29680,61 @@ window.lunrData = {
                           }
                         }
                       },
+                      "o": {
+                        "docs": {},
+                        "c": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "a": {
+                              "docs": {},
+                              "v": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "f": {
+                                      "docs": {},
+                                      "f": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "Output.html#octaveOffset": {
+                                                  "ref": "Output.html#octaveOffset",
+                                                  "tf": 1150
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "p": {
+                          "docs": {},
+                          "e": {
+                            "docs": {},
+                            "n": {
+                              "docs": {
+                                "Output.html#open": {
+                                  "ref": "Output.html#open",
+                                  "tf": 1150
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
                       "s": {
                         "docs": {},
                         "t": {
@@ -29378,23 +30880,6 @@ window.lunrData = {
                           }
                         }
                       },
-                      "o": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "n": {
-                              "docs": {
-                                "Output.html#open": {
-                                  "ref": "Output.html#open",
-                                  "tf": 1150
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
                       "p": {
                         "docs": {},
                         "l": {
@@ -29476,7 +30961,7 @@ window.lunrData = {
                       "docs": {
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 1.2195121951219512
+                          "tf": 1.1904761904761905
                         }
                       }
                     },
@@ -29511,124 +30996,17 @@ window.lunrData = {
                 "docs": {},
                 "o": {
                   "docs": {
+                    "Output.html#octaveOffset": {
+                      "ref": "Output.html#octaveOffset",
+                      "tf": 2
+                    },
+                    "OutputChannel.html#octaveOffset": {
+                      "ref": "OutputChannel.html#octaveOffset",
+                      "tf": 1.3888888888888888
+                    },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
                       "tf": 0.7462686567164178
-                    }
-                  }
-                }
-              },
-              "b": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "u": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "d": {
-                        "docs": {
-                          "WebMidi.html#octaveOffset": {
-                            "ref": "WebMidi.html#octaveOffset",
-                            "tf": 1.3513513513513513
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "c": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "Note.html#name": {
-                      "ref": "Note.html#name",
-                      "tf": 5
-                    },
-                    "Note.html#octave": {
-                      "ref": "Note.html#octave",
-                      "tf": 708.3333333333334
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 0.43478260869565216
-                    },
-                    "Output.html#sendNoteOff": {
-                      "ref": "Output.html#sendNoteOff",
-                      "tf": 0.8333333333333334
-                    },
-                    "Output.html#sendNoteOn": {
-                      "ref": "Output.html#sendNoteOn",
-                      "tf": 0.6024096385542169
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendNoteOff": {
-                      "ref": "OutputChannel.html#sendNoteOff",
-                      "tf": 0.847457627118644
-                    },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
-                    },
-                    "OutputChannel.html#setKeyAftertouch": {
-                      "ref": "OutputChannel.html#setKeyAftertouch",
-                      "tf": 1.1904761904761905
-                    },
-                    "WebMidi.html#octaveOffset": {
-                      "ref": "WebMidi.html#octaveOffset",
-                      "tf": 2.7027027027027026
-                    },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 3.8461538461538463
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "o": {
-                      "docs": {},
-                      "f": {
-                        "docs": {},
-                        "f": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "t": {
-                                "docs": {
-                                  "WebMidi.html#octaveOffset": {
-                                    "ref": "WebMidi.html#octaveOffset",
-                                    "tf": 702.7027027027027
-                                  },
-                                  "WebMidi.html#getNoteNumberByName": {
-                                    "ref": "WebMidi.html#getNoteNumberByName",
-                                    "tf": 1.1363636363636365
-                                  },
-                                  "WebMidi.html#getOctave": {
-                                    "ref": "WebMidi.html#getOctave",
-                                    "tf": 1.282051282051282
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -29667,7 +31045,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.6097560975609756
+                    "tf": 0.48543689320388345
                   }
                 }
               }
@@ -29805,7 +31183,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -29820,46 +31198,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "f": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "WebMidi.html#octaveOffset": {
-                        "ref": "WebMidi.html#octaveOffset",
-                        "tf": 1.3513513513513513
-                      },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 1.282051282051282
-                      }
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html#supported": {
-                      "ref": "WebMidi.html#supported",
-                      "tf": 1.7241379310344827
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -29888,7 +31227,11 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0204081632653061
+                      "tf": 1.0416666666666665
+                    },
+                    "InputChannel.html#destroy": {
+                      "ref": "InputChannel.html#destroy",
+                      "tf": 5.555555555555555
                     },
                     "Output.html": {
                       "ref": "Output.html",
@@ -29896,7 +31239,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -29908,9 +31251,17 @@ window.lunrData = {
             },
             "t": {
               "docs": {
+                "Input.html#octaveOffset": {
+                  "ref": "Input.html#octaveOffset",
+                  "tf": 2.2222222222222223
+                },
+                "InputChannel.html#octaveOffset": {
+                  "ref": "InputChannel.html#octaveOffset",
+                  "tf": 1.8181818181818181
+                },
                 "Note.html": {
                   "ref": "Note.html",
-                  "tf": 2.941176470588235
+                  "tf": 1.9230769230769231
                 },
                 "Output.html#playNote": {
                   "ref": "Output.html#playNote",
@@ -29982,7 +31333,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#octaveOffset": {
                   "ref": "WebMidi.html#octaveOffset",
-                  "tf": 2.7027027027027026
+                  "tf": 1.8518518518518516
                 },
                 "WebMidi.html#validation": {
                   "ref": "WebMidi.html#validation",
@@ -29990,7 +31341,7 @@ window.lunrData = {
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6329113924050633
+                  "tf": 0.6622516556291391
                 }
               },
               "l": {
@@ -30269,7 +31620,7 @@ window.lunrData = {
                                                   },
                                                   "OutputChannel.html#setKeyAftertouch": {
                                                     "ref": "OutputChannel.html#setKeyAftertouch",
-                                                    "tf": 1.1904761904761905
+                                                    "tf": 1.282051282051282
                                                   }
                                                 }
                                               }
@@ -30680,6 +32031,10 @@ window.lunrData = {
               "docs": {},
               "d": {
                 "docs": {
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 0.641025641025641
+                  },
                   "Output.html#close": {
                     "ref": "Output.html#close",
                     "tf": 2.380952380952381
@@ -30826,7 +32181,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 1.2195121951219512
+                    "tf": 0.9708737864077669
                   },
                   "OutputChannel.html#setChannelAftertouch": {
                     "ref": "OutputChannel.html#setChannelAftertouch",
@@ -30834,7 +32189,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#setKeyAftertouch": {
                     "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
+                    "tf": 1.282051282051282
                   },
                   "OutputChannel.html#setLocalControl": {
                     "ref": "OutputChannel.html#setLocalControl",
@@ -31297,6 +32652,14 @@ window.lunrData = {
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
                     "tf": 0.847457627118644
+                  },
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.48543689320388345
+                  },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 2.7777777777777777
                   }
                 }
               },
@@ -31377,6 +32740,10 @@ window.lunrData = {
                         "OutputChannel.html#setPitchBendRange": {
                           "ref": "OutputChannel.html#setPitchBendRange",
                           "tf": 24.166666666666664
+                        },
+                        "Utilities.html#offsetNumber": {
+                          "ref": "Utilities.html#offsetNumber",
+                          "tf": 1.7857142857142856
                         }
                       }
                     }
@@ -31417,7 +32784,27 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6329113924050633
+                      "tf": 0.6622516556291391
+                    }
+                  }
+                }
+              }
+            },
+            "p": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "m": {
+                    "docs": {},
+                    "b": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.33112582781456956
+                        }
+                      }
                     }
                   }
                 }
@@ -31446,11 +32833,11 @@ window.lunrData = {
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 2.0408163265306123
+                      "tf": 1.0416666666666665
                     },
                     "Note.html": {
                       "ref": "Note.html",
-                      "tf": 2.941176470588235
+                      "tf": 1.282051282051282
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
@@ -31470,7 +32857,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.2195121951219512
+                      "tf": 1.1904761904761905
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
@@ -31482,19 +32869,36 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
+                      "tf": 0.48543689320388345
                     },
                     "OutputChannel.html#setKeyAftertouch": {
                       "ref": "OutputChannel.html#setKeyAftertouch",
-                      "tf": 1.1904761904761905
+                      "tf": 1.282051282051282
                     },
                     "OutputChannel.html#setNonRegisteredParameter": {
                       "ref": "OutputChannel.html#setNonRegisteredParameter",
                       "tf": 0.4807692307692308
                     },
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
                       "tf": 1.3888888888888888
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "Utilities.html": {
+                              "ref": "Utilities.html",
+                              "tf": 3.8461538461538463
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -31502,6 +32906,23 @@ window.lunrData = {
             },
             "m": {
               "docs": {},
+              "i": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 0.641025641025641
+                        }
+                      }
+                    }
+                  }
+                }
+              },
               "p": {
                 "docs": {},
                 "l": {
@@ -31524,6 +32945,10 @@ window.lunrData = {
                         "ref": "OutputChannel.html#sendControlChange",
                         "tf": 0.26455026455026454
                       },
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 0.8771929824561403
+                      },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
                         "tf": 0.7462686567164178
@@ -31535,10 +32960,6 @@ window.lunrData = {
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
                         "tf": 1.5625
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 1.1363636363636365
                       }
                     },
                     "f": {
@@ -31591,8 +33012,8 @@ window.lunrData = {
                   },
                   "t": {
                     "docs": {
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
                         "tf": 1.3888888888888888
                       }
                     }
@@ -31604,8 +33025,8 @@ window.lunrData = {
               "docs": {},
               "n": {
                 "docs": {
-                  "WebMidi.html#convertToTimestamp": {
-                    "ref": "WebMidi.html#convertToTimestamp",
+                  "Utilities.html#toTimestamp": {
+                    "ref": "Utilities.html#toTimestamp",
                     "tf": 1.6666666666666667
                   }
                 }
@@ -31643,7 +33064,7 @@ window.lunrData = {
                             },
                             "InputChannel.html": {
                               "ref": "InputChannel.html",
-                              "tf": 1.0204081632653061
+                              "tf": 1.0416666666666665
                             },
                             "Output.html": {
                               "ref": "Output.html",
@@ -31655,7 +33076,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html": {
                               "ref": "OutputChannel.html",
-                              "tf": 1.2195121951219512
+                              "tf": 1.1904761904761905
                             },
                             "WebMidi.html#enabled": {
                               "ref": "WebMidi.html#enabled",
@@ -31663,11 +33084,15 @@ window.lunrData = {
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.31645569620253167
+                              "tf": 0.33112582781456956
                             }
                           },
                           "'": {
                             "docs": {
+                              "InputChannel.html#destroy": {
+                                "ref": "InputChannel.html#destroy",
+                                "tf": 5.555555555555555
+                              },
                               "WebMidi.html#disable": {
                                 "ref": "WebMidi.html#disable",
                                 "tf": 2.272727272727273
@@ -31715,7 +33140,11 @@ window.lunrData = {
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
-                    "tf": 1.0204081632653061
+                    "tf": 1.0416666666666665
+                  },
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 1.282051282051282
                   },
                   "Output.html": {
                     "ref": "Output.html",
@@ -31735,7 +33164,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html": {
                     "ref": "OutputChannel.html",
-                    "tf": 1.2195121951219512
+                    "tf": 1.1904761904761905
                   },
                   "OutputChannel.html#resetAllControllers": {
                     "ref": "OutputChannel.html#resetAllControllers",
@@ -31744,6 +33173,10 @@ window.lunrData = {
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
                     "tf": 0.847457627118644
+                  },
+                  "OutputChannel.html#setKeyAftertouch": {
+                    "ref": "OutputChannel.html#setKeyAftertouch",
+                    "tf": 1.282051282051282
                   },
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -31781,8 +33214,8 @@ window.lunrData = {
                               "docs": {},
                               "i": {
                                 "docs": {
-                                  "WebMidi.html#sanitizeChannels": {
-                                    "ref": "WebMidi.html#sanitizeChannels",
+                                  "Utilities.html#sanitizeChannels": {
+                                    "ref": "Utilities.html#sanitizeChannels",
                                     "tf": 1.3888888888888888
                                   }
                                 }
@@ -31862,39 +33295,25 @@ window.lunrData = {
                 }
               }
             },
-            "m": {
-              "docs": {
-                "WebMidi.html#convertToTimestamp": {
-                  "ref": "WebMidi.html#convertToTimestamp",
-                  "tf": 1.6666666666666667
-                }
-              },
-              "m": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "i": {
-                      "docs": {
-                        "Output.html#send": {
-                          "ref": "Output.html#send",
-                          "tf": 0.847457627118644
-                        },
-                        "OutputChannel.html#send": {
-                          "ref": "OutputChannel.html#send",
-                          "tf": 0.847457627118644
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "p": {
               "docs": {},
               "p": {
                 "docs": {},
+                "l": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 2
+                      },
+                      "Utilities.html#offsetNumber": {
+                        "ref": "Utilities.html#offsetNumber",
+                        "tf": 3.571428571428571
+                      }
+                    }
+                  }
+                },
                 "o": {
                   "docs": {},
                   "r": {
@@ -31927,7 +33346,36 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "m": {
+              "docs": {
+                "Utilities.html#toTimestamp": {
+                  "ref": "Utilities.html#toTimestamp",
+                  "tf": 1.6666666666666667
+                }
+              },
+              "m": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "i": {
+                      "docs": {
+                        "Output.html#send": {
+                          "ref": "Output.html#send",
+                          "tf": 0.847457627118644
+                        },
+                        "OutputChannel.html#send": {
+                          "ref": "OutputChannel.html#send",
+                          "tf": 0.847457627118644
                         }
                       }
                     }
@@ -32025,6 +33473,17 @@ window.lunrData = {
                       "tf": 2.380952380952381
                     }
                   }
+                },
+                "i": {
+                  "docs": {},
+                  "c": {
+                    "docs": {
+                      "Utilities.html": {
+                        "ref": "Utilities.html",
+                        "tf": 3.8461538461538463
+                      }
+                    }
+                  }
                 }
               },
               "r": {
@@ -32079,17 +33538,17 @@ window.lunrData = {
                       "ref": "OutputChannel.html#setTuningProgram",
                       "tf": 1.25
                     },
+                    "Utilities.html#toTimestamp": {
+                      "ref": "Utilities.html#toTimestamp",
+                      "tf": 3.3333333333333335
+                    },
                     "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                       "tf": 0.5617977528089888
                     },
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
-                      "tf": 3.3333333333333335
-                    },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -32138,7 +33597,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 0.6097560975609756
+                            "tf": 0.48543689320388345
                           },
                           "OutputChannel.html#setNonRegisteredParameter": {
                             "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -32156,13 +33615,13 @@ window.lunrData = {
                             "ref": "OutputChannel.html#setTuningProgram",
                             "tf": 1.25
                           },
+                          "Utilities.html#toNoteNumber": {
+                            "ref": "Utilities.html#toNoteNumber",
+                            "tf": 0.7936507936507936
+                          },
                           "WebMidi.html#NOTES": {
                             "ref": "WebMidi.html#NOTES",
                             "tf": 12.5
-                          },
-                          "WebMidi.html#getNoteNumberByName": {
-                            "ref": "WebMidi.html#getNoteNumberByName",
-                            "tf": 0.5681818181818182
                           }
                         }
                       }
@@ -32203,6 +33662,14 @@ window.lunrData = {
                         "ref": "Input.html#type",
                         "tf": 33.33333333333333
                       },
+                      "Note.html#accidental": {
+                        "ref": "Note.html#accidental",
+                        "tf": 50
+                      },
+                      "Note.html#identifier": {
+                        "ref": "Note.html#identifier",
+                        "tf": 58.33333333333333
+                      },
                       "Note.html#name": {
                         "ref": "Note.html#name",
                         "tf": 50
@@ -32231,8 +33698,20 @@ window.lunrData = {
                         "ref": "Output.html#type",
                         "tf": 33.33333333333333
                       },
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 1.7543859649122806
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 53.125
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
+                      "Utilities.html#toTimestamp": {
+                        "ref": "Utilities.html#toTimestamp",
                         "tf": 1.6666666666666667
                       },
                       "WebMidi.html#getInputById": {
@@ -32243,10 +33722,6 @@ window.lunrData = {
                         "ref": "WebMidi.html#getInputByName",
                         "tf": 2
                       },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
-                      },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
                         "tf": 2.941176470588235
@@ -32254,14 +33729,36 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 2.272727272727273
                       }
                     },
                     "|": {
                       "docs": {},
+                      "u": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "f": {
+                                "docs": {},
+                                "i": {
+                                  "docs": {},
+                                  "n": {
+                                    "docs": {
+                                      "InputChannel.html#getCcNameByNumber": {
+                                        "ref": "InputChannel.html#getCcNameByNumber",
+                                        "tf": 33.33333333333333
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
                       "f": {
                         "docs": {},
                         "a": {
@@ -32270,10 +33767,6 @@ window.lunrData = {
                             "docs": {},
                             "s": {
                               "docs": {
-                                "InputChannel.html#getCcNameByNumber": {
-                                  "ref": "InputChannel.html#getCcNameByNumber",
-                                  "tf": 33.33333333333333
-                                },
                                 "InputChannel.html#getChannelModeByNumber": {
                                   "ref": "InputChannel.html#getChannelModeByNumber",
                                   "tf": 33.33333333333333
@@ -32316,7 +33809,7 @@ window.lunrData = {
                   },
                   "Note.html": {
                     "ref": "Note.html",
-                    "tf": 2.941176470588235
+                    "tf": 1.9230769230769231
                   },
                   "Output.html#sendContinue": {
                     "ref": "Output.html#sendContinue",
@@ -32424,6 +33917,10 @@ window.lunrData = {
                     "ref": "WebMidi.html#isNode",
                     "tf": 2.380952380952381
                   },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 0.9259259259259258
+                  },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
                     "tf": 1.4705882352941175
@@ -32449,8 +33946,8 @@ window.lunrData = {
                 "docs": {},
                 "t": {
                   "docs": {
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
                       "tf": 1.3888888888888888
                     }
                   },
@@ -32474,8 +33971,8 @@ window.lunrData = {
                                     "docs": {},
                                     "l": {
                                       "docs": {
-                                        "WebMidi.html#sanitizeChannels": {
-                                          "ref": "WebMidi.html#sanitizeChannels",
+                                        "Utilities.html#sanitizeChannels": {
+                                          "ref": "Utilities.html#sanitizeChannels",
                                           "tf": 683.3333333333334
                                         }
                                       }
@@ -32532,6 +34029,10 @@ window.lunrData = {
                         "ref": "Input.html#removeListener",
                         "tf": 1.7241379310344827
                       },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
                         "tf": 2.272727272727273
@@ -32572,6 +34073,10 @@ window.lunrData = {
                         "ref": "Output.html#setRegisteredParameter",
                         "tf": 0.3289473684210526
                       },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
+                      },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
                         "tf": 0.8064516129032258
@@ -32586,7 +34091,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#setKeyAftertouch": {
                         "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 1.1904761904761905
+                        "tf": 1.282051282051282
                       },
                       "OutputChannel.html#setMasterTuning": {
                         "ref": "OutputChannel.html#setMasterTuning",
@@ -32638,6 +34143,10 @@ window.lunrData = {
                         "InputChannel.html#getChannelModeByNumber": {
                           "ref": "InputChannel.html#getChannelModeByNumber",
                           "tf": 4.166666666666666
+                        },
+                        "Note.html#getOffsetNumber": {
+                          "ref": "Note.html#getOffsetNumber",
+                          "tf": 2
                         },
                         "Output.html#decrementRegisteredParameter": {
                           "ref": "Output.html#decrementRegisteredParameter",
@@ -32745,7 +34254,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 1.2195121951219512
+                          "tf": 0.9708737864077669
                         },
                         "OutputChannel.html#setModulationRange": {
                           "ref": "OutputChannel.html#setModulationRange",
@@ -32763,6 +34272,22 @@ window.lunrData = {
                           "ref": "OutputChannel.html#setRegisteredParameter",
                           "tf": 0.3289473684210526
                         },
+                        "Utilities.html#buildNote": {
+                          "ref": "Utilities.html#buildNote",
+                          "tf": 1.6129032258064515
+                        },
+                        "Utilities.html#buildNoteArray": {
+                          "ref": "Utilities.html#buildNoteArray",
+                          "tf": 1.5151515151515151
+                        },
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.33112582781456956
+                        },
                         "WebMidi.html#getInputById": {
                           "ref": "WebMidi.html#getInputById",
                           "tf": 1.4705882352941175
@@ -32771,13 +34296,9 @@ window.lunrData = {
                           "ref": "WebMidi.html#getInputByName",
                           "tf": 2
                         },
-                        "WebMidi.html#getNoteObject": {
-                          "ref": "WebMidi.html#getNoteObject",
-                          "tf": 1.3888888888888888
-                        },
                         "WebMidi.html#getOctave": {
                           "ref": "WebMidi.html#getOctave",
-                          "tf": 1.282051282051282
+                          "tf": 1.5151515151515151
                         },
                         "WebMidi.html#getOutputById": {
                           "ref": "WebMidi.html#getOutputById",
@@ -32786,14 +34307,6 @@ window.lunrData = {
                         "WebMidi.html#getOutputByName": {
                           "ref": "WebMidi.html#getOutputByName",
                           "tf": 2
-                        },
-                        "WebMidi.html#getValidNoteArray": {
-                          "ref": "WebMidi.html#getValidNoteArray",
-                          "tf": 1.5151515151515151
-                        },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
                         }
                       }
                     }
@@ -32998,7 +34511,7 @@ window.lunrData = {
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.949367088607595
+                          "tf": 0.9933774834437087
                         }
                       }
                     }
@@ -33300,7 +34813,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.949367088607595
+                      "tf": 0.9933774834437087
                     }
                   },
                   "e": {
@@ -33313,7 +34826,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
+                          "tf": 0.33112582781456956
                         }
                       },
                       "d": {
@@ -33342,9 +34855,17 @@ window.lunrData = {
                         "ref": "Input.html#addOneTimeListener",
                         "tf": 0.5813953488372093
                       },
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
+                      },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
                         "tf": 1
+                      },
+                      "WebMidi.html#defaults": {
+                        "ref": "WebMidi.html#defaults",
+                        "tf": 5
                       },
                       "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
@@ -33356,32 +34877,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6329113924050633
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "h": {
-                  "docs": {
-                    "WebMidi.html#enable": {
-                      "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "s": {
-                      "docs": {
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
-                        }
+                        "tf": 0.6622516556291391
                       }
                     }
                   }
@@ -33396,9 +34892,34 @@ window.lunrData = {
                   "docs": {},
                   "l": {
                     "docs": {
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 0.5681818181818182
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 0.7936507936507936
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "h": {
+                  "docs": {
+                    "WebMidi.html#enable": {
+                      "ref": "WebMidi.html#enable",
+                      "tf": 0.33112582781456956
+                    }
+                  },
+                  "e": {
+                    "docs": {},
+                    "s": {
+                      "docs": {
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.33112582781456956
+                        }
                       }
                     }
                   }
@@ -33456,7 +34977,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#setKeyAftertouch": {
                           "ref": "OutputChannel.html#setKeyAftertouch",
-                          "tf": 1.1904761904761905
+                          "tf": 1.282051282051282
                         },
                         "OutputChannel.html#setPitchBend": {
                           "ref": "OutputChannel.html#setPitchBend",
@@ -33523,9 +35044,9 @@ window.lunrData = {
                       "docs": {},
                       "f": {
                         "docs": {
-                          "WebMidi.html#getNoteNumberByName": {
-                            "ref": "WebMidi.html#getNoteNumberByName",
-                            "tf": 0.5681818181818182
+                          "Utilities.html#toNoteNumber": {
+                            "ref": "Utilities.html#toNoteNumber",
+                            "tf": 0.7936507936507936
                           }
                         }
                       }
@@ -33554,6 +35075,14 @@ window.lunrData = {
                         "OutputChannel.html#setMasterTuning": {
                           "ref": "OutputChannel.html#setMasterTuning",
                           "tf": 1.1904761904761905
+                        },
+                        "Utilities.html#to7Bit": {
+                          "ref": "Utilities.html#to7Bit",
+                          "tf": 1.1111111111111112
+                        },
+                        "Utilities.html#toNormalized": {
+                          "ref": "Utilities.html#toNormalized",
+                          "tf": 1.2195121951219512
                         }
                       }
                     }
@@ -33570,9 +35099,9 @@ window.lunrData = {
                 "docs": {},
                 "p": {
                   "docs": {
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 1.1363636363636365
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 1.5873015873015872
                     }
                   }
                 }
@@ -33596,9 +35125,17 @@ window.lunrData = {
                         "ref": "Input.html#channels",
                         "tf": 4.166666666666666
                       },
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 53.333333333333336
+                      },
                       "InputChannel.html#number": {
                         "ref": "InputChannel.html#number",
-                        "tf": 762.5
+                        "tf": 760
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 52.72727272727273
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
@@ -33610,19 +35147,15 @@ window.lunrData = {
                       },
                       "Note.html#attack": {
                         "ref": "Note.html#attack",
-                        "tf": 56.25
+                        "tf": 50
                       },
                       "Note.html#duration": {
                         "ref": "Note.html#duration",
                         "tf": 60
                       },
-                      "Note.html#name": {
-                        "ref": "Note.html#name",
-                        "tf": 5
-                      },
                       "Note.html#number": {
                         "ref": "Note.html#number",
-                        "tf": 757.1428571428571
+                        "tf": 758.3333333333334
                       },
                       "Note.html#octave": {
                         "ref": "Note.html#octave",
@@ -33638,11 +35171,19 @@ window.lunrData = {
                       },
                       "Note.html#release": {
                         "ref": "Note.html#release",
-                        "tf": 56.25
+                        "tf": 50
+                      },
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 35.33333333333333
                       },
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
                         "tf": 4.166666666666666
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 52
                       },
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
@@ -33686,7 +35227,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#number": {
                         "ref": "OutputChannel.html#number",
-                        "tf": 762.5
+                        "tf": 760
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 51.388888888888886
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
@@ -33702,11 +35247,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.6097560975609756
+                        "tf": 1.9417475728155338
                       },
                       "OutputChannel.html#setKeyAftertouch": {
                         "ref": "OutputChannel.html#setKeyAftertouch",
-                        "tf": 1.1904761904761905
+                        "tf": 1.282051282051282
                       },
                       "OutputChannel.html#setProgram": {
                         "ref": "OutputChannel.html#setProgram",
@@ -33724,45 +35269,89 @@ window.lunrData = {
                         "ref": "OutputChannel.html#setTuningProgram",
                         "tf": 3.75
                       },
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 1.6129032258064515
+                      },
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
+                        "tf": 1.5151515151515151
+                      },
+                      "Utilities.html#guessNoteNumber": {
+                        "ref": "Utilities.html#guessNoteNumber",
+                        "tf": 3.508771929824561
+                      },
+                      "Utilities.html#offsetNumber": {
+                        "ref": "Utilities.html#offsetNumber",
+                        "tf": 35.11904761904761
+                      },
+                      "Utilities.html#sanitizeChannels": {
+                        "ref": "Utilities.html#sanitizeChannels",
+                        "tf": 1.3888888888888888
+                      },
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 36.666666666666664
+                      },
+                      "Utilities.html#toNormalized": {
+                        "ref": "Utilities.html#toNormalized",
+                        "tf": 34.55284552845528
+                      },
+                      "Utilities.html#toNoteIdentifier": {
+                        "ref": "Utilities.html#toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#toNoteNumber": {
+                        "ref": "Utilities.html#toNoteNumber",
+                        "tf": 28.96825396825397
+                      },
+                      "Utilities.html#toTimestamp": {
+                        "ref": "Utilities.html#toTimestamp",
+                        "tf": 5
+                      },
                       "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
                         "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
                         "tf": 0.78125
                       },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
-                        "tf": 54.054054054054056
+                        "tf": 52.77777777777778
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
                         "tf": 3.125
                       },
-                      "WebMidi.html#convertToTimestamp": {
-                        "ref": "WebMidi.html#convertToTimestamp",
-                        "tf": 5
-                      },
-                      "WebMidi.html#getNoteNumberByName": {
-                        "ref": "WebMidi.html#getNoteNumberByName",
-                        "tf": 3.977272727272727
-                      },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
-                      },
                       "WebMidi.html#getOctave": {
                         "ref": "WebMidi.html#getOctave",
-                        "tf": 37.179487179487175
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
-                        "tf": 1.5151515151515151
-                      },
-                      "WebMidi.html#guessNoteNumber": {
-                        "ref": "WebMidi.html#guessNoteNumber",
-                        "tf": 1.1363636363636365
-                      },
-                      "WebMidi.html#sanitizeChannels": {
-                        "ref": "WebMidi.html#sanitizeChannels",
-                        "tf": 1.3888888888888888
+                        "tf": 37.878787878787875
+                      }
+                    },
+                    "|": {
+                      "docs": {},
+                      "f": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "s": {
+                              "docs": {
+                                "Utilities.html#guessNoteNumber": {
+                                  "ref": "Utilities.html#guessNoteNumber",
+                                  "tf": 33.33333333333333
+                                },
+                                "Utilities.html#toTimestamp": {
+                                  "ref": "Utilities.html#toTimestamp",
+                                  "tf": 33.33333333333333
+                                },
+                                "WebMidi.html#getOctave": {
+                                  "ref": "WebMidi.html#getOctave",
+                                  "tf": 33.33333333333333
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     },
                     "&": {
@@ -33798,38 +35387,6 @@ window.lunrData = {
                             "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                               "tf": 25
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "|": {
-                      "docs": {},
-                      "f": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "WebMidi.html#convertToTimestamp": {
-                                  "ref": "WebMidi.html#convertToTimestamp",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#getNoteNumberByName": {
-                                  "ref": "WebMidi.html#getNoteNumberByName",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#getOctave": {
-                                  "ref": "WebMidi.html#getOctave",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#guessNoteNumber": {
-                                  "ref": "WebMidi.html#guessNoteNumber",
-                                  "tf": 33.33333333333333
-                                }
-                              }
                             }
                           }
                         }
@@ -33986,9 +35543,13 @@ window.lunrData = {
                     "ref": "InputChannel.html#getChannelModeByNumber",
                     "tf": 4.166666666666666
                   },
+                  "Note.html#identifier": {
+                    "ref": "Note.html#identifier",
+                    "tf": 8.333333333333332
+                  },
                   "Note.html#name": {
                     "ref": "Note.html#name",
-                    "tf": 705
+                    "tf": 716.6666666666666
                   },
                   "Output.html#manufacturer": {
                     "ref": "Output.html#manufacturer",
@@ -34052,39 +35613,27 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.6097560975609756
+                    "tf": 0.9708737864077669
                   },
-                  "OutputChannel.html#setKeyAftertouch": {
-                    "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
+                  "Utilities.html#toNoteIdentifier": {
+                    "ref": "Utilities.html#toNoteIdentifier",
+                    "tf": 3.125
                   },
                   "WebMidi.html#NOTES": {
                     "ref": "WebMidi.html#NOTES",
                     "tf": 12.5
                   },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 0.9259259259259258
+                  },
                   "WebMidi.html#getInputByName": {
                     "ref": "WebMidi.html#getInputByName",
                     "tf": 39.33333333333333
                   },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 36.742424242424235
-                  },
-                  "WebMidi.html#getNoteObject": {
-                    "ref": "WebMidi.html#getNoteObject",
-                    "tf": 2.7777777777777777
-                  },
                   "WebMidi.html#getOutputByName": {
                     "ref": "WebMidi.html#getOutputByName",
                     "tf": 39.33333333333333
-                  },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
-                    "tf": 3.0303030303030303
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
                   }
                 }
               }
@@ -34126,8 +35675,8 @@ window.lunrData = {
                 "docs": {},
                 "g": {
                   "docs": {
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
+                    "Utilities.html#toTimestamp": {
+                      "ref": "Utilities.html#toTimestamp",
                       "tf": 1.6666666666666667
                     }
                   },
@@ -34212,6 +35761,10 @@ window.lunrData = {
               "docs": {},
               "e": {
                 "docs": {
+                  "Input.html#octaveOffset": {
+                    "ref": "Input.html#octaveOffset",
+                    "tf": 5.555555555555555
+                  },
                   "Input.html#addListener": {
                     "ref": "Input.html#addListener",
                     "tf": 0.5882352941176471
@@ -34220,29 +35773,41 @@ window.lunrData = {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 0.5813953488372093
                   },
+                  "InputChannel.html#octaveOffset": {
+                    "ref": "InputChannel.html#octaveOffset",
+                    "tf": 4.545454545454546
+                  },
                   "Note.html": {
                     "ref": "Note.html",
-                    "tf": 1905.8823529411766
+                    "tf": 1903.8461538461538
+                  },
+                  "Note.html#accidental": {
+                    "ref": "Note.html#accidental",
+                    "tf": 12.5
                   },
                   "Note.html#attack": {
                     "ref": "Note.html#attack",
-                    "tf": 6.25
+                    "tf": 7.142857142857142
                   },
                   "Note.html#duration": {
                     "ref": "Note.html#duration",
                     "tf": 10
                   },
+                  "Note.html#identifier": {
+                    "ref": "Note.html#identifier",
+                    "tf": 8.333333333333332
+                  },
                   "Note.html#name": {
                     "ref": "Note.html#name",
-                    "tf": 5
+                    "tf": 16.666666666666664
                   },
                   "Note.html#number": {
                     "ref": "Note.html#number",
-                    "tf": 7.142857142857142
+                    "tf": 8.333333333333332
                   },
                   "Note.html#octave": {
                     "ref": "Note.html#octave",
-                    "tf": 8.333333333333332
+                    "tf": 25
                   },
                   "Note.html#rawAttack": {
                     "ref": "Note.html#rawAttack",
@@ -34254,7 +35819,15 @@ window.lunrData = {
                   },
                   "Note.html#release": {
                     "ref": "Note.html#release",
-                    "tf": 6.25
+                    "tf": 7.142857142857142
+                  },
+                  "Note.html#getOffsetNumber": {
+                    "ref": "Note.html#getOffsetNumber",
+                    "tf": 2
+                  },
+                  "Output.html#octaveOffset": {
+                    "ref": "Output.html#octaveOffset",
+                    "tf": 6
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
@@ -34336,6 +35909,10 @@ window.lunrData = {
                     "ref": "Output.html#turnNotesOff",
                     "tf": 5.263157894736842
                   },
+                  "OutputChannel.html#octaveOffset": {
+                    "ref": "OutputChannel.html#octaveOffset",
+                    "tf": 4.166666666666666
+                  },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
                     "tf": 33.7962962962963
@@ -34358,11 +35935,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 32.926829268292686
+                    "tf": 32.76699029126213
                   },
                   "OutputChannel.html#setKeyAftertouch": {
                     "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 24.761904761904763
+                    "tf": 2.564102564102564
                   },
                   "OutputChannel.html#setOmniMode": {
                     "ref": "OutputChannel.html#setOmniMode",
@@ -34396,6 +35973,34 @@ window.lunrData = {
                     "ref": "OutputChannel.html#turnNotesOff",
                     "tf": 5.263157894736842
                   },
+                  "Utilities.html#buildNote": {
+                    "ref": "Utilities.html#buildNote",
+                    "tf": 31.451612903225808
+                  },
+                  "Utilities.html#buildNoteArray": {
+                    "ref": "Utilities.html#buildNoteArray",
+                    "tf": 34.09090909090909
+                  },
+                  "Utilities.html#getFragments": {
+                    "ref": "Utilities.html#getFragments",
+                    "tf": 2.7777777777777777
+                  },
+                  "Utilities.html#guessNoteNumber": {
+                    "ref": "Utilities.html#guessNoteNumber",
+                    "tf": 4.385964912280701
+                  },
+                  "Utilities.html#offsetNumber": {
+                    "ref": "Utilities.html#offsetNumber",
+                    "tf": 1.7857142857142856
+                  },
+                  "Utilities.html#toNoteIdentifier": {
+                    "ref": "Utilities.html#toNoteIdentifier",
+                    "tf": 3.125
+                  },
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 3.1746031746031744
+                  },
                   "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
                     "tf": 3.571428571428571
@@ -34406,7 +36011,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
-                    "tf": 4.054054054054054
+                    "tf": 5.555555555555555
                   },
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
@@ -34414,7 +36019,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.31645569620253167
+                    "tf": 0.33112582781456956
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -34424,17 +36029,9 @@ window.lunrData = {
                     "ref": "WebMidi.html#getInputByName",
                     "tf": 2
                   },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 4.545454545454546
-                  },
-                  "WebMidi.html#getNoteObject": {
-                    "ref": "WebMidi.html#getNoteObject",
-                    "tf": 56.94444444444444
-                  },
                   "WebMidi.html#getOctave": {
                     "ref": "WebMidi.html#getOctave",
-                    "tf": 3.8461538461538463
+                    "tf": 4.545454545454546
                   },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
@@ -34443,14 +36040,6 @@ window.lunrData = {
                   "WebMidi.html#getOutputByName": {
                     "ref": "WebMidi.html#getOutputByName",
                     "tf": 2
-                  },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
-                    "tf": 34.09090909090909
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 3.4090909090909087
                   }
                 },
                 "o": {
@@ -34466,6 +36055,18 @@ window.lunrData = {
                         "Input.html#addOneTimeListener": {
                           "ref": "Input.html#addOneTimeListener",
                           "tf": 0.29069767441860467
+                        },
+                        "InputChannel.html#octaveOffset": {
+                          "ref": "InputChannel.html#octaveOffset",
+                          "tf": 0.9090909090909091
+                        },
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 0.641025641025641
+                        },
+                        "OutputChannel.html#octaveOffset": {
+                          "ref": "OutputChannel.html#octaveOffset",
+                          "tf": 1.3888888888888888
                         },
                         "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -34484,6 +36085,14 @@ window.lunrData = {
                         "ref": "Input.html#addOneTimeListener",
                         "tf": 0.5813953488372093
                       },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.9090909090909091
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.3888888888888888
+                      },
                       "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
                         "tf": 1.4285714285714286
@@ -34491,18 +36100,36 @@ window.lunrData = {
                     }
                   }
                 },
-                "'": {
-                  "docs": {
-                    "Note.html": {
-                      "ref": "Note.html",
-                      "tf": 1.4705882352941175
-                    }
-                  }
-                },
                 "#": {
                   "docs": {},
                   "a": {
                     "docs": {},
+                    "c": {
+                      "docs": {},
+                      "c": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "n": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {
+                                    "Note.html#accidental": {
+                                      "ref": "Note.html#accidental",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "t": {
                       "docs": {},
                       "t": {
@@ -34533,6 +36160,35 @@ window.lunrData = {
                           "Note.html#duration": {
                             "ref": "Note.html#duration",
                             "tf": 1150
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "i": {
+                    "docs": {},
+                    "d": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "f": {
+                                "docs": {},
+                                "i": {
+                                  "docs": {
+                                    "Note.html#identifier": {
+                                      "ref": "Note.html#identifier",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -34660,6 +36316,58 @@ window.lunrData = {
                         }
                       }
                     }
+                  },
+                  "g": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "f": {
+                            "docs": {},
+                            "f": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {},
+                                      "u": {
+                                        "docs": {},
+                                        "m": {
+                                          "docs": {},
+                                          "b": {
+                                            "docs": {
+                                              "Note.html#getOffsetNumber": {
+                                                "ref": "Note.html#getOffsetNumber",
+                                                "tf": 1150
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "(": {
+                  "docs": {
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
+                    }
                   }
                 }
               },
@@ -34671,9 +36379,9 @@ window.lunrData = {
                       "ref": "Output.html#sendSysex",
                       "tf": 0.33333333333333337
                     },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
                     }
                   }
                 }
@@ -34908,6 +36616,24 @@ window.lunrData = {
           },
           "e": {
             "docs": {},
+            "v": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 0.641025641025641
+                    },
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 0.5617977528089888
+                    }
+                  }
+                }
+              }
+            },
             "c": {
               "docs": {},
               "e": {
@@ -34992,20 +36718,6 @@ window.lunrData = {
                   "tf": 0.7462686567164178
                 }
               }
-            },
-            "v": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 0.5617977528089888
-                    }
-                  }
-                }
-              }
             }
           },
           "w": {
@@ -35068,26 +36780,24 @@ window.lunrData = {
                   }
                 },
                 "w": {
-                  "docs": {
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 1.1363636363636365
-                    }
-                  },
+                  "docs": {},
                   "n": {
                     "docs": {
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
-                      },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       }
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "e": {
+                  "docs": {
+                    "Utilities.html#getMessage": {
+                      "ref": "Utilities.html#getMessage",
+                      "tf": 4.545454545454546
                     }
                   }
                 }
@@ -35208,8 +36918,8 @@ window.lunrData = {
                     "ref": "Output.html#type",
                     "tf": 695.8333333333334
                   },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
+                  "Utilities.html#buildNoteArray": {
+                    "ref": "Utilities.html#buildNoteArray",
                     "tf": 1.5151515151515151
                   }
                 }
@@ -35329,11 +37039,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.6097560975609756
+                    "tf": 0.48543689320388345
                   },
                   "OutputChannel.html#setKeyAftertouch": {
                     "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 1.1904761904761905
+                    "tf": 1.282051282051282
                   },
                   "OutputChannel.html#setModulationRange": {
                     "ref": "OutputChannel.html#setModulationRange",
@@ -35355,6 +37065,10 @@ window.lunrData = {
                     "ref": "OutputChannel.html#setProgram",
                     "tf": 1.5625
                   },
+                  "Utilities.html#toTimestamp": {
+                    "ref": "Utilities.html#toTimestamp",
+                    "tf": 34.99999999999999
+                  },
                   "WebMidi.html#isBrowser": {
                     "ref": "WebMidi.html#isBrowser",
                     "tf": 2.272727272727273
@@ -35370,10 +37084,6 @@ window.lunrData = {
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
                     "tf": 688.0208333333334
-                  },
-                  "WebMidi.html#convertToTimestamp": {
-                    "ref": "WebMidi.html#convertToTimestamp",
-                    "tf": 34.99999999999999
                   }
                 },
                 "c": {
@@ -35412,8 +37122,8 @@ window.lunrData = {
                         "docs": {},
                         "p": {
                           "docs": {
-                            "WebMidi.html#convertToTimestamp": {
-                              "ref": "WebMidi.html#convertToTimestamp",
+                            "Utilities.html#toTimestamp": {
+                              "ref": "Utilities.html#toTimestamp",
                               "tf": 5
                             }
                           }
@@ -35431,7 +37141,7 @@ window.lunrData = {
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
+                  "tf": 0.33112582781456956
                 }
               },
               "g": {
@@ -35476,7 +37186,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.949367088607595
+                          "tf": 0.9933774834437087
                         }
                       }
                     }
@@ -35510,7 +37220,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.949367088607595
+                    "tf": 0.9933774834437087
                   }
                 }
               }
@@ -35931,6 +37641,23 @@ window.lunrData = {
                 }
               }
             },
+            "r": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "OutputChannel.html#setKeyAftertouch": {
+                        "ref": "OutputChannel.html#setKeyAftertouch",
+                        "tf": 20
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "l": {
               "docs": {},
               "k": {
@@ -35974,16 +37701,144 @@ window.lunrData = {
                 "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                   "tf": 0.5617977528089888
-                },
-                "WebMidi.html#enable": {
-                  "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
                 }
               }
             }
           },
           "o": {
+            "7": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Utilities.html#to7Bit": {
+                        "ref": "Utilities.html#to7Bit",
+                        "tf": 683.3333333333334
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "docs": {},
+            "n": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "m": {
+                    "docs": {
+                      "Utilities.html#toNormalized": {
+                        "ref": "Utilities.html#toNormalized",
+                        "tf": 683.3333333333334
+                      }
+                    }
+                  }
+                },
+                "t": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "i": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {},
+                            "t": {
+                              "docs": {},
+                              "i": {
+                                "docs": {},
+                                "f": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {
+                                      "Utilities.html#toNoteIdentifier": {
+                                        "ref": "Utilities.html#toNoteIdentifier",
+                                        "tf": 700
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "n": {
+                      "docs": {},
+                      "u": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "b": {
+                            "docs": {
+                              "Utilities.html#toNoteNumber": {
+                                "ref": "Utilities.html#toNoteNumber",
+                                "tf": 675
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "m": {
+                            "docs": {},
+                            "p": {
+                              "docs": {
+                                "Utilities.html#toTimestamp": {
+                                  "ref": "Utilities.html#toTimestamp",
+                                  "tf": 683.3333333333334
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "k": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "n": {
+                  "docs": {
+                    "WebMidi.html#octaveOffset": {
+                      "ref": "WebMidi.html#octaveOffset",
+                      "tf": 0.9259259259259258
+                    }
+                  }
+                }
+              }
+            },
             "w": {
               "docs": {},
               "a": {
@@ -35994,7 +37849,608 @@ window.lunrData = {
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.31645569620253167
+                        "tf": 0.33112582781456956
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "v": {
+          "3": {
+            "docs": {},
+            ".": {
+              "0": {
+                "docs": {
+                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                    "tf": 3.571428571428571
+                  }
+                }
+              },
+              "docs": {},
+              "x": {
+                "docs": {
+                  "WebMidi.html#getOctave": {
+                    "ref": "WebMidi.html#getOctave",
+                    "tf": 1.5151515151515151
+                  }
+                }
+              }
+            }
+          },
+          "7": {
+            "7": {
+              "docs": {
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.33112582781456956
+                }
+              }
+            },
+            "docs": {}
+          },
+          "docs": {},
+          "a": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "u": {
+                "docs": {
+                  "Input.html#octaveOffset": {
+                    "ref": "Input.html#octaveOffset",
+                    "tf": 2.2222222222222223
+                  },
+                  "InputChannel.html#octaveOffset": {
+                    "ref": "InputChannel.html#octaveOffset",
+                    "tf": 2.727272727272727
+                  },
+                  "Note.html#getOffsetNumber": {
+                    "ref": "Note.html#getOffsetNumber",
+                    "tf": 6
+                  },
+                  "Output.html#octaveOffset": {
+                    "ref": "Output.html#octaveOffset",
+                    "tf": 4
+                  },
+                  "Output.html#playNote": {
+                    "ref": "Output.html#playNote",
+                    "tf": 0.8695652173913043
+                  },
+                  "Output.html#resetAllControllers": {
+                    "ref": "Output.html#resetAllControllers",
+                    "tf": 3.8461538461538463
+                  },
+                  "Output.html#sendChannelMode": {
+                    "ref": "Output.html#sendChannelMode",
+                    "tf": 21.5625
+                  },
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 20
+                  },
+                  "Output.html#sendNoteOff": {
+                    "ref": "Output.html#sendNoteOff",
+                    "tf": 1.6666666666666667
+                  },
+                  "Output.html#sendNoteOn": {
+                    "ref": "Output.html#sendNoteOn",
+                    "tf": 1.2048192771084338
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.33333333333333337
+                  },
+                  "Output.html#sendTimecodeQuarterFrame": {
+                    "ref": "Output.html#sendTimecodeQuarterFrame",
+                    "tf": 25
+                  },
+                  "Output.html#setMasterTuning": {
+                    "ref": "Output.html#setMasterTuning",
+                    "tf": 27.272727272727273
+                  },
+                  "Output.html#setNonRegisteredParameter": {
+                    "ref": "Output.html#setNonRegisteredParameter",
+                    "tf": 3.278688524590164
+                  },
+                  "Output.html#setPitchBend": {
+                    "ref": "Output.html#setPitchBend",
+                    "tf": 25
+                  },
+                  "Output.html#setRegisteredParameter": {
+                    "ref": "Output.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "Output.html#setSong": {
+                    "ref": "Output.html#setSong",
+                    "tf": 25
+                  },
+                  "Output.html#setSongPosition": {
+                    "ref": "Output.html#setSongPosition",
+                    "tf": 27.63157894736842
+                  },
+                  "Output.html#setTuningBank": {
+                    "ref": "Output.html#setTuningBank",
+                    "tf": 25
+                  },
+                  "Output.html#setTuningProgram": {
+                    "ref": "Output.html#setTuningProgram",
+                    "tf": 25
+                  },
+                  "OutputChannel.html#octaveOffset": {
+                    "ref": "OutputChannel.html#octaveOffset",
+                    "tf": 4.166666666666666
+                  },
+                  "OutputChannel.html#playNote": {
+                    "ref": "OutputChannel.html#playNote",
+                    "tf": 0.9259259259259258
+                  },
+                  "OutputChannel.html#resetAllControllers": {
+                    "ref": "OutputChannel.html#resetAllControllers",
+                    "tf": 3.8461538461538463
+                  },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 21.612903225806452
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 20
+                  },
+                  "OutputChannel.html#sendNoteOff": {
+                    "ref": "OutputChannel.html#sendNoteOff",
+                    "tf": 1.694915254237288
+                  },
+                  "OutputChannel.html#sendNoteOn": {
+                    "ref": "OutputChannel.html#sendNoteOn",
+                    "tf": 0.9708737864077669
+                  },
+                  "OutputChannel.html#setKeyAftertouch": {
+                    "ref": "OutputChannel.html#setKeyAftertouch",
+                    "tf": 2.564102564102564
+                  },
+                  "OutputChannel.html#setMasterTuning": {
+                    "ref": "OutputChannel.html#setMasterTuning",
+                    "tf": 27.38095238095238
+                  },
+                  "OutputChannel.html#setNonRegisteredParameter": {
+                    "ref": "OutputChannel.html#setNonRegisteredParameter",
+                    "tf": 3.8461538461538463
+                  },
+                  "OutputChannel.html#setPitchBend": {
+                    "ref": "OutputChannel.html#setPitchBend",
+                    "tf": 25
+                  },
+                  "OutputChannel.html#setRegisteredParameter": {
+                    "ref": "OutputChannel.html#setRegisteredParameter",
+                    "tf": 0.6578947368421052
+                  },
+                  "OutputChannel.html#setTuningBank": {
+                    "ref": "OutputChannel.html#setTuningBank",
+                    "tf": 25
+                  },
+                  "OutputChannel.html#setTuningProgram": {
+                    "ref": "OutputChannel.html#setTuningProgram",
+                    "tf": 25
+                  },
+                  "Utilities.html#buildNoteArray": {
+                    "ref": "Utilities.html#buildNoteArray",
+                    "tf": 1.5151515151515151
+                  },
+                  "Utilities.html#guessNoteNumber": {
+                    "ref": "Utilities.html#guessNoteNumber",
+                    "tf": 1.7543859649122806
+                  },
+                  "Utilities.html#offsetNumber": {
+                    "ref": "Utilities.html#offsetNumber",
+                    "tf": 7.142857142857142
+                  },
+                  "Utilities.html#to7Bit": {
+                    "ref": "Utilities.html#to7Bit",
+                    "tf": 37.77777777777777
+                  },
+                  "Utilities.html#toNormalized": {
+                    "ref": "Utilities.html#toNormalized",
+                    "tf": 36.99186991869918
+                  },
+                  "WebMidi.html#defaults": {
+                    "ref": "WebMidi.html#defaults",
+                    "tf": 5
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                    "tf": 3.571428571428571
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
+                    "tf": 2.1739130434782608
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                    "tf": 1.4285714285714286
+                  },
+                  "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                    "tf": 0.4032258064516129
+                  },
+                  "WebMidi.html#MIDI_NRPN_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
+                    "tf": 2
+                  },
+                  "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
+                    "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
+                    "tf": 0.78125
+                  },
+                  "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                    "tf": 1.1235955056179776
+                  },
+                  "WebMidi.html#getOctave": {
+                    "ref": "WebMidi.html#getOctave",
+                    "tf": 3.0303030303030303
+                  }
+                }
+              },
+              "i": {
+                "docs": {},
+                "d": {
+                  "docs": {
+                    "InputChannel.html#getCcNameByNumber": {
+                      "ref": "InputChannel.html#getCcNameByNumber",
+                      "tf": 2.272727272727273
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 0.43478260869565216
+                    },
+                    "Output.html#sendNoteOff": {
+                      "ref": "Output.html#sendNoteOff",
+                      "tf": 0.8333333333333334
+                    },
+                    "Output.html#sendNoteOn": {
+                      "ref": "Output.html#sendNoteOn",
+                      "tf": 0.6024096385542169
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 0.4629629629629629
+                    },
+                    "OutputChannel.html#sendNoteOff": {
+                      "ref": "OutputChannel.html#sendNoteOff",
+                      "tf": 0.847457627118644
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.48543689320388345
+                    },
+                    "OutputChannel.html#setKeyAftertouch": {
+                      "ref": "OutputChannel.html#setKeyAftertouch",
+                      "tf": 1.282051282051282
+                    },
+                    "Utilities.html#buildNote": {
+                      "ref": "Utilities.html#buildNote",
+                      "tf": 1.6129032258064515
+                    },
+                    "Utilities.html#guessNoteNumber": {
+                      "ref": "Utilities.html#guessNoteNumber",
+                      "tf": 0.8771929824561403
+                    },
+                    "Utilities.html#sanitizeChannels": {
+                      "ref": "Utilities.html#sanitizeChannels",
+                      "tf": 1.3888888888888888
+                    },
+                    "Utilities.html#toNoteNumber": {
+                      "ref": "Utilities.html#toNoteNumber",
+                      "tf": 0.7936507936507936
+                    },
+                    "Utilities.html#toTimestamp": {
+                      "ref": "Utilities.html#toTimestamp",
+                      "tf": 1.6666666666666667
+                    },
+                    "WebMidi.html#MIDI_INTERFACE_EVENTS": {
+                      "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
+                      "tf": 8.333333333333332
+                    },
+                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
+                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
+                      "tf": 0.5617977528089888
+                    },
+                    "WebMidi.html#validation": {
+                      "ref": "WebMidi.html#validation",
+                      "tf": 704.8387096774194
+                    },
+                    "WebMidi.html#getOctave": {
+                      "ref": "WebMidi.html#getOctave",
+                      "tf": 1.5151515151515151
+                    }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "u": {
+                    "docs": {
+                      "WebMidi.html#time": {
+                        "ref": "WebMidi.html#time",
+                        "tf": 1.5625
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "c": {
+                "docs": {
+                  "Input.html#addListener": {
+                    "ref": "Input.html#addListener",
+                    "tf": 0.29411764705882354
+                  },
+                  "Input.html#addOneTimeListener": {
+                    "ref": "Input.html#addOneTimeListener",
+                    "tf": 0.29069767441860467
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
+                    "tf": 3.571428571428571
+                  },
+                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
+                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
+                    "tf": 1.4285714285714286
+                  }
+                }
+              }
+            },
+            "l": {
+              "docs": {},
+              "u": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "r": {
+                            "docs": {},
+                            "s": {
+                              "docs": {
+                                "Output.html#sendControlChange": {
+                                  "ref": "Output.html#sendControlChange",
+                                  "tf": 0.267379679144385
+                                },
+                                "OutputChannel.html#sendControlChange": {
+                                  "ref": "OutputChannel.html#sendControlChange",
+                                  "tf": 0.26455026455026454
+                                },
+                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                  "tf": 0.4032258064516129
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "f": {
+                      "docs": {},
+                      "i": {
+                        "docs": {},
+                        "n": {
+                          "docs": {
+                            "Output.html#sendControlChange": {
+                              "ref": "Output.html#sendControlChange",
+                              "tf": 0.267379679144385
+                            },
+                            "OutputChannel.html#sendControlChange": {
+                              "ref": "OutputChannel.html#sendControlChange",
+                              "tf": 0.26455026455026454
+                            },
+                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                              "tf": 0.4032258064516129
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "c": {
+                  "docs": {
+                    "Note.html": {
+                      "ref": "Note.html",
+                      "tf": 1.282051282051282
+                    },
+                    "Note.html#attack": {
+                      "ref": "Note.html#attack",
+                      "tf": 7.142857142857142
+                    },
+                    "Note.html#rawAttack": {
+                      "ref": "Note.html#rawAttack",
+                      "tf": 6.25
+                    },
+                    "Note.html#rawRelease": {
+                      "ref": "Note.html#rawRelease",
+                      "tf": 6.25
+                    },
+                    "Note.html#release": {
+                      "ref": "Note.html#release",
+                      "tf": 7.142857142857142
+                    },
+                    "Output.html#playNote": {
+                      "ref": "Output.html#playNote",
+                      "tf": 0.8695652173913043
+                    },
+                    "Output.html#sendNoteOff": {
+                      "ref": "Output.html#sendNoteOff",
+                      "tf": 0.8333333333333334
+                    },
+                    "Output.html#sendNoteOn": {
+                      "ref": "Output.html#sendNoteOn",
+                      "tf": 1.2048192771084338
+                    },
+                    "OutputChannel.html#playNote": {
+                      "ref": "OutputChannel.html#playNote",
+                      "tf": 0.9259259259259258
+                    },
+                    "OutputChannel.html#sendNoteOff": {
+                      "ref": "OutputChannel.html#sendNoteOff",
+                      "tf": 0.847457627118644
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.9708737864077669
+                    }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "n": {
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.33333333333333337
+                        },
+                        "Output.html#setProgram": {
+                          "ref": "Output.html#setProgram",
+                          "tf": 2.941176470588235
+                        },
+                        "Output.html#setSong": {
+                          "ref": "Output.html#setSong",
+                          "tf": 3.3333333333333335
+                        },
+                        "Output.html#setTuningBank": {
+                          "ref": "Output.html#setTuningBank",
+                          "tf": 2.5
+                        },
+                        "Output.html#setTuningProgram": {
+                          "ref": "Output.html#setTuningProgram",
+                          "tf": 2.5
+                        },
+                        "OutputChannel.html#setProgram": {
+                          "ref": "OutputChannel.html#setProgram",
+                          "tf": 3.125
+                        },
+                        "OutputChannel.html#setTuningBank": {
+                          "ref": "OutputChannel.html#setTuningBank",
+                          "tf": 2.5
+                        },
+                        "OutputChannel.html#setTuningProgram": {
+                          "ref": "OutputChannel.html#setTuningProgram",
+                          "tf": 2.5
+                        },
+                        "WebMidi.html": {
+                          "ref": "WebMidi.html",
+                          "tf": 1.4925373134328357
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "a": {
+              "docs": {
+                "Output.html#playNote": {
+                  "ref": "Output.html#playNote",
+                  "tf": 0.43478260869565216
+                },
+                "Output.html#sendNoteOff": {
+                  "ref": "Output.html#sendNoteOff",
+                  "tf": 0.8333333333333334
+                },
+                "Output.html#sendNoteOn": {
+                  "ref": "Output.html#sendNoteOn",
+                  "tf": 0.6024096385542169
+                },
+                "OutputChannel.html#playNote": {
+                  "ref": "OutputChannel.html#playNote",
+                  "tf": 0.4629629629629629
+                },
+                "OutputChannel.html#sendNoteOff": {
+                  "ref": "OutputChannel.html#sendNoteOff",
+                  "tf": 0.847457627118644
+                },
+                "OutputChannel.html#sendNoteOn": {
+                  "ref": "OutputChannel.html#sendNoteOn",
+                  "tf": 0.48543689320388345
+                },
+                "WebMidi.html#sysexEnabled": {
+                  "ref": "WebMidi.html#sysexEnabled",
+                  "tf": 4.166666666666666
+                }
+              }
+            },
+            "e": {
+              "docs": {},
+              "w": {
+                "docs": {
+                  "Output.html#sendControlChange": {
+                    "ref": "Output.html#sendControlChange",
+                    "tf": 0.267379679144385
+                  },
+                  "OutputChannel.html#sendControlChange": {
+                    "ref": "OutputChannel.html#sendControlChange",
+                    "tf": 0.26455026455026454
+                  }
+                }
+              }
+            },
+            "b": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "o": {
+                      "docs": {
+                        "Output.html#setNonRegisteredParameter": {
+                          "ref": "Output.html#setNonRegisteredParameter",
+                          "tf": 0.819672131147541
+                        },
+                        "OutputChannel.html#setNonRegisteredParameter": {
+                          "ref": "OutputChannel.html#setNonRegisteredParameter",
+                          "tf": 0.9615384615384616
+                        }
                       }
                     }
                   }
@@ -36005,9 +38461,13 @@ window.lunrData = {
         },
         "b": {
           "docs": {
-            "WebMidi.html#getNoteNumberByName": {
-              "ref": "WebMidi.html#getNoteNumberByName",
-              "tf": 0.5681818181818182
+            "Note.html#accidental": {
+              "ref": "Note.html#accidental",
+              "tf": 12.5
+            },
+            "Utilities.html#toNoteNumber": {
+              "ref": "Utilities.html#toNoteNumber",
+              "tf": 0.7936507936507936
             }
           },
           "o": {
@@ -36093,10 +38553,6 @@ window.lunrData = {
                   "WebMidi.html#isNode": {
                     "ref": "WebMidi.html#isNode",
                     "tf": 2.380952380952381
-                  },
-                  "WebMidi.html#octaveOffset": {
-                    "ref": "WebMidi.html#octaveOffset",
-                    "tf": 1.3513513513513513
                   }
                 }
               }
@@ -36124,17 +38580,21 @@ window.lunrData = {
                 "ref": "OutputChannel.html#turnSoundOff",
                 "tf": 3.571428571428571
               },
+              "Utilities.html#sanitizeChannels": {
+                "ref": "Utilities.html#sanitizeChannels",
+                "tf": 1.3888888888888888
+              },
+              "WebMidi.html#octaveOffset": {
+                "ref": "WebMidi.html#octaveOffset",
+                "tf": 0.9259259259259258
+              },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
                 "tf": 1.5625
               },
               "WebMidi.html#getOctave": {
                 "ref": "WebMidi.html#getOctave",
-                "tf": 1.282051282051282
-              },
-              "WebMidi.html#sanitizeChannels": {
-                "ref": "WebMidi.html#sanitizeChannels",
-                "tf": 1.3888888888888888
+                "tf": 1.5151515151515151
               }
             },
             "l": {
@@ -36151,7 +38611,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#output": {
                         "ref": "OutputChannel.html#output",
-                        "tf": 16.666666666666664
+                        "tf": 12.5
                       }
                     }
                   }
@@ -36186,15 +38646,7 @@ window.lunrData = {
                       "docs": {
                         "Note.html#attack": {
                           "ref": "Note.html#attack",
-                          "tf": 6.25
-                        },
-                        "Note.html#number": {
-                          "ref": "Note.html#number",
                           "tf": 7.142857142857142
-                        },
-                        "Note.html#octave": {
-                          "ref": "Note.html#octave",
-                          "tf": 8.333333333333332
                         },
                         "Note.html#rawAttack": {
                           "ref": "Note.html#rawAttack",
@@ -36206,7 +38658,7 @@ window.lunrData = {
                         },
                         "Note.html#release": {
                           "ref": "Note.html#release",
-                          "tf": 6.25
+                          "tf": 7.142857142857142
                         },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
@@ -36254,11 +38706,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.6097560975609756
+                          "tf": 0.48543689320388345
                         },
                         "OutputChannel.html#setKeyAftertouch": {
                           "ref": "OutputChannel.html#setKeyAftertouch",
-                          "tf": 1.1904761904761905
+                          "tf": 1.282051282051282
                         },
                         "OutputChannel.html#setMasterTuning": {
                           "ref": "OutputChannel.html#setMasterTuning",
@@ -36276,13 +38728,21 @@ window.lunrData = {
                           "ref": "OutputChannel.html#setTuningProgram",
                           "tf": 2.5
                         },
-                        "WebMidi.html#guessNoteNumber": {
-                          "ref": "WebMidi.html#guessNoteNumber",
-                          "tf": 1.1363636363636365
+                        "Utilities.html#guessNoteNumber": {
+                          "ref": "Utilities.html#guessNoteNumber",
+                          "tf": 0.8771929824561403
                         },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
+                        "Utilities.html#sanitizeChannels": {
+                          "ref": "Utilities.html#sanitizeChannels",
                           "tf": 1.3888888888888888
+                        },
+                        "Utilities.html#to7Bit": {
+                          "ref": "Utilities.html#to7Bit",
+                          "tf": 3.3333333333333335
+                        },
+                        "Utilities.html#toNormalized": {
+                          "ref": "Utilities.html#toNormalized",
+                          "tf": 2.4390243902439024
                         }
                       }
                     }
@@ -36337,132 +38797,32 @@ window.lunrData = {
               }
             }
           },
-          "r": {
+          "a": {
             "docs": {},
-            "o": {
+            "c": {
               "docs": {},
-              "w": {
-                "docs": {},
-                "s": {
+              "k": {
+                "docs": {
+                  "Note.html": {
+                    "ref": "Note.html",
+                    "tf": 1.282051282051282
+                  }
+                },
+                "w": {
                   "docs": {},
-                  "e": {
+                  "a": {
                     "docs": {},
                     "r": {
-                      "docs": {
-                        "Output.html#clear": {
-                          "ref": "Output.html#clear",
-                          "tf": 2.272727272727273
-                        },
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.33333333333333337
-                        },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 2.272727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 2.380952380952381
-                        },
-                        "WebMidi.html#time": {
-                          "ref": "WebMidi.html#time",
-                          "tf": 1.5625
-                        },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.31645569620253167
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "h": {
-                    "docs": {},
-                    "c": {
                       "docs": {},
-                      "o": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "l": {
-                                  "docs": {},
-                                  "l": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "o": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "r": {
-                                                "docs": {},
-                                                "s": {
-                                                  "docs": {
-                                                    "Output.html#sendControlChange": {
-                                                      "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
-                                                    },
-                                                    "OutputChannel.html#sendControlChange": {
-                                                      "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
-                                                    },
-                                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                      "tf": 0.4032258064516129
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        "f": {
-                                          "docs": {},
-                                          "i": {
-                                            "docs": {},
-                                            "n": {
-                                              "docs": {
-                                                "Output.html#sendControlChange": {
-                                                  "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
-                                                },
-                                                "OutputChannel.html#sendControlChange": {
-                                                  "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
-                                                },
-                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                                  "tf": 0.4032258064516129
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
+                      "d": {
+                        "docs": {
+                          "Utilities.html#sanitizeChannels": {
+                            "ref": "Utilities.html#sanitizeChannels",
+                            "tf": 1.3888888888888888
+                          },
+                          "WebMidi.html#validation": {
+                            "ref": "WebMidi.html#validation",
+                            "tf": 1.6129032258064515
                           }
                         }
                       }
@@ -36471,34 +38831,6 @@ window.lunrData = {
                 }
               }
             },
-            "i": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "h": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
-                      },
-                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                        "tf": 0.4032258064516129
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "a": {
-            "docs": {},
             "n": {
               "docs": {},
               "k": {
@@ -36688,32 +39020,191 @@ window.lunrData = {
                 "docs": {
                   "WebMidi.html#getOctave": {
                     "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
+                    "tf": 1.5151515151515151
+                  }
+                }
+              }
+            }
+          },
+          "b": {
+            "docs": {
+              "Note.html#accidental": {
+                "ref": "Note.html#accidental",
+                "tf": 12.5
+              },
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "w": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "Output.html#clear": {
+                          "ref": "Output.html#clear",
+                          "tf": 2.272727272727273
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.33333333333333337
+                        },
+                        "WebMidi.html#isBrowser": {
+                          "ref": "WebMidi.html#isBrowser",
+                          "tf": 2.272727272727273
+                        },
+                        "WebMidi.html#isNode": {
+                          "ref": "WebMidi.html#isNode",
+                          "tf": 2.380952380952381
+                        },
+                        "WebMidi.html#time": {
+                          "ref": "WebMidi.html#time",
+                          "tf": 1.5625
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.33112582781456956
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "k": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Utilities.html#getMessage": {
+                        "ref": "Utilities.html#getMessage",
+                        "tf": 4.545454545454546
+                      }
+                    }
                   }
                 }
               }
             },
-            "c": {
+            "e": {
               "docs": {},
-              "k": {
+              "a": {
                 "docs": {},
-                "w": {
+                "t": {
                   "docs": {},
-                  "a": {
+                  "h": {
                     "docs": {},
-                    "r": {
+                    "c": {
                       "docs": {},
-                      "d": {
-                        "docs": {
-                          "WebMidi.html#validation": {
-                            "ref": "WebMidi.html#validation",
-                            "tf": 1.6129032258064515
-                          },
-                          "WebMidi.html#sanitizeChannels": {
-                            "ref": "WebMidi.html#sanitizeChannels",
-                            "tf": 1.3888888888888888
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {},
+                                  "l": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "c": {
+                                          "docs": {},
+                                          "o": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "r": {
+                                                "docs": {},
+                                                "s": {
+                                                  "docs": {
+                                                    "Output.html#sendControlChange": {
+                                                      "ref": "Output.html#sendControlChange",
+                                                      "tf": 0.267379679144385
+                                                    },
+                                                    "OutputChannel.html#sendControlChange": {
+                                                      "ref": "OutputChannel.html#sendControlChange",
+                                                      "tf": 0.26455026455026454
+                                                    },
+                                                    "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                      "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                      "tf": 0.4032258064516129
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "f": {
+                                          "docs": {},
+                                          "i": {
+                                            "docs": {},
+                                            "n": {
+                                              "docs": {
+                                                "Output.html#sendControlChange": {
+                                                  "ref": "Output.html#sendControlChange",
+                                                  "tf": 0.267379679144385
+                                                },
+                                                "OutputChannel.html#sendControlChange": {
+                                                  "ref": "OutputChannel.html#sendControlChange",
+                                                  "tf": 0.26455026455026454
+                                                },
+                                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                                                  "tf": 0.4032258064516129
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "h": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.267379679144385
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.26455026455026454
+                      },
+                      "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
+                        "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
+                        "tf": 0.4032258064516129
                       }
                     }
                   }
@@ -36740,6 +39231,10 @@ window.lunrData = {
                 "OutputChannel.html#setNonRegisteredParameter": {
                   "ref": "OutputChannel.html#setNonRegisteredParameter",
                   "tf": 0.9615384615384616
+                },
+                "Utilities.html#toNormalized": {
+                  "ref": "Utilities.html#toNormalized",
+                  "tf": 1.2195121951219512
                 }
               }
             },
@@ -36786,6 +39281,10 @@ window.lunrData = {
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 0.6578947368421052
+                  },
+                  "Utilities.html#getMessage": {
+                    "ref": "Utilities.html#getMessage",
+                    "tf": 4.545454545454546
                   }
                 }
               }
@@ -36797,6 +39296,46 @@ window.lunrData = {
               "docs": {},
               "l": {
                 "docs": {},
+                "d": {
+                  "docs": {},
+                  "n": {
+                    "docs": {},
+                    "o": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Utilities.html#buildNote": {
+                            "ref": "Utilities.html#buildNote",
+                            "tf": 675
+                          }
+                        },
+                        "e": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "y": {
+                                    "docs": {
+                                      "Utilities.html#buildNoteArray": {
+                                        "ref": "Utilities.html#buildNoteArray",
+                                        "tf": 675
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
                 "t": {
                   "docs": {
                     "WebMidi.html#supported": {
@@ -36813,21 +39352,13 @@ window.lunrData = {
             "#": {
               "6": {
                 "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
+                  "Utilities.html#toNoteNumber": {
+                    "ref": "Utilities.html#toNoteNumber",
+                    "tf": 0.7936507936507936
                   }
                 }
               },
               "docs": {}
-            }
-          },
-          "b": {
-            "docs": {
-              "WebMidi.html#getNoteNumberByName": {
-                "ref": "WebMidi.html#getNoteNumberByName",
-                "tf": 0.5681818181818182
-              }
             }
           }
         },
@@ -36940,10 +39471,6 @@ window.lunrData = {
                       "ref": "Input.html#close",
                       "tf": 3.571428571428571
                     },
-                    "Note.html": {
-                      "ref": "Note.html",
-                      "tf": 1.4705882352941175
-                    },
                     "Output.html#close": {
                       "ref": "Output.html#close",
                       "tf": 2.380952380952381
@@ -36994,9 +39521,45 @@ window.lunrData = {
                         "ref": "Input.html#removeListener",
                         "tf": 1.7241379310344827
                       },
+                      "Note.html": {
+                        "ref": "Note.html",
+                        "tf": 0.641025641025641
+                      },
                       "WebMidi.html#interface": {
                         "ref": "WebMidi.html#interface",
                         "tf": 4.166666666666666
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "n": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "s": {
+                        "docs": {},
+                        "a": {
+                          "docs": {},
+                          "r": {
+                            "docs": {},
+                            "i": {
+                              "docs": {
+                                "Input.html#open": {
+                                  "ref": "Input.html#open",
+                                  "tf": 5
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -37019,12 +39582,12 @@ window.lunrData = {
                         "ref": "OutputChannel.html#send",
                         "tf": 0.847457627118644
                       },
-                      "WebMidi.html#getNoteObject": {
-                        "ref": "WebMidi.html#getNoteObject",
-                        "tf": 1.3888888888888888
+                      "Utilities.html#buildNote": {
+                        "ref": "Utilities.html#buildNote",
+                        "tf": 1.6129032258064515
                       },
-                      "WebMidi.html#getValidNoteArray": {
-                        "ref": "WebMidi.html#getValidNoteArray",
+                      "Utilities.html#buildNoteArray": {
+                        "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       }
                     }
@@ -37042,13 +39605,13 @@ window.lunrData = {
                     "docs": {},
                     "n": {
                       "docs": {
+                        "Utilities.html#sanitizeChannels": {
+                          "ref": "Utilities.html#sanitizeChannels",
+                          "tf": 1.3888888888888888
+                        },
                         "WebMidi.html#getOctave": {
                           "ref": "WebMidi.html#getOctave",
-                          "tf": 1.282051282051282
-                        },
-                        "WebMidi.html#sanitizeChannels": {
-                          "ref": "WebMidi.html#sanitizeChannels",
-                          "tf": 1.3888888888888888
+                          "tf": 1.5151515151515151
                         }
                       },
                       "e": {
@@ -37090,7 +39653,7 @@ window.lunrData = {
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.31645569620253167
+                      "tf": 0.33112582781456956
                     }
                   }
                 }
@@ -37105,7 +39668,15 @@ window.lunrData = {
               },
               "Note.html": {
                 "ref": "Note.html",
-                "tf": 4.411764705882353
+                "tf": 1.282051282051282
+              },
+              "Note.html#number": {
+                "ref": "Note.html#number",
+                "tf": 4.166666666666666
+              },
+              "Note.html#getOffsetNumber": {
+                "ref": "Note.html#getOffsetNumber",
+                "tf": 2
               },
               "Output.html#close": {
                 "ref": "Output.html#close",
@@ -37225,7 +39796,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 1.8292682926829267
+                "tf": 1.9417475728155338
               },
               "OutputChannel.html#setChannelAftertouch": {
                 "ref": "OutputChannel.html#setChannelAftertouch",
@@ -37233,7 +39804,7 @@ window.lunrData = {
               },
               "OutputChannel.html#setKeyAftertouch": {
                 "ref": "OutputChannel.html#setKeyAftertouch",
-                "tf": 1.1904761904761905
+                "tf": 1.282051282051282
               },
               "OutputChannel.html#setNonRegisteredParameter": {
                 "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -37262,6 +39833,18 @@ window.lunrData = {
               "OutputChannel.html#setTuningProgram": {
                 "ref": "OutputChannel.html#setTuningProgram",
                 "tf": 2.5
+              },
+              "Utilities.html#offsetNumber": {
+                "ref": "Utilities.html#offsetNumber",
+                "tf": 1.7857142857142856
+              },
+              "Utilities.html#toNoteIdentifier": {
+                "ref": "Utilities.html#toNoteIdentifier",
+                "tf": 3.125
+              },
+              "Utilities.html#toNoteNumber": {
+                "ref": "Utilities.html#toNoteNumber",
+                "tf": 0.7936507936507936
               },
               "WebMidi.html": {
                 "ref": "WebMidi.html",
@@ -37297,15 +39880,11 @@ window.lunrData = {
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.949367088607595
+                "tf": 0.9933774834437087
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
                 "tf": 1.4705882352941175
-              },
-              "WebMidi.html#getOctave": {
-                "ref": "WebMidi.html#getOctave",
-                "tf": 1.282051282051282
               },
               "WebMidi.html#getOutputById": {
                 "ref": "WebMidi.html#getOutputById",
@@ -37318,7 +39897,7 @@ window.lunrData = {
                 "docs": {
                   "Input.html#open": {
                     "ref": "Input.html#open",
-                    "tf": 16.666666666666664
+                    "tf": 5
                   },
                   "Output.html#open": {
                     "ref": "Output.html#open",
@@ -37333,6 +39912,10 @@ window.lunrData = {
                 "docs": {},
                 "l": {
                   "docs": {
+                    "Input.html#open": {
+                      "ref": "Input.html#open",
+                      "tf": 5
+                    },
                     "Output.html#send": {
                       "ref": "Output.html#send",
                       "tf": 0.847457627118644
@@ -37357,13 +39940,13 @@ window.lunrData = {
                       "ref": "OutputChannel.html#setPolyphonicMode",
                       "tf": 2.083333333333333
                     },
-                    "WebMidi.html#getNoteObject": {
-                      "ref": "WebMidi.html#getNoteObject",
-                      "tf": 1.3888888888888888
+                    "Utilities.html#buildNote": {
+                      "ref": "Utilities.html#buildNote",
+                      "tf": 1.6129032258064515
                     },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 1.1363636363636365
+                    "Utilities.html#guessNoteNumber": {
+                      "ref": "Utilities.html#guessNoteNumber",
+                      "tf": 0.8771929824561403
                     }
                   }
                 }
@@ -37375,7 +39958,7 @@ window.lunrData = {
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6329113924050633
+                    "tf": 0.6622516556291391
                   }
                 }
               }
@@ -37430,598 +40013,410 @@ window.lunrData = {
               "OutputChannel.html#setRegisteredParameter": {
                 "ref": "OutputChannel.html#setRegisteredParameter",
                 "tf": 0.3289473684210526
-              }
-            }
-          }
-        },
-        "v": {
-          "3": {
-            "docs": {},
-            ".": {
-              "0": {
-                "docs": {
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  }
-                }
               },
-              "docs": {},
-              "x": {
-                "docs": {
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.282051282051282
-                  },
-                  "WebMidi.html#guessNoteNumber": {
-                    "ref": "WebMidi.html#guessNoteNumber",
-                    "tf": 1.1363636363636365
-                  }
-                }
-              }
-            }
-          },
-          "7": {
-            "7": {
-              "docs": {
-                "WebMidi.html#enable": {
-                  "ref": "WebMidi.html#enable",
-                  "tf": 0.31645569620253167
-                }
+              "Utilities.html#getMessage": {
+                "ref": "Utilities.html#getMessage",
+                "tf": 4.545454545454546
               }
             },
-            "docs": {}
+            "p": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "s": {
+                        "docs": {
+                          "Utilities.html#getFragments": {
+                            "ref": "Utilities.html#getFragments",
+                            "tf": 2.7777777777777777
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
-          "docs": {},
-          "o": {
+          "t": {
             "docs": {},
             "i": {
               "docs": {},
-              "c": {
+              "l": {
                 "docs": {
-                  "Input.html#addListener": {
-                    "ref": "Input.html#addListener",
-                    "tf": 0.29411764705882354
-                  },
-                  "Input.html#addOneTimeListener": {
-                    "ref": "Input.html#addOneTimeListener",
-                    "tf": 0.29069767441860467
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                    "tf": 1.4285714285714286
+                  "Utilities.html": {
+                    "ref": "Utilities.html",
+                    "tf": 1907.6923076923076
                   }
-                }
-              }
-            },
-            "l": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "r": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "Output.html#sendControlChange": {
-                                  "ref": "Output.html#sendControlChange",
-                                  "tf": 0.267379679144385
-                                },
-                                "OutputChannel.html#sendControlChange": {
-                                  "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.26455026455026454
-                                },
-                                "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                                  "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                                  "tf": 0.4032258064516129
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "f": {
-                      "docs": {},
-                      "i": {
-                        "docs": {},
-                        "n": {
-                          "docs": {
-                            "Output.html#sendControlChange": {
-                              "ref": "Output.html#sendControlChange",
-                              "tf": 0.267379679144385
-                            },
-                            "OutputChannel.html#sendControlChange": {
-                              "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.26455026455026454
-                            },
-                            "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                              "tf": 0.4032258064516129
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "a": {
-            "docs": {},
-            "l": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "d": {
-                  "docs": {
-                    "InputChannel.html#getCcNameByNumber": {
-                      "ref": "InputChannel.html#getCcNameByNumber",
-                      "tf": 2.272727272727273
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 0.43478260869565216
-                    },
-                    "Output.html#sendNoteOff": {
-                      "ref": "Output.html#sendNoteOff",
-                      "tf": 0.8333333333333334
-                    },
-                    "Output.html#sendNoteOn": {
-                      "ref": "Output.html#sendNoteOn",
-                      "tf": 0.6024096385542169
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendNoteOff": {
-                      "ref": "OutputChannel.html#sendNoteOff",
-                      "tf": 0.847457627118644
-                    },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.6097560975609756
-                    },
-                    "OutputChannel.html#setKeyAftertouch": {
-                      "ref": "OutputChannel.html#setKeyAftertouch",
-                      "tf": 1.1904761904761905
-                    },
-                    "WebMidi.html#MIDI_INTERFACE_EVENTS": {
-                      "ref": "WebMidi.html#MIDI_INTERFACE_EVENTS",
-                      "tf": 8.333333333333332
-                    },
-                    "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                      "tf": 0.5617977528089888
-                    },
-                    "WebMidi.html#validation": {
-                      "ref": "WebMidi.html#validation",
-                      "tf": 704.8387096774194
-                    },
-                    "WebMidi.html#convertToTimestamp": {
-                      "ref": "WebMidi.html#convertToTimestamp",
-                      "tf": 1.6666666666666667
-                    },
-                    "WebMidi.html#getNoteNumberByName": {
-                      "ref": "WebMidi.html#getNoteNumberByName",
-                      "tf": 0.5681818181818182
-                    },
-                    "WebMidi.html#getNoteObject": {
-                      "ref": "WebMidi.html#getNoteObject",
-                      "tf": 1.3888888888888888
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.282051282051282
-                    },
-                    "WebMidi.html#guessNoteNumber": {
-                      "ref": "WebMidi.html#guessNoteNumber",
-                      "tf": 1.1363636363636365
-                    },
-                    "WebMidi.html#sanitizeChannels": {
-                      "ref": "WebMidi.html#sanitizeChannels",
-                      "tf": 1.3888888888888888
-                    }
-                  }
-                }
-              },
-              "u": {
-                "docs": {
-                  "Output.html#playNote": {
-                    "ref": "Output.html#playNote",
-                    "tf": 0.8695652173913043
-                  },
-                  "Output.html#resetAllControllers": {
-                    "ref": "Output.html#resetAllControllers",
-                    "tf": 3.8461538461538463
-                  },
-                  "Output.html#sendChannelMode": {
-                    "ref": "Output.html#sendChannelMode",
-                    "tf": 21.5625
-                  },
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 20
-                  },
-                  "Output.html#sendNoteOff": {
-                    "ref": "Output.html#sendNoteOff",
-                    "tf": 1.6666666666666667
-                  },
-                  "Output.html#sendNoteOn": {
-                    "ref": "Output.html#sendNoteOn",
-                    "tf": 1.2048192771084338
-                  },
-                  "Output.html#sendSysex": {
-                    "ref": "Output.html#sendSysex",
-                    "tf": 0.33333333333333337
-                  },
-                  "Output.html#sendTimecodeQuarterFrame": {
-                    "ref": "Output.html#sendTimecodeQuarterFrame",
-                    "tf": 25
-                  },
-                  "Output.html#setMasterTuning": {
-                    "ref": "Output.html#setMasterTuning",
-                    "tf": 27.272727272727273
-                  },
-                  "Output.html#setNonRegisteredParameter": {
-                    "ref": "Output.html#setNonRegisteredParameter",
-                    "tf": 3.278688524590164
-                  },
-                  "Output.html#setPitchBend": {
-                    "ref": "Output.html#setPitchBend",
-                    "tf": 25
-                  },
-                  "Output.html#setRegisteredParameter": {
-                    "ref": "Output.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "Output.html#setSong": {
-                    "ref": "Output.html#setSong",
-                    "tf": 25
-                  },
-                  "Output.html#setSongPosition": {
-                    "ref": "Output.html#setSongPosition",
-                    "tf": 27.63157894736842
-                  },
-                  "Output.html#setTuningBank": {
-                    "ref": "Output.html#setTuningBank",
-                    "tf": 25
-                  },
-                  "Output.html#setTuningProgram": {
-                    "ref": "Output.html#setTuningProgram",
-                    "tf": 25
-                  },
-                  "OutputChannel.html#playNote": {
-                    "ref": "OutputChannel.html#playNote",
-                    "tf": 0.9259259259259258
-                  },
-                  "OutputChannel.html#resetAllControllers": {
-                    "ref": "OutputChannel.html#resetAllControllers",
-                    "tf": 3.8461538461538463
-                  },
-                  "OutputChannel.html#sendChannelMode": {
-                    "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 21.612903225806452
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 20
-                  },
-                  "OutputChannel.html#sendNoteOff": {
-                    "ref": "OutputChannel.html#sendNoteOff",
-                    "tf": 1.694915254237288
-                  },
-                  "OutputChannel.html#sendNoteOn": {
-                    "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 1.2195121951219512
-                  },
-                  "OutputChannel.html#setKeyAftertouch": {
-                    "ref": "OutputChannel.html#setKeyAftertouch",
-                    "tf": 2.380952380952381
-                  },
-                  "OutputChannel.html#setMasterTuning": {
-                    "ref": "OutputChannel.html#setMasterTuning",
-                    "tf": 27.38095238095238
-                  },
-                  "OutputChannel.html#setNonRegisteredParameter": {
-                    "ref": "OutputChannel.html#setNonRegisteredParameter",
-                    "tf": 3.8461538461538463
-                  },
-                  "OutputChannel.html#setPitchBend": {
-                    "ref": "OutputChannel.html#setPitchBend",
-                    "tf": 25
-                  },
-                  "OutputChannel.html#setRegisteredParameter": {
-                    "ref": "OutputChannel.html#setRegisteredParameter",
-                    "tf": 0.6578947368421052
-                  },
-                  "OutputChannel.html#setTuningBank": {
-                    "ref": "OutputChannel.html#setTuningBank",
-                    "tf": 25
-                  },
-                  "OutputChannel.html#setTuningProgram": {
-                    "ref": "OutputChannel.html#setTuningProgram",
-                    "tf": 25
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
-                    "tf": 2.1739130434782608
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
-                    "tf": 1.4285714285714286
-                  },
-                  "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
-                    "tf": 0.4032258064516129
-                  },
-                  "WebMidi.html#MIDI_NRPN_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
-                    "tf": 2
-                  },
-                  "WebMidi.html#MIDI_REGISTERED_PARAMETER": {
-                    "ref": "WebMidi.html#MIDI_REGISTERED_PARAMETER",
-                    "tf": 0.78125
-                  },
-                  "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
-                    "tf": 1.1235955056179776
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 1.1363636363636365
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 2.564102564102564
-                  },
-                  "WebMidi.html#getValidNoteArray": {
-                    "ref": "WebMidi.html#getValidNoteArray",
-                    "tf": 1.5151515151515151
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "u": {
-                    "docs": {
-                      "WebMidi.html#time": {
-                        "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "e": {
-            "docs": {},
-            "l": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "c": {
-                  "docs": {
-                    "Note.html#attack": {
-                      "ref": "Note.html#attack",
-                      "tf": 6.25
-                    },
-                    "Note.html#rawAttack": {
-                      "ref": "Note.html#rawAttack",
-                      "tf": 6.25
-                    },
-                    "Note.html#rawRelease": {
-                      "ref": "Note.html#rawRelease",
-                      "tf": 6.25
-                    },
-                    "Note.html#release": {
-                      "ref": "Note.html#release",
-                      "tf": 6.25
-                    },
-                    "Output.html#playNote": {
-                      "ref": "Output.html#playNote",
-                      "tf": 0.8695652173913043
-                    },
-                    "Output.html#sendNoteOff": {
-                      "ref": "Output.html#sendNoteOff",
-                      "tf": 0.8333333333333334
-                    },
-                    "Output.html#sendNoteOn": {
-                      "ref": "Output.html#sendNoteOn",
-                      "tf": 1.2048192771084338
-                    },
-                    "OutputChannel.html#playNote": {
-                      "ref": "OutputChannel.html#playNote",
-                      "tf": 0.9259259259259258
-                    },
-                    "OutputChannel.html#sendNoteOff": {
-                      "ref": "OutputChannel.html#sendNoteOff",
-                      "tf": 0.847457627118644
-                    },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 1.2195121951219512
-                    }
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "s": {
-                "docs": {},
+                },
                 "i": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "n": {
-                      "docs": {
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.33333333333333337
-                        },
-                        "Output.html#setProgram": {
-                          "ref": "Output.html#setProgram",
-                          "tf": 2.941176470588235
-                        },
-                        "Output.html#setSong": {
-                          "ref": "Output.html#setSong",
-                          "tf": 3.3333333333333335
-                        },
-                        "Output.html#setTuningBank": {
-                          "ref": "Output.html#setTuningBank",
-                          "tf": 2.5
-                        },
-                        "Output.html#setTuningProgram": {
-                          "ref": "Output.html#setTuningProgram",
-                          "tf": 2.5
-                        },
-                        "OutputChannel.html#setProgram": {
-                          "ref": "OutputChannel.html#setProgram",
-                          "tf": 3.125
-                        },
-                        "OutputChannel.html#setTuningBank": {
-                          "ref": "OutputChannel.html#setTuningBank",
-                          "tf": 2.5
-                        },
-                        "OutputChannel.html#setTuningProgram": {
-                          "ref": "OutputChannel.html#setTuningProgram",
-                          "tf": 2.5
-                        },
-                        "WebMidi.html": {
-                          "ref": "WebMidi.html",
-                          "tf": 1.4925373134328357
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "i": {
-            "docs": {},
-            "a": {
-              "docs": {
-                "Output.html#playNote": {
-                  "ref": "Output.html#playNote",
-                  "tf": 0.43478260869565216
-                },
-                "Output.html#sendNoteOff": {
-                  "ref": "Output.html#sendNoteOff",
-                  "tf": 0.8333333333333334
-                },
-                "Output.html#sendNoteOn": {
-                  "ref": "Output.html#sendNoteOn",
-                  "tf": 0.6024096385542169
-                },
-                "OutputChannel.html#playNote": {
-                  "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
-                },
-                "OutputChannel.html#sendNoteOff": {
-                  "ref": "OutputChannel.html#sendNoteOff",
-                  "tf": 0.847457627118644
-                },
-                "OutputChannel.html#sendNoteOn": {
-                  "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.6097560975609756
-                },
-                "WebMidi.html#sysexEnabled": {
-                  "ref": "WebMidi.html#sysexEnabled",
-                  "tf": 4.166666666666666
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "w": {
-                "docs": {
-                  "Output.html#sendControlChange": {
-                    "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
-                  },
-                  "OutputChannel.html#sendControlChange": {
-                    "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
-                  }
-                }
-              }
-            },
-            "b": {
-              "docs": {},
-              "r": {
-                "docs": {},
-                "a": {
                   "docs": {},
                   "t": {
                     "docs": {},
-                    "o": {
-                      "docs": {
-                        "Output.html#setNonRegisteredParameter": {
-                          "ref": "Output.html#setNonRegisteredParameter",
-                          "tf": 0.819672131147541
-                        },
-                        "OutputChannel.html#setNonRegisteredParameter": {
-                          "ref": "OutputChannel.html#setNonRegisteredParameter",
-                          "tf": 0.9615384615384616
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "_": {
-          "docs": {},
-          "p": {
-            "docs": {},
-            "a": {
-              "docs": {},
-              "r": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "e": {
+                    "i": {
                       "docs": {},
-                      "v": {
-                        "docs": {
-                          "InputChannel.html#_parseEvent": {
-                            "ref": "InputChannel.html#_parseEvent",
-                            "tf": 683.3333333333334
+                      "e": {
+                        "docs": {},
+                        "s": {
+                          "docs": {},
+                          "#": {
+                            "docs": {},
+                            "b": {
+                              "docs": {},
+                              "u": {
+                                "docs": {},
+                                "i": {
+                                  "docs": {},
+                                  "l": {
+                                    "docs": {},
+                                    "d": {
+                                      "docs": {},
+                                      "n": {
+                                        "docs": {},
+                                        "o": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {
+                                              "Utilities.html#buildNote": {
+                                                "ref": "Utilities.html#buildNote",
+                                                "tf": 1150
+                                              }
+                                            },
+                                            "e": {
+                                              "docs": {},
+                                              "a": {
+                                                "docs": {},
+                                                "r": {
+                                                  "docs": {},
+                                                  "r": {
+                                                    "docs": {},
+                                                    "a": {
+                                                      "docs": {},
+                                                      "y": {
+                                                        "docs": {
+                                                          "Utilities.html#buildNoteArray": {
+                                                            "ref": "Utilities.html#buildNoteArray",
+                                                            "tf": 1150
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "g": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "f": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {},
+                                      "a": {
+                                        "docs": {},
+                                        "g": {
+                                          "docs": {
+                                            "Utilities.html#getFragments": {
+                                              "ref": "Utilities.html#getFragments",
+                                              "tf": 1150
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "m": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "s": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {},
+                                          "a": {
+                                            "docs": {},
+                                            "g": {
+                                              "docs": {
+                                                "Utilities.html#getMessage": {
+                                                  "ref": "Utilities.html#getMessage",
+                                                  "tf": 1150
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "u": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "s": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {},
+                                      "n": {
+                                        "docs": {},
+                                        "o": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "n": {
+                                                "docs": {},
+                                                "u": {
+                                                  "docs": {},
+                                                  "m": {
+                                                    "docs": {},
+                                                    "b": {
+                                                      "docs": {
+                                                        "Utilities.html#guessNoteNumber": {
+                                                          "ref": "Utilities.html#guessNoteNumber",
+                                                          "tf": 1150
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "o": {
+                              "docs": {},
+                              "f": {
+                                "docs": {},
+                                "f": {
+                                  "docs": {},
+                                  "s": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {},
+                                        "n": {
+                                          "docs": {},
+                                          "u": {
+                                            "docs": {},
+                                            "m": {
+                                              "docs": {},
+                                              "b": {
+                                                "docs": {
+                                                  "Utilities.html#offsetNumber": {
+                                                    "ref": "Utilities.html#offsetNumber",
+                                                    "tf": 1150
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "s": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "n": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "t": {
+                                      "docs": {},
+                                      "i": {
+                                        "docs": {},
+                                        "z": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "c": {
+                                              "docs": {},
+                                              "h": {
+                                                "docs": {},
+                                                "a": {
+                                                  "docs": {},
+                                                  "n": {
+                                                    "docs": {},
+                                                    "n": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "l": {
+                                                          "docs": {
+                                                            "Utilities.html#sanitizeChannels": {
+                                                              "ref": "Utilities.html#sanitizeChannels",
+                                                              "tf": 1150
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "t": {
+                              "docs": {},
+                              "o": {
+                                "7": {
+                                  "docs": {},
+                                  "b": {
+                                    "docs": {},
+                                    "i": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {
+                                          "Utilities.html#to7Bit": {
+                                            "ref": "Utilities.html#to7Bit",
+                                            "tf": 1150
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "docs": {},
+                                "n": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {},
+                                      "m": {
+                                        "docs": {
+                                          "Utilities.html#toNormalized": {
+                                            "ref": "Utilities.html#toNormalized",
+                                            "tf": 1150
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "t": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "i": {
+                                          "docs": {},
+                                          "d": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "n": {
+                                                "docs": {},
+                                                "t": {
+                                                  "docs": {},
+                                                  "i": {
+                                                    "docs": {},
+                                                    "f": {
+                                                      "docs": {},
+                                                      "i": {
+                                                        "docs": {
+                                                          "Utilities.html#toNoteIdentifier": {
+                                                            "ref": "Utilities.html#toNoteIdentifier",
+                                                            "tf": 1150
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "n": {
+                                          "docs": {},
+                                          "u": {
+                                            "docs": {},
+                                            "m": {
+                                              "docs": {},
+                                              "b": {
+                                                "docs": {
+                                                  "Utilities.html#toNoteNumber": {
+                                                    "ref": "Utilities.html#toNoteNumber",
+                                                    "tf": 1150
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "t": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "m": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "m": {
+                                                "docs": {},
+                                                "p": {
+                                                  "docs": {
+                                                    "Utilities.html#toTimestamp": {
+                                                      "ref": "Utilities.html#toTimestamp",
+                                                      "tf": 1150
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -38088,10 +40483,6 @@ window.lunrData = {
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
                     "tf": 0.8064516129032258
-                  },
-                  "WebMidi.html#getNoteNumberByName": {
-                    "ref": "WebMidi.html#getNoteNumberByName",
-                    "tf": 0.5681818181818182
                   }
                 }
               }
@@ -38099,10 +40490,11 @@ window.lunrData = {
           }
         }
       },
-      "length": 4373
+      "length": 4712
     },
     "corpusTokens": [
       "0",
+      "0.5",
       "0x00",
       "0x01",
       "0x02",
@@ -38167,7 +40559,7 @@ window.lunrData = {
       "19",
       "2",
       "2.0",
-      "2020",
+      "2021",
       "225",
       "24",
       "240",
@@ -38239,10 +40631,10 @@ window.lunrData = {
       "97",
       "98",
       "99",
-      "_parseev",
       "abb4",
       "abov",
       "access",
+      "accident",
       "accord",
       "accur",
       "accuraci",
@@ -38266,7 +40658,8 @@ window.lunrData = {
       "angl",
       "anoth",
       "api",
-      "april",
+      "appli",
+      "appropri",
       "argument",
       "array",
       "array.&lt;inputchannel&gt",
@@ -38276,6 +40669,7 @@ window.lunrData = {
       "array.&lt;string&gt",
       "assign",
       "associ",
+      "assum",
       "asynchron",
       "attack",
       "author",
@@ -38285,6 +40679,7 @@ window.lunrData = {
       "azimuthangl",
       "b",
       "b##6",
+      "back",
       "backward",
       "balancecoars",
       "balancefin",
@@ -38308,14 +40703,19 @@ window.lunrData = {
       "breathcontrollercoars",
       "breathcontrollerfin",
       "bright",
+      "broken",
       "browser",
+      "buildnot",
+      "buildnotearray",
       "built",
       "byte",
       "c",
+      "c#4",
       "c3",
       "c4",
       "c5",
       "c6",
+      "calcul",
       "call",
       "callback",
       "carefulli",
@@ -38346,11 +40746,13 @@ window.lunrData = {
       "coars",
       "code",
       "combin",
+      "come",
       "command",
       "common",
       "commonj",
       "compat",
       "complet",
+      "compos",
       "confirm",
       "connect",
       "consid",
@@ -38366,13 +40768,15 @@ window.lunrData = {
       "controlchang",
       "conveni",
       "convert",
-      "converttotimestamp",
       "creat",
       "cu",
       "current",
       "custom",
       "d",
+      "d3",
       "data",
+      "data1",
+      "data2",
       "databuttondecr",
       "databuttonincr",
       "dataentrycoars",
@@ -38402,6 +40806,7 @@ window.lunrData = {
       "display",
       "distanc",
       "distanceratio",
+      "divid",
       "djipev",
       "do",
       "document",
@@ -38411,7 +40816,6 @@ window.lunrData = {
       "down",
       "due",
       "durat",
-      "e",
       "e.g",
       "each",
       "easier",
@@ -38443,6 +40847,7 @@ window.lunrData = {
       "even",
       "event",
       "eventemitt",
+      "exactli",
       "exampl",
       "exclus",
       "execut",
@@ -38452,6 +40857,7 @@ window.lunrData = {
       "expressioncoars",
       "expressionfin",
       "extend",
+      "extern",
       "extra",
       "f",
       "f#4",
@@ -38473,6 +40879,7 @@ window.lunrData = {
       "form",
       "format",
       "found",
+      "fragment",
       "frame",
       "free",
       "fulfil",
@@ -38485,6 +40892,7 @@ window.lunrData = {
       "g4",
       "g8",
       "gain",
+      "gb",
       "gb7",
       "gener",
       "generalpurposebutton1",
@@ -38498,20 +40906,21 @@ window.lunrData = {
       "get",
       "getccnamebynumb",
       "getchannelmodebynumb",
+      "getfrag",
       "getinputbyid",
       "getinputbynam",
       "getlisten",
-      "getnotenumberbynam",
-      "getnoteobject",
+      "getmessag",
       "getoctav",
+      "getoffsetnumb",
       "getoutputbyid",
       "getoutputbynam",
-      "getvalidnotearray",
       "given",
       "global",
       "go",
       "good",
       "googl",
+      "greater",
       "gs",
       "gt",
       "guessnotenumb",
@@ -38536,7 +40945,6 @@ window.lunrData = {
       "implement",
       "import",
       "improv",
-      "inbound",
       "includ",
       "inclus",
       "incom",
@@ -38544,6 +40952,7 @@ window.lunrData = {
       "incrementregisteredparamet",
       "index",
       "indic",
+      "infin",
       "info",
       "input",
       "input#addlisten",
@@ -38556,6 +40965,7 @@ window.lunrData = {
       "input#id",
       "input#manufactur",
       "input#nam",
+      "input#octaveoffset",
       "input#open",
       "input#removelisten",
       "input#st",
@@ -38563,11 +40973,12 @@ window.lunrData = {
       "input'",
       "input.open",
       "inputchannel",
-      "inputchannel#_parseev",
+      "inputchannel#destroy",
       "inputchannel#getccnamebynumb",
       "inputchannel#getchannelmodebynumb",
       "inputchannel#input",
       "inputchannel#numb",
+      "inputchannel#octaveoffset",
       "input|fals",
       "insid",
       "instal",
@@ -38597,10 +41008,12 @@ window.lunrData = {
       "legatoped",
       "length",
       "less",
+      "letter",
       "level",
       "lever",
       "librari",
       "limit",
+      "link",
       "list",
       "list:class",
       "listen",
@@ -38612,7 +41025,6 @@ window.lunrData = {
       "look",
       "lsb",
       "lt;async&gt",
-      "lt;protected&gt",
       "lt;readonli",
       "lt;readonly&gt",
       "make",
@@ -38626,6 +41038,7 @@ window.lunrData = {
       "maximumdist",
       "maximumdistancegain",
       "mean",
+      "meant",
       "member",
       "messag",
       "method",
@@ -38657,6 +41070,8 @@ window.lunrData = {
       "ms",
       "msb",
       "multipl",
+      "multipli",
+      "music",
       "mute",
       "name",
       "narrow",
@@ -38674,15 +41089,18 @@ window.lunrData = {
       "nonregisteredparameterfin",
       "notat",
       "note",
+      "note#accident",
       "note#attack",
       "note#dur",
+      "note#getoffsetnumb",
+      "note#identifi",
       "note#nam",
       "note#numb",
       "note#octav",
       "note#rawattack",
       "note#rawreleas",
       "note#releas",
-      "note'",
+      "note(",
       "noteoff",
       "noteon",
       "novat",
@@ -38703,6 +41121,7 @@ window.lunrData = {
       "octaveoffset",
       "offer",
       "offset",
+      "offsetnumb",
       "old/item/t",
       "omni",
       "omnimodeoff",
@@ -38719,7 +41138,6 @@ window.lunrData = {
       "other",
       "otherwis",
       "out",
-      "outbound",
       "outgo",
       "output",
       "output#channel",
@@ -38732,6 +41150,7 @@ window.lunrData = {
       "output#incrementregisteredparamet",
       "output#manufactur",
       "output#nam",
+      "output#octaveoffset",
       "output#open",
       "output#playnot",
       "output#resetallcontrol",
@@ -38778,6 +41197,7 @@ window.lunrData = {
       "outputchannel#decrementregisteredparamet",
       "outputchannel#incrementregisteredparamet",
       "outputchannel#numb",
+      "outputchannel#octaveoffset",
       "outputchannel#output",
       "outputchannel#playnot",
       "outputchannel#resetallcontrol",
@@ -38816,6 +41236,7 @@ window.lunrData = {
       "paramet",
       "paramlsb",
       "parammsb",
+      "parent",
       "pars",
       "part",
       "pass",
@@ -38860,13 +41281,13 @@ window.lunrData = {
       "programchang",
       "project",
       "promis",
-      "promise.&lt;(void|*)&gt",
       "promise.&lt;input&gt",
       "promise.&lt;object&gt",
       "promise.&lt;output&gt",
       "promise.&lt;void&gt",
       "prompt",
       "proof",
+      "proper",
       "properti",
       "provid",
       "purpos",
@@ -38876,10 +41297,10 @@ window.lunrData = {
       "rarer",
       "rate",
       "ratio",
-      "raw",
       "rawattack",
       "rawreleas",
       "react",
+      "readi",
       "readm",
       "real",
       "reason",
@@ -38904,8 +41325,8 @@ window.lunrData = {
       "resolut",
       "resolv",
       "reson",
-      "respect",
       "respond",
+      "restrict",
       "result",
       "resum",
       "return",
@@ -38941,6 +41362,7 @@ window.lunrData = {
       "sendtunerequest",
       "sens",
       "sent",
+      "septemb",
       "serv",
       "set",
       "setchannelaftertouch",
@@ -38965,10 +41387,12 @@ window.lunrData = {
       "sign",
       "silenc",
       "silent",
+      "similar",
       "simpler",
       "simpli",
       "simplifi",
       "singl",
+      "singleton",
       "smaller",
       "softped",
       "softwar",
@@ -38994,6 +41418,7 @@ window.lunrData = {
       "standard",
       "start",
       "state",
+      "static",
       "statu",
       "still",
       "stop",
@@ -39001,6 +41426,7 @@ window.lunrData = {
       "stream",
       "string",
       "string|fals",
+      "string|undefin",
       "sub",
       "submodul",
       "subsystem",
@@ -39010,6 +41436,7 @@ window.lunrData = {
       "suggest",
       "sum",
       "summari",
+      "suppli",
       "support",
       "suspendev",
       "sustenutoped",
@@ -39022,6 +41449,7 @@ window.lunrData = {
       "system",
       "tabl",
       "talk",
+      "target",
       "tell",
       "termin",
       "test",
@@ -39029,14 +41457,20 @@ window.lunrData = {
       "therefor",
       "thoroughli",
       "though",
+      "three",
       "through",
       "throughout",
-      "throw",
       "thrown",
       "ti",
       "time",
       "timecod",
       "timestamp",
+      "to7bit",
+      "token",
+      "tonorm",
+      "tonoteidentifi",
+      "tonotenumb",
+      "totimestamp",
       "toward",
       "tremololevel",
       "tri",
@@ -39059,13 +41493,28 @@ window.lunrData = {
       "unknownsystemmessag",
       "unless",
       "unlink",
+      "unnecessari",
       "unsign",
       "until",
       "up",
+      "uppercas",
       "us",
       "usag",
       "user",
       "usual",
+      "util",
+      "utilities#buildnot",
+      "utilities#buildnotearray",
+      "utilities#getfrag",
+      "utilities#getmessag",
+      "utilities#guessnotenumb",
+      "utilities#offsetnumb",
+      "utilities#sanitizechannel",
+      "utilities#to7bit",
+      "utilities#tonorm",
+      "utilities#tonoteidentifi",
+      "utilities#tonotenumb",
+      "utilities#totimestamp",
       "v3.0",
       "v3.x",
       "v77",
@@ -39086,18 +41535,14 @@ window.lunrData = {
       "way",
       "web",
       "webmidi",
-      "webmidi#converttotimestamp",
+      "webmidi#default",
       "webmidi#dis",
       "webmidi#en",
       "webmidi#getinputbyid",
       "webmidi#getinputbynam",
-      "webmidi#getnotenumberbynam",
-      "webmidi#getnoteobject",
       "webmidi#getoctav",
       "webmidi#getoutputbyid",
       "webmidi#getoutputbynam",
-      "webmidi#getvalidnotearray",
-      "webmidi#guessnotenumb",
       "webmidi#input",
       "webmidi#interfac",
       "webmidi#isbrows",
@@ -39113,11 +41558,11 @@ window.lunrData = {
       "webmidi#not",
       "webmidi#octaveoffset",
       "webmidi#output",
-      "webmidi#sanitizechannel",
       "webmidi#support",
       "webmidi#sysexen",
       "webmidi#tim",
       "webmidi#valid",
+      "webmidi.default",
       "webmidi.en",
       "webmidi.enable().then(port",
       "webmidi.enable({sysex",
@@ -39243,6 +41688,16 @@ window.lunrData = {
       "summary": "",
       "description": "Name of the MIDI input"
     },
+    "Input.html#octaveOffset": {
+      "id": "Input.html#octaveOffset",
+      "kind": "member",
+      "title": "octaveOffset :number",
+      "longname": "Input#octaveOffset",
+      "name": "octaveOffset",
+      "tags": "Input#octaveOffset octaveOffset",
+      "summary": "",
+      "description": "An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). If, for example, octaveOffset is set to 2, MIDI note number 60 will be reported as C6. If octaveOffset is set to -1, MIDI note number 60 will be reported as C3. Note that this value is combined with the global offset value defined on the WebMidi object (if any)."
+    },
     "Input.html#state": {
       "id": "Input.html#state",
       "kind": "member",
@@ -39286,7 +41741,7 @@ window.lunrData = {
     "Input.html#close": {
       "id": "Input.html#close",
       "kind": "function",
-      "title": "&lt;async&gt; close() → {Promise.&lt;(void|*)&gt;}",
+      "title": "&lt;async&gt; close() → {Promise.&lt;Input&gt;}",
       "longname": "Input#close",
       "name": "close",
       "tags": "Input#close close",
@@ -39321,7 +41776,7 @@ window.lunrData = {
       "name": "open",
       "tags": "Input#open open",
       "summary": "",
-      "description": "Opens the input for usage."
+      "description": "Opens the input for usage. This is usually unnecessary as the port is open automatically when WebMidi is enabled."
     },
     "Input.html#removeListener": {
       "id": "Input.html#removeListener",
@@ -39341,7 +41796,7 @@ window.lunrData = {
       "name": "InputChannel",
       "tags": "InputChannel",
       "summary": "",
-      "description": "The InputChannel class represents a single input MIDI channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
+      "description": "The InputChannel class represents an input MIDI channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
       "body": ""
     },
     "InputChannel.html#input": {
@@ -39362,22 +41817,32 @@ window.lunrData = {
       "name": "number",
       "tags": "InputChannel#number number",
       "summary": "",
-      "description": "This channel's number (1-16)"
+      "description": "This channel's MIDI number (1-16)"
     },
-    "InputChannel.html#_parseEvent": {
-      "id": "InputChannel.html#_parseEvent",
-      "kind": "function",
-      "title": "&lt;protected&gt; _parseEvent( e )",
-      "longname": "InputChannel#_parseEvent",
-      "name": "_parseEvent",
-      "tags": "InputChannel#_parseEvent _parseEvent",
+    "InputChannel.html#octaveOffset": {
+      "id": "InputChannel.html#octaveOffset",
+      "kind": "member",
+      "title": "octaveOffset :number",
+      "longname": "InputChannel#octaveOffset",
+      "name": "octaveOffset",
+      "tags": "InputChannel#octaveOffset octaveOffset",
       "summary": "",
-      "description": ""
+      "description": "An integer to offset the reported octave of incoming note-specific messages (noteon, noteoff and keyaftertouch). By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). If, for example, octaveOffset is set to 2, MIDI note number 60 will be reported as C6. If octaveOffset is set to -1, MIDI note number 60 will be reported as C3. Note that this value is combined with the global offset value defined on the WebMidi object and with the value defined on the parent Input object."
+    },
+    "InputChannel.html#destroy": {
+      "id": "InputChannel.html#destroy",
+      "kind": "function",
+      "title": "destroy()",
+      "longname": "InputChannel#destroy",
+      "name": "destroy",
+      "tags": "InputChannel#destroy destroy",
+      "summary": "",
+      "description": "Destroys the Input by removing all listeners and severing the link with the MIDI subsystem's input."
     },
     "InputChannel.html#getCcNameByNumber": {
       "id": "InputChannel.html#getCcNameByNumber",
       "kind": "function",
-      "title": "getCcNameByNumber( number ) → {string|false}",
+      "title": "getCcNameByNumber( number ) → {string|undefined}",
       "longname": "InputChannel#getCcNameByNumber",
       "name": "getCcNameByNumber",
       "tags": "InputChannel#getCcNameByNumber getCcNameByNumber",
@@ -39402,8 +41867,18 @@ window.lunrData = {
       "name": "Note",
       "tags": "Note",
       "summary": "",
-      "description": "The Note class represents a single note to be played. The Note can be played on a single channel by using OutputChannel.playNote() or on multiple channels at once by using Output.playNote(). If the note's duration property is set, the note will be stopped at the end of the duration. If no duration is set, it will play until it is explicitly stopped using OutputChannel.stopNote() or Output.stopNote().",
+      "description": "The Note class represents a single musical note such as \"D3\", \"G#4\", \"F-1\", \"Gb7\", etc. Note objects can be played back on a single channel by calling OutputChannel.playNote(). A note can also be played back on the multiple channels of an output by using Output.playNote(). The note has attack and release velocities set at 0.5 by default. These can be changed by passing in the appropriate option. It is also possible to set a system-wide default for attack and release velocities by using the WebMidi.defaults property. The note may have a duration. If it does, playback will be stopped when the duration has elapsed by automatically sending a noteoff event. By default, the duration is set to Infinity. In this case, it will never stop playing unless explicitly stopped by calling a method such as OutputChannel.stopNote(), Output.stopNote() or similar.",
       "body": ""
+    },
+    "Note.html#accidental": {
+      "id": "Note.html#accidental",
+      "kind": "member",
+      "title": "accidental :string",
+      "longname": "Note#accidental",
+      "name": "accidental",
+      "tags": "Note#accidental accidental",
+      "summary": "",
+      "description": "The accidental (#, ##, b or bb) of the note"
     },
     "Note.html#attack": {
       "id": "Note.html#attack",
@@ -39413,7 +41888,7 @@ window.lunrData = {
       "name": "attack",
       "tags": "Note#attack attack",
       "summary": "",
-      "description": "The attack velocity of the note as a decimal number between 0 and 1."
+      "description": "The attack velocity of the note as an integer between 0 and 127."
     },
     "Note.html#duration": {
       "id": "Note.html#duration",
@@ -39425,6 +41900,16 @@ window.lunrData = {
       "summary": "",
       "description": "The duration of the note as a positive decimal number representing the number of milliseconds that the note should play for."
     },
+    "Note.html#identifier": {
+      "id": "Note.html#identifier",
+      "kind": "member",
+      "title": "identifier :string",
+      "longname": "Note#identifier",
+      "name": "identifier",
+      "tags": "Note#identifier identifier",
+      "summary": "",
+      "description": "The name, optional accidental and octave of the note, as a string."
+    },
     "Note.html#name": {
       "id": "Note.html#name",
       "kind": "member",
@@ -39433,7 +41918,7 @@ window.lunrData = {
       "name": "name",
       "tags": "Note#name name",
       "summary": "",
-      "description": "The name of the note with the octave number (\"C3\", \"G#4\", \"F-1\", \"Db7\", etc.)"
+      "description": "The name (letter) of the note"
     },
     "Note.html#number": {
       "id": "Note.html#number",
@@ -39443,7 +41928,7 @@ window.lunrData = {
       "name": "number",
       "tags": "Note#number number",
       "summary": "",
-      "description": "The MIDI note number as an integer between 0 and 127"
+      "description": "The MIDI number of the note. This number is derived from the note identifier using C4 as a reference for middle C."
     },
     "Note.html#octave": {
       "id": "Note.html#octave",
@@ -39453,7 +41938,7 @@ window.lunrData = {
       "name": "octave",
       "tags": "Note#octave octave",
       "summary": "",
-      "description": "The octave of the note as an integer between -1 and 9."
+      "description": "The octave of the note"
     },
     "Note.html#rawAttack": {
       "id": "Note.html#rawAttack",
@@ -39463,7 +41948,7 @@ window.lunrData = {
       "name": "rawAttack",
       "tags": "Note#rawAttack rawAttack",
       "summary": "",
-      "description": "The raw attack velocity of the note as an integer between 0 and 127."
+      "description": "The attack velocity of the note as a positive integer between 0 and 127."
     },
     "Note.html#rawRelease": {
       "id": "Note.html#rawRelease",
@@ -39473,7 +41958,7 @@ window.lunrData = {
       "name": "rawRelease",
       "tags": "Note#rawRelease rawRelease",
       "summary": "",
-      "description": "The raw release velocity of the note as an integer between 0 and 127."
+      "description": "The release velocity of the note as a positive integer between 0 and 127."
     },
     "Note.html#release": {
       "id": "Note.html#release",
@@ -39483,7 +41968,17 @@ window.lunrData = {
       "name": "release",
       "tags": "Note#release release",
       "summary": "",
-      "description": "The release velocity of the note as a decimal number between 0 and 1."
+      "description": "The release velocity of the note as an integer between 0 and 127."
+    },
+    "Note.html#getOffsetNumber": {
+      "id": "Note.html#getOffsetNumber",
+      "kind": "function",
+      "title": "getOffsetNumber( offset ) → {number}",
+      "longname": "Note#getOffsetNumber",
+      "name": "getOffsetNumber",
+      "tags": "Note#getOffsetNumber getOffsetNumber",
+      "summary": "",
+      "description": "Returns a MIDI note number offset by the integer specified in the parameter. If the calculated value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If an invalid value is supplied, 0 will be used."
     },
     "Output.html": {
       "id": "Output.html",
@@ -39545,6 +42040,16 @@ window.lunrData = {
       "tags": "Output#name name",
       "summary": "",
       "description": "Name of the MIDI output"
+    },
+    "Output.html#octaveOffset": {
+      "id": "Output.html#octaveOffset",
+      "kind": "member",
+      "title": "octaveOffset :number",
+      "longname": "Output#octaveOffset",
+      "name": "octaveOffset",
+      "tags": "Output#octaveOffset octaveOffset",
+      "summary": "",
+      "description": "An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). Note that this value is combined with the global offset value defined on the WebMidi object (if any)."
     },
     "Output.html#state": {
       "id": "Output.html#state",
@@ -39984,7 +42489,7 @@ window.lunrData = {
       "name": "OutputChannel",
       "tags": "OutputChannel",
       "summary": "",
-      "description": "The OutputChannel class represents a single output channel (1-16) from an output device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 OutputChannel objects can be found inside the output's channels property. The OutputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
+      "description": "The OutputChannel class represents a single output channel (1-16) from an output device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 OutputChannel objects can be found inside the parent output's channels property. The OutputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
       "body": ""
     },
     "OutputChannel.html#number": {
@@ -39995,7 +42500,17 @@ window.lunrData = {
       "name": "number",
       "tags": "OutputChannel#number number",
       "summary": "",
-      "description": "The channel's number (1-16)"
+      "description": "This channel's MIDI number (1-16)"
+    },
+    "OutputChannel.html#octaveOffset": {
+      "id": "OutputChannel.html#octaveOffset",
+      "kind": "member",
+      "title": "octaveOffset :number",
+      "longname": "OutputChannel#octaveOffset",
+      "name": "octaveOffset",
+      "tags": "OutputChannel#octaveOffset octaveOffset",
+      "summary": "",
+      "description": "An integer to offset the reported octave of outgoing note-specific messages (noteon, noteoff and keyaftertouch). By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). Note that this value is combined with the global offset value defined on the WebMidi object and with the value defined on the parent Output object."
     },
     "OutputChannel.html#output": {
       "id": "OutputChannel.html#output",
@@ -40005,7 +42520,7 @@ window.lunrData = {
       "name": "output",
       "tags": "OutputChannel#output output",
       "summary": "",
-      "description": "The Output this channel belongs to"
+      "description": "The parent Output this channel belongs to"
     },
     "OutputChannel.html#decrementRegisteredParameter": {
       "id": "OutputChannel.html#decrementRegisteredParameter",
@@ -40035,7 +42550,7 @@ window.lunrData = {
       "name": "playNote",
       "tags": "OutputChannel#playNote playNote",
       "summary": "",
-      "description": "Plays a note or an array of notes on the channel. The first parameter is the note to play. It can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object The playNote() method sends a note on MIDI message for all specified notes on all specified channels. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
+      "description": "Plays a note or an array of notes on the channel. The first parameter is the note to play. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") The playNote() method sends a note on MIDI message for all specified notes on all specified channels. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
     },
     "OutputChannel.html#resetAllControllers": {
       "id": "OutputChannel.html#resetAllControllers",
@@ -40095,7 +42610,7 @@ window.lunrData = {
       "name": "sendNoteOn",
       "tags": "OutputChannel#sendNoteOn sendNoteOn",
       "summary": "",
-      "description": "Sends a note on message for the specified notes on the channel. The first parameter is the note. It can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the attack velocity defined in the Note objects has precedence over the one specified via the method's options parameter. Also, the duration is ignored. If you want to also send a note off message, use the playNote() method instead. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
+      "description": "Sends a note on message for the specified note(s) on the channel. The first parameter is the note. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") When passing a Note object or a note name, the octaveOffset will be applied. This is not the case when using a note number number. In this case, we assume you know exactly which MIDI note number should be sent out. The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the attack velocity defined in the Note objects has precedence over the one specified via the method's options parameter. Also, the duration is ignored. If you want to also send a note off message, use the playNote() method instead. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
     },
     "OutputChannel.html#setChannelAftertouch": {
       "id": "OutputChannel.html#setChannelAftertouch",
@@ -40110,12 +42625,12 @@ window.lunrData = {
     "OutputChannel.html#setKeyAftertouch": {
       "id": "OutputChannel.html#setKeyAftertouch",
       "kind": "function",
-      "title": "setKeyAftertouch( note [, pressure [, options ] ] ) → {OutputChannel}",
+      "title": "setKeyAftertouch( target [, pressure [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#setKeyAftertouch",
       "name": "setKeyAftertouch",
       "tags": "OutputChannel#setKeyAftertouch setKeyAftertouch",
       "summary": "",
-      "description": "Sends a MIDI key aftertouch message at the scheduled time. This is a key-specific aftertouch. For a channel-wide aftertouch message, use setChannelAftertouch(). The note can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object"
+      "description": "Sends a MIDI key aftertouch message at the scheduled time. This is a key-specific aftertouch. For a channel-wide aftertouch message, use setChannelAftertouch(). The key can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note identifier such as \"C3\", \"G#4\", \"F-1\", \"Db7\", etc."
     },
     "OutputChannel.html#setLocalControl": {
       "id": "OutputChannel.html#setLocalControl",
@@ -40267,6 +42782,137 @@ window.lunrData = {
       "summary": "",
       "description": "Sends an all sound off channel mode message. This will silence all sounds playing on that channel but will not prevent new sounds from being triggered."
     },
+    "Utilities.html": {
+      "id": "Utilities.html",
+      "kind": "class",
+      "title": "Utilities",
+      "longname": "Utilities",
+      "name": "Utilities",
+      "tags": "Utilities",
+      "summary": "",
+      "description": "The Utilities class contains general-purpose utility functions. The class is a singleton (its methode are static) and is not meant to be instantiated.",
+      "body": ""
+    },
+    "Utilities.html#buildNote": {
+      "id": "Utilities.html#buildNote",
+      "kind": "function",
+      "title": "buildNote( [ input [, options ] ] ) → {Note}",
+      "longname": "Utilities#buildNote",
+      "name": "buildNote",
+      "tags": "Utilities#buildNote buildNote",
+      "summary": "",
+      "description": "Converts the input parameter to a valid Note object. The input usually is an unsigned integer (0-127) or a note identifier (\"C4\", \"G#5\", etc.). If the input is a Note object, it will be returned as is. If the input is a note number or identifier, it is possible to specify options by providing the options parameter."
+    },
+    "Utilities.html#buildNoteArray": {
+      "id": "Utilities.html#buildNoteArray",
+      "kind": "function",
+      "title": "buildNoteArray( [ notes [, options ] ] ) → {Array.&lt;Note&gt;}",
+      "longname": "Utilities#buildNoteArray",
+      "name": "buildNoteArray",
+      "tags": "Utilities#buildNoteArray buildNoteArray",
+      "summary": "",
+      "description": "Converts an input value, which can be an unsigned integer (0-127), a note identifier, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and identifiers, a Note object is created with the options specified. An error will be thrown when encountering invalid input."
+    },
+    "Utilities.html#getFragments": {
+      "id": "Utilities.html#getFragments",
+      "kind": "function",
+      "title": "getFragments( identifier ) → {Object}",
+      "longname": "Utilities#getFragments",
+      "name": "getFragments",
+      "tags": "Utilities#getFragments getFragments",
+      "summary": "",
+      "description": "Given a proper note identifier (\"C#4\", \"Gb-1\", etc.), this method returns an object containing the fragments composing it (uppercase letter, accidental and octave)."
+    },
+    "Utilities.html#getMessage": {
+      "id": "Utilities.html#getMessage",
+      "kind": "function",
+      "title": "getMessage( data ) → {Object}",
+      "longname": "Utilities#getMessage",
+      "name": "getMessage",
+      "tags": "Utilities#getMessage getMessage",
+      "summary": "",
+      "description": "Returns an object inside which the three bytes have been broken up into command, data1 and data2 properties."
+    },
+    "Utilities.html#guessNoteNumber": {
+      "id": "Utilities.html#guessNoteNumber",
+      "kind": "function",
+      "title": "guessNoteNumber( input ) → {number|false}",
+      "longname": "Utilities#guessNoteNumber",
+      "name": "guessNoteNumber",
+      "tags": "Utilities#guessNoteNumber guessNoteNumber",
+      "summary": "",
+      "description": "Returns a valid MIDI note number (0-127) given the specified input. The input usually is a string containing a note identifier (\"C3\", \"F#4\", \"D-2\", \"G8\", etc.). If an integer between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings will be parsed for integer value, if possible. If the input is an identifier, the resulting note number is offset by the octaveOffset parameter. For example, if you pass in \"C4\" (note number 60) and the octaveOffset value is -2, the resulting MIDI note number will be 36."
+    },
+    "Utilities.html#offsetNumber": {
+      "id": "Utilities.html#offsetNumber",
+      "kind": "function",
+      "title": "offsetNumber( offset ) → {number}",
+      "longname": "Utilities#offsetNumber",
+      "name": "offsetNumber",
+      "tags": "Utilities#offsetNumber offsetNumber",
+      "summary": "",
+      "description": "Returns the supplied MIDI note number offset by the requested octave and semitone values. If the calculated value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used."
+    },
+    "Utilities.html#sanitizeChannels": {
+      "id": "Utilities.html#sanitizeChannels",
+      "kind": "function",
+      "title": "sanitizeChannels( [ channel ] ) → {Array}",
+      "longname": "Utilities#sanitizeChannels",
+      "name": "sanitizeChannels",
+      "tags": "Utilities#sanitizeChannels sanitizeChannels",
+      "summary": "",
+      "description": "Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a single integer or an array of integers. For backwards-compatibility, passing undefined as a parameter to this method results in all channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to integers between 1 and 16 are silently ignored."
+    },
+    "Utilities.html#to7Bit": {
+      "id": "Utilities.html#to7Bit",
+      "kind": "function",
+      "title": "to7Bit( value ) → {number}",
+      "longname": "Utilities#to7Bit",
+      "name": "to7Bit",
+      "tags": "Utilities#to7Bit to7Bit",
+      "summary": "",
+      "description": "Returns a number between 0 and 127 which is the result of multiplying the input value by 127. The input value should be number between 0 and 1 (inclusively). The returned value is restricted between 0 and 127 even if the input is greater than 1 or smaller than 0. Passing Infinity will return 127 and passing -Infinity will return 0. Otherwise, when the input value cannot be converted to a number, the method returns 0."
+    },
+    "Utilities.html#toNormalized": {
+      "id": "Utilities.html#toNormalized",
+      "kind": "function",
+      "title": "toNormalized( value ) → {number}",
+      "longname": "Utilities#toNormalized",
+      "name": "toNormalized",
+      "tags": "Utilities#toNormalized toNormalized",
+      "summary": "",
+      "description": "Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7 bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or smaller than 0. Passing Infinity will return 1 and passing -Infinity will return 0. Otherwise, when the input value cannot be converted to an integer, the method returns 0."
+    },
+    "Utilities.html#toNoteIdentifier": {
+      "id": "Utilities.html#toNoteIdentifier",
+      "kind": "function",
+      "title": "toNoteIdentifier( The, An ) → {string}",
+      "longname": "Utilities#toNoteIdentifier",
+      "name": "toNoteIdentifier",
+      "tags": "Utilities#toNoteIdentifier toNoteIdentifier",
+      "summary": "",
+      "description": "Returns an identifier string representing a note name (with optional accidental) followed by an octave number. The octave can be offset by using the octaveOffset parameter."
+    },
+    "Utilities.html#toNoteNumber": {
+      "id": "Utilities.html#toNoteNumber",
+      "kind": "function",
+      "title": "toNoteNumber( identifier [, octaveOffset ] ) → {number}",
+      "longname": "Utilities#toNoteNumber",
+      "name": "toNoteNumber",
+      "tags": "Utilities#toNoteNumber toNoteNumber",
+      "summary": "",
+      "description": "Returns a MIDI note number matching the identifier passed in the form of a string. The identifier must include the octave number. The identifier also optionally include a sharp (#), a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc. When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number 60) as per the scientific pitch notation standard. The resulting note number can be offset by using the octaveOffset parameter."
+    },
+    "Utilities.html#toTimestamp": {
+      "id": "Utilities.html#toTimestamp",
+      "kind": "function",
+      "title": "toTimestamp( [ time ] ) → {number|false}",
+      "longname": "Utilities#toTimestamp",
+      "name": "toTimestamp",
+      "tags": "Utilities#toTimestamp toTimestamp",
+      "summary": "",
+      "description": "Returns a valid timestamp, relative to the navigation start of the document, derived from the time parameter. If the parameter is a string starting with the \"+\" sign and followed by a number, the resulting timestamp will be the sum of the current timestamp plus that number. If the parameter is a positive number, it will be returned as is. Otherwise, false will be returned."
+    },
     "WebMidi.html": {
       "id": "WebMidi.html",
       "kind": "class",
@@ -40277,6 +42923,16 @@ window.lunrData = {
       "summary": "",
       "description": "The WebMidi object makes it easier to work with the Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, the WebMidi class has already been instantiated for you. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object. This means there is no need to instantiate a new WebMidi object directly. The WebMidi object extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
       "body": ""
+    },
+    "WebMidi.html#defaults": {
+      "id": "WebMidi.html#defaults",
+      "kind": "member",
+      "title": "defaults :Object",
+      "longname": "WebMidi#defaults",
+      "name": "defaults",
+      "tags": "WebMidi#defaults defaults",
+      "summary": "",
+      "description": "Object containing system-wide default values that can be changed to customize how the library works."
     },
     "WebMidi.html#enabled": {
       "id": "WebMidi.html#enabled",
@@ -40426,7 +43082,7 @@ window.lunrData = {
       "name": "octaveOffset",
       "tags": "WebMidi#octaveOffset octaveOffset",
       "summary": "",
-      "description": "An integer to offset the octave both in inbound and outbound messages. By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). If, for example, octaveOffset is set to 2, MIDI note number 60 will be reported as C6. If octaveOffset is set to -1, MIDI note number 60 will be reported as C3."
+      "description": "An integer to offset the octave of notes received from external devices or sent to external devices. When a MIDI message comes in on an input channel the reported note name will be offset. For example, if the octaveOffset is set to -1 and a note on message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4). By the same token, when OutputChannel.playNote() is called, the MIDI note number being sent will be offset. If octaveOffset is set to -1, the MIDI note number sent will be 72 (instead of 60)."
     },
     "WebMidi.html#outputs": {
       "id": "WebMidi.html#outputs",
@@ -40478,16 +43134,6 @@ window.lunrData = {
       "summary": "",
       "description": "Indicates whether argument validation and backwards-compatibility checks are performed throughout the WebMidi.js library for object methods and property setters. This is an advanced setting that should be used carefully. Setting validation to false improves performance but should only be done once the project has been thoroughly tested with validation turned on."
     },
-    "WebMidi.html#convertToTimestamp": {
-      "id": "WebMidi.html#convertToTimestamp",
-      "kind": "function",
-      "title": "convertToTimestamp( [ time ] ) → {number|false}",
-      "longname": "WebMidi#convertToTimestamp",
-      "name": "convertToTimestamp",
-      "tags": "WebMidi#convertToTimestamp convertToTimestamp",
-      "summary": "",
-      "description": "Returns a valid timestamp, relative to the navigation start of the document, derived from the time parameter. If the parameter is a string starting with the \"+\" sign and followed by a number, the resulting timestamp will be the sum of the current timestamp plus that number. If the parameter is a positive number, it will be returned as is. Otherwise, false will be returned."
-    },
     "WebMidi.html#disable": {
       "id": "WebMidi.html#disable",
       "kind": "function",
@@ -40506,7 +43152,7 @@ window.lunrData = {
       "name": "enable",
       "tags": "WebMidi#enable enable",
       "summary": "",
-      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of April 2020). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: midiaccessgranted event is triggered connected events are triggered for each available input and output enabled event is triggered callback (if any) is executed promise is resolved The promise is fulfilled with an object containing two properties (inputs and outputs) that contain arrays of available inputs and outputs, respectively. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of September 2021). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: midiaccessgranted event is triggered connected events are triggered (for each available input and output) enabled event is triggered when WebMidi.js is ready specified callback (if any) is executed promise is resolved The promise is fulfilled with the WebMidi object. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
     },
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
@@ -40528,26 +43174,6 @@ window.lunrData = {
       "summary": "",
       "description": "Returns the first Input object whose name contains the specified string. Note that the port names change from one environment to another. For example, Chrome does not report input names in the same way as the Jazz-Plugin does."
     },
-    "WebMidi.html#getNoteNumberByName": {
-      "id": "WebMidi.html#getNoteNumberByName",
-      "kind": "function",
-      "title": "getNoteNumberByName( name ) → {number|false}",
-      "longname": "WebMidi#getNoteNumberByName",
-      "name": "getNoteNumberByName",
-      "tags": "WebMidi#getNoteNumberByName getNoteNumberByName",
-      "summary": "",
-      "description": "Returns a MIDI note number matching the note name passed in the form of a string parameter. The note name must include the octave number. The name can also optionally include a sharp (#), a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc. When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as per the scientific pitch notation standard. The resulting note number is offset by the octaveOffset value (if not zero). For example, if you pass in \"C4\" and the octaveOffset value is 2, the resulting MIDI note number will be 36. Note: since v3.x, this function returns false instead of throwing an error when it cannot parse the name to a number."
-    },
-    "WebMidi.html#getNoteObject": {
-      "id": "WebMidi.html#getNoteObject",
-      "kind": "function",
-      "title": "getNoteObject( [ notes [, options ] ] ) → {Note}",
-      "longname": "WebMidi#getNoteObject",
-      "name": "getNoteObject",
-      "tags": "WebMidi#getNoteObject getNoteObject",
-      "summary": "",
-      "description": "Converts the note parameter to a valid Note object. The input usually is an unsigned integer (0-127) or a note name (\"C4\", \"G#5\", etc.). If the input is a Note object, it will be returned as is. If the input is a note number or name, it is possible to specify options by providing the optional options parameter. An error is thrown for invalid input."
-    },
     "WebMidi.html#getOctave": {
       "id": "WebMidi.html#getOctave",
       "kind": "function",
@@ -40556,7 +43182,7 @@ window.lunrData = {
       "name": "getOctave",
       "tags": "WebMidi#getOctave getOctave",
       "summary": "",
-      "description": "Returns the octave number for the specified MIDI note number (0-127). By default, the value is based on middle C (note number 60) being placed on the 4th octave (C4). However, by using the octaveOffset property, you can offset the result as desired. Note: since v3.x, this method returns false instead of undefined when the value cannot be parsed to a valid octave."
+      "description": "Returns the octave number for the specified MIDI note number (0-127). By default, the value is based on middle C (note number 60) being placed on the 4th octave (C4). Note: since v3.x, this method returns false instead of undefined when the value cannot be parsed to a valid octave."
     },
     "WebMidi.html#getOutputById": {
       "id": "WebMidi.html#getOutputById",
@@ -40577,36 +43203,6 @@ window.lunrData = {
       "tags": "WebMidi#getOutputByName getOutputByName",
       "summary": "",
       "description": "Returns the first Output object whose name contains the specified string. Note that the port names change from one environment to another. For example, Chrome does not report input names in the same way as the Jazz-Plugin does."
-    },
-    "WebMidi.html#getValidNoteArray": {
-      "id": "WebMidi.html#getValidNoteArray",
-      "kind": "function",
-      "title": "getValidNoteArray( [ notes [, options ] ] ) → {Array.&lt;Note&gt;}",
-      "longname": "WebMidi#getValidNoteArray",
-      "name": "getValidNoteArray",
-      "tags": "WebMidi#getValidNoteArray getValidNoteArray",
-      "summary": "",
-      "description": "Converts an input value, which can be an unsigned integer (0-127), a note name, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and names, a Note object is created with the options specified. An error will be thrown when encountering invalid input."
-    },
-    "WebMidi.html#guessNoteNumber": {
-      "id": "WebMidi.html#guessNoteNumber",
-      "kind": "function",
-      "title": "guessNoteNumber( input ) → {number|false}",
-      "longname": "WebMidi#guessNoteNumber",
-      "name": "guessNoteNumber",
-      "tags": "WebMidi#guessNoteNumber guessNoteNumber",
-      "summary": "",
-      "description": "Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a string containing a note name (\"C3\", \"F#4\", \"D-2\", \"G8\", etc.). If an integer between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings will be parsed for integer, if possible. Note: since v3.x, this method returns false instead of throwing an error when the input is invalid."
-    },
-    "WebMidi.html#sanitizeChannels": {
-      "id": "WebMidi.html#sanitizeChannels",
-      "kind": "function",
-      "title": "sanitizeChannels( [ channel ] ) → {Array}",
-      "longname": "WebMidi#sanitizeChannels",
-      "name": "sanitizeChannels",
-      "tags": "WebMidi#sanitizeChannels sanitizeChannels",
-      "summary": "",
-      "description": "Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a single integer or an array of integers. For backwards-compatibility, passing undefined as a parameter to this method results in all channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to integers between 1 and 16 are silently ignored."
     }
   }
 };

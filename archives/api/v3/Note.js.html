@@ -72,6 +72,7 @@
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -102,46 +103,58 @@
 		<section class="source-section">
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {WebMidi} from "./WebMidi.js";
+import {Utilities} from "./Utilities.js";
 
 /**
- * The `Note` class represents a single note to be played. The `Note` can be played on a single
- * channel by using [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple
- * channels at once by using [Output.playNote()]{@link Output#playNote}.
+ * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
- * If the note's `duration` property is set, the note will be stopped at the end of the duration. If
- * no duration is set, it will play until it is explicitly stopped using
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
- * [Output.stopNote()]{@link Output#stopNote}.
+ * `Note` objects can be played back on a single channel by calling
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
+ * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
  *
- * @param value {string|number} The name or note number of the note to create. If a number is used,
- * it must be an integer between 0 and 127. If a string is used, it must be the note name followed
- * by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). The octave range must be between -1 and
- * 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+ * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
+ * in the appropriate option. It is also possible to set a system-wide default for attack and
+ * release velocities by using the `WebMidi.defaults` property.
+ *
+ * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
+ * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
+ * this case, it will never stop playing unless explicitly stopped by calling a method such as
+ * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
+ * [Output.stopNote()]{@link Output#stopNote} or similar.
+ *
+ * @param value {string|number} The value used to create the note. If an identifier string is used,
+ * it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
+ * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this
+ * case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
- * 1.
+ * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
  *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
+ * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
  *
  * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127.
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
  *
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127.
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
  *
- * @throws {Error} Invalid note name.
- * @throws {Error} Invalid note number.
- * @throws {RangeError} Invalid duration.
- * @throws {RangeError} Invalid attack value.
- * @throws {RangeError} Invalid rawAttack value.
- * @throws {RangeError} Invalid release value.
- * @throws {RangeError} Invalid rawRelease value.
+ * @throws {Error} Invalid note identifier
+ * @throws {RangeError} Invalid name value
+ * @throws {RangeError} Invalid accidental value
+ * @throws {RangeError} Invalid octave value
+ * @throws {RangeError} Invalid duration value
+ * @throws {RangeError} Invalid attack value
+ * @throws {RangeError} Invalid release value
  *
  * @since 3.0.0
  */
@@ -149,52 +162,105 @@ export class Note {
 
   constructor(value, options = {}) {
 
-    if (Number.isInteger(value)) {
-      this.number = value;
-    } else {
-      this.name = value;
-    }
+    // Assign property defaults
+    this.duration = WebMidi.defaults.note.duration;
+    this.attack = WebMidi.defaults.note.attack;
+    this.release = WebMidi.defaults.note.release;
 
-    this.duration = (options.duration == undefined) ? Infinity : options.duration;
-    this.attack = (options.attack == undefined) ? 0.5 : options.attack;
-    this.release = (options.release == undefined) ? 0.5 : options.release;
-    if (options.rawAttack != undefined) this.rawAttack = options.rawAttack;
-    if (options.rawRelease != undefined) this.rawRelease = options.rawRelease;
+    // Assign property values from options (validation occurs in setter)
+    if (options.duration != undefined) this.duration = options.duration;
+    if (options.attack != undefined) this.attack = options.attack;
+    if (options.rawAttack != undefined) this.attack = Utilities.toNormalized(options.rawAttack);
+    if (options.release != undefined) this.release = options.release;
+    if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease);
+
+    // Assign note depending on the way it was specified (name or number)
+    if (Number.isInteger(value)) {
+      this.identifier = Utilities.toNoteIdentifier(value);
+    } else {
+      this.identifier = value;
+    }
 
   }
 
   /**
-   * The name of the note with the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.)
-   *
+   * The name, optional accidental and octave of the note, as a string.
    * @type {string}
+   * @since 3.0.0
+   */
+  get identifier() {
+    return this._name + (this._accidental || "") + this._octave;
+  }
+  set identifier(value) {
+
+    const fragments = Utilities.getFragments(value);
+
+    if (WebMidi.validation) {
+      if (!value) throw new Error("Invalid note identifier");
+    }
+
+    this._name = fragments.name;
+    this._accidental = fragments.accidental;
+    this._octave = fragments.octave;
+
+  }
+
+  /**
+   * The name (letter) of the note
+   * @type {string}
+   * @since 3.0.0
    */
   get name() {
-    return WebMidi.NOTES[this._number % 12] + WebMidi.getOctave(this.number);
+    return this._name;
   }
   set name(value) {
 
     if (WebMidi.validation) {
-      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note name.");
+      value = value.toUpperCase();
+      if (!["C", "D", "E", "F", "G", "A", "B"].includes(value)) {
+        throw new Error("Invalid name value");
+      }
     }
 
-    this._number = WebMidi.guessNoteNumber(value);
+    this._name = value;
 
   }
 
   /**
-   * The MIDI note number as an integer between 0 and 127
-   * @type {number}
+   * The accidental (#, ##, b or bb) of the note
+   * @type {string}
+   * @since 3.0.0
    */
-  get number() {
-    return this._number;
+  get accidental() {
+    return this._accidental;
   }
-  set number(value) {
+  set accidental(value) {
 
     if (WebMidi.validation) {
-      if (WebMidi.guessNoteNumber(value) === false) throw new Error("Invalid note number.");
+      value = value.toLowerCase();
+      if (!["#", "##", "b", "bb"].includes(value)) throw new Error("Invalid accidental value");
     }
 
-    this._number = WebMidi.guessNoteNumber(value);
+    this._accidental = value;
+
+  }
+
+  /**
+   * The octave of the note
+   * @type {number}
+   * @since 3.0.0
+   */
+  get octave() {
+    return this._octave;
+  }
+  set octave(value) {
+
+    if (WebMidi.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new Error("Invalid octave value");
+    }
+
+    this._octave = value;
 
   }
 
@@ -203,6 +269,7 @@ export class Note {
    * that the note should play for.
    *
    * @type {number}
+   * @since 3.0.0
    */
   get duration() {
     return this._duration;
@@ -211,7 +278,9 @@ export class Note {
 
     if (WebMidi.validation) {
       value = parseFloat(value);
-      if (isNaN(value) || value === null || value &lt; 0) throw new RangeError("Invalid duration.");
+      if (isNaN(value) || value === null || value &lt; 0) {
+        throw new RangeError("Invalid duration value.");
+      }
     }
 
     this._duration = value;
@@ -219,91 +288,92 @@ export class Note {
   }
 
   /**
-   * The attack velocity of the note as a decimal number between 0 and 1.
+   * The attack velocity of the note as an integer between 0 and 127.
    * @type {number}
+   * @since 3.0.0
    */
   get attack() {
-    return this._rawAttack / 127;
+    return this._attack;
   }
   set attack(value) {
-
     if (WebMidi.validation) {
       value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 &amp;&amp; value &lt;= 1)) {
+      if (isNaN(value) || !(value >= 0 &amp;&amp; value &lt;= 1)) {
         throw new RangeError("Invalid attack value.");
       }
     }
 
-    this._rawAttack = Math.round(value * 127);
+    this._attack = value;
 
   }
 
   /**
-   * The raw attack velocity of the note as an integer between 0 and 127.
+   * The release velocity of the note as an integer between 0 and 127.
    * @type {number}
-   */
-  get rawAttack() {
-    return this._rawAttack;
-  }
-  set rawAttack(value) {
-
-    if (WebMidi.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 &amp;&amp; value &lt;= 127)) {
-        throw new RangeError("Invalid rawAttack value.");
-      }
-    }
-
-    this._rawAttack = value;
-
-  }
-
-  /**
-   * The release velocity of the note as a decimal number between 0 and 1.
-   * @type {number}
+   * @since 3.0.0
    */
   get release() {
-    return this._rawRelease / 127;
+    return this._release;
   }
   set release(value) {
 
     if (WebMidi.validation) {
       value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 &amp;&amp; value &lt;= 1)) {
+      if (isNaN(value) || !(value >= 0 &amp;&amp; value &lt;= 1)) {
         throw new RangeError("Invalid release value.");
       }
     }
 
-    this._rawRelease = Math.round(value * 127);
+    this._release = value;
 
   }
 
   /**
-   * The raw release velocity of the note as an integer between 0 and 127.
+   * The attack velocity of the note as a positive integer between 0 and 127.
    * @type {number}
+   * @since 3.0.0
+   */
+  get rawAttack() {
+    return Utilities.to7Bit(this._attack);
+  }
+
+  /**
+   * The release velocity of the note as a positive integer between 0 and 127.
+   * @type {number}
+   * @since 3.0.0
    */
   get rawRelease() {
-    return this._rawRelease;
-  }
-  set rawRelease(value) {
-
-    if (WebMidi.validation) {
-      value = parseFloat(value);
-      if (isNaN(value) || value === null || !(value >= 0 &amp;&amp; value &lt;= 127)) {
-        throw new RangeError("Invalid rawRelease value.");
-      }
-    }
-
-    this._rawRelease = value;
-
+    return Utilities.to7Bit(this._release);
   }
 
   /**
-   * The octave of the note as an integer between -1 and 9.
+   * The MIDI number of the note. This number is derived from the note identifier using C4 as a
+   * reference for middle C.
+   *
    * @type {number}
+   * @since 3.0.0
    */
-  get octave() {
-    return Math.floor(Math.floor(this._number) / 12 - 1);
+  get number() {
+    return Utilities.toNoteNumber(this.identifier);
+  }
+
+  /**
+   * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+   * value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+   * returned. If an invalid value is supplied, 0 will be used.
+   *
+   * @param offset
+   * @returns {number} An integer between 0 and 127
+   */
+  getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
+
+    if (WebMidi.validation) {
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
+    }
+
+    return Math.min(Math.max(this.number + (octaveOffset * 12) + semitoneOffset, 0), 127);
+
   }
 
 }
@@ -314,7 +384,7 @@ export class Note {
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 8th 2021 @ 16:05:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

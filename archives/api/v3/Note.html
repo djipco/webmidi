@@ -71,6 +71,7 @@
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -110,13 +111,18 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Note</code> class represents a single note to be played. The <code>Note</code> can be played on a single
-			channel by using <a href="OutputChannel.html#playNote">OutputChannel.playNote()</a> or on multiple
-			channels at once by using <a href="Output.html#playNote">Output.playNote()</a>.</p>
-			<p>If the note's <code>duration</code> property is set, the note will be stopped at the end of the duration. If
-			no duration is set, it will play until it is explicitly stopped using
-			<a href="OutputChannel.html#stopNote">OutputChannel.stopNote()</a> or
-			<a href="Output.html#stopNote">Output.stopNote()</a>.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Note</code> class represents a single musical note such as <code>&quot;D3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Gb7&quot;</code>, etc.</p>
+			<p><code>Note</code> objects can be played back on a single channel by calling
+			<a href="OutputChannel.html#playNote">OutputChannel.playNote()</a>. A note can also be played back on the
+			multiple channels of an output by using <a href="Output.html#playNote">Output.playNote()</a>.</p>
+			<p>The note has attack and release velocities set at 0.5 by default. These can be changed by passing
+			in the appropriate option. It is also possible to set a system-wide default for attack and
+			release velocities by using the <code>WebMidi.defaults</code> property.</p>
+			<p>The note may have a duration. If it does, playback will be stopped when the duration has elapsed
+			by automatically sending a <strong>noteoff</strong> event. By default, the duration is set to <code>Infinity</code>. In
+			this case, it will never stop playing unless explicitly stopped by calling a method such as
+			<a href="OutputChannel.html#stopNote">OutputChannel.stopNote()</a>,
+			<a href="Output.html#stopNote">Output.stopNote()</a> or similar.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -136,10 +142,10 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The name or note number of the note to create. If a number is used,
-			it must be an integer between 0 and 127. If a string is used, it must be the note name followed
-			by the octave (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.). The octave range must be between -1 and
-			9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).</p>
+									<p>The value used to create the note. If an identifier string is used,
+			it must be the note letter (with optional accidental) followed by the octave (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>,
+			<code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.). If a number is used, it must be an integer between 0 and 127. In this
+			case, middle C is considered to be C4 (note number 60).</p>
 							</td>
 						</tr>
 						<tr>
@@ -175,8 +181,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
-															<p>The note's attack velocity as a decimal number between 0 and
-									1.</p>
+															<p>The note's attack velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawAttack</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -185,8 +192,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
-															<p>The note's release velocity as a decimal number between 0
-									and 1.</p>
+															<p>The note's release velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawRelease</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -196,7 +204,8 @@
 														<td>64</td>
 													<td class="last">
 															<p>The note's attack velocity as an integer between 0 and
-									127.</p>
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -206,7 +215,8 @@
 														<td>64</td>
 													<td class="last">
 															<p>The note's release velocity as an integer between 0 and
-									127.</p>
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -220,43 +230,43 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid note name.</p></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid note number.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid note identifier</p></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid duration.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid name value</p></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid attack value.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid accidental value</p></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid rawAttack value.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid octave value</p></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid release value.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid duration value</p></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid rawRelease value.</p></div>
+									<div class="form-control-static exceptions-description"><p>Invalid attack value</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>Invalid release value</p></div>
 								</div>
 							</div>
 					</form>
@@ -287,7 +297,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-45">line 45</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-57">line 57</a></p>
 								</div>
 							</div>
 			
@@ -314,24 +324,31 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="attack" class="member public"><span class="name">attack</span><span class="signature-type"> :number</span></h4>
+			<h4 id="accidental" class="member public"><span class="name">accidental</span><span class="signature-type"> :string</span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The attack velocity of the note as a decimal number between 0 and 1.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The accidental (#, ##, b or bb) of the note</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
 								</div>
 							</div>
 			
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -346,7 +363,58 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-122">line 122</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-130">line 130</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="attack" class="member public"><span class="name">attack</span><span class="signature-type"> :number</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The attack velocity of the note as an integer between 0 and 127.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-191">line 191</a></p>
 								</div>
 							</div>
 			
@@ -377,6 +445,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -391,7 +466,58 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-104">line 104</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-170">line 170</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="identifier" class="member public"><span class="name">identifier</span><span class="signature-type"> :string</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The name, optional accidental and octave of the note, as a string.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">string</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-87">line 87</a></p>
 								</div>
 							</div>
 			
@@ -407,7 +533,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The name of the note with the octave number (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.)</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The name (letter) of the note</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -421,6 +547,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -435,7 +568,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-68">line 68</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-109">line 109</a></p>
 								</div>
 							</div>
 			
@@ -451,7 +584,8 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The MIDI note number as an integer between 0 and 127</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The MIDI number of the note. This number is derived from the note identifier using C4 as a
+			reference for middle C.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -465,6 +599,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -479,7 +620,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-85">line 85</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-252">line 252</a></p>
 								</div>
 							</div>
 			
@@ -495,7 +636,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The octave of the note as an integer between -1 and 9.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The octave of the note</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -509,6 +650,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -523,7 +671,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-202">line 202</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-149">line 149</a></p>
 								</div>
 							</div>
 			
@@ -539,7 +687,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw attack velocity of the note as an integer between 0 and 127.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The attack velocity of the note as a positive integer between 0 and 127.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -553,6 +701,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -567,7 +722,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-142">line 142</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-232">line 232</a></p>
 								</div>
 							</div>
 			
@@ -583,7 +738,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The raw release velocity of the note as an integer between 0 and 127.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The release velocity of the note as a positive integer between 0 and 127.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -597,6 +752,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -611,7 +773,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-182">line 182</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-241">line 241</a></p>
 								</div>
 							</div>
 			
@@ -627,7 +789,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The release velocity of the note as a decimal number between 0 and 1.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The release velocity of the note as an integer between 0 and 127.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -637,6 +799,83 @@
 									<div class="form-control-static type-names"><span class="param-type">number</span></div>
 								</div>
 							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-211">line 211</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
+									<h3>Methods</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="getOffsetNumber" class="function public"><span class="name">getOffsetNumber</span><span class="signature-params">( <span class="signature-param">offset</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+			value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+			returned. If an invalid value is supplied, 0 will be used.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>offset</code></td>
+							<td></td>
+							<td class="last">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An integer between 0 and 127</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
 			
 			
 			
@@ -655,7 +894,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-162">line 162</a></p>
+									<p class="form-control-static"><a href="Note.js.html">Note.js</a>, <a href="Note.js.html#line-264">line 264</a></p>
 								</div>
 							</div>
 			
@@ -676,7 +915,7 @@
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 8th 2021 @ 16:05:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

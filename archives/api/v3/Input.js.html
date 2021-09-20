@@ -72,6 +72,7 @@
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -104,6 +105,7 @@
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 import {InputChannel} from "./InputChannel.js";
+import {Utilities} from "./Utilities.js";
 
 /**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
@@ -152,6 +154,12 @@ export class Input extends EventEmitter {
      * @private
      */
     this._midiInput = midiInput;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this._octaveOffset = 0;
 
     /**
      * Array containing the 16 {@link InputChannel} objects available for this `Input`. The
@@ -312,7 +320,7 @@ export class Input extends EventEmitter {
     // system messages.
     if (e.data[0] &lt; 240) {          // channel-specific message
       let channel = (e.data[0] &amp; 0xf) + 1;
-      this.channels[channel]._parseEvent(e);
+      this.channels[channel]._processMidiMessageEvent(e);
     } else if (e.data[0] &lt;= 255) {  // system message
       this._parseEvent(e);
     }
@@ -545,9 +553,10 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Opens the input for usage.
+   * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+   * WebMidi is enabled.
    *
-   * @returns {Promise&lt;Input>} The promise is fulfilled with the `Input`
+   * @returns {Promise&lt;Input>} The promise is fulfilled with the `Input` object
    */
   async open() {
 
@@ -557,10 +566,11 @@ export class Input extends EventEmitter {
     // are dispatched immediately and that we are ready to listen.
     try {
       await this._midiInput.open();
-      return Promise.resolve(this);
     } catch (err) {
       return Promise.reject(err);
     }
+
+    return Promise.resolve(this);
 
   }
 
@@ -568,17 +578,21 @@ export class Input extends EventEmitter {
    * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
    * the input is opened again by calling [Input.open()]{@link Input#open}.
    *
-   * @returns {Promise&lt;void|*>}
+   * @returns {Promise&lt;Input>} The promise is fulfilled with the `Input` object
    */
   async close() {
 
     // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
     // event.
-    if (this._midiInput) {
-      return this._midiInput.close();
-    } else {
-      return Promise.resolve();
+    if (!this._midiInput) return Promise.resolve(this);
+
+    try {
+      await this._midiInput.close();
+    } catch (err) {
+      return Promise.reject(err);
     }
+
+    return Promise.resolve(this);
 
   }
 
@@ -728,7 +742,7 @@ export class Input extends EventEmitter {
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
       listeners.push(super.addListener(event, listener, options));
     } else {
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
     }
@@ -900,7 +914,7 @@ export class Input extends EventEmitter {
 
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      return WebMidi.sanitizeChannels(options.channels).every(ch => {
+      return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
 
@@ -952,14 +966,16 @@ export class Input extends EventEmitter {
 
     // If the event is not specified, remove everything (channel-specific and input-wide)!
     if (event == undefined) {
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+      Utilities.sanitizeChannels(
+        options.channels).forEach(ch => this.channels[ch].removeListener()
+      );
       return super.removeListener();
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
     if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-      WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
 
@@ -1014,6 +1030,34 @@ export class Input extends EventEmitter {
   }
 
   /**
+   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+   * number 60) is placed on the 4th octave (C4).
+   *
+   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+   *
+   * Note that this value is combined with the global offset value defined on the `WebMidi` object
+   * (if any).
+   *
+   * @type {number}
+   *
+   * @since 3.0
+   */
+  get octaveOffset() {
+    return this._octaveOffset;
+  }
+  set octaveOffset(value) {
+
+    if (this.validation) {
+      value = parseInt(value);
+      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+    }
+
+    this._octaveOffset = value;
+
+  }
+
+  /**
    * State of the input port: `"connected"` or `"disconnected"`.
    *
    * @type {string}
@@ -1053,7 +1097,7 @@ export class Input extends EventEmitter {
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 8th 2021 @ 16:05:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

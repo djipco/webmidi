@@ -71,6 +71,7 @@
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
+											<li><a href="Utilities.html">Utilities</a></li>
 											<li><a href="WebMidi.html">WebMidi</a></li>
 									</ul>
 								</li>
@@ -112,8 +113,8 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>OutputChannel</code> class represents a single output channel (1-16) from an output device. This
 			object is derived from the host's MIDI subsystem and cannot be instantiated directly.</p>
-			<p>All 16 <code>OutputChannel</code> objects can be found inside the output's <a href="Output.html#channels">channels</a>
-			property.</p>
+			<p>All 16 <code>OutputChannel</code> objects can be found inside the parent output's
+			<a href="Output.html#channels">channels</a> property.</p>
 			<p>The <code>OutputChannel</code> class extends the
 			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
 			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
@@ -144,7 +145,7 @@
 								<td><code>number</code></td>
 							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The channel's number (1-16)</p>
+									<p>The channel number (1-16)</p>
 							</td>
 						</tr>
 					</tbody>
@@ -177,7 +178,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-25">line 25</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-26">line 26</a></p>
 								</div>
 							</div>
 			
@@ -208,7 +209,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The channel's number (1-16)</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This channel's MIDI number (1-16)</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -222,6 +223,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -236,7 +244,62 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-41">line 41</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1733">line 1733</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="octaveOffset" class="member public"><span class="name">octaveOffset</span><span class="signature-type"> :number</span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An integer to offset the reported octave of outgoing note-specific messages (<code>noteon</code>,
+			<code>noteoff</code> and <code>keyaftertouch</code>). By default, middle C (MIDI note number 60) is placed on the 4th
+			octave (C4).</p>
+			<p>Note that this value is combined with the global offset value defined on the <code>WebMidi</code> object
+			and with the value defined on the parent <code>Output</code> object.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1705">line 1705</a></p>
 								</div>
 							</div>
 			
@@ -252,7 +315,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <a href="Output.html">Output</a> this channel belongs to</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The parent <a href="Output.html">Output</a> this channel belongs to</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -266,6 +329,13 @@
 			
 			
 			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0</p>
+								</div>
+							</div>
 			
 			
 			
@@ -280,7 +350,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-35">line 35</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1724">line 1724</a></p>
 								</div>
 							</div>
 			
@@ -413,7 +483,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-494">line 494</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-525">line 525</a></p>
 								</div>
 							</div>
 			
@@ -543,7 +613,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-561">line 561</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-592">line 592</a></p>
 								</div>
 							</div>
 			
@@ -562,9 +632,9 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 			can be a single value or an array of the following valid values:</p>
 			<ul>
+			<li>A <a href="Note.html">Note</a> object</li>
 			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
 			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
-			<li>A <a href="Note.html">Note</a> object</li>
 			</ul>
 			<p>The <code>playNote()</code> method sends a <strong>note on</strong> MIDI message for all specified notes on all
 			specified channels. If a <code>duration</code> is set in the <code>options</code> parameter or in the <a href="Note.html">Note</a>
@@ -726,7 +796,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-654">line 654</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-685">line 685</a></p>
 								</div>
 							</div>
 			
@@ -820,7 +890,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1629">line 1629</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1664">line 1664</a></p>
 								</div>
 							</div>
 			
@@ -951,7 +1021,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-95">line 95</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-103">line 103</a></p>
 								</div>
 							</div>
 			
@@ -1086,7 +1156,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-914">line 914</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-949">line 949</a></p>
 								</div>
 							</div>
 			
@@ -1281,7 +1351,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-268">line 268</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-299">line 299</a></p>
 								</div>
 							</div>
 			
@@ -1421,7 +1491,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-714">line 714</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-745">line 745</a></p>
 								</div>
 							</div>
 			
@@ -1437,13 +1507,16 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for the specified notes on the channel. The first parameter is the
-			note. It can be a single value or an array of the following valid values:</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>note on</strong> message for the specified note(s) on the channel. The first parameter is
+			the note. It can be a single value or an array of the following valid values:</p>
 			<ul>
+			<li>A <a href="Note.html">Note</a> object</li>
 			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
 			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
-			<li>A <a href="Note.html">Note</a> object</li>
 			</ul>
+			<p>When passing a <a href="Note.html">Note</a> object or a note name, the <code>octaveOffset</code> will be applied. This is
+			not the case when using a note number number. In this case, we assume you know exactly which
+			MIDI note number should be sent out.</p>
 			<p>The execution of the <strong>note on</strong> command can be delayed by using the <code>time</code> property of the
 			<code>options</code> parameter.</p>
 			<p>When using <a href="Note.html">Note</a> objects, the attack velocity defined in the <a href="Note.html">Note</a> objects has
@@ -1472,10 +1545,8 @@
 								<td></td>
 							<td class="last">
 									<p>The note(s) to play. The notes can be
-			specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-			<a href="Note.html">Note</a> object or an array of the previous types. When using a note name, octave range
-			must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-			note is G9 (MIDI note number 127).</p>
+			specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+			<a href="Note.html">Note</a> object or an array of the previous types.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1565,7 +1636,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-823">line 823</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-857">line 857</a></p>
 								</div>
 							</div>
 			
@@ -1689,7 +1760,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1004">line 1004</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1039">line 1039</a></p>
 								</div>
 							</div>
 			
@@ -1701,18 +1772,17 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setKeyAftertouch" class="function public"><span class="name">setKeyAftertouch</span><span class="signature-params">( <span class="signature-param">note</span> [,&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="setKeyAftertouch" class="function public"><span class="name">setKeyAftertouch</span><span class="signature-params">( <span class="signature-param">target</span> [,&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>key aftertouch</strong> message at the scheduled time. This is a key-specific
 			aftertouch. For a channel-wide aftertouch message, use
 			<a href="Output.html#setChannelAftertouch">setChannelAftertouch()</a>.</p>
-			<p>The note can be a single value or an array of the following valid values:</p>
+			<p>The key can be a single value or an array of the following valid values:</p>
 			<ul>
 			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
-			<li>A note name, followed by the octave (e.g. <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>)</li>
-			<li>A <a href="Note.html">Note</a> object</li>
+			<li>A note identifier such as <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.</li>
 			</ul></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1728,16 +1798,17 @@
 					</thead>
 					<tbody>
 						<tr>
-								<td><code>note</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span> | <span class="param-type">Array.&lt;<a href="Note.html">Note</a>></span></td>
+								<td><code>target</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The note(s) for which you are sending
-			an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-			name (e.g. C3, G#4, F-1, Db7), a <a href="Note.html">Note</a> object or an array of the previous types. When
-			using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-			number 0) and the highest note is G9 (MIDI note number 127).</p>
+									<p>The key(s) for which you are sending an
+			aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+			identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.</p>
+			<p>When using a note identifier, the octave value will be offset by the combined value of
+			<code>InputChannel.octaveOffset</code>, <code>Input.octaveOffset</code> and <code>WebMidi.octaveOffset</code> (if those values
+			are not <code>0</code>). When using a key number, octaveOffset values are ignored.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1834,7 +1905,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-136">line 136</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-145">line 145</a></p>
 								</div>
 							</div>
 			
@@ -1939,7 +2010,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1570">line 1570</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1605">line 1605</a></p>
 								</div>
 							</div>
 			
@@ -2055,7 +2126,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1062">line 1062</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1097">line 1097</a></p>
 								</div>
 							</div>
 			
@@ -2169,7 +2240,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1111">line 1111</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1146">line 1146</a></p>
 								</div>
 							</div>
 			
@@ -2311,7 +2382,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1178">line 1178</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1213">line 1213</a></p>
 								</div>
 							</div>
 			
@@ -2435,7 +2506,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-970">line 970</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1005">line 1005</a></p>
 								</div>
 							</div>
 			
@@ -2560,7 +2631,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1242">line 1242</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1277">line 1277</a></p>
 								</div>
 							</div>
 			
@@ -2690,7 +2761,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1328">line 1328</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1363">line 1363</a></p>
 								</div>
 							</div>
 			
@@ -2794,7 +2865,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1650">line 1650</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1685">line 1685</a></p>
 								</div>
 							</div>
 			
@@ -2908,7 +2979,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1370">line 1370</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1405">line 1405</a></p>
 								</div>
 							</div>
 			
@@ -3051,7 +3122,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1444">line 1444</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1479">line 1479</a></p>
 								</div>
 							</div>
 			
@@ -3165,7 +3236,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1500">line 1500</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1535">line 1535</a></p>
 								</div>
 							</div>
 			
@@ -3279,7 +3350,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1537">line 1537</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1572">line 1572</a></p>
 								</div>
 							</div>
 			
@@ -3350,7 +3421,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-776">line 776</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-807">line 807</a></p>
 								</div>
 							</div>
 			
@@ -3452,7 +3523,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1593">line 1593</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1628">line 1628</a></p>
 								</div>
 							</div>
 			
@@ -3546,7 +3617,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1611">line 1611</a></p>
+									<p class="form-control-static"><a href="OutputChannel.js.html">OutputChannel.js</a>, <a href="OutputChannel.js.html#line-1646">line 1646</a></p>
 								</div>
 							</div>
 			
@@ -3567,7 +3638,7 @@
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 8th 2021 @ 16:05:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
