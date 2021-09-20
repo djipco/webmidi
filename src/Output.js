@@ -1446,7 +1446,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
     });
 
@@ -2221,7 +2221,7 @@ export class Output extends EventEmitter {
 
     if (options.channels == undefined) options.channels = "all";
 
-    WebMidi.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
 
