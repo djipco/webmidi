@@ -4,8 +4,8 @@
 The `OutputChannel` class represents a single output channel (1-16) from an output device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
-All 16 `OutputChannel` objects can be found inside the output's [channels](Output#channels)
-property.
+All 16 `OutputChannel` objects can be found inside the parent output's
+[channels](Output#channels) property.
 
 The `OutputChannel` class extends the
 [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -25,13 +25,15 @@ others.
 
     * [`new OutputChannel(output, number)`](#new_OutputChannel_new)
 
+    * [`.octaveOffset`](#OutputChannel+octaveOffset) : <code>number</code>
+
     * [`.output`](#OutputChannel+output) : <code>Output</code>
 
     * [`.number`](#OutputChannel+number) : <code>number</code>
 
     * [`.send(message, [options])`](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setKeyAftertouch(note, [pressure], [options])`](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [`.setKeyAftertouch(target, [pressure], [options])`](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
     * [`.sendControlChange(controller, value, [options])`](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
@@ -92,28 +94,46 @@ others.
 | Param | Type | Description |
 | --- | --- | --- |
 | output | <code>Output</code> | The output this channel belongs to |
-| number | <code>number</code> | The channel's number (1-16) |
+| number | <code>number</code> | The channel number (1-16) |
 
+
+* * *
+
+<a name="OutputChannel+octaveOffset"></a>
+
+## `outputChannel.octaveOffset` : <code>number</code>
+An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+octave (C4).
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+and with the value defined on the parent `Output` object.
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Since**: 3.0  
 
 * * *
 
 <a name="OutputChannel+output"></a>
 
 ## `outputChannel.output` : <code>Output</code>
-The [Output](Output) this channel belongs to
+The parent [Output](Output) this channel belongs to
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+**Since**: 3.0  
 
 * * *
 
 <a name="OutputChannel+number"></a>
 
 ## `outputChannel.number` : <code>number</code>
-The channel's number (1-16)
+This channel's MIDI number (1-16)
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+**Since**: 3.0  
 
 * * *
 
@@ -157,16 +177,15 @@ from the MIDI Manufacturers Association.
 
 <a name="OutputChannel+setKeyAftertouch"></a>
 
-## `outputChannel.setKeyAftertouch(note, [pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## `outputChannel.setKeyAftertouch(target, [pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](Output#setChannelAftertouch).
 
-The note can be a single value or an array of the following valid values:
+The key can be a single value or an array of the following valid values:
 
  - A MIDI note number (integer between `0` and `127`)
- - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
+ - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
@@ -178,7 +197,7 @@ The note can be a single value or an array of the following valid values:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). |
+| target | <code>number</code> \| <code>string</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> |  | The key(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types. When using a note identifier, the octave value will be offset by the combined value of `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values are not `0`). When using a key number, octaveOffset values are ignored. |
 | [pressure] | <code>number</code> | <code>0.5</code> | The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure is defined by using an integer between 0 and 127. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.useRawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
@@ -485,7 +504,7 @@ functionally equivalent to a **note off** message.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 | [options.attack] | <code>number</code> | <code>0.5</code> | The velocity at which to play the note (between `0` and `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `0.5`. |

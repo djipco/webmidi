@@ -39,6 +39,8 @@ others.
 
     * [`.type`](#Output+type) : <code>string</code>
 
+    * [`.octaveOffset`](#Output+octaveOffset) : <code>number</code>
+
     * [`.destroy()`](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
 
     * [`.open()`](#Output+open) ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
@@ -218,6 +220,21 @@ Type of the output port (`"output"`)
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
 **Read only**: true  
+
+* * *
+
+<a name="Output+octaveOffset"></a>
+
+## `output.octaveOffset` : <code>number</code>
+An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+is placed on the 4th octave (C4).
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Since**: 3.0  
 
 * * *
 

@@ -45,7 +45,7 @@ others.
 
     * [`.open()`](#Input+open) ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 
-    * [`.close()`](#Input+close) ⇒ <code>Promise.&lt;(void\|\*)&gt;</code>
+    * [`.close()`](#Input+close) ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 
     * [`.addListener(event, listener, [options])`](#Input+addListener) ⇒ <code>Array.&lt;Listener&gt;</code>
 
@@ -213,22 +213,24 @@ MIDI subsystem.
 <a name="Input+open"></a>
 
 ## `input.open()` ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
-Opens the input for usage.
+Opens the input for usage. This is usually unnecessary as the port is open automatically when
+WebMidi is enabled.
 
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
-**Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input`  
+**Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
 
 * * *
 
 <a name="Input+close"></a>
 
-## `input.close()` ⇒ <code>Promise.&lt;(void\|\*)&gt;</code>
+## `input.close()` ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
+**Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
 
 * * *
 

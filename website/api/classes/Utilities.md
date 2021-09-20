@@ -11,34 +11,36 @@ methode are static) and is not meant to be instantiated.
 
 * [Utilities](#Utilities)
 
-    * [`.getNoteNumberByIdentifier(identifier, [octaveOffset])`](#Utilities+getNoteNumberByIdentifier) ⇒ <code>number</code>
+    * [`.toNoteNumber(identifier, [octaveOffset])`](#Utilities+toNoteNumber) ⇒ <code>number</code>
 
-    * [`.getNoteFragments(identifier)`](#Utilities+getNoteFragments) ⇒ <code>Object</code>
+    * [`.getFragments(identifier)`](#Utilities+getFragments) ⇒ <code>Object</code>
 
     * [`.sanitizeChannels([channel])`](#Utilities+sanitizeChannels) ⇒ <code>Array</code>
 
-    * [`.convertToTimestamp([time])`](#Utilities+convertToTimestamp) ⇒ <code>number</code> \| <code>false</code>
+    * [`.toTimestamp([time])`](#Utilities+toTimestamp) ⇒ <code>number</code> \| <code>false</code>
 
     * [`.guessNoteNumber(input)`](#Utilities+guessNoteNumber) ⇒ <code>number</code> \| <code>false</code>
 
-    * [`.getNoteIdentifierByNumber(The, An)`](#Utilities+getNoteIdentifierByNumber) ⇒ <code>string</code>
+    * [`.toNoteIdentifier(The, An)`](#Utilities+toNoteIdentifier) ⇒ <code>string</code>
 
-    * [`.getNoteObject([input], [options])`](#Utilities+getNoteObject) ⇒ <code>Note</code>
+    * [`.buildNote([input], [options])`](#Utilities+buildNote) ⇒ <code>Note</code>
 
-    * [`.getValidNoteArray([notes], [options])`](#Utilities+getValidNoteArray) ⇒ <code>Array.&lt;Note&gt;</code>
+    * [`.buildNoteArray([notes], [options])`](#Utilities+buildNoteArray) ⇒ <code>Array.&lt;Note&gt;</code>
 
-    * [`.from7Bit(value)`](#Utilities+from7Bit) ⇒ <code>number</code>
+    * [`.toNormalized(value)`](#Utilities+toNormalized) ⇒ <code>number</code>
 
     * [`.to7Bit(value)`](#Utilities+to7Bit) ⇒ <code>number</code>
 
-    * [`.buildStructuredMidiMessage(data)`](#Utilities+buildStructuredMidiMessage) ⇒ <code>Object</code>
+    * [`.getMessage(data)`](#Utilities+getMessage) ⇒ <code>Object</code>
+
+    * [`.offsetNumber(offset)`](#Utilities+offsetNumber) ⇒ <code>number</code>
 
 
 * * *
 
-<a name="Utilities+getNoteNumberByIdentifier"></a>
+<a name="Utilities+toNoteNumber"></a>
 
-## `utilities.getNoteNumberByIdentifier(identifier, [octaveOffset])` ⇒ <code>number</code>
+## `utilities.toNoteNumber(identifier, [octaveOffset])` ⇒ <code>number</code>
 Returns a MIDI note number matching the identifier passed in the form of a string. The
 identifier must include the octave number. The identifier also optionally include a sharp (#),
 a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
@@ -67,9 +69,9 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 * * *
 
-<a name="Utilities+getNoteFragments"></a>
+<a name="Utilities+getFragments"></a>
 
-## `utilities.getNoteFragments(identifier)` ⇒ <code>Object</code>
+## `utilities.getFragments(identifier)` ⇒ <code>Object</code>
 Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
 the fragments composing it (uppercase letter, accidental and octave).
 
@@ -110,9 +112,9 @@ integers between 1 and 16 are silently ignored.
 
 * * *
 
-<a name="Utilities+convertToTimestamp"></a>
+<a name="Utilities+toTimestamp"></a>
 
-## `utilities.convertToTimestamp([time])` ⇒ <code>number</code> \| <code>false</code>
+## `utilities.toTimestamp([time])` ⇒ <code>number</code> \| <code>false</code>
 Returns a valid timestamp, relative to the navigation start of the document, derived from the
 `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
 number, the resulting timestamp will be the sum of the current timestamp plus that number. If
@@ -156,9 +158,9 @@ successfully be parsed to a note number.
 
 * * *
 
-<a name="Utilities+getNoteIdentifierByNumber"></a>
+<a name="Utilities+toNoteIdentifier"></a>
 
-## `utilities.getNoteIdentifierByNumber(The, An)` ⇒ <code>string</code>
+## `utilities.toNoteIdentifier(The, An)` ⇒ <code>string</code>
 Returns an identifier string representing a note name (with optional accidental) followed by an
 octave number. The octave can be offset by using the `octaveOffset` parameter.
 
@@ -179,9 +181,9 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 * * *
 
-<a name="Utilities+getNoteObject"></a>
+<a name="Utilities+buildNote"></a>
 
-## `utilities.getNoteObject([input], [options])` ⇒ <code>Note</code>
+## `utilities.buildNote([input], [options])` ⇒ <code>Note</code>
 Converts the `input` parameter to a valid [Note](Note) object. The input usually is an unsigned
 integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a [Note](Note)
 object, it will be returned as is.
@@ -209,9 +211,9 @@ If the input is a note number or identifier, it is possible to specify options b
 
 * * *
 
-<a name="Utilities+getValidNoteArray"></a>
+<a name="Utilities+buildNoteArray"></a>
 
-## `utilities.getValidNoteArray([notes], [options])` ⇒ <code>Array.&lt;Note&gt;</code>
+## `utilities.buildNoteArray([notes], [options])` ⇒ <code>Array.&lt;Note&gt;</code>
 Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
 [Note](Note) object or an array of the previous types, to an array of [Note](Note) objects.
 
@@ -236,13 +238,14 @@ input.
 | [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a decimal number between 0 and 1. |
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
+| [options.octaveOffset] | <code>number</code> | <code>0</code> | An integer to offset the octave by. **This is only used when the input value is a note identifier.** |
 
 
 * * *
 
-<a name="Utilities+from7Bit"></a>
+<a name="Utilities+toNormalized"></a>
 
-## `utilities.from7Bit(value)` ⇒ <code>number</code>
+## `utilities.toNormalized(value)` ⇒ <code>number</code>
 Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
 bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
 smaller than 0.
@@ -282,9 +285,9 @@ the input value cannot be converted to a number, the method returns 0.
 
 * * *
 
-<a name="Utilities+buildStructuredMidiMessage"></a>
+<a name="Utilities+getMessage"></a>
 
-## `utilities.buildStructuredMidiMessage(data)` ⇒ <code>Object</code>
+## `utilities.getMessage(data)` ⇒ <code>Object</code>
 Returns an object inside which the three bytes have been broken up into `command`, `data1` and
 `data2` properties.
 
@@ -294,6 +297,28 @@ Returns an object inside which the three bytes have been broken up into `command
 | Param | Description |
 | --- | --- |
 | data | A MIDI message |
+
+
+* * *
+
+<a name="Utilities+offsetNumber"></a>
+
+## `utilities.offsetNumber(offset)` ⇒ <code>number</code>
+Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+
+<!--**Kind**: instance method of [<code>Utilities</code>](#Utilities)  
+-->
+**Returns**: <code>number</code> - An integer between 0 and 127  
+**Throws**:
+
+- <code>Error</code> Invalid note number
+
+
+| Param |
+| --- |
+| offset | 
 
 
 * * *

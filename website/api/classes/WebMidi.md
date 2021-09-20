@@ -526,7 +526,7 @@ and system exclusive messages are always enabled. You can check the
 
 To enable access to software synthesizers available on the host, you would set the `software`
 option to `true`. However, this option is only there to future-proof the library as support for
-software synths has not yet been implemented in any browser (as of April 2020).
+software synths has not yet been implemented in any browser (as of September 2021).
 
 There are 3 ways to execute code after `WebMidi` has been enabled:
 
@@ -542,8 +542,7 @@ In order, this is what happens towards the end of the enabling process:
 4. specified callback (if any) is executed
 5. promise is resolved
 
-The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
-contain arrays of available inputs and outputs, respectively.
+The promise is fulfilled with the WebMidi object.
 
 **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
 secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
@@ -561,8 +560,7 @@ WebMidi.enable().then(ports => {
 
 <!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 -->
-**Returns**: <code>Promise.&lt;Object&gt;</code> - The promise is fulfilled with an object containing two properties
-(`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - The promise is fulfilled with the `WebMidi` object  
 **Throws**:
 
 - Error The Web MIDI API is not supported in your environment.

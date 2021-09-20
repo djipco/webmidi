@@ -3,14 +3,6 @@
 # Note
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
-Note that a `Note` object does not have a MIDI number per se. The MIDI note number is determined
-when the note is played. This is because, the `octaveOffset` property of various objects
-(`WebMidi`, `InputChannel`, `Output`, etc.) can be used to offset the note number to match
-external devices where middle C is not equal to C4.
-
-The octave of the note has no intrinsic limit. You can specify a note to be "F27" or "G#-16".
-However, to play such notes on a MIDI channel, the channel will need to be offset accordingly.
-
 `Note` objects can be played back on a single channel by calling
 [OutputChannel.playNote()](OutputChannel#playNote). A note can also be played back on the
 multiple channels of an output by using [Output.playNote()](Output#playNote).
@@ -52,6 +44,10 @@ this case, it will never stop playing unless explicitly stopped by calling a met
 
     * [`.rawRelease`](#Note+rawRelease) : <code>number</code>
 
+    * [`.number`](#Note+number) : <code>number</code>
+
+    * [`.getOffsetNumber(offset)`](#Note+getOffsetNumber) ⇒ <code>number</code>
+
 
 * * *
 
@@ -68,19 +64,17 @@ this case, it will never stop playing unless explicitly stopped by calling a met
 - <code>RangeError</code> Invalid duration value
 - <code>RangeError</code> Invalid attack value
 - <code>RangeError</code> Invalid release value
-- <code>RangeError</code> Invalid 'octaveOffset' value
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. The number will be converted to a note name. In this case, middle C is considered to be C4 (note number 60) but that can be offset with the `octaveOffset`property. |
+| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
 | [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
 | [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
-| [options.octaveOffset] | <code>number</code> | <code>0</code> | An integer to offset the octave value. **This is only used when the note is specified using a MIDI note number.** |
 
 
 * * *
@@ -182,6 +176,36 @@ The release velocity of the note as a positive integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+
+* * *
+
+<a name="Note+number"></a>
+
+## `note.number` : <code>number</code>
+The MIDI number of the note. This number is derived from the note identifier using C4 as a
+reference for middle C.
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
+
+* * *
+
+<a name="Note+getOffsetNumber"></a>
+
+## `note.getOffsetNumber(offset)` ⇒ <code>number</code>
+Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+returned. If an invalid value is supplied, 0 will be used.
+
+<!--**Kind**: instance method of [<code>Note</code>](#Note)  
+-->
+**Returns**: <code>number</code> - An integer between 0 and 127  
+
+| Param |
+| --- |
+| offset | 
+
 
 * * *
 
