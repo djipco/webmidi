@@ -3436,6 +3436,7 @@ class OutputChannel extends e {
     this.sendNoteOn(note, options); // https://stackoverflow.com/questions/600763#answer-601877
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
+      console.log(options.time, wm.time, utils.toTimestamp(options.time));
       let noteOffOptions = {
         time: (utils.toTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
