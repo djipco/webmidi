@@ -3010,9 +3010,9 @@ class OutputChannel extends e {
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [target];
-    target = target.map(item => utils.guessNoteNumber(item, offset));
+    target = target.map(item => utils.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n, pressure], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
         time: utils.toTimestamp(options.time)
       });
     });
