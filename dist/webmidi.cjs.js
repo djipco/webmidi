@@ -386,15 +386,15 @@ class Note {
 
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = utils.from7Bit(options.rawAttack);
+    if (options.rawAttack != undefined) this.attack = utils.toNormalized(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = utils.from7Bit(options.rawRelease); // Validate and assign octaveOffset value
+    if (options.rawRelease != undefined) this.release = utils.toNormalized(options.rawRelease); // Validate and assign octaveOffset value
 
     options.octaveOffset = options.octaveOffset == undefined ? 0 : parseInt(options.octaveOffset);
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
-      this.identifier = utils.getNoteIdentifierByNumber(value, options.octaveOffset);
+      this.identifier = utils.toNoteIdentifier(value, options.octaveOffset);
     } else {
       this.identifier = value;
     }
@@ -411,7 +411,7 @@ class Note {
   }
 
   set identifier(value) {
-    const fragments = utils.getNoteFragments(value);
+    const fragments = utils.getFragments(value);
 
     if (wm.validation) {
       if (!value) throw new Error("Invalid note identifier");
@@ -605,12 +605,12 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getNoteNumberByIdentifier(identifier, octaveOffset = 0) {
+  toNoteNumber(identifier, octaveOffset = 0) {
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof identifier !== "string") identifier = "";
-    const fragments = this.getNoteFragments(identifier);
+    const fragments = this.getFragments(identifier);
     if (!fragments) throw new TypeError("Invalid note identifier");
     const notes = {
       C: 0,
@@ -648,7 +648,7 @@ class Utilities {
    */
 
 
-  getNoteFragments(identifier) {
+  getFragments(identifier) {
     const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note identifier");
     const name = matches[1].toUpperCase();
@@ -724,7 +724,7 @@ class Utilities {
    */
 
 
-  convertToTimestamp(time) {
+  toTimestamp(time) {
     let value = false;
     let parsed = parseFloat(time);
     if (isNaN(parsed)) return false;
@@ -770,7 +770,7 @@ class Utilities {
     } else if (typeof input === "string" || input instanceof String) {
       // string
       try {
-        output = this.getNoteNumberByIdentifier(input.trim(), octaveOffset);
+        output = this.toNoteNumber(input.trim(), octaveOffset);
       } catch (e) {
         return false;
       }
@@ -794,7 +794,7 @@ class Utilities {
    */
 
 
-  getNoteIdentifierByNumber(number, octaveOffset) {
+  toNoteIdentifier(number, octaveOffset) {
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -833,7 +833,7 @@ class Utilities {
    */
 
 
-  getNoteObject(input, options = {}) {
+  buildNote(input, options = {}) {
     options.octaveOffset = parseInt(options.octaveOffset) || 0; // If it's already a Note, we're done
 
     if (input instanceof Note) return input;
@@ -887,11 +887,11 @@ class Utilities {
    */
 
 
-  getValidNoteArray(notes, options = {}) {
+  buildNoteArray(notes, options = {}) {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
     notes.forEach(note => {
-      result.push(this.getNoteObject(note, options));
+      result.push(this.buildNote(note, options));
     });
     return result;
   }
@@ -908,7 +908,7 @@ class Utilities {
    */
 
 
-  from7Bit(value) {
+  toNormalized(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -940,7 +940,7 @@ class Utilities {
    */
 
 
-  buildStructuredMidiMessage(data) {
+  getMessage(data) {
     return {
       command: data[0] >> 4,
       data1: data.length > 1 ? data[1] : undefined,
@@ -1106,7 +1106,7 @@ class InputChannel extends e {
       command,
       data1,
       data2
-    } = utils.buildStructuredMidiMessage(e.data); // Returned event
+    } = utils.getMessage(e.data); // Returned event
 
     let event = {
       channel: this,
@@ -1150,7 +1150,7 @@ class InputChannel extends e {
         rawRelease: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.value = utils.from7Bit(data2);
+      event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1187,7 +1187,7 @@ class InputChannel extends e {
         rawAttack: data2,
         octaveOffset: this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
       });
-      event.value = utils.from7Bit(data2);
+      event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1223,10 +1223,10 @@ class InputChannel extends e {
        * 127).
        */
       event.type = "keyaftertouch";
-      event.identifier = utils.getNoteIdentifierByNumber(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-      event.key = utils.getNoteNumberByIdentifier(event.identifier);
+      event.identifier = utils.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+      event.key = utils.toNoteNumber(event.identifier);
       event.rawKey = data1;
-      event.value = utils.from7Bit(data2);
+      event.value = utils.toNormalized(data2);
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
@@ -1263,7 +1263,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = utils.from7Bit(data2);
+      event.value = utils.toNormalized(data2);
       event.rawValue = data2;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode && data1 >= 120 && data1 <= 127) {
       /**
@@ -1295,7 +1295,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getChannelModeByNumber(data1)
       };
-      event.value = utils.from7Bit(data2);
+      event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also dispatch specific channel mode events
 
       this._parseChannelModeMessage(e);
@@ -1347,7 +1347,7 @@ class InputChannel extends e {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       event.type = "channelaftertouch";
-      event.value = utils.from7Bit(data1);
+      event.value = utils.toNormalized(data1);
       event.rawValue = data1;
     } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {
       /**
@@ -2969,7 +2969,7 @@ class OutputChannel extends e {
     target = target.map(item => utils.guessNoteNumber(item, offset));
     target.forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), n, pressure], {
-        time: utils.convertToTimestamp(options.time)
+        time: utils.toTimestamp(options.time)
       });
     });
     return this;
@@ -3088,7 +3088,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
-      time: utils.convertToTimestamp(options.time)
+      time: utils.toTimestamp(options.time)
     });
     return this;
   }
@@ -3437,7 +3437,7 @@ class OutputChannel extends e {
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
       let noteOffOptions = {
-        time: (utils.convertToTimestamp(options.time) || wm.time) + options.duration,
+        time: (utils.toTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease
       };
@@ -3521,9 +3521,9 @@ class OutputChannel extends e {
       rawRelease: parseInt(nVelocity)
     };
     o.octaveOffset = wm.octaveOffset;
-    utils.getValidNoteArray(note, o).forEach(n => {
+    utils.buildNoteArray(note, o).forEach(n => {
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
-        time: utils.convertToTimestamp(options.time)
+        time: utils.toTimestamp(options.time)
       });
     });
     return this;
@@ -3567,10 +3567,8 @@ class OutputChannel extends e {
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+   * {@link Note} object or an array of the previous types.
    *
    * @param {Object} [options={}]
    *
@@ -3621,16 +3619,15 @@ class OutputChannel extends e {
       nVelocity = options.rawAttack;
     } else {
       if (!isNaN(options.attack)) nVelocity = Math.round(options.attack * 127);
-    }
+    } // Plot total octave offset
 
-    let o = {
+
+    const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    utils.buildNoteArray(note, {
       rawAttack: nVelocity
-    };
-    o.octaveOffset = wm.octaveOffset;
-    utils.getValidNoteArray(note, o).forEach(n => {
-      console.log((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack);
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
-        time: utils.convertToTimestamp(options.time)
+    }).forEach(n => {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), utils.toNoteNumber(n.identifier, offset), n.rawAttack], {
+        time: utils.toTimestamp(options.time)
       });
     });
     return this;
@@ -3697,7 +3694,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
-      time: utils.convertToTimestamp(options.time)
+      time: utils.toTimestamp(options.time)
     });
     return this;
   }
@@ -3776,7 +3773,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
-      time: utils.convertToTimestamp(options.time)
+      time: utils.toTimestamp(options.time)
     });
     return this;
   }
@@ -4012,7 +4009,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
-      time: utils.convertToTimestamp(options.time)
+      time: utils.toTimestamp(options.time)
     });
     return this;
   }
@@ -4092,7 +4089,7 @@ class OutputChannel extends e {
     }
 
     this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
-      time: utils.convertToTimestamp(options.time)
+      time: utils.toTimestamp(options.time)
     });
     return this;
   }
@@ -4655,7 +4652,7 @@ class Output extends e {
     } // Send message and return `Output` for chaining
 
 
-    this._midiOutput.send(message, utils.convertToTimestamp(options.time));
+    this._midiOutput.send(message, utils.toTimestamp(options.time));
 
     return this;
   }
@@ -6582,8 +6579,8 @@ class WebMidi extends e {
 
     this.defaults = {
       note: {
-        attack: utils.from7Bit(64),
-        release: utils.from7Bit(64),
+        attack: utils.toNormalized(64),
+        release: utils.toNormalized(64),
         duration: Infinity
       }
     };
@@ -7011,14 +7008,14 @@ class WebMidi extends e {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
+   * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
-      console.warn("The noteNameToNumber() method is deprecated. Use Utilities.getNoteNumberByIdentifier() " + "instead.");
+      console.warn("The noteNameToNumber() method is deprecated. Use " + "Utilities.toNoteNumber() instead.");
     }
 
-    return utils.getNoteNumberByIdentifier(name, this.octaveOffset);
+    return utils.toNoteNumber(name, this.octaveOffset);
   }
   /**
    * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
@@ -7117,29 +7114,29 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since version 3. Moved to Utilities class.
+   * @deprecated since version 3. Moved to Utilities.buildNoteArray().
    */
 
 
   getValidNoteArray(notes, options = {}) {
     if (this.validation) {
-      console.warn("The getValidNoteArray() method has been moved to the Utilities class.");
+      console.warn("The getValidNoteArray() method has been moved to the Utilities.buildNoteArray()");
     }
 
-    return utils.getValidNoteArray(notes, options);
+    return utils.buildNoteArray(notes, options);
   }
   /**
    * @private
-   * @deprecated moved to Utilities class.
+   * @deprecated moved to Utilities.toTimestamp()
    */
 
 
   convertToTimestamp(time) {
     if (this.validation) {
-      console.warn("The convertToTimestamp() method has been moved to the utilities class.");
+      console.warn("The convertToTimestamp() method has been moved to Utilities.toTimestamp().");
     }
 
-    return utils.convertToTimestamp(time);
+    return utils.toTimestamp(time);
   }
   /**
    * @return {Promise<void>}
