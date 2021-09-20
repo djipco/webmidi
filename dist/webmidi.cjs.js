@@ -2946,6 +2946,8 @@ class OutputChannel extends e {
 
 
   setKeyAftertouch(target, pressure, options = {}) {
+    console.log("aa");
+
     if (wm.validation) {
       // Legacy support
       if (options.useRawValue) options.rawValue = options.useRawValue;
@@ -2963,10 +2965,12 @@ class OutputChannel extends e {
           throw new RangeError("Key aftertouch value must be a float between 0 and 1.");
         }
       }
-    } // Normalize pressure to integer
+    }
 
+    console.log("bb"); // Normalize pressure to integer
 
-    if (!options.rawValue) pressure = utils.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
+    if (!options.rawValue) pressure = utils.to7Bit(pressure);
+    console.log("cc"); // Retrieve key number. If identifier specified, offset by total offset value
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [];
