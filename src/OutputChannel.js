@@ -170,13 +170,13 @@ export class OutputChannel extends EventEmitter {
     // Retrieve key number. If identifier specified, offset by total offset value
     const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [target];
-    target = target.map(item => Utilities.guessNoteNumber(item, offset));
+    target = target.map(item => Utilities.guessNoteNumber(item));
 
     target.forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-          n,
+          Utilities.offsetNumber(n, offset),
           pressure
         ],
         {time: Utilities.toTimestamp(options.time)}
@@ -184,6 +184,23 @@ export class OutputChannel extends EventEmitter {
     });
 
     return this;
+
+
+
+
+
+    //
+    // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
+    //   this.send(
+    //     [
+    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
+    //       n.getOffsetNumber(offset),
+    //       n.rawAttack
+    //     ],
+    //     {time: Utilities.toTimestamp(options.time)}
+    //   );
+    // });
+
 
   }
 
@@ -767,7 +784,7 @@ export class OutputChannel extends EventEmitter {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
-          Utilities.toNoteNumber(n.identifier, offset),
+          n.getOffsetNumber(offset),
           n.rawRelease,
         ],
         {time: Utilities.toTimestamp(options.time)}
@@ -877,7 +894,7 @@ export class OutputChannel extends EventEmitter {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
-          Utilities.toNoteNumber(n.identifier, offset),
+          n.getOffsetNumber(offset),
           n.rawAttack
         ],
         {time: Utilities.toTimestamp(options.time)}

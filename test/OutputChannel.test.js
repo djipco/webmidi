@@ -478,7 +478,7 @@ describe("OutputChannel Object", function() {
 
   describe("playNote()", function () {
 
-    it.only("should call 'sendNoteOn()' with correct parameters", function () {
+    it("should call 'sendNoteOn()' with correct parameters", function () {
 
       // Arrange
       let note = "G5";
@@ -1224,7 +1224,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         expect(message[0]).to.equal(128);
-        expect(message[1]).to.equal(Utilities.getNoteNumberByName(notes[index]));
+        expect(message[1]).to.equal(Utilities.toNoteNumber(notes[index]));
 
         index++;
 
@@ -1348,6 +1348,99 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should call 'send' with correct 'octaveOffset' when using number", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = -1;
+      WEBMIDI_OUTPUT.octaveOffset = -1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = -1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const inputNumber = 60;
+      const outputNumber = inputNumber + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOff(inputNumber);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
+    it("should call 'send' with correct 'octaveOffset' when using identifier", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const note = new Note("C4");
+      const outputNumber = note.number + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
+    it("should call 'send' with correct 'octaveOffset' when using Note", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const note = new Note(60);
+      const outputNumber = note.number + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOff(note);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].sendNoteOff(0)
@@ -1400,7 +1493,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         expect(message[0]).to.equal(144);
-        expect(message[1]).to.equal(Utilities.getNoteNumberByName(notes[index]));
+        expect(message[1]).to.equal(Utilities.toNoteNumber(notes[index]));
 
         index++;
 
@@ -1524,6 +1617,99 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should call 'send' with correct 'octaveOffset' when using number", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const inputNumber = 60;
+      const outputNumber = inputNumber + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOn(inputNumber);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
+    it("should call 'send' with correct 'octaveOffset' when using identifier", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const note = new Note("C4");
+      const outputNumber = note.number + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
+    it("should call 'send' with correct 'octaveOffset' when using Note", function () {
+
+      // Arrange
+      const channel = 1;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 1;
+
+      const offset = WebMidi.octaveOffset +
+        WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[channel].octaveOffset;
+
+      const note = new Note(60);
+      const outputNumber = note.number + offset * 12;
+      const spy = sinon.spy(WEBMIDI_OUTPUT.channels[channel], "send");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[channel].sendNoteOn(note);
+
+      // Assert
+      let args = spy.args[0];
+      expect(spy.calledOnce).to.be.true;
+      expect(args[0][1]).to.equal(outputNumber);
+
+      WebMidi.octaveOffset = 0;
+      WEBMIDI_OUTPUT.octaveOffset = 0;
+      WEBMIDI_OUTPUT.channels[channel].octaveOffset = 0;
+
+    });
+
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].sendNoteOn(0)
@@ -1625,8 +1811,6 @@ describe("OutputChannel Object", function() {
 
     it("should send correct MIDI message when using note number", function(done) {
 
-      this.timeout(5000);
-
       // Arrange
       let index = 0;
       VIRTUAL_OUTPUT.on("message", assert);
@@ -1636,39 +1820,125 @@ describe("OutputChannel Object", function() {
 
       // Assert
       function assert(deltaTime, message) {
-        // expect(message).to.have.ordered.members([160, index, 64]);
-        // index++;
-
-        // if (index >= 127) {
-          VIRTUAL_OUTPUT.removeAllListeners();
-console.log(index);
-          done();
-        // }
-
-      }
-
-    });
-
-    it("should send correct MIDI message when using note Objects", function(done) {
-
-      // Arrange
-      let index = 0;
-      VIRTUAL_OUTPUT.on("message", assert);
-
-      // Act
-      for (let i = 0; i <= 127; i++) {
-        let note = new Note(i);
-        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(note, 0.5);
-      }
-
-      // Assert
-      function assert(deltaTime, message) {
-
         expect(message).to.have.ordered.members([160, index, 64]);
         index++;
 
         if (index >= 127) {
           VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should send correct MIDI message when using note identifier", function(done) {
+
+      // Arrange
+      let index = 0;
+      const value = 0.5;
+      const items = [
+        {identifier: "C-1", number: 0},
+        {identifier: "C4", number: 60},
+        {identifier: "G9", number: 127},
+      ];
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      items.forEach(item => {
+        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(item.identifier, value);
+      });
+
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(
+          message
+        ).to.have.ordered.members([160, items[index].number, Utilities.to7Bit(value)]);
+
+        index++;
+
+        if (index >= items.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should send correct message when offset is used with note number", function(done) {
+
+      // Arrange
+      WebMidi.octaveOffset = -1;
+      WEBMIDI_OUTPUT.octaveOffset = -1;
+      WEBMIDI_OUTPUT.channels[1].octaveOffset = -1;
+      const offset = WebMidi.octaveOffset + WEBMIDI_OUTPUT.octaveOffset +
+        WEBMIDI_OUTPUT.channels[1].octaveOffset;
+      let index = Math.abs(offset) * 12;
+      const max = 127;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      for (let i = index; i <= max; i++) WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(i, 0.5);
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message).to.have.ordered.members([160, index + offset * 12, 64]);
+        index++;
+
+        if (index >= max) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          WebMidi.octaveOffset = 0;
+          WEBMIDI_OUTPUT.octaveOffset = 0;
+          WEBMIDI_OUTPUT.channels[1].octaveOffset = 0;
+          done();
+        }
+
+      }
+
+    });
+
+    it("should send correct message when offset is used with note identifier", function(done) {
+
+      // Arrange
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_OUTPUT.octaveOffset = 1;
+      WEBMIDI_OUTPUT.channels[1].octaveOffset = 1;
+
+      let index = 0;
+      const value = 0.5;
+
+      const items = [
+        {identifier: "C-1", number: 36},
+        {identifier: "C4", number: 96}
+      ];
+
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      items.forEach(item => {
+        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(item.identifier, value);
+      });
+
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message).to.have.ordered.members(
+          [160, items[index].number, Utilities.to7Bit(value)]
+        );
+
+        index++;
+
+        if (index >= items.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          WebMidi.octaveOffset = 0;
+          WEBMIDI_OUTPUT.octaveOffset = 0;
+          WEBMIDI_OUTPUT.channels[1].octaveOffset = 0;
           done();
         }
 
