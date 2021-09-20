@@ -7,8 +7,8 @@ function API() {
     <Layout title="API">
       <div>
 
-        <iframe id="inlineFrameExample"
-          title="Inline Frame Example"
+        <iframe id="frame"
+          title="Alternative API Docs Frame"
           width="100%"
           height="100vh"
           src="https://djipco.github.io/webmidi/api/v3/">
