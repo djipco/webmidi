@@ -390,6 +390,29 @@ class Utilities {
 
   }
 
+  /**
+   * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+   * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+   * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+   *
+   * @param offset
+   * @returns {number} An integer between 0 and 127
+   *
+   * @throws {Error} Invalid note number
+   */
+  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (isNaN(number)) throw new Error("Invalid note number");
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
+    }
+
+    return Math.min(Math.max(number + (octaveOffset * 12) + semitoneOffset, 0), 127);
+
+  }
+
 }
 
 // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
