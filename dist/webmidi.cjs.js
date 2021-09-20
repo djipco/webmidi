@@ -654,6 +654,7 @@ class Utilities {
       }
     }
 
+    console.log(identifier, octaveOffset, result);
     if (result < 0 || result > 127) throw new RangeError("Invalid octaveOffset value");
     return result;
   }
