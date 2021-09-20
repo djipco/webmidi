@@ -3647,7 +3647,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), utils.toNoteNumber(n.identifier, offset), n.rawAttack], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
         time: utils.toTimestamp(options.time)
       });
     });
