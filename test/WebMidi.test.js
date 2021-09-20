@@ -783,25 +783,32 @@ describe("WebMidi Object", function() {
 
   describe("noteNameToNumber()", function() {
 
-    it("should return the same as getNoteNumberByName()", function() {
+    it("should return the same as Utilities.toNoteNumber()", function() {
 
-      [
-        "", "abc", null, undefined, "G#9", "Cb-1", "555", "C-3", "Cbb-1/", "H3", "G##9",
-        "C6", "C-1", "G9"
-      ].forEach(param => {
-        expect(WebMidi.noteNameToNumber(param)).to.equal(Utilities.getNoteNumberByName(param));
+      // Arrange
+      const items = [
+        "C-1",
+        "Cb4",
+        "C4",
+        "C#4",
+        "G9"
+      ];
+
+      // Act
+      items.forEach(param => {
+        expect(WebMidi.noteNameToNumber(param)).to.equal(Utilities.toNoteNumber(param));
       });
 
     });
 
     it("should return the correct number given the current octave", function() {
 
-      expect(Utilities.getNoteNumberByName("C-1", 0)).to.equal(0);
-      expect(Utilities.getNoteNumberByName("B-1", 0)).to.equal(11);
-      expect(Utilities.getNoteNumberByName("C-1", -1)).to.equal(12);
-      expect(Utilities.getNoteNumberByName("B-1", -1)).to.equal(23);
-      expect(Utilities.getNoteNumberByName("C-1", -10)).to.equal(120);
-      expect(Utilities.getNoteNumberByName("B-1", -10)).to.be.false;
+      expect(Utilities.toNoteNumber("C-1", 0)).to.equal(0);
+      expect(Utilities.toNoteNumber("C-1", 1)).to.equal(12);
+      expect(Utilities.toNoteNumber("C4", 0)).to.equal(60);
+      expect(Utilities.toNoteNumber("C4", -1)).to.equal(48);
+      expect(Utilities.toNoteNumber("C4", 1)).to.equal(72);
+      expect(Utilities.toNoteNumber("G8", 1)).to.equal(127);
 
     });
 
