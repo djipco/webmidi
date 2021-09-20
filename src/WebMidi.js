@@ -54,8 +54,8 @@ class WebMidi extends EventEmitter {
      * default attack velocity of notes. Initial value is 64.
      * @property {number}  defaults.note.release - A number between 0 and 127 representing the
      * default release velocity of notes. Initial value is 64.
-     * @property {number}  defaults.note.duration - A number representing the default
-     * duration of notes (in seconds). Initial value is Infinity.
+     * @property {number}  defaults.note.duration - A number representing the default duration of
+     * notes (in seconds). Initial value is Infinity.
      */
     this.defaults = {
       note: {
