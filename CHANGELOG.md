@@ -44,6 +44,9 @@ options of `WebMidi.enable()`.
 
 - Licence has been changed to Apache 2.0
 
+- An `octaveOffset` property has been added to `Input`, `InputChannel`, `Output` and 
+`OutputChannel`.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
