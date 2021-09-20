@@ -386,7 +386,8 @@ class Note {
     if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value"); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
-      this.identifier = utils.toNoteIdentifier(value, options.octaveOffset);
+      // this.identifier = Utilities.toNoteIdentifier(value, options.octaveOffset);
+      this.identifier = utils.toNoteIdentifier(value);
     } else {
       this.identifier = value;
     }
