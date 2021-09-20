@@ -989,7 +989,7 @@ class Utilities {
       semitoneOffset = parseInt(semitoneOffset) || 0;
     }
 
-    return Math.min(Math.max(this.number + octaveOffset * 12 + semitoneOffset, 0), 127);
+    return Math.min(Math.max(number + octaveOffset * 12 + semitoneOffset, 0), 127);
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
