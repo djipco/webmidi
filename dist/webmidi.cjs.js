@@ -969,6 +969,28 @@ class Utilities {
       data2: data.length > 2 ? data[2] : undefined
     };
   }
+  /**
+   * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+   * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+   * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+   *
+   * @param offset
+   * @returns {number} An integer between 0 and 127
+   *
+   * @throws {Error} Invalid note number
+   */
+
+
+  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+    if (wm.validation) {
+      number = parseInt(number);
+      if (isNaN(number)) throw new Error("Invalid note number");
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
+    }
+
+    return Math.min(Math.max(this.number + octaveOffset * 12 + semitoneOffset, 0), 127);
+  }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
@@ -2994,7 +3016,17 @@ class OutputChannel extends e {
         time: utils.toTimestamp(options.time)
       });
     });
-    return this;
+    return this; //
+    // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
+    //   this.send(
+    //     [
+    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
+    //       n.getOffsetNumber(offset),
+    //       n.rawAttack
+    //     ],
+    //     {time: Utilities.toTimestamp(options.time)}
+    //   );
+    // });
   }
   /**
    * Sends a MIDI **control change** message to the channel at the scheduled time. The control
