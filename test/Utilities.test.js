@@ -187,7 +187,7 @@ describe("Utilities Object", function() {
     });
 
     it("should return an empty array when 'none' is passed", function() {
-      expect(WebMidi.sanitizeChannels("none").length).to.equal(0);
+      expect(Utilities.sanitizeChannels("none").length).to.equal(0);
     });
 
   });
@@ -200,7 +200,7 @@ describe("Utilities Object", function() {
 
     it("should return timestamp when passed string starting with '+'", function() {
       // Assert
-      expect(WebMidi.convertToTimestamp("+1000")).to.be.a("number");
+      expect(Utilities.toTimestamp("+1000")).to.be.a("number");
     });
 
     it("should return false for invalid input", function() {
@@ -213,7 +213,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(value) {
-        expect(WebMidi.convertToTimestamp(value)).to.be.false;
+        expect(Utilities.toTimestamp(value)).to.be.false;
       }
 
     });
@@ -228,7 +228,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(value) {
-        expect(WebMidi.convertToTimestamp(value)).to.equal(value);
+        expect(Utilities.toTimestamp(value)).to.equal(value);
       }
 
     });
@@ -544,8 +544,102 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        expect(WebMidi.guessNoteNumber(item)).to.be.false;
+        expect(Utilities.guessNoteNumber(item)).to.be.false;
       };
+
+    });
+
+  });
+
+  describe("offsetNumber()", function () {
+
+    it("should use 0 if octaveOffset is invalid", function() {
+
+      // Arrange
+      let number = 60;
+      let values = [
+        Infinity,
+        -Infinity,
+        "abc",
+        NaN,
+        null,
+        undefined
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(Utilities.offsetNumber(number, value)).to.equal(number);
+      }
+
+    });
+
+    it("should use 0 if semitoneOffset is invalid", function() {
+
+      // Arrange
+      let number = 60;
+      let values = [
+        Infinity,
+        -Infinity,
+        "abc",
+        NaN,
+        null,
+        undefined
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(Utilities.offsetNumber(number, 0, value)).to.equal(number);
+      }
+
+    });
+
+    it("should cap returned value at 127", function() {
+
+      // Arrange
+      let number = 60;
+      let pairs = [
+        {octaveOffset: 0, semitoneOffset: 1000},
+        {octaveOffset: 100, semitoneOffset: 0},
+        {octaveOffset: 20, semitoneOffset: 20},
+      ];
+
+      // Act
+      pairs.forEach(assert);
+
+      // Assert
+      function assert(pair) {
+        expect(
+          Utilities.offsetNumber(number, pair.octaveOffset, pair.semitoneOffset)
+        ).to.equal(127);
+      }
+
+    });
+
+    it("should return 0 for values smaller than 0", function() {
+
+      // Arrange
+      let number = 60;
+      let pairs = [
+        {octaveOffset: 0, semitoneOffset: -200},
+        {octaveOffset: -20, semitoneOffset: 0},
+        {octaveOffset: -20, semitoneOffset: -20},
+      ];
+
+      // Act
+      pairs.forEach(assert);
+
+      // Assert
+      function assert(pair) {
+        expect(
+          Utilities.offsetNumber(number, pair.octaveOffset, pair.semitoneOffset)
+        ).to.equal(0);
+      }
 
     });
 
@@ -889,7 +983,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.from7Bit(item.input)
+          Utilities.toNormalized(item.input)
         ).to.equal(item.output);
       }
 
@@ -914,7 +1008,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.from7Bit(item.input)
+          Utilities.toNormalized(item.input)
         ).to.equal(item.output);
       }
 
