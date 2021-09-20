@@ -270,13 +270,14 @@ export class Note {
    * @param offset
    * @returns {number} An integer between 0 and 127
    */
-  getOffsetNumber(offset = 0) {
+  getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
 
     if (WebMidi.validation) {
-      offset = parseInt(offset) || 0;
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
     }
 
-    return Math.min(Math.max(this.number + offset, 0), 127);
+    return Math.min(Math.max(this.number + (octaveOffset * 12) + semitoneOffset, 0), 127);
 
   }
 
