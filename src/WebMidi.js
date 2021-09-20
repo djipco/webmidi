@@ -503,16 +503,16 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
+   * @deprecated since version 3.0.0 Use Utilities.convertIdentifierToNumber() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
       console.warn(
-        "The noteNameToNumber() method is deprecated. Use Utilities.getNoteNumberByIdentifier() " +
+        "The noteNameToNumber() method is deprecated. Use Utilities.convertIdentifierToNumber() " +
         "instead."
       );
     }
-    return Utilities.getNoteNumberByIdentifier(name, this.octaveOffset);
+    return Utilities.convertIdentifierToNumber(name, this.octaveOffset);
   }
 
   /**

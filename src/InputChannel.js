@@ -298,7 +298,7 @@ export class InputChannel extends EventEmitter {
         data1, WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
       );
 
-      event.key = Utilities.getNoteNumberByIdentifier(event.identifier);
+      event.key = Utilities.convertIdentifierToNumber(event.identifier);
       event.rawKey = data1;
 
       event.value = Utilities.from7Bit(data2);

@@ -153,7 +153,7 @@ describe("InputChannel Object", function() {
     function assert(e) {
 
       expect(e.type).to.equal(event);
-      expect(Utilities.getNoteNumberByIdentifier(e.note.identifier)).to.equal(index);
+      expect(Utilities.convertIdentifierToNumber(e.note.identifier)).to.equal(index);
       expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 

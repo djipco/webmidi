@@ -4,7 +4,7 @@ const {Utilities, WebMidi, Note} = require("../dist/webmidi.cjs.js");
 // VERIFIED
 describe("Utilities Object", function() {
 
-  describe("getNoteNumberByIdentifier()", function() {
+  describe("convertIdentifierToNumber()", function() {
 
     it("should return the correct MIDI note number", function() {
 
@@ -20,7 +20,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(pair) {
-        expect(Utilities.getNoteNumberByIdentifier(pair.identifier)).to.equal(pair.number);
+        expect(Utilities.convertIdentifierToNumber(pair.identifier)).to.equal(pair.number);
       }
 
     });
@@ -52,7 +52,7 @@ describe("Utilities Object", function() {
 
       function assert(value) {
         expect(function() {
-          Utilities.getNoteNumberByIdentifier(value);
+          Utilities.convertIdentifierToNumber(value);
         }).to.throw();
       }
 
@@ -74,7 +74,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.getNoteNumberByIdentifier(item.identifier, item.octaveOffset)
+          Utilities.convertIdentifierToNumber(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 
@@ -99,7 +99,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteNumberByIdentifier("C-1", item);
+          Utilities.convertIdentifierToNumber("C-1", item);
         }).to.throw(RangeError);
       }
 
@@ -157,7 +157,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteNumberByIdentifier(item);
+          Utilities.convertIdentifierToNumber(item);
         }).to.throw(TypeError);
       }
 
@@ -272,7 +272,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.getNoteNumberByIdentifier(item.identifier, item.octaveOffset)
+          Utilities.convertIdentifierToNumber(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 

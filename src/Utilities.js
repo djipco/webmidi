@@ -34,7 +34,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getNoteNumberByIdentifier(identifier, octaveOffset = 0) {
+  convertIdentifierToNumber(identifier, octaveOffset = 0) {
 
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -203,7 +203,7 @@ class Utilities {
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
       try {
-        output = this.getNoteNumberByIdentifier(input.trim(), octaveOffset);
+        output = this.convertIdentifierToNumber(input.trim(), octaveOffset);
       } catch (e) {
         return false;
       }
