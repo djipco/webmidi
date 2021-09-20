@@ -19,10 +19,9 @@ import {Utilities} from "./Utilities.js";
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
- * it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
+ * it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
  * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this
- * case, middle C is considered to be C4 (note number 60) but that can be offset with the
- * `octaveOffset`property.
+ * case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
  *
@@ -45,9 +44,6 @@ import {Utilities} from "./Utilities.js";
  * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
  * `release` and `rawRelease` are specified, the latter has precedence.
  *
- * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
- * used when the note is specified using a MIDI note number.**
- *
  * @throws {Error} Invalid note identifier
  * @throws {RangeError} Invalid name value
  * @throws {RangeError} Invalid accidental value
@@ -55,7 +51,6 @@ import {Utilities} from "./Utilities.js";
  * @throws {RangeError} Invalid duration value
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
- * @throws {RangeError} Invalid 'octaveOffset' value
  *
  * @since 3.0.0
  */
@@ -75,13 +70,9 @@ export class Note {
     if (options.release != undefined) this.release = options.release;
     if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease);
 
-    // Validate and assign octaveOffset value
-    options.octaveOffset = options.octaveOffset == undefined ? 0 :parseInt(options.octaveOffset);
-    if (isNaN(options.octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
-
     // Assign note depending on the way it was specified (name or number)
     if (Number.isInteger(value)) {
-      this.identifier = Utilities.toNoteIdentifier(value, options.octaveOffset);
+      this.identifier = Utilities.toNoteIdentifier(value);
     } else {
       this.identifier = value;
     }

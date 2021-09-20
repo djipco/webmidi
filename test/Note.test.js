@@ -131,29 +131,6 @@ describe("Note Object", function() {
 
     });
 
-    it("should offset 'Note' if 'octaveOffset' is specified when using number", function() {
-
-      // Arrange
-      let triplets = [
-        {number: 0, octaveOffset: 0, identifier: "C-1"},
-        {number: 0, octaveOffset: 1, identifier: "C0"},
-        {number: 60, octaveOffset: 0, identifier: "C4"},
-        {number: 60, octaveOffset: -1, identifier: "C3"},
-        {number: 127, octaveOffset: 0, identifier: "G9"},
-        {number: 127, octaveOffset: -1, identifier: "G8"}
-      ];
-
-      // Act
-      triplets.forEach(assert);
-
-      // Assert
-      function assert(triplet) {
-        const note = new Note(triplet.number, {octaveOffset: triplet.octaveOffset});
-        expect(note.identifier).to.equal(triplet.identifier);
-      }
-
-    });
-
     it("should ignore 'octaveOffset' for notes specified by identifier", function() {
 
       // Arrange
@@ -291,32 +268,6 @@ describe("Note Object", function() {
 
         expect(function() {
           new Note("E##5", {release: value});
-        }).to.throw(RangeError);
-
-      }
-
-    });
-
-    it("should throw when using invalid octaveOffset", function() {
-
-      // Arrange
-      let values = [
-        Infinity,
-        -Infinity,
-        "test",
-        [],
-        {},
-        NaN
-      ];
-
-      // Act
-      values.forEach(assert);
-
-      // Assert
-      function assert(value) {
-
-        expect(function() {
-          new Note(123, {octaveOffset: value});
         }).to.throw(RangeError);
 
       }
