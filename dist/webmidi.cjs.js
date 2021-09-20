@@ -3514,15 +3514,14 @@ class OutputChannel extends e {
       nVelocity = options.rawRelease;
     } else {
       if (!isNaN(options.release)) nVelocity = Math.round(options.release * 127);
-    } // Send note off messages
+    } // Plot total octave offset
 
 
-    let o = {
+    const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
+    utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
-    };
-    o.octaveOffset = wm.octaveOffset;
-    utils.buildNoteArray(note, o).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.number, n.rawRelease], {
+    }).forEach(n => {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), utils.toNoteNumber(n.identifier, offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
