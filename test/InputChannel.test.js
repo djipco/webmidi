@@ -97,7 +97,7 @@ describe("InputChannel Object", function() {
       expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
       expect(e.note.rawRelease).to.equal(velocity);
       expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
-      expect(e.value).to.equal(Utilities.from7Bit(velocity));
+      expect(e.value).to.equal(Utilities.toNormalized(velocity));
       expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
