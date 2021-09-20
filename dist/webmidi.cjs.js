@@ -726,11 +726,11 @@ class Utilities {
 
   toTimestamp(time) {
     let value = false;
-    let parsed = parseFloat(time);
+    const parsed = parseFloat(time);
     if (isNaN(parsed)) return false;
 
     if (typeof time === "string" && time.substring(0, 1) === "+") {
-      if (parsed >= 0) value = this.time + parsed;
+      if (parsed >= 0) value = wm.time + parsed;
     } else {
       if (parsed >= 0) value = parsed;
     }
