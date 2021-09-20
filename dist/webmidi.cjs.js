@@ -5765,7 +5765,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
     });
     return this;
@@ -6475,7 +6475,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    wm.sanitizeChannels(options.channels).forEach(ch => {
+    utils.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
     return this;
