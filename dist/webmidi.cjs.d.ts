@@ -374,6 +374,17 @@ declare class Utilities {
         data1: (number | undefined);
         command: number;
     };
+    /**
+     * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+     * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+     * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+     *
+     * @param offset
+     * @returns {number} An integer between 0 and 127
+     *
+     * @throws {Error} Invalid note number
+     */
+    offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
