@@ -17,10 +17,9 @@ export var __esModule: boolean;
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
- * it must be the note name (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
+ * it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
  * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this
- * case, middle C is considered to be C4 (note number 60) but that can be offset with the
- * `octaveOffset`property.
+ * case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
  *
