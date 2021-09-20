@@ -126,8 +126,8 @@ describe("Note Object", function() {
       const note = new Note(identifier, options);
 
       // Assert
-      expect(note.attack).to.equal(Utilities.from7Bit(options.rawAttack));
-      expect(note.release).to.equal(Utilities.from7Bit(options.rawRelease));
+      expect(note.attack).to.equal(Utilities.toNormalized(options.rawAttack));
+      expect(note.release).to.equal(Utilities.toNormalized(options.rawRelease));
 
     });
 
@@ -319,6 +319,96 @@ describe("Note Object", function() {
           new Note(123, {octaveOffset: value});
         }).to.throw(RangeError);
 
+      }
+
+    });
+
+  });
+
+  describe("getOffsetNumber()", function () {
+
+    it("should use 0 if octaveOffset is invalid", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        Infinity,
+        -Infinity,
+        "abc",
+        NaN,
+        null,
+        undefined
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(note.getOffsetNumber(value)).to.equal(note.number);
+      }
+
+    });
+
+    it("should use 0 if semitoneOffset is invalid", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        Infinity,
+        -Infinity,
+        "abc",
+        NaN,
+        null,
+        undefined
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(value) {
+        expect(note.getOffsetNumber(0, value)).to.equal(note.number);
+      }
+
+    });
+
+    it("should cap returned value at 127", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let pairs = [
+        {octaveOffset: 0, semitoneOffset: 1000},
+        {octaveOffset: 100, semitoneOffset: 0},
+        {octaveOffset: 20, semitoneOffset: 20},
+      ];
+
+      // Act
+      pairs.forEach(assert);
+
+      // Assert
+      function assert(pair) {
+        expect(note.getOffsetNumber(pair.octaveOffset, pair.semitoneOffset)).to.equal(127);
+      }
+
+    });
+
+    it("should return 0 for values smaller than 0", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let pairs = [
+        {octaveOffset: 0, semitoneOffset: -43},
+        {octaveOffset: -20, semitoneOffset: 0},
+        {octaveOffset: -20, semitoneOffset: -20},
+      ];
+
+      // Act
+      pairs.forEach(assert);
+
+      // Assert
+      function assert(pair) {
+        expect(note.getOffsetNumber(pair.octaveOffset, pair.semitoneOffset)).to.equal(0);
       }
 
     });
