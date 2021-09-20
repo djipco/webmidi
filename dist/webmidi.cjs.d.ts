@@ -43,9 +43,6 @@ export var __esModule: boolean;
  * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
  * `release` and `rawRelease` are specified, the latter has precedence.
  *
- * @param {number} [options.octaveOffset=0] An integer to offset the octave value. **This is only
- * used when the note is specified using a MIDI note number.**
- *
  * @throws {Error} Invalid note identifier
  * @throws {RangeError} Invalid name value
  * @throws {RangeError} Invalid accidental value
@@ -53,7 +50,6 @@ export var __esModule: boolean;
  * @throws {RangeError} Invalid duration value
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
- * @throws {RangeError} Invalid 'octaveOffset' value
  *
  * @since 3.0.0
  */
