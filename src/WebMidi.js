@@ -59,8 +59,8 @@ class WebMidi extends EventEmitter {
      */
     this.defaults = {
       note: {
-        attack: Utilities.from7Bit(64),
-        release: Utilities.from7Bit(64),
+        attack: Utilities.toNormalized(64),
+        release: Utilities.toNormalized(64),
         duration: Infinity
       }
     };
@@ -503,16 +503,16 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.convertIdentifierToNumber() instead.
+   * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
       console.warn(
-        "The noteNameToNumber() method is deprecated. Use Utilities.convertIdentifierToNumber() " +
-        "instead."
+        "The noteNameToNumber() method is deprecated. Use " +
+        "Utilities.toNoteNumber() instead."
       );
     }
-    return Utilities.convertIdentifierToNumber(name, this.octaveOffset);
+    return Utilities.toNoteNumber(name, this.octaveOffset);
   }
 
   /**
@@ -622,30 +622,30 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3. Moved to Utilities class.
+   * @deprecated since version 3. Moved to Utilities.buildNoteArray().
    */
   getValidNoteArray(notes, options = {}) {
     if (this.validation) {
       console.warn(
-        "The getValidNoteArray() method has been moved to the Utilities class."
+        "The getValidNoteArray() method has been moved to the Utilities.buildNoteArray()"
       );
     }
-    return Utilities.getValidNoteArray(notes, options);
+    return Utilities.buildNoteArray(notes, options);
   }
 
   /**
    * @private
-   * @deprecated moved to Utilities class.
+   * @deprecated moved to Utilities.toTimestamp()
    */
   convertToTimestamp(time) {
 
     if (this.validation) {
       console.warn(
-        "The convertToTimestamp() method has been moved to the utilities class."
+        "The convertToTimestamp() method has been moved to Utilities.toTimestamp()."
       );
     }
 
-    return Utilities.convertToTimestamp(time);
+    return Utilities.toTimestamp(time);
 
   }
 

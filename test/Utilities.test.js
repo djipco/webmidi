@@ -4,7 +4,7 @@ const {Utilities, WebMidi, Note} = require("../dist/webmidi.cjs.js");
 // VERIFIED
 describe("Utilities Object", function() {
 
-  describe("convertIdentifierToNumber()", function() {
+  describe("toNoteNumber()", function() {
 
     it("should return the correct MIDI note number", function() {
 
@@ -20,7 +20,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(pair) {
-        expect(Utilities.convertIdentifierToNumber(pair.identifier)).to.equal(pair.number);
+        expect(Utilities.toNoteNumber(pair.identifier)).to.equal(pair.number);
       }
 
     });
@@ -52,7 +52,7 @@ describe("Utilities Object", function() {
 
       function assert(value) {
         expect(function() {
-          Utilities.convertIdentifierToNumber(value);
+          Utilities.toNoteNumber(value);
         }).to.throw();
       }
 
@@ -74,7 +74,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.convertIdentifierToNumber(item.identifier, item.octaveOffset)
+          Utilities.toNoteNumber(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 
@@ -99,7 +99,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.convertIdentifierToNumber("C-1", item);
+          Utilities.toNoteNumber("C-1", item);
         }).to.throw(RangeError);
       }
 
@@ -107,7 +107,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getNoteFragments()", function() {
+  describe("getFragments()", function() {
 
     it("should return the correct fragments", function () {
 
@@ -126,7 +126,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const fragments = Utilities.getNoteFragments(item.identifier);
+        const fragments = Utilities.getFragments(item.identifier);
         expect(fragments.identifier).to.equal(item.identifier);
         expect(fragments.name).to.equal(item.name);
         expect(fragments.accidental).to.equal(item.accidental);
@@ -157,7 +157,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.convertIdentifierToNumber(item);
+          Utilities.toNoteNumber(item);
         }).to.throw(TypeError);
       }
 
@@ -235,7 +235,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getNoteIdentifierByNumber()", function() {
+  describe("toNoteIdentifier()", function() {
 
     it("should return the correct note identifier", function() {
 
@@ -251,7 +251,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        expect(Utilities.getNoteIdentifierByNumber(item.number)).to.equal(item.identifier);
+        expect(Utilities.toNoteIdentifier(item.number)).to.equal(item.identifier);
       }
 
     });
@@ -272,7 +272,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.convertIdentifierToNumber(item.identifier, item.octaveOffset)
+          Utilities.toNoteNumber(item.identifier, item.octaveOffset)
         ).to.equal(item.number);
       }
 
@@ -299,7 +299,7 @@ describe("Utilities Object", function() {
 
       function assert(value) {
         expect(function() {
-          Utilities.getNoteIdentifierByNumber(value);
+          Utilities.toNoteIdentifier(value);
         }).to.throw();
       }
 
@@ -323,7 +323,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteIdentifierByNumber(60, item);
+          Utilities.toNoteIdentifier(60, item);
         }).to.throw(RangeError);
       }
 
@@ -551,7 +551,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getNoteObject()", function() {
+  describe("buildNote()", function() {
 
     it("should return the same note if a note is passed in", function () {
 
@@ -559,7 +559,7 @@ describe("Utilities Object", function() {
       const note = new Note("C4", {attack: 0.12, release: 0.34, duration: 56});
 
       // Act
-      const result = Utilities.getNoteObject(note);
+      const result = Utilities.buildNote(note);
 
       // Assert
       expect(result).to.equal(note);
@@ -577,7 +577,7 @@ describe("Utilities Object", function() {
       const options = {attack: 0.12, release: 0.34, duration: 56};
 
       // Act
-      const result = Utilities.getNoteObject(identifier, options);
+      const result = Utilities.buildNote(identifier, options);
 
       // Assert
       expect(result.identifier).to.equal(identifier);
@@ -602,7 +602,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const n = Utilities.getNoteObject(item.identifier, {octaveOffset: item.offset});
+        const n = Utilities.buildNote(item.identifier, {octaveOffset: item.offset});
         expect(n.identifier).to.equal(item.target);
       }
 
@@ -616,7 +616,7 @@ describe("Utilities Object", function() {
       const options = {attack: 0.98, release: 0.76, duration: 56};
 
       // Act
-      const result = Utilities.getNoteObject(number, options);
+      const result = Utilities.buildNote(number, options);
 
       // Assert
       expect(result.identifier).to.equal(identifier);
@@ -646,7 +646,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const n = Utilities.getNoteObject(item.number, {octaveOffset: item.offset});
+        const n = Utilities.buildNote(item.number, {octaveOffset: item.offset});
         expect(n.identifier).to.equal(item.identifier);
       }
 
@@ -681,7 +681,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(function () {
-          Utilities.getNoteObject(item);
+          Utilities.buildNote(item);
         }).to.throw(TypeError);
       };
 
@@ -689,7 +689,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getValidNoteArray()", function() {
+  describe("buildNoteArray()", function() {
 
     it("should return an array of valid notes when passing number array", function () {
 
@@ -706,7 +706,7 @@ describe("Utilities Object", function() {
       ];
 
       // Act
-      const results = Utilities.getValidNoteArray(items);
+      const results = Utilities.buildNoteArray(items);
 
       // Assert
       results.forEach((result, index) => {
@@ -725,7 +725,7 @@ describe("Utilities Object", function() {
       ];
 
       // Act
-      const results = Utilities.getValidNoteArray(items);
+      const results = Utilities.buildNoteArray(items);
 
       // Assert
       results.forEach((result, index) => {
@@ -744,7 +744,7 @@ describe("Utilities Object", function() {
       ];
 
       // Act
-      const results = Utilities.getValidNoteArray(items);
+      const results = Utilities.buildNoteArray(items);
 
       // Assert
       results.forEach((result, index) => {
@@ -770,7 +770,7 @@ describe("Utilities Object", function() {
 
       // Act
       items.forEach(item => {
-        results.push(Utilities.getValidNoteArray(item));
+        results.push(Utilities.buildNoteArray(item));
       });
 
       // Assert
@@ -792,7 +792,7 @@ describe("Utilities Object", function() {
 
       // Act
       items.forEach(item => {
-        results.push(Utilities.getValidNoteArray(item));
+        results.push(Utilities.buildNoteArray(item));
       });
 
       // Assert
@@ -814,7 +814,7 @@ describe("Utilities Object", function() {
 
       // Act
       items.forEach(item => {
-        results.push(Utilities.getValidNoteArray(item));
+        results.push(Utilities.buildNoteArray(item));
       });
 
       // Assert
@@ -849,7 +849,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          Utilities.getValidNoteArray(value);
+          Utilities.buildNoteArray(value);
         }).to.throw();
       }
 
@@ -863,7 +863,7 @@ describe("Utilities Object", function() {
         release: 0.78
       };
 
-      let notes1 = Utilities.getValidNoteArray([60], options);
+      let notes1 = Utilities.buildNoteArray([60], options);
       expect(notes1[0].duration).to.equal(1000);
       expect(notes1[0].attack).to.equal(options.attack);
       expect(notes1[0].release).to.equal(options.release);
@@ -973,7 +973,7 @@ describe("Utilities Object", function() {
   });
 
   // TO DO
-  describe("buildStructuredMidiMessage()", function() {
+  describe("getMessage()", function() {
 
     it("should have some tests!!");
 

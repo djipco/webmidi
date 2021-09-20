@@ -256,7 +256,7 @@ export class Output extends EventEmitter {
     }
 
     // Send message and return `Output` for chaining
-    this._midiOutput.send(message, Utilities.convertToTimestamp(options.time));
+    this._midiOutput.send(message, Utilities.toTimestamp(options.time));
     return this;
 
   }

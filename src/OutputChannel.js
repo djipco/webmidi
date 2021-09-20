@@ -179,7 +179,7 @@ export class OutputChannel extends EventEmitter {
           n,
           pressure
         ],
-        {time: Utilities.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -307,7 +307,7 @@ export class OutputChannel extends EventEmitter {
         controller,
         value
       ],
-      {time: Utilities.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -674,7 +674,7 @@ export class OutputChannel extends EventEmitter {
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
 
       let noteOffOptions = {
-        time: (Utilities.convertToTimestamp(options.time) || WebMidi.time) + options.duration,
+        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
@@ -764,14 +764,14 @@ export class OutputChannel extends EventEmitter {
     let o = {rawRelease: parseInt(nVelocity)};
     o.octaveOffset = WebMidi.octaveOffset;
 
-    Utilities.getValidNoteArray(note, o).forEach(n => {
+    Utilities.buildNoteArray(note, o).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
           n.number,
           n.rawRelease,
         ],
-        {time: Utilities.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -876,14 +876,15 @@ export class OutputChannel extends EventEmitter {
     let o = {rawAttack: nVelocity};
     o.octaveOffset = WebMidi.octaveOffset;
 
-    Utilities.getValidNoteArray(note, o).forEach(n => {
+
+    Utilities.buildNoteArray(note, o).forEach(n => {
       this.send(
         [
           (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
           n.number,
           n.rawAttack
         ],
-        {time: Utilities.convertToTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -959,7 +960,7 @@ export class OutputChannel extends EventEmitter {
         command,
         value
       ],
-      {time: Utilities.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1049,7 +1050,7 @@ export class OutputChannel extends EventEmitter {
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
-      {time: Utilities.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1314,7 +1315,7 @@ export class OutputChannel extends EventEmitter {
         lsb,
         msb
       ],
-      {time: Utilities.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -1405,7 +1406,7 @@ export class OutputChannel extends EventEmitter {
         (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
         program - 1
       ],
-      {time: Utilities.convertToTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;

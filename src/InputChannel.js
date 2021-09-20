@@ -156,7 +156,7 @@ export class InputChannel extends EventEmitter {
    */
   _parseEventForStandardMessages(e) {
 
-    let {command, data1, data2} = Utilities.buildStructuredMidiMessage(e.data);
+    let {command, data1, data2} = Utilities.getMessage(e.data);
 
     // Returned event
     let event = {
@@ -210,7 +210,7 @@ export class InputChannel extends EventEmitter {
         }
       );
 
-      event.value = Utilities.from7Bit(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -254,7 +254,7 @@ export class InputChannel extends EventEmitter {
         }
       );
 
-      event.value = Utilities.from7Bit(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -294,14 +294,14 @@ export class InputChannel extends EventEmitter {
        */
       event.type = "keyaftertouch";
 
-      event.identifier = Utilities.getNoteIdentifierByNumber(
+      event.identifier = Utilities.toNoteIdentifier(
         data1, WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
       );
 
-      event.key = Utilities.convertIdentifierToNumber(event.identifier);
+      event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
 
-      event.value = Utilities.from7Bit(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // This is kept for backwards-compatibility but is gone from the documentation. It will be
@@ -347,7 +347,7 @@ export class InputChannel extends EventEmitter {
         name: this.getCcNameByNumber(data1)
       };
 
-      event.value = Utilities.from7Bit(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
     } else if (
@@ -386,7 +386,7 @@ export class InputChannel extends EventEmitter {
         name: this.getChannelModeByNumber(data1)
       };
 
-      event.value = Utilities.from7Bit(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Also dispatch specific channel mode events
@@ -445,7 +445,7 @@ export class InputChannel extends EventEmitter {
        */
       event.type = "channelaftertouch";
 
-      event.value = Utilities.from7Bit(data1);
+      event.value = Utilities.toNormalized(data1);
       event.rawValue = data1;
 
     } else if (command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {

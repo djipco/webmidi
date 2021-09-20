@@ -79,9 +79,9 @@ export class Note {
     // Assign property values from options (validation occurs in setter)
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = Utilities.from7Bit(options.rawAttack);
+    if (options.rawAttack != undefined) this.attack = Utilities.toNormalized(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = Utilities.from7Bit(options.rawRelease);
+    if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease);
 
     // Validate and assign octaveOffset value
     options.octaveOffset = options.octaveOffset == undefined ? 0 :parseInt(options.octaveOffset);
@@ -89,7 +89,7 @@ export class Note {
 
     // Assign note depending on the way it was specified (name or number)
     if (Number.isInteger(value)) {
-      this.identifier = Utilities.getNoteIdentifierByNumber(value, options.octaveOffset);
+      this.identifier = Utilities.toNoteIdentifier(value, options.octaveOffset);
     } else {
       this.identifier = value;
     }
@@ -106,7 +106,7 @@ export class Note {
   }
   set identifier(value) {
 
-    const fragments = Utilities.getNoteFragments(value);
+    const fragments = Utilities.getFragments(value);
 
     if (WebMidi.validation) {
       if (!value) throw new Error("Invalid note identifier");

@@ -34,14 +34,14 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  convertIdentifierToNumber(identifier, octaveOffset = 0) {
+  toNoteNumber(identifier, octaveOffset = 0) {
 
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof identifier !== "string") identifier = "";
 
-    const fragments = this.getNoteFragments(identifier);
+    const fragments = this.getFragments(identifier);
     if (!fragments) throw new TypeError("Invalid note identifier");
 
     const notes = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -73,7 +73,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getNoteFragments(identifier) {
+  getFragments(identifier) {
 
     const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note identifier");
@@ -156,7 +156,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  convertToTimestamp(time) {
+  toTimestamp(time) {
 
     let value = false;
     let parsed = parseFloat(time);
@@ -203,7 +203,7 @@ class Utilities {
       output = parseInt(input);
     } else if (typeof input === "string" || input instanceof String) {  // string
       try {
-        output = this.convertIdentifierToNumber(input.trim(), octaveOffset);
+        output = this.toNoteNumber(input.trim(), octaveOffset);
       } catch (e) {
         return false;
       }
@@ -227,7 +227,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getNoteIdentifierByNumber(number, octaveOffset) {
+  toNoteIdentifier(number, octaveOffset) {
 
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
@@ -269,7 +269,7 @@ class Utilities {
    *
    * @since version 3.0.0
    */
-  getNoteObject(input, options= {}) {
+  buildNote(input, options= {}) {
 
     options.octaveOffset = parseInt(options.octaveOffset) || 0;
 
@@ -325,13 +325,13 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getValidNoteArray(notes, options = {}) {
+  buildNoteArray(notes, options = {}) {
 
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
 
     notes.forEach(note => {
-      result.push(this.getNoteObject(note, options));
+      result.push(this.buildNote(note, options));
     });
 
     return result;
@@ -349,7 +349,7 @@ class Utilities {
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    */
-  from7Bit(value) {
+  toNormalized(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -379,7 +379,7 @@ class Utilities {
    * @param data A MIDI message
    * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
    */
-  buildStructuredMidiMessage(data) {
+  getMessage(data) {
 
     return {
       command: data[0] >> 4,
