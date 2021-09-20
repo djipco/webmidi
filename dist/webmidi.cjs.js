@@ -583,12 +583,13 @@ class Note {
    */
 
 
-  getOffsetNumber(offset = 0) {
+  getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
     if (wm.validation) {
-      offset = parseInt(offset) || 0;
+      octaveOffset = parseInt(octaveOffset) || 0;
+      semitoneOffset = parseInt(semitoneOffset) || 0;
     }
 
-    return Math.min(Math.max(this.number + offset, 0), 127);
+    return Math.min(Math.max(this.number + octaveOffset * 12 + semitoneOffset, 0), 127);
   }
 
 }
@@ -3542,7 +3543,8 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), utils.toNoteNumber(n.identifier, offset), n.rawRelease], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), // Utilities.toNoteNumber(n.identifier, offset),
+      n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
