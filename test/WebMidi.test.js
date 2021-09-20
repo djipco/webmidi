@@ -404,8 +404,11 @@ describe("WebMidi Object", function() {
       });
     });
 
-    it("should return a promise if successful", function(done) {
-      WebMidi.enable().then(() => done());
+    it("should return a promise fulfilled with the WebMidi objectif successful", function(done) {
+      WebMidi.enable().then(wm => {
+        expect(wm).to.equal(WebMidi);
+        done();
+      });
     });
 
     it("should trigger 'connected' events for already connected inputs", function(done) {
