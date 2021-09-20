@@ -3627,8 +3627,8 @@ class OutputChannel extends e {
       rawAttack: nVelocity
     };
     o.octaveOffset = wm.octaveOffset;
-    console.log((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack);
     utils.getValidNoteArray(note, o).forEach(n => {
+      console.log((wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack);
       this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.number, n.rawAttack], {
         time: utils.convertToTimestamp(options.time)
       });
