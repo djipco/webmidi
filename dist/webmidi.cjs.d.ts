@@ -171,7 +171,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getNoteNumberByIdentifier(identifier: string, octaveOffset?: number): number;
+    toNoteNumber(identifier: string, octaveOffset?: number): number;
     /**
      * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
      * the fragments composing it (uppercase letter, accidental and octave).
@@ -183,7 +183,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getNoteFragments(identifier: any): {
+    getFragments(identifier: any): {
         octave: number;
         letter: string;
         accidental: string;
@@ -216,7 +216,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    convertToTimestamp(time?: number | string): number | false;
+    toTimestamp(time?: number | string): number | false;
     /**
      * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
      * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
@@ -249,7 +249,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getNoteIdentifierByNumber(number: any, octaveOffset: any): string;
+    toNoteIdentifier(number: any, octaveOffset: any): string;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
@@ -279,7 +279,7 @@ declare class Utilities {
      *
      * @since version 3.0.0
      */
-    getNoteObject(input?: number | string | Note, options?: {
+    buildNote(input?: number | string | Note, options?: {
         duration?: number;
         attack?: number;
         release?: number;
@@ -321,7 +321,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getValidNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
+    buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
         duration?: number;
         attack?: number;
         release?: number;
@@ -340,7 +340,7 @@ declare class Utilities {
      * @param value A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
      */
-    from7Bit(value: any): number;
+    toNormalized(value: any): number;
     /**
      * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
      * The input value should be number between 0 and 1 (inclusively). The returned value is
@@ -360,7 +360,7 @@ declare class Utilities {
      * @param data A MIDI message
      * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
      */
-    buildStructuredMidiMessage(data: any): {
+    getMessage(data: any): {
         data2: (number | undefined);
         data1: (number | undefined);
         command: number;
@@ -613,7 +613,7 @@ declare class WebMidi {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0.0 Use Utilities.getNoteNumberByIdentifier() instead.
+     * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
      */
     private noteNameToNumber;
     /**
@@ -648,12 +648,12 @@ declare class WebMidi {
     private guessNoteNumber;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities class.
+     * @deprecated since version 3. Moved to Utilities.buildNoteArray().
      */
     private getValidNoteArray;
     /**
      * @private
-     * @deprecated moved to Utilities class.
+     * @deprecated moved to Utilities.toTimestamp()
      */
     private convertToTimestamp;
     /**
@@ -3421,10 +3421,8 @@ declare class OutputChannel extends e {
      * functionally equivalent to a **note off** message.
      *
      * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-     * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-     * {@link Note} object or an array of the previous types. When using a note name, octave range
-     * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-     * note is G9 (MIDI note number 127).
+     * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+     * {@link Note} object or an array of the previous types.
      *
      * @param {Object} [options={}]
      *
