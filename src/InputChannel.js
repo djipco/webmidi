@@ -202,11 +202,12 @@ export class InputChannel extends EventEmitter {
 
       // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
       event.note = new Note(
-        data1,
+        Utilities.offsetNumber(
+          data1, this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+        ),
         {
           rawAttack: 0,
           rawRelease: data2,
-          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
         }
       );
 
@@ -247,11 +248,10 @@ export class InputChannel extends EventEmitter {
        */
       event.type = "noteon";
       event.note = new Note(
-        data1,
-        {
-          rawAttack: data2,
-          octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
-        }
+        Utilities.offsetNumber(
+          data1, this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+        ),
+        { rawAttack: data2 }
       );
 
       event.value = Utilities.toNormalized(data2);
@@ -307,8 +307,9 @@ export class InputChannel extends EventEmitter {
       // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
       event.note = new Note(
-        data1,
-        {octaveOffset: this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset}
+        Utilities.offsetNumber(
+          data1, this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
+        )
       );
 
     } else if (
