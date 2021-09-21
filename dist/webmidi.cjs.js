@@ -2101,7 +2101,6 @@ class Input extends e {
       this._parseEvent(event);
     } else if (message.channelModeMessage || message.channelVoiceMessage) {
       // channel messages
-      // this.channels[message.channel]._processMidiMessageEvent(e);
       this.channels[message.channel]._processMidiMessageEvent(event);
     }
   }
@@ -6684,9 +6683,13 @@ class Message {
     if (this.statusByte < 240) {
       this.command = data[0] & 0b11110000;
       this.command4bit = data[0] >> 4;
-      this.channel = (data[0] & 0b00001111) + 1;
-      this.channelVoiceMessage = this.dataBytes[0] < 120;
-      this.channelModeMessage = !this.channelVoiceMessage;
+      this.channel = (data[0] & 0b00001111) + 1; // this.channelVoiceMessage = this.dataBytes[0] < 120;
+
+      this.channelVoiceMessage = true;
+
+      if (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange === this.command4bit || this.dataBytes[0] >= 120) {
+        this.channelModeMessage = true;
+      }
     } else {
       this.command = data[0];
       this.systemMessage = true;
