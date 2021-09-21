@@ -1,5 +1,25 @@
 export var __esModule: boolean;
 /**
+ * The `InputChannel` class represents a single MIDI message
+ *
+ * @param {Uint8Array} data The raw data of the MIDI message
+ *
+ * @since 3.0.0
+ */
+export class Message {
+    constructor(data: any);
+    channel: number;
+    command: number;
+    data: any[];
+    rawData: any;
+    statusByte: any;
+    dataBytes: any;
+    channelVoiceMessage: boolean;
+    channelModeMessage: boolean;
+    systemMessage: boolean;
+    type: string;
+}
+/**
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
