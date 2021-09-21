@@ -7540,7 +7540,7 @@ class WebMidi extends e {
       // 11
       nrpn: 0xB // 11
 
-    }, this.MIDI_CHANNEL_MESSAGES2); // return {
+    }, this.MIDI_CHANNEL_MESSAGES); // return {
     //   noteoff: 0x8,           // 8
     //   noteon: 0x9,            // 9
     //   keyaftertouch: 0xA,     // 10
@@ -7553,7 +7553,7 @@ class WebMidi extends e {
     // };
   }
 
-  get MIDI_CHANNEL_MESSAGES2() {
+  get MIDI_CHANNEL_MESSAGES() {
     return {
       noteoff: 0x8,
       // 8
@@ -7570,20 +7570,19 @@ class WebMidi extends e {
       pitchbend: 0xE // 14
 
     };
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
-   */
+  } // /**
+  //  * @private
+  //  * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
+  //  */
+  // get MIDI_CHANNEL_MESSAGES() {
+  //   if (this.validation) {
+  //     console.warn(
+  //       "MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead."
+  //     );
+  //   }
+  //   return this.MIDI_CHANNEL_VOICE_MESSAGES;
+  // }
 
-
-  get MIDI_CHANNEL_MESSAGES() {
-    if (this.validation) {
-      console.warn("MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead.");
-    }
-
-    return this.MIDI_CHANNEL_VOICE_MESSAGES;
-  }
   /**
    * Enum of all channel mode messages and their associated numerical value:
    *
