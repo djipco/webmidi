@@ -1139,6 +1139,7 @@ class InputChannel extends e {
   _parseEventForStandardMessages(e) {
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
+    console.log(event);
     let {
       command,
       data1,
