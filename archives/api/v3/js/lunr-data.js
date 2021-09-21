@@ -3788,29 +3788,6 @@ window.lunrData = {
           "utilities#buildnotearray",
           "valu"
         ],
-        "Utilities.html#getFragments": [
-          "1",
-          "accident",
-          "c#4",
-          "compos",
-          "contain",
-          "etc",
-          "fragment",
-          "function",
-          "gb",
-          "getfrag",
-          "given",
-          "identifi",
-          "letter",
-          "method",
-          "note",
-          "object",
-          "octav",
-          "proper",
-          "return",
-          "uppercas",
-          "utilities#getfrag"
-        ],
         "Utilities.html#getMessage": [
           "broken",
           "byte",
@@ -3827,6 +3804,44 @@ window.lunrData = {
           "three",
           "up",
           "utilities#getmessag"
+        ],
+        "Utilities.html#getNoteDetails": [
+          "1",
+          "127",
+          "60",
+          "9",
+          "accident",
+          "broken",
+          "c",
+          "c#4",
+          "c4",
+          "contain",
+          "detail",
+          "done",
+          "down",
+          "etc",
+          "function",
+          "gb",
+          "getnotedetail",
+          "given",
+          "identifi",
+          "letter",
+          "method",
+          "middl",
+          "midi",
+          "note",
+          "number",
+          "object",
+          "octav",
+          "proper",
+          "return",
+          "specifi",
+          "translat",
+          "uppercas",
+          "us",
+          "utilities#getnotedetail",
+          "valid",
+          "valu"
         ],
         "Utilities.html#guessNoteNumber": [
           "0",
@@ -4224,28 +4239,6 @@ window.lunrData = {
           "us",
           "webmidi#isnod",
           "whether"
-        ],
-        "WebMidi.html#MIDI_CHANNEL_MESSAGES": [
-          "associ",
-          "channel",
-          "deprec",
-          "enum",
-          "lt;readonly&gt",
-          "member",
-          "messag",
-          "midi",
-          "midi_channel_messag",
-          "midi_channel_voice_messag",
-          "note",
-          "now",
-          "number&gt",
-          "numer",
-          "object.&lt;str",
-          "us",
-          "v3.0",
-          "valu",
-          "voic",
-          "webmidi#midi_channel_messag"
         ],
         "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": [
           "120",
@@ -4978,37 +4971,6 @@ window.lunrData = {
           "webmidi#getinputbynam",
           "whose"
         ],
-        "WebMidi.html#getOctave": [
-          "0",
-          "127",
-          "4th",
-          "60",
-          "base",
-          "be",
-          "c",
-          "c4",
-          "default",
-          "fals",
-          "function",
-          "getoctav",
-          "instead",
-          "method",
-          "middl",
-          "midi",
-          "note",
-          "number",
-          "number|fals",
-          "octav",
-          "pars",
-          "place",
-          "return",
-          "specifi",
-          "undefin",
-          "v3.x",
-          "valid",
-          "valu",
-          "webmidi#getoctav"
-        ],
         "WebMidi.html#getOutputById": [
           "anoth",
           "api",
@@ -5073,7 +5035,7 @@ window.lunrData = {
           "whose"
         ]
       },
-      "length": 160
+      "length": 158
     },
     "tokenStore": {
       "root": {
@@ -5234,10 +5196,6 @@ window.lunrData = {
             "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
               "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
               "tf": 0.5617977528089888
-            },
-            "WebMidi.html#getOctave": {
-              "ref": "WebMidi.html#getOctave",
-              "tf": 1.5151515151515151
             }
           },
           ".": {
@@ -6129,6 +6087,10 @@ window.lunrData = {
                   "ref": "Utilities.html#buildNoteArray",
                   "tf": 1.5151515151515151
                 },
+                "Utilities.html#getNoteDetails": {
+                  "ref": "Utilities.html#getNoteDetails",
+                  "tf": 1.25
+                },
                 "Utilities.html#guessNoteNumber": {
                   "ref": "Utilities.html#guessNoteNumber",
                   "tf": 1.7543859649122806
@@ -6152,10 +6114,6 @@ window.lunrData = {
                 "WebMidi.html#MIDI_NRPN_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
                   "tf": 2
-                },
-                "WebMidi.html#getOctave": {
-                  "ref": "WebMidi.html#getOctave",
-                  "tf": 1.5151515151515151
                 }
               }
             },
@@ -6526,9 +6484,9 @@ window.lunrData = {
               "ref": "OutputChannel.html#setTuningProgram",
               "tf": 2.5
             },
-            "Utilities.html#getFragments": {
-              "ref": "Utilities.html#getFragments",
-              "tf": 2.7777777777777777
+            "Utilities.html#getNoteDetails": {
+              "ref": "Utilities.html#getNoteDetails",
+              "tf": 1.25
             },
             "Utilities.html#sanitizeChannels": {
               "ref": "Utilities.html#sanitizeChannels",
@@ -7186,10 +7144,6 @@ window.lunrData = {
                 "OutputChannel.html#octaveOffset": {
                   "ref": "OutputChannel.html#octaveOffset",
                   "tf": 1.3888888888888888
-                },
-                "WebMidi.html#getOctave": {
-                  "ref": "WebMidi.html#getOctave",
-                  "tf": 1.5151515151515151
                 }
               }
             }
@@ -7238,6 +7192,10 @@ window.lunrData = {
                 "ref": "OutputChannel.html#octaveOffset",
                 "tf": 1.3888888888888888
               },
+              "Utilities.html#getNoteDetails": {
+                "ref": "Utilities.html#getNoteDetails",
+                "tf": 1.25
+              },
               "Utilities.html#guessNoteNumber": {
                 "ref": "Utilities.html#guessNoteNumber",
                 "tf": 0.8771929824561403
@@ -7249,10 +7207,6 @@ window.lunrData = {
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
                 "tf": 1.8518518518518516
-              },
-              "WebMidi.html#getOctave": {
-                "ref": "WebMidi.html#getOctave",
-                "tf": 1.5151515151515151
               }
             }
           },
@@ -7880,6 +7834,10 @@ window.lunrData = {
             }
           },
           "docs": {
+            "Utilities.html#getNoteDetails": {
+              "ref": "Utilities.html#getNoteDetails",
+              "tf": 1.25
+            },
             "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
               "tf": 1.4285714285714286
@@ -8716,9 +8674,9 @@ window.lunrData = {
                             "ref": "Note.html#identifier",
                             "tf": 8.333333333333332
                           },
-                          "Utilities.html#getFragments": {
-                            "ref": "Utilities.html#getFragments",
-                            "tf": 2.7777777777777777
+                          "Utilities.html#getNoteDetails": {
+                            "ref": "Utilities.html#getNoteDetails",
+                            "tf": 1.25
                           },
                           "Utilities.html#toNoteIdentifier": {
                             "ref": "Utilities.html#toNoteIdentifier",
@@ -9067,10 +9025,6 @@ window.lunrData = {
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
                         "tf": 0.847457627118644
-                      },
-                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                        "tf": 3.571428571428571
                       },
                       "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -10501,10 +10455,6 @@ window.lunrData = {
                         "WebMidi.html#octaveOffset": {
                           "ref": "WebMidi.html#octaveOffset",
                           "tf": 1.8518518518518516
-                        },
-                        "WebMidi.html#getOctave": {
-                          "ref": "WebMidi.html#getOctave",
-                          "tf": 1.5151515151515151
                         }
                       }
                     }
@@ -10879,9 +10829,9 @@ window.lunrData = {
                             "ref": "Utilities.html#buildNoteArray",
                             "tf": 3.0303030303030303
                           },
-                          "Utilities.html#getFragments": {
-                            "ref": "Utilities.html#getFragments",
-                            "tf": 36.11111111111111
+                          "Utilities.html#getNoteDetails": {
+                            "ref": "Utilities.html#getNoteDetails",
+                            "tf": 1.25
                           },
                           "Utilities.html#guessNoteNumber": {
                             "ref": "Utilities.html#guessNoteNumber",
@@ -11695,10 +11645,6 @@ window.lunrData = {
                                         "ref": "WebMidi.html#inputs",
                                         "tf": 33.33333333333333
                                       },
-                                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                                        "tf": 25
-                                      },
                                       "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
                                         "tf": 25
@@ -11840,9 +11786,9 @@ window.lunrData = {
                         "ref": "Note.html#name",
                         "tf": 16.666666666666664
                       },
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 2.7777777777777777
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       }
                     }
                   }
@@ -12414,6 +12360,10 @@ window.lunrData = {
                     "ref": "OutputChannel.html#setTuningProgram",
                     "tf": 2.5
                   },
+                  "Utilities.html#getNoteDetails": {
+                    "ref": "Utilities.html#getNoteDetails",
+                    "tf": 1.25
+                  },
                   "Utilities.html#guessNoteNumber": {
                     "ref": "Utilities.html#guessNoteNumber",
                     "tf": 1.7543859649122806
@@ -12445,10 +12395,6 @@ window.lunrData = {
                   "WebMidi.html#interface": {
                     "ref": "WebMidi.html#interface",
                     "tf": 4.166666666666666
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
                   },
                   "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -12489,10 +12435,6 @@ window.lunrData = {
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
                     "tf": 1.4705882352941175
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.5151515151515151
                   },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
@@ -12596,26 +12538,6 @@ window.lunrData = {
                                   "docs": {},
                                   "m": {
                                     "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "s": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "g": {
-                                              "docs": {
-                                                "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                                                  "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                                                  "tf": 675
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
                                     "o": {
                                       "docs": {},
                                       "d": {
@@ -12676,10 +12598,6 @@ window.lunrData = {
                                                         "docs": {},
                                                         "g": {
                                                           "docs": {
-                                                            "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                                                              "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                                                              "tf": 3.571428571428571
-                                                            },
                                                             "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                                                               "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
                                                               "tf": 675
@@ -12978,13 +12896,13 @@ window.lunrData = {
                       "ref": "OutputChannel.html#octaveOffset",
                       "tf": 1.3888888888888888
                     },
+                    "Utilities.html#getNoteDetails": {
+                      "ref": "Utilities.html#getNoteDetails",
+                      "tf": 2.5
+                    },
                     "Utilities.html#toNoteNumber": {
                       "ref": "Utilities.html#toNoteNumber",
                       "tf": 0.7936507936507936
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.5151515151515151
                     }
                   }
                 }
@@ -13232,9 +13150,9 @@ window.lunrData = {
                         "ref": "Utilities.html",
                         "tf": 3.8461538461538463
                       },
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 2.7777777777777777
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       },
                       "Utilities.html#sanitizeChannels": {
                         "ref": "Utilities.html#sanitizeChannels",
@@ -13259,10 +13177,6 @@ window.lunrData = {
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
                         "tf": 1.6129032258064515
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 1.5151515151515151
                       }
                     },
                     "'": {
@@ -13455,10 +13369,6 @@ window.lunrData = {
                       },
                       "WebMidi.html#isNode": {
                         "ref": "WebMidi.html#isNode",
-                        "tf": 110
-                      },
-                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
                         "tf": 110
                       },
                       "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
@@ -13761,10 +13671,6 @@ window.lunrData = {
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
                         "tf": 1.4925373134328357
-                      },
-                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                        "tf": 3.571428571428571
                       },
                       "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -14894,9 +14800,9 @@ window.lunrData = {
                   "docs": {},
                   "r": {
                     "docs": {
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 2.7777777777777777
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       }
                     },
                     "t": {
@@ -15682,10 +15588,6 @@ window.lunrData = {
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
                       "tf": 1.3888888888888888
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.5151515151515151
                     }
                   }
                 }
@@ -16135,10 +16037,6 @@ window.lunrData = {
                   "Utilities.html#sanitizeChannels": {
                     "ref": "Utilities.html#sanitizeChannels",
                     "tf": 1.3888888888888888
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.5151515151515151
                   }
                 }
               }
@@ -17083,13 +16981,13 @@ window.lunrData = {
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       },
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 2.7777777777777777
-                      },
                       "Utilities.html#getMessage": {
                         "ref": "Utilities.html#getMessage",
                         "tf": 4.545454545454546
+                      },
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       },
                       "Utilities.html#guessNoteNumber": {
                         "ref": "Utilities.html#guessNoteNumber",
@@ -17130,10 +17028,6 @@ window.lunrData = {
                       "WebMidi.html#getInputByName": {
                         "ref": "WebMidi.html#getInputByName",
                         "tf": 2
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 3.0303030303030303
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -18739,26 +18633,6 @@ window.lunrData = {
                                                   "docs": {},
                                                   "m": {
                                                     "docs": {},
-                                                    "e": {
-                                                      "docs": {},
-                                                      "s": {
-                                                        "docs": {},
-                                                        "s": {
-                                                          "docs": {},
-                                                          "a": {
-                                                            "docs": {},
-                                                            "g": {
-                                                              "docs": {
-                                                                "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                                                                  "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                                                                  "tf": 1150
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    },
                                                     "o": {
                                                       "docs": {},
                                                       "d": {
@@ -19308,23 +19182,6 @@ window.lunrData = {
                               },
                               "o": {
                                 "docs": {},
-                                "c": {
-                                  "docs": {},
-                                  "t": {
-                                    "docs": {},
-                                    "a": {
-                                      "docs": {},
-                                      "v": {
-                                        "docs": {
-                                          "WebMidi.html#getOctave": {
-                                            "ref": "WebMidi.html#getOctave",
-                                            "tf": 1150
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
                                 "u": {
                                   "docs": {},
                                   "t": {
@@ -19772,6 +19629,10 @@ window.lunrData = {
                   "Input.html#removeListener": {
                     "ref": "Input.html#removeListener",
                     "tf": 1.7241379310344827
+                  },
+                  "Utilities.html#getNoteDetails": {
+                    "ref": "Utilities.html#getNoteDetails",
+                    "tf": 1.25
                   }
                 }
               }
@@ -19783,6 +19644,10 @@ window.lunrData = {
                   "Output.html#sendTimecodeQuarterFrame": {
                     "ref": "Output.html#sendTimecodeQuarterFrame",
                     "tf": 2.5
+                  },
+                  "Utilities.html#getNoteDetails": {
+                    "ref": "Utilities.html#getNoteDetails",
+                    "tf": 1.25
                   },
                   "WebMidi.html#validation": {
                     "ref": "WebMidi.html#validation",
@@ -20062,10 +19927,6 @@ window.lunrData = {
                         "WebMidi.html#defaults": {
                           "ref": "WebMidi.html#defaults",
                           "tf": 705
-                        },
-                        "WebMidi.html#getOctave": {
-                          "ref": "WebMidi.html#getOctave",
-                          "tf": 1.5151515151515151
                         }
                       }
                     }
@@ -20214,6 +20075,10 @@ window.lunrData = {
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
                         "tf": 0.4807692307692308
+                      },
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       }
                     }
                   }
@@ -20409,20 +20274,6 @@ window.lunrData = {
                     "OutputChannel.html#setModulationRange": {
                       "ref": "OutputChannel.html#setModulationRange",
                       "tf": 4.761904761904762
-                    }
-                  }
-                }
-              },
-              "r": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "c": {
-                    "docs": {
-                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                        "tf": 3.571428571428571
-                      }
                     }
                   }
                 }
@@ -21245,23 +21096,6 @@ window.lunrData = {
                     }
                   }
                 },
-                "c": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "a": {
-                      "docs": {},
-                      "v": {
-                        "docs": {
-                          "WebMidi.html#getOctave": {
-                            "ref": "WebMidi.html#getOctave",
-                            "tf": 683.3333333333334
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
                 "u": {
                   "docs": {},
                   "t": {
@@ -21309,23 +21143,6 @@ window.lunrData = {
                   }
                 }
               },
-              "f": {
-                "docs": {},
-                "r": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "g": {
-                      "docs": {
-                        "Utilities.html#getFragments": {
-                          "ref": "Utilities.html#getFragments",
-                          "tf": 683.3333333333334
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "m": {
                 "docs": {},
                 "e": {
@@ -21341,6 +21158,41 @@ window.lunrData = {
                             "Utilities.html#getMessage": {
                               "ref": "Utilities.html#getMessage",
                               "tf": 683.3333333333334
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "n": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "a": {
+                              "docs": {},
+                              "i": {
+                                "docs": {},
+                                "l": {
+                                  "docs": {
+                                    "Utilities.html#getNoteDetails": {
+                                      "ref": "Utilities.html#getNoteDetails",
+                                      "tf": 683.3333333333334
+                                    }
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -21713,9 +21565,9 @@ window.lunrData = {
               }
             },
             "docs": {
-              "Utilities.html#getFragments": {
-                "ref": "Utilities.html#getFragments",
-                "tf": 2.7777777777777777
+              "Utilities.html#getNoteDetails": {
+                "ref": "Utilities.html#getNoteDetails",
+                "tf": 1.25
               }
             }
           },
@@ -21789,9 +21641,9 @@ window.lunrData = {
                 "docs": {},
                 "n": {
                   "docs": {
-                    "Utilities.html#getFragments": {
-                      "ref": "Utilities.html#getFragments",
-                      "tf": 2.7777777777777777
+                    "Utilities.html#getNoteDetails": {
+                      "ref": "Utilities.html#getNoteDetails",
+                      "tf": 1.25
                     },
                     "Utilities.html#guessNoteNumber": {
                       "ref": "Utilities.html#guessNoteNumber",
@@ -21946,6 +21798,10 @@ window.lunrData = {
                 "ref": "Utilities.html#buildNote",
                 "tf": 1.6129032258064515
               },
+              "Utilities.html#getNoteDetails": {
+                "ref": "Utilities.html#getNoteDetails",
+                "tf": 1.25
+              },
               "Utilities.html#guessNoteNumber": {
                 "ref": "Utilities.html#guessNoteNumber",
                 "tf": 0.8771929824561403
@@ -21957,10 +21813,6 @@ window.lunrData = {
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
                 "tf": 0.9259259259259258
-              },
-              "WebMidi.html#getOctave": {
-                "ref": "WebMidi.html#getOctave",
-                "tf": 1.5151515151515151
               }
             }
           },
@@ -22005,13 +21857,13 @@ window.lunrData = {
               "ref": "OutputChannel.html#octaveOffset",
               "tf": 1.3888888888888888
             },
+            "Utilities.html#getNoteDetails": {
+              "ref": "Utilities.html#getNoteDetails",
+              "tf": 2.5
+            },
             "Utilities.html#toNoteNumber": {
               "ref": "Utilities.html#toNoteNumber",
               "tf": 0.7936507936507936
-            },
-            "WebMidi.html#getOctave": {
-              "ref": "WebMidi.html#getOctave",
-              "tf": 1.5151515151515151
             }
           },
           "l": {
@@ -22424,10 +22276,6 @@ window.lunrData = {
                         "Utilities.html#sanitizeChannels": {
                           "ref": "Utilities.html#sanitizeChannels",
                           "tf": 36.11111111111111
-                        },
-                        "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                          "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                          "tf": 3.571428571428571
                         },
                         "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -22948,9 +22796,9 @@ window.lunrData = {
                           "ref": "Utilities.html",
                           "tf": 3.8461538461538463
                         },
-                        "Utilities.html#getFragments": {
-                          "ref": "Utilities.html#getFragments",
-                          "tf": 2.7777777777777777
+                        "Utilities.html#getNoteDetails": {
+                          "ref": "Utilities.html#getNoteDetails",
+                          "tf": 1.25
                         },
                         "Utilities.html#guessNoteNumber": {
                           "ref": "Utilities.html#guessNoteNumber",
@@ -23418,17 +23266,6 @@ window.lunrData = {
                           "ref": "WebMidi.html#disable",
                           "tf": 2.272727272727273
                         }
-                      }
-                    }
-                  }
-                },
-                "o": {
-                  "docs": {},
-                  "s": {
-                    "docs": {
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 2.7777777777777777
                       }
                     }
                   }
@@ -23958,9 +23795,9 @@ window.lunrData = {
           "#": {
             "4": {
               "docs": {
-                "Utilities.html#getFragments": {
-                  "ref": "Utilities.html#getFragments",
-                  "tf": 2.7777777777777777
+                "Utilities.html#getNoteDetails": {
+                  "ref": "Utilities.html#getNoteDetails",
+                  "tf": 1.25
                 }
               }
             },
@@ -24616,10 +24453,6 @@ window.lunrData = {
               "docs": {},
               "m": {
                 "docs": {
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  },
                   "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
                     "tf": 2.1739130434782608
@@ -24868,9 +24701,9 @@ window.lunrData = {
                   "ref": "Utilities.html#buildNote",
                   "tf": 1.6129032258064515
                 },
-                "Utilities.html#getFragments": {
-                  "ref": "Utilities.html#getFragments",
-                  "tf": 2.7777777777777777
+                "Utilities.html#getNoteDetails": {
+                  "ref": "Utilities.html#getNoteDetails",
+                  "tf": 1.25
                 },
                 "Utilities.html#guessNoteNumber": {
                   "ref": "Utilities.html#guessNoteNumber",
@@ -25424,10 +25257,6 @@ window.lunrData = {
                     "ref": "WebMidi.html#getInputById",
                     "tf": 1.4705882352941175
                   },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.5151515151515151
-                  },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
                     "tf": 1.4705882352941175
@@ -25789,12 +25618,12 @@ window.lunrData = {
                             "ref": "Utilities.html#buildNoteArray",
                             "tf": 110
                           },
-                          "Utilities.html#getFragments": {
-                            "ref": "Utilities.html#getFragments",
-                            "tf": 110
-                          },
                           "Utilities.html#getMessage": {
                             "ref": "Utilities.html#getMessage",
+                            "tf": 110
+                          },
+                          "Utilities.html#getNoteDetails": {
+                            "ref": "Utilities.html#getNoteDetails",
                             "tf": 110
                           },
                           "Utilities.html#guessNoteNumber": {
@@ -25847,10 +25676,6 @@ window.lunrData = {
                           },
                           "WebMidi.html#getInputByName": {
                             "ref": "WebMidi.html#getInputByName",
-                            "tf": 110
-                          },
-                          "WebMidi.html#getOctave": {
-                            "ref": "WebMidi.html#getOctave",
                             "tf": 110
                           },
                           "WebMidi.html#getOutputById": {
@@ -26193,26 +26018,6 @@ window.lunrData = {
                     "Output.html#sendTimecodeQuarterFrame": {
                       "ref": "Output.html#sendTimecodeQuarterFrame",
                       "tf": 2.5
-                    }
-                  }
-                }
-              },
-              "g": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "t": {
-                        "docs": {
-                          "Utilities.html#getFragments": {
-                            "ref": "Utilities.html#getFragments",
-                            "tf": 2.7777777777777777
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -26912,13 +26717,13 @@ window.lunrData = {
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 6.0606060606060606
                       },
-                      "Utilities.html#getFragments": {
-                        "ref": "Utilities.html#getFragments",
-                        "tf": 36.11111111111111
-                      },
                       "Utilities.html#getMessage": {
                         "ref": "Utilities.html#getMessage",
                         "tf": 37.878787878787875
+                      },
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 34.58333333333333
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -26985,10 +26790,6 @@ window.lunrData = {
                                   "docs": {},
                                   "r": {
                                     "docs": {
-                                      "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                                        "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                                        "tf": 25
-                                      },
                                       "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
                                         "tf": 25
@@ -27561,9 +27362,9 @@ window.lunrData = {
                       "ref": "OutputChannel.html#sendNoteOn",
                       "tf": 0.48543689320388345
                     },
-                    "Utilities.html#getFragments": {
-                      "ref": "Utilities.html#getFragments",
-                      "tf": 2.7777777777777777
+                    "Utilities.html#getNoteDetails": {
+                      "ref": "Utilities.html#getNoteDetails",
+                      "tf": 1.25
                     },
                     "Utilities.html#offsetNumber": {
                       "ref": "Utilities.html#offsetNumber",
@@ -27580,10 +27381,6 @@ window.lunrData = {
                     "WebMidi.html#octaveOffset": {
                       "ref": "WebMidi.html#octaveOffset",
                       "tf": 0.9259259259259258
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 4.545454545454546
                     }
                   },
                   "e": {
@@ -34285,6 +34082,10 @@ window.lunrData = {
                           "ref": "Utilities.html#buildNoteArray",
                           "tf": 1.5151515151515151
                         },
+                        "Utilities.html#getNoteDetails": {
+                          "ref": "Utilities.html#getNoteDetails",
+                          "tf": 2.5
+                        },
                         "Utilities.html#guessNoteNumber": {
                           "ref": "Utilities.html#guessNoteNumber",
                           "tf": 0.8771929824561403
@@ -34300,10 +34101,6 @@ window.lunrData = {
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
                           "tf": 2
-                        },
-                        "WebMidi.html#getOctave": {
-                          "ref": "WebMidi.html#getOctave",
-                          "tf": 1.5151515151515151
                         },
                         "WebMidi.html#getOutputById": {
                           "ref": "WebMidi.html#getOutputById",
@@ -35282,6 +35079,10 @@ window.lunrData = {
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       },
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 2.5
+                      },
                       "Utilities.html#guessNoteNumber": {
                         "ref": "Utilities.html#guessNoteNumber",
                         "tf": 3.508771929824561
@@ -35325,10 +35126,6 @@ window.lunrData = {
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
                         "tf": 3.125
-                      },
-                      "WebMidi.html#getOctave": {
-                        "ref": "WebMidi.html#getOctave",
-                        "tf": 37.878787878787875
                       }
                     },
                     "|": {
@@ -35348,10 +35145,6 @@ window.lunrData = {
                                 "Utilities.html#toTimestamp": {
                                   "ref": "Utilities.html#toTimestamp",
                                   "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#getOctave": {
-                                  "ref": "WebMidi.html#getOctave",
-                                  "tf": 33.33333333333333
                                 }
                               }
                             }
@@ -35365,10 +35158,6 @@ window.lunrData = {
                         "docs": {},
                         "t": {
                           "docs": {
-                            "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                              "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                              "tf": 25
-                            },
                             "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
                               "tf": 25
@@ -35419,10 +35208,6 @@ window.lunrData = {
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
                       "tf": 0.26455026455026454
-                    },
-                    "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                      "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                      "tf": 3.571428571428571
                     },
                     "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -35986,9 +35771,9 @@ window.lunrData = {
                     "ref": "Utilities.html#buildNoteArray",
                     "tf": 34.09090909090909
                   },
-                  "Utilities.html#getFragments": {
-                    "ref": "Utilities.html#getFragments",
-                    "tf": 2.7777777777777777
+                  "Utilities.html#getNoteDetails": {
+                    "ref": "Utilities.html#getNoteDetails",
+                    "tf": 5
                   },
                   "Utilities.html#guessNoteNumber": {
                     "ref": "Utilities.html#guessNoteNumber",
@@ -36005,10 +35790,6 @@ window.lunrData = {
                   "Utilities.html#toNoteNumber": {
                     "ref": "Utilities.html#toNoteNumber",
                     "tf": 3.1746031746031744
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
                   },
                   "WebMidi.html#NOTES": {
                     "ref": "WebMidi.html#NOTES",
@@ -36033,10 +35814,6 @@ window.lunrData = {
                   "WebMidi.html#getInputByName": {
                     "ref": "WebMidi.html#getInputByName",
                     "tf": 2
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 4.545454545454546
                   },
                   "WebMidi.html#getOutputById": {
                     "ref": "WebMidi.html#getOutputById",
@@ -36573,14 +36350,6 @@ window.lunrData = {
                       "tf": 1.3888888888888888
                     }
                   }
-                }
-              }
-            },
-            "w": {
-              "docs": {
-                "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                  "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                  "tf": 3.571428571428571
                 }
               }
             }
@@ -37272,6 +37041,29 @@ window.lunrData = {
                   }
                 }
               }
+            },
+            "a": {
+              "docs": {},
+              "n": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "l": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Utilities.html#getNoteDetails": {
+                            "ref": "Utilities.html#getNoteDetails",
+                            "tf": 1.25
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           },
           "u": {
@@ -37864,28 +37656,6 @@ window.lunrData = {
           }
         },
         "v": {
-          "3": {
-            "docs": {},
-            ".": {
-              "0": {
-                "docs": {
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
-                  }
-                }
-              },
-              "docs": {},
-              "x": {
-                "docs": {
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.5151515151515151
-                  }
-                }
-              }
-            }
-          },
           "7": {
             "7": {
               "docs": {
@@ -38044,6 +37814,10 @@ window.lunrData = {
                     "ref": "Utilities.html#buildNoteArray",
                     "tf": 1.5151515151515151
                   },
+                  "Utilities.html#getNoteDetails": {
+                    "ref": "Utilities.html#getNoteDetails",
+                    "tf": 34.58333333333333
+                  },
                   "Utilities.html#guessNoteNumber": {
                     "ref": "Utilities.html#guessNoteNumber",
                     "tf": 1.7543859649122806
@@ -38063,10 +37837,6 @@ window.lunrData = {
                   "WebMidi.html#defaults": {
                     "ref": "WebMidi.html#defaults",
                     "tf": 5
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
                   },
                   "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -38091,10 +37861,6 @@ window.lunrData = {
                   "WebMidi.html#MIDI_SYSTEM_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_SYSTEM_MESSAGES",
                     "tf": 1.1235955056179776
-                  },
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 3.0303030303030303
                   }
                 }
               },
@@ -38138,6 +37904,10 @@ window.lunrData = {
                       "ref": "Utilities.html#buildNote",
                       "tf": 1.6129032258064515
                     },
+                    "Utilities.html#getNoteDetails": {
+                      "ref": "Utilities.html#getNoteDetails",
+                      "tf": 1.25
+                    },
                     "Utilities.html#guessNoteNumber": {
                       "ref": "Utilities.html#guessNoteNumber",
                       "tf": 0.8771929824561403
@@ -38165,10 +37935,6 @@ window.lunrData = {
                     "WebMidi.html#validation": {
                       "ref": "WebMidi.html#validation",
                       "tf": 704.8387096774194
-                    },
-                    "WebMidi.html#getOctave": {
-                      "ref": "WebMidi.html#getOctave",
-                      "tf": 1.5151515151515151
                     }
                   }
                 }
@@ -38205,10 +37971,6 @@ window.lunrData = {
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 0.29069767441860467
-                  },
-                  "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                    "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                    "tf": 3.571428571428571
                   },
                   "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                     "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -38596,10 +38358,6 @@ window.lunrData = {
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
                 "tf": 1.5625
-              },
-              "WebMidi.html#getOctave": {
-                "ref": "WebMidi.html#getOctave",
-                "tf": 1.5151515151515151
               }
             },
             "l": {
@@ -39020,14 +38778,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "e": {
-                "docs": {
-                  "WebMidi.html#getOctave": {
-                    "ref": "WebMidi.html#getOctave",
-                    "tf": 1.5151515151515151
-                  }
-                }
               }
             }
           },
@@ -39093,6 +38843,10 @@ window.lunrData = {
                       "Utilities.html#getMessage": {
                         "ref": "Utilities.html#getMessage",
                         "tf": 4.545454545454546
+                      },
+                      "Utilities.html#getNoteDetails": {
+                        "ref": "Utilities.html#getNoteDetails",
+                        "tf": 1.25
                       }
                     }
                   }
@@ -39613,10 +39367,6 @@ window.lunrData = {
                         "Utilities.html#sanitizeChannels": {
                           "ref": "Utilities.html#sanitizeChannels",
                           "tf": 1.3888888888888888
-                        },
-                        "WebMidi.html#getOctave": {
-                          "ref": "WebMidi.html#getOctave",
-                          "tf": 1.5151515151515151
                         }
                       },
                       "e": {
@@ -39839,6 +39589,10 @@ window.lunrData = {
                 "ref": "OutputChannel.html#setTuningProgram",
                 "tf": 2.5
               },
+              "Utilities.html#getNoteDetails": {
+                "ref": "Utilities.html#getNoteDetails",
+                "tf": 1.25
+              },
               "Utilities.html#offsetNumber": {
                 "ref": "Utilities.html#offsetNumber",
                 "tf": 1.7857142857142856
@@ -39866,10 +39620,6 @@ window.lunrData = {
               "WebMidi.html#isNode": {
                 "ref": "WebMidi.html#isNode",
                 "tf": 2.380952380952381
-              },
-              "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-                "ref": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-                "tf": 3.571428571428571
               },
               "WebMidi.html#MIDI_NRPN_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_NRPN_MESSAGES",
@@ -40036,9 +39786,9 @@ window.lunrData = {
                       "docs": {},
                       "s": {
                         "docs": {
-                          "Utilities.html#getFragments": {
-                            "ref": "Utilities.html#getFragments",
-                            "tf": 2.7777777777777777
+                          "Utilities.html#getNoteDetails": {
+                            "ref": "Utilities.html#getNoteDetails",
+                            "tf": 1.25
                           }
                         }
                       }
@@ -40129,23 +39879,6 @@ window.lunrData = {
                                 "docs": {},
                                 "t": {
                                   "docs": {},
-                                  "f": {
-                                    "docs": {},
-                                    "r": {
-                                      "docs": {},
-                                      "a": {
-                                        "docs": {},
-                                        "g": {
-                                          "docs": {
-                                            "Utilities.html#getFragments": {
-                                              "ref": "Utilities.html#getFragments",
-                                              "tf": 1150
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
                                   "m": {
                                     "docs": {},
                                     "e": {
@@ -40161,6 +39894,41 @@ window.lunrData = {
                                                 "Utilities.html#getMessage": {
                                                   "ref": "Utilities.html#getMessage",
                                                   "tf": 1150
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "n": {
+                                    "docs": {},
+                                    "o": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {},
+                                        "e": {
+                                          "docs": {},
+                                          "d": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "a": {
+                                                  "docs": {},
+                                                  "i": {
+                                                    "docs": {},
+                                                    "l": {
+                                                      "docs": {
+                                                        "Utilities.html#getNoteDetails": {
+                                                          "ref": "Utilities.html#getNoteDetails",
+                                                          "tf": 1150
+                                                        }
+                                                      }
+                                                    }
+                                                  }
                                                 }
                                               }
                                             }
@@ -40495,7 +40263,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4713
+      "length": 4679
     },
     "corpusTokens": [
       "0",
@@ -40691,7 +40459,6 @@ window.lunrData = {
       "bank",
       "bankselectcoars",
       "bankselectfin",
-      "base",
       "basic",
       "bb",
       "be",
@@ -40757,7 +40524,6 @@ window.lunrData = {
       "commonj",
       "compat",
       "complet",
-      "compos",
       "confirm",
       "connect",
       "consid",
@@ -40795,7 +40561,6 @@ window.lunrData = {
       "delay",
       "deliv",
       "depend",
-      "deprec",
       "depth",
       "deriv",
       "desir",
@@ -40884,7 +40649,6 @@ window.lunrData = {
       "form",
       "format",
       "found",
-      "fragment",
       "frame",
       "free",
       "fulfil",
@@ -40911,12 +40675,11 @@ window.lunrData = {
       "get",
       "getccnamebynumb",
       "getchannelmodebynumb",
-      "getfrag",
       "getinputbyid",
       "getinputbynam",
       "getlisten",
       "getmessag",
-      "getoctav",
+      "getnotedetail",
       "getoffsetnumb",
       "getoutputbyid",
       "getoutputbynam",
@@ -41052,7 +40815,6 @@ window.lunrData = {
       "middl",
       "midi",
       "midi'",
-      "midi_channel_messag",
       "midi_channel_mode_messag",
       "midi_channel_voice_messag",
       "midi_control_change_messag",
@@ -41109,7 +40871,6 @@ window.lunrData = {
       "noteoff",
       "noteon",
       "novat",
-      "now",
       "nrpn",
       "nullable&gt",
       "nullactiveparamet",
@@ -41477,6 +41238,7 @@ window.lunrData = {
       "tonotenumb",
       "totimestamp",
       "toward",
+      "translat",
       "tremololevel",
       "tri",
       "trigger",
@@ -41510,8 +41272,8 @@ window.lunrData = {
       "util",
       "utilities#buildnot",
       "utilities#buildnotearray",
-      "utilities#getfrag",
       "utilities#getmessag",
+      "utilities#getnotedetail",
       "utilities#guessnotenumb",
       "utilities#offsetnumb",
       "utilities#sanitizechannel",
@@ -41520,8 +41282,6 @@ window.lunrData = {
       "utilities#tonoteidentifi",
       "utilities#tonotenumb",
       "utilities#totimestamp",
-      "v3.0",
-      "v3.x",
       "v77",
       "valid",
       "valu",
@@ -41545,14 +41305,12 @@ window.lunrData = {
       "webmidi#en",
       "webmidi#getinputbyid",
       "webmidi#getinputbynam",
-      "webmidi#getoctav",
       "webmidi#getoutputbyid",
       "webmidi#getoutputbynam",
       "webmidi#input",
       "webmidi#interfac",
       "webmidi#isbrows",
       "webmidi#isnod",
-      "webmidi#midi_channel_messag",
       "webmidi#midi_channel_mode_messag",
       "webmidi#midi_channel_voice_messag",
       "webmidi#midi_control_change_messag",
@@ -42795,7 +42553,7 @@ window.lunrData = {
       "name": "Utilities",
       "tags": "Utilities",
       "summary": "",
-      "description": "The Utilities class contains general-purpose utility functions. The class is a singleton (its methode are static) and is not meant to be instantiated.",
+      "description": "The Utilities class contains general-purpose utility functions. The class is a singleton with static methode and is not meant to be instantiated.",
       "body": ""
     },
     "Utilities.html#buildNote": {
@@ -42818,16 +42576,6 @@ window.lunrData = {
       "summary": "",
       "description": "Converts an input value, which can be an unsigned integer (0-127), a note identifier, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and identifiers, a Note object is created with the options specified. An error will be thrown when encountering invalid input."
     },
-    "Utilities.html#getFragments": {
-      "id": "Utilities.html#getFragments",
-      "kind": "function",
-      "title": "getFragments( identifier ) → {Object}",
-      "longname": "Utilities#getFragments",
-      "name": "getFragments",
-      "tags": "Utilities#getFragments getFragments",
-      "summary": "",
-      "description": "Given a proper note identifier (\"C#4\", \"Gb-1\", etc.), this method returns an object containing the fragments composing it (uppercase letter, accidental and octave)."
-    },
     "Utilities.html#getMessage": {
       "id": "Utilities.html#getMessage",
       "kind": "function",
@@ -42837,6 +42585,16 @@ window.lunrData = {
       "tags": "Utilities#getMessage getMessage",
       "summary": "",
       "description": "Returns an object inside which the three bytes have been broken up into command, data1 and data2 properties."
+    },
+    "Utilities.html#getNoteDetails": {
+      "id": "Utilities.html#getNoteDetails",
+      "kind": "function",
+      "title": "getNoteDetails( value ) → {Object}",
+      "longname": "Utilities#getNoteDetails",
+      "name": "getNoteDetails",
+      "tags": "Utilities#getNoteDetails getNoteDetails",
+      "summary": "",
+      "description": "Given a proper note identifier (\"C#4\", \"Gb-1\", etc.) or a valid MIDI note number (9-127), this method returns an object containing broken down details about the specified note (uppercase letter, accidental and octave). When a number is specified, the translation to note is done using a value of 60 for middle C (C4 = middle C)."
     },
     "Utilities.html#guessNoteNumber": {
       "id": "Utilities.html#guessNoteNumber",
@@ -42988,16 +42746,6 @@ window.lunrData = {
       "tags": "WebMidi#isNode isNode",
       "summary": "",
       "description": "Indicates whether the current environment is Node.js or not. If you need to check if we are in browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and isBrowser can both be true at the same time."
-    },
-    "WebMidi.html#MIDI_CHANNEL_MESSAGES": {
-      "id": "WebMidi.html#MIDI_CHANNEL_MESSAGES",
-      "kind": "member",
-      "title": "&lt;readonly&gt; MIDI_CHANNEL_MESSAGES :Object.&lt;string, number&gt;",
-      "longname": "WebMidi#MIDI_CHANNEL_MESSAGES",
-      "name": "MIDI_CHANNEL_MESSAGES",
-      "tags": "WebMidi#MIDI_CHANNEL_MESSAGES MIDI_CHANNEL_MESSAGES",
-      "summary": "",
-      "description": "Enum of all MIDI channel voice messages and their associated numerical value. Note that it has been deprecated since v3.0. You should now use MIDI_CHANNEL_VOICE_MESSAGES."
     },
     "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
       "id": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -43178,16 +42926,6 @@ window.lunrData = {
       "tags": "WebMidi#getInputByName getInputByName",
       "summary": "",
       "description": "Returns the first Input object whose name contains the specified string. Note that the port names change from one environment to another. For example, Chrome does not report input names in the same way as the Jazz-Plugin does."
-    },
-    "WebMidi.html#getOctave": {
-      "id": "WebMidi.html#getOctave",
-      "kind": "function",
-      "title": "getOctave( number ) → {number|false}",
-      "longname": "WebMidi#getOctave",
-      "name": "getOctave",
-      "tags": "WebMidi#getOctave getOctave",
-      "summary": "",
-      "description": "Returns the octave number for the specified MIDI note number (0-127). By default, the value is based on middle C (note number 60) being placed on the 4th octave (C4). Note: since v3.x, this method returns false instead of undefined when the value cannot be parsed to a valid octave."
     },
     "WebMidi.html#getOutputById": {
       "id": "WebMidi.html#getOutputById",
