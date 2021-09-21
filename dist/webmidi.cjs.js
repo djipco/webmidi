@@ -6656,10 +6656,10 @@ class Message {
     this.channelVoiceMessage = false;
     this.channelModeMessage = false;
     this.systemMessage = false;
+    this.command = data[0] & 0b11110000;
+    this.command4bit = data[0] >> 4;
 
     if (this.statusByte < 240) {
-      this.command = data[0] & 0b11110000;
-      this.command4bit = data[0] >> 4;
       this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = true;
 
@@ -6667,7 +6667,6 @@ class Message {
         this.channelModeMessage = true;
       }
     } else {
-      this.command = data[0];
       this.systemMessage = true;
     } // Identify the precise type of message
 
