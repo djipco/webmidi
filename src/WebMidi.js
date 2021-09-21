@@ -29,8 +29,8 @@ global["navigator"] = require("jzz");
  * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
  * others.
  *
- * @fires WebMidi#connected
- * @fires WebMidi#disabled
+ * @fires #connected
+ * @fires disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
  * @fires WebMidi#midiaccessgranted
