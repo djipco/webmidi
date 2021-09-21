@@ -1314,18 +1314,15 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"programchange"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
        * @property {number} value The value expressed as an integer between 1 and 128.
-       * @property {number} rawValue The value expressed as an integer between 0 and 127.
+       * @property {number} rawValue The value expressed as an integer between 0 and 127..
        */
       event.value = data1 + 1;
       event.rawValue = data1;
@@ -1338,13 +1335,10 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"channelaftertouch"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -1362,13 +1356,10 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"pitchbend"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -1414,13 +1405,7 @@ class InputChannel extends e {
   _parseChannelModeMessage(e) {
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
-    event.type = event.message.type; // let data1, data2;
-    //
-    // if (event.message.data.length > 1) {
-    //   data1 = event.message.data[1];
-    //   data2 = event.message.data.length > 2 ? event.message.data[2] : undefined;
-    // }
-
+    event.type = event.message.type;
     /**
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
      *
