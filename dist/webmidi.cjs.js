@@ -1414,13 +1414,13 @@ class InputChannel extends e {
   _parseChannelModeMessage(e) {
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
-    event.type = event.message.type;
-    let data1, data2;
+    event.type = event.message.type; // let data1, data2;
+    //
+    // if (event.message.data.length > 1) {
+    //   data1 = event.message.data[1];
+    //   data2 = event.message.data.length > 2 ? event.message.data[2] : undefined;
+    // }
 
-    if (event.message.data.length > 1) {
-      data1 = event.message.data[1];
-      data2 = event.message.data.length > 2 ? event.message.data[2] : undefined;
-    }
     /**
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
      *
@@ -1474,9 +1474,8 @@ class InputChannel extends e {
      * the value is `false`.
      */
 
-
     if (event.type === "localcontrol") {
-      event.value = data2 === 127 ? true : false;
+      event.value = event.message.data[2] === 127 ? true : false;
     }
     /**
      * Event emitted when an "all notes off" channel-mode MIDI message has been received.
