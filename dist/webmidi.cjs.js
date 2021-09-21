@@ -2063,9 +2063,11 @@ class Input extends e {
 
 
   _onMidiMessage(e) {
-    // Extract data bytes (unless it's a sysex message)
-    let dataBytes = null;
-    if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+    // Create Message object from MIDI data
+    const message = new Message(e.data); // // Extract data bytes (unless it's a sysex message)
+    // let dataBytes = null;
+    // if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+
     /**
      * Event emitted when a MIDI message is received on the `Input`
      *
@@ -2083,25 +2085,45 @@ class Input extends e {
      *
      * @since 2.1
      */
+    // let event = {
+    //   target: this,
+    //   data: Array.from(e.data),
+    //   rawData: e.data,
+    //   statusByte: e.data[0],
+    //   dataBytes: dataBytes,
+    //   timestamp: e.timeStamp,
+    //   type: "midimessage"
+    // };
 
-    let event = {
+    const event = {
       target: this,
-      data: Array.from(e.data),
-      rawData: e.data,
-      statusByte: e.data[0],
-      dataBytes: dataBytes,
+      data: message.data,
+      // @deprecated
+      rawData: message.data,
+      // @deprecated
+      statusByte: message.data[0],
+      // @deprecated
+      dataBytes: message.dataBytes,
+      // @deprecated
       timestamp: e.timeStamp,
-      type: "midimessage"
+      type: "midimessage",
+      message: message
     };
     this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
+    // if (e.data[0] < 240) {          // channel-specific message
+    //   let channel = (e.data[0] & 0xf) + 1;
+    //   this.channels[channel]._processMidiMessageEvent(e);
+    // } else if (e.data[0] <= 255) {  // system message
+    //   this._parseEvent(e);
+    // }
 
     if (e.data[0] < 240) {
       // channel-specific message
-      let channel = (e.data[0] & 0xf) + 1;
+      let channel = (message.data[0] & 0xf) + 1;
 
       this.channels[channel]._processMidiMessageEvent(e);
-    } else if (e.data[0] <= 255) {
+    } else if (message.data[0] <= 255) {
       // system message
       this._parseEvent(e);
     }
@@ -6595,8 +6617,8 @@ class Message {
     this.systemMessage = false;
 
     if (this.statusByte < 240) {
-      this.channel = (data[0] & 0b00001111) + 1;
       this.command = data[0] >> 4;
+      this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = this.dataBytes[0] < 120;
       this.channelModeMessage = !this.channelVoiceMessage;
     } else {
