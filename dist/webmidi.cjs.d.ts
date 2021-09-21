@@ -812,9 +812,6 @@ declare class WebMidi {
      * @since 3.0.0
      */
     get MIDI_CHANNEL_VOICE_MESSAGES(): {
-        channelmode: number;
-        nrpn: number;
-    } & {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
@@ -822,6 +819,9 @@ declare class WebMidi {
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
+    } & {
+        channelmode: number;
+        nrpn: number;
     };
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
