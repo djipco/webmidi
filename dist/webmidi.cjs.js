@@ -1275,7 +1275,7 @@ class InputChannel extends e {
     } else if ( // command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode &&
     // data1 >= 120 && data1 <= 127
     event.message.channelModeMessage) {
-      console.log(e.message);
+      console.log(event.message);
       /**
        * Event emitted when a **channel mode** MIDI message has been received.
        *
