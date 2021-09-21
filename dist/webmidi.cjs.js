@@ -2076,7 +2076,7 @@ class Input extends e {
     if (message.systemMessage) {
       // system messages
       this._parseEvent(event);
-    } else if (message.channelModeMessage || message.channelVoiceMessage) {
+    } else if (message.channelModeMessage || message.channelMessage) {
       // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
     }
@@ -6635,33 +6635,78 @@ class Output extends e {
 }
 
 /**
- * The `InputChannel` class represents a single MIDI message
+ * The `Message` class represents a single MIDI message. It has several properties that make it
+ * easy to make sense of the binaru data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message
+ * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
+ * and 255.
  *
  * @since 3.0.0
  */
 
 class Message {
   constructor(data) {
-    // Extract data bytes (unless it's a sysex message)
-    let dataBytes = null;
-    if (data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = data.slice(1); // Extract basic data
-
-    this.data = Array.from(data);
+    /**
+     * A Uint8Array containing the 1, 2 or 3 byte(s) of the MIDI message. Each byte is an integer
+     * between 0 and 255.
+     * @type {Uint8Array}
+     * @readonly
+     */
     this.rawData = data;
-    this.statusByte = data[0];
-    this.dataBytes = dataBytes; // Identify if we are dealing with a channel voice, channel mode or system message
+    /**
+     * An array containing the 1, 2 or 3 unsigned integers of the MIDI message. Each integer is
+     * between 0 and 255.
+     * @type {number[]}
+     * @readonly
+     */
 
-    this.channelVoiceMessage = false;
+    this.data = Array.from(this.rawData);
+    /**
+     * The MIDI status byte of the message as an integer between 0 and 255.
+     * @type {number}
+     * @readonly
+     */
+
+    this.statusByte = this.rawData[0];
+    /**
+     * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
+     * message.
+     * @type {number[]}
+     * @readonly
+     */
+
+    this.dataBytes = [];
+    /**
+     * A boolean indicating whether the MIDI message is a channel-specific message.
+     * @type {boolean}
+     * @readonly
+     */
+
+    this.channelMessage = false;
+    /**
+     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
+     * control message).
+     * @type {boolean}
+     * @readonly
+     */
+
     this.channelModeMessage = false;
-    this.systemMessage = false;
+    /**
+     * A boolean indicating whether the MIDI message is a system message (not specific to a
+     * channel).
+     * @type {boolean}
+     * @readonly
+     */
+
+    this.systemMessage = false; // Extract data bytes (unless it's a sysex message)
+
+    if (data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = data.slice(1);
 
     if (this.statusByte < 240) {
       this.command = data[0] & 0b11110000;
       this.command4bit = data[0] >> 4;
       this.channel = (data[0] & 0b00001111) + 1;
-      this.channelVoiceMessage = true;
+      this.channelMessage = true;
 
       if (this.command4bit === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
@@ -6672,7 +6717,7 @@ class Message {
     } // Identify the precise type of message
 
 
-    if (this.channelVoiceMessage) {
+    if (this.channelMessage) {
       if (this.channelModeMessage) {
         for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
           if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
