@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.10 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -113,15 +113,15 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Note</code> class represents a single musical note such as <code>&quot;D3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Gb7&quot;</code>, etc.</p>
 			<p><code>Note</code> objects can be played back on a single channel by calling
-			<a href="OutputChannel.html#playNote">OutputChannel.playNote()</a>. A note can also be played back on the
-			multiple channels of an output by using <a href="Output.html#playNote">Output.playNote()</a>.</p>
+			<a href="OutputChannel.html#playNote">OutputChannel.playNote()</a> or on multiple channels of the same
+			output by calling <a href="Output.html#playNote">Output.playNote()</a>.</p>
 			<p>The note has attack and release velocities set at 0.5 by default. These can be changed by passing
 			in the appropriate option. It is also possible to set a system-wide default for attack and
 			release velocities by using the <code>WebMidi.defaults</code> property.</p>
-			<p>The note may have a duration. If it does, playback will be stopped when the duration has elapsed
-			by automatically sending a <strong>noteoff</strong> event. By default, the duration is set to <code>Infinity</code>. In
-			this case, it will never stop playing unless explicitly stopped by calling a method such as
-			<a href="OutputChannel.html#stopNote">OutputChannel.stopNote()</a>,
+			<p>The note may have a duration. If it does, playback will be automatically stopped when the
+			duration has elapsed by sending a <strong>noteoff</strong> event. By default, the duration is set to
+			<code>Infinity</code>. In this case, it will never stop playing unless explicitly stopped by calling a
+			method such as <a href="OutputChannel.html#stopNote">OutputChannel.stopNote()</a>,
 			<a href="Output.html#stopNote">Output.stopNote()</a> or similar.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -143,9 +143,9 @@
 								<td></td>
 							<td class="last">
 									<p>The value used to create the note. If an identifier string is used,
-			it must be the note letter (with optional accidental) followed by the octave (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>,
-			<code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.). If a number is used, it must be an integer between 0 and 127. In this
-			case, middle C is considered to be C4 (note number 60).</p>
+			it must start with the note letter, optionally followed by an accidental and followed by the
+			octave number (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.). If a number is used, it must be an
+			integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).</p>
 							</td>
 						</tr>
 						<tr>
@@ -914,8 +914,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.8 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 20th 2021 @ 19:12:56 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.10 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 21st 2021 @ 7:48:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
