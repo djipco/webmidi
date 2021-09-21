@@ -772,7 +772,7 @@ describe("WebMidi Object", function() {
       expect(WebMidi.getOctave(60)).to.be.equal(4);
     });
 
-    it.only("should take into account desired 'octaveOffset' value", function() {
+    it("should take into account desired 'octaveOffset' value", function() {
       WebMidi.octaveOffset = 2;
       expect(WebMidi.getOctave(60)).to.be.equal(6);
       WebMidi.octaveOffset = -4;
