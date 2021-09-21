@@ -1245,7 +1245,7 @@ class InputChannel extends e {
       // removed from future versions (@deprecated).
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-    } else if (event.type === "controlchange" && event.message.channelVoiceMessage) {
+    } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
