@@ -1094,46 +1094,36 @@ class InputChannel extends e {
 
 
   _processMidiMessageEvent(e) {
+    // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
-    event.target = this; // Extract data bytes (unless it's a sysex message)
-    // let dataBytes = null;
-    // if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
-
+    event.target = this;
+    event.type = "midimessage";
     /**
-     * Event emitted when a MIDI message of any kind is received by the `InputChannel`.
+     * Event emitted when a MIDI message of any kind is received by an `InputChannel`
      *
      * @event InputChannel#midimessage
      *
      * @type {Object}
      *
-     * @property {string} type `"midimessage"`
-     *
-     * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
-     * integers. This will be null for `sysex` messages.
-     * @property {InputChannel} input The `Input` object where through which the message was
-     * received.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
-     * @property {number} event.statusByte The message's status byte.
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {Input} target The `InputChannel` that triggered the event.
+     * @property {Message} message A `Message` object containing information about the incoming MIDI
+     * message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {string} type `"midimessage"`
+     *
+     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+     * the `message` object instead).
+     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+     * the `message` object instead).
+     * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
+     * object instead).
+     * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
+     * integers. This will be null for `sysex` messages (deprecated, use the `message` object
+     * instead).
      */
-    // let midiMessageEvent = {
-    // channel: this,
-    // data: Array.from(e.data),
-    // dataBytes: dataBytes,
-    // input: this.input,
-    // rawData: e.data,
-    // statusByte: e.data[0],
-    // target: this,
-    // timestamp: e.timeStamp,
-    // type: "midimessage"
-    // };
 
-    this.emit("midimessage", event); // Parse the inbound event for regular messages
+    this.emit(event.type, event); // Parse the inbound event for regular messages
 
     this._parseEventForStandardMessages(event); // Parse the event to see if its part of an NRPN sequence
     // this._parseEventForNrpnMessage(e);
