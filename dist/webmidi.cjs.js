@@ -1274,20 +1274,17 @@ class InputChannel extends e {
       event.rawValue = data2;
     } else if (event.message.channelModeMessage) {
       /**
-       * Event emitted when a **channel mode** MIDI message has been received.
+       * Event emitted when any **channel mode** MIDI message has been received.
        *
        * @event InputChannel#channelmode
        *
        * @type {Object}
        * @property {string} type `"channelmode"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -1300,7 +1297,9 @@ class InputChannel extends e {
       event.controller = {
         number: data1,
         name: this.getChannelModeByNumber(data1)
-      };
+      }; // Channel mode messages are 'control change" messages, so we need to change the type before
+      // sending it out.
+
       event.type = "channelmode";
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also dispatch specific channel mode events
@@ -1413,21 +1412,16 @@ class InputChannel extends e {
   }
 
   _parseChannelModeMessage(e) {
+    console.log(e.message); // Make a shallow copy of the incoming event so we can use it as the new event.
+
+    const event = Object.assign({}, e);
+    event.type = this.getChannelModeByNumber(data1);
     let data1, data2;
 
-    if (e.data.length > 1) {
-      data1 = e.data[1];
-      data2 = e.data.length > 2 ? e.data[2] : undefined;
-    } // Basis for the returned event
-
-
-    let event = {
-      target: this,
-      data: Array.from(e.data),
-      rawData: e.data,
-      timestamp: e.timeStamp,
-      type: this.getChannelModeByNumber(data1)
-    };
+    if (event.message.data.length > 1) {
+      data1 = event.message.data[1];
+      data2 = event.message.data.length > 2 ? event.message.data[2] : undefined;
+    }
     /**
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
      *
@@ -1470,6 +1464,7 @@ class InputChannel extends e {
      * @property {boolean} value For local control on, the value is `true`. For local control off,
      * the value is `false`.
      */
+
 
     if (event.type === "localcontrol") {
       event.value = data2 === 127 ? true : false;
