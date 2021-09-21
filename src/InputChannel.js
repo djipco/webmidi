@@ -4,7 +4,7 @@ import {Utilities} from "./Utilities.js";
 import {Note} from "./Note.js";
 
 /**
- * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
