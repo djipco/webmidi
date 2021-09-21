@@ -1138,10 +1138,13 @@ class InputChannel extends e {
 
   _parseEventForStandardMessages(e) {
     const event = Object.assign({}, e);
-    event.type = event.message.type || "unknownmidimessage"; // let {command, data1, data2} = Utilities.getMessage(e.data);
-
-    const data1 = e.message.data[0];
-    const data2 = e.message.data[1];
+    event.type = event.message.type || "unknownmidimessage";
+    let {
+      command,
+      data1,
+      data2
+    } = utils.getMessage(e.data); // const data1 = e.message.data[0];
+    // const data2 = e.message.data[1];
 
     if (event.type === "noteoff" || event.type === "noteon" && event.message.data[1] === 0) {
       /**
