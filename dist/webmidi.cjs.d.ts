@@ -8,8 +8,6 @@ export var __esModule: boolean;
  */
 export class Message {
     constructor(data: any);
-    channel: number;
-    command: number;
     data: any[];
     rawData: any;
     statusByte: any;
@@ -17,6 +15,8 @@ export class Message {
     channelVoiceMessage: boolean;
     channelModeMessage: boolean;
     systemMessage: boolean;
+    channel: number;
+    command: any;
     type: string;
 }
 /**
