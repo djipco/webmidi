@@ -2095,7 +2095,7 @@ class Input extends e {
       event.song = e.data[1] + 1;
     }
 
-    console.log(event.data); // Emit event
+    console.log(event.type); // Emit event
 
     this.emit(event.type, event);
     /**
