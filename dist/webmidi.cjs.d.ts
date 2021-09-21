@@ -802,7 +802,7 @@ declare class WebMidi {
         channelaftertouch: number;
         pitchbend: number;
     };
-    get MIDI_CHANNEL_MESSAGES2(): {
+    get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
@@ -811,11 +811,6 @@ declare class WebMidi {
         channelaftertouch: number;
         pitchbend: number;
     };
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
-     */
-    private get MIDI_CHANNEL_MESSAGES();
     /**
      * Enum of all channel mode messages and their associated numerical value:
      *
