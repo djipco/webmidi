@@ -2093,8 +2093,9 @@ class Input extends e {
 
     if (event.type === "songselect") {
       event.song = e.data[1] + 1;
-    } // Emit event
+    }
 
+    console.log(event.message); // Emit event
 
     this.emit(event.type, event);
     /**
