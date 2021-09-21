@@ -1,19 +1,61 @@
 export var __esModule: boolean;
 /**
- * The `InputChannel` class represents a single MIDI message
+ * The `Message` class represents a single MIDI message. It has several properties that make it
+ * easy to make sense of the binaru data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message
+ * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
+ * and 255.
  *
  * @since 3.0.0
  */
 export class Message {
     constructor(data: any);
-    data: any[];
-    rawData: any;
-    statusByte: any;
-    dataBytes: any;
-    channelVoiceMessage: boolean;
+    /**
+     * A Uint8Array containing the 1, 2 or 3 byte(s) of the MIDI message. Each byte is an integer
+     * between 0 and 255.
+     * @type {Uint8Array}
+     * @readonly
+     */
+    rawData: Uint8Array;
+    /**
+     * An array containing the 1, 2 or 3 unsigned integers of the MIDI message. Each integer is
+     * between 0 and 255.
+     * @type {number[]}
+     * @readonly
+     */
+    data: number[];
+    /**
+     * The MIDI status byte of the message as an integer between 0 and 255.
+     * @type {number}
+     * @readonly
+     */
+    statusByte: number;
+    /**
+     * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
+     * message.
+     * @type {number[]}
+     * @readonly
+     */
+    dataBytes: number[];
+    /**
+     * A boolean indicating whether the MIDI message is a channel-specific message.
+     * @type {boolean}
+     * @readonly
+     */
+    channelMessage: boolean;
+    /**
+     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
+     * control message).
+     * @type {boolean}
+     * @readonly
+     */
     channelModeMessage: boolean;
+    /**
+     * A boolean indicating whether the MIDI message is a system message (not specific to a
+     * channel).
+     * @type {boolean}
+     * @readonly
+     */
     systemMessage: boolean;
     command: any;
     command4bit: number;
