@@ -6585,8 +6585,6 @@ class Message {
     let dataBytes = null;
     if (data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = data.slice(1); // Extract basic data
 
-    this.channel = (data[0] & 0b00001111) + 1;
-    this.command = data[0] >> 4;
     this.data = Array.from(data);
     this.rawData = data;
     this.statusByte = data[0];
@@ -6597,9 +6595,12 @@ class Message {
     this.systemMessage = false;
 
     if (this.statusByte < 240) {
+      this.channel = (data[0] & 0b00001111) + 1;
+      this.command = data[0] >> 4;
       this.channelVoiceMessage = this.dataBytes[0] < 120;
       this.channelModeMessage = !this.channelVoiceMessage;
     } else {
+      this.command = data[0];
       this.systemMessage = true;
     } // Identify the precise type of message
 
