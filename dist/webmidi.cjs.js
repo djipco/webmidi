@@ -1273,6 +1273,7 @@ class InputChannel extends e {
       event.value = utils.toNormalized(data2);
       event.rawValue = data2;
     } else if (event.message.channelModeMessage) {
+      console.log(111, event);
       /**
        * Event emitted when any **channel mode** MIDI message has been received.
        *
@@ -1294,6 +1295,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
+
       event.controller = {
         number: data1,
         name: this.getChannelModeByNumber(data1)
@@ -1412,8 +1414,7 @@ class InputChannel extends e {
   }
 
   _parseChannelModeMessage(e) {
-    console.log(e.message); // Make a shallow copy of the incoming event so we can use it as the new event.
-
+    // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
     event.type = this.getChannelModeByNumber(data1);
     let data1, data2;
