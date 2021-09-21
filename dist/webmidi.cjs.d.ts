@@ -177,11 +177,15 @@ declare class Utilities {
      */
     toNoteNumber(identifier: string, octaveOffset?: number): number;
     /**
-     * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
-     * the fragments composing it (uppercase letter, accidental and octave).
+     * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+     * method returns an object containing broken down details about the specified note (uppercase
+     * letter, accidental and octave).
      *
-     * @param value {string|number} A string containing a note identifier ("C#4", "Gb-1", etc.) or a
-     * MIDI note number (0-127).
+     * When a number is specified, the translation to note is done using a value of 60 for middle C
+     * (C4 = middle C).
+     *
+     * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+     * number (0-127).
      *
      * @returns {{octave: number, letter: string, accidental: string}}
      *
@@ -189,7 +193,7 @@ declare class Utilities {
      *
      * @since 3.0.0
      */
-    getFragments(value: string | number): {
+    getNoteDetails(value: string | number): {
         octave: number;
         letter: string;
         accidental: string;
