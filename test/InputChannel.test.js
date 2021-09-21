@@ -249,7 +249,7 @@ describe("InputChannel Object", function() {
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "controlchange";
     let status = 0xB0;
-    let value = 122;
+    let value = 123;
     let index = 0;
     channel.addListener(event, assert);
 
@@ -371,7 +371,6 @@ describe("InputChannel Object", function() {
     }
 
   });
-
 
   it("should dispatch event for inbound 'all sound off' MIDI message", function (done) {
 
