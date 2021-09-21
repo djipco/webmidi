@@ -6666,7 +6666,7 @@ class Message {
       this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = true;
 
-      if (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange === this.command4bit || this.dataBytes[0] >= 120) {
+      if (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange === this.command4bit && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
