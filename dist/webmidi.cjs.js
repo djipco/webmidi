@@ -7540,7 +7540,7 @@ class WebMidi extends e {
       // 11
       nrpn: 0xB // 11
 
-    }, this.MIDI_CHANNEL_MESSAGES); // return {
+    }, this.MIDI_CHANNEL_MESSAGES2); // return {
     //   noteoff: 0x8,           // 8
     //   noteon: 0x9,            // 9
     //   keyaftertouch: 0xA,     // 10
@@ -7553,7 +7553,7 @@ class WebMidi extends e {
     // };
   }
 
-  get MIDI_CHANNEL_MESSAGES() {
+  get MIDI_CHANNEL_MESSAGES2() {
     return {
       noteoff: 0x8,
       // 8
