@@ -632,7 +632,7 @@ declare class WebMidi {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
+     * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
      */
     private noteNameToNumber;
     /**
@@ -642,27 +642,27 @@ declare class WebMidi {
     private getOctave;
     /**
      * @private
-     * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
+     * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
      */
     private sanitizeChannels;
     /**
      * @private
-     * @deprecated since version 3.0. Use sanitizeChannels() instead.
+     * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
      */
     private toMIDIChannels;
     /**
      * @private
-     * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
+     * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
      */
     private guessNoteNumber;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities.buildNoteArray().
+     * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
      */
     private getValidNoteArray;
     /**
      * @private
-     * @deprecated moved to Utilities.toTimestamp()
+     * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
      */
     private convertToTimestamp;
     /**
@@ -791,34 +791,22 @@ declare class WebMidi {
      * @since 3.0.0
      */
     get MIDI_CHANNEL_VOICE_MESSAGES(): {
+        channelmode: number;
+        nrpn: number;
+    } & {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
         controlchange: number;
-        channelmode: number;
-        nrpn: number;
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
     };
-    /**
-     * Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-     * has been deprecated since v3.0. You should now use
-     * [MIDI_CHANNEL_VOICE_MESSAGES]{@link WebMidi.MIDI_CHANNEL_VOICE_MESSAGES}.
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     * @deprecated since version 3.0 (will be dropped in version 4.0)
-     *
-     * @since 2.0.0
-     */
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
         controlchange: number;
-        channelmode: number;
-        nrpn: number;
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
@@ -2756,7 +2744,7 @@ declare class e {
     get eventCount(): number;
 }
 /**
- * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
