@@ -6698,14 +6698,29 @@ class Message {
      * @readonly
      */
 
-    this.systemMessage = false; // Extract data bytes (unless it's a sysex message)
+    this.systemMessage = false;
+    /**
+     * An integer identifying the MIDI command. For channel-specific messages, the value will be
+     * between 8 and 14. For system messages, the value will be between 240 and 255.
+     * @type {number}
+     * @readonly
+     */
 
-    if (data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = data.slice(1);
+    this.command = undefined;
+    /**
+     * The MIDI channel number that the message is targeting. For system messages, this will be
+     * undefined.
+     * @type {number}
+     * @readonly
+     */
+
+    this.channel = undefined; // Assign values to property depending on whether they are channel-specific or system
 
     if (this.statusByte < 240) {
-      this.command = data[0] & 0b11110000;
-      this.command4bit = data[0] >> 4;
-      this.channel = (data[0] & 0b00001111) + 1;
+      // this.command = this.statusByte & 0b11110000;
+      this.command = this.statusByte >> 4; // this.command4bit = this.statusByte >> 4;
+
+      this.channel = (this.statusByte & 0b00001111) + 1;
       this.channelMessage = true;
 
       if (this.command4bit === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
@@ -6714,8 +6729,10 @@ class Message {
     } else {
       this.command = data[0];
       this.systemMessage = true;
-    } // Identify the precise type of message
+    } // Extract data bytes (unless it's a sysex message)
 
+
+    if (this.command !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Identify the precise type of message
 
     if (this.channelMessage) {
       if (this.channelModeMessage) {
