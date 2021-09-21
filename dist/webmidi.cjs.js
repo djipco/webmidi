@@ -1139,7 +1139,6 @@ class InputChannel extends e {
   _parseEventForStandardMessages(e) {
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
-    console.log(event.type, event.message.type);
     let {
       command,
       data1,
@@ -2094,7 +2093,8 @@ class Input extends e {
       dataBytes: message.dataBytes // @deprecated (will be removed in v4)
 
     };
-    this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
+    this.emit("midimessage", event);
+    console.log(event.message); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
 
     if (message.systemMessage) {
