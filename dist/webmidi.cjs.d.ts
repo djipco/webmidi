@@ -16,6 +16,7 @@ export class Message {
     channelModeMessage: boolean;
     systemMessage: boolean;
     command: any;
+    command4bit: number;
     channel: number;
     type: string;
 }
