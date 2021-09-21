@@ -57,8 +57,19 @@ export class Message {
      * @readonly
      */
     systemMessage: boolean;
-    command: any;
-    command4bit: number;
+    /**
+     * An integer identifying the MIDI command. For channel-specific messages, the value will be
+     * between 8 and 14. For system messages, the value will be between 240 and 255.
+     * @type {number}
+     * @readonly
+     */
+    command: number;
+    /**
+     * The MIDI channel number that the message is targeting. For system messages, this will be
+     * undefined.
+     * @type {number}
+     * @readonly
+     */
     channel: number;
     type: string;
 }
