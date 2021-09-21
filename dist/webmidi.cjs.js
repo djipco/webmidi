@@ -7071,7 +7071,6 @@ class WebMidi extends e {
     }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
-      console.log(utils.offsetNumber(number, this.octaveOffset), this.octaveOffset);
       return utils.getNoteDetails(utils.offsetNumber(number, this.octaveOffset)).octave;
     } else {
       return false;
