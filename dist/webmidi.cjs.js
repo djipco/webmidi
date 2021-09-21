@@ -1144,6 +1144,7 @@ class InputChannel extends e {
       data1,
       data2
     } = utils.getMessage(e.data);
+    console.log(event.type);
 
     if (event.type === "noteoff" || event.type === "noteon" && event.message.data[1] === 0) {
       /**
