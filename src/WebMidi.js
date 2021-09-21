@@ -496,7 +496,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
+   * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
@@ -509,27 +509,18 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-   * based on middle C (note number 60) being placed on the 4th octave (C4).
-   *
-   * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
-   * be parsed to a valid octave.
-   *
-   * @param number {number} An integer representing a valid MIDI note number (between 0 and 127).
-   *
-   * @returns {number|false} The octave (as a signed integer) or `false` if the value could not be
-   * parsed to a valid octave.
-   *
-   * @since 2.0.0-rc.6
+   * @private
+   * @deprecated since 3.0.0, use Utilities.getNoteDetails() instead.
    */
   getOctave(number) {
 
     if (this.validation) {
+      console.warn("The getOctave()is deprecated. Use Utilities.getNoteDetails() instead");
       number = parseInt(number);
     }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
-      return Math.floor(number / 12 - 1) + this.octaveOffset;
+      return Utilities.getNoteDetails(Utilities.offsetNumber(number, this.octaveOffset)).octave;
     } else {
       return false;
     }
@@ -538,7 +529,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
+   * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
    */
   sanitizeChannels(channel) {
 
@@ -583,13 +574,13 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0. Use sanitizeChannels() instead.
+   * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
    */
   toMIDIChannels(channel) {
 
     if (this.validation) {
       console.warn(
-        "The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead."
+        "The toMIDIChannels() method has been deprecated. Use Utilities.sanitizeChannels() instead."
       );
     }
 
@@ -599,7 +590,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
+   * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
    */
   guessNoteNumber(input) {
 
@@ -615,7 +606,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since version 3. Moved to Utilities.buildNoteArray().
+   * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
    */
   getValidNoteArray(notes, options = {}) {
     if (this.validation) {
@@ -628,7 +619,7 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated moved to Utilities.toTimestamp()
+   * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
    */
   convertToTimestamp(time) {
 
@@ -1045,15 +1036,8 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-   * has been deprecated since v3.0. You should now use
-   * [MIDI_CHANNEL_VOICE_MESSAGES]{@link WebMidi.MIDI_CHANNEL_VOICE_MESSAGES}.
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   * @deprecated since version 3.0 (will be dropped in version 4.0)
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
    */
   get MIDI_CHANNEL_MESSAGES() {
     if (this.validation) {

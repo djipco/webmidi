@@ -107,7 +107,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("getFragments()", function() {
+  describe("getNoteDetails()", function() {
 
     it("should return the correct fragments when using identifier", function () {
 
@@ -126,7 +126,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const fragments = Utilities.getFragments(item.identifier);
+        const fragments = Utilities.getNoteDetails(item.identifier);
         expect(fragments.identifier).to.equal(item.identifier);
         expect(fragments.name).to.equal(item.name);
         expect(fragments.accidental).to.equal(item.accidental);
@@ -135,7 +135,7 @@ describe("Utilities Object", function() {
 
     });
 
-    it.only("should return the correct fragments when using number", function () {
+    it("should return the correct fragments when using number", function () {
 
       // Arrange
       const items = [
@@ -151,7 +151,7 @@ describe("Utilities Object", function() {
 
       // Assert
       function assert(item) {
-        const fragments = Utilities.getFragments(item.number);
+        const fragments = Utilities.getNoteDetails(item.number);
         expect(fragments.name).to.equal(item.name);
         expect(fragments.accidental).to.equal(item.accidental);
         expect(fragments.octave).to.equal(item.octave);

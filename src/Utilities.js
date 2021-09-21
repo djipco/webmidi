@@ -41,7 +41,7 @@ class Utilities {
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof identifier !== "string") identifier = "";
 
-    const fragments = this.getFragments(identifier);
+    const fragments = this.getNoteDetails(identifier);
     if (!fragments) throw new TypeError("Invalid note identifier");
 
     const notes = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -79,7 +79,7 @@ class Utilities {
    *
    * @since 3.0.0
    */
-  getFragments(value) {
+  getNoteDetails(value) {
 
     if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
 

@@ -89,7 +89,7 @@ export class Note {
   }
   set identifier(value) {
 
-    const fragments = Utilities.getFragments(value);
+    const fragments = Utilities.getNoteDetails(value);
 
     if (WebMidi.validation) {
       if (!value) throw new Error("Invalid note identifier");

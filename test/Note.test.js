@@ -16,7 +16,7 @@ describe("Note Object", function() {
       // Assert
       notes.forEach((note, i) => {
 
-        const compare = Utilities.getFragments(Utilities.toNoteIdentifier(i));
+        const compare = Utilities.getNoteDetails(Utilities.toNoteIdentifier(i));
 
         expect(note).to.be.an.instanceof(Note);
         expect(note.attack).to.equal(WebMidi.defaults.note.attack);
@@ -57,9 +57,9 @@ describe("Note Object", function() {
         expect(note.duration).to.equal(WebMidi.defaults.note.duration);
 
         expect(note.identifier).to.equal(value);
-        expect(note.name).to.equal(Utilities.getFragments(value).name);
-        expect(note.accidental).to.equal(Utilities.getFragments(value).accidental);
-        expect(note.octave).to.equal(Utilities.getFragments(value).octave);
+        expect(note.name).to.equal(Utilities.getNoteDetails(value).name);
+        expect(note.accidental).to.equal(Utilities.getNoteDetails(value).accidental);
+        expect(note.octave).to.equal(Utilities.getNoteDetails(value).octave);
 
       }
 
