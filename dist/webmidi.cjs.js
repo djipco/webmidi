@@ -1306,7 +1306,7 @@ class InputChannel extends e {
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also dispatch specific channel mode events
 
-      this._parseChannelModeMessage(e);
+      this._parseChannelModeMessage(event);
     } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
