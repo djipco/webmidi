@@ -2126,20 +2126,10 @@ class Input extends e {
 
 
   _parseEvent(e) {
-    // let command = e.data[0];
-    //
-    // // Returned event
-    // var event = {
-    //   target: this,
-    //   data: Array.from(e.data),
-    //   rawData: e.data,
-    //   timestamp: e.timeStamp
-    // };
-    // Make a shallow copy of the incoming event to use it as the outgoing event.
-    const event = Object.assign({}, e);
-    const command = event.message.command;
+    // Make a shallow copy of the incoming event so we can use it as the new event.
+    const event = Object.assign({}, e); //
 
-    if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
       /**
        * Input-wide (system) event emitted when a **system exclusive** message has been received.
        * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
@@ -2152,156 +2142,251 @@ class Input extends e {
        * ```
        *
        * @event Input#sysex
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"sysex"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values.
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
        */
       event.type = "sysex";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.timecode) {
       /**
        * Input-wide (system) event emitted when a **time code quarter frame** message has been
        * received.
        *
        * @event Input#timecode
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
-       * @property {string} type `"sysextimecode"`
+       * @property {string} type `"timecode"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "timecode";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.songposition) {
       /**
        * Input-wide (system) event emitted when a **song position** message has been received.
        *
        * @event Input#songposition
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"songposition"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "songposition";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.songselect) {
       /**
        * Input-wide (system) event emitted when a **song select** message has been received.
        *
        * @event Input#songselect
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"songselect"`
        * @property {string} song Song (or sequence) number to select (1-128)
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "songselect";
       event.song = e.data[1] + 1;
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.tunerequest) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.tunerequest) {
       /**
        * Input-wide (system) event emitted when a **tune request** message has been received.
        *
        * @event Input#tunerequest
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"tunerequest"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "tunerequest";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.clock) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.clock) {
       /**
        * Input-wide (system) event emitted when a **timing clock** message has been received.
        *
        * @event Input#clock
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"clock"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "clock";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.start) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.start) {
       /**
        * Input-wide (system) event emitted when a **start** message has been received.
        *
        * @event Input#start
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"start"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "start";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.continue) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.continue) {
       /**
        * Input-wide (system) event emitted when a **continue** message has been received.
        *
        * @event Input#continue
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"continue"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "continue";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.stop) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.stop) {
       /**
        * Input-wide (system) event emitted when a **stop** message has been received.
        *
        * @event Input#stop
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"stop"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "stop";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.activesensing) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.activesensing) {
       /**
        * Input-wide (system) event emitted when an **active sensing** message has been received.
        *
        * @event Input#activesensing
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"activesensing"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "activesensing";
-    } else if (command === wm.MIDI_SYSTEM_MESSAGES.reset) {
+    } else if (event.message.command === wm.MIDI_SYSTEM_MESSAGES.reset) {
       /**
        * Input-wide (system) event emitted when a **reset** message has been received.
        *
        * @event Input#reset
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"reset"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "reset";
     } else {
@@ -2310,13 +2395,22 @@ class Input extends e {
        * be, for example, one of the undefined/reserved messages.
        *
        * @event Input#unknownmidimessage
+       *
        * @type {Object}
-       * @property {InputChannel} target The `Input` that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+       *
+       * @property {Input} target The `Input` that triggered the event.
+       * @property {Message} message A `Message` object containing information about the incoming MIDI
+       * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"unknownmidimessage"`
+       *
+       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * the `message` object instead).
+       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+       * the `message` object instead).
+       *
+       * @since 2.1
        */
       event.type = "unknownmidimessage";
     }
