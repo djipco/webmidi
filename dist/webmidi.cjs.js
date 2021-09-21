@@ -1141,7 +1141,6 @@ class InputChannel extends e {
     event.type = event.message.type || "unknownmidimessage";
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
-    console.log(1, event.message);
 
     if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
@@ -1273,10 +1272,7 @@ class InputChannel extends e {
       };
       event.value = utils.toNormalized(data2);
       event.rawValue = data2;
-    } else if ( // command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode &&
-    // data1 >= 120 && data1 <= 127
-    event.message.channelModeMessage) {
-      console.log(2, event.message);
+    } else if (event.message.channelModeMessage) {
       /**
        * Event emitted when a **channel mode** MIDI message has been received.
        *
@@ -1301,11 +1297,11 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-
       event.controller = {
         number: data1,
         name: this.getChannelModeByNumber(data1)
       };
+      console.log(3, event.controller);
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also dispatch specific channel mode events
 
