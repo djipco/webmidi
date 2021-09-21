@@ -6689,7 +6689,7 @@ class Message {
         }
       }
     } else if (this.systemMessage) {
-      console.log(this.data, this.command4bit);
+      console.log(this);
 
       for (let value in wm.MIDI_SYSTEM_MESSAGES) {
         if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command4bit) {
