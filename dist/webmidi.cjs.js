@@ -1094,9 +1094,11 @@ class InputChannel extends e {
 
 
   _processMidiMessageEvent(e) {
-    // Extract data bytes (unless it's a sysex message)
-    let dataBytes = null;
-    if (e.data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+    const event = Object.assign({}, e);
+    event.target = this; // Extract data bytes (unless it's a sysex message)
+    // let dataBytes = null;
+    // if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
+
     /**
      * Event emitted when a MIDI message of any kind is received by the `InputChannel`.
      *
@@ -1119,21 +1121,21 @@ class InputChannel extends e {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      */
+    // let midiMessageEvent = {
+    // channel: this,
+    // data: Array.from(e.data),
+    // dataBytes: dataBytes,
+    // input: this.input,
+    // rawData: e.data,
+    // statusByte: e.data[0],
+    // target: this,
+    // timestamp: e.timeStamp,
+    // type: "midimessage"
+    // };
 
-    let midiMessageEvent = {
-      channel: this,
-      data: Array.from(e.data),
-      dataBytes: dataBytes,
-      input: this.input,
-      rawData: e.data,
-      statusByte: e.data[0],
-      target: this,
-      timestamp: e.timeStamp,
-      type: "midimessage"
-    };
-    this.emit("midimessage", midiMessageEvent); // Parse the inbound event for regular messages
+    this.emit("midimessage", event); // Parse the inbound event for regular messages
 
-    this._parseEventForStandardMessages(e); // Parse the event to see if its part of an NRPN sequence
+    this._parseEventForStandardMessages(event); // Parse the event to see if its part of an NRPN sequence
     // this._parseEventForNrpnMessage(e);
 
   }
@@ -2108,18 +2110,14 @@ class Input extends e {
     };
     this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    // if (message.data[0] < 240) {          // channel-specific message
-    //   this.channels[message.channel]._processMidiMessageEvent(e);
-    // } else if (message.data[0] <= 255) {  // system message
-    //   this._parseEvent(event);
-    // }
 
     if (message.systemMessage) {
       // system messages
       this._parseEvent(event);
     } else if (message.channelModeMessage || message.channelVoiceMessage) {
       // channel messages
-      this.channels[message.channel]._processMidiMessageEvent(e);
+      // this.channels[message.channel]._processMidiMessageEvent(e);
+      this.channels[message.channel]._processMidiMessageEvent(event);
     }
   }
   /**
