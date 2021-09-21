@@ -144,8 +144,8 @@ export class Note {
 declare const utils: Utilities;
 declare const wm: WebMidi;
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
- * methode are static) and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
+ * static methode and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
@@ -180,14 +180,16 @@ declare class Utilities {
      * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
      * the fragments composing it (uppercase letter, accidental and octave).
      *
-     * @param identifier
+     * @param value {string|number} A string containing a note identifier ("C#4", "Gb-1", etc.) or a
+     * MIDI note number (0-127).
+     *
      * @returns {{octave: number, letter: string, accidental: string}}
      *
      * @throws TypeError Invalid note identifier
      *
      * @since 3.0.0
      */
-    getFragments(identifier: any): {
+    getFragments(value: string | number): {
         octave: number;
         letter: string;
         accidental: string;
