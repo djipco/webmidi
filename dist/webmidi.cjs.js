@@ -6669,17 +6669,19 @@ class Message {
 
 
     if (this.channelVoiceMessage) {
-      for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
-        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
-          this.type = value;
-          break;
+      if (this.channelModeMessage) {
+        for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
+          if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
+            this.type = value;
+            break;
+          }
         }
-      }
-    } else if (this.channelModeMessage) {
-      for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-        if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
-          this.type = value;
-          break;
+      } else {
+        for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
+          if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
+            this.type = value;
+            break;
+          }
         }
       }
     } else if (this.systemMessage) {
