@@ -2093,8 +2093,7 @@ class Input extends e {
       dataBytes: message.dataBytes // @deprecated (will be removed in v4)
 
     };
-    this.emit("midimessage", event);
-    console.log(event.message); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
+    this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
 
     if (message.systemMessage) {
@@ -6684,6 +6683,7 @@ class Message {
 
     if (this.statusByte < 240) {
       this.command = data[0] & 0b11110000;
+      this.command4bit = data[0] >> 4;
       this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = this.dataBytes[0] < 120;
       this.channelModeMessage = !this.channelVoiceMessage;
@@ -6695,7 +6695,7 @@ class Message {
 
     if (this.channelVoiceMessage) {
       for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
-        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
+        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
           this.type = value;
           break;
         }
@@ -6709,7 +6709,7 @@ class Message {
       }
     } else if (this.systemMessage) {
       for (let value in wm.MIDI_SYSTEM_MESSAGES) {
-        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
+        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command4bit) {
           this.type = value;
           break;
         }
