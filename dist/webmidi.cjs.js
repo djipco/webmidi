@@ -395,7 +395,7 @@ class Note {
   }
 
   set identifier(value) {
-    const fragments = utils.getFragments(value);
+    const fragments = utils.getNoteDetails(value);
 
     if (wm.validation) {
       if (!value) throw new Error("Invalid note identifier");
@@ -624,7 +624,7 @@ class Utilities {
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
     if (typeof identifier !== "string") identifier = "";
-    const fragments = this.getFragments(identifier);
+    const fragments = this.getNoteDetails(identifier);
     if (!fragments) throw new TypeError("Invalid note identifier");
     const notes = {
       C: 0,
@@ -650,11 +650,15 @@ class Utilities {
     return result;
   }
   /**
-   * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
-   * the fragments composing it (uppercase letter, accidental and octave).
+   * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+   * method returns an object containing broken down details about the specified note (uppercase
+   * letter, accidental and octave).
    *
-   * @param value {string|number} A string containing a note identifier ("C#4", "Gb-1", etc.) or a
-   * MIDI note number (0-127).
+   * When a number is specified, the translation to note is done using a value of 60 for middle C
+   * (C4 = middle C).
+   *
+   * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+   * number (0-127).
    *
    * @returns {{octave: number, letter: string, accidental: string}}
    *
@@ -664,7 +668,7 @@ class Utilities {
    */
 
 
-  getFragments(value) {
+  getNoteDetails(value) {
     if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
     const matches = value.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note identifier");
