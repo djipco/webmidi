@@ -6666,7 +6666,7 @@ class Message {
       this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = true;
 
-      if (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange === this.command4bit && this.dataBytes[0] >= 120) {
+      if (this.command4bit === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
@@ -7665,12 +7665,13 @@ class WebMidi extends e {
 
 
   get MIDI_CHANNEL_VOICE_MESSAGES() {
-    return Object.assign({
+    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
+    return Object.assign(values, {
       channelmode: 0xB,
       // 11
       nrpn: 0xB // 11
 
-    }, this.MIDI_CHANNEL_MESSAGES);
+    });
   }
 
   get MIDI_CHANNEL_MESSAGES() {
