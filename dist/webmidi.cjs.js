@@ -1141,6 +1141,7 @@ class InputChannel extends e {
     event.type = event.message.type || "unknownmidimessage";
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
+    console.log(1, event.message);
 
     if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
@@ -1275,7 +1276,7 @@ class InputChannel extends e {
     } else if ( // command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode &&
     // data1 >= 120 && data1 <= 127
     event.message.channelModeMessage) {
-      console.log(event.message);
+      console.log(2, event.message);
       /**
        * Event emitted when a **channel mode** MIDI message has been received.
        *
