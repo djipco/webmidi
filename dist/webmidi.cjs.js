@@ -2108,14 +2108,18 @@ class Input extends e {
     };
     this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
+    // if (message.data[0] < 240) {          // channel-specific message
+    //   this.channels[message.channel]._processMidiMessageEvent(e);
+    // } else if (message.data[0] <= 255) {  // system message
+    //   this._parseEvent(event);
+    // }
 
-    if (message.data[0] < 240) {
-      // channel-specific message
-      // let channel = (message.data[0] & 0xf) + 1;
-      this.channels[message.channel]._processMidiMessageEvent(e);
-    } else if (message.data[0] <= 255) {
-      // system message
+    if (message.systemMessage) {
+      // system messages
       this._parseEvent(event);
+    } else if (message.channelModeMessage || message.channelVoiceMessage) {
+      // channel messages
+      this.channels[message.channel]._processMidiMessageEvent(e);
     }
   }
   /**
