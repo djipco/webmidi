@@ -636,20 +636,10 @@ declare class WebMidi {
      */
     private noteNameToNumber;
     /**
-     * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-     * based on middle C (note number 60) being placed on the 4th octave (C4).
-     *
-     * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
-     * be parsed to a valid octave.
-     *
-     * @param number {number} An integer representing a valid MIDI note number (between 0 and 127).
-     *
-     * @returns {number|false} The octave (as a signed integer) or `false` if the value could not be
-     * parsed to a valid octave.
-     *
-     * @since 2.0.0-rc.6
+     * @private
+     * @deprecated since 3.0.0, use Utilities.getNoteDetails() instead.
      */
-    getOctave(number: number): number | false;
+    private getOctave;
     /**
      * @private
      * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
