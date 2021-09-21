@@ -2,8 +2,8 @@ import {Note} from "./Note.js";
 import {WebMidi} from "./WebMidi.js";
 
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
- * methode are static) and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
+ * static methode and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
@@ -63,19 +63,27 @@ class Utilities {
   }
 
   /**
-   * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
-   * the fragments composing it (uppercase letter, accidental and octave).
+   * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+   * method returns an object containing broken down details about the specified note (uppercase
+   * letter, accidental and octave).
    *
-   * @param identifier
+   * When a number is specified, the translation to note is done using a value of 60 for middle C
+   * (C4 = middle C).
+   *
+   * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+   * number (0-127).
+   *
    * @returns {{octave: number, letter: string, accidental: string}}
    *
    * @throws TypeError Invalid note identifier
    *
    * @since 3.0.0
    */
-  getFragments(identifier) {
+  getFragments(value) {
 
-    const matches = identifier.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
+    if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
+
+    const matches = value.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note identifier");
 
     const name = matches[1].toUpperCase();

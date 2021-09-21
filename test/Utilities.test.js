@@ -109,7 +109,7 @@ describe("Utilities Object", function() {
 
   describe("getFragments()", function() {
 
-    it("should return the correct fragments", function () {
+    it("should return the correct fragments when using identifier", function () {
 
       // Arrange
       const items = [
@@ -128,6 +128,30 @@ describe("Utilities Object", function() {
       function assert(item) {
         const fragments = Utilities.getFragments(item.identifier);
         expect(fragments.identifier).to.equal(item.identifier);
+        expect(fragments.name).to.equal(item.name);
+        expect(fragments.accidental).to.equal(item.accidental);
+        expect(fragments.octave).to.equal(item.octave);
+      }
+
+    });
+
+    it.only("should return the correct fragments when using number", function () {
+
+      // Arrange
+      const items = [
+        {number: 0, name: "C", accidental: undefined, octave: -1},
+        {number: 59, name: "B", accidental: undefined, octave: 3},
+        {number: 60, name: "C", accidental: undefined, octave: 4},
+        {number: 61, name: "C", accidental: "#", octave: 4},
+        {number: 127, name: "G", accidental: undefined, octave: 9},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        const fragments = Utilities.getFragments(item.number);
         expect(fragments.name).to.equal(item.name);
         expect(fragments.accidental).to.equal(item.accidental);
         expect(fragments.octave).to.equal(item.octave);
