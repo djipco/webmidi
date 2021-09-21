@@ -1171,8 +1171,8 @@ class InputChannel extends e {
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
        * and 127).
        */
-      event.type = "noteoff"; // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
-
+      // event.type = "noteoff";
+      // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: 0,
         rawRelease: data2
@@ -1209,7 +1209,7 @@ class InputChannel extends e {
        * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
        * and 127).
        */
-      event.type = "noteon";
+      // event.type = "noteon";
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: data2
       });
@@ -1248,7 +1248,7 @@ class InputChannel extends e {
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
-      event.type = "keyaftertouch";
+      // event.type = "keyaftertouch";
       event.identifier = utils.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
       event.key = utils.toNoteNumber(event.identifier);
       event.rawKey = data1;
@@ -1282,7 +1282,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.type = "controlchange";
+      // event.type = "controlchange";
       event.controller = {
         number: data1,
         name: this.getCcNameByNumber(data1)
@@ -1316,7 +1316,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.type = "channelmode";
+      // event.type = "channelmode";
       event.controller = {
         number: data1,
         name: this.getChannelModeByNumber(data1)
@@ -1347,7 +1347,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as an integer between 1 and 128.
        * @property {number} rawValue The value expressed as an integer between 0 and 127.
        */
-      event.type = "programchange";
+      // event.type = "programchange";
       event.value = data1 + 1;
       event.rawValue = data1;
     } else if (event.type === "channelaftertouch") {
@@ -1372,7 +1372,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.type = "channelaftertouch";
+      // event.type = "channelaftertouch";
       event.value = utils.toNormalized(data1);
       event.rawValue = data1;
     } else if (event.type === "pitchbend") {
@@ -1397,11 +1397,9 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
        */
-      event.type = "pitchbend";
+      // event.type = "pitchbend";
       event.value = ((data2 << 7) + data1 - 8192) / 8192;
       event.rawValue = (data2 << 7) + data1;
-    } else {
-      event.type = "unknownmessage";
     }
 
     this.emit(event.type, event);
