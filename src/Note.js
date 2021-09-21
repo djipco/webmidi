@@ -5,23 +5,23 @@ import {Utilities} from "./Utilities.js";
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on the
- * multiple channels of an output by using [Output.playNote()]{@link Output#playNote}.
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
+ * output by calling [Output.playNote()]{@link Output#playNote}.
  *
  * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
  * in the appropriate option. It is also possible to set a system-wide default for attack and
  * release velocities by using the `WebMidi.defaults` property.
  *
- * The note may have a duration. If it does, playback will be stopped when the duration has elapsed
- * by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
- * this case, it will never stop playing unless explicitly stopped by calling a method such as
- * [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
+ * The note may have a duration. If it does, playback will be automatically stopped when the
+ * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+ * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
+ * method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
- * it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`,
- * `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this
- * case, middle C is considered to be C4 (note number 60).
+ * it must start with the note letter, optionally followed by an accidental and followed by the
+ * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+ * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
  *
