@@ -1138,12 +1138,11 @@ class InputChannel extends e {
 
   _parseEventForStandardMessages(e) {
     const event = Object.assign({}, e);
-    event.type = event.message.type || "unknownmidimessage"; // let {command, data1, data2} = Utilities.getMessage(e.data);
-
+    event.type = event.message.type || "unknownmidimessage";
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
 
-    if (event.type === "noteoff" || event.type === "noteon" && event.message.data[1] === 0) {
+    if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
        *
