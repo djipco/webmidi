@@ -4,17 +4,17 @@
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
 `Note` objects can be played back on a single channel by calling
-[OutputChannel.playNote()](OutputChannel#playNote). A note can also be played back on the
-multiple channels of an output by using [Output.playNote()](Output#playNote).
+[OutputChannel.playNote()](OutputChannel#playNote) or on multiple channels of the same
+output by calling [Output.playNote()](Output#playNote).
 
 The note has attack and release velocities set at 0.5 by default. These can be changed by passing
 in the appropriate option. It is also possible to set a system-wide default for attack and
 release velocities by using the `WebMidi.defaults` property.
 
-The note may have a duration. If it does, playback will be stopped when the duration has elapsed
-by automatically sending a **noteoff** event. By default, the duration is set to `Infinity`. In
-this case, it will never stop playing unless explicitly stopped by calling a method such as
-[OutputChannel.stopNote()](OutputChannel#stopNote),
+The note may have a duration. If it does, playback will be automatically stopped when the
+duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+`Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
+method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 [Output.stopNote()](Output#stopNote) or similar.
 
 <!--**Kind**: global class  
@@ -68,7 +68,7 @@ this case, it will never stop playing unless explicitly stopped by calling a met
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must be the note letter (with optional accidental) followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
+| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
 | [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
