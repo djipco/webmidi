@@ -6689,8 +6689,6 @@ class Message {
         }
       }
     } else if (this.systemMessage) {
-      console.log(111, this);
-
       for (let value in wm.MIDI_SYSTEM_MESSAGES) {
         if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
           this.type = value;
