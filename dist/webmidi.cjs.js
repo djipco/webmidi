@@ -1137,22 +1137,15 @@ class InputChannel extends e {
 
 
   _parseEventForStandardMessages(e) {
+    const event = Object.assign({}, e);
+    event.type = event.message.type || "unknownmidimessage";
     let {
       command,
       data1,
       data2
-    } = utils.getMessage(e.data); // Returned event
+    } = utils.getMessage(e.data);
 
-    let event = {
-      channel: this,
-      data: Array.from(e.data),
-      input: this.input,
-      rawData: e.data,
-      target: this,
-      timestamp: e.timeStamp
-    };
-
-    if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff || command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon && data2 === 0) {
+    if (event.type === "noteoff" || event.type === "noteon" && event.message.data[1] === 0) {
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
        *
@@ -1190,7 +1183,7 @@ class InputChannel extends e {
 
       event.velocity = event.note.release;
       event.rawVelocity = event.note.rawRelease;
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon) {
+    } else if (event.type === "noteon") {
       /**
        * Event emitted when a **note on** MIDI message has been received.
        *
@@ -1226,7 +1219,7 @@ class InputChannel extends e {
 
       event.velocity = event.note.attack;
       event.rawVelocity = event.note.rawAttack;
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch) {
+    } else if (event.type === "keyaftertouch") {
       /**
        * Event emitted when a **key-specific aftertouch** MIDI message has been received.
        *
@@ -1264,7 +1257,7 @@ class InputChannel extends e {
       // removed from future versions (@deprecated).
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && data1 >= 0 && data1 <= 119) {
+    } else if (event.type === "controlchange" && event.message.channelVoiceMessage) {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
@@ -1296,7 +1289,9 @@ class InputChannel extends e {
       };
       event.value = utils.toNormalized(data2);
       event.rawValue = data2;
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode && data1 >= 120 && data1 <= 127) {
+    } else if ( // command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode &&
+    // data1 >= 120 && data1 <= 127
+    event.type === "channelmode") {
       /**
        * Event emitted when a **channel mode** MIDI message has been received.
        *
@@ -1330,7 +1325,7 @@ class InputChannel extends e {
       event.rawValue = data2; // Also dispatch specific channel mode events
 
       this._parseChannelModeMessage(e);
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange) {
+    } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
        *
@@ -1355,7 +1350,7 @@ class InputChannel extends e {
       event.type = "programchange";
       event.value = data1 + 1;
       event.rawValue = data1;
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch) {
+    } else if (event.type === "channelaftertouch") {
       /**
        * Event emitted when a control change MIDI message has been received.
        *
@@ -1380,7 +1375,7 @@ class InputChannel extends e {
       event.type = "channelaftertouch";
       event.value = utils.toNormalized(data1);
       event.rawValue = data1;
-    } else if (command === wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend) {
+    } else if (event.type === "pitchbend") {
       /**
        * Event emitted when a pitch bend MIDI message has been received.
        *
