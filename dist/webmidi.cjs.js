@@ -6723,7 +6723,8 @@ class Message {
       this.channel = (this.statusByte & 0b00001111) + 1;
       this.channelMessage = true;
 
-      if (this.command4bit === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if ( // this.command4bit === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+      this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
@@ -6744,7 +6745,8 @@ class Message {
         }
       } else {
         for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
-          if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
+          // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
+          if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
             this.type = value;
             break;
           }
