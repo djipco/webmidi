@@ -1425,26 +1425,32 @@ class InputChannel extends e {
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
      *
      * @event InputChannel#allsoundoff
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"allsoundoff"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"allsoundoff"`
      */
 
     /**
      * Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
      *
      * @event InputChannel#resetallcontrollers
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"resetallcontrollers"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"resetallcontrollers"`
      */
 
     /**
@@ -1453,13 +1459,17 @@ class InputChannel extends e {
      * off).
      *
      * @event InputChannel#localcontrol
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"localcontrol"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"localcontrol"`
+     *
      * @property {boolean} value For local control on, the value is `true`. For local control off,
      * the value is `false`.
      */
@@ -1472,13 +1482,16 @@ class InputChannel extends e {
      * Event emitted when an "all notes off" channel-mode MIDI message has been received.
      *
      * @event InputChannel#allnotesoff
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"allnotesoff"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"allnotesoff"`
      */
 
     /**
@@ -1486,13 +1499,17 @@ class InputChannel extends e {
      * property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
      *
      * @event InputChannel#omnimode
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"omnimode"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"omnimode"`
+     *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
      */
 
@@ -1510,13 +1527,17 @@ class InputChannel extends e {
      * poly mode on).
      *
      * @event InputChannel#monomode
+     *
      * @type {Object}
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {string} type `"monomode"`
+     *
+     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+     * object).
+     * @property {Message} message A `Message` object containing information about the incoming
+     * MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"monomode"`
+     *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
      */
 
