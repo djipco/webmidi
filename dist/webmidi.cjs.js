@@ -1301,7 +1301,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getChannelModeByNumber(data1)
       };
-      console.log(3, event.controller);
+      event.type = "channelmode";
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also dispatch specific channel mode events
 
