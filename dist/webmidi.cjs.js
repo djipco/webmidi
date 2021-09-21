@@ -1151,19 +1151,15 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"noteoff"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
        * @property {Object} note A {@link Note} object containing information such as note name,
        * octave and release velocity.
-       *
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
        * and 127).
@@ -1223,13 +1219,10 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"keyaftertouch"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -1260,13 +1253,10 @@ class InputChannel extends e {
        * @type {Object}
        * @property {string} type `"controlchange"`
        *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
-       * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -2057,7 +2047,7 @@ class Input extends e {
      *
      * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
      * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array (deprecated, use
      * the `message` object instead).
      * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
      * object instead).
@@ -6672,8 +6662,7 @@ class Message {
     if (this.statusByte < 240) {
       this.command = data[0] & 0b11110000;
       this.command4bit = data[0] >> 4;
-      this.channel = (data[0] & 0b00001111) + 1; // this.channelVoiceMessage = this.dataBytes[0] < 120;
-
+      this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = true;
 
       if (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange === this.command4bit || this.dataBytes[0] >= 120) {
