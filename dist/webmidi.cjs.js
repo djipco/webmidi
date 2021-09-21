@@ -7072,7 +7072,7 @@ class WebMidi extends e {
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
       // return Math.floor(number / 12 - 1) + this.octaveOffset;
-      return utils.getNoteDetails(number).octave;
+      return utils.getNoteDetails(utils.offsetNumber(number, WebMidi.octave)).octave;
     } else {
       return false;
     }
