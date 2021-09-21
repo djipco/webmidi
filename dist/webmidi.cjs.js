@@ -2064,59 +2064,50 @@ class Input extends e {
 
   _onMidiMessage(e) {
     // Create Message object from MIDI data
-    const message = new Message(e.data); // // Extract data bytes (unless it's a sysex message)
-    // let dataBytes = null;
-    // if (e.data[0] !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = e.data.slice(1);
-
+    const message = new Message(e.data);
     /**
-     * Event emitted when a MIDI message is received on the `Input`
+     * Event emitted when any MIDI message is received on an `Input`
      *
      * @event Input#midimessage
+     *
      * @type {Object}
+     *
      * @property {Input} target The `Input` that triggered the event.
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+     * @property {Message} message A `Message` object containing information about the incoming MIDI
+     * message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {string} type `"midimessage"`
-     * @property {number} event.statusByte The message's status byte.
+     *
+     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+     * the `message` object instead).
+     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+     * the `message` object instead).
+     * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
+     * object instead).
      * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
-     * integers. This will be null for `sysex` messages.
+     * integers. This will be null for `sysex` messages (deprecated, use the `message` object
+     * instead).
      *
      * @since 2.1
      */
-    // let event = {
-    //   target: this,
-    //   data: Array.from(e.data),
-    //   rawData: e.data,
-    //   statusByte: e.data[0],
-    //   dataBytes: dataBytes,
-    //   timestamp: e.timeStamp,
-    //   type: "midimessage"
-    // };
 
     const event = {
       target: this,
-      data: message.data,
-      // @deprecated
-      rawData: message.data,
-      // @deprecated
-      statusByte: message.data[0],
-      // @deprecated
-      dataBytes: message.dataBytes,
-      // @deprecated
+      message: message,
       timestamp: e.timeStamp,
       type: "midimessage",
-      message: message
+      data: message.data,
+      // @deprecated (will be removed in v4)
+      rawData: message.data,
+      // @deprecated (will be removed in v4)
+      statusByte: message.data[0],
+      // @deprecated (will be removed in v4)
+      dataBytes: message.dataBytes // @deprecated (will be removed in v4)
+
     };
     this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    // if (e.data[0] < 240) {          // channel-specific message
-    //   let channel = (e.data[0] & 0xf) + 1;
-    //   this.channels[channel]._processMidiMessageEvent(e);
-    // } else if (e.data[0] <= 255) {  // system message
-    //   this._parseEvent(e);
-    // }
 
     if (e.data[0] < 240) {
       // channel-specific message
@@ -2125,7 +2116,8 @@ class Input extends e {
       this.channels[channel]._processMidiMessageEvent(e);
     } else if (message.data[0] <= 255) {
       // system message
-      this._parseEvent(e);
+      // this._parseEvent(e);
+      this._parseEvent(event);
     }
   }
   /**
@@ -2134,14 +2126,18 @@ class Input extends e {
 
 
   _parseEvent(e) {
-    let command = e.data[0]; // Returned event
-
-    var event = {
-      target: this,
-      data: Array.from(e.data),
-      rawData: e.data,
-      timestamp: e.timeStamp
-    };
+    // let command = e.data[0];
+    //
+    // // Returned event
+    // var event = {
+    //   target: this,
+    //   data: Array.from(e.data),
+    //   rawData: e.data,
+    //   timestamp: e.timeStamp
+    // };
+    // Make a shallow copy of the incoming event to use it as the outgoing event.
+    const event = Object.assign({}, e);
+    const command = event.message.command;
 
     if (command === wm.MIDI_SYSTEM_MESSAGES.sysex) {
       /**
@@ -6617,7 +6613,8 @@ class Message {
     this.systemMessage = false;
 
     if (this.statusByte < 240) {
-      this.command = data[0] >> 4;
+      // this.command = data[0] >> 4;
+      this.command = data[0] & 0b11110000;
       this.channel = (data[0] & 0b00001111) + 1;
       this.channelVoiceMessage = this.dataBytes[0] < 120;
       this.channelModeMessage = !this.channelVoiceMessage;
