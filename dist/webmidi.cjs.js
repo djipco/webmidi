@@ -2095,7 +2095,7 @@ class Input extends e {
       event.song = e.data[1] + 1;
     }
 
-    console.log(event.type); // Emit event
+    console.log(event); // Emit event
 
     this.emit(event.type, event);
     /**
@@ -6689,8 +6689,7 @@ class Message {
         }
       }
     } else if (this.systemMessage) {
-      console.log(this);
-
+      // console.log(this);
       for (let value in wm.MIDI_SYSTEM_MESSAGES) {
         if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
           this.type = value;
