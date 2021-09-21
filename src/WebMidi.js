@@ -300,10 +300,8 @@ class WebMidi extends EventEmitter {
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
     // Update inputs and outputs (this is where `Input` and `Output` objects are created).
-    let ports;
-
     try {
-      ports = await this._updateInputsAndOutputs();
+      await this._updateInputsAndOutputs();
     } catch (err) {
       errorEvent.error = err;
       this.emit("error", errorEvent);
