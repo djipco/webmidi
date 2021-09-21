@@ -1302,9 +1302,9 @@ class InputChannel extends e {
 
       event.type = "channelmode";
       event.value = utils.toNormalized(data2);
-      event.rawValue = data2;
-      console.log(111, event); // Also dispatch specific channel mode events
-      // this._parseChannelModeMessage(event);
+      event.rawValue = data2; // Also dispatch specific channel mode events
+
+      this._parseChannelModeMessage(event);
     } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
@@ -1414,7 +1414,7 @@ class InputChannel extends e {
   _parseChannelModeMessage(e) {
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
-    event.type = this.getChannelModeByNumber(data1);
+    event.type = event.message.type;
     let data1, data2;
 
     if (event.message.data.length > 1) {
