@@ -1000,7 +1000,7 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
@@ -7049,7 +7049,7 @@ class WebMidi extends e {
 
   /**
    * @private
-   * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
+   * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
    */
   noteNameToNumber(name) {
     if (this.validation) {
@@ -7078,7 +7078,7 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
+   * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
    */
 
 
@@ -7120,20 +7120,20 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since version 3.0. Use sanitizeChannels() instead.
+   * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
    */
 
 
   toMIDIChannels(channel) {
     if (this.validation) {
-      console.warn("The toMIDIChannels() method has been deprecated. Use sanitizeChannels() instead.");
+      console.warn("The toMIDIChannels() method has been deprecated. Use Utilities.sanitizeChannels() instead.");
     }
 
     return utils.sanitizeChannels(channel);
   }
   /**
    * @private
-   * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
+   * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
    */
 
 
@@ -7146,7 +7146,7 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since version 3. Moved to Utilities.buildNoteArray().
+   * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
    */
 
 
@@ -7159,7 +7159,7 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated moved to Utilities.toTimestamp()
+   * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
    */
 
 
@@ -7535,6 +7535,25 @@ class WebMidi extends e {
 
 
   get MIDI_CHANNEL_VOICE_MESSAGES() {
+    return Object.assign({
+      channelmode: 0xB,
+      // 11
+      nrpn: 0xB // 11
+
+    }, this.MIDI_CHANNEL_MESSAGES); // return {
+    //   noteoff: 0x8,           // 8
+    //   noteon: 0x9,            // 9
+    //   keyaftertouch: 0xA,     // 10
+    //   controlchange: 0xB,     // 11
+    //   channelmode: 0xB,       // 11
+    //   nrpn: 0xB,              // 11
+    //   programchange: 0xC,     // 12
+    //   channelaftertouch: 0xD, // 13
+    //   pitchbend: 0xE          // 14
+    // };
+  }
+
+  get MIDI_CHANNEL_MESSAGES() {
     return {
       noteoff: 0x8,
       // 8
@@ -7543,10 +7562,6 @@ class WebMidi extends e {
       keyaftertouch: 0xA,
       // 10
       controlchange: 0xB,
-      // 11
-      channelmode: 0xB,
-      // 11
-      nrpn: 0xB,
       // 11
       programchange: 0xC,
       // 12
@@ -7557,15 +7572,8 @@ class WebMidi extends e {
     };
   }
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-   * has been deprecated since v3.0. You should now use
-   * [MIDI_CHANNEL_VOICE_MESSAGES]{@link WebMidi.MIDI_CHANNEL_VOICE_MESSAGES}.
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   * @deprecated since version 3.0 (will be dropped in version 4.0)
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
    */
 
 
