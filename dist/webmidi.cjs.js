@@ -6692,7 +6692,7 @@ class Message {
       console.log(this);
 
       for (let value in wm.MIDI_SYSTEM_MESSAGES) {
-        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command4bit) {
+        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
           this.type = value;
           break;
         }
