@@ -66,6 +66,7 @@
     "test:Input": "mocha test/Input.test.js",
     "test:InputChannel": "mocha test/InputChannel.test.js",
     "test:Note": "mocha test/Note.test.js",
+    "test:Message": "mocha test/Message.test.js",
     "test:Output": "mocha test/Output.test.js",
     "test:OutputChannel": "mocha test/OutputChannel.test.js",
     "test:Utilities": "mocha test/Utilities.test.js",

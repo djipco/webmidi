@@ -1021,31 +1021,27 @@ class WebMidi extends EventEmitter {
    */
   get MIDI_CHANNEL_VOICE_MESSAGES() {
 
+    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
+
+    return Object.assign(values, {
+      channelmode: 0xB,       // 11
+      nrpn: 0xB,              // 11
+    });
+
+  }
+
+  get MIDI_CHANNEL_MESSAGES() {
+
     return {
       noteoff: 0x8,           // 8
       noteon: 0x9,            // 9
       keyaftertouch: 0xA,     // 10
       controlchange: 0xB,     // 11
-      channelmode: 0xB,       // 11
-      nrpn: 0xB,              // 11
       programchange: 0xC,     // 12
       channelaftertouch: 0xD, // 13
       pitchbend: 0xE          // 14
     };
 
-  }
-
-  /**
-   * @private
-   * @deprecated since version 3.0.0, use MIDI_CHANNEL_VOICE_MESSAGES instead.
-   */
-  get MIDI_CHANNEL_MESSAGES() {
-    if (this.validation) {
-      console.warn(
-        "MIDI_CHANNEL_MESSAGES has been deprecated. Use MIDI_CHANNEL_VOICE_MESSAGES instead."
-      );
-    }
-    return this.MIDI_CHANNEL_VOICE_MESSAGES;
   }
 
   /**
@@ -1391,3 +1387,4 @@ export {wm as WebMidi};
 
 export {Note} from "./Note.js";
 export {Utilities} from "./Utilities.js";
+export {Message} from "./Message.js";
