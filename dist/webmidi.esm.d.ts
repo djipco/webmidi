@@ -1,55 +1,53 @@
 /**
- * The `Note` class represents a single note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc. The
- * actual MIDI note number associated with the note is determined when the note is played or
- * received. This is because, the `octaveOffset` property can be used to offset the note number to
- * match external devices where middle C is not equal to C4.
+ * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote}. A note can also be played back on
- * multiple channels of the same output by using [Output.playNote()]{@link Output#playNote}.
+ * [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
+ * output by calling [Output.playNote()]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 0.5 by default. This can be changed by passing
+ * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
  * in the appropriate option. It is also possible to set a system-wide default for attack and
  * release velocities by using the `WebMidi.defaults` property.
  *
- * The note also has a duration. Playback will be stopped (by sending **noteoff** sent) event the
- * duration has elapsed. By default, the duration is set to `Infinity`. In this case, it will never
- * stop playing unless explicitly stopped by calling a method such as
- * OutputChannel.stopNote()]{@link OutputChannel#stopNote} or
+ * The note may have a duration. If it does, playback will be automatically stopped when the
+ * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+ * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
+ * method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
  * [Output.stopNote()]{@link Output#stopNote} or similar.
  *
- * @param value {string} The value used to create the note. If a string is used, it must be the note
- * name followed by the octave (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it
- * must be an integer between 0 and 127. When converting the number to a note name, middle C is
- * considered to be C4 (note number 60).
+ * @param value {string|number} The value used to create the note. If an identifier string is used,
+ * it must start with the note letter, optionally followed by an accidental and followed by the
+ * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+ * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
  * @param {Object} [options={}]
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0 and
- * 1.
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
  *
- * @param {number} [options.octaveOffset=0] An integer to offset the octave value. This is only used
- * when the note is specified using a MIDI note number.
+ * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
+ *
+ * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+ * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
  *
  * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127.
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `attack` and `rawAttack` are specified, the latter has precedence.
  *
  * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127.
+ * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+ * `release` and `rawRelease` are specified, the latter has precedence.
  *
- * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
- * and 1.
- *
- * @throws {Error} Invalid note name.
- * @throws {Error} Invalid note number.
- * @throws {RangeError} Invalid duration.
- * @throws {RangeError} Invalid attack value.
- * @throws {RangeError} Invalid rawAttack value.
- * @throws {RangeError} Invalid release value.
- * @throws {RangeError} Invalid rawRelease value.
+ * @throws {Error} Invalid note identifier
+ * @throws {RangeError} Invalid name value
+ * @throws {RangeError} Invalid accidental value
+ * @throws {RangeError} Invalid octave value
+ * @throws {RangeError} Invalid duration value
+ * @throws {RangeError} Invalid attack value
+ * @throws {RangeError} Invalid release value
  *
  * @since 3.0.0
  */
@@ -61,98 +59,138 @@ export class Note {
      * that the note should play for.
      *
      * @type {number}
+     * @since 3.0.0
      */
     get duration(): number;
     set attack(arg: number);
     /**
-     * The attack velocity of the note as a decimal number between 0 and 1.
+     * The attack velocity of the note as an integer between 0 and 127.
      * @type {number}
+     * @since 3.0.0
      */
     get attack(): number;
     set release(arg: number);
     /**
-     * The release velocity of the note as a decimal number between 0 and 1.
+     * The release velocity of the note as an integer between 0 and 127.
      * @type {number}
+     * @since 3.0.0
      */
     get release(): number;
-    name: any;
-    set rawAttack(arg: number);
+    set identifier(arg: string);
     /**
-     * The raw attack velocity of the note as an integer between 0 and 127.
+     * The name, optional accidental and octave of the note, as a string.
+     * @type {string}
+     * @since 3.0.0
+     */
+    get identifier(): string;
+    _name: any;
+    _accidental: string;
+    _octave: number;
+    set name(arg: string);
+    /**
+     * The name (letter) of the note
+     * @type {string}
+     * @since 3.0.0
+     */
+    get name(): string;
+    set accidental(arg: string);
+    /**
+     * The accidental (#, ##, b or bb) of the note
+     * @type {string}
+     * @since 3.0.0
+     */
+    get accidental(): string;
+    set octave(arg: number);
+    /**
+     * The octave of the note
      * @type {number}
+     * @since 3.0.0
+     */
+    get octave(): number;
+    _duration: number;
+    _attack: number;
+    _release: number;
+    /**
+     * The attack velocity of the note as a positive integer between 0 and 127.
+     * @type {number}
+     * @since 3.0.0
      */
     get rawAttack(): number;
-    set rawRelease(arg: number);
     /**
-     * The raw release velocity of the note as an integer between 0 and 127.
+     * The release velocity of the note as a positive integer between 0 and 127.
      * @type {number}
+     * @since 3.0.0
      */
     get rawRelease(): number;
     /**
-     * Returns the MIDI note number of the note (0-127). To calculate the MIDI note number, middle C
-     * is considered to be C4 (MIDI note number 60). The returned MIDI note number is offset by the
-     * value of the `octaveOffset` parameter (if any).
+     * The MIDI number of the note. This number is derived from the note identifier using C4 as a
+     * reference for middle C.
      *
-     * @param {number} [octaveOffset=0] A integer to offset the octave by
-     *
-     * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` (if the
-     * offset causes the note to fall outside the MIDI range).
-     *
+     * @type {number}
      * @since 3.0.0
      */
-    getNumber(octaveOffset?: number): number | false;
-    _rawAttack: number;
-    _duration: number;
-    _rawRelease: number;
+    get number(): number;
+    /**
+     * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+     * value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+     * returned. If an invalid value is supplied, 0 will be used.
+     *
+     * @param offset
+     * @returns {number} An integer between 0 and 127
+     */
+    getOffsetNumber(octaveOffset?: number, semitoneOffset?: number): number;
 }
 declare const utils: Utilities;
-declare const wm: WebMidi$1;
+declare const wm: WebMidi;
 /**
- * The `Utilities` class contains all the general-purpose utility functions of the library. The
- * class is a singleton and is not meant to be instantiated. Its methods are static.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
+ * methode are static) and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
 declare class Utilities {
     /**
-     * Returns a MIDI note number matching the note name passed in the form of a string parameter. The
-     * note name must include the octave number. The name can also optionally include a sharp (#),
+     * Returns a MIDI note number matching the identifier passed in the form of a string. The
+     * identifier must include the octave number. The identifier also optionally include a sharp (#),
      * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-     * names: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+     * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
      *
-     * When converting note names to numbers, C4 is considered to be middle C (MIDI note number 60) as
-     * per the scientific pitch notation standard.
+     * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
+     * 60) as per the scientific pitch notation standard.
      *
-     * The resulting note number is offset by the value of the `octaveOffset` property of the options
-     * object (if any).
+     * The resulting note number can be offset by using the `octaveOffset` parameter.
      *
-     * **Note**: since v3.x, this function returns `false` instead of throwing an error when it cannot
-     * parse the name to a number.
+     * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
+     * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+     * Abb4, B##6, etc.
      *
-     * @param name {string} The name of the note in the form of a letter, followed by an optional "#",
-     * "##", "b" or "bb" followed by the octave number.
+     * @param {number} [octaveOffset=0] A integer to offset the octave by.
      *
-     * @param {Object} [options={}]
+     * @returns {number} The MIDI note number (an integer between 0 and 127).
      *
-     * @param {number} [options.octaveOffset=0] A integer to offset the octave by
+     * @throws RangeError Invalid 'octaveOffset' value
      *
-     * @returns {number|false} The MIDI note number (an integer between 0 and 127) or `false` if the
-     * name could not successfully be parsed to a number.
+     * @throws TypeError Invalid note identifier
+     *
+     * @since 3.0.0
      */
-    getNoteNumberByName(name: string, octaveOffset?: number): number | false;
+    toNoteNumber(identifier: string, octaveOffset?: number): number;
     /**
-     * Given a proper note name ("C#4", "Gb-1", etc.), this method returns an object containing the
-     * fragments composing it (uppercase letter, accidental and octave). If the name is invalid,
-     * `false` is returned.
+     * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
+     * the fragments composing it (uppercase letter, accidental and octave).
      *
-     * @param name
-     * @returns {{octave: number, letter: string, accidental: string}|false}
+     * @param identifier
+     * @returns {{octave: number, letter: string, accidental: string}}
+     *
+     * @throws TypeError Invalid note identifier
+     *
+     * @since 3.0.0
      */
-    getNoteFragments(name: any): {
+    getFragments(identifier: any): {
         octave: number;
         letter: string;
         accidental: string;
-    } | false;
+    };
     /**
      * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
      * single integer or an array of integers.
@@ -165,6 +203,8 @@ declare class Utilities {
      * numbers.
      *
      * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     *
+     * @since 3.0.0
      */
     sanitizeChannels(channel?: number | number[]): any[];
     /**
@@ -176,38 +216,50 @@ declare class Utilities {
      *
      * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
      * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     *
+     * @since 3.0.0
      */
-    convertToTimestamp(time?: number | string): number | false;
+    toTimestamp(time?: number | string): number | false;
     /**
-     * Returns a valid MIDI note number (0-127) given the specified input. The parameter usually is a
-     * string containing a note name (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer between 0
-     * and 127 is passed, it will simply be returned as is (for convenience). Other strings will be
-     * parsed for integer, if possible.
+     * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
+     * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
+     * between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
+     * will be parsed for integer value, if possible.
      *
-     * If the input is a string, the resulting note number is offset by the
-     * [octaveOffset]{@link WebMidi#octaveOffset} value (if not zero). For example, if you pass in
-     * "C4" and the [octaveOffset]{@link WebMidi#octaveOffset} value is 2, the resulting MIDI note
-     * number will be 36.
+     * If the input is an identifier, the resulting note number is offset by the `octaveOffset`
+     * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
+     * -2, the resulting MIDI note number will be 36.
      *
-     * **Note**: since v3.x, this method returns `false` instead of throwing an error when the input
-     * is invalid.
-     *
-     * @param input {string|number} A string to extract the note number from. An integer can also be
-     * used, in this case it will simply be returned as is (if between 0 and 127).
+     * @param input {string|number} A string or number to extract the MIDI note number from.
      *
      * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
      * successfully be parsed to a note number.
+     *
+     * @since 3.0.0
      */
-    guessNoteNumber(input: string | number, options?: {}): number | false;
+    guessNoteNumber(input: string | number, octaveOffset: any): number | false;
+    /**
+     * Returns an identifier string representing a note name (with optional accidental) followed by an
+     * octave number. The octave can be offset by using the `octaveOffset` parameter.
+     *
+     * @param {number} The MIDI note number to convert to a note identifier
+     * @param {octaveOffset} An offset to apply to the resulting octave
+     *
+     * @returns {string}
+     *
+     * @throws RangeError Invalid note number
+     * @throws RangeError Invalid octaveOffset value
+     *
+     * @since 3.0.0
+     */
+    toNoteIdentifier(number: any, octaveOffset: any): string;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
-     * integer (0-127) or a note name (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note} object,
-     * it will be returned as is.
+     * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
+     * object, it will be returned as is.
      *
-     * If the input is a note number or name, it is possible to specify options by providing the
-     * optional `options` parameter.
-     *
-     * An error is thrown for invalid input.
+     * If the input is a note number or identifier, it is possible to specify options by providing the
+     * `options` parameter.
      *
      * @param [input] {number|string|Note}
      *
@@ -216,40 +268,33 @@ declare class Utilities {
      * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
      * be explicitly stopped.
      *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-     * and 1.
+     * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
      *
-     * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-     * and 1.
-     *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
      * 127.
      *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127.
-     *
-     * @param {number} [options.octaveOffset=0] An integer to offset the octave by.
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a note identifier.**
      *
      * @returns {Note}
      *
-     * @throws TypeError The input could not be parsed as a note
+     * @throws TypeError The input could not be parsed to a note
      *
-     * @since version 3
+     * @since version 3.0.0
      */
-    getNoteObject(input?: number | string | Note, options?: {
+    buildNote(input?: number | string | Note, options?: {
         duration?: number;
         attack?: number;
         release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
         octaveOffset?: number;
     }): Note;
     /**
-     * Converts an input value, which can be an unsigned integer (0-127), a note name, a {@link Note}
-     * object or an array of the previous types, to an array of {@link Note} objects.
+     * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
+     * {@link Note} object or an array of the previous types, to an array of {@link Note} objects.
      *
-     * {@link Note} objects are returned as is. For note numbers and names, a {@link Note} object is
-     * created with the options specified. An error will be thrown when encountering invalid input.
+     * {@link Note} objects are returned as is. For note numbers and identifiers, a {@link Note}
+     * object is created with the options specified. An error will be thrown when encountering invalid
+     * input.
      *
      * @param [notes] {number|string|Note|number[]|string[]|Note[]}
      *
@@ -270,24 +315,70 @@ declare class Utilities {
      * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
      * 127.
      *
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a note identifier.**
+     *
      * @returns {Note[]}
      *
      * @throws TypeError An element could not be parsed as a note.
+     *
+     * @since 3.0.0
      */
-    getValidNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
+    buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
         duration?: number;
         attack?: number;
         release?: number;
         rawAttack?: number;
         rawRelease?: number;
+        octaveOffset?: number;
     }): Note[];
     /**
+     * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+     * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+     * smaller than 0.
      *
-     * @param {number}
-     * @param {octaveOffset}
-     * @returns {string}
+     * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
+     * input value cannot be converted to an integer, the method returns 0.
+     *
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
      */
-    getNoteNameByNumber(number: any, octaveOffset: any): string;
+    toNormalized(value: any): number;
+    /**
+     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+     * The input value should be number between 0 and 1 (inclusively). The returned value is
+     * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+     *
+     * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+     * the input value cannot be converted to a number, the method returns 0.
+     *
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
+     */
+    to7Bit(value: any): number;
+    /**
+     * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
+     * `data2` properties.
+     *
+     * @param data A MIDI message
+     * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
+     */
+    getMessage(data: any): {
+        data2: (number | undefined);
+        data1: (number | undefined);
+        command: number;
+    };
+    /**
+     * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+     * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+     * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+     *
+     * @param offset
+     * @returns {number} An integer between 0 and 127
+     *
+     * @throws {Error} Invalid note number
+     */
+    offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -315,7 +406,7 @@ declare class Utilities {
  *
  * @extends EventEmitter
  */
-declare class WebMidi$1 {
+declare class WebMidi {
     /**
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
@@ -323,12 +414,12 @@ declare class WebMidi$1 {
      * @type {Object}
      *
      * @property {object}  defaults.note - Default values relating to note
-     * @property {number}  defaults.note.attackVelocity - A number between 0 and 1 representing the
-     * default attack velocity of notes. Initial value is 0.5.
-     * @property {number}  defaults.note.releaseVelocity - A number between 0 and 1 representing the
-     * default release velocity of notes. Initial value is 0.5.
-     * @property {number}  defaults.note.duration - A number representing the default
-     * duration of notes (in seconds). Initial value is Infinity.
+     * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
+     * default attack velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.release - A number between 0 and 127 representing the
+     * default release velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.duration - A number representing the default duration of
+     * notes (in seconds). Initial value is Infinity.
      */
     defaults: any;
     /**
@@ -387,7 +478,7 @@ declare class WebMidi$1 {
      *
      * To enable access to software synthesizers available on the host, you would set the `software`
      * option to `true`. However, this option is only there to future-proof the library as support for
-     * software synths has not yet been implemented in any browser (as of April 2020).
+     * software synths has not yet been implemented in any browser (as of September 2021).
      *
      * There are 3 ways to execute code after `WebMidi` has been enabled:
      *
@@ -403,8 +494,7 @@ declare class WebMidi$1 {
      * 4. specified callback (if any) is executed
      * 5. promise is resolved
      *
-     * The promise is fulfilled with an object containing two properties (`inputs` and `outputs`) that
-     * contain arrays of available inputs and outputs, respectively.
+     * The promise is fulfilled with the WebMidi object.
      *
      * **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
      * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
@@ -438,8 +528,7 @@ declare class WebMidi$1 {
      *
      * @async
      *
-     * @returns {Promise<Object>} The promise is fulfilled with an object containing two properties
-     * (`inputs` and `outputs`) that contain arrays of available inputs and outputs, respectively.
+     * @returns {Promise<Object>} The promise is fulfilled with the `WebMidi` object
      *
      * @throws Error The Web MIDI API is not supported in your environment.
      * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
@@ -536,7 +625,7 @@ declare class WebMidi$1 {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0. Use Utilities.getNoteNumberByName() instead.
+     * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
      */
     private noteNameToNumber;
     /**
@@ -566,17 +655,17 @@ declare class WebMidi$1 {
     private toMIDIChannels;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities class.
+     * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
      */
     private guessNoteNumber;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities class.
+     * @deprecated since version 3. Moved to Utilities.buildNoteArray().
      */
     private getValidNoteArray;
     /**
      * @private
-     * @deprecated moved to Utilities class.
+     * @deprecated moved to Utilities.toTimestamp()
      */
     private convertToTimestamp;
     /**
@@ -630,11 +719,16 @@ declare class WebMidi$1 {
     get isBrowser(): boolean;
     set octaveOffset(arg: number);
     /**
-     * An integer to globally offset the octave of both inbound and outbound messages. By default,
-     * middle C (MIDI note number 60) is placed on the 4th octave (C4).
+     * An integer to offset the octave of notes received from external devices or sent to external
+     * devices.
      *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     * When a MIDI message comes in on an input channel the reported note name will be offset. For
+     * example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
+     * comes in, the note will be reported as C3 (instead of C4).
+     *
+     * By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
+     * will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
+     * of 60).
      *
      * @type {number}
      *
@@ -1107,18 +1201,19 @@ declare class Input extends e {
      */
     private _parseEvent;
     /**
-     * Opens the input for usage.
+     * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+     * WebMidi is enabled.
      *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input`
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
      */
     open(): Promise<Input>;
     /**
      * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
      * the input is opened again by calling [Input.open()]{@link Input#open}.
      *
-     * @returns {Promise<void|*>}
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
      */
-    close(): Promise<void | any>;
+    close(): Promise<Input>;
     /**
      * @private
      * @deprecated since v3.0.0 (moved to 'InputChannel' class)
@@ -1228,6 +1323,11 @@ declare class Output extends e {
      * @private
      */
     private _midiOutput;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     /**
      * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
      * channels are numbered 1 through 16.
@@ -2626,34 +2726,203 @@ declare class Output extends e {
      * @readonly
      */
     get type(): string;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+     * is placed on the 4th octave (C4).
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
 }
 /**
- * WebMidi.js v3.0.0-alpha.8
+ * WebMidi.js v3.0.0-alpha.10
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 13th 2021.
+ * This build was generated on September 21st 2021.
  *
  *
  *
- * The MIT License (MIT)
+ * Apache License
+ * Version 2.0, January 2004
+ * http://www.apache.org/licenses/
  *
- * Copyright (c) 2015-2020, Jean-Philippe Côté
+ * TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
- * and associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * 1. Definitions.
  *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
+ * "License" shall mean the terms and conditions for use, reproduction,
+ * and distribution as defined by Sections 1 through 9 of this document.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * "Licensor" shall mean the copyright owner or entity authorized by
+ * the copyright owner that is granting the License.
+ *
+ * "Legal Entity" shall mean the union of the acting entity and all
+ * other entities that control, are controlled by, or are under common
+ * control with that entity. For the purposes of this definition,
+ * "control" means (i) the power, direct or indirect, to cause the
+ * direction or management of such entity, whether by contract or
+ * otherwise, or (ii) ownership of fifty percent (50%) or more of the
+ * outstanding shares, or (iii) beneficial ownership of such entity.
+ *
+ * "You" (or "Your") shall mean an individual or Legal Entity
+ * exercising permissions granted by this License.
+ *
+ * "Source" form shall mean the preferred form for making modifications,
+ * including but not limited to software source code, documentation
+ * source, and configuration files.
+ *
+ * "Object" form shall mean any form resulting from mechanical
+ * transformation or translation of a Source form, including but
+ * not limited to compiled object code, generated documentation,
+ * and conversions to other media types.
+ *
+ * "Work" shall mean the work of authorship, whether in Source or
+ * Object form, made available under the License, as indicated by a
+ * copyright notice that is included in or attached to the work
+ * (an example is provided in the Appendix below).
+ *
+ * "Derivative Works" shall mean any work, whether in Source or Object
+ * form, that is based on (or derived from) the Work and for which the
+ * editorial revisions, annotations, elaborations, or other modifications
+ * represent, as a whole, an original work of authorship. For the purposes
+ * of this License, Derivative Works shall not include works that remain
+ * separable from, or merely link (or bind by name) to the interfaces of,
+ * the Work and Derivative Works thereof.
+ *
+ * "Contribution" shall mean any work of authorship, including
+ * the original version of the Work and any modifications or additions
+ * to that Work or Derivative Works thereof, that is intentionally
+ * submitted to Licensor for inclusion in the Work by the copyright owner
+ * or by an individual or Legal Entity authorized to submit on behalf of
+ * the copyright owner. For the purposes of this definition, "submitted"
+ * means any form of electronic, verbal, or written communication sent
+ * to the Licensor or its representatives, including but not limited to
+ * communication on electronic mailing lists, source code control systems,
+ * and issue tracking systems that are managed by, or on behalf of, the
+ * Licensor for the purpose of discussing and improving the Work, but
+ * excluding communication that is conspicuously marked or otherwise
+ * designated in writing by the copyright owner as "Not a Contribution."
+ *
+ * "Contributor" shall mean Licensor and any individual or Legal Entity
+ * on behalf of whom a Contribution has been received by Licensor and
+ * subsequently incorporated within the Work.
+ *
+ * 2. Grant of Copyright License. Subject to the terms and conditions of
+ * this License, each Contributor hereby grants to You a perpetual,
+ * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ * copyright license to reproduce, prepare Derivative Works of,
+ * publicly display, publicly perform, sublicense, and distribute the
+ * Work and such Derivative Works in Source or Object form.
+ *
+ * 3. Grant of Patent License. Subject to the terms and conditions of
+ * this License, each Contributor hereby grants to You a perpetual,
+ * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ * (except as stated in this section) patent license to make, have made,
+ * use, offer to sell, sell, import, and otherwise transfer the Work,
+ * where such license applies only to those patent claims licensable
+ * by such Contributor that are necessarily infringed by their
+ * Contribution(s) alone or by combination of their Contribution(s)
+ * with the Work to which such Contribution(s) was submitted. If You
+ * institute patent litigation against any entity (including a
+ * cross-claim or counterclaim in a lawsuit) alleging that the Work
+ * or a Contribution incorporated within the Work constitutes direct
+ * or contributory patent infringement, then any patent licenses
+ * granted to You under this License for that Work shall terminate
+ * as of the date such litigation is filed.
+ *
+ * 4. Redistribution. You may reproduce and distribute copies of the
+ * Work or Derivative Works thereof in any medium, with or without
+ * modifications, and in Source or Object form, provided that You
+ * meet the following conditions:
+ *
+ * (a) You must give any other recipients of the Work or
+ * Derivative Works a copy of this License; and
+ *
+ * (b) You must cause any modified files to carry prominent notices
+ * stating that You changed the files; and
+ *
+ * (c) You must retain, in the Source form of any Derivative Works
+ * that You distribute, all copyright, patent, trademark, and
+ * attribution notices from the Source form of the Work,
+ * excluding those notices that do not pertain to any part of
+ * the Derivative Works; and
+ *
+ * (d) If the Work includes a "NOTICE" text file as part of its
+ * distribution, then any Derivative Works that You distribute must
+ * include a readable copy of the attribution notices contained
+ * within such NOTICE file, excluding those notices that do not
+ * pertain to any part of the Derivative Works, in at least one
+ * of the following places: within a NOTICE text file distributed
+ * as part of the Derivative Works; within the Source form or
+ * documentation, if provided along with the Derivative Works; or,
+ * within a display generated by the Derivative Works, if and
+ * wherever such third-party notices normally appear. The contents
+ * of the NOTICE file are for informational purposes only and
+ * do not modify the License. You may add Your own attribution
+ * notices within Derivative Works that You distribute, alongside
+ * or as an addendum to the NOTICE text from the Work, provided
+ * that such additional attribution notices cannot be construed
+ * as modifying the License.
+ *
+ * You may add Your own copyright statement to Your modifications and
+ * may provide additional or different license terms and conditions
+ * for use, reproduction, or distribution of Your modifications, or
+ * for any such Derivative Works as a whole, provided Your use,
+ * reproduction, and distribution of the Work otherwise complies with
+ * the conditions stated in this License.
+ *
+ * 5. Submission of Contributions. Unless You explicitly state otherwise,
+ * any Contribution intentionally submitted for inclusion in the Work
+ * by You to the Licensor shall be under the terms and conditions of
+ * this License, without any additional terms or conditions.
+ * Notwithstanding the above, nothing herein shall supersede or modify
+ * the terms of any separate license agreement you may have executed
+ * with Licensor regarding such Contributions.
+ *
+ * 6. Trademarks. This License does not grant permission to use the trade
+ * names, trademarks, service marks, or product names of the Licensor,
+ * except as required for reasonable and customary use in describing the
+ * origin of the Work and reproducing the content of the NOTICE file.
+ *
+ * 7. Disclaimer of Warranty. Unless required by applicable law or
+ * agreed to in writing, Licensor provides the Work (and each
+ * Contributor provides its Contributions) on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied, including, without limitation, any warranties or conditions
+ * of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+ * PARTICULAR PURPOSE. You are solely responsible for determining the
+ * appropriateness of using or redistributing the Work and assume any
+ * risks associated with Your exercise of permissions under this License.
+ *
+ * 8. Limitation of Liability. In no event and under no legal theory,
+ * whether in tort (including negligence), contract, or otherwise,
+ * unless required by applicable law (such as deliberate and grossly
+ * negligent acts) or agreed to in writing, shall any Contributor be
+ * liable to You for damages, including any direct, indirect, special,
+ * incidental, or consequential damages of any character arising as a
+ * result of this License or out of the use or inability to use the
+ * Work (including but not limited to damages for loss of goodwill,
+ * work stoppage, computer failure or malfunction, or any and all
+ * other commercial damages or losses), even if such Contributor
+ * has been advised of the possibility of such damages.
+ *
+ * 9. Accepting Warranty or Additional Liability. While redistributing
+ * the Work or Derivative Works thereof, You may choose to offer,
+ * and charge a fee for, acceptance of support, warranty, indemnity,
+ * or other liability obligations and/or rights consistent with this
+ * License. However, in accepting such obligations, You may act only
+ * on Your own behalf and on Your sole responsibility, not on behalf
+ * of any other Contributor, and only if You agree to indemnify,
+ * defend, and hold each Contributor harmless for any liability
+ * incurred by, or claims asserted against, such Contributor by reason
+ * of your accepting any such warranty or additional liability.
  */
 declare class e {
     static get ANY_EVENT(): symbol;
@@ -2674,9 +2943,8 @@ declare class e {
     get eventCount(): number;
 }
 /**
- * The `InputChannel` class represents a single input MIDI channel (1-16) from a single input
- * device. This object is derived from the host's MIDI subsystem and cannot be instantiated
- * directly.
+ * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
@@ -2692,7 +2960,7 @@ declare class e {
  * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
  * details.
  *
- * @param {Input} input The `Input` this channel belongs to
+ * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
  *
  * @fires InputChannel#midimessage
@@ -2718,38 +2986,32 @@ declare class e {
 declare class InputChannel extends e {
     constructor(input: any, number: any);
     /**
-     * The {@link Input} this channel belongs to
      * @type {Input}
-     */
-    input: Input;
-    /**
-     * This channel's number (1-16)
-     * @type {number}
-     */
-    number: number;
-    /**
-     * @type {OutputChannel|OutputChannel[]}
      * @private
      */
-    private _forwardTo;
+    private _input;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _number;
     /**
      * @type {number}
      * @private
      */
     private _octaveOffset;
+    /**
+     * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
+     * input.
+     */
     destroy(): void;
     /**
-     * @param e Event
-     * @protected
+     * @param e MIDIMessageEvent
+     * @private
      */
-    protected _parseEvent(e: any): void;
-    getStructuredMidiMessage(data: any): {
-        command: number;
-        data1: any;
-        data2: any;
-    };
+    private _processMidiMessageEvent;
     /**
-     * Parses channel events for standard (non-NRPN) events.
+     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
      * @param e Event
      * @private
      */
@@ -2773,36 +3035,50 @@ declare class InputChannel extends e {
      * In this case, the method returns `false`.
      *
      * @param {number} number An integer representing the control change message
-     * @returns {string|false} The matching control change name or `false` if not match was found
+     * @returns {string|undefined} The matching control change name or `undefined` if not match was
+     * found.
      *
      * @throws {RangeError} Invalid control change number.
      *
      * @since 2.0.0
      */
-    getCcNameByNumber(number: number): string | false;
+    getCcNameByNumber(number: number): string | undefined;
     set octaveOffset(arg: number);
     /**
-     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-     * number 60) is placed on the 4th octave (C4).
+     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
      *
      * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
      * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
      *
      * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * (if any).
+     * and with the value defined on the parent `Input` object.
      *
      * @type {number}
      *
      * @since 3.0
      */
     get octaveOffset(): number;
+    /**
+     * The {@link Input} this channel belongs to
+     * @type {Input}
+     * @since 3.0
+     */
+    get input(): Input;
+    /**
+     * This channel's MIDI number (1-16)
+     * @type {number}
+     * @since 3.0
+     */
+    get number(): number;
 }
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `OutputChannel` objects can be found inside the output's [channels]{@link Output#channels}
- * property.
+ * All 16 `OutputChannel` objects can be found inside the parent output's
+ * [channels]{@link Output#channels} property.
  *
  * The `OutputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
@@ -2814,22 +3090,27 @@ declare class InputChannel extends e {
  * others.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel's number (1-16)
+ * @param {number} number The channel number (1-16)
  *
  * @since 3.0.0
  */
 declare class OutputChannel extends e {
     constructor(output: any, number: any);
     /**
-     * The {@link Output} this channel belongs to
      * @type {Output}
+     * @private
      */
-    output: Output;
+    private _output;
     /**
-     * The channel's number (1-16)
      * @type {number}
+     * @private
      */
-    number: number;
+    private _number;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
     /**
      * Unlinks the MIDI subsystem, removes all listeners attached to the channel and nulls the channel
      * number. This method is mostly for internal use. It has not been prefixed with an underscore
@@ -2883,17 +3164,18 @@ declare class OutputChannel extends e {
      * aftertouch. For a channel-wide aftertouch message, use
      * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
      *
-     * The note can be a single value or an array of the following valid values:
+     * The key can be a single value or an array of the following valid values:
      *
      *  - A MIDI note number (integer between `0` and `127`)
-     *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-     *  - A {@link Note} object
+     *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
      *
-     * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) for which you are sending
-     * an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-     * name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When
-     * using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note
-     * number 0) and the highest note is G9 (MIDI note number 127).
+     * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
+     * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+     * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
+     *
+     * When using a note identifier, the octave value will be offset by the combined value of
+     * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
+     * are not `0`). When using a key number, octaveOffset values are ignored.
      *
      * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
      * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -2914,7 +3196,7 @@ declare class OutputChannel extends e {
      *
      * @throws RangeError Invalid key aftertouch value.
      */
-    setKeyAftertouch(note: number | string | Note | number[] | string[] | Note[], pressure?: number, options?: {
+    setKeyAftertouch(target: number | string | number[] | string[], pressure?: number, options?: {
         useRawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -3318,6 +3600,11 @@ declare class OutputChannel extends e {
      *  - A MIDI note number (integer between `0` and `127`)
      *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
      *
+     *  When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
+     *  not the case when using a note number number. In this case, we assume you know exactly which
+     *  MIDI note number should be sent out.
+     *
+     *
      *  The execution of the **note on** command can be delayed by using the `time` property of the
      * `options` parameter.
      *
@@ -3330,10 +3617,8 @@ declare class OutputChannel extends e {
      * functionally equivalent to a **note off** message.
      *
      * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-     * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-     * {@link Note} object or an array of the previous types. When using a note name, octave range
-     * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-     * note is G9 (MIDI note number 127).
+     * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+     * {@link Note} object or an array of the previous types.
      *
      * @param {Object} [options={}]
      *
@@ -3834,6 +4119,32 @@ declare class OutputChannel extends e {
     setPolyphonicMode(mode?: string, options?: {
         time?: number | string;
     }): OutputChannel;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
+     *
+     * Note that this value is combined with the global offset value defined on the `WebMidi` object
+     * and with the value defined on the parent `Output` object.
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
+    /**
+     * The parent {@link Output} this channel belongs to
+     * @type {Output}
+     * @since 3.0
+     */
+    get output(): Output;
+    /**
+     * This channel's MIDI number (1-16)
+     * @type {number}
+     * @since 3.0
+     */
+    get number(): number;
 }
 declare class t {
     constructor(t: any, n: any, r: any, i?: {}, ...args: any[]);
