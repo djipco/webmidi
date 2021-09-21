@@ -6571,6 +6571,65 @@ class Output extends e {
 
 }
 
+/**
+ * The `InputChannel` class represents a single MIDI message
+ *
+ * @param {Uint8Array} data The raw data of the MIDI message
+ *
+ * @since 3.0.0
+ */
+
+class Message {
+  constructor(data) {
+    // Extract data bytes (unless it's a sysex message)
+    let dataBytes = null;
+    if (data[0] !== wm.MIDI_SYSTEM_MESSAGES.sysex) dataBytes = data.slice(1); // Extract basic data
+
+    this.channel = (data[0] & 0b00001111) + 1;
+    this.command = data[0] >> 4;
+    this.data = Array.from(data);
+    this.rawData = data;
+    this.statusByte = data[0];
+    this.dataBytes = dataBytes; // Identify if we are dealing with a channel voice, channel mode or system message
+
+    this.channelVoiceMessage = false;
+    this.channelModeMessage = false;
+    this.systemMessage = false;
+
+    if (this.statusByte < 240) {
+      this.channelVoiceMessage = this.dataBytes[0] < 120;
+      this.channelModeMessage = !this.channelVoiceMessage;
+    } else {
+      this.systemMessage = true;
+    } // Identify the precise type of message
+
+
+    if (this.channelVoiceMessage) {
+      for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
+        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
+          this.type = value;
+          break;
+        }
+      }
+    } else if (this.channelModeMessage) {
+      for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
+        if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
+          this.type = value;
+          break;
+        }
+      }
+    } else if (this.systemMessage) {
+      for (let value in wm.MIDI_SYSTEM_MESSAGES) {
+        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
+          this.type = value;
+          break;
+        }
+      }
+    }
+  }
+
+}
+
 /*START-NODE.JS*/
 // This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
 // and server-side rendering. This is why it is explicitly being stripped off for the IIFE and ESM
@@ -7908,6 +7967,7 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
+exports.Message = Message;
 exports.Note = Note;
 exports.Utilities = utils;
 exports.WebMidi = wm;
