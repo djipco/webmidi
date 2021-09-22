@@ -6686,14 +6686,15 @@ class Message {
      * @readonly
      */
 
-    this.channelMessage = false; // /**
-    //  * A boolean indicating whether the MIDI message is a channel mode message (a special type of
-    //  * control message).
-    //  * @type {boolean}
-    //  * @readonly
-    //  */
-    // this.channelModeMessage = false;
+    this.channelMessage = false;
+    /**
+     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
+     * control message).
+     * @type {boolean}
+     * @readonly
+     */
 
+    this.channelModeMessage = false;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
@@ -6724,21 +6725,19 @@ class Message {
     if (this.statusByte < 240) {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
-      this.channel = (this.statusByte & 0b00001111) + 1; // if (
-      //   this.command === WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &&
-      //   this.dataBytes[0] >= 120
-      // ) {
-      //   this.channelModeMessage = true;
-      // }
+      this.channel = (this.statusByte & 0b00001111) + 1;
+
+      if (this.command === wm.MIDI_CHANNEL_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+        this.channelModeMessage = true;
+      }
     } else {
       this.systemMessage = true;
       this.command = this.statusByte;
     } // Identify the exact type of message
-    // if (this.channelModeMessage) {
 
 
-    if (this.channelMessage && this.dataBytes[0] >= 120) {
-      // channel mode messages
+    if (this.channelModeMessage) {
+      // if (this.channelMessage && this.dataBytes[0] >= 120) {  // channel mode messages
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
