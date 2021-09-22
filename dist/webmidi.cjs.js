@@ -6727,7 +6727,8 @@ class Message {
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
 
-      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if ( // this.command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+      this.command === wm.MIDI_CHANNEL_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
