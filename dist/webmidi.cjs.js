@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.10
+ * WebMidi.js v3.0.0-alpha.11
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
@@ -1240,7 +1240,7 @@ class InputChannel extends e {
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
-      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)); // } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
+      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
     } else if (event.type === "controlchange") {
       /**
        * Event emitted when a **control change** MIDI message has been received.
@@ -6662,6 +6662,7 @@ class Message {
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
+     *
      * @type {boolean}
      * @readonly
      */
@@ -6670,14 +6671,16 @@ class Message {
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
      * between 8 and 14. For system messages, the value will be between 240 and 255.
+     *
      * @type {number}
      * @readonly
      */
 
     this.command = undefined;
     /**
-     * The MIDI channel number that the message is targeting. For system messages, this will be
-     * undefined.
+     * The MIDI channel number (1-16) that the message is targeting. This is only for
+     * channel-specific messages. For system messages, this will be left undefined.
+     *
      * @type {number}
      * @readonly
      */
