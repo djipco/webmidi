@@ -382,23 +382,6 @@ class Utilities {
   }
 
   /**
-   * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
-   * `data2` properties.
-   *
-   * @param data A MIDI message
-   * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
-   */
-  getMessage(data) {
-
-    return {
-      command: data[0] >> 4,
-      data1: data.length > 1 ? data[1] : undefined,
-      data2: data.length > 2 ? data[2] : undefined
-    };
-
-  }
-
-  /**
    * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
    * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
    * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.

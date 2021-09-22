@@ -1090,11 +1090,4 @@ describe("Utilities Object", function() {
 
   });
 
-  // TO DO
-  describe("getMessage()", function() {
-
-    it("should have some tests!!");
-
-  });
-
 });
