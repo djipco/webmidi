@@ -1102,7 +1102,6 @@ class InputChannel extends e {
     const event = Object.assign({}, e);
     event.target = this;
     event.type = "midimessage";
-    console.log(event.message);
     /**
      * Event emitted when a MIDI message of any kind is received by an `InputChannel`
      *
@@ -2034,6 +2033,7 @@ class Input extends e {
   _onMidiMessage(e) {
     // Create Message object from MIDI data
     const message = new Message(e.data);
+    console.log(message);
     /**
      * Event emitted when any MIDI message is received on an `Input`
      *
