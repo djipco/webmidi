@@ -254,20 +254,19 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    for (let i = 0; i <= 119; i++) {
+    for (let i = 0; i <= 127; i++) {
       VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
     }
 
     // Assert
     function assert(e) {
-
       expect(e.type).to.equal(event);
       expect(e.controller.number).to.equal(index);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
 
       index++;
-      if (index >= 119) done();
+      if (index > 127) done();
 
     }
 
@@ -297,7 +296,7 @@ describe("InputChannel Object", function() {
       expect(e.target).to.equal(channel);
 
       index++;
-      if (index >= 127) done();
+      if (index > 127) done();
 
     }
 

@@ -1205,7 +1205,16 @@ class WebMidi extends EventEmitter {
       nonregisteredparametercoarse: 98,
       nonregisteredparameterfine: 99,
       registeredparametercoarse: 100,
-      registeredparameterfine: 101
+      registeredparameterfine: 101,
+
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
     };
 
   }
