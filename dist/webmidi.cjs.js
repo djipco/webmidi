@@ -2507,7 +2507,7 @@ class Input extends e {
       } // Validation
 
 
-      if (wm.MIDI_CHANNEL_MESSAGES[event] !== undefined && options.channels === undefined) {
+      if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
