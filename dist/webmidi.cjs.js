@@ -991,10 +991,12 @@ class Utilities {
     return Math.min(Math.max(number + octaveOffset * 12 + semitoneOffset, 0), 127);
   }
   /**
-   * Returns the name of the first object property whose value matches the one supplied.
+   * Returns the name of the first property of the supplied object whose value is equal to the one
+   * supplied.
+   *
    * @param object {Object}
    * @param value {*}
-   * @returns {string}
+   * @returns {string} The name of the matching property
    */
 
 
@@ -6744,6 +6746,7 @@ class Message {
 
 
     if (this.channelModeMessage) {
+      // channel messages
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
