@@ -460,7 +460,13 @@ declare class Utilities {
      * @throws {Error} Invalid note number
      */
     offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
-    getKeyByValue(object: any, value: any): string;
+    /**
+     * Returns the name of the first object property whose value matches the one supplied.
+     * @param object {Object}
+     * @param value {*}
+     * @returns {string}
+     */
+    getPropertyByValue(object: any, value: any): string;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
