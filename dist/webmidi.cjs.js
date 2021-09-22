@@ -2037,10 +2037,10 @@ class Input extends e {
     this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
 
-    if (message.systemMessage) {
+    if (message.isSystemMessage) {
       // system messages
       this._parseEvent(event);
-    } else if (message.channelMessage) {
+    } else if (message.isChannelMessage) {
       // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
     }
@@ -6636,8 +6636,15 @@ class Message {
 
     this.statusByte = this.rawData[0];
     /**
-     * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
-     * message. This is `undefined` for sysex messages.
+     * A Uint8Array of the data byte(s) of the MIDI message.
+     *
+     * @type {Uint8Array}
+     * @readonly
+     */
+
+    this.rawDataBytes = this.rawData.slice(1);
+    /**
+     * An array of the the data byte(s) of the MIDI message.
      *
      * @type {number[]}
      * @readonly
@@ -6646,11 +6653,12 @@ class Message {
     this.dataBytes = this.data.slice(1);
     /**
      * A boolean indicating whether the MIDI message is a channel-specific message.
+     *
      * @type {boolean}
      * @readonly
      */
 
-    this.channelMessage = false;
+    this.isChannelMessage = false;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
@@ -6658,7 +6666,7 @@ class Message {
      * @readonly
      */
 
-    this.systemMessage = false;
+    this.isSystemMessage = false;
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
      * between 8 and 14. For system messages, the value will be between 240 and 255.
@@ -6674,23 +6682,21 @@ class Message {
      * @readonly
      */
 
-    this.channel = undefined; // Assign data bytes for all messages (except sysex)
-    // if (this.statusByte !== WebMidi.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1);
-    // Assign values to property that vary according to whether they are channel-specific or system
+    this.channel = undefined; // Assign values to property that vary according to whether they are channel-specific or system
 
     if (this.statusByte < 240) {
-      this.channelMessage = true;
+      this.isChannelMessage = true;
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
     } else {
-      this.systemMessage = true;
+      this.isSystemMessage = true;
       this.command = this.statusByte;
     } // Assign type (depending in whether the message is channel-specific or system)
 
 
-    if (this.channelMessage) {
+    if (this.isChannelMessage) {
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
-    } else if (this.systemMessage) {
+    } else if (this.isSystemMessage) {
       this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     }
   }
