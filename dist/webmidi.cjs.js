@@ -1138,6 +1138,7 @@ class InputChannel extends e {
     event.type = event.message.type || "unknownmidimessage";
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
+    console.log(event);
 
     if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
