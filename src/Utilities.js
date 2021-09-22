@@ -421,6 +421,18 @@ class Utilities {
 
   }
 
+  /**
+   * Returns the name of the first property of the supplied object whose value is equal to the one
+   * supplied.
+   *
+   * @param object {Object}
+   * @param value {*}
+   * @returns {string} The name of the matching property
+   */
+  getPropertyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
 }
 
 // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
