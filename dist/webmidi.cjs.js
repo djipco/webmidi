@@ -7692,14 +7692,12 @@ class WebMidi extends e {
     return performance.now();
   }
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value:
+   * Enum of all MIDI channel messages and their associated numerical value:
    *
    * - `noteoff`: 0x8 (8)
    * - `noteon`: 0x9 (9)
    * - `keyaftertouch`: 0xA (10)
    * - `controlchange`: 0xB (11)
-   * - `channelmode`: 0xB (11)
-   * - `nrpn`: 0xB (11)
    * - `programchange`: 0xC (12)
    * - `channelaftertouch`: 0xD (13)
    * - `pitchbend`: 0xE (14)
@@ -7710,16 +7708,6 @@ class WebMidi extends e {
    * @since 3.0.0
    */
 
-
-  get MIDI_CHANNEL_VOICE_MESSAGES() {
-    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-    return Object.assign(values, {
-      channelmode: 0xB,
-      // 11
-      nrpn: 0xB // 11
-
-    });
-  }
 
   get MIDI_CHANNEL_MESSAGES() {
     return {
