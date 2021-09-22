@@ -7692,13 +7692,13 @@ class WebMidi extends e {
   }
 
   get MIDI_CHANNEL_VOICE_MESSAGES() {
-    // const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-    //
-    // return Object.assign(values, {
-    //   channelmode: 0xB,       // 11
-    //   nrpn: 0xB,              // 11
-    // });
-    return this.MIDI_CHANNEL_MESSAGES;
+    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
+    return Object.assign(values, {
+      channelmode: 0xB,
+      // 11
+      nrpn: 0xB // 11
+
+    });
   }
   /**
    * Enum of all MIDI channel messages and their associated numerical value:
