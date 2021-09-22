@@ -57,6 +57,7 @@ export class Message {
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
+     *
      * @type {boolean}
      * @readonly
      */
@@ -64,13 +65,15 @@ export class Message {
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
      * between 8 and 14. For system messages, the value will be between 240 and 255.
+     *
      * @type {number}
      * @readonly
      */
     command: number;
     /**
-     * The MIDI channel number that the message is targeting. For system messages, this will be
-     * undefined.
+     * The MIDI channel number (1-16) that the message is targeting. This is only for
+     * channel-specific messages. For system messages, this will be left undefined.
+     *
      * @type {number}
      * @readonly
      */
