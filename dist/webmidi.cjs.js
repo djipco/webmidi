@@ -1270,43 +1270,7 @@ class InputChannel extends e {
       event.value = utils.toNormalized(data2);
       event.rawValue = data2; // Also trigger channel mode message events when appropriate
 
-      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // // } else if (event.message.channelModeMessage) {
-      // } else if (event.type === "controlchange" && event.message.dataBytes[0] >= 120) {
-      //
-      //   /**
-      //    * Event emitted when any **channel mode** MIDI message has been received.
-      //    *
-      //    * @event InputChannel#channelmode
-      //    *
-      //    * @type {Object}
-      //    * @property {string} type `"channelmode"`
-      //    *
-      //    * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-      //    * object).
-      //    * @property {Message} message A `Message` object containing information about the incoming
-      //    * MIDI message.
-      //    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-      //    * milliseconds since the navigation start of the document).
-      //    *
-      //    * @property {Object} controller
-      //    * @property {Object} controller.number The number of the controller.
-      //    * @property {Object} controller.name The usual name or function of the controller.
-      //    * @property {number} value The value expressed as a float between 0 and 1.
-      //    * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-      //    */
-      //   event.controller = {
-      //     number: data1,
-      //     name: this.getChannelModeByNumber(data1)
-      //   };
-      //
-      //   // Channel mode messages are 'control change" messages, so we need to change the type before
-      //   // sending it out.
-      //   event.type = "channelmode";
-      //   event.value = Utilities.toNormalized(data2);
-      //   event.rawValue = data2;
-      //
-      //   // Also dispatch specific channel mode events
-      //   // this._parseChannelModeMessage(event);
+      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event);
     } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
@@ -1540,6 +1504,7 @@ class InputChannel extends e {
       event.value = false;
     }
 
+    console.log(event);
     this.emit(event.type, event);
   } // /**
   //  * Parses channel events and constructs NRPN message parts in valid sequences.
