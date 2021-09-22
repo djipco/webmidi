@@ -224,9 +224,9 @@ export class Input extends EventEmitter {
 
     // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    if (message.systemMessage) {                                              // system messages
+    if (message.systemMessage) {                                         // system messages
       this._parseEvent(event);
-    } else if (message.channelModeMessage || message.channelVoiceMessage) {   // channel messages
+    } else if (message.channelMessage) {   // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
     }
 
