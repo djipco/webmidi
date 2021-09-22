@@ -1368,10 +1368,6 @@ class InputChannel extends e {
   }
 
   _parseChannelModeMessage(e) {
-    // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
-    // const channelModeEvent = Object.assign({}, e);
-    // channelModeEvent.type = "channelmode";
-    // this.emit(channelModeEvent.type, channelModeEvent);
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
     event.type = event.controller.name;
@@ -2510,14 +2506,16 @@ class Input extends e {
       } // Validation
 
 
-      if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined && options.channels === undefined) {
+      if ( // WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+      wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
     let listeners = []; // Check if the event is channel-specific or input-wide
+    // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
 
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+    if (!wm.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       utils.sanitizeChannels(options.channels).forEach(ch => {
@@ -2688,12 +2686,14 @@ class Input extends e {
       } // Validation
 
 
-      if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined && options.channels === undefined) {
+      if ( // WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+      wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
-    }
+    } // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+
+    if (wm.CHANNEL_EVENTS.includes(event)) {
       return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
@@ -2748,9 +2748,10 @@ class Input extends e {
       utils.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
       return super.removeListener();
     } // If the event is specified, check if it's channel-specific or input-wide.
+    // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
 
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (wm.CHANNEL_EVENTS.includes(event)) {
       utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
@@ -7698,10 +7699,18 @@ class WebMidi extends e {
   get MIDI_CHANNEL_VOICE_MESSAGES() {
     const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
     return Object.assign(values, {
-      // channelmode: 0xB,       // 11
       nrpn: 0xB // 11
 
     });
+  }
+  /**
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+
+
+  get CHANNEL_EVENTS() {
+    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpn", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
   }
 
   get MIDI_CHANNEL_MESSAGES() {
