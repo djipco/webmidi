@@ -49,7 +49,6 @@ export class Message {
      * @type {boolean}
      * @readonly
      */
-    channelModeMessage: boolean;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
@@ -437,18 +436,6 @@ declare class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      */
     to7Bit(value: any): number;
-    /**
-     * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
-     * `data2` properties.
-     *
-     * @param data A MIDI message
-     * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
-     */
-    getMessage(data: any): {
-        data2: (number | undefined);
-        data1: (number | undefined);
-        command: number;
-    };
     /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
