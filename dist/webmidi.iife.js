@@ -1,9 +1,9 @@
 /**
- * WebMidi.js v3.0.0-alpha.10
+ * WebMidi.js v3.0.0-alpha.11
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 21st 2021.
+ * This build was generated on September 22nd 2021.
  *
  *
  *
@@ -952,22 +952,6 @@
       return Math.min(Math.max(Math.round(value * 127), 0), 127);
     }
     /**
-     * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
-     * `data2` properties.
-     *
-     * @param data A MIDI message
-     * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
-     */
-
-
-    getMessage(data) {
-      return {
-        command: data[0] >> 4,
-        data1: data.length > 1 ? data[1] : undefined,
-        data2: data.length > 2 ? data[2] : undefined
-      };
-    }
-    /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
      * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
@@ -1256,7 +1240,7 @@
         // removed from future versions (@deprecated).
 
         event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-      } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
+      } else if (event.type === "controlchange") {
         /**
          * Event emitted when a **control change** MIDI message has been received.
          *
@@ -1283,40 +1267,9 @@
           name: this.getCcNameByNumber(data1)
         };
         event.value = utils.toNormalized(data2);
-        event.rawValue = data2;
-      } else if (event.message.channelModeMessage) {
-        /**
-         * Event emitted when any **channel mode** MIDI message has been received.
-         *
-         * @event InputChannel#channelmode
-         *
-         * @type {Object}
-         * @property {string} type `"channelmode"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {Object} controller
-         * @property {Object} controller.number The number of the controller.
-         * @property {Object} controller.name The usual name or function of the controller.
-         * @property {number} value The value expressed as a float between 0 and 1.
-         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-         */
-        event.controller = {
-          number: data1,
-          name: this.getChannelModeByNumber(data1)
-        }; // Channel mode messages are 'control change" messages, so we need to change the type before
-        // sending it out.
+        event.rawValue = data2; // Also trigger channel mode message events when appropriate
 
-        event.type = "channelmode";
-        event.value = utils.toNormalized(data2);
-        event.rawValue = data2; // Also dispatch specific channel mode events
-
-        this._parseChannelModeMessage(event);
+        if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event);
       } else if (event.type === "programchange") {
         /**
          * Event emitted when a **program change** MIDI message has been received.
@@ -1415,9 +1368,13 @@
     }
 
     _parseChannelModeMessage(e) {
-      // Make a shallow copy of the incoming event so we can use it as the new event.
+      // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
+      const channelModeEvent = Object.assign({}, e);
+      channelModeEvent.type = "channelmode";
+      this.emit(channelModeEvent.type, channelModeEvent); // Make a shallow copy of the incoming event so we can use it as the new event.
+
       const event = Object.assign({}, e);
-      event.type = event.message.type;
+      event.type = event.controller.name;
       /**
        * Event emitted when an "all sound off" channel-mode MIDI message has been received.
        *
@@ -1749,16 +1706,10 @@
     getCcNameByNumber(number) {
       if (wm.validation) {
         number = parseInt(number);
-        if (!(number >= 0 && number <= 119)) throw new RangeError("Invalid control change number.");
+        if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
       }
 
-      for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-        if (wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) && number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
-          return cc;
-        }
-      }
-
-      return undefined;
+      return utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, number);
     }
     /**
      * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
@@ -2085,10 +2036,10 @@
       this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
       // system messages.
 
-      if (message.systemMessage) {
+      if (message.isSystemMessage) {
         // system messages
         this._parseEvent(event);
-      } else if (message.channelMessage) {
+      } else if (message.isChannelMessage) {
         // channel messages
         this.channels[message.channel]._processMidiMessageEvent(event);
       }
@@ -6659,15 +6610,17 @@
   class Message {
     constructor(data) {
       /**
-       * A Uint8Array containing the 1, 2 or 3 byte(s) of the MIDI message. Each byte is an integer
-       * between 0 and 255.
+       * A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
+       * 255.
+       *
        * @type {Uint8Array}
        * @readonly
        */
       this.rawData = data;
       /**
-       * An array containing the 1, 2 or 3 unsigned integers of the MIDI message. Each integer is
-       * between 0 and 255.
+       * An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
+       * 255.
+       *
        * @type {number[]}
        * @readonly
        */
@@ -6675,83 +6628,77 @@
       this.data = Array.from(this.rawData);
       /**
        * The MIDI status byte of the message as an integer between 0 and 255.
+       *
        * @type {number}
        * @readonly
        */
 
       this.statusByte = this.rawData[0];
       /**
-       * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
-       * message.
+       * A Uint8Array of the data byte(s) of the MIDI message.
+       *
+       * @type {Uint8Array}
+       * @readonly
+       */
+
+      this.rawDataBytes = this.rawData.slice(1);
+      /**
+       * An array of the the data byte(s) of the MIDI message.
+       *
        * @type {number[]}
        * @readonly
        */
 
-      this.dataBytes = [];
+      this.dataBytes = this.data.slice(1);
       /**
        * A boolean indicating whether the MIDI message is a channel-specific message.
+       *
        * @type {boolean}
        * @readonly
        */
 
-      this.channelMessage = false;
-      /**
-       * A boolean indicating whether the MIDI message is a channel mode message (a special type of
-       * control message).
-       * @type {boolean}
-       * @readonly
-       */
-
-      this.channelModeMessage = false;
+      this.isChannelMessage = false;
       /**
        * A boolean indicating whether the MIDI message is a system message (not specific to a
        * channel).
+       *
        * @type {boolean}
        * @readonly
        */
 
-      this.systemMessage = false;
+      this.isSystemMessage = false;
       /**
        * An integer identifying the MIDI command. For channel-specific messages, the value will be
        * between 8 and 14. For system messages, the value will be between 240 and 255.
+       *
        * @type {number}
        * @readonly
        */
 
       this.command = undefined;
       /**
-       * The MIDI channel number that the message is targeting. For system messages, this will be
-       * undefined.
+       * The MIDI channel number (1-16) that the message is targeting. This is only for
+       * channel-specific messages. For system messages, this will be left undefined.
+       *
        * @type {number}
        * @readonly
        */
 
-      this.channel = undefined; // Extract data bytes for all messages (except sysex)
-
-      if (this.statusByte !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Assign values to property that vary according to whether they are channel-specific or system
+      this.channel = undefined; // Assign values to property that vary according to whether they are channel-specific or system
 
       if (this.statusByte < 240) {
-        this.channelMessage = true;
+        this.isChannelMessage = true;
         this.command = this.statusByte >> 4;
         this.channel = (this.statusByte & 0b00001111) + 1;
-
-        if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
-          this.channelModeMessage = true;
-        }
       } else {
-        this.systemMessage = true;
+        this.isSystemMessage = true;
         this.command = this.statusByte;
-      } // Identify the exact type of message
+      } // Assign type (depending in whether the message is channel-specific or system)
 
 
-      if (this.channelModeMessage) {
-        // channel messages
-        this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
-      } else if (this.channelMessage) {
-        // channel messages
+      if (this.isChannelMessage) {
         this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
-      } else if (this.systemMessage) {
-        // system messages
+      } else if (this.isSystemMessage) {
         this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
       }
     }
@@ -7901,7 +7848,15 @@
         nonregisteredparametercoarse: 98,
         nonregisteredparameterfine: 99,
         registeredparametercoarse: 100,
-        registeredparameterfine: 101
+        registeredparameterfine: 101,
+        allsoundoff: 120,
+        resetallcontrollers: 121,
+        localcontrol: 122,
+        allnotesoff: 123,
+        omnimodeoff: 124,
+        omnimodeon: 125,
+        monomodeon: 126,
+        polymodeon: 127
       };
     }
     /**
