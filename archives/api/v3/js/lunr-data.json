@@ -3788,23 +3788,6 @@
           "utilities#buildnotearray",
           "valu"
         ],
-        "Utilities.html#getMessage": [
-          "broken",
-          "byte",
-          "command",
-          "data",
-          "data1",
-          "data2",
-          "function",
-          "getmessag",
-          "insid",
-          "object",
-          "properti",
-          "return",
-          "three",
-          "up",
-          "utilities#getmessag"
-        ],
         "Utilities.html#getNoteDetails": [
           "1",
           "127",
@@ -3842,6 +3825,22 @@
           "utilities#getnotedetail",
           "valid",
           "valu"
+        ],
+        "Utilities.html#getPropertyByValue": [
+          "equal",
+          "first",
+          "function",
+          "getpropertybyvalu",
+          "name",
+          "object",
+          "on",
+          "properti",
+          "return",
+          "string",
+          "suppli",
+          "utilities#getpropertybyvalu",
+          "valu",
+          "whose"
         ],
         "Utilities.html#guessNoteNumber": [
           "0",
@@ -10511,10 +10510,6 @@
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
                       "tf": 1.1904761904761905
-                    },
-                    "Utilities.html#getMessage": {
-                      "ref": "Utilities.html#getMessage",
-                      "tf": 4.545454545454546
                     }
                   }
                 }
@@ -14849,8 +14844,8 @@
                             "ref": "OutputChannel.html#sendNoteOn",
                             "tf": 0.48543689320388345
                           },
-                          "Utilities.html#getMessage": {
-                            "ref": "Utilities.html#getMessage",
+                          "Utilities.html#getPropertyByValue": {
+                            "ref": "Utilities.html#getPropertyByValue",
                             "tf": 4.545454545454546
                           },
                           "WebMidi.html#supported": {
@@ -16981,13 +16976,13 @@
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       },
-                      "Utilities.html#getMessage": {
-                        "ref": "Utilities.html#getMessage",
-                        "tf": 4.545454545454546
-                      },
                       "Utilities.html#getNoteDetails": {
                         "ref": "Utilities.html#getNoteDetails",
                         "tf": 1.25
+                      },
+                      "Utilities.html#getPropertyByValue": {
+                        "ref": "Utilities.html#getPropertyByValue",
+                        "tf": 4.545454545454546
                       },
                       "Utilities.html#guessNoteNumber": {
                         "ref": "Utilities.html#guessNoteNumber",
@@ -19535,6 +19530,10 @@
                 "docs": {},
                 "e": {
                   "docs": {
+                    "Utilities.html#getPropertyByValue": {
+                      "ref": "Utilities.html#getPropertyByValue",
+                      "tf": 4.545454545454546
+                    },
                     "WebMidi.html#getInputByName": {
                       "ref": "WebMidi.html#getInputByName",
                       "tf": 2
@@ -20691,22 +20690,6 @@
             "t": {
               "docs": {},
               "a": {
-                "1": {
-                  "docs": {
-                    "Utilities.html#getMessage": {
-                      "ref": "Utilities.html#getMessage",
-                      "tf": 4.545454545454546
-                    }
-                  }
-                },
-                "2": {
-                  "docs": {
-                    "Utilities.html#getMessage": {
-                      "ref": "Utilities.html#getMessage",
-                      "tf": 4.545454545454546
-                    }
-                  }
-                },
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
@@ -20731,10 +20714,6 @@
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 20.657894736842106
-                  },
-                  "Utilities.html#getMessage": {
-                    "ref": "Utilities.html#getMessage",
-                    "tf": 33.33333333333333
                   }
                 },
                 "b": {
@@ -21143,29 +21122,6 @@
                   }
                 }
               },
-              "m": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "s": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "g": {
-                          "docs": {
-                            "Utilities.html#getMessage": {
-                              "ref": "Utilities.html#getMessage",
-                              "tf": 683.3333333333334
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
               "n": {
                 "docs": {},
                 "o": {
@@ -21189,6 +21145,53 @@
                                     "Utilities.html#getNoteDetails": {
                                       "ref": "Utilities.html#getNoteDetails",
                                       "tf": 683.3333333333334
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "p": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "p": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "r": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "y": {
+                              "docs": {},
+                              "b": {
+                                "docs": {},
+                                "y": {
+                                  "docs": {},
+                                  "v": {
+                                    "docs": {},
+                                    "a": {
+                                      "docs": {},
+                                      "l": {
+                                        "docs": {},
+                                        "u": {
+                                          "docs": {
+                                            "Utilities.html#getPropertyByValue": {
+                                              "ref": "Utilities.html#getPropertyByValue",
+                                              "tf": 675
+                                            }
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -23410,10 +23413,6 @@
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
                           "tf": 0.48543689320388345
-                        },
-                        "Utilities.html#getMessage": {
-                          "ref": "Utilities.html#getMessage",
-                          "tf": 4.545454545454546
                         }
                       }
                     }
@@ -24787,6 +24786,17 @@
                     }
                   }
                 }
+              },
+              "a": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "Utilities.html#getPropertyByValue": {
+                      "ref": "Utilities.html#getPropertyByValue",
+                      "tf": 4.545454545454546
+                    }
+                  }
+                }
               }
             }
           },
@@ -25173,6 +25183,10 @@
                     "OutputChannel.html#setRegisteredParameter": {
                       "ref": "OutputChannel.html#setRegisteredParameter",
                       "tf": 0.3289473684210526
+                    },
+                    "Utilities.html#getPropertyByValue": {
+                      "ref": "Utilities.html#getPropertyByValue",
+                      "tf": 4.545454545454546
                     },
                     "WebMidi.html#getInputByName": {
                       "ref": "WebMidi.html#getInputByName",
@@ -25618,12 +25632,12 @@
                             "ref": "Utilities.html#buildNoteArray",
                             "tf": 110
                           },
-                          "Utilities.html#getMessage": {
-                            "ref": "Utilities.html#getMessage",
-                            "tf": 110
-                          },
                           "Utilities.html#getNoteDetails": {
                             "ref": "Utilities.html#getNoteDetails",
+                            "tf": 110
+                          },
+                          "Utilities.html#getPropertyByValue": {
+                            "ref": "Utilities.html#getPropertyByValue",
                             "tf": 110
                           },
                           "Utilities.html#guessNoteNumber": {
@@ -26717,13 +26731,13 @@
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 6.0606060606060606
                       },
-                      "Utilities.html#getMessage": {
-                        "ref": "Utilities.html#getMessage",
-                        "tf": 37.878787878787875
-                      },
                       "Utilities.html#getNoteDetails": {
                         "ref": "Utilities.html#getNoteDetails",
                         "tf": 34.58333333333333
+                      },
+                      "Utilities.html#getPropertyByValue": {
+                        "ref": "Utilities.html#getPropertyByValue",
+                        "tf": 29.545454545454547
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -27590,6 +27604,10 @@
               "OutputChannel.html#setPolyphonicMode": {
                 "ref": "OutputChannel.html#setPolyphonicMode",
                 "tf": 2.083333333333333
+              },
+              "Utilities.html#getPropertyByValue": {
+                "ref": "Utilities.html#getPropertyByValue",
+                "tf": 4.545454545454546
               },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
@@ -33105,6 +33123,10 @@
                         "ref": "Note.html#getOffsetNumber",
                         "tf": 2
                       },
+                      "Utilities.html#getPropertyByValue": {
+                        "ref": "Utilities.html#getPropertyByValue",
+                        "tf": 9.090909090909092
+                      },
                       "Utilities.html#offsetNumber": {
                         "ref": "Utilities.html#offsetNumber",
                         "tf": 3.571428571428571
@@ -33495,6 +33517,10 @@
                       "Output.html#type": {
                         "ref": "Output.html#type",
                         "tf": 33.33333333333333
+                      },
+                      "Utilities.html#getPropertyByValue": {
+                        "ref": "Utilities.html#getPropertyByValue",
+                        "tf": 25
                       },
                       "Utilities.html#guessNoteNumber": {
                         "ref": "Utilities.html#guessNoteNumber",
@@ -35405,6 +35431,10 @@
                     "ref": "OutputChannel.html#sendNoteOn",
                     "tf": 0.9708737864077669
                   },
+                  "Utilities.html#getPropertyByValue": {
+                    "ref": "Utilities.html#getPropertyByValue",
+                    "tf": 4.545454545454546
+                  },
                   "Utilities.html#toNoteIdentifier": {
                     "ref": "Utilities.html#toNoteIdentifier",
                     "tf": 3.125
@@ -36561,17 +36591,6 @@
                         "ref": "Utilities.html#buildNoteArray",
                         "tf": 1.5151515151515151
                       }
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {},
-                "e": {
-                  "docs": {
-                    "Utilities.html#getMessage": {
-                      "ref": "Utilities.html#getMessage",
-                      "tf": 4.545454545454546
                     }
                   }
                 }
@@ -37818,6 +37837,10 @@
                     "ref": "Utilities.html#getNoteDetails",
                     "tf": 34.58333333333333
                   },
+                  "Utilities.html#getPropertyByValue": {
+                    "ref": "Utilities.html#getPropertyByValue",
+                    "tf": 29.545454545454547
+                  },
                   "Utilities.html#guessNoteNumber": {
                     "ref": "Utilities.html#guessNoteNumber",
                     "tf": 1.7543859649122806
@@ -38840,10 +38863,6 @@
                   "docs": {},
                   "n": {
                     "docs": {
-                      "Utilities.html#getMessage": {
-                        "ref": "Utilities.html#getMessage",
-                        "tf": 4.545454545454546
-                      },
                       "Utilities.html#getNoteDetails": {
                         "ref": "Utilities.html#getNoteDetails",
                         "tf": 1.25
@@ -39040,10 +39059,6 @@
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
                     "tf": 0.6578947368421052
-                  },
-                  "Utilities.html#getMessage": {
-                    "ref": "Utilities.html#getMessage",
-                    "tf": 4.545454545454546
                   }
                 }
               }
@@ -39768,10 +39783,6 @@
               "OutputChannel.html#setRegisteredParameter": {
                 "ref": "OutputChannel.html#setRegisteredParameter",
                 "tf": 0.3289473684210526
-              },
-              "Utilities.html#getMessage": {
-                "ref": "Utilities.html#getMessage",
-                "tf": 4.545454545454546
               }
             },
             "p": {
@@ -39879,29 +39890,6 @@
                                 "docs": {},
                                 "t": {
                                   "docs": {},
-                                  "m": {
-                                    "docs": {},
-                                    "e": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "s": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "g": {
-                                              "docs": {
-                                                "Utilities.html#getMessage": {
-                                                  "ref": "Utilities.html#getMessage",
-                                                  "tf": 1150
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
                                   "n": {
                                     "docs": {},
                                     "o": {
@@ -39925,6 +39913,53 @@
                                                         "Utilities.html#getNoteDetails": {
                                                           "ref": "Utilities.html#getNoteDetails",
                                                           "tf": 1150
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "p": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {},
+                                      "o": {
+                                        "docs": {},
+                                        "p": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "r": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "y": {
+                                                  "docs": {},
+                                                  "b": {
+                                                    "docs": {},
+                                                    "y": {
+                                                      "docs": {},
+                                                      "v": {
+                                                        "docs": {},
+                                                        "a": {
+                                                          "docs": {},
+                                                          "l": {
+                                                            "docs": {},
+                                                            "u": {
+                                                              "docs": {
+                                                                "Utilities.html#getPropertyByValue": {
+                                                                  "ref": "Utilities.html#getPropertyByValue",
+                                                                  "tf": 1150
+                                                                }
+                                                              }
+                                                            }
+                                                          }
                                                         }
                                                       }
                                                     }
@@ -40263,7 +40298,7 @@
           }
         }
       },
-      "length": 4679
+      "length": 4678
     },
     "corpusTokens": [
       "0",
@@ -40546,8 +40581,6 @@
       "d",
       "d3",
       "data",
-      "data1",
-      "data2",
       "databuttondecr",
       "databuttonincr",
       "dataentrycoars",
@@ -40609,6 +40642,7 @@
       "entrymsb",
       "enum",
       "environ",
+      "equal",
       "equival",
       "error",
       "es6",
@@ -40678,11 +40712,11 @@
       "getinputbyid",
       "getinputbynam",
       "getlisten",
-      "getmessag",
       "getnotedetail",
       "getoffsetnumb",
       "getoutputbyid",
       "getoutputbynam",
+      "getpropertybyvalu",
       "given",
       "global",
       "go",
@@ -41223,7 +41257,6 @@
       "therefor",
       "thoroughli",
       "though",
-      "three",
       "through",
       "throughout",
       "thrown",
@@ -41272,8 +41305,8 @@
       "util",
       "utilities#buildnot",
       "utilities#buildnotearray",
-      "utilities#getmessag",
       "utilities#getnotedetail",
+      "utilities#getpropertybyvalu",
       "utilities#guessnotenumb",
       "utilities#offsetnumb",
       "utilities#sanitizechannel",
@@ -41559,7 +41592,7 @@
       "name": "InputChannel",
       "tags": "InputChannel",
       "summary": "",
-      "description": "The InputChannel class represents an input MIDI channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
+      "description": "The InputChannel class represents a MIDI input channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
       "body": ""
     },
     "InputChannel.html#input": {
@@ -42576,16 +42609,6 @@
       "summary": "",
       "description": "Converts an input value, which can be an unsigned integer (0-127), a note identifier, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and identifiers, a Note object is created with the options specified. An error will be thrown when encountering invalid input."
     },
-    "Utilities.html#getMessage": {
-      "id": "Utilities.html#getMessage",
-      "kind": "function",
-      "title": "getMessage( data ) → {Object}",
-      "longname": "Utilities#getMessage",
-      "name": "getMessage",
-      "tags": "Utilities#getMessage getMessage",
-      "summary": "",
-      "description": "Returns an object inside which the three bytes have been broken up into command, data1 and data2 properties."
-    },
     "Utilities.html#getNoteDetails": {
       "id": "Utilities.html#getNoteDetails",
       "kind": "function",
@@ -42595,6 +42618,16 @@
       "tags": "Utilities#getNoteDetails getNoteDetails",
       "summary": "",
       "description": "Given a proper note identifier (\"C#4\", \"Gb-1\", etc.) or a valid MIDI note number (9-127), this method returns an object containing broken down details about the specified note (uppercase letter, accidental and octave). When a number is specified, the translation to note is done using a value of 60 for middle C (C4 = middle C)."
+    },
+    "Utilities.html#getPropertyByValue": {
+      "id": "Utilities.html#getPropertyByValue",
+      "kind": "function",
+      "title": "getPropertyByValue( object, value ) → {string}",
+      "longname": "Utilities#getPropertyByValue",
+      "name": "getPropertyByValue",
+      "tags": "Utilities#getPropertyByValue getPropertyByValue",
+      "summary": "",
+      "description": "Returns the name of the first property of the supplied object whose value is equal to the one supplied."
     },
     "Utilities.html#guessNoteNumber": {
       "id": "Utilities.html#guessNoteNumber",
