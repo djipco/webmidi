@@ -1036,6 +1036,14 @@ declare class WebMidi {
         nonregisteredparameterfine: number;
         registeredparametercoarse: number;
         registeredparameterfine: number;
+        allsoundoff: number;
+        resetallcontrollers: number;
+        localcontrol: number;
+        allnotesoff: number;
+        omnimodeon: number;
+        omnimodeoff: number;
+        monomodeon: number;
+        polymodeon: number;
     };
     /**
      * Array of valid events triggered at the interface level.
