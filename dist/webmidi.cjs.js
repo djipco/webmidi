@@ -3034,7 +3034,8 @@ class OutputChannel extends e {
     if (!Array.isArray(target)) target = [target];
     target = target.map(item => utils.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
+      this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+      (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
         time: utils.toTimestamp(options.time)
       });
     });
