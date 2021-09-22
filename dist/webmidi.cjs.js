@@ -3173,9 +3173,7 @@ class OutputChannel extends e {
       }
     }
 
-    console.log(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange, wm.MIDI_CHANNEL_MESSAGES.controlchange);
-    this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
-    (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
+    this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -3609,8 +3607,8 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), // (WebMidi.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
-      n.getOffsetNumber(offset), n.rawRelease], {
+      this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
+      (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
