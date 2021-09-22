@@ -1242,8 +1242,7 @@ class InputChannel extends e {
       // removed from future versions (@deprecated).
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)); // } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
-    } else if (event.type === "controlchange" && event.message.dataBytes[0] < 120) {
-      console.log("aaa");
+    } else if (event.type === "controlchange") {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
@@ -1265,47 +1264,50 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-
       event.controller = {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
       event.value = utils.toNormalized(data2);
-      event.rawValue = data2; // } else if (event.message.channelModeMessage) {
-    } else if (event.type === "controlchange" && event.message.dataBytes[0] >= 120) {
-      console.log("bbb");
-      /**
-       * Event emitted when any **channel mode** MIDI message has been received.
-       *
-       * @event InputChannel#channelmode
-       *
-       * @type {Object}
-       * @property {string} type `"channelmode"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       *
-       * @property {Object} controller
-       * @property {Object} controller.number The number of the controller.
-       * @property {Object} controller.name The usual name or function of the controller.
-       * @property {number} value The value expressed as a float between 0 and 1.
-       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-       */
+      event.rawValue = data2; // Also trigger channel mode message events when appropriate
 
-      event.controller = {
-        number: data1,
-        name: this.getChannelModeByNumber(data1)
-      }; // Channel mode messages are 'control change" messages, so we need to change the type before
-      // sending it out.
-
-      event.type = "channelmode";
-      event.value = utils.toNormalized(data2);
-      event.rawValue = data2; // Also dispatch specific channel mode events
-      // this._parseChannelModeMessage(event);
+      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // // } else if (event.message.channelModeMessage) {
+      // } else if (event.type === "controlchange" && event.message.dataBytes[0] >= 120) {
+      //
+      //   /**
+      //    * Event emitted when any **channel mode** MIDI message has been received.
+      //    *
+      //    * @event InputChannel#channelmode
+      //    *
+      //    * @type {Object}
+      //    * @property {string} type `"channelmode"`
+      //    *
+      //    * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+      //    * object).
+      //    * @property {Message} message A `Message` object containing information about the incoming
+      //    * MIDI message.
+      //    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+      //    * milliseconds since the navigation start of the document).
+      //    *
+      //    * @property {Object} controller
+      //    * @property {Object} controller.number The number of the controller.
+      //    * @property {Object} controller.name The usual name or function of the controller.
+      //    * @property {number} value The value expressed as a float between 0 and 1.
+      //    * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+      //    */
+      //   event.controller = {
+      //     number: data1,
+      //     name: this.getChannelModeByNumber(data1)
+      //   };
+      //
+      //   // Channel mode messages are 'control change" messages, so we need to change the type before
+      //   // sending it out.
+      //   event.type = "channelmode";
+      //   event.value = Utilities.toNormalized(data2);
+      //   event.rawValue = data2;
+      //
+      //   // Also dispatch specific channel mode events
+      //   // this._parseChannelModeMessage(event);
     } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
@@ -1404,7 +1406,11 @@ class InputChannel extends e {
   }
 
   _parseChannelModeMessage(e) {
-    // Make a shallow copy of the incoming event so we can use it as the new event.
+    // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
+    const channelModeEvent = Object.assign({}, e);
+    channelModeEvent.type = "channelmode";
+    this.emit(channelModeEvent.type, channelModeEvent); // Make a shallow copy of the incoming event so we can use it as the new event.
+
     const event = Object.assign({}, e);
     event.type = event.message.type;
     /**
@@ -6731,14 +6737,23 @@ class Message {
     } else {
       this.systemMessage = true;
       this.command = this.statusByte;
-    } // Identify the exact type of message
-    // if (this.channelModeMessage) {                           // channel messages
+    } // // Identify the exact type of message
+    // // if (this.channelModeMessage) {                           // channel messages
+    // if (                                                        // channel mode messages
+    //   this.command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+    //   this.dataBytes[0] >= 120
+    // ) {
+    //   this.type = Utilities.getPropertyByValue(
+    //     WebMidi.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]
+    //   );
+    // } else if (this.channelMessage) {                           // channel messages
+    //   this.type = Utilities.getPropertyByValue(WebMidi.MIDI_CHANNEL_MESSAGES, this.command);
+    // } else if (this.systemMessage) {                            // system messages
+    //   this.type = Utilities.getPropertyByValue(WebMidi.MIDI_SYSTEM_MESSAGES, this.command);
+    // }
 
 
-    if ( // channel mode messages
-    this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
-      this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
-    } else if (this.channelMessage) {
+    if (this.channelMessage) {
       // channel messages
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.systemMessage) {
