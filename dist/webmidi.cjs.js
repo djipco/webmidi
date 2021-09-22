@@ -1263,7 +1263,6 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      console.log(event.controller);
       event.controller = {
         number: data1,
         name: this.getCcNameByNumber(data1)
@@ -1745,19 +1744,9 @@ class InputChannel extends e {
     if (wm.validation) {
       number = parseInt(number);
       if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
-    } // for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-    //
-    //   if (
-    //     WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
-    //     number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
-    //   ) {
-    //     return cc;
-    //   }
-    //
-    // }
+    }
 
-
-    return utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, number); // return undefined;
+    return utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, number);
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
