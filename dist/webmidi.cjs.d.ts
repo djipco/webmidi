@@ -3089,7 +3089,7 @@ declare class OutputChannel extends e {
     }): OutputChannel;
     /**
      * Sends a MIDI **control change** message to the channel at the scheduled time. The control
-     * change message to send can be specified numerically (0 to 119) or by using one of the following
+     * change message to send can be specified numerically (0 to 127) or by using one of the following
      * common names:
      *
      *  * `bankselectcoarse` (#0)
@@ -3152,9 +3152,19 @@ declare class OutputChannel extends e {
      *  * `registeredparametercoarse` (#100)
      *  * `registeredparameterfine` (#101)
      *
+     *  * `allsoundoff` (#120)
+     *  * `resetallcontrollers` (#121)
+     *  * `localcontrol` (#122)
+     *  * `allnotesoff` (#123)
+     *  * `omnimodeoff` (#124)
+     *  * `omnimodeon` (#125)
+     *  * `monomodeon` (#126)
+     *  * `polymodeon` (#127)
+     *
      * Note: as you can see above, not all control change message have a matching common name. This
      * does not mean you cannot use the others. It simply means you will need to use their number
-     * (0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
+     * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
+     * reserved for *channel mode* messages. See
      * [sendChannelMode()]{@link OutputChannel#sendChannelMode} method for more info.
      *
      * To view a detailed list of all available **control change** messages, please consult "Table 3 -
@@ -3162,7 +3172,7 @@ declare class OutputChannel extends e {
      * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
      * specification.
      *
-     * @param {number|string} controller The MIDI controller name or number (0-119).
+     * @param {number|string} controller The MIDI controller name or number (0-127).
      *
      * @param {number} value The value to send (0-127).
      *
@@ -3174,7 +3184,7 @@ declare class OutputChannel extends e {
      * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
      * will be carried out as soon as possible.
      *
-     * @throws {RangeError} Controller numbers must be between 0 and 119.
+     * @throws {RangeError} Controller numbers must be between 0 and 127.
      * @throws {RangeError} Invalid controller name.
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
