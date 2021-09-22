@@ -11,28 +11,32 @@ export var __esModule: boolean;
 export class Message {
     constructor(data: any);
     /**
-     * A Uint8Array containing the 1, 2 or 3 byte(s) of the MIDI message. Each byte is an integer
-     * between 0 and 255.
+     * A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
+     * 255.
+     *
      * @type {Uint8Array}
      * @readonly
      */
     rawData: Uint8Array;
     /**
-     * An array containing the 1, 2 or 3 unsigned integers of the MIDI message. Each integer is
-     * between 0 and 255.
+     * An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
+     * 255.
+     *
      * @type {number[]}
      * @readonly
      */
     data: number[];
     /**
      * The MIDI status byte of the message as an integer between 0 and 255.
+     *
      * @type {number}
      * @readonly
      */
     statusByte: number;
     /**
      * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
-     * message.
+     * message. This is `undefined` for sysex messages.
+     *
      * @type {number[]}
      * @readonly
      */
@@ -43,12 +47,6 @@ export class Message {
      * @readonly
      */
     channelMessage: boolean;
-    /**
-     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
-     * control message).
-     * @type {boolean}
-     * @readonly
-     */
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
