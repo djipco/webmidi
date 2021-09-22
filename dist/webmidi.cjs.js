@@ -1023,7 +1023,6 @@ utils.constructor = null;
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#controlchange
- * @fires InputChannel#channelmode
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
@@ -1370,10 +1369,10 @@ class InputChannel extends e {
 
   _parseChannelModeMessage(e) {
     // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
-    const channelModeEvent = Object.assign({}, e);
-    channelModeEvent.type = "channelmode";
-    this.emit(channelModeEvent.type, channelModeEvent); // Make a shallow copy of the incoming event so we can use it as the new event.
-
+    // const channelModeEvent = Object.assign({}, e);
+    // channelModeEvent.type = "channelmode";
+    // this.emit(channelModeEvent.type, channelModeEvent);
+    // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
     event.type = event.controller.name;
     /**
@@ -1540,7 +1539,7 @@ class InputChannel extends e {
   //   // Message not valid for NRPN
   //   if (
   //     !(
-  //       command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+  //       command === WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &&
   //       (
   //         (
   //           data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &&
@@ -2458,8 +2457,12 @@ class Input extends e {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -2598,8 +2601,12 @@ class Input extends e {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -3778,8 +3785,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1),
-    (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
+    this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -7677,7 +7683,6 @@ class WebMidi extends e {
    * - `noteon`: 0x9 (9)
    * - `keyaftertouch`: 0xA (10)
    * - `controlchange`: 0xB (11)
-   * - `channelmode`: 0xB (11)
    * - `nrpn`: 0xB (11)
    * - `programchange`: 0xC (12)
    * - `channelaftertouch`: 0xD (13)
@@ -7693,8 +7698,7 @@ class WebMidi extends e {
   get MIDI_CHANNEL_VOICE_MESSAGES() {
     const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
     return Object.assign(values, {
-      channelmode: 0xB,
-      // 11
+      // channelmode: 0xB,       // 11
       nrpn: 0xB // 11
 
     });
