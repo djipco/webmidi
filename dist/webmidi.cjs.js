@@ -1138,7 +1138,6 @@ class InputChannel extends e {
     event.type = event.message.type || "unknownmidimessage";
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
-    console.log(event);
 
     if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
@@ -1243,6 +1242,7 @@ class InputChannel extends e {
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)); // } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
     } else if (event.type === "controlchange") {
+      console.log(event);
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
@@ -1264,6 +1264,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
+
       event.controller = {
         number: data1,
         name: this.getCcNameByNumber(data1)
