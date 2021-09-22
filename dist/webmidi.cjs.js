@@ -2080,7 +2080,7 @@ class Input extends e {
     if (message.systemMessage) {
       // system messages
       this._parseEvent(event);
-    } else if (message.channelModeMessage || message.channelMessage) {
+    } else if (message.channelMessage) {
       // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
     }
@@ -6727,7 +6727,7 @@ class Message {
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
 
-      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if (this.command === wm.MIDI_CHANNEL_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
@@ -6737,10 +6737,13 @@ class Message {
 
 
     if (this.channelModeMessage) {
+      // if (this.channelMessage && this.dataBytes[0] >= 120) {  // channel mode messages
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
+      // channel messages
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command);
     } else if (this.systemMessage) {
+      // system messages
       this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     }
   }
