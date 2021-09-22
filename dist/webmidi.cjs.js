@@ -6728,11 +6728,11 @@ class Message {
       this.systemMessage = true;
       this.command = this.statusByte;
     } // Identify the exact type of message
-    // if (this.channelModeMessage) {                          // channel messages
+    // if (this.channelModeMessage) {                           // channel messages
 
 
-    if (this.channelMessage && this.dataBytes[0] > 119) {
-      // channel mode messages
+    if ( // channel mode messages
+    this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
