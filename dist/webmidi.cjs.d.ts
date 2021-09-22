@@ -847,6 +847,24 @@ declare class WebMidi {
      * @readonly
      */
     get time(): number;
+    /**
+     * Enum of all MIDI channel voice messages and their associated numerical value:
+     *
+     * - `noteoff`: 0x8 (8)
+     * - `noteon`: 0x9 (9)
+     * - `keyaftertouch`: 0xA (10)
+     * - `controlchange`: 0xB (11)
+     * - `channelmode`: 0xB (11)
+     * - `nrpn`: 0xB (11)
+     * - `programchange`: 0xC (12)
+     * - `channelaftertouch`: 0xD (13)
+     * - `pitchbend`: 0xE (14)
+     *
+     * @enum {Object.<string, number>}
+     * @readonly
+     *
+     * @since 3.0.0
+     */
     get MIDI_CHANNEL_VOICE_MESSAGES(): {
         noteoff: number;
         noteon: number;
@@ -859,22 +877,6 @@ declare class WebMidi {
         channelmode: number;
         nrpn: number;
     };
-    /**
-     * Enum of all MIDI channel messages and their associated numerical value:
-     *
-     * - `noteoff`: 0x8 (8)
-     * - `noteon`: 0x9 (9)
-     * - `keyaftertouch`: 0xA (10)
-     * - `controlchange`: 0xB (11)
-     * - `programchange`: 0xC (12)
-     * - `channelaftertouch`: 0xD (13)
-     * - `pitchbend`: 0xE (14)
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     *
-     * @since 3.0.0
-     */
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
