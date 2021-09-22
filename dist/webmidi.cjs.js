@@ -3,7 +3,7 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 21st 2021.
+ * This build was generated on September 22nd 2021.
  *
  *
  *
@@ -953,22 +953,6 @@ class Utilities {
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
   }
   /**
-   * Returns an object inside which the three bytes have been broken up into `command`, `data1` and
-   * `data2` properties.
-   *
-   * @param data A MIDI message
-   * @returns {{data2: (number|undefined), data1: (number|undefined), command: number}}
-   */
-
-
-  getMessage(data) {
-    return {
-      command: data[0] >> 4,
-      data1: data.length > 1 ? data[1] : undefined,
-      data2: data.length > 2 ? data[2] : undefined
-    };
-  }
-  /**
    * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
    * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
    * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
@@ -1256,8 +1240,8 @@ class InputChannel extends e {
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
-      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-    } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
+      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)); // } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
+    } else if (event.type === "controlchange" && event.message.dataBytes[0] < 120) {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
@@ -1284,8 +1268,8 @@ class InputChannel extends e {
         name: this.getCcNameByNumber(data1)
       };
       event.value = utils.toNormalized(data2);
-      event.rawValue = data2;
-    } else if (event.message.channelModeMessage) {
+      event.rawValue = data2; // } else if (event.message.channelModeMessage) {
+    } else if (event.type === "controlchange" && event.message.dataBytes[0] >= 120) {
       /**
        * Event emitted when any **channel mode** MIDI message has been received.
        *
@@ -6702,8 +6686,8 @@ class Message {
      * @type {boolean}
      * @readonly
      */
+    // this.channelModeMessage = false;
 
-    this.channelModeMessage = false;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
@@ -6734,19 +6718,21 @@ class Message {
     if (this.statusByte < 240) {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
-      this.channel = (this.statusByte & 0b00001111) + 1;
-
-      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
-        this.channelModeMessage = true;
-      }
+      this.channel = (this.statusByte & 0b00001111) + 1; // if (
+      //   this.command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+      //   this.dataBytes[0] >= 120
+      // ) {
+      //   this.channelModeMessage = true;
+      // }
     } else {
       this.systemMessage = true;
       this.command = this.statusByte;
     } // Identify the exact type of message
+    // if (this.channelModeMessage) {                          // channel messages
 
 
-    if (this.channelModeMessage) {
-      // channel messages
+    if (this.channelMessage && this.dataBytes[0] > 119) {
+      // channel mode messages
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
