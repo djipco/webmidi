@@ -283,7 +283,7 @@ export class InputChannel extends EventEmitter {
         )
       );
 
-    } else if (event.type === "controlchange" && !event.message.channelModeMessage) {
+    } else if (event.type === "controlchange") {
 
       /**
        * Event emitted when a **control change** MIDI message has been received.
@@ -314,42 +314,8 @@ export class InputChannel extends EventEmitter {
       event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
-    } else if (event.message.channelModeMessage) {
-
-      /**
-       * Event emitted when any **channel mode** MIDI message has been received.
-       *
-       * @event InputChannel#channelmode
-       *
-       * @type {Object}
-       * @property {string} type `"channelmode"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       *
-       * @property {Object} controller
-       * @property {Object} controller.number The number of the controller.
-       * @property {Object} controller.name The usual name or function of the controller.
-       * @property {number} value The value expressed as a float between 0 and 1.
-       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-       */
-      event.controller = {
-        number: data1,
-        name: this.getChannelModeByNumber(data1)
-      };
-
-      // Channel mode messages are 'control change" messages, so we need to change the type before
-      // sending it out.
-      event.type = "channelmode";
-      event.value = Utilities.toNormalized(data2);
-      event.rawValue = data2;
-
-      // Also dispatch specific channel mode events
-      this._parseChannelModeMessage(event);
+      // Also trigger channel mode message events when appropriate
+      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event);
 
     } else if (event.type === "programchange") {
 
@@ -463,9 +429,14 @@ export class InputChannel extends EventEmitter {
 
   _parseChannelModeMessage(e) {
 
+    // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
+    const channelModeEvent = Object.assign({}, e);
+    channelModeEvent.type = "channelmode";
+    this.emit(channelModeEvent.type, channelModeEvent);
+
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
-    event.type = event.message.type;
+    event.type = event.controller.name;
 
     /**
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
@@ -797,21 +768,10 @@ export class InputChannel extends EventEmitter {
 
     if (WebMidi.validation) {
       number = parseInt(number);
-      if ( !(number >= 0 && number <= 119) ) throw new RangeError("Invalid control change number.");
+      if ( !(number >= 0 && number <= 127) ) throw new RangeError("Invalid control change number.");
     }
 
-    for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-
-      if (
-        WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
-        number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
-      ) {
-        return cc;
-      }
-
-    }
-
-    return undefined;
+    return Utilities.getPropertyByValue(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES, number);
 
   }
 
