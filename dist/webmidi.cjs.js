@@ -1744,7 +1744,7 @@ class InputChannel extends e {
   getCcNameByNumber(number) {
     if (wm.validation) {
       number = parseInt(number);
-      if (!(number >= 0 && number <= 119)) throw new RangeError("Invalid control change number.");
+      if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
     }
 
     for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
@@ -7916,7 +7916,15 @@ class WebMidi extends e {
       nonregisteredparametercoarse: 98,
       nonregisteredparameterfine: 99,
       registeredparametercoarse: 100,
-      registeredparameterfine: 101
+      registeredparameterfine: 101,
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeon: 124,
+      omnimodeoff: 125,
+      monomodeon: 126,
+      polymodeon: 127
     };
   }
   /**
