@@ -855,6 +855,9 @@ declare class WebMidi {
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
+    } & {
+        channelmode: number;
+        nrpn: number;
     };
     /**
      * Enum of all MIDI channel messages and their associated numerical value:
