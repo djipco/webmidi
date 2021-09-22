@@ -6719,7 +6719,8 @@ class Message {
      * @readonly
      */
 
-    this.channel = undefined; // Assign values to property that vary according to whether they are channel-specific or system
+    this.channel = undefined;
+    console.log(data); // Assign values to property that vary according to whether they are channel-specific or system
 
     if (this.statusByte < 240) {
       this.channelMessage = true;
