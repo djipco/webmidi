@@ -1040,8 +1040,8 @@ declare class WebMidi {
         resetallcontrollers: number;
         localcontrol: number;
         allnotesoff: number;
-        omnimodeon: number;
         omnimodeoff: number;
+        omnimodeon: number;
         monomodeon: number;
         polymodeon: number;
     };
