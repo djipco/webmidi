@@ -1504,7 +1504,6 @@ class InputChannel extends e {
       event.value = false;
     }
 
-    console.log(event);
     this.emit(event.type, event);
   } // /**
   //  * Parses channel events and constructs NRPN message parts in valid sequences.
