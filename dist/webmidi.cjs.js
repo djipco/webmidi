@@ -3173,6 +3173,7 @@ class OutputChannel extends e {
       }
     }
 
+    console.log(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange, wm.MIDI_CHANNEL_MESSAGES.controlchange);
     this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
     (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
       time: utils.toTimestamp(options.time)
