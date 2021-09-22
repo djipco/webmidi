@@ -6741,7 +6741,7 @@ class Message {
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command);
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.systemMessage) {
       // system messages
       this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
