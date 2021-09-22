@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {WebMidi, Message} = require("../dist/webmidi.cjs.js");
+const {Message} = require("../dist/webmidi.cjs.js");
 
 describe("Message Object", function() {
 
@@ -29,36 +29,37 @@ describe("Message Object", function() {
       items.forEach(item => {
         data[0] = item.status;
         const message = new Message(data);
-        expect(message.systemMessage).to.be.true;
+        expect(message.isSystemMessage).to.be.true;
         expect(message.type).to.equal(item.type);
       });
 
     });
 
-    it("should correctly set the type of message for channel voice messages", function() {
-
-      // Arrange
-      let data = new Uint8Array(3);
-
-      const items = [
-        {noteoff: 0x8},
-        {noteon: 0x9},
-        {keyaftertouch: 0xA},
-        {controlchange: 0xB},
-        {programchange: 0xC},
-        {channelaftertouch: 0xD},
-        {pitchbend: 0xE},
-      ];
-      //
-      // // Act
-      // items.forEach(item => {
-      //   data[0] = item.status;
-      //   const message = new Message(data);
-      //   expect(message.systemMessage).to.be.true;
-      //   expect(message.type).to.equal(item.type);
-      // });
-
-    });
+    it("should correctly set the type of message for channel messages");
+    // it("should correctly set the type of message for channel messages", function() {
+    //
+    //   // Arrange
+    //   let data = new Uint8Array(3);
+    //
+    //   const items = [
+    //     {noteoff: 0x8},
+    //     {noteon: 0x9},
+    //     {keyaftertouch: 0xA},
+    //     {controlchange: 0xB},
+    //     {programchange: 0xC},
+    //     {channelaftertouch: 0xD},
+    //     {pitchbend: 0xE},
+    //   ];
+    //
+    //   // Act
+    //   items.forEach(item => {
+    //     data[0] = item.status;
+    //     const message = new Message(data);
+    //     expect(message.isSystemMessage).to.be.true;
+    //     expect(message.type).to.equal(item.type);
+    //   });
+    //
+    // });
 
   });
 
