@@ -1,4 +1,78 @@
 /**
+ * The `Message` class represents a single MIDI message. It has several properties that make it
+ * easy to make sense of the binaru data it contains.
+ *
+ * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
+ * and 255.
+ *
+ * @since 3.0.0
+ */
+export class Message {
+    constructor(data: any);
+    /**
+     * A Uint8Array containing the 1, 2 or 3 byte(s) of the MIDI message. Each byte is an integer
+     * between 0 and 255.
+     * @type {Uint8Array}
+     * @readonly
+     */
+    rawData: Uint8Array;
+    /**
+     * An array containing the 1, 2 or 3 unsigned integers of the MIDI message. Each integer is
+     * between 0 and 255.
+     * @type {number[]}
+     * @readonly
+     */
+    data: number[];
+    /**
+     * The MIDI status byte of the message as an integer between 0 and 255.
+     * @type {number}
+     * @readonly
+     */
+    statusByte: number;
+    /**
+     * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
+     * message.
+     * @type {number[]}
+     * @readonly
+     */
+    dataBytes: number[];
+    /**
+     * A boolean indicating whether the MIDI message is a channel-specific message.
+     * @type {boolean}
+     * @readonly
+     */
+    channelMessage: boolean;
+    /**
+     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
+     * control message).
+     * @type {boolean}
+     * @readonly
+     */
+    channelModeMessage: boolean;
+    /**
+     * A boolean indicating whether the MIDI message is a system message (not specific to a
+     * channel).
+     * @type {boolean}
+     * @readonly
+     */
+    systemMessage: boolean;
+    /**
+     * An integer identifying the MIDI command. For channel-specific messages, the value will be
+     * between 8 and 14. For system messages, the value will be between 240 and 255.
+     * @type {number}
+     * @readonly
+     */
+    command: number;
+    /**
+     * The MIDI channel number that the message is targeting. For system messages, this will be
+     * undefined.
+     * @type {number}
+     * @readonly
+     */
+    channel: number;
+    type: string;
+}
+/**
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
@@ -143,8 +217,8 @@ export class Note {
 declare const utils: Utilities;
 declare const wm: WebMidi;
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
- * methode are static) and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
+ * static methode and is not meant to be instantiated.
  *
  * @since 3.0.0
  */
@@ -176,17 +250,23 @@ declare class Utilities {
      */
     toNoteNumber(identifier: string, octaveOffset?: number): number;
     /**
-     * Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
-     * the fragments composing it (uppercase letter, accidental and octave).
+     * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+     * method returns an object containing broken down details about the specified note (uppercase
+     * letter, accidental and octave).
      *
-     * @param identifier
+     * When a number is specified, the translation to note is done using a value of 60 for middle C
+     * (C4 = middle C).
+     *
+     * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+     * number (0-127).
+     *
      * @returns {{octave: number, letter: string, accidental: string}}
      *
      * @throws TypeError Invalid note identifier
      *
      * @since 3.0.0
      */
-    getFragments(identifier: any): {
+    getNoteDetails(value: string | number): {
         octave: number;
         letter: string;
         accidental: string;
@@ -379,6 +459,15 @@ declare class Utilities {
      * @throws {Error} Invalid note number
      */
     offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
+    /**
+     * Returns the name of the first property of the supplied object whose value is equal to the one
+     * supplied.
+     *
+     * @param object {Object}
+     * @param value {*}
+     * @returns {string} The name of the matching property
+     */
+    getPropertyByValue(object: any, value: any): string;
 }
 /**
  * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
@@ -625,47 +714,37 @@ declare class WebMidi {
     getOutputById(id: string): Output | false;
     /**
      * @private
-     * @deprecated since version 3.0.0 Use Utilities.toNoteNumber() instead.
+     * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
      */
     private noteNameToNumber;
     /**
-     * Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-     * based on middle C (note number 60) being placed on the 4th octave (C4).
-     *
-     * **Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
-     * be parsed to a valid octave.
-     *
-     * @param number {number} An integer representing a valid MIDI note number (between 0 and 127).
-     *
-     * @returns {number|false} The octave (as a signed integer) or `false` if the value could not be
-     * parsed to a valid octave.
-     *
-     * @since 2.0.0-rc.6
+     * @private
+     * @deprecated since 3.0.0, use Utilities.getNoteDetails() instead.
      */
-    getOctave(number: number): number | false;
+    private getOctave;
     /**
      * @private
-     * @deprecated since version 3.0. Use Utilities.sanitizeChannels() instead.
+     * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
      */
     private sanitizeChannels;
     /**
      * @private
-     * @deprecated since version 3.0. Use sanitizeChannels() instead.
+     * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
      */
     private toMIDIChannels;
     /**
      * @private
-     * @deprecated since version 3.0.0. Use Utilities.guessNoteNumber() instead.
+     * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
      */
     private guessNoteNumber;
     /**
      * @private
-     * @deprecated since version 3. Moved to Utilities.buildNoteArray().
+     * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
      */
     private getValidNoteArray;
     /**
      * @private
-     * @deprecated moved to Utilities.toTimestamp()
+     * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
      */
     private convertToTimestamp;
     /**
@@ -798,30 +877,18 @@ declare class WebMidi {
         noteon: number;
         keyaftertouch: number;
         controlchange: number;
-        channelmode: number;
-        nrpn: number;
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
+    } & {
+        channelmode: number;
+        nrpn: number;
     };
-    /**
-     * Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-     * has been deprecated since v3.0. You should now use
-     * [MIDI_CHANNEL_VOICE_MESSAGES]{@link WebMidi.MIDI_CHANNEL_VOICE_MESSAGES}.
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     * @deprecated since version 3.0 (will be dropped in version 4.0)
-     *
-     * @since 2.0.0
-     */
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
         controlchange: number;
-        channelmode: number;
-        nrpn: number;
         programchange: number;
         channelaftertouch: number;
         pitchbend: number;
@@ -2943,7 +3010,7 @@ declare class e {
     get eventCount(): number;
 }
 /**
- * The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+ * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
