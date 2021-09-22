@@ -6734,29 +6734,29 @@ class Message {
     } // Now that the command is ready, we can extract data bytes for all messages except sysex
 
 
-    if (this.command !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Identify the precise type of message
+    if (this.command !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Identify the exact type of message
 
     if (this.channelModeMessage) {
-      for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-        if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
-          this.type = value;
-          break;
-        }
-      }
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]); // for (let value in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
+      //   if (WebMidi.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
+      //     this.type = value;
+      //     break;
+      //   }
+      // }
     } else if (this.channelMessage) {
-      for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
-        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
-          this.type = value;
-          break;
-        }
-      }
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command); // for (let value in WebMidi.MIDI_CHANNEL_VOICE_MESSAGES) {
+      //   if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
+      //     this.type = value;
+      //     break;
+      //   }
+      // }
     } else if (this.systemMessage) {
-      for (let value in wm.MIDI_SYSTEM_MESSAGES) {
-        if (wm.MIDI_SYSTEM_MESSAGES[value] === this.command) {
-          this.type = value;
-          break;
-        }
-      }
+      this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command); // for (let value in WebMidi.MIDI_SYSTEM_MESSAGES) {
+      //   if (WebMidi.MIDI_SYSTEM_MESSAGES[value] === this.command) {
+      //     this.type = value;
+      //     break;
+      //   }
+      // }
     }
   }
 
