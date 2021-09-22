@@ -1263,13 +1263,13 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
+      console.log(event.controller);
       event.controller = {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
       event.value = utils.toNormalized(data2);
-      event.rawValue = data2;
-      console.log(event.controller); // Also trigger channel mode message events when appropriate
+      event.rawValue = data2; // Also trigger channel mode message events when appropriate
 
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // // } else if (event.message.channelModeMessage) {
       // } else if (event.type === "controlchange" && event.message.dataBytes[0] >= 120) {
