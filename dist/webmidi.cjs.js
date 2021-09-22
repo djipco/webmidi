@@ -5206,8 +5206,8 @@ class Output extends e {
   }
   /**
    * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
-   * control change message to send can be specified numerically or by using one of the following
-   * common names:
+   * control change message to send can be specified numerically (0-127) or by using one of the
+   * following common names:
    *
    *  * `bankselectcoarse` (#0)
    *  * `modulationwheelcoarse` (#1)
@@ -5269,17 +5269,27 @@ class Output extends e {
    *  * `registeredparametercoarse` (#100)
    *  * `registeredparameterfine` (#101)
    *
+   *  * `allsoundoff` (#120)
+   *  * `resetallcontrollers` (#121)
+   *  * `localcontrol` (#122)
+   *  * `allnotesoff` (#123)
+   *  * `omnimodeoff` (#124)
+   *  * `omnimodeon` (#125)
+   *  * `monomodeon` (#126)
+   *  * `polymodeon` (#127)
+   *
    * Note: as you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
-   * (0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
-   * [sendChannelMode()]{@link Output#sendChannelMode} method for more info.
+   * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
+   * reserved for *channel mode* messages. See [sendChannelMode()]{@link Output#sendChannelMode}
+   * method for more info.
    *
    * To view a list of all available `control change` messages, please consult "Table 3 - Control
    * Change Messages" from the [MIDI Messages](
    * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
-   * @param controller {number|string} The MIDI controller name or number (0-119).
+   * @param controller {number|string} The MIDI controller name or number (0-127).
    *
    * @param [value=0] {number} The value to send (0-127).
    *
@@ -5294,7 +5304,7 @@ class Output extends e {
    * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
    * in the past, the operation will be carried out as soon as possible.
    *
-   * @throws {RangeError} Controller numbers must be between 0 and 119.
+   * @throws {RangeError} Controller numbers must be between 0 and 127.
    * @throws {RangeError} Invalid controller name.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
