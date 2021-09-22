@@ -6725,7 +6725,7 @@ class Message {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
-      console.log(data, this.command);
+      console.log(data, this.command, wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange);
 
       if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
