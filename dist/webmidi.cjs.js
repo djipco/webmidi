@@ -3607,8 +3607,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
-      (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
+      this.send([(wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3712,8 +3711,8 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), // (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
-      n.getOffsetNumber(offset), n.rawAttack], {
+      this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
+      (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
         time: utils.toTimestamp(options.time)
       });
     });
