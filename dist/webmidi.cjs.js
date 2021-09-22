@@ -6727,7 +6727,6 @@ class Message {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
-      console.log("allo", data, this.command, wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange, this.dataBytes[0], 120);
 
       if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
@@ -6739,26 +6738,11 @@ class Message {
 
 
     if (this.channelModeMessage) {
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]); // for (let value in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
-      //   if (WebMidi.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
-      //     this.type = value;
-      //     break;
-      //   }
-      // }
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command); // for (let value in WebMidi.MIDI_CHANNEL_VOICE_MESSAGES) {
-      //   if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
-      //     this.type = value;
-      //     break;
-      //   }
-      // }
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command);
     } else if (this.systemMessage) {
-      this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command); // for (let value in WebMidi.MIDI_SYSTEM_MESSAGES) {
-      //   if (WebMidi.MIDI_SYSTEM_MESSAGES[value] === this.command) {
-      //     this.type = value;
-      //     break;
-      //   }
-      // }
+      this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     }
   }
 
