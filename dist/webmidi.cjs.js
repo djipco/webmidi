@@ -1745,15 +1745,19 @@ class InputChannel extends e {
     if (wm.validation) {
       number = parseInt(number);
       if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
-    }
+    } // for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
+    //
+    //   if (
+    //     WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) &&
+    //     number === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc]
+    //   ) {
+    //     return cc;
+    //   }
+    //
+    // }
 
-    for (let cc in wm.MIDI_CONTROL_CHANGE_MESSAGES) {
-      if (wm.MIDI_CONTROL_CHANGE_MESSAGES.hasOwnProperty(cc) && number === wm.MIDI_CONTROL_CHANGE_MESSAGES[cc]) {
-        return cc;
-      }
-    }
 
-    return undefined;
+    return utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, number); // return undefined;
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
