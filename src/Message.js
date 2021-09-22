@@ -107,8 +107,10 @@ export class Message {
     }
 
     // Identify the exact type of message
-    if (this.channelModeMessage) {
-      this.type = Utilities.getPropertyByValue(WebMidi.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
+    if (this.channelModeMessage) {                          // channel messages
+      this.type = Utilities.getPropertyByValue(
+        WebMidi.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]
+      );
     } else if (this.channelMessage) {                       // channel messages
       this.type = Utilities.getPropertyByValue(WebMidi.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.systemMessage) {                        // system messages
