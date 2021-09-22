@@ -44,6 +44,13 @@ export class Message {
      */
     channelMessage: boolean;
     /**
+     * A boolean indicating whether the MIDI message is a channel mode message (a special type of
+     * control message).
+     * @type {boolean}
+     * @readonly
+     */
+    channelModeMessage: boolean;
+    /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
      * @type {boolean}
