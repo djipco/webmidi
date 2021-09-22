@@ -461,10 +461,12 @@ declare class Utilities {
      */
     offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
     /**
-     * Returns the name of the first object property whose value matches the one supplied.
+     * Returns the name of the first property of the supplied object whose value is equal to the one
+     * supplied.
+     *
      * @param object {Object}
      * @param value {*}
-     * @returns {string}
+     * @returns {string} The name of the matching property
      */
     getPropertyByValue(object: any, value: any): string;
 }
