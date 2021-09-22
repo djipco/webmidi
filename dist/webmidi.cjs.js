@@ -991,6 +991,10 @@ class Utilities {
     return Math.min(Math.max(number + octaveOffset * 12 + semitoneOffset, 0), 127);
   }
 
+  getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
 // extensible (properties can be added at will).
@@ -6714,42 +6718,36 @@ class Message {
      * @readonly
      */
 
-    this.channel = undefined; // Assign values to property depending on whether they are channel-specific or system
+    this.channel = undefined; // Assign values to property that vary according to whether they are channel-specific or system
 
     if (this.statusByte < 240) {
-      // this.command = this.statusByte & 0b11110000;
-      this.command = this.statusByte >> 4; // this.command4bit = this.statusByte >> 4;
-
-      this.channel = (this.statusByte & 0b00001111) + 1;
       this.channelMessage = true;
+      this.command = this.statusByte >> 4;
+      this.channel = (this.statusByte & 0b00001111) + 1;
 
-      if ( // this.command4bit === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
-      this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
-      this.command = data[0];
       this.systemMessage = true;
-    } // Extract data bytes (unless it's a sysex message)
+      this.command = this.statusByte;
+    } // Now that the command is ready, we can extract data bytes for all messages except sysex
 
 
     if (this.command !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Identify the precise type of message
 
-    if (this.channelMessage) {
-      if (this.channelModeMessage) {
-        for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-          if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
-            this.type = value;
-            break;
-          }
+    if (this.channelModeMessage) {
+      for (let value in wm.MIDI_CHANNEL_MODE_MESSAGES) {
+        if (wm.MIDI_CHANNEL_MODE_MESSAGES[value] === this.dataBytes[0]) {
+          this.type = value;
+          break;
         }
-      } else {
-        for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
-          // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command4bit) {
-          if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
-            this.type = value;
-            break;
-          }
+      }
+    } else if (this.channelMessage) {
+      for (let value in wm.MIDI_CHANNEL_VOICE_MESSAGES) {
+        if (wm.MIDI_CHANNEL_VOICE_MESSAGES[value] === this.command) {
+          this.type = value;
+          break;
         }
       }
     } else if (this.systemMessage) {
