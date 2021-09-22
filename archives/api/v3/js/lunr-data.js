@@ -1419,9 +1419,14 @@ window.lunrData = {
           "100",
           "101",
           "11",
-          "119",
           "12",
           "120",
+          "121",
+          "122",
+          "123",
+          "124",
+          "125",
+          "126",
           "127",
           "13",
           "16",
@@ -1477,6 +1482,8 @@ window.lunrData = {
           "98",
           "99",
           "abov",
+          "allnotesoff",
+          "allsoundoff",
           "avail",
           "balancecoars",
           "balancefin",
@@ -1521,6 +1528,7 @@ window.lunrData = {
           "instead",
           "legatoped",
           "list",
+          "localcontrol",
           "match",
           "mean",
           "messag",
@@ -1529,6 +1537,7 @@ window.lunrData = {
           "mode",
           "modulationwheelcoars",
           "modulationwheelfin",
+          "monomodeon",
           "more",
           "name",
           "need",
@@ -1537,6 +1546,8 @@ window.lunrData = {
           "note",
           "number",
           "numer",
+          "omnimodeoff",
+          "omnimodeon",
           "on",
           "option",
           "other",
@@ -1546,12 +1557,14 @@ window.lunrData = {
           "panfin",
           "phaserlevel",
           "pleas",
+          "polymodeon",
           "portamento",
           "portamentotimecoars",
           "portamentotimefin",
           "registeredparametercoars",
           "registeredparameterfin",
           "reserv",
+          "resetallcontrol",
           "reson",
           "reverblevel",
           "schedul",
@@ -1571,11 +1584,13 @@ window.lunrData = {
           "soundvari",
           "specif",
           "specifi",
+          "still",
           "sustenutoped",
           "tabl",
           "time",
           "tremololevel",
           "us",
+          "usual",
           "valu",
           "view",
           "volumecoars",
@@ -2891,9 +2906,14 @@ window.lunrData = {
           "100",
           "101",
           "11",
-          "119",
           "12",
           "120",
+          "121",
+          "122",
+          "123",
+          "124",
+          "125",
+          "126",
           "127",
           "13",
           "16",
@@ -2949,6 +2969,8 @@ window.lunrData = {
           "98",
           "99",
           "abov",
+          "allnotesoff",
+          "allsoundoff",
           "avail",
           "balancecoars",
           "balancefin",
@@ -2993,6 +3015,7 @@ window.lunrData = {
           "instead",
           "legatoped",
           "list",
+          "localcontrol",
           "match",
           "mean",
           "messag",
@@ -3001,6 +3024,7 @@ window.lunrData = {
           "mode",
           "modulationwheelcoars",
           "modulationwheelfin",
+          "monomodeon",
           "more",
           "name",
           "need",
@@ -3009,6 +3033,8 @@ window.lunrData = {
           "note",
           "number",
           "numer",
+          "omnimodeoff",
+          "omnimodeon",
           "on",
           "option",
           "other",
@@ -3018,12 +3044,14 @@ window.lunrData = {
           "panfin",
           "phaserlevel",
           "pleas",
+          "polymodeon",
           "portamento",
           "portamentotimecoars",
           "portamentotimefin",
           "registeredparametercoars",
           "registeredparameterfin",
           "reserv",
+          "resetallcontrol",
           "reson",
           "reverblevel",
           "schedul",
@@ -3043,11 +3071,13 @@ window.lunrData = {
           "soundvari",
           "specif",
           "specifi",
+          "still",
           "sustenutoped",
           "tabl",
           "time",
           "tremololevel",
           "us",
+          "usual",
           "valu",
           "view",
           "volumecoars",
@@ -5074,7 +5104,7 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.53475935828877
+              "tf": 0.7211538461538461
             },
             "Output.html#sendNoteOff": {
               "ref": "Output.html#sendNoteOff",
@@ -5130,7 +5160,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.7936507936507936
+              "tf": 0.7211538461538461
             },
             "OutputChannel.html#sendNoteOff": {
               "ref": "OutputChannel.html#sendNoteOff",
@@ -5760,11 +5790,11 @@ window.lunrData = {
               "docs": {
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
-                  "tf": 0.267379679144385
+                  "tf": 0.2403846153846154
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.26455026455026454
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -5776,11 +5806,11 @@ window.lunrData = {
               "docs": {
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
-                  "tf": 0.267379679144385
+                  "tf": 0.2403846153846154
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.26455026455026454
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -5791,7 +5821,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#setNonRegisteredParameter": {
                 "ref": "Output.html#setNonRegisteredParameter",
@@ -5799,7 +5829,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#setNonRegisteredParameter": {
                 "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -5816,26 +5846,14 @@ window.lunrData = {
             }
           },
           "1": {
-            "9": {
-              "docs": {
-                "Output.html#sendControlChange": {
-                  "ref": "Output.html#sendControlChange",
-                  "tf": 0.267379679144385
-                },
-                "OutputChannel.html#sendControlChange": {
-                  "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.5291005291005291
-                }
-              }
-            },
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -5856,7 +5874,7 @@ window.lunrData = {
                 },
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
-                  "tf": 0.267379679144385
+                  "tf": 0.4807692307692308
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
@@ -5864,7 +5882,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.26455026455026454
+                  "tf": 0.4807692307692308
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -5878,9 +5896,17 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -5894,9 +5920,17 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -5910,6 +5944,10 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "Output.html#setNonRegisteredParameter": {
                   "ref": "Output.html#setNonRegisteredParameter",
                   "tf": 1.2295081967213115
@@ -5917,6 +5955,10 @@ window.lunrData = {
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "OutputChannel.html#setNonRegisteredParameter": {
                   "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -5934,9 +5976,17 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -5950,9 +6000,17 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -5966,9 +6024,17 @@ window.lunrData = {
                   "ref": "Output.html#sendChannelMode",
                   "tf": 0.78125
                 },
+                "Output.html#sendControlChange": {
+                  "ref": "Output.html#sendControlChange",
+                  "tf": 0.2403846153846154
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.8064516129032258
+                },
+                "OutputChannel.html#sendControlChange": {
+                  "ref": "OutputChannel.html#sendControlChange",
+                  "tf": 0.2403846153846154
                 },
                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -6008,7 +6074,7 @@ window.lunrData = {
                 },
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
-                  "tf": 0.267379679144385
+                  "tf": 0.9615384615384616
                 },
                 "Output.html#sendNoteOff": {
                   "ref": "Output.html#sendNoteOff",
@@ -6048,7 +6114,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.26455026455026454
+                  "tf": 0.9615384615384616
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -6151,7 +6217,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#setPitchBendRange": {
                 "ref": "Output.html#setPitchBendRange",
@@ -6159,7 +6225,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#setPitchBendRange": {
                 "ref": "OutputChannel.html#setPitchBendRange",
@@ -6179,11 +6245,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CHANNEL_VOICE_MESSAGES",
@@ -6263,7 +6329,7 @@ window.lunrData = {
               },
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html": {
                 "ref": "OutputChannel.html",
@@ -6275,7 +6341,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "Utilities.html#sanitizeChannels": {
                 "ref": "Utilities.html#sanitizeChannels",
@@ -6302,11 +6368,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6318,11 +6384,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6334,11 +6400,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6397,7 +6463,7 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#sendNoteOff": {
               "ref": "Output.html#sendNoteOff",
@@ -6453,7 +6519,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#sendNoteOff": {
               "ref": "OutputChannel.html#sendNoteOff",
@@ -6736,7 +6802,7 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
@@ -6752,7 +6818,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -6823,11 +6889,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6839,11 +6905,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6855,11 +6921,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6871,11 +6937,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "Utilities.html#guessNoteNumber": {
                 "ref": "Utilities.html#guessNoteNumber",
@@ -6891,11 +6957,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6907,11 +6973,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6927,11 +6993,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -6950,7 +7016,7 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
@@ -6962,7 +7028,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#setRegisteredParameter": {
               "ref": "OutputChannel.html#setRegisteredParameter",
@@ -7026,11 +7092,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7042,7 +7108,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
@@ -7050,7 +7116,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7062,11 +7128,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7078,11 +7144,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7094,11 +7160,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7109,7 +7175,7 @@ window.lunrData = {
           "docs": {
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
@@ -7117,7 +7183,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7152,7 +7218,7 @@ window.lunrData = {
           "docs": {
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
@@ -7160,7 +7226,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7233,7 +7299,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#setMasterTuning": {
                 "ref": "Output.html#setMasterTuning",
@@ -7241,7 +7307,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#setMasterTuning": {
                 "ref": "OutputChannel.html#setMasterTuning",
@@ -7268,7 +7334,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#setMasterTuning": {
                 "ref": "Output.html#setMasterTuning",
@@ -7276,7 +7342,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#setMasterTuning": {
                 "ref": "OutputChannel.html#setMasterTuning",
@@ -7292,7 +7358,7 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
@@ -7300,7 +7366,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7312,11 +7378,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7328,11 +7394,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7344,11 +7410,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7367,11 +7433,11 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7388,11 +7454,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7404,11 +7470,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7420,11 +7486,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7440,11 +7506,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7456,11 +7522,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7472,11 +7538,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7488,11 +7554,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7504,11 +7570,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               }
             }
           },
@@ -7516,11 +7582,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7532,11 +7598,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7547,7 +7613,7 @@ window.lunrData = {
           "docs": {
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#setNonRegisteredParameter": {
               "ref": "Output.html#setNonRegisteredParameter",
@@ -7555,7 +7621,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -7576,11 +7642,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7592,11 +7658,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7608,11 +7674,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7624,11 +7690,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7643,7 +7709,7 @@ window.lunrData = {
             },
             "Output.html#sendControlChange": {
               "ref": "Output.html#sendControlChange",
-              "tf": 0.267379679144385
+              "tf": 0.2403846153846154
             },
             "Output.html#setNonRegisteredParameter": {
               "ref": "Output.html#setNonRegisteredParameter",
@@ -7655,7 +7721,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.26455026455026454
+              "tf": 0.2403846153846154
             },
             "OutputChannel.html#setNonRegisteredParameter": {
               "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -7676,11 +7742,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7692,11 +7758,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7708,11 +7774,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7724,11 +7790,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7740,11 +7806,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7756,11 +7822,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7776,11 +7842,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7796,11 +7862,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -7816,11 +7882,11 @@ window.lunrData = {
             "docs": {
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -8307,7 +8373,7 @@ window.lunrData = {
                     },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html#send": {
                       "ref": "OutputChannel.html#send",
@@ -8315,7 +8381,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
@@ -8412,9 +8478,17 @@ window.lunrData = {
                                   "ref": "Output.html#sendChannelMode",
                                   "tf": 0.78125
                                 },
+                                "Output.html#sendControlChange": {
+                                  "ref": "Output.html#sendControlChange",
+                                  "tf": 0.2403846153846154
+                                },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
                                   "tf": 0.8064516129032258
+                                },
+                                "OutputChannel.html#sendControlChange": {
+                                  "ref": "OutputChannel.html#sendControlChange",
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -8449,9 +8523,17 @@ window.lunrData = {
                                   "ref": "Output.html#sendChannelMode",
                                   "tf": 0.78125
                                 },
+                                "Output.html#sendControlChange": {
+                                  "ref": "Output.html#sendControlChange",
+                                  "tf": 0.2403846153846154
+                                },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
                                   "tf": 0.8064516129032258
+                                },
+                                "OutputChannel.html#sendControlChange": {
+                                  "ref": "OutputChannel.html#sendControlChange",
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -8534,7 +8616,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
@@ -8546,7 +8628,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#setPitchBendRange": {
                     "ref": "OutputChannel.html#setPitchBendRange",
@@ -10429,7 +10511,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "Output.html#sendNoteOn": {
                           "ref": "Output.html#sendNoteOn",
@@ -10441,7 +10523,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
@@ -10723,11 +10805,11 @@ window.lunrData = {
                 "docs": {
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   }
                 }
               }
@@ -11421,7 +11503,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#setRegisteredParameter": {
                     "ref": "Output.html#setRegisteredParameter",
@@ -11437,7 +11519,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#setRegisteredParameter": {
                     "ref": "OutputChannel.html#setRegisteredParameter",
@@ -11825,11 +11907,11 @@ window.lunrData = {
                           "docs": {
                             "Output.html#sendControlChange": {
                               "ref": "Output.html#sendControlChange",
-                              "tf": 0.267379679144385
+                              "tf": 0.2403846153846154
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.26455026455026454
+                              "tf": 0.2403846153846154
                             },
                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -11933,9 +12015,17 @@ window.lunrData = {
                                     "ref": "Output.html#sendChannelMode",
                                     "tf": 1.5625
                                   },
+                                  "Output.html#sendControlChange": {
+                                    "ref": "Output.html#sendControlChange",
+                                    "tf": 0.2403846153846154
+                                  },
                                   "OutputChannel.html#sendChannelMode": {
                                     "ref": "OutputChannel.html#sendChannelMode",
                                     "tf": 1.6129032258064515
+                                  },
+                                  "OutputChannel.html#sendControlChange": {
+                                    "ref": "OutputChannel.html#sendControlChange",
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -12205,7 +12295,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.53475935828877
+                    "tf": 0.4807692307692308
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -12309,7 +12399,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.5291005291005291
+                    "tf": 0.4807692307692308
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -12992,7 +13082,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.53475935828877
+                    "tf": 0.4807692307692308
                   },
                   "Output.html#setPitchBendRange": {
                     "ref": "Output.html#setPitchBendRange",
@@ -13004,7 +13094,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.5291005291005291
+                    "tf": 0.4807692307692308
                   },
                   "OutputChannel.html#setPitchBendRange": {
                     "ref": "OutputChannel.html#setPitchBendRange",
@@ -13087,7 +13177,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "Output.html#sendNoteOn": {
                         "ref": "Output.html#sendNoteOn",
@@ -13127,7 +13217,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
@@ -13485,7 +13575,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 1.8716577540106951
+                        "tf": 1.6826923076923077
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -13601,7 +13691,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 1.8518518518518516
+                        "tf": 1.6826923076923077
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -13843,11 +13933,11 @@ window.lunrData = {
                                                 "docs": {
                                                   "Output.html#sendControlChange": {
                                                     "ref": "Output.html#sendControlChange",
-                                                    "tf": 0.267379679144385
+                                                    "tf": 0.2403846153846154
                                                   },
                                                   "OutputChannel.html#sendControlChange": {
                                                     "ref": "OutputChannel.html#sendControlChange",
-                                                    "tf": 0.26455026455026454
+                                                    "tf": 0.2403846153846154
                                                   },
                                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -13867,11 +13957,11 @@ window.lunrData = {
                                             "docs": {
                                               "Output.html#sendControlChange": {
                                                 "ref": "Output.html#sendControlChange",
-                                                "tf": 0.267379679144385
+                                                "tf": 0.2403846153846154
                                               },
                                               "OutputChannel.html#sendControlChange": {
                                                 "ref": "OutputChannel.html#sendControlChange",
-                                                "tf": 0.26455026455026454
+                                                "tf": 0.2403846153846154
                                               },
                                               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -13917,7 +14007,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#setOmniMode": {
                     "ref": "Output.html#setOmniMode",
@@ -13945,7 +14035,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#setOmniMode": {
                     "ref": "OutputChannel.html#setOmniMode",
@@ -13988,11 +14078,11 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "Utilities.html#offsetNumber": {
                     "ref": "Utilities.html#offsetNumber",
@@ -14030,9 +14120,17 @@ window.lunrData = {
                                 "ref": "Output.html#sendChannelMode",
                                 "tf": 1.5625
                               },
+                              "Output.html#sendControlChange": {
+                                "ref": "Output.html#sendControlChange",
+                                "tf": 0.2403846153846154
+                              },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
                                 "tf": 1.6129032258064515
+                              },
+                              "OutputChannel.html#sendControlChange": {
+                                "ref": "OutputChannel.html#sendControlChange",
+                                "tf": 0.2403846153846154
                               },
                               "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -14184,7 +14282,7 @@ window.lunrData = {
                     },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
@@ -14196,7 +14294,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "Utilities.html#toNoteNumber": {
                       "ref": "Utilities.html#toNoteNumber",
@@ -15153,11 +15251,11 @@ window.lunrData = {
                             "docs": {
                               "Output.html#sendControlChange": {
                                 "ref": "Output.html#sendControlChange",
-                                "tf": 0.267379679144385
+                                "tf": 0.2403846153846154
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.26455026455026454
+                                "tf": 0.2403846153846154
                               },
                               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -15184,11 +15282,11 @@ window.lunrData = {
                                               "docs": {
                                                 "Output.html#sendControlChange": {
                                                   "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -15208,11 +15306,11 @@ window.lunrData = {
                                           "docs": {
                                             "Output.html#sendControlChange": {
                                               "ref": "Output.html#sendControlChange",
-                                              "tf": 0.267379679144385
+                                              "tf": 0.2403846153846154
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.26455026455026454
+                                              "tf": 0.2403846153846154
                                             },
                                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -15392,9 +15490,17 @@ window.lunrData = {
                                 "ref": "Output.html#sendChannelMode",
                                 "tf": 0.78125
                               },
+                              "Output.html#sendControlChange": {
+                                "ref": "Output.html#sendControlChange",
+                                "tf": 0.2403846153846154
+                              },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
                                 "tf": 0.8064516129032258
+                              },
+                              "OutputChannel.html#sendControlChange": {
+                                "ref": "OutputChannel.html#sendControlChange",
+                                "tf": 0.2403846153846154
                               },
                               "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -15753,7 +15859,7 @@ window.lunrData = {
                   "docs": {
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "Output.html#sendTimecodeQuarterFrame": {
                       "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -15761,7 +15867,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -16185,11 +16291,11 @@ window.lunrData = {
                         "docs": {
                           "Output.html#sendControlChange": {
                             "ref": "Output.html#sendControlChange",
-                            "tf": 0.267379679144385
+                            "tf": 0.2403846153846154
                           },
                           "OutputChannel.html#sendControlChange": {
                             "ref": "OutputChannel.html#sendControlChange",
-                            "tf": 0.26455026455026454
+                            "tf": 0.2403846153846154
                           },
                           "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                             "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -16209,11 +16315,11 @@ window.lunrData = {
                     "docs": {
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -16436,11 +16542,11 @@ window.lunrData = {
                               "docs": {
                                 "Output.html#sendControlChange": {
                                   "ref": "Output.html#sendControlChange",
-                                  "tf": 0.267379679144385
+                                  "tf": 0.2403846153846154
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.26455026455026454
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -16707,6 +16813,10 @@ window.lunrData = {
                                           "ref": "Output.html#sendChannelMode",
                                           "tf": 1.5625
                                         },
+                                        "Output.html#sendControlChange": {
+                                          "ref": "Output.html#sendControlChange",
+                                          "tf": 0.2403846153846154
+                                        },
                                         "OutputChannel.html#resetAllControllers": {
                                           "ref": "OutputChannel.html#resetAllControllers",
                                           "tf": 683.3333333333334
@@ -16714,6 +16824,10 @@ window.lunrData = {
                                         "OutputChannel.html#sendChannelMode": {
                                           "ref": "OutputChannel.html#sendChannelMode",
                                           "tf": 1.6129032258064515
+                                        },
+                                        "OutputChannel.html#sendControlChange": {
+                                          "ref": "OutputChannel.html#sendControlChange",
+                                          "tf": 0.2403846153846154
                                         },
                                         "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                           "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -16737,11 +16851,11 @@ window.lunrData = {
                     "docs": {
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       }
                     }
                   }
@@ -16791,11 +16905,11 @@ window.lunrData = {
                   "docs": {
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -17303,11 +17417,11 @@ window.lunrData = {
                                                         "docs": {
                                                           "Output.html#sendControlChange": {
                                                             "ref": "Output.html#sendControlChange",
-                                                            "tf": 0.267379679144385
+                                                            "tf": 0.2403846153846154
                                                           },
                                                           "OutputChannel.html#sendControlChange": {
                                                             "ref": "OutputChannel.html#sendControlChange",
-                                                            "tf": 0.26455026455026454
+                                                            "tf": 0.2403846153846154
                                                           },
                                                           "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                             "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -17327,11 +17441,11 @@ window.lunrData = {
                                                     "docs": {
                                                       "Output.html#sendControlChange": {
                                                         "ref": "Output.html#sendControlChange",
-                                                        "tf": 0.267379679144385
+                                                        "tf": 0.2403846153846154
                                                       },
                                                       "OutputChannel.html#sendControlChange": {
                                                         "ref": "OutputChannel.html#sendControlChange",
-                                                        "tf": 0.26455026455026454
+                                                        "tf": 0.2403846153846154
                                                       },
                                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -17417,11 +17531,11 @@ window.lunrData = {
                               "docs": {
                                 "Output.html#sendControlChange": {
                                   "ref": "Output.html#sendControlChange",
-                                  "tf": 0.267379679144385
+                                  "tf": 0.2403846153846154
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.26455026455026454
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -20069,7 +20183,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#setNonRegisteredParameter": {
                         "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -20738,11 +20852,11 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       },
                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -20763,11 +20877,11 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       },
                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -20806,11 +20920,11 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       },
                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -20830,11 +20944,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendControlChange": {
                                     "ref": "Output.html#sendControlChange",
-                                    "tf": 0.267379679144385
+                                    "tf": 0.2403846153846154
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.26455026455026454
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21307,11 +21421,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21323,11 +21437,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21339,11 +21453,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21355,11 +21469,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21389,11 +21503,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21405,11 +21519,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21421,11 +21535,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -21437,11 +21551,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -22182,7 +22296,7 @@ window.lunrData = {
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "Output.html#setChannelAftertouch": {
                           "ref": "Output.html#setChannelAftertouch",
@@ -22242,7 +22356,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.5291005291005291
+                          "tf": 0.4807692307692308
                         },
                         "OutputChannel.html#sendNoteOff": {
                           "ref": "OutputChannel.html#sendNoteOff",
@@ -22484,7 +22598,7 @@ window.lunrData = {
                           },
                           "Output.html#sendControlChange": {
                             "ref": "Output.html#sendControlChange",
-                            "tf": 0.267379679144385
+                            "tf": 0.2403846153846154
                           },
                           "Output.html#sendNoteOff": {
                             "ref": "Output.html#sendNoteOff",
@@ -22555,7 +22669,7 @@ window.lunrData = {
                     },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 1.3368983957219251
+                      "tf": 1.201923076923077
                     },
                     "Output.html#setProgram": {
                       "ref": "Output.html#setProgram",
@@ -22579,7 +22693,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 1.3227513227513228
+                      "tf": 1.201923076923077
                     },
                     "OutputChannel.html#setProgram": {
                       "ref": "OutputChannel.html#setProgram",
@@ -22754,11 +22868,11 @@ window.lunrData = {
                               "docs": {
                                 "Output.html#sendControlChange": {
                                   "ref": "Output.html#sendControlChange",
-                                  "tf": 0.267379679144385
+                                  "tf": 0.2403846153846154
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.26455026455026454
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -22865,7 +22979,7 @@ window.lunrData = {
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 21.336898395721924
+                          "tf": 21.201923076923077
                         },
                         "Output.html#setLocalControl": {
                           "ref": "Output.html#setLocalControl",
@@ -22885,7 +22999,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 21.322751322751323
+                          "tf": 21.201923076923077
                         },
                         "OutputChannel.html#setLocalControl": {
                           "ref": "OutputChannel.html#setLocalControl",
@@ -23007,11 +23121,11 @@ window.lunrData = {
                       "docs": {
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         }
                       }
                     }
@@ -23343,7 +23457,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.53475935828877
+                        "tf": 0.4807692307692308
                       },
                       "Output.html#setOmniMode": {
                         "ref": "Output.html#setOmniMode",
@@ -23355,7 +23469,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.5291005291005291
+                        "tf": 0.4807692307692308
                       },
                       "OutputChannel.html#setOmniMode": {
                         "ref": "OutputChannel.html#setOmniMode",
@@ -23701,11 +23815,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendControlChange": {
                                     "ref": "Output.html#sendControlChange",
-                                    "tf": 0.267379679144385
+                                    "tf": 0.2403846153846154
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.26455026455026454
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24191,11 +24305,11 @@ window.lunrData = {
                                       "docs": {
                                         "Output.html#sendControlChange": {
                                           "ref": "Output.html#sendControlChange",
-                                          "tf": 0.267379679144385
+                                          "tf": 0.2403846153846154
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.26455026455026454
+                                          "tf": 0.2403846153846154
                                         },
                                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24215,11 +24329,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     },
                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24892,11 +25006,11 @@ window.lunrData = {
                                               "docs": {
                                                 "Output.html#sendControlChange": {
                                                   "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24916,11 +25030,11 @@ window.lunrData = {
                                           "docs": {
                                             "Output.html#sendControlChange": {
                                               "ref": "Output.html#sendControlChange",
-                                              "tf": 0.267379679144385
+                                              "tf": 0.2403846153846154
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.26455026455026454
+                                              "tf": 0.2403846153846154
                                             },
                                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24945,11 +25059,11 @@ window.lunrData = {
                                               "docs": {
                                                 "Output.html#sendControlChange": {
                                                   "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -24969,11 +25083,11 @@ window.lunrData = {
                                           "docs": {
                                             "Output.html#sendControlChange": {
                                               "ref": "Output.html#sendControlChange",
-                                              "tf": 0.267379679144385
+                                              "tf": 0.2403846153846154
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.26455026455026454
+                                              "tf": 0.2403846153846154
                                             },
                                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -25833,7 +25947,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -25857,7 +25971,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -25950,11 +26064,11 @@ window.lunrData = {
                                               "docs": {
                                                 "Output.html#sendControlChange": {
                                                   "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -25974,11 +26088,11 @@ window.lunrData = {
                                           "docs": {
                                             "Output.html#sendControlChange": {
                                               "ref": "Output.html#sendControlChange",
-                                              "tf": 0.267379679144385
+                                              "tf": 0.2403846153846154
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.26455026455026454
+                                              "tf": 0.2403846153846154
                                             },
                                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -26165,11 +26279,11 @@ window.lunrData = {
                         "docs": {
                           "Output.html#sendControlChange": {
                             "ref": "Output.html#sendControlChange",
-                            "tf": 0.267379679144385
+                            "tf": 0.2403846153846154
                           },
                           "OutputChannel.html#sendControlChange": {
                             "ref": "OutputChannel.html#sendControlChange",
-                            "tf": 0.26455026455026454
+                            "tf": 0.2403846153846154
                           },
                           "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                             "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -26189,11 +26303,11 @@ window.lunrData = {
                       "docs": {
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         },
                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -26884,7 +26998,7 @@ window.lunrData = {
                     },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
@@ -26892,7 +27006,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -27563,7 +27677,7 @@ window.lunrData = {
               },
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.267379679144385
+                "tf": 0.2403846153846154
               },
               "Output.html#sendNoteOff": {
                 "ref": "Output.html#sendNoteOff",
@@ -27591,7 +27705,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.26455026455026454
+                "tf": 0.2403846153846154
               },
               "OutputChannel.html#sendNoteOff": {
                 "ref": "OutputChannel.html#sendNoteOff",
@@ -30900,9 +31014,17 @@ window.lunrData = {
                                   "ref": "Output.html#sendChannelMode",
                                   "tf": 0.78125
                                 },
+                                "Output.html#sendControlChange": {
+                                  "ref": "Output.html#sendControlChange",
+                                  "tf": 0.2403846153846154
+                                },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
                                   "tf": 0.8064516129032258
+                                },
+                                "OutputChannel.html#sendControlChange": {
+                                  "ref": "OutputChannel.html#sendControlChange",
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -30917,9 +31039,17 @@ window.lunrData = {
                                 "ref": "Output.html#sendChannelMode",
                                 "tf": 0.78125
                               },
+                              "Output.html#sendControlChange": {
+                                "ref": "Output.html#sendControlChange",
+                                "tf": 0.2403846153846154
+                              },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
                                 "tf": 0.8064516129032258
+                              },
+                              "OutputChannel.html#sendControlChange": {
+                                "ref": "OutputChannel.html#sendControlChange",
+                                "tf": 0.2403846153846154
                               },
                               "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -31885,7 +32015,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.53475935828877
+                    "tf": 0.4807692307692308
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -31989,7 +32119,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.5291005291005291
+                    "tf": 0.4807692307692308
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -32200,7 +32330,7 @@ window.lunrData = {
                                       },
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendChannelMode": {
                                         "ref": "OutputChannel.html#sendChannelMode",
@@ -32208,7 +32338,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       }
                                     }
                                   }
@@ -32492,7 +32622,7 @@ window.lunrData = {
               "docs": {
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
-                  "tf": 0.53475935828877
+                  "tf": 0.4807692307692308
                 },
                 "Output.html#setNonRegisteredParameter": {
                   "ref": "Output.html#setNonRegisteredParameter",
@@ -32500,7 +32630,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.5291005291005291
+                  "tf": 0.4807692307692308
                 },
                 "OutputChannel.html#setNonRegisteredParameter": {
                   "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -32751,7 +32881,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
@@ -32759,7 +32889,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "Utilities.html#guessNoteNumber": {
                         "ref": "Utilities.html#guessNoteNumber",
@@ -33090,11 +33220,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendControlChange": {
                                     "ref": "Output.html#sendControlChange",
-                                    "tf": 0.267379679144385
+                                    "tf": 0.2403846153846154
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.26455026455026454
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -33693,6 +33823,14 @@ window.lunrData = {
                     "Output.html#sendActiveSensing": {
                       "ref": "Output.html#sendActiveSensing",
                       "tf": 2.272727272727273
+                    },
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2403846153846154
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.2403846153846154
                     }
                   }
                 }
@@ -33879,7 +34017,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "Output.html#setChannelAftertouch": {
                         "ref": "Output.html#setChannelAftertouch",
@@ -33911,7 +34049,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#setChannelAftertouch": {
                         "ref": "OutputChannel.html#setChannelAftertouch",
@@ -33998,7 +34136,7 @@ window.lunrData = {
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.53475935828877
+                          "tf": 0.4807692307692308
                         },
                         "Output.html#sendNoteOff": {
                           "ref": "Output.html#sendNoteOff",
@@ -34074,7 +34212,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#sendNoteOff": {
                           "ref": "OutputChannel.html#sendNoteOff",
@@ -34317,11 +34455,11 @@ window.lunrData = {
                       "docs": {
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         },
                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34406,11 +34544,11 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       },
                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34444,11 +34582,11 @@ window.lunrData = {
                                     "docs": {
                                       "Output.html#sendControlChange": {
                                         "ref": "Output.html#sendControlChange",
-                                        "tf": 0.267379679144385
+                                        "tf": 0.2403846153846154
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.26455026455026454
+                                        "tf": 0.2403846153846154
                                       },
                                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34462,11 +34600,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     },
                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34478,11 +34616,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     },
                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34494,11 +34632,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     }
                                   },
                                   ":": {
@@ -34523,11 +34661,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     },
                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34565,11 +34703,11 @@ window.lunrData = {
                                       "docs": {
                                         "Output.html#sendControlChange": {
                                           "ref": "Output.html#sendControlChange",
-                                          "tf": 0.267379679144385
+                                          "tf": 0.2403846153846154
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.26455026455026454
+                                          "tf": 0.2403846153846154
                                         },
                                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34596,11 +34734,11 @@ window.lunrData = {
                           "docs": {
                             "Output.html#sendControlChange": {
                               "ref": "Output.html#sendControlChange",
-                              "tf": 0.267379679144385
+                              "tf": 0.2403846153846154
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.26455026455026454
+                              "tf": 0.2403846153846154
                             },
                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -34773,7 +34911,7 @@ window.lunrData = {
                         },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
-                          "tf": 0.267379679144385
+                          "tf": 0.2403846153846154
                         },
                         "Output.html#sendStop": {
                           "ref": "Output.html#sendStop",
@@ -34801,7 +34939,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.26455026455026454
+                          "tf": 0.2403846153846154
                         },
                         "OutputChannel.html#setKeyAftertouch": {
                           "ref": "OutputChannel.html#setKeyAftertouch",
@@ -35019,7 +35157,7 @@ window.lunrData = {
                       },
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.53475935828877
+                        "tf": 0.4807692307692308
                       },
                       "Output.html#sendNoteOff": {
                         "ref": "Output.html#sendNoteOff",
@@ -35067,7 +35205,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.5291005291005291
+                        "tf": 0.4807692307692308
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -35225,7 +35363,7 @@ window.lunrData = {
                     },
                     "Output.html#sendControlChange": {
                       "ref": "Output.html#sendControlChange",
-                      "tf": 0.267379679144385
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html#sendChannelMode": {
                       "ref": "OutputChannel.html#sendChannelMode",
@@ -35233,7 +35371,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.26455026455026454
+                      "tf": 0.2403846153846154
                     },
                     "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES": {
                       "ref": "WebMidi.html#MIDI_CHANNEL_MODE_MESSAGES",
@@ -35393,7 +35531,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.8021390374331552
+                    "tf": 0.7211538461538461
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -35421,7 +35559,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.7936507936507936
+                    "tf": 0.7211538461538461
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -35667,7 +35805,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -35747,7 +35885,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -36289,11 +36427,11 @@ window.lunrData = {
                                                               "docs": {
                                                                 "Output.html#sendControlChange": {
                                                                   "ref": "Output.html#sendControlChange",
-                                                                  "tf": 0.267379679144385
+                                                                  "tf": 0.2403846153846154
                                                                 },
                                                                 "OutputChannel.html#sendControlChange": {
                                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                                  "tf": 0.26455026455026454
+                                                                  "tf": 0.2403846153846154
                                                                 },
                                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -36313,11 +36451,11 @@ window.lunrData = {
                                                           "docs": {
                                                             "Output.html#sendControlChange": {
                                                               "ref": "Output.html#sendControlChange",
-                                                              "tf": 0.267379679144385
+                                                              "tf": 0.2403846153846154
                                                             },
                                                             "OutputChannel.html#sendControlChange": {
                                                               "ref": "OutputChannel.html#sendControlChange",
-                                                              "tf": 0.26455026455026454
+                                                              "tf": 0.2403846153846154
                                                             },
                                                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -36478,7 +36616,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
@@ -36486,7 +36624,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
@@ -36764,7 +36902,7 @@ window.lunrData = {
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "Output.html#sendNoteOff": {
                     "ref": "Output.html#sendNoteOff",
@@ -36824,7 +36962,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -37040,11 +37178,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendControlChange": {
                                     "ref": "Output.html#sendControlChange",
-                                    "tf": 0.267379679144385
+                                    "tf": 0.2403846153846154
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.26455026455026454
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -37448,11 +37586,11 @@ window.lunrData = {
                 "docs": {
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   }
                 }
               }
@@ -38022,11 +38160,11 @@ window.lunrData = {
                               "docs": {
                                 "Output.html#sendControlChange": {
                                   "ref": "Output.html#sendControlChange",
-                                  "tf": 0.267379679144385
+                                  "tf": 0.2403846153846154
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.26455026455026454
+                                  "tf": 0.2403846153846154
                                 },
                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38046,11 +38184,11 @@ window.lunrData = {
                           "docs": {
                             "Output.html#sendControlChange": {
                               "ref": "Output.html#sendControlChange",
-                              "tf": 0.267379679144385
+                              "tf": 0.2403846153846154
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.26455026455026454
+                              "tf": 0.2403846153846154
                             },
                             "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                               "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38214,11 +38352,11 @@ window.lunrData = {
                 "docs": {
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
-                    "tf": 0.267379679144385
+                    "tf": 0.2403846153846154
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.26455026455026454
+                    "tf": 0.2403846153846154
                   }
                 }
               }
@@ -38678,11 +38816,11 @@ window.lunrData = {
                                       "docs": {
                                         "Output.html#sendControlChange": {
                                           "ref": "Output.html#sendControlChange",
-                                          "tf": 0.267379679144385
+                                          "tf": 0.2403846153846154
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.26455026455026454
+                                          "tf": 0.2403846153846154
                                         },
                                         "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                           "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38702,11 +38840,11 @@ window.lunrData = {
                                   "docs": {
                                     "Output.html#sendControlChange": {
                                       "ref": "Output.html#sendControlChange",
-                                      "tf": 0.267379679144385
+                                      "tf": 0.2403846153846154
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.26455026455026454
+                                      "tf": 0.2403846153846154
                                     },
                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38746,11 +38884,11 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendControlChange": {
                                     "ref": "Output.html#sendControlChange",
-                                    "tf": 0.267379679144385
+                                    "tf": 0.2403846153846154
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.26455026455026454
+                                    "tf": 0.2403846153846154
                                   },
                                   "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                     "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38770,11 +38908,11 @@ window.lunrData = {
                             "docs": {
                               "Output.html#sendControlChange": {
                                 "ref": "Output.html#sendControlChange",
-                                "tf": 0.267379679144385
+                                "tf": 0.2403846153846154
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.26455026455026454
+                                "tf": 0.2403846153846154
                               },
                               "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                 "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38912,11 +39050,11 @@ window.lunrData = {
                                                   "docs": {
                                                     "Output.html#sendControlChange": {
                                                       "ref": "Output.html#sendControlChange",
-                                                      "tf": 0.267379679144385
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.26455026455026454
+                                                      "tf": 0.2403846153846154
                                                     },
                                                     "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38936,11 +39074,11 @@ window.lunrData = {
                                               "docs": {
                                                 "Output.html#sendControlChange": {
                                                   "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.267379679144385
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.26455026455026454
+                                                  "tf": 0.2403846153846154
                                                 },
                                                 "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                                                   "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -38974,11 +39112,11 @@ window.lunrData = {
                     "docs": {
                       "Output.html#sendControlChange": {
                         "ref": "Output.html#sendControlChange",
-                        "tf": 0.267379679144385
+                        "tf": 0.2403846153846154
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.26455026455026454
+                        "tf": 0.2403846153846154
                       },
                       "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES": {
                         "ref": "WebMidi.html#MIDI_CONTROL_CHANGE_MESSAGES",
@@ -39478,7 +39616,7 @@ window.lunrData = {
               },
               "Output.html#sendControlChange": {
                 "ref": "Output.html#sendControlChange",
-                "tf": 0.8021390374331552
+                "tf": 0.9615384615384616
               },
               "Output.html#sendNoteOff": {
                 "ref": "Output.html#sendNoteOff",
@@ -39558,7 +39696,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.7936507936507936
+                "tf": 0.9615384615384616
               },
               "OutputChannel.html#sendNoteOff": {
                 "ref": "OutputChannel.html#sendNoteOff",
@@ -39690,6 +39828,10 @@ window.lunrData = {
                       "ref": "Output.html#send",
                       "tf": 0.847457627118644
                     },
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2403846153846154
+                    },
                     "Output.html#setLocalControl": {
                       "ref": "Output.html#setLocalControl",
                       "tf": 2.7777777777777777
@@ -39701,6 +39843,10 @@ window.lunrData = {
                     "OutputChannel.html#send": {
                       "ref": "OutputChannel.html#send",
                       "tf": 0.847457627118644
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.2403846153846154
                     },
                     "OutputChannel.html#setLocalControl": {
                       "ref": "OutputChannel.html#setLocalControl",
@@ -40298,7 +40444,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 4678
+      "length": 4708
     },
     "corpusTokens": [
       "0",
@@ -40345,7 +40491,6 @@ window.lunrData = {
       "100",
       "101",
       "11",
-      "119",
       "12",
       "120",
       "121",
@@ -42005,7 +42150,7 @@ window.lunrData = {
       "name": "sendControlChange",
       "tags": "Output#sendControlChange sendControlChange",
       "summary": "",
-      "description": "Sends a MIDI control change message to the specified channel(s) at the scheduled time. The control change message to send can be specified numerically or by using one of the following common names: bankselectcoarse (#0) modulationwheelcoarse (#1) breathcontrollercoarse (#2) footcontrollercoarse (#4) portamentotimecoarse (#5) dataentrycoarse (#6) volumecoarse (#7) balancecoarse (#8) pancoarse (#10) expressioncoarse (#11) effectcontrol1coarse (#12) effectcontrol2coarse (#13) generalpurposeslider1 (#16) generalpurposeslider2 (#17) generalpurposeslider3 (#18) generalpurposeslider4 (#19) bankselectfine (#32) modulationwheelfine (#33) breathcontrollerfine (#34) footcontrollerfine (#36) portamentotimefine (#37) dataentryfine (#38) volumefine (#39) balancefine (#40) panfine (#42) expressionfine (#43) effectcontrol1fine (#44) effectcontrol2fine (#45) holdpedal (#64) portamento (#65) sustenutopedal (#66) softpedal (#67) legatopedal (#68) hold2pedal (#69) soundvariation (#70) resonance (#71) soundreleasetime (#72) soundattacktime (#73) brightness (#74) soundcontrol6 (#75) soundcontrol7 (#76) soundcontrol8 (#77) soundcontrol9 (#78) soundcontrol10 (#79) generalpurposebutton1 (#80) generalpurposebutton2 (#81) generalpurposebutton3 (#82) generalpurposebutton4 (#83) reverblevel (#91) tremololevel (#92) choruslevel (#93) celestelevel (#94) phaserlevel (#95) databuttonincrement (#96) databuttondecrement (#97) nonregisteredparametercoarse (#98) nonregisteredparameterfine (#99) registeredparametercoarse (#100) registeredparameterfine (#101) Note: as you can see above, not all control change message have a matching common name. This does not mean you cannot use the others. It simply means you will need to use their number (0-119) instead of their name. Numbers 120 to 127 are reserved for channel mode messages. See sendChannelMode() method for more info. To view a list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification."
+      "description": "Sends a MIDI control change message to the specified channel(s) at the scheduled time. The control change message to send can be specified numerically (0-127) or by using one of the following common names: bankselectcoarse (#0) modulationwheelcoarse (#1) breathcontrollercoarse (#2) footcontrollercoarse (#4) portamentotimecoarse (#5) dataentrycoarse (#6) volumecoarse (#7) balancecoarse (#8) pancoarse (#10) expressioncoarse (#11) effectcontrol1coarse (#12) effectcontrol2coarse (#13) generalpurposeslider1 (#16) generalpurposeslider2 (#17) generalpurposeslider3 (#18) generalpurposeslider4 (#19) bankselectfine (#32) modulationwheelfine (#33) breathcontrollerfine (#34) footcontrollerfine (#36) portamentotimefine (#37) dataentryfine (#38) volumefine (#39) balancefine (#40) panfine (#42) expressionfine (#43) effectcontrol1fine (#44) effectcontrol2fine (#45) holdpedal (#64) portamento (#65) sustenutopedal (#66) softpedal (#67) legatopedal (#68) hold2pedal (#69) soundvariation (#70) resonance (#71) soundreleasetime (#72) soundattacktime (#73) brightness (#74) soundcontrol6 (#75) soundcontrol7 (#76) soundcontrol8 (#77) soundcontrol9 (#78) soundcontrol10 (#79) generalpurposebutton1 (#80) generalpurposebutton2 (#81) generalpurposebutton3 (#82) generalpurposebutton4 (#83) reverblevel (#91) tremololevel (#92) choruslevel (#93) celestelevel (#94) phaserlevel (#95) databuttonincrement (#96) databuttondecrement (#97) nonregisteredparametercoarse (#98) nonregisteredparameterfine (#99) registeredparametercoarse (#100) registeredparameterfine (#101) allsoundoff (#120) resetallcontrollers (#121) localcontrol (#122) allnotesoff (#123) omnimodeoff (#124) omnimodeon (#125) monomodeon (#126) polymodeon (#127) Note: as you can see above, not all control change message have a matching common name. This does not mean you cannot use the others. It simply means you will need to use their number (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually reserved for channel mode messages. See sendChannelMode() method for more info. To view a list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification."
     },
     "Output.html#sendNoteOff": {
       "id": "Output.html#sendNoteOff",
@@ -42386,7 +42531,7 @@ window.lunrData = {
       "name": "sendControlChange",
       "tags": "OutputChannel#sendControlChange sendControlChange",
       "summary": "",
-      "description": "Sends a MIDI control change message to the channel at the scheduled time. The control change message to send can be specified numerically (0 to 119) or by using one of the following common names: bankselectcoarse (#0) modulationwheelcoarse (#1) breathcontrollercoarse (#2) footcontrollercoarse (#4) portamentotimecoarse (#5) dataentrycoarse (#6) volumecoarse (#7) balancecoarse (#8) pancoarse (#10) expressioncoarse (#11) effectcontrol1coarse (#12) effectcontrol2coarse (#13) generalpurposeslider1 (#16) generalpurposeslider2 (#17) generalpurposeslider3 (#18) generalpurposeslider4 (#19) bankselectfine (#32) modulationwheelfine (#33) breathcontrollerfine (#34) footcontrollerfine (#36) portamentotimefine (#37) dataentryfine (#38) volumefine (#39) balancefine (#40) panfine (#42) expressionfine (#43) effectcontrol1fine (#44) effectcontrol2fine (#45) holdpedal (#64) portamento (#65) sustenutopedal (#66) softpedal (#67) legatopedal (#68) hold2pedal (#69) soundvariation (#70) resonance (#71) soundreleasetime (#72) soundattacktime (#73) brightness (#74) soundcontrol6 (#75) soundcontrol7 (#76) soundcontrol8 (#77) soundcontrol9 (#78) soundcontrol10 (#79) generalpurposebutton1 (#80) generalpurposebutton2 (#81) generalpurposebutton3 (#82) generalpurposebutton4 (#83) reverblevel (#91) tremololevel (#92) choruslevel (#93) celestelevel (#94) phaserlevel (#95) databuttonincrement (#96) databuttondecrement (#97) nonregisteredparametercoarse (#98) nonregisteredparameterfine (#99) registeredparametercoarse (#100) registeredparameterfine (#101) Note: as you can see above, not all control change message have a matching common name. This does not mean you cannot use the others. It simply means you will need to use their number (0-119) instead of their name. Numbers 120 to 127 are reserved for channel mode messages. See sendChannelMode() method for more info. To view a detailed list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification."
+      "description": "Sends a MIDI control change message to the channel at the scheduled time. The control change message to send can be specified numerically (0 to 127) or by using one of the following common names: bankselectcoarse (#0) modulationwheelcoarse (#1) breathcontrollercoarse (#2) footcontrollercoarse (#4) portamentotimecoarse (#5) dataentrycoarse (#6) volumecoarse (#7) balancecoarse (#8) pancoarse (#10) expressioncoarse (#11) effectcontrol1coarse (#12) effectcontrol2coarse (#13) generalpurposeslider1 (#16) generalpurposeslider2 (#17) generalpurposeslider3 (#18) generalpurposeslider4 (#19) bankselectfine (#32) modulationwheelfine (#33) breathcontrollerfine (#34) footcontrollerfine (#36) portamentotimefine (#37) dataentryfine (#38) volumefine (#39) balancefine (#40) panfine (#42) expressionfine (#43) effectcontrol1fine (#44) effectcontrol2fine (#45) holdpedal (#64) portamento (#65) sustenutopedal (#66) softpedal (#67) legatopedal (#68) hold2pedal (#69) soundvariation (#70) resonance (#71) soundreleasetime (#72) soundattacktime (#73) brightness (#74) soundcontrol6 (#75) soundcontrol7 (#76) soundcontrol8 (#77) soundcontrol9 (#78) soundcontrol10 (#79) generalpurposebutton1 (#80) generalpurposebutton2 (#81) generalpurposebutton3 (#82) generalpurposebutton4 (#83) reverblevel (#91) tremololevel (#92) choruslevel (#93) celestelevel (#94) phaserlevel (#95) databuttonincrement (#96) databuttondecrement (#97) nonregisteredparametercoarse (#98) nonregisteredparameterfine (#99) registeredparametercoarse (#100) registeredparameterfine (#101) allsoundoff (#120) resetallcontrollers (#121) localcontrol (#122) allnotesoff (#123) omnimodeoff (#124) omnimodeon (#125) monomodeon (#126) polymodeon (#127) Note: as you can see above, not all control change message have a matching common name. This does not mean you cannot use the others. It simply means you will need to use their number (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually reserved for channel mode messages. See sendChannelMode() method for more info. To view a detailed list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification."
     },
     "OutputChannel.html#sendNoteOff": {
       "id": "OutputChannel.html#sendNoteOff",
