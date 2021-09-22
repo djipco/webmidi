@@ -878,6 +878,11 @@ declare class WebMidi {
     } & {
         nrpn: number;
     };
+    /**
+     * An array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     */
+    get CHANNEL_EVENTS(): string[];
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
