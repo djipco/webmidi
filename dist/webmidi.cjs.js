@@ -6685,30 +6685,11 @@ class Message {
     if (this.statusByte < 240) {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
-      this.channel = (this.statusByte & 0b00001111) + 1; // if (
-      //   this.command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
-      //   this.dataBytes[0] >= 120
-      // ) {
-      //   this.channelModeMessage = true;
-      // }
+      this.channel = (this.statusByte & 0b00001111) + 1;
     } else {
       this.systemMessage = true;
       this.command = this.statusByte;
-    } // // Identify the exact type of message
-    // // if (this.channelModeMessage) {                           // channel messages
-    // if (                                                        // channel mode messages
-    //   this.command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
-    //   this.dataBytes[0] >= 120
-    // ) {
-    //   this.type = Utilities.getPropertyByValue(
-    //     WebMidi.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]
-    //   );
-    // } else if (this.channelMessage) {                           // channel messages
-    //   this.type = Utilities.getPropertyByValue(WebMidi.MIDI_CHANNEL_MESSAGES, this.command);
-    // } else if (this.systemMessage) {                            // system messages
-    //   this.type = Utilities.getPropertyByValue(WebMidi.MIDI_SYSTEM_MESSAGES, this.command);
-    // }
-
+    }
 
     if (this.channelMessage) {
       // channel messages
@@ -7878,8 +7859,8 @@ class WebMidi extends e {
       resetallcontrollers: 121,
       localcontrol: 122,
       allnotesoff: 123,
-      omnimodeon: 124,
-      omnimodeoff: 125,
+      omnimodeoff: 124,
+      omnimodeon: 125,
       monomodeon: 126,
       polymodeon: 127
     };
