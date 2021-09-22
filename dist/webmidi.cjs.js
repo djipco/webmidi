@@ -6719,7 +6719,9 @@ class Message {
      * @readonly
      */
 
-    this.channel = undefined; // Assign values to property that vary according to whether they are channel-specific or system
+    this.channel = undefined; // Extract data bytes for all messages (except sysex)
+
+    if (this.statusByte !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Assign values to property that vary according to whether they are channel-specific or system
 
     if (this.statusByte < 240) {
       this.channelMessage = true;
@@ -6733,10 +6735,8 @@ class Message {
     } else {
       this.systemMessage = true;
       this.command = this.statusByte;
-    } // Now that the command is ready, we can extract data bytes for all messages except sysex
+    } // Identify the exact type of message
 
-
-    if (this.command !== wm.MIDI_SYSTEM_MESSAGES.sysex) this.dataBytes = this.data.slice(1); // Identify the exact type of message
 
     if (this.channelModeMessage) {
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]); // for (let value in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
