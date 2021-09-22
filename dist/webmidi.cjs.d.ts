@@ -857,7 +857,6 @@ declare class WebMidi {
      * - `noteon`: 0x9 (9)
      * - `keyaftertouch`: 0xA (10)
      * - `controlchange`: 0xB (11)
-     * - `channelmode`: 0xB (11)
      * - `nrpn`: 0xB (11)
      * - `programchange`: 0xC (12)
      * - `channelaftertouch`: 0xD (13)
@@ -877,7 +876,6 @@ declare class WebMidi {
         channelaftertouch: number;
         pitchbend: number;
     } & {
-        channelmode: number;
         nrpn: number;
     };
     get MIDI_CHANNEL_MESSAGES(): {
@@ -2866,7 +2864,6 @@ declare class e {
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#controlchange
- * @fires InputChannel#channelmode
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
