@@ -1005,10 +1005,11 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let index = 0;
-      VIRTUAL_OUTPUT.on("message", assert);
+      const max = 127;
 
       // Act
-      for (let i = 0; i <= 119; i++) WEBMIDI_OUTPUT.channels[1].sendControlChange(i, 123);
+      VIRTUAL_OUTPUT.on("message", assert);
+      for (let i = 0; i <= max; i++) WEBMIDI_OUTPUT.channels[1].sendControlChange(i, 123);
 
       // Assert
       function assert(deltaTime, message) {
@@ -1017,7 +1018,7 @@ describe("OutputChannel Object", function() {
         expect(message[1]).to.equal(index);
         index++;
 
-        if (index > 119) {
+        if (index > max) {
           VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }
@@ -1090,6 +1091,15 @@ describe("OutputChannel Object", function() {
         ["nonregisteredparameterfine", 99],
         ["registeredparametercoarse", 100],
         ["registeredparameterfine", 101],
+
+        ["allsoundoff", 120],
+        ["resetallcontrollers", 121],
+        ["localcontrol", 122],
+        ["allnotesoff", 123],
+        ["omnimodeoff", 124],
+        ["omnimodeon", 125],
+        ["monomodeon", 126],
+        ["polymodeon", 127]
       ];
       VIRTUAL_OUTPUT.on("message", assert);
 
@@ -1136,7 +1146,7 @@ describe("OutputChannel Object", function() {
       // Arrange
       let values = [
         -1,
-        120
+        128
       ];
 
       // Act
