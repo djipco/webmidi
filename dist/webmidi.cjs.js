@@ -1375,7 +1375,7 @@ class InputChannel extends e {
     this.emit(channelModeEvent.type, channelModeEvent); // Make a shallow copy of the incoming event so we can use it as the new event.
 
     const event = Object.assign({}, e);
-    event.type = event.message.type;
+    event.type = event.controller.name;
     /**
      * Event emitted when an "all sound off" channel-mode MIDI message has been received.
      *
