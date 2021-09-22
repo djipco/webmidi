@@ -2506,16 +2506,16 @@ class Input extends e {
       } // Validation
 
 
-      if ( // WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
-      wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined && // WebMidi.CHANNEL_EVENTS.includes(event) &&
+      options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
     let listeners = []; // Check if the event is channel-specific or input-wide
-    // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
 
-    if (!wm.CHANNEL_EVENTS.includes(event)) {
+    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+      // if (!WebMidi.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       utils.sanitizeChannels(options.channels).forEach(ch => {
@@ -2686,14 +2686,14 @@ class Input extends e {
       } // Validation
 
 
-      if ( // WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
-      wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined && // WebMidi.CHANNEL_EVENTS.includes(event) &&
+      options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
-    } // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    }
 
-
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+      // if (WebMidi.CHANNEL_EVENTS.includes(event)) {
       return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
@@ -2748,10 +2748,10 @@ class Input extends e {
       utils.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
       return super.removeListener();
     } // If the event is specified, check if it's channel-specific or input-wide.
-    // if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
 
 
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+      // if (WebMidi.CHANNEL_EVENTS.includes(event)) {
       utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
