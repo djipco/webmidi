@@ -619,8 +619,8 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 ## `output.sendControlChange(controller, [value], [options])` ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
-control change message to send can be specified numerically or by using one of the following
-common names:
+control change message to send can be specified numerically (0-127) or by using one of the
+following common names:
 
  * `bankselectcoarse` (#0)
  * `modulationwheelcoarse` (#1)
@@ -682,10 +682,20 @@ common names:
  * `registeredparametercoarse` (#100)
  * `registeredparameterfine` (#101)
 
+ * `allsoundoff` (#120)
+ * `resetallcontrollers` (#121)
+ * `localcontrol` (#122)
+ * `allnotesoff` (#123)
+ * `omnimodeoff` (#124)
+ * `omnimodeon` (#125)
+ * `monomodeon` (#126)
+ * `polymodeon` (#127)
+
 Note: as you can see above, not all control change message have a matching common name. This
 does not mean you cannot use the others. It simply means you will need to use their number
-(0-119) instead of their name. Numbers 120 to 127 are reserved for *channel mode* messages. See
-[sendChannelMode()](#Output+sendChannelMode) method for more info.
+(0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
+reserved for *channel mode* messages. See [sendChannelMode()](#Output+sendChannelMode)
+method for more info.
 
 To view a list of all available `control change` messages, please consult "Table 3 - Control
 Change Messages" from the [MIDI Messages](
@@ -697,13 +707,13 @@ specification.
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
-- <code>RangeError</code> Controller numbers must be between 0 and 119.
+- <code>RangeError</code> Controller numbers must be between 0 and 127.
 - <code>RangeError</code> Invalid controller name.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| controller | <code>number</code> \| <code>string</code> |  | The MIDI controller name or number (0-119). |
+| controller | <code>number</code> \| <code>string</code> |  | The MIDI controller name or number (0-127). |
 | [value] | <code>number</code> | <code>0</code> | The value to send (0-127). |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
