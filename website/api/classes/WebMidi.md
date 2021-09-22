@@ -56,8 +56,6 @@ others.
 
     * [`.MIDI_CHANNEL_VOICE_MESSAGES`](#WebMidi+MIDI_CHANNEL_VOICE_MESSAGES) : <code>enum</code>
 
-    * ~~[`.MIDI_CHANNEL_MESSAGES`](#WebMidi+MIDI_CHANNEL_MESSAGES) : <code>enum</code>~~
-
     * [`.MIDI_CHANNEL_MODE_MESSAGES`](#WebMidi+MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
 
     * [`.MIDI_CONTROL_CHANGE_MESSAGES`](#WebMidi+MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
@@ -79,8 +77,6 @@ others.
     * [`.getOutputByName(name)`](#WebMidi+getOutputByName) ⇒ <code>Output</code> \| <code>false</code>
 
     * [`.getOutputById(id)`](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
-
-    * [`.getOctave(number)`](#WebMidi+getOctave) ⇒ <code>number</code> \| <code>false</code>
 
     * [`"error"`](#WebMidi+event_error)
 
@@ -307,22 +303,6 @@ Enum of all MIDI channel voice messages and their associated numerical value:
 -->
 **Read only**: true  
 **Since**: 3.0.0  
-
-* * *
-
-<a name="WebMidi+MIDI_CHANNEL_MESSAGES"></a>
-
-## ~~`webMidi.MIDI\_CHANNEL\_MESSAGES` : <code>enum</code>~~
-***Deprecated***
-
-Enum of all MIDI channel voice messages and their associated numerical value. Note that it
-has been deprecated since v3.0. You should now use
-[MIDI_CHANNEL_VOICE_MESSAGES](WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 2.0.0  
 
 * * *
 
@@ -693,28 +673,6 @@ matching output can be found, the method returns `false`.
 | Param | Type | Description |
 | --- | --- | --- |
 | id | <code>string</code> | The ID string of the port. IDs can be viewed by looking at the [outputs](#WebMidi+outputs) array. |
-
-
-* * *
-
-<a name="WebMidi+getOctave"></a>
-
-## `webMidi.getOctave(number)` ⇒ <code>number</code> \| <code>false</code>
-Returns the octave number for the specified MIDI note number (0-127). By default, the value is
-based on middle C (note number 60) being placed on the 4th octave (C4).
-
-**Note**: since v3.x, this method returns `false` instead of `undefined` when the value cannot
-be parsed to a valid octave.
-
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
-**Returns**: <code>number</code> \| <code>false</code> - The octave (as a signed integer) or `false` if the value could not be
-parsed to a valid octave.  
-**Since**: 2.0.0-rc.6  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | An integer representing a valid MIDI note number (between 0 and 127). |
 
 
 * * *

@@ -1,7 +1,7 @@
 <a name="InputChannel"></a>
 
 # InputChannel
-The `InputChannel` class represents an input MIDI channel (1-16) from a single input device. This
+The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
 All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
@@ -20,7 +20,7 @@ details.
 
 <!--**Kind**: global class  
 -->
-**Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), [<code>channelmode</code>](#InputChannel+event_channelmode), [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers)  
+**Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), <code>InputChannel#event:channelmode</code>, [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers)  
 **Since**: 3.0.0  
 
 
@@ -49,8 +49,6 @@ details.
     * [`"keyaftertouch"`](#InputChannel+event_keyaftertouch)
 
     * [`"controlchange"`](#InputChannel+event_controlchange)
-
-    * [`"channelmode"`](#InputChannel+event_channelmode)
 
     * [`"programchange"`](#InputChannel+event_programchange)
 
@@ -185,7 +183,7 @@ found.
 <a name="InputChannel+event_midimessage"></a>
 
 ## `"midimessage"`
-Event emitted when a MIDI message of any kind is received by the `InputChannel`.
+Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
@@ -193,15 +191,14 @@ Event emitted when a MIDI message of any kind is received by the `InputChannel`.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| type | <code>string</code> | `"midimessage"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.dataBytes | <code>Array.&lt;number&gt;</code> | The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
-| event.statusByte | <code>number</code> | The message's status byte. |
-| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| target | <code>Input</code> | The `InputChannel` that triggered the event. |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"midimessage"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+| event.statusByte | <code>number</code> | The message's status byte  (deprecated, use the `message` object instead). |
+| event.dataBytes | <code>Array.&lt;number&gt;</code> | The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead). |
 
 
 * * *
@@ -218,11 +215,8 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"noteoff"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | note | <code>Object</code> | A [Note](Note) object containing information such as note name, octave and release velocity. |
 | value | <code>number</code> | The release velocity amount expressed as a float between 0 and 1. |
@@ -268,11 +262,8 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"keyaftertouch"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | identifier | <code>string</code> | The note identifier of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level. |
 | key | <code>number</code> | The MIDI note number of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level. |
@@ -295,38 +286,8 @@ Event emitted when a **control change** MIDI message has been received.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"controlchange"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
-| controller | <code>Object</code> |  |
-| controller.number | <code>Object</code> | The number of the controller. |
-| controller.name | <code>Object</code> | The usual name or function of the controller. |
-| value | <code>number</code> | The value expressed as a float between 0 and 1. |
-| rawValue | <code>number</code> | The value expressed as an integer (between 0 and 127). |
-
-
-* * *
-
-<a name="InputChannel+event_channelmode"></a>
-
-## `"channelmode"`
-Event emitted when a **channel mode** MIDI message has been received.
-
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | `"channelmode"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
-| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | controller | <code>Object</code> |  |
 | controller.number | <code>Object</code> | The number of the controller. |
@@ -349,14 +310,11 @@ Event emitted when a **program change** MIDI message has been received.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"programchange"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>number</code> | The value expressed as an integer between 1 and 128. |
-| rawValue | <code>number</code> | The value expressed as an integer between 0 and 127. |
+| rawValue | <code>number</code> | The value expressed as an integer between 0 and 127.. |
 
 
 * * *
@@ -373,11 +331,8 @@ Event emitted when a control change MIDI message has been received.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"channelaftertouch"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>number</code> | The value expressed as a float between 0 and 1. |
 | rawValue | <code>number</code> | The value expressed as an integer (between 0 and 127). |
@@ -397,11 +352,8 @@ Event emitted when a pitch bend MIDI message has been received.
 | Name | Type | Description |
 | --- | --- | --- |
 | type | <code>string</code> | `"pitchbend"` |
-| channel | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` object that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| input | [<code>InputChannel</code>](#InputChannel) | The `Input` object where through which the message was received. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a `Uint8Array`. |
 | target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>number</code> | The value expressed as a float between 0 and 1. |
 | rawValue | <code>number</code> | The value expressed as an integer (between 0 and 16383). |
@@ -420,11 +372,10 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"allsoundoff"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 
 
 * * *
@@ -440,11 +391,10 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"resetallcontrollers"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 
 
 * * *
@@ -462,11 +412,10 @@ off).
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"localcontrol"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>boolean</code> | For local control on, the value is `true`. For local control off, the value is `false`. |
 
 
@@ -483,11 +432,10 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"allnotesoff"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 
 
 * * *
@@ -504,11 +452,10 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"omnimode"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>boolean</code> | The value is `true` for omni mode on and false for omni mode off. |
 
 
@@ -527,11 +474,10 @@ poly mode on).
 
 | Name | Type | Description |
 | --- | --- | --- |
-| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
-| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
-| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"monomode"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The object that triggered the event (the `InputChannel` object). |
+| message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>boolean</code> | The value is `true` for omni mode on and false for omni mode off. |
 
 

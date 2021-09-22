@@ -1,8 +1,8 @@
 <a name="Utilities"></a>
 
 # Utilities
-The `Utilities` class contains general-purpose utility functions. The class is a singleton (its
-methode are static) and is not meant to be instantiated.
+The `Utilities` class contains general-purpose utility functions. The class is a singleton with
+static methode and is not meant to be instantiated.
 
 <!--**Kind**: global class  
 -->
@@ -13,7 +13,7 @@ methode are static) and is not meant to be instantiated.
 
     * [`.toNoteNumber(identifier, [octaveOffset])`](#Utilities+toNoteNumber) ⇒ <code>number</code>
 
-    * [`.getFragments(identifier)`](#Utilities+getFragments) ⇒ <code>Object</code>
+    * [`.getNoteDetails(value)`](#Utilities+getNoteDetails) ⇒ <code>Object</code>
 
     * [`.sanitizeChannels([channel])`](#Utilities+sanitizeChannels) ⇒ <code>Array</code>
 
@@ -31,9 +31,9 @@ methode are static) and is not meant to be instantiated.
 
     * [`.to7Bit(value)`](#Utilities+to7Bit) ⇒ <code>number</code>
 
-    * [`.getMessage(data)`](#Utilities+getMessage) ⇒ <code>Object</code>
-
     * [`.offsetNumber(offset)`](#Utilities+offsetNumber) ⇒ <code>number</code>
+
+    * [`.getPropertyByValue(object, value)`](#Utilities+getPropertyByValue) ⇒ <code>string</code>
 
 
 * * *
@@ -69,11 +69,15 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 * * *
 
-<a name="Utilities+getFragments"></a>
+<a name="Utilities+getNoteDetails"></a>
 
-## `utilities.getFragments(identifier)` ⇒ <code>Object</code>
-Given a proper note identifier ("C#4", "Gb-1", etc.), this method returns an object containing
-the fragments composing it (uppercase letter, accidental and octave).
+## `utilities.getNoteDetails(value)` ⇒ <code>Object</code>
+Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+method returns an object containing broken down details about the specified note (uppercase
+letter, accidental and octave).
+
+When a number is specified, the translation to note is done using a value of 60 for middle C
+(C4 = middle C).
 
 <!--**Kind**: instance method of [<code>Utilities</code>](#Utilities)  
 -->
@@ -83,9 +87,9 @@ the fragments composing it (uppercase letter, accidental and octave).
 
 **Since**: 3.0.0  
 
-| Param |
-| --- |
-| identifier | 
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> \| <code>number</code> | A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127). |
 
 
 * * *
@@ -285,22 +289,6 @@ the input value cannot be converted to a number, the method returns 0.
 
 * * *
 
-<a name="Utilities+getMessage"></a>
-
-## `utilities.getMessage(data)` ⇒ <code>Object</code>
-Returns an object inside which the three bytes have been broken up into `command`, `data1` and
-`data2` properties.
-
-<!--**Kind**: instance method of [<code>Utilities</code>](#Utilities)  
--->
-
-| Param | Description |
-| --- | --- |
-| data | A MIDI message |
-
-
-* * *
-
 <a name="Utilities+offsetNumber"></a>
 
 ## `utilities.offsetNumber(offset)` ⇒ <code>number</code>
@@ -319,6 +307,24 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 | Param |
 | --- |
 | offset | 
+
+
+* * *
+
+<a name="Utilities+getPropertyByValue"></a>
+
+## `utilities.getPropertyByValue(object, value)` ⇒ <code>string</code>
+Returns the name of the first property of the supplied object whose value is equal to the one
+supplied.
+
+<!--**Kind**: instance method of [<code>Utilities</code>](#Utilities)  
+-->
+**Returns**: <code>string</code> - The name of the matching property  
+
+| Param | Type |
+| --- | --- |
+| object | <code>Object</code> | 
+| value | <code>\*</code> | 
 
 
 * * *
