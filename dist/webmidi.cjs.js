@@ -6727,7 +6727,7 @@ class Message {
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
 
-      if (this.command === wm.MIDI_CHANNEL_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
@@ -6739,7 +6739,7 @@ class Message {
     if (this.channelModeMessage) {
       this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_VOICE_MESSAGES, this.command);
     } else if (this.systemMessage) {
       this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     }
@@ -7692,13 +7692,13 @@ class WebMidi extends e {
   }
 
   get MIDI_CHANNEL_VOICE_MESSAGES() {
-    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-    return Object.assign(values, {
-      channelmode: 0xB,
-      // 11
-      nrpn: 0xB // 11
-
-    });
+    // const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
+    //
+    // return Object.assign(values, {
+    //   channelmode: 0xB,       // 11
+    //   nrpn: 0xB,              // 11
+    // });
+    return this.MIDI_CHANNEL_MESSAGES;
   }
   /**
    * Enum of all MIDI channel messages and their associated numerical value:
