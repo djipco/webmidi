@@ -6725,9 +6725,9 @@ class Message {
       this.channelMessage = true;
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
+      console.log("allo", data, this.command, wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange, this.dataBytes[0], 120);
 
       if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
-        console.log("allo", data, this.command, wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange);
         this.channelModeMessage = true;
       }
     } else {
