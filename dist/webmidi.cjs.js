@@ -3778,8 +3778,8 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), // (WebMidi.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (this.number - 1),
-    command, value], {
+    this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1),
+    (wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4174,8 +4174,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([// (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
-    (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+    this.send([(wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
       time: utils.toTimestamp(options.time)
     });
     return this;
