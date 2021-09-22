@@ -34,8 +34,14 @@ export class Message {
      */
     statusByte: number;
     /**
-     * An array of 0, 1 or 2 unsigned integer(s) (0-127) representing the data byte(s) of the MIDI
-     * message. This is `undefined` for sysex messages.
+     * A Uint8Array of the data byte(s) of the MIDI message.
+     *
+     * @type {Uint8Array}
+     * @readonly
+     */
+    rawDataBytes: Uint8Array;
+    /**
+     * An array of the the data byte(s) of the MIDI message.
      *
      * @type {number[]}
      * @readonly
@@ -43,17 +49,18 @@ export class Message {
     dataBytes: number[];
     /**
      * A boolean indicating whether the MIDI message is a channel-specific message.
+     *
      * @type {boolean}
      * @readonly
      */
-    channelMessage: boolean;
+    isChannelMessage: boolean;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
      * @type {boolean}
      * @readonly
      */
-    systemMessage: boolean;
+    isSystemMessage: boolean;
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
      * between 8 and 14. For system messages, the value will be between 240 and 255.
