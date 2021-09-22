@@ -3074,7 +3074,7 @@ class OutputChannel extends e {
     if (!Array.isArray(target)) target = [target];
     target = target.map(item => utils.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3082,7 +3082,7 @@ class OutputChannel extends e {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -3203,7 +3203,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -3637,7 +3637,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3741,7 +3741,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
+      this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3808,7 +3808,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1), command, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -3887,7 +3887,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4123,7 +4123,7 @@ class OutputChannel extends e {
       lsb = nLevel & 0x7F;
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4203,7 +4203,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+    this.send([(wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -6727,7 +6727,7 @@ class Message {
       this.command = this.statusByte >> 4;
       this.channel = (this.statusByte & 0b00001111) + 1;
 
-      if (this.command === wm.MIDI_CHANNEL_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
+      if (this.command === wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange && this.dataBytes[0] >= 120) {
         this.channelModeMessage = true;
       }
     } else {
