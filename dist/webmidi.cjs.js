@@ -990,8 +990,15 @@ class Utilities {
 
     return Math.min(Math.max(number + octaveOffset * 12 + semitoneOffset, 0), 127);
   }
+  /**
+   * Returns the name of the first object property whose value matches the one supplied.
+   * @param object {Object}
+   * @param value {*}
+   * @returns {string}
+   */
 
-  getKeyByValue(object, value) {
+
+  getPropertyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
 
@@ -6737,14 +6744,13 @@ class Message {
 
 
     if (this.channelModeMessage) {
-      // if (this.channelMessage && this.dataBytes[0] >= 120) {  // channel mode messages
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
+      this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MODE_MESSAGES, this.dataBytes[0]);
     } else if (this.channelMessage) {
       // channel messages
-      this.type = utils.getKeyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.systemMessage) {
       // system messages
-      this.type = utils.getKeyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     }
   }
 
