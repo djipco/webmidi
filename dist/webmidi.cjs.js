@@ -6730,6 +6730,7 @@ class Message {
       } else {
         this.manufacturerId = [this.dataBytes[0]];
         this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1);
       }
     } // Assign values to property that vary according to whether they are channel-specific or system
 
