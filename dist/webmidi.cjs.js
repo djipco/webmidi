@@ -1986,7 +1986,8 @@ class Input extends e {
 
 
   _onMidiMessage(e) {
-    // Create Message object from MIDI data
+    console.log(e); // Create Message object from MIDI data
+
     const message = new Message(e.data);
     /**
      * Event emitted when any MIDI message is received on an `Input`
@@ -6633,7 +6634,6 @@ class Output extends e {
 
 class Message {
   constructor(data) {
-    console.log(data);
     /**
      * A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
      * 255.
@@ -6641,7 +6641,6 @@ class Message {
      * @type {Uint8Array}
      * @readonly
      */
-
     this.rawData = data;
     /**
      * An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
