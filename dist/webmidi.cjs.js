@@ -6633,6 +6633,7 @@ class Output extends e {
 
 class Message {
   constructor(data) {
+    console.log(data);
     /**
      * A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
      * 255.
@@ -6640,6 +6641,7 @@ class Message {
      * @type {Uint8Array}
      * @readonly
      */
+
     this.rawData = data;
     /**
      * An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
