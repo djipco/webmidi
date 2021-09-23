@@ -78,6 +78,17 @@ export class Message {
      * @readonly
      */
     channel: number;
+    /**
+     * When the message is a system exclusive message (sysex), this property contains an array with
+     * either 1 or 3 entries that identify the manufacturer targeted by the message.
+     *
+     * To know how to translate these entries into manufacturer names, check out the official list:
+     * https://www.midi.org/specifications-old/item/manufacturer-id-numbers
+     *
+     * @type {number[]}
+     * @readonly
+     */
+    manufacturerId: number[];
     type: string;
 }
 /**
