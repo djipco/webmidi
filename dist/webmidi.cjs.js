@@ -1986,8 +1986,7 @@ class Input extends e {
 
 
   _onMidiMessage(e) {
-    console.log(e); // Create Message object from MIDI data
-
+    // Create Message object from MIDI data
     const message = new Message(e.data);
     /**
      * Event emitted when any MIDI message is received on an `Input`
@@ -6730,7 +6729,7 @@ class Message {
         this.dataBytes = this.dataBytes.slice(4);
       } else {
         this.manufacturerId = [this.dataBytes[0]];
-        this.dataBytes = this.dataBytes.slice(1);
+        this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
       }
     } // Assign values to property that vary according to whether they are channel-specific or system
 
