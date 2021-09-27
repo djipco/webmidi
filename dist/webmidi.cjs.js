@@ -4662,8 +4662,7 @@ class Output extends e {
       merged[0] = wm.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = wm.MIDI_SYSTEM_MESSAGES.sysex;
-      console.log(merged);
+      merged[merged.length - 1] = wm.MIDI_SYSTEM_MESSAGES.sysexend;
       this.send(merged, {
         time: options.time
       });
