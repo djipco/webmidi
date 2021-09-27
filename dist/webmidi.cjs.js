@@ -4571,9 +4571,8 @@ class Output extends e {
       if (!options) options = {
         time: 0
       };
-    }
+    } // Send message and return `Output` for chaining
 
-    console.log(message); // Send message and return `Output` for chaining
 
     this._midiOutput.send(message, utils.toTimestamp(options.time));
 
