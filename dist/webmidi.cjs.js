@@ -4505,9 +4505,9 @@ class Output extends e {
   }
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object.
+   * object or a `Message` object.
    *
    * Note that **you cannot use a
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
@@ -4521,9 +4521,8 @@ class Output extends e {
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
-   * object (not available in Node.js) containing the message bytes. Depending on the type of
-   * message, one to three bytes will be used.
+   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
    * @param {Object} [options={}]
    *
