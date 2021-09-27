@@ -30,7 +30,34 @@ describe("Message Object", function() {
         data[0] = item.status;
         const message = new Message(data);
         expect(message.isSystemMessage).to.be.true;
+        expect(message.isChannelMessage).to.be.false;
         expect(message.type).to.equal(item.type);
+      });
+
+    });
+
+    it("should correctly set properties for channel messages", function() {
+
+      // Arrange
+      const items = [
+        {data: [0x8, 0, 127], type: "noteoff"},
+        {data: [0x9, 32, 96], type: "noteon"},
+        {data: [0xA, 64, 64], type: "keyaftertouch"},
+        {data: [0xB, 96, 32], type: "controlchange"},
+        {data: [0xC, 0], type: "programchange"},
+        {data: [0xD, 64], type: "channelaftertouch"},
+        {data: [0xE, 32, 64], type: "pitchbend"}
+      ];
+      const channel = 10;
+
+      // Act
+      items.forEach(item => {
+        item.data[0] = (item.data[0] << 4) + channel - 1;
+        const message = new Message(item.data);
+        expect(message.isSystemMessage).to.be.false;
+        expect(message.isChannelMessage).to.be.true;
+        expect(message.type).to.equal(item.type);
+        expect(message.rawData).to.equal(item.data);
       });
 
     });
@@ -77,34 +104,8 @@ describe("Message Object", function() {
 
     });
 
-    it("should correctly set the type of message for channel messages");
-    // it("should correctly set the type of message for channel messages", function() {
-    //
-    //   // Arrange
-    //   let data = new Uint8Array(3);
-    //
-    //   const items = [
-    //     {noteoff: 0x8},
-    //     {noteon: 0x9},
-    //     {keyaftertouch: 0xA},
-    //     {controlchange: 0xB},
-    //     {programchange: 0xC},
-    //     {channelaftertouch: 0xD},
-    //     {pitchbend: 0xE},
-    //   ];
-    //
-    //   // Act
-    //   items.forEach(item => {
-    //     data[0] = item.status;
-    //     const message = new Message(data);
-    //     expect(message.isSystemMessage).to.be.true;
-    //     expect(message.type).to.equal(item.type);
-    //   });
-    //
-    // });
-
   });
 
 });
 
-// ,data[0] = (WebMidi.MIDI_SYSTEM_MESSAGES[value] << 4) + (this.number - 1)
+
