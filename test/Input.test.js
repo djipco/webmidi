@@ -55,32 +55,30 @@ describe("Input Object", function() {
   it("should dispatch events when receiving system common MIDI messages (normal)", function (done) {
 
     // Arrange
-    let events = [
-      // "timecode",
-      // "songposition",
-      // "songselect",
-
-      "tunerequest"    // Only this one works?!
+    let items = [
+      {type: "timecode", data: [0xF1, 0x36]},
+      {type: "songposition", data: [12, 34]},
+      {type: "songselect", data: [123]},
+      {type: "tunerequest", data: []}
     ];
     let index = 0;
 
-    events.forEach(event => {
-      WEBMIDI_INPUT.addListener(event, assert);
+    items.forEach(item => {
+      WEBMIDI_INPUT.addListener(item.type, assert);
     });
 
     // Act
-    events.forEach(event => {
+    items.forEach(item => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        [WebMidi.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
 
     // Assert
     function assert(e) {
-      let event = events[index];
-      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      expect(e.type).to.equal(items[index].type);
       index++;
-      if (index >= events.length) done();
+      if (index >= items.length) done();
     }
 
   });
@@ -88,32 +86,30 @@ describe("Input Object", function() {
   it("should dispatch events when receiving system common MIDI messages (legacy)", function (done) {
 
     // Arrange
-    let events = [
-      // "sysex",         // RT-Midi does not seem to support these messages?!
-      // "timecode",
-      // "songposition",
-      // "songselect",
-      "tunerequest"
+    let items = [
+      {type: "timecode", data: [0xF1, 0x36]},
+      {type: "songposition", data: [12, 34]},
+      {type: "songselect", data: [123]},
+      {type: "tunerequest", data: []}
     ];
     let index = 0;
 
-    events.forEach(event => {
-      WEBMIDI_INPUT.addListener(event, undefined, assert);
+    items.forEach(item => {
+      WEBMIDI_INPUT.addListener(item.type, undefined, assert);
     });
 
     // Act
-    events.forEach(event => {
+    items.forEach(item => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        [WebMidi.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
 
     // Assert
     function assert(e) {
-      let event = events[index];
-      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      expect(e.type).to.equal(items[index].type);
       index++;
-      if (index >= events.length) done();
+      if (index >= items.length) done();
     }
 
   });
