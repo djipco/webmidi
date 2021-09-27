@@ -33,14 +33,18 @@ export class Message {
      */
     statusByte: number;
     /**
-     * A Uint8Array of the data byte(s) of the MIDI message.
+     * A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {Uint8Array}
      * @readonly
      */
     rawDataBytes: Uint8Array;
     /**
-     * An array of the the data byte(s) of the MIDI message.
+     * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {number[]}
      * @readonly
@@ -861,7 +865,12 @@ declare class WebMidi {
      */
     get time(): number;
     /**
-     * Enum of all MIDI channel voice messages and their associated numerical value:
+     * An array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     */
+    get CHANNEL_EVENTS(): string[];
+    /**
+     * Enum of all MIDI channel messages and their associated numerical value:
      *
      * - `noteoff`: 0x8 (8)
      * - `noteon`: 0x9 (9)
@@ -877,22 +886,6 @@ declare class WebMidi {
      *
      * @since 3.0.0
      */
-    get MIDI_CHANNEL_VOICE_MESSAGES(): {
-        noteoff: number;
-        noteon: number;
-        keyaftertouch: number;
-        controlchange: number;
-        programchange: number;
-        channelaftertouch: number;
-        pitchbend: number;
-    } & {
-        nrpn: number;
-    };
-    /**
-     * An array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     */
-    get CHANNEL_EVENTS(): string[];
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
