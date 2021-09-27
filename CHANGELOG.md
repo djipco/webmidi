@@ -109,6 +109,8 @@ property now contains the `Uint8Array`.
 - Several methods have been moved from the `WebMidi` object to the `Utilities` object. Using the old
 methods will continue to work but will trigger a deprecation warning in the console.
 
+- The send() method now accepts a `Message` object.
+
 ### Deprecated
 
 - The `velocity` option parameter has been renamed `attack`. There are new `rawAttack` and 
