@@ -2766,11 +2766,6 @@ class OutputChannel extends e {
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
    * object or a `Message` object.
    *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
-   *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
@@ -4508,11 +4503,6 @@ class Output extends e {
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
    * object or a `Message` object.
    *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
-   *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
@@ -4546,7 +4536,7 @@ class Output extends e {
     // does not support using Uint8Array).
     if (message instanceof Message) {
       message = wm.isNode ? message.data : message.rawData;
-    } // If the data is Uint8Array and we are on Node, we must convert it to array so it works with
+    } // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
     // the jzz module.
 
 
