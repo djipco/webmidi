@@ -47,6 +47,8 @@ options of `WebMidi.enable()`.
 - An `octaveOffset` property has been added to `Input`, `InputChannel`, `Output` and 
 `OutputChannel`.
 
+- A `Message` object has been added.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
@@ -120,10 +122,6 @@ old name has been deprecated but will continue to work in v3.x.
 
 - The name of the `Output.sendTuningRequest()` method was changed to `Output.sendTuneRequest()`. The
 old name has been deprecated but will continue to work in v3.x.
-
-- The name of the `WebMidi.MIDI_CHANNEL_MESSAGES` enum was changed to 
-`WebMidi.MIDI_CHANNEL_VOICE_MESSAGES`. The old name has been deprecated but will continue to work in
-v3.x.
 
 - The `on()` method of the `Input` class has been deprecated. Use `addListener()` instead.
 
