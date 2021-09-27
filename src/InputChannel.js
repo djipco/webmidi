@@ -30,7 +30,6 @@ import {Note} from "./Note.js";
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#controlchange
- * @fires InputChannel#channelmode
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
@@ -429,11 +428,6 @@ export class InputChannel extends EventEmitter {
 
   _parseChannelModeMessage(e) {
 
-    // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
-    const channelModeEvent = Object.assign({}, e);
-    channelModeEvent.type = "channelmode";
-    this.emit(channelModeEvent.type, channelModeEvent);
-
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
     event.type = event.controller.name;
@@ -602,7 +596,7 @@ export class InputChannel extends EventEmitter {
   //   // Message not valid for NRPN
   //   if (
   //     !(
-  //       command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+  //       command === WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &&
   //       (
   //         (
   //           data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &&

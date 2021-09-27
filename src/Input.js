@@ -651,8 +651,12 @@ export class Input extends EventEmitter {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -698,7 +702,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+        WebMidi.CHANNEL_EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -709,7 +713,7 @@ export class Input extends EventEmitter {
     let listeners = [];
 
     // Check if the event is channel-specific or input-wide
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+    if (!WebMidi.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
@@ -795,8 +799,12 @@ export class Input extends EventEmitter {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -874,7 +882,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+        WebMidi.CHANNEL_EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -882,7 +890,7 @@ export class Input extends EventEmitter {
 
     }
 
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (WebMidi.CHANNEL_EVENTS.includes(event)) {
 
       return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
@@ -943,7 +951,7 @@ export class Input extends EventEmitter {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (WebMidi.CHANNEL_EVENTS.includes(event)) {
 
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
