@@ -4546,7 +4546,10 @@ class Output extends e {
     time: 0
   }, legacy = undefined) {
     // If a Message object is passed in we extract the message data
-    if (message instanceof Message) message = message.rawData; // Validation
+    if (message instanceof Message) {
+      message = wm.isNode ? message.data : message.rawData;
+    } // Validation
+
 
     if (wm.validation) {
       // If message is neither an array nor a Uint8Array, then we are in legacy mode
