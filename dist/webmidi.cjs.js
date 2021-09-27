@@ -6560,8 +6560,8 @@ class Message {
     if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);
-        this.dataBytes = this.dataBytes.slice(3);
-        this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 2);
+        this.dataBytes = this.dataBytes.slice(3), this.rawDataBytes.length - 1;
+        this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 1);
       } else {
         this.manufacturerId = [this.dataBytes[0]];
         this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
