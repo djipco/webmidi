@@ -6493,7 +6493,9 @@ class Message {
 
     this.statusByte = this.rawData[0];
     /**
-     * A Uint8Array of the data byte(s) of the MIDI message.
+     * A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {Uint8Array}
      * @readonly
@@ -6501,7 +6503,9 @@ class Message {
 
     this.rawDataBytes = this.rawData.slice(1);
     /**
-     * An array of the the data byte(s) of the MIDI message.
+     * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {number[]}
      * @readonly
@@ -6554,21 +6558,7 @@ class Message {
      * @readonly
      */
 
-    this.manufacturerId = undefined; // When the message is a sysex message, we add a manufacturer property. WE NEED TO STRIP OUT
-    // THE MANUFACTURER from the dataBytes and rawDataBytes
-
-    if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
-      if (this.dataBytes[0] === 0) {
-        this.manufacturerId = this.dataBytes.slice(0, 3);
-        this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1);
-        this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 1);
-      } else {
-        this.manufacturerId = [this.dataBytes[0]];
-        this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
-        this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1);
-      }
-    } // Assign values to property that vary according to whether they are channel-specific or system
-
+    this.manufacturerId = undefined; // Assign values to property that vary according to whether they are channel-specific or system
 
     if (this.statusByte < 240) {
       this.isChannelMessage = true;
@@ -6584,6 +6574,20 @@ class Message {
       this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
       this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
+    } // When the message is a sysex message, we add a manufacturer property and strip out the id from
+    // dataBytes and rawDataBytes.
+
+
+    if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
+      if (this.dataBytes[0] === 0) {
+        this.manufacturerId = this.dataBytes.slice(0, 3);
+        this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 1);
+      } else {
+        this.manufacturerId = [this.dataBytes[0]];
+        this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1);
+      }
     }
   }
 
