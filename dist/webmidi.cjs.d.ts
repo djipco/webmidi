@@ -866,7 +866,12 @@ declare class WebMidi {
      */
     get time(): number;
     /**
-     * Enum of all MIDI channel voice messages and their associated numerical value:
+     * An array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     */
+    get CHANNEL_EVENTS(): string[];
+    /**
+     * Enum of all MIDI channel messages and their associated numerical value:
      *
      * - `noteoff`: 0x8 (8)
      * - `noteon`: 0x9 (9)
@@ -882,11 +887,6 @@ declare class WebMidi {
      *
      * @since 3.0.0
      */
-    /**
-     * An array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     */
-    get CHANNEL_EVENTS(): string[];
     get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
