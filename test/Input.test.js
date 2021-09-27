@@ -20,7 +20,7 @@ describe("Input Object", function() {
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
-    await WebMidi.enable();
+    await WebMidi.enable({sysex: true});
     WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
   });
 
@@ -28,15 +28,40 @@ describe("Input Object", function() {
     await WebMidi.disable();
   });
 
+  it.only("should dispatch events when receiving sysex messages (normal)", function (done) {
+
+    // Arrange
+    let data = [
+      WebMidi.MIDI_SYSTEM_MESSAGES.sysex,
+      0x42, // Korg
+      1,    // data
+      2,    // data
+      3,    // data
+      WebMidi.MIDI_SYSTEM_MESSAGES.sysexend
+    ];
+    WEBMIDI_INPUT.addListener("sysex", assert);
+
+    // Act
+    VIRTUAL_INPUT.sendMessage(data);
+
+    // Assert
+    function assert(e) {
+      console.log(e.message);
+      expect(e.message.data).to.have.ordered.members(data);
+      done();
+    }
+
+  });
+
   it("should dispatch events when receiving system common MIDI messages (normal)", function (done) {
 
     // Arrange
     let events = [
-      // "sysex",         // RT-Midi does not seem to support these messages?!
       // "timecode",
       // "songposition",
       // "songselect",
-      "tunerequest"
+
+      "tunerequest"    // Only this one works?!
     ];
     let index = 0;
 
@@ -385,7 +410,6 @@ describe("Input Object", function() {
         "noteon",
         "keyaftertouch",
         "controlchange",
-        "channelmode",
         "nrpn",
         "programchange",
         "channelaftertouch",
@@ -412,7 +436,6 @@ describe("Input Object", function() {
         "noteon",
         "keyaftertouch",
         "controlchange",
-        "channelmode",
         "nrpn",
         "programchange",
         "channelaftertouch",
