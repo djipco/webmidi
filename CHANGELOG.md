@@ -40,7 +40,8 @@ information, etc.
 and legacy support throughout the library (for performance). This property can also be in the 
 options of `WebMidi.enable()`.
 
-- The `send()` method of `Output` and `OutputChannel` can now officially use `Uint8Array` input
+- The `send()` and `sendSysex()` methods of `Output` and `OutputChannel` can now officially use 
+`Uint8Array` input
 
 - Licence has been changed to Apache 2.0
 

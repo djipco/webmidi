@@ -1390,7 +1390,7 @@ describe("Output Object", function() {
       }).to.throw();
     });
 
-    it("should actually send the message", async function() {
+    it("should actually send the message if defined by array", async function() {
 
       await WebMidi.disable();
       await WebMidi.enable({sysex: true});
@@ -1401,12 +1401,12 @@ describe("Output Object", function() {
         VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
 
           if (
-            message[0] === 240 &&
-            message[1] === 0x42 &&
+            message[0] === 240 &&     // sysex star byte
+            message[1] === 0x42 &&    // Korg
             message[2] === 0x1 &&
             message[3] === 0x2 &&
             message[4] === 0x3 &&
-            message[5] === 247
+            message[5] === 247        // sysex end byte
           ) {
             VIRTUAL_OUTPUT.removeAllListeners();
             resolve();
@@ -1416,6 +1416,41 @@ describe("Output Object", function() {
 
         // Sysex (240...247)
         WEBMIDI_OUTPUT.sendSysex(0x42, [0x1, 0x2, 0x3]);
+
+      });
+
+
+    });
+
+    it("should actually send the message if defined by Uint8Array", async function() {
+
+      // Arrange
+      await WebMidi.disable();
+      await WebMidi.enable({sysex: true});
+      WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
+      const data = Uint8Array.from([0x1, 0x2, 0x3]);
+
+      // Act
+      await new Promise(resolve => {
+
+        VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+
+          if (
+            message[0] === 240 &&     // sysex star byte
+            message[1] === 0x42 &&    // Korg
+            message[2] === 0x1 &&
+            message[3] === 0x2 &&
+            message[4] === 0x3 &&
+            message[5] === 247        // sysex end byte
+          ) {
+            VIRTUAL_OUTPUT.removeAllListeners();
+            resolve();
+          }
+
+        });
+
+        // Sysex (240...247)
+        WEBMIDI_OUTPUT.sendSysex(0x42, data);
 
       });
 
