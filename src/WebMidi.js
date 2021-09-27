@@ -1008,7 +1008,6 @@ class WebMidi extends EventEmitter {
    * - `noteon`: 0x9 (9)
    * - `keyaftertouch`: 0xA (10)
    * - `controlchange`: 0xB (11)
-   * - `channelmode`: 0xB (11)
    * - `nrpn`: 0xB (11)
    * - `programchange`: 0xC (12)
    * - `channelaftertouch`: 0xD (13)
@@ -1024,10 +1023,34 @@ class WebMidi extends EventEmitter {
     const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
 
     return Object.assign(values, {
-      channelmode: 0xB,       // 11
       nrpn: 0xB,              // 11
     });
 
+  }
+
+  /**
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+  get CHANNEL_EVENTS() {
+    return [
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      "nrpn",
+
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers"
+    ];
   }
 
   get MIDI_CHANNEL_MESSAGES() {
