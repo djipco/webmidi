@@ -7553,15 +7553,16 @@ class WebMidi extends e {
    *
    * @since 3.0.0
    */
+  // get MIDI_CHANNEL_VOICE_MESSAGES() {
+  //
+  //   const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
+  //
+  //   return Object.assign(values, {
+  //     nrpn: 0xB,              // 11
+  //   });
+  //
+  // }
 
-
-  get MIDI_CHANNEL_VOICE_MESSAGES() {
-    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-    return Object.assign(values, {
-      nrpn: 0xB // 11
-
-    });
-  }
   /**
    * An array of channel-specific event names that can be listened to.
    * @type {string[]}
