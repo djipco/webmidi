@@ -3,7 +3,9 @@
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  *
- * This build was generated on September 23rd 2021.
+ * © Copyright 2015-2021, Jean-Philippe Côté.
+ *
+ * This build was generated on September 27th 2021.
  *
  *
  *
@@ -6725,8 +6727,7 @@ class Message {
 
     if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
       if (this.dataBytes[0] === 0) {
-        this.manufacturerId = this.dataBytes.slice(0, 3);
-        this.dataBytes = this.dataBytes.slice(4);
+        this.manufacturerId = this.dataBytes.slice(0, 3); // this.dataBytes = this.dataBytes.slice(4); // TODO !!
       } else {
         this.manufacturerId = [this.dataBytes[0]];
         this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
