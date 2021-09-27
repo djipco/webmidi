@@ -1526,8 +1526,8 @@ declare class Output extends e {
      * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
      * .
      *
-     * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0 and
-     * 127. This is the data you wish to transfer.
+     * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
+     * and 127. This is the data you wish to transfer.
      *
      * @param {Object} [options={}]
      *
