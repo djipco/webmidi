@@ -41,7 +41,9 @@ export class Message {
     this.statusByte = this.rawData[0];
 
     /**
-     * A Uint8Array of the data byte(s) of the MIDI message.
+     * A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {Uint8Array}
      * @readonly
@@ -49,7 +51,9 @@ export class Message {
     this.rawDataBytes = this.rawData.slice(1);
 
     /**
-     * An array of the the data byte(s) of the MIDI message.
+     * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {number[]}
      * @readonly
@@ -90,6 +94,34 @@ export class Message {
      * @readonly
      */
     this.channel = undefined;
+
+    /**
+     * When the message is a system exclusive message (sysex), this property contains an array with
+     * either 1 or 3 entries that identify the manufacturer targeted by the message.
+     *
+     * To know how to translate these entries into manufacturer names, check out the official list:
+     * https://www.midi.org/specifications-old/item/manufacturer-id-numbers
+     *
+     * @type {number[]}
+     * @readonly
+     */
+    this.manufacturerId = undefined;
+
+    // When the message is a sysex message, we add a manufacturer property and strip out the id from
+    // dataBytes and rawDataBytes.
+    if (this.statusByte === WebMidi.MIDI_SYSTEM_MESSAGES.sysex) {
+
+      if (this.dataBytes[0] === 0) {
+        this.manufacturerId = this.dataBytes.slice(0, 3);
+        this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(3, this.rawDataBytes.length - 1);
+      } else {
+        this.manufacturerId = [this.dataBytes[0]];
+        this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1);
+      }
+
+    }
 
     // Assign values to property that vary according to whether they are channel-specific or system
     if (this.statusByte < 240) {

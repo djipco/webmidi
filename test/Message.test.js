@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Message} = require("../dist/webmidi.cjs.js");
+const {Message, WebMidi} = require("../dist/webmidi.cjs.js");
 
 describe("Message Object", function() {
 
@@ -32,6 +32,48 @@ describe("Message Object", function() {
         expect(message.isSystemMessage).to.be.true;
         expect(message.type).to.equal(item.type);
       });
+
+    });
+
+    it("should correctly set properties for sysex with basic manufacturer code", function() {
+
+      // Arrange
+      let data = new Uint8Array(6);
+      data[0] = WebMidi.MIDI_SYSTEM_MESSAGES.sysex;     // sysex
+      data[1] = 0x42;                                   // Korg
+      data[2] = 1;                                      // Some data
+      data[3] = 2;                                      // Some data
+      data[4] = 3;                                      // Some data
+      data[5] = WebMidi.MIDI_SYSTEM_MESSAGES.sysexend;  // sysex end
+
+      // Act
+      const message = new Message(data);
+
+      // Assert
+      expect(message.manufacturerId).to.have.ordered.members([data[1]]);
+      expect(message.dataBytes).to.have.ordered.members([data[2], data[3], data[4]]);
+
+    });
+
+    it("should correctly set properties for sysex with extended manufacturer code", function() {
+
+      // Arrange
+      let data = new Uint8Array(8);
+      data[0] = WebMidi.MIDI_SYSTEM_MESSAGES.sysex;     // sysex
+      data[1] = 0;                                      // MOTU (byte 1)
+      data[2] = 0;                                      // MOTU (byte 2)
+      data[3] = 0x3B;                                   // MOTU (byte 3)
+      data[4] = 1;                                      // Some data
+      data[5] = 2;                                      // Some data
+      data[6] = 3;                                      // Some data
+      data[7] = WebMidi.MIDI_SYSTEM_MESSAGES.sysexend;  // sysex end
+
+      // Act
+      const message = new Message(data);
+
+      // Assert
+      expect(message.manufacturerId).to.have.ordered.members([data[1], data[2], data[3]]);
+      expect(message.dataBytes).to.have.ordered.members([data[4], data[5], data[6]]);
 
     });
 
