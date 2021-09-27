@@ -198,11 +198,6 @@ export class Output extends EventEmitter {
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
    * object or a `Message` object.
    *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
-   *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
    *
@@ -233,6 +228,12 @@ export class Output extends EventEmitter {
     // does not support using Uint8Array).
     if (message instanceof Message) {
       message = WebMidi.isNode ? message.data : message.rawData;
+    }
+
+    // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
+    // the jzz module.
+    if (message instanceof Uint8Array && WebMidi.isNode) {
+      message = Array.from(message);
     }
 
     // Validation
@@ -269,8 +270,15 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI [system exclusive]{@link
     * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
-   * (*sysex*) message. The generated message will automatically be prepended with the *sysex byte*
-   * (0xF0) and terminated with the *end of sysex byte* (0xF7).
+   * (*sysex*) message. The `data` parameter should only contain the actual data of the message.
+   * When sending out the actual MIDI message, WebMidi.js will automatically prepend the data with
+   * the *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+   * the message with the *sysex end byte* (`0xF7`).
+   *
+   * The data can be an array of unsigned integers or a `Uint8Array` object.
+   *
+   *
+   *
    *
    * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
    * do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:

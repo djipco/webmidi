@@ -617,8 +617,6 @@ describe("Output Object", function() {
 
     it("should actually send the message defined by array (normal)", function(done) {
 
-      // We cannot test sending with Uint8Array because it is not supported in Node.js
-
       // Arrange
       let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
       VIRTUAL_OUTPUT.on("message", assert);
@@ -635,8 +633,24 @@ describe("Output Object", function() {
 
     });
 
-    // We cannot test sending with Uint8Array because it is not supported in Node.js
-    it("should actually send the message defined by Uint8Array");
+    it("should actually send the message defined by Uint8Array (normal)", function(done) {
+
+      // Arrange
+      const data = [0x90, 60, 127];
+      const uint8array = Uint8Array.from(data); // Note on + channel 0, note 60, velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.send(uint8array);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(data);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
 
     it("should actually send the message defined by Message (normal)", function(done) {
 
