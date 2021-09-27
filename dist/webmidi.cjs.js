@@ -4581,15 +4581,12 @@ class Output extends e {
   /**
    * Sends a MIDI [system exclusive]{@link
     * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
-   * (*sysex*) message. The `data` parameter should only contain the actual data of the message.
-   * When sending out the actual MIDI message, WebMidi.js will automatically prepend the data with
-   * the *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+   * (*sysex*) message. The `data` parameter should only contain the data of the message. When
+   * sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
+   * *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
    * the message with the *sysex end byte* (`0xF7`).
    *
-   * The data can be an array of unsigned integers or a `Uint8Array` object.
-   *
-   *
-   *
+   * The data can be an array of unsigned integers (0-127) or a `Uint8Array` object.
    *
    * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
    * do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:
@@ -4637,8 +4634,8 @@ class Output extends e {
    * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
    * .
    *
-   * @param [data=number[]] {Array} An array of unsigned integers between 0 and 127. This is the
-   * data you wish to transfer.
+   * @param [data=number[]] {number[]|Uint8Array} A Uint8Array or an array of unsigned integers
+   * between 0 and 127. This is the data you wish to transfer.
    *
    * @param {Object} [options={}]
    *
@@ -4658,18 +4655,23 @@ class Output extends e {
 
 
   sendSysex(manufacturer, data, options = {}) {
-    // Merging Uint8Arrays
-    // var arrayOne = new Uint8Array([2,4,8]);
-    // var arrayTwo = new Uint8Array([16,32,64]);
-    //
-    // var mergedArray = new Uint8Array(arrayOne.length + arrayTwo.length);
-    // mergedArray.set(arrayOne);
-    // mergedArray.set(arrayTwo, arrayOne.length);
-    manufacturer = [].concat(manufacturer);
-    data = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-    this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(data), {
-      time: options.time
-    });
+    manufacturer = [].concat(manufacturer); // Check if data is Uint8Array
+
+    if (data instanceof Uint8Array) {
+      const merged = new Uint8Array(1 + manufacturer.length + data.length);
+      merged[0] = wm.MIDI_SYSTEM_MESSAGES.sysex;
+      merged.set(Uint8Array.from(manufacturer), 1);
+      merged.set(data, 1 + manufacturer.length);
+      this.send(merged, {
+        time: options.time
+      });
+    } else {
+      const merged = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
+      this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {
+        time: options.time
+      });
+    }
+
     return this;
   }
 
