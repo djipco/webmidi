@@ -1002,33 +1002,6 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value:
-   *
-   * - `noteoff`: 0x8 (8)
-   * - `noteon`: 0x9 (9)
-   * - `keyaftertouch`: 0xA (10)
-   * - `controlchange`: 0xB (11)
-   * - `nrpn`: 0xB (11)
-   * - `programchange`: 0xC (12)
-   * - `channelaftertouch`: 0xD (13)
-   * - `pitchbend`: 0xE (14)
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-  get MIDI_CHANNEL_VOICE_MESSAGES() {
-
-    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-
-    return Object.assign(values, {
-      nrpn: 0xB,              // 11
-    });
-
-  }
-
-  /**
    * An array of channel-specific event names that can be listened to.
    * @type {string[]}
    */
@@ -1053,6 +1026,23 @@ class WebMidi extends EventEmitter {
     ];
   }
 
+  /**
+   * Enum of all MIDI channel messages and their associated numerical value:
+   *
+   * - `noteoff`: 0x8 (8)
+   * - `noteon`: 0x9 (9)
+   * - `keyaftertouch`: 0xA (10)
+   * - `controlchange`: 0xB (11)
+   * - `nrpn`: 0xB (11)
+   * - `programchange`: 0xC (12)
+   * - `channelaftertouch`: 0xD (13)
+   * - `pitchbend`: 0xE (14)
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   *
+   * @since 3.0.0
+   */
   get MIDI_CHANNEL_MESSAGES() {
 
     return {
@@ -1063,6 +1053,73 @@ class WebMidi extends EventEmitter {
       programchange: 0xC,     // 12
       channelaftertouch: 0xD, // 13
       pitchbend: 0xE          // 14
+    };
+
+  }
+
+  /**
+   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
+   * two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   *
+   * @since 2.0.0
+   */
+  get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
     };
 
   }
@@ -1327,73 +1384,6 @@ class WebMidi extends EventEmitter {
       referencedistanceratio: [0x3D, 0x06],
       panspreadangle: [0x3D, 0x07],
       rollangle: [0x3D, 0x08]
-    };
-
-  }
-
-  /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-  get MIDI_SYSTEM_MESSAGES() {
-
-    return {
-
-      // System common messages
-      sysex: 0xF0,            // 240
-      timecode: 0xF1,         // 241
-      songposition: 0xF2,     // 242
-      songselect: 0xF3,       // 243
-      tunerequest: 0xF6,      // 246
-      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
-
-      // System real-time messages
-      clock: 0xF8,            // 248
-      start: 0xFA,            // 250
-      continue: 0xFB,         // 251
-      stop: 0xFC,             // 252
-      activesensing: 0xFE,    // 254
-      reset: 0xFF,            // 255
-
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-
     };
 
   }

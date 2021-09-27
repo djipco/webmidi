@@ -28,7 +28,7 @@ describe("Input Object", function() {
     await WebMidi.disable();
   });
 
-  it.only("should dispatch events when receiving sysex messages (normal)", function (done) {
+  it("should dispatch events when receiving sysex messages (normal)", function (done) {
 
     // Arrange
     let data = [
@@ -46,7 +46,6 @@ describe("Input Object", function() {
 
     // Assert
     function assert(e) {
-      console.log(e.message);
       expect(e.message.data).to.have.ordered.members(data);
       done();
     }
@@ -501,12 +500,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index], {channels: channels});
       });
 
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });
@@ -520,12 +519,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, channels, callbacks[index]);
       });
 
-      Object.keys(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES).forEach((key, index) => {
+      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });
