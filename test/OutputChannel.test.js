@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi, Note, Utilities} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Note, Utilities, Message} = require("../dist/webmidi.cjs.js");
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
@@ -729,12 +729,32 @@ describe("OutputChannel Object", function() {
 
     });
 
-    it("should actually send MIDI message", function (done) {
-
-      // We cannot test sending with Uint8Array because it is not supported in Node.js
+    it("should actually send MIDI message specified by array", function (done) {
 
       // Arrange
       let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].send(message);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(message);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    // We cannot test sending with Uint8Array because it is not supported in Node.js
+    it("should actually send MIDI message specified by Uint8Array");
+
+    it("should actually send MIDI message specified by Message object", function (done) {
+
+      // Arrange
+      let data = Uint8Array.from([0x90, 60, 127]); // Note on: ch 0, number (60), velocity (127)
+      const message = new Message(data);
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
@@ -776,26 +796,6 @@ describe("OutputChannel Object", function() {
       expect(
         WEBMIDI_OUTPUT.channels[1].send([144, 127, 127])
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
-    });
-
-    it("should actually send the message", function(done) {
-
-      // We cannot test sending with Uint8Array because it is not supported in Node.js
-
-      // Arrange
-      let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
-      VIRTUAL_OUTPUT.on("message", assert);
-
-      // Act
-      WEBMIDI_OUTPUT.channels[1].send(message);
-
-      // Assert
-      function assert(deltaTime, message) {
-        expect(message).to.have.ordered.members(message);
-        VIRTUAL_OUTPUT.removeAllListeners();
-        done();
-      }
-
     });
 
     it("should send immediately if no valid timestamp is found", function (done) {

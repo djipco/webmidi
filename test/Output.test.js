@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Message} = require("../dist/webmidi.cjs.js");
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
@@ -594,7 +594,7 @@ describe("Output Object", function() {
       ).to.equal(WEBMIDI_OUTPUT);
     });
 
-    it("should actually send the message (legacy)", function(done) {
+    it("should actually send the message defined by array (legacy)", function(done) {
 
       // Arrange
       let expected = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
@@ -615,12 +615,34 @@ describe("Output Object", function() {
 
     });
 
-    it("should actually send the message", function(done) {
+    it("should actually send the message defined by array (normal)", function(done) {
 
       // We cannot test sending with Uint8Array because it is not supported in Node.js
 
       // Arrange
       let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      WEBMIDI_OUTPUT.send(message);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(message);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    // We cannot test sending with Uint8Array because it is not supported in Node.js
+    it("should actually send the message defined by Uint8Array");
+
+    it("should actually send the message defined by Message (normal)", function(done) {
+
+      // Arrange
+      const data = Uint8Array.from([0x90, 60, 127]); // Note on + ch. 1, number (60), velocity (127)
+      const message = new Message(data);
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
