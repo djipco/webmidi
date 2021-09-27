@@ -7537,7 +7537,16 @@ class WebMidi extends e {
     return performance.now();
   }
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value:
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+
+
+  get CHANNEL_EVENTS() {
+    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpn", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
+  }
+  /**
+   * Enum of all MIDI channel messages and their associated numerical value:
    *
    * - `noteoff`: 0x8 (8)
    * - `noteon`: 0x9 (9)
@@ -7553,25 +7562,7 @@ class WebMidi extends e {
    *
    * @since 3.0.0
    */
-  // get MIDI_CHANNEL_VOICE_MESSAGES() {
-  //
-  //   const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-  //
-  //   return Object.assign(values, {
-  //     nrpn: 0xB,              // 11
-  //   });
-  //
-  // }
 
-  /**
-   * An array of channel-specific event names that can be listened to.
-   * @type {string[]}
-   */
-
-
-  get CHANNEL_EVENTS() {
-    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpn", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
-  }
 
   get MIDI_CHANNEL_MESSAGES() {
     return {
