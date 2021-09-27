@@ -838,12 +838,6 @@ describe("WebMidi Object", function() {
 
   });
 
-  describe("get MIDI_CHANNEL_VOICE_MESSAGES()", function() {
-    it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend).to.equal(0xE);
-    });
-  });
-
   describe("get MIDI_CHANNEL_MESSAGES()", function() {
     it("should return an object with valid properties", function() {
       expect(WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend).to.equal(0xE);
