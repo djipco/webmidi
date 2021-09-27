@@ -272,36 +272,6 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch event for all inbound 'channelmode' MIDI message", function (done) {
-
-    // Arrange
-    let channel = WEBMIDI_INPUT.channels[1];
-    let event = "channelmode";
-    let status = 0xB0;
-    let value = 34;
-    let index = 120;
-    channel.addListener(event, assert);
-
-    // Act
-    for (let i = 120; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
-    }
-
-    // Assert
-    function assert(e) {
-
-      expect(e.type).to.equal(event);
-      expect(e.controller.number).to.equal(index);
-      expect(e.rawValue).to.equal(value);
-      expect(e.target).to.equal(channel);
-
-      index++;
-      if (index > 127) done();
-
-    }
-
-  });
-
   it("should dispatch event for inbound 'program change' MIDI message", function (done) {
 
     // Arrange
