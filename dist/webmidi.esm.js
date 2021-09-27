@@ -2720,14 +2720,9 @@ class OutputChannel extends e {
 
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object.
-   *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   * object or a `Message` object.
    *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
@@ -2736,9 +2731,8 @@ class OutputChannel extends e {
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
-   * object (not available in Node.js) containing the message bytes. Depending on the type of
-   * message, one to three bytes will be used.
+   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
    * @param {Object} [options={}]
    *
@@ -4590,14 +4584,9 @@ class Output extends e {
 
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object.
-   *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   * object or a `Message` object.
    *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
@@ -4606,9 +4595,8 @@ class Output extends e {
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
-   * object (not available in Node.js) containing the message bytes. Depending on the type of
-   * message, one to three bytes will be used.
+   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
    * @param {Object} [options={}]
    *
@@ -4621,12 +4609,24 @@ class Output extends e {
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   * @throws {RangeError} Data bytes must be integers between 0 and 255.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   send(message, options = {time: 0}, legacy = undefined) {
 
+    // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
+    // does not support using Uint8Array).
+    if (message instanceof Message) {
+      message = wm.isNode ? message.data : message.rawData;
+    }
+
+    // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
+    // the jzz module.
+    if (message instanceof Uint8Array && wm.isNode) {
+      message = Array.from(message);
+    }
+
+    // Validation
     if (wm.validation) {
 
       // If message is neither an array nor a Uint8Array, then we are in legacy mode
@@ -4660,8 +4660,15 @@ class Output extends e {
   /**
    * Sends a MIDI [system exclusive]{@link
     * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
-   * (*sysex*) message. The generated message will automatically be prepended with the *sysex byte*
-   * (0xF0) and terminated with the *end of sysex byte* (0xF7).
+   * (*sysex*) message. The `data` parameter should only contain the actual data of the message.
+   * When sending out the actual MIDI message, WebMidi.js will automatically prepend the data with
+   * the *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+   * the message with the *sysex end byte* (`0xF7`).
+   *
+   * The data can be an array of unsigned integers or a `Uint8Array` object.
+   *
+   *
+   *
    *
    * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
    * do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:
@@ -7914,6 +7921,73 @@ class WebMidi extends e {
   }
 
   /**
+   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
+   * two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   *
+   * @since 2.0.0
+   */
+  get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
+    };
+
+  }
+
+  /**
    * Enum of all channel mode messages and their associated numerical value:
    *
    * - `allsoundoff`: 120
@@ -8173,73 +8247,6 @@ class WebMidi extends e {
       referencedistanceratio: [0x3D, 0x06],
       panspreadangle: [0x3D, 0x07],
       rollangle: [0x3D, 0x08]
-    };
-
-  }
-
-  /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-  get MIDI_SYSTEM_MESSAGES() {
-
-    return {
-
-      // System common messages
-      sysex: 0xF0,            // 240
-      timecode: 0xF1,         // 241
-      songposition: 0xF2,     // 242
-      songselect: 0xF3,       // 243
-      tunerequest: 0xF6,      // 246
-      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
-
-      // System real-time messages
-      clock: 0xF8,            // 248
-      start: 0xFA,            // 250
-      continue: 0xFB,         // 251
-      stop: 0xFC,             // 252
-      activesensing: 0xFE,    // 254
-      reset: 0xFF,            // 255
-
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-
     };
 
   }
