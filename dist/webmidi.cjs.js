@@ -4658,10 +4658,11 @@ class Output extends e {
     manufacturer = [].concat(manufacturer); // Check if data is Uint8Array
 
     if (data instanceof Uint8Array) {
-      const merged = new Uint8Array(1 + manufacturer.length + data.length);
+      const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
       merged[0] = wm.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
+      merged[merged.length - 1] = wm.MIDI_SYSTEM_MESSAGES.sysex;
       console.log(merged);
       this.send(merged, {
         time: options.time
