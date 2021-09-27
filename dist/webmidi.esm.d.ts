@@ -2825,7 +2825,7 @@ declare class Output extends e {
     get octaveOffset(): number;
 }
 /**
- * WebMidi.js v3.0.0-alpha.12
+ * WebMidi.js v3.0.0-alpha.13
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on September 27th, 2021.
