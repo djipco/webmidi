@@ -2,185 +2,19 @@
  * WebMidi.js v3.0.0-alpha.12
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
+ * Build generated on September 27th 2021.
  *
- * This build was generated on September 22nd 2021.
+ * © Copyright 2015-2021, Jean-Philippe Côté.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
  *
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Apache License
- * Version 2.0, January 2004
- * http://www.apache.org/licenses/
- *
- * TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
- *
- * 1. Definitions.
- *
- * "License" shall mean the terms and conditions for use, reproduction,
- * and distribution as defined by Sections 1 through 9 of this document.
- *
- * "Licensor" shall mean the copyright owner or entity authorized by
- * the copyright owner that is granting the License.
- *
- * "Legal Entity" shall mean the union of the acting entity and all
- * other entities that control, are controlled by, or are under common
- * control with that entity. For the purposes of this definition,
- * "control" means (i) the power, direct or indirect, to cause the
- * direction or management of such entity, whether by contract or
- * otherwise, or (ii) ownership of fifty percent (50%) or more of the
- * outstanding shares, or (iii) beneficial ownership of such entity.
- *
- * "You" (or "Your") shall mean an individual or Legal Entity
- * exercising permissions granted by this License.
- *
- * "Source" form shall mean the preferred form for making modifications,
- * including but not limited to software source code, documentation
- * source, and configuration files.
- *
- * "Object" form shall mean any form resulting from mechanical
- * transformation or translation of a Source form, including but
- * not limited to compiled object code, generated documentation,
- * and conversions to other media types.
- *
- * "Work" shall mean the work of authorship, whether in Source or
- * Object form, made available under the License, as indicated by a
- * copyright notice that is included in or attached to the work
- * (an example is provided in the Appendix below).
- *
- * "Derivative Works" shall mean any work, whether in Source or Object
- * form, that is based on (or derived from) the Work and for which the
- * editorial revisions, annotations, elaborations, or other modifications
- * represent, as a whole, an original work of authorship. For the purposes
- * of this License, Derivative Works shall not include works that remain
- * separable from, or merely link (or bind by name) to the interfaces of,
- * the Work and Derivative Works thereof.
- *
- * "Contribution" shall mean any work of authorship, including
- * the original version of the Work and any modifications or additions
- * to that Work or Derivative Works thereof, that is intentionally
- * submitted to Licensor for inclusion in the Work by the copyright owner
- * or by an individual or Legal Entity authorized to submit on behalf of
- * the copyright owner. For the purposes of this definition, "submitted"
- * means any form of electronic, verbal, or written communication sent
- * to the Licensor or its representatives, including but not limited to
- * communication on electronic mailing lists, source code control systems,
- * and issue tracking systems that are managed by, or on behalf of, the
- * Licensor for the purpose of discussing and improving the Work, but
- * excluding communication that is conspicuously marked or otherwise
- * designated in writing by the copyright owner as "Not a Contribution."
- *
- * "Contributor" shall mean Licensor and any individual or Legal Entity
- * on behalf of whom a Contribution has been received by Licensor and
- * subsequently incorporated within the Work.
- *
- * 2. Grant of Copyright License. Subject to the terms and conditions of
- * this License, each Contributor hereby grants to You a perpetual,
- * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
- * copyright license to reproduce, prepare Derivative Works of,
- * publicly display, publicly perform, sublicense, and distribute the
- * Work and such Derivative Works in Source or Object form.
- *
- * 3. Grant of Patent License. Subject to the terms and conditions of
- * this License, each Contributor hereby grants to You a perpetual,
- * worldwide, non-exclusive, no-charge, royalty-free, irrevocable
- * (except as stated in this section) patent license to make, have made,
- * use, offer to sell, sell, import, and otherwise transfer the Work,
- * where such license applies only to those patent claims licensable
- * by such Contributor that are necessarily infringed by their
- * Contribution(s) alone or by combination of their Contribution(s)
- * with the Work to which such Contribution(s) was submitted. If You
- * institute patent litigation against any entity (including a
- * cross-claim or counterclaim in a lawsuit) alleging that the Work
- * or a Contribution incorporated within the Work constitutes direct
- * or contributory patent infringement, then any patent licenses
- * granted to You under this License for that Work shall terminate
- * as of the date such litigation is filed.
- *
- * 4. Redistribution. You may reproduce and distribute copies of the
- * Work or Derivative Works thereof in any medium, with or without
- * modifications, and in Source or Object form, provided that You
- * meet the following conditions:
- *
- * (a) You must give any other recipients of the Work or
- * Derivative Works a copy of this License; and
- *
- * (b) You must cause any modified files to carry prominent notices
- * stating that You changed the files; and
- *
- * (c) You must retain, in the Source form of any Derivative Works
- * that You distribute, all copyright, patent, trademark, and
- * attribution notices from the Source form of the Work,
- * excluding those notices that do not pertain to any part of
- * the Derivative Works; and
- *
- * (d) If the Work includes a "NOTICE" text file as part of its
- * distribution, then any Derivative Works that You distribute must
- * include a readable copy of the attribution notices contained
- * within such NOTICE file, excluding those notices that do not
- * pertain to any part of the Derivative Works, in at least one
- * of the following places: within a NOTICE text file distributed
- * as part of the Derivative Works; within the Source form or
- * documentation, if provided along with the Derivative Works; or,
- * within a display generated by the Derivative Works, if and
- * wherever such third-party notices normally appear. The contents
- * of the NOTICE file are for informational purposes only and
- * do not modify the License. You may add Your own attribution
- * notices within Derivative Works that You distribute, alongside
- * or as an addendum to the NOTICE text from the Work, provided
- * that such additional attribution notices cannot be construed
- * as modifying the License.
- *
- * You may add Your own copyright statement to Your modifications and
- * may provide additional or different license terms and conditions
- * for use, reproduction, or distribution of Your modifications, or
- * for any such Derivative Works as a whole, provided Your use,
- * reproduction, and distribution of the Work otherwise complies with
- * the conditions stated in this License.
- *
- * 5. Submission of Contributions. Unless You explicitly state otherwise,
- * any Contribution intentionally submitted for inclusion in the Work
- * by You to the Licensor shall be under the terms and conditions of
- * this License, without any additional terms or conditions.
- * Notwithstanding the above, nothing herein shall supersede or modify
- * the terms of any separate license agreement you may have executed
- * with Licensor regarding such Contributions.
- *
- * 6. Trademarks. This License does not grant permission to use the trade
- * names, trademarks, service marks, or product names of the Licensor,
- * except as required for reasonable and customary use in describing the
- * origin of the Work and reproducing the content of the NOTICE file.
- *
- * 7. Disclaimer of Warranty. Unless required by applicable law or
- * agreed to in writing, Licensor provides the Work (and each
- * Contributor provides its Contributions) on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
- * implied, including, without limitation, any warranties or conditions
- * of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
- * PARTICULAR PURPOSE. You are solely responsible for determining the
- * appropriateness of using or redistributing the Work and assume any
- * risks associated with Your exercise of permissions under this License.
- *
- * 8. Limitation of Liability. In no event and under no legal theory,
- * whether in tort (including negligence), contract, or otherwise,
- * unless required by applicable law (such as deliberate and grossly
- * negligent acts) or agreed to in writing, shall any Contributor be
- * liable to You for damages, including any direct, indirect, special,
- * incidental, or consequential damages of any character arising as a
- * result of this License or out of the use or inability to use the
- * Work (including but not limited to damages for loss of goodwill,
- * work stoppage, computer failure or malfunction, or any and all
- * other commercial damages or losses), even if such Contributor
- * has been advised of the possibility of such damages.
- *
- * 9. Accepting Warranty or Additional Liability. While redistributing
- * the Work or Derivative Works thereof, You may choose to offer,
- * and charge a fee for, acceptance of support, warranty, indemnity,
- * or other liability obligations and/or rights consistent with this
- * License. However, in accepting such obligations, You may act only
- * on Your own behalf and on Your sole responsibility, not on behalf
- * of any other Contributor, and only if You agree to indemnify,
- * defend, and hold each Contributor harmless for any liability
- * incurred by, or claims asserted against, such Contributor by reason
- * of your accepting any such warranty or additional liability.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
@@ -908,7 +742,6 @@ utils.constructor = null;
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#controlchange
- * @fires InputChannel#channelmode
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
@@ -1307,11 +1140,6 @@ class InputChannel extends e {
 
   _parseChannelModeMessage(e) {
 
-    // Dispatch general 'channelmode' event for all channel mode events (no matter their type)
-    const channelModeEvent = Object.assign({}, e);
-    channelModeEvent.type = "channelmode";
-    this.emit(channelModeEvent.type, channelModeEvent);
-
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
     event.type = event.controller.name;
@@ -1480,7 +1308,7 @@ class InputChannel extends e {
   //   // Message not valid for NRPN
   //   if (
   //     !(
-  //       command === WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &&
+  //       command === WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &&
   //       (
   //         (
   //           data1 >= WebMidi.MIDI_NRPN_MESSAGES.increment &&
@@ -2411,8 +2239,12 @@ class Input extends e {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -2458,7 +2290,7 @@ class Input extends e {
 
       // Validation
       if (
-        wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+        wm.CHANNEL_EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -2469,7 +2301,7 @@ class Input extends e {
     let listeners = [];
 
     // Check if the event is channel-specific or input-wide
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+    if (!wm.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       utils.sanitizeChannels(options.channels).forEach(ch => {
@@ -2555,8 +2387,12 @@ class Input extends e {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -2634,7 +2470,7 @@ class Input extends e {
 
       // Validation
       if (
-        wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &&
+        wm.CHANNEL_EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -2642,7 +2478,7 @@ class Input extends e {
 
     }
 
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (wm.CHANNEL_EVENTS.includes(event)) {
 
       return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
@@ -2703,7 +2539,7 @@ class Input extends e {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (wm.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (wm.CHANNEL_EVENTS.includes(event)) {
 
       utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
@@ -2994,7 +2830,7 @@ class OutputChannel extends e {
     target.forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
           utils.offsetNumber(n, offset),
           pressure
         ],
@@ -3012,7 +2848,7 @@ class OutputChannel extends e {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
+    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -3149,7 +2985,7 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_VOICE_MESSAGES.controlchange << 4) + (this.number - 1),
+        (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         controller,
         value
       ],
@@ -3612,7 +3448,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_VOICE_MESSAGES.noteoff << 4) + (this.number - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -3722,7 +3558,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_VOICE_MESSAGES.noteon << 4) + (this.number - 1),
+          (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -3798,7 +3634,7 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_VOICE_MESSAGES.channelmode << 4) + (this.number - 1),
+        (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         command,
         value
       ],
@@ -3889,7 +3725,7 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+        (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
       {time: utils.toTimestamp(options.time)}
@@ -4153,7 +3989,7 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend << 4) + (this.number - 1),
+        (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -4245,7 +4081,7 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_VOICE_MESSAGES.programchange << 4) + (this.number - 1),
+        (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
         program - 1
       ],
       {time: utils.toTimestamp(options.time)}
@@ -6978,6 +6814,34 @@ class Message {
      */
     this.channel = undefined;
 
+    /**
+     * When the message is a system exclusive message (sysex), this property contains an array with
+     * either 1 or 3 entries that identify the manufacturer targeted by the message.
+     *
+     * To know how to translate these entries into manufacturer names, check out the official list:
+     * https://www.midi.org/specifications-old/item/manufacturer-id-numbers
+     *
+     * @type {number[]}
+     * @readonly
+     */
+    this.manufacturerId = undefined;
+
+    // When the message is a sysex message, we add a manufacturer property. WE NEED TO STRIP OUT
+    // THE MANUFACTURER from the dataBytes and rawDataBytes
+    if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
+
+      if (this.dataBytes[0] === 0) {
+        this.manufacturerId = this.dataBytes.slice(0, 3);
+        // this.dataBytes = this.dataBytes.slice(4); // TODO !!
+      } else {
+        this.manufacturerId = [this.dataBytes[0]];
+        this.dataBytes = this.dataBytes.slice(1, this.dataBytes.length - 1);
+        this.rawDataBytes = this.rawDataBytes.slice(1, this.rawDataBytes.length - 1);
+      }
+
+
+    }
+
     // Assign values to property that vary according to whether they are channel-specific or system
     if (this.statusByte < 240) {
       this.isChannelMessage = true;
@@ -7996,7 +7860,6 @@ class WebMidi extends e {
    * - `noteon`: 0x9 (9)
    * - `keyaftertouch`: 0xA (10)
    * - `controlchange`: 0xB (11)
-   * - `channelmode`: 0xB (11)
    * - `nrpn`: 0xB (11)
    * - `programchange`: 0xC (12)
    * - `channelaftertouch`: 0xD (13)
@@ -8012,10 +7875,34 @@ class WebMidi extends e {
     const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
 
     return Object.assign(values, {
-      channelmode: 0xB,       // 11
       nrpn: 0xB,              // 11
     });
 
+  }
+
+  /**
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+  get CHANNEL_EVENTS() {
+    return [
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      "nrpn",
+
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers"
+    ];
   }
 
   get MIDI_CHANNEL_MESSAGES() {
