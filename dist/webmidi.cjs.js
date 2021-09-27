@@ -4545,7 +4545,8 @@ class Output extends e {
   send(message, options = {
     time: 0
   }, legacy = undefined) {
-    // If a Message object is passed in we extract the message data
+    // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
+    // does not support using Uint8Array).
     if (message instanceof Message) {
       message = wm.isNode ? message.data : message.rawData;
     } // Validation
