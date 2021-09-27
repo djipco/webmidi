@@ -9,7 +9,8 @@
   <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
   <a href="https://webmidijs.org/docs/">API DOCUMENTATION</a> — 
-  <a href="https://webmidijs.org/forum/">FORUM</a>
+  <a href="https://webmidijs.org/forum/">FORUM</a> —
+  <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">NEWSLETTER</a>
 </p>
 
 ## Background
