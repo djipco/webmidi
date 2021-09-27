@@ -34,14 +34,18 @@ export class Message {
      */
     statusByte: number;
     /**
-     * A Uint8Array of the data byte(s) of the MIDI message.
+     * A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {Uint8Array}
      * @readonly
      */
     rawDataBytes: Uint8Array;
     /**
-     * An array of the the data byte(s) of the MIDI message.
+     * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
+     * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
+     * byte so only the actual data is included.
      *
      * @type {number[]}
      * @readonly
