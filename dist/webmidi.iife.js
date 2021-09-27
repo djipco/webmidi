@@ -4633,8 +4633,8 @@
      * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
      * .
      *
-     * @param [data=number[]] {number[]|Uint8Array} A Uint8Array or an array of unsigned integers
-     * between 0 and 127. This is the data you wish to transfer.
+     * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
+     * and 127. This is the data you wish to transfer.
      *
      * @param {Object} [options={}]
      *
@@ -4653,7 +4653,7 @@
      */
 
 
-    sendSysex(manufacturer, data, options = {}) {
+    sendSysex(manufacturer, data = [], options = {}) {
       manufacturer = [].concat(manufacturer); // Check if data is Uint8Array
 
       if (data instanceof Uint8Array) {
