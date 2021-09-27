@@ -882,17 +882,6 @@ declare class WebMidi {
      *
      * @since 3.0.0
      */
-    get MIDI_CHANNEL_VOICE_MESSAGES(): {
-        noteoff: number;
-        noteon: number;
-        keyaftertouch: number;
-        controlchange: number;
-        programchange: number;
-        channelaftertouch: number;
-        pitchbend: number;
-    } & {
-        nrpn: number;
-    };
     /**
      * An array of channel-specific event names that can be listened to.
      * @type {string[]}
