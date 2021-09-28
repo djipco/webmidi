@@ -1409,21 +1409,14 @@ class InputChannel extends e {
     controller === list.databuttonincrement || // 96
     controller === list.databuttondecrement // 97
     ) {
-        let type = undefined;
-
         if (this._rpnBuffer.length === 2) {
-          type = "rpn";
+          this._dispatchParameterNumberEvent("rpn", this._rpnBuffer[0].dataBytes[1], this._rpnBuffer[1].dataBytes[1], event);
         } else if (this._nrpnBuffer.length === 2) {
-          type = "nrpn";
+          this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
         } else {
           this._nrpnBuffer = [];
           this._rpnBuffer = [];
-          return;
         }
-
-        console.log("222", type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
-
-        this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
       }
   }
 
