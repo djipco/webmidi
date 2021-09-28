@@ -2881,6 +2881,16 @@ declare class e {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
+ * @fires InputChannel#nrpndataentrycoarse
+ * @fires InputChannel#nrpndataentryfine
+ * @fires InputChannel#nrpndatabuttonincrement
+ * @fires InputChannel#nrpndatabuttondecrement
+ *
+ * @fires InputChannel#rpndataentrycoarse
+ * @fires InputChannel#rpndataentryfine
+ * @fires InputChannel#rpndatabuttonincrement
+ * @fires InputChannel#rpndatabuttondecrement
+ *
  * @since 3.0.0
  */
 declare class InputChannel extends e {
