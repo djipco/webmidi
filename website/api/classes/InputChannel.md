@@ -534,7 +534,8 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 | parameter | <code>number</code> | The non-registered parameter number (0-16383) |
 | parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
-| value | <code>number</code> | The value received (MSB) |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -556,7 +557,8 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 | parameter | <code>number</code> | The non-registered parameter number (0-16383) |
 | parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
-| value | <code>number</code> | The value received (LSB) |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -578,7 +580,8 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 | parameter | <code>number</code> | The non-registered parameter number (0-16383) |
 | parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -600,7 +603,8 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 | parameter | <code>number</code> | The non-registered parameter number (0-16383) |
 | parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -622,7 +626,8 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 | parameter | <code>string</code> | The registered parameter's name |
 | parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -644,7 +649,8 @@ Event emitted when a 'dataentryfine' RPN message has been received on the input.
 | parameter | <code>string</code> | The registered parameter's name |
 | parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -666,7 +672,8 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 | parameter | <code>string</code> | The registered parameter's name |
 | parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
@@ -688,7 +695,8 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 | parameter | <code>string</code> | The registered parameter's name |
 | parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
 | parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
-| value | <code>number</code> | The value received |
+| value | <code>number</code> | The received value as a normalized number between 0 and 1. |
+| rawValue | <code>number</code> | The value as received (0-127) |
 
 
 * * *
