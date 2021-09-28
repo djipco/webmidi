@@ -1411,7 +1411,7 @@ class InputChannel extends e {
           return;
         }
 
-        this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[0], this._nrpnBuffer[1].dataBytes[0], event);
+        this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
       } // // set up a CC event to parse as NRPN part
     // let ccEvent = {
     //   target: this,
