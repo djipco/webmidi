@@ -979,7 +979,8 @@ declare class WebMidi {
         polymodeon: number;
     };
     /**
-     * Enum of all control change messages and their associated numerical value:
+     * Enum of most control change messages and their associated numerical value. Note that some
+     * control change numbers do not have a predefined purpose.
      *
      * - `bankselectcoarse`: 0
      * - `modulationwheelcoarse`: 1
@@ -1040,6 +1041,15 @@ declare class WebMidi {
      * - `nonregisteredparameterfine`: 99
      * - `registeredparametercoarse`: 100
      * - `registeredparameterfine`: 101
+     *
+     * - `allsoundoff`: 120
+     * - `resetallcontrollers`: 121
+     * - `localcontrol`: 122
+     * - `allnotesoff`: 123
+     * - `omnimodeoff`: 124
+     * - `omnimodeon`: 125
+     * - `monomodeon`: 126
+     * - `polymodeon`: 127
      *
      * @enum {Object.<string, number>}
      * @readonly
