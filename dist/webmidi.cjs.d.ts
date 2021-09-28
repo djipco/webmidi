@@ -1143,12 +1143,12 @@ declare class WebMidi {
      * - `panspreadangle`: [0x3D, 0x07]
      * - `rollangle`: [0x3D, 0x08]
      *
-     * @enum {Object.<string, number>}
+     * @enum {Object.<string, number[]>}
      * @readonly
      *
-     * @since 2.0.0
+     * @since 3.0.0
      */
-    get MIDI_REGISTERED_PARAMETER(): {
+    get MIDI_REGISTERED_PARAMETERS(): {
         pitchbendrange: number[];
         channelfinetuning: number[];
         channelcoarsetuning: number[];
@@ -1165,6 +1165,11 @@ declare class WebMidi {
         panspreadangle: number[];
         rollangle: number[];
     };
+    /**
+     * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+     * @private
+     */
+    private get MIDI_REGISTERED_PARAMETER();
     /**
      * Array of standard note names
      *
