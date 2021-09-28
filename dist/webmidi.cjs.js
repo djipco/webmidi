@@ -1402,7 +1402,7 @@ class InputChannel extends e {
         if (this._rpnBuffer.length === 2) {
           this._dispatchRpnEvent(this._rpnBuffer[0], this._rpnBuffer[1], event);
         } else if (this._nrpnBuffer.length === 2) {
-          this._dispatchNrpnEvent(this._rpnBuffer[0], this._rpnBuffer[1], event);
+          this._dispatchNrpnEvent(this._rpnBuffer[0].dataBytes[0], this._rpnBuffer[1].dataBytes[0], event);
         } else {
           this._nrpnBuffer = [];
           this._rpnBuffer = [];
