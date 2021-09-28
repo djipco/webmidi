@@ -1570,24 +1570,25 @@ class InputChannel extends e {
       parameterLsb: paramLsb,
       value: value,
       type: type === "rpn" ? "rpn" : "nrpn"
-    }; // REMAPLER PAR CODE PLUS INTELLIGENT!
+    }; // // REMAPLER PAR CODE PLUS INTELLIGENT!
+    // if (controller === list.dataentrycoarse) {                  // 6
+    //   event.type += "entrymsb";
+    // } else if (controller === list.dataentryfine) {             // 38
+    //   event.type += "entrylsb";
+    // } else if (controller === list.databuttonincrement) {       // 96
+    //   event.type += "increment";
+    // } else if (controller === list.databuttondecrement) {       // 97
+    //   event.type += "decrement";
+    // }
 
-    if (controller === list.dataentrycoarse) {
-      // 6
-      event.type += "entrymsb";
-    } else if (controller === list.dataentryfine) {
-      // 38
-      event.type += "entrylsb";
-    } else if (controller === list.databuttonincrement) {
-      // 96
-      event.type += "increment";
-    } else if (controller === list.databuttondecrement) {
-      // 97
-      event.type += "decrement";
-    }
+    event.type += utils.getPropertyByValue(list, controller); // Identify the parameter (by name for RPN and by number for NRPN)
 
-    if (type === "rpn") ; else {
-      event.parameter = paramMsb << 7 + paramLsb;
+    if (type === "rpn") {
+      event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETER).find(key => {
+        return wm.MIDI_REGISTERED_PARAMETER[key][0] === paramMsb && wm.MIDI_REGISTERED_PARAMETER[key][1] === paramLsb;
+      });
+    } else {
+      event.parameter = (paramMsb << 7) + paramLsb;
     }
 
     this.emit(event.type, event);
