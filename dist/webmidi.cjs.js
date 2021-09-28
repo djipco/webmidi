@@ -1578,6 +1578,8 @@ class InputChannel extends e {
       // 97
       event.type = "nrpn" + "decrement";
     }
+
+    this.emit(event.type, event);
   } // /**
   //  * Array of valid **non-registered parameter number** (NRPNs) types.
   //  *
