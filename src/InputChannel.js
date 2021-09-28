@@ -568,14 +568,6 @@ export class InputChannel extends EventEmitter {
    * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
-   *
-   *
-   * Uint8Array [ 176, 99, 12 ]
-   * Uint8Array [ 176, 98, 34 ]
-   * Uint8Array [ 176, 6, 56 ]
-   * Uint8Array [ 176, 38, 78 ]
-   * Uint8Array [ 176, 101, 127 ]
-   * Uint8Array [ 176, 100, 127 ]
    */
   _parseEventForParameterNumber(event) {
 
@@ -694,7 +686,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (MSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -713,7 +706,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (LSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -732,7 +726,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -751,7 +746,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
 
@@ -769,7 +765,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -786,7 +783,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -803,7 +801,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -820,7 +819,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     const event = {
@@ -828,7 +828,8 @@ export class InputChannel extends EventEmitter {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: e.message.dataBytes[1],
+      value: Utilities.toNormalized(e.message.dataBytes[1]),
+      rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
 

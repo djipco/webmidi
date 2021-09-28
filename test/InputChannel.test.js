@@ -523,7 +523,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       done();
     }
 
@@ -551,7 +551,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       done();
     }
 
@@ -579,7 +579,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       done();
     }
 
@@ -607,7 +607,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       done();
     }
 
@@ -639,7 +639,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       done();
     }
 
@@ -668,7 +668,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
     }
@@ -698,7 +698,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
     }
@@ -728,7 +728,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
     }
@@ -758,7 +758,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
     }
@@ -792,7 +792,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value);
+      expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
     }
