@@ -1558,8 +1558,7 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    console.log("_dispatchParameterNumberEvent", type, paramMsb, paramLsb); // To make it more legible
-
+    // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
     const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
@@ -1591,6 +1590,7 @@ class InputChannel extends e {
       event.parameter = paramMsb << 7 + paramLsb;
     }
 
+    console.log(event);
     this.emit(event.type, event);
   } // /**
   //  * Array of valid **non-registered parameter number** (NRPNs) types.
