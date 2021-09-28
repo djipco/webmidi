@@ -1359,8 +1359,7 @@ class InputChannel extends e {
 
 
   _parseEventForParameterNumber(event) {
-    console.log("111"); // To make it more legible
-
+    // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
     const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
@@ -1411,7 +1410,6 @@ class InputChannel extends e {
     controller === list.databuttondecrement // 97
     ) {
         let type = undefined;
-        console.log("222");
 
         if (this._rpnBuffer.length === 2) {
           type = "rpn";
@@ -1422,6 +1420,8 @@ class InputChannel extends e {
           this._rpnBuffer = [];
           return;
         }
+
+        console.log("222", controller, type);
 
         this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
       }
