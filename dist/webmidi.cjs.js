@@ -1550,31 +1550,37 @@ class InputChannel extends e {
     controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
   }
 
-  _dispatchNrpnEvent(paramMsb, paramLsb, event) {
+  _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
     // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
-    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Clone the incoming event so we can use it for outgoing purposes
+    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
 
-    event = Object.assign({}, event); //
-
-    event.controller.number = paramMsb << 7 + paramLsb;
-    event.controller.msb = paramMsb;
-    event.controller.lsb = paramLsb;
-    event.controller.value = value; // event.controller.name = ;
+    const event = {
+      target: e.target,
+      timestamp: e.timestamp,
+      parameterMsb: paramMsb,
+      parameterLsb: paramLsb,
+      value: value,
+      type: type === "rpn" ? "rpn" : "nrpn"
+    }; // REMAPLER PAR CODE PLUS INTELLIGENT!
 
     if (controller === list.dataentrycoarse) {
       // 6
-      event.type = "nrpn" + "entrymsb";
+      event.type += "entrymsb";
     } else if (controller === list.dataentryfine) {
       // 38
-      event.type = "nrpn" + "entrylsb";
+      event.type += "entrylsb";
     } else if (controller === list.databuttonincrement) {
       // 96
-      event.type = "nrpn" + "increment";
+      event.type += "increment";
     } else if (controller === list.databuttondecrement) {
       // 97
-      event.type = "nrpn" + "decrement";
+      event.type += "decrement";
+    }
+
+    if (type === "rpn") ; else {
+      event.parameter = paramMsb << 7 + paramLsb;
     }
 
     this.emit(event.type, event);
