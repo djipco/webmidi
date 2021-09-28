@@ -2814,7 +2814,7 @@ declare class Output extends e {
     get octaveOffset(): number;
 }
 /**
- * WebMidi.js v3.0.0-alpha.14
+ * WebMidi.js v3.0.0-alpha.15
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on September 28th, 2021.
@@ -2967,14 +2967,6 @@ declare class InputChannel extends e {
      * the final 127 bytes, the incomplete message is cleared.
      * @param e Event
      * @private
-     *
-     *
-     * Uint8Array [ 176, 99, 12 ]
-     * Uint8Array [ 176, 98, 34 ]
-     * Uint8Array [ 176, 6, 56 ]
-     * Uint8Array [ 176, 38, 78 ]
-     * Uint8Array [ 176, 101, 127 ]
-     * Uint8Array [ 176, 100, 127 ]
      */
     private _parseEventForParameterNumber;
     isRpnOrNrpnController(controller: any): boolean;
