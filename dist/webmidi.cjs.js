@@ -1587,8 +1587,8 @@ class InputChannel extends e {
     event.type += utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
-      event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETER).find(key => {
-        return wm.MIDI_REGISTERED_PARAMETER[key][0] === paramMsb && wm.MIDI_REGISTERED_PARAMETER[key][1] === paramLsb;
+      event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return wm.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && wm.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
     } else {
       event.parameter = (paramMsb << 7) + paramLsb;
@@ -3277,7 +3277,7 @@ class OutputChannel extends e {
 
 
   decrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3285,8 +3285,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
-        if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -3340,7 +3340,7 @@ class OutputChannel extends e {
 
 
   incrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3348,8 +3348,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETER).forEach(p => {
-        if (wm.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -4142,7 +4142,7 @@ class OutputChannel extends e {
 
 
   setRegisteredParameter(rpn, data, options = {}) {
-    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETER[rpn];
+    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (wm.validation) {
       if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
@@ -7951,14 +7951,14 @@ class WebMidi extends e {
    * - `panspreadangle`: [0x3D, 0x07]
    * - `rollangle`: [0x3D, 0x08]
    *
-   * @enum {Object.<string, number>}
+   * @enum {Object.<string, number[]>}
    * @readonly
    *
-   * @since 2.0.0
+   * @since 3.0.0
    */
 
 
-  get MIDI_REGISTERED_PARAMETER() {
+  get MIDI_REGISTERED_PARAMETERS() {
     return {
       pitchbendrange: [0x00, 0x00],
       channelfinetuning: [0x00, 0x01],
@@ -7976,6 +7976,15 @@ class WebMidi extends e {
       panspreadangle: [0x3D, 0x07],
       rollangle: [0x3D, 0x08]
     };
+  }
+  /**
+   * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+   * @private
+   */
+
+
+  get MIDI_REGISTERED_PARAMETER() {
+    return this.MIDI_REGISTERED_PARAMETERS;
   }
   /**
    * Array of standard note names
