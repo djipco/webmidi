@@ -2950,14 +2950,6 @@ declare class InputChannel extends e {
      * the final 127 bytes, the incomplete message is cleared.
      * @param e Event
      * @private
-     *
-     *
-     * Uint8Array [ 176, 99, 12 ]
-     * Uint8Array [ 176, 98, 34 ]
-     * Uint8Array [ 176, 6, 56 ]
-     * Uint8Array [ 176, 38, 78 ]
-     * Uint8Array [ 176, 101, 127 ]
-     * Uint8Array [ 176, 100, 127 ]
      */
     private _parseEventForParameterNumber;
     isRpnOrNrpnController(controller: any): boolean;
