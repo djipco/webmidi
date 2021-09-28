@@ -3061,6 +3061,7 @@ class OutputChannel extends e {
    *
    * @throws {RangeError} Controller numbers must be between 0 and 127.
    * @throws {RangeError} Invalid controller name.
+   * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -3071,6 +3072,8 @@ class OutputChannel extends e {
       controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
+    if (!Array.isArray(value)) value = [value];
+
     if (wm.validation) {
       if (controller === undefined) {
         throw new TypeError("Control change must be identified with a valid name or an integer between 0 and 127.");
@@ -3080,13 +3083,19 @@ class OutputChannel extends e {
         throw new TypeError("Control change number must be an integer between 0 and 127.");
       }
 
-      if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
-        throw new TypeError("Control change value must be an integer between 0 and 127");
+      value = value.map(item => {
+        return Math.min(Math.max(parseInt(item), 0), 127);
+      });
+
+      if (value.length === 2 && controller >= 32) {
+        throw new TypeError("To use a value array, the controller must be between 0 and 31");
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller, value], {
-      time: utils.toTimestamp(options.time)
+    value.forEach((item, index) => {
+      this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
+        time: utils.toTimestamp(options.time)
+      });
     });
     return this;
   }
