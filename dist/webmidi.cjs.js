@@ -1558,32 +1558,17 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    // To make it more legible
-    const controller = e.message.dataBytes[0];
-    const value = e.message.dataBytes[1];
-    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
-
+    // Create new event object (recuperating some info from the incoming event)
     const event = {
       target: e.target,
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: value,
+      value: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
-    }; // // REMAPLER PAR CODE PLUS INTELLIGENT!
-    // if (controller === list.dataentrycoarse) {                  // 6
-    //   event.type += "entrymsb";
-    // } else if (controller === list.dataentryfine) {             // 38
-    //   event.type += "entrylsb";
-    // } else if (controller === list.databuttonincrement) {       // 96
-    //   event.type += "increment";
-    // } else if (controller === list.databuttondecrement) {       // 97
-    //   event.type += "decrement";
-    // }
+    }; // Retrieve controller type and append to event type
 
-    console.log("aaa");
-    event.type += utils.getPropertyByValue(list, controller);
-    console.log(event); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.type += utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETER).find(key => {
@@ -1594,16 +1579,7 @@ class InputChannel extends e {
     }
 
     this.emit(event.type, event);
-  } // /**
-  //  * Array of valid **non-registered parameter number** (NRPNs) types.
-  //  *
-  //  * @type {string[]}
-  //  * @readonly
-  //  */
-  // static get NRPN_TYPES() {
-  //   return ["entry", "increment", "decrement"];
-  // }
-
+  }
   /**
    * Returns the channel mode name matching the specified number. If no match is found, the function
    * returns `false`.
