@@ -2901,11 +2901,17 @@ declare class InputChannel extends e {
      */
     private _octaveOffset;
     /**
-     * An array of the current NRPNs being constructed for this channel
+     * An array of messages that form the current NRPN sequence
      * @private
-     * @type {string[]}
+     * @type {Message[]}
      */
     private _nrpnBuffer;
+    /**
+     * An array of messages that form the current RPN sequence
+     * @private
+     * @type {Message[]}
+     */
+    private _rpnBuffer;
     /**
      * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
      * are composed of a sequence of specific **control change** messages. When a valid sequence of
@@ -2917,7 +2923,7 @@ declare class InputChannel extends e {
      *
      * @type {boolean}
      */
-    nrpnEventsEnabled: boolean;
+    parameterNumberEventsEnabled: boolean;
     /**
      * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
      * input.
@@ -3012,6 +3018,15 @@ declare class InputChannel extends e {
      * @since 3.0
      */
     get number(): number;
+    private set nrpnEventsEnabled(arg);
+    /**
+     * Whether RPN/NRPN events are parsed and dispatched.
+     * @type {boolean}
+     * @since 3.0
+     * @deprecated Use parameterNumberEventsEnabled instead.
+     * @private
+     */
+    private get nrpnEventsEnabled();
 }
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
