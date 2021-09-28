@@ -3239,6 +3239,7 @@ declare class OutputChannel extends e {
      *
      * @throws {RangeError} Controller numbers must be between 0 and 127.
      * @throws {RangeError} Invalid controller name.
+     * @throws {TypeError} The value array must have a length of 2.
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
