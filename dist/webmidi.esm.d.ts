@@ -3231,7 +3231,7 @@ declare class OutputChannel extends e {
      *  * `monomodeon` (#126)
      *  * `polymodeon` (#127)
      *
-     * Note: as you can see above, not all control change message have a matching common name. This
+     * As you can see above, not all control change message have a matching common name. This
      * does not mean you cannot use the others. It simply means you will need to use their number
      * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
      * reserved for *channel mode* messages. See
@@ -3242,9 +3242,18 @@ declare class OutputChannel extends e {
      * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
      * specification.
      *
+     * Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+     * (modulationwheelcoarse) can be accompanied by a second control change message for
+     * modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB
+     * and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
+     * parameter.
+     *
      * @param {number|string} controller The MIDI controller name or number (0-127).
      *
-     * @param {number} value The value to send (0-127).
+     * @param {number|number[]} value The value to send (0-127). You can also use a two-position array
+     * for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second
+     * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
+     * controller)
      *
      * @param {Object} [options={}]
      *
@@ -3256,10 +3265,11 @@ declare class OutputChannel extends e {
      *
      * @throws {RangeError} Controller numbers must be between 0 and 127.
      * @throws {RangeError} Invalid controller name.
+     * @throws {TypeError} The value array must have a length of 2.
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    sendControlChange(controller: number | string, value: number, options?: {
+    sendControlChange(controller: number | string, value: number | number[], options?: {
         time?: number | string;
     }): OutputChannel;
     /**
