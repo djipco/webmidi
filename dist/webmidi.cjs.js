@@ -1560,8 +1560,8 @@ class InputChannel extends e {
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
     console.log("aaa"); // To make it more legible
 
-    const controller = event.message.dataBytes[0];
-    const value = event.message.dataBytes[1];
+    const controller = e.message.dataBytes[0];
+    const value = e.message.dataBytes[1];
     const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
 
     const event = {
