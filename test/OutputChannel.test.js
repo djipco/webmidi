@@ -1027,7 +1027,7 @@ describe("OutputChannel Object", function() {
 
     });
 
-    it.only("should properly send 2 MIDI message when using value array", function(done) {
+    it("should properly send 2 MIDI message when using value array", function(done) {
 
       // Arrange
       let index = 0;
