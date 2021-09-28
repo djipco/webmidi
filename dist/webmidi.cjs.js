@@ -1581,7 +1581,9 @@ class InputChannel extends e {
     //   event.type += "decrement";
     // }
 
-    event.type += utils.getPropertyByValue(list, controller); // Identify the parameter (by name for RPN and by number for NRPN)
+    console.log("aaa");
+    event.type += utils.getPropertyByValue(list, controller);
+    console.log(event); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETER).find(key => {
