@@ -7931,36 +7931,6 @@ class WebMidi extends e {
     return ["connected", "disconnected"];
   }
   /**
-   * Enum of all control change messages that are used to create NRPN messages and their associated
-   * numerical value:
-   *
-   * - `entrymsb`: 6
-   * - `entrylsb`: 38
-   * - `increment`: 96
-   * - `decrement`: 97
-   * - `paramlsb`: 98
-   * - `parammsb`: 99
-   * - `nullactiveparameter`: 127
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-
-
-  get MIDI_NRPN_MESSAGES() {
-    return {
-      entrymsb: 6,
-      entrylsb: 38,
-      increment: 96,
-      decrement: 97,
-      paramlsb: 98,
-      parammsb: 99,
-      nullactiveparameter: 127
-    };
-  }
-  /**
    * Enum of all registered parameters and their associated pair of numerical values. MIDI
    * registered parameters extend the original list of control change messages. Currently, there are
    * only a limited number of them:
