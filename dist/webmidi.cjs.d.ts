@@ -2962,7 +2962,7 @@ declare class InputChannel extends e {
      */
     private _parseEventForParameterNumber;
     isRpnOrNrpnController(controller: any): boolean;
-    _dispatchNrpnEvent(paramMsb: any, paramLsb: any, event: any): void;
+    _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
      * returns `false`.
