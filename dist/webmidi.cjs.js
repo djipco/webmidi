@@ -1400,7 +1400,7 @@ class InputChannel extends e {
     controller === list.databuttondecrement // 97
     ) {
         if (this._rpnBuffer.length === 2) ; else if (this._nrpnBuffer.length === 2) {
-          this._dispatchNrpnEvent(this._nrpnBuffer[0].dataBytes[0], this._nrpnBuffer[1].dataBytes[0], event);
+          this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[0], this._nrpnBuffer[1].dataBytes[0], event);
         } else {
           this._nrpnBuffer = [];
           this._rpnBuffer = [];
