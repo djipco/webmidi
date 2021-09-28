@@ -1027,6 +1027,35 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it.only("should properly send 2 MIDI message when using value array", function(done) {
+
+      // Arrange
+      let index = 0;
+
+      // Act
+      VIRTUAL_OUTPUT.on("message", assert);
+      WEBMIDI_OUTPUT.channels[1].sendControlChange(0, [12, 34]);
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (index === 0) {
+          expect(message[0]).to.equal(0xB0);  // control change on channel 1
+          expect(message[1]).to.equal(0);     // bankselectcoarse
+          expect(message[2]).to.equal(12);    // bankselectcoarse
+          index++;
+        } else {
+          expect(message[0]).to.equal(0xB0);  // control change on channel 1
+          expect(message[1]).to.equal(32);    // bankselectfine
+          expect(message[2]).to.equal(34);    // bankselectcoarse
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
     it("should properly send MIDI message when using controller names", function(done) {
 
       // Arrange
@@ -1165,8 +1194,6 @@ describe("OutputChannel Object", function() {
 
       // Arrange
       let invalid = [
-        -1,
-        128,
         NaN,
         undefined,
         null

@@ -272,7 +272,7 @@ export class OutputChannel extends EventEmitter {
    *  * `monomodeon` (#126)
    *  * `polymodeon` (#127)
    *
-   * Note: as you can see above, not all control change message have a matching common name. This
+   * As you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
    * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
    * reserved for *channel mode* messages. See
@@ -283,9 +283,18 @@ export class OutputChannel extends EventEmitter {
    * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
+   * Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+   * (modulationwheelcoarse) can be accompanied by a second control change message for
+   * modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB
+   * and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
+   * parameter.
+   *
    * @param {number|string} controller The MIDI controller name or number (0-127).
    *
-   * @param {number} value The value to send (0-127).
+   * @param {number|number[]} value The value to send (0-127). You can also use a two-position array
+   * for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second
+   * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
+   * controller)
    *
    * @param {Object} [options={}]
    *
@@ -297,6 +306,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @throws {RangeError} Controller numbers must be between 0 and 127.
    * @throws {RangeError} Invalid controller name.
+   * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -306,7 +316,10 @@ export class OutputChannel extends EventEmitter {
       controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
+    if (!Array.isArray(value)) value = [value];
+
     if (WebMidi.validation) {
+
       if (controller === undefined) {
         throw new TypeError(
           "Control change must be identified with a valid name or an integer between 0 and 127."
@@ -317,19 +330,30 @@ export class OutputChannel extends EventEmitter {
         throw new TypeError("Control change number must be an integer between 0 and 127.");
       }
 
-      if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
-        throw new TypeError("Control change value must be an integer between 0 and 127");
+      value = value.map(item => {
+        const output = Math.min(Math.max(parseInt(item), 0), 127);
+        if (isNaN(output)) throw new TypeError("Values must be integers between 0 and 127");
+        return output;
+      });
+
+      if (value.length === 2 && controller >= 32) {
+        throw new TypeError("To use a value array, the controller must be between 0 and 31");
       }
+
     }
 
-    this.send(
-      [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
-        controller,
-        value
-      ],
-      {time: Utilities.toTimestamp(options.time)}
-    );
+    value.forEach((item, index) => {
+
+      this.send(
+        [
+          (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+          controller + (index * 32),
+          value[index]
+        ],
+        {time: Utilities.toTimestamp(options.time)}
+      );
+
+    });
 
     return this;
 
