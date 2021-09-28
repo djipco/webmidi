@@ -1,4 +1,4 @@
-![WebMidi.js Logo](https://djipco.github.io/webmidi/images/webmidijs-logo.svg "WebMidi.js")
+![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
@@ -9,7 +9,8 @@
   <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
   <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
   <a href="https://webmidijs.org/docs/">API DOCUMENTATION</a> — 
-  <a href="https://webmidijs.org/forum/">FORUM</a>
+  <a href="https://webmidijs.org/forum/">FORUM</a> —
+  <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">NEWSLETTER</a>
 </p>
 
 ## Background
@@ -26,25 +27,16 @@ much easier.
 
 > ## ⚠️ About the upcoming version 3.0
 > 
-> I am currently working on version 3 and I would love to hear your ideas on how to improve the
-> library. If you have a few minutes to spare, please fill in this survey:
->
-> > https://forms.gle/bcahgNCGgwhcoJDD7 
->
 > If you would like to try out v3.0.0-alpha, you can switch to the 
 > [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
 > so.
->
-> Thank you so much for your help!
 
 ## Sponsors
 
 I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
-but it still takes quite a bit of time to develop and maintain. Thank you! 👏
+but it still takes quite a bit of time to develop and maintain. Thank you so much! 👏
 
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott")
-[<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax")
-<img src="https://djipco.github.io/webmidi/images/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman")
 
 If you would like to support the project, you can press the 
 [Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
@@ -482,7 +474,7 @@ Since Jazz-Plugin does not use the same syntax as the native Web MIDI API, it is
 install the [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. You can do that by 
 including the following in your page:
 
-    <script src='http://cwilso.github.com/WebMIDIAPIShim/WebMIDIAPI.js'></script>
+    <script src='https://cwilso.github.io/WebMIDIAPIShim/build/WebMIDIAPI.min.js'></script>
     
 Obviously, you can also 
 [download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
