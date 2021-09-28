@@ -3084,7 +3084,9 @@ class OutputChannel extends e {
       }
 
       value = value.map(item => {
-        return Math.min(Math.max(parseInt(item), 0), 127);
+        const output = Math.min(Math.max(parseInt(item), 0), 127);
+        if (isNaN(output)) throw new TypeError("Values must be integers between 0 and 127");
+        return output;
       });
 
       if (value.length === 2 && controller >= 32) {
