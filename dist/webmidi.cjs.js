@@ -1399,12 +1399,19 @@ class InputChannel extends e {
     controller === list.databuttonincrement || // 96
     controller === list.databuttondecrement // 97
     ) {
-        if (this._rpnBuffer.length === 2) ; else if (this._nrpnBuffer.length === 2) {
-          this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[0], this._nrpnBuffer[1].dataBytes[0], event);
+        let type = undefined;
+
+        if (this._rpnBuffer.length === 2) {
+          type = "rpn";
+        } else if (this._nrpnBuffer.length === 2) {
+          type = "nrpn";
         } else {
           this._nrpnBuffer = [];
           this._rpnBuffer = [];
+          return;
         }
+
+        this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[0], this._nrpnBuffer[1].dataBytes[0], event);
       } // // set up a CC event to parse as NRPN part
     // let ccEvent = {
     //   target: this,
@@ -1551,7 +1558,8 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    // To make it more legible
+    console.log("_dispatchParameterNumberEvent", type, paramMsb, paramLsb); // To make it more legible
+
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
     const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
