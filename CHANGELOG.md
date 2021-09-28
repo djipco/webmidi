@@ -52,6 +52,8 @@ options of `WebMidi.enable()`.
 
 - Added support for RPN messages and improved NRPN parsing.
 
+- A two-position array cna now be passed to sendControlChange() to specify both MSB and LSB at once.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
