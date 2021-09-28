@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.14 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -672,14 +672,6 @@ export class InputChannel extends EventEmitter {
    * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
-   *
-   *
-   * Uint8Array [ 176, 99, 12 ]
-   * Uint8Array [ 176, 98, 34 ]
-   * Uint8Array [ 176, 6, 56 ]
-   * Uint8Array [ 176, 38, 78 ]
-   * Uint8Array [ 176, 101, 127 ]
-   * Uint8Array [ 176, 100, 127 ]
    */
   _parseEventForParameterNumber(event) {
 
@@ -798,7 +790,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (MSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -817,7 +810,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (LSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -836,7 +830,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -855,7 +850,8 @@ export class InputChannel extends EventEmitter {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
 
@@ -873,7 +869,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -890,7 +887,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -907,7 +905,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -924,7 +923,8 @@ export class InputChannel extends EventEmitter {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     const event = {
@@ -932,7 +932,8 @@ export class InputChannel extends EventEmitter {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: e.message.dataBytes[1],
+      value: Utilities.toNormalized(e.message.dataBytes[1]),
+      rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
 
@@ -1090,8 +1091,8 @@ export class InputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:19:42 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.14 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:43:36 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
