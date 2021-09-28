@@ -1558,8 +1558,7 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    console.log("aaa"); // To make it more legible
-
+    // To make it more legible
     const controller = e.message.dataBytes[0];
     const value = e.message.dataBytes[1];
     const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Create new event object (recuperating some info from the incoming event)
@@ -1571,8 +1570,7 @@ class InputChannel extends e {
       parameterLsb: paramLsb,
       value: value,
       type: type === "rpn" ? "rpn" : "nrpn"
-    };
-    console.log("bbb"); // REMAPLER PAR CODE PLUS INTELLIGENT!
+    }; // REMAPLER PAR CODE PLUS INTELLIGENT!
 
     if (controller === list.dataentrycoarse) {
       // 6
@@ -1592,7 +1590,6 @@ class InputChannel extends e {
       event.parameter = paramMsb << 7 + paramLsb;
     }
 
-    console.log(event);
     this.emit(event.type, event);
   } // /**
   //  * Array of valid **non-registered parameter number** (NRPNs) types.
