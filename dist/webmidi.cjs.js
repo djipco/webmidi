@@ -1347,14 +1347,6 @@ class InputChannel extends e {
    * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
-   *
-   *
-   * Uint8Array [ 176, 99, 12 ]
-   * Uint8Array [ 176, 98, 34 ]
-   * Uint8Array [ 176, 6, 56 ]
-   * Uint8Array [ 176, 38, 78 ]
-   * Uint8Array [ 176, 101, 127 ]
-   * Uint8Array [ 176, 100, 127 ]
    */
 
 
@@ -1580,7 +1572,8 @@ class InputChannel extends e {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: e.message.dataBytes[1],
+      value: utils.toNormalized(e.message.dataBytes[1]),
+      rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
