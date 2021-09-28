@@ -868,6 +868,16 @@ utils.constructor = null;
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
+ * @fires InputChannel#nrpndataentrycoarse
+ * @fires InputChannel#nrpndataentryfine
+ * @fires InputChannel#nrpndatabuttonincrement
+ * @fires InputChannel#nrpndatabuttondecrement
+ *
+ * @fires InputChannel#rpndataentrycoarse
+ * @fires InputChannel#rpndataentryfine
+ * @fires InputChannel#rpndatabuttonincrement
+ * @fires InputChannel#rpndatabuttondecrement
+ *
  * @since 3.0.0
  */
 
@@ -1412,138 +1422,7 @@ class InputChannel extends e {
         }
 
         this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
-      } // // set up a CC event to parse as NRPN part
-    // let ccEvent = {
-    //   target: this,
-    //   type: "controlchange",
-    //   data: Array.from(e.data),
-    //   rawData: e.data,
-    //   timestamp: e.timeStamp,
-    //   channel: channel,
-    //   controller: {
-    //     number: data1,
-    //     name: this.getCcNameByNumber(data1)
-    //   },
-    //   value: data2
-    // };
-    // if (
-    //   // if we get a starting MSB (CC99 - 0-126) vs an end MSB (CC99 - 127), destroy incomplete
-    //   // NRPN and begin building again
-    //   ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.parammsb &&
-    //   ccEvent.value != WebMidi.MIDI_NRPN_MESSAGES.nullactiveparameter
-    // ) {
-    //   this._nrpnBuffer = [];
-    //   this._nrpnBuffer[0] = ccEvent;
-    // } else if(
-    //   // add the param LSB
-    //   this._nrpnBuffer.length === 1 &&
-    //   ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.paramlsb
-    // ) {
-    //   this._nrpnBuffer.push(ccEvent);
-    //
-    // } else if(
-    //   // add data inc/dec or value MSB for 14bit
-    //   this._nrpnBuffer.length === 2 &&
-    //   (ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.increment ||
-    //     ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.decrement ||
-    //     ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.entrymsb)
-    // ) {
-    //   this._nrpnBuffer.push(ccEvent);
-    // } else if(
-    //   // if we have a value MSB, only add an LSB to pair with that
-    //   this._nrpnBuffer.length === 3 &&
-    //   this._nrpnBuffer[2].number === WebMidi.MIDI_NRPN_MESSAGES.entrymsb &&
-    //   ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.entrylsb
-    // ) {
-    //   this._nrpnBuffer.push(ccEvent);
-    //
-    // } else if(
-    //   // add an end MSB (CC99 - 127)
-    //   this._nrpnBuffer.length >= 3 &&
-    //   this._nrpnBuffer.length <= 4 &&
-    //   ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.parammsb &&
-    //   ccEvent.value === WebMidi.MIDI_NRPN_MESSAGES.nullactiveparameter
-    // ) {
-    //   this._nrpnBuffer.push(ccEvent);
-    // } else if(
-    //   // add an end LSB (CC99 - 127)
-    //   this._nrpnBuffer.length >= 4 &&
-    //   this._nrpnBuffer.length <= 5 &&
-    //   ccEvent.controller.number === WebMidi.MIDI_NRPN_MESSAGES.paramlsb &&
-    //   ccEvent.value === WebMidi.MIDI_NRPN_MESSAGES.nullactiveparameter
-    // ) {
-    //   this._nrpnBuffer.push(ccEvent);
-    //   // now we have a full inc or dec NRPN message, lets create that event!
-    //
-    //   let rawData = [];
-    //
-    //   this._nrpnBuffer.forEach(ev => rawData.push(ev.data));
-    //
-    //   let nrpnNumber = (this._nrpnBuffer[0].value<<7) | (this._nrpnBuffer[1].value);
-    //   let nrpnValue = this._nrpnBuffer[2].value;
-    //   if (this._nrpnBuffer.length === 6) {
-    //     nrpnValue = (this._nrpnBuffer[2].value<<7) | (this._nrpnBuffer[3].value);
-    //   }
-    //
-    //   let nrpnControllerType = "";
-    //
-    //   switch (this._nrpnBuffer[2].controller.number) {
-    //   case WebMidi.MIDI_NRPN_MESSAGES.entrymsb:
-    //     nrpnControllerType = InputChannel.NRPN_TYPES[0];
-    //     break;
-    //   case WebMidi.MIDI_NRPN_MESSAGES.increment:
-    //     nrpnControllerType = InputChannel.NRPN_TYPES[1];
-    //     break;
-    //   case WebMidi.MIDI_NRPN_MESSAGES.decrement:
-    //     nrpnControllerType = InputChannel.NRPN_TYPES[2];
-    //     break;
-    //   default:
-    //     throw new Error("The NPRN type was unidentifiable.");
-    //   }
-    //
-    //   // now we are done building an NRPN, so clear the NRPN buffer
-    //   this._nrpnBuffer = [];
-    //
-    //   /**
-    //    * Event emitted when a valid NRPN message sequence has been received.
-    //    *
-    //    * @event InputChannel#nrpn
-    //    * @type {Object}
-    //    * @property {InputChannel} target The `InputChannel` that triggered the event.
-    //    * @property {Array} event.data The MIDI message as an array of 8 bit values.
-    //    * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
-    //    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
-    //    * (in milliseconds since the navigation start of the document).
-    //    * @property {string} type `"nrpn"`
-    //    * @property {Object} controller
-    //    * @property {Object} controller.number The number of the NRPN.
-    //    * @property {Object} controller.name The usual name or function of the controller.
-    //    * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
-    //    * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
-    //    * 65535).
-    //    */
-    //   let nrpnEvent = {
-    //     timestamp: ccEvent.timestamp,
-    //     channel: ccEvent.channel,
-    //     type: "nrpn",
-    //     data: Array.from(rawData),
-    //     rawData: rawData,
-    //     controller: {
-    //       number: nrpnNumber,
-    //       type: nrpnControllerType,
-    //       name: "Non-Registered Parameter " + nrpnNumber
-    //     },
-    //     value: nrpnValue / 65535,
-    //     rawValue: nrpnValue
-    //   };
-    //
-    //   this.emit(nrpnEvent.type, nrpnEvent);
-    //
-    // } else {
-    //   // something didn't match, clear the incomplete NRPN message buffer
-    //   this._nrpnBuffer = [];
-    // }
-
+      }
   }
 
   isRpnOrNrpnController(controller) {
@@ -1558,7 +1437,149 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    // Create new event object (recuperating some info from the incoming event)
+    /**
+     * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
+     *
+     * @event InputChannel#nrpndataentrycoarse
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"nrpndataentrycoarse"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {number} parameter The non-registered parameter number (0-16383)
+     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} value The value received (MSB)
+     */
+
+    /**
+     * Event emitted when a 'dataentryfine' NRPN message has been received on the input.
+     *
+     * @event InputChannel#nrpndataentryfine
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"nrpndataentryfine"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {number} parameter The non-registered parameter number (0-16383)
+     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} value The value received (LSB)
+     */
+
+    /**
+     * Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
+     *
+     * @event InputChannel#nrpndatabuttonincrement
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"nrpndatabuttonincrement"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {number} parameter The non-registered parameter number (0-16383)
+     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} value The value received
+     */
+
+    /**
+     * Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
+     *
+     * @event InputChannel#nrpndatabuttondecrement
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"nrpndatabuttondecrement"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {number} parameter The non-registered parameter number (0-16383)
+     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
+     * (0-127)
+     * @property {number} value The value received
+     */
+
+    /**
+     * Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
+     *
+     * @event InputChannel#rpndataentrycoarse
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"rpndataentrycoarse"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The value received
+     */
+
+    /**
+     * Event emitted when a 'dataentryfine' RPN message has been received on the input.
+     *
+     * @event InputChannel#rpndataentryfine
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"rpndataentryfine"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The value received
+     */
+
+    /**
+     * Event emitted when a 'databuttonincrement' RPN message has been received on the input.
+     *
+     * @event InputChannel#rpndatabuttonincrement
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"rpndatabuttonincrement"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The value received
+     */
+
+    /**
+     * Event emitted when a 'databuttondecrement' RPN message has been received on the input.
+     *
+     * @event InputChannel#rpndatabuttondecrement
+     *
+     * @type {Object}
+     *
+     * @property {string} type `"rpndatabuttondecrement"`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The value received
+     */
     const event = {
       target: e.target,
       timestamp: e.timestamp,
@@ -1578,6 +1599,7 @@ class InputChannel extends e {
       event.parameter = (paramMsb << 7) + paramLsb;
     }
 
+    console.log(event);
     this.emit(event.type, event);
   }
   /**
@@ -2343,6 +2365,20 @@ class Input extends e {
    *    * monomode
    *    * omnimode
    *    * resetallcontrollers
+   *
+   * 7. **NRPN** Events (channel-specific)
+   *
+   *    * nrpndataentrycoarse
+   *    * nrpndataentryfine
+   *    * nrpndatabuttonincrement
+   *    * nrpndatabuttondecrement
+   *
+   * 8. **RPN** Events (channel-specific)
+   *
+   *    * rpndataentrycoarse
+   *    * rpndataentryfine
+   *    * rpndatabuttonincrement
+   *    * rpndatabuttondecrement
    *
    * @param event {string} The type of the event.
    *
