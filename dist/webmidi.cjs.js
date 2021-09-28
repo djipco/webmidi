@@ -1121,7 +1121,7 @@ class InputChannel extends e {
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
 
       if (this.parameterNumberEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
-        this._parseMessageForNrpn(event.message);
+        this._parseEventForParameterNumber(event);
       }
     } else if (event.type === "programchange") {
       /**
@@ -1348,47 +1348,66 @@ class InputChannel extends e {
    */
 
 
-  _parseMessageForNrpn(message) {
+  _parseEventForParameterNumber(event) {
     // To make it more legible
-    const controller = message.dataBytes[0];
-    const value = message.dataBytes[1];
-    const messages = wm.MIDI_CONTROL_CHANGE_MESSAGES; // An RPN/NRPN sequence is terminated when we receive either #38, #99 (of the next sequence) or
-    // #101 (to null value or to start new sequence)
+    const controller = event.message.dataBytes[0];
+    const value = event.message.dataBytes[1];
+    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
 
-    if (controller === messages.nonregisteredparameterfine || // 99
-    controller === messages.registeredparameterfine // 101
+    if (controller === list.nonregisteredparameterfine || // 99
+    controller === list.registeredparameterfine // 101
     ) {
-        // Check if we have a complete sequence in buffer. If so, dispatch event and empty buffer.
-        if (this._nrpnBuffer.length >= 3) {
-          this._dispatchNrpnEvent(this._nrpnBuffer);
-
-          this._nrpnBuffer = [];
-        } // In any case, empty buffer and start new sequence.
-
-
-        this._nrpnBuffer = [{
-          controller: controller,
-          value: value
-        }];
-      } else if (controller === messages.dataentryfine) {
-      // 38
-      if (this._nrpnBuffer.length === 3) {
-        this._nrpnBuffer.push({
-          controller: controller,
-          value: value
-        });
-
-        this._dispatchNrpnEvent(this._nrpnBuffer);
-
         this._nrpnBuffer = [];
-      } // In any case, empty buffer and start new sequence.
+        this._rpnBuffer = [];
 
+        if (controller === list.nonregisteredparameterfine) {
+          // 99
+          this._nrpnBuffer = [event.message];
+        } else {
+          // 101
+          // 127 is a reset so we ignore it
+          if (value !== 127) this._rpnBuffer = [event.message];
+        } // B. Check if the message is the end of an RPN (100) or NRPN (98) parameter declaration.
 
-      this._nrpnBuffer = [{
-        controller: controller,
-        value: value
-      }];
-    } // // set up a CC event to parse as NRPN part
+      } else if (controller === list.nonregisteredparametercoarse || // 98
+    controller === list.registeredparametercoarse // 100
+    ) {
+        if (controller === list.nonregisteredparametercoarse) {
+          // 98
+          // Flush the other buffer (they are mutually exclusive)
+          this._rpnBuffer = []; // Check if we are in sequence
+
+          if (this._nrpnBuffer.length === 1) {
+            this._nrpnBuffer.push(event.message);
+          } else {
+            this._nrpnBuffer = []; // out of sequence
+          }
+        } else {
+          // 100
+          // Flush the other buffer (they are mutually exclusive)
+          this._nrpnBuffer = []; // 127 is a reset so we ignore it
+
+          if (this._rpnBuffer.length === 1 && value !== 127) {
+            this._rpnBuffer.push(event.message);
+          } else {
+            this._rpnBuffer = []; // out of sequence or reset
+          }
+        } // C. Check if the message is for data entry (6, 38, 96 or 97). Those messages trigger events.
+
+      } else if (controller === list.dataentrycoarse || // 6
+    controller === list.dataentryfine || // 38
+    controller === list.databuttonincrement || // 96
+    controller === list.databuttondecrement // 97
+    ) {
+        if (this._rpnBuffer.length === 2) {
+          this._dispatchRpnEvent(this._rpnBuffer[0], this._rpnBuffer[1], event);
+        } else if (this._nrpnBuffer.length === 2) {
+          this._dispatchNrpnEvent(this._rpnBuffer[0], this._rpnBuffer[1], event);
+        } else {
+          this._nrpnBuffer = [];
+          this._rpnBuffer = [];
+        }
+      } // // set up a CC event to parse as NRPN part
     // let ccEvent = {
     //   target: this,
     //   type: "controlchange",
@@ -1533,8 +1552,32 @@ class InputChannel extends e {
     controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
   }
 
-  _dispatchNrpnEvent(buffer) {
-    console.log(buffer);
+  _dispatchNrpnEvent(paramMsb, paramLsb, event) {
+    // To make it more legible
+    const controller = event.message.dataBytes[0];
+    const value = event.message.dataBytes[1];
+    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES; // Clone the incoming event so we can use it for outgoing purposes
+
+    event = Object.assign({}, event); //
+
+    event.controller.number = paramMsb << 7 + paramLsb;
+    event.controller.msb = paramMsb;
+    event.controller.lsb = paramLsb;
+    event.controller.value = value; // event.controller.name = ;
+
+    if (controller === list.dataentrycoarse) {
+      // 6
+      event.type = "nrpn" + "entrymsb";
+    } else if (controller === list.dataentryfine) {
+      // 38
+      event.type = "nrpn" + "entrylsb";
+    } else if (controller === list.databuttonincrement) {
+      // 96
+      event.type = "nrpn" + "increment";
+    } else if (controller === list.databuttondecrement) {
+      // 97
+      event.type = "nrpn" + "decrement";
+    }
   } // /**
   //  * Array of valid **non-registered parameter number** (NRPNs) types.
   //  *
@@ -1664,43 +1707,7 @@ class InputChannel extends e {
     }
 
     this.parameterNumberEventsEnabled = value;
-  } // /**
-  //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
-  //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
-  //  *
-  //  * To stop forwarding messages, simply set `forwardTo` to `undefined` or `null`.
-  //  *
-  //  * If you want to forward messages from all channels of an input, you should instead use the
-  //  * input's [forwardTo]{@link Input#forwardTo} property.
-  //  *
-  //  * @type {OutputChannel|[OutputChannel]}
-  //  * @readonly
-  //  */
-  // get forwardTo() {
-  //   return this._forwardTo;
-  // }
-  // set forwardTo(value) {
-  //
-  //   // @todo THIS NEEDS TO BE COMPLETED!!!
-  //
-  //   if (value === undefined || value === null) {
-  //     this._forwardTo = undefined;
-  //     return;
-  //   }
-  //
-  //   if (!Array.isArray(value)) value = [value];
-  //
-  //   if (this.validation) {
-  //     value.forEach(v => {
-  //       // if (typeof v)
-  //       console.log(typeof v);
-  //     });
-  //   }
-  //
-  //   this._forwardTo = value;
-  //
-  // }
-
+  }
 
 }
 
