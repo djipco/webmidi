@@ -980,7 +980,7 @@ class InputChannel extends e {
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
 
-    if (event.type === wm.CHANNEL_EVENTS.noteoff || event.type === wm.CHANNEL_EVENTS.noteon && data2 === 0) {
+    if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
        *
@@ -1013,7 +1013,7 @@ class InputChannel extends e {
 
       event.velocity = event.note.release;
       event.rawVelocity = event.note.rawRelease;
-    } else if (event.type === wm.CHANNEL_EVENTS.noteon) {
+    } else if (event.type === "noteon") {
       /**
        * Event emitted when a **note on** MIDI message has been received.
        *
@@ -1048,7 +1048,7 @@ class InputChannel extends e {
 
       event.velocity = event.note.attack;
       event.rawVelocity = event.note.rawAttack;
-    } else if (event.type === wm.CHANNEL_EVENTS.keyaftertouch) {
+    } else if (event.type === "keyaftertouch") {
       /**
        * Event emitted when a **key-specific aftertouch** MIDI message has been received.
        *
@@ -1082,7 +1082,7 @@ class InputChannel extends e {
       // removed from future versions (@deprecated).
 
       event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-    } else if (event.type === wm.CHANNEL_EVENTS.controlchange) {
+    } else if (event.type === "controlchange") {
       /**
        * Event emitted when a **control change** MIDI message has been received.
        *
@@ -1116,7 +1116,7 @@ class InputChannel extends e {
       if (this.nrpnEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
         this._parseMessageForNrpn(event.message);
       }
-    } else if (event.type === wm.CHANNEL_EVENTS.programchange) {
+    } else if (event.type === "programchange") {
       /**
        * Event emitted when a **program change** MIDI message has been received.
        *
@@ -1137,7 +1137,7 @@ class InputChannel extends e {
        */
       event.value = data1 + 1;
       event.rawValue = data1;
-    } else if (event.type === wm.CHANNEL_EVENTS.channelaftertouch) {
+    } else if (event.type === "channelaftertouch") {
       /**
        * Event emitted when a control change MIDI message has been received.
        *
@@ -1158,7 +1158,7 @@ class InputChannel extends e {
        */
       event.value = utils.toNormalized(data1);
       event.rawValue = data1;
-    } else if (event.type === wm.CHANNEL_EVENTS.pitchbend) {
+    } else if (event.type === "pitchbend") {
       /**
        * Event emitted when a pitch bend MIDI message has been received.
        *
@@ -1345,34 +1345,43 @@ class InputChannel extends e {
     // To make it more legible
     const controller = message.dataBytes[0];
     const value = message.dataBytes[1];
-    // // #101 (to null value or to start new sequence)
-    // if (
-    //   controller === messages.nonregisteredparameterfine ||       // 99
-    //   controller === messages.registeredparameterfine             // 101
-    // ) {
-    //
-    //   // Check if we have a complete sequence in buffer. If so, dispatch event and empty buffer.
-    //   if (this._nrpnBuffer.length >= 3) {
-    //     this._dispatchNrpnEvent(this._nrpnBuffer);
-    //     this._nrpnBuffer = [];
-    //   }
-    //
-    //   // In any case, empty buffer and start new sequence.
-    //   this._nrpnBuffer = [{controller: controller, value: value}];
-    //
-    // } else if (controller === messages.dataentryfine) {             // 38
-    //
-    //   if (this._nrpnBuffer.length === 3) {
-    //     this._nrpnBuffer.push({controller: controller, value: value});
-    //     this._dispatchNrpnEvent(this._nrpnBuffer);
-    //     this._nrpnBuffer = [];
-    //   }
-    //
-    //   // In any case, empty buffer and start new sequence.
-    //   this._nrpnBuffer = [{controller: controller, value: value}];
-    //
-    // }
-    // // set up a CC event to parse as NRPN part
+    const messages = wm.MIDI_CONTROL_CHANGE_MESSAGES; // An RPN/NRPN sequence is terminated when we receive either #38, #99 (of the next sequence) or
+    // #101 (to null value or to start new sequence)
+
+    if (controller === messages.nonregisteredparameterfine || // 99
+    controller === messages.registeredparameterfine // 101
+    ) {
+        // Check if we have a complete sequence in buffer. If so, dispatch event and empty buffer.
+        if (this._nrpnBuffer.length >= 3) {
+          this._dispatchNrpnEvent(this._nrpnBuffer);
+
+          this._nrpnBuffer = [];
+        } // In any case, empty buffer and start new sequence.
+
+
+        this._nrpnBuffer = [{
+          controller: controller,
+          value: value
+        }];
+      } else if (controller === messages.dataentryfine) {
+      // 38
+      if (this._nrpnBuffer.length === 3) {
+        this._nrpnBuffer.push({
+          controller: controller,
+          value: value
+        });
+
+        this._dispatchNrpnEvent(this._nrpnBuffer);
+
+        this._nrpnBuffer = [];
+      } // In any case, empty buffer and start new sequence.
+
+
+      this._nrpnBuffer = [{
+        controller: controller,
+        value: value
+      }];
+    } // // set up a CC event to parse as NRPN part
     // let ccEvent = {
     //   target: this,
     //   type: "controlchange",
@@ -1503,6 +1512,7 @@ class InputChannel extends e {
     //   // something didn't match, clear the incomplete NRPN message buffer
     //   this._nrpnBuffer = [];
     // }
+
   }
 
   isRpnOrNrpnController(controller) {
