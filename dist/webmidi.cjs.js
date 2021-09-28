@@ -7633,7 +7633,7 @@ class WebMidi extends e {
 
 
   get CHANNEL_EVENTS() {
-    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpn", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
+    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
   }
   /**
    * Enum of all MIDI channel messages and their associated numerical value:
@@ -7779,7 +7779,8 @@ class WebMidi extends e {
     };
   }
   /**
-   * Enum of all control change messages and their associated numerical value:
+   * Enum of most control change messages and their associated numerical value. Note that some
+   * control change numbers do not have a predefined purpose.
    *
    * - `bankselectcoarse`: 0
    * - `modulationwheelcoarse`: 1
@@ -7840,6 +7841,15 @@ class WebMidi extends e {
    * - `nonregisteredparameterfine`: 99
    * - `registeredparametercoarse`: 100
    * - `registeredparameterfine`: 101
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
    *
    * @enum {Object.<string, number>}
    * @readonly
