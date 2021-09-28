@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -198,6 +198,50 @@
 							<article class="secondary">
 									<h3>Members</h3>
 									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="CHANNEL_EVENTS" class="member public"><span class="name">CHANNEL_EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of channel-specific event names that can be listened to.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1008">line 1008</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
 			<h4 id="defaults" class="member public"><span class="name">defaults</span><span class="signature-type"> :Object</span></h4>
@@ -515,6 +559,67 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id="MIDI_CHANNEL_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all MIDI channel messages and their associated numerical value:</p>
+			<ul>
+			<li><code>noteoff</code>: 0x8 (8)</li>
+			<li><code>noteon</code>: 0x9 (9)</li>
+			<li><code>keyaftertouch</code>: 0xA (10)</li>
+			<li><code>controlchange</code>: 0xB (11)</li>
+			<li><code>nrpn</code>: 0xB (11)</li>
+			<li><code>programchange</code>: 0xC (12)</li>
+			<li><code>channelaftertouch</code>: 0xD (13)</li>
+			<li><code>pitchbend</code>: 0xE (14)</li>
+			</ul></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+							<!-- since -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Since</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">3.0.0</p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1054">line 1054</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
 			<h4 id="MIDI_CHANNEL_MODE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MODE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
@@ -564,69 +669,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1064">line 1064</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_CHANNEL_VOICE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_VOICE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all MIDI channel voice messages and their associated numerical value:</p>
-			<ul>
-			<li><code>noteoff</code>: 0x8 (8)</li>
-			<li><code>noteon</code>: 0x9 (9)</li>
-			<li><code>keyaftertouch</code>: 0xA (10)</li>
-			<li><code>controlchange</code>: 0xB (11)</li>
-			<li><code>channelmode</code>: 0xB (11)</li>
-			<li><code>nrpn</code>: 0xB (11)</li>
-			<li><code>programchange</code>: 0xC (12)</li>
-			<li><code>channelaftertouch</code>: 0xD (13)</li>
-			<li><code>pitchbend</code>: 0xE (14)</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">3.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1022">line 1022</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1152">line 1152</a></p>
 								</div>
 							</div>
 			
@@ -642,67 +685,210 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all control change messages and their associated numerical value:</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of most control change messages and their associated numerical value. Note that some
+			control change numbers do not have a predefined purpose.</p>
 			<ul>
-			<li><code>bankselectcoarse</code>: 0</li>
-			<li><code>modulationwheelcoarse</code>: 1</li>
-			<li><code>breathcontrollercoarse</code>: 2</li>
-			<li><code>footcontrollercoarse</code>: 4</li>
-			<li><code>portamentotimecoarse</code>: 5</li>
-			<li><code>dataentrycoarse</code>: 6</li>
-			<li><code>volumecoarse</code>: 7</li>
-			<li><code>balancecoarse</code>: 8</li>
-			<li><code>pancoarse</code>: 10</li>
-			<li><code>expressioncoarse</code>: 11</li>
-			<li><code>effectcontrol1coarse</code>: 12</li>
-			<li><code>effectcontrol2coarse</code>: 13</li>
-			<li><code>generalpurposeslider1</code>: 16</li>
-			<li><code>generalpurposeslider2</code>: 17</li>
-			<li><code>generalpurposeslider3</code>: 18</li>
-			<li><code>generalpurposeslider4</code>: 19</li>
-			<li><code>bankselectfine</code>: 32</li>
-			<li><code>modulationwheelfine</code>: 33</li>
-			<li><code>breathcontrollerfine</code>: 34</li>
-			<li><code>footcontrollerfine</code>: 36</li>
-			<li><code>portamentotimefine</code>: 37</li>
-			<li><code>dataentryfine</code>: 38</li>
-			<li><code>volumefine</code>: 39</li>
-			<li><code>balancefine</code>: 40</li>
-			<li><code>panfine</code>: 42</li>
-			<li><code>expressionfine</code>: 43</li>
-			<li><code>effectcontrol1fine</code>: 44</li>
-			<li><code>effectcontrol2fine</code>: 45</li>
-			<li><code>holdpedal</code>: 64</li>
-			<li><code>portamento</code>: 65</li>
-			<li><code>sustenutopedal</code>: 66</li>
-			<li><code>softpedal</code>: 67</li>
-			<li><code>legatopedal</code>: 68</li>
-			<li><code>hold2pedal</code>: 69</li>
-			<li><code>soundvariation</code>: 70</li>
-			<li><code>resonance</code>: 71</li>
-			<li><code>soundreleasetime</code>: 72</li>
-			<li><code>soundattacktime</code>: 73</li>
-			<li><code>brightness</code>: 74</li>
-			<li><code>soundcontrol6</code>: 75</li>
-			<li><code>soundcontrol7</code>: 76</li>
-			<li><code>soundcontrol8</code>:`77</li>
-			<li><code>soundcontrol9</code>: 78</li>
-			<li><code>soundcontrol10</code>: 79</li>
-			<li><code>generalpurposebutton1</code>: 80</li>
-			<li><code>generalpurposebutton2</code>: 81</li>
-			<li><code>generalpurposebutton3</code>: 82</li>
-			<li><code>generalpurposebutton4</code>: 83</li>
-			<li><code>reverblevel</code>: 91</li>
-			<li><code>tremololevel</code>: 92</li>
-			<li><code>choruslevel</code>: 93</li>
-			<li><code>celestelevel</code>: 94</li>
-			<li><code>phaserlevel</code>: 95</li>
-			<li><code>databuttonincrement</code>: 96</li>
-			<li><code>databuttondecrement</code>: 97</li>
-			<li><code>nonregisteredparametercoarse</code>: 98</li>
-			<li><code>nonregisteredparameterfine</code>: 99</li>
-			<li><code>registeredparametercoarse</code>: 100</li>
-			<li><code>registeredparameterfine</code>: 101</li>
+			<li>
+			<p><code>bankselectcoarse</code>: 0</p>
+			</li>
+			<li>
+			<p><code>modulationwheelcoarse</code>: 1</p>
+			</li>
+			<li>
+			<p><code>breathcontrollercoarse</code>: 2</p>
+			</li>
+			<li>
+			<p><code>footcontrollercoarse</code>: 4</p>
+			</li>
+			<li>
+			<p><code>portamentotimecoarse</code>: 5</p>
+			</li>
+			<li>
+			<p><code>dataentrycoarse</code>: 6</p>
+			</li>
+			<li>
+			<p><code>volumecoarse</code>: 7</p>
+			</li>
+			<li>
+			<p><code>balancecoarse</code>: 8</p>
+			</li>
+			<li>
+			<p><code>pancoarse</code>: 10</p>
+			</li>
+			<li>
+			<p><code>expressioncoarse</code>: 11</p>
+			</li>
+			<li>
+			<p><code>effectcontrol1coarse</code>: 12</p>
+			</li>
+			<li>
+			<p><code>effectcontrol2coarse</code>: 13</p>
+			</li>
+			<li>
+			<p><code>generalpurposeslider1</code>: 16</p>
+			</li>
+			<li>
+			<p><code>generalpurposeslider2</code>: 17</p>
+			</li>
+			<li>
+			<p><code>generalpurposeslider3</code>: 18</p>
+			</li>
+			<li>
+			<p><code>generalpurposeslider4</code>: 19</p>
+			</li>
+			<li>
+			<p><code>bankselectfine</code>: 32</p>
+			</li>
+			<li>
+			<p><code>modulationwheelfine</code>: 33</p>
+			</li>
+			<li>
+			<p><code>breathcontrollerfine</code>: 34</p>
+			</li>
+			<li>
+			<p><code>footcontrollerfine</code>: 36</p>
+			</li>
+			<li>
+			<p><code>portamentotimefine</code>: 37</p>
+			</li>
+			<li>
+			<p><code>dataentryfine</code>: 38</p>
+			</li>
+			<li>
+			<p><code>volumefine</code>: 39</p>
+			</li>
+			<li>
+			<p><code>balancefine</code>: 40</p>
+			</li>
+			<li>
+			<p><code>panfine</code>: 42</p>
+			</li>
+			<li>
+			<p><code>expressionfine</code>: 43</p>
+			</li>
+			<li>
+			<p><code>effectcontrol1fine</code>: 44</p>
+			</li>
+			<li>
+			<p><code>effectcontrol2fine</code>: 45</p>
+			</li>
+			<li>
+			<p><code>holdpedal</code>: 64</p>
+			</li>
+			<li>
+			<p><code>portamento</code>: 65</p>
+			</li>
+			<li>
+			<p><code>sustenutopedal</code>: 66</p>
+			</li>
+			<li>
+			<p><code>softpedal</code>: 67</p>
+			</li>
+			<li>
+			<p><code>legatopedal</code>: 68</p>
+			</li>
+			<li>
+			<p><code>hold2pedal</code>: 69</p>
+			</li>
+			<li>
+			<p><code>soundvariation</code>: 70</p>
+			</li>
+			<li>
+			<p><code>resonance</code>: 71</p>
+			</li>
+			<li>
+			<p><code>soundreleasetime</code>: 72</p>
+			</li>
+			<li>
+			<p><code>soundattacktime</code>: 73</p>
+			</li>
+			<li>
+			<p><code>brightness</code>: 74</p>
+			</li>
+			<li>
+			<p><code>soundcontrol6</code>: 75</p>
+			</li>
+			<li>
+			<p><code>soundcontrol7</code>: 76</p>
+			</li>
+			<li>
+			<p><code>soundcontrol8</code>:`77</p>
+			</li>
+			<li>
+			<p><code>soundcontrol9</code>: 78</p>
+			</li>
+			<li>
+			<p><code>soundcontrol10</code>: 79</p>
+			</li>
+			<li>
+			<p><code>generalpurposebutton1</code>: 80</p>
+			</li>
+			<li>
+			<p><code>generalpurposebutton2</code>: 81</p>
+			</li>
+			<li>
+			<p><code>generalpurposebutton3</code>: 82</p>
+			</li>
+			<li>
+			<p><code>generalpurposebutton4</code>: 83</p>
+			</li>
+			<li>
+			<p><code>reverblevel</code>: 91</p>
+			</li>
+			<li>
+			<p><code>tremololevel</code>: 92</p>
+			</li>
+			<li>
+			<p><code>choruslevel</code>: 93</p>
+			</li>
+			<li>
+			<p><code>celestelevel</code>: 94</p>
+			</li>
+			<li>
+			<p><code>phaserlevel</code>: 95</p>
+			</li>
+			<li>
+			<p><code>databuttonincrement</code>: 96</p>
+			</li>
+			<li>
+			<p><code>databuttondecrement</code>: 97</p>
+			</li>
+			<li>
+			<p><code>nonregisteredparametercoarse</code>: 98</p>
+			</li>
+			<li>
+			<p><code>nonregisteredparameterfine</code>: 99</p>
+			</li>
+			<li>
+			<p><code>registeredparametercoarse</code>: 100</p>
+			</li>
+			<li>
+			<p><code>registeredparameterfine</code>: 101</p>
+			</li>
+			<li>
+			<p><code>allsoundoff</code>: 120</p>
+			</li>
+			<li>
+			<p><code>resetallcontrollers</code>: 121</p>
+			</li>
+			<li>
+			<p><code>localcontrol</code>: 122</p>
+			</li>
+			<li>
+			<p><code>allnotesoff</code>: 123</p>
+			</li>
+			<li>
+			<p><code>omnimodeoff</code>: 124</p>
+			</li>
+			<li>
+			<p><code>omnimodeon</code>: 125</p>
+			</li>
+			<li>
+			<p><code>monomodeon</code>: 126</p>
+			</li>
+			<li>
+			<p><code>polymodeon</code>: 127</p>
+			</li>
 			</ul></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
@@ -738,7 +924,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1147">line 1147</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1245">line 1245</a></p>
 								</div>
 							</div>
 			
@@ -782,7 +968,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1228">line 1228</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1326">line 1326</a></p>
 								</div>
 							</div>
 			
@@ -794,68 +980,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_NRPN_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_NRPN_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all control change messages that are used to create NRPN messages and their associated
-			numerical value:</p>
-			<ul>
-			<li><code>entrymsb</code>: 6</li>
-			<li><code>entrylsb</code>: 38</li>
-			<li><code>increment</code>: 96</li>
-			<li><code>decrement</code>: 97</li>
-			<li><code>paramlsb</code>: 98</li>
-			<li><code>parammsb</code>: 99</li>
-			<li><code>nullactiveparameter</code>: 127</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1249">line 1249</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_REGISTERED_PARAMETER" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_REGISTERED_PARAMETER</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
+			<h4 id="MIDI_REGISTERED_PARAMETERS" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_REGISTERED_PARAMETERS</span><span class="signature-type"> :Object.&lt;string, Array.&lt;number>></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -885,7 +1010,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
+									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, Array.&lt;number>></span></div>
 								</div>
 							</div>
 			
@@ -896,7 +1021,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Since</label>
 								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
+									<p class="form-control-static">3.0.0</p>
 								</div>
 							</div>
 			
@@ -913,7 +1038,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1289">line 1289</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1356">line 1356</a></p>
 								</div>
 							</div>
 			
@@ -993,7 +1118,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1349">line 1349</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1106">line 1106</a></p>
 								</div>
 							</div>
 			
@@ -1037,7 +1162,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1384">line 1384</a></p>
+									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1393">line 1393</a></p>
 								</div>
 							</div>
 			
@@ -2480,8 +2605,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 22nd 2021 @ 10:50:14 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:17:58 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

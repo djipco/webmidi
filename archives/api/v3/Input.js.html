@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -755,8 +755,26 @@ export class Input extends EventEmitter {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
+   *
+   * 7. **NRPN** Events (channel-specific)
+   *
+   *    * nrpndataentrycoarse
+   *    * nrpndataentryfine
+   *    * nrpndatabuttonincrement
+   *    * nrpndatabuttondecrement
+   *
+   * 8. **RPN** Events (channel-specific)
+   *
+   *    * rpndataentrycoarse
+   *    * rpndataentryfine
+   *    * rpndatabuttonincrement
+   *    * rpndatabuttondecrement
    *
    * @param event {string} The type of the event.
    *
@@ -802,7 +820,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &amp;&amp;
+        WebMidi.CHANNEL_EVENTS.includes(event) &amp;&amp;
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -813,7 +831,7 @@ export class Input extends EventEmitter {
     let listeners = [];
 
     // Check if the event is channel-specific or input-wide
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] === undefined) {
+    if (!WebMidi.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
@@ -899,8 +917,12 @@ export class Input extends EventEmitter {
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [channelmode]{@link InputChannel#event:channelmode}
-   *    * To be completed...
+   *    * allnotesoff
+   *    * allsoundoff
+   *    * localcontrol
+   *    * monomode
+   *    * omnimode
+   *    * resetallcontrollers
    *
    * @param event {string} The type of the event.
    *
@@ -978,7 +1000,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined &amp;&amp;
+        WebMidi.CHANNEL_EVENTS.includes(event) &amp;&amp;
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -986,7 +1008,7 @@ export class Input extends EventEmitter {
 
     }
 
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (WebMidi.CHANNEL_EVENTS.includes(event)) {
 
       return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
@@ -1047,7 +1069,7 @@ export class Input extends EventEmitter {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES[event] !== undefined) {
+    if (WebMidi.CHANNEL_EVENTS.includes(event)) {
 
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
@@ -1170,8 +1192,8 @@ export class Input extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 22nd 2021 @ 10:50:14 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:17:58 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

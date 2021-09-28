@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -169,14 +169,9 @@ export class OutputChannel extends EventEmitter {
 
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
    * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object.
-   *
-   * Note that **you cannot use a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-   * ([JZZ.js]{@link https://www.npmjs.com/package/jzz}) does not support it.
+   * object or a `Message` object.
    *
    * It is usually not necessary to use this method directly as you can use one of the simpler
    * helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
@@ -185,9 +180,8 @@ export class OutputChannel extends EventEmitter {
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array} An array of 8bit unsigned integers or a `Uint8Array`
-   * object (not available in Node.js) containing the message bytes. Depending on the type of
-   * message, one to three bytes will be used.
+   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
+   * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
    * @param {Object} [options={}]
    *
@@ -279,7 +273,7 @@ export class OutputChannel extends EventEmitter {
     target.forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.keyaftertouch &lt;&lt; 4) + (this.number - 1),
+          (WebMidi.MIDI_CHANNEL_MESSAGES.keyaftertouch &lt;&lt; 4) + (this.number - 1),
           Utilities.offsetNumber(n, offset),
           pressure
         ],
@@ -297,7 +291,7 @@ export class OutputChannel extends EventEmitter {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
+    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -434,7 +428,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
+        (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
         controller,
         value
       ],
@@ -638,7 +632,7 @@ export class OutputChannel extends EventEmitter {
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -647,10 +641,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &amp;&amp;
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -705,7 +699,7 @@ export class OutputChannel extends EventEmitter {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -714,10 +708,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &amp;&amp;
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -897,7 +891,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteoff &lt;&lt; 4) + (this.number - 1),
+          (WebMidi.MIDI_CHANNEL_MESSAGES.noteoff &lt;&lt; 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -1007,7 +1001,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
+          (WebMidi.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -1083,7 +1077,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelmode &lt;&lt; 4) + (this.number - 1),
+        (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
         command,
         value
       ],
@@ -1174,7 +1168,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.channelaftertouch &lt;&lt; 4) + (this.number - 1),
+        (WebMidi.MIDI_CHANNEL_MESSAGES.channelaftertouch &lt;&lt; 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1438,7 +1432,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.pitchbend &lt;&lt; 4) + (this.number - 1),
+        (WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend &lt;&lt; 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -1530,7 +1524,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_VOICE_MESSAGES.programchange &lt;&lt; 4) + (this.number - 1),
+        (WebMidi.MIDI_CHANNEL_MESSAGES.programchange &lt;&lt; 4) + (this.number - 1),
         program - 1
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1592,7 +1586,7 @@ export class OutputChannel extends EventEmitter {
    */
   setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETER[rpn];
+    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (WebMidi.validation) {
 
@@ -1855,8 +1849,8 @@ export class OutputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 22nd 2021 @ 10:50:14 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:17:58 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

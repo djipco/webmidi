@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -1106,13 +1106,45 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all MIDI channel voice messages and their associated numerical value:
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+  get CHANNEL_EVENTS() {
+    return [
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      "nrpndataentrycoarse",
+      "nrpndataentryfine",
+      "nrpndatabuttonincrement",
+      "nrpndatabuttondecrement",
+
+      "rpndataentrycoarse",
+      "rpndataentryfine",
+      "rpndatabuttonincrement",
+      "rpndatabuttondecrement",
+
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers"
+    ];
+  }
+
+  /**
+   * Enum of all MIDI channel messages and their associated numerical value:
    *
    * - `noteoff`: 0x8 (8)
    * - `noteon`: 0x9 (9)
    * - `keyaftertouch`: 0xA (10)
    * - `controlchange`: 0xB (11)
-   * - `channelmode`: 0xB (11)
    * - `nrpn`: 0xB (11)
    * - `programchange`: 0xC (12)
    * - `channelaftertouch`: 0xD (13)
@@ -1123,17 +1155,6 @@ class WebMidi extends EventEmitter {
    *
    * @since 3.0.0
    */
-  get MIDI_CHANNEL_VOICE_MESSAGES() {
-
-    const values = Object.assign({}, this.MIDI_CHANNEL_MESSAGES);
-
-    return Object.assign(values, {
-      channelmode: 0xB,       // 11
-      nrpn: 0xB,              // 11
-    });
-
-  }
-
   get MIDI_CHANNEL_MESSAGES() {
 
     return {
@@ -1144,6 +1165,73 @@ class WebMidi extends EventEmitter {
       programchange: 0xC,     // 12
       channelaftertouch: 0xD, // 13
       pitchbend: 0xE          // 14
+    };
+
+  }
+
+  /**
+   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
+   * two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.&lt;string, number>}
+   * @readonly
+   *
+   * @since 2.0.0
+   */
+  get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
     };
 
   }
@@ -1181,7 +1269,8 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all control change messages and their associated numerical value:
+   * Enum of most control change messages and their associated numerical value. Note that some
+   * control change numbers do not have a predefined purpose.
    *
    * - `bankselectcoarse`: 0
    * - `modulationwheelcoarse`: 1
@@ -1242,6 +1331,15 @@ class WebMidi extends EventEmitter {
    * - `nonregisteredparameterfine`: 99
    * - `registeredparametercoarse`: 100
    * - `registeredparameterfine`: 101
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
    *
    * @enum {Object.&lt;string, number>}
    * @readonly
@@ -1334,37 +1432,6 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all control change messages that are used to create NRPN messages and their associated
-   * numerical value:
-   *
-   * - `entrymsb`: 6
-   * - `entrylsb`: 38
-   * - `increment`: 96
-   * - `decrement`: 97
-   * - `paramlsb`: 98
-   * - `parammsb`: 99
-   * - `nullactiveparameter`: 127
-   *
-   * @enum {Object.&lt;string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-  get MIDI_NRPN_MESSAGES() {
-
-    return {
-      entrymsb: 6,
-      entrylsb: 38,
-      increment: 96,
-      decrement: 97,
-      paramlsb: 98,
-      parammsb: 99,
-      nullactiveparameter: 127
-    };
-
-  }
-
-  /**
    * Enum of all registered parameters and their associated pair of numerical values. MIDI
    * registered parameters extend the original list of control change messages. Currently, there are
    * only a limited number of them:
@@ -1385,12 +1452,12 @@ class WebMidi extends EventEmitter {
    * - `panspreadangle`: [0x3D, 0x07]
    * - `rollangle`: [0x3D, 0x08]
    *
-   * @enum {Object.&lt;string, number>}
+   * @enum {Object.&lt;string, number[]>}
    * @readonly
    *
-   * @since 2.0.0
+   * @since 3.0.0
    */
-  get MIDI_REGISTERED_PARAMETER() {
+  get MIDI_REGISTERED_PARAMETERS() {
 
     return {
       pitchbendrange: [0x00, 0x00],
@@ -1398,6 +1465,7 @@ class WebMidi extends EventEmitter {
       channelcoarsetuning: [0x00, 0x02],
       tuningprogram: [0x00, 0x03],
       tuningbank: [0x00, 0x04],
+
       modulationrange: [0x00, 0x05],
       azimuthangle: [0x3D, 0x00],
       elevationangle: [0x3D, 0x01],
@@ -1413,70 +1481,11 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.&lt;string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
+   * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+   * @private
    */
-  get MIDI_SYSTEM_MESSAGES() {
-
-    return {
-
-      // System common messages
-      sysex: 0xF0,            // 240
-      timecode: 0xF1,         // 241
-      songposition: 0xF2,     // 242
-      songselect: 0xF3,       // 243
-      tunerequest: 0xF6,      // 246
-      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
-
-      // System real-time messages
-      clock: 0xF8,            // 248
-      start: 0xFA,            // 250
-      continue: 0xFB,         // 251
-      stop: 0xFC,             // 252
-      activesensing: 0xFE,    // 254
-      reset: 0xFF,            // 255
-
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-
-    };
-
+  get MIDI_REGISTERED_PARAMETER() {
+    return this.MIDI_REGISTERED_PARAMETERS;
   }
 
   /**
@@ -1507,8 +1516,8 @@ export {Message} from "./Message.js";
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.11 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 22nd 2021 @ 10:50:14 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.13 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 15:17:58 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
