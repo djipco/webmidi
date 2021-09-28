@@ -1432,7 +1432,6 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-    console.log("333", type);
     /**
      * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
      *
@@ -1576,8 +1575,6 @@ class InputChannel extends e {
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
      * @property {number} value The value received
      */
-
-    console.log("aaa");
     const event = {
       target: e.target,
       timestamp: e.timestamp,
@@ -1587,8 +1584,7 @@ class InputChannel extends e {
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
-    event.type += utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]);
-    console.log("bbb"); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.type += utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETER).find(key => {
@@ -1598,7 +1594,6 @@ class InputChannel extends e {
       event.parameter = (paramMsb << 7) + paramLsb;
     }
 
-    console.log(event);
     this.emit(event.type, event);
   }
   /**
