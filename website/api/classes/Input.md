@@ -285,8 +285,26 @@ There are 6 families of events you can listen to:
 
 6. **Channel Mode** Events (channel-specific)
 
-   * [channelmode](InputChannel#event:channelmode)
-   * To be completed...
+   * allnotesoff
+   * allsoundoff
+   * localcontrol
+   * monomode
+   * omnimode
+   * resetallcontrollers
+
+7. **NRPN** Events (channel-specific)
+
+   * nrpndataentrycoarse
+   * nrpndataentryfine
+   * nrpndatabuttonincrement
+   * nrpndatabuttondecrement
+
+8. **RPN** Events (channel-specific)
+
+   * rpndataentrycoarse
+   * rpndataentryfine
+   * rpndatabuttonincrement
+   * rpndatabuttondecrement
 
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
@@ -387,8 +405,12 @@ There are 6 families of events you can listen to:
 
 6. **Channel Mode** Events (channel-specific)
 
-   * [channelmode](InputChannel#event:channelmode)
-   * To be completed...
+   * allnotesoff
+   * allsoundoff
+   * localcontrol
+   * monomode
+   * omnimode
+   * resetallcontrollers
 
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->

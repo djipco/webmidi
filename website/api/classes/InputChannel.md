@@ -20,13 +20,15 @@ details.
 
 <!--**Kind**: global class  
 -->
-**Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), <code>InputChannel#event:channelmode</code>, [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers)  
+**Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers), [<code>nrpndataentrycoarse</code>](#InputChannel+event_nrpndataentrycoarse), [<code>nrpndataentryfine</code>](#InputChannel+event_nrpndataentryfine), [<code>nrpndatabuttonincrement</code>](#InputChannel+event_nrpndatabuttonincrement), [<code>nrpndatabuttondecrement</code>](#InputChannel+event_nrpndatabuttondecrement), [<code>rpndataentrycoarse</code>](#InputChannel+event_rpndataentrycoarse), [<code>rpndataentryfine</code>](#InputChannel+event_rpndataentryfine), [<code>rpndatabuttonincrement</code>](#InputChannel+event_rpndatabuttonincrement), [<code>rpndatabuttondecrement</code>](#InputChannel+event_rpndatabuttondecrement)  
 **Since**: 3.0.0  
 
 
 * [InputChannel](#InputChannel)
 
     * [`new InputChannel(input, number)`](#new_InputChannel_new)
+
+    * [`.parameterNumberEventsEnabled`](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
 
     * [`.octaveOffset`](#InputChannel+octaveOffset) : <code>number</code>
 
@@ -68,6 +70,22 @@ details.
 
     * [`"monomode"`](#InputChannel+event_monomode)
 
+    * [`"nrpndataentrycoarse"`](#InputChannel+event_nrpndataentrycoarse)
+
+    * [`"nrpndataentryfine"`](#InputChannel+event_nrpndataentryfine)
+
+    * [`"nrpndatabuttonincrement"`](#InputChannel+event_nrpndatabuttonincrement)
+
+    * [`"nrpndatabuttondecrement"`](#InputChannel+event_nrpndatabuttondecrement)
+
+    * [`"rpndataentrycoarse"`](#InputChannel+event_rpndataentrycoarse)
+
+    * [`"rpndataentryfine"`](#InputChannel+event_rpndataentryfine)
+
+    * [`"rpndatabuttonincrement"`](#InputChannel+event_rpndatabuttonincrement)
+
+    * [`"rpndatabuttondecrement"`](#InputChannel+event_rpndatabuttondecrement)
+
 
 * * *
 
@@ -81,6 +99,22 @@ details.
 | input | <code>Input</code> | The `Input` object this channel belongs to |
 | number | <code>number</code> | The MIDI channel's number (1-16) |
 
+
+* * *
+
+<a name="InputChannel+parameterNumberEventsEnabled"></a>
+
+## `inputChannel.parameterNumberEventsEnabled` : <code>boolean</code>
+Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+are composed of a sequence of specific **control change** messages. When a valid sequence of
+such control change messages is received, an `nrpn` event will fire.
+
+If an invalid or
+out-of-order control change message is received, it will fall through the collector logic and
+all buffered control change messages will be discarded as incomplete.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
 
 * * *
 
@@ -479,6 +513,182 @@ poly mode on).
 | message | <code>Message</code> | A `Message` object containing information about the incoming MIDI message. |
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | value | <code>boolean</code> | The value is `true` for omni mode on and false for omni mode off. |
+
+
+* * *
+
+<a name="InputChannel+event_nrpndataentrycoarse"></a>
+
+## `"nrpndataentrycoarse"`
+Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"nrpndataentrycoarse"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>number</code> | The non-registered parameter number (0-16383) |
+| parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
+| value | <code>number</code> | The value received (MSB) |
+
+
+* * *
+
+<a name="InputChannel+event_nrpndataentryfine"></a>
+
+## `"nrpndataentryfine"`
+Event emitted when a 'dataentryfine' NRPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"nrpndataentryfine"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>number</code> | The non-registered parameter number (0-16383) |
+| parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
+| value | <code>number</code> | The value received (LSB) |
+
+
+* * *
+
+<a name="InputChannel+event_nrpndatabuttonincrement"></a>
+
+## `"nrpndatabuttonincrement"`
+Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"nrpndatabuttonincrement"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>number</code> | The non-registered parameter number (0-16383) |
+| parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
+| value | <code>number</code> | The value received |
+
+
+* * *
+
+<a name="InputChannel+event_nrpndatabuttondecrement"></a>
+
+## `"nrpndatabuttondecrement"`
+Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"nrpndatabuttondecrement"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>number</code> | The non-registered parameter number (0-16383) |
+| parameterMsb | <code>number</code> | The MSB portion of the non-registered parameter number (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the non-registered parameter number (0-127) |
+| value | <code>number</code> | The value received |
+
+
+* * *
+
+<a name="InputChannel+event_rpndataentrycoarse"></a>
+
+## `"rpndataentrycoarse"`
+Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"rpndataentrycoarse"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>string</code> | The registered parameter's name |
+| parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
+| value | <code>number</code> | The value received |
+
+
+* * *
+
+<a name="InputChannel+event_rpndataentryfine"></a>
+
+## `"rpndataentryfine"`
+Event emitted when a 'dataentryfine' RPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"rpndataentryfine"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>string</code> | The registered parameter's name |
+| parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
+| value | <code>number</code> | The value received |
+
+
+* * *
+
+<a name="InputChannel+event_rpndatabuttonincrement"></a>
+
+## `"rpndatabuttonincrement"`
+Event emitted when a 'databuttonincrement' RPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"rpndatabuttonincrement"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>string</code> | The registered parameter's name |
+| parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
+| value | <code>number</code> | The value received |
+
+
+* * *
+
+<a name="InputChannel+event_rpndatabuttondecrement"></a>
+
+## `"rpndatabuttondecrement"`
+Event emitted when a 'databuttondecrement' RPN message has been received on the input.
+
+<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
+-->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | `"rpndatabuttondecrement"` |
+| target | [<code>InputChannel</code>](#InputChannel) | The `InputChannel` that triggered the event. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| parameter | <code>string</code> | The registered parameter's name |
+| parameterMsb | <code>number</code> | The MSB portion of the registered parameter (0-127) |
+| parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
+| value | <code>number</code> | The value received |
 
 
 * * *

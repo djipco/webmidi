@@ -141,14 +141,9 @@ This channel's MIDI number (1-16)
 
 ## `outputChannel.send(message, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-object.
-
-Note that **you cannot use a
-[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-([JZZ.js](https://www.npmjs.com/package/jzz)) does not support it.
+object or a `Message` object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
@@ -168,7 +163,7 @@ from the MIDI Manufacturers Association.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> |  | An array of 8bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes. Depending on the type of message, one to three bytes will be used. |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> |  | An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 

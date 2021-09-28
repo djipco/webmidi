@@ -276,14 +276,9 @@ the connection status by looking at the [connection](#Output+connection) propert
 
 ## `output.send(message, [options])` ⇒ [<code>Output</code>](#Output)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-sent immediately. The message should be an array of 8 bit unsigned integers (0-225) or a
+sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-object.
-
-Note that **you cannot use a
-[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-parameter in the Node.js environment**. This is because the MIDI submodule used in Node.js
-([JZZ.js](https://www.npmjs.com/package/jzz)) does not support it.
+object or a `Message` object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
@@ -298,12 +293,11 @@ from the MIDI Manufacturers Association.
 **Throws**:
 
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
-- <code>RangeError</code> Data bytes must be integers between 0 and 255.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> |  | An array of 8bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes. Depending on the type of message, one to three bytes will be used. |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> |  | An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
@@ -314,8 +308,12 @@ from the MIDI Manufacturers Association.
 
 ## `output.sendSysex(manufacturer, [data], [options])` ⇒ [<code>Output</code>](#Output)
 Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
-(*sysex*) message. The generated message will automatically be prepended with the *sysex byte*
-(0xF0) and terminated with the *end of sysex byte* (0xF7).
+(*sysex*) message. The `data` parameter should only contain the data of the message. When
+sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
+*sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+the message with the *sysex end byte* (`0xF7`).
+
+The data can be an array of unsigned integers (0-127) or a `Uint8Array` object.
 
 To use the `sendSysex()` method, system exclusive message support must have been enabled. To
 do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:
@@ -371,7 +369,7 @@ than 0xFF.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | manufacturer | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | An unsigned integer or an array of three unsigned integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers) . |
-| [data] | <code>Array</code> | <code>number[]</code> | An array of unsigned integers between 0 and 127. This is the data you wish to transfer. |
+| [data] | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> | <code>[]</code> | A Uint8Array or an array of unsigned integers between 0 and 127. This is the data you wish to transfer. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 

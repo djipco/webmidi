@@ -31,6 +31,8 @@ easy to make sense of the binaru data it contains.
 
     * [`.channel`](#Message+channel) : <code>number</code>
 
+    * [`.manufacturerId`](#Message+manufacturerId) : <code>Array.&lt;number&gt;</code>
+
 
 * * *
 
@@ -84,7 +86,9 @@ The MIDI status byte of the message as an integer between 0 and 255.
 <a name="Message+rawDataBytes"></a>
 
 ## `message.rawDataBytes` : <code>Uint8Array</code>
-A Uint8Array of the data byte(s) of the MIDI message.
+A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
+message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
+byte so only the actual data is included.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
@@ -95,7 +99,9 @@ A Uint8Array of the data byte(s) of the MIDI message.
 <a name="Message+dataBytes"></a>
 
 ## `message.dataBytes` : <code>Array.&lt;number&gt;</code>
-An array of the the data byte(s) of the MIDI message.
+An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
+message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
+byte so only the actual data is included.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
@@ -143,6 +149,21 @@ between 8 and 14. For system messages, the value will be between 240 and 255.
 ## `message.channel` : <code>number</code>
 The MIDI channel number (1-16) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
+
+<!--**Kind**: instance property of [<code>Message</code>](#Message)  
+-->
+**Read only**: true  
+
+* * *
+
+<a name="Message+manufacturerId"></a>
+
+## `message.manufacturerId` : <code>Array.&lt;number&gt;</code>
+When the message is a system exclusive message (sysex), this property contains an array with
+either 1 or 3 entries that identify the manufacturer targeted by the message.
+
+To know how to translate these entries into manufacturer names, check out the official list:
+https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
