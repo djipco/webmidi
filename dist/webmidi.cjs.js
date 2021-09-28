@@ -1421,7 +1421,7 @@ class InputChannel extends e {
           return;
         }
 
-        console.log("222", controller, type);
+        console.log("222", type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
 
         this._dispatchParameterNumberEvent(type, this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
       }
