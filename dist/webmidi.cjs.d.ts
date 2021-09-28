@@ -2960,9 +2960,9 @@ declare class InputChannel extends e {
      * Uint8Array [ 176, 101, 127 ]
      * Uint8Array [ 176, 100, 127 ]
      */
-    private _parseMessageForNrpn;
+    private _parseEventForParameterNumber;
     isRpnOrNrpnController(controller: any): boolean;
-    _dispatchNrpnEvent(buffer: any): void;
+    _dispatchNrpnEvent(paramMsb: any, paramLsb: any, event: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
      * returns `false`.
