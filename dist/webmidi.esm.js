@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.14
+ * WebMidi.js v3.0.0-alpha.15
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on September 28th, 2021.
@@ -1280,14 +1280,6 @@ class InputChannel extends e {
    * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
-   *
-   *
-   * Uint8Array [ 176, 99, 12 ]
-   * Uint8Array [ 176, 98, 34 ]
-   * Uint8Array [ 176, 6, 56 ]
-   * Uint8Array [ 176, 38, 78 ]
-   * Uint8Array [ 176, 101, 127 ]
-   * Uint8Array [ 176, 100, 127 ]
    */
   _parseEventForParameterNumber(event) {
 
@@ -1406,7 +1398,8 @@ class InputChannel extends e {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (MSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1425,7 +1418,8 @@ class InputChannel extends e {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received (LSB)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1444,7 +1438,8 @@ class InputChannel extends e {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1463,7 +1458,8 @@ class InputChannel extends e {
      * (0-127)
      * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
      * (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
 
@@ -1481,7 +1477,8 @@ class InputChannel extends e {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1498,7 +1495,8 @@ class InputChannel extends e {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1515,7 +1513,8 @@ class InputChannel extends e {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     /**
@@ -1532,7 +1531,8 @@ class InputChannel extends e {
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The value received
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
      */
 
     const event = {
@@ -1540,7 +1540,8 @@ class InputChannel extends e {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: e.message.dataBytes[1],
+      value: utils.toNormalized(e.message.dataBytes[1]),
+      rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
 
