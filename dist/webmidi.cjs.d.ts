@@ -2901,6 +2901,24 @@ declare class InputChannel extends e {
      */
     private _octaveOffset;
     /**
+     * An array of the current NRPNs being constructed for this channel
+     * @private
+     * @type {string[]}
+     */
+    private _nrpnBuffer;
+    /**
+     * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+     * are composed of a sequence of specific **control change** messages. When a valid sequence of
+     * such control change messages is received, an `nrpn` event will fire.
+     *
+     * If an invalid or
+     * out-of-order control change message is received, it will fall through the collector logic and
+     * all buffered control change messages will be discarded as incomplete.
+     *
+     * @type {boolean}
+     */
+    nrpnEventsEnabled: boolean;
+    /**
      * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
      * input.
      */
@@ -2916,6 +2934,29 @@ declare class InputChannel extends e {
      * @private
      */
     private _parseEventForStandardMessages;
+    _parseChannelModeMessage(e: any): void;
+    /**
+     * Parses inbound events to identify NRPN sequences.
+     *
+     * and constructs NRPN message parts in valid sequences.
+     * Keeps a separate NRPN buffer for each channel.
+     * Emits an event after it receives the final CC parts msb 127 lsb 127.
+     * If a message is incomplete and other messages are received before
+     * the final 127 bytes, the incomplete message is cleared.
+     * @param e Event
+     * @private
+     *
+     *
+     * Uint8Array [ 176, 99, 12 ]
+     * Uint8Array [ 176, 98, 34 ]
+     * Uint8Array [ 176, 6, 56 ]
+     * Uint8Array [ 176, 38, 78 ]
+     * Uint8Array [ 176, 101, 127 ]
+     * Uint8Array [ 176, 100, 127 ]
+     */
+    private _parseMessageForNrpn;
+    isRpnOrNrpnController(controller: any): boolean;
+    _dispatchNrpnEvent(buffer: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
      * returns `false`.
@@ -2927,7 +2968,6 @@ declare class InputChannel extends e {
      * @since 2.0.0
      */
     getChannelModeByNumber(number: number): string | false;
-    _parseChannelModeMessage(e: any): void;
     /**
      * Returns the name of a control change message matching the specified number. Some valid control
      * change numbers do not have a specific name or purpose assigned in the MIDI
