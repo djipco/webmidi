@@ -1015,7 +1015,15 @@ class WebMidi extends EventEmitter {
       "channelaftertouch",
       "pitchbend",
 
-      "nrpn",
+      "nrpndataentrycoarse",
+      "nrpndataentryfine",
+      "nrpndatabuttonincrement",
+      "nrpndatabuttondecrement",
+
+      "rpndataentrycoarse",
+      "rpndataentryfine",
+      "rpndatabuttonincrement",
+      "rpndatabuttondecrement",
 
       "allnotesoff",
       "allsoundoff",
@@ -1157,7 +1165,8 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all control change messages and their associated numerical value:
+   * Enum of most control change messages and their associated numerical value. Note that some
+   * control change numbers do not have a predefined purpose.
    *
    * - `bankselectcoarse`: 0
    * - `modulationwheelcoarse`: 1
@@ -1218,6 +1227,15 @@ class WebMidi extends EventEmitter {
    * - `nonregisteredparameterfine`: 99
    * - `registeredparametercoarse`: 100
    * - `registeredparameterfine`: 101
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
    *
    * @enum {Object.<string, number>}
    * @readonly
@@ -1310,37 +1328,6 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Enum of all control change messages that are used to create NRPN messages and their associated
-   * numerical value:
-   *
-   * - `entrymsb`: 6
-   * - `entrylsb`: 38
-   * - `increment`: 96
-   * - `decrement`: 97
-   * - `paramlsb`: 98
-   * - `parammsb`: 99
-   * - `nullactiveparameter`: 127
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
-   */
-  get MIDI_NRPN_MESSAGES() {
-
-    return {
-      entrymsb: 6,
-      entrylsb: 38,
-      increment: 96,
-      decrement: 97,
-      paramlsb: 98,
-      parammsb: 99,
-      nullactiveparameter: 127
-    };
-
-  }
-
-  /**
    * Enum of all registered parameters and their associated pair of numerical values. MIDI
    * registered parameters extend the original list of control change messages. Currently, there are
    * only a limited number of them:
@@ -1361,12 +1348,12 @@ class WebMidi extends EventEmitter {
    * - `panspreadangle`: [0x3D, 0x07]
    * - `rollangle`: [0x3D, 0x08]
    *
-   * @enum {Object.<string, number>}
+   * @enum {Object.<string, number[]>}
    * @readonly
    *
-   * @since 2.0.0
+   * @since 3.0.0
    */
-  get MIDI_REGISTERED_PARAMETER() {
+  get MIDI_REGISTERED_PARAMETERS() {
 
     return {
       pitchbendrange: [0x00, 0x00],
@@ -1374,6 +1361,7 @@ class WebMidi extends EventEmitter {
       channelcoarsetuning: [0x00, 0x02],
       tuningprogram: [0x00, 0x03],
       tuningbank: [0x00, 0x04],
+
       modulationrange: [0x00, 0x05],
       azimuthangle: [0x3D, 0x00],
       elevationangle: [0x3D, 0x01],
@@ -1386,6 +1374,14 @@ class WebMidi extends EventEmitter {
       rollangle: [0x3D, 0x08]
     };
 
+  }
+
+  /**
+   * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+   * @private
+   */
+  get MIDI_REGISTERED_PARAMETER() {
+    return this.MIDI_REGISTERED_PARAMETERS;
   }
 
   /**

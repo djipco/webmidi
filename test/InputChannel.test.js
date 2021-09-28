@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const midi = require("midi");
-const {WebMidi, Utilities, Note} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
@@ -501,43 +501,303 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch event for inbound 'RPN' MIDI sequence");
+  it("should dispatch nrpndataentrycoarse", function (done) {
 
-  it("should dispatch event for inbound 'NRPN' MIDI sequence");
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpndataentrycoarse";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
 
-  // it.only("should dispatch event for inbound 'NRPN' MIDI sequence", function (done) {
-  //
-  //   // Arrange
-  //   let channel = WEBMIDI_INPUT.channels[1];
-  //   let event = "nrpn";
-  //   let status = 0xB0;
-  //   let parameterMsb = 12;
-  //   let parameterLsb = 34;
-  //   let valueMsb = 56;
-  //   let valueLsb = 78;
-  //
-  //   channel.nrpnEventsEnabled = true;
-  //   channel.addListener("controlchange", assert);
-  //
-  //   // Act
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 6, valueMsb]);
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 38, valueLsb]);
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-  //   VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
-  //
-  //   // Assert
-  //   function assert(e) {
-  //     console.log(e.rawData);
-  //     // expect(e.type).to.equal(event);
-  //     // expect(e.data[1]).to.equal(lsb);
-  //     // expect(e.data[2]).to.equal(msb);
-  //     // expect(e.target).to.equal(channel);
-  //     // done();
-  //   }
-  //
-  // });
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 6, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch nrpndataentryfine", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpndataentryfine";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 38, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch nrpndatabuttonincrement", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpndatabuttonincrement";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch nrpndatabuttondecrement", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpndatabuttondecrement";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should ignore out-of-order NRPN messages", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpndatabuttondecrement";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpndataentrycoarse", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpndataentrycoarse";
+    let status = 0xB0;      // control change
+    let parameter = "pitchbendrange";
+    let parameterMsb = 0;
+    let parameterLsb = 0;
+    let value = 123;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 6, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpndataentryfine", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpndataentryfine";
+    let status = 0xB0;      // control change
+    let parameter = "channelfinetuning";
+    let parameterMsb = 0;
+    let parameterLsb = 1;
+    let value = 123;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 38, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpndatabuttonincrement", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpndatabuttonincrement";
+    let status = 0xB0;      // control change
+    let parameter = "tuningbank";
+    let parameterMsb = 0;
+    let parameterLsb = 4;
+    let value = 123;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpndatabuttondecrement", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpndatabuttondecrement";
+    let status = 0xB0;      // control change
+    let parameter = "referencedistanceratio";
+    let parameterMsb = 0x3D;
+    let parameterLsb = 0x06;
+    let value = 123;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
+  it("should ignore out-of-order RPN messages", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpndatabuttondecrement";
+    let status = 0xB0;      // control change
+    let parameter = "referencedistanceratio";
+    let parameterMsb = 0x3D;
+    let parameterLsb = 0x06;
+    let value = 123;
+
+    channel.addListener(event, assert);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, 456]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert(e) {
+      expect(e.type).to.equal(event);
+      expect(e.value).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
 
   describe("destroy()", function () {
 

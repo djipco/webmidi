@@ -50,6 +50,8 @@ options of `WebMidi.enable()`.
 
 - A `Message` object has been added.
 
+- Added support for RPN messages and improved NRPN parsing.
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
@@ -127,6 +129,10 @@ old name has been deprecated but will continue to work in v3.x.
 old name has been deprecated but will continue to work in v3.x.
 
 - The `on()` method of the `Input` class has been deprecated. Use `addListener()` instead.
+
+- The `InputChannel.nrpnEventsEnabled` property has been renamed to
+`InputChannel.parameterNumberEventsEnabled`. The old property is deprecarted but will be kept for 
+backwards compatibility.
 
 ### Removed
 

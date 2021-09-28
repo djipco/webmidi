@@ -658,6 +658,20 @@ export class Input extends EventEmitter {
    *    * omnimode
    *    * resetallcontrollers
    *
+   * 7. **NRPN** Events (channel-specific)
+   *
+   *    * nrpndataentrycoarse
+   *    * nrpndataentryfine
+   *    * nrpndatabuttonincrement
+   *    * nrpndatabuttondecrement
+   *
+   * 8. **RPN** Events (channel-specific)
+   *
+   *    * rpndataentrycoarse
+   *    * rpndataentryfine
+   *    * rpndatabuttonincrement
+   *    * rpndatabuttondecrement
+   *
    * @param event {string} The type of the event.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.

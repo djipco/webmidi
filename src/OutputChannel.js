@@ -528,7 +528,7 @@ export class OutputChannel extends EventEmitter {
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -537,10 +537,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -595,7 +595,7 @@ export class OutputChannel extends EventEmitter {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETER[parameter];
+    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -604,10 +604,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETER).forEach(p => {
+      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][0] === parameter[0] &&
-          WebMidi.MIDI_REGISTERED_PARAMETER[p][1] === parameter[1]
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -1482,7 +1482,7 @@ export class OutputChannel extends EventEmitter {
    */
   setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETER[rpn];
+    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (WebMidi.validation) {
 

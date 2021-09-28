@@ -405,7 +405,17 @@ describe("Input Object", function() {
         "noteon",
         "keyaftertouch",
         "controlchange",
-        "nrpn",
+
+        "nrpndataentrycoarse",
+        "nrpndataentryfine",
+        "nrpndatabuttonincrement",
+        "nrpndatabuttondecrement",
+
+        "rpndataentrycoarse",
+        "rpndataentryfine",
+        "rpndatabuttonincrement",
+        "rpndatabuttondecrement",
+
         "programchange",
         "channelaftertouch",
         "pitchbend"
@@ -431,7 +441,17 @@ describe("Input Object", function() {
         "noteon",
         "keyaftertouch",
         "controlchange",
-        "nrpn",
+
+        "nrpndataentrycoarse",
+        "nrpndataentryfine",
+        "nrpndatabuttonincrement",
+        "nrpndatabuttondecrement",
+
+        "rpndataentrycoarse",
+        "rpndataentryfine",
+        "rpndatabuttonincrement",
+        "rpndatabuttondecrement",
+
         "programchange",
         "channelaftertouch",
         "pitchbend"

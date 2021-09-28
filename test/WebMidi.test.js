@@ -857,12 +857,6 @@ describe("WebMidi Object", function() {
     });
   });
 
-  describe("get MIDI_NRPN_MESSAGES()", function() {
-    it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_NRPN_MESSAGES.nullactiveparameter).to.equal(127);
-    });
-  });
-
   describe("set octaveOffset()", function() {
 
     afterEach("Reset octave", function () {
