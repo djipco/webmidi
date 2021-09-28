@@ -1570,7 +1570,8 @@ class InputChannel extends e {
       parameterLsb: paramLsb,
       value: value,
       type: type === "rpn" ? "rpn" : "nrpn"
-    }; // REMAPLER PAR CODE PLUS INTELLIGENT!
+    };
+    console.log("aaa", event); // REMAPLER PAR CODE PLUS INTELLIGENT!
 
     if (controller === list.dataentrycoarse) {
       // 6
