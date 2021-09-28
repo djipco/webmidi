@@ -1439,6 +1439,7 @@ class InputChannel extends e {
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
+    console.log("333", type);
     /**
      * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
      *
@@ -1582,6 +1583,7 @@ class InputChannel extends e {
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
      * @property {number} value The value received
      */
+
     console.log("aaa");
     const event = {
       target: e.target,
