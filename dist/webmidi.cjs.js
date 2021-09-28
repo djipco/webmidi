@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.13
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on September 27th, 2021.
+ * Build generated on September 28th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -893,12 +893,19 @@ class InputChannel extends e {
 
     this._octaveOffset = 0;
     /**
-     * An array of the current NRPNs being constructed for this channel
+     * An array of messages that form the current NRPN sequence
      * @private
-     * @type {string[]}
+     * @type {Message[]}
      */
 
     this._nrpnBuffer = [];
+    /**
+     * An array of messages that form the current RPN sequence
+     * @private
+     * @type {Message[]}
+     */
+
+    this._rpnBuffer = [];
     /**
      * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
      * are composed of a sequence of specific **control change** messages. When a valid sequence of
@@ -911,7 +918,7 @@ class InputChannel extends e {
      * @type {boolean}
      */
 
-    this.nrpnEventsEnabled = true;
+    this.parameterNumberEventsEnabled = true;
   }
   /**
    * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
@@ -924,7 +931,7 @@ class InputChannel extends e {
     this._number = null;
     this._octaveOffset = 0;
     this._nrpnBuffer = [];
-    this.nrpnEventsEnabled = false;
+    this.parameterNumberEventsEnabled = false;
     this.removeListener();
   }
   /**
@@ -1109,11 +1116,11 @@ class InputChannel extends e {
         name: this.getCcNameByNumber(data1)
       };
       event.value = utils.toNormalized(data2);
-      event.rawValue = data2; // Also trigger channel mode message events when appropriate
+      event.rawValue = data2; // Trigger channel mode message events (if appropriate)
 
-      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an NRPN sequence
+      if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
 
-      if (this.nrpnEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
+      if (this.parameterNumberEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
         this._parseMessageForNrpn(event.message);
       }
     } else if (event.type === "programchange") {
@@ -1637,6 +1644,26 @@ class InputChannel extends e {
 
   get number() {
     return this._number;
+  }
+  /**
+   * Whether RPN/NRPN events are parsed and dispatched.
+   * @type {boolean}
+   * @since 3.0
+   * @deprecated Use parameterNumberEventsEnabled instead.
+   * @private
+   */
+
+
+  get nrpnEventsEnabled() {
+    return this.parameterNumberEventsEnabled;
+  }
+
+  set nrpnEventsEnabled(value) {
+    if (this.validation) {
+      value = !!value;
+    }
+
+    this.parameterNumberEventsEnabled = value;
   } // /**
   //  * An `OutputChannel` object (or a list of `OutputChannel` objects) to send a copy of all
   //  * inbound messages to. This is inspired by the THRU port on numerous MIDI devices.
