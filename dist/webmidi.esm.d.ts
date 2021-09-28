@@ -978,7 +978,8 @@ declare class WebMidi {
         polymodeon: number;
     };
     /**
-     * Enum of all control change messages and their associated numerical value:
+     * Enum of most control change messages and their associated numerical value. Note that some
+     * control change numbers do not have a predefined purpose.
      *
      * - `bankselectcoarse`: 0
      * - `modulationwheelcoarse`: 1
@@ -1039,6 +1040,15 @@ declare class WebMidi {
      * - `nonregisteredparameterfine`: 99
      * - `registeredparametercoarse`: 100
      * - `registeredparameterfine`: 101
+     *
+     * - `allsoundoff`: 120
+     * - `resetallcontrollers`: 121
+     * - `localcontrol`: 122
+     * - `allnotesoff`: 123
+     * - `omnimodeoff`: 124
+     * - `omnimodeon`: 125
+     * - `monomodeon`: 126
+     * - `polymodeon`: 127
      *
      * @enum {Object.<string, number>}
      * @readonly
@@ -1122,32 +1132,6 @@ declare class WebMidi {
      */
     get MIDI_INTERFACE_EVENTS(): string[];
     /**
-     * Enum of all control change messages that are used to create NRPN messages and their associated
-     * numerical value:
-     *
-     * - `entrymsb`: 6
-     * - `entrylsb`: 38
-     * - `increment`: 96
-     * - `decrement`: 97
-     * - `paramlsb`: 98
-     * - `parammsb`: 99
-     * - `nullactiveparameter`: 127
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     *
-     * @since 2.0.0
-     */
-    get MIDI_NRPN_MESSAGES(): {
-        entrymsb: number;
-        entrylsb: number;
-        increment: number;
-        decrement: number;
-        paramlsb: number;
-        parammsb: number;
-        nullactiveparameter: number;
-    };
-    /**
      * Enum of all registered parameters and their associated pair of numerical values. MIDI
      * registered parameters extend the original list of control change messages. Currently, there are
      * only a limited number of them:
@@ -1168,12 +1152,12 @@ declare class WebMidi {
      * - `panspreadangle`: [0x3D, 0x07]
      * - `rollangle`: [0x3D, 0x08]
      *
-     * @enum {Object.<string, number>}
+     * @enum {Object.<string, number[]>}
      * @readonly
      *
-     * @since 2.0.0
+     * @since 3.0.0
      */
-    get MIDI_REGISTERED_PARAMETER(): {
+    get MIDI_REGISTERED_PARAMETERS(): {
         pitchbendrange: number[];
         channelfinetuning: number[];
         channelcoarsetuning: number[];
@@ -1190,6 +1174,11 @@ declare class WebMidi {
         panspreadangle: number[];
         rollangle: number[];
     };
+    /**
+     * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+     * @private
+     */
+    private get MIDI_REGISTERED_PARAMETER();
     /**
      * Array of standard note names
      *
@@ -2828,7 +2817,7 @@ declare class Output extends e {
  * WebMidi.js v3.0.0-alpha.13
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on September 27th, 2021.
+ * Build generated on September 28th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -2898,6 +2887,16 @@ declare class e {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
+ * @fires InputChannel#nrpndataentrycoarse
+ * @fires InputChannel#nrpndataentryfine
+ * @fires InputChannel#nrpndatabuttonincrement
+ * @fires InputChannel#nrpndatabuttondecrement
+ *
+ * @fires InputChannel#rpndataentrycoarse
+ * @fires InputChannel#rpndataentryfine
+ * @fires InputChannel#rpndatabuttonincrement
+ * @fires InputChannel#rpndatabuttondecrement
+ *
  * @since 3.0.0
  */
 declare class InputChannel extends e {
@@ -2918,6 +2917,30 @@ declare class InputChannel extends e {
      */
     private _octaveOffset;
     /**
+     * An array of messages that form the current NRPN sequence
+     * @private
+     * @type {Message[]}
+     */
+    private _nrpnBuffer;
+    /**
+     * An array of messages that form the current RPN sequence
+     * @private
+     * @type {Message[]}
+     */
+    private _rpnBuffer;
+    /**
+     * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+     * are composed of a sequence of specific **control change** messages. When a valid sequence of
+     * such control change messages is received, an `nrpn` event will fire.
+     *
+     * If an invalid or
+     * out-of-order control change message is received, it will fall through the collector logic and
+     * all buffered control change messages will be discarded as incomplete.
+     *
+     * @type {boolean}
+     */
+    parameterNumberEventsEnabled: boolean;
+    /**
      * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
      * input.
      */
@@ -2933,6 +2956,29 @@ declare class InputChannel extends e {
      * @private
      */
     private _parseEventForStandardMessages;
+    _parseChannelModeMessage(e: any): void;
+    /**
+     * Parses inbound events to identify NRPN sequences.
+     *
+     * and constructs NRPN message parts in valid sequences.
+     * Keeps a separate NRPN buffer for each channel.
+     * Emits an event after it receives the final CC parts msb 127 lsb 127.
+     * If a message is incomplete and other messages are received before
+     * the final 127 bytes, the incomplete message is cleared.
+     * @param e Event
+     * @private
+     *
+     *
+     * Uint8Array [ 176, 99, 12 ]
+     * Uint8Array [ 176, 98, 34 ]
+     * Uint8Array [ 176, 6, 56 ]
+     * Uint8Array [ 176, 38, 78 ]
+     * Uint8Array [ 176, 101, 127 ]
+     * Uint8Array [ 176, 100, 127 ]
+     */
+    private _parseEventForParameterNumber;
+    isRpnOrNrpnController(controller: any): boolean;
+    _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
      * returns `false`.
@@ -2944,7 +2990,6 @@ declare class InputChannel extends e {
      * @since 2.0.0
      */
     getChannelModeByNumber(number: number): string | false;
-    _parseChannelModeMessage(e: any): void;
     /**
      * Returns the name of a control change message matching the specified number. Some valid control
      * change numbers do not have a specific name or purpose assigned in the MIDI
@@ -2989,6 +3034,15 @@ declare class InputChannel extends e {
      * @since 3.0
      */
     get number(): number;
+    private set nrpnEventsEnabled(arg);
+    /**
+     * Whether RPN/NRPN events are parsed and dispatched.
+     * @type {boolean}
+     * @since 3.0
+     * @deprecated Use parameterNumberEventsEnabled instead.
+     * @private
+     */
+    private get nrpnEventsEnabled();
 }
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
