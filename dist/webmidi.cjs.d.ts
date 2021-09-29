@@ -1,7 +1,7 @@
 export var __esModule: boolean;
 /**
- * The `Enumerations` class contains list of elements used throughout the library. All properties
- * are static and should be referenced using the class. For example:
+ * The `Enumerations` class contains enumerations of elements used throughout the library. All
+ * enumerations are static and should be referenced using the class name. For example:
  * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
@@ -542,16 +542,14 @@ export class Note {
      */
     getOffsetNumber(octaveOffset?: number, semitoneOffset?: number): number;
 }
-declare const utils: Utilities;
-declare const wm: WebMidi;
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methods and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
  *
  * @license Apache-2.0
  * @since 3.0.0
  */
-declare class Utilities {
+export class Utilities {
     /**
      * Returns a MIDI note number matching the identifier passed in the form of a string. The
      * identifier must include the octave number. The identifier also optionally include a sharp (#),
@@ -577,8 +575,9 @@ declare class Utilities {
      *
      * @license Apache-2.0
      * @since 3.0.0
+     * @static
      */
-    toNoteNumber(identifier: string, octaveOffset?: number): number;
+    static toNoteNumber(identifier: string, octaveOffset?: number): number;
     /**
      * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
      * method returns an object containing broken down details about the specified note (uppercase
@@ -595,8 +594,9 @@ declare class Utilities {
      * @throws TypeError Invalid note identifier
      *
      * @since 3.0.0
+     * @static
      */
-    getNoteDetails(value: string | number): {
+    static getNoteDetails(value: string | number): {
         octave: number;
         letter: string;
         accidental: string;
@@ -615,8 +615,9 @@ declare class Utilities {
      * @returns {Array} An array of 0 or more valid MIDI channel numbers.
      *
      * @since 3.0.0
+     * @static
      */
-    sanitizeChannels(channel?: number | number[]): any[];
+    static sanitizeChannels(channel?: number | number[]): any[];
     /**
      * Returns a valid timestamp, relative to the navigation start of the document, derived from the
      * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
@@ -628,8 +629,9 @@ declare class Utilities {
      * @return {number|false} A positive number or `false` (if the time cannot be converted)
      *
      * @since 3.0.0
+     * @static
      */
-    toTimestamp(time?: number | string): number | false;
+    static toTimestamp(time?: number | string): number | false;
     /**
      * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
      * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
@@ -646,8 +648,9 @@ declare class Utilities {
      * successfully be parsed to a note number.
      *
      * @since 3.0.0
+     * @static
      */
-    guessNoteNumber(input: string | number, octaveOffset: any): number | false;
+    static guessNoteNumber(input: string | number, octaveOffset: any): number | false;
     /**
      * Returns an identifier string representing a note name (with optional accidental) followed by an
      * octave number. The octave can be offset by using the `octaveOffset` parameter.
@@ -661,8 +664,9 @@ declare class Utilities {
      * @throws RangeError Invalid octaveOffset value
      *
      * @since 3.0.0
+     * @static
      */
-    toNoteIdentifier(number: any, octaveOffset: any): string;
+    static toNoteIdentifier(number: any, octaveOffset: any): string;
     /**
      * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
      * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
@@ -691,8 +695,9 @@ declare class Utilities {
      * @throws TypeError The input could not be parsed to a note
      *
      * @since version 3.0.0
+     * @static
      */
-    buildNote(input?: number | string | Note, options?: {
+    static buildNote(input?: number | string | Note, options?: {
         duration?: number;
         attack?: number;
         release?: number;
@@ -733,8 +738,9 @@ declare class Utilities {
      * @throws TypeError An element could not be parsed as a note.
      *
      * @since 3.0.0
+     * @static
      */
-    buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
+    static buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
         duration?: number;
         attack?: number;
         release?: number;
@@ -752,8 +758,9 @@ declare class Utilities {
      *
      * @param value A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
+     * @static
      */
-    toNormalized(value: any): number;
+    static toNormalized(value: any): number;
     /**
      * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
      * The input value should be number between 0 and 1 (inclusively). The returned value is
@@ -764,8 +771,9 @@ declare class Utilities {
      *
      * @param value A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
+     * @static
      */
-    to7Bit(value: any): number;
+    static to7Bit(value: any): number;
     /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
@@ -775,8 +783,9 @@ declare class Utilities {
      * @returns {number} An integer between 0 and 127
      *
      * @throws {Error} Invalid note number
+     * @static
      */
-    offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
+    static offsetNumber(number: any, octaveOffset?: number, semitoneOffset?: number): number;
     /**
      * Returns the name of the first property of the supplied object whose value is equal to the one
      * supplied.
@@ -784,9 +793,11 @@ declare class Utilities {
      * @param object {Object}
      * @param value {*}
      * @returns {string} The name of the matching property
+     * @static
      */
-    getPropertyByValue(object: any, value: any): string;
+    static getPropertyByValue(object: any, value: any): string;
 }
+declare const wm: WebMidi;
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -4139,4 +4150,4 @@ declare class t {
     suspended: boolean;
     remove(): void;
 }
-export { utils as Utilities, wm as WebMidi };
+export { wm as WebMidi };
