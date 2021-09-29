@@ -834,6 +834,98 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
+ * The `Enumerations` class contains list of elements used throughout the library. The class is a
+ * singleton with static methods and is not meant to be instantiated.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+class Enumerations {
+  /**
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+  get CHANNEL_EVENTS() {
+    return [// MIDI channel message events
+    "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
+    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
+    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
+    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
+  }
+  /**
+   * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
+   *
+   * - `noteoff`: 0x8 (8)
+   * - `noteon`: 0x9 (9)
+   * - `keyaftertouch`: 0xA (10)
+   * - `controlchange`: 0xB (11)
+   * - `nrpn`: 0xB (11)
+   * - `programchange`: 0xC (12)
+   * - `channelaftertouch`: 0xD (13)
+   * - `pitchbend`: 0xE (14)
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   */
+
+
+  get MIDI_CHANNEL_MESSAGES() {
+    return {
+      noteoff: 0x8,
+      // 8
+      noteon: 0x9,
+      // 9
+      keyaftertouch: 0xA,
+      // 10
+      controlchange: 0xB,
+      // 11
+      programchange: 0xC,
+      // 12
+      channelaftertouch: 0xD,
+      // 13
+      pitchbend: 0xE // 14
+
+    };
+  }
+  /**
+   * Enum of all channel mode messages and their associated numerical value:
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   */
+
+
+  get MIDI_CHANNEL_MODE_MESSAGES() {
+    return {
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
+    };
+  }
+
+} // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
+// used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
+// remains extensible (properties can be added at will).
+
+
+const enums = new Enumerations();
+enums.constructor = null;
+
+/**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
@@ -1620,8 +1712,8 @@ class InputChannel extends e {
 
     if (!(number >= 120 && number <= 127)) return false;
 
-    for (let cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
+    for (let cm in enums.MIDI_CHANNEL_MODE_MESSAGES) {
+      if (enums.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === enums.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
         return cm;
       }
     }
@@ -1723,34 +1815,6 @@ class InputChannel extends e {
   }
 
 }
-
-/**
- * The `Enumerations` class contains list of elements used throughout the library. The class is a
- * singleton with static methods and is not meant to be instantiated.
- *
- * @license Apache-2.0
- * @since 3.0.0
- */
-class Enumerations {
-  /**
-   * An array of channel-specific event names that can be listened to.
-   * @type {string[]}
-   */
-  get CHANNEL_EVENTS() {
-    return [// MIDI channel message events
-    "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
-    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
-    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
-    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
-  }
-
-} // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
-// remains extensible (properties can be added at will).
-
-
-const enums = new Enumerations();
-enums.constructor = null;
 
 /**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
@@ -2980,7 +3044,7 @@ class OutputChannel extends e {
     if (!Array.isArray(target)) target = [target];
     target = target.map(item => utils.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
+      this.send([(enums.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -2988,7 +3052,7 @@ class OutputChannel extends e {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+    //       (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -3141,7 +3205,7 @@ class OutputChannel extends e {
     }
 
     value.forEach((item, index) => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
+      this.send([(enums.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3576,7 +3640,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
+      this.send([(enums.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3680,7 +3744,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
-      this.send([(wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
+      this.send([(enums.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3731,7 +3795,7 @@ class OutputChannel extends e {
 
   sendChannelMode(command, value, options = {}) {
     // Normalize command to integer
-    if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = enums.MIDI_CHANNEL_MODE_MESSAGES[command];
 
     if (wm.validation) {
       if (command === undefined) {
@@ -3747,7 +3811,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
+    this.send([(enums.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -3826,7 +3890,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
+    this.send([(enums.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4062,7 +4126,7 @@ class OutputChannel extends e {
       lsb = nLevel & 0x7F;
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
+    this.send([(enums.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4142,7 +4206,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+    this.send([(enums.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -6721,7 +6785,7 @@ class Message {
 
 
     if (this.isChannelMessage) {
-      this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(enums.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
       this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
     } // When the message is a sysex message, we add a manufacturer property and strip out the id from
@@ -7688,44 +7752,7 @@ class WebMidi extends e {
 
 
   get CHANNEL_EVENTS() {
-    return ["noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement", "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers"];
-  }
-  /**
-   * Enum of all MIDI channel messages and their associated numerical value:
-   *
-   * - `noteoff`: 0x8 (8)
-   * - `noteon`: 0x9 (9)
-   * - `keyaftertouch`: 0xA (10)
-   * - `controlchange`: 0xB (11)
-   * - `nrpn`: 0xB (11)
-   * - `programchange`: 0xC (12)
-   * - `channelaftertouch`: 0xD (13)
-   * - `pitchbend`: 0xE (14)
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-
-
-  get MIDI_CHANNEL_MESSAGES() {
-    return {
-      noteoff: 0x8,
-      // 8
-      noteon: 0x9,
-      // 9
-      keyaftertouch: 0xA,
-      // 10
-      controlchange: 0xB,
-      // 11
-      programchange: 0xC,
-      // 12
-      channelaftertouch: 0xD,
-      // 13
-      pitchbend: 0xE // 14
-
-    };
+    return enums.CHANNEL_EVENTS;
   }
   /**
    * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
@@ -7804,34 +7831,15 @@ class WebMidi extends e {
   }
   /**
    * Enum of all channel mode messages and their associated numerical value:
-   *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
-   *
    * @enum {Object.<string, number>}
    * @readonly
-   *
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
    * @since 2.0.0
    */
 
 
   get MIDI_CHANNEL_MODE_MESSAGES() {
-    return {
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
-    };
+    return enums.MIDI_CHANNEL_MODE_MESSAGES;
   }
   /**
    * Enum of most control change messages and their associated numerical value. Note that some
