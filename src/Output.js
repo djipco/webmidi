@@ -219,8 +219,9 @@ export class Output extends EventEmitter {
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @license Apache-2.0
    */
   send(message, options = {time: 0}, legacy = undefined) {
 

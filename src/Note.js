@@ -52,6 +52,7 @@ import {Utilities} from "./Utilities.js";
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class Note {

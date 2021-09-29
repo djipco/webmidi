@@ -32,6 +32,7 @@ class Utilities {
    *
    * @throws TypeError Invalid note identifier
    *
+   * @license Apache-2.0
    * @since 3.0.0
    */
   toNoteNumber(identifier, octaveOffset = 0) {

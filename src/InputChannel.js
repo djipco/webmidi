@@ -51,6 +51,7 @@ import {Note} from "./Note.js";
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class InputChannel extends EventEmitter {

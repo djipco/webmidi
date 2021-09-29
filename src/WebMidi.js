@@ -36,6 +36,7 @@ global["navigator"] = require("jzz");
  * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
+ * @license Apache-2.0
  */
 class WebMidi extends EventEmitter {
 
@@ -1393,6 +1394,45 @@ class WebMidi extends EventEmitter {
   get NOTES() {
     return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
   }
+
+
+
+
+  /**
+   * Adds a listener for the specified event. It returns the [**Listener**]{@link Listener} object
+   * that was created and attached to the event.
+   *
+   * To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
+   * as the first parameter. Note that a global listener will also be triggered by non-registered
+   * events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
+   *
+   * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
+   * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
+   * @param {Object} [options={}]
+   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+   * of the listeners array
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+   * automatically expires.
+   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * should automatically be removed.
+   * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+   * callback function. This array is stored in the [**arguments**]{@link Listener#arguments}
+   * property of the [**Listener**]{@link Listener} object and can be retrieved or modified as
+   * desired.
+   *
+   * @returns {Listener} The newly created [**Listener**]{@link Listener} object.
+   *
+   * @throws {TypeError} The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
+   * @throws {TypeError} The `callback` parameter must be a function.
+   */
+
+
+
+
+
+
+
 
 }
 

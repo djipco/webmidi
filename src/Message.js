@@ -8,6 +8,7 @@ import {Utilities} from "./Utilities.js";
  * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
  * and 255.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {

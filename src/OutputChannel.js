@@ -309,6 +309,9 @@ export class OutputChannel extends EventEmitter {
    * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
    */
   sendControlChange(controller, value, options = {}) {
 

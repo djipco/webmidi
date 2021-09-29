@@ -38,6 +38,8 @@ import {Utilities} from "./Utilities.js";
  * @fires Input#reset
  * @fires Input#midimessage
  * @fires Input#unknownmidimessage
+ *
+ * @license Apache-2.0
  */
 export class Input extends EventEmitter {
 
