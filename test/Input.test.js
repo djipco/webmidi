@@ -2,6 +2,7 @@ const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
 const {WebMidi} = require("../dist/webmidi.cjs.js");
+const {Enumerations} = require("../src/Enumerations.js");
 
 // The virtual port is an "external" device so an output is seen as an input by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
@@ -516,12 +517,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index], {channels: channels});
       });
 
-      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });
@@ -535,12 +536,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, channels, callbacks[index]);
       });
 
-      Object.keys(WebMidi.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });

@@ -1,6 +1,7 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
@@ -169,7 +170,7 @@ export class OutputChannel extends EventEmitter {
     target.forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
           Utilities.offsetNumber(n, offset),
           pressure
         ],
@@ -187,7 +188,7 @@ export class OutputChannel extends EventEmitter {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+    //       (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -349,7 +350,7 @@ export class OutputChannel extends EventEmitter {
 
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
           controller + (index * 32),
           value[index]
         ],
@@ -814,7 +815,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -924,7 +925,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -1000,7 +1001,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         command,
         value
       ],
@@ -1091,7 +1092,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1355,7 +1356,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -1447,7 +1448,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
         program - 1
       ],
       {time: Utilities.toTimestamp(options.time)}

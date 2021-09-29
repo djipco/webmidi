@@ -1,5 +1,6 @@
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `Message` class represents a single MIDI message. It has several properties that make it
@@ -120,7 +121,7 @@ export class Message {
 
     // Assign type (depending in whether the message is channel-specific or system)
     if (this.isChannelMessage) {
-      this.type = Utilities.getPropertyByValue(WebMidi.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
       this.type = Utilities.getPropertyByValue(WebMidi.MIDI_SYSTEM_MESSAGES, this.command);
     }
