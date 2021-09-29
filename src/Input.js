@@ -719,7 +719,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        Enumerations.CHANNEL_EVENTS.includes(event) &&
+        InputChannel.EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -730,7 +730,7 @@ export class Input extends EventEmitter {
     let listeners = [];
 
     // Check if the event is channel-specific or input-wide
-    if (!Enumerations.CHANNEL_EVENTS.includes(event)) {
+    if (!InputChannel.EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
@@ -899,7 +899,7 @@ export class Input extends EventEmitter {
 
       // Validation
       if (
-        Enumerations.CHANNEL_EVENTS.includes(event) &&
+        InputChannel.EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -907,7 +907,7 @@ export class Input extends EventEmitter {
 
     }
 
-    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
 
       return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
@@ -968,7 +968,7 @@ export class Input extends EventEmitter {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
 
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
