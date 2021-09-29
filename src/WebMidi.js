@@ -1002,6 +1002,11 @@ class WebMidi extends EventEmitter {
    * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
   get CHANNEL_EVENTS() {
+    if (this.validation) {
+      console.warn(
+        "The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS."
+      );
+    }
     return Enumerations.CHANNEL_EVENTS;
   }
 
@@ -1080,159 +1085,34 @@ class WebMidi extends EventEmitter {
    * @since 2.0.0
    */
   get MIDI_CHANNEL_MODE_MESSAGES() {
-    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES
+    if (this.validation) {
+      console.warn(
+        "The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to " +
+        "Enumerations.MIDI_CHANNEL_MODE_MESSAGES."
+      );
+    }
+    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES;
   }
 
   /**
    * Enum of most control change messages and their associated numerical value. Note that some
    * control change numbers do not have a predefined purpose.
    *
-   * - `bankselectcoarse`: 0
-   * - `modulationwheelcoarse`: 1
-   * - `breathcontrollercoarse`: 2
-   * - `footcontrollercoarse`: 4
-   * - `portamentotimecoarse`: 5
-   * - `dataentrycoarse`: 6
-   * - `volumecoarse`: 7
-   * - `balancecoarse`: 8
-   * - `pancoarse`: 10
-   * - `expressioncoarse`: 11
-   * - `effectcontrol1coarse`: 12
-   * - `effectcontrol2coarse`: 13
-   * - `generalpurposeslider1`: 16
-   * - `generalpurposeslider2`: 17
-   * - `generalpurposeslider3`: 18
-   * - `generalpurposeslider4`: 19
-   * - `bankselectfine`: 32
-   * - `modulationwheelfine`: 33
-   * - `breathcontrollerfine`: 34
-   * - `footcontrollerfine`: 36
-   * - `portamentotimefine`: 37
-   * - `dataentryfine`: 38
-   * - `volumefine`: 39
-   * - `balancefine`: 40
-   * - `panfine`: 42
-   * - `expressionfine`: 43
-   * - `effectcontrol1fine`: 44
-   * - `effectcontrol2fine`: 45
-   * - `holdpedal`: 64
-   * - `portamento`: 65
-   * - `sustenutopedal`: 66
-   * - `softpedal`: 67
-   * - `legatopedal`: 68
-   * - `hold2pedal`: 69
-   * - `soundvariation`: 70
-   * - `resonance`: 71
-   * - `soundreleasetime`: 72
-   * - `soundattacktime`: 73
-   * - `brightness`: 74
-   * - `soundcontrol6`: 75
-   * - `soundcontrol7`: 76
-   * - `soundcontrol8`:`77
-   * - `soundcontrol9`: 78
-   * - `soundcontrol10`: 79
-   * - `generalpurposebutton1`: 80
-   * - `generalpurposebutton2`: 81
-   * - `generalpurposebutton3`: 82
-   * - `generalpurposebutton4`: 83
-   * - `reverblevel`: 91
-   * - `tremololevel`: 92
-   * - `choruslevel`: 93
-   * - `celestelevel`: 94
-   * - `phaserlevel`: 95
-   * - `databuttonincrement`: 96
-   * - `databuttondecrement`: 97
-   * - `nonregisteredparametercoarse`: 98
-   * - `nonregisteredparameterfine`: 99
-   * - `registeredparametercoarse`: 100
-   * - `registeredparameterfine`: 101
-   *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
-   *
    * @enum {Object.<string, number>}
    * @readonly
-   *
    * @since 2.0.0
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
    */
   get MIDI_CONTROL_CHANGE_MESSAGES() {
 
-    return {
-      bankselectcoarse: 0,
-      modulationwheelcoarse: 1,
-      breathcontrollercoarse: 2,
-      footcontrollercoarse: 4,
-      portamentotimecoarse: 5,
-      dataentrycoarse: 6,
-      volumecoarse: 7,
-      balancecoarse: 8,
-      pancoarse: 10,
-      expressioncoarse: 11,
-      effectcontrol1coarse: 12,
-      effectcontrol2coarse: 13,
-      generalpurposeslider1: 16,
-      generalpurposeslider2: 17,
-      generalpurposeslider3: 18,
-      generalpurposeslider4: 19,
-      bankselectfine: 32,
-      modulationwheelfine: 33,
-      breathcontrollerfine: 34,
-      footcontrollerfine: 36,
-      portamentotimefine: 37,
-      dataentryfine: 38,
-      volumefine: 39,
-      balancefine: 40,
-      panfine: 42,
-      expressionfine: 43,
-      effectcontrol1fine: 44,
-      effectcontrol2fine: 45,
-      holdpedal: 64,
-      portamento: 65,
-      sustenutopedal: 66,
-      softpedal: 67,
-      legatopedal: 68,
-      hold2pedal: 69,
-      soundvariation: 70,
-      resonance: 71,
-      soundreleasetime: 72,
-      soundattacktime: 73,
-      brightness: 74,
-      soundcontrol6: 75,
-      soundcontrol7: 76,
-      soundcontrol8: 77,
-      soundcontrol9: 78,
-      soundcontrol10: 79,
-      generalpurposebutton1: 80,
-      generalpurposebutton2: 81,
-      generalpurposebutton3: 82,
-      generalpurposebutton4: 83,
-      reverblevel: 91,
-      tremololevel: 92,
-      choruslevel: 93,
-      celestelevel: 94,
-      phaserlevel: 95,
-      databuttonincrement: 96,
-      databuttondecrement: 97,
-      nonregisteredparametercoarse: 98,
-      nonregisteredparameterfine: 99,
-      registeredparametercoarse: 100,
-      registeredparameterfine: 101,
+    if (this.validation) {
+      console.warn(
+        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been moved to " +
+        "Enumerations.MIDI_CONTROL_CHANGE_MESSAGES."
+      );
+    }
 
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
-    };
+    return Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
 
   }
 
@@ -1324,4 +1204,5 @@ export {wm as WebMidi};
 
 export {Note} from "./Note.js";
 export {Utilities} from "./Utilities.js";
+export {Enumerations} from "./Enumerations.js";
 export {Message} from "./Message.js";

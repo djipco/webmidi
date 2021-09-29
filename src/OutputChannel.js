@@ -317,7 +317,7 @@ export class OutputChannel extends EventEmitter {
   sendControlChange(controller, value, options = {}) {
 
     if (typeof controller === "string") {
-      controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
     if (!Array.isArray(value)) value = [value];

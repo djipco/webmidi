@@ -912,8 +912,8 @@ describe("InputChannel Object", function() {
       let results = [];
 
       // Act
-      for (let cc in WebMidi.MIDI_CONTROL_CHANGE_MESSAGES) {
-        let number = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[cc];
+      for (let cc in Enumerations.MIDI_CONTROL_CHANGE_MESSAGES) {
+        let number = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[cc];
         results.push(channel.getCcNameByNumber(number));
       }
 
