@@ -251,12 +251,6 @@ declare const wm: WebMidi;
  */
 declare class Enumerations {
     /**
-     * Array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     * @readonly
-     */
-    get CHANNEL_EVENTS(): string[];
-    /**
      * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
      *
      * - `noteoff`: 0x8 (8)
@@ -1168,7 +1162,7 @@ declare class WebMidi {
     get time(): number;
     /**
      * @private
-     * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
+     * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
      */
     private get CHANNEL_EVENTS();
     /**
@@ -1192,12 +1186,10 @@ declare class WebMidi {
      */
     private get MIDI_REGISTERED_PARAMETER();
     /**
-     * Array of standard note names
-     *
-     * @type {string[]}
-     * @readonly
+     * @deprecated since 3.0.0.
+     * @private
      */
-    get NOTES(): string[];
+    private get NOTES();
 }
 /**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
@@ -2898,6 +2890,12 @@ declare class e {
  * @since 3.0.0
  */
 declare class InputChannel extends e {
+    /**
+     * Array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     * @readonly
+     */
+    static get EVENTS(): string[];
     constructor(input: any, number: any);
     /**
      * @type {Input}
