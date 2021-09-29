@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -66,8 +66,12 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+											<li><a href="Enumerations.html">Enumerations</a></li>
+											<li><a href="EventEmitter.html">EventEmitter</a></li>
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Listener.html">Listener</a></li>
+											<li><a href="Message.html">Message</a></li>
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
@@ -309,12 +313,19 @@
 			
 			
 			
+							<!-- license -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">License</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">Apache-2.0</p>
+								</div>
+							</div>
 			
 							<!-- source -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-56">line 56</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-58">line 58</a></p>
 								</div>
 							</div>
 			
@@ -339,6 +350,50 @@
 									</dl>
 									<h3>Members</h3>
 									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title member public collapsible-symbol">
+			<h4 id=".EVENTS" class="member public"><span class="signature-attribs">&lt;static, readonly> </span><span class="name">EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
+		</dt>
+<dd class="symbol-details member public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array of channel-specific event names that can be listened to.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-990">line 990</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
 			<h4 id="input" class="member public"><span class="name">input</span><span class="signature-type"> :<a href="Input.html">Input</a></span></h4>
@@ -380,7 +435,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-950">line 950</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-952">line 952</a></p>
 								</div>
 							</div>
 			
@@ -431,7 +486,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-959">line 959</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-961">line 961</a></p>
 								</div>
 							</div>
 			
@@ -488,7 +543,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-931">line 931</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-933">line 933</a></p>
 								</div>
 							</div>
 			
@@ -537,7 +592,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-105">line 105</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-107">line 107</a></p>
 								</div>
 							</div>
 			
@@ -578,7 +633,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-113">line 113</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-115">line 115</a></p>
 								</div>
 							</div>
 			
@@ -663,7 +718,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-905">line 905</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-907">line 907</a></p>
 								</div>
 							</div>
 			
@@ -738,7 +793,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-868">line 868</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-870">line 870</a></p>
 								</div>
 							</div>
 			
@@ -786,7 +841,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -830,7 +885,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-488">line 488</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-490">line 490</a></p>
 								</div>
 							</div>
 			
@@ -875,7 +930,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -919,7 +974,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-432">line 432</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-434">line 434</a></p>
 								</div>
 							</div>
 			
@@ -964,7 +1019,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1022,7 +1077,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-374">line 374</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-376">line 376</a></p>
 								</div>
 							</div>
 			
@@ -1067,7 +1122,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1156,7 +1211,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-309">line 309</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-311">line 311</a></p>
 								</div>
 							</div>
 			
@@ -1201,7 +1256,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1284,7 +1339,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-264">line 264</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-266">line 266</a></p>
 								</div>
 							</div>
 			
@@ -1331,7 +1386,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1383,7 +1438,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-464">line 464</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-466">line 466</a></p>
 								</div>
 							</div>
 			
@@ -1422,7 +1477,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 								<td class="attributes"></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming MIDI
@@ -1513,7 +1568,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-133">line 133</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-135">line 135</a></p>
 								</div>
 							</div>
 			
@@ -1560,7 +1615,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1611,7 +1666,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-530">line 530</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-532">line 532</a></p>
 								</div>
 							</div>
 			
@@ -1656,7 +1711,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -1723,7 +1778,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-179">line 179</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-181">line 181</a></p>
 								</div>
 							</div>
 			
@@ -1856,7 +1911,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-222">line 222</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-224">line 224</a></p>
 								</div>
 							</div>
 			
@@ -1973,7 +2028,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-733">line 733</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-735">line 735</a></p>
 								</div>
 							</div>
 			
@@ -2090,7 +2145,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-713">line 713</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-715">line 715</a></p>
 								</div>
 							</div>
 			
@@ -2207,7 +2262,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-673">line 673</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-675">line 675</a></p>
 								</div>
 							</div>
 			
@@ -2324,7 +2379,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-693">line 693</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-695">line 695</a></p>
 								</div>
 							</div>
 			
@@ -2370,7 +2425,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -2421,7 +2476,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-504">line 504</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-506">line 506</a></p>
 								</div>
 							</div>
 			
@@ -2466,7 +2521,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -2524,7 +2579,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-397">line 397</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-399">line 399</a></p>
 								</div>
 							</div>
 			
@@ -2569,7 +2624,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -2627,7 +2682,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-351">line 351</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-353">line 353</a></p>
 								</div>
 							</div>
 			
@@ -2672,7 +2727,7 @@
 						</tr>
 						<tr>
 								<td><code>message</code></td>
-							<td><span class="param-type">Message</span></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
 									<p>A <code>Message</code> object containing information about the incoming
 			MIDI message.</p>
@@ -2716,7 +2771,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-448">line 448</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-450">line 450</a></p>
 								</div>
 							</div>
 			
@@ -2831,7 +2886,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-808">line 808</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-810">line 810</a></p>
 								</div>
 							</div>
 			
@@ -2946,7 +3001,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-790">line 790</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-792">line 792</a></p>
 								</div>
 							</div>
 			
@@ -3061,7 +3116,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-754">line 754</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-756">line 756</a></p>
 								</div>
 							</div>
 			
@@ -3176,7 +3231,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="InputChannel.js.html">InputChannel.js</a>, <a href="InputChannel.js.html#line-772">line 772</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-774">line 774</a></p>
 								</div>
 							</div>
 			
@@ -3196,8 +3251,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 17:08:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

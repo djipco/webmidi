@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-		<title>InputChannel.js</title>
+		<title>src/InputChannel.js</title>
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -67,8 +67,12 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+											<li><a href="Enumerations.html">Enumerations</a></li>
+											<li><a href="EventEmitter.html">EventEmitter</a></li>
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Listener.html">Listener</a></li>
+											<li><a href="Message.html">Message</a></li>
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
@@ -94,7 +98,7 @@
 	<!-- end:navbar.hbs -->		<div class="page-header">
 			<div class="container">
 				<span class="kind">source</span>
-				<h1><span class="name">InputChannel.js</span></h1>
+				<h1><span class="name">src/InputChannel.js</span></h1>
 			</div>
 		</div>
 	<div class="container content">
@@ -106,6 +110,7 @@
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 import {Note} from "./Note.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
@@ -155,6 +160,7 @@ import {Note} from "./Note.js";
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class InputChannel extends EventEmitter {
@@ -678,7 +684,7 @@ export class InputChannel extends EventEmitter {
     // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
-    const list = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES;
+    const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
 
     // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
     if (
@@ -761,14 +767,14 @@ export class InputChannel extends EventEmitter {
 
   isRpnOrNrpnController(controller) {
 
-    return controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||           //   6
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||                  //  38
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||            //  96
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||            //  97
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||   //  98
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||     //  99
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||      // 100
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;          // 101
+    return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||         //  96
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||         //  97
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||//  98
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||  //  99
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||   // 100
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;       // 101
 
   }
 
@@ -939,16 +945,16 @@ export class InputChannel extends EventEmitter {
 
     // Retrieve controller type and append to event type
     event.type += Utilities.getPropertyByValue(
-      WebMidi.MIDI_CONTROL_CHANGE_MESSAGES,
+      Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
       e.message.dataBytes[0]
     );
 
     // Identify the parameter (by name for RPN and by number for NRPN)
     if (type === "rpn") {
 
-      event.parameter = Object.keys(WebMidi.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return WebMidi.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &amp;&amp;
-          WebMidi.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &amp;&amp;
+          Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
 
     } else {
@@ -977,11 +983,11 @@ export class InputChannel extends EventEmitter {
 
     if ( !(number >= 120 &amp;&amp; number &lt;= 127) ) return false;
 
-    for (let cm in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
 
       if (
-        WebMidi.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &amp;&amp;
-        number === WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cm]
+        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &amp;&amp;
+        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
       }
@@ -1013,7 +1019,7 @@ export class InputChannel extends EventEmitter {
       if ( !(number >= 0 &amp;&amp; number &lt;= 127) ) throw new RangeError("Invalid control change number.");
     }
 
-    return Utilities.getPropertyByValue(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES, number);
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
 
   }
 
@@ -1084,6 +1090,47 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  /**
+   * Array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   * @readonly
+   */
+  static get EVENTS() {
+
+    return [
+
+      // MIDI channel message events
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      // MIDI channel mode events
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers",
+
+      // NRPN events
+      "nrpndataentrycoarse",
+      "nrpndataentryfine",
+      "nrpndatabuttonincrement",
+      "nrpndatabuttondecrement",
+
+      // RPN events
+      "rpndataentrycoarse",
+      "rpndataentryfine",
+      "rpndatabuttonincrement",
+      "rpndatabuttondecrement"
+
+    ];
+  }
+
 }
 </code></pre>
 		</section>
@@ -1091,8 +1138,8 @@ export class InputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 17:08:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

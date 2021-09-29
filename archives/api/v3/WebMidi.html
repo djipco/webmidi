@@ -41,9 +41,9 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
-			window.DOCLET_AFILTER_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
 </head>
 <body>
@@ -66,8 +66,12 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+											<li><a href="Enumerations.html">Enumerations</a></li>
+											<li><a href="EventEmitter.html">EventEmitter</a></li>
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Listener.html">Listener</a></li>
+											<li><a href="Message.html">Message</a></li>
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
@@ -104,6 +108,16 @@
 							<li><a href="list_class.html">Classes</a></li>
 							<li class="active">WebMidi</li>
 						</ol>
+						<div class="access-filter">
+								<label class="checkbox-inline">
+									<input class="toggle-inherited" type="checkbox" value="" checked>
+									Inherited
+								</label>
+								<label class="checkbox-inline">
+									<input class="toggle-public" type="checkbox" value="" checked>
+									Public
+								</label>
+						</div>
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
@@ -111,20 +125,13 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>WebMidi</code> object makes it easier to work with the Web MIDI API. Basically, it simplifies
-			sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
-			<p>When using the WebMidi.js library, the <code>WebMidi</code> class has already been instantiated for you.
-			If you use the <strong>IIFE</strong> version, you should simply use the global object called <code>WebMidi</code>. If you
-			use the <strong>CJS</strong> (CommonJS) or <strong>ESM</strong> (ES6 module) version, you get an already-instantiated
-			object. This means there is no need to instantiate a new <code>WebMidi</code> object directly.</p>
-			<p>The <code>WebMidi</code> object extends the
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
-			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
-			it also includes methods such as
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">addListener()</a>,
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">removeListener()</a>,
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">hasListener()</a> and several
-			others.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>WebMidi</code> object makes it easier to work with the low-level Web MIDI API. Basically, it
+			simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
+			<p>When using the WebMidi.js library, you should know that the <code>WebMidi</code> class has already been
+			instantiated. If you use the <strong>IIFE</strong> version, you should simply use the global object called
+			<code>WebMidi</code>. If you use the <strong>CJS</strong> (CommonJS) or <strong>ESM</strong> (ES6 module) version, you get an
+			already-instantiated object. This means there is no need to instantiate a new <code>WebMidi</code> object
+			directly.</p></div>
 			</div>			<div class="callout callout-warning"><h5>Fires</h5>		<form class="form-horizontal fires">
 							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:connected">WebMidi#connected</a></label>
@@ -165,7 +172,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Augments</label>
 								<div class="col-sm-9">
-										<p class="form-control-static">EventEmitter</p>
+										<p class="form-control-static"><a href="EventEmitter.html">EventEmitter</a></p>
 								</div>
 							</div>
 			
@@ -179,12 +186,19 @@
 			
 			
 			
+							<!-- license -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">License</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">Apache-2.0</p>
+								</div>
+							</div>
 			
 							<!-- source -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-40">line 40</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-35">line 35</a></p>
 								</div>
 							</div>
 			
@@ -198,50 +212,6 @@
 							<article class="secondary">
 									<h3>Members</h3>
 									<dl class="symbol">
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="CHANNEL_EVENTS" class="member public"><span class="name">CHANNEL_EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of channel-specific event names that can be listened to.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1008">line 1008</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
 			<h4 id="defaults" class="member public"><span class="name">defaults</span><span class="signature-type"> :Object</span></h4>
@@ -322,7 +292,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-60">line 60</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-55">line 55</a></p>
 								</div>
 							</div>
 			
@@ -366,7 +336,246 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-879">line 879</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-874">line 874</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventCount" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventCount</span><span class="signature-type"> :number</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners</p>
+			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
+			tied to a specific event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventCount">EventEmitter#eventCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventCount">EventEmitter#eventCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-467">line 467</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventMap" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventMap</span><span class="signature-type"> :Object</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An object containing a property for each event with at least one registered listener. Each
+			event property contains an array of all the <code>Listener</code> objects registered for the event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventMap">EventEmitter#eventMap</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventMap">EventEmitter#eventMap</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-23">line 23</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventNames" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventNames</span><span class="signature-type"> :Array.&lt;string></span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all the unique event names for which the emitter has at least one registered
+			listener.</p>
+			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
+			tied to a specific event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventNames">EventEmitter#eventNames</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventNames">EventEmitter#eventNames</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-208">line 208</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventsSuspended" class="member public inherited"><span class="name">eventsSuspended</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of function callbacks is currently suspended for this whole
+			emitter</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventsSuspended">EventEmitter#eventsSuspended</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventsSuspended">EventEmitter#eventsSuspended</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-30">line 30</a></p>
 								</div>
 							</div>
 			
@@ -410,7 +619,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-889">line 889</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-884">line 884</a></p>
 								</div>
 							</div>
 			
@@ -455,7 +664,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-75">line 75</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-70">line 70</a></p>
 								</div>
 							</div>
 			
@@ -501,7 +710,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-918">line 918</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-913">line 913</a></p>
 								</div>
 							</div>
 			
@@ -547,622 +756,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-899">line 899</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_CHANNEL_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all MIDI channel messages and their associated numerical value:</p>
-			<ul>
-			<li><code>noteoff</code>: 0x8 (8)</li>
-			<li><code>noteon</code>: 0x9 (9)</li>
-			<li><code>keyaftertouch</code>: 0xA (10)</li>
-			<li><code>controlchange</code>: 0xB (11)</li>
-			<li><code>nrpn</code>: 0xB (11)</li>
-			<li><code>programchange</code>: 0xC (12)</li>
-			<li><code>channelaftertouch</code>: 0xD (13)</li>
-			<li><code>pitchbend</code>: 0xE (14)</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">3.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1054">line 1054</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_CHANNEL_MODE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CHANNEL_MODE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all channel mode messages and their associated numerical value:</p>
-			<ul>
-			<li><code>allsoundoff</code>: 120</li>
-			<li><code>resetallcontrollers</code>: 121</li>
-			<li><code>localcontrol</code>: 122</li>
-			<li><code>allnotesoff</code>: 123</li>
-			<li><code>omnimodeoff</code>: 124</li>
-			<li><code>omnimodeon</code>: 125</li>
-			<li><code>monomodeon</code>: 126</li>
-			<li><code>polymodeon</code>: 127</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1152">line 1152</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_CONTROL_CHANGE_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_CONTROL_CHANGE_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of most control change messages and their associated numerical value. Note that some
-			control change numbers do not have a predefined purpose.</p>
-			<ul>
-			<li>
-			<p><code>bankselectcoarse</code>: 0</p>
-			</li>
-			<li>
-			<p><code>modulationwheelcoarse</code>: 1</p>
-			</li>
-			<li>
-			<p><code>breathcontrollercoarse</code>: 2</p>
-			</li>
-			<li>
-			<p><code>footcontrollercoarse</code>: 4</p>
-			</li>
-			<li>
-			<p><code>portamentotimecoarse</code>: 5</p>
-			</li>
-			<li>
-			<p><code>dataentrycoarse</code>: 6</p>
-			</li>
-			<li>
-			<p><code>volumecoarse</code>: 7</p>
-			</li>
-			<li>
-			<p><code>balancecoarse</code>: 8</p>
-			</li>
-			<li>
-			<p><code>pancoarse</code>: 10</p>
-			</li>
-			<li>
-			<p><code>expressioncoarse</code>: 11</p>
-			</li>
-			<li>
-			<p><code>effectcontrol1coarse</code>: 12</p>
-			</li>
-			<li>
-			<p><code>effectcontrol2coarse</code>: 13</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider1</code>: 16</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider2</code>: 17</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider3</code>: 18</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider4</code>: 19</p>
-			</li>
-			<li>
-			<p><code>bankselectfine</code>: 32</p>
-			</li>
-			<li>
-			<p><code>modulationwheelfine</code>: 33</p>
-			</li>
-			<li>
-			<p><code>breathcontrollerfine</code>: 34</p>
-			</li>
-			<li>
-			<p><code>footcontrollerfine</code>: 36</p>
-			</li>
-			<li>
-			<p><code>portamentotimefine</code>: 37</p>
-			</li>
-			<li>
-			<p><code>dataentryfine</code>: 38</p>
-			</li>
-			<li>
-			<p><code>volumefine</code>: 39</p>
-			</li>
-			<li>
-			<p><code>balancefine</code>: 40</p>
-			</li>
-			<li>
-			<p><code>panfine</code>: 42</p>
-			</li>
-			<li>
-			<p><code>expressionfine</code>: 43</p>
-			</li>
-			<li>
-			<p><code>effectcontrol1fine</code>: 44</p>
-			</li>
-			<li>
-			<p><code>effectcontrol2fine</code>: 45</p>
-			</li>
-			<li>
-			<p><code>holdpedal</code>: 64</p>
-			</li>
-			<li>
-			<p><code>portamento</code>: 65</p>
-			</li>
-			<li>
-			<p><code>sustenutopedal</code>: 66</p>
-			</li>
-			<li>
-			<p><code>softpedal</code>: 67</p>
-			</li>
-			<li>
-			<p><code>legatopedal</code>: 68</p>
-			</li>
-			<li>
-			<p><code>hold2pedal</code>: 69</p>
-			</li>
-			<li>
-			<p><code>soundvariation</code>: 70</p>
-			</li>
-			<li>
-			<p><code>resonance</code>: 71</p>
-			</li>
-			<li>
-			<p><code>soundreleasetime</code>: 72</p>
-			</li>
-			<li>
-			<p><code>soundattacktime</code>: 73</p>
-			</li>
-			<li>
-			<p><code>brightness</code>: 74</p>
-			</li>
-			<li>
-			<p><code>soundcontrol6</code>: 75</p>
-			</li>
-			<li>
-			<p><code>soundcontrol7</code>: 76</p>
-			</li>
-			<li>
-			<p><code>soundcontrol8</code>:`77</p>
-			</li>
-			<li>
-			<p><code>soundcontrol9</code>: 78</p>
-			</li>
-			<li>
-			<p><code>soundcontrol10</code>: 79</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton1</code>: 80</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton2</code>: 81</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton3</code>: 82</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton4</code>: 83</p>
-			</li>
-			<li>
-			<p><code>reverblevel</code>: 91</p>
-			</li>
-			<li>
-			<p><code>tremololevel</code>: 92</p>
-			</li>
-			<li>
-			<p><code>choruslevel</code>: 93</p>
-			</li>
-			<li>
-			<p><code>celestelevel</code>: 94</p>
-			</li>
-			<li>
-			<p><code>phaserlevel</code>: 95</p>
-			</li>
-			<li>
-			<p><code>databuttonincrement</code>: 96</p>
-			</li>
-			<li>
-			<p><code>databuttondecrement</code>: 97</p>
-			</li>
-			<li>
-			<p><code>nonregisteredparametercoarse</code>: 98</p>
-			</li>
-			<li>
-			<p><code>nonregisteredparameterfine</code>: 99</p>
-			</li>
-			<li>
-			<p><code>registeredparametercoarse</code>: 100</p>
-			</li>
-			<li>
-			<p><code>registeredparameterfine</code>: 101</p>
-			</li>
-			<li>
-			<p><code>allsoundoff</code>: 120</p>
-			</li>
-			<li>
-			<p><code>resetallcontrollers</code>: 121</p>
-			</li>
-			<li>
-			<p><code>localcontrol</code>: 122</p>
-			</li>
-			<li>
-			<p><code>allnotesoff</code>: 123</p>
-			</li>
-			<li>
-			<p><code>omnimodeoff</code>: 124</p>
-			</li>
-			<li>
-			<p><code>omnimodeon</code>: 125</p>
-			</li>
-			<li>
-			<p><code>monomodeon</code>: 126</p>
-			</li>
-			<li>
-			<p><code>polymodeon</code>: 127</p>
-			</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1245">line 1245</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_INTERFACE_EVENTS" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_INTERFACE_EVENTS</span><span class="signature-type"> :Array.&lt;string></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array of valid events triggered at the interface level.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1326">line 1326</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_REGISTERED_PARAMETERS" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_REGISTERED_PARAMETERS</span><span class="signature-type"> :Object.&lt;string, Array.&lt;number>></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all registered parameters and their associated pair of numerical values. MIDI
-			registered parameters extend the original list of control change messages. Currently, there are
-			only a limited number of them:</p>
-			<ul>
-			<li><code>pitchbendrange</code>: [0x00, 0x00]</li>
-			<li><code>channelfinetuning</code>: [0x00, 0x01]</li>
-			<li><code>channelcoarsetuning</code>: [0x00, 0x02]</li>
-			<li><code>tuningprogram</code>: [0x00, 0x03]</li>
-			<li><code>tuningbank</code>: [0x00, 0x04]</li>
-			<li><code>modulationrange</code>: [0x00, 0x05]</li>
-			<li><code>azimuthangle</code>: [0x3D, 0x00]</li>
-			<li><code>elevationangle</code>: [0x3D, 0x01]</li>
-			<li><code>gain</code>: [0x3D, 0x02]</li>
-			<li><code>distanceratio</code>: [0x3D, 0x03]</li>
-			<li><code>maximumdistance</code>: [0x3D, 0x04]</li>
-			<li><code>maximumdistancegain</code>: [0x3D, 0x05]</li>
-			<li><code>referencedistanceratio</code>: [0x3D, 0x06]</li>
-			<li><code>panspreadangle</code>: [0x3D, 0x07]</li>
-			<li><code>rollangle</code>: [0x3D, 0x08]</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, Array.&lt;number>></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">3.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1356">line 1356</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="MIDI_SYSTEM_MESSAGES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">MIDI_SYSTEM_MESSAGES</span><span class="signature-type"> :Object.&lt;string, number></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-			two custom messages.</p>
-			<p><strong>System common messages</strong></p>
-			<ul>
-			<li><code>sysex</code>: 0xF0 (240)</li>
-			<li><code>timecode</code>: 0xF1 (241)</li>
-			<li><code>songposition</code>: 0xF2 (242)</li>
-			<li><code>songselect</code>: 0xF3 (243)</li>
-			<li><code>tunerequest</code>: 0xF6 (246)</li>
-			<li><code>sysexend</code>: 0xF7 (247)</li>
-			</ul>
-			<p>The <code>sysexend</code> message is never actually received. It simply ends a sysex stream.</p>
-			<p><strong>System real-time messages</strong></p>
-			<ul>
-			<li><code>clock</code>: 0xF8 (248)</li>
-			<li><code>start</code>: 0xFA (250)</li>
-			<li><code>continue</code>: 0xFB (251)</li>
-			<li><code>stop</code>: 0xFC (252)</li>
-			<li><code>activesensing</code>: 0xFE (254)</li>
-			<li><code>reset</code>: 0xFF (255)</li>
-			</ul>
-			<p>Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-			purpose. The
-			<a href="https://www.midi.org/specifications/item/table-1-summary-of-midi-message">MIDI 1.0 spec</a>
-			simply states that they are undefined/reserved.</p>
-			<p><strong>Custom WebMidi.js messages</strong></p>
-			<ul>
-			<li><code>midimessage</code>: 0</li>
-			<li><code>unknownsystemmessage</code>: -1</li>
-			</ul></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object.&lt;string, number></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1106">line 1106</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="NOTES" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">NOTES</span><span class="signature-type"> :Array.&lt;string></span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Array of standard note names</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1393">line 1393</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-894">line 894</a></p>
 								</div>
 							</div>
 			
@@ -1220,7 +814,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-938">line 938</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-933">line 933</a></p>
 								</div>
 							</div>
 			
@@ -1264,7 +858,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-958">line 958</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-953">line 953</a></p>
 								</div>
 							</div>
 			
@@ -1312,7 +906,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-973">line 973</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-968">line 968</a></p>
 								</div>
 							</div>
 			
@@ -1357,7 +951,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-984">line 984</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-979">line 979</a></p>
 								</div>
 							</div>
 			
@@ -1407,7 +1001,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-1000">line 1000</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-995">line 995</a></p>
 								</div>
 							</div>
 			
@@ -1455,7 +1049,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-87">line 87</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-82">line 82</a></p>
 								</div>
 							</div>
 			
@@ -1468,6 +1062,363 @@
 									</dl>
 									<h3>Methods</h3>
 									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="addListener" class="function public inherited"><span class="name">addListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Listener.html">Listener</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><strong>Listener</strong></a> object
+			that was created and attached to the event.</p>
+			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
+			as the first parameter. Note that a global listener will also be triggered by non-registered
+			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to listen to</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The callback function to execute when the event occurs.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The value of <code>this</code> in the callback function.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of times after which the callback
+									should automatically be removed.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
+									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>callback</code> parameter must be a function.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addListener">EventEmitter#addListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addListener">EventEmitter#addListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-76">line 76</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="addOneTimeListener" class="function public inherited"><span class="name">addOneTimeListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Listener.html">Listener</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time listener for the specified event. The listener will be executed once and then
+			destroyed. It returns the <a href="Listener.html"><strong>Listener</strong></a> object that was created and attached
+			to the event.</p>
+			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
+			as the first parameter. Note that a global listener will also be triggered by non-registered
+			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to listen to</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The callback function to execute when the event occurs</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The context to invoke the callback function in.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
+									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>callback</code> parameter must be a function.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addOneTimeListener">EventEmitter#addOneTimeListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addOneTimeListener">EventEmitter#addOneTimeListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-129">line 129</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="disable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">disable</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;void>}</span></h4>
@@ -1521,7 +1472,119 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-336">line 336</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-331">line 331</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="emit" class="function public inherited"><span class="name">emit</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">...args</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback functions of all the <code>Listener</code> objects registered for a given event. The
+			callback functions are passed the additional arguments specifed for <code>emit()</code> (if any) followed
+			by the arguments present in the <code>arguments</code> property of the <code>Listener</code> object (if any). For
+			example:</p>
+			<pre class="prettyprint source lang-javascript"><code>let myEmitter = new EventEmitter();
+			myEmitter.addListener(&quot;test&quot;, fn, {arguments: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]});
+			myEmitter.emit(&quot;test&quot;, &quot;y&quot;, &quot;z&quot;);
+			</code></pre>
+			<p>In this example, the function will be called as such: <code>fn(&quot;y&quot;, &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;);</code></p>
+			<p>If the <code>eventsSuspended</code> property of the <code>EventEmitter</code> or the <code>suspended</code> property of the
+			<code>Listener</code> is <code>true</code>, the callback functions will not be executed.</p>
+			<p>This function returns an array containing the return values of each of the callbacks.</p>
+			<p>It should be noted that the regular listeners are triggered first followed by the global
+			listeners (added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The event</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>args</code></td>
+							<td><span class="param-type">*</span></td>
+								<td class="attributes">&lt;repeatable&gt;<br/></td>
+							<td class="last">
+									<p>Arbitrary number of arguments to pass along to the callback functions</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array containing the return value of each of the executed listener
+			functions</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#emit">EventEmitter#emit</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#emit">EventEmitter#emit</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-306">line 306</a></p>
 								</div>
 							</div>
 			
@@ -1692,7 +1755,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-187">line 187</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-182">line 182</a></p>
 								</div>
 							</div>
 			
@@ -1779,7 +1842,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-387">line 387</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-382">line 382</a></p>
 								</div>
 							</div>
 			
@@ -1864,7 +1927,173 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-417">line 417</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-412">line 412</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListenerCount" class="function public inherited"><span class="name">getListenerCount</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the number of listeners registered for a specific event.</p>
+			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) do not count
+			towards the remaining number for a &quot;regular&quot; event. To get the number of global listeners,
+			specifically use <code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The number of listeners registered for the specified event.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-272">line 272</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <code>Listener</code> objects that will be triggered for a specific event.</p>
+			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) are not returned for
+			&quot;regular&quot; events. To get the list of global listeners, specifically use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event to get listeners for</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;<a href="Listener.html">Listener</a>></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array of <code>Listener</code> objects</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListeners">EventEmitter#getListeners</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListeners">EventEmitter#getListeners</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-222">line 222</a></p>
 								</div>
 							</div>
 			
@@ -1951,7 +2180,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-482">line 482</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-477">line 477</a></p>
 								</div>
 							</div>
 			
@@ -2036,7 +2265,523 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-448">line 448</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-443">line 443</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="hasListener" class="function public inherited"><span class="name">hasListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">event</span> [,&nbsp;<span class="signature-param">callback</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{boolean}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns <code>true</code> if the specified event has at least one registered listener. If no event is
+			specified, the method returns <code>true</code> if any event has at least one listener registered (this
+			includes global listeners registered to <code>EventEmitter.ANY_EVENT</code>).</p>
+			<p>Note: to specifically check for global listeners added with <code>EventEmitter.ANY_EVENT</code>, use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>The event to check</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type">function</span> | <span class="param-type"><a href="Listener.html">Listener</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>The actual function that was added to the event or the
+			<a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">boolean</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#hasListener">EventEmitter#hasListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#hasListener">EventEmitter#hasListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-157">line 157</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="removeListener" class="function public inherited"><span class="name">removeListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">event</span> [,&nbsp;<span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes all the listeners that match the specified criterias. If no parameters are passed, all
+			listeners will be removed. If only the <code>event</code> parameter is passed, all listeners for that
+			event will be removed. You can remove global listeners by using <code>EventEmitter.ANY_EVENT</code> as the
+			first parameter.</p>
+			<p>To use more granular options, you must at least define the <code>event</code>. Then, you can specify the
+			callback to match or one or more of the additional options.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>The event name.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>Only remove the listeners that match this exact
+			callback function.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">*</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listeners that have this exact context.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listener if it has exactly that many
+									remaining times to be executed.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#removeListener">EventEmitter#removeListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#removeListener">EventEmitter#removeListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-360">line 360</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="suspendEvent" class="function public inherited"><span class="name">suspendEvent</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Suspends execution of all callbacks functions registered for the specified event type.</p>
+			<p>You can suspend execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this will not suspend all callbacks
+			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
+			at first glance, it allows the selective suspension of global listeners while leaving other
+			liseners alone. If you truly want to suspends all callbacks for a specific <code>EventEmitter</code>,
+			simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event for which to suspend execution of all
+			callback functions.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#suspendEvent">EventEmitter#suspendEvent</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#suspendEvent">EventEmitter#suspendEvent</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-239">line 239</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="unsuspendEvent" class="function public inherited"><span class="name">unsuspendEvent</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Resumes execution of all suspended callback functions registered for the specified event type.</p>
+			<p>You can resume execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that this will not resume all callbacks
+			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive,
+			it allows the selective unsuspension of global listeners while leaving other callbacks alone.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event for which to resume execution of all
+			callback functions.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#unsuspendEvent">EventEmitter#unsuspendEvent</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#unsuspendEvent">EventEmitter#unsuspendEvent</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-256">line 256</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="waitFor" class="function public inherited"><span class="signature-attribs">&lt;async> </span><span class="name">waitFor</span><span class="signature-params">( <span class="signature-param">event</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>waitFor()</code> method is an async function which returns a promise. The promise is fulfilled
+			when the specified event occurs. The event can be a regular event or <code>EventEmitter.ANY_EVENT</code>
+			(if you want to resolve as soon as any event is emitted).</p>
+			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
+			const ee = new EventEmitter();
+			ee.waitFor(&quot;ready&quot;).then(() => console.log(&quot;Ready!&quot;));
+			</code></pre>
+			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
+			const ee = new EventEmitter();
+			await ee.waitFor(&quot;ready&quot;);
+			console.log(&quot;Ready!&quot;);
+			</code></pre>
+			<p>If the <code>duration</code> option is set, the promise will only be fulfilled if the event is emitted
+			within the specified duration. If the event has not been fulfilled after the specified
+			duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+			after a certain time if the event is not triggered.</p>
+			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
+			const ee = new EventEmitter();
+			ee.waitFor(&quot;ready&quot;, {duration: 100})
+			.then(() => console.log(&quot;Ready!&quot;))
+			.catch(err => console.log(err);
+			</code></pre>
+			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
+			const ee = new EventEmitter();
+			try {
+			 await ee.waitFor(&quot;ready&quot;, {duration: 100});
+			 console.log(&quot;Ready!&quot;);
+			} catch(err) {
+			  console.log(err);
+			}
+			</code></pre></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to wait for</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds to wait before the
+									promise is automatically rejected.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#waitFor">EventEmitter#waitFor</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#waitFor">EventEmitter#waitFor</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-433">line 433</a></p>
 								</div>
 							</div>
 			
@@ -2122,7 +2867,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-661">line 661</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-656">line 656</a></p>
 								</div>
 							</div>
 			
@@ -2202,7 +2947,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-345">line 345</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-340">line 340</a></p>
 								</div>
 							</div>
 			
@@ -2338,7 +3083,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-675">line 675</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-670">line 670</a></p>
 								</div>
 							</div>
 			
@@ -2418,7 +3163,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-266">line 266</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-261">line 261</a></p>
 								</div>
 							</div>
 			
@@ -2505,7 +3250,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-232">line 232</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-227">line 227</a></p>
 								</div>
 							</div>
 			
@@ -2585,7 +3330,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="WebMidi.js.html">WebMidi.js</a>, <a href="WebMidi.js.html#line-250">line 250</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-245">line 245</a></p>
 								</div>
 							</div>
 			
@@ -2605,8 +3350,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 17:08:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

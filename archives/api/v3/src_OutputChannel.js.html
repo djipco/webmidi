@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-		<title>OutputChannel.js</title>
+		<title>src/OutputChannel.js</title>
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -67,8 +67,12 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+											<li><a href="Enumerations.html">Enumerations</a></li>
+											<li><a href="EventEmitter.html">EventEmitter</a></li>
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Listener.html">Listener</a></li>
+											<li><a href="Message.html">Message</a></li>
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
@@ -94,7 +98,7 @@
 	<!-- end:navbar.hbs -->		<div class="page-header">
 			<div class="container">
 				<span class="kind">source</span>
-				<h1><span class="name">OutputChannel.js</span></h1>
+				<h1><span class="name">src/OutputChannel.js</span></h1>
 			</div>
 		</div>
 	<div class="container content">
@@ -105,6 +109,7 @@
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
@@ -273,7 +278,7 @@ export class OutputChannel extends EventEmitter {
     target.forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.keyaftertouch &lt;&lt; 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch &lt;&lt; 4) + (this.number - 1),
           Utilities.offsetNumber(n, offset),
           pressure
         ],
@@ -291,7 +296,7 @@ export class OutputChannel extends EventEmitter {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
+    //       (Enumerations.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -413,11 +418,14 @@ export class OutputChannel extends EventEmitter {
    * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
    */
   sendControlChange(controller, value, options = {}) {
 
     if (typeof controller === "string") {
-      controller = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
     if (!Array.isArray(value)) value = [value];
@@ -450,7 +458,7 @@ export class OutputChannel extends EventEmitter {
 
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
           controller + (index * 32),
           value[index]
         ],
@@ -656,7 +664,7 @@ export class OutputChannel extends EventEmitter {
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -665,10 +673,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
-          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -723,7 +731,7 @@ export class OutputChannel extends EventEmitter {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = WebMidi.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
       if (parameter === undefined) {
@@ -732,10 +740,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(WebMidi.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          WebMidi.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
-          WebMidi.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &amp;&amp;
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -915,7 +923,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.noteoff &lt;&lt; 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteoff &lt;&lt; 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -1025,7 +1033,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (WebMidi.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteon &lt;&lt; 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -1081,7 +1089,7 @@ export class OutputChannel extends EventEmitter {
   sendChannelMode(command, value, options = {}) {
 
     // Normalize command to integer
-    if (typeof command === "string") command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
 
     if (WebMidi.validation) {
 
@@ -1101,7 +1109,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange &lt;&lt; 4) + (this.number - 1),
         command,
         value
       ],
@@ -1192,7 +1200,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.channelaftertouch &lt;&lt; 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch &lt;&lt; 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1456,7 +1464,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend &lt;&lt; 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend &lt;&lt; 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -1548,7 +1556,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (WebMidi.MIDI_CHANNEL_MESSAGES.programchange &lt;&lt; 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.programchange &lt;&lt; 4) + (this.number - 1),
         program - 1
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1610,7 +1618,7 @@ export class OutputChannel extends EventEmitter {
    */
   setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = WebMidi.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (WebMidi.validation) {
 
@@ -1873,8 +1881,8 @@ export class OutputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 17:08:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

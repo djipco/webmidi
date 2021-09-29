@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -66,8 +66,12 @@
 								<li class="dropdown">
 									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 									<ul class="dropdown-menu">
+											<li><a href="Enumerations.html">Enumerations</a></li>
+											<li><a href="EventEmitter.html">EventEmitter</a></li>
 											<li><a href="Input.html">Input</a></li>
 											<li><a href="InputChannel.html">InputChannel</a></li>
+											<li><a href="Listener.html">Listener</a></li>
+											<li><a href="Message.html">Message</a></li>
 											<li><a href="Note.html">Note</a></li>
 											<li><a href="Output.html">Output</a></li>
 											<li><a href="OutputChannel.html">OutputChannel</a></li>
@@ -111,8 +115,8 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Utilities</code> class contains general-purpose utility functions. The class is a singleton with
-			static methode and is not meant to be instantiated.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Utilities</code> class contains general-purpose utility methods. All methods are static and
+			should be called using the class name. For example: <code>Utilities.getNoteDetails(&quot;C4&quot;)</code>.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -135,12 +139,19 @@
 			
 			
 			
+							<!-- license -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">License</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">Apache-2.0</p>
+								</div>
+							</div>
 			
 							<!-- source -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-10">line 10</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-11">line 11</a></p>
 								</div>
 							</div>
 			
@@ -156,7 +167,7 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="buildNote" class="function public"><span class="name">buildNote</span><span class="signature-params">( [&nbsp;<span class="signature-param">input</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Note.html">Note</a>}</span></h4>
+			<h4 id=".buildNote" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">buildNote</span><span class="signature-params">( [&nbsp;<span class="signature-param">input</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Note.html">Note</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -292,7 +303,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-281">line 281</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-291">line 291</a></p>
 								</div>
 							</div>
 			
@@ -304,7 +315,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="buildNoteArray" class="function public"><span class="name">buildNoteArray</span><span class="signature-params">( [&nbsp;<span class="signature-param">notes</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Note.html">Note</a>>}</span></h4>
+			<h4 id=".buildNoteArray" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">buildNoteArray</span><span class="signature-params">( [&nbsp;<span class="signature-param">notes</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Note.html">Note</a>>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -461,7 +472,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-337">line 337</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-348">line 348</a></p>
 								</div>
 							</div>
 			
@@ -473,7 +484,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getNoteDetails" class="function public"><span class="name">getNoteDetails</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Object}</span></h4>
+			<h4 id=".getNoteDetails" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">getNoteDetails</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Object}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -547,7 +558,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-82">line 82</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-86">line 86</a></p>
 								</div>
 							</div>
 			
@@ -559,7 +570,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getPropertyByValue" class="function public"><span class="name">getPropertyByValue</span><span class="signature-params">( <span class="signature-param">object</span>, <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string}</span></h4>
+			<h4 id=".getPropertyByValue" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">getPropertyByValue</span><span class="signature-params">( <span class="signature-param">object</span>, <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -619,7 +630,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-415">line 415</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-430">line 430</a></p>
 								</div>
 							</div>
 			
@@ -631,7 +642,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="guessNoteNumber" class="function public"><span class="name">guessNoteNumber</span><span class="signature-params">( <span class="signature-param">input</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
+			<h4 id=".guessNoteNumber" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">guessNoteNumber</span><span class="signature-params">( <span class="signature-param">input</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -699,7 +710,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-201">line 201</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-208">line 208</a></p>
 								</div>
 							</div>
 			
@@ -711,7 +722,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="offsetNumber" class="function public"><span class="name">offsetNumber</span><span class="signature-params">( <span class="signature-param">offset</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+			<h4 id=".offsetNumber" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">offsetNumber</span><span class="signature-params">( <span class="signature-param">offset</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -774,7 +785,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-394">line 394</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-408">line 408</a></p>
 								</div>
 							</div>
 			
@@ -786,7 +797,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="sanitizeChannels" class="function public"><span class="name">sanitizeChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
+			<h4 id=".sanitizeChannels" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">sanitizeChannels</span><span class="signature-params">( [&nbsp;<span class="signature-param">channel</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -854,7 +865,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-120">line 120</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-125">line 125</a></p>
 								</div>
 							</div>
 			
@@ -866,7 +877,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="to7Bit" class="function public"><span class="name">to7Bit</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+			<h4 id=".to7Bit" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">to7Bit</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -924,7 +935,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-378">line 378</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-391">line 391</a></p>
 								</div>
 							</div>
 			
@@ -936,7 +947,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="toNormalized" class="function public"><span class="name">toNormalized</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+			<h4 id=".toNormalized" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">toNormalized</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -994,7 +1005,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-361">line 361</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-373">line 373</a></p>
 								</div>
 							</div>
 			
@@ -1006,7 +1017,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="toNoteIdentifier" class="function public"><span class="name">toNoteIdentifier</span><span class="signature-params">( <span class="signature-param">The</span>, <span class="signature-param">An</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string}</span></h4>
+			<h4 id=".toNoteIdentifier" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">toNoteIdentifier</span><span class="signature-params">( <span class="signature-param">The</span>, <span class="signature-param">An</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1089,7 +1100,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-239">line 239</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-247">line 247</a></p>
 								</div>
 							</div>
 			
@@ -1101,7 +1112,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="toNoteNumber" class="function public"><span class="name">toNoteNumber</span><span class="signature-params">( <span class="signature-param">identifier</span> [,&nbsp;<span class="signature-param">octaveOffset</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+			<h4 id=".toNoteNumber" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">toNoteNumber</span><span class="signature-params">( <span class="signature-param">identifier</span> [,&nbsp;<span class="signature-param">octaveOffset</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1192,12 +1203,19 @@
 			
 			
 			
+							<!-- license -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">License</label>
+								<div class="col-sm-9">
+									<p class="form-control-static">Apache-2.0</p>
+								</div>
+							</div>
 			
 							<!-- source -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-37">line 37</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-40">line 40</a></p>
 								</div>
 							</div>
 			
@@ -1209,7 +1227,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="toTimestamp" class="function public"><span class="name">toTimestamp</span><span class="signature-params">( [&nbsp;<span class="signature-param">time</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
+			<h4 id=".toTimestamp" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">toTimestamp</span><span class="signature-params">( [&nbsp;<span class="signature-param">time</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number|false}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1276,7 +1294,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Utilities.js.html">Utilities.js</a>, <a href="Utilities.js.html#line-167">line 167</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-173">line 173</a></p>
 								</div>
 							</div>
 			
@@ -1296,8 +1314,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.15 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 28th 2021 @ 17:08:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
