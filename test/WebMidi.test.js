@@ -838,25 +838,6 @@ describe("WebMidi Object", function() {
 
   });
 
-  describe("get MIDI_CHANNEL_MESSAGES()", function() {
-    it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_CHANNEL_MESSAGES.pitchbend).to.equal(0xE);
-    });
-  });
-
-  describe("get MIDI_REGISTERED_PARAMETER()", function() {
-    it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[0]).to.equal(0x3D);
-      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[1]).to.equal(0x08);
-    });
-  });
-
-  describe("get MIDI_CONTROL_CHANGE_MESSAGES()", function() {
-    it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine).to.equal(101);
-    });
-  });
-
   describe("set octaveOffset()", function() {
 
     afterEach("Reset octave", function () {
