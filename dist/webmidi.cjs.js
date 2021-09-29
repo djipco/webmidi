@@ -208,12 +208,12 @@ class Note {
 
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = utils.toNormalized(options.rawAttack);
+    if (options.rawAttack != undefined) this.attack = Utilities.toNormalized(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = utils.toNormalized(options.rawRelease); // Assign note depending on the way it was specified (name or number)
+    if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease); // Assign note depending on the way it was specified (name or number)
 
     if (Number.isInteger(value)) {
-      this.identifier = utils.toNoteIdentifier(value);
+      this.identifier = Utilities.toNoteIdentifier(value);
     } else {
       this.identifier = value;
     }
@@ -230,7 +230,7 @@ class Note {
   }
 
   set identifier(value) {
-    const fragments = utils.getNoteDetails(value);
+    const fragments = Utilities.getNoteDetails(value);
 
     if (wm.validation) {
       if (!value) throw new Error("Invalid note identifier");
@@ -376,7 +376,7 @@ class Note {
 
 
   get rawAttack() {
-    return utils.to7Bit(this._attack);
+    return Utilities.to7Bit(this._attack);
   }
   /**
    * The release velocity of the note as a positive integer between 0 and 127.
@@ -386,7 +386,7 @@ class Note {
 
 
   get rawRelease() {
-    return utils.to7Bit(this._release);
+    return Utilities.to7Bit(this._release);
   }
   /**
    * The MIDI number of the note. This number is derived from the note identifier using C4 as a
@@ -398,7 +398,7 @@ class Note {
 
 
   get number() {
-    return utils.toNoteNumber(this.identifier);
+    return Utilities.toNoteNumber(this.identifier);
   }
   /**
    * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
@@ -422,8 +422,8 @@ class Note {
 }
 
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methods and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -455,8 +455,9 @@ class Utilities {
    *
    * @license Apache-2.0
    * @since 3.0.0
+   * @static
    */
-  toNoteNumber(identifier, octaveOffset = 0) {
+  static toNoteNumber(identifier, octaveOffset = 0) {
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid 'octaveOffset' value");
@@ -502,10 +503,11 @@ class Utilities {
    * @throws TypeError Invalid note identifier
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  getNoteDetails(value) {
+  static getNoteDetails(value) {
     if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
     const matches = value.match(/^([CDEFGAB])(#{0,2}|b{0,2})(-?\d+)$/i);
     if (!matches) throw new TypeError("Invalid note identifier");
@@ -535,10 +537,11 @@ class Utilities {
    * @returns {Array} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  sanitizeChannels(channel) {
+  static sanitizeChannels(channel) {
     let channels;
 
     if (this.validation) {
@@ -579,10 +582,11 @@ class Utilities {
    * @return {number|false} A positive number or `false` (if the time cannot be converted)
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  toTimestamp(time) {
+  static toTimestamp(time) {
     let value = false;
     const parsed = parseFloat(time);
     if (isNaN(parsed)) return false;
@@ -611,10 +615,11 @@ class Utilities {
    * successfully be parsed to a note number.
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  guessNoteNumber(input, octaveOffset) {
+  static guessNoteNumber(input, octaveOffset) {
     // Validate and, if necessary, assign default
     octaveOffset = parseInt(octaveOffset) || 0;
     let output = false; // Check input type
@@ -649,10 +654,11 @@ class Utilities {
    * @throws RangeError Invalid octaveOffset value
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  toNoteIdentifier(number, octaveOffset) {
+  static toNoteIdentifier(number, octaveOffset) {
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -689,10 +695,11 @@ class Utilities {
    * @throws TypeError The input could not be parsed to a note
    *
    * @since version 3.0.0
+   * @static
    */
 
 
-  buildNote(input, options = {}) {
+  static buildNote(input, options = {}) {
     options.octaveOffset = parseInt(options.octaveOffset) || 0; // If it's already a Note, we're done
 
     if (input instanceof Note) return input;
@@ -743,10 +750,11 @@ class Utilities {
    * @throws TypeError An element could not be parsed as a note.
    *
    * @since 3.0.0
+   * @static
    */
 
 
-  buildNoteArray(notes, options = {}) {
+  static buildNoteArray(notes, options = {}) {
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
     notes.forEach(note => {
@@ -764,10 +772,11 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
 
 
-  toNormalized(value) {
+  static toNormalized(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -782,10 +791,11 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
 
 
-  to7Bit(value) {
+  static to7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
@@ -799,10 +809,11 @@ class Utilities {
    * @returns {number} An integer between 0 and 127
    *
    * @throws {Error} Invalid note number
+   * @static
    */
 
 
-  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+  static offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
     if (wm.validation) {
       number = parseInt(number);
       if (isNaN(number)) throw new Error("Invalid note number");
@@ -819,24 +830,24 @@ class Utilities {
    * @param object {Object}
    * @param value {*}
    * @returns {string} The name of the matching property
+   * @static
    */
 
 
-  getPropertyByValue(object, value) {
+  static getPropertyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
 
 } // Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
 // extensible (properties can be added at will).
-
-
-const utils = new Utilities();
-utils.constructor = null;
+// const utils = new Utilities();
+// utils.constructor = null;
+// export {utils as Utilities};
 
 /**
- * The `Enumerations` class contains list of elements used throughout the library. All properties
- * are static and should be referenced using the class. For example:
+ * The `Enumerations` class contains enumerations of elements used throughout the library. All
+ * enumerations are static and should be referenced using the class name. For example:
  * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
@@ -1371,11 +1382,11 @@ class InputChannel extends e {
        * and 127).
        */
       // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
-      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+      event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: 0,
         rawRelease: data2
       });
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1407,10 +1418,10 @@ class InputChannel extends e {
        * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
        * and 127).
        */
-      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+      event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: data2
       });
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1442,14 +1453,14 @@ class InputChannel extends e {
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
-      event.identifier = utils.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-      event.key = utils.toNoteNumber(event.identifier);
+      event.identifier = Utilities.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+      event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
-      event.note = new Note(utils.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
+      event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
     } else if (event.type === "controlchange") {
       /**
        * Event emitted when a **control change** MIDI message has been received.
@@ -1476,7 +1487,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2; // Trigger channel mode message events (if appropriate)
 
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
@@ -1524,7 +1535,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.value = utils.toNormalized(data1);
+      event.value = Utilities.toNormalized(data1);
       event.rawValue = data1;
     } else if (event.type === "pitchbend") {
       /**
@@ -1931,12 +1942,12 @@ class InputChannel extends e {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: utils.toNormalized(e.message.dataBytes[1]),
+      value: Utilities.toNormalized(e.message.dataBytes[1]),
       rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
-    event.type += utils.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.type += Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
@@ -1997,7 +2008,7 @@ class InputChannel extends e {
       if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
     }
 
-    return utils.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
@@ -2798,7 +2809,7 @@ class Input extends e {
     if (!InputChannel.EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
-      utils.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
     }
@@ -2972,7 +2983,7 @@ class Input extends e {
     }
 
     if (InputChannel.EVENTS.includes(event)) {
-      return utils.sanitizeChannels(options.channels).every(ch => {
+      return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
     } else {
@@ -3023,13 +3034,13 @@ class Input extends e {
 
 
     if (event == undefined) {
-      utils.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+      Utilities.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
       return super.removeListener();
     } // If the event is specified, check if it's channel-specific or input-wide.
 
 
     if (InputChannel.EVENTS.includes(event)) {
-      utils.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
     } else {
@@ -3307,14 +3318,14 @@ class OutputChannel extends e {
     } // Normalize pressure to integer
 
 
-    if (!options.rawValue) pressure = utils.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
+    if (!options.rawValue) pressure = Utilities.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [target];
-    target = target.map(item => utils.guessNoteNumber(item));
+    target = target.map(item => Utilities.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
-        time: utils.toTimestamp(options.time)
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), Utilities.offsetNumber(n, offset), pressure], {
+        time: Utilities.toTimestamp(options.time)
       });
     });
     return this; //
@@ -3475,7 +3486,7 @@ class OutputChannel extends e {
 
     value.forEach((item, index) => {
       this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
-        time: utils.toTimestamp(options.time)
+        time: Utilities.toTimestamp(options.time)
       });
     });
     return this;
@@ -3825,7 +3836,7 @@ class OutputChannel extends e {
 
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
       let noteOffOptions = {
-        time: (utils.toTimestamp(options.time) || wm.time) + options.duration,
+        time: (Utilities.toTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease
       };
@@ -3906,11 +3917,11 @@ class OutputChannel extends e {
 
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    utils.buildNoteArray(note, {
+    Utilities.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
       this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
-        time: utils.toTimestamp(options.time)
+        time: Utilities.toTimestamp(options.time)
       });
     });
     return this;
@@ -4010,11 +4021,11 @@ class OutputChannel extends e {
 
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    utils.buildNoteArray(note, {
+    Utilities.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
       this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
-        time: utils.toTimestamp(options.time)
+        time: Utilities.toTimestamp(options.time)
       });
     });
     return this;
@@ -4081,7 +4092,7 @@ class OutputChannel extends e {
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
-      time: utils.toTimestamp(options.time)
+      time: Utilities.toTimestamp(options.time)
     });
     return this;
   }
@@ -4160,7 +4171,7 @@ class OutputChannel extends e {
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
-      time: utils.toTimestamp(options.time)
+      time: Utilities.toTimestamp(options.time)
     });
     return this;
   }
@@ -4396,7 +4407,7 @@ class OutputChannel extends e {
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
-      time: utils.toTimestamp(options.time)
+      time: Utilities.toTimestamp(options.time)
     });
     return this;
   }
@@ -4476,7 +4487,7 @@ class OutputChannel extends e {
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
-      time: utils.toTimestamp(options.time)
+      time: Utilities.toTimestamp(options.time)
     });
     return this;
   }
@@ -5046,7 +5057,7 @@ class Output extends e {
     } // Send message and return `Output` for chaining
 
 
-    this._midiOutput.send(message, utils.toTimestamp(options.time));
+    this._midiOutput.send(message, Utilities.toTimestamp(options.time));
 
     return this;
   }
@@ -5505,7 +5516,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
     });
     return this;
@@ -5641,7 +5652,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
     return this;
@@ -5688,7 +5699,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
     return this;
@@ -5759,7 +5770,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
     return this;
@@ -5802,7 +5813,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
     return this;
@@ -5871,7 +5882,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
     });
     return this;
@@ -5930,7 +5941,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
     });
     return this;
@@ -5990,7 +6001,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
     });
     return this;
@@ -6036,7 +6047,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
     return this;
@@ -6081,7 +6092,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
     return this;
@@ -6126,7 +6137,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
     });
     return this;
@@ -6192,7 +6203,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
     return this;
@@ -6229,7 +6240,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
     });
     return this;
@@ -6267,7 +6278,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
     });
     return this;
@@ -6302,7 +6313,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
     });
     return this;
@@ -6342,7 +6353,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
     });
     return this;
@@ -6383,7 +6394,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
     });
     return this;
@@ -6428,7 +6439,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
     });
     return this;
@@ -6500,7 +6511,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
     return this;
@@ -6555,7 +6566,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
     });
     return this;
@@ -6612,7 +6623,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
     });
     return this;
@@ -6671,7 +6682,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
     return this;
@@ -6772,7 +6783,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].playNote(note, options);
     });
     return this;
@@ -6836,7 +6847,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
     return this;
@@ -7054,9 +7065,9 @@ class Message {
 
 
     if (this.isChannelMessage) {
-      this.type = utils.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = utils.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
     } // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
 
@@ -7125,8 +7136,8 @@ class WebMidi extends e {
 
     this.defaults = {
       note: {
-        attack: utils.toNormalized(64),
-        release: utils.toNormalized(64),
+        attack: Utilities.toNormalized(64),
+        release: Utilities.toNormalized(64),
         duration: Infinity
       }
     };
@@ -7554,7 +7565,7 @@ class WebMidi extends e {
       console.warn("The noteNameToNumber() method is deprecated. Use " + "Utilities.toNoteNumber() instead.");
     }
 
-    return utils.toNoteNumber(name, this.octaveOffset);
+    return Utilities.toNoteNumber(name, this.octaveOffset);
   }
   /**
    * @private
@@ -7569,7 +7580,7 @@ class WebMidi extends e {
     }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
-      return utils.getNoteDetails(utils.offsetNumber(number, this.octaveOffset)).octave;
+      return Utilities.getNoteDetails(Utilities.offsetNumber(number, this.octaveOffset)).octave;
     } else {
       return false;
     }
@@ -7585,7 +7596,7 @@ class WebMidi extends e {
       console.warn("The sanitizeChannels() method has been moved to the utilities class.");
     }
 
-    return utils.sanitizeChannels(channel); // let channels;
+    return Utilities.sanitizeChannels(channel); // let channels;
     //
     // if (this.validation) {
     //
@@ -7627,7 +7638,7 @@ class WebMidi extends e {
       console.warn("The toMIDIChannels() method has been deprecated. Use Utilities.sanitizeChannels() instead.");
     }
 
-    return utils.sanitizeChannels(channel);
+    return Utilities.sanitizeChannels(channel);
   }
   /**
    * @private
@@ -7640,7 +7651,7 @@ class WebMidi extends e {
       console.warn("The guessNoteNumber() method has been deprecated. Use Utilities.guessNoteNumber() instead.");
     }
 
-    return utils.guessNoteNumber(input, this.octaveOffset);
+    return Utilities.guessNoteNumber(input, this.octaveOffset);
   }
   /**
    * @private
@@ -7653,7 +7664,7 @@ class WebMidi extends e {
       console.warn("The getValidNoteArray() method has been moved to the Utilities.buildNoteArray()");
     }
 
-    return utils.buildNoteArray(notes, options);
+    return Utilities.buildNoteArray(notes, options);
   }
   /**
    * @private
@@ -7666,7 +7677,7 @@ class WebMidi extends e {
       console.warn("The convertToTimestamp() method has been moved to Utilities.toTimestamp().");
     }
 
-    return utils.toTimestamp(time);
+    return Utilities.toTimestamp(time);
   }
   /**
    * @return {Promise<void>}
@@ -8102,5 +8113,5 @@ wm.constructor = null;
 exports.Enumerations = Enumerations;
 exports.Message = Message;
 exports.Note = Note;
-exports.Utilities = utils;
+exports.Utilities = Utilities;
 exports.WebMidi = wm;
