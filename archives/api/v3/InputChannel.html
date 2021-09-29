@@ -43,7 +43,7 @@
 		<script type="text/javascript">
 			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
-			window.DOCLET_AFILTER_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
 </head>
 <body>
@@ -108,6 +108,16 @@
 							<li><a href="list_class.html">Classes</a></li>
 							<li class="active">InputChannel</li>
 						</ol>
+						<div class="access-filter">
+								<label class="checkbox-inline">
+									<input class="toggle-inherited" type="checkbox" value="" checked>
+									Inherited
+								</label>
+								<label class="checkbox-inline">
+									<input class="toggle-public" type="checkbox" value="" checked>
+									Public
+								</label>
+						</div>
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
@@ -295,6 +305,13 @@
 			
 			
 			
+							<!-- augments -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Augments</label>
+								<div class="col-sm-9">
+										<p class="form-control-static"><a href="EventEmitter.html">EventEmitter</a></p>
+								</div>
+							</div>
 			
 			
 							<!-- since -->
@@ -325,7 +342,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-58">line 58</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-59">line 59</a></p>
 								</div>
 							</div>
 			
@@ -384,7 +401,246 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-990">line 990</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-991">line 991</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventCount" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventCount</span><span class="signature-type"> :number</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners</p>
+			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
+			tied to a specific event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">number</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventCount">EventEmitter#eventCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventCount">EventEmitter#eventCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-467">line 467</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventMap" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventMap</span><span class="signature-type"> :Object</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An object containing a property for each event with at least one registered listener. Each
+			event property contains an array of all the <code>Listener</code> objects registered for the event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventMap">EventEmitter#eventMap</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventMap">EventEmitter#eventMap</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-23">line 23</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventNames" class="member public inherited"><span class="signature-attribs">&lt;readonly> </span><span class="name">eventNames</span><span class="signature-type"> :Array.&lt;string></span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all the unique event names for which the emitter has at least one registered
+			listener.</p>
+			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
+			tied to a specific event.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventNames">EventEmitter#eventNames</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventNames">EventEmitter#eventNames</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-208">line 208</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public inherited collapsible-symbol">
+			<h4 id="eventsSuspended" class="member public inherited"><span class="name">eventsSuspended</span><span class="signature-type"> :boolean</span></h4>
+		</dt>
+<dd class="symbol-details member public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of function callbacks is currently suspended for this whole
+			emitter</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventsSuspended">EventEmitter#eventsSuspended</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#eventsSuspended">EventEmitter#eventsSuspended</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-30">line 30</a></p>
 								</div>
 							</div>
 			
@@ -435,7 +691,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-952">line 952</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-953">line 953</a></p>
 								</div>
 							</div>
 			
@@ -486,7 +742,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-961">line 961</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-962">line 962</a></p>
 								</div>
 							</div>
 			
@@ -543,7 +799,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-933">line 933</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-934">line 934</a></p>
 								</div>
 							</div>
 			
@@ -592,7 +848,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-107">line 107</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-108">line 108</a></p>
 								</div>
 							</div>
 			
@@ -605,6 +861,363 @@
 									</dl>
 									<h3>Methods</h3>
 									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="addListener" class="function public inherited"><span class="name">addListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Listener.html">Listener</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><strong>Listener</strong></a> object
+			that was created and attached to the event.</p>
+			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
+			as the first parameter. Note that a global listener will also be triggered by non-registered
+			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to listen to</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The callback function to execute when the event occurs.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The value of <code>this</code> in the callback function.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of times after which the callback
+									should automatically be removed.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
+									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>callback</code> parameter must be a function.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addListener">EventEmitter#addListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addListener">EventEmitter#addListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-76">line 76</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="addOneTimeListener" class="function public inherited"><span class="name">addOneTimeListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Listener.html">Listener</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time listener for the specified event. The listener will be executed once and then
+			destroyed. It returns the <a href="Listener.html"><strong>Listener</strong></a> object that was created and attached
+			to the event.</p>
+			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
+			as the first parameter. Note that a global listener will also be triggered by non-registered
+			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to listen to</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The callback function to execute when the event occurs</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">Object</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>this</td>
+													<td class="last">
+															<p>The context to invoke the callback function in.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>prepend</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>Whether the listener should be added at the beginning
+									of the listeners array</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the listener
+									automatically expires.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>arguments</code></td>
+													<td><span class="param-type">array</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>An array of arguments which will be passed separately to the
+									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
+									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									desired.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>callback</code> parameter must be a function.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addOneTimeListener">EventEmitter#addOneTimeListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#addOneTimeListener">EventEmitter#addOneTimeListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-129">line 129</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
 			<h4 id="destroy" class="function public"><span class="name">destroy</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
@@ -633,7 +1246,119 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-115">line 115</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-116">line 116</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="emit" class="function public inherited"><span class="name">emit</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">...args</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback functions of all the <code>Listener</code> objects registered for a given event. The
+			callback functions are passed the additional arguments specifed for <code>emit()</code> (if any) followed
+			by the arguments present in the <code>arguments</code> property of the <code>Listener</code> object (if any). For
+			example:</p>
+			<pre class="prettyprint source lang-javascript"><code>let myEmitter = new EventEmitter();
+			myEmitter.addListener(&quot;test&quot;, fn, {arguments: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]});
+			myEmitter.emit(&quot;test&quot;, &quot;y&quot;, &quot;z&quot;);
+			</code></pre>
+			<p>In this example, the function will be called as such: <code>fn(&quot;y&quot;, &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;);</code></p>
+			<p>If the <code>eventsSuspended</code> property of the <code>EventEmitter</code> or the <code>suspended</code> property of the
+			<code>Listener</code> is <code>true</code>, the callback functions will not be executed.</p>
+			<p>This function returns an array containing the return values of each of the callbacks.</p>
+			<p>It should be noted that the regular listeners are triggered first followed by the global
+			listeners (added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes"></td>
+							<td class="last">
+									<p>The event</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>args</code></td>
+							<td><span class="param-type">*</span></td>
+								<td class="attributes">&lt;repeatable&gt;<br/></td>
+							<td class="last">
+									<p>Arbitrary number of arguments to pass along to the callback functions</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array containing the return value of each of the executed listener
+			functions</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#emit">EventEmitter#emit</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#emit">EventEmitter#emit</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-306">line 306</a></p>
 								</div>
 							</div>
 			
@@ -718,7 +1443,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-907">line 907</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-908">line 908</a></p>
 								</div>
 							</div>
 			
@@ -793,7 +1518,689 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-870">line 870</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-871">line 871</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListenerCount" class="function public inherited"><span class="name">getListenerCount</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the number of listeners registered for a specific event.</p>
+			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) do not count
+			towards the remaining number for a &quot;regular&quot; event. To get the number of global listeners,
+			specifically use <code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The number of listeners registered for the specified event.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-272">line 272</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <code>Listener</code> objects that will be triggered for a specific event.</p>
+			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) are not returned for
+			&quot;regular&quot; events. To get the list of global listeners, specifically use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event to get listeners for</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;<a href="Listener.html">Listener</a>></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An array of <code>Listener</code> objects</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListeners">EventEmitter#getListeners</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListeners">EventEmitter#getListeners</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-222">line 222</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="hasListener" class="function public inherited"><span class="name">hasListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">event</span> [,&nbsp;<span class="signature-param">callback</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{boolean}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns <code>true</code> if the specified event has at least one registered listener. If no event is
+			specified, the method returns <code>true</code> if any event has at least one listener registered (this
+			includes global listeners registered to <code>EventEmitter.ANY_EVENT</code>).</p>
+			<p>Note: to specifically check for global listeners added with <code>EventEmitter.ANY_EVENT</code>, use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>The event to check</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type">function</span> | <span class="param-type"><a href="Listener.html">Listener</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+							<td class="last">
+									<p>The actual function that was added to the event or the
+			<a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">boolean</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#hasListener">EventEmitter#hasListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#hasListener">EventEmitter#hasListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-157">line 157</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="removeListener" class="function public inherited"><span class="name">removeListener</span><span class="signature-params">( [&nbsp;<span class="signature-param">event</span> [,&nbsp;<span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes all the listeners that match the specified criterias. If no parameters are passed, all
+			listeners will be removed. If only the <code>event</code> parameter is passed, all listeners for that
+			event will be removed. You can remove global listeners by using <code>EventEmitter.ANY_EVENT</code> as the
+			first parameter.</p>
+			<p>To use more granular options, you must at least define the <code>event</code>. Then, you can specify the
+			callback to match or one or more of the additional options.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>The event name.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>callback</code></td>
+							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>Only remove the listeners that match this exact
+			callback function.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>context</code></td>
+													<td><span class="param-type">*</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listeners that have this exact context.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>remaining</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>Only remove the listener if it has exactly that many
+									remaining times to be executed.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#removeListener">EventEmitter#removeListener</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#removeListener">EventEmitter#removeListener</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-360">line 360</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="suspendEvent" class="function public inherited"><span class="name">suspendEvent</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Suspends execution of all callbacks functions registered for the specified event type.</p>
+			<p>You can suspend execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this will not suspend all callbacks
+			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
+			at first glance, it allows the selective suspension of global listeners while leaving other
+			liseners alone. If you truly want to suspends all callbacks for a specific <code>EventEmitter</code>,
+			simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event for which to suspend execution of all
+			callback functions.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#suspendEvent">EventEmitter#suspendEvent</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#suspendEvent">EventEmitter#suspendEvent</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-239">line 239</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="unsuspendEvent" class="function public inherited"><span class="name">unsuspendEvent</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Resumes execution of all suspended callback functions registered for the specified event type.</p>
+			<p>You can resume execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that this will not resume all callbacks
+			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive,
+			it allows the selective unsuspension of global listeners while leaving other callbacks alone.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event for which to resume execution of all
+			callback functions.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#unsuspendEvent">EventEmitter#unsuspendEvent</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#unsuspendEvent">EventEmitter#unsuspendEvent</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-256">line 256</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="waitFor" class="function public inherited"><span class="signature-attribs">&lt;async> </span><span class="name">waitFor</span><span class="signature-params">( <span class="signature-param">event</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>waitFor()</code> method is an async function which returns a promise. The promise is fulfilled
+			when the specified event occurs. The event can be a regular event or <code>EventEmitter.ANY_EVENT</code>
+			(if you want to resolve as soon as any event is emitted).</p>
+			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
+			const ee = new EventEmitter();
+			ee.waitFor(&quot;ready&quot;).then(() => console.log(&quot;Ready!&quot;));
+			</code></pre>
+			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
+			const ee = new EventEmitter();
+			await ee.waitFor(&quot;ready&quot;);
+			console.log(&quot;Ready!&quot;);
+			</code></pre>
+			<p>If the <code>duration</code> option is set, the promise will only be fulfilled if the event is emitted
+			within the specified duration. If the event has not been fulfilled after the specified
+			duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+			after a certain time if the event is not triggered.</p>
+			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
+			const ee = new EventEmitter();
+			ee.waitFor(&quot;ready&quot;, {duration: 100})
+			.then(() => console.log(&quot;Ready!&quot;))
+			.catch(err => console.log(err);
+			</code></pre>
+			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
+			const ee = new EventEmitter();
+			try {
+			 await ee.waitFor(&quot;ready&quot;, {duration: 100});
+			 console.log(&quot;Ready!&quot;);
+			} catch(err) {
+			  console.log(err);
+			}
+			</code></pre></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The event to wait for</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds to wait before the
+									promise is automatically rejected.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#waitFor">EventEmitter#waitFor</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#waitFor">EventEmitter#waitFor</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-433">line 433</a></p>
 								</div>
 							</div>
 			
@@ -885,7 +2292,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-490">line 490</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-491">line 491</a></p>
 								</div>
 							</div>
 			
@@ -974,7 +2381,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-434">line 434</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-435">line 435</a></p>
 								</div>
 							</div>
 			
@@ -1077,7 +2484,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-376">line 376</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-377">line 377</a></p>
 								</div>
 							</div>
 			
@@ -1211,7 +2618,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-311">line 311</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-312">line 312</a></p>
 								</div>
 							</div>
 			
@@ -1339,7 +2746,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-266">line 266</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-267">line 267</a></p>
 								</div>
 							</div>
 			
@@ -1438,7 +2845,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-466">line 466</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-467">line 467</a></p>
 								</div>
 							</div>
 			
@@ -1568,7 +2975,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-135">line 135</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-136">line 136</a></p>
 								</div>
 							</div>
 			
@@ -1666,7 +3073,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-532">line 532</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-533">line 533</a></p>
 								</div>
 							</div>
 			
@@ -1778,7 +3185,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-181">line 181</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-182">line 182</a></p>
 								</div>
 							</div>
 			
@@ -1911,7 +3318,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-224">line 224</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-225">line 225</a></p>
 								</div>
 							</div>
 			
@@ -2028,7 +3435,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-735">line 735</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-736">line 736</a></p>
 								</div>
 							</div>
 			
@@ -2145,7 +3552,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-715">line 715</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-716">line 716</a></p>
 								</div>
 							</div>
 			
@@ -2262,7 +3669,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-675">line 675</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-676">line 676</a></p>
 								</div>
 							</div>
 			
@@ -2379,7 +3786,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-695">line 695</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-696">line 696</a></p>
 								</div>
 							</div>
 			
@@ -2476,7 +3883,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-506">line 506</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-507">line 507</a></p>
 								</div>
 							</div>
 			
@@ -2579,7 +3986,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-399">line 399</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-400">line 400</a></p>
 								</div>
 							</div>
 			
@@ -2682,7 +4089,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-353">line 353</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-354">line 354</a></p>
 								</div>
 							</div>
 			
@@ -2771,7 +4178,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-450">line 450</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-451">line 451</a></p>
 								</div>
 							</div>
 			
@@ -2886,7 +4293,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-810">line 810</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-811">line 811</a></p>
 								</div>
 							</div>
 			
@@ -3001,7 +4408,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-792">line 792</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-793">line 793</a></p>
 								</div>
 							</div>
 			
@@ -3116,7 +4523,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-756">line 756</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-757">line 757</a></p>
 								</div>
 							</div>
 			
@@ -3231,7 +4638,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-774">line 774</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-775">line 775</a></p>
 								</div>
 							</div>
 			
@@ -3252,7 +4659,7 @@
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:35:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:42:04 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
