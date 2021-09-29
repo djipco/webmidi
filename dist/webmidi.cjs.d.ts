@@ -6,6 +6,7 @@ export var __esModule: boolean;
  * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
  * and 255.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {
@@ -146,6 +147,7 @@ export class Message {
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class Note {
@@ -269,6 +271,7 @@ declare class Utilities {
      *
      * @throws TypeError Invalid note identifier
      *
+     * @license Apache-2.0
      * @since 3.0.0
      */
     toNoteNumber(identifier: string, octaveOffset?: number): number;
@@ -481,22 +484,14 @@ declare class Utilities {
     getPropertyByValue(object: any, value: any): string;
 }
 /**
- * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
- * sending outgoing MIDI messages and reacting to incoming MIDI messages.
+ * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+ * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
- * When using the WebMidi.js library, the `WebMidi` class has already been instantiated for you.
- * If you use the **IIFE** version, you should simply use the global object called `WebMidi`. If you
- * use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an already-instantiated
- * object. This means there is no need to instantiate a new `WebMidi` object directly.
- *
- * The `WebMidi` object extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
+ * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+ * instantiated. If you use the **IIFE** version, you should simply use the global object called
+ * `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an
+ * already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
+ * directly.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disabled
@@ -505,6 +500,7 @@ declare class Utilities {
  * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
+ * @license Apache-2.0
  */
 declare class WebMidi {
     /**
@@ -1223,6 +1219,8 @@ declare class WebMidi {
  * @fires Input#reset
  * @fires Input#midimessage
  * @fires Input#unknownmidimessage
+ *
+ * @license Apache-2.0
  */
 declare class Input extends e {
     constructor(midiInput: any);
@@ -1453,8 +1451,9 @@ declare class Output extends e {
      *
      * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
      *
-     *
      * @returns {Output} Returns the `Output` object so methods can be chained.
+     *
+     * @license Apache-2.0
      */
     send(message: number[] | Uint8Array | Message, options?: {
         time?: number | string;
@@ -2880,6 +2879,7 @@ declare class e {
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 declare class InputChannel extends e {
@@ -3251,6 +3251,9 @@ declare class OutputChannel extends e {
      * @throws {TypeError} The value array must have a length of 2.
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+     *
+     * @license Apache-2.0
+     * @since 3.0.0
      */
     sendControlChange(controller: number | string, value: number | number[], options?: {
         time?: number | string;
