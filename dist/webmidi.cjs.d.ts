@@ -1,4 +1,5 @@
 export var __esModule: boolean;
+declare const enums: Enumerations;
 /**
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binaru data it contains.
@@ -241,6 +242,69 @@ export class Note {
 }
 declare const utils: Utilities;
 declare const wm: WebMidi;
+/**
+ * The `Enumerations` class contains list of elements used throughout the library. The class is a
+ * singleton with static methods and is not meant to be instantiated.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+declare class Enumerations {
+    /**
+     * An array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     */
+    get CHANNEL_EVENTS(): string[];
+    /**
+     * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
+     *
+     * - `noteoff`: 0x8 (8)
+     * - `noteon`: 0x9 (9)
+     * - `keyaftertouch`: 0xA (10)
+     * - `controlchange`: 0xB (11)
+     * - `nrpn`: 0xB (11)
+     * - `programchange`: 0xC (12)
+     * - `channelaftertouch`: 0xD (13)
+     * - `pitchbend`: 0xE (14)
+     *
+     * @enum {Object.<string, number>}
+     * @readonly
+     */
+    get MIDI_CHANNEL_MESSAGES(): {
+        noteoff: number;
+        noteon: number;
+        keyaftertouch: number;
+        controlchange: number;
+        programchange: number;
+        channelaftertouch: number;
+        pitchbend: number;
+    };
+    /**
+     * Enum of all channel mode messages and their associated numerical value:
+     *
+     * - `allsoundoff`: 120
+     * - `resetallcontrollers`: 121
+     * - `localcontrol`: 122
+     * - `allnotesoff`: 123
+     * - `omnimodeoff`: 124
+     * - `omnimodeon`: 125
+     * - `monomodeon`: 126
+     * - `polymodeon`: 127
+     *
+     * @enum {Object.<string, number>}
+     * @readonly
+     */
+    get MIDI_CHANNEL_MODE_MESSAGES(): {
+        allsoundoff: number;
+        resetallcontrollers: number;
+        localcontrol: number;
+        allnotesoff: number;
+        omnimodeoff: number;
+        omnimodeon: number;
+        monomodeon: number;
+        polymodeon: number;
+    };
+}
 /**
  * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
  * static methods and is not meant to be instantiated.
@@ -4088,4 +4152,4 @@ declare class t {
     suspended: boolean;
     remove(): void;
 }
-export { utils as Utilities, wm as WebMidi };
+export { enums as Enumerations, utils as Utilities, wm as WebMidi };
