@@ -3,8 +3,9 @@ import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methode and is not meant to be instantiated.
+ * static methods and is not meant to be instantiated.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class Utilities {
