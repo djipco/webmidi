@@ -1,50 +1,12 @@
 /**
- * The `Enumerations` class contains list of elements used throughout the library. The class is a
- * singleton with static methods and is not meant to be instantiated.
+ * The `Enumerations` class contains enumerations of elements used throughout the library. All
+ * enumerations are static and should be referenced using the class name. For example:
+ * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
  */
-class Enumerations {
-
-  /**
-   * An array of channel-specific event names that can be listened to.
-   * @type {string[]}
-   */
-  get CHANNEL_EVENTS() {
-    return [
-
-      // MIDI channel message events
-      "noteoff",
-      "controlchange",
-      "noteon",
-      "keyaftertouch",
-      "programchange",
-      "channelaftertouch",
-      "pitchbend",
-
-      // MIDI channel mode events
-      "allnotesoff",
-      "allsoundoff",
-      "localcontrol",
-      "monomode",
-      "omnimode",
-      "resetallcontrollers",
-
-      // NRPN events
-      "nrpndataentrycoarse",
-      "nrpndataentryfine",
-      "nrpndatabuttonincrement",
-      "nrpndatabuttondecrement",
-
-      // RPN events
-      "rpndataentrycoarse",
-      "rpndataentryfine",
-      "rpndatabuttonincrement",
-      "rpndatabuttondecrement"
-
-    ];
-  }
+export class Enumerations {
 
   /**
    * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
@@ -60,8 +22,9 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
-  get MIDI_CHANNEL_MESSAGES() {
+  static get MIDI_CHANNEL_MESSAGES() {
 
     return {
       noteoff: 0x8,           // 8
@@ -89,8 +52,9 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
-  get MIDI_CHANNEL_MODE_MESSAGES() {
+  static get MIDI_CHANNEL_MODE_MESSAGES() {
 
     return {
       allsoundoff: 120,
@@ -180,8 +144,9 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
-  get MIDI_CONTROL_CHANGE_MESSAGES() {
+  static get MIDI_CONTROL_CHANGE_MESSAGES() {
 
     return {
 
@@ -258,11 +223,118 @@ class Enumerations {
 
   }
 
-}
+  /**
+   * Enumeration of all registered parameters and their associated pair of numerical values. MIDI
+   * registered parameters extend the original list of control change messages. Currently, there are
+   * only a limited number of them:
+   *
+   * - `pitchbendrange`: [0x00, 0x00]
+   * - `channelfinetuning`: [0x00, 0x01]
+   * - `channelcoarsetuning`: [0x00, 0x02]
+   * - `tuningprogram`: [0x00, 0x03]
+   * - `tuningbank`: [0x00, 0x04]
+   * - `modulationrange`: [0x00, 0x05]
+   * - `azimuthangle`: [0x3D, 0x00]
+   * - `elevationangle`: [0x3D, 0x01]
+   * - `gain`: [0x3D, 0x02]
+   * - `distanceratio`: [0x3D, 0x03]
+   * - `maximumdistance`: [0x3D, 0x04]
+   * - `maximumdistancegain`: [0x3D, 0x05]
+   * - `referencedistanceratio`: [0x3D, 0x06]
+   * - `panspreadangle`: [0x3D, 0x07]
+   * - `rollangle`: [0x3D, 0x08]
+   *
+   * @enum {Object.<string, number[]>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_REGISTERED_PARAMETERS() {
 
-// Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
-// remains extensible (properties can be added at will).
-const enums = new Enumerations();
-enums.constructor = null;
-export {enums as Enumerations};
+    return {
+      pitchbendrange: [0x00, 0x00],
+      channelfinetuning: [0x00, 0x01],
+      channelcoarsetuning: [0x00, 0x02],
+      tuningprogram: [0x00, 0x03],
+      tuningbank: [0x00, 0x04],
+
+      modulationrange: [0x00, 0x05],
+      azimuthangle: [0x3D, 0x00],
+      elevationangle: [0x3D, 0x01],
+      gain: [0x3D, 0x02],
+      distanceratio: [0x3D, 0x03],
+      maximumdistance: [0x3D, 0x04],
+      maximumdistancegain: [0x3D, 0x05],
+      referencedistanceratio: [0x3D, 0x06],
+      panspreadangle: [0x3D, 0x07],
+      rollangle: [0x3D, 0x08]
+    };
+
+  }
+
+  /**
+   * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+   * uses two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
+    };
+
+  }
+
+}

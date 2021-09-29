@@ -2,13 +2,13 @@ import {Note} from "./Note.js";
 import {WebMidi} from "./WebMidi.js";
 
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methods and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
  *
  * @license Apache-2.0
  * @since 3.0.0
  */
-class Utilities {
+export class Utilities {
 
   /**
    * Returns a MIDI note number matching the identifier passed in the form of a string. The
@@ -35,8 +35,9 @@ class Utilities {
    *
    * @license Apache-2.0
    * @since 3.0.0
+   * @static
    */
-  toNoteNumber(identifier, octaveOffset = 0) {
+  static toNoteNumber(identifier, octaveOffset = 0) {
 
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -80,8 +81,9 @@ class Utilities {
    * @throws TypeError Invalid note identifier
    *
    * @since 3.0.0
+   * @static
    */
-  getNoteDetails(value) {
+  static getNoteDetails(value) {
 
     if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
 
@@ -118,8 +120,9 @@ class Utilities {
    * @returns {Array} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
+   * @static
    */
-  sanitizeChannels(channel) {
+  static sanitizeChannels(channel) {
 
     let channels;
 
@@ -165,8 +168,9 @@ class Utilities {
    * @return {number|false} A positive number or `false` (if the time cannot be converted)
    *
    * @since 3.0.0
+   * @static
    */
-  toTimestamp(time) {
+  static toTimestamp(time) {
 
     let value = false;
 
@@ -199,8 +203,9 @@ class Utilities {
    * successfully be parsed to a note number.
    *
    * @since 3.0.0
+   * @static
    */
-  guessNoteNumber(input, octaveOffset) {
+  static guessNoteNumber(input, octaveOffset) {
 
     // Validate and, if necessary, assign default
     octaveOffset = parseInt(octaveOffset) || 0;
@@ -237,8 +242,9 @@ class Utilities {
    * @throws RangeError Invalid octaveOffset value
    *
    * @since 3.0.0
+   * @static
    */
-  toNoteIdentifier(number, octaveOffset) {
+  static toNoteIdentifier(number, octaveOffset) {
 
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
@@ -246,8 +252,9 @@ class Utilities {
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
 
+    const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
-    return WebMidi.NOTES[number % 12] + octave.toString();
+    return notes[number % 12] + octave.toString();
 
   }
 
@@ -279,8 +286,9 @@ class Utilities {
    * @throws TypeError The input could not be parsed to a note
    *
    * @since version 3.0.0
+   * @static
    */
-  buildNote(input, options= {}) {
+  static buildNote(input, options= {}) {
 
     options.octaveOffset = parseInt(options.octaveOffset) || 0;
 
@@ -335,8 +343,9 @@ class Utilities {
    * @throws TypeError An element could not be parsed as a note.
    *
    * @since 3.0.0
+   * @static
    */
-  buildNoteArray(notes, options = {}) {
+  static buildNoteArray(notes, options = {}) {
 
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
@@ -359,8 +368,9 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
-  toNormalized(value) {
+  static toNormalized(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -376,8 +386,9 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
-  to7Bit(value) {
+  static to7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
@@ -392,8 +403,9 @@ class Utilities {
    * @returns {number} An integer between 0 and 127
    *
    * @throws {Error} Invalid note number
+   * @static
    */
-  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+  static offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
 
     if (WebMidi.validation) {
       number = parseInt(number);
@@ -413,16 +425,10 @@ class Utilities {
    * @param object {Object}
    * @param value {*}
    * @returns {string} The name of the matching property
+   * @static
    */
-  getPropertyByValue(object, value) {
+  static getPropertyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
 
 }
-
-// Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
-// extensible (properties can be added at will).
-const utils = new Utilities();
-utils.constructor = null;
-export {utils as Utilities};
