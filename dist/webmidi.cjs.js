@@ -423,8 +423,9 @@ class Note {
 
 /**
  * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methode and is not meant to be instantiated.
+ * static methods and is not meant to be instantiated.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 
@@ -1724,6 +1725,34 @@ class InputChannel extends e {
 }
 
 /**
+ * The `Enumerations` class contains list of elements used throughout the library. The class is a
+ * singleton with static methods and is not meant to be instantiated.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+class Enumerations {
+  /**
+   * An array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   */
+  get CHANNEL_EVENTS() {
+    return [// MIDI channel message events
+    "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
+    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
+    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
+    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
+  }
+
+} // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
+// used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
+// remains extensible (properties can be added at will).
+
+
+const enums = new Enumerations();
+enums.constructor = null;
+
+/**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
  * MIDI subsystem and cannot be instantiated directly.
  *
@@ -2426,14 +2455,14 @@ class Input extends e {
       } // Validation
 
 
-      if (wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (enums.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
     let listeners = []; // Check if the event is channel-specific or input-wide
 
-    if (!wm.CHANNEL_EVENTS.includes(event)) {
+    if (!enums.CHANNEL_EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       utils.sanitizeChannels(options.channels).forEach(ch => {
@@ -2604,12 +2633,12 @@ class Input extends e {
       } // Validation
 
 
-      if (wm.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (enums.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (enums.CHANNEL_EVENTS.includes(event)) {
       return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
@@ -2666,7 +2695,7 @@ class Input extends e {
     } // If the event is specified, check if it's channel-specific or input-wide.
 
 
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (enums.CHANNEL_EVENTS.includes(event)) {
       utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
@@ -7653,6 +7682,8 @@ class WebMidi extends e {
   /**
    * An array of channel-specific event names that can be listened to.
    * @type {string[]}
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
 
 
@@ -8031,35 +8062,6 @@ class WebMidi extends e {
   get NOTES() {
     return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
   }
-  /**
-   * Adds a listener for the specified event. It returns the [**Listener**]{@link Listener} object
-   * that was created and attached to the event.
-   *
-   * To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
-   * as the first parameter. Note that a global listener will also be triggered by non-registered
-   * events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
-   *
-   * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
-   * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
-   * @param {Object} [options={}]
-   * @param {Object} [options.context=this] The value of `this` in the callback function.
-   * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-   * of the listeners array
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-   * automatically expires.
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
-   * should automatically be removed.
-   * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-   * callback function. This array is stored in the [**arguments**]{@link Listener#arguments}
-   * property of the [**Listener**]{@link Listener} object and can be retrieved or modified as
-   * desired.
-   *
-   * @returns {Listener} The newly created [**Listener**]{@link Listener} object.
-   *
-   * @throws {TypeError} The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
-   * @throws {TypeError} The `callback` parameter must be a function.
-   */
-
 
 } // Export singleton instance of WebMidi class. The 'constructor' is nulled so that it cannot be used
 // to instantiate a new WebMidi object or extend it. However, it is not freezed so it remains
@@ -8070,5 +8072,6 @@ const wm = new WebMidi();
 wm.constructor = null;
 
 exports.Message = Message;
+exports.Note = Note;
 exports.Utilities = utils;
 exports.WebMidi = wm;
