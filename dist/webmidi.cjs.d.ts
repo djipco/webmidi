@@ -1,7 +1,8 @@
 export var __esModule: boolean;
 /**
- * The `Enumerations` class contains list of elements used throughout the library. The class is a
- * singleton with static methods and is not meant to be instantiated.
+ * The `Enumerations` class contains list of elements used throughout the library. All properties
+ * are static and should be referenced using the class. For example:
+ * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -21,6 +22,7 @@ export class Enumerations {
      *
      * @enum {Object.<string, number>}
      * @readonly
+     * @static
      */
     static get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
@@ -45,6 +47,7 @@ export class Enumerations {
      *
      * @enum {Object.<string, number>}
      * @readonly
+     * @static
      */
     static get MIDI_CHANNEL_MODE_MESSAGES(): {
         allsoundoff: number;
@@ -131,6 +134,7 @@ export class Enumerations {
      *
      * @enum {Object.<string, number>}
      * @readonly
+     * @static
      */
     static get MIDI_CONTROL_CHANGE_MESSAGES(): {
         bankselectcoarse: number;
@@ -224,6 +228,7 @@ export class Enumerations {
      *
      * @enum {Object.<string, number[]>}
      * @readonly
+     * @static
      */
     static get MIDI_REGISTERED_PARAMETERS(): {
         pitchbendrange: number[];
@@ -277,6 +282,7 @@ export class Enumerations {
      *
      * @enum {Object.<string, number>}
      * @readonly
+     * @static
      */
     static get MIDI_SYSTEM_MESSAGES(): {
         sysex: number;
