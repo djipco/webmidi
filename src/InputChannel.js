@@ -52,6 +52,7 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @extends EventEmitter
  * @license Apache-2.0
  * @since 3.0.0
  */

@@ -22,6 +22,8 @@ import {Enumerations} from "./Enumerations.js";
  * @param {Output} output The output this channel belongs to
  * @param {number} number The channel number (1-16)
  *
+ * @extends EventEmitter
+ * @license Apache-2.0
  * @since 3.0.0
  */
 export class OutputChannel extends EventEmitter {

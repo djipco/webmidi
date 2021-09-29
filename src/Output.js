@@ -24,6 +24,9 @@ import {Utilities} from "./Utilities.js";
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
  */
 export class Output extends EventEmitter {
 

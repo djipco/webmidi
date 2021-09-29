@@ -2,7 +2,6 @@ import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.j
 import {Message, WebMidi} from "./WebMidi.js";
 import {InputChannel} from "./InputChannel.js";
 import {Utilities} from "./Utilities.js";
-import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `Input` class represents a single MIDI input port. This object is derived from the host's
@@ -40,6 +39,7 @@ import {Enumerations} from "./Enumerations.js";
  * @fires Input#midimessage
  * @fires Input#unknownmidimessage
  *
+ * @extends EventEmitter
  * @license Apache-2.0
  */
 export class Input extends EventEmitter {
