@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.16
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on September 28th, 2021.
+ * Build generated on September 29th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -195,6 +195,7 @@ class t {
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 
@@ -451,6 +452,7 @@ class Utilities {
    *
    * @throws TypeError Invalid note identifier
    *
+   * @license Apache-2.0
    * @since 3.0.0
    */
   toNoteNumber(identifier, octaveOffset = 0) {
@@ -878,6 +880,7 @@ utils.constructor = null;
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 
@@ -1755,6 +1758,8 @@ class InputChannel extends e {
  * @fires Input#reset
  * @fires Input#midimessage
  * @fires Input#unknownmidimessage
+ *
+ * @license Apache-2.0
  */
 
 class Input extends e {
@@ -3073,6 +3078,9 @@ class OutputChannel extends e {
    * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
    */
 
 
@@ -4625,8 +4633,9 @@ class Output extends e {
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @license Apache-2.0
    */
 
 
@@ -6573,6 +6582,7 @@ class Output extends e {
  * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
  * and 255.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 
@@ -6714,22 +6724,14 @@ global["navigator"] = require("jzz");
 /*END-NODE.JS*/
 
 /**
- * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
- * sending outgoing MIDI messages and reacting to incoming MIDI messages.
+ * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+ * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
- * When using the WebMidi.js library, the `WebMidi` class has already been instantiated for you.
- * If you use the **IIFE** version, you should simply use the global object called `WebMidi`. If you
- * use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an already-instantiated
- * object. This means there is no need to instantiate a new `WebMidi` object directly.
- *
- * The `WebMidi` object extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
+ * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+ * instantiated. If you use the **IIFE** version, you should simply use the global object called
+ * `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an
+ * already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
+ * directly.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disabled
@@ -6738,6 +6740,7 @@ global["navigator"] = require("jzz");
  * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
+ * @license Apache-2.0
  */
 
 class WebMidi extends e {
@@ -8028,6 +8031,35 @@ class WebMidi extends e {
   get NOTES() {
     return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
   }
+  /**
+   * Adds a listener for the specified event. It returns the [**Listener**]{@link Listener} object
+   * that was created and attached to the event.
+   *
+   * To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
+   * as the first parameter. Note that a global listener will also be triggered by non-registered
+   * events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
+   *
+   * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
+   * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
+   * @param {Object} [options={}]
+   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+   * of the listeners array
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+   * automatically expires.
+   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * should automatically be removed.
+   * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+   * callback function. This array is stored in the [**arguments**]{@link Listener#arguments}
+   * property of the [**Listener**]{@link Listener} object and can be retrieved or modified as
+   * desired.
+   *
+   * @returns {Listener} The newly created [**Listener**]{@link Listener} object.
+   *
+   * @throws {TypeError} The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
+   * @throws {TypeError} The `callback` parameter must be a function.
+   */
+
 
 } // Export singleton instance of WebMidi class. The 'constructor' is nulled so that it cannot be used
 // to instantiate a new WebMidi object or extend it. However, it is not freezed so it remains
