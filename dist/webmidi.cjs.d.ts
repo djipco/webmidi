@@ -870,32 +870,6 @@ declare class WebMidi {
      */
     private get CHANNEL_EVENTS();
     /**
-     * Enum of all MIDI channel messages and their associated numerical value:
-     *
-     * - `noteoff`: 0x8 (8)
-     * - `noteon`: 0x9 (9)
-     * - `keyaftertouch`: 0xA (10)
-     * - `controlchange`: 0xB (11)
-     * - `nrpn`: 0xB (11)
-     * - `programchange`: 0xC (12)
-     * - `channelaftertouch`: 0xD (13)
-     * - `pitchbend`: 0xE (14)
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     *
-     * @since 3.0.0
-     */
-    get MIDI_CHANNEL_MESSAGES(): {
-        noteoff: number;
-        noteon: number;
-        keyaftertouch: number;
-        controlchange: number;
-        programchange: number;
-        channelaftertouch: number;
-        pitchbend: number;
-    };
-    /**
      * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
      * two custom messages.
      *
@@ -952,19 +926,9 @@ declare class WebMidi {
     };
     /**
      * Enum of all channel mode messages and their associated numerical value:
-     *
-     * - `allsoundoff`: 120
-     * - `resetallcontrollers`: 121
-     * - `localcontrol`: 122
-     * - `allnotesoff`: 123
-     * - `omnimodeoff`: 124
-     * - `omnimodeon`: 125
-     * - `monomodeon`: 126
-     * - `polymodeon`: 127
-     *
      * @enum {Object.<string, number>}
      * @readonly
-     *
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
      * @since 2.0.0
      */
     get MIDI_CHANNEL_MODE_MESSAGES(): {
