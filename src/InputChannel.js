@@ -576,7 +576,7 @@ export class InputChannel extends EventEmitter {
     // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
-    const list = WebMidi.MIDI_CONTROL_CHANGE_MESSAGES;
+    const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
 
     // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
     if (
@@ -659,14 +659,14 @@ export class InputChannel extends EventEmitter {
 
   isRpnOrNrpnController(controller) {
 
-    return controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||           //   6
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||                  //  38
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||            //  96
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||            //  97
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||   //  98
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||     //  99
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||      // 100
-      controller === WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;          // 101
+    return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||         //  96
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||         //  97
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||//  98
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||  //  99
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||   // 100
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;       // 101
 
   }
 
@@ -837,7 +837,7 @@ export class InputChannel extends EventEmitter {
 
     // Retrieve controller type and append to event type
     event.type += Utilities.getPropertyByValue(
-      WebMidi.MIDI_CONTROL_CHANGE_MESSAGES,
+      Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
       e.message.dataBytes[0]
     );
 
@@ -911,7 +911,7 @@ export class InputChannel extends EventEmitter {
       if ( !(number >= 0 && number <= 127) ) throw new RangeError("Invalid control change number.");
     }
 
-    return Utilities.getPropertyByValue(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES, number);
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
 
   }
 
