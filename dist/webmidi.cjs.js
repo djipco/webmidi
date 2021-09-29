@@ -1111,6 +1111,79 @@ class Enumerations {
       rollangle: [0x3D, 0x08]
     };
   }
+  /**
+   * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+   * uses two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   */
+
+
+  get MIDI_SYSTEM_MESSAGES() {
+    return {
+      // System common messages
+      sysex: 0xF0,
+      // 240
+      timecode: 0xF1,
+      // 241
+      songposition: 0xF2,
+      // 242
+      songselect: 0xF3,
+      // 243
+      tunerequest: 0xF6,
+      // 246
+      tuningrequest: 0xF6,
+      // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,
+      // 247 (never actually received - simply ends a sysex)
+      // System real-time messages
+      clock: 0xF8,
+      // 248
+      start: 0xFA,
+      // 250
+      continue: 0xFB,
+      // 251
+      stop: 0xFC,
+      // 252
+      activesensing: 0xFE,
+      // 254
+      reset: 0xFF,
+      // 255
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+    };
+  }
 
 } // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
@@ -5057,16 +5130,16 @@ class Output extends e {
 
     if (data instanceof Uint8Array) {
       const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
-      merged[0] = wm.MIDI_SYSTEM_MESSAGES.sysex;
+      merged[0] = enums.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = wm.MIDI_SYSTEM_MESSAGES.sysexend;
+      merged[merged.length - 1] = enums.MIDI_SYSTEM_MESSAGES.sysexend;
       this.send(merged, {
         time: options.time
       });
     } else {
-      const merged = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {
+      const merged = manufacturer.concat(data, enums.MIDI_SYSTEM_MESSAGES.sysexend);
+      this.send([enums.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {
         time: options.time
       });
     }
@@ -5123,7 +5196,7 @@ class Output extends e {
       }
     }
 
-    this.send([wm.MIDI_SYSTEM_MESSAGES.timecode, value], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.timecode, value], {
       time: options.time
     });
     return this;
@@ -5150,7 +5223,7 @@ class Output extends e {
     value = Math.floor(value) || 0;
     var msb = value >> 7 & 0x7F;
     var lsb = value & 0x7F;
-    this.send([wm.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
       time: options.time
     });
     return this;
@@ -5201,7 +5274,7 @@ class Output extends e {
       }
     }
 
-    this.send([wm.MIDI_SYSTEM_MESSAGES.songselect, value], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.songselect, value], {
       time: options.time
     });
     return this;
@@ -5236,7 +5309,7 @@ class Output extends e {
 
 
   sendTuneRequest(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.tunerequest], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.tunerequest], {
       time: options.time
     });
     return this;
@@ -5257,7 +5330,7 @@ class Output extends e {
 
 
   sendClock(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.clock], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.clock], {
       time: options.time
     });
     return this;
@@ -5279,7 +5352,7 @@ class Output extends e {
 
 
   sendStart(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.start], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.start], {
       time: options.time
     });
     return this;
@@ -5301,7 +5374,7 @@ class Output extends e {
 
 
   sendContinue(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.continue], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.continue], {
       time: options.time
     });
     return this;
@@ -5322,7 +5395,7 @@ class Output extends e {
 
 
   sendStop(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.stop], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.stop], {
       time: options.time
     });
     return this;
@@ -5344,7 +5417,7 @@ class Output extends e {
 
 
   sendActiveSensing(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.activesensing], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.activesensing], {
       time: options.time
     });
     return this;
@@ -5365,7 +5438,7 @@ class Output extends e {
 
 
   sendReset(options = {}) {
-    this.send([wm.MIDI_SYSTEM_MESSAGES.reset], {
+    this.send([enums.MIDI_SYSTEM_MESSAGES.reset], {
       time: options.time
     });
     return this;
@@ -6982,12 +7055,12 @@ class Message {
     if (this.isChannelMessage) {
       this.type = utils.getPropertyByValue(enums.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(enums.MIDI_SYSTEM_MESSAGES, this.command);
     } // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
 
 
-    if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (this.statusByte === enums.MIDI_SYSTEM_MESSAGES.sysex) {
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);
         this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1);
@@ -7952,79 +8025,17 @@ class WebMidi extends e {
     return enums.CHANNEL_EVENTS;
   }
   /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
    */
 
 
   get MIDI_SYSTEM_MESSAGES() {
-    return {
-      // System common messages
-      sysex: 0xF0,
-      // 240
-      timecode: 0xF1,
-      // 241
-      songposition: 0xF2,
-      // 242
-      songselect: 0xF3,
-      // 243
-      tunerequest: 0xF6,
-      // 246
-      tuningrequest: 0xF6,
-      // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,
-      // 247 (never actually received - simply ends a sysex)
-      // System real-time messages
-      clock: 0xF8,
-      // 248
-      start: 0xFA,
-      // 250
-      continue: 0xFB,
-      // 251
-      stop: 0xFC,
-      // 252
-      activesensing: 0xFE,
-      // 254
-      reset: 0xFF,
-      // 255
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-    };
+    if (this.validation) {
+      console.warn("The MIDI_SYSTEM_MESSAGES enum has been moved to " + "Enumerations.MIDI_SYSTEM_MESSAGES.");
+    }
+
+    return enums.MIDI_SYSTEM_MESSAGES;
   }
   /**
    * @private
