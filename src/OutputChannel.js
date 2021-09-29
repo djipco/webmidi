@@ -981,7 +981,7 @@ export class OutputChannel extends EventEmitter {
   sendChannelMode(command, value, options = {}) {
 
     // Normalize command to integer
-    if (typeof command === "string") command = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
 
     if (WebMidi.validation) {
 

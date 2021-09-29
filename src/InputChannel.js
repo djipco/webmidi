@@ -2,6 +2,7 @@ import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.j
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 import {Note} from "./Note.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
@@ -874,11 +875,11 @@ export class InputChannel extends EventEmitter {
 
     if ( !(number >= 120 && number <= 127) ) return false;
 
-    for (let cm in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
 
       if (
-        WebMidi.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
-        number === WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cm]
+        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
       }

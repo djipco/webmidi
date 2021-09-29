@@ -1074,34 +1074,13 @@ class WebMidi extends EventEmitter {
 
   /**
    * Enum of all channel mode messages and their associated numerical value:
-   *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
-   *
    * @enum {Object.<string, number>}
    * @readonly
-   *
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
    * @since 2.0.0
    */
   get MIDI_CHANNEL_MODE_MESSAGES() {
-
-    return {
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
-    };
-
+    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES
   }
 
   /**

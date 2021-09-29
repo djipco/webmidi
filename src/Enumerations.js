@@ -60,8 +60,6 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
-   *
-   * @since 3.0.0
    */
   get MIDI_CHANNEL_MESSAGES() {
 
@@ -73,6 +71,36 @@ class Enumerations {
       programchange: 0xC,     // 12
       channelaftertouch: 0xD, // 13
       pitchbend: 0xE          // 14
+    };
+
+  }
+
+  /**
+   * Enum of all channel mode messages and their associated numerical value:
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   */
+  get MIDI_CHANNEL_MODE_MESSAGES() {
+
+    return {
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
     };
 
   }

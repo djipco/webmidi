@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const midi = require("midi");
-const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities, Enumerations} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
@@ -840,8 +840,8 @@ describe("InputChannel Object", function() {
       let results = [];
 
       // Act
-      for (let cc in WebMidi.MIDI_CHANNEL_MODE_MESSAGES) {
-        let number = WebMidi.MIDI_CHANNEL_MODE_MESSAGES[cc];
+      for (let cc in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+        let number = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cc];
         results.push(channel.getChannelModeByNumber(number));
       }
 
