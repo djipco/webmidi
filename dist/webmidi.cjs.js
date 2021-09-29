@@ -857,7 +857,7 @@ class Enumerations {
    * @enum {Object.<string, number>}
    * @readonly
    */
-  get MIDI_CHANNEL_MESSAGES() {
+  static get MIDI_CHANNEL_MESSAGES() {
     return {
       noteoff: 0x8,
       // 8
@@ -892,7 +892,7 @@ class Enumerations {
    */
 
 
-  get MIDI_CHANNEL_MODE_MESSAGES() {
+  static get MIDI_CHANNEL_MODE_MESSAGES() {
     return {
       allsoundoff: 120,
       resetallcontrollers: 121,
@@ -982,7 +982,7 @@ class Enumerations {
    */
 
 
-  get MIDI_CONTROL_CHANGE_MESSAGES() {
+  static get MIDI_CONTROL_CHANGE_MESSAGES() {
     return {
       bankselectcoarse: 0,
       modulationwheelcoarse: 1,
@@ -1079,7 +1079,7 @@ class Enumerations {
    */
 
 
-  get MIDI_REGISTERED_PARAMETERS() {
+  static get MIDI_REGISTERED_PARAMETERS() {
     return {
       pitchbendrange: [0x00, 0x00],
       channelfinetuning: [0x00, 0x01],
@@ -1136,7 +1136,7 @@ class Enumerations {
    */
 
 
-  get MIDI_SYSTEM_MESSAGES() {
+  static get MIDI_SYSTEM_MESSAGES() {
     return {
       // System common messages
       sysex: 0xF0,
@@ -1175,10 +1175,9 @@ class Enumerations {
 } // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
 // used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
 // remains extensible (properties can be added at will).
-
-
-const enums = new Enumerations();
-enums.constructor = null;
+// const enums = new Enumerations();
+// enums.constructor = null;
+// export {enums as Enumerations};
 
 /**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
@@ -1705,7 +1704,7 @@ class InputChannel extends e {
     // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
-    const list = enums.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
+    const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
 
     if (controller === list.nonregisteredparameterfine || // 99
     controller === list.registeredparameterfine // 101
@@ -1764,14 +1763,14 @@ class InputChannel extends e {
   }
 
   isRpnOrNrpnController(controller) {
-    return controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement || //  97
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse || //  98
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine || //  99
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse || // 100
-    controller === enums.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
+    return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement || //  97
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse || //  98
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine || //  99
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse || // 100
+    controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
   }
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
@@ -1936,11 +1935,11 @@ class InputChannel extends e {
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
-    event.type += utils.getPropertyByValue(enums.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.type += utils.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
-      event.parameter = Object.keys(enums.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return enums.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && enums.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
     } else {
       event.parameter = (paramMsb << 7) + paramLsb;
@@ -1967,8 +1966,8 @@ class InputChannel extends e {
 
     if (!(number >= 120 && number <= 127)) return false;
 
-    for (let cm in enums.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (enums.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === enums.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+      if (Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
         return cm;
       }
     }
@@ -1997,7 +1996,7 @@ class InputChannel extends e {
       if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
     }
 
-    return utils.getPropertyByValue(enums.MIDI_CONTROL_CHANGE_MESSAGES, number);
+    return utils.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
@@ -3313,7 +3312,7 @@ class OutputChannel extends e {
     if (!Array.isArray(target)) target = [target];
     target = target.map(item => utils.guessNoteNumber(item));
     target.forEach(n => {
-      this.send([(enums.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), utils.offsetNumber(n, offset), pressure], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3448,7 +3447,7 @@ class OutputChannel extends e {
 
   sendControlChange(controller, value, options = {}) {
     if (typeof controller === "string") {
-      controller = enums.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
     if (!Array.isArray(value)) value = [value];
@@ -3474,7 +3473,7 @@ class OutputChannel extends e {
     }
 
     value.forEach((item, index) => {
-      this.send([(enums.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), controller + index * 32, value[index]], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -3668,7 +3667,7 @@ class OutputChannel extends e {
 
 
   decrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = enums.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3676,8 +3675,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(enums.MIDI_REGISTERED_PARAMETERS).forEach(p => {
-        if (enums.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && enums.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -3731,7 +3730,7 @@ class OutputChannel extends e {
 
 
   incrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = enums.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3739,8 +3738,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(enums.MIDI_REGISTERED_PARAMETERS).forEach(p => {
-        if (enums.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && enums.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -3909,7 +3908,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawRelease: parseInt(nVelocity)
     }).forEach(n => {
-      this.send([(enums.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawRelease], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -4013,7 +4012,7 @@ class OutputChannel extends e {
     utils.buildNoteArray(note, {
       rawAttack: nVelocity
     }).forEach(n => {
-      this.send([(enums.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1), n.getOffsetNumber(offset), n.rawAttack], {
         time: utils.toTimestamp(options.time)
       });
     });
@@ -4064,7 +4063,7 @@ class OutputChannel extends e {
 
   sendChannelMode(command, value, options = {}) {
     // Normalize command to integer
-    if (typeof command === "string") command = enums.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
 
     if (wm.validation) {
       if (command === undefined) {
@@ -4080,7 +4079,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(enums.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
+    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1), command, value], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4159,7 +4158,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(enums.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
+    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1), Math.round(pressure * 127)], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4395,7 +4394,7 @@ class OutputChannel extends e {
       lsb = nLevel & 0x7F;
     }
 
-    this.send([(enums.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
+    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4475,7 +4474,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.send([(enums.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
       time: utils.toTimestamp(options.time)
     });
     return this;
@@ -4533,7 +4532,7 @@ class OutputChannel extends e {
 
 
   setRegisteredParameter(rpn, data, options = {}) {
-    if (!Array.isArray(rpn)) rpn = enums.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (wm.validation) {
       if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
@@ -5131,16 +5130,16 @@ class Output extends e {
 
     if (data instanceof Uint8Array) {
       const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
-      merged[0] = enums.MIDI_SYSTEM_MESSAGES.sysex;
+      merged[0] = Enumerations.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = enums.MIDI_SYSTEM_MESSAGES.sysexend;
+      merged[merged.length - 1] = Enumerations.MIDI_SYSTEM_MESSAGES.sysexend;
       this.send(merged, {
         time: options.time
       });
     } else {
-      const merged = manufacturer.concat(data, enums.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([enums.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {
+      const merged = manufacturer.concat(data, Enumerations.MIDI_SYSTEM_MESSAGES.sysexend);
+      this.send([Enumerations.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {
         time: options.time
       });
     }
@@ -5197,7 +5196,7 @@ class Output extends e {
       }
     }
 
-    this.send([enums.MIDI_SYSTEM_MESSAGES.timecode, value], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.timecode, value], {
       time: options.time
     });
     return this;
@@ -5224,7 +5223,7 @@ class Output extends e {
     value = Math.floor(value) || 0;
     var msb = value >> 7 & 0x7F;
     var lsb = value & 0x7F;
-    this.send([enums.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.songposition, msb, lsb], {
       time: options.time
     });
     return this;
@@ -5275,7 +5274,7 @@ class Output extends e {
       }
     }
 
-    this.send([enums.MIDI_SYSTEM_MESSAGES.songselect, value], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.songselect, value], {
       time: options.time
     });
     return this;
@@ -5310,7 +5309,7 @@ class Output extends e {
 
 
   sendTuneRequest(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.tunerequest], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.tunerequest], {
       time: options.time
     });
     return this;
@@ -5331,7 +5330,7 @@ class Output extends e {
 
 
   sendClock(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.clock], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.clock], {
       time: options.time
     });
     return this;
@@ -5353,7 +5352,7 @@ class Output extends e {
 
 
   sendStart(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.start], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.start], {
       time: options.time
     });
     return this;
@@ -5375,7 +5374,7 @@ class Output extends e {
 
 
   sendContinue(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.continue], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.continue], {
       time: options.time
     });
     return this;
@@ -5396,7 +5395,7 @@ class Output extends e {
 
 
   sendStop(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.stop], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.stop], {
       time: options.time
     });
     return this;
@@ -5418,7 +5417,7 @@ class Output extends e {
 
 
   sendActiveSensing(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.activesensing], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.activesensing], {
       time: options.time
     });
     return this;
@@ -5439,7 +5438,7 @@ class Output extends e {
 
 
   sendReset(options = {}) {
-    this.send([enums.MIDI_SYSTEM_MESSAGES.reset], {
+    this.send([Enumerations.MIDI_SYSTEM_MESSAGES.reset], {
       time: options.time
     });
     return this;
@@ -7054,14 +7053,14 @@ class Message {
 
 
     if (this.isChannelMessage) {
-      this.type = utils.getPropertyByValue(enums.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = utils.getPropertyByValue(enums.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = utils.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
     } // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
 
 
-    if (this.statusByte === enums.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (this.statusByte === Enumerations.MIDI_SYSTEM_MESSAGES.sysex) {
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);
         this.dataBytes = this.dataBytes.slice(3, this.rawDataBytes.length - 1);
@@ -8036,7 +8035,7 @@ class WebMidi extends e {
       console.warn("The MIDI_SYSTEM_MESSAGES enum has been moved to " + "Enumerations.MIDI_SYSTEM_MESSAGES.");
     }
 
-    return enums.MIDI_SYSTEM_MESSAGES;
+    return Enumerations.MIDI_SYSTEM_MESSAGES;
   }
   /**
    * @private
@@ -8049,7 +8048,7 @@ class WebMidi extends e {
       console.warn("The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to " + "Enumerations.MIDI_CHANNEL_MODE_MESSAGES.");
     }
 
-    return enums.MIDI_CHANNEL_MODE_MESSAGES;
+    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES;
   }
   /**
    * @private
@@ -8062,7 +8061,7 @@ class WebMidi extends e {
       console.warn("The MIDI_CONTROL_CHANGE_MESSAGES enum has been moved to " + "Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.");
     }
 
-    return enums.MIDI_CONTROL_CHANGE_MESSAGES;
+    return Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
   }
   /**
    * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
@@ -8099,7 +8098,7 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-exports.Enumerations = enums;
+exports.Enumerations = Enumerations;
 exports.Message = Message;
 exports.Note = Note;
 exports.Utilities = utils;
