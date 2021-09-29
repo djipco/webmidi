@@ -657,8 +657,9 @@ class Utilities {
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
+    const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
-    return wm.NOTES[number % 12] + octave.toString();
+    return notes[number % 12] + octave.toString();
   }
   /**
    * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
@@ -842,18 +843,6 @@ utils.constructor = null;
  */
 class Enumerations {
   /**
-   * Array of channel-specific event names that can be listened to.
-   * @type {string[]}
-   * @readonly
-   */
-  get CHANNEL_EVENTS() {
-    return [// MIDI channel message events
-    "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
-    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
-    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
-    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
-  }
-  /**
    * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
    *
    * - `noteoff`: 0x8 (8)
@@ -868,8 +857,6 @@ class Enumerations {
    * @enum {Object.<string, number>}
    * @readonly
    */
-
-
   get MIDI_CHANNEL_MESSAGES() {
     return {
       noteoff: 0x8,
@@ -2081,6 +2068,20 @@ class InputChannel extends e {
 
     this.parameterNumberEventsEnabled = value;
   }
+  /**
+   * Array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   * @readonly
+   */
+
+
+  static get EVENTS() {
+    return [// MIDI channel message events
+    "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
+    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
+    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
+    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
+  }
 
 }
 
@@ -2787,14 +2788,14 @@ class Input extends e {
       } // Validation
 
 
-      if (enums.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (InputChannel.EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
     let listeners = []; // Check if the event is channel-specific or input-wide
 
-    if (!enums.CHANNEL_EVENTS.includes(event)) {
+    if (!InputChannel.EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
       utils.sanitizeChannels(options.channels).forEach(ch => {
@@ -2965,12 +2966,12 @@ class Input extends e {
       } // Validation
 
 
-      if (enums.CHANNEL_EVENTS.includes(event) && options.channels === undefined) {
+      if (InputChannel.EVENTS.includes(event) && options.channels === undefined) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
       }
     }
 
-    if (enums.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
       return utils.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
@@ -3027,7 +3028,7 @@ class Input extends e {
     } // If the event is specified, check if it's channel-specific or input-wide.
 
 
-    if (enums.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
       utils.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
@@ -8013,16 +8014,16 @@ class WebMidi extends e {
   }
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
+   * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
    */
 
 
   get CHANNEL_EVENTS() {
     if (this.validation) {
-      console.warn("The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS.");
+      console.warn("The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS.");
     }
 
-    return enums.CHANNEL_EVENTS;
+    return InputChannel.EVENTS;
   }
   /**
    * @private
@@ -8077,14 +8078,16 @@ class WebMidi extends e {
     return this.MIDI_REGISTERED_PARAMETERS;
   }
   /**
-   * Array of standard note names
-   *
-   * @type {string[]}
-   * @readonly
+   * @deprecated since 3.0.0.
+   * @private
    */
 
 
   get NOTES() {
+    if (this.validation) {
+      console.warn("The NOTES enum has been deprecated.");
+    }
+
     return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
   }
 
