@@ -8079,6 +8079,7 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
+exports.Enumerations = enums;
 exports.Message = Message;
 exports.Note = Note;
 exports.Utilities = utils;
