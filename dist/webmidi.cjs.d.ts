@@ -251,8 +251,9 @@ declare const wm: WebMidi;
  */
 declare class Enumerations {
     /**
-     * An array of channel-specific event names that can be listened to.
+     * Array of channel-specific event names that can be listened to.
      * @type {string[]}
+     * @readonly
      */
     get CHANNEL_EVENTS(): string[];
     /**
@@ -448,6 +449,47 @@ declare class Enumerations {
         omnimodeon: number;
         monomodeon: number;
         polymodeon: number;
+    };
+    /**
+     * Enumeration of all registered parameters and their associated pair of numerical values. MIDI
+     * registered parameters extend the original list of control change messages. Currently, there are
+     * only a limited number of them:
+     *
+     * - `pitchbendrange`: [0x00, 0x00]
+     * - `channelfinetuning`: [0x00, 0x01]
+     * - `channelcoarsetuning`: [0x00, 0x02]
+     * - `tuningprogram`: [0x00, 0x03]
+     * - `tuningbank`: [0x00, 0x04]
+     * - `modulationrange`: [0x00, 0x05]
+     * - `azimuthangle`: [0x3D, 0x00]
+     * - `elevationangle`: [0x3D, 0x01]
+     * - `gain`: [0x3D, 0x02]
+     * - `distanceratio`: [0x3D, 0x03]
+     * - `maximumdistance`: [0x3D, 0x04]
+     * - `maximumdistancegain`: [0x3D, 0x05]
+     * - `referencedistanceratio`: [0x3D, 0x06]
+     * - `panspreadangle`: [0x3D, 0x07]
+     * - `rollangle`: [0x3D, 0x08]
+     *
+     * @enum {Object.<string, number[]>}
+     * @readonly
+     */
+    get MIDI_REGISTERED_PARAMETERS(): {
+        pitchbendrange: number[];
+        channelfinetuning: number[];
+        channelcoarsetuning: number[];
+        tuningprogram: number[];
+        tuningbank: number[];
+        modulationrange: number[];
+        azimuthangle: number[];
+        elevationangle: number[];
+        gain: number[];
+        distanceratio: number[];
+        maximumdistance: number[];
+        maximumdistancegain: number[];
+        referencedistanceratio: number[];
+        panspreadangle: number[];
+        rollangle: number[];
     };
 }
 /**
@@ -1072,8 +1114,6 @@ declare class WebMidi {
      */
     get time(): number;
     /**
-     * An array of channel-specific event names that can be listened to.
-     * @type {string[]}
      * @private
      * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
      */
@@ -1134,152 +1174,17 @@ declare class WebMidi {
         unknownsystemmessage: number;
     };
     /**
-     * Enum of all channel mode messages and their associated numerical value:
-     * @enum {Object.<string, number>}
-     * @readonly
+     * @private
      * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
-     * @since 2.0.0
      */
-    get MIDI_CHANNEL_MODE_MESSAGES(): {
-        allsoundoff: number;
-        resetallcontrollers: number;
-        localcontrol: number;
-        allnotesoff: number;
-        omnimodeoff: number;
-        omnimodeon: number;
-        monomodeon: number;
-        polymodeon: number;
-    };
+    private get MIDI_CHANNEL_MODE_MESSAGES();
     /**
-     * Enum of most control change messages and their associated numerical value. Note that some
-     * control change numbers do not have a predefined purpose.
-     *
-     * @enum {Object.<string, number>}
-     * @readonly
-     * @since 2.0.0
+     * @private
      * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
      */
-    get MIDI_CONTROL_CHANGE_MESSAGES(): {
-        bankselectcoarse: number;
-        modulationwheelcoarse: number;
-        breathcontrollercoarse: number;
-        footcontrollercoarse: number;
-        portamentotimecoarse: number;
-        dataentrycoarse: number;
-        volumecoarse: number;
-        balancecoarse: number;
-        pancoarse: number;
-        expressioncoarse: number;
-        effectcontrol1coarse: number;
-        effectcontrol2coarse: number;
-        generalpurposeslider1: number;
-        generalpurposeslider2: number;
-        generalpurposeslider3: number;
-        generalpurposeslider4: number;
-        bankselectfine: number;
-        modulationwheelfine: number;
-        breathcontrollerfine: number;
-        footcontrollerfine: number;
-        portamentotimefine: number;
-        dataentryfine: number;
-        volumefine: number;
-        balancefine: number;
-        panfine: number;
-        expressionfine: number;
-        effectcontrol1fine: number;
-        effectcontrol2fine: number;
-        holdpedal: number;
-        portamento: number;
-        sustenutopedal: number;
-        softpedal: number;
-        legatopedal: number;
-        hold2pedal: number;
-        soundvariation: number;
-        resonance: number;
-        soundreleasetime: number;
-        soundattacktime: number;
-        brightness: number;
-        soundcontrol6: number;
-        soundcontrol7: number;
-        soundcontrol8: number;
-        soundcontrol9: number;
-        soundcontrol10: number;
-        generalpurposebutton1: number;
-        generalpurposebutton2: number;
-        generalpurposebutton3: number;
-        generalpurposebutton4: number;
-        reverblevel: number;
-        tremololevel: number;
-        choruslevel: number;
-        celestelevel: number;
-        phaserlevel: number;
-        databuttonincrement: number;
-        databuttondecrement: number;
-        nonregisteredparametercoarse: number;
-        nonregisteredparameterfine: number;
-        registeredparametercoarse: number;
-        registeredparameterfine: number;
-        allsoundoff: number;
-        resetallcontrollers: number;
-        localcontrol: number;
-        allnotesoff: number;
-        omnimodeoff: number;
-        omnimodeon: number;
-        monomodeon: number;
-        polymodeon: number;
-    };
+    private get MIDI_CONTROL_CHANGE_MESSAGES();
     /**
-     * Array of valid events triggered at the interface level.
-     *
-     * @type {string[]}
-     * @readonly
-     */
-    get MIDI_INTERFACE_EVENTS(): string[];
-    /**
-     * Enum of all registered parameters and their associated pair of numerical values. MIDI
-     * registered parameters extend the original list of control change messages. Currently, there are
-     * only a limited number of them:
-     *
-     * - `pitchbendrange`: [0x00, 0x00]
-     * - `channelfinetuning`: [0x00, 0x01]
-     * - `channelcoarsetuning`: [0x00, 0x02]
-     * - `tuningprogram`: [0x00, 0x03]
-     * - `tuningbank`: [0x00, 0x04]
-     * - `modulationrange`: [0x00, 0x05]
-     * - `azimuthangle`: [0x3D, 0x00]
-     * - `elevationangle`: [0x3D, 0x01]
-     * - `gain`: [0x3D, 0x02]
-     * - `distanceratio`: [0x3D, 0x03]
-     * - `maximumdistance`: [0x3D, 0x04]
-     * - `maximumdistancegain`: [0x3D, 0x05]
-     * - `referencedistanceratio`: [0x3D, 0x06]
-     * - `panspreadangle`: [0x3D, 0x07]
-     * - `rollangle`: [0x3D, 0x08]
-     *
-     * @enum {Object.<string, number[]>}
-     * @readonly
-     *
-     * @since 3.0.0
-     */
-    get MIDI_REGISTERED_PARAMETERS(): {
-        pitchbendrange: number[];
-        channelfinetuning: number[];
-        channelcoarsetuning: number[];
-        tuningprogram: number[];
-        tuningbank: number[];
-        modulationrange: number[];
-        azimuthangle: number[];
-        elevationangle: number[];
-        gain: number[];
-        distanceratio: number[];
-        maximumdistance: number[];
-        maximumdistancegain: number[];
-        referencedistanceratio: number[];
-        panspreadangle: number[];
-        rollangle: number[];
-    };
-    /**
-     * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
      * @private
      */
     private get MIDI_REGISTERED_PARAMETER();
