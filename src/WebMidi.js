@@ -2,6 +2,7 @@ import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.j
 import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
+import {Enumerations} from "./Enumerations.js";
 
 /*START-NODE.JS*/
 // This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
@@ -1001,63 +1002,7 @@ class WebMidi extends EventEmitter {
    * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
   get CHANNEL_EVENTS() {
-    return [
-      "noteoff",
-      "controlchange",
-      "noteon",
-      "keyaftertouch",
-      "programchange",
-      "channelaftertouch",
-      "pitchbend",
-
-      "nrpndataentrycoarse",
-      "nrpndataentryfine",
-      "nrpndatabuttonincrement",
-      "nrpndatabuttondecrement",
-
-      "rpndataentrycoarse",
-      "rpndataentryfine",
-      "rpndatabuttonincrement",
-      "rpndatabuttondecrement",
-
-      "allnotesoff",
-      "allsoundoff",
-      "localcontrol",
-      "monomode",
-      "omnimode",
-      "resetallcontrollers"
-    ];
-  }
-
-  /**
-   * Enum of all MIDI channel messages and their associated numerical value:
-   *
-   * - `noteoff`: 0x8 (8)
-   * - `noteon`: 0x9 (9)
-   * - `keyaftertouch`: 0xA (10)
-   * - `controlchange`: 0xB (11)
-   * - `nrpn`: 0xB (11)
-   * - `programchange`: 0xC (12)
-   * - `channelaftertouch`: 0xD (13)
-   * - `pitchbend`: 0xE (14)
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-  get MIDI_CHANNEL_MESSAGES() {
-
-    return {
-      noteoff: 0x8,           // 8
-      noteon: 0x9,            // 9
-      keyaftertouch: 0xA,     // 10
-      controlchange: 0xB,     // 11
-      programchange: 0xC,     // 12
-      channelaftertouch: 0xD, // 13
-      pitchbend: 0xE          // 14
-    };
-
+    return Enumerations.CHANNEL_EVENTS;
   }
 
   /**
