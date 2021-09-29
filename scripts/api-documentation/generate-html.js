@@ -39,13 +39,15 @@ const config = {
   // Source files
   source: {
     include: [
-      "./src/WebMidi.js",
-      "./src/Output.js",
+      "./src/Enumerations.js",
       "./src/Input.js",
-      "./src/OutputChannel.js",
       "./src/InputChannel.js",
+      "./src/Message.js",
       "./src/Note.js",
+      "./src/Output.js",
+      "./src/OutputChannel.js",
       "./src/Utilities.js",
+      "./src/WebMidi.js",
 
       "./node_modules/djipevents/src/djipevents.js"
     ]
