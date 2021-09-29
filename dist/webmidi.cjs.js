@@ -835,8 +835,9 @@ const utils = new Utilities();
 utils.constructor = null;
 
 /**
- * The `Enumerations` class contains list of elements used throughout the library. The class is a
- * singleton with static methods and is not meant to be instantiated.
+ * The `Enumerations` class contains list of elements used throughout the library. All properties
+ * are static and should be referenced using the class. For example:
+ * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -856,6 +857,7 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
   static get MIDI_CHANNEL_MESSAGES() {
     return {
@@ -889,6 +891,7 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
 
 
@@ -979,6 +982,7 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
 
 
@@ -1076,6 +1080,7 @@ class Enumerations {
    *
    * @enum {Object.<string, number[]>}
    * @readonly
+   * @static
    */
 
 
@@ -1133,6 +1138,7 @@ class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @static
    */
 
 
@@ -1172,12 +1178,7 @@ class Enumerations {
     };
   }
 
-} // Export singleton instance of Enumerations class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Enumerations object or extend it. However, it is not freezed so it
-// remains extensible (properties can be added at will).
-// const enums = new Enumerations();
-// enums.constructor = null;
-// export {enums as Enumerations};
+}
 
 /**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
