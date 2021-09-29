@@ -32,12 +32,12 @@ describe("Input Object", function() {
 
     // Arrange
     let data = [
-      WebMidi.MIDI_SYSTEM_MESSAGES.sysex,
+      Enumerations.MIDI_SYSTEM_MESSAGES.sysex,
       0x42, // Korg
       1,    // data
       2,    // data
       3,    // data
-      WebMidi.MIDI_SYSTEM_MESSAGES.sysexend
+      Enumerations.MIDI_SYSTEM_MESSAGES.sysexend
     ];
     WEBMIDI_INPUT.addListener("sysex", assert);
 
@@ -70,7 +70,7 @@ describe("Input Object", function() {
     // Act
     items.forEach(item => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
+        [Enumerations.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
 
@@ -101,7 +101,7 @@ describe("Input Object", function() {
     // Act
     items.forEach(item => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
+        [Enumerations.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
 
@@ -134,14 +134,14 @@ describe("Input Object", function() {
     // Act
     events.forEach(event => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        [Enumerations.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
 
     // Assert
     function assert(e) {
       let event = events[index];
-      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      expect(e.data).to.have.ordered.members([Enumerations.MIDI_SYSTEM_MESSAGES[event]]);
       index++;
       if (index >= events.length) done();
     }
@@ -168,14 +168,14 @@ describe("Input Object", function() {
     // Act
     events.forEach(event => {
       VIRTUAL_INPUT.sendMessage(
-        [WebMidi.MIDI_SYSTEM_MESSAGES[event]]
+        [Enumerations.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
 
     // Assert
     function assert(e) {
       let event = events[index];
-      expect(e.data).to.have.ordered.members([WebMidi.MIDI_SYSTEM_MESSAGES[event]]);
+      expect(e.data).to.have.ordered.members([Enumerations.MIDI_SYSTEM_MESSAGES[event]]);
       index++;
       if (index >= events.length) done();
     }
@@ -333,12 +333,12 @@ describe("Input Object", function() {
       let l1 = () => {};
 
       // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(key => {
         WEBMIDI_INPUT.addListener(key, l1);
       });
 
       // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(key => {
         expect(WEBMIDI_INPUT.hasListener(key, l1)).to.be.true;
       });
 
@@ -350,12 +350,12 @@ describe("Input Object", function() {
       let l1 = () => {};
 
       // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(key => {
         WEBMIDI_INPUT.addListener(key, undefined, l1);
       });
 
       // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(key => {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(key => {
         expect(WEBMIDI_INPUT.hasListener(key, undefined, l1)).to.be.true;
       });
 
@@ -476,13 +476,13 @@ describe("Input Object", function() {
       let listeners = [];
 
       // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index]);
       });
 
       // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
         expect(listeners[index].length).to.equal(1);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });
@@ -496,13 +496,13 @@ describe("Input Object", function() {
       let listeners = [];
 
       // Act
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, undefined, callbacks[index]);
       });
 
       // Assert
-      Object.keys(WebMidi.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
+      Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
         expect(listeners[index].length).to.equal(1);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });

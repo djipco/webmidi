@@ -1,6 +1,6 @@
 import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
 import {OutputChannel} from "./OutputChannel.js";
-import {Message, WebMidi} from "./WebMidi.js";
+import {Enumerations, Message, WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 
 /**
@@ -349,14 +349,14 @@ export class Output extends EventEmitter {
     // Check if data is Uint8Array
     if (data instanceof Uint8Array) {
       const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
-      merged[0] = WebMidi.MIDI_SYSTEM_MESSAGES.sysex;
+      merged[0] = Enumerations.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = WebMidi.MIDI_SYSTEM_MESSAGES.sysexend;
+      merged[merged.length - 1] = Enumerations.MIDI_SYSTEM_MESSAGES.sysexend;
       this.send(merged, {time: options.time});
     } else {
-      const merged = manufacturer.concat(data, WebMidi.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([WebMidi.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
+      const merged = manufacturer.concat(data, Enumerations.MIDI_SYSTEM_MESSAGES.sysexend);
+      this.send([Enumerations.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
     }
 
     return this;
@@ -421,7 +421,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        WebMidi.MIDI_SYSTEM_MESSAGES.timecode,
+        Enumerations.MIDI_SYSTEM_MESSAGES.timecode,
         value
       ],
       {time: options.time}
@@ -457,7 +457,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        WebMidi.MIDI_SYSTEM_MESSAGES.songposition,
+        Enumerations.MIDI_SYSTEM_MESSAGES.songposition,
         msb,
         lsb
       ],
@@ -519,7 +519,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        WebMidi.MIDI_SYSTEM_MESSAGES.songselect,
+        Enumerations.MIDI_SYSTEM_MESSAGES.songselect,
         value
       ],
       {time: options.time}
@@ -562,7 +562,7 @@ export class Output extends EventEmitter {
   sendTuneRequest(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.tunerequest],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -586,7 +586,7 @@ export class Output extends EventEmitter {
   sendClock(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.clock],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -611,7 +611,7 @@ export class Output extends EventEmitter {
   sendStart(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.start],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -636,7 +636,7 @@ export class Output extends EventEmitter {
   sendContinue(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.continue],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -660,7 +660,7 @@ export class Output extends EventEmitter {
   sendStop(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.stop],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -685,7 +685,7 @@ export class Output extends EventEmitter {
   sendActiveSensing(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.activesensing],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -709,7 +709,7 @@ export class Output extends EventEmitter {
   sendReset(options = {}) {
 
     this.send(
-      [WebMidi.MIDI_SYSTEM_MESSAGES.reset],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 

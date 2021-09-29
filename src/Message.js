@@ -123,12 +123,12 @@ export class Message {
     if (this.isChannelMessage) {
       this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = Utilities.getPropertyByValue(WebMidi.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
     }
 
     // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
-    if (this.statusByte === WebMidi.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (this.statusByte === Enumerations.MIDI_SYSTEM_MESSAGES.sysex) {
 
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);

@@ -1,8 +1,8 @@
 const expect = require("chai").expect;
-const {Enumerations, WebMidi} = require("../dist/webmidi.cjs.js");
+const {Enumerations} = require("../dist/webmidi.cjs.js");
 
 // VERIFIED
-describe("Utilities Object", function() {
+describe("Enumerations Object", function() {
 
   describe("get MIDI_CHANNEL_MESSAGES()", function() {
     it("should return an object with valid properties", function() {
@@ -12,14 +12,14 @@ describe("Utilities Object", function() {
 
   describe("get MIDI_REGISTERED_PARAMETER()", function() {
     it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[0]).to.equal(0x3D);
-      expect(WebMidi.MIDI_REGISTERED_PARAMETER.rollangle[1]).to.equal(0x08);
+      expect(Enumerations.MIDI_REGISTERED_PARAMETERS.rollangle[0]).to.equal(0x3D);
+      expect(Enumerations.MIDI_REGISTERED_PARAMETERS.rollangle[1]).to.equal(0x08);
     });
   });
 
   describe("get MIDI_CONTROL_CHANGE_MESSAGES()", function() {
     it("should return an object with valid properties", function() {
-      expect(WebMidi.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine).to.equal(101);
+      expect(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine).to.equal(101);
     });
   });
 

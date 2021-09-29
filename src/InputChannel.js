@@ -844,9 +844,9 @@ export class InputChannel extends EventEmitter {
     // Identify the parameter (by name for RPN and by number for NRPN)
     if (type === "rpn") {
 
-      event.parameter = Object.keys(WebMidi.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return WebMidi.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
-          WebMidi.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
+          Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
 
     } else {
@@ -980,6 +980,47 @@ export class InputChannel extends EventEmitter {
 
     this.parameterNumberEventsEnabled = value;
 
+  }
+
+  /**
+   * Array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   * @readonly
+   */
+  static get EVENTS() {
+
+    return [
+
+      // MIDI channel message events
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      // MIDI channel mode events
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers",
+
+      // NRPN events
+      "nrpndataentrycoarse",
+      "nrpndataentryfine",
+      "nrpndatabuttonincrement",
+      "nrpndatabuttondecrement",
+
+      // RPN events
+      "rpndataentrycoarse",
+      "rpndataentryfine",
+      "rpndatabuttonincrement",
+      "rpndatabuttondecrement"
+
+    ];
   }
 
 }
