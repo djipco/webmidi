@@ -45,7 +45,9 @@ const config = {
       "./src/OutputChannel.js",
       "./src/InputChannel.js",
       "./src/Note.js",
-      "./src/Utilities.js"
+      "./src/Utilities.js",
+
+      "./node_modules/djipevents/src/djipevents.js"
     ]
   },
 
