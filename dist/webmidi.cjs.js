@@ -842,8 +842,9 @@ utils.constructor = null;
  */
 class Enumerations {
   /**
-   * An array of channel-specific event names that can be listened to.
+   * Array of channel-specific event names that can be listened to.
    * @type {string[]}
+   * @readonly
    */
   get CHANNEL_EVENTS() {
     return [// MIDI channel message events
@@ -1063,6 +1064,51 @@ class Enumerations {
       omnimodeon: 125,
       monomodeon: 126,
       polymodeon: 127
+    };
+  }
+  /**
+   * Enumeration of all registered parameters and their associated pair of numerical values. MIDI
+   * registered parameters extend the original list of control change messages. Currently, there are
+   * only a limited number of them:
+   *
+   * - `pitchbendrange`: [0x00, 0x00]
+   * - `channelfinetuning`: [0x00, 0x01]
+   * - `channelcoarsetuning`: [0x00, 0x02]
+   * - `tuningprogram`: [0x00, 0x03]
+   * - `tuningbank`: [0x00, 0x04]
+   * - `modulationrange`: [0x00, 0x05]
+   * - `azimuthangle`: [0x3D, 0x00]
+   * - `elevationangle`: [0x3D, 0x01]
+   * - `gain`: [0x3D, 0x02]
+   * - `distanceratio`: [0x3D, 0x03]
+   * - `maximumdistance`: [0x3D, 0x04]
+   * - `maximumdistancegain`: [0x3D, 0x05]
+   * - `referencedistanceratio`: [0x3D, 0x06]
+   * - `panspreadangle`: [0x3D, 0x07]
+   * - `rollangle`: [0x3D, 0x08]
+   *
+   * @enum {Object.<string, number[]>}
+   * @readonly
+   */
+
+
+  get MIDI_REGISTERED_PARAMETERS() {
+    return {
+      pitchbendrange: [0x00, 0x00],
+      channelfinetuning: [0x00, 0x01],
+      channelcoarsetuning: [0x00, 0x02],
+      tuningprogram: [0x00, 0x03],
+      tuningbank: [0x00, 0x04],
+      modulationrange: [0x00, 0x05],
+      azimuthangle: [0x3D, 0x00],
+      elevationangle: [0x3D, 0x01],
+      gain: [0x3D, 0x02],
+      distanceratio: [0x3D, 0x03],
+      maximumdistance: [0x3D, 0x04],
+      maximumdistancegain: [0x3D, 0x05],
+      referencedistanceratio: [0x3D, 0x06],
+      panspreadangle: [0x3D, 0x07],
+      rollangle: [0x3D, 0x08]
     };
   }
 
@@ -1833,8 +1879,8 @@ class InputChannel extends e {
     event.type += utils.getPropertyByValue(enums.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
-      event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return wm.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && wm.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      event.parameter = Object.keys(enums.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return enums.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && enums.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
     } else {
       event.parameter = (paramMsb << 7) + paramLsb;
@@ -3548,7 +3594,7 @@ class OutputChannel extends e {
 
 
   decrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = enums.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3556,8 +3602,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
-        if (wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(enums.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (enums.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && enums.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -3611,7 +3657,7 @@ class OutputChannel extends e {
 
 
   incrementRegisteredParameter(parameter, options = {}) {
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = enums.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3619,8 +3665,8 @@ class OutputChannel extends e {
       }
 
       let valid = false;
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
-        if (wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
+      Object.getOwnPropertyNames(enums.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+        if (enums.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] && enums.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]) {
           valid = true;
         }
       });
@@ -4413,7 +4459,7 @@ class OutputChannel extends e {
 
 
   setRegisteredParameter(rpn, data, options = {}) {
-    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = enums.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (wm.validation) {
       if (!Number.isInteger(rpn[0]) || !Number.isInteger(rpn[1])) {
@@ -7893,8 +7939,6 @@ class WebMidi extends e {
     return performance.now();
   }
   /**
-   * An array of channel-specific event names that can be listened to.
-   * @type {string[]}
    * @private
    * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
@@ -7983,11 +8027,8 @@ class WebMidi extends e {
     };
   }
   /**
-   * Enum of all channel mode messages and their associated numerical value:
-   * @enum {Object.<string, number>}
-   * @readonly
+   * @private
    * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
-   * @since 2.0.0
    */
 
 
@@ -7999,12 +8040,7 @@ class WebMidi extends e {
     return enums.MIDI_CHANNEL_MODE_MESSAGES;
   }
   /**
-   * Enum of most control change messages and their associated numerical value. Note that some
-   * control change numbers do not have a predefined purpose.
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   * @since 2.0.0
+   * @private
    * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
    */
 
@@ -8017,70 +8053,16 @@ class WebMidi extends e {
     return enums.MIDI_CONTROL_CHANGE_MESSAGES;
   }
   /**
-   * Array of valid events triggered at the interface level.
-   *
-   * @type {string[]}
-   * @readonly
-   */
-
-
-  get MIDI_INTERFACE_EVENTS() {
-    return ["connected", "disconnected"];
-  }
-  /**
-   * Enum of all registered parameters and their associated pair of numerical values. MIDI
-   * registered parameters extend the original list of control change messages. Currently, there are
-   * only a limited number of them:
-   *
-   * - `pitchbendrange`: [0x00, 0x00]
-   * - `channelfinetuning`: [0x00, 0x01]
-   * - `channelcoarsetuning`: [0x00, 0x02]
-   * - `tuningprogram`: [0x00, 0x03]
-   * - `tuningbank`: [0x00, 0x04]
-   * - `modulationrange`: [0x00, 0x05]
-   * - `azimuthangle`: [0x3D, 0x00]
-   * - `elevationangle`: [0x3D, 0x01]
-   * - `gain`: [0x3D, 0x02]
-   * - `distanceratio`: [0x3D, 0x03]
-   * - `maximumdistance`: [0x3D, 0x04]
-   * - `maximumdistancegain`: [0x3D, 0x05]
-   * - `referencedistanceratio`: [0x3D, 0x06]
-   * - `panspreadangle`: [0x3D, 0x07]
-   * - `rollangle`: [0x3D, 0x08]
-   *
-   * @enum {Object.<string, number[]>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-
-
-  get MIDI_REGISTERED_PARAMETERS() {
-    return {
-      pitchbendrange: [0x00, 0x00],
-      channelfinetuning: [0x00, 0x01],
-      channelcoarsetuning: [0x00, 0x02],
-      tuningprogram: [0x00, 0x03],
-      tuningbank: [0x00, 0x04],
-      modulationrange: [0x00, 0x05],
-      azimuthangle: [0x3D, 0x00],
-      elevationangle: [0x3D, 0x01],
-      gain: [0x3D, 0x02],
-      distanceratio: [0x3D, 0x03],
-      maximumdistance: [0x3D, 0x04],
-      maximumdistancegain: [0x3D, 0x05],
-      referencedistanceratio: [0x3D, 0x06],
-      panspreadangle: [0x3D, 0x07],
-      rollangle: [0x3D, 0x08]
-    };
-  }
-  /**
-   * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
    * @private
    */
 
 
   get MIDI_REGISTERED_PARAMETER() {
+    if (this.validation) {
+      console.warn("The MIDI_REGISTERED_PARAMETER enum has been moved to " + "Enumerations.MIDI_REGISTERED_PARAMETERS.");
+    }
+
     return this.MIDI_REGISTERED_PARAMETERS;
   }
   /**
