@@ -1,6 +1,6 @@
 <a name="InputChannel"></a>
 
-# InputChannel
+# InputChannel ⇐ <code>EventEmitter</code>
 The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
@@ -20,71 +20,79 @@ details.
 
 <!--**Kind**: global class  
 -->
+**Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers), [<code>nrpndataentrycoarse</code>](#InputChannel+event_nrpndataentrycoarse), [<code>nrpndataentryfine</code>](#InputChannel+event_nrpndataentryfine), [<code>nrpndatabuttonincrement</code>](#InputChannel+event_nrpndatabuttonincrement), [<code>nrpndatabuttondecrement</code>](#InputChannel+event_nrpndatabuttondecrement), [<code>rpndataentrycoarse</code>](#InputChannel+event_rpndataentrycoarse), [<code>rpndataentryfine</code>](#InputChannel+event_rpndataentryfine), [<code>rpndatabuttonincrement</code>](#InputChannel+event_rpndatabuttonincrement), [<code>rpndatabuttondecrement</code>](#InputChannel+event_rpndatabuttondecrement)  
 **Since**: 3.0.0  
+**License**: Apache-2.0  
 
 
-* [InputChannel](#InputChannel)
+* [InputChannel](#InputChannel) ⇐ <code>EventEmitter</code>
 
     * [`new InputChannel(input, number)`](#new_InputChannel_new)
 
-    * [`.parameterNumberEventsEnabled`](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
+    * _instance_
 
-    * [`.octaveOffset`](#InputChannel+octaveOffset) : <code>number</code>
+        * [`.parameterNumberEventsEnabled`](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
 
-    * [`.input`](#InputChannel+input) : <code>Input</code>
+        * [`.octaveOffset`](#InputChannel+octaveOffset) : <code>number</code>
 
-    * [`.number`](#InputChannel+number) : <code>number</code>
+        * [`.input`](#InputChannel+input) : <code>Input</code>
 
-    * [`.destroy()`](#InputChannel+destroy)
+        * [`.number`](#InputChannel+number) : <code>number</code>
 
-    * [`.getChannelModeByNumber(number)`](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
+        * [`.destroy()`](#InputChannel+destroy)
 
-    * [`.getCcNameByNumber(number)`](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
+        * [`.getChannelModeByNumber(number)`](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
 
-    * [`"midimessage"`](#InputChannel+event_midimessage)
+        * [`.getCcNameByNumber(number)`](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
 
-    * [`"noteoff"`](#InputChannel+event_noteoff)
+        * [`"midimessage"`](#InputChannel+event_midimessage)
 
-    * [`"noteon"`](#InputChannel+event_noteon)
+        * [`"noteoff"`](#InputChannel+event_noteoff)
 
-    * [`"keyaftertouch"`](#InputChannel+event_keyaftertouch)
+        * [`"noteon"`](#InputChannel+event_noteon)
 
-    * [`"controlchange"`](#InputChannel+event_controlchange)
+        * [`"keyaftertouch"`](#InputChannel+event_keyaftertouch)
 
-    * [`"programchange"`](#InputChannel+event_programchange)
+        * [`"controlchange"`](#InputChannel+event_controlchange)
 
-    * [`"channelaftertouch"`](#InputChannel+event_channelaftertouch)
+        * [`"programchange"`](#InputChannel+event_programchange)
 
-    * [`"pitchbend"`](#InputChannel+event_pitchbend)
+        * [`"channelaftertouch"`](#InputChannel+event_channelaftertouch)
 
-    * [`"allsoundoff"`](#InputChannel+event_allsoundoff)
+        * [`"pitchbend"`](#InputChannel+event_pitchbend)
 
-    * [`"resetallcontrollers"`](#InputChannel+event_resetallcontrollers)
+        * [`"allsoundoff"`](#InputChannel+event_allsoundoff)
 
-    * [`"localcontrol"`](#InputChannel+event_localcontrol)
+        * [`"resetallcontrollers"`](#InputChannel+event_resetallcontrollers)
 
-    * [`"allnotesoff"`](#InputChannel+event_allnotesoff)
+        * [`"localcontrol"`](#InputChannel+event_localcontrol)
 
-    * [`"omnimode"`](#InputChannel+event_omnimode)
+        * [`"allnotesoff"`](#InputChannel+event_allnotesoff)
 
-    * [`"monomode"`](#InputChannel+event_monomode)
+        * [`"omnimode"`](#InputChannel+event_omnimode)
 
-    * [`"nrpndataentrycoarse"`](#InputChannel+event_nrpndataentrycoarse)
+        * [`"monomode"`](#InputChannel+event_monomode)
 
-    * [`"nrpndataentryfine"`](#InputChannel+event_nrpndataentryfine)
+        * [`"nrpndataentrycoarse"`](#InputChannel+event_nrpndataentrycoarse)
 
-    * [`"nrpndatabuttonincrement"`](#InputChannel+event_nrpndatabuttonincrement)
+        * [`"nrpndataentryfine"`](#InputChannel+event_nrpndataentryfine)
 
-    * [`"nrpndatabuttondecrement"`](#InputChannel+event_nrpndatabuttondecrement)
+        * [`"nrpndatabuttonincrement"`](#InputChannel+event_nrpndatabuttonincrement)
 
-    * [`"rpndataentrycoarse"`](#InputChannel+event_rpndataentrycoarse)
+        * [`"nrpndatabuttondecrement"`](#InputChannel+event_nrpndatabuttondecrement)
 
-    * [`"rpndataentryfine"`](#InputChannel+event_rpndataentryfine)
+        * [`"rpndataentrycoarse"`](#InputChannel+event_rpndataentrycoarse)
 
-    * [`"rpndatabuttonincrement"`](#InputChannel+event_rpndatabuttonincrement)
+        * [`"rpndataentryfine"`](#InputChannel+event_rpndataentryfine)
 
-    * [`"rpndatabuttondecrement"`](#InputChannel+event_rpndatabuttondecrement)
+        * [`"rpndatabuttonincrement"`](#InputChannel+event_rpndatabuttonincrement)
+
+        * [`"rpndatabuttondecrement"`](#InputChannel+event_rpndatabuttondecrement)
+
+    * _static_
+
+        * [`.EVENTS`](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
 
 
 * * *
@@ -698,6 +706,17 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 | value | <code>number</code> | The received value as a normalized number between 0 and 1. |
 | rawValue | <code>number</code> | The value as received (0-127) |
 
+
+* * *
+
+<a name="InputChannel.EVENTS"></a>
+
+## `InputChannel.EVENTS` : <code>Array.&lt;string&gt;</code>
+Array of channel-specific event names that can be listened to.
+
+<!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Read only**: true  
 
 * * *
 

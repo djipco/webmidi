@@ -1,27 +1,20 @@
 <a name="WebMidi"></a>
 
 # WebMidi ⇐ <code>EventEmitter</code>
-The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
-sending outgoing MIDI messages and reacting to incoming MIDI messages.
+The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
 
-When using the WebMidi.js library, the `WebMidi` class has already been instantiated for you.
-If you use the **IIFE** version, you should simply use the global object called `WebMidi`. If you
-use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an already-instantiated
-object. This means there is no need to instantiate a new `WebMidi` object directly.
-
-The `WebMidi` object extends the
-[EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
-[djipevents](https://djipco.github.io/djipevents/index.html) module. This means
-it also includes methods such as
-[addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
-[removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
-[hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
-others.
+When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+instantiated. If you use the **IIFE** version, you should simply use the global object called
+`WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an
+already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
+directly.
 
 <!--**Kind**: global class  
 -->
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
+**License**: Apache-2.0  
 
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
@@ -49,22 +42,6 @@ others.
     * [`.sysexEnabled`](#WebMidi+sysexEnabled) : <code>Boolean</code>
 
     * [`.time`](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
-
-    * [`.CHANNEL_EVENTS`](#WebMidi+CHANNEL_EVENTS) : <code>Array.&lt;string&gt;</code>
-
-    * [`.MIDI_INTERFACE_EVENTS`](#WebMidi+MIDI_INTERFACE_EVENTS) : <code>Array.&lt;string&gt;</code>
-
-    * [`.NOTES`](#WebMidi+NOTES) : <code>Array.&lt;string&gt;</code>
-
-    * [`.MIDI_CHANNEL_MESSAGES`](#WebMidi+MIDI_CHANNEL_MESSAGES) : <code>enum</code>
-
-    * [`.MIDI_SYSTEM_MESSAGES`](#WebMidi+MIDI_SYSTEM_MESSAGES) : <code>enum</code>
-
-    * [`.MIDI_CHANNEL_MODE_MESSAGES`](#WebMidi+MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
-
-    * [`.MIDI_CONTROL_CHANGE_MESSAGES`](#WebMidi+MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
-
-    * [`.MIDI_REGISTERED_PARAMETERS`](#WebMidi+MIDI_REGISTERED_PARAMETERS) : <code>enum</code>
 
     * [`.enable([options])`](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
 
@@ -259,234 +236,6 @@ browser might only be accurate to one millisecond.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-
-* * *
-
-<a name="WebMidi+CHANNEL_EVENTS"></a>
-
-## `webMidi.CHANNEL\_EVENTS` : <code>Array.&lt;string&gt;</code>
-An array of channel-specific event names that can be listened to.
-
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-
-* * *
-
-<a name="WebMidi+MIDI_INTERFACE_EVENTS"></a>
-
-## `webMidi.MIDI\_INTERFACE\_EVENTS` : <code>Array.&lt;string&gt;</code>
-Array of valid events triggered at the interface level.
-
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-
-* * *
-
-<a name="WebMidi+NOTES"></a>
-
-## `webMidi.NOTES` : <code>Array.&lt;string&gt;</code>
-Array of standard note names
-
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-
-* * *
-
-<a name="WebMidi+MIDI_CHANNEL_MESSAGES"></a>
-
-## `webMidi.MIDI\_CHANNEL\_MESSAGES` : <code>enum</code>
-Enum of all MIDI channel messages and their associated numerical value:
-
-- `noteoff`: 0x8 (8)
-- `noteon`: 0x9 (9)
-- `keyaftertouch`: 0xA (10)
-- `controlchange`: 0xB (11)
-- `nrpn`: 0xB (11)
-- `programchange`: 0xC (12)
-- `channelaftertouch`: 0xD (13)
-- `pitchbend`: 0xE (14)
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 3.0.0  
-
-* * *
-
-<a name="WebMidi+MIDI_SYSTEM_MESSAGES"></a>
-
-## `webMidi.MIDI\_SYSTEM\_MESSAGES` : <code>enum</code>
-Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-two custom messages.
-
-**System common messages**
-- `sysex`: 0xF0 (240)
-- `timecode`: 0xF1 (241)
-- `songposition`: 0xF2 (242)
-- `songselect`: 0xF3 (243)
-- `tunerequest`: 0xF6 (246)
-- `sysexend`: 0xF7 (247)
-
-The `sysexend` message is never actually received. It simply ends a sysex stream.
-
-**System real-time messages**
-
-- `clock`: 0xF8 (248)
-- `start`: 0xFA (250)
-- `continue`: 0xFB (251)
-- `stop`: 0xFC (252)
-- `activesensing`: 0xFE (254)
-- `reset`: 0xFF (255)
-
-Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-purpose. The
-[MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-simply states that they are undefined/reserved.
-
-**Custom WebMidi.js messages**
-
-- `midimessage`: 0
-- `unknownsystemmessage`: -1
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 2.0.0  
-
-* * *
-
-<a name="WebMidi+MIDI_CHANNEL_MODE_MESSAGES"></a>
-
-## `webMidi.MIDI\_CHANNEL\_MODE\_MESSAGES` : <code>enum</code>
-Enum of all channel mode messages and their associated numerical value:
-
-- `allsoundoff`: 120
-- `resetallcontrollers`: 121
-- `localcontrol`: 122
-- `allnotesoff`: 123
-- `omnimodeoff`: 124
-- `omnimodeon`: 125
-- `monomodeon`: 126
-- `polymodeon`: 127
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 2.0.0  
-
-* * *
-
-<a name="WebMidi+MIDI_CONTROL_CHANGE_MESSAGES"></a>
-
-## `webMidi.MIDI\_CONTROL\_CHANGE\_MESSAGES` : <code>enum</code>
-Enum of most control change messages and their associated numerical value. Note that some
-control change numbers do not have a predefined purpose.
-
-- `bankselectcoarse`: 0
-- `modulationwheelcoarse`: 1
-- `breathcontrollercoarse`: 2
-- `footcontrollercoarse`: 4
-- `portamentotimecoarse`: 5
-- `dataentrycoarse`: 6
-- `volumecoarse`: 7
-- `balancecoarse`: 8
-- `pancoarse`: 10
-- `expressioncoarse`: 11
-- `effectcontrol1coarse`: 12
-- `effectcontrol2coarse`: 13
-- `generalpurposeslider1`: 16
-- `generalpurposeslider2`: 17
-- `generalpurposeslider3`: 18
-- `generalpurposeslider4`: 19
-- `bankselectfine`: 32
-- `modulationwheelfine`: 33
-- `breathcontrollerfine`: 34
-- `footcontrollerfine`: 36
-- `portamentotimefine`: 37
-- `dataentryfine`: 38
-- `volumefine`: 39
-- `balancefine`: 40
-- `panfine`: 42
-- `expressionfine`: 43
-- `effectcontrol1fine`: 44
-- `effectcontrol2fine`: 45
-- `holdpedal`: 64
-- `portamento`: 65
-- `sustenutopedal`: 66
-- `softpedal`: 67
-- `legatopedal`: 68
-- `hold2pedal`: 69
-- `soundvariation`: 70
-- `resonance`: 71
-- `soundreleasetime`: 72
-- `soundattacktime`: 73
-- `brightness`: 74
-- `soundcontrol6`: 75
-- `soundcontrol7`: 76
-- `soundcontrol8`:`77
-- `soundcontrol9`: 78
-- `soundcontrol10`: 79
-- `generalpurposebutton1`: 80
-- `generalpurposebutton2`: 81
-- `generalpurposebutton3`: 82
-- `generalpurposebutton4`: 83
-- `reverblevel`: 91
-- `tremololevel`: 92
-- `choruslevel`: 93
-- `celestelevel`: 94
-- `phaserlevel`: 95
-- `databuttonincrement`: 96
-- `databuttondecrement`: 97
-- `nonregisteredparametercoarse`: 98
-- `nonregisteredparameterfine`: 99
-- `registeredparametercoarse`: 100
-- `registeredparameterfine`: 101
-
-- `allsoundoff`: 120
-- `resetallcontrollers`: 121
-- `localcontrol`: 122
-- `allnotesoff`: 123
-- `omnimodeoff`: 124
-- `omnimodeon`: 125
-- `monomodeon`: 126
-- `polymodeon`: 127
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 2.0.0  
-
-* * *
-
-<a name="WebMidi+MIDI_REGISTERED_PARAMETERS"></a>
-
-## `webMidi.MIDI\_REGISTERED\_PARAMETERS` : <code>enum</code>
-Enum of all registered parameters and their associated pair of numerical values. MIDI
-registered parameters extend the original list of control change messages. Currently, there are
-only a limited number of them:
-
-- `pitchbendrange`: [0x00, 0x00]
-- `channelfinetuning`: [0x00, 0x01]
-- `channelcoarsetuning`: [0x00, 0x02]
-- `tuningprogram`: [0x00, 0x03]
-- `tuningbank`: [0x00, 0x04]
-- `modulationrange`: [0x00, 0x05]
-- `azimuthangle`: [0x3D, 0x00]
-- `elevationangle`: [0x3D, 0x01]
-- `gain`: [0x3D, 0x02]
-- `distanceratio`: [0x3D, 0x03]
-- `maximumdistance`: [0x3D, 0x04]
-- `maximumdistancegain`: [0x3D, 0x05]
-- `referencedistanceratio`: [0x3D, 0x06]
-- `panspreadangle`: [0x3D, 0x07]
-- `rollangle`: [0x3D, 0x08]
-
-<!--**Kind**: instance enum of [<code>WebMidi</code>](#WebMidi)  
--->
-**Read only**: true  
-**Since**: 3.0.0  
 
 * * *
 

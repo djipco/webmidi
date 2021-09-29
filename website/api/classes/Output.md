@@ -1,6 +1,6 @@
 <a name="Output"></a>
 
-# Output
+# Output ⇐ <code>EventEmitter</code>
 The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
 subsystem and cannot be instantiated directly.
 
@@ -18,10 +18,12 @@ others.
 
 <!--**Kind**: global class  
 -->
+**Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>opened</code>](#Output+event_opened), [<code>disconnected</code>](#Output+event_disconnected), [<code>closed</code>](#Output+event_closed)  
+**License**: Apache-2.0  
 
 
-* [Output](#Output)
+* [Output](#Output) ⇐ <code>EventEmitter</code>
 
     * [`new Output(midiOutput)`](#new_Output_new)
 
@@ -294,6 +296,7 @@ from the MIDI Manufacturers Association.
 
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
 
+**License**: Apache-2.0  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

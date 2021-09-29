@@ -7,6 +7,7 @@ easy to make sense of the binaru data it contains.
 <!--**Kind**: global class  
 -->
 **Since**: 3.0.0  
+**License**: Apache-2.0  
 
 
 * [Message](#Message)

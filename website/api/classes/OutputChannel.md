@@ -1,6 +1,6 @@
 <a name="OutputChannel"></a>
 
-# OutputChannel
+# OutputChannel ⇐ <code>EventEmitter</code>
 The `OutputChannel` class represents a single output channel (1-16) from an output device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
@@ -18,10 +18,12 @@ others.
 
 <!--**Kind**: global class  
 -->
+**Extends**: <code>EventEmitter</code>  
 **Since**: 3.0.0  
+**License**: Apache-2.0  
 
 
-* [OutputChannel](#OutputChannel)
+* [OutputChannel](#OutputChannel) ⇐ <code>EventEmitter</code>
 
     * [`new OutputChannel(output, number)`](#new_OutputChannel_new)
 
@@ -303,6 +305,8 @@ parameter.
 - <code>RangeError</code> Invalid controller name.
 - <code>TypeError</code> The value array must have a length of 2.
 
+**Since**: 3.0.0  
+**License**: Apache-2.0  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

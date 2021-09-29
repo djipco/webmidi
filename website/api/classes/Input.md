@@ -1,6 +1,6 @@
 <a name="Input"></a>
 
-# Input
+# Input ⇐ <code>EventEmitter</code>
 The `Input` class represents a single MIDI input port. This object is derived from the host's
 MIDI subsystem and cannot be instantiated directly.
 
@@ -18,10 +18,12 @@ others.
 
 <!--**Kind**: global class  
 -->
+**Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:unknownmidimessage</code>  
+**License**: Apache-2.0  
 
 
-* [Input](#Input)
+* [Input](#Input) ⇐ <code>EventEmitter</code>
 
     * [`new Input(midiInput)`](#new_Input_new)
 

@@ -20,6 +20,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 <!--**Kind**: global class  
 -->
 **Since**: 3.0.0  
+**License**: Apache-2.0  
 
 
 * [Note](#Note)
