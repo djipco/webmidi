@@ -52,7 +52,7 @@ module.exports = {
             },
             {
               label: "1.0.0-beta.15",
-              href: "https://djipco.github.io/webmidi/archives/api/v1/"
+              href: "https://djipco.github.io/webmidi/archives/api/v1/classes/WebMidi.html"
             }
           ]
         },
