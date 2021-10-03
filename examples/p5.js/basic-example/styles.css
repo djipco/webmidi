@@ -1,0 +1,19 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1, p {
+  margin: 0;
+  padding: 16px 16px 0 16px;
+}
+
