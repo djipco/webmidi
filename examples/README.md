@@ -1,14 +1,14 @@
-## More Examples wanted!
+# WebMidi.js Usage Examples
 
-In this directory, you will find starter examples explaining how to use WehMidi.js in various 
+In this directory, you will find starter examples explaining how to use WebMidi.js in various 
 contexts or for various purposes. 
 
-To submit a new example, simply send a pull request and it will be quickly reviewed.
+## More Examples wanted!
 
-Please create a README.md file to provide information regarding how the example should be used.
+To submit a new example, simply send a pull request and it will be quickly reviewed. Please create 
+a README.md file to provide information regarding how the example should be used.
 
-### Frameworks
+## Frameworks
 
   * [p5.js](p5.js/README.md) 
   * [Vue.js](vue.js/README.md) 
-
