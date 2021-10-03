@@ -58,4 +58,8 @@ html[data-theme=dark] .header-github-link:before {
   display: none;
 }
 
+div[role=banner] {
+  background-color: var(--ifm-color-primary);
+}
+
 /*# sourceMappingURL=custom.css.map */

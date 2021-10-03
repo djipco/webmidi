@@ -58,7 +58,28 @@ module.exports = {
           className: "header-github-link",
           "aria-label": "GitHub repository"
         },
-      ],
+
+        {
+          type: "dropdown",
+          label: "API",
+          position: "left",
+          items: [
+            {
+              label: "Version 2.5.3",
+              href: "/webmidi/archives/api/v2/",
+            },
+            {
+              label: "Version 3.0.0-alpha.16",
+              to: "api/index",
+            }
+          ]
+        }
+
+
+
+
+
+      ]
     },
     footer: {
       style: "dark",
@@ -122,6 +143,18 @@ module.exports = {
 
       //... other Algolia params
       placeholder: "Search website..."
+    },
+    image: "og-card.png",
+    announcementBar: {
+      id: "github-banner",
+      content: "If you like WebMidi.js, give it a star ⭐ or sponsor it 💜 on <a target='_blank' " +
+        "href='https://github.com/djipco/webmidi'>GitHub</a>! "
+    },
+    gtag: {
+      trackingID: "UA-162785934-1",
+    },
+    googleAnalytics: {
+      trackingID: "UA-162785934-1"
     },
   },
 
