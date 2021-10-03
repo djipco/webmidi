@@ -10,5 +10,5 @@ a README.md file to provide information regarding how the example should be used
 
 ## Frameworks
 
-  * [p5.js](p5.js/README.md) 
-  * [Vue.js](vue.js/README.md) 
+  * [p5.js](p5.js/) 
+  * [Vue.js](vue.js/) 

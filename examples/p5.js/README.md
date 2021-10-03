@@ -1,6 +1,6 @@
 # Using WebMidi.js with p5.js
 
-A collection of examples to use WebMidi.js inside the p5.js frameowrk.
+A collection of examples to use WebMidi.js inside the p5.js framework.
 
 ## Examples
 
