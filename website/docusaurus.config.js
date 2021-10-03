@@ -65,11 +65,11 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "Version 2.5.3",
+              label: "✅ Stable: 2.5.3",
               href: "/webmidi/archives/api/v2/",
             },
             {
-              label: "Version 3.0.0-alpha.16",
+              label: "⚠️ Unstable: 3.0.0-alpha.16",
               to: "api/index",
             }
           ]
