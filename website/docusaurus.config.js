@@ -38,13 +38,32 @@ module.exports = {
           label: "Documentation",
         },
         {
-          to: "api/index",
+          type: "dropdown",
           label: "API",
           position: "left",
+          items: [
+            {
+              label: "3.0.0-alpha.16",
+              to: "api/index",
+            },
+            {
+              label: "2.5.3 (stable, recommended)",
+              href: "https://djipco.github.io/webmidi/archives/api/v2/"
+            },
+            {
+              label: "1.0.0-beta.15",
+              href: "https://djipco.github.io/webmidi/archives/api/v1/"
+            }
+          ]
         },
         {
           to: "showcase",
           label: "Showcase",
+          position: "left",
+        },
+        {
+          to: "about",
+          label: "About",
           position: "left",
         },
         {
@@ -59,21 +78,7 @@ module.exports = {
           "aria-label": "GitHub repository"
         },
 
-        {
-          type: "dropdown",
-          label: "API",
-          position: "left",
-          items: [
-            {
-              label: "✅ Stable: 2.5.3",
-              href: "/webmidi/archives/api/v2/",
-            },
-            {
-              label: "⚠️ Unstable: 3.0.0-alpha.16",
-              to: "api/index",
-            }
-          ]
-        }
+
 
 
 
