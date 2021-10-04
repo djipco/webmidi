@@ -3,7 +3,7 @@
 WebMidi.js is being used by amazing people to create awesome projects. Here are some examples of 
 what the library can do.
 
-:::tip
+:::tip Contribute
 
 I would love for your project to be listed here. To add it, simply
 [modify](https://github.com/djipco/webmidi/edit/develop/website/src/pages/showcase/index.md) this
