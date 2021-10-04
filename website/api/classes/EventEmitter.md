@@ -5,8 +5,6 @@ The `EventEmitter` class provides methods to implement the _observable_ design p
 pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
 emitter.
 
-It is a mostly abstract class meant to be extended by (or mixed into) other objects.
-
 <!--**Kind**: global class  
 -->
 
@@ -63,7 +61,7 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [eventsSuspended] | <code>boolean</code> | <code>false</code> | Whether the `EventEmitter` is initially in a suspended state (i.e. not executing callbacks). |
+| [eventsSuspended] | <code>boolean</code> | <code>false</code> | Whether the `EventEmitter` is initially in a suspended state (i.e. not executing callbacks). It is a mostly abstract class meant to be extended by (or mixed into) other objects. |
 
 
 * * *
