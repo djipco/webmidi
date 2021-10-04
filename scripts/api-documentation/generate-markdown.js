@@ -9,7 +9,8 @@ const replace = require("replace-in-file");
 const rimraf = require("@alexbinary/rimraf");
 const moment = require("moment");
 
-const SOURCE_PATH = path.join(process.cwd(), "src");
+const ROOT_PATH = process.cwd();
+// const SOURCE_PATH = path.join(process.cwd(), "src");
 const TARGET_PATH = path.join(process.cwd(), "website", "api", "classes");
 const TEMPLATE_DIR = path.join(__dirname, "markdown-template");
 
@@ -18,13 +19,31 @@ async function generate() {
   // Create temporary directory to host modified files
   const tempPath = await fsPromises.mkdtemp(path.join(os.tmpdir(), "webmidi-api-markdown-"));
 
+  const files = [
+    path.join(ROOT_PATH, "src", "Enumerations.js"),
+    path.join(ROOT_PATH, "src", "Input.js"),
+    path.join(ROOT_PATH, "src", "InputChannel.js"),
+    path.join(ROOT_PATH, "src", "Message.js"),
+    path.join(ROOT_PATH, "src", "Note.js"),
+    path.join(ROOT_PATH, "src", "Output.js"),
+    path.join(ROOT_PATH, "src", "OutputChannel.js"),
+    path.join(ROOT_PATH, "src", "Utilities.js"),
+    path.join(ROOT_PATH, "src", "WebMidi.js"),
+
+    path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "EventEmitter.js"),
+    path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "Listener.js")
+  ];
+
   // Get list of source files
-  let files = await fsPromises.readdir(SOURCE_PATH);
+  // let files = await fsPromises.readdir(SOURCE_PATH);
 
   // Copy source files to temp dir, strip out the import/export statements and create markdown file
-  await files.forEach(async file => {
+  await files.forEach(async filepath => {
 
-    await fs.copy(path.join(SOURCE_PATH, file), path.join(tempPath, file), {overwrite: true});
+    const file = path.basename(filepath);
+
+    // await fs.copy(path.join(SOURCE_PATH, file), path.join(tempPath, file), {overwrite: true});
+    await fs.copy(filepath, path.join(tempPath, file), {overwrite: true});
 
     const options = {
       files: path.join(tempPath, file),
