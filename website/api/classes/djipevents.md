@@ -1,19 +1,3 @@
-# Classes
-
-<dl>
-<dt><a href="#EventEmitter">EventEmitter</a></dt>
-<dd><p>The <code>EventEmitter</code> class provides methods to implement the <em>observable</em> design pattern. This
-pattern allows one to <em>register</em> a function to execute when a specific event is <em>emitted</em> by the
-emitter.</p>
-<p>It is a mostly abstract class meant to be extended by (or mixed into) other objects.</p>
-</dd>
-<dt><a href="#Listener">Listener</a></dt>
-<dd><p>The <code>Listener</code> class represents a single event listener object. Such objects keep all relevant
-contextual information such as the event being listened to, the object the listener was attached
-to, the callback function and so on.</p>
-</dd>
-</dl>
-
 <a name="EventEmitter"></a>
 
 # EventEmitter
@@ -41,13 +25,13 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
         * [`.eventCount`](#EventEmitter+eventCount) : <code>number</code>
 
-        * [`.addListener(event, callback, [options])`](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
+        * [`.addListener(event, callback, [options])`](#EventEmitter+addListener) ⇒ <code>Listener</code>
 
-        * [`.addOneTimeListener(event, callback, [options])`](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
+        * [`.addOneTimeListener(event, callback, [options])`](#EventEmitter+addOneTimeListener) ⇒ <code>Listener</code>
 
         * [`.hasListener([event], [callback])`](#EventEmitter+hasListener) ⇒ <code>boolean</code>
 
-        * [`.getListeners(event)`](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+        * [`.getListeners(event)`](#EventEmitter+getListeners) ⇒ <code>Array.&lt;Listener&gt;</code>
 
         * [`.suspendEvent(event)`](#EventEmitter+suspendEvent)
 
@@ -138,8 +122,8 @@ tied to a specific event.
 
 <a name="EventEmitter+addListener"></a>
 
-## `eventEmitter.addListener(event, callback, [options])` ⇒ [<code>Listener</code>](#Listener)
-Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
+## `eventEmitter.addListener(event, callback, [options])` ⇒ <code>Listener</code>
+Adds a listener for the specified event. It returns the [**Listener**](Listener) object
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
@@ -148,7 +132,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
 -->
-**Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
+**Returns**: <code>Listener</code> - The newly created [**Listener**](Listener) object.  
 **Throws**:
 
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
@@ -164,16 +148,16 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
 | [options.remaining] | <code>boolean</code> | <code>Infinity</code> | The number of times after which the callback should automatically be removed. |
-| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
+| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired. |
 
 
 * * *
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## `eventEmitter.addOneTimeListener(event, callback, [options])` ⇒ [<code>Listener</code>](#Listener)
+## `eventEmitter.addOneTimeListener(event, callback, [options])` ⇒ <code>Listener</code>
 Adds a one-time listener for the specified event. The listener will be executed once and then
-destroyed. It returns the [**Listener**](#Listener) object that was created and attached
+destroyed. It returns the [**Listener**](Listener) object that was created and attached
 to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
@@ -182,7 +166,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
 -->
-**Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
+**Returns**: <code>Listener</code> - The newly created [**Listener**](Listener) object.  
 **Throws**:
 
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
@@ -197,7 +181,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 | [options.context] | <code>Object</code> | <code>this</code> | The context to invoke the callback function in. |
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
-| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
+| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired. |
 
 
 * * *
@@ -218,14 +202,14 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 | Param | Type | Description |
 | --- | --- | --- |
 | [event] | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to check |
-| [callback] | <code>function</code> \| [<code>Listener</code>](#Listener) | The actual function that was added to the event or the [Listener](#Listener) object returned by `addListener()`. |
+| [callback] | <code>function</code> \| <code>Listener</code> | The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`. |
 
 
 * * *
 
 <a name="EventEmitter+getListeners"></a>
 
-## `eventEmitter.getListeners(event)` ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## `eventEmitter.getListeners(event)` ⇒ <code>Array.&lt;Listener&gt;</code>
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -234,7 +218,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
 -->
-**Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
+**Returns**: <code>Array.&lt;Listener&gt;</code> - An array of `Listener` objects  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -455,157 +439,6 @@ easy to pass data from where the listener is added to where the listener is exec
 | --- | --- | --- |
 | [...args] | <code>\*</code> | A variable number of arguments matching the ones (if any) that were passed to the `emit()` method (except, the first one) followed by the arguments found in the listener's `arguments` array. |
 
-
-* * *
-
-<a name="Listener"></a>
-
-# Listener
-The `Listener` class represents a single event listener object. Such objects keep all relevant
-contextual information such as the event being listened to, the object the listener was attached
-to, the callback function and so on.
-
-<!--**Kind**: global class  
--->
-
-
-* [Listener](#Listener)
-
-    * [`new Listener(event, target, callback, [options])`](#new_Listener_new)
-
-    * [`.event`](#Listener+event) : <code>string</code>
-
-    * [`.target`](#Listener+target) : [<code>EventEmitter</code>](#EventEmitter)
-
-    * [`.callback`](#Listener+callback) : <code>function</code>
-
-    * [`.context`](#Listener+context) : <code>Object</code>
-
-    * [`.remaining`](#Listener+remaining) : <code>number</code>
-
-    * [`.count`](#Listener+count) : <code>number</code>
-
-    * [`.arguments`](#Listener+arguments) : <code>array</code>
-
-    * [`.suspended`](#Listener+suspended) : <code>boolean</code>
-
-    * [`.remove()`](#Listener+remove)
-
-
-* * *
-
-<a name="new_Listener_new"></a>
-
-## `new Listener(event, target, callback, [options])`
-<!---->
-**Throws**:
-
-- <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
-- <code>ReferenceError</code> The `target` parameter is mandatory.
-- <code>TypeError</code> The `callback` must be a function.
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event being listened to |
-| target | [<code>EventEmitter</code>](#EventEmitter) |  | The `EventEmitter` object that the listener is attached to |
-| callback | [<code>callback</code>](#EventEmitter..callback) |  | The function to call when the listener is triggered |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.context] | <code>Object</code> | <code>target</code> | The context to invoke the listener in (a.k.a. the value of `this` inside the callback function). |
-| [options.remaining] | <code>number</code> | <code>Infinity</code> | The remaining number of times after which the callback should automatically be removed. |
-| [options.arguments] | <code>array</code> |  | An array of arguments that will be passed separately to the callback function upon execution. The array is stored in the `arguments` property and can be retrieved or modified as desired. |
-
-
-* * *
-
-<a name="Listener+event"></a>
-
-## `listener.event` : <code>string</code>
-The event name
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+target"></a>
-
-## `listener.target` : [<code>EventEmitter</code>](#EventEmitter)
-The object that the event is attached to (or that emitted the event)
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+callback"></a>
-
-## `listener.callback` : <code>function</code>
-The callback function
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+context"></a>
-
-## `listener.context` : <code>Object</code>
-The context to execute the context function in (a.k.a. the value of `this` inside the
-callback function)
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+remaining"></a>
-
-## `listener.remaining` : <code>number</code>
-The remaining number of times after which the callback should automatically be removed.
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+count"></a>
-
-## `listener.count` : <code>number</code>
-The number of times the listener function was executed
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+arguments"></a>
-
-## `listener.arguments` : <code>array</code>
-Arguments to pass separately to the callback function upon execution
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+suspended"></a>
-
-## `listener.suspended` : <code>boolean</code>
-Whether this listener is currently suspended
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-
-* * *
-
-<a name="Listener+remove"></a>
-
-## `listener.remove()`
-Removes the listener from its target.
-
-<!--**Kind**: instance method of [<code>Listener</code>](#Listener)  
--->
 
 * * *
 
