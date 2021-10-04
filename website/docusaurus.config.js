@@ -11,6 +11,7 @@ module.exports = {
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
+
   organizationName: "djipco",
   projectName: "webmidi",
 
@@ -28,7 +29,8 @@ module.exports = {
       // title: "My Site",
       logo: {
         alt: "WebMidi.js",
-        src: "img/webmidijs-logo.svg",
+        src: "img/webmidijs-logo-dark.svg",
+        srcDark: "img/webmidijs-logo-light.svg",
       },
       items: [
         {
@@ -57,6 +59,21 @@ module.exports = {
           ]
         },
         {
+          type: "dropdown",
+          label: "Community",
+          position: "left",
+          items: [
+            {
+              label: "GitHub Discussions",
+              href: "https://github.com/djipco/webmidi/discussions"
+            },
+            {
+              label: "Forum (Archived)",
+              href: "https://webmidijs.org/forum/"
+            }
+          ]
+        },
+        {
           to: "showcase",
           label: "Showcase",
           position: "left",
@@ -65,11 +82,6 @@ module.exports = {
           to: "about",
           label: "About",
           position: "left",
-        },
-        {
-          href: "https://github.com/djipco/webmidi/discussions",
-          label: "Forum",
-          position: "right",
         },
         {
           href: "https://github.com/djipco/webmidi",
