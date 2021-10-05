@@ -16,7 +16,6 @@ directly.
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
 <!--**License**: Apache-2.0  
 -->
-<!---->
 
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
@@ -81,7 +80,7 @@ works.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -90,7 +89,6 @@ works.
 | defaults.note.release | <code>number</code> | A number between 0 and 127 representing the default release velocity of notes. Initial value is 64. |
 | defaults.note.duration | <code>number</code> | A number representing the default duration of notes (in seconds). Initial value is Infinity. |
 
--->
 
 * * *
 
@@ -103,7 +101,6 @@ unless you know what you are doing.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-<!---->
 <!---->
 
 * * *
@@ -121,7 +118,6 @@ validation turned on.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!---->
 
 * * *
 
@@ -134,7 +130,6 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 -->
 **Read only**: true  
 <!---->
-<!---->
 
 * * *
 
@@ -146,7 +141,6 @@ An array of all currently available MIDI inputs.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-<!---->
 <!---->
 
 * * *
@@ -161,7 +155,6 @@ isBrowser can both be true at the same time.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!---->
 
 * * *
 
@@ -174,7 +167,6 @@ and isBrowser can both be true at the same time.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
-<!---->
 <!---->
 
 * * *
@@ -197,7 +189,6 @@ of 60).
 -->
 **Since**: 2.1  
 <!---->
-<!---->
 
 * * *
 
@@ -209,7 +200,6 @@ An array of all currently available MIDI outputs.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-<!---->
 <!---->
 
 * * *
@@ -228,7 +218,6 @@ not be there.
 -->
 **Read only**: true  
 <!---->
-<!---->
 
 * * *
 
@@ -241,7 +230,6 @@ enabled via the `enable()` method.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-<!---->
 <!---->
 
 * * *
@@ -260,7 +248,6 @@ browser might only be accurate to one millisecond.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 **Read only**: true  
-<!---->
 <!---->
 
 * * *
@@ -329,7 +316,6 @@ WebMidi.enable().then(ports => {
 | [options.validation] | <code>boolean</code> | <code>true</code> | Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on. |
 | [options.software] | <code>boolean</code> | <code>false</code> | Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020. |
 
-<!---->
 
 * * *
 
@@ -348,7 +334,6 @@ destroyed.
 - Error The Web MIDI API is not supported by your environment.
 
 **Since**: 2.0.0  
-<!---->
 <!---->
 
 * * *
@@ -377,7 +362,6 @@ input can be found, the method returns `false`.
 | --- | --- | --- |
 | id | <code>string</code> | The ID string of the input. IDs can be viewed by looking at the [inputs](#WebMidi+inputs) array. Even though they sometimes look like integers, IDs are strings. |
 
-<!---->
 
 * * *
 
@@ -403,7 +387,6 @@ specified name.
 | --- | --- | --- |
 | name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs](#WebMidi+inputs) array). |
 
-<!---->
 
 * * *
 
@@ -429,7 +412,6 @@ specified name.
 | --- | --- | --- |
 | name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs](#WebMidi+outputs) array). |
 
-<!---->
 
 * * *
 
@@ -458,7 +440,6 @@ matching output can be found, the method returns `false`.
 | --- | --- | --- |
 | id | <code>string</code> | The ID string of the port. IDs can be viewed by looking at the [outputs](#WebMidi+outputs) array. |
 
-<!---->
 
 * * *
 
@@ -470,7 +451,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -479,7 +460,6 @@ Event emitted when an error occurs trying to enable `WebMidi`
 | type | <code>string</code> | `error` |
 | error | <code>\*</code> | Actual error that occurred |
 
--->
 
 * * *
 
@@ -491,7 +471,7 @@ Event emitted once the MIDI interface has been successfully created.
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -499,7 +479,6 @@ Event emitted once the MIDI interface has been successfully created.
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
 | type | <code>string</code> | `midiaccessgranted` |
 
--->
 
 * * *
 
@@ -511,7 +490,7 @@ Event emitted once `WebMidi` has been fully enabled
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -519,7 +498,6 @@ Event emitted once `WebMidi` has been fully enabled
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
 | type | <code>string</code> | `enabled` |
 
--->
 
 * * *
 
@@ -531,7 +509,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -539,7 +517,6 @@ Event emitted once `WebMidi` has been successfully disabled.
 | target | [<code>WebMidi</code>](#WebMidi) | The object that triggered the event |
 | type | <code>string</code> | `disabled` |
 
--->
 
 * * *
 
@@ -553,7 +530,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -561,7 +538,6 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | type | <code>string</code> | `connected` |
 | target | <code>Input</code> \| <code>Output</code> | The [Input](Input) or [Output](Output) object that triggered the event. |
 
--->
 
 * * *
 
@@ -575,7 +551,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
-<!--**Properties**
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -589,7 +565,6 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | target.state | <code>string</code> | `disconnected` |
 | target.type | <code>string</code> | `input` or `output` |
 
--->
 
 * * *
 

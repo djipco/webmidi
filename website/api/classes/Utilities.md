@@ -9,7 +9,6 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
-<!---->
 
 
 * [Utilities](#Utilities)
@@ -71,7 +70,6 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 | identifier | <code>string</code> |  | The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc. |
 | [octaveOffset] | <code>number</code> | <code>0</code> | A integer to offset the octave by. |
 
-<!---->
 
 * * *
 
@@ -98,7 +96,6 @@ When a number is specified, the translation to note is done using a value of 60 
 | --- | --- | --- |
 | value | <code>string</code> \| <code>number</code> | A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127). |
 
-<!---->
 
 * * *
 
@@ -122,7 +119,6 @@ integers between 1 and 16 are silently ignored.
 | --- | --- | --- |
 | [channel] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | An integer or an array of integers to parse as channel numbers. |
 
-<!---->
 
 * * *
 
@@ -145,7 +141,6 @@ returned.
 | --- | --- | --- |
 | [time] | <code>number</code> \| <code>string</code> | The time string (e.g. `"+2000"`) or number to parse |
 
-<!---->
 
 * * *
 
@@ -172,7 +167,6 @@ successfully be parsed to a note number.
 | --- | --- | --- |
 | input | <code>string</code> \| <code>number</code> | A string or number to extract the MIDI note number from. |
 
-<!---->
 
 * * *
 
@@ -197,7 +191,6 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 | The | <code>number</code> | MIDI note number to convert to a note identifier |
 | An | <code>octaveOffset</code> | offset to apply to the resulting octave |
 
-<!---->
 
 * * *
 
@@ -229,7 +222,6 @@ If the input is a note number or identifier, it is possible to specify options b
 | [options.release] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
 | [options.octaveOffset] | <code>number</code> | <code>0</code> | An integer to offset the octave by. **This is only used when the input value is a note identifier.** |
 
-<!---->
 
 * * *
 
@@ -263,7 +255,6 @@ input.
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. |
 | [options.octaveOffset] | <code>number</code> | <code>0</code> | An integer to offset the octave by. **This is only used when the input value is a note identifier.** |
 
-<!---->
 
 * * *
 
@@ -286,7 +277,6 @@ input value cannot be converted to an integer, the method returns 0.
 | --- | --- |
 | value | A positive integer between 0 and 127 (inclusive) |
 
-<!---->
 
 * * *
 
@@ -309,7 +299,6 @@ the input value cannot be converted to a number, the method returns 0.
 | --- | --- |
 | value | A positive integer between 0 and 127 (inclusive) |
 
-<!---->
 
 * * *
 
@@ -333,7 +322,6 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 | --- |
 | offset | 
 
-<!---->
 
 * * *
 
@@ -353,7 +341,6 @@ supplied.
 | object | <code>Object</code> | 
 | value | <code>\*</code> | 
 
-<!---->
 
 * * *
 
