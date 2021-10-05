@@ -5,12 +5,16 @@ slug: /
 
 # Quick Start
 
-**You want to quickly try out the library?** This quick start guide will let you establish a
-connection with your MIDI instrument in less than 5 minutes.
+**You want to get started as quickly as possible?** This guide will let you establish a connection
+with your MIDI instrument in less than 5 minutes.
 
-⚠️ Hint: You can **go even faster** by copying the 
-[code](https://github.com/djipco/webmidi/blob/master/examples/quick-start/index.html) from 
+:::tip 
+
+Hint: You can **go even faster** by copying the
+[code](https://github.com/djipco/webmidi/blob/master/examples/quick-start/index.html) from
 our GitHub repo.
+
+:::
 
 ## Step 1 - Create the HTML page
 
@@ -73,14 +77,24 @@ machines, controllers, etc.):
 ## Step 3 - Connect your device 
 
 🎹 Connect an input MIDI device (synth, drum machine, controller, etc.) and load the HTML page in a 
-compatible browser. The page will detect the device and display its name.
+compatible browser. You will be prompted to authorize the MIDI connection.
 
-⚠️ If nothing shows up, first make sure your MIDI device is detected at the system level. Also make 
-sure is shows up as an input device.
+After authorization, the page should detect the connected MIDI devices and display their name.
+
+:::caution
+
+If nothing shows up, first make sure your MIDI device is detected at the operating system level.
+
+:::
 
 ## Step 4 - Listen for MIDI messages
 
-In the `onEnabled()` function, we now add a callback function that will be triggered each time 
+In the `onEnabled()` function, we first retrieve the input device we want to work with and store it
+in the `mySynth` variable. You can retrieve it by number or by name (as you wish).
+
+Then we use the `addListener()` method on MIDI channel 1 of the input device to add a 
+callback function that will be called each time a **noteon** event is received on that MIDI channel.
+
 ```javascript
 function onEnabled() {
 
@@ -92,19 +106,17 @@ function onEnabled() {
     });
   }
   
-  // Retrieve the first MIDI input device found
-  const synth = WebMidi.inputs[0];
+  const mySynth = WebMidi.inputs[0];
+  // const mySynth = WebMidi.getInputByName("TYPE NAME HERE!")
   
-  // Retrieve the first MIDI channel of the device and add a listener 
-  // for 'noteon' events.
-  synth.channels[1].addListener("noteon", e => {
+  mySynth.channels[1].addListener("noteon", e => {
     document.body.innerHTML+= `${e.note.name} <br>`;
   });
   
 }
 ```
-If you wish to listen for notes on several channels, you can add the listener directly on the 
-input device itself:
+Alternatively, if you wish to listen for notes from several channels at once, you can add the 
+listener directly on the input device itself:
 
 ```javascript
 // Listen to 'note on' events on channels 1, 2 and 3 of the first input MIDI device
@@ -113,15 +125,16 @@ WebMidi.inputs[0].addListener("noteon", e => {
 }, {channels: [1, 2, 3]});
 ```
 
-If you wish to use another device, simply substitute the `0` in `input[0]` for the index of the
-device you want to use.
-
 ## Step 5 - Have fun!
 
 **That's it!** To go further, please take some time to check out the 
-[Getting Started](getting-started) section. It covers important topics such as instalaltion 
+[Getting Started](getting-started) section. It covers important topics such as installation 
 options, compatibility, security, etc.
 
-If you ever need help, head over to the 
+:::tip
+
+If you ever need further help, you can also head over to the
 [GitHub Discussions](https://github.com/djipco/webmidi/discussions) page and ask all the questions
 you want!
+
+:::
