@@ -29,8 +29,12 @@ async function generate() {
     path.join(ROOT_PATH, "src", "Utilities.js"),
     path.join(ROOT_PATH, "src", "WebMidi.js"),
 
-    path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "EventEmitter.js"),
-    path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "Listener.js")
+    // path.join(ROOT_PATH, "src", "EventEmitter.js"),
+    // path.join(ROOT_PATH, "src", "Listener.js"),
+
+    // path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "EventEmitter.js"),
+    // path.join(ROOT_PATH, "scripts", "api-documentation", "djipevents", "Listener.js")
+    // path.join(ROOT_PATH, "node_modules", "djipevents", "src", "djipevents.js")
   ];
 
   // Get list of source files
