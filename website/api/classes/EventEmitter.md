@@ -11,52 +11,52 @@ emitter.
 
 * [EventEmitter](#EventEmitter)
 
-    * [`new EventEmitter([eventsSuspended])`](#new_EventEmitter_new)
+    * [new EventEmitter([eventsSuspended])](#new_EventEmitter_new)
 
     * _instance_
 
-        * [`.eventMap`](#EventEmitter+eventMap) : <code>Object</code>
+        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
 
-        * [`.eventsSuspended`](#EventEmitter+eventsSuspended) : <code>boolean</code>
+        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
 
-        * [`.eventNames`](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
 
-        * [`.eventCount`](#EventEmitter+eventCount) : <code>number</code>
+        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
 
-        * [`.addListener(event, callback, [options])`](#EventEmitter+addListener) ⇒ <code>Listener</code>
+        * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ <code>Listener</code>
 
-        * [`.addOneTimeListener(event, callback, [options])`](#EventEmitter+addOneTimeListener) ⇒ <code>Listener</code>
+        * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ <code>Listener</code>
 
-        * [`.hasListener([event], [callback])`](#EventEmitter+hasListener) ⇒ <code>boolean</code>
+        * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
 
-        * [`.getListeners(event)`](#EventEmitter+getListeners) ⇒ <code>Array.&lt;Listener&gt;</code>
+        * [.getListeners(event)](#EventEmitter+getListeners) ⇒ <code>Array.&lt;Listener&gt;</code>
 
-        * [`.suspendEvent(event)`](#EventEmitter+suspendEvent)
+        * [.suspendEvent(event)](#EventEmitter+suspendEvent)
 
-        * [`.unsuspendEvent(event)`](#EventEmitter+unsuspendEvent)
+        * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
 
-        * [`.getListenerCount(event)`](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+        * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
 
-        * [`.emit(event, ...args)`](#EventEmitter+emit) ⇒ <code>Array</code>
+        * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
 
-        * [`.removeListener([event], [callback], [options])`](#EventEmitter+removeListener)
+        * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
 
-        * [`.waitFor(event, [options])`](#EventEmitter+waitFor)
+        * [.waitFor(event, [options])](#EventEmitter+waitFor)
 
     * _static_
 
-        * [`.ANY_EVENT`](#EventEmitter.ANY_EVENT) : <code>Symbol</code>
+        * [.ANY_EVENT](#EventEmitter.ANY_EVENT) : <code>Symbol</code>
 
     * _inner_
 
-        * [`~callback`](#EventEmitter..callback) : <code>function</code>
+        * [~callback](#EventEmitter..callback) : <code>function</code>
 
 
 * * *
 
 <a name="new_EventEmitter_new"></a>
 
-## `new EventEmitter([eventsSuspended])`
+## new EventEmitter([eventsSuspended])
 <!---->
 
 | Param | Type | Default | Description |
@@ -68,7 +68,7 @@ emitter.
 
 <a name="EventEmitter+eventMap"></a>
 
-## `eventEmitter.eventMap` : <code>Object</code>
+## eventEmitter.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -80,7 +80,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## `eventEmitter.eventsSuspended` : <code>boolean</code>
+## eventEmitter.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -91,7 +91,7 @@ emitter
 
 <a name="EventEmitter+eventNames"></a>
 
-## `eventEmitter.eventNames` : <code>Array.&lt;string&gt;</code>
+## eventEmitter.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -106,7 +106,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventCount"></a>
 
-## `eventEmitter.eventCount` : <code>number</code>
+## eventEmitter.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -120,7 +120,7 @@ tied to a specific event.
 
 <a name="EventEmitter+addListener"></a>
 
-## `eventEmitter.addListener(event, callback, [options])` ⇒ <code>Listener</code>
+## eventEmitter.addListener(event, callback, [options]) ⇒ <code>Listener</code>
 Adds a listener for the specified event. It returns the [**Listener**](Listener) object
 that was created and attached to the event.
 
@@ -153,7 +153,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## `eventEmitter.addOneTimeListener(event, callback, [options])` ⇒ <code>Listener</code>
+## eventEmitter.addOneTimeListener(event, callback, [options]) ⇒ <code>Listener</code>
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](Listener) object that was created and attached
 to the event.
@@ -186,7 +186,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+hasListener"></a>
 
-## `eventEmitter.hasListener([event], [callback])` ⇒ <code>boolean</code>
+## eventEmitter.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -207,7 +207,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 <a name="EventEmitter+getListeners"></a>
 
-## `eventEmitter.getListeners(event)` ⇒ <code>Array.&lt;Listener&gt;</code>
+## eventEmitter.getListeners(event) ⇒ <code>Array.&lt;Listener&gt;</code>
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -227,7 +227,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## `eventEmitter.suspendEvent(event)`
+## eventEmitter.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -249,7 +249,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## `eventEmitter.unsuspendEvent(event)`
+## eventEmitter.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -269,7 +269,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## `eventEmitter.getListenerCount(event)` ⇒ <code>number</code>
+## eventEmitter.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -289,7 +289,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+emit"></a>
 
-## `eventEmitter.emit(event, ...args)` ⇒ <code>Array</code>
+## eventEmitter.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -330,7 +330,7 @@ functions
 
 <a name="EventEmitter+removeListener"></a>
 
-## `eventEmitter.removeListener([event], [callback], [options])`
+## eventEmitter.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -355,7 +355,7 @@ callback to match or one or more of the additional options.
 
 <a name="EventEmitter+waitFor"></a>
 
-## `eventEmitter.waitFor(event, [options])`
+## eventEmitter.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -411,7 +411,7 @@ try {
 
 <a name="EventEmitter.ANY_EVENT"></a>
 
-## `EventEmitter.ANY\_EVENT` : <code>Symbol</code>
+## EventEmitter.ANY\_EVENT : <code>Symbol</code>
 Identifier to use when trying to add or remove a listener that should be triggered when any
 events occur.
 
@@ -422,7 +422,7 @@ events occur.
 
 <a name="EventEmitter..callback"></a>
 
-## `EventEmitter~callback` : <code>function</code>
+## EventEmitter~callback : <code>function</code>
 The callback function is executed when the associated event is triggered via `emit()`. The
 `emit()` method relays all additional arguments it received to the callback functions. Since
 `emit()` can be passed a variable number of arguments, it is up to the developer to make sure

@@ -11,32 +11,32 @@ to, the callback function and so on.
 
 * [Listener](#Listener)
 
-    * [`new Listener(event, target, callback, [options])`](#new_Listener_new)
+    * [new Listener(event, target, callback, [options])](#new_Listener_new)
 
-    * [`.event`](#Listener+event) : <code>string</code>
+    * [.event](#Listener+event) : <code>string</code>
 
-    * [`.target`](#Listener+target) : <code>EventEmitter</code>
+    * [.target](#Listener+target) : <code>EventEmitter</code>
 
-    * [`.callback`](#Listener+callback) : <code>function</code>
+    * [.callback](#Listener+callback) : <code>function</code>
 
-    * [`.context`](#Listener+context) : <code>Object</code>
+    * [.context](#Listener+context) : <code>Object</code>
 
-    * [`.remaining`](#Listener+remaining) : <code>number</code>
+    * [.remaining](#Listener+remaining) : <code>number</code>
 
-    * [`.count`](#Listener+count) : <code>number</code>
+    * [.count](#Listener+count) : <code>number</code>
 
-    * [`.arguments`](#Listener+arguments) : <code>array</code>
+    * [.arguments](#Listener+arguments) : <code>array</code>
 
-    * [`.suspended`](#Listener+suspended) : <code>boolean</code>
+    * [.suspended](#Listener+suspended) : <code>boolean</code>
 
-    * [`.remove()`](#Listener+remove)
+    * [.remove()](#Listener+remove)
 
 
 * * *
 
 <a name="new_Listener_new"></a>
 
-## `new Listener(event, target, callback, [options])`
+## new Listener(event, target, callback, [options])
 <!---->
 **Throws**:
 
@@ -60,7 +60,7 @@ to, the callback function and so on.
 
 <a name="Listener+event"></a>
 
-## `listener.event` : <code>string</code>
+## listener.event : <code>string</code>
 The event name
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -70,7 +70,7 @@ The event name
 
 <a name="Listener+target"></a>
 
-## `listener.target` : <code>EventEmitter</code>
+## listener.target : <code>EventEmitter</code>
 The object that the event is attached to (or that emitted the event)
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -80,7 +80,7 @@ The object that the event is attached to (or that emitted the event)
 
 <a name="Listener+callback"></a>
 
-## `listener.callback` : <code>function</code>
+## listener.callback : <code>function</code>
 The callback function
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -90,7 +90,7 @@ The callback function
 
 <a name="Listener+context"></a>
 
-## `listener.context` : <code>Object</code>
+## listener.context : <code>Object</code>
 The context to execute the context function in (a.k.a. the value of `this` inside the
 callback function)
 
@@ -101,7 +101,7 @@ callback function)
 
 <a name="Listener+remaining"></a>
 
-## `listener.remaining` : <code>number</code>
+## listener.remaining : <code>number</code>
 The remaining number of times after which the callback should automatically be removed.
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -111,7 +111,7 @@ The remaining number of times after which the callback should automatically be r
 
 <a name="Listener+count"></a>
 
-## `listener.count` : <code>number</code>
+## listener.count : <code>number</code>
 The number of times the listener function was executed
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -121,7 +121,7 @@ The number of times the listener function was executed
 
 <a name="Listener+arguments"></a>
 
-## `listener.arguments` : <code>array</code>
+## listener.arguments : <code>array</code>
 Arguments to pass separately to the callback function upon execution
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -131,7 +131,7 @@ Arguments to pass separately to the callback function upon execution
 
 <a name="Listener+suspended"></a>
 
-## `listener.suspended` : <code>boolean</code>
+## listener.suspended : <code>boolean</code>
 Whether this listener is currently suspended
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
@@ -141,7 +141,7 @@ Whether this listener is currently suspended
 
 <a name="Listener+remove"></a>
 
-## `listener.remove()`
+## listener.remove()
 Removes the listener from its target.
 
 <!--**Kind**: instance method of [<code>Listener</code>](#Listener)  

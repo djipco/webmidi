@@ -13,22 +13,22 @@ enumerations are static and should be referenced using the class name. For examp
 
 * [Enumerations](#Enumerations)
 
-    * [`.MIDI_CHANNEL_MESSAGES`](#Enumerations.MIDI_CHANNEL_MESSAGES) : <code>enum</code>
+    * [.MIDI_CHANNEL_MESSAGES](#Enumerations.MIDI_CHANNEL_MESSAGES) : <code>enum</code>
 
-    * [`.MIDI_CHANNEL_MODE_MESSAGES`](#Enumerations.MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
+    * [.MIDI_CHANNEL_MODE_MESSAGES](#Enumerations.MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
 
-    * [`.MIDI_CONTROL_CHANGE_MESSAGES`](#Enumerations.MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
+    * [.MIDI_CONTROL_CHANGE_MESSAGES](#Enumerations.MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
 
-    * [`.MIDI_REGISTERED_PARAMETERS`](#Enumerations.MIDI_REGISTERED_PARAMETERS) : <code>enum</code>
+    * [.MIDI_REGISTERED_PARAMETERS](#Enumerations.MIDI_REGISTERED_PARAMETERS) : <code>enum</code>
 
-    * [`.MIDI_SYSTEM_MESSAGES`](#Enumerations.MIDI_SYSTEM_MESSAGES) : <code>enum</code>
+    * [.MIDI_SYSTEM_MESSAGES](#Enumerations.MIDI_SYSTEM_MESSAGES) : <code>enum</code>
 
 
 * * *
 
 <a name="Enumerations.MIDI_CHANNEL_MESSAGES"></a>
 
-## `Enumerations.MIDI\_CHANNEL\_MESSAGES` : <code>enum</code>
+## Enumerations.MIDI\_CHANNEL\_MESSAGES : <code>enum</code>
 Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
 
 - `noteoff`: 0x8 (8)
@@ -48,7 +48,7 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 
 <a name="Enumerations.MIDI_CHANNEL_MODE_MESSAGES"></a>
 
-## `Enumerations.MIDI\_CHANNEL\_MODE\_MESSAGES` : <code>enum</code>
+## Enumerations.MIDI\_CHANNEL\_MODE\_MESSAGES : <code>enum</code>
 Enumeration of all channel mode messages and their associated numerical value:
 
 - `allsoundoff`: 120
@@ -68,7 +68,7 @@ Enumeration of all channel mode messages and their associated numerical value:
 
 <a name="Enumerations.MIDI_CONTROL_CHANGE_MESSAGES"></a>
 
-## `Enumerations.MIDI\_CONTROL\_CHANGE\_MESSAGES` : <code>enum</code>
+## Enumerations.MIDI\_CONTROL\_CHANGE\_MESSAGES : <code>enum</code>
 Enumeration of most control change messages and their associated numerical value. Note that
 some control change numbers do not have a predefined purpose and are absent from this list.
 
@@ -149,7 +149,7 @@ some control change numbers do not have a predefined purpose and are absent from
 
 <a name="Enumerations.MIDI_REGISTERED_PARAMETERS"></a>
 
-## `Enumerations.MIDI\_REGISTERED\_PARAMETERS` : <code>enum</code>
+## Enumerations.MIDI\_REGISTERED\_PARAMETERS : <code>enum</code>
 Enumeration of all registered parameters and their associated pair of numerical values. MIDI
 registered parameters extend the original list of control change messages. Currently, there are
 only a limited number of them:
@@ -178,7 +178,7 @@ only a limited number of them:
 
 <a name="Enumerations.MIDI_SYSTEM_MESSAGES"></a>
 
-## `Enumerations.MIDI\_SYSTEM\_MESSAGES` : <code>enum</code>
+## Enumerations.MIDI\_SYSTEM\_MESSAGES : <code>enum</code>
 Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
 uses two custom messages.
 

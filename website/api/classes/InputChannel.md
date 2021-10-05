@@ -28,78 +28,78 @@ details.
 
 * [InputChannel](#InputChannel) ⇐ <code>EventEmitter</code>
 
-    * [`new InputChannel(input, number)`](#new_InputChannel_new)
+    * [new InputChannel(input, number)](#new_InputChannel_new)
 
     * _instance_
 
-        * [`.parameterNumberEventsEnabled`](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
+        * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
 
-        * [`.octaveOffset`](#InputChannel+octaveOffset) : <code>number</code>
+        * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
 
-        * [`.input`](#InputChannel+input) : <code>Input</code>
+        * [.input](#InputChannel+input) : <code>Input</code>
 
-        * [`.number`](#InputChannel+number) : <code>number</code>
+        * [.number](#InputChannel+number) : <code>number</code>
 
-        * [`.destroy()`](#InputChannel+destroy)
+        * [.destroy()](#InputChannel+destroy)
 
-        * [`.getChannelModeByNumber(number)`](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
+        * [.getChannelModeByNumber(number)](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
 
-        * [`.getCcNameByNumber(number)`](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
+        * [.getCcNameByNumber(number)](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
 
-        * [`"midimessage"`](#InputChannel+event_midimessage)
+        * ["midimessage"](#InputChannel+event_midimessage)
 
-        * [`"noteoff"`](#InputChannel+event_noteoff)
+        * ["noteoff"](#InputChannel+event_noteoff)
 
-        * [`"noteon"`](#InputChannel+event_noteon)
+        * ["noteon"](#InputChannel+event_noteon)
 
-        * [`"keyaftertouch"`](#InputChannel+event_keyaftertouch)
+        * ["keyaftertouch"](#InputChannel+event_keyaftertouch)
 
-        * [`"controlchange"`](#InputChannel+event_controlchange)
+        * ["controlchange"](#InputChannel+event_controlchange)
 
-        * [`"programchange"`](#InputChannel+event_programchange)
+        * ["programchange"](#InputChannel+event_programchange)
 
-        * [`"channelaftertouch"`](#InputChannel+event_channelaftertouch)
+        * ["channelaftertouch"](#InputChannel+event_channelaftertouch)
 
-        * [`"pitchbend"`](#InputChannel+event_pitchbend)
+        * ["pitchbend"](#InputChannel+event_pitchbend)
 
-        * [`"allsoundoff"`](#InputChannel+event_allsoundoff)
+        * ["allsoundoff"](#InputChannel+event_allsoundoff)
 
-        * [`"resetallcontrollers"`](#InputChannel+event_resetallcontrollers)
+        * ["resetallcontrollers"](#InputChannel+event_resetallcontrollers)
 
-        * [`"localcontrol"`](#InputChannel+event_localcontrol)
+        * ["localcontrol"](#InputChannel+event_localcontrol)
 
-        * [`"allnotesoff"`](#InputChannel+event_allnotesoff)
+        * ["allnotesoff"](#InputChannel+event_allnotesoff)
 
-        * [`"omnimode"`](#InputChannel+event_omnimode)
+        * ["omnimode"](#InputChannel+event_omnimode)
 
-        * [`"monomode"`](#InputChannel+event_monomode)
+        * ["monomode"](#InputChannel+event_monomode)
 
-        * [`"nrpndataentrycoarse"`](#InputChannel+event_nrpndataentrycoarse)
+        * ["nrpndataentrycoarse"](#InputChannel+event_nrpndataentrycoarse)
 
-        * [`"nrpndataentryfine"`](#InputChannel+event_nrpndataentryfine)
+        * ["nrpndataentryfine"](#InputChannel+event_nrpndataentryfine)
 
-        * [`"nrpndatabuttonincrement"`](#InputChannel+event_nrpndatabuttonincrement)
+        * ["nrpndatabuttonincrement"](#InputChannel+event_nrpndatabuttonincrement)
 
-        * [`"nrpndatabuttondecrement"`](#InputChannel+event_nrpndatabuttondecrement)
+        * ["nrpndatabuttondecrement"](#InputChannel+event_nrpndatabuttondecrement)
 
-        * [`"rpndataentrycoarse"`](#InputChannel+event_rpndataentrycoarse)
+        * ["rpndataentrycoarse"](#InputChannel+event_rpndataentrycoarse)
 
-        * [`"rpndataentryfine"`](#InputChannel+event_rpndataentryfine)
+        * ["rpndataentryfine"](#InputChannel+event_rpndataentryfine)
 
-        * [`"rpndatabuttonincrement"`](#InputChannel+event_rpndatabuttonincrement)
+        * ["rpndatabuttonincrement"](#InputChannel+event_rpndatabuttonincrement)
 
-        * [`"rpndatabuttondecrement"`](#InputChannel+event_rpndatabuttondecrement)
+        * ["rpndatabuttondecrement"](#InputChannel+event_rpndatabuttondecrement)
 
     * _static_
 
-        * [`.EVENTS`](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
+        * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
 
 
 * * *
 
 <a name="new_InputChannel_new"></a>
 
-## `new InputChannel(input, number)`
+## new InputChannel(input, number)
 <!---->
 
 | Param | Type | Description |
@@ -112,7 +112,7 @@ details.
 
 <a name="InputChannel+parameterNumberEventsEnabled"></a>
 
-## `inputChannel.parameterNumberEventsEnabled` : <code>boolean</code>
+## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
 are composed of a sequence of specific **control change** messages. When a valid sequence of
 such control change messages is received, an `nrpn` event will fire.
@@ -128,7 +128,7 @@ all buffered control change messages will be discarded as incomplete.
 
 <a name="InputChannel+octaveOffset"></a>
 
-## `inputChannel.octaveOffset` : <code>number</code>
+## inputChannel.octaveOffset : <code>number</code>
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
 octave (C4).
@@ -147,7 +147,7 @@ and with the value defined on the parent `Input` object.
 
 <a name="InputChannel+input"></a>
 
-## `inputChannel.input` : <code>Input</code>
+## inputChannel.input : <code>Input</code>
 The [Input](Input) this channel belongs to
 
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
@@ -158,7 +158,7 @@ The [Input](Input) this channel belongs to
 
 <a name="InputChannel+number"></a>
 
-## `inputChannel.number` : <code>number</code>
+## inputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
@@ -169,7 +169,7 @@ This channel's MIDI number (1-16)
 
 <a name="InputChannel+destroy"></a>
 
-## `inputChannel.destroy()`
+## inputChannel.destroy()
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
 
@@ -180,7 +180,7 @@ input.
 
 <a name="InputChannel+getChannelModeByNumber"></a>
 
-## `inputChannel.getChannelModeByNumber(number)` ⇒ <code>string</code> \| <code>false</code>
+## inputChannel.getChannelModeByNumber(number) ⇒ <code>string</code> \| <code>false</code>
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
 
@@ -199,7 +199,7 @@ found.
 
 <a name="InputChannel+getCcNameByNumber"></a>
 
-## `inputChannel.getCcNameByNumber(number)` ⇒ <code>string</code> \| <code>undefined</code>
+## inputChannel.getCcNameByNumber(number) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name of a control change message matching the specified number. Some valid control
 change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
@@ -224,7 +224,7 @@ found.
 
 <a name="InputChannel+event_midimessage"></a>
 
-## `"midimessage"`
+## "midimessage"
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -247,7 +247,7 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 <a name="InputChannel+event_noteoff"></a>
 
-## `"noteoff"`
+## "noteoff"
 Event emitted when a **note off** MIDI message has been received on the channel.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -269,7 +269,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 <a name="InputChannel+event_noteon"></a>
 
-## `"noteon"`
+## "noteon"
 Event emitted when a **note on** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -294,7 +294,7 @@ Event emitted when a **note on** MIDI message has been received.
 
 <a name="InputChannel+event_keyaftertouch"></a>
 
-## `"keyaftertouch"`
+## "keyaftertouch"
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -318,7 +318,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 <a name="InputChannel+event_controlchange"></a>
 
-## `"controlchange"`
+## "controlchange"
 Event emitted when a **control change** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -342,7 +342,7 @@ Event emitted when a **control change** MIDI message has been received.
 
 <a name="InputChannel+event_programchange"></a>
 
-## `"programchange"`
+## "programchange"
 Event emitted when a **program change** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -363,7 +363,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 <a name="InputChannel+event_channelaftertouch"></a>
 
-## `"channelaftertouch"`
+## "channelaftertouch"
 Event emitted when a control change MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -384,7 +384,7 @@ Event emitted when a control change MIDI message has been received.
 
 <a name="InputChannel+event_pitchbend"></a>
 
-## `"pitchbend"`
+## "pitchbend"
 Event emitted when a pitch bend MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -405,7 +405,7 @@ Event emitted when a pitch bend MIDI message has been received.
 
 <a name="InputChannel+event_allsoundoff"></a>
 
-## `"allsoundoff"`
+## "allsoundoff"
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -424,7 +424,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 <a name="InputChannel+event_resetallcontrollers"></a>
 
-## `"resetallcontrollers"`
+## "resetallcontrollers"
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -443,7 +443,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 <a name="InputChannel+event_localcontrol"></a>
 
-## `"localcontrol"`
+## "localcontrol"
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (local control on) of `false` (local control
 off).
@@ -465,7 +465,7 @@ off).
 
 <a name="InputChannel+event_allnotesoff"></a>
 
-## `"allnotesoff"`
+## "allnotesoff"
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -484,7 +484,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 <a name="InputChannel+event_omnimode"></a>
 
-## `"omnimode"`
+## "omnimode"
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
@@ -505,7 +505,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 <a name="InputChannel+event_monomode"></a>
 
-## `"monomode"`
+## "monomode"
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
 poly mode on).
@@ -527,7 +527,7 @@ poly mode on).
 
 <a name="InputChannel+event_nrpndataentrycoarse"></a>
 
-## `"nrpndataentrycoarse"`
+## "nrpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -550,7 +550,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 <a name="InputChannel+event_nrpndataentryfine"></a>
 
-## `"nrpndataentryfine"`
+## "nrpndataentryfine"
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -573,7 +573,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 <a name="InputChannel+event_nrpndatabuttonincrement"></a>
 
-## `"nrpndatabuttonincrement"`
+## "nrpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -596,7 +596,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 <a name="InputChannel+event_nrpndatabuttondecrement"></a>
 
-## `"nrpndatabuttondecrement"`
+## "nrpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -619,7 +619,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 <a name="InputChannel+event_rpndataentrycoarse"></a>
 
-## `"rpndataentrycoarse"`
+## "rpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -642,7 +642,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 <a name="InputChannel+event_rpndataentryfine"></a>
 
-## `"rpndataentryfine"`
+## "rpndataentryfine"
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -665,7 +665,7 @@ Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 <a name="InputChannel+event_rpndatabuttonincrement"></a>
 
-## `"rpndatabuttonincrement"`
+## "rpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -688,7 +688,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 <a name="InputChannel+event_rpndatabuttondecrement"></a>
 
-## `"rpndatabuttondecrement"`
+## "rpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -711,7 +711,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 <a name="InputChannel.EVENTS"></a>
 
-## `InputChannel.EVENTS` : <code>Array.&lt;string&gt;</code>
+## InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
 Array of channel-specific event names that can be listened to.
 
 <!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  

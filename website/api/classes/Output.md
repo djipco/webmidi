@@ -25,118 +25,118 @@ others.
 
 * [Output](#Output) ⇐ <code>EventEmitter</code>
 
-    * [`new Output(midiOutput)`](#new_Output_new)
+    * [new Output(midiOutput)](#new_Output_new)
 
-    * [`.channels`](#Output+channels) : <code>Array.&lt;OutputChannel&gt;</code>
+    * [.channels](#Output+channels) : <code>Array.&lt;OutputChannel&gt;</code>
 
-    * [`.name`](#Output+name) : <code>string</code>
+    * [.name](#Output+name) : <code>string</code>
 
-    * [`.id`](#Output+id) : <code>string</code>
+    * [.id](#Output+id) : <code>string</code>
 
-    * [`.connection`](#Output+connection) : <code>string</code>
+    * [.connection](#Output+connection) : <code>string</code>
 
-    * [`.manufacturer`](#Output+manufacturer) : <code>string</code>
+    * [.manufacturer](#Output+manufacturer) : <code>string</code>
 
-    * [`.state`](#Output+state) : <code>string</code>
+    * [.state](#Output+state) : <code>string</code>
 
-    * [`.type`](#Output+type) : <code>string</code>
+    * [.type](#Output+type) : <code>string</code>
 
-    * [`.octaveOffset`](#Output+octaveOffset) : <code>number</code>
+    * [.octaveOffset](#Output+octaveOffset) : <code>number</code>
 
-    * [`.destroy()`](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.destroy()](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
 
-    * [`.open()`](#Output+open) ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
+    * [.open()](#Output+open) ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
 
-    * [`.close()`](#Output+close) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.close()](#Output+close) ⇒ <code>Promise.&lt;void&gt;</code>
 
-    * [`.send(message, [options])`](#Output+send) ⇒ [<code>Output</code>](#Output)
+    * [.send(message, [options])](#Output+send) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendSysex(manufacturer, [data], [options])`](#Output+sendSysex) ⇒ [<code>Output</code>](#Output)
+    * [.sendSysex(manufacturer, [data], [options])](#Output+sendSysex) ⇒ [<code>Output</code>](#Output)
 
-    * [`.clear()`](#Output+clear) ⇒ [<code>Output</code>](#Output)
+    * [.clear()](#Output+clear) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendTimecodeQuarterFrame(value, [options])`](#Output+sendTimecodeQuarterFrame) ⇒ [<code>Output</code>](#Output)
+    * [.sendTimecodeQuarterFrame(value, [options])](#Output+sendTimecodeQuarterFrame) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setSongPosition([value], [options])`](#Output+setSongPosition) ⇒ [<code>Output</code>](#Output)
+    * [.setSongPosition([value], [options])](#Output+setSongPosition) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setSong(value, [options])`](#Output+setSong) ⇒ [<code>Output</code>](#Output)
+    * [.setSong(value, [options])](#Output+setSong) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendTuneRequest([options])`](#Output+sendTuneRequest) ⇒ [<code>Output</code>](#Output)
+    * [.sendTuneRequest([options])](#Output+sendTuneRequest) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendClock([options])`](#Output+sendClock) ⇒ [<code>Output</code>](#Output)
+    * [.sendClock([options])](#Output+sendClock) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendStart([options])`](#Output+sendStart) ⇒ [<code>Output</code>](#Output)
+    * [.sendStart([options])](#Output+sendStart) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendContinue([options])`](#Output+sendContinue) ⇒ [<code>Output</code>](#Output)
+    * [.sendContinue([options])](#Output+sendContinue) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendStop([options])`](#Output+sendStop) ⇒ [<code>Output</code>](#Output)
+    * [.sendStop([options])](#Output+sendStop) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendActiveSensing([options])`](#Output+sendActiveSensing) ⇒ [<code>Output</code>](#Output)
+    * [.sendActiveSensing([options])](#Output+sendActiveSensing) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendReset([options])`](#Output+sendReset) ⇒ [<code>Output</code>](#Output)
+    * [.sendReset([options])](#Output+sendReset) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setKeyAftertouch(note, [pressure], [options])`](#Output+setKeyAftertouch) ⇒ [<code>Output</code>](#Output)
+    * [.setKeyAftertouch(note, [pressure], [options])](#Output+setKeyAftertouch) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendControlChange(controller, [value], [options])`](#Output+sendControlChange) ⇒ [<code>Output</code>](#Output)
+    * [.sendControlChange(controller, [value], [options])](#Output+sendControlChange) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setPitchBendRange(semitones, [cents], [options])`](#Output+setPitchBendRange) ⇒ [<code>Output</code>](#Output)
+    * [.setPitchBendRange(semitones, [cents], [options])](#Output+setPitchBendRange) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setRegisteredParameter(parameter, [data], [options])`](#Output+setRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+    * [.setRegisteredParameter(parameter, [data], [options])](#Output+setRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setChannelAftertouch([pressure], [options])`](#Output+setChannelAftertouch) ⇒ [<code>Output</code>](#Output)
+    * [.setChannelAftertouch([pressure], [options])](#Output+setChannelAftertouch) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setPitchBend(value, [options])`](#Output+setPitchBend) ⇒ [<code>Output</code>](#Output)
+    * [.setPitchBend(value, [options])](#Output+setPitchBend) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setProgram([program], [options])`](#Output+setProgram) ⇒ [<code>Output</code>](#Output)
+    * [.setProgram([program], [options])](#Output+setProgram) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setModulationRange([semitones], [cents], [options])`](#Output+setModulationRange) ⇒ [<code>Output</code>](#Output)
+    * [.setModulationRange([semitones], [cents], [options])](#Output+setModulationRange) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setMasterTuning([value], [options])`](#Output+setMasterTuning) ⇒ [<code>Output</code>](#Output)
+    * [.setMasterTuning([value], [options])](#Output+setMasterTuning) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setTuningProgram(value, [options])`](#Output+setTuningProgram) ⇒ [<code>Output</code>](#Output)
+    * [.setTuningProgram(value, [options])](#Output+setTuningProgram) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setTuningBank(value, [options])`](#Output+setTuningBank) ⇒ [<code>Output</code>](#Output)
+    * [.setTuningBank(value, [options])](#Output+setTuningBank) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendChannelMode(command, [value], [options])`](#Output+sendChannelMode) ⇒ [<code>Output</code>](#Output)
+    * [.sendChannelMode(command, [value], [options])](#Output+sendChannelMode) ⇒ [<code>Output</code>](#Output)
 
-    * [`.turnSoundOff([options])`](#Output+turnSoundOff) ⇒ [<code>Output</code>](#Output)
+    * [.turnSoundOff([options])](#Output+turnSoundOff) ⇒ [<code>Output</code>](#Output)
 
-    * [`.turnNotesOff([options])`](#Output+turnNotesOff) ⇒ [<code>Output</code>](#Output)
+    * [.turnNotesOff([options])](#Output+turnNotesOff) ⇒ [<code>Output</code>](#Output)
 
-    * [`.resetAllControllers([options])`](#Output+resetAllControllers) ⇒ [<code>Output</code>](#Output)
+    * [.resetAllControllers([options])](#Output+resetAllControllers) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setPolyphonicMode(mode, [options])`](#Output+setPolyphonicMode) ⇒ [<code>Output</code>](#Output)
+    * [.setPolyphonicMode(mode, [options])](#Output+setPolyphonicMode) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setLocalControl([state], [options])`](#Output+setLocalControl) ⇒ [<code>Output</code>](#Output)
+    * [.setLocalControl([state], [options])](#Output+setLocalControl) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setOmniMode([state], [options])`](#Output+setOmniMode) ⇒ [<code>Output</code>](#Output)
+    * [.setOmniMode([state], [options])](#Output+setOmniMode) ⇒ [<code>Output</code>](#Output)
 
-    * [`.setNonRegisteredParameter(parameter, [data], [options])`](#Output+setNonRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+    * [.setNonRegisteredParameter(parameter, [data], [options])](#Output+setNonRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
-    * [`.incrementRegisteredParameter(parameter, [options])`](#Output+incrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+    * [.incrementRegisteredParameter(parameter, [options])](#Output+incrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
-    * [`.decrementRegisteredParameter(parameter, [options])`](#Output+decrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+    * [.decrementRegisteredParameter(parameter, [options])](#Output+decrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendNoteOff(note, [options])`](#Output+sendNoteOff) ⇒ [<code>Output</code>](#Output)
+    * [.sendNoteOff(note, [options])](#Output+sendNoteOff) ⇒ [<code>Output</code>](#Output)
 
-    * [`.stopNote(note, options)`](#Output+stopNote) ⇒ [<code>Output</code>](#Output)
+    * [.stopNote(note, options)](#Output+stopNote) ⇒ [<code>Output</code>](#Output)
 
-    * [`.playNote(note, [options])`](#Output+playNote) ⇒ [<code>Output</code>](#Output)
+    * [.playNote(note, [options])](#Output+playNote) ⇒ [<code>Output</code>](#Output)
 
-    * [`.sendNoteOn(note, [options])`](#Output+sendNoteOn) ⇒ [<code>Output</code>](#Output)
+    * [.sendNoteOn(note, [options])](#Output+sendNoteOn) ⇒ [<code>Output</code>](#Output)
 
-    * [`"opened"`](#Output+event_opened)
+    * ["opened"](#Output+event_opened)
 
-    * [`"closed"`](#Output+event_closed)
+    * ["closed"](#Output+event_closed)
 
-    * [`"disconnected"`](#Output+event_disconnected)
+    * ["disconnected"](#Output+event_disconnected)
 
 
 * * *
 
 <a name="new_Output_new"></a>
 
-## `new Output(midiOutput)`
+## new Output(midiOutput)
 <!---->
 
 | Param | Type | Description |
@@ -148,7 +148,7 @@ others.
 
 <a name="Output+channels"></a>
 
-## `output.channels` : <code>Array.&lt;OutputChannel&gt;</code>
+## output.channels : <code>Array.&lt;OutputChannel&gt;</code>
 Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
@@ -159,7 +159,7 @@ channels are numbered 1 through 16.
 
 <a name="Output+name"></a>
 
-## `output.name` : <code>string</code>
+## output.name : <code>string</code>
 Name of the MIDI output
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
@@ -170,7 +170,7 @@ Name of the MIDI output
 
 <a name="Output+id"></a>
 
-## `output.id` : <code>string</code>
+## output.id : <code>string</code>
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
@@ -183,7 +183,7 @@ the same port.
 
 <a name="Output+connection"></a>
 
-## `output.connection` : <code>string</code>
+## output.connection : <code>string</code>
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
@@ -194,7 +194,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <a name="Output+manufacturer"></a>
 
-## `output.manufacturer` : <code>string</code>
+## output.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this output port available.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
@@ -205,7 +205,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 <a name="Output+state"></a>
 
-## `output.state` : <code>string</code>
+## output.state : <code>string</code>
 State of the output port: `"connected"` or `"disconnected"`.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
@@ -216,7 +216,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 <a name="Output+type"></a>
 
-## `output.type` : <code>string</code>
+## output.type : <code>string</code>
 Type of the output port (`"output"`)
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
@@ -227,7 +227,7 @@ Type of the output port (`"output"`)
 
 <a name="Output+octaveOffset"></a>
 
-## `output.octaveOffset` : <code>number</code>
+## output.octaveOffset : <code>number</code>
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
 
@@ -242,7 +242,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <a name="Output+destroy"></a>
 
-## `output.destroy()` ⇒ <code>Promise.&lt;void&gt;</code>
+## output.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
 subsystem is unlinked.
 
@@ -253,7 +253,7 @@ subsystem is unlinked.
 
 <a name="Output+open"></a>
 
-## `output.open()` ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
+## output.open() ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
 Opens the output for usage.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
@@ -264,7 +264,7 @@ Opens the output for usage.
 
 <a name="Output+close"></a>
 
-## `output.close()` ⇒ <code>Promise.&lt;void&gt;</code>
+## output.close() ⇒ <code>Promise.&lt;void&gt;</code>
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
 until the output is opened again by calling [Output.open()](#Output+open). You can check
 the connection status by looking at the [connection](#Output+connection) property.
@@ -276,7 +276,7 @@ the connection status by looking at the [connection](#Output+connection) propert
 
 <a name="Output+send"></a>
 
-## `output.send(message, [options])` ⇒ [<code>Output</code>](#Output)
+## output.send(message, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -309,7 +309,7 @@ from the MIDI Manufacturers Association.
 
 <a name="Output+sendSysex"></a>
 
-## `output.sendSysex(manufacturer, [data], [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendSysex(manufacturer, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
 (*sysex*) message. The `data` parameter should only contain the data of the message. When
 sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
@@ -381,7 +381,7 @@ than 0xFF.
 
 <a name="Output+clear"></a>
 
-## `output.clear()` ⇒ [<code>Output</code>](#Output)
+## output.clear() ⇒ [<code>Output</code>](#Output)
 Clears all messages that have been queued but not yet delivered.
 
 Warning: this method has been defined in the specification but has not been implemented yet. As
@@ -398,7 +398,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 <a name="Output+sendTimecodeQuarterFrame"></a>
 
-## `output.sendTimecodeQuarterFrame(value, [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendTimecodeQuarterFrame(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
 on the data. It is up to the developer to format the data according to the
 [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
@@ -418,7 +418,7 @@ on the data. It is up to the developer to format the data according to the
 
 <a name="Output+setSongPosition"></a>
 
-## `output.setSongPosition([value], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setSongPosition([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
 16383) which are 16th note. Position 0 is always the start of the song.
 
@@ -438,7 +438,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 <a name="Output+setSong"></a>
 
-## `output.setSong(value, [options])` ⇒ [<code>Output</code>](#Output)
+## output.setSong(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **song select** MIDI message.
 
 **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
@@ -465,7 +465,7 @@ use a numbering scheme starting at 1.
 
 <a name="Output+sendTuneRequest"></a>
 
-## `output.sendTuneRequest([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendTuneRequest([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **tune request** real-time message.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
@@ -483,7 +483,7 @@ Sends a MIDI **tune request** real-time message.
 
 <a name="Output+sendClock"></a>
 
-## `output.sendClock([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendClock([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
 for every quarter note.
 
@@ -501,7 +501,7 @@ for every quarter note.
 
 <a name="Output+sendStart"></a>
 
-## `output.sendStart([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendStart([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
 song at beat 0. To start playback elsewhere in the song, use the
 [sendContinue()](#Output+sendContinue) method.
@@ -520,7 +520,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 <a name="Output+sendContinue"></a>
 
-## `output.sendContinue([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendContinue([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
 start, use the [sendStart()](#Output+sendStart)` method.
@@ -539,7 +539,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 <a name="Output+sendStop"></a>
 
-## `output.sendStop([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendStop([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **stop** real-time message. This tells the device connected to this output to stop
 playback immediately (or at the scheduled time).
 
@@ -557,7 +557,7 @@ playback immediately (or at the scheduled time).
 
 <a name="Output+sendActiveSensing"></a>
 
-## `output.sendActiveSensing([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendActiveSensing([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **active sensing** real-time message. This tells the device connected to this port
 that the connection is still good. Active sensing messages should be sent every 300 ms if there
 was no other activity on the MIDI port.
@@ -576,7 +576,7 @@ was no other activity on the MIDI port.
 
 <a name="Output+sendReset"></a>
 
-## `output.sendReset([options])` ⇒ [<code>Output</code>](#Output)
+## output.sendReset([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset** real-time message. This tells the device connected to this output that it
 should reset itself to a default state.
 
@@ -594,7 +594,7 @@ should reset itself to a default state.
 
 <a name="Output+setKeyAftertouch"></a>
 
-## `output.setKeyAftertouch(note, [pressure], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](#Output+setChannelAftertouch).
@@ -618,7 +618,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 <a name="Output+sendControlChange"></a>
 
-## `output.sendControlChange(controller, [value], [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendControlChange(controller, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
 control change message to send can be specified numerically (0-127) or by using one of the
 following common names:
@@ -725,7 +725,7 @@ specification.
 
 <a name="Output+setPitchBendRange"></a>
 
-## `output.setPitchBendRange(semitones, [cents], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
@@ -754,7 +754,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 <a name="Output+setRegisteredParameter"></a>
 
-## `output.setRegisteredParameter(parameter, [data], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -804,7 +804,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 <a name="Output+setChannelAftertouch"></a>
 
-## `output.setChannelAftertouch([pressure], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setChannelAftertouch([pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
 aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
@@ -826,7 +826,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 <a name="Output+setPitchBend"></a>
 
-## `output.setPitchBend(value, [options])` ⇒ [<code>Output</code>](#Output)
+## output.setPitchBend(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
@@ -847,7 +847,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 <a name="Output+setProgram"></a>
 
-## `output.setProgram([program], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setProgram([program], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
@@ -876,7 +876,7 @@ than 0xFF.
 
 <a name="Output+setModulationRange"></a>
 
-## `output.setModulationRange([semitones], [cents], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setModulationRange([semitones], [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
 depth of their modulation wheel's range. The range can be specified with the `semitones`
 parameter, the `cents` parameter or by specifying both parameters at the same time.
@@ -904,7 +904,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 <a name="Output+setMasterTuning"></a>
 
-## `output.setMasterTuning([value], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setMasterTuning([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a master tuning message to the specified channel(s). The value is decimal and must be
 larger than -65 semitones and smaller than 64 semitones.
 
@@ -935,7 +935,7 @@ than 64.
 
 <a name="Output+setTuningProgram"></a>
 
-## `output.setTuningProgram(value, [options])` ⇒ [<code>Output</code>](#Output)
+## output.setTuningProgram(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -964,7 +964,7 @@ that use a numbering scheme starting at 1.
 
 <a name="Output+setTuningBank"></a>
 
-## `output.setTuningBank(value, [options])` ⇒ [<code>Output</code>](#Output)
+## output.setTuningBank(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -993,7 +993,7 @@ that use a numbering scheme starting at 1.
 
 <a name="Output+sendChannelMode"></a>
 
-## `output.sendChannelMode(command, [value], [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendChannelMode(command, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
 send can be specified numerically or by using one of the following common names:
 
@@ -1042,7 +1042,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 <a name="Output+turnSoundOff"></a>
 
-## `output.turnSoundOff([options])` ⇒ [<code>Output</code>](#Output)
+## output.turnSoundOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
@@ -1061,7 +1061,7 @@ channel but will not prevent new sounds from being triggered.
 
 <a name="Output+turnNotesOff"></a>
 
-## `output.turnNotesOff([options])` ⇒ [<code>Output</code>](#Output)
+## output.turnNotesOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
@@ -1081,7 +1081,7 @@ fade out just as if their key had been released. This is different from the
 
 <a name="Output+resetAllControllers"></a>
 
-## `output.resetAllControllers([options])` ⇒ [<code>Output</code>](#Output)
+## output.resetAllControllers([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
@@ -1099,7 +1099,7 @@ the pitch bend, to their default value.
 
 <a name="Output+setPolyphonicMode"></a>
 
-## `output.setPolyphonicMode(mode, [options])` ⇒ [<code>Output</code>](#Output)
+## output.setPolyphonicMode(mode, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
@@ -1121,7 +1121,7 @@ multiple notes are being played.
 
 <a name="Output+setLocalControl"></a>
 
-## `output.setLocalControl([state], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setLocalControl([state], [options]) ⇒ [<code>Output</code>](#Output)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
@@ -1143,7 +1143,7 @@ its out port.
 
 <a name="Output+setOmniMode"></a>
 
-## `output.setOmniMode([state], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setOmniMode([state], [options]) ⇒ [<code>Output</code>](#Output)
 Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
 instrument to respond to messages from all channels.
 
@@ -1172,7 +1172,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 <a name="Output+setNonRegisteredParameter"></a>
 
-## `output.setNonRegisteredParameter(parameter, [data], [options])` ⇒ [<code>Output</code>](#Output)
+## output.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
 two-position array specifying the values of the two control bytes. The value is specified by
 passing in a single integer (most cases) or an array of two integers.
@@ -1226,7 +1226,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 <a name="Output+incrementRegisteredParameter"></a>
 
-## `output.incrementRegisteredParameter(parameter, [options])` ⇒ [<code>Output</code>](#Output)
+## output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -1262,7 +1262,7 @@ names that can be used with this method:
 
 <a name="Output+decrementRegisteredParameter"></a>
 
-## `output.decrementRegisteredParameter(parameter, [options])` ⇒ [<code>Output</code>](#Output)
+## output.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -1302,7 +1302,7 @@ names that can be used with this method:
 
 <a name="Output+sendNoteOff"></a>
 
-## `output.sendNoteOff(note, [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendNoteOff(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note off** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -1334,7 +1334,7 @@ precedence over the one specified via the method's `options` parameter.
 
 <a name="Output+stopNote"></a>
 
-## `output.stopNote(note, options)` ⇒ [<code>Output</code>](#Output)
+## output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
 This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
@@ -1351,7 +1351,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 <a name="Output+playNote"></a>
 
-## `output.playNote(note, [options])` ⇒ [<code>Output</code>](#Output)
+## output.playNote(note, [options]) ⇒ [<code>Output</code>](#Output)
 Plays a note or an array of notes on one or more channels of this output. The first parameter
 is the note to play. It can be a single value or an array of the following valid values:
 
@@ -1396,7 +1396,7 @@ functionally equivalent to a **note off** message.
 
 <a name="Output+sendNoteOn"></a>
 
-## `output.sendNoteOn(note, [options])` ⇒ [<code>Output</code>](#Output)
+## output.sendNoteOn(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note on** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -1433,7 +1433,7 @@ functionally equivalent to a **note off** message.
 
 <a name="Output+event_opened"></a>
 
-## `"opened"`
+## "opened"
 Event emitted when the [Output](#Output) has been opened by calling the
 [open()](#Output+open) method.
 
@@ -1452,7 +1452,7 @@ Event emitted when the [Output](#Output) has been opened by calling the
 
 <a name="Output+event_closed"></a>
 
-## `"closed"`
+## "closed"
 Event emitted when the [Output](#Output) has been closed by calling the
 [close()](#Output+close) method.
 
@@ -1471,7 +1471,7 @@ Event emitted when the [Output](#Output) has been closed by calling the
 
 <a name="Output+event_disconnected"></a>
 
-## `"disconnected"`
+## "disconnected"
 Event emitted when the [Output](#Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 

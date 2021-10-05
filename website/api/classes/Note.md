@@ -25,36 +25,36 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
 * [Note](#Note)
 
-    * [`new Note(value, [options])`](#new_Note_new)
+    * [new Note(value, [options])](#new_Note_new)
 
-    * [`.identifier`](#Note+identifier) : <code>string</code>
+    * [.identifier](#Note+identifier) : <code>string</code>
 
-    * [`.name`](#Note+name) : <code>string</code>
+    * [.name](#Note+name) : <code>string</code>
 
-    * [`.accidental`](#Note+accidental) : <code>string</code>
+    * [.accidental](#Note+accidental) : <code>string</code>
 
-    * [`.octave`](#Note+octave) : <code>number</code>
+    * [.octave](#Note+octave) : <code>number</code>
 
-    * [`.duration`](#Note+duration) : <code>number</code>
+    * [.duration](#Note+duration) : <code>number</code>
 
-    * [`.attack`](#Note+attack) : <code>number</code>
+    * [.attack](#Note+attack) : <code>number</code>
 
-    * [`.release`](#Note+release) : <code>number</code>
+    * [.release](#Note+release) : <code>number</code>
 
-    * [`.rawAttack`](#Note+rawAttack) : <code>number</code>
+    * [.rawAttack](#Note+rawAttack) : <code>number</code>
 
-    * [`.rawRelease`](#Note+rawRelease) : <code>number</code>
+    * [.rawRelease](#Note+rawRelease) : <code>number</code>
 
-    * [`.number`](#Note+number) : <code>number</code>
+    * [.number](#Note+number) : <code>number</code>
 
-    * [`.getOffsetNumber(offset)`](#Note+getOffsetNumber) ⇒ <code>number</code>
+    * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
 
 
 * * *
 
 <a name="new_Note_new"></a>
 
-## `new Note(value, [options])`
+## new Note(value, [options])
 <!---->
 **Throws**:
 
@@ -82,7 +82,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
 <a name="Note+identifier"></a>
 
-## `note.identifier` : <code>string</code>
+## note.identifier : <code>string</code>
 The name, optional accidental and octave of the note, as a string.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -93,7 +93,7 @@ The name, optional accidental and octave of the note, as a string.
 
 <a name="Note+name"></a>
 
-## `note.name` : <code>string</code>
+## note.name : <code>string</code>
 The name (letter) of the note
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -104,7 +104,7 @@ The name (letter) of the note
 
 <a name="Note+accidental"></a>
 
-## `note.accidental` : <code>string</code>
+## note.accidental : <code>string</code>
 The accidental (#, ##, b or bb) of the note
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -115,7 +115,7 @@ The accidental (#, ##, b or bb) of the note
 
 <a name="Note+octave"></a>
 
-## `note.octave` : <code>number</code>
+## note.octave : <code>number</code>
 The octave of the note
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -126,7 +126,7 @@ The octave of the note
 
 <a name="Note+duration"></a>
 
-## `note.duration` : <code>number</code>
+## note.duration : <code>number</code>
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
@@ -138,7 +138,7 @@ that the note should play for.
 
 <a name="Note+attack"></a>
 
-## `note.attack` : <code>number</code>
+## note.attack : <code>number</code>
 The attack velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -149,7 +149,7 @@ The attack velocity of the note as an integer between 0 and 127.
 
 <a name="Note+release"></a>
 
-## `note.release` : <code>number</code>
+## note.release : <code>number</code>
 The release velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -160,7 +160,7 @@ The release velocity of the note as an integer between 0 and 127.
 
 <a name="Note+rawAttack"></a>
 
-## `note.rawAttack` : <code>number</code>
+## note.rawAttack : <code>number</code>
 The attack velocity of the note as a positive integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -171,7 +171,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 
 <a name="Note+rawRelease"></a>
 
-## `note.rawRelease` : <code>number</code>
+## note.rawRelease : <code>number</code>
 The release velocity of the note as a positive integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
@@ -182,7 +182,7 @@ The release velocity of the note as a positive integer between 0 and 127.
 
 <a name="Note+number"></a>
 
-## `note.number` : <code>number</code>
+## note.number : <code>number</code>
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
@@ -194,7 +194,7 @@ reference for middle C.
 
 <a name="Note+getOffsetNumber"></a>
 
-## `note.getOffsetNumber(offset)` ⇒ <code>number</code>
+## note.getOffsetNumber(offset) ⇒ <code>number</code>
 Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
 value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
 returned. If an invalid value is supplied, 0 will be used.

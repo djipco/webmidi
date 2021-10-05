@@ -19,60 +19,60 @@ directly.
 
 * [WebMidi](#WebMidi) ⇐ <code>EventEmitter</code>
 
-    * [`.defaults`](#WebMidi+defaults) : <code>Object</code>
+    * [.defaults](#WebMidi+defaults) : <code>Object</code>
 
-    * [`.interface`](#WebMidi+interface) : <code>MIDIAccess</code>
+    * [.interface](#WebMidi+interface) : <code>MIDIAccess</code>
 
-    * [`.validation`](#WebMidi+validation) : <code>boolean</code>
+    * [.validation](#WebMidi+validation) : <code>boolean</code>
 
-    * [`.enabled`](#WebMidi+enabled) : <code>boolean</code>
+    * [.enabled](#WebMidi+enabled) : <code>boolean</code>
 
-    * [`.inputs`](#WebMidi+inputs) : <code>Array</code>
+    * [.inputs](#WebMidi+inputs) : <code>Array</code>
 
-    * [`.isNode`](#WebMidi+isNode) : <code>boolean</code>
+    * [.isNode](#WebMidi+isNode) : <code>boolean</code>
 
-    * [`.isBrowser`](#WebMidi+isBrowser) : <code>boolean</code>
+    * [.isBrowser](#WebMidi+isBrowser) : <code>boolean</code>
 
-    * [`.octaveOffset`](#WebMidi+octaveOffset) : <code>number</code>
+    * [.octaveOffset](#WebMidi+octaveOffset) : <code>number</code>
 
-    * [`.outputs`](#WebMidi+outputs) : <code>Array</code>
+    * [.outputs](#WebMidi+outputs) : <code>Array</code>
 
-    * [`.supported`](#WebMidi+supported) : <code>boolean</code>
+    * [.supported](#WebMidi+supported) : <code>boolean</code>
 
-    * [`.sysexEnabled`](#WebMidi+sysexEnabled) : <code>Boolean</code>
+    * [.sysexEnabled](#WebMidi+sysexEnabled) : <code>Boolean</code>
 
-    * [`.time`](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
+    * [.time](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
 
-    * [`.enable([options])`](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.enable([options])](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
 
-    * [`.disable()`](#WebMidi+disable) ⇒ <code>Promise.&lt;void&gt;</code>
+    * [.disable()](#WebMidi+disable) ⇒ <code>Promise.&lt;void&gt;</code>
 
-    * [`.getInputById(id)`](#WebMidi+getInputById) ⇒ <code>Input</code> \| <code>false</code>
+    * [.getInputById(id)](#WebMidi+getInputById) ⇒ <code>Input</code> \| <code>false</code>
 
-    * [`.getInputByName(name)`](#WebMidi+getInputByName) ⇒ <code>Input</code> \| <code>false</code>
+    * [.getInputByName(name)](#WebMidi+getInputByName) ⇒ <code>Input</code> \| <code>false</code>
 
-    * [`.getOutputByName(name)`](#WebMidi+getOutputByName) ⇒ <code>Output</code> \| <code>false</code>
+    * [.getOutputByName(name)](#WebMidi+getOutputByName) ⇒ <code>Output</code> \| <code>false</code>
 
-    * [`.getOutputById(id)`](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
+    * [.getOutputById(id)](#WebMidi+getOutputById) ⇒ <code>Output</code> \| <code>false</code>
 
-    * [`"error"`](#WebMidi+event_error)
+    * ["error"](#WebMidi+event_error)
 
-    * [`"midiaccessgranted"`](#WebMidi+event_midiaccessgranted)
+    * ["midiaccessgranted"](#WebMidi+event_midiaccessgranted)
 
-    * [`"enabled"`](#WebMidi+event_enabled)
+    * ["enabled"](#WebMidi+event_enabled)
 
-    * [`"disabled"`](#WebMidi+event_disabled)
+    * ["disabled"](#WebMidi+event_disabled)
 
-    * [`"connected"`](#WebMidi+event_connected)
+    * ["connected"](#WebMidi+event_connected)
 
-    * [`"disconnected"`](#WebMidi+event_disconnected)
+    * ["disconnected"](#WebMidi+event_disconnected)
 
 
 * * *
 
 <a name="WebMidi+defaults"></a>
 
-## `webMidi.defaults` : <code>Object</code>
+## webMidi.defaults : <code>Object</code>
 Object containing system-wide default values that can be changed to customize how the library
 works.
 
@@ -92,7 +92,7 @@ works.
 
 <a name="WebMidi+interface"></a>
 
-## `webMidi.interface` : <code>MIDIAccess</code>
+## webMidi.interface : <code>MIDIAccess</code>
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
@@ -104,7 +104,7 @@ unless you know what you are doing.
 
 <a name="WebMidi+validation"></a>
 
-## `webMidi.validation` : <code>boolean</code>
+## webMidi.validation : <code>boolean</code>
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.
 
@@ -119,7 +119,7 @@ validation turned on.
 
 <a name="WebMidi+enabled"></a>
 
-## `webMidi.enabled` : <code>boolean</code>
+## webMidi.enabled : <code>boolean</code>
 Indicates whether access to the host's MIDI subsystem is active or not.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -130,7 +130,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 <a name="WebMidi+inputs"></a>
 
-## `webMidi.inputs` : <code>Array</code>
+## webMidi.inputs : <code>Array</code>
 An array of all currently available MIDI inputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -141,7 +141,7 @@ An array of all currently available MIDI inputs.
 
 <a name="WebMidi+isNode"></a>
 
-## `webMidi.isNode` : <code>boolean</code>
+## webMidi.isNode : <code>boolean</code>
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
@@ -153,7 +153,7 @@ isBrowser can both be true at the same time.
 
 <a name="WebMidi+isBrowser"></a>
 
-## `webMidi.isBrowser` : <code>boolean</code>
+## webMidi.isBrowser : <code>boolean</code>
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
@@ -165,7 +165,7 @@ and isBrowser can both be true at the same time.
 
 <a name="WebMidi+octaveOffset"></a>
 
-## `webMidi.octaveOffset` : <code>number</code>
+## webMidi.octaveOffset : <code>number</code>
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
 
@@ -185,7 +185,7 @@ of 60).
 
 <a name="WebMidi+outputs"></a>
 
-## `webMidi.outputs` : <code>Array</code>
+## webMidi.outputs : <code>Array</code>
 An array of all currently available MIDI outputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -196,7 +196,7 @@ An array of all currently available MIDI outputs.
 
 <a name="WebMidi+supported"></a>
 
-## `webMidi.supported` : <code>boolean</code>
+## webMidi.supported : <code>boolean</code>
 Indicates whether the environment provides support for the Web MIDI API or not.
 
 **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
@@ -212,7 +212,7 @@ not be there.
 
 <a name="WebMidi+sysexEnabled"></a>
 
-## `webMidi.sysexEnabled` : <code>Boolean</code>
+## webMidi.sysexEnabled : <code>Boolean</code>
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
@@ -224,7 +224,7 @@ enabled via the `enable()` method.
 
 <a name="WebMidi+time"></a>
 
-## `webMidi.time` : <code>DOMHighResTimeStamp</code>
+## webMidi.time : <code>DOMHighResTimeStamp</code>
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
 Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
@@ -241,7 +241,7 @@ browser might only be accurate to one millisecond.
 
 <a name="WebMidi+enable"></a>
 
-## `webMidi.enable([options])` ⇒ <code>Promise.&lt;Object&gt;</code>
+## webMidi.enable([options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
 be displayed to the user.
@@ -307,7 +307,7 @@ WebMidi.enable().then(ports => {
 
 <a name="WebMidi+disable"></a>
 
-## `webMidi.disable()` ⇒ <code>Promise.&lt;void&gt;</code>
+## webMidi.disable() ⇒ <code>Promise.&lt;void&gt;</code>
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 [Input](Input) and [Output](Output) objects that may be available. This also means that listeners
 added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
@@ -325,7 +325,7 @@ destroyed.
 
 <a name="WebMidi+getInputById"></a>
 
-## `webMidi.getInputById(id)` ⇒ <code>Input</code> \| <code>false</code>
+## webMidi.getInputById(id) ⇒ <code>Input</code> \| <code>false</code>
 Returns the [Input](Input) object that matches the specified ID string or `false` if no matching
 input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
@@ -351,7 +351,7 @@ input can be found, the method returns `false`.
 
 <a name="WebMidi+getInputByName"></a>
 
-## `webMidi.getInputByName(name)` ⇒ <code>Input</code> \| <code>false</code>
+## webMidi.getInputByName(name) ⇒ <code>Input</code> \| <code>false</code>
 Returns the first [Input](Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
@@ -375,7 +375,7 @@ specified name.
 
 <a name="WebMidi+getOutputByName"></a>
 
-## `webMidi.getOutputByName(name)` ⇒ <code>Output</code> \| <code>false</code>
+## webMidi.getOutputByName(name) ⇒ <code>Output</code> \| <code>false</code>
 Returns the first [Output](Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
@@ -399,7 +399,7 @@ specified name.
 
 <a name="WebMidi+getOutputById"></a>
 
-## `webMidi.getOutputById(id)` ⇒ <code>Output</code> \| <code>false</code>
+## webMidi.getOutputById(id) ⇒ <code>Output</code> \| <code>false</code>
 Returns the [Output](Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
@@ -426,7 +426,7 @@ matching output can be found, the method returns `false`.
 
 <a name="WebMidi+event_error"></a>
 
-## `"error"`
+## "error"
 Event emitted when an error occurs trying to enable `WebMidi`
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -445,7 +445,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 <a name="WebMidi+event_midiaccessgranted"></a>
 
-## `"midiaccessgranted"`
+## "midiaccessgranted"
 Event emitted once the MIDI interface has been successfully created.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -463,7 +463,7 @@ Event emitted once the MIDI interface has been successfully created.
 
 <a name="WebMidi+event_enabled"></a>
 
-## `"enabled"`
+## "enabled"
 Event emitted once `WebMidi` has been fully enabled
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -481,7 +481,7 @@ Event emitted once `WebMidi` has been fully enabled
 
 <a name="WebMidi+event_disabled"></a>
 
-## `"disabled"`
+## "disabled"
 Event emitted once `WebMidi` has been successfully disabled.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -499,7 +499,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 <a name="WebMidi+event_connected"></a>
 
-## `"connected"`
+## "connected"
 Event emitted when an [Input](Input) or [Output](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -519,7 +519,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 <a name="WebMidi+event_disconnected"></a>
 
-## `"disconnected"`
+## "disconnected"
 Event emitted when an [Input](Input) or [Output](Output) becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).

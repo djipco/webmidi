@@ -25,72 +25,72 @@ others.
 
 * [OutputChannel](#OutputChannel) ⇐ <code>EventEmitter</code>
 
-    * [`new OutputChannel(output, number)`](#new_OutputChannel_new)
+    * [new OutputChannel(output, number)](#new_OutputChannel_new)
 
-    * [`.octaveOffset`](#OutputChannel+octaveOffset) : <code>number</code>
+    * [.octaveOffset](#OutputChannel+octaveOffset) : <code>number</code>
 
-    * [`.output`](#OutputChannel+output) : <code>Output</code>
+    * [.output](#OutputChannel+output) : <code>Output</code>
 
-    * [`.number`](#OutputChannel+number) : <code>number</code>
+    * [.number](#OutputChannel+number) : <code>number</code>
 
-    * [`.send(message, [options])`](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.send(message, [options])](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setKeyAftertouch(target, [pressure], [options])`](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setKeyAftertouch(target, [pressure], [options])](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.sendControlChange(controller, value, [options])`](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.sendControlChange(controller, value, [options])](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.decrementRegisteredParameter(parameter, [options])`](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.incrementRegisteredParameter(parameter, [options])`](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.incrementRegisteredParameter(parameter, [options])](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.playNote(note, [options])`](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.playNote(note, [options])](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.sendNoteOff(note, [options])`](#OutputChannel+sendNoteOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.sendNoteOff(note, [options])](#OutputChannel+sendNoteOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.stopNote(note, options)`](#OutputChannel+stopNote) ⇒ <code>Output</code>
+    * [.stopNote(note, options)](#OutputChannel+stopNote) ⇒ <code>Output</code>
 
-    * [`.sendNoteOn(note, [options])`](#OutputChannel+sendNoteOn) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.sendNoteOn(note, [options])](#OutputChannel+sendNoteOn) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.sendChannelMode(command, value, [options])`](#OutputChannel+sendChannelMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.sendChannelMode(command, value, [options])](#OutputChannel+sendChannelMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setOmniMode([state], [options])`](#OutputChannel+setOmniMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setOmniMode([state], [options])](#OutputChannel+setOmniMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setChannelAftertouch([pressure], [options])`](#OutputChannel+setChannelAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setChannelAftertouch([pressure], [options])](#OutputChannel+setChannelAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setMasterTuning([value], [options])`](#OutputChannel+setMasterTuning) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setMasterTuning([value], [options])](#OutputChannel+setMasterTuning) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setModulationRange(semitones, [cents], [options])`](#OutputChannel+setModulationRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setModulationRange(semitones, [cents], [options])](#OutputChannel+setModulationRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setNonRegisteredParameter(parameter, [data], [options])`](#OutputChannel+setNonRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setNonRegisteredParameter(parameter, [data], [options])](#OutputChannel+setNonRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setPitchBend([value], [options])`](#OutputChannel+setPitchBend) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setPitchBend([value], [options])](#OutputChannel+setPitchBend) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setPitchBendRange(semitones, [cents], [options])`](#OutputChannel+setPitchBendRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setPitchBendRange(semitones, [cents], [options])](#OutputChannel+setPitchBendRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setProgram([program], [options])`](#OutputChannel+setProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setProgram([program], [options])](#OutputChannel+setProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setRegisteredParameter(parameter, [data], [options])`](#OutputChannel+setRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setRegisteredParameter(parameter, [data], [options])](#OutputChannel+setRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setTuningBank(value, [options])`](#OutputChannel+setTuningBank) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setTuningBank(value, [options])](#OutputChannel+setTuningBank) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setTuningProgram(value, [options])`](#OutputChannel+setTuningProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setTuningProgram(value, [options])](#OutputChannel+setTuningProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setLocalControl([state], [options])`](#OutputChannel+setLocalControl) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setLocalControl([state], [options])](#OutputChannel+setLocalControl) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.turnNotesOff([options])`](#OutputChannel+turnNotesOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.turnNotesOff([options])](#OutputChannel+turnNotesOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.turnSoundOff([options])`](#OutputChannel+turnSoundOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.turnSoundOff([options])](#OutputChannel+turnSoundOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.resetAllControllers([options])`](#OutputChannel+resetAllControllers) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.resetAllControllers([options])](#OutputChannel+resetAllControllers) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
-    * [`.setPolyphonicMode([mode], [options])`](#OutputChannel+setPolyphonicMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+    * [.setPolyphonicMode([mode], [options])](#OutputChannel+setPolyphonicMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
 
 * * *
 
 <a name="new_OutputChannel_new"></a>
 
-## `new OutputChannel(output, number)`
+## new OutputChannel(output, number)
 <!---->
 
 | Param | Type | Description |
@@ -103,7 +103,7 @@ others.
 
 <a name="OutputChannel+octaveOffset"></a>
 
-## `outputChannel.octaveOffset` : <code>number</code>
+## outputChannel.octaveOffset : <code>number</code>
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
 octave (C4).
@@ -119,7 +119,7 @@ and with the value defined on the parent `Output` object.
 
 <a name="OutputChannel+output"></a>
 
-## `outputChannel.output` : <code>Output</code>
+## outputChannel.output : <code>Output</code>
 The parent [Output](Output) this channel belongs to
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
@@ -130,7 +130,7 @@ The parent [Output](Output) this channel belongs to
 
 <a name="OutputChannel+number"></a>
 
-## `outputChannel.number` : <code>number</code>
+## outputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
@@ -141,7 +141,7 @@ This channel's MIDI number (1-16)
 
 <a name="OutputChannel+send"></a>
 
-## `outputChannel.send(message, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.send(message, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -174,7 +174,7 @@ from the MIDI Manufacturers Association.
 
 <a name="OutputChannel+setKeyAftertouch"></a>
 
-## `outputChannel.setKeyAftertouch(target, [pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setKeyAftertouch(target, [pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](Output#setChannelAftertouch).
@@ -205,7 +205,7 @@ The key can be a single value or an array of the following valid values:
 
 <a name="OutputChannel+sendControlChange"></a>
 
-## `outputChannel.sendControlChange(controller, value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.sendControlChange(controller, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **control change** message to the channel at the scheduled time. The control
 change message to send can be specified numerically (0 to 127) or by using one of the following
 common names:
@@ -320,7 +320,7 @@ parameter.
 
 <a name="OutputChannel+decrementRegisteredParameter"></a>
 
-## `outputChannel.decrementRegisteredParameter(parameter, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -359,7 +359,7 @@ names that can be used with this function:
 
 <a name="OutputChannel+incrementRegisteredParameter"></a>
 
-## `outputChannel.incrementRegisteredParameter(parameter, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -398,7 +398,7 @@ names that can be used with this function:
 
 <a name="OutputChannel+playNote"></a>
 
-## `outputChannel.playNote(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.playNote(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
@@ -442,7 +442,7 @@ functionally equivalent to a **note off** message.
 
 <a name="OutputChannel+sendNoteOff"></a>
 
-## `outputChannel.sendNoteOff(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.sendNoteOff(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note off** message for the specified notes on the channel. The first parameter is the
 note. It can be a single value or an array of the following valid values:
 
@@ -473,7 +473,7 @@ precedence over the one specified via the method's `options` parameter.
 
 <a name="OutputChannel+stopNote"></a>
 
-## `outputChannel.stopNote(note, options)` ⇒ <code>Output</code>
+## outputChannel.stopNote(note, options) ⇒ <code>Output</code>
 This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
@@ -490,7 +490,7 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 <a name="OutputChannel+sendNoteOn"></a>
 
-## `outputChannel.sendNoteOn(note, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.sendNoteOn(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
 the note. It can be a single value or an array of the following valid values:
 
@@ -531,7 +531,7 @@ functionally equivalent to a **note off** message.
 
 <a name="OutputChannel+sendChannelMode"></a>
 
-## `outputChannel.sendChannelMode(command, value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.sendChannelMode(command, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel mode** message. The channel mode message to send can be specified
 numerically or by using one of the following common names:
 
@@ -573,7 +573,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 <a name="OutputChannel+setOmniMode"></a>
 
-## `outputChannel.setOmniMode([state], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setOmniMode([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
 messages from all channels.
 
@@ -600,7 +600,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 <a name="OutputChannel+setChannelAftertouch"></a>
 
-## `outputChannel.setChannelAftertouch([pressure], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setChannelAftertouch([pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](Output#setKeyAftertouch).
 
@@ -624,7 +624,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 <a name="OutputChannel+setMasterTuning"></a>
 
-## `outputChannel.setMasterTuning([value], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setMasterTuning([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **master tuning** message. The value is decimal and must be larger than -65 semitones
 and smaller than 64 semitones.
 
@@ -653,7 +653,7 @@ than 64.
 
 <a name="OutputChannel+setModulationRange"></a>
 
-## `outputChannel.setModulationRange(semitones, [cents], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setModulationRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
@@ -674,7 +674,7 @@ specifying both parameters at the same time.
 
 <a name="OutputChannel+setNonRegisteredParameter"></a>
 
-## `outputChannel.setNonRegisteredParameter(parameter, [data], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets a non-registered parameter (NRPN) to the specified value. The NRPN is selected by passing
 in a two-position array specifying the values of the two control bytes. The value is specified
 by passing in a single integer (most cases) or an array of two integers.
@@ -720,7 +720,7 @@ For further implementation details, refer to the manufacturer's documentation.
 
 <a name="OutputChannel+setPitchBend"></a>
 
-## `outputChannel.setPitchBend([value], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setPitchBend([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **pitch bend** message at the scheduled time.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
@@ -739,7 +739,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 <a name="OutputChannel+setPitchBendRange"></a>
 
-## `outputChannel.setPitchBendRange(semitones, [cents], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
@@ -766,7 +766,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 <a name="OutputChannel+setProgram"></a>
 
-## `outputChannel.setProgram([program], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setProgram([program], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **program change** message at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
@@ -793,7 +793,7 @@ than 0xFF.
 
 <a name="OutputChannel+setRegisteredParameter"></a>
 
-## `outputChannel.setRegisteredParameter(parameter, [data], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -842,7 +842,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 <a name="OutputChannel+setTuningBank"></a>
 
-## `outputChannel.setTuningBank(value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setTuningBank(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -869,7 +869,7 @@ that use a numbering scheme starting at 1.
 
 <a name="OutputChannel+setTuningProgram"></a>
 
-## `outputChannel.setTuningProgram(value, [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setTuningProgram(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -896,7 +896,7 @@ that use a numbering scheme starting at 1.
 
 <a name="OutputChannel+setLocalControl"></a>
 
-## `outputChannel.setLocalControl([state], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setLocalControl([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
@@ -916,7 +916,7 @@ its out port.
 
 <a name="OutputChannel+turnNotesOff"></a>
 
-## `outputChannel.turnNotesOff([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.turnNotesOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
@@ -935,7 +935,7 @@ fade out just as if their key had been released. This is different from the
 
 <a name="OutputChannel+turnSoundOff"></a>
 
-## `outputChannel.turnSoundOff([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.turnSoundOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
@@ -953,7 +953,7 @@ channel but will not prevent new sounds from being triggered.
 
 <a name="OutputChannel+resetAllControllers"></a>
 
-## `outputChannel.resetAllControllers([options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.resetAllControllers([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
@@ -971,7 +971,7 @@ the pitch bend, to their default value.
 
 <a name="OutputChannel+setPolyphonicMode"></a>
 
-## `outputChannel.setPolyphonicMode([mode], [options])` ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## outputChannel.setPolyphonicMode([mode], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
