@@ -20,7 +20,8 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 <!--**Kind**: global class  
 -->
 **Since**: 3.0.0  
-**License**: Apache-2.0  
+<!--**License**: Apache-2.0  
+-->
 
 
 * [Note](#Note)
@@ -66,6 +67,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 - <code>RangeError</code> Invalid attack value
 - <code>RangeError</code> Invalid release value
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -88,6 +90,7 @@ The name, optional accidental and octave of the note, as a string.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -99,6 +102,7 @@ The name (letter) of the note
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -110,6 +114,7 @@ The accidental (#, ##, b or bb) of the note
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -121,6 +126,7 @@ The octave of the note
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -133,6 +139,7 @@ that the note should play for.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -144,6 +151,7 @@ The attack velocity of the note as an integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -155,6 +163,7 @@ The release velocity of the note as an integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -166,6 +175,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -177,6 +187,7 @@ The release velocity of the note as a positive integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -189,6 +200,7 @@ reference for middle C.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 
 * * *
 
@@ -202,6 +214,7 @@ returned. If an invalid value is supplied, 0 will be used.
 <!--**Kind**: instance method of [<code>Note</code>](#Note)  
 -->
 **Returns**: <code>number</code> - An integer between 0 and 127  
+<!---->
 
 | Param |
 | --- |

@@ -23,7 +23,8 @@ details.
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers), [<code>nrpndataentrycoarse</code>](#InputChannel+event_nrpndataentrycoarse), [<code>nrpndataentryfine</code>](#InputChannel+event_nrpndataentryfine), [<code>nrpndatabuttonincrement</code>](#InputChannel+event_nrpndatabuttonincrement), [<code>nrpndatabuttondecrement</code>](#InputChannel+event_nrpndatabuttondecrement), [<code>rpndataentrycoarse</code>](#InputChannel+event_rpndataentrycoarse), [<code>rpndataentryfine</code>](#InputChannel+event_rpndataentryfine), [<code>rpndatabuttonincrement</code>](#InputChannel+event_rpndatabuttonincrement), [<code>rpndatabuttondecrement</code>](#InputChannel+event_rpndatabuttondecrement)  
 **Since**: 3.0.0  
-**License**: Apache-2.0  
+<!--**License**: Apache-2.0  
+-->
 
 
 * [InputChannel](#InputChannel) ⇐ <code>EventEmitter</code>
@@ -101,6 +102,7 @@ details.
 
 ## new InputChannel(input, number)
 <!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -123,6 +125,7 @@ all buffered control change messages will be discarded as incomplete.
 
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 
 * * *
 
@@ -142,6 +145,7 @@ and with the value defined on the parent `Input` object.
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 -->
 **Since**: 3.0  
+<!---->
 
 * * *
 
@@ -153,6 +157,7 @@ The [Input](Input) this channel belongs to
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 -->
 **Since**: 3.0  
+<!---->
 
 * * *
 
@@ -164,6 +169,7 @@ This channel's MIDI number (1-16)
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 -->
 **Since**: 3.0  
+<!---->
 
 * * *
 
@@ -175,6 +181,7 @@ input.
 
 <!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 
 * * *
 
@@ -189,6 +196,7 @@ returns `false`.
 **Returns**: <code>string</code> \| <code>false</code> - The name of the matching channel mode or `false` if not match could be
 found.  
 **Since**: 2.0.0  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -214,6 +222,7 @@ found.
 - <code>RangeError</code> Invalid control change number.
 
 **Since**: 2.0.0  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -229,6 +238,7 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -252,6 +262,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -274,6 +285,7 @@ Event emitted when a **note on** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -299,6 +311,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -323,6 +336,7 @@ Event emitted when a **control change** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -347,6 +361,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -368,6 +383,7 @@ Event emitted when a control change MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -389,6 +405,7 @@ Event emitted when a pitch bend MIDI message has been received.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -410,6 +427,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -429,6 +447,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -450,6 +469,7 @@ off).
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -470,6 +490,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -490,6 +511,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -512,6 +534,7 @@ poly mode on).
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -532,6 +555,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -555,6 +579,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -578,6 +603,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -601,6 +627,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -624,6 +651,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -647,6 +675,7 @@ Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -670,6 +699,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -693,6 +723,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 <!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 -->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -717,6 +748,7 @@ Array of channel-specific event names that can be listened to.
 <!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
 -->
 **Read only**: true  
+<!---->
 
 * * *
 
