@@ -179,23 +179,18 @@ module.exports = {
     [
       "@docusaurus/preset-classic",
       {
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
         docs: {
           path: "docs",
           lastVersion: "current",
           onlyIncludeVersions: ["current"],
           sidebarPath: require.resolve("./sidebars.js"),
-
-          // Please change this to your repo.
-          editUrl: "https://github.com/djipco/webmidi/edit/develop/website/",
+          editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: "https://github.com/djipco/webmidi/edit/develop/website/blog/",
-        },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
+        blog: {},
+        pages: {},
       },
     ],
   ],
