@@ -22,6 +22,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
+<!---->
 
 
 * [Note](#Note)
@@ -68,7 +69,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 - <code>RangeError</code> Invalid release value
 
 <!---->
-
+<!--
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
@@ -79,6 +80,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 | [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
 | [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
 
+-->
 
 * * *
 
@@ -90,6 +92,7 @@ The name, optional accidental and octave of the note, as a string.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 <!---->
 
 * * *
@@ -103,6 +106,7 @@ The name (letter) of the note
 -->
 **Since**: 3.0.0  
 <!---->
+<!---->
 
 * * *
 
@@ -115,6 +119,7 @@ The accidental (#, ##, b or bb) of the note
 -->
 **Since**: 3.0.0  
 <!---->
+<!---->
 
 * * *
 
@@ -126,6 +131,7 @@ The octave of the note
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 <!---->
 
 * * *
@@ -140,6 +146,7 @@ that the note should play for.
 -->
 **Since**: 3.0.0  
 <!---->
+<!---->
 
 * * *
 
@@ -151,6 +158,7 @@ The attack velocity of the note as an integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 <!---->
 
 * * *
@@ -164,6 +172,7 @@ The release velocity of the note as an integer between 0 and 127.
 -->
 **Since**: 3.0.0  
 <!---->
+<!---->
 
 * * *
 
@@ -175,6 +184,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 <!---->
 
 * * *
@@ -188,6 +198,7 @@ The release velocity of the note as a positive integer between 0 and 127.
 -->
 **Since**: 3.0.0  
 <!---->
+<!---->
 
 * * *
 
@@ -200,6 +211,7 @@ reference for middle C.
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
+<!---->
 <!---->
 
 * * *
@@ -215,11 +227,12 @@ returned. If an invalid value is supplied, 0 will be used.
 -->
 **Returns**: <code>number</code> - An integer between 0 and 127  
 <!---->
-
+<!--
 | Param |
 | --- |
 | offset | 
 
+-->
 
 * * *
 
