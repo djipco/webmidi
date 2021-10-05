@@ -62,7 +62,10 @@ async function generate() {
       noCache: true,
       "heading-depth": 1,
       separators: true,
-      "name-format": true,
+
+      // Format identifiers as code (wrap function/property/class/etc. names in backticks).
+      "name-format": false,
+
       // "module-index-format": "dl", // none, grouped, table, dl
       // "global-index-format": "none" // none, grouped, table, dl
       "param-list-format": "table", // 'list' or 'table' (default)
