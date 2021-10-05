@@ -19,7 +19,10 @@ async function execute() {
   const TMP_DIR = await fsPromises.mkdtemp(path.join(os.tmpdir(), "webmidi-website-"));
 
   // Get list of files and directories inside the Docusaurus build directory
-  const files = await fsPromises.readdir(SOURCE_DIR);
+  let files = await fsPromises.readdir(SOURCE_DIR);
+
+  // Get rid of .DS_Store and other unnecessary files
+  files = files.filter(file => !file.startsWith("."));
 
   // Copy files to tmp directory
   for (const file of files) {
