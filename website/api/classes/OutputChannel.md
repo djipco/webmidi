@@ -19,6 +19,7 @@ others.
 <!--**Kind**: global class  
 -->
 **Extends**: <code>EventEmitter</code>  
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -94,6 +95,7 @@ others.
 ## new OutputChannel(output, number)
 <!---->
 <!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -115,6 +117,7 @@ and with the value defined on the parent `Output` object.
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+<!---->
 **Since**: 3.0  
 <!---->
 
@@ -127,6 +130,7 @@ The parent [Output](Output) this channel belongs to
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+<!---->
 **Since**: 3.0  
 <!---->
 
@@ -139,6 +143,7 @@ This channel's MIDI number (1-16)
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+<!---->
 **Since**: 3.0  
 <!---->
 
@@ -167,6 +172,7 @@ from the MIDI Manufacturers Association.
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
 - <code>RangeError</code> Data bytes must be integers between 0 and 255.
 
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -197,6 +203,7 @@ The key can be a single value or an array of the following valid values:
 
 - RangeError Invalid key aftertouch value.
 
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -312,6 +319,7 @@ parameter.
 - <code>RangeError</code> Invalid controller name.
 - <code>TypeError</code> The value array must have a length of 2.
 
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -356,6 +364,7 @@ names that can be used with this function:
 - TypeError The specified registered parameter is invalid.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -395,6 +404,7 @@ names that can be used with this function:
 
 - TypeError The specified registered parameter is invalid.
 
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -436,6 +446,7 @@ functionally equivalent to a **note off** message.
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -471,6 +482,7 @@ precedence over the one specified via the method's `options` parameter.
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -490,6 +502,7 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
+<!---->
 **See**: [sendNoteOff](#OutputChannel+sendNoteOff)  
 <!---->
 
@@ -530,6 +543,7 @@ functionally equivalent to a **note off** message.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -575,6 +589,7 @@ To make it easier, all channel mode messages have a matching helper method:
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -604,6 +619,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -627,6 +643,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 - RangeError Invalid channel aftertouch value.
 
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -659,6 +676,7 @@ a **Master Fine Tuning** RPN messages.
 than 64.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -679,6 +697,7 @@ specifying both parameters at the same time.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -727,6 +746,7 @@ For further implementation details, refer to the manufacturer's documentation.
 - <code>RangeError</code> The msb value must be between 0 and 127
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -746,6 +766,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -775,6 +796,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 - <code>RangeError</code> The lsb value must be between 0 and 127.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -803,6 +825,7 @@ that use a numbering scheme starting at 1.
 - <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
 
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -853,6 +876,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -882,6 +906,7 @@ that use a numbering scheme starting at 1.
 - <code>RangeError</code> The bank value must be between 1 and 128.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -910,6 +935,7 @@ that use a numbering scheme starting at 1.
 - <code>RangeError</code> The program value must be between 1 and 128.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -930,6 +956,7 @@ its out port.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -952,6 +979,7 @@ fade out just as if their key had been released. This is different from the
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -970,6 +998,7 @@ channel but will not prevent new sounds from being triggered.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -990,6 +1019,7 @@ the pitch bend, to their default value.
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1009,6 +1039,7 @@ multiple notes are being played.
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 -->
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |

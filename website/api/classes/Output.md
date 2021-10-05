@@ -20,6 +20,7 @@ others.
 -->
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>opened</code>](#Output+event_opened), [<code>disconnected</code>](#Output+event_disconnected), [<code>closed</code>](#Output+event_closed)  
+<!---->
 <!--**License**: Apache-2.0  
 -->
 
@@ -140,6 +141,7 @@ others.
 ## new Output(midiOutput)
 <!---->
 <!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -157,6 +159,7 @@ channels are numbered 1 through 16.
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -167,6 +170,7 @@ Name of the MIDI output
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -181,6 +185,7 @@ the same port.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -193,6 +198,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -205,6 +211,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -217,6 +224,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -229,6 +237,7 @@ Type of the output port (`"output"`)
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -245,6 +254,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <!--**Kind**: instance property of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Since**: 3.0  
 <!---->
 
@@ -259,6 +269,7 @@ subsystem is unlinked.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -270,6 +281,7 @@ Opens the output for usage.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Promise.&lt;Output&gt;</code>](#Output) - The promise is fulfilled with the `Output`  
+<!---->
 <!---->
 
 * * *
@@ -283,6 +295,7 @@ the connection status by looking at the [connection](#Output+connection) propert
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
+<!---->
 <!---->
 
 * * *
@@ -309,6 +322,7 @@ from the MIDI Manufacturers Association.
 
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
 
+<!---->
 <!--**License**: Apache-2.0  
 -->
 
@@ -383,6 +397,7 @@ not allowed.
 than 0xFF.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -409,6 +424,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 * * *
 
@@ -422,6 +438,7 @@ on the data. It is up to the developer to format the data according to the
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -442,6 +459,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -470,6 +488,7 @@ use a numbering scheme starting at 1.
 
 - The song number must be between 1 and 128.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -490,6 +509,7 @@ Sends a MIDI **tune request** real-time message.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -511,6 +531,7 @@ for every quarter note.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -530,6 +551,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -551,6 +573,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -569,6 +592,7 @@ playback immediately (or at the scheduled time).
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -590,6 +614,7 @@ was no other activity on the MIDI port.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -608,6 +633,7 @@ should reset itself to a default state.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -628,6 +654,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -739,6 +766,7 @@ specification.
 - <code>RangeError</code> Invalid controller name.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -767,6 +795,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 - <code>RangeError</code> The msb value must be between 0 and 127.
 - <code>RangeError</code> The lsb value must be between 0 and 127.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -820,6 +849,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -841,6 +871,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -863,6 +894,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -894,6 +926,7 @@ that use a numbering scheme starting at 1.
 - <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -922,6 +955,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 - <code>RangeError</code> The msb value must be between 0 and 127
 - <code>RangeError</code> The lsb value must be between 0 and 127
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -955,6 +989,7 @@ a **Master Fine Tuning** RPN messages.
 - <code>RangeError</code> The value must be a decimal number between larger than -65 and smaller
 than 64.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -985,6 +1020,7 @@ that use a numbering scheme starting at 1.
 
 - <code>RangeError</code> The program value must be between 1 and 128.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1015,6 +1051,7 @@ that use a numbering scheme starting at 1.
 
 - <code>RangeError</code> The bank value must be between 1 and 128.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1066,6 +1103,7 @@ To make it easier, all channel mode messages have a matching helper method:
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1086,6 +1124,7 @@ channel but will not prevent new sounds from being triggered.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1107,6 +1146,7 @@ fade out just as if their key had been released. This is different from the
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1128,6 +1168,7 @@ the pitch bend, to their default value.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1148,6 +1189,7 @@ multiple notes are being played.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1171,6 +1213,7 @@ its out port.
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1201,6 +1244,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 - <code>RangeError</code> Channel mode controller numbers must be between 120 and 127.
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -1257,6 +1301,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 - <code>RangeError</code> The msb value must be between 0 and 127
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1294,6 +1339,7 @@ names that can be used with this method:
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 <!---->
 
 | Param | Type | Default | Description |
@@ -1336,6 +1382,7 @@ names that can be used with this method:
 - TypeError The specified parameter is not available.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1367,6 +1414,7 @@ precedence over the one specified via the method's `options` parameter.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1387,6 +1435,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
+<!---->
 **See**: [sendNoteOff](#Output+sendNoteOff)  
 <!---->
 
@@ -1429,6 +1478,7 @@ functionally equivalent to a **note off** message.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1469,6 +1519,7 @@ functionally equivalent to a **note off** message.
 -->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1491,6 +1542,7 @@ Event emitted when the [Output](#Output) has been opened by calling the
 <!--**Kind**: event emitted by [<code>Output</code>](#Output)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -1511,6 +1563,7 @@ Event emitted when the [Output](#Output) has been closed by calling the
 <!--**Kind**: event emitted by [<code>Output</code>](#Output)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -1530,6 +1583,7 @@ when the MIDI device is unplugged.
 
 <!--**Kind**: event emitted by [<code>Output</code>](#Output)  
 -->
+<!---->
 <!---->
 **Properties**
 

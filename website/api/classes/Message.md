@@ -6,6 +6,7 @@ easy to make sense of the binaru data it contains.
 
 <!--**Kind**: global class  
 -->
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -43,6 +44,7 @@ easy to make sense of the binaru data it contains.
 ## new Message(data)
 <!---->
 <!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -59,6 +61,7 @@ A Uint8Array containing the bytes of the MIDI message. Each byte is an integer b
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -72,6 +75,7 @@ An array containing the bytes of the MIDI message. Each byte is an integer is be
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -84,6 +88,7 @@ The MIDI status byte of the message as an integer between 0 and 255.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -98,6 +103,7 @@ byte so only the actual data is included.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -112,6 +118,7 @@ byte so only the actual data is included.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -124,6 +131,7 @@ A boolean indicating whether the MIDI message is a channel-specific message.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -137,6 +145,7 @@ channel).
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -150,6 +159,7 @@ between 8 and 14. For system messages, the value will be between 240 and 255.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -163,6 +173,7 @@ channel-specific messages. For system messages, this will be left undefined.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -179,6 +190,7 @@ https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 

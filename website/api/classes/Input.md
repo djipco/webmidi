@@ -20,6 +20,7 @@ others.
 -->
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:unknownmidimessage</code>  
+<!---->
 <!--**License**: Apache-2.0  
 -->
 
@@ -74,6 +75,7 @@ others.
 ## new Input(midiInput)
 <!---->
 <!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -91,6 +93,7 @@ channels are numbered 1 through 16.
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -101,6 +104,7 @@ Name of the MIDI input
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -115,6 +119,7 @@ the same port.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -127,6 +132,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -139,6 +145,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -158,6 +165,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Since**: 3.0  
 <!---->
 
@@ -170,6 +178,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -182,6 +191,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -196,6 +206,7 @@ MIDI subsystem.
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -209,6 +220,7 @@ WebMidi is enabled.
 -->
 **Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
 <!---->
+<!---->
 
 * * *
 
@@ -221,6 +233,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
 **Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
+<!---->
 <!---->
 
 * * *
@@ -329,6 +342,7 @@ There are 6 families of events you can listen to:
 - <code>Error</code> For channel-specific events, 'options.channels' must be defined.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -436,6 +450,7 @@ There are 6 families of events you can listen to:
 - <code>Error</code> For channel-specific events, 'options.channels' must be defined.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -467,6 +482,7 @@ listener defined.
 - Error For channel-specific events, 'options.channels' must be defined.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -491,6 +507,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 <!--**Kind**: instance method of [<code>Input</code>](#Input)  
 -->
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -513,6 +530,7 @@ method.
 <!--**Kind**: event emitted by [<code>Input</code>](#Input)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -533,6 +551,7 @@ method.
 <!--**Kind**: event emitted by [<code>Input</code>](#Input)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -552,6 +571,7 @@ when the MIDI device is unplugged.
 
 <!--**Kind**: event emitted by [<code>Input</code>](#Input)  
 -->
+<!---->
 <!---->
 **Properties**
 
@@ -577,6 +597,7 @@ Event emitted when any MIDI message is received on an `Input`
 
 <!--**Kind**: event emitted by [<code>Input</code>](#Input)  
 -->
+<!---->
 **Since**: 2.1  
 <!---->
 **Properties**

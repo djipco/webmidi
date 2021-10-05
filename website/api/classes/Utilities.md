@@ -6,6 +6,7 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 <!--**Kind**: global class  
 -->
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -61,6 +62,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 - RangeError Invalid 'octaveOffset' value
 - TypeError Invalid note identifier
 
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -89,6 +91,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 - TypeError Invalid note identifier
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -112,6 +115,7 @@ integers between 1 and 16 are silently ignored.
 <!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 -->
 **Returns**: <code>Array</code> - An array of 0 or more valid MIDI channel numbers.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -134,6 +138,7 @@ returned.
 <!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 -->
 **Returns**: <code>number</code> \| <code>false</code> - A positive number or `false` (if the time cannot be converted)  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -160,6 +165,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 -->
 **Returns**: <code>number</code> \| <code>false</code> - A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.  
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -183,6 +189,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 - RangeError Invalid note number
 - RangeError Invalid octaveOffset value
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -210,6 +217,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 - TypeError The input could not be parsed to a note
 
+<!---->
 **Since**: version 3.0.0  
 <!---->
 
@@ -241,6 +249,7 @@ input.
 
 - TypeError An element could not be parsed as a note.
 
+<!---->
 **Since**: 3.0.0  
 <!---->
 
@@ -272,6 +281,7 @@ input value cannot be converted to an integer, the method returns 0.
 -->
 **Returns**: <code>number</code> - A number between 0 and 1 (inclusive)  
 <!---->
+<!---->
 
 | Param | Description |
 | --- | --- |
@@ -293,6 +303,7 @@ the input value cannot be converted to a number, the method returns 0.
 <!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 -->
 **Returns**: <code>number</code> - A number between 0 and 1 (inclusive)  
+<!---->
 <!---->
 
 | Param | Description |
@@ -317,6 +328,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 - <code>Error</code> Invalid note number
 
 <!---->
+<!---->
 
 | Param |
 | --- |
@@ -334,6 +346,7 @@ supplied.
 <!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 -->
 **Returns**: <code>string</code> - The name of the matching property  
+<!---->
 <!---->
 
 | Param | Type |

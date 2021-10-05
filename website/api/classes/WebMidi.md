@@ -14,6 +14,7 @@ directly.
 -->
 **Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
+<!---->
 <!--**License**: Apache-2.0  
 -->
 
@@ -80,6 +81,7 @@ works.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -100,6 +102,7 @@ unless you know what you are doing.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -118,6 +121,7 @@ validation turned on.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -128,6 +132,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -140,6 +145,7 @@ An array of all currently available MIDI inputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -155,6 +161,7 @@ isBrowser can both be true at the same time.
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 
 * * *
 
@@ -167,6 +174,7 @@ and isBrowser can both be true at the same time.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 <!---->
 
 * * *
@@ -187,6 +195,7 @@ of 60).
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Since**: 2.1  
 <!---->
 
@@ -199,6 +208,7 @@ An array of all currently available MIDI outputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -216,6 +226,7 @@ not be there.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -229,6 +240,7 @@ enabled via the `enable()` method.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -247,6 +259,7 @@ browser might only be accurate to one millisecond.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -307,6 +320,7 @@ WebMidi.enable().then(ports => {
 - Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
 
 <!---->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -333,6 +347,7 @@ destroyed.
 
 - Error The Web MIDI API is not supported by your environment.
 
+<!---->
 **Since**: 2.0.0  
 <!---->
 
@@ -355,6 +370,7 @@ input can be found, the method returns `false`.
 
 - Error WebMidi is not enabled.
 
+<!---->
 **Since**: 2.0.0  
 <!---->
 
@@ -380,6 +396,7 @@ specified name.
 
 - <code>Error</code> WebMidi is not enabled.
 
+<!---->
 **Since**: 2.0.0  
 <!---->
 
@@ -405,6 +422,7 @@ specified name.
 
 - Error WebMidi is not enabled.
 
+<!---->
 **Since**: 2.0.0  
 <!---->
 
@@ -433,6 +451,7 @@ matching output can be found, the method returns `false`.
 
 - Error WebMidi is not enabled.
 
+<!---->
 **Since**: 2.0.0  
 <!---->
 
@@ -450,6 +469,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 <!---->
 **Properties**
 
@@ -471,6 +491,7 @@ Event emitted once the MIDI interface has been successfully created.
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -490,6 +511,7 @@ Event emitted once `WebMidi` has been fully enabled
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -508,6 +530,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 <!---->
 **Properties**
 
@@ -530,6 +553,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
 <!---->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -550,6 +574,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 -->
+<!---->
 <!---->
 **Properties**
 

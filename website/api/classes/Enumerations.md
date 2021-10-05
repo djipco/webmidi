@@ -7,6 +7,7 @@ enumerations are static and should be referenced using the class name. For examp
 
 <!--**Kind**: global class  
 -->
+<!---->
 **Since**: 3.0.0  
 <!--**License**: Apache-2.0  
 -->
@@ -43,6 +44,7 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 
 <!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -64,6 +66,7 @@ Enumeration of all channel mode messages and their associated numerical value:
 
 <!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -146,6 +149,7 @@ some control change numbers do not have a predefined purpose and are absent from
 
 <!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -176,6 +180,7 @@ only a limited number of them:
 
 <!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
@@ -218,6 +223,7 @@ simply states that they are undefined/reserved.
 
 <!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 -->
+<!---->
 **Read only**: true  
 <!---->
 
