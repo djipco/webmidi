@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi/dist/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.16/dist/webmidi.iife.js"></script>
 
     <script>
 
@@ -29,7 +29,10 @@
           });
         }
 
-        WebMidi.inputs[1].addListener("noteon", e => {
+        const mySynth = WebMidi.inputs[0];
+        // const mySynth = WebMidi.getInputByName("TYPE NAME HERE!")
+  
+        mySynth.channels[1].addListener("noteon", e => {
           document.body.innerHTML+= `${e.note.name} <br>`;
         });
 
