@@ -1,80 +1,133 @@
-# Classes
+<a name="module_djipevents"></a>
 
-<dl>
-<dt><a href="#EventEmitter">EventEmitter</a></dt>
-<dd><p>The <code>EventEmitter</code> class provides methods to implement the <em>observable</em> design pattern. This
-pattern allows one to <em>register</em> a function to execute when a specific event is <em>emitted</em> by the
-emitter.</p>
-<p>It is a mostly abstract class meant to be extended by (or mixed into) other objects.</p>
-</dd>
-<dt><a href="#Listener">Listener</a></dt>
-<dd><p>The <code>Listener</code> class represents a single event listener object. Such objects keep all relevant
-contextual information such as the event being listened to, the object the listener was attached
-to, the callback function and so on.</p>
-</dd>
-</dl>
+# djipevents
+djipevents
 
-<a name="EventEmitter"></a>
+<!---->
 
-# EventEmitter
+
+* [djipevents](#module_djipevents)
+
+    * [~EventEmitter](#module_djipevents..EventEmitter)
+
+        * [new EventEmitter([eventsSuspended])](#new_module_djipevents..EventEmitter_new)
+
+        * _instance_
+
+            * [.eventMap](#module_djipevents..EventEmitter+eventMap) : <code>Object</code>
+
+            * [.eventsSuspended](#module_djipevents..EventEmitter+eventsSuspended) : <code>boolean</code>
+
+            * [.eventNames](#module_djipevents..EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
+            * [.eventCount](#module_djipevents..EventEmitter+eventCount) : <code>number</code>
+
+            * [.addListener(event, callback, [options])](#module_djipevents..EventEmitter+addListener) ⇒ <code>Listener</code>
+
+            * [.addOneTimeListener(event, callback, [options])](#module_djipevents..EventEmitter+addOneTimeListener) ⇒ <code>Listener</code>
+
+            * [.hasListener([event], [callback])](#module_djipevents..EventEmitter+hasListener) ⇒ <code>boolean</code>
+
+            * [.getListeners(event)](#module_djipevents..EventEmitter+getListeners) ⇒ <code>Array.&lt;Listener&gt;</code>
+
+            * [.suspendEvent(event)](#module_djipevents..EventEmitter+suspendEvent)
+
+            * [.unsuspendEvent(event)](#module_djipevents..EventEmitter+unsuspendEvent)
+
+            * [.getListenerCount(event)](#module_djipevents..EventEmitter+getListenerCount) ⇒ <code>number</code>
+
+            * [.emit(event, ...args)](#module_djipevents..EventEmitter+emit) ⇒ <code>Array</code>
+
+            * [.removeListener([event], [callback], [options])](#module_djipevents..EventEmitter+removeListener)
+
+            * [.waitFor(event, [options])](#module_djipevents..EventEmitter+waitFor)
+
+        * _static_
+
+            * [.ANY_EVENT](#module_djipevents..EventEmitter.ANY_EVENT) : <code>Symbol</code>
+
+    * [~Listener](#module_djipevents..Listener)
+
+        * [new Listener(event, target, callback, [options])](#new_module_djipevents..Listener_new)
+
+        * [.event](#module_djipevents..Listener+event) : <code>string</code>
+
+        * [.target](#module_djipevents..Listener+target) : <code>EventEmitter</code>
+
+        * [.callback](#module_djipevents..Listener+callback) : <code>function</code>
+
+        * [.context](#module_djipevents..Listener+context) : <code>Object</code>
+
+        * [.remaining](#module_djipevents..Listener+remaining) : <code>number</code>
+
+        * [.count](#module_djipevents..Listener+count) : <code>number</code>
+
+        * [.arguments](#module_djipevents..Listener+arguments) : <code>array</code>
+
+        * [.suspended](#module_djipevents..Listener+suspended) : <code>boolean</code>
+
+        * [.remove()](#module_djipevents..Listener+remove)
+
+
+* * *
+
+<a name="module_djipevents..EventEmitter"></a>
+
+## djipevents~EventEmitter
 The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
 pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
 emitter.
 
 It is a mostly abstract class meant to be extended by (or mixed into) other objects.
 
-<!--**Kind**: global class  
+<!--**Kind**: inner class of [<code>djipevents</code>](#module_djipevents)  
 -->
 
 
-* [EventEmitter](#EventEmitter)
+* [~EventEmitter](#module_djipevents..EventEmitter)
 
-    * [new EventEmitter([eventsSuspended])](#new_EventEmitter_new)
+    * [new EventEmitter([eventsSuspended])](#new_module_djipevents..EventEmitter_new)
 
     * _instance_
 
-        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+        * [.eventMap](#module_djipevents..EventEmitter+eventMap) : <code>Object</code>
 
-        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+        * [.eventsSuspended](#module_djipevents..EventEmitter+eventsSuspended) : <code>boolean</code>
 
-        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+        * [.eventNames](#module_djipevents..EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
 
-        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+        * [.eventCount](#module_djipevents..EventEmitter+eventCount) : <code>number</code>
 
-        * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
+        * [.addListener(event, callback, [options])](#module_djipevents..EventEmitter+addListener) ⇒ <code>Listener</code>
 
-        * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
+        * [.addOneTimeListener(event, callback, [options])](#module_djipevents..EventEmitter+addOneTimeListener) ⇒ <code>Listener</code>
 
-        * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
+        * [.hasListener([event], [callback])](#module_djipevents..EventEmitter+hasListener) ⇒ <code>boolean</code>
 
-        * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+        * [.getListeners(event)](#module_djipevents..EventEmitter+getListeners) ⇒ <code>Array.&lt;Listener&gt;</code>
 
-        * [.suspendEvent(event)](#EventEmitter+suspendEvent)
+        * [.suspendEvent(event)](#module_djipevents..EventEmitter+suspendEvent)
 
-        * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
+        * [.unsuspendEvent(event)](#module_djipevents..EventEmitter+unsuspendEvent)
 
-        * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+        * [.getListenerCount(event)](#module_djipevents..EventEmitter+getListenerCount) ⇒ <code>number</code>
 
-        * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+        * [.emit(event, ...args)](#module_djipevents..EventEmitter+emit) ⇒ <code>Array</code>
 
-        * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
+        * [.removeListener([event], [callback], [options])](#module_djipevents..EventEmitter+removeListener)
 
-        * [.waitFor(event, [options])](#EventEmitter+waitFor)
+        * [.waitFor(event, [options])](#module_djipevents..EventEmitter+waitFor)
 
     * _static_
 
-        * [.ANY_EVENT](#EventEmitter.ANY_EVENT) : <code>Symbol</code>
-
-    * _inner_
-
-        * [~callback](#EventEmitter..callback) : <code>function</code>
+        * [.ANY_EVENT](#module_djipevents..EventEmitter.ANY_EVENT) : <code>Symbol</code>
 
 
 * * *
 
-<a name="new_EventEmitter_new"></a>
+<a name="new_module_djipevents..EventEmitter_new"></a>
 
-## new EventEmitter([eventsSuspended])
+### new EventEmitter([eventsSuspended])
 <!---->
 
 | Param | Type | Default | Description |
@@ -84,71 +137,71 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 * * *
 
-<a name="EventEmitter+eventMap"></a>
+<a name="module_djipevents..EventEmitter+eventMap"></a>
 
-## eventEmitter.eventMap : <code>Object</code>
+### eventEmitter.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-<!--**Kind**: instance property of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance property of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 **Read only**: true  
 
 * * *
 
-<a name="EventEmitter+eventsSuspended"></a>
+<a name="module_djipevents..EventEmitter+eventsSuspended"></a>
 
-## eventEmitter.eventsSuspended : <code>boolean</code>
+### eventEmitter.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-<!--**Kind**: instance property of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance property of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 * * *
 
-<a name="EventEmitter+eventNames"></a>
+<a name="module_djipevents..EventEmitter+eventNames"></a>
 
-## eventEmitter.eventNames : <code>Array.&lt;string&gt;</code>
+### eventEmitter.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance property of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 **Read only**: true  
 
 * * *
 
-<a name="EventEmitter+eventCount"></a>
+<a name="module_djipevents..EventEmitter+eventCount"></a>
 
-## eventEmitter.eventCount : <code>number</code>
+### eventEmitter.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance property of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 **Read only**: true  
 
 * * *
 
-<a name="EventEmitter+addListener"></a>
+<a name="module_djipevents..EventEmitter+addListener"></a>
 
-## eventEmitter.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
-Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
+### eventEmitter.addListener(event, callback, [options]) ⇒ <code>Listener</code>
+Adds a listener for the specified event. It returns the [**Listener**](Listener) object
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
-**Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
+**Returns**: <code>Listener</code> - The newly created [**Listener**](Listener) object.  
 **Throws**:
 
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
@@ -157,32 +210,32 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to listen to |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> |  | The event to listen to |
 | callback | [<code>callback</code>](#EventEmitter..callback) |  | The callback function to execute when the event occurs. |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.context] | <code>Object</code> | <code>this</code> | The value of `this` in the callback function. |
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
 | [options.remaining] | <code>boolean</code> | <code>Infinity</code> | The number of times after which the callback should automatically be removed. |
-| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
+| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired. |
 
 
 * * *
 
-<a name="EventEmitter+addOneTimeListener"></a>
+<a name="module_djipevents..EventEmitter+addOneTimeListener"></a>
 
-## eventEmitter.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+### eventEmitter.addOneTimeListener(event, callback, [options]) ⇒ <code>Listener</code>
 Adds a one-time listener for the specified event. The listener will be executed once and then
-destroyed. It returns the [**Listener**](#Listener) object that was created and attached
+destroyed. It returns the [**Listener**](Listener) object that was created and attached
 to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
-**Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
+**Returns**: <code>Listener</code> - The newly created [**Listener**](Listener) object.  
 **Throws**:
 
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
@@ -191,20 +244,20 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to listen to |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> |  | The event to listen to |
 | callback | [<code>callback</code>](#EventEmitter..callback) |  | The callback function to execute when the event occurs |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.context] | <code>Object</code> | <code>this</code> | The context to invoke the callback function in. |
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
-| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
+| [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired. |
 
 
 * * *
 
-<a name="EventEmitter+hasListener"></a>
+<a name="module_djipevents..EventEmitter+hasListener"></a>
 
-## eventEmitter.hasListener([event], [callback]) ⇒ <code>boolean</code>
+### eventEmitter.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -212,40 +265,40 @@ includes global listeners registered to `EventEmitter.ANY_EVENT`).
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [event] | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to check |
-| [callback] | <code>function</code> \| [<code>Listener</code>](#Listener) | The actual function that was added to the event or the [Listener](#Listener) object returned by `addListener()`. |
+| [event] | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> | The event to check |
+| [callback] | <code>function</code> \| <code>Listener</code> | The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`. |
 
 
 * * *
 
-<a name="EventEmitter+getListeners"></a>
+<a name="module_djipevents..EventEmitter+getListeners"></a>
 
-## eventEmitter.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+### eventEmitter.getListeners(event) ⇒ <code>Array.&lt;Listener&gt;</code>
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
-**Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
+**Returns**: <code>Array.&lt;Listener&gt;</code> - An array of `Listener` objects  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to get listeners for |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> | The event to get listeners for |
 
 
 * * *
 
-<a name="EventEmitter+suspendEvent"></a>
+<a name="module_djipevents..EventEmitter+suspendEvent"></a>
 
-## eventEmitter.suspendEvent(event)
+### eventEmitter.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -255,19 +308,19 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to suspend execution of all callback functions. |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> | The event for which to suspend execution of all callback functions. |
 
 
 * * *
 
-<a name="EventEmitter+unsuspendEvent"></a>
+<a name="module_djipevents..EventEmitter+unsuspendEvent"></a>
 
-## eventEmitter.unsuspendEvent(event)
+### eventEmitter.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -275,39 +328,39 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to resume execution of all callback functions. |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> | The event for which to resume execution of all callback functions. |
 
 
 * * *
 
-<a name="EventEmitter+getListenerCount"></a>
+<a name="module_djipevents..EventEmitter+getListenerCount"></a>
 
-## eventEmitter.getListenerCount(event) ⇒ <code>number</code>
+### eventEmitter.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> | The event |
 
 
 * * *
 
-<a name="EventEmitter+emit"></a>
+<a name="module_djipevents..EventEmitter+emit"></a>
 
-## eventEmitter.emit(event, ...args) ⇒ <code>Array</code>
+### eventEmitter.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -329,7 +382,7 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -346,9 +399,9 @@ functions
 
 * * *
 
-<a name="EventEmitter+removeListener"></a>
+<a name="module_djipevents..EventEmitter+removeListener"></a>
 
-## eventEmitter.removeListener([event], [callback], [options])
+### eventEmitter.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -357,7 +410,7 @@ first parameter.
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 | Param | Type | Default | Description |
@@ -371,9 +424,9 @@ callback to match or one or more of the additional options.
 
 * * *
 
-<a name="EventEmitter+waitFor"></a>
+<a name="module_djipevents..EventEmitter+waitFor"></a>
 
-## eventEmitter.waitFor(event, [options])
+### eventEmitter.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -415,88 +468,68 @@ try {
 }
 ```
 
-<!--**Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: instance method of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to wait for |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> |  | The event to wait for |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
 
 * * *
 
-<a name="EventEmitter.ANY_EVENT"></a>
+<a name="module_djipevents..EventEmitter.ANY_EVENT"></a>
 
-## EventEmitter.ANY\_EVENT : <code>Symbol</code>
+### EventEmitter.ANY\_EVENT : <code>Symbol</code>
 Identifier to use when trying to add or remove a listener that should be triggered when any
 events occur.
 
-<!--**Kind**: static property of [<code>EventEmitter</code>](#EventEmitter)  
+<!--**Kind**: static property of [<code>EventEmitter</code>](#module_djipevents..EventEmitter)  
 -->
 
 * * *
 
-<a name="EventEmitter..callback"></a>
+<a name="module_djipevents..Listener"></a>
 
-## EventEmitter~callback : <code>function</code>
-The callback function is executed when the associated event is triggered via `emit()`. The
-`emit()` method relays all additional arguments it received to the callback functions. Since
-`emit()` can be passed a variable number of arguments, it is up to the developer to make sure
-the arguments match those of the associated callback. In addition, the callback also separately
-receives all the arguments present in the listener's `arguments` property. This makes it
-easy to pass data from where the listener is added to where the listener is executed.
-
-<!--**Kind**: inner typedef of [<code>EventEmitter</code>](#EventEmitter)  
--->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [...args] | <code>\*</code> | A variable number of arguments matching the ones (if any) that were passed to the `emit()` method (except, the first one) followed by the arguments found in the listener's `arguments` array. |
-
-
-* * *
-
-<a name="Listener"></a>
-
-# Listener
+## djipevents~Listener
 The `Listener` class represents a single event listener object. Such objects keep all relevant
 contextual information such as the event being listened to, the object the listener was attached
 to, the callback function and so on.
 
-<!--**Kind**: global class  
+<!--**Kind**: inner class of [<code>djipevents</code>](#module_djipevents)  
 -->
 
 
-* [Listener](#Listener)
+* [~Listener](#module_djipevents..Listener)
 
-    * [new Listener(event, target, callback, [options])](#new_Listener_new)
+    * [new Listener(event, target, callback, [options])](#new_module_djipevents..Listener_new)
 
-    * [.event](#Listener+event) : <code>string</code>
+    * [.event](#module_djipevents..Listener+event) : <code>string</code>
 
-    * [.target](#Listener+target) : [<code>EventEmitter</code>](#EventEmitter)
+    * [.target](#module_djipevents..Listener+target) : <code>EventEmitter</code>
 
-    * [.callback](#Listener+callback) : <code>function</code>
+    * [.callback](#module_djipevents..Listener+callback) : <code>function</code>
 
-    * [.context](#Listener+context) : <code>Object</code>
+    * [.context](#module_djipevents..Listener+context) : <code>Object</code>
 
-    * [.remaining](#Listener+remaining) : <code>number</code>
+    * [.remaining](#module_djipevents..Listener+remaining) : <code>number</code>
 
-    * [.count](#Listener+count) : <code>number</code>
+    * [.count](#module_djipevents..Listener+count) : <code>number</code>
 
-    * [.arguments](#Listener+arguments) : <code>array</code>
+    * [.arguments](#module_djipevents..Listener+arguments) : <code>array</code>
 
-    * [.suspended](#Listener+suspended) : <code>boolean</code>
+    * [.suspended](#module_djipevents..Listener+suspended) : <code>boolean</code>
 
-    * [.remove()](#Listener+remove)
+    * [.remove()](#module_djipevents..Listener+remove)
 
 
 * * *
 
-<a name="new_Listener_new"></a>
+<a name="new_module_djipevents..Listener_new"></a>
 
-## new Listener(event, target, callback, [options])
+### new Listener(event, target, callback, [options])
 <!---->
 **Throws**:
 
@@ -507,8 +540,8 @@ to, the callback function and so on.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event being listened to |
-| target | [<code>EventEmitter</code>](#EventEmitter) |  | The `EventEmitter` object that the listener is attached to |
+| event | <code>string</code> \| <code>EventEmitter.ANY\_EVENT</code> |  | The event being listened to |
+| target | <code>EventEmitter</code> |  | The `EventEmitter` object that the listener is attached to |
 | callback | [<code>callback</code>](#EventEmitter..callback) |  | The function to call when the listener is triggered |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.context] | <code>Object</code> | <code>target</code> | The context to invoke the listener in (a.k.a. the value of `this` inside the callback function). |
@@ -518,93 +551,93 @@ to, the callback function and so on.
 
 * * *
 
-<a name="Listener+event"></a>
+<a name="module_djipevents..Listener+event"></a>
 
-## listener.event : <code>string</code>
+### listener.event : <code>string</code>
 The event name
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+target"></a>
+<a name="module_djipevents..Listener+target"></a>
 
-## listener.target : [<code>EventEmitter</code>](#EventEmitter)
+### listener.target : <code>EventEmitter</code>
 The object that the event is attached to (or that emitted the event)
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+callback"></a>
+<a name="module_djipevents..Listener+callback"></a>
 
-## listener.callback : <code>function</code>
+### listener.callback : <code>function</code>
 The callback function
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+context"></a>
+<a name="module_djipevents..Listener+context"></a>
 
-## listener.context : <code>Object</code>
+### listener.context : <code>Object</code>
 The context to execute the context function in (a.k.a. the value of `this` inside the
 callback function)
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+remaining"></a>
+<a name="module_djipevents..Listener+remaining"></a>
 
-## listener.remaining : <code>number</code>
+### listener.remaining : <code>number</code>
 The remaining number of times after which the callback should automatically be removed.
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+count"></a>
+<a name="module_djipevents..Listener+count"></a>
 
-## listener.count : <code>number</code>
+### listener.count : <code>number</code>
 The number of times the listener function was executed
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+arguments"></a>
+<a name="module_djipevents..Listener+arguments"></a>
 
-## listener.arguments : <code>array</code>
+### listener.arguments : <code>array</code>
 Arguments to pass separately to the callback function upon execution
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+suspended"></a>
+<a name="module_djipevents..Listener+suspended"></a>
 
-## listener.suspended : <code>boolean</code>
+### listener.suspended : <code>boolean</code>
 Whether this listener is currently suspended
 
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *
 
-<a name="Listener+remove"></a>
+<a name="module_djipevents..Listener+remove"></a>
 
-## listener.remove()
+### listener.remove()
 Removes the listener from its target.
 
-<!--**Kind**: instance method of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance method of [<code>Listener</code>](#module_djipevents..Listener)  
 -->
 
 * * *

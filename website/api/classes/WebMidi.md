@@ -1,6 +1,6 @@
 <a name="WebMidi"></a>
 
-# WebMidi ⇐ <code>module:djipevents/EventEmitter</code>
+# WebMidi ⇐ <code>djipevents/EventEmitter</code>
 The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
 simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
 
@@ -12,12 +12,12 @@ directly.
 
 <!--**Kind**: global class  
 -->
-**Extends**: <code>module:djipevents/EventEmitter</code>  
+**Extends**: <code>djipevents/EventEmitter</code>  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
 **License**: Apache-2.0  
 
 
-* [WebMidi](#WebMidi) ⇐ <code>module:djipevents/EventEmitter</code>
+* [WebMidi](#WebMidi) ⇐ <code>djipevents/EventEmitter</code>
 
     * [.defaults](#WebMidi+defaults) : <code>Object</code>
 
