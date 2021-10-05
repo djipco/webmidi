@@ -61,6 +61,8 @@ async function generate() {
       ],
       noCache: true,
       "heading-depth": 1,
+
+      // Put <hr> breaks between identifiers
       separators: true,
 
       // Format identifiers as code (wrap function/property/class/etc. names in backticks).
