@@ -119,7 +119,7 @@ device you want to use.
 ## Step 5 - Have fun!
 
 **That's it!** To go further, please take some time to check out the 
-[Getting Started](getting-started/index) section. It covers important topics such as instalaltion 
+[Getting Started](getting-started) section. It covers important topics such as instalaltion 
 options, compatibility, security, etc.
 
 If you ever need help, head over to the 
