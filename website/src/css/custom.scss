@@ -69,7 +69,7 @@ html[data-theme=dark] .header-github-link:before {
 }
 
 // Styles applicable to "docs" and "api" ///////////////////////////////////////////////////////////
-.docs-wrapper .markdown header:first-of-type {
+.docs-wrapper article .markdown header:nth-of-type(2) {
   display: none;
 }
 

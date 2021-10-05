@@ -54,7 +54,7 @@ html[data-theme=dark] .header-github-link:before {
   filter: invert(1);
 }
 
-.docs-wrapper .markdown header:first-of-type {
+.docs-wrapper article .markdown header:nth-of-type(2) {
   display: none;
 }
 
