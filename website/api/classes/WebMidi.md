@@ -12,7 +12,7 @@ directly.
 
 <!--**Kind**: global class  
 -->
-**Extends**: <code>EventEmitter</code>, <code>EventEmitter</code>  
+**Extends**: <code>EventEmitter</code>  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
 **License**: Apache-2.0  
 
