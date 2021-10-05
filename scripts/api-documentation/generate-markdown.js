@@ -10,7 +10,6 @@ const rimraf = require("@alexbinary/rimraf");
 const moment = require("moment");
 
 const ROOT_PATH = process.cwd();
-// const SOURCE_PATH = path.join(process.cwd(), "src");
 const TARGET_PATH = path.join(process.cwd(), "website", "api", "classes");
 const TEMPLATE_DIR = path.join(__dirname, "markdown-template");
 
