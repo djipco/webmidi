@@ -189,7 +189,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
-        blog: {},
+        blog: false,
         pages: {},
       },
     ],
