@@ -26,3 +26,7 @@ Created by: Yotam Mann
 
 Shared Piano is a simple tool for remote music teaching and collaboration that lets you play music 
 together live on the web.
+
+
+## [Faust IDE](https://faustide.grame.fr/)
+/ The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
