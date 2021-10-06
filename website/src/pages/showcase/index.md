@@ -28,5 +28,5 @@ Shared Piano is a simple tool for remote music teaching and collaboration that l
 together live on the web.
 
 
-## [Faust IDE](https://faustide.grame.fr/)
-/ The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
+## [Faust IDE](https://faustide.grame.fr/) 
+The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
