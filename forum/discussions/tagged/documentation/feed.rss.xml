@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>documentation — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:13:28 +0000</pubDate>
+        <language>en</language>
+            <description>documentation — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/tagged/documentation/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Cannot receive NRPN</title>
+        <link>https://webmidijs.org/forum/discussion/33/cannot-receive-nrpn</link>
+        <pubDate>Fri, 19 Feb 2021 08:01:14 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rubendax</dc:creator>
+        <guid isPermaLink="false">33@/forum/discussions</guid>
+        <description><![CDATA[<p>I&#39;ve had success receiving and sending multiple types of MIDI messages using this library. Thanks so much for your work. It is a great asset. My only problem seems to be with <em>receiving</em> NRPN messages.</p><p>This is the incoming MIDI (via MIDI Monitor):</p><div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/397/VCHC54MHZ80B.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/397/VCHC54MHZ80B.png" alt="image.png" />
+        </a>
+    </div>
+</div>
+<div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/079/UU08GYWMOCVJ.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/079/UU08GYWMOCVJ.png" alt="image.png" />
+        </a>
+    </div>
+</div>
+<p>Based on my understanding, this should be a valid NRPN message, however, it will not trigger the callback function. Therefore, I assume webmidi.js is not accepting my NRPN as valid. I am attempting to structure my NRPN based on the MIDI spec and<a href="http://www.philrees.co.uk/nrpnq.htm" rel="nofollow"> this article</a>. I send controller 99 and 98 together, followed by 6 and 38, finally followed by 101 and 100.</p><p>My JS:</p><pre spellcheck="false">
+    let input = WebMidi.getInputByName(deviceName);
+    input.addListener(&quot;nrpn&quot;, &quot;all&quot;, function (rx) {
+        console.log(&quot;Valid NRPN!&quot;);
+    });
+</pre><p>In this same project I have used this same addListener syntax for other message types with success, for example, by replacing &quot;nrpn&quot; with &quot;keyaftertouch&quot;. </p><p>Perhaps I&#39;m making an obvious mistake. Any ideas of what I should try? I have full control over the structure of the incoming MIDI message.</p><p>Thanks again!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>The Docs look awesome!</title>
+        <link>https://webmidijs.org/forum/discussion/13/the-docs-look-awesome</link>
+        <pubDate>Tue, 23 Jun 2020 17:50:27 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>misterinterrupt</dc:creator>
+        <guid isPermaLink="false">13@/forum/discussions</guid>
+        <description><![CDATA[<p>I had a reply from the WebMIDI.s survey stuck in my spam filter for a while and today I came to see the docs and forum. Wow! such amazing upgrades! great work!</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

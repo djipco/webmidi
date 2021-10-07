@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>General Discussion — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:06:03 +0000</pubDate>
+        <language>en</language>
+            <description>General Discussion — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/categories/general/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Is it possible to create a midi output to a DAW ?</title>
+        <link>https://webmidijs.org/forum/discussion/36/is-it-possible-to-create-a-midi-output-to-a-daw</link>
+        <pubDate>Sat, 27 Mar 2021 17:09:47 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Keith</dc:creator>
+        <guid isPermaLink="false">36@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi Webmidi folks , </p><p><br /></p><p>Ideally I&#39;d like to send notes from Chrome to Maschine ( or FL studio), etc, is this even possible from the browser . </p><p><br /></p><p>This node module does it, but this appears to be nodejs only . </p><p><br /></p><p><a href="https://www.npmjs.com/package/easymidi" rel="nofollow">https://www.npmjs.com/package/easymidi</a></p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Use GitHub discussions?</title>
+        <link>https://webmidijs.org/forum/discussion/39/use-github-discussions</link>
+        <pubDate>Fri, 09 Apr 2021 12:58:46 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Martin Klepsch</dc:creator>
+        <guid isPermaLink="false">39@/forum/discussions</guid>
+        <description><![CDATA[<p>Hey! </p><p>It seems this forum is a somewhat new thing and I was just wondering if you have considered using the new GitHub discussions feature (example: <a href="https://github.com/vercel/next.js/discussions" rel="nofollow">https://github.com/vercel/next.js/discussions</a>), </p><p>I just made my first post here and editing a code block I had my cursor jump around multiple times, which seemed like a bug on the side of the forum software. Using GitHub&#39;s discussion feature you wouldn&#39;t need to worry about maintaining this installation and people wouldn&#39;t need to sign up for any extra accounts.</p><p>Cheers</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Where do I begin with USB MIDI on Ubuntu Studio 20.10</title>
+        <link>https://webmidijs.org/forum/discussion/26/where-do-i-begin-with-usb-midi-on-ubuntu-studio-20-10</link>
+        <pubDate>Mon, 30 Nov 2020 17:05:08 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Cool Games</dc:creator>
+        <guid isPermaLink="false">26@/forum/discussions</guid>
+        <description><![CDATA[<p><a href="https://ubuntustudio.org/2020/10/ubuntu-studio-20-10-released/" rel="nofollow">Ubuntu Studio 20.10</a> is newest release of a creative release for artists.</p><p>There is an <a href="https://ubuntustudio.org/2018/06/introducing-the-ubuntu-studio-audio-handbook/" rel="nofollow">Audio Handbook</a> that discusses MIDI and WebMIDI.js would be a huge step forward.</p><p>I have a <a href="https://rolandcom.github.io/gokeys-scratch-extension/" rel="nofollow">Roland Go:Keys 61k</a> that has USB MIDI that I want to use for beginners learning music.</p><p>I am retired non-programmer that has time and technical curiosity to contribute to this effort in 2021.</p><p><strong>Please help me on a project to get it all working !</strong></p><p>Lee T. Davy dot Event Video since 1990 now at GMail</p><p>also know as Cool Games Network since 2000.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>The Docs look awesome!</title>
+        <link>https://webmidijs.org/forum/discussion/13/the-docs-look-awesome</link>
+        <pubDate>Tue, 23 Jun 2020 17:50:27 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>misterinterrupt</dc:creator>
+        <guid isPermaLink="false">13@/forum/discussions</guid>
+        <description><![CDATA[<p>I had a reply from the WebMIDI.s survey stuck in my spam filter for a while and today I came to see the docs and forum. Wow! such amazing upgrades! great work!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Forum Guidelines &amp; Tips</title>
+        <link>https://webmidijs.org/forum/discussion/9/forum-guidelines-tips</link>
+        <pubDate>Mon, 04 May 2020 02:38:13 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Jean-Philippe Côté</dc:creator>
+        <guid isPermaLink="false">9@/forum/discussions</guid>
+        <description><![CDATA[<p>👋 Welcome!</p><p>I am very happy that you decided to join the WebMidi.js community. Please take a little time to browse the guidelines and tips before you start posting.</p><h2><strong>Usage Guidelines</strong></h2><ul><li><strong>Respect others</strong>. They are expected to do the same.</li><li><strong>Post in the right category</strong>. There are only 4, you can do it!</li><li><strong>Be safe</strong>. Consider all posted content to be public.</li><li><strong>Be legit</strong>.<strong> </strong>Hateful, illegal, spammy or copyright-infringing content will not be tolerated.</li></ul><p>In short, be respectful, enjoy yourself, and help me build a great community.</p><h2><strong>Tips &amp; tricks</strong></h2><ul><li><strong>Mention others.</strong>&nbsp;Put an @ symbol before the username to mention someone. They&rsquo;ll get notified when you do.</li><li><strong>Tweak your notification preferences.</strong>&nbsp;You&rsquo;ll receive a notification if someone mentions you or posts to a discussion that you&rsquo;ve bookmarked. You can set notifications from the <a href="denied:unsafe:/forum/profile/edit" rel="nofollow"><strong>Edit Profile</strong></a> page.</li><li><strong>Send private messages.</strong>&nbsp;You can do so by going to your <a href="denied:unsafe:/forum/messages/inbox" rel="nofollow"><strong>inbox</strong></a>, or by visiting another user&#39;s profile page (click their username).</li><li><strong>Embed external content. </strong>You can embed a YouTube video, a Pinterest pin or a tweet by simply pasting the link. The forum will handle the embedding for you.</li><li><strong>Be informed</strong>. Check out what&rsquo;s going on with other community members on the&nbsp;<a href="denied:unsafe:/forum/activity" rel="nofollow"><strong>Activity</strong></a>&nbsp;page.</li></ul><p>Cheers,</p><p><strong>Jean-Philippe</strong> (a.k.a. <strong>djipco</strong>)</p><p>﻿🤘﻿</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

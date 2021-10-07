@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<!--
+  _   _      _ _         _   _                   _ 
+ | | | | ___| | | ___   | |_| |__   ___ _ __ ___| |
+ | |_| |/ _ \ | |/ _ \  | __| '_ \ / _ \ '__/ _ \ |
+ |  _  |  __/ | | (_) | | |_| | | |  __/ | |  __/_|
+ |_| |_|\___|_|_|\___/   \__|_| |_|\___|_|  \___(_)
+      
+phpBB style name: Canvas
+Author:  Tushar Singh (slickthemes.net)
+-->
+<!-- Here be dragons -->
+        
+        
+    	
+
+
+
+
+<html class="slickthemes no-js timestamps pinchZoom" dir="ltr" lang="en-gb">
+<head>
+
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3" />
+		
+	
+	<!-- Google free font here -->
+<!-- 
+	<link href='//fonts.googleapis.com/css?family=Open+Sans&ver=4.5.2' rel='stylesheet' type='text/css' media='all'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link crossorigin="anonymous" rel='stylesheet' id='pexeto-font-3-css'  href='https://fonts.googleapis.com/css?family=Lato&#038;display=swap&#038;ver=4.9.12' type='text/css' media='all' />
+ -->
+	
+
+		<!-- Facebook Default Image when posting links to LPH -->
+	<meta property="og:image" content="https://www.logicprohelp.com/wp-content/uploads/2016/08/Facebook-default.jpg">
+
+<title>default velocity value [SOLVED] - Logic Pro Help</title>
+
+	
+			<link rel="canonical" href="https://www.logicprohelp.com/forum/viewtopic.php?t=101716" />
+	
+		<style type="text/css">
+		html.slickthemes {
+			overflow-y: scroll;
+			background-attachment: fixed;
+		}
+		html.slickthemes, #st-bgimg {
+			background-color: rgb(49, 63, 79);
+
+			
+							background-position: 0 0;
+			
+							background-size: cover;
+					}
+			</style>
+	
+			<link href="./styles/canvas/theme/css/main.min.css?assets_version=595" rel="stylesheet" type="text/css" media="screen" />
+	<link href="./styles/canvas/theme/print.css?assets_version=595" rel="stylesheet" type="text/css" media="print" title="printonly" />
+
+	
+		
+	<link href="./ext/bb3mobi/lastpostavatar/styles/all/theme/lastpostavatar.css?assets_version=594" rel="stylesheet" type="text/css" media="screen" />
+<link href="./ext/tierra/topicsolved/styles/prosilver/theme/buttons.css?assets_version=594" rel="stylesheet" type="text/css" media="screen" />
+
+
+		<style type="text/css" id="st_userconfig_CSS">
+  /* slickpanel overrides. please do not eat */
+  
+  /* Typography */
+    
+    .container, .layout-boxed #wrap, .breadcrumbs-bar.detached, .layout-stretched .nav-breadcrumbs {
+	max-width: 1230px;
+  }
+    
+    
+  .postbody .content {
+			font-size: 17px;
+	  }
+  
+  /* text logo */
+  .logo h1 {
+		color: rgb(255, 255, 255);
+		  }
+  
+  /* image logo */
+  .logo h1 img {
+	max-width: 150px;
+  }
+  
+  /* colors */
+    .itemlist__item--colbar,.cp-main h3, #tabs, .st-section__header,.btn-primary, .thead, .category-header, .section-header {
+	background-color: rgb(49, 63, 79)
+  }
+  .forum-icon {
+	color: rgb(49, 63, 79)
+  } 
+   {
+	border-color: rgb(49, 63, 79)
+  }
+  
+  /* header */
+  .main-header {
+	background-color: rgb(255, 255, 255);
+	
+		background-image: none;
+		
+		height: 50px;
+		
+	background-position: ;
+	
+	  }
+  
+  /* Search */
+  .quicksearch fieldset {
+	background-color: rgb(255, 255, 255);
+	color: rgb(49, 63, 79);
+  }
+  .quicksearch__placeholder {
+	color: rgb(49, 63, 79);
+  }
+  .quicksearch .quicksearch--focus {
+	background-color: rgb(49, 63, 79);
+  }
+  
+  /* footer */
+  #page-footer {
+	background-color: rgb(49, 63, 79);
+	
+		
+	background-position: ;
+	
+	  }
+
+  /* Post Author Label */
+  .topic-author-label .label {
+  	background-color: rgb(83, 184, 124);
+  }
+  
+</style>
+	
+	
+	
+	<style type="text/css">
+	/* Put your custom CSS here */
+
+/* -------------------- */
+
+nav {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-size: 100%;
+}
+
+.container {
+	max-width: 1200px;
+}
+
+.offcanvas-content {
+	top: 130px;
+}
+
+
+/*----------------------------- 3.3 Navigation Menu --------------------------------*/
+.navigation-container {
+  float: right;
+  line-height: 1.7;
+}
+.nav-menu ul {
+  margin-left: 0;
+}
+.nav-menu ul li {
+  position: relative;
+  display: inline;
+  float: left;
+}
+.nav-menu ul li a {
+  display: block;
+  padding: 2px 14px;
+}
+.nav-menu ul ul {
+  position: absolute;
+  top: 15px;
+  z-index: 1000;
+  display: none;      /*comment out to work on menu*/
+  margin-top: 0px;
+  padding-top: 19px;
+  width: 210px;
+}
+.nav-menu ul ul ul {
+  top: -2px;
+  left: 210px;
+}
+.nav-menu ul ul li {
+  display: block;
+  float: left;
+  padding: 4px 0 4px 0;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+.nav-menu ul ul li a {
+  letter-spacing: 0;
+  line-height: 1.8em;
+}
+.nav-menu li:hover ul {
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  display: inline;  
+}
+
+/*-------------------- 3.4 Basic Structure And Containers -------------------------- */
+.center {
+  margin-right: auto;
+  margin-left: auto;
+}
+.page-wrapper {
+  margin: 0 auto;
+  max-width: 100%;
+}
+.mobile-nav,
+.mob-nav-menu {
+	display: none ;
+}
+
+#main-container {
+  min-width: 250px;
+}
+/* ---------------- Logo ---------------- */
+#logo-container {
+  float: left;
+  margin: 0 3.06%;
+  margin-top: 3px;
+  margin-left: 0;
+}
+#logo-container a {
+  display: block;
+  float: left;
+}
+#logo-container img {
+  width: 250px;
+  height: 51px;
+}
+.header-separator {
+  overflow: hidden;
+  width: 100%;
+  border-top: 5px solid #383838;
+}
+#wp-header {
+  padding-top: 20px;
+  padding-right: 5%;
+  padding-left: 5%;
+  width: 100%;
+  height: 94px;
+  background: transparent;
+  position: relative;
+  margin-right: 0;
+  z-index: 1002;
+}
+.header-wrapper {
+  position: relative;
+  background-color: #313f4f;
+  width: 100%;
+}
+.header-wrapper .section-header{
+	padding: 0;
+	padding-bottom: 75px;
+	background-color: transparent;
+	overflow: visible;
+}
+.fixed-header .header-wrapper {
+  padding-top: 103px;
+}
+.slider-active .page-wrapper .header-wrapper {
+  padding-top: 0;
+}
+.header-wrapper .full-bg-image {
+  top: 0;
+}
+
+.header-buttons {
+  display: inline-block;
+  margin-top: 9px;
+  float: right;
+}
+
+
+/*----------------------- 4. Theme Colors & Stylings -----------------------*/
+/* ----------------- 4.1 Navigation -----------------  */
+.nav-menu ul {
+  margin-top: 10px;
+}
+.nav-menu ul li a {
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.nav-menu ul li a:hover {
+  color: #ffffff;
+  color: rgba(255, 255, 255, 0.8);
+}
+.nav-menu .mega-menu-item > ul > li > a:hover {
+  color: #FFF;
+}
+.nav-menu > ul > li > a:after,
+.nav-menu > div.menu-ul > ul > li > a:after {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  display: block;
+  overflow: hidden;
+  margin-left: 0px;
+  width: 0px;
+  height: 0px;
+  background: #ffffff;
+  content: '-';
+  text-indent: -999em;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+.nav-menu > ul > li > a:hover:after,
+.nav-menu > div.menu-ul > ul > li > a:hover:after,
+.nav-menu > ul > li:hover > a:after {
+  bottom: 5px;
+  height: 2px;
+  width: 40px;
+  margin-left: -20px;
+  margin-top: -2px;
+}
+.nav-menu ul ul li .drop-arrow {
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  position: relative;
+  right: -10px;
+  top: 6px;
+  float: right;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  font-size: 10px;
+}
+.nav-menu ul .current-menu-item a,
+.nav-menu li:hover a,
+.nav-menu .current-menu-parent a,
+.nav-menu .current-menu-ancestor a {
+  color: #ffffff;
+}
+.nav-menu .current-menu-item a,
+.nav-menu > ul > li:hover > a,
+.nav-menu > ul > li:hover > a,
+.nav-menu > ul > li.menu-item-forum > a {
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.nav-menu ul ul .current-menu-item,
+.nav-menu ul ul .current-menu-parent,
+.nav-menu ul ul .current-menu-ancestor {
+  margin-top: 0;
+  border-top: 0;
+}
+.nav-menu ul ul li a {
+  border-right: 0;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+.nav-menu ul ul li {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.nav-menu ul li:last-child a {
+  border-right: 0;
+}
+.nav-menu ul ul ul,
+.fixed-header-scroll .nav-menu ul ul ul {
+  padding: 0;
+}
+.fixed-header-scroll .nav-menu ul ul ul {
+  margin-top: 0;
+}
+
+/*.fixed-header-scroll .content-slider-wrapper{ padding-top: 0 !important; }*/
+.nav-menu .sub-menu li:first-child,
+.nav-menu .children li:first-child {
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+}
+.nav-menu > ul > li:not(.mega-menu-item) ul > li:first-child {
+  padding-top: 15px;
+}
+.nav-menu > ul > li:not(.mega-menu-item) ul > li:last-child {
+  padding-bottom: 15px;
+}
+.nav-menu li:not(.mega-menu-item) li a {
+  padding-left: 21px;
+  padding-right: 22px;
+}
+.nav-menu .sub-menu li:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.nav-menu .sub-menu li a, .nav-menu .sub-menu li:hover a {
+	color: #313f4f;
+}
+
+/* -------------- MEGA MENU -------------- */
+#menu {
+  float: left;
+}
+#menu > ul {
+  position: relative;
+}
+.nav-menu ul li.mega-menu-item {
+  position: static;
+}
+.nav-menu li.mega-menu-item ul ul {
+  display: block;
+}
+.nav-menu li.mega-menu-item > ul {
+  width: auto;
+  top: 34px;
+  padding: 0 15px 20px 15px;
+  background-color: #1e1e1e;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+}
+.nav-menu li.mega-menu-item > ul ul {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.nav-menu li.mega-menu-item ul li {
+  display: inline-block;
+  width: 200px;
+  background: none;
+  box-shadow: none;
+  border-top-width: 0 !important;
+  padding: 2px 0;
+}
+.nav-menu .mega-menu-item > ul > li {
+  margin: 0;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.nav-menu .mega-menu-item ul li a {
+  padding: 4px 0;
+}
+.nav-menu .mega-menu-item > ul > li > a {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.nav-menu li.mega-menu-item li li li a:before {
+  content: '>';
+  padding-right: 5px;
+  -moz-opacity: 0.4;
+  -khtml-opacity: 0.4;
+  -webkit-opacity: 0.4;
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  display: inline-block;
+}
+.nav-menu li.mega-menu-item ul ul a {
+  font-weight: normal;
+  letter-spacing: 1px;
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  -webkit-opacity: 0.7;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+}
+.nav-menu > ul > li > a:after,
+.nav-menu > div.menu-ul > ul > li > a:after {
+  position: relative;
+  top: 4px;
+}
+.header-layout-center .nav-menu ul ul {
+  display: none;
+  text-align: left;
+}
+.header-layout-center .nav-menu li.mega-menu-item ul ul {
+  display: block;
+}
+.fixed-header-scroll .nav-menu li.mega-menu-item > ul {
+  top: 30px;
+}
+.mega-columns-2 > li:nth-of-type(2n+1) {
+  clear: left;
+}
+.mega-columns-3 > li:nth-child(3n+1) {
+  clear: left;
+}
+.mega-columns-4 > li:nth-child(4n+1) {
+  clear: left;
+}
+.nav-menu li.mega-menu-item > ul > li {
+  margin-top: 20px;
+}
+.nav-menu li.mega-menu-item > ul {
+  padding-top: 0;
+}
+.mega-menu-item > ul > li > a {
+  opacity: 1;
+}
+
+/* Header Social Icons */
+.social-profiles {
+  float: right;
+  margin: 9px 0 0 16px;
+}
+.social-icons {
+  margin-left: 0;
+  list-style: none;
+}
+.social-icons li {
+  float: left;
+  padding: 0px;
+  width: 25px;
+  height: 25px;
+  line-height: 1em;
+  margin-right: 2px;
+}
+.social-icons li:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.social-icons li:hover img {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+
+/* Typography */
+.smilies {
+	vertical-align: baseline;
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-style: normal;
+  font-weight: 600;
+  src: local("?"), url("data:application/x-font-woff;base64,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");
+}
+
+#menu ul li a {
+	font-family: 'Gotham';
+	font-size: 14px;
+}
+
+
+
+.section-boxed {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 3%;
+  max-width: 1200px;
+}
+
+.section-header {
+
+}
+
+.fixed-header.boxed-layout #header {
+  width: 90%;
+}
+
+.container, .layout-boxed #wrap, .breadcrumbs-bar.detached, .layout-stretched .nav-breadcrumbs {
+	max-width: 1200px;
+}
+
+ul.menu-ul > li, div.menu-ul > ul > li {
+	padding-bottom: 10px;
+}
+
+ul.mob-nav-menu > li,
+div.mob-nav-menu > ul > li {
+  padding-bottom: 0;
+}
+
+.scroll-to-top {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  -webkit-opacity: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 100;
+  margin-bottom: -30px;
+  width: 35px;
+  height: 35px;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  cursor: pointer;
+}
+.scroll-to-top span {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 4px;
+  width: 35px;
+  height: 30px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 26px;
+}
+.scroll-to-top:hover {
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  -webkit-opacity: 1;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  background: #fdd200;
+}
+
+.hoverable {
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  -webkit-opacity: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+
+.mob-nav-menu {
+	background: rgba(17, 17, 17, 0.96);
+}
+
+/*-------No lines on hover-------*/
+.forumrow a.lastsubject:before,
+.itemlist--forums .item-lastpost__title:before,
+.itemlist__item a.item-title:before,
+.topictitle:before {
+	display: none;
+}
+
+dt.has-profile-rank > .site-admin-badge,
+dt.has-profile-rank > .moderator-badge  {
+	color: white;
+	text-align: center;
+	background: #678DA6;
+	border-radius: 4px;
+	margin: 4px;
+	padding: 3px;
+}
+
+dt.has-profile-rank > .vendor-badge {
+	color: white;
+	text-align: center;
+	background: #888888;
+	border-radius: 4px;
+	margin: 4px;
+	padding: 3px;
+}
+
+/*Header */
+
+/* hide Search bar */
+/* 
+.main-header {
+	display:none;
+}
+
+.branding {
+	display: none;
+}
+ */
+
+.quicksearch {
+	width: 100%;
+	font-family: -apple-system, 'Helvetica Neue', Roboto, 'Segoe UI', Helvetica, sans-serif;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+#search > fieldset {
+	background-color: white;
+	border: 2px solid rgb(49, 63, 79);
+	border-radius: 5px;
+}
+
+.quicksearch__placeholder:focus {
+	color: red;
+}
+
+/*
+.main-header {
+	background-color: #364557;
+	height: 94px;
+}
+
+.branding {
+	width: 30%;
+}
+
+.quicksearch {
+	width: 70%;
+}
+
+.quicksearch fieldset {
+	float: left;
+}
+*/
+
+/* -----------------------*/
+
+
+
+li.nav-item a {
+    font-size: 12px;
+}
+
+.copyright {
+	display: none;
+}
+
+.blog-title {
+	color: #444;
+	font-size: 22px;
+	font-weight: 660;
+}
+
+/*------------- Media Queries ----------------*/
+
+@media (min-width:1100px) {
+    .csspositionsticky .quickScroll-container {
+        position: fixed;
+        right: 8px;
+        bottom: 8px
+    }
+}
+
+@media (min-width:768px) {
+
+	.postprofile .avatar-container img {
+		width: 90px;
+		min-height: 90px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+/*------ Mobile Navigation --------*/
+	 
+	  
+/* Hide Elemnts for small-screen devices */
+  .social-profiles,
+  .navigation-container {
+    display: none;
+  } 
+
+  .mobile-nav {
+    display: block;
+    float: right;
+    margin: 18px 3.06%;
+    margin-right: 0px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  .mob-nav-btn {
+    display: block;
+    padding-left: 27px;
+    height: 15px;
+    background: url(../wp-content/themes/thestory/images/mob-nav-icon_w.png) no-repeat;
+	background-size: 20px 15px;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 15px;
+  }
+  
+  .mob-nav-menu {
+    position: absolute;
+    z-index: 100;
+    margin-top: -1px;
+    margin-bottom: -21px;
+    margin-left: -5%;
+    width: 100%;
+    background-color: rgba(247, 247, 247, 0.96);
+	font-family: 'Open Sans';
+	text-transform: uppercase;
+    font-size: 12px;
+  }
+  .mob-nav-menu ul {
+    margin-left: 0;
+    list-style: none;
+  }
+  .mob-nav-menu li {
+    padding: 2px 0;
+    position: relative;
+  }
+  .mob-nav-menu ul li a {
+    display: block;
+    padding: 15px 3%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: #0a0a0a;
+  }
+  
+  .mob-nav-menu ul li a:hover {
+	  background-color: rgba(150, 150, 150, 0.90);
+	}
+
+  .mob-nav-menu ul ul {
+    background-color: rgba(255, 255, 255, 0.11);
+    display: none;
+  }
+  .mob-nav-menu ul ul li {
+    padding-left: 2%;
+  }
+  .mob-nav-arrow {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    border-left: 1px dotted rgba(255, 255, 255, 0.11);
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    cursor: pointer;
+  }
+  .mob-nav-arrow span {
+    margin-top: 15px;
+    display: block;
+    font-family: "Material Icons";
+    transition: transform 0.2s ease-out;	
+  }
+  
+  .mob-nav-arrow span:before {
+	  content: "expand_more";
+	  color: #0a0a0a;
+  }
+  
+  .mob-sub-opened {
+	  content: "expand_less";
+	  color: #0a0a0a;
+  }
+  	.ec-up-arrow {
+	transform: rotate(180deg);
+
+
+	}
+  .header-layout-right #logo-container {
+    float: left;
+  }
+  .header-layout-center #logo-container {
+    float: left;
+  }
+  .pg-cat-filter ul {
+    display: none;
+  }
+  .pg-filter-btn {
+    display: block;
+    padding: 10px 0;
+    width: 80%;
+    cursor: pointer;
+  }
+  .pg-filter-btn span {
+    display: block;
+    margin-left: 10px;
+    padding-left: 20px;
+    height: 15px;
+    background: url(images/mob-nav-icon_w.png) no-repeat;
+    background-position: left center;
+    background-size: 14px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.3em;
+  }
+  .pg-cat-filter {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+  }
+  .pg-cat-filter ul {
+    position: relative;
+    top: 0px;
+    z-index: 1000;
+    max-width: 100%;
+    padding: 0;
+    min-width: 250px;
+    background: #000000;
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+  .pg-cat-filter ul li {
+    display: list-item;
+    padding: 10px 0;
+    border-top: 1px solid #252525;
+    list-style: none;
+  }
+  .pg-cat-filter ul li a {
+    margin-left: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.7em;
+    cursor: pointer;
+    padding: 0 2px;
+  }
+  .pg-cat-filter ul li:first-child {
+    border-top: 0;
+  }
+  .pg-cat-filter .pg-loading {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+  }
+  .ps-nav-wrapper {
+    width: 100%;
+  }
+  .ps-content-text {
+    font-size: 12px;
+  }
+  .ts-pointer {
+    right: -4px;
+  }
+   #logo-container {
+    margin-top: 4px;
+  }
+  #logo-container a img {
+    max-width: 100%;
+    max-height: 40px;
+    width: auto;
+  }
+  
+  /*No lines on focus & hover for smaller screens*/
+
+  .forumrow a.lastsubject:focus,
+  .forumrow a.lastsubject:hover,
+  .itemlist--forums .item-lastpost__title:focus,
+  .itemlist--forums .item-lastpost__title:hover,
+  .itemlist__item a.item-title:focus,
+  .itemlist__item a.item-title:hover,
+  .topictitle:focus, .topictitle:hover {
+  	box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+	.offcanvas-content .quicksearch .form-control {
+		padding: 12px 0;
+		color: #5f5f5f;
+	}
+}
+
+@media screen and (max-width: 323px) {
+	#logo-container a img {
+		max-height: 37px;
+	}
+}
+
+div.logic-class-ad {
+	padding: 20px 15px;
+}
+div.logic-class-ad > h3 {
+	color: black; !important
+}
+div.logic-class-ad > a {
+	display: block;
+	color: white;
+	margin-bottom: 20px;
+}
+div.logic-class-ad-widget {
+	background: #FE645D;
+	background: linear-gradient(#F23930, #FEF95D); 
+}
+@media screen and (max-width: 767px) {
+	.logic-class-ad-widget > .logic-class-ad {
+		min-height: 370px;
+	}
+	div.logic-class-ad-widget {
+		width: 100%;
+		max-width: 767px;
+	}
+}
+
+/* MailChimp Sign-up form */
+#mce-EMAIL, #mc-embedded-subscribe {
+width: 85%
+}
+#mc_embed_signup {
+background: rgba(19,35,47,.9);
+padding: 25px;
+}
+#mc-embedded-subscribe {
+margin-top: 30px;
+background: #1AB186;
+}
+
+.banner-ad {
+width:100%;
+margin: auto;
+}
+
+/* customization for AdSense */
+.col-sidebar {
+min-width: 315px; 
+}
+.banner-ad {
+width: 100%;
+margin: auto;
+}
+#right-column-ads {
+min-width: 125px;
+}
+/* /customization for AdSense */
+
+a.item-title {
+font-size: 17px !important;
+}
+	</style>
+
+	<style id="elementState_restore" type="text/css"></style>
+	<script type="text/javascript">
+		window._st = window._st || {};
+		_st.onloadfunctions = _st.onloadfunctions || [];
+		_st.utils = {};
+	</script>
+			<script type="text/javascript" src="../wp-includes/js/jquery/jquery.js?ver=1.12.3"></script>
+		<script type="text/javascript" src="../wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.0"></script>
+		
+	<!-- GOOGLE Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-10578933-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+</head>
+
+<body id="phpbb" class="section-viewtopic ltr  postAuthorAlign-left layout-stretched roundAvatars-enabled nb-h">
+
+
+	<link href="./styles/canvas/theme/css/mdi.css?assets_version=595" rel="stylesheet" type="text/css">
+
+<div id="st-bgimg"></div>
+<!-- skip to content -->
+<a href="#start__content" class="skiplink" style="display: none">Skip to content</a>
+
+
+<div class="offcanvas-wrapper">
+<div class="offcanvas-content">
+	<a href="javascript:void(0)" class="offcanvas-toggle offcanvas-backlink">
+		<i class="fi fi-arrow-left"></i>
+	</a>
+		  <div id="search-box" class="quicksearch">
+	<form action="./search.php" method="get" id="search">
+	  <fieldset>
+		<div class="quicksearch__placeholder">Search…</div>
+		<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="form-control" size="20" value="" />
+		<button class="btn btn-default quicksearch-go hidden" type="submit" title="Search">Search</button>
+		<a href="./search.php" class="btn btn-link quicksearch-advanced hidden" title="Advanced search"><i class="glyphicon glyphicon-cog"></i></a>
+		
+	  </fieldset>
+	</form>
+  </div>
+	<a href="javascript:void(0)" class="offcanvas-toggle offcanvas-navigation-toggle">
+    <span class="icon-menu-bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span>
+</a>
+
+<ul class="navigation top-nav list-unstyled">
+
+    <li class="nav-item quick-links dd-container">
+		<a href="javascript:void(0)" id="quickLinksdrop" title="Quick links" class="quick-links-dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="icon-menu-bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span>
+			<span class="quick-links-label">Quick links</span>
+        </a>
+        <ul class="quick-links-dropdown dropdown-menu" role="menu" aria-labelledby="quickLinksdrop">
+            
+                            
+                
+                				<li role="presentation"><a href="./search.php?search_id=unanswered" role="menuitem" tabindex="-1">Unanswered topics</a></li>
+				<li role="presentation"><a href="./search.php?search_id=active_topics" role="menuitem" tabindex="-1">Active topics</a></li>
+                <li role="presentation" class="divider"></li>
+				<li role="presentation"><a href="./search.php" role="menuitem" tabindex="-1">Search</a></li>
+			
+            <!--<li role="presentation"><a href="./faq.php" rel="help" title="Frequently Asked Questions" role="menuitem" tabindex="-1">FAQ</a></li>-->
+
+            								<li role="presentation"><a tabindex="-1" href="./memberlist.php?mode=team" role="menuitem" tabindex="-1">The team</a></li>			
+                    </ul>
+	</li>
+
+        <!-- Home -->
+<!-- 
+<li class="nav-item">
+    <a href="http://108.167.189.43/~canva5q/" title="Link tooltip">Home</a>
+</li>
+ -->
+
+<!-- Classes -->
+<!-- 
+<li class="nav-item">
+    <a href="http://108.167.189.43/~canva5q/classes/" title="Link tooltip">Classes</a>
+</li>
+
+<!~~ Forum Index ~~>
+<li class="nav-item nav-forum">
+    <a href="./index.php">Forum</a>
+</li>
+ -->
+
+<!-- FAQ -->
+<li class="nav-item">
+    <a href="./faq.php" rel="help" title="Frequently Asked Questions">FAQ</a>
+</li>
+
+
+	</ul>
+	</div>
+
+<div class="oncanvas-content">
+<div id="wrap">
+	<a id="top" class="anchor" accesskey="t"></a>
+
+
+
+<!-- Custum header -->
+<!--HEADER -->
+<div class="header-wrapper" >
+	<header id="wp-header">
+		<div class="section-boxed section-header">
+			<div id="logo-container">
+				<a href="../forum"><img src="../wp-content/uploads/2016/05/newLPH-logo.png" alt="Logic Pro Help" /></a>
+			</div>	
+
+			<div class="mobile-nav">
+				<span class="mob-nav-btn">Menu</span>
+			</div>
+			<nav class="navigation-container">
+				<div id="menu" class="nav-menu">
+					<ul id="menu-navigation" class="menu-ul">
+						<li id="menu-item-28"  class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-125 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-176"><a href="../">Home</a></li>
+						<li id="menu-item-176" class="menu-item menu-item-type-post_type menu-item-object-page page_item page-item-125 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-176"><a href="../articles/">Tutorials</a></li>
+<!-- 
+						<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-39"><a href="../logic-pro-x-class-los-angeles/">Classes</a>
+							<ul class="sub-menu">
+								<li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-178"><a href="../logic-pro-x-class-los-angeles/">Logic Class</a></li>
+								<li id="menu-item-177" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-178"><a href="../student-testimonials/">Testimonials</a></li>
+								<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="../contact/">Contact</a></li>
+								<li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-773"><a href="../policies/">Policies</a></li>
+							</ul>
+						</li>
+ -->
+						<li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a href="../logic-pro-x-book/">Book</a></li>
+						<li id="menu-item-28" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-28 menu-item-forum"><a href="../forum/">Forums</a></li>
+					</ul>				
+				</div>
+		
+<!-- 
+				<div class="social-profiles">
+					<ul class="social-icons">
+						<li><a href="https://www.facebook.com/logicprohelp" target="_blank" ><div><img src="../wp-content/themes/thestory/images/icons_white/facebook.png" alt="" /></div></a>
+						</li>
+						<li><a href="https://www.twitter.com/logicprohelp" target="_blank" ><div><img src="../wp-content/themes/thestory/images/icons_white/twitter.png" alt="" /></div></a>
+						</li>
+						<li><a href="https://plus.google.com/101388091231685815529" target="_blank" ><div><img src="https://www.logicprohelp.com/wp-content/themes/thestory/images/icons_white/googleplus.png" alt="" /></div></a>
+						</li>
+					</ul>
+				</div>
+ -->
+			</nav>	
+			<div class="clear"></div>       
+			<div id="navigation-line"></div>
+		</div>
+		<div class="mob-nav-menu">
+			<ul id="menu-navigation" class="menu-ul">
+				<li id="menu-item-213" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-47 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-176"><a href="../">Home</a>
+				<li id="menu-item-176" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-125 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-176"><a href="../articles/">Tutorials</a></li>
+<!-- 
+				<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-39"><a href="../logic-pro-x-class-los-angeles/">Classes</a>
+					<ul class="sub-menu">
+						<li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-178"><a href="../logic-pro-x-class-los-angeles/">Logic Class</a></li>
+						<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="../contact/">Contact</a></li>
+						<li id="menu-item-773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-773"><a href="../policies/">Policies</a></li>
+					</ul>
+					<div onclick="ecArrow2()" class="mob-nav-arrow material-icons"><span></span></div>
+				</li>
+ -->
+				<li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a href="../logic-pro-x-book/">Book</a></li>
+				<li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a href="../forum/">Forums</a></li>
+			</ul>				
+		</div>
+	</wp-header>
+</div>
+<!-- end #header -->
+	<!-- CLASS AD -->
+<!-- 
+	<div>
+		
+		<div class="content-boxed" style="top: 0px;">
+		<a href="https://www.logicprohelp.com/logic-pro-x-class-los-angeles/">
+			<h1 style="font-family: 'Open Sans';text-align:center;color:white;font-size: 57px;font-weight:bold;letter-spacing:-1px;line-height:1em;">LOGIC PRO X WORKSHOP</h1>
+			<hr style="width:36%;border-top:1px solid white;">
+			<center><span style="text-align:center;color:white;font-size: 15px;letter-spacing: 7px;font-family: -apple-system, 'Helvetica Neue';font-weight:bold;">LOS ANGELES – June 29, 30, July 1 and 2, 2020</span>
+			
+			<br /><br />
+			<span style="font-family: gotham; padding:5px;color: #00cc00;font-size:15px;font-weight:bold;border-radius:2px;">ONLY 3 SEATS LEFT</span>
+			<br />
+			
+			<center><span style="text-align:center;color:white;font-size: 14px;letter-spacing: 1px;color:red;font-family: -apple-system, 'Helvetica Neue';font-weight:bold;">7 SEATS LEFT!</span>
+			<br />
+			<button id="" class="simpay-payment-btn" style="background-color: #07A2E5;border-radius: 2;font-family: Gotham;color:white;box-shadow:0;-webkit-appearance: none;
+align-items: flex-start;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(7, 162, 229);
+background-image: none;
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(255, 255, 255);
+border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-image-outset: 0px;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgb(255, 255, 255);
+border-left-style: none;
+border-left-width: 0px;
+border-right-color: rgb(255, 255, 255);
+border-right-style: none;
+border-right-width: 0px;
+border-top-color: rgb(255, 255, 255);
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+border-top-style: none;
+border-top-width: 0px;
+box-sizing: border-box;
+color: rgb(255, 255, 255);
+cursor: pointer;
+display: inline-block;
+font-family: Gotham;
+font-size: 13px;
+font-style: normal;
+font-variant-caps: normal;
+font-weight: bold;
+height: 44px;
+letter-spacing: 1px;
+line-height: 20px;
+margin-bottom: 2px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 2px;
+max-width: 100%;
+padding-bottom: 12px;
+padding-left: 25px;
+padding-right: 25px;
+padding-top: 12px;
+text-align: center;
+text-indent: 0px;
+text-shadow: none;
+text-transform: uppercase;
+vertical-align: middle;
+width: 168.28125px;
+word-spacing: 0px;
+writing-mode: horizontal-tb;"><span>REGISTER</span></button>
+			
+			</center>
+			<br /><br />
+		</a>
+		</div>
+		
+	</div>
+ -->
+	<!-- /CLASS AD -->
+	
+
+
+		<div class="utility-bar clearfix stickyItem" role="menubar">
+		<div class="container">
+			<a href="javascript:void(0)" class="offcanvas-toggle offcanvas-navigation-toggle">
+    <span class="icon-menu-bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span>
+</a>
+
+<ul class="navigation top-nav list-unstyled">
+
+    <li class="nav-item quick-links dd-container">
+		<a href="javascript:void(0)" id="quickLinksdrop" title="Quick links" class="quick-links-dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="icon-menu-bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span>
+			<span class="quick-links-label">Quick links</span>
+        </a>
+        <ul class="quick-links-dropdown dropdown-menu" role="menu" aria-labelledby="quickLinksdrop">
+            
+                            
+                
+                				<li role="presentation"><a href="./search.php?search_id=unanswered" role="menuitem" tabindex="-1">Unanswered topics</a></li>
+				<li role="presentation"><a href="./search.php?search_id=active_topics" role="menuitem" tabindex="-1">Active topics</a></li>
+                <li role="presentation" class="divider"></li>
+				<li role="presentation"><a href="./search.php" role="menuitem" tabindex="-1">Search</a></li>
+			
+            <!--<li role="presentation"><a href="./faq.php" rel="help" title="Frequently Asked Questions" role="menuitem" tabindex="-1">FAQ</a></li>-->
+
+            								<li role="presentation"><a tabindex="-1" href="./memberlist.php?mode=team" role="menuitem" tabindex="-1">The team</a></li>			
+                    </ul>
+	</li>
+
+        <!-- Home -->
+<!-- 
+<li class="nav-item">
+    <a href="http://108.167.189.43/~canva5q/" title="Link tooltip">Home</a>
+</li>
+ -->
+
+<!-- Classes -->
+<!-- 
+<li class="nav-item">
+    <a href="http://108.167.189.43/~canva5q/classes/" title="Link tooltip">Classes</a>
+</li>
+
+<!~~ Forum Index ~~>
+<li class="nav-item nav-forum">
+    <a href="./index.php">Forum</a>
+</li>
+ -->
+
+<!-- FAQ -->
+<li class="nav-item">
+    <a href="./faq.php" rel="help" title="Frequently Asked Questions">FAQ</a>
+</li>
+
+
+	</ul>
+			<div class="user-area">
+    <ul class="guest-view list-unstyled has-register">
+	
+	
+		<li class="guest-register"><a class="btn btn-link" href="./ucp.php?mode=register" role="menuitem">Register</a></li>	
+		<li class="guest-login quicklogin dd-container">
+	  <a class="btn btn-link" href="./ucp.php?mode=login" data-toggle="dropdown" title="Login" accesskey="x" role="menuitem">Login</a>
+	  <div class="quicklogin-dropdown dropdown-menu" role="menu">
+		<form method="post" action="./ucp.php?mode=login" class="quicklogin-form">
+
+    
+  <div class="input-group">
+	<span class="input-group-addon"><i class="fi fi-account"></i></span>
+	<input type="text" name="username" id="QL_username" class="quicklogin__username-input form-control" />
+  </div>
+	
+  <div class="input-group">
+	<span class="input-group-addon"><i class="fi fi-key"></i></span>
+	<input type="password" name="password" id="QL_password" class="quicklogin__password-input form-control" />
+  </div>
+  
+    <div class="checkbox">
+    <label>
+      <input type="checkbox" name="autologin"> Remember me
+    </label>
+  </div>
+    
+  <input type="submit" name="login" value="Login" class="quicklogin__login-btn btn btn-success" />
+  
+    
+  <input type="hidden" name="redirect" value="./viewtopic.php?t=101716" />
+
+  
+</form>	  </div>
+	</li>
+		
+	  </ul>
+  </div>		</div>
+	</div>
+	
+
+
+	<header class="main-header">
+		<div class="container">
+
+
+				<!-- Branding: LOGO -->
+				<div class="branding">
+						<a class="logo" href="./index.php" title="Board index">
+												<h1>Logic Pro Help</h1>
+												</a>
+						<p class="site-description">A technical support community for Apple Logic Pro users.</p>
+				</div>
+
+				<!-- QuickSearch -->
+				  <div id="search-box" class="quicksearch">
+	<form action="./search.php" method="get" id="search">
+	  <fieldset>
+		<div class="quicksearch__placeholder">Search…</div>
+		<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="form-control" size="20" value="" />
+		<button class="btn btn-default quicksearch-go hidden" type="submit" title="Search">Search</button>
+		<a href="./search.php" class="btn btn-link quicksearch-advanced hidden" title="Advanced search"><i class="glyphicon glyphicon-cog"></i></a>
+		
+	  </fieldset>
+	</form>
+  </div>
+
+		</div>
+		
+<script type="text/javascript">
+// AdThrive - Add no-at-video class to specific URLs
+(function(w, d) {
+  var pages = ['/posting.php'];  pages.forEach(item => {
+    if (w.location.pathname === item) {
+      d.body.classList.add('no-at-video')
+    }
+  })
+})(window, document);
+</script>		
+	
+	</header>
+	
+
+
+	
+	
+
+	<div id="page-body">
+				<div class="breadcrumbs-bar breadcrumbs-bar--top ">
+    <ol class="nav-breadcrumbs">
+    
+  	<li class="quick-nav-link dd-container jumpbox">
+		<a href="javascript:void(0)" data-toggle="dropdown" title="Jump to">
+			<i class="fi fi-open-in-new"></i>
+		</a>
+
+		<ul class="dropdown-menu jumpbox-dropdown" role="menu">
+																			<li ><a href="./viewforum.php?f=27" role="menuitem" tabindex="-1"><span>Music Software</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=1" role="menuitem" tabindex="-1"><span>Logic Pro</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=30" role="menuitem" tabindex="-1"><span>New Feature Suggestions, Bug Reports</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=41" role="menuitem" tabindex="-1"><span>Logic Pro New Feature Suggestions</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=42" role="menuitem" tabindex="-1"><span>Logic Pro Bugs &amp; Workarounds</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=49" role="menuitem" tabindex="-1"><span>Apple Feedback Form</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=17" role="menuitem" tabindex="-1"><span>MainStage</span></a></li>
+																<li ><a href="./viewforum.php?f=28" role="menuitem" tabindex="-1"><span>Music Production</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=10" role="menuitem" tabindex="-1"><span>Music Production Techniques and Gear</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=50" role="menuitem" tabindex="-1"><span>Logic Pro Videos</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=5" role="menuitem" tabindex="-1"><span>Tips and Tricks</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=14" role="menuitem" tabindex="-1"><span>Music Showcase</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=21" role="menuitem" tabindex="-1"><span>Composition and Creativity</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=4" role="menuitem" tabindex="-1"><span>The Lounge (Anything Else)</span></a></li>
+																<li ><a href="./viewforum.php?f=29" role="menuitem" tabindex="-1"><span>File Sharing</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=8" role="menuitem" tabindex="-1"><span>Patches, Plug-In &amp; Channel Strip Settings</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=9" role="menuitem" tabindex="-1"><span>Logic Pro &amp; MainStage Templates and Environments</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=13" role="menuitem" tabindex="-1"><span>Samples, Apple Loops &amp; Impulse Responses</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=45" role="menuitem" tabindex="-1"><span>MIDI FX Plug-In Scripts</span></a></li>
+									</ul>
+	</li>
+	
+  
+  
+  
+  <li class="crumb crumb--home" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>
+	<a href="./index.php" itemprop="url" accesskey="h" data-navbar-reference="index" title="Board index"><span itemprop="title">Board index</span></a>
+  </li>
+
+  		<li class="crumb" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope data-forum-id="27">
+	  <a href="./viewforum.php?f=27" itemprop="url" title="Music Software"><span itemprop="title">Music Software</span></a>
+	</li>
+	  		<li class="crumb" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope data-forum-id="1">
+	  <a href="./viewforum.php?f=1" itemprop="url" title="Logic Pro"><span itemprop="title">Logic Pro</span></a>
+	</li>
+	    </ol>
+</div>
+		<!--AdThrive Head Tag --> 
+			<script>
+			(function(w, d) {
+				w.adthrive = w.adthrive || {};
+				w.adthrive.cmd = w.adthrive.cmd || [];
+				w.adthrive.plugin = 'adthrive-ads-1.0.40-manual';
+				w.adthrive.host = 'ads.adthrive.com';
+				var s = d.createElement('script');
+				s.async = true;
+				s.referrerpolicy='no-referrer-when-downgrade';
+				s.src = 'https://' + w.adthrive.host + '/sites/5e446af6231faa5bc174c1ed/ads.min.js?referrer=' + w.encodeURIComponent(w.location.href);
+				var n = d.getElementsByTagName('script')[0];
+				n.parentNode.insertBefore(s, n);
+			})(window, document);
+			</script>
+		<!--End AdThrive Head Tag --> 	
+		<div class="container">
+							
+		
+		<a id="start__content" class="anchor"></a>
+		
+		<!-- Global Alerts -->
+		<!-- REMOVE THIS LINE TO ENABLE
+
+<div class="alert alert-info alert-dismissible fade in" role="alert" id="globalAlertExample1">
+  <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+
+  This alert shows on all pages. Feel free to edit this text
+
+</div>
+
+REMOVE THIS LINE TO ENABLE -->
+<div class="big-grid">
+<div class="col-maincontent">
+<div class="page-header">
+	<div class="page-header-inner">
+		<h2 class="page-title"><a href="./viewtopic.php?f=1&amp;t=101716">default velocity value [SOLVED]</a></h2>
+	</div>
+	<!--<div class="action-bar">-->
+	
+	<!--</div>-->
+</div>
+
+
+
+<div class="action-bar top">
+
+	<div class="buttons">
+		
+								<a href="./posting.php?mode=reply&amp;f=1&amp;t=101716" class="btn btn-success btn-createnew" title="Post a reply">
+				<i class="fi fi-plus"></i> Post Reply
+			</a>
+							
+		
+			</div>
+
+	
+			<div class="search-box">
+			<form method="get" id="topic-search" action="./search.php">
+			<div class="input-group">
+				<input class="search form-control" type="search" name="keywords" id="search_keywords" size="20" placeholder="Search this topic…" />
+				<span class="input-group-btn">
+				<button class="btn btn-default" type="submit" title="Search"><i class="fi fi-arrow-right"></i></button>
+				<a href="./search.php" class="btn btn-default" title="Advanced search"><i class="fi fi-settings"></i></a>
+				</span>
+			</div>
+			<input type="hidden" name="t" value="101716" />
+<input type="hidden" name="sf" value="msgonly" />
+
+			</form>
+		</div>
+	
+			<div class="right-side">
+						<!--4 posts-->
+					</div>
+		</div>
+
+<div class="postlist">
+		<div class="post has-profile">
+		<a class="st-anchor" id="p531333">&nbsp;</a>
+				<div class="inner">
+
+		<dl class="postprofile" id="profile531333">
+			
+			<dt class="avatar-container">
+													<a href="./memberlist.php?mode=viewprofile&amp;u=58267" class="avatar"><img src="./styles/canvas/theme/images/no_avatar.jpg" alt="" /></a>											</dt>
+			
+			<dt class="profile-main no-profile-rank">
+								<a href="./memberlist.php?mode=viewprofile&amp;u=58267" style="color: #1F324A;" class="username-coloured">Artlowell</a><span class="has-tooltip user-status-indicator" title="Offline"></span>
+								
+							</dt>
+
+							<div class="topic-author-label"><span class="label label-info">Topic Author</span></div>
+			
+		<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=58267&amp;sr=posts">809</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> <span class="timestamp">Mon Feb 11, 2013 12:43 pm</span></dd>		
+		
+						
+						
+		</dl>
+
+		<div class="postbody">
+						<div id="post_content531333">
+
+			<h3 class="first"><a href="#p531333">default velocity value [SOLVED]</a></h3>
+
+							<ul class="post-buttons">
+																																	<li>
+						<a href="./posting.php?mode=quote&amp;f=1&amp;p=531333" title="Reply with quote" class="button has-tooltip icon-button quote-icon"><span>Quote</span></a>
+					</li>
+												<li>
+					<a class="icon_post_target" href="#p531333" title="Post #1">#1</a>
+				</li>
+			</ul>
+				
+						<p class="author"><span class="timestamp">Mon Nov 11, 2013 11:24 am</span></p>
+			
+			
+			
+			<div class="content">I'm suddenly finding that, when I create a new region, my new Midi notes have a velocity value= near 0. Even when I move it to a different value, each subsequent note has the minimal velocity. According to the Apple Help documentation, &quot;A MIDI note is created at the clicked position, with the note’s channel, velocity, and length values matching that of the previously created or edited note event&quot;, but this isn't what happens. Default is supposed to be at 80, but I must have done something weird.</div>
+
+			
+									
+									<div id="sig531333" class="signature">Logic X 10.4.1/OS 10.12.5/MacBook/2.5 GHz Intel Core 15/8 GB/</div>
+						</div>
+
+		</div>
+
+		<div class="back2top"><a href="#top" class="top" title="Top">Top</a></div>
+
+		</div>
+	</div>
+	
+		
+		<div class="post has-profile">
+		<a class="st-anchor" id="p531334">&nbsp;</a>
+				<div class="inner">
+
+		<dl class="postprofile" id="profile531334">
+			
+			<dt class="avatar-container">
+													<a href="./memberlist.php?mode=viewprofile&amp;u=2" class="avatar"><img class="avatar" src="./download/file.php?avatar=2_1621247317.jpeg" width="100" height="100" alt="User avatar" /></a>											</dt>
+			
+			<dt class="profile-main has-profile-rank">
+								<a href="./memberlist.php?mode=viewprofile&amp;u=2" style="color: #770043;" class="username-coloured">David Nahmani</a><span class="has-tooltip user-status-indicator" title="Offline"></span>
+								
+				<div class="profile-rank">Site Admin</div>			</dt>
+
+			
+		<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=2&amp;sr=posts">86190</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> <span class="timestamp">Sat Mar 05, 2005 12:16 am</span></dd>		
+		
+																
+							<dd class="profile-contact">
+				<strong>Contact:</strong>
+				<div class="dropdown-container dropdown-left">
+					<a href="#" class="dropdown-trigger"><span class="imageset icon_contact" title="Contact David Nahmani">Contact David Nahmani</span></a>
+					<div class="dropdown hidden">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<div class="dropdown-contents contact-icons">
+																																								<div>
+																	<a href="http://facebook.com/logicprohelp/" title="Facebook">
+										<span class="contact-icon phpbb_facebook-icon">Facebook</span>
+									</a>
+																																																<a href="http://twitter.com/LogicProHelp" title="Twitter" class="last-cell">
+										<span class="contact-icon phpbb_twitter-icon">Twitter</span>
+									</a>
+																	</div>
+																					</div>
+					</div>
+				</div>
+			</dd>
+				
+		</dl>
+
+		<div class="postbody">
+						<div id="post_content531334">
+
+			<h3 ><a href="#p531334">Re: default velocity value</a></h3>
+
+							<ul class="post-buttons">
+																																	<li>
+						<a href="./posting.php?mode=quote&amp;f=1&amp;p=531334" title="Reply with quote" class="button has-tooltip icon-button quote-icon"><span>Quote</span></a>
+					</li>
+												<li>
+					<a class="icon_post_target" href="#p531334" title="Post #2">#2</a>
+				</li>
+			</ul>
+				
+						<p class="author"><span class="timestamp">Mon Nov 11, 2013 11:28 am</span></p>
+			
+			
+			
+			<div class="content">Actually the default velocity is supposed to be 60, not 80 (the manual is wrong on that). <br /><br />You should be able to define your default note length and velocity by clicking an existing note with the pencil tool. You can also try control-clicking a note and choosing &quot;Define as Default Note&quot;.</div>
+
+			
+									
+									<div id="sig531334" class="signature"><strong>David Nahmani</strong> <br />• <a href="https://amzn.to/345gWML" class="postlink">My Logic Pro X 10.5 book</a> (Apple Pro Training Series)<br />• <a href="https://www.logicprohelp.com/contact" class="postlink">Contact me for Private Lessons</a><br />Logic Pro X 10.6.1<br />MacBook Air 1.3 GHz i5 — MacOS X 11.0.1 — 4 GB RAM<br />iMac 3.2 GHz Quad Core i5 — MacOS X 10.15.4 — 8 GB RAM</div>
+						</div>
+
+		</div>
+
+		<div class="back2top"><a href="#top" class="top" title="Top">Top</a></div>
+
+		</div>
+	</div>
+	
+		
+		<div class="post has-profile">
+		<a class="st-anchor" id="p531353">&nbsp;</a>
+				<div class="inner">
+
+		<dl class="postprofile" id="profile531353">
+			
+			<dt class="avatar-container">
+													<a href="./memberlist.php?mode=viewprofile&amp;u=58267" class="avatar"><img src="./styles/canvas/theme/images/no_avatar.jpg" alt="" /></a>											</dt>
+			
+			<dt class="profile-main no-profile-rank">
+								<a href="./memberlist.php?mode=viewprofile&amp;u=58267" style="color: #1F324A;" class="username-coloured">Artlowell</a><span class="has-tooltip user-status-indicator" title="Offline"></span>
+								
+							</dt>
+
+							<div class="topic-author-label"><span class="label label-info">Topic Author</span></div>
+			
+		<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=58267&amp;sr=posts">809</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> <span class="timestamp">Mon Feb 11, 2013 12:43 pm</span></dd>		
+		
+						
+						
+		</dl>
+
+		<div class="postbody">
+						<div id="post_content531353">
+
+			<h3 ><a href="#p531353">Re: default velocity value</a></h3>
+
+							<ul class="post-buttons">
+																																	<li>
+						<a href="./posting.php?mode=quote&amp;f=1&amp;p=531353" title="Reply with quote" class="button has-tooltip icon-button quote-icon"><span>Quote</span></a>
+					</li>
+												<li>
+					<a class="icon_post_target" href="#p531353" title="Post #3">#3</a>
+				</li>
+			</ul>
+				
+						<p class="author"><span class="timestamp">Mon Nov 11, 2013 1:26 pm</span></p>
+			
+			
+			
+			<div class="content">Ah, thank you David. Love that &quot;control key&quot;.</div>
+
+			
+									
+									<div id="sig531353" class="signature">Logic X 10.4.1/OS 10.12.5/MacBook/2.5 GHz Intel Core 15/8 GB/</div>
+						</div>
+
+		</div>
+
+		<div class="back2top"><a href="#top" class="top" title="Top">Top</a></div>
+
+		</div>
+	</div>
+	
+		
+		<div class="post has-profile">
+		<a class="st-anchor" id="p531406">&nbsp;</a>
+				<div class="inner">
+
+		<dl class="postprofile" id="profile531406">
+			
+			<dt class="avatar-container">
+													<a href="./memberlist.php?mode=viewprofile&amp;u=2" class="avatar"><img class="avatar" src="./download/file.php?avatar=2_1621247317.jpeg" width="100" height="100" alt="User avatar" /></a>											</dt>
+			
+			<dt class="profile-main has-profile-rank">
+								<a href="./memberlist.php?mode=viewprofile&amp;u=2" style="color: #770043;" class="username-coloured">David Nahmani</a><span class="has-tooltip user-status-indicator" title="Offline"></span>
+								
+				<div class="profile-rank">Site Admin</div>			</dt>
+
+			
+		<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=2&amp;sr=posts">86190</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> <span class="timestamp">Sat Mar 05, 2005 12:16 am</span></dd>		
+		
+																
+							<dd class="profile-contact">
+				<strong>Contact:</strong>
+				<div class="dropdown-container dropdown-left">
+					<a href="#" class="dropdown-trigger"><span class="imageset icon_contact" title="Contact David Nahmani">Contact David Nahmani</span></a>
+					<div class="dropdown hidden">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<div class="dropdown-contents contact-icons">
+																																								<div>
+																	<a href="http://facebook.com/logicprohelp/" title="Facebook">
+										<span class="contact-icon phpbb_facebook-icon">Facebook</span>
+									</a>
+																																																<a href="http://twitter.com/LogicProHelp" title="Twitter" class="last-cell">
+										<span class="contact-icon phpbb_twitter-icon">Twitter</span>
+									</a>
+																	</div>
+																					</div>
+					</div>
+				</div>
+			</dd>
+				
+		</dl>
+
+		<div class="postbody">
+						<div id="post_content531406">
+
+			<h3 ><a href="#p531406">Re: default velocity value</a></h3>
+
+							<ul class="post-buttons">
+																																	<li>
+						<a href="./posting.php?mode=quote&amp;f=1&amp;p=531406" title="Reply with quote" class="button has-tooltip icon-button quote-icon"><span>Quote</span></a>
+					</li>
+												<li>
+					<a class="icon_post_target" href="#p531406" title="Post #4">#4</a>
+				</li>
+			</ul>
+				
+						<p class="author"><span class="timestamp">Mon Nov 11, 2013 7:49 pm</span></p>
+			
+			
+			
+			<div class="content">You're welcome! <img class="smilies" src="./images/smilies/icon_biggrin.gif" alt=":D" title="Very Happy" /></div>
+
+			
+									
+									<div id="sig531406" class="signature"><strong>David Nahmani</strong> <br />• <a href="https://amzn.to/345gWML" class="postlink">My Logic Pro X 10.5 book</a> (Apple Pro Training Series)<br />• <a href="https://www.logicprohelp.com/contact" class="postlink">Contact me for Private Lessons</a><br />Logic Pro X 10.6.1<br />MacBook Air 1.3 GHz i5 — MacOS X 11.0.1 — 4 GB RAM<br />iMac 3.2 GHz Quad Core i5 — MacOS X 10.15.4 — 8 GB RAM</div>
+						</div>
+
+		</div>
+
+		<div class="back2top"><a href="#top" class="top" title="Top">Top</a></div>
+
+		</div>
+	</div>
+	
+		
+</div>
+
+
+	<form id="viewtopic" method="post" action="./viewtopic.php?f=1&amp;t=101716">
+	<fieldset class="display-options" style="margin-top: 0; ">
+				<label>Display posts from previous: <select name="st" id="st"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></label>
+		<label>Sort by <select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select></label> <label><select name="sd" id="sd"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select></label>
+		<button type="submit" name="sort" value="Go" class="btn btn-link"><i class="fi fi-arrow-right"></i></button>
+			</fieldset>
+	</form>
+
+<div class="action-bar bottom">
+	<div class="buttons">
+			
+								<a href="./posting.php?mode=reply&amp;f=1&amp;t=101716" class="btn btn-success btn-createnew" title="Post a reply">
+				<i class="fi fi-plus"></i> Post Reply
+			</a>
+					
+		
+				
+			</div>
+
+			<div class="right-side">
+					</div>
+	</div>
+
+
+</div>
+<div class="col-sidebar">
+
+<!--
+<div style="border: solid 2px #313F4F;padding:10%;font-family: gotham;font-size:14px;color: #313F4F;border-radius: 2px;">
+<center>
+HELP SUPPORT OUR FORUM:<br /><br />
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="JJLUA9AND2B2L" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</center>
+</div>
+--></div>
+</div>
+
+
+		
+		<br /><br />
+
+	
+
+	</div><!-- .container END -->
+
+		<div class="breadcrumbs-bar breadcrumbs-bar--bottom ">
+    <ol class="nav-breadcrumbs">
+    
+  	<li class="quick-nav-link dd-container jumpbox">
+		<a href="javascript:void(0)" data-toggle="dropdown" title="Jump to">
+			<i class="fi fi-open-in-new"></i>
+		</a>
+
+		<ul class="dropdown-menu jumpbox-dropdown" role="menu">
+																			<li ><a href="./viewforum.php?f=27" role="menuitem" tabindex="-1"><span>Music Software</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=1" role="menuitem" tabindex="-1"><span>Logic Pro</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=30" role="menuitem" tabindex="-1"><span>New Feature Suggestions, Bug Reports</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=41" role="menuitem" tabindex="-1"><span>Logic Pro New Feature Suggestions</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=42" role="menuitem" tabindex="-1"><span>Logic Pro Bugs &amp; Workarounds</span></a></li>
+																<li class="jumpbox-subforum"class="jumpbox-subforum"class="jumpbox-subforum"><a href="./viewforum.php?f=49" role="menuitem" tabindex="-1"><span>Apple Feedback Form</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=17" role="menuitem" tabindex="-1"><span>MainStage</span></a></li>
+																<li ><a href="./viewforum.php?f=28" role="menuitem" tabindex="-1"><span>Music Production</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=10" role="menuitem" tabindex="-1"><span>Music Production Techniques and Gear</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=50" role="menuitem" tabindex="-1"><span>Logic Pro Videos</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=5" role="menuitem" tabindex="-1"><span>Tips and Tricks</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=14" role="menuitem" tabindex="-1"><span>Music Showcase</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=21" role="menuitem" tabindex="-1"><span>Composition and Creativity</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=4" role="menuitem" tabindex="-1"><span>The Lounge (Anything Else)</span></a></li>
+																<li ><a href="./viewforum.php?f=29" role="menuitem" tabindex="-1"><span>File Sharing</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=8" role="menuitem" tabindex="-1"><span>Patches, Plug-In &amp; Channel Strip Settings</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=9" role="menuitem" tabindex="-1"><span>Logic Pro &amp; MainStage Templates and Environments</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=13" role="menuitem" tabindex="-1"><span>Samples, Apple Loops &amp; Impulse Responses</span></a></li>
+																<li class="jumpbox-subforum"><a href="./viewforum.php?f=45" role="menuitem" tabindex="-1"><span>MIDI FX Plug-In Scripts</span></a></li>
+									</ul>
+	</li>
+	
+  
+  
+  
+  <li class="crumb crumb--home" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope>
+	<a href="./index.php" itemprop="url" accesskey="h" data-navbar-reference="index" title="Board index"><span itemprop="title">Board index</span></a>
+  </li>
+
+  		<li class="crumb" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope data-forum-id="27">
+	  <a href="./viewforum.php?f=27" itemprop="url" title="Music Software"><span itemprop="title">Music Software</span></a>
+	</li>
+	  		<li class="crumb" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope data-forum-id="1">
+	  <a href="./viewforum.php?f=1" itemprop="url" title="Logic Pro"><span itemprop="title">Logic Pro</span></a>
+	</li>
+	    </ol>
+</div>
+
+
+
+</div><!-- #page-body END -->
+
+
+		<footer id="page-footer" class="page-footer page-footer--basic">
+		<div class="page-footer__before">
+	<div class="container">
+    <div class="dropup footer-links-dropdown">
+        <a href="javascript:void(0)" data-toggle="dropdown">
+            <span class="icon-menu-bars"><span class="bar-1"></span><span class="bar-2"></span><span class="bar-3"></span></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            
+                            <li><a href="./ucp.php?mode=delete_cookies" data-ajax="slickthemes.resetStorage" data-refresh="true" role="menuitem"><i class="fi fi-close"></i> Delete all board cookies</a></li>
+                                        
+                        <li><a href="./memberlist.php?mode=team" role="menuitem">The team</a></li>                        <li><a href="./memberlist.php?mode=contactadmin" role="menuitem">Contact us</a></li>        </ul>
+    </div>
+    
+    <ul class="footer-links" role="menu">
+
+                    <li><a href="./ucp.php?mode=delete_cookies" data-ajax="slickthemes.resetStorage" data-refresh="true" role="menuitem"><i class="fi fi-close"></i> Delete all board cookies</a></li>
+                            
+        		<li><a href="./memberlist.php?mode=team" role="menuitem">The team</a></li>				<li><a href="./memberlist.php?mode=contactadmin" role="menuitem">Contact us</a></li>    </ul>
+    
+	<span class="socialicons">
+	  		<a href="https://www.facebook.com/logicprohelp/"><i class="fi fi-facebook-box"></i></a>	  		<a href="https://twitter.com/logicprohelp"><i class="fi fi-twitter-box"></i></a>	  		<a href="https://plus.google.com/101388091231685815529"><i class="fi fi-google-plus-box"></i></a>	  	</span>
+	</div>
+</div>
+	
+		<div class="copyright">
+			<div class="container">
+
+			<div class="pull-left">
+						Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited
+									</div>
+
+			<div class="slickthemes-footerlink">
+				<a href="http://slickthemes.co">
+					Design by SlickThemes
+				</a>
+			</div>
+
+			</div>
+		</div>
+			</footer>
+
+	</div><!-- #wrap END -->
+</div><!-- .oncanvas-content END -->
+</div><!-- .offcanvas-wrapper END -->
+
+<div class="hidden">
+	<a id="bottom" class="anchor" accesskey="z"></a>
+	</div>
+
+<div id="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+		<div id="darken">&nbsp;</div>
+</div>
+
+<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+		<a href="#" class="alert_close"></a>
+		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
+</div>
+
+<div id="phpbb_confirm" class="phpbb_alert">
+		<a href="javascript:void(0)" class="alert_close close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+		<div class="alert_text"></div>
+</div>
+
+
+<script type="text/javascript" src="./styles/canvas/theme/js/modernizr.custom.js?assets_version=595"></script>
+
+<script type="text/javascript" src="./styles/canvas/theme/bower_components/jquery/dist/jquery.min.js?assets_version=595"></script>
+				
+
+<script type="text/javascript" src="./assets/javascript/core.js?assets_version=595"></script>
+
+
+
+<script src="./styles/canvas/theme/js/main.min.js?assets_version=595"></script>
+
+
+<script>
+(function(){
+	var styleTag = document.getElementById('elementState_restore');
+
+	//restore alert states
+	for (var key in localStorage) {
+		if (key.indexOf('st_canvas_Alert_') == 0) {
+
+			var hidden 	= (localStorage[key]) ? true:false,
+					elm 		= document.getElementById(key.replace('st_canvas_Alert_',''));
+
+			if (elm && hidden) {
+				elm.style.display = 'none'
+				$(elm).data('hidden', true);
+			}
+
+		}
+	}
+	$('#page-body > .container > .alert').each(function(){
+		if (!$(this).data('hidden')) {
+			$(this).show();
+		}
+	})
+
+	if ($('body').hasClass('section-index')) {
+		var
+		catHead 	= $('.category-header'),
+		delay 		= parseFloat(catHead.css('transition-duration')) * 1000;
+
+		//animation-less collapse
+		catHead.css('transition','0s');
+		setTimeout(function(){
+			catHead.css('transition','')
+		},delay+100);
+
+		for(var key in localStorage){
+			if (key.indexOf('st_canvas_collapsible_') == 0) {
+				var $this = $('#'+key.replace('st_canvas_collapsible_', ''));
+
+				if (localStorage[key] == 'hidden') {
+					$this.removeClass('in').parent().addClass('collapsed');
+				}
+				else if (localStorage[key] == 'visible') {
+					$this.addClass('in').parent().removeClass('collapsed')
+				}
+			}
+		}
+
+	}
+
+	//import phpbb template variables ===========
+	phpbb.SCRIPT_NAME 				= "viewtopic".split('/')[0];
+	$('body').addClass('section-'+phpbb.SCRIPT_NAME)
+	phpbb.PER_PAGE 						= "20";
+	phpbb.ON_PAGE 						= "";
+	phpbb.PAGE_NUMBER 				= "Page <strong>1</strong> of <strong>1</strong>";
+	_st.themePath 						= "./styles/canvas/theme";
+	_st.THEMEPANEL_INSTALLED 	= true;
+	_st.THEMEPANEL_LINK 			= "/forum/app.php/slickpanel";
+	_st.THEMEPANEL_PAGE_LINK 	= "/forum/app.php/slickpanel/page";
+	_st.TOPIC_SOLVED_STYLE = '';
+	_st.TOPIC_SOLVED_TITLE = "";
+
+	//import language strings
+	_st.lang = {
+		topic: 'Topic',
+		topics: 'Topics',
+		topic_solved: 'Topic is solved'
+	};
+	_st.fpermissions = {
+		RULES_ATTACH_CAN: 'You <strong>can</strong> post attachments in this forum',
+		RULES_DELETE_CAN: 'You <strong>can</strong> delete your posts in this forum',
+		RULES_DOWNLOAD_CAN: 'You <strong>can</strong> download attachments in this forum',
+		RULES_EDIT_CAN: 'You <strong>can</strong> edit your posts in this forum',
+		RULES_LOCK_CAN: 'You <strong>can</strong> lock your topics in this forum',
+		RULES_POST_CAN: 'You <strong>can</strong> post new topics in this forum',
+		RULES_REPLY_CAN: 'You <strong>can</strong> reply to topics in this forum',
+		RULES_VOTE_CAN: 'You <strong>can</strong> vote in polls in this forum'
+	}
+	$(document).on('ready', function(){
+		_st.init({
+			stickyheader: "0",
+			timestamps: "1",
+			fastclick: "1",
+			wysiwyg: "0",
+			quickscroll: "0"
+		});
+	})
+
+})();
+</script>
+<script type="text/javascript">
+var elonw_title = 'Opens in new window';
+(function($) {
+	source=removeSubdomain(location.hostname);
+	$('a[href^="http://"], a[href^="https://"], a[href^="ftp://"]').filter(function(){return this.hostname&&removeSubdomain(this.hostname)!==source}).attr("onclick","window.open(this.href);return false;").attr("rel", "nofollow").attr("title", elonw_title).addClass("elonw");
+})(jQuery);
+function removeSubdomain(a,b){return a.split(".").slice(-(b||2)).join(".")};
+</script>
+
+<script type="text/javascript" src="./styles/canvas/template/forum_fn.js?assets_version=594"></script>
+
+<script type="text/javascript" src="./styles/canvas/template/ajax.js?assets_version=594"></script>
+
+
+
+<script type="text/javascript">
+/* Google webfont loader */
+WebFontConfig = {
+  google: { families: [ 'Roboto:400,500,400italic,300,700:latin' ] }
+};
+(function() {
+  var wf = document.createElement('script');
+  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  //s.parentNode.insertBefore(wf, s);
+})();
+
+//Put your custom javascript here
+//This is executed after other scripts
+
+//----Mobile Navigation----
+
+$( '.mobile-nav').click(function() {
+	$('.mob-nav-menu').slideToggle(300);
+})
+
+
+$(window).on('resize', function(){
+		var win = $(this);		
+		if (win.width() >= 1000) {$('.mob-nav-menu').css( 'display' , 'none' )};
+});	
+	
+
+function ecArrow1() {
+	$('.mob-nav-menu li:nth-child(2) .sub-menu').slideToggle(400)		
+	$('.mob-nav-menu > ul > li:nth-child(2) > .mob-nav-arrow span').toggleClass('ec-up-arrow')  
+}				
+		
+function ecArrow2() {
+	$('.mob-nav-menu li:nth-child(3) .sub-menu').slideToggle(400)		
+	$('.mob-nav-menu > ul > li:nth-child(3) > .mob-nav-arrow span').toggleClass('ec-up-arrow')
+}						
+
+function ecArrow3() {
+	$('.mob-nav-menu li:nth-child(4) .sub-menu').slideToggle(400)		
+	$('.mob-nav-menu > ul > li:nth-child(4) > .mob-nav-arrow span').toggleClass('ec-up-arrow')
+}
+
+//----Custom Badges
+
+$("div .profile-rank:contains('Site Admin')" ).addClass('site-admin-badge');
+$("div .profile-rank:contains('Moderator')" ).addClass('moderator-badge');
+$("div .profile-rank:contains('Staff')" ).addClass('vendor-badge');
+// $("div .profile-rank:contains('Nektar Staff')" ).addClass('nektar-staff-badge');</script>
+
+
+
+
+
+
+</body>
+</html>

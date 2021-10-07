@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>guidelines — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:13:08 +0000</pubDate>
+        <language>en</language>
+            <description>guidelines — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/tagged/guidelines/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Feature Proposal Guidelines</title>
+        <link>https://webmidijs.org/forum/discussion/11/feature-proposal-guidelines</link>
+        <pubDate>Tue, 05 May 2020 12:34:02 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Jean-Philippe Côté</dc:creator>
+        <guid isPermaLink="false">11@/forum/discussions</guid>
+        <description><![CDATA[<p>I am honoured that you care enough about WebMidi.js to suggest improvements. Your ideas are most welcome and will be evaluated thoroughly.</p><p>To facilitate discussion and evaluation, please follow these simple guidelines before posting a new feature proposal:</p><ol><li>🛑<strong> Read the general forum guidelines</strong> (if you haven&#39;t done so already).</li><li>﻿📖﻿ <a href="https://webmidijs.org/docs/v2.5.1/index.html" rel="nofollow"><strong>Double-check the documentation</strong></a> to make sure the feature does not already exist.</li><li>﻿🔎﻿ <a href="https://webmidijs.org/forum/search" rel="nofollow"><strong>Search the forum</strong></a> to confirm that the proposal has not already been discussed.</li><li>💡 <a href="https://webmidijs.org/forum/post/discussion/enhancements" rel="nofollow"><strong>Post one proposal per discussion</strong></a> so we can properly discuss each one. If multiple proposals are related, cross-reference them.</li></ol><p>Cheers,</p><p>🙂<strong>Jean-Philippe</strong> (a.k.a. <strong>djipco</strong>)</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Forum Guidelines &amp; Tips</title>
+        <link>https://webmidijs.org/forum/discussion/9/forum-guidelines-tips</link>
+        <pubDate>Mon, 04 May 2020 02:38:13 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Jean-Philippe Côté</dc:creator>
+        <guid isPermaLink="false">9@/forum/discussions</guid>
+        <description><![CDATA[<p>👋 Welcome!</p><p>I am very happy that you decided to join the WebMidi.js community. Please take a little time to browse the guidelines and tips before you start posting.</p><h2><strong>Usage Guidelines</strong></h2><ul><li><strong>Respect others</strong>. They are expected to do the same.</li><li><strong>Post in the right category</strong>. There are only 4, you can do it!</li><li><strong>Be safe</strong>. Consider all posted content to be public.</li><li><strong>Be legit</strong>.<strong> </strong>Hateful, illegal, spammy or copyright-infringing content will not be tolerated.</li></ul><p>In short, be respectful, enjoy yourself, and help me build a great community.</p><h2><strong>Tips &amp; tricks</strong></h2><ul><li><strong>Mention others.</strong>&nbsp;Put an @ symbol before the username to mention someone. They&rsquo;ll get notified when you do.</li><li><strong>Tweak your notification preferences.</strong>&nbsp;You&rsquo;ll receive a notification if someone mentions you or posts to a discussion that you&rsquo;ve bookmarked. You can set notifications from the <a href="denied:unsafe:/forum/profile/edit" rel="nofollow"><strong>Edit Profile</strong></a> page.</li><li><strong>Send private messages.</strong>&nbsp;You can do so by going to your <a href="denied:unsafe:/forum/messages/inbox" rel="nofollow"><strong>inbox</strong></a>, or by visiting another user&#39;s profile page (click their username).</li><li><strong>Embed external content. </strong>You can embed a YouTube video, a Pinterest pin or a tweet by simply pasting the link. The forum will handle the embedding for you.</li><li><strong>Be informed</strong>. Check out what&rsquo;s going on with other community members on the&nbsp;<a href="denied:unsafe:/forum/activity" rel="nofollow"><strong>Activity</strong></a>&nbsp;page.</li></ul><p>Cheers,</p><p><strong>Jean-Philippe</strong> (a.k.a. <strong>djipco</strong>)</p><p>﻿🤘﻿</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

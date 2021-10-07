@@ -1,0 +1,17 @@
+.IndexPhoto {
+    float: left;
+}
+
+.IndexPhoto img {
+    height: 40px;
+    width: 40px;
+}
+
+body.Vanilla.Discussions .Discussion.ItemContent {
+    padding-left: 48px;
+}
+
+body.rtl.Vanilla.Discussions .Discussion.ItemContent {
+    padding-right: 48px;
+    padding-left: 0;
+}

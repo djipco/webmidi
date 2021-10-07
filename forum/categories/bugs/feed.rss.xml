@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Bug Reports — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:06:10 +0000</pubDate>
+        <language>en</language>
+            <description>Bug Reports — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/categories/bugs/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Submit bugs on GitHub</title>
+        <link>https://webmidijs.org/forum/discussion/5/submit-bugs-on-github</link>
+        <pubDate>Mon, 04 May 2020 00:23:17 +0000</pubDate>
+        <category>Bug Reports</category>
+        <dc:creator>Jean-Philippe Côté</dc:creator>
+        <guid isPermaLink="false">5@/forum/discussions</guid>
+        <description><![CDATA[<p>All bugs with the library must be <a href="https://github.com/djipco/webmidi/issues" rel="nofollow"><strong>reported directly on GitHub</strong></a>. This simplifies triaging, tracking and fixing issues. Before submitting a bug:</p><ul><li>Check the <a href="https://djipco.github.io/webmidi/latest/classes/WebMidi.html" rel="nofollow"><strong>documentation</strong></a> to make sure you are using the library correctly.</li><li>Search <a href="https://github.com/djipco/webmidi/issues" rel="nofollow"><strong>existing issues</strong></a> to confirm it has not already been reported.</li><li>Update the library to the <a href="https://www.npmjs.com/package/webmidi" rel="nofollow"><strong>latest version</strong></a>.</li><li>Prepare a code sample that reproduces the problem.</li></ul><p>By following these guidelines, you will make my life easier and accelerate the debugging process.</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

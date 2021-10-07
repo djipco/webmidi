@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Enhancement Proposals — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:06:06 +0000</pubDate>
+        <language>en</language>
+            <description>Enhancement Proposals — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/categories/enhancements/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Parsing Raw Sysex into format for sendSysex function.</title>
+        <link>https://webmidijs.org/forum/discussion/37/parsing-raw-sysex-into-format-for-sendsysex-function</link>
+        <pubDate>Sun, 28 Mar 2021 19:21:43 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Rajan Gordon Davis</dc:creator>
+        <guid isPermaLink="false">37@/forum/discussions</guid>
+        <description><![CDATA[<p>I don&#39;t know enough about Sysex for this to be a generic thing, but I wrote some <a href="http://jsfiddle.net/tbzmv957/" rel="nofollow">code to parse raw Sysex used for manipulating Meris Pedals</a> into a format for the sendSysex function for the Output class.</p><p>This was kind of a blocker for me in terms of using the sendSysex functionality, but after doing a bit of research, the code should work for all of the Meris Factory Presets for all of the pedals. </p><p>I will probably have an inverse function to take the binary data and store it as Sysex, but I think I can probably derive this from the state of the application as opposed to the midimessage from the device itself.</p><p>It would be nice to have the functionality of sending raw Sysex out of the box, but I understand if it&#39;s out of scope for this project. Would be happy to make a small utility library if this is helpful for other people.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Mobile Browser WebMIDI support</title>
+        <link>https://webmidijs.org/forum/discussion/35/mobile-browser-webmidi-support</link>
+        <pubDate>Sat, 27 Mar 2021 06:49:08 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Rajan Gordon Davis</dc:creator>
+        <guid isPermaLink="false">35@/forum/discussions</guid>
+        <description><![CDATA[<p>If I recall correctly, the WebMIDI API should technically work with Android Chrome; however, I am not certain I understand how this would technically be possible without using something like bluetooth.</p><p>I do not require Mobile support; however, it would be awesome to know if there&#39;s been any testing or exploration on this? MIDI control over mobile would be killer, but I could settle for using the Native OSX/Android app route for MIDI control if needs be.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Midi recall</title>
+        <link>https://webmidijs.org/forum/discussion/31/midi-recall</link>
+        <pubDate>Sun, 31 Jan 2021 10:13:57 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Andrea Zanenghi</dc:creator>
+        <guid isPermaLink="false">31@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi,</p><p>Amazing lib, love the way it makes the web midi api easy to use.</p><p>I think a full recall of the connected midi device could be something really useful. </p><p>Right now I&#39;m storing the patches/values as a json but I didn&#39;t found yet the proper method to update it in the midi connected device at once. </p><p>I tried to iterate through all the parameters using a delay between update and update (like this the midi connected device do not crash) but it sounds a bit hacky to me.</p><p>It would be great to have an optimised method to the job... or probably  I&#39;m missing something?</p><p>Any tip about this practice is welcome, </p><p>Best</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Has there been any work on Sample Dump Standard?</title>
+        <link>https://webmidijs.org/forum/discussion/30/has-there-been-any-work-on-sample-dump-standard</link>
+        <pubDate>Fri, 08 Jan 2021 16:20:15 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>joseph beuckman</dc:creator>
+        <guid isPermaLink="false">30@/forum/discussions</guid>
+        <description><![CDATA[<p>I would like to support SY99 sample dumps.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>VirtualPorts</title>
+        <link>https://webmidijs.org/forum/discussion/19/virtualports</link>
+        <pubDate>Thu, 20 Aug 2020 14:54:11 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Henrique Matos</dc:creator>
+        <guid isPermaLink="false">19@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello</p><p>I would like to suggest the inclusion of methods for working with virtual midi interfaces</p><p>Example:</p><pre spellcheck="false">WebMidi.createVirtual (&#39;VirtualPort-1&#39;);
+vOutputPort = WebMidi.getOutputByName (&#39;VirtualPort-1&#39;);
+vInputPort = WebMidi.getInputByName (&#39;VirtualPort-1&#39;);
+WebMidi.destroyVirtual (&#39;VirtualPort-1&#39;);
+
+</pre><p>This would be great for VST controls.</p><p>best regards</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Feature Proposal Guidelines</title>
+        <link>https://webmidijs.org/forum/discussion/11/feature-proposal-guidelines</link>
+        <pubDate>Tue, 05 May 2020 12:34:02 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Jean-Philippe Côté</dc:creator>
+        <guid isPermaLink="false">11@/forum/discussions</guid>
+        <description><![CDATA[<p>I am honoured that you care enough about WebMidi.js to suggest improvements. Your ideas are most welcome and will be evaluated thoroughly.</p><p>To facilitate discussion and evaluation, please follow these simple guidelines before posting a new feature proposal:</p><ol><li>🛑<strong> Read the general forum guidelines</strong> (if you haven&#39;t done so already).</li><li>﻿📖﻿ <a href="https://webmidijs.org/docs/v2.5.1/index.html" rel="nofollow"><strong>Double-check the documentation</strong></a> to make sure the feature does not already exist.</li><li>﻿🔎﻿ <a href="https://webmidijs.org/forum/search" rel="nofollow"><strong>Search the forum</strong></a> to confirm that the proposal has not already been discussed.</li><li>💡 <a href="https://webmidijs.org/forum/post/discussion/enhancements" rel="nofollow"><strong>Post one proposal per discussion</strong></a> so we can properly discuss each one. If multiple proposals are related, cross-reference them.</li></ol><p>Cheers,</p><p>🙂<strong>Jean-Philippe</strong> (a.k.a. <strong>djipco</strong>)</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

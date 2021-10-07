@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>virtual port — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:13:50 +0000</pubDate>
+        <language>en</language>
+            <description>virtual port — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/tagged/virtual-port/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>VirtualPorts</title>
+        <link>https://webmidijs.org/forum/discussion/19/virtualports</link>
+        <pubDate>Thu, 20 Aug 2020 14:54:11 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Henrique Matos</dc:creator>
+        <guid isPermaLink="false">19@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello</p><p>I would like to suggest the inclusion of methods for working with virtual midi interfaces</p><p>Example:</p><pre spellcheck="false">WebMidi.createVirtual (&#39;VirtualPort-1&#39;);
+vOutputPort = WebMidi.getOutputByName (&#39;VirtualPort-1&#39;);
+vInputPort = WebMidi.getInputByName (&#39;VirtualPort-1&#39;);
+WebMidi.destroyVirtual (&#39;VirtualPort-1&#39;);
+
+</pre><p>This would be great for VST controls.</p><p>best regards</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

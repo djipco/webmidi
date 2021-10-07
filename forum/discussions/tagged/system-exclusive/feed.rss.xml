@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>system exclusive — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:13:46 +0000</pubDate>
+        <language>en</language>
+            <description>system exclusive — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/tagged/system-exclusive/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Sysex communication - Fishman TriplePlay trouble</title>
+        <link>https://webmidijs.org/forum/discussion/48/sysex-communication-fishman-tripleplay-trouble</link>
+        <pubDate>Thu, 26 Aug 2021 12:52:05 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Enrico Dell'Aquila</dc:creator>
+        <guid isPermaLink="false">48@/forum/discussions</guid>
+        <description><![CDATA[<p>Trying to interface a simple SPA application to my Fishman TriplePlay Controller. Using v.2.5.2</p><p>I&#39;m able to read the played notes, I&#39;m having some trouble with sysex management.</p><ol><li>is the WebMidi.enable(...,true) necessary only once, or should it be issued (without &#39;true&#39; parameter) again after sending the data initialisation array, when adding the event listeners?</li><li>Fishman doesn&#39;t provide support about sysex messages, and I&#39;m trying to intercept the midi data with a MIDI monitor, but I&#39;m unable to let it work. In particular I have to switch the controller from poly to mono mode (1 channel per guitar string), but it works only after I launch the proprietary sw, so I think I&#39;m doing something wrong... Can someone post a complete example of a sysex communication?</li></ol><p><br /></p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Checking Input buffer</title>
+        <link>https://webmidijs.org/forum/discussion/25/checking-input-buffer</link>
+        <pubDate>Thu, 22 Oct 2020 14:22:16 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Henrique Matos</dc:creator>
+        <guid isPermaLink="false">25@/forum/discussions</guid>
+        <description><![CDATA[<p>HI,</p><p>In Sysex communication some devices often respond using several sysex blocks. Example when responding to a Dump Request. In this case, it is necessary to get the contents until the end of all blocks and for this it is necessary to make sure that all blocks have been received. I thought about checking if the buffer input is empty or not. Is there a way to check this? or some other way of ensuring that all blocks referring to the same data request have been received?</p><p>For now I am using a procedure of giving a window of time when the first message is received by the listener. I give approximately 300ms which is enough time to receive the dump, but I believe that with a buffer checker we can have a more efficient routine, because shorter messages would not have to wait that long. I understand that the listener is completely asynchronous, however in the case of sysex there is this situation that the blocks need to be collected synchronously and have a definite ending.</p><p>best regards</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

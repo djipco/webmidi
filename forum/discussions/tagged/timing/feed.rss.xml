@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>timing — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:13:12 +0000</pubDate>
+        <language>en</language>
+            <description>timing — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/tagged/timing/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>WebMidi.js timing</title>
+        <link>https://webmidijs.org/forum/discussion/14/webmidi-js-timing</link>
+        <pubDate>Thu, 02 Jul 2020 14:59:51 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Andeso</dc:creator>
+        <guid isPermaLink="false">14@/forum/discussions</guid>
+        <description><![CDATA[<p>Thanks a lot for the project, looks exciting!</p><p>I was just curious as to how you are handling timing. I&#39;ve had a quick peruse through the source and couldn&#39;t see anything in regarding something like setTimeout, which can apparently be problematic for timing midi events...</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Stop all future note-on events?</title>
+        <link>https://webmidijs.org/forum/discussion/12/stop-all-future-note-on-events</link>
+        <pubDate>Thu, 18 Jun 2020 13:10:38 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>qm210</dc:creator>
+        <guid isPermaLink="false">12@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi everybody (which is probably just djipco),</p><p>first, I just recently stumbled upon WebMidi.js and it&#39;s helping me doing my small &quot;project&quot; (more like a sketch) already. But i&#39;ve got a question:</p><p>I can schedule midi notes to be played in the future, by e.g.</p><p>someMidiOutput.playNote(&quot;C3&quot;, &lt;channel&gt;, {time: 10000, duration: 1000})</p><p>which should play the C3 in 10 seconds, lasting one second. Now I can&#39;t seem to be able to cancel this scheduled note, i.e. by using</p><p>someMidiOutput.stopNote(&quot;C3&quot;)</p><p>I can only cancel a currently playing note. If I call the stopNote directly after the playNote above, I will still hear the note in 10 seconds.</p><p>Is there a way to instantly remove all future events (I&#39;d guess there is some internal queue that can be emptied, or somewhat?)</p><p>best</p><p>qm</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Recent Activity — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:09:01 +0000</pubDate>
+        <language>en</language>
+            <description>Recent Activity — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/activity/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>&lt;a href="/forum/profile/rickstaa"&gt;rickstaa&lt;/a&gt; joined.</title>
+        <link>https://webmidijs.org/forum/activity</link>
+        <pubDate>Wed, 15 Sep 2021 21:36:13 +0000</pubDate>
+        <dc:creator>rickstaa</dc:creator>
+        <guid isPermaLink="false">177@/forum/activity</guid>
+                    <description><![CDATA[Welcome Aboard!]]>
+            </description>
+            </item>
+    <item>
+        <title>&lt;a href="/forum/profile/Enrico%20Dell%27Aquila"&gt;Enrico Dell'Aquila&lt;/a&gt; joined.</title>
+        <link>https://webmidijs.org/forum/activity</link>
+        <pubDate>Thu, 26 Aug 2021 12:47:38 +0000</pubDate>
+        <dc:creator>Enrico Dell'Aquila</dc:creator>
+        <guid isPermaLink="false">172@/forum/activity</guid>
+                    <description><![CDATA[Welcome Aboard!]]>
+            </description>
+            </item>
+    <item>
+        <title>&lt;a href="/forum/profile/bwata"&gt;bwata&lt;/a&gt; and &lt;a href="/forum/profile/Brent%20Watanabe"&gt;Brent Watanabe&lt;/a&gt; joined.</title>
+        <link>https://webmidijs.org/forum/activity</link>
+        <pubDate>Fri, 30 Jul 2021 21:16:38 +0000</pubDate>
+        <dc:creator>bwata</dc:creator>
+        <guid isPermaLink="false">168@/forum/activity</guid>
+                    <description><![CDATA[Welcome Aboard!]]>
+            </description>
+            </item>
+   </channel>
+</rss>

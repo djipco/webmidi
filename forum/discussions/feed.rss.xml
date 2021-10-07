@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Recent Discussions — WebMidi.js Forum</title>
+        <link>https://webmidijs.org/forum/</link>
+        <pubDate>Wed, 06 Oct 2021 14:07:09 +0000</pubDate>
+        <language>en</language>
+            <description>Recent Discussions — WebMidi.js Forum</description>
+    <atom:link href="https://webmidijs.org/forum/discussions/feed.rss" rel="self" type="application/rss+xml"/>
+    <item>
+        <title>Parsing Raw Sysex into format for sendSysex function.</title>
+        <link>https://webmidijs.org/forum/discussion/37/parsing-raw-sysex-into-format-for-sendsysex-function</link>
+        <pubDate>Sun, 28 Mar 2021 19:21:43 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Rajan Gordon Davis</dc:creator>
+        <guid isPermaLink="false">37@/forum/discussions</guid>
+        <description><![CDATA[<p>I don&#39;t know enough about Sysex for this to be a generic thing, but I wrote some <a href="http://jsfiddle.net/tbzmv957/" rel="nofollow">code to parse raw Sysex used for manipulating Meris Pedals</a> into a format for the sendSysex function for the Output class.</p><p>This was kind of a blocker for me in terms of using the sendSysex functionality, but after doing a bit of research, the code should work for all of the Meris Factory Presets for all of the pedals. </p><p>I will probably have an inverse function to take the binary data and store it as Sysex, but I think I can probably derive this from the state of the application as opposed to the midimessage from the device itself.</p><p>It would be nice to have the functionality of sending raw Sysex out of the box, but I understand if it&#39;s out of scope for this project. Would be happy to make a small utility library if this is helpful for other people.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Is it possible to create a midi output to a DAW ?</title>
+        <link>https://webmidijs.org/forum/discussion/36/is-it-possible-to-create-a-midi-output-to-a-daw</link>
+        <pubDate>Sat, 27 Mar 2021 17:09:47 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Keith</dc:creator>
+        <guid isPermaLink="false">36@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi Webmidi folks , </p><p><br /></p><p>Ideally I&#39;d like to send notes from Chrome to Maschine ( or FL studio), etc, is this even possible from the browser . </p><p><br /></p><p>This node module does it, but this appears to be nodejs only . </p><p><br /></p><p><a href="https://www.npmjs.com/package/easymidi" rel="nofollow">https://www.npmjs.com/package/easymidi</a></p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Sysex communication - Fishman TriplePlay trouble</title>
+        <link>https://webmidijs.org/forum/discussion/48/sysex-communication-fishman-tripleplay-trouble</link>
+        <pubDate>Thu, 26 Aug 2021 12:52:05 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Enrico Dell'Aquila</dc:creator>
+        <guid isPermaLink="false">48@/forum/discussions</guid>
+        <description><![CDATA[<p>Trying to interface a simple SPA application to my Fishman TriplePlay Controller. Using v.2.5.2</p><p>I&#39;m able to read the played notes, I&#39;m having some trouble with sysex management.</p><ol><li>is the WebMidi.enable(...,true) necessary only once, or should it be issued (without &#39;true&#39; parameter) again after sending the data initialisation array, when adding the event listeners?</li><li>Fishman doesn&#39;t provide support about sysex messages, and I&#39;m trying to intercept the midi data with a MIDI monitor, but I&#39;m unable to let it work. In particular I have to switch the controller from poly to mono mode (1 channel per guitar string), but it works only after I launch the proprietary sw, so I think I&#39;m doing something wrong... Can someone post a complete example of a sysex communication?</li></ol><p><br /></p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Note overlap</title>
+        <link>https://webmidijs.org/forum/discussion/32/note-overlap</link>
+        <pubDate>Mon, 01 Feb 2021 15:13:30 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>tarball</dc:creator>
+        <guid isPermaLink="false">32@/forum/discussions</guid>
+        <description><![CDATA[<p>Thank you for this great library. I am developing a rhythm sequencer. If for instance, I have a kick sound lasting for 600ms, and I have two consecutive pulses of this kick separated by 500ms, I can&rsquo;t achieve to play the two pulses during their original length, or without cutting their duration manually or inherited from <code spellcheck="false">duration</code>.</p><ul><li>Can those two pulses overlay on the same channel?</li><li>If not, what would be a solution to get something like this:</li></ul><p>Kick [ms</p><pre spellcheck="false">Kick         Kick  
+|---------------
+﻿             |---------------
+</pre><p>In conclusion: can midi notes overlay?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Can't get playNote duration to work in v2</title>
+        <link>https://webmidijs.org/forum/discussion/47/cant-get-playnote-duration-to-work-in-v2</link>
+        <pubDate>Fri, 30 Jul 2021 21:22:39 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>bwata</dc:creator>
+        <guid isPermaLink="false">47@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello,</p><p>Just started using the library, really cool!</p><p>I&#39;ve been able to successfully use playNote like this:</p><p>outputMicrofreak.playNote(60); </p><p>but not like this:</p><p>outputMicrofreak.playNote(60, {duration: 2000});</p><p>If I add duration, I don&#39;t get an error, but there is no sound played. I have the same issue with trying to use stopNote( ). If I leave off any options it works, adding options gives no sound.</p><p>I read notes about WebMidi time, and have tried to console.log the time but get undefined.</p><p>I&#39;m using this version of the library: <a href="https://cdn.jsdelivr.net/npm/webmidi" rel="nofollow">https://cdn.jsdelivr.net/npm/webmidi</a></p><p>Running via Chrome 92.0.4515.107</p><p>And targeting an Arturia Microfreak.</p><p>Thanks for any help!!</p><p>Brent</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Mobile Browser WebMIDI support</title>
+        <link>https://webmidijs.org/forum/discussion/35/mobile-browser-webmidi-support</link>
+        <pubDate>Sat, 27 Mar 2021 06:49:08 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Rajan Gordon Davis</dc:creator>
+        <guid isPermaLink="false">35@/forum/discussions</guid>
+        <description><![CDATA[<p>If I recall correctly, the WebMIDI API should technically work with Android Chrome; however, I am not certain I understand how this would technically be possible without using something like bluetooth.</p><p>I do not require Mobile support; however, it would be awesome to know if there&#39;s been any testing or exploration on this? MIDI control over mobile would be killer, but I could settle for using the Native OSX/Android app route for MIDI control if needs be.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How to install webmidi 3.0??</title>
+        <link>https://webmidijs.org/forum/discussion/46/how-to-install-webmidi-3-0</link>
+        <pubDate>Fri, 21 May 2021 04:59:46 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Joao Pasqualini</dc:creator>
+        <guid isPermaLink="false">46@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello community, I would like to know how can I start using webmidi 3.0</p><p><br /></p><p>Is there any npm package avaliable right now ? I would like to use it specially because ES6+&nbsp;module and tree shaking.</p><p>Thanks for the awesome library!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How to listen to input-wide 'noteon' event for an input in v3?</title>
+        <link>https://webmidijs.org/forum/discussion/45/how-to-listen-to-input-wide-noteon-event-for-an-input-in-v3</link>
+        <pubDate>Sun, 16 May 2021 22:29:28 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Denis Starov</dc:creator>
+        <guid isPermaLink="false">45@/forum/discussions</guid>
+        <description><![CDATA[<p>I&#39;ve noticed that in version 3 there&#39;re no &#39;noteon&#39; and &#39;controlchange&#39; events on MIDI Inputs. So do I need to iterate over all the channels manually if I want to listen to all channels of my OP-Z? </p><p>It seems not optimal for the case &ndash; having 16 separate listeners may be a performance issue. Or not? ) I suppose you&#39;ve answered this question a couple of times, but I&#39;ve found only the Output perspective. What about inputs? I was using global Input &#39;noteon&#39; listeners in prev version and it was nice. )</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Things in WebMidi.js 2.52 that make me go huh?</title>
+        <link>https://webmidijs.org/forum/discussion/44/things-in-webmidi-js-2-52-that-make-me-go-huh</link>
+        <pubDate>Tue, 04 May 2021 04:09:32 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Tak Yano</dc:creator>
+        <guid isPermaLink="false">44@/forum/discussions</guid>
+        <description><![CDATA[<p>I have been using the WebMidi.js library to:</p><p>Control parameters in p5.js sketches</p><p>Switch scenes and controls audio volume in OBS through Websockets.js</p><p>Change patch banks on a Roland D2</p><p><br /></p><p>While writing the code I have come across several design decisions that made me go huh.</p><p><br /></p><p>Parameter channel is the second or later argument in many methods.</p><p>I am used to thinking of MIDI functions as being action like Note On or Control Change followed by the channel then any values.</p><p>I see you buried the channel argument inside options in 3.0</p><p><br /></p><p>parameter channel default is all</p><p>I can&#39;t see sending a Note On to all 16 MIDI channels.</p><p><br /></p><p>PlayNote and StopNote have a default Velocity Range as a float from 0.0 to 1.0</p><p>I have to add a rawVelocity=true inside options to have it interpreted as 0-127</p><p>Why is the default a float?</p><p>value for a Control Change isn&#39;t a float.</p><p><br /></p><p>The default value for Velocity is 0.5</p><p>Why 0.5? why not 127</p><p><br /></p><p>You mention that Webmidi.js will append an RPN call to clear the parameters after an NRPN call in this forum post:</p><p><a href="https://webmidijs.org/forum/discussion/22/why-does-nrpn-also-send-rpn/p1" rel="nofollow">https://webmidijs.org/forum/discussion/22/why-does-nrpn-also-send-rpn/p1</a></p><p>This is not documented publicly anywhere.</p><p>I look at NRPN as setting the Parameter Number once and then just sending the Value I want the NRPN to set to.</p><p><br /></p><p>I could see doing the reset in an onunload event, but not for every single NRPN call.</p><p><br /></p><p>I tested this with a Korg Electribe EA-1 which requires NRPN calls to change parameters even though no value ever goes above 127.</p><p>The setNonRegisteredParameter&nbsp;method and sending Control Changes 99, 98 and 6</p><p>Both work.</p><p><br /></p><p>sendControlChange Control Code numbers are restricted to 0-119.</p><p>That&#39;s great if you are working with a hardware device like a synth, but not when I am working with a device that I can freely assign CC numbers like a USB MIDI controller</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Control change</title>
+        <link>https://webmidijs.org/forum/discussion/43/control-change</link>
+        <pubDate>Sun, 25 Apr 2021 15:51:49 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Jean-Eric Godard</dc:creator>
+        <guid isPermaLink="false">43@/forum/discussions</guid>
+        <description><![CDATA[<p>is it possible to send a simple control change, if yes where can I find an example?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>WebMIDI.js and Electron?</title>
+        <link>https://webmidijs.org/forum/discussion/42/webmidi-js-and-electron</link>
+        <pubDate>Wed, 21 Apr 2021 14:46:19 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rubendax</dc:creator>
+        <guid isPermaLink="false">42@/forum/discussions</guid>
+        <description><![CDATA[<p>Just wondering if anyone has tried using this library inside of an <a href="https://www.electronjs.org/" rel="nofollow">Electron</a> App? </p><p>I figured I would check in here before dedicating the time to it just in case there are any showstoppers that others have already encountered. Does it work at all? Any limitations with permissions or sysex or anything like that? </p><p>Thanks!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Best way to do MMC with WebMIDI.js?</title>
+        <link>https://webmidijs.org/forum/discussion/41/best-way-to-do-mmc-with-webmidi-js</link>
+        <pubDate>Thu, 15 Apr 2021 02:07:30 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>jjeff</dc:creator>
+        <guid isPermaLink="false">41@/forum/discussions</guid>
+        <description><![CDATA[<p>I&rsquo;m hoping to receive and send MIDI Machine Control messages in my app. I&rsquo;m still getting my head around what they are and how they work. It looks like I need to dig into some sysex stuff. Are there any guidelines or helpers for doing MMC with WebMIDI.js? I suppose I should probably just Google this.. but maybe by asking here, the next Googler will find their answer right here! 🙂</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Get Output port id associated with a given Input port id?</title>
+        <link>https://webmidijs.org/forum/discussion/40/get-output-port-id-associated-with-a-given-input-port-id</link>
+        <pubDate>Fri, 09 Apr 2021 15:24:38 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>jjeff</dc:creator>
+        <guid isPermaLink="false">40@/forum/discussions</guid>
+        <description><![CDATA[<p>Since input port ids and output port ids are different values for the same device, is there a way to get one from the other?</p><p>In other words, if I get a MIDI message from a given device, how can I figure out which Output will send MIDI back to that device?</p><p>Is the `.name` property the best way to do this?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>playNote duration seems to not work in v3?</title>
+        <link>https://webmidijs.org/forum/discussion/38/playnote-duration-seems-to-not-work-in-v3</link>
+        <pubDate>Fri, 09 Apr 2021 12:55:40 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Martin Klepsch</dc:creator>
+        <guid isPermaLink="false">38@/forum/discussions</guid>
+        <description><![CDATA[<p>hello!</p><p>I&#39;m just playing around with webmidi.js and a Novation Launchpad X a bit and am seeing some things that I can&#39;t quite make sense off:</p><pre spellcheck="false">// midi controller does not light up at all 
+WebMidi.outputs[1].playNote(36, {duration: 500})
+// midi controller lights up and does not turn off again
+WebMidi.outputs[1].playNote(36, {duration: 2000})
+</pre><p>I&#39;d be surprised if I&#39;d found a bug but I&#39;m short of any better explanations. </p><p>I&#39;ll look into logging more events from the device to better understand this but wanted to share this in the meantime and say hi on the forum :wave:</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Use GitHub discussions?</title>
+        <link>https://webmidijs.org/forum/discussion/39/use-github-discussions</link>
+        <pubDate>Fri, 09 Apr 2021 12:58:46 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Martin Klepsch</dc:creator>
+        <guid isPermaLink="false">39@/forum/discussions</guid>
+        <description><![CDATA[<p>Hey! </p><p>It seems this forum is a somewhat new thing and I was just wondering if you have considered using the new GitHub discussions feature (example: <a href="https://github.com/vercel/next.js/discussions" rel="nofollow">https://github.com/vercel/next.js/discussions</a>), </p><p>I just made my first post here and editing a code block I had my cursor jump around multiple times, which seemed like a bug on the side of the forum software. Using GitHub&#39;s discussion feature you wouldn&#39;t need to worry about maintaining this installation and people wouldn&#39;t need to sign up for any extra accounts.</p><p>Cheers</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Midi recall</title>
+        <link>https://webmidijs.org/forum/discussion/31/midi-recall</link>
+        <pubDate>Sun, 31 Jan 2021 10:13:57 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Andrea Zanenghi</dc:creator>
+        <guid isPermaLink="false">31@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi,</p><p>Amazing lib, love the way it makes the web midi api easy to use.</p><p>I think a full recall of the connected midi device could be something really useful. </p><p>Right now I&#39;m storing the patches/values as a json but I didn&#39;t found yet the proper method to update it in the midi connected device at once. </p><p>I tried to iterate through all the parameters using a delay between update and update (like this the midi connected device do not crash) but it sounds a bit hacky to me.</p><p>It would be great to have an optimised method to the job... or probably  I&#39;m missing something?</p><p>Any tip about this practice is welcome, </p><p>Best</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How to SEND or RECEIVE System Exclusive Messages?</title>
+        <link>https://webmidijs.org/forum/discussion/34/how-to-send-or-receive-system-exclusive-messages</link>
+        <pubDate>Tue, 23 Feb 2021 20:50:21 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Mike Balistreri</dc:creator>
+        <guid isPermaLink="false">34@/forum/discussions</guid>
+        <description><![CDATA[<p>I need help learning how to SEND or RECEIVE MIDI System Exclusive Messages.</p><p>Example: I need to SEND the following</p><p>&quot;F0 7D 25 09 F7&quot; to a MIDI Device</p><p>The device should answer with it&#39;s own SysEx message:</p><p>&quot;F0 7D 25 09 43 50 34 38 F7&quot;</p><p>HELP ?!?!?!?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Cannot receive NRPN</title>
+        <link>https://webmidijs.org/forum/discussion/33/cannot-receive-nrpn</link>
+        <pubDate>Fri, 19 Feb 2021 08:01:14 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rubendax</dc:creator>
+        <guid isPermaLink="false">33@/forum/discussions</guid>
+        <description><![CDATA[<p>I&#39;ve had success receiving and sending multiple types of MIDI messages using this library. Thanks so much for your work. It is a great asset. My only problem seems to be with <em>receiving</em> NRPN messages.</p><p>This is the incoming MIDI (via MIDI Monitor):</p><div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/397/VCHC54MHZ80B.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/397/VCHC54MHZ80B.png" alt="image.png" />
+        </a>
+    </div>
+</div>
+<div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/079/UU08GYWMOCVJ.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/079/UU08GYWMOCVJ.png" alt="image.png" />
+        </a>
+    </div>
+</div>
+<p>Based on my understanding, this should be a valid NRPN message, however, it will not trigger the callback function. Therefore, I assume webmidi.js is not accepting my NRPN as valid. I am attempting to structure my NRPN based on the MIDI spec and<a href="http://www.philrees.co.uk/nrpnq.htm" rel="nofollow"> this article</a>. I send controller 99 and 98 together, followed by 6 and 38, finally followed by 101 and 100.</p><p>My JS:</p><pre spellcheck="false">
+    let input = WebMidi.getInputByName(deviceName);
+    input.addListener(&quot;nrpn&quot;, &quot;all&quot;, function (rx) {
+        console.log(&quot;Valid NRPN!&quot;);
+    });
+</pre><p>In this same project I have used this same addListener syntax for other message types with success, for example, by replacing &quot;nrpn&quot; with &quot;keyaftertouch&quot;. </p><p>Perhaps I&#39;m making an obvious mistake. Any ideas of what I should try? I have full control over the structure of the incoming MIDI message.</p><p>Thanks again!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How can I make the 'noteon' and 'noteoff' listeners reactive to hot-swapped midi devices?</title>
+        <link>https://webmidijs.org/forum/discussion/29/how-can-i-make-the-noteon-and-noteoff-listeners-reactive-to-hot-swapped-midi-devices</link>
+        <pubDate>Wed, 06 Jan 2021 18:15:04 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rchrdnsh</dc:creator>
+        <guid isPermaLink="false">29@/forum/discussions</guid>
+        <description><![CDATA[<p>Bonjour :-)</p><p>I&#39;m Working on a web app in Svelte and I currently have <code spellcheck="false">addListener</code>  methods for &#39;connected&#39;, &#39;disconnected&#39;, &#39;noteon&#39; and &#39;noteoff&#39; and they all work fine if a MIDI device is connected to my computer when the page loads.</p><p>What I want, however, is for the &#39;noteon&#39; and &#39;noteoff&#39; listeners to work reactively to devices that are hot-swapped (connected and/or disconnected) after the page has already loaded.</p><p>For example, if I load the page with a midi keyboard connected then the &#39;noteon&#39; and noteoff&#39; listeners work just fine, but if I then disconnect and re-connect the midi keyboard, then the &#39;noteon&#39; and &#39;noteoff&#39; listeners don&#39;t seem to work anymore, until I re-load the page, at which point they will work again. To be clear, the &#39;connected&#39; and &#39;disconnected&#39; listeners DO work just fine in reaction to midi devices being hot-swapped.</p><p>So, how might I go about adjusting my code so that my desired behavior will work?</p><p>Here is the code I currently have that works if a midi keyboard is already connected, but doesn&#39;t fully work when the the midi keyboard is disconnected and then reconnected...</p><pre spellcheck="false"> // The variables like MIDIConnection and MIDINoteNumber are svelte stores defined outside the Web MIDI JS code
+﻿
+WebMidi.enable(function (error) {
+  
+  if (error) {
+    console.log(&#39;WebMidi could not be enabled.&#39;, error);
+  } else {
+    console.log(&#39;WebMidi enabled!&#39;);
+  }
+
+  // Octave Offset to make middle C read as C3, rather than C4 
+  WebMidi.octaveOffset = -1;
+  
+  // Reacting when a new device becomes available
+  WebMidi.addListener(&#39;connected&#39;, function(event) {
+
+    MIDIConnection.update( data =&gt; {
+     data = `MIDI is connected :-)`;
+     return data;
+    });
+
+  });
+  
+  // Reacting when a device becomes unavailable
+  WebMidi.addListener(&#39;disconnected&#39;, function(event) {
+
+    MIDIConnection.update( data =&gt; {
+      data = `MIDI is disconnected :-(`;
+      return data
+    });
+
+  });
+
+  // Retrieve an input by index
+
+  input = WebMidi.inputs[0];
+  
+  input.addListener(&#39;noteon&#39;, &#39;all&#39;, function(event) {
+
+    MIDINoteNumber.update(noteNumber =&gt; {
+      noteNumber.push(`${event.note.number}`)
+      return noteNumber
+    });
+  });
+  
+  input.addListener(&#39;noteoff&#39;, &#39;all&#39;, function(event) {
+
+    MIDINoteNumber.update(noteNumber =&gt; {
+      noteNumber = noteNumber.filter(e =&gt; e !== `${event.note.number}`)
+      return noteNumber
+    });
+
+  });
+  
+});
+</pre><p>Thank you for any help that you can give in advance :-)</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Has there been any work on Sample Dump Standard?</title>
+        <link>https://webmidijs.org/forum/discussion/30/has-there-been-any-work-on-sample-dump-standard</link>
+        <pubDate>Fri, 08 Jan 2021 16:20:15 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>joseph beuckman</dc:creator>
+        <guid isPermaLink="false">30@/forum/discussions</guid>
+        <description><![CDATA[<p>I would like to support SY99 sample dumps.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Requesting current values of control parameters from a device</title>
+        <link>https://webmidijs.org/forum/discussion/28/requesting-current-values-of-control-parameters-from-a-device</link>
+        <pubDate>Fri, 18 Dec 2020 23:38:55 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Ben Jones</dc:creator>
+        <guid isPermaLink="false">28@/forum/discussions</guid>
+        <description><![CDATA[<p>It&#39;s easy enough to handle control parameter changes, but is there a way to ask the device for the current value of a control parameter?  I&#39;d like to create a UI that lets you edit the parameters, but want it to be initialized to whatever the value was on the device.</p><p><br /></p><p>I looked into trying to use sysex to dump that data, but haven&#39;t found the information I think I need.  I&#39;m playing with a Microkorg XL and the particular sysex functions that it supports don&#39;t seem to be documented anywhere.  </p><p><br /></p><p>I tried using: output.sendSysex(0x42, [0x31, 0x7e, 0x19, 0x10]);  where 0x42 is Korg&#39;s ID, 0x31 is channel 1 (I tried 0x30 too), 0x7E is the Microkorg XL model ID, and 0x19 0x10 came from here (<a href="http://www.sysexdb.com/synth_detail.aspx?dv=20" rel="nofollow">http://www.sysexdb.com/synth_detail.aspx?dv=20</a>) which corresponds to a data dump request on a Korg M1.  I&#39;m listening for all sysex messages, and gave my browser midi permissions (which were requested when I asked for sysex permissions, but not before).</p><p><br /></p><p>Ideally there would be some message that tells the device to send a controlChange message even though there&#39;s no change, but I didn&#39;t find anything like that in my digging.</p><p>Any other thoughts/suggestions?</p><p>Thanks!</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Where do I begin with USB MIDI on Ubuntu Studio 20.10</title>
+        <link>https://webmidijs.org/forum/discussion/26/where-do-i-begin-with-usb-midi-on-ubuntu-studio-20-10</link>
+        <pubDate>Mon, 30 Nov 2020 17:05:08 +0000</pubDate>
+        <category>General Discussion</category>
+        <dc:creator>Cool Games</dc:creator>
+        <guid isPermaLink="false">26@/forum/discussions</guid>
+        <description><![CDATA[<p><a href="https://ubuntustudio.org/2020/10/ubuntu-studio-20-10-released/" rel="nofollow">Ubuntu Studio 20.10</a> is newest release of a creative release for artists.</p><p>There is an <a href="https://ubuntustudio.org/2018/06/introducing-the-ubuntu-studio-audio-handbook/" rel="nofollow">Audio Handbook</a> that discusses MIDI and WebMIDI.js would be a huge step forward.</p><p>I have a <a href="https://rolandcom.github.io/gokeys-scratch-extension/" rel="nofollow">Roland Go:Keys 61k</a> that has USB MIDI that I want to use for beginners learning music.</p><p>I am retired non-programmer that has time and technical curiosity to contribute to this effort in 2021.</p><p><strong>Please help me on a project to get it all working !</strong></p><p>Lee T. Davy dot Event Video since 1990 now at GMail</p><p>also know as Cool Games Network since 2000.</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Where to enable WebMIDI in Chrome Version 87.0.4280.66 (Official Build) snap (64-bit)</title>
+        <link>https://webmidijs.org/forum/discussion/27/where-to-enable-webmidi-in-chrome-version-87-0-4280-66-official-build-snap-64-bit</link>
+        <pubDate>Mon, 30 Nov 2020 19:18:50 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Cool Games</dc:creator>
+        <guid isPermaLink="false">27@/forum/discussions</guid>
+        <description><![CDATA[<p>I am new to WebMIDI and the stuff I find seems to be unavailable in newer SNAP packaged Chrome on Ubuntu Studio. Where do I find work in progress to follow progress of the setting now days ?</p><p><br /></p><div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/716/DN7GSFQUTHU3.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/716/DN7GSFQUTHU3.png" alt="WebMidi - Screenshot_20201130_141704.png" />
+        </a>
+    </div>
+</div>
+<p><strong>It was working in Ubuntu Studio 20.04 LTS Chrome </strong>Version 86.0.4240.193 (Official Build) (64-bit)</p><p><br /></p><div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/039/ALRQ5RFDERUC.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/039/ALRQ5RFDERUC.png" alt="WebMIDI  - Ubuntu 20.04 - Screenshot from 2020-11-30 15-21-15.png" />
+        </a>
+    </div>
+</div>
+<p><strong>Fails in Ubuntu Studio 20.10 and is grayed out</strong>. </p><div>
+    <div>
+        <a href="https://webmidijs.org/forum/uploads/217/JTNPK3B8A66R.png" rel="nofollow noopener" target="_blank">
+            <img src="https://webmidijs.org/forum/uploads/217/JTNPK3B8A66R.png" alt="Piano Midi Device - Screenshot_20201130_123450.png" />
+        </a>
+    </div>
+</div>
+<p><br /></p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Checking Input buffer</title>
+        <link>https://webmidijs.org/forum/discussion/25/checking-input-buffer</link>
+        <pubDate>Thu, 22 Oct 2020 14:22:16 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Henrique Matos</dc:creator>
+        <guid isPermaLink="false">25@/forum/discussions</guid>
+        <description><![CDATA[<p>HI,</p><p>In Sysex communication some devices often respond using several sysex blocks. Example when responding to a Dump Request. In this case, it is necessary to get the contents until the end of all blocks and for this it is necessary to make sure that all blocks have been received. I thought about checking if the buffer input is empty or not. Is there a way to check this? or some other way of ensuring that all blocks referring to the same data request have been received?</p><p>For now I am using a procedure of giving a window of time when the first message is received by the listener. I give approximately 300ms which is enough time to receive the dump, but I believe that with a buffer checker we can have a more efficient routine, because shorter messages would not have to wait that long. I understand that the listener is completely asynchronous, however in the case of sysex there is this situation that the blocks need to be collected synchronously and have a definite ending.</p><p>best regards</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How could I go about grabbing incoming midi data and manipulating it?</title>
+        <link>https://webmidijs.org/forum/discussion/23/how-could-i-go-about-grabbing-incoming-midi-data-and-manipulating-it</link>
+        <pubDate>Wed, 14 Oct 2020 23:56:23 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rchrdnsh</dc:creator>
+        <guid isPermaLink="false">23@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi all,</p><p>I&#39;ve got this working:</p><pre spellcheck="false">input.addListener(&#39;noteon&#39;, &#39;all&#39;,
+  function (event) {
+    console.log(event.note.number);
+  }
+);
+</pre><p>...which is great, but now I want to try and catch this data and send it to a Piano Keyboard component to display notes that are being played, like this one that I made using react:</p><div data-embedjson="{&quot;body&quot;:&quot;MIDI&quot;,&quot;url&quot;:&quot;https:\/\/rykr.co\/tools\/piano\/&quot;,&quot;embedType&quot;:&quot;link&quot;,&quot;name&quot;:&quot;&quot;}">
+    <a rel="nofollow" href="https://rykr.co/tools/piano/">
+        https://rykr.co/tools/piano/
+    </a>
+</div><p>...but I don&#39;t know how to get the note event data out of the event listener and put it into maybe an array or something. Do you have any recommendations on how I might do something like that? I&#39;m relatively new to JS as well, so there is probably an easy way to do that, but I just don&#39;t know :-(</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Can't get NRPN listener to work</title>
+        <link>https://webmidijs.org/forum/discussion/24/cant-get-nrpn-listener-to-work</link>
+        <pubDate>Fri, 16 Oct 2020 22:19:03 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>jpmc3630</dc:creator>
+        <guid isPermaLink="false">24@/forum/discussions</guid>
+        <description><![CDATA[<p>Hi there. I&#39;ve been using webmidiJS for a while (and love it :) and have been sending NRPNs with no problems using the setNonRegisteredParameter method.</p><p>Just today I&#39;ve been trying to use the NRPN listener to parse CC commands into NRPN events, but I can&#39;t seem to get the listener to fire. I am getting the CC events coming through...</p><pre spellcheck="false">Received &#39;controlchange&#39; message: 99, 0
+
+Received &#39;controlchange&#39; message: 98, 10
+
+Received &#39;controlchange&#39; message: 6, 106
+</pre><p>I&#39;m using &quot;webmidi&quot;: &quot;^2.5.1&quot;</p><p>Here&#39;s the code setting up the listener, it&#39;s just straight from one of the examples. </p><pre spellcheck="false">WebMidi.nrpnEventsEnabled = true;
+
+var input = WebMidi.getInputById(this.state.selectedMidiInId);
+
+input﻿.addListener(&#39;controlchange&#39;, &quot;all&quot;, (e) =&gt; {
+    console.log(&quot;Received &#39;controlchange&#39; message:&quot;);
+    console.log(e.controller.number);
+    console.log(e.value);
+ 
+});
+
+input.addListener(&#39;nrpn&#39;, &quot;all&quot;,
+    function (e) {
+        
+    if(e.controller.type === &#39;entry&#39;) {
+        console.log(&quot;Received &#39;nrpn&#39; &#39;entry&#39; message.&quot;, e);
+    }
+    if(e.controller.type === &#39;decrement&#39;) {
+        console.log(&quot;Received &#39;nrpn&#39; &#39;decrement&#39; message.&quot;, e);
+    }
+    if(e.controller.type === &#39;increment&#39;) {
+        console.log(&quot;Received &#39;nrpn&#39; &#39;increment&#39; message.&quot;, e);
+    }
+    console.log(&quot;message value: &quot; + e.controller.value + &quot;.&quot;, e);
+    }
+);
+</pre><p>I&#39;ve tried it in a few different configurations, just on an individual channel (1), without the control change listener, and everything I can think of. I also considered maybe my synth isn&#39;t sending a typical NRPN set of bytes, and tried just doing a physical loop back with my midi interface with a cable, and receiving the input of the setNonRegisteredParameter output, but not having any luck. According to Midi Monitor the interface is at least receiving the MSB, LSB and data value.</p><p>Any ideas what I&#39;m doing wrong?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Why does NRPN also send RPN?</title>
+        <link>https://webmidijs.org/forum/discussion/22/why-does-nrpn-also-send-rpn</link>
+        <pubDate>Mon, 05 Oct 2020 13:54:10 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>rubendax</dc:creator>
+        <guid isPermaLink="false">22@/forum/discussions</guid>
+        <description><![CDATA[<p>Hey all. Loving the webmidijs library. I&#39;m using it to create a webapp that adjusts parameters for a custom MIDI controller. In my testing it appears that when I use the <strong>setNonRegisteredParameter </strong>method, it sends 6 MIDI messages instead of 4 as I would expect. I expect an NRPN message to send controller <strong>99</strong>, controller <strong>98</strong>, controller <strong>6</strong>, and controller <strong>38</strong>. The method as I&#39;m using it currently also sends controller <strong>101</strong> and <strong>100</strong> (MSB and LSB of RPN). There could be something I am not understanding. Why does it send these RPN messages?</p><p><br /></p><p> My JS code:</p><p><code spellcheck="false"> output.setNonRegisteredParameter([0, 1], [0, 2], [channel = 1], [options = {}]);</code></p><p><br /></p><p>Sends these messages:</p><p><strong>Message 1 (NRPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 99 (0x63)</p><p>    byte3 DEC: 0 (0x00)</p><p><br /></p><p><strong>Message 2 (NRPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 98 (0x62)</p><p>    byte3 DEC: 1 (0x01)</p><p><br /></p><p><strong>Message 3 (NRPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 6 (0x06)</p><p>    byte3 DEC: 0 (0x00)</p><p><br /></p><p><strong>Message 4 (NRPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 38 (0x26)</p><p>    byte3 DEC: 2 (0x02)</p><p><br /></p><p><strong>Message 5 (RPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 101 (0x65)</p><p>    byte3 DEC: 127 (0x7F)</p><p><br /></p><p><strong>Message 6 (RPN):</strong></p><p>    byte1 DEC: 176 (0xB0)</p><p>    byte2 DEC: 100 (0x64)</p><p>    byte3 DEC: 127 (0x7F)</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>Split keyboard</title>
+        <link>https://webmidijs.org/forum/discussion/20/split-keyboard</link>
+        <pubDate>Sat, 19 Sep 2020 15:13:42 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Gabriel Lenzina</dc:creator>
+        <guid isPermaLink="false">20@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello how are you? I am new to this world, could I create a split keyboard, with a midi usb input and the output the keyboard divided into 2, one part to channel 1 and another to channel 2?</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>VirtualPorts</title>
+        <link>https://webmidijs.org/forum/discussion/19/virtualports</link>
+        <pubDate>Thu, 20 Aug 2020 14:54:11 +0000</pubDate>
+        <category>Enhancement Proposals</category>
+        <dc:creator>Henrique Matos</dc:creator>
+        <guid isPermaLink="false">19@/forum/discussions</guid>
+        <description><![CDATA[<p>Hello</p><p>I would like to suggest the inclusion of methods for working with virtual midi interfaces</p><p>Example:</p><pre spellcheck="false">WebMidi.createVirtual (&#39;VirtualPort-1&#39;);
+vOutputPort = WebMidi.getOutputByName (&#39;VirtualPort-1&#39;);
+vInputPort = WebMidi.getInputByName (&#39;VirtualPort-1&#39;);
+WebMidi.destroyVirtual (&#39;VirtualPort-1&#39;);
+
+</pre><p>This would be great for VST controls.</p><p>best regards</p>]]>
+        </description>
+    </item>
+    <item>
+        <title>How to disable Web MIDI permission warning?</title>
+        <link>https://webmidijs.org/forum/discussion/18/how-to-disable-web-midi-permission-warning</link>
+        <pubDate>Fri, 14 Aug 2020 20:54:00 +0000</pubDate>
+        <category>Questions &amp; Support</category>
+        <dc:creator>Zack Lee</dc:creator>
+        <guid isPermaLink="false">18@/forum/discussions</guid>
+        <description><![CDATA[<p>When I try the Web MIDI in Chrome browser, I get the following warning from the developer console:</p><p><br /></p><p><code spellcheck="false">[Deprecation] Web MIDI will ask a permission to use even if the sysex is not specified in the MIDIOptions since around M82, around May 2020. See <a href="https://www.chromestatus.com/feature/5138066234671104" rel="nofollow">https://www.chromestatus.com/feature/5138066234671104</a> for more details.</code></p><p><br /></p><p>Is it possible to disable this warning?</p>]]>
+        </description>
+    </item>
+   </channel>
+</rss>
