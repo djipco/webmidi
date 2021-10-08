@@ -26,30 +26,6 @@ others.
 
 * [Output](#Output) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [.channels](#Output+channels) : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
-
-    * [.connection](#Output+connection) : <code>string</code>
-
-    * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
-    * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
-    * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
-    * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
-    * [.id](#Output+id) : <code>string</code>
-
-    * [.manufacturer](#Output+manufacturer) : <code>string</code>
-
-    * [.name](#Output+name) : <code>string</code>
-
-    * [.octaveOffset](#Output+octaveOffset) : <code>number</code>
-
-    * [.state](#Output+state) : <code>string</code>
-
-    * [.type](#Output+type) : <code>string</code>
-
     * [new Output(midiOutput)](#new_Output_new)
 
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
@@ -154,174 +130,36 @@ others.
 
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
 
+    * [.channels](#Output+channels) : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+
+    * [.connection](#Output+connection) : <code>string</code>
+
+    * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
+    * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
+    * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
+    * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
+    * [.id](#Output+id) : <code>string</code>
+
+    * [.manufacturer](#Output+manufacturer) : <code>string</code>
+
+    * [.name](#Output+name) : <code>string</code>
+
+    * [.octaveOffset](#Output+octaveOffset) : <code>number</code>
+
+    * [.state](#Output+state) : <code>string</code>
+
+    * [.type](#Output+type) : <code>string</code>
+
     * ["closed"](#Output+event_closed)
 
     * ["disconnected"](#Output+event_disconnected)
 
     * ["opened"](#Output+event_opened)
 
-
-* * *
-
-<a name="Output+channels"></a>
-
-## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
-Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
-channels are numbered 1 through 16.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-<!---->
-
-* * *
-
-<a name="Output+connection"></a>
-
-## output.connection : <code>string</code>
-Output port's connection state: `"pending"`, `"open"` or `"closed"`.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventCount"></a>
-
-## output.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## output.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## output.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## output.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
-<a name="Output+id"></a>
-
-## output.id : <code>string</code>
-ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
-platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-the same port.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+manufacturer"></a>
-
-## output.manufacturer : <code>string</code>
-Name of the manufacturer of the device that makes this output port available.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+name"></a>
-
-## output.name : <code>string</code>
-Name of the MIDI output
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+octaveOffset"></a>
-
-## output.octaveOffset : <code>number</code>
-An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
-is placed on the 4th octave (C4).
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-(if any).
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="Output+state"></a>
-
-## output.state : <code>string</code>
-State of the output port: `"connected"` or `"disconnected"`.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+type"></a>
-
-## output.type : <code>string</code>
-Type of the output port (`"output"`)
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
 
 * * *
 
@@ -1878,6 +1716,168 @@ try {
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
+
+* * *
+
+<a name="Output+channels"></a>
+
+## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
+channels are numbered 1 through 16.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+<!---->
+
+* * *
+
+<a name="Output+connection"></a>
+
+## output.connection : <code>string</code>
+Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventCount"></a>
+
+## output.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## output.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventNames"></a>
+
+## output.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## output.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="Output+id"></a>
+
+## output.id : <code>string</code>
+ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
+platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+the same port.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+manufacturer"></a>
+
+## output.manufacturer : <code>string</code>
+Name of the manufacturer of the device that makes this output port available.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+name"></a>
+
+## output.name : <code>string</code>
+Name of the MIDI output
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+octaveOffset"></a>
+
+## output.octaveOffset : <code>number</code>
+An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+is placed on the 4th octave (C4).
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="Output+state"></a>
+
+## output.state : <code>string</code>
+State of the output port: `"connected"` or `"disconnected"`.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+type"></a>
+
+## output.type : <code>string</code>
+Type of the output port (`"output"`)
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
 
 * * *
 

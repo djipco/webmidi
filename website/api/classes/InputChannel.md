@@ -29,28 +29,6 @@ details.
 
 * [InputChannel](#InputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * _static_
-
-        * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
-
-    * _instance_
-
-        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
-        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
-        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
-        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
-        * [.input](#InputChannel+input) : [<code>Input</code>](#Input)
-
-        * [.number](#InputChannel+number) : <code>number</code>
-
-        * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
-
-        * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
-
     * [new InputChannel(input, number)](#new_InputChannel_new)
 
     * _instance_
@@ -80,6 +58,28 @@ details.
         * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
 
         * [.waitFor(event, [options])](#EventEmitter+waitFor)
+
+    * _static_
+
+        * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
+
+    * _instance_
+
+        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
+        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
+        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
+        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
+        * [.input](#InputChannel+input) : [<code>Input</code>](#Input)
+
+        * [.number](#InputChannel+number) : <code>number</code>
+
+        * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
+
+        * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
 
         * ["allnotesoff"](#InputChannel+event_allnotesoff)
 
@@ -125,139 +125,6 @@ details.
 
         * ["rpndataentryfine"](#InputChannel+event_rpndataentryfine)
 
-
-* * *
-
-<a name="InputChannel.EVENTS"></a>
-
-## InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
-Array of channel-specific event names that can be listened to.
-
-<!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventCount"></a>
-
-## inputChannel.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## inputChannel.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## inputChannel.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
-<a name="InputChannel+input"></a>
-
-## inputChannel.input : [<code>Input</code>](#Input)
-The [Input](#Input) this channel belongs to
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+number"></a>
-
-## inputChannel.number : <code>number</code>
-This channel's MIDI number (1-16)
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+octaveOffset"></a>
-
-## inputChannel.octaveOffset : <code>number</code>
-An integer to offset the reported octave of incoming note-specific messages (`noteon`,
-`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
-octave (C4).
-
-If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent `Input` object.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+parameterNumberEventsEnabled"></a>
-
-## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
-Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-are composed of a sequence of specific **control change** messages. When a valid sequence of
-such control change messages is received, an `nrpn` event will fire.
-
-If an invalid or
-out-of-order control change message is received, it will fall through the collector logic and
-all buffered control change messages will be discarded as incomplete.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
 
 * * *
 
@@ -641,6 +508,139 @@ try {
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
+
+* * *
+
+<a name="InputChannel.EVENTS"></a>
+
+## InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
+Array of channel-specific event names that can be listened to.
+
+<!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventCount"></a>
+
+## inputChannel.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## inputChannel.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventNames"></a>
+
+## inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## inputChannel.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="InputChannel+input"></a>
+
+## inputChannel.input : [<code>Input</code>](#Input)
+The [Input](#Input) this channel belongs to
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+number"></a>
+
+## inputChannel.number : <code>number</code>
+This channel's MIDI number (1-16)
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+octaveOffset"></a>
+
+## inputChannel.octaveOffset : <code>number</code>
+An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+and with the value defined on the parent `Input` object.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+parameterNumberEventsEnabled"></a>
+
+## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
+Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+are composed of a sequence of specific **control change** messages. When a valid sequence of
+such control change messages is received, an `nrpn` event will fire.
+
+If an invalid or
+out-of-order control change message is received, it will fall through the collector logic and
+all buffered control change messages will be discarded as incomplete.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+<!---->
 
 * * *
 

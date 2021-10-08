@@ -26,30 +26,6 @@ others.
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [.channels](#Input+channels) : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
-
-    * [.connection](#Input+connection) : <code>string</code>
-
-    * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
-    * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
-    * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
-    * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
-    * [.id](#Input+id) : <code>string</code>
-
-    * [.manufacturer](#Input+manufacturer) : <code>string</code>
-
-    * [.name](#Input+name) : <code>string</code>
-
-    * [.octaveOffset](#Input+octaveOffset) : <code>number</code>
-
-    * [.state](#Input+state) : <code>string</code>
-
-    * [.type](#Input+type) : <code>string</code>
-
     * [new Input(midiInput)](#new_Input_new)
 
     * [.addListener(event, listener, [options])](#Input+addListener) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
@@ -78,6 +54,30 @@ others.
 
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
 
+    * [.channels](#Input+channels) : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+
+    * [.connection](#Input+connection) : <code>string</code>
+
+    * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
+    * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
+    * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
+    * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
+    * [.id](#Input+id) : <code>string</code>
+
+    * [.manufacturer](#Input+manufacturer) : <code>string</code>
+
+    * [.name](#Input+name) : <code>string</code>
+
+    * [.octaveOffset](#Input+octaveOffset) : <code>number</code>
+
+    * [.state](#Input+state) : <code>string</code>
+
+    * [.type](#Input+type) : <code>string</code>
+
     * ["closed"](#Input+event_closed)
 
     * ["disconnected"](#Input+event_disconnected)
@@ -86,171 +86,6 @@ others.
 
     * ["opened"](#Input+event_opened)
 
-
-* * *
-
-<a name="Input+channels"></a>
-
-## input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
-Array containing the 16 [InputChannel](#InputChannel) objects available for this `Input`. The
-channels are numbered 1 through 16.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-<!---->
-
-* * *
-
-<a name="Input+connection"></a>
-
-## input.connection : <code>string</code>
-Input port's connection state: `"pending"`, `"open"` or `"closed"`.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventCount"></a>
-
-## input.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## input.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## input.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## input.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
-<a name="Input+id"></a>
-
-## input.id : <code>string</code>
-ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
-platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-the same port.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Input+manufacturer"></a>
-
-## input.manufacturer : <code>string</code>
-Name of the manufacturer of the device that makes this input port available.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Input+name"></a>
-
-## input.name : <code>string</code>
-Name of the MIDI input
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Input+octaveOffset"></a>
-
-## input.octaveOffset : <code>number</code>
-An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-number 60) is placed on the 4th octave (C4).
-
-If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-(if any).
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="Input+state"></a>
-
-## input.state : <code>string</code>
-State of the input port: `"connected"` or `"disconnected"`.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Input+type"></a>
-
-## input.type : <code>string</code>
-Port type. In the case of `Input`, this is always: `"input"`.
-
-<!--**Kind**: instance property of [<code>Input</code>](#Input)  
--->
-**Read only**: true  
-<!---->
 
 * * *
 
@@ -776,6 +611,171 @@ try {
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
+
+* * *
+
+<a name="Input+channels"></a>
+
+## input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+Array containing the 16 [InputChannel](#InputChannel) objects available for this `Input`. The
+channels are numbered 1 through 16.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+<!---->
+
+* * *
+
+<a name="Input+connection"></a>
+
+## input.connection : <code>string</code>
+Input port's connection state: `"pending"`, `"open"` or `"closed"`.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventCount"></a>
+
+## input.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## input.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventNames"></a>
+
+## input.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## input.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="Input+id"></a>
+
+## input.id : <code>string</code>
+ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+the same port.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Input+manufacturer"></a>
+
+## input.manufacturer : <code>string</code>
+Name of the manufacturer of the device that makes this input port available.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Input+name"></a>
+
+## input.name : <code>string</code>
+Name of the MIDI input
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Input+octaveOffset"></a>
+
+## input.octaveOffset : <code>number</code>
+An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+number 60) is placed on the 4th octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="Input+state"></a>
+
+## input.state : <code>string</code>
+State of the input port: `"connected"` or `"disconnected"`.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Input+type"></a>
+
+## input.type : <code>string</code>
+Port type. In the case of `Input`, this is always: `"input"`.
+
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+**Read only**: true  
+<!---->
 
 * * *
 
