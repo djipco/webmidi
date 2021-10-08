@@ -69,7 +69,7 @@ module.exports = {
             },
             {
               label: "Forum (Archived)",
-              href: "https://webmidijs.org/forum/"
+              href: "/forum/"
             }
           ]
         },
