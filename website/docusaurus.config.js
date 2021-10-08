@@ -164,7 +164,7 @@ module.exports = {
     image: "og-card.png",
     announcementBar: {
       id: "github-banner",
-      content: "If you like WebMidi.js, give it a star ⭐ or sponsor it 💜 on <a target='_blank' " +
+      content: "Give a star ⭐ or sponsor 💜 WebMidi.js on <a target='_blank' " +
         "href='https://github.com/djipco/webmidi'>GitHub</a>! "
     },
     gtag: {
