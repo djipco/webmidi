@@ -29,8 +29,6 @@ details.
 
 * [InputChannel](#InputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [new InputChannel(input, number)](#new_InputChannel_new)
-
     * _static_
 
         * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
@@ -52,6 +50,10 @@ details.
         * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
 
         * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
+
+    * [new InputChannel(input, number)](#new_InputChannel_new)
+
+    * _instance_
 
         * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
 
@@ -122,20 +124,6 @@ details.
         * ["rpndataentrycoarse"](#InputChannel+event_rpndataentrycoarse)
 
         * ["rpndataentryfine"](#InputChannel+event_rpndataentryfine)
-
-
-* * *
-
-<a name="new_InputChannel_new"></a>
-
-## new InputChannel(input, number)
-<!---->
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| input | [<code>Input</code>](#Input) | The `Input` object this channel belongs to |
-| number | <code>number</code> | The MIDI channel's number (1-16) |
 
 
 * * *
@@ -270,6 +258,20 @@ all buffered control change messages will be discarded as incomplete.
 <!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 -->
 <!---->
+
+* * *
+
+<a name="new_InputChannel_new"></a>
+
+## new InputChannel(input, number)
+<!---->
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| input | [<code>Input</code>](#Input) | The `Input` object this channel belongs to |
+| number | <code>number</code> | The MIDI channel's number (1-16) |
+
 
 * * *
 

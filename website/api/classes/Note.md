@@ -26,8 +26,6 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
 * [Note](#Note)
 
-    * [new Note(value, [options])](#new_Note_new)
-
     * [.accidental](#Note+accidental) : <code>string</code>
 
     * [.attack](#Note+attack) : <code>number</code>
@@ -48,36 +46,9 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
     * [.release](#Note+release) : <code>number</code>
 
+    * [new Note(value, [options])](#new_Note_new)
+
     * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
-
-
-* * *
-
-<a name="new_Note_new"></a>
-
-## new Note(value, [options])
-<!---->
-**Throws**:
-
-- <code>Error</code> Invalid note identifier
-- <code>RangeError</code> Invalid name value
-- <code>RangeError</code> Invalid accidental value
-- <code>RangeError</code> Invalid octave value
-- <code>RangeError</code> Invalid duration value
-- <code>RangeError</code> Invalid attack value
-- <code>RangeError</code> Invalid release value
-
-<!---->
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
-| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
-| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
-| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
-| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
 
 
 * * *
@@ -201,6 +172,35 @@ The release velocity of the note as an integer between 0 and 127.
 -->
 **Since**: 3.0.0  
 <!---->
+
+* * *
+
+<a name="new_Note_new"></a>
+
+## new Note(value, [options])
+<!---->
+**Throws**:
+
+- <code>Error</code> Invalid note identifier
+- <code>RangeError</code> Invalid name value
+- <code>RangeError</code> Invalid accidental value
+- <code>RangeError</code> Invalid octave value
+- <code>RangeError</code> Invalid duration value
+- <code>RangeError</code> Invalid attack value
+- <code>RangeError</code> Invalid release value
+
+<!---->
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>string</code> \| <code>number</code> |  | The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60). |
+| [options] | <code>Object</code> | <code>{}</code> |  |
+| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the note should be explicitly stopped. |
+| [options.attack] | <code>number</code> | <code>0.5</code> | The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
+| [options.release] | <code>number</code> | <code>0.5</code> | The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
+| [options.rawAttack] | <code>number</code> | <code>64</code> | The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence. |
+| [options.rawRelease] | <code>number</code> | <code>64</code> | The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence. |
+
 
 * * *
 

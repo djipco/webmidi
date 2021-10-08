@@ -26,8 +26,6 @@ others.
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [new Input(midiInput)](#new_Input_new)
-
     * [.channels](#Input+channels) : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
 
     * [.connection](#Input+connection) : <code>string</code>
@@ -51,6 +49,8 @@ others.
     * [.state](#Input+state) : <code>string</code>
 
     * [.type](#Input+type) : <code>string</code>
+
+    * [new Input(midiInput)](#new_Input_new)
 
     * [.addListener(event, listener, [options])](#Input+addListener) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 
@@ -85,19 +85,6 @@ others.
     * ["midimessage"](#Input+event_midimessage)
 
     * ["opened"](#Input+event_opened)
-
-
-* * *
-
-<a name="new_Input_new"></a>
-
-## new Input(midiInput)
-<!---->
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| midiInput | <code>MIDIInput</code> | `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API). |
 
 
 * * *
@@ -264,6 +251,19 @@ Port type. In the case of `Input`, this is always: `"input"`.
 -->
 **Read only**: true  
 <!---->
+
+* * *
+
+<a name="new_Input_new"></a>
+
+## new Input(midiInput)
+<!---->
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| midiInput | <code>MIDIInput</code> | `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API). |
+
 
 * * *
 

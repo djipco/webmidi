@@ -13,8 +13,6 @@ easy to make sense of the binaru data it contains.
 
 * [Message](#Message)
 
-    * [new Message(data)](#new_Message_new)
-
     * [.channel](#Message+channel) : <code>number</code>
 
     * [.command](#Message+command) : <code>number</code>
@@ -35,18 +33,7 @@ easy to make sense of the binaru data it contains.
 
     * [.statusByte](#Message+statusByte) : <code>number</code>
 
-
-* * *
-
-<a name="new_Message_new"></a>
-
-## new Message(data)
-<!---->
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>Uint8Array</code> | The raw data of the MIDI message as a Uint8Array of integers between 0 and 255. |
+    * [new Message(data)](#new_Message_new)
 
 
 * * *
@@ -181,6 +168,19 @@ The MIDI status byte of the message as an integer between 0 and 255.
 -->
 **Read only**: true  
 <!---->
+
+* * *
+
+<a name="new_Message_new"></a>
+
+## new Message(data)
+<!---->
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>Uint8Array</code> | The raw data of the MIDI message as a Uint8Array of integers between 0 and 255. |
+
 
 * * *
 

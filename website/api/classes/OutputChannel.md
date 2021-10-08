@@ -26,8 +26,6 @@ others.
 
 * [OutputChannel](#OutputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [new OutputChannel(output, number)](#new_OutputChannel_new)
-
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
 
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
@@ -41,6 +39,8 @@ others.
     * [.octaveOffset](#OutputChannel+octaveOffset) : <code>number</code>
 
     * [.output](#OutputChannel+output) : [<code>Output</code>](#Output)
+
+    * [new OutputChannel(output, number)](#new_OutputChannel_new)
 
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
 
@@ -113,20 +113,6 @@ others.
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
 
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
-
-
-* * *
-
-<a name="new_OutputChannel_new"></a>
-
-## new OutputChannel(output, number)
-<!---->
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| output | [<code>Output</code>](#Output) | The output this channel belongs to |
-| number | <code>number</code> | The channel number (1-16) |
 
 
 * * *
@@ -229,6 +215,20 @@ The parent [Output](#Output) this channel belongs to
 -->
 **Since**: 3.0  
 <!---->
+
+* * *
+
+<a name="new_OutputChannel_new"></a>
+
+## new OutputChannel(output, number)
+<!---->
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| output | [<code>Output</code>](#Output) | The output this channel belongs to |
+| number | <code>number</code> | The channel number (1-16) |
+
 
 * * *
 

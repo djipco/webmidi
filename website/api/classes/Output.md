@@ -26,8 +26,6 @@ others.
 
 * [Output](#Output) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
-    * [new Output(midiOutput)](#new_Output_new)
-
     * [.channels](#Output+channels) : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
 
     * [.connection](#Output+connection) : <code>string</code>
@@ -51,6 +49,8 @@ others.
     * [.state](#Output+state) : <code>string</code>
 
     * [.type](#Output+type) : <code>string</code>
+
+    * [new Output(midiOutput)](#new_Output_new)
 
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
 
@@ -159,19 +159,6 @@ others.
     * ["disconnected"](#Output+event_disconnected)
 
     * ["opened"](#Output+event_opened)
-
-
-* * *
-
-<a name="new_Output_new"></a>
-
-## new Output(midiOutput)
-<!---->
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| midiOutput | <code>MIDIOutput</code> | `MIDIOutput` object as provided by the MIDI subsystem |
 
 
 * * *
@@ -335,6 +322,19 @@ Type of the output port (`"output"`)
 -->
 **Read only**: true  
 <!---->
+
+* * *
+
+<a name="new_Output_new"></a>
+
+## new Output(midiOutput)
+<!---->
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| midiOutput | <code>MIDIOutput</code> | `MIDIOutput` object as provided by the MIDI subsystem |
+
 
 * * *
 
