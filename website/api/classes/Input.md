@@ -1,6 +1,6 @@
 <a name="Input"></a>
 
-## Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Input` class represents a single MIDI input port. This object is derived from the host's
 MIDI subsystem and cannot be instantiated directly.
 
@@ -16,91 +16,157 @@ it also includes methods such as
 [suspendEvent()](https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent) and several
 others.
 
-**Kind**: global class  
+<!--**Kind**: global class  
+-->
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
 **Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:unknownmidimessage</code>  
-**License**: Apache-2.0  
+<!--**License**: Apache-2.0  
+-->
+
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
+
     * [new Input(midiInput)](#new_Input_new)
+
     * [.channels](#Input+channels) : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+
     * [.name](#Input+name) : <code>string</code>
+
     * [.id](#Input+id) : <code>string</code>
+
     * [.connection](#Input+connection) : <code>string</code>
+
     * [.manufacturer](#Input+manufacturer) : <code>string</code>
+
     * [.octaveOffset](#Input+octaveOffset) : <code>number</code>
+
     * [.state](#Input+state) : <code>string</code>
+
     * [.type](#Input+type) : <code>string</code>
+
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
     * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
     * [.destroy()](#Input+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
+
     * [.open()](#Input+open) ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+
     * [.close()](#Input+close) ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+
     * [.addListener(event, listener, [options])](#Input+addListener) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
     * [.addOneTimeListener(event, listener, [options])](#Input+addOneTimeListener) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
     * [.hasListener(event, listener, [options])](#Input+hasListener) ⇒ <code>Boolean</code>
+
     * [.removeListener([type], [listener], [options])](#Input+removeListener)
+
     * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
     * [.suspendEvent(event)](#EventEmitter+suspendEvent)
+
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
+
     * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+
     * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
+
     * ["opened"](#Input+event_opened)
+
     * ["closed"](#Input+event_closed)
+
     * ["disconnected"](#Input+event_disconnected)
+
     * ["midimessage"](#Input+event_midimessage)
+
+
+* * *
 
 <a name="new_Input_new"></a>
 
-### new Input(midiInput)
+## new Input(midiInput)
+<!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | midiInput | <code>MIDIInput</code> | `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API). |
 
+
+* * *
+
 <a name="Input+channels"></a>
 
-### input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+## input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
 Array containing the 16 [InputChannel](#InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
+<!---->
+
+* * *
+
 <a name="Input+name"></a>
 
-### input.name : <code>string</code>
+## input.name : <code>string</code>
 Name of the MIDI input
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+id"></a>
 
-### input.id : <code>string</code>
+## input.id : <code>string</code>
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+connection"></a>
 
-### input.connection : <code>string</code>
+## input.connection : <code>string</code>
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+manufacturer"></a>
 
-### input.manufacturer : <code>string</code>
+## input.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this input port available.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+octaveOffset"></a>
 
-### input.octaveOffset : <code>number</code>
+## input.octaveOffset : <code>number</code>
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
 
@@ -110,88 +176,138 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Since**: 3.0  
+<!---->
+
+* * *
+
 <a name="Input+state"></a>
 
-### input.state : <code>string</code>
+## input.state : <code>string</code>
 State of the input port: `"connected"` or `"disconnected"`.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+type"></a>
 
-### input.type : <code>string</code>
+## input.type : <code>string</code>
 Port type. In the case of `Input`, this is always: `"input"`.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventMap"></a>
 
-### input.eventMap : <code>Object</code>
+## input.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventsSuspended"></a>
 
-### input.eventsSuspended : <code>boolean</code>
+## input.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventNames"></a>
 
-### input.eventNames : <code>Array.&lt;string&gt;</code>
+## input.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventCount"></a>
 
-### input.eventCount : <code>number</code>
+## input.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Kind**: instance property of [<code>Input</code>](#Input)  
+<!--**Kind**: instance property of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Input+destroy"></a>
 
-### input.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
+## input.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
+<!---->
+
+* * *
+
 <a name="Input+open"></a>
 
-### input.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
+<!---->
+
+* * *
+
 <a name="Input+close"></a>
 
-### input.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Returns**: [<code>Promise.&lt;Input&gt;</code>](#Input) - The promise is fulfilled with the `Input` object  
+<!---->
+
+* * *
+
 <a name="Input+addListener"></a>
 
-### input.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds an event listener that will trigger a function callback when the specified event happens.
 The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
 [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while input-wide events
@@ -285,13 +401,15 @@ There are 6 families of events you can listen to:
    * rpndatabuttonincrement
    * rpndatabuttondecrement
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>addListener</code>](#EventEmitter+addListener)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of all `Listener` objects that were created.  
 **Throws**:
 
 - <code>Error</code> For channel-specific events, 'options.channels' must be defined.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -305,9 +423,12 @@ There are 6 families of events you can listen to:
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array. |
 | [options.remaining] | <code>boolean</code> | <code>Infinity</code> | The number of times after which the callback should automatically be removed. |
 
+
+* * *
+
 <a name="Input+addOneTimeListener"></a>
 
-### input.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
 dispatched by [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while
@@ -388,13 +509,15 @@ There are 6 families of events you can listen to:
    * omnimode
    * resetallcontrollers
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>addOneTimeListener</code>](#EventEmitter+addOneTimeListener)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of all `Listener` objects that were created.  
 **Throws**:
 
 - <code>Error</code> For channel-specific events, 'options.channels' must be defined.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -407,14 +530,18 @@ There are 6 families of events you can listen to:
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
 | [options.prepend] | <code>boolean</code> | <code>false</code> | Whether the listener should be added at the beginning of the listeners array. |
 
+
+* * *
+
 <a name="Input+hasListener"></a>
 
-### input.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
+## input.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
 Checks if the specified event type is already defined to trigger the listener function. For
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
 **Returns**: <code>Boolean</code> - Boolean value indicating whether or not the channel(s) already have this
 listener defined.  
@@ -422,6 +549,7 @@ listener defined.
 
 - Error For channel-specific events, 'options.channels' must be defined.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -430,9 +558,12 @@ listener defined.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events. |
 
+
+* * *
+
 <a name="Input+removeListener"></a>
 
-### input.removeListener([type], [listener], [options])
+## input.removeListener([type], [listener], [options])
 Removes the specified listener for the specified event. If no listener is specified, all
 listeners for the specified event will be removed. If no event is specified, all listeners for
 the `Input` as well as all listeners for all `InputChannels` will be removed.
@@ -440,8 +571,10 @@ the `Input` as well as all listeners for all `InputChannels` will be removed.
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -452,26 +585,34 @@ By default, channel-specific listeners will be removed from all channels unless 
 | [options.context] | <code>\*</code> |  | Only remove the listeners that have this exact context. |
 | [options.remaining] | <code>number</code> |  | Only remove the listener if it has exactly that many remaining times to be executed. |
 
+
+* * *
+
 <a name="EventEmitter+getListeners"></a>
 
-### input.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to get listeners for |
 
+
+* * *
+
 <a name="EventEmitter+suspendEvent"></a>
 
-### input.suspendEvent(event)
+## input.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -481,16 +622,21 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to suspend execution of all callback functions. |
 
+
+* * *
+
 <a name="EventEmitter+unsuspendEvent"></a>
 
-### input.unsuspendEvent(event)
+## input.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -498,33 +644,43 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to resume execution of all callback functions. |
 
+
+* * *
+
 <a name="EventEmitter+getListenerCount"></a>
 
-### input.getListenerCount(event) ⇒ <code>number</code>
+## input.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event |
 
+
+* * *
+
 <a name="EventEmitter+emit"></a>
 
-### input.emit(event, ...args) ⇒ <code>Array</code>
+## input.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -546,7 +702,8 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>emit</code>](#EventEmitter+emit)  
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -554,15 +711,19 @@ functions
 
 - <code>TypeError</code> The `event` parameter must be a string.
 
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> | The event |
 | ...args | <code>\*</code> | Arbitrary number of arguments to pass along to the callback functions |
 
+
+* * *
+
 <a name="EventEmitter+waitFor"></a>
 
-### input.waitFor(event, [options])
+## input.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -604,8 +765,10 @@ try {
 }
 ```
 
-**Kind**: instance method of [<code>Input</code>](#Input)  
+<!--**Kind**: instance method of [<code>Input</code>](#Input)  
+-->
 **Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -613,13 +776,18 @@ try {
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
+
+* * *
+
 <a name="Input+event_opened"></a>
 
-### "opened"
+## "opened"
 Event emitted when the [Input](#Input) has been opened by calling the [open](#Input+open)
 method.
 
-**Kind**: event emitted by [<code>Input</code>](#Input)  
+<!--**Kind**: event emitted by [<code>Input</code>](#Input)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -628,13 +796,18 @@ method.
 | type | <code>string</code> | `"opened"` |
 | target | [<code>Input</code>](#Input) | The object that triggered the event |
 
+
+* * *
+
 <a name="Input+event_closed"></a>
 
-### "closed"
+## "closed"
 Event emitted when the [Input](#Input) has been closed by calling the [close](#Input+close)
 method.
 
-**Kind**: event emitted by [<code>Input</code>](#Input)  
+<!--**Kind**: event emitted by [<code>Input</code>](#Input)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -643,13 +816,18 @@ method.
 | type | <code>string</code> | `"closed"` |
 | target | [<code>Input</code>](#Input) | The object that triggered the event |
 
+
+* * *
+
 <a name="Input+event_disconnected"></a>
 
-### "disconnected"
+## "disconnected"
 Event emitted when the [Input](#Input) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
-**Kind**: event emitted by [<code>Input</code>](#Input)  
+<!--**Kind**: event emitted by [<code>Input</code>](#Input)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -664,13 +842,18 @@ when the MIDI device is unplugged.
 | target.state | <code>string</code> | `"disconnected"` |
 | target.type | <code>string</code> | `"input"` |
 
+
+* * *
+
 <a name="Input+event_midimessage"></a>
 
-### "midimessage"
+## "midimessage"
 Event emitted when any MIDI message is received on an `Input`
 
-**Kind**: event emitted by [<code>Input</code>](#Input)  
+<!--**Kind**: event emitted by [<code>Input</code>](#Input)  
+-->
 **Since**: 2.1  
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -683,4 +866,7 @@ Event emitted when any MIDI message is received on an `Input`
 | event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array (deprecated, use the `message` object instead). |
 | event.statusByte | <code>number</code> | The message's status byte  (deprecated, use the `message` object instead). |
 | event.dataBytes | <code>Array.&lt;number&gt;</code> | The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead). |
+
+
+* * *
 

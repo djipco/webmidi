@@ -1,6 +1,6 @@
 <a name="Output"></a>
 
-## Output ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# Output ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
 subsystem and cannot be instantiated directly.
 
@@ -16,215 +16,368 @@ it also includes methods such as
 [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
 others.
 
-**Kind**: global class  
+<!--**Kind**: global class  
+-->
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
 **Emits**: [<code>opened</code>](#Output+event_opened), [<code>disconnected</code>](#Output+event_disconnected), [<code>closed</code>](#Output+event_closed)  
-**License**: Apache-2.0  
+<!--**License**: Apache-2.0  
+-->
+
 
 * [Output](#Output) ⇐ [<code>EventEmitter</code>](#EventEmitter)
+
     * [new Output(midiOutput)](#new_Output_new)
+
     * [.channels](#Output+channels) : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+
     * [.name](#Output+name) : <code>string</code>
+
     * [.id](#Output+id) : <code>string</code>
+
     * [.connection](#Output+connection) : <code>string</code>
+
     * [.manufacturer](#Output+manufacturer) : <code>string</code>
+
     * [.state](#Output+state) : <code>string</code>
+
     * [.type](#Output+type) : <code>string</code>
+
     * [.octaveOffset](#Output+octaveOffset) : <code>number</code>
+
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
     * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
     * [.destroy()](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
+
     * [.open()](#Output+open) ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
+
     * [.close()](#Output+close) ⇒ <code>Promise.&lt;void&gt;</code>
+
     * [.send(message, [options])](#Output+send) ⇒ [<code>Output</code>](#Output)
+
     * [.sendSysex(manufacturer, [data], [options])](#Output+sendSysex) ⇒ [<code>Output</code>](#Output)
+
     * [.clear()](#Output+clear) ⇒ [<code>Output</code>](#Output)
+
     * [.sendTimecodeQuarterFrame(value, [options])](#Output+sendTimecodeQuarterFrame) ⇒ [<code>Output</code>](#Output)
+
     * [.setSongPosition([value], [options])](#Output+setSongPosition) ⇒ [<code>Output</code>](#Output)
+
     * [.setSong(value, [options])](#Output+setSong) ⇒ [<code>Output</code>](#Output)
+
     * [.sendTuneRequest([options])](#Output+sendTuneRequest) ⇒ [<code>Output</code>](#Output)
+
     * [.sendClock([options])](#Output+sendClock) ⇒ [<code>Output</code>](#Output)
+
     * [.sendStart([options])](#Output+sendStart) ⇒ [<code>Output</code>](#Output)
+
     * [.sendContinue([options])](#Output+sendContinue) ⇒ [<code>Output</code>](#Output)
+
     * [.sendStop([options])](#Output+sendStop) ⇒ [<code>Output</code>](#Output)
+
     * [.sendActiveSensing([options])](#Output+sendActiveSensing) ⇒ [<code>Output</code>](#Output)
+
     * [.sendReset([options])](#Output+sendReset) ⇒ [<code>Output</code>](#Output)
+
     * [.setKeyAftertouch(note, [pressure], [options])](#Output+setKeyAftertouch) ⇒ [<code>Output</code>](#Output)
+
     * [.sendControlChange(controller, [value], [options])](#Output+sendControlChange) ⇒ [<code>Output</code>](#Output)
+
     * [.setPitchBendRange(semitones, [cents], [options])](#Output+setPitchBendRange) ⇒ [<code>Output</code>](#Output)
+
     * [.setRegisteredParameter(parameter, [data], [options])](#Output+setRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+
     * [.setChannelAftertouch([pressure], [options])](#Output+setChannelAftertouch) ⇒ [<code>Output</code>](#Output)
+
     * [.setPitchBend(value, [options])](#Output+setPitchBend) ⇒ [<code>Output</code>](#Output)
+
     * [.setProgram([program], [options])](#Output+setProgram) ⇒ [<code>Output</code>](#Output)
+
     * [.setModulationRange([semitones], [cents], [options])](#Output+setModulationRange) ⇒ [<code>Output</code>](#Output)
+
     * [.setMasterTuning([value], [options])](#Output+setMasterTuning) ⇒ [<code>Output</code>](#Output)
+
     * [.setTuningProgram(value, [options])](#Output+setTuningProgram) ⇒ [<code>Output</code>](#Output)
+
     * [.setTuningBank(value, [options])](#Output+setTuningBank) ⇒ [<code>Output</code>](#Output)
+
     * [.sendChannelMode(command, [value], [options])](#Output+sendChannelMode) ⇒ [<code>Output</code>](#Output)
+
     * [.turnSoundOff([options])](#Output+turnSoundOff) ⇒ [<code>Output</code>](#Output)
+
     * [.turnNotesOff([options])](#Output+turnNotesOff) ⇒ [<code>Output</code>](#Output)
+
     * [.resetAllControllers([options])](#Output+resetAllControllers) ⇒ [<code>Output</code>](#Output)
+
     * [.setPolyphonicMode(mode, [options])](#Output+setPolyphonicMode) ⇒ [<code>Output</code>](#Output)
+
     * [.setLocalControl([state], [options])](#Output+setLocalControl) ⇒ [<code>Output</code>](#Output)
+
     * [.setOmniMode([state], [options])](#Output+setOmniMode) ⇒ [<code>Output</code>](#Output)
+
     * [.setNonRegisteredParameter(parameter, [data], [options])](#Output+setNonRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+
     * [.incrementRegisteredParameter(parameter, [options])](#Output+incrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+
     * [.decrementRegisteredParameter(parameter, [options])](#Output+decrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+
     * [.sendNoteOff(note, [options])](#Output+sendNoteOff) ⇒ [<code>Output</code>](#Output)
+
     * [.stopNote(note, options)](#Output+stopNote) ⇒ [<code>Output</code>](#Output)
+
     * [.playNote(note, [options])](#Output+playNote) ⇒ [<code>Output</code>](#Output)
+
     * [.sendNoteOn(note, [options])](#Output+sendNoteOn) ⇒ [<code>Output</code>](#Output)
+
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
+
     * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
+
     * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
+
     * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
     * [.suspendEvent(event)](#EventEmitter+suspendEvent)
+
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
+
     * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+
     * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+
     * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
+
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
+
     * ["opened"](#Output+event_opened)
+
     * ["closed"](#Output+event_closed)
+
     * ["disconnected"](#Output+event_disconnected)
+
+
+* * *
 
 <a name="new_Output_new"></a>
 
-### new Output(midiOutput)
+## new Output(midiOutput)
+<!---->
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | midiOutput | <code>MIDIOutput</code> | `MIDIOutput` object as provided by the MIDI subsystem |
 
+
+* * *
+
 <a name="Output+channels"></a>
 
-### output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
 Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+<!---->
+
+* * *
+
 <a name="Output+name"></a>
 
-### output.name : <code>string</code>
+## output.name : <code>string</code>
 Name of the MIDI output
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+id"></a>
 
-### output.id : <code>string</code>
+## output.id : <code>string</code>
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+connection"></a>
 
-### output.connection : <code>string</code>
+## output.connection : <code>string</code>
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+manufacturer"></a>
 
-### output.manufacturer : <code>string</code>
+## output.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this output port available.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+state"></a>
 
-### output.state : <code>string</code>
+## output.state : <code>string</code>
 State of the output port: `"connected"` or `"disconnected"`.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+type"></a>
 
-### output.type : <code>string</code>
+## output.type : <code>string</code>
 Type of the output port (`"output"`)
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+octaveOffset"></a>
 
-### output.octaveOffset : <code>number</code>
+## output.octaveOffset : <code>number</code>
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
 
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Since**: 3.0  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventMap"></a>
 
-### output.eventMap : <code>Object</code>
+## output.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventsSuspended"></a>
 
-### output.eventsSuspended : <code>boolean</code>
+## output.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventNames"></a>
 
-### output.eventNames : <code>Array.&lt;string&gt;</code>
+## output.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="EventEmitter+eventCount"></a>
 
-### output.eventCount : <code>number</code>
+## output.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Kind**: instance property of [<code>Output</code>](#Output)  
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
 **Read only**: true  
+<!---->
+
+* * *
+
 <a name="Output+destroy"></a>
 
-### output.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
+## output.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
 subsystem is unlinked.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
+<!---->
+
+* * *
+
 <a name="Output+open"></a>
 
-### output.open() ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
+## output.open() ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
 Opens the output for usage.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Promise.&lt;Output&gt;</code>](#Output) - The promise is fulfilled with the `Output`  
+<!---->
+
+* * *
+
 <a name="Output+close"></a>
 
-### output.close() ⇒ <code>Promise.&lt;void&gt;</code>
+## output.close() ⇒ <code>Promise.&lt;void&gt;</code>
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
 until the output is opened again by calling [Output.open()](#Output+open). You can check
 the connection status by looking at the [connection](#Output+connection) property.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
+<!---->
+
+* * *
+
 <a name="Output+send"></a>
 
-### output.send(message, [options]) ⇒ [<code>Output</code>](#Output)
+## output.send(message, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -237,13 +390,15 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
 
-**License**: Apache-2.0  
+<!--**License**: Apache-2.0  
+-->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -251,9 +406,12 @@ from the MIDI Manufacturers Association.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendSysex"></a>
 
-### output.sendSysex(manufacturer, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendSysex(manufacturer, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
 (*sysex*) message. The `data` parameter should only contain the data of the message. When
 sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
@@ -302,7 +460,8 @@ WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -311,6 +470,7 @@ not allowed.
 - <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index x is greater
 than 0xFF.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -319,9 +479,12 @@ than 0xFF.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+clear"></a>
 
-### output.clear() ⇒ [<code>Output</code>](#Output)
+## output.clear() ⇒ [<code>Output</code>](#Output)
 Clears all messages that have been queued but not yet delivered.
 
 Warning: this method has been defined in the specification but has not been implemented yet. As
@@ -330,17 +493,24 @@ soon as browsers implement it, it will work.
 You can check out the current status of this feature for Chromium (Chrome) here:
 https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
+
+* * *
+
 <a name="Output+sendTimecodeQuarterFrame"></a>
 
-### output.sendTimecodeQuarterFrame(value, [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendTimecodeQuarterFrame(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
 on the data. It is up to the developer to format the data according to the
 [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -348,15 +518,20 @@ on the data. It is up to the developer to format the data according to the
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setSongPosition"></a>
 
-### output.setSongPosition([value], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setSongPosition([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
 16383) which are 16th note. Position 0 is always the start of the song.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -364,22 +539,27 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setSong"></a>
 
-### output.setSong(value, [options]) ⇒ [<code>Output</code>](#Output)
+## output.setSong(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **song select** MIDI message.
 
 **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices that
 use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - The song number must be between 1 and 128.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -387,117 +567,157 @@ use a numbering scheme starting at 1.
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendTuneRequest"></a>
 
-### output.sendTuneRequest([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendTuneRequest([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **tune request** real-time message.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="Output+sendClock"></a>
 
-### output.sendClock([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendClock([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
 for every quarter note.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendStart"></a>
 
-### output.sendStart([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendStart([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
 song at beat 0. To start playback elsewhere in the song, use the
 [sendContinue()](#Output+sendContinue) method.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendContinue"></a>
 
-### output.sendContinue([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendContinue([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
 start, use the [sendStart()](#Output+sendStart)` method.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="Output+sendStop"></a>
 
-### output.sendStop([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendStop([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **stop** real-time message. This tells the device connected to this output to stop
 playback immediately (or at the scheduled time).
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendActiveSensing"></a>
 
-### output.sendActiveSensing([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendActiveSensing([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **active sensing** real-time message. This tells the device connected to this port
 that the connection is still good. Active sensing messages should be sent every 300 ms if there
 was no other activity on the MIDI port.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="Output+sendReset"></a>
 
-### output.sendReset([options]) ⇒ [<code>Output</code>](#Output)
+## output.sendReset([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset** real-time message. This tells the device connected to this output that it
 should reset itself to a default state.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setKeyAftertouch"></a>
 
-### output.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](#Output+setChannelAftertouch).
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -508,9 +728,12 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 | [options.rawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendControlChange"></a>
 
-### output.sendControlChange(controller, [value], [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendControlChange(controller, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
 control change message to send can be specified numerically (0-127) or by using one of the
 following common names:
@@ -595,13 +818,15 @@ Change Messages" from the [MIDI Messages](
 https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
 specification.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> Controller numbers must be between 0 and 127.
 - <code>RangeError</code> Invalid controller name.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -611,15 +836,19 @@ specification.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setPitchBendRange"></a>
 
-### output.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -627,6 +856,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 - <code>RangeError</code> The lsb value must be between 0 and 127.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -636,9 +866,12 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setRegisteredParameter"></a>
 
-### output.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -671,8 +904,10 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -682,15 +917,20 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setChannelAftertouch"></a>
 
-### output.setChannelAftertouch([pressure], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setChannelAftertouch([pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
 aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -700,14 +940,19 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 | [options.rawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setPitchBend"></a>
 
-### output.setPitchBend(value, [options]) ⇒ [<code>Output</code>](#Output)
+## output.setPitchBend(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -717,16 +962,20 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 | [options.rawValue] | <code>boolean</code> | <code>false</code> | A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setProgram"></a>
 
-### output.setProgram([program], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setProgram([program], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -734,6 +983,7 @@ that use a numbering scheme starting at 1.
 than 0xFF.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -742,14 +992,18 @@ than 0xFF.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setModulationRange"></a>
 
-### output.setModulationRange([semitones], [cents], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setModulationRange([semitones], [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
 depth of their modulation wheel's range. The range can be specified with the `semitones`
 parameter, the `cents` parameter or by specifying both parameters at the same time.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -757,6 +1011,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 - <code>RangeError</code> The lsb value must be between 0 and 127
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -766,9 +1021,12 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setMasterTuning"></a>
 
-### output.setMasterTuning([value], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setMasterTuning([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a master tuning message to the specified channel(s). The value is decimal and must be
 larger than -65 semitones and smaller than 64 semitones.
 
@@ -777,7 +1035,8 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -785,6 +1044,7 @@ a **Master Fine Tuning** RPN messages.
 than 64.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -793,9 +1053,12 @@ than 64.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setTuningProgram"></a>
 
-### output.setTuningProgram(value, [options]) ⇒ [<code>Output</code>](#Output)
+## output.setTuningProgram(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -803,13 +1066,15 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The program value must be between 1 and 128.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -818,9 +1083,12 @@ that use a numbering scheme starting at 1.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setTuningBank"></a>
 
-### output.setTuningBank(value, [options]) ⇒ [<code>Output</code>](#Output)
+## output.setTuningBank(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -828,13 +1096,15 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The bank value must be between 1 and 128.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -843,9 +1113,12 @@ that use a numbering scheme starting at 1.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendChannelMode"></a>
 
-### output.sendChannelMode(command, [value], [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendChannelMode(command, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
 send can be specified numerically or by using one of the following common names:
 
@@ -871,7 +1144,8 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()](#OutputChannel+setOmniMode)
   - [setPolyphonicMode()](#OutputChannel+setPolyphonicMode)
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -879,6 +1153,7 @@ To make it easier, all channel mode messages have a matching helper method:
 - <code>RangeError</code> Channel mode controller numbers must be between 120 and 127.
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -888,14 +1163,19 @@ To make it easier, all channel mode messages have a matching helper method:
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+turnSoundOff"></a>
 
-### output.turnSoundOff([options]) ⇒ [<code>Output</code>](#Output)
+## output.turnSoundOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -903,29 +1183,39 @@ channel but will not prevent new sounds from being triggered.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+turnNotesOff"></a>
 
-### output.turnNotesOff([options]) ⇒ [<code>Output</code>](#Output)
+## output.turnNotesOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
+
+
+* * *
 
 <a name="Output+resetAllControllers"></a>
 
-### output.resetAllControllers([options]) ⇒ [<code>Output</code>](#Output)
+## output.resetAllControllers([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -933,16 +1223,21 @@ the pitch bend, to their default value.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setPolyphonicMode"></a>
 
-### output.setPolyphonicMode(mode, [options]) ⇒ [<code>Output</code>](#Output)
+## output.setPolyphonicMode(mode, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -951,16 +1246,21 @@ multiple notes are being played.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setLocalControl"></a>
 
-### output.setLocalControl([state], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setLocalControl([state], [options]) ⇒ [<code>Output</code>](#Output)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -969,15 +1269,19 @@ its out port.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setOmniMode"></a>
 
-### output.setOmniMode([state], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setOmniMode([state], [options]) ⇒ [<code>Output</code>](#Output)
 Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
 instrument to respond to messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
@@ -986,6 +1290,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
 **Since**: 3.0.0  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -994,9 +1299,12 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+setNonRegisteredParameter"></a>
 
-### output.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## output.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
 two-position array specifying the values of the two control bytes. The value is specified by
 passing in a single integer (most cases) or an array of two integers.
@@ -1028,13 +1336,15 @@ WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
 
 For further implementation details, refer to the manufacturer"s documentation.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The control value must be between 0 and 127.
 - <code>RangeError</code> The msb value must be between 0 and 127
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1044,9 +1354,12 @@ For further implementation details, refer to the manufacturer"s documentation.
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+incrementRegisteredParameter"></a>
 
-### output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
+## output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -1066,8 +1379,10 @@ names that can be used with this method:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1076,9 +1391,12 @@ names that can be used with this method:
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+decrementRegisteredParameter"></a>
 
-### output.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
+## output.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -1098,12 +1416,14 @@ names that can be used with this method:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
 **Throws**:
 
 - TypeError The specified parameter is not available.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1112,9 +1432,12 @@ names that can be used with this method:
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
+
+* * *
+
 <a name="Output+sendNoteOff"></a>
 
-### output.sendNoteOff(note, [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendNoteOff(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note off** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -1128,8 +1451,10 @@ parameter is the note. It can be a single value or an array of the following val
 When using [Note](#Note) objects, the release velocity defined in the [Note](#Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1140,22 +1465,30 @@ precedence over the one specified via the method's `options` parameter.
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 | [options.release] | <code>number</code> | <code>0.5</code> | The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
+
+* * *
+
 <a name="Output+stopNote"></a>
 
-### output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
+## output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
 This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **See**: [sendNoteOff](#Output+sendNoteOff)  
+<!---->
 
 | Param |
 | --- |
 | note | 
 | options | 
 
+
+* * *
+
 <a name="Output+playNote"></a>
 
-### output.playNote(note, [options]) ⇒ [<code>Output</code>](#Output)
+## output.playNote(note, [options]) ⇒ [<code>Output</code>](#Output)
 Plays a note or an array of notes on one or more channels of this output. The first parameter
 is the note to play. It can be a single value or an array of the following valid values:
 
@@ -1180,8 +1513,10 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1194,9 +1529,12 @@ functionally equivalent to a **note off** message.
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 | [options.attack] | <code>number</code> | <code>0.5</code> | The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
+
+* * *
+
 <a name="Output+sendNoteOn"></a>
 
-### output.sendNoteOn(note, [options]) ⇒ [<code>Output</code>](#Output)
+## output.sendNoteOn(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note on** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -1215,8 +1553,10 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Returns**: [<code>Output</code>](#Output) - Returns the `Output` object so methods can be chained.  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1227,9 +1567,12 @@ functionally equivalent to a **note off** message.
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 | [options.attack] | <code>number</code> | <code>0.5</code> | The velocity at which to play the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
+
+* * *
+
 <a name="EventEmitter+addListener"></a>
 
-### output.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## output.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
 that was created and attached to the event.
 
@@ -1237,7 +1580,8 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>addListener</code>](#EventEmitter+addListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -1245,6 +1589,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1257,9 +1602,12 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 | [options.remaining] | <code>boolean</code> | <code>Infinity</code> | The number of times after which the callback should automatically be removed. |
 | [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
 
+
+* * *
+
 <a name="EventEmitter+addOneTimeListener"></a>
 
-### output.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## output.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](#Listener) object that was created and attached
 to the event.
@@ -1268,7 +1616,8 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>addOneTimeListener</code>](#EventEmitter+addOneTimeListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -1276,6 +1625,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1287,9 +1637,12 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds before the listener automatically expires. |
 | [options.arguments] | <code>array</code> |  | An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](#Listener+arguments) property of the [**Listener**](#Listener) object and can be retrieved or modified as desired. |
 
+
+* * *
+
 <a name="EventEmitter+hasListener"></a>
 
-### output.hasListener([event], [callback]) ⇒ <code>boolean</code>
+## output.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -1297,34 +1650,44 @@ includes global listeners registered to `EventEmitter.ANY_EVENT`).
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [event] | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to check |
 | [callback] | <code>function</code> \| [<code>Listener</code>](#Listener) | The actual function that was added to the event or the [Listener](#Listener) object returned by `addListener()`. |
 
+
+* * *
+
 <a name="EventEmitter+getListeners"></a>
 
-### output.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## output.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to get listeners for |
 
+
+* * *
+
 <a name="EventEmitter+suspendEvent"></a>
 
-### output.suspendEvent(event)
+## output.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1334,16 +1697,21 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to suspend execution of all callback functions. |
 
+
+* * *
+
 <a name="EventEmitter+unsuspendEvent"></a>
 
-### output.unsuspendEvent(event)
+## output.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1351,33 +1719,43 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to resume execution of all callback functions. |
 
+
+* * *
+
 <a name="EventEmitter+getListenerCount"></a>
 
-### output.getListenerCount(event) ⇒ <code>number</code>
+## output.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event |
 
+
+* * *
+
 <a name="EventEmitter+emit"></a>
 
-### output.emit(event, ...args) ⇒ <code>Array</code>
+## output.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -1399,7 +1777,8 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>emit</code>](#EventEmitter+emit)  
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -1407,15 +1786,19 @@ functions
 
 - <code>TypeError</code> The `event` parameter must be a string.
 
+<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
 | event | <code>string</code> | The event |
 | ...args | <code>\*</code> | Arbitrary number of arguments to pass along to the callback functions |
 
+
+* * *
+
 <a name="EventEmitter+removeListener"></a>
 
-### output.removeListener([event], [callback], [options])
+## output.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -1424,8 +1807,10 @@ first parameter.
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1435,9 +1820,12 @@ callback to match or one or more of the additional options.
 | [options.context] | <code>\*</code> |  | Only remove the listeners that have this exact context. |
 | [options.remaining] | <code>number</code> |  | Only remove the listener if it has exactly that many remaining times to be executed. |
 
+
+* * *
+
 <a name="EventEmitter+waitFor"></a>
 
-### output.waitFor(event, [options])
+## output.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -1479,8 +1867,10 @@ try {
 }
 ```
 
-**Kind**: instance method of [<code>Output</code>](#Output)  
+<!--**Kind**: instance method of [<code>Output</code>](#Output)  
+-->
 **Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
+<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1488,13 +1878,18 @@ try {
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
+
+* * *
+
 <a name="Output+event_opened"></a>
 
-### "opened"
+## "opened"
 Event emitted when the [Output](#Output) has been opened by calling the
 [open()](#Output+open) method.
 
-**Kind**: event emitted by [<code>Output</code>](#Output)  
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -1503,13 +1898,18 @@ Event emitted when the [Output](#Output) has been opened by calling the
 | type | <code>string</code> | `"opened"` |
 | target | [<code>Output</code>](#Output) | The object that triggered the event |
 
+
+* * *
+
 <a name="Output+event_closed"></a>
 
-### "closed"
+## "closed"
 Event emitted when the [Output](#Output) has been closed by calling the
 [close()](#Output+close) method.
 
-**Kind**: event emitted by [<code>Output</code>](#Output)  
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -1518,13 +1918,18 @@ Event emitted when the [Output](#Output) has been closed by calling the
 | type | <code>string</code> | `"closed"` |
 | target | [<code>Output</code>](#Output) | The object that triggered the event |
 
+
+* * *
+
 <a name="Output+event_disconnected"></a>
 
-### "disconnected"
+## "disconnected"
 Event emitted when the [Output](#Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
-**Kind**: event emitted by [<code>Output</code>](#Output)  
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
 **Properties**
 
 | Name | Type | Description |
@@ -1538,4 +1943,7 @@ when the MIDI device is unplugged.
 | target.name | <code>string</code> | Name of the device that provided the input |
 | target.state | <code>string</code> | `"disconnected"` |
 | target.type | <code>string</code> | `"output"` |
+
+
+* * *
 
