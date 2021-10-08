@@ -14,23 +14,23 @@ to, the callback function and so on.
 
     * [new Listener(event, target, callback, [options])](#new_Listener_new)
 
-    * [.event](#Listener+event) : <code>string</code>
-
-    * [.target](#Listener+target) : [<code>EventEmitter</code>](#EventEmitter)
+    * [.arguments](#Listener+arguments) : <code>array</code>
 
     * [.callback](#Listener+callback) : <code>function</code>
 
     * [.context](#Listener+context) : <code>Object</code>
 
-    * [.remaining](#Listener+remaining) : <code>number</code>
-
     * [.count](#Listener+count) : <code>number</code>
 
-    * [.arguments](#Listener+arguments) : <code>array</code>
+    * [.event](#Listener+event) : <code>string</code>
+
+    * [.remaining](#Listener+remaining) : <code>number</code>
+
+    * [.remove()](#Listener+remove)
 
     * [.suspended](#Listener+suspended) : <code>boolean</code>
 
-    * [.remove()](#Listener+remove)
+    * [.target](#Listener+target) : [<code>EventEmitter</code>](#EventEmitter)
 
 
 * * *
@@ -60,21 +60,10 @@ to, the callback function and so on.
 
 * * *
 
-<a name="Listener+event"></a>
+<a name="Listener+arguments"></a>
 
-## listener.event : <code>string</code>
-The event name
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-<!---->
-
-* * *
-
-<a name="Listener+target"></a>
-
-## listener.target : [<code>EventEmitter</code>](#EventEmitter)
-The object that the event is attached to (or that emitted the event)
+## listener.arguments : <code>array</code>
+Arguments to pass separately to the callback function upon execution
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
 -->
@@ -105,17 +94,6 @@ callback function)
 
 * * *
 
-<a name="Listener+remaining"></a>
-
-## listener.remaining : <code>number</code>
-The remaining number of times after which the callback should automatically be removed.
-
-<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
--->
-<!---->
-
-* * *
-
 <a name="Listener+count"></a>
 
 ## listener.count : <code>number</code>
@@ -127,12 +105,34 @@ The number of times the listener function was executed
 
 * * *
 
-<a name="Listener+arguments"></a>
+<a name="Listener+event"></a>
 
-## listener.arguments : <code>array</code>
-Arguments to pass separately to the callback function upon execution
+## listener.event : <code>string</code>
+The event name
 
 <!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+-->
+<!---->
+
+* * *
+
+<a name="Listener+remaining"></a>
+
+## listener.remaining : <code>number</code>
+The remaining number of times after which the callback should automatically be removed.
+
+<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
+-->
+<!---->
+
+* * *
+
+<a name="Listener+remove"></a>
+
+## listener.remove()
+Removes the listener from its target.
+
+<!--**Kind**: instance method of [<code>Listener</code>](#Listener)  
 -->
 <!---->
 
@@ -149,12 +149,12 @@ Whether this listener is currently suspended
 
 * * *
 
-<a name="Listener+remove"></a>
+<a name="Listener+target"></a>
 
-## listener.remove()
-Removes the listener from its target.
+## listener.target : [<code>EventEmitter</code>](#EventEmitter)
+The object that the event is attached to (or that emitted the event)
 
-<!--**Kind**: instance method of [<code>Listener</code>](#Listener)  
+<!--**Kind**: instance property of [<code>Listener</code>](#Listener)  
 -->
 <!---->
 

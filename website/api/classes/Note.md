@@ -28,27 +28,27 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
     * [new Note(value, [options])](#new_Note_new)
 
+    * [.accidental](#Note+accidental) : <code>string</code>
+
+    * [.attack](#Note+attack) : <code>number</code>
+
+    * [.duration](#Note+duration) : <code>number</code>
+
+    * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
+
     * [.identifier](#Note+identifier) : <code>string</code>
 
     * [.name](#Note+name) : <code>string</code>
 
-    * [.accidental](#Note+accidental) : <code>string</code>
+    * [.number](#Note+number) : <code>number</code>
 
     * [.octave](#Note+octave) : <code>number</code>
-
-    * [.duration](#Note+duration) : <code>number</code>
-
-    * [.attack](#Note+attack) : <code>number</code>
-
-    * [.release](#Note+release) : <code>number</code>
 
     * [.rawAttack](#Note+rawAttack) : <code>number</code>
 
     * [.rawRelease](#Note+rawRelease) : <code>number</code>
 
-    * [.number](#Note+number) : <code>number</code>
-
-    * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
+    * [.release](#Note+release) : <code>number</code>
 
 
 * * *
@@ -82,6 +82,62 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
 * * *
 
+<a name="Note+accidental"></a>
+
+## note.accidental : <code>string</code>
+The accidental (#, ##, b or bb) of the note
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
+<!---->
+
+* * *
+
+<a name="Note+attack"></a>
+
+## note.attack : <code>number</code>
+The attack velocity of the note as an integer between 0 and 127.
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
+<!---->
+
+* * *
+
+<a name="Note+duration"></a>
+
+## note.duration : <code>number</code>
+The duration of the note as a positive decimal number representing the number of milliseconds
+that the note should play for.
+
+<!--**Kind**: instance property of [<code>Note</code>](#Note)  
+-->
+**Since**: 3.0.0  
+<!---->
+
+* * *
+
+<a name="Note+getOffsetNumber"></a>
+
+## note.getOffsetNumber(offset) ⇒ <code>number</code>
+Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+returned. If an invalid value is supplied, 0 will be used.
+
+<!--**Kind**: instance method of [<code>Note</code>](#Note)  
+-->
+**Returns**: <code>number</code> - An integer between 0 and 127  
+<!---->
+
+| Param |
+| --- |
+| offset | 
+
+
+* * *
+
 <a name="Note+identifier"></a>
 
 ## note.identifier : <code>string</code>
@@ -106,10 +162,11 @@ The name (letter) of the note
 
 * * *
 
-<a name="Note+accidental"></a>
+<a name="Note+number"></a>
 
-## note.accidental : <code>string</code>
-The accidental (#, ##, b or bb) of the note
+## note.number : <code>number</code>
+The MIDI number of the note. This number is derived from the note identifier using C4 as a
+reference for middle C.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
@@ -122,43 +179,6 @@ The accidental (#, ##, b or bb) of the note
 
 ## note.octave : <code>number</code>
 The octave of the note
-
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
-**Since**: 3.0.0  
-<!---->
-
-* * *
-
-<a name="Note+duration"></a>
-
-## note.duration : <code>number</code>
-The duration of the note as a positive decimal number representing the number of milliseconds
-that the note should play for.
-
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
-**Since**: 3.0.0  
-<!---->
-
-* * *
-
-<a name="Note+attack"></a>
-
-## note.attack : <code>number</code>
-The attack velocity of the note as an integer between 0 and 127.
-
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
-**Since**: 3.0.0  
-<!---->
-
-* * *
-
-<a name="Note+release"></a>
-
-## note.release : <code>number</code>
-The release velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
@@ -191,35 +211,15 @@ The release velocity of the note as a positive integer between 0 and 127.
 
 * * *
 
-<a name="Note+number"></a>
+<a name="Note+release"></a>
 
-## note.number : <code>number</code>
-The MIDI number of the note. This number is derived from the note identifier using C4 as a
-reference for middle C.
+## note.release : <code>number</code>
+The release velocity of the note as an integer between 0 and 127.
 
 <!--**Kind**: instance property of [<code>Note</code>](#Note)  
 -->
 **Since**: 3.0.0  
 <!---->
-
-* * *
-
-<a name="Note+getOffsetNumber"></a>
-
-## note.getOffsetNumber(offset) ⇒ <code>number</code>
-Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
-value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
-returned. If an invalid value is supplied, 0 will be used.
-
-<!--**Kind**: instance method of [<code>Note</code>](#Note)  
--->
-**Returns**: <code>number</code> - An integer between 0 and 127  
-<!---->
-
-| Param |
-| --- |
-| offset | 
-
 
 * * *
 
