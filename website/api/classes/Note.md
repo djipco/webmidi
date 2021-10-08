@@ -34,8 +34,6 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
     * [.duration](#Note+duration) : <code>number</code>
 
-    * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
-
     * [.identifier](#Note+identifier) : <code>string</code>
 
     * [.name](#Note+name) : <code>string</code>
@@ -49,6 +47,8 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
     * [.rawRelease](#Note+rawRelease) : <code>number</code>
 
     * [.release](#Note+release) : <code>number</code>
+
+    * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
 
 
 * * *
@@ -116,25 +116,6 @@ that the note should play for.
 -->
 **Since**: 3.0.0  
 <!---->
-
-* * *
-
-<a name="Note+getOffsetNumber"></a>
-
-## note.getOffsetNumber(offset) ⇒ <code>number</code>
-Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
-value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
-returned. If an invalid value is supplied, 0 will be used.
-
-<!--**Kind**: instance method of [<code>Note</code>](#Note)  
--->
-**Returns**: <code>number</code> - An integer between 0 and 127  
-<!---->
-
-| Param |
-| --- |
-| offset | 
-
 
 * * *
 
@@ -220,6 +201,25 @@ The release velocity of the note as an integer between 0 and 127.
 -->
 **Since**: 3.0.0  
 <!---->
+
+* * *
+
+<a name="Note+getOffsetNumber"></a>
+
+## note.getOffsetNumber(offset) ⇒ <code>number</code>
+Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
+value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
+returned. If an invalid value is supplied, 0 will be used.
+
+<!--**Kind**: instance method of [<code>Note</code>](#Note)  
+-->
+**Returns**: <code>number</code> - An integer between 0 and 127  
+<!---->
+
+| Param |
+| --- |
+| offset | 
+
 
 * * *
 

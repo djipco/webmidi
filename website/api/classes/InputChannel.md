@@ -29,13 +29,29 @@ details.
 
 * [InputChannel](#InputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
 
+    * [new InputChannel(input, number)](#new_InputChannel_new)
+
     * _static_
 
         * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
 
-    * [new InputChannel(input, number)](#new_InputChannel_new)
-
     * _instance_
+
+        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
+
+        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+
+        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+
+        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+
+        * [.input](#InputChannel+input) : [<code>Input</code>](#Input)
+
+        * [.number](#InputChannel+number) : <code>number</code>
+
+        * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
+
+        * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
 
         * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
 
@@ -44,6 +60,24 @@ details.
         * [.destroy()](#InputChannel+destroy)
 
         * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+
+        * [.getCcNameByNumber(number)](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
+
+        * [.getChannelModeByNumber(number)](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
+
+        * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+
+        * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
+        * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
+
+        * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
+
+        * [.suspendEvent(event)](#EventEmitter+suspendEvent)
+
+        * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
+
+        * [.waitFor(event, [options])](#EventEmitter+waitFor)
 
         * ["allnotesoff"](#InputChannel+event_allnotesoff)
 
@@ -89,39 +123,19 @@ details.
 
         * ["rpndataentryfine"](#InputChannel+event_rpndataentryfine)
 
-        * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
 
-        * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
+* * *
 
-        * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
+<a name="new_InputChannel_new"></a>
 
-        * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
+## new InputChannel(input, number)
+<!---->
+<!---->
 
-        * [.getCcNameByNumber(number)](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
-
-        * [.getChannelModeByNumber(number)](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
-
-        * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
-
-        * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-
-        * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
-
-        * [.input](#InputChannel+input) : [<code>Input</code>](#Input)
-
-        * [.number](#InputChannel+number) : <code>number</code>
-
-        * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
-
-        * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
-
-        * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
-
-        * [.suspendEvent(event)](#EventEmitter+suspendEvent)
-
-        * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
-
-        * [.waitFor(event, [options])](#EventEmitter+waitFor)
+| Param | Type | Description |
+| --- | --- | --- |
+| input | [<code>Input</code>](#Input) | The `Input` object this channel belongs to |
+| number | <code>number</code> | The MIDI channel's number (1-16) |
 
 
 * * *
@@ -138,17 +152,124 @@ Array of channel-specific event names that can be listened to.
 
 * * *
 
-<a name="new_InputChannel_new"></a>
+<a name="EventEmitter+eventCount"></a>
 
-## new InputChannel(input, number)
+## inputChannel.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
 <!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## inputChannel.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
 <!---->
 
-| Param | Type | Description |
-| --- | --- | --- |
-| input | [<code>Input</code>](#Input) | The `Input` object this channel belongs to |
-| number | <code>number</code> | The MIDI channel's number (1-16) |
+* * *
 
+<a name="EventEmitter+eventNames"></a>
+
+## inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## inputChannel.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="InputChannel+input"></a>
+
+## inputChannel.input : [<code>Input</code>](#Input)
+The [Input](#Input) this channel belongs to
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+number"></a>
+
+## inputChannel.number : <code>number</code>
+This channel's MIDI number (1-16)
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+octaveOffset"></a>
+
+## inputChannel.octaveOffset : <code>number</code>
+An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+and with the value defined on the parent `Input` object.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="InputChannel+parameterNumberEventsEnabled"></a>
+
+## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
+Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+are composed of a sequence of specific **control change** messages. When a valid sequence of
+such control change messages is received, an `nrpn` event will fire.
+
+If an invalid or
+out-of-order control change message is received, it will fall through the collector logic and
+all buffered control change messages will be discarded as incomplete.
+
+<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
+-->
+<!---->
 
 * * *
 
@@ -273,6 +394,250 @@ functions
 | --- | --- | --- |
 | event | <code>string</code> | The event |
 | ...args | <code>\*</code> | Arbitrary number of arguments to pass along to the callback functions |
+
+
+* * *
+
+<a name="InputChannel+getCcNameByNumber"></a>
+
+## inputChannel.getCcNameByNumber(number) ⇒ <code>string</code> \| <code>undefined</code>
+Returns the name of a control change message matching the specified number. Some valid control
+change numbers do not have a specific name or purpose assigned in the MIDI
+[spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+In this case, the method returns `false`.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Returns**: <code>string</code> \| <code>undefined</code> - The matching control change name or `undefined` if not match was
+found.  
+**Throws**:
+
+- <code>RangeError</code> Invalid control change number.
+
+**Since**: 2.0.0  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | An integer representing the control change message |
+
+
+* * *
+
+<a name="InputChannel+getChannelModeByNumber"></a>
+
+## inputChannel.getChannelModeByNumber(number) ⇒ <code>string</code> \| <code>false</code>
+Returns the channel mode name matching the specified number. If no match is found, the function
+returns `false`.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Returns**: <code>string</code> \| <code>false</code> - The name of the matching channel mode or `false` if not match could be
+found.  
+**Since**: 2.0.0  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | An integer representing the channel mode message. |
+
+
+* * *
+
+<a name="EventEmitter+getListenerCount"></a>
+
+## inputChannel.getListenerCount(event) ⇒ <code>number</code>
+Returns the number of listeners registered for a specific event.
+
+Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
+towards the remaining number for a "regular" event. To get the number of global listeners,
+specifically use `EventEmitter.ANY_EVENT` as the parameter.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
+**Returns**: <code>number</code> - The number of listeners registered for the specified event.  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event |
+
+
+* * *
+
+<a name="EventEmitter+getListeners"></a>
+
+## inputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+Returns an array of all the `Listener` objects that will be triggered for a specific event.
+
+Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
+"regular" events. To get the list of global listeners, specifically use
+`EventEmitter.ANY_EVENT` as the parameter.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
+**Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to get listeners for |
+
+
+* * *
+
+<a name="EventEmitter+hasListener"></a>
+
+## inputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
+Returns `true` if the specified event has at least one registered listener. If no event is
+specified, the method returns `true` if any event has at least one listener registered (this
+includes global listeners registered to `EventEmitter.ANY_EVENT`).
+
+Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
+`EventEmitter.ANY_EVENT` as the parameter.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [event] | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to check |
+| [callback] | <code>function</code> \| [<code>Listener</code>](#Listener) | The actual function that was added to the event or the [Listener](#Listener) object returned by `addListener()`. |
+
+
+* * *
+
+<a name="EventEmitter+removeListener"></a>
+
+## inputChannel.removeListener([event], [callback], [options])
+Removes all the listeners that match the specified criterias. If no parameters are passed, all
+listeners will be removed. If only the `event` parameter is passed, all listeners for that
+event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
+first parameter.
+
+To use more granular options, you must at least define the `event`. Then, you can specify the
+callback to match or one or more of the additional options.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
+<!---->
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [event] | <code>string</code> |  | The event name. |
+| [callback] | [<code>callback</code>](#EventEmitter..callback) |  | Only remove the listeners that match this exact callback function. |
+| [options] | <code>Object</code> | <code>{}</code> |  |
+| [options.context] | <code>\*</code> |  | Only remove the listeners that have this exact context. |
+| [options.remaining] | <code>number</code> |  | Only remove the listener if it has exactly that many remaining times to be executed. |
+
+
+* * *
+
+<a name="EventEmitter+suspendEvent"></a>
+
+## inputChannel.suspendEvent(event)
+Suspends execution of all callbacks functions registered for the specified event type.
+
+You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
+`EventEmitter.ANY_EVENT` to `suspendEvent()`. Beware that this will not suspend all callbacks
+but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive
+at first glance, it allows the selective suspension of global listeners while leaving other
+liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
+simply set its `eventsSuspended` property to `true`.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to suspend execution of all callback functions. |
+
+
+* * *
+
+<a name="EventEmitter+unsuspendEvent"></a>
+
+## inputChannel.unsuspendEvent(event)
+Resumes execution of all suspended callback functions registered for the specified event type.
+
+You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
+`EventEmitter.ANY_EVENT` to `unsuspendEvent()`. Beware that this will not resume all callbacks
+but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
+it allows the selective unsuspension of global listeners while leaving other callbacks alone.
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
+<!---->
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to resume execution of all callback functions. |
+
+
+* * *
+
+<a name="EventEmitter+waitFor"></a>
+
+## inputChannel.waitFor(event, [options])
+The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
+when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
+(if you want to resolve as soon as any event is emitted).
+
+```javascript
+// then/catch syntax
+const ee = new EventEmitter();
+ee.waitFor("ready").then(() => console.log("Ready!"));
+```
+
+```javascript
+// async/await syntax
+const ee = new EventEmitter();
+await ee.waitFor("ready");
+console.log("Ready!");
+```
+
+If the `duration` option is set, the promise will only be fulfilled if the event is emitted
+within the specified duration. If the event has not been fulfilled after the specified
+duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+after a certain time if the event is not triggered.
+
+```javascript
+// then/catch syntax
+const ee = new EventEmitter();
+ee.waitFor("ready", {duration: 100})
+.then(() => console.log("Ready!"))
+.catch(err => console.log(err);
+```
+
+```javascript
+// async/await syntax
+const ee = new EventEmitter();
+try {
+ await ee.waitFor("ready", {duration: 100});
+ console.log("Ready!");
+} catch(err) {
+  console.log(err);
+}
+```
+
+<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
+-->
+**Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
+<!---->
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to wait for |
+| [options] | <code>Object</code> | <code>{}</code> |  |
+| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
 
 * * *
@@ -782,371 +1147,6 @@ Event emitted when a 'dataentryfine' RPN message has been received on the input.
 | parameterLsb: | <code>number</code> | The LSB portion of the registered parameter (0-127) |
 | value | <code>number</code> | The received value as a normalized number between 0 and 1. |
 | rawValue | <code>number</code> | The value as received (0-127) |
-
-
-* * *
-
-<a name="EventEmitter+eventCount"></a>
-
-## inputChannel.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## inputChannel.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## inputChannel.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
-<a name="InputChannel+getCcNameByNumber"></a>
-
-## inputChannel.getCcNameByNumber(number) ⇒ <code>string</code> \| <code>undefined</code>
-Returns the name of a control change message matching the specified number. Some valid control
-change numbers do not have a specific name or purpose assigned in the MIDI
-[spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-In this case, the method returns `false`.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Returns**: <code>string</code> \| <code>undefined</code> - The matching control change name or `undefined` if not match was
-found.  
-**Throws**:
-
-- <code>RangeError</code> Invalid control change number.
-
-**Since**: 2.0.0  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | An integer representing the control change message |
-
-
-* * *
-
-<a name="InputChannel+getChannelModeByNumber"></a>
-
-## inputChannel.getChannelModeByNumber(number) ⇒ <code>string</code> \| <code>false</code>
-Returns the channel mode name matching the specified number. If no match is found, the function
-returns `false`.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Returns**: <code>string</code> \| <code>false</code> - The name of the matching channel mode or `false` if not match could be
-found.  
-**Since**: 2.0.0  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | An integer representing the channel mode message. |
-
-
-* * *
-
-<a name="EventEmitter+getListenerCount"></a>
-
-## inputChannel.getListenerCount(event) ⇒ <code>number</code>
-Returns the number of listeners registered for a specific event.
-
-Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
-towards the remaining number for a "regular" event. To get the number of global listeners,
-specifically use `EventEmitter.ANY_EVENT` as the parameter.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
-**Returns**: <code>number</code> - The number of listeners registered for the specified event.  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event |
-
-
-* * *
-
-<a name="EventEmitter+getListeners"></a>
-
-## inputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-Returns an array of all the `Listener` objects that will be triggered for a specific event.
-
-Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
-"regular" events. To get the list of global listeners, specifically use
-`EventEmitter.ANY_EVENT` as the parameter.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
-**Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to get listeners for |
-
-
-* * *
-
-<a name="EventEmitter+hasListener"></a>
-
-## inputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
-Returns `true` if the specified event has at least one registered listener. If no event is
-specified, the method returns `true` if any event has at least one listener registered (this
-includes global listeners registered to `EventEmitter.ANY_EVENT`).
-
-Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
-`EventEmitter.ANY_EVENT` as the parameter.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [event] | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event to check |
-| [callback] | <code>function</code> \| [<code>Listener</code>](#Listener) | The actual function that was added to the event or the [Listener](#Listener) object returned by `addListener()`. |
-
-
-* * *
-
-<a name="InputChannel+input"></a>
-
-## inputChannel.input : [<code>Input</code>](#Input)
-The [Input](#Input) this channel belongs to
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+number"></a>
-
-## inputChannel.number : <code>number</code>
-This channel's MIDI number (1-16)
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+octaveOffset"></a>
-
-## inputChannel.octaveOffset : <code>number</code>
-An integer to offset the reported octave of incoming note-specific messages (`noteon`,
-`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
-octave (C4).
-
-If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent `Input` object.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="InputChannel+parameterNumberEventsEnabled"></a>
-
-## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
-Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-are composed of a sequence of specific **control change** messages. When a valid sequence of
-such control change messages is received, an `nrpn` event will fire.
-
-If an invalid or
-out-of-order control change message is received, it will fall through the collector logic and
-all buffered control change messages will be discarded as incomplete.
-
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
-
-* * *
-
-<a name="EventEmitter+removeListener"></a>
-
-## inputChannel.removeListener([event], [callback], [options])
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
-first parameter.
-
-To use more granular options, you must at least define the `event`. Then, you can specify the
-callback to match or one or more of the additional options.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
-<!---->
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [event] | <code>string</code> |  | The event name. |
-| [callback] | [<code>callback</code>](#EventEmitter..callback) |  | Only remove the listeners that match this exact callback function. |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.context] | <code>\*</code> |  | Only remove the listeners that have this exact context. |
-| [options.remaining] | <code>number</code> |  | Only remove the listener if it has exactly that many remaining times to be executed. |
-
-
-* * *
-
-<a name="EventEmitter+suspendEvent"></a>
-
-## inputChannel.suspendEvent(event)
-Suspends execution of all callbacks functions registered for the specified event type.
-
-You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
-`EventEmitter.ANY_EVENT` to `suspendEvent()`. Beware that this will not suspend all callbacks
-but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive
-at first glance, it allows the selective suspension of global listeners while leaving other
-liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
-simply set its `eventsSuspended` property to `true`.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to suspend execution of all callback functions. |
-
-
-* * *
-
-<a name="EventEmitter+unsuspendEvent"></a>
-
-## inputChannel.unsuspendEvent(event)
-Resumes execution of all suspended callback functions registered for the specified event type.
-
-You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
-`EventEmitter.ANY_EVENT` to `unsuspendEvent()`. Beware that this will not resume all callbacks
-but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
-it allows the selective unsuspension of global listeners while leaving other callbacks alone.
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
-<!---->
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) | The event for which to resume execution of all callback functions. |
-
-
-* * *
-
-<a name="EventEmitter+waitFor"></a>
-
-## inputChannel.waitFor(event, [options])
-The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
-when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
-(if you want to resolve as soon as any event is emitted).
-
-```javascript
-// then/catch syntax
-const ee = new EventEmitter();
-ee.waitFor("ready").then(() => console.log("Ready!"));
-```
-
-```javascript
-// async/await syntax
-const ee = new EventEmitter();
-await ee.waitFor("ready");
-console.log("Ready!");
-```
-
-If the `duration` option is set, the promise will only be fulfilled if the event is emitted
-within the specified duration. If the event has not been fulfilled after the specified
-duration, the promise is rejected. This makes it super easy to wait for an event and timeout
-after a certain time if the event is not triggered.
-
-```javascript
-// then/catch syntax
-const ee = new EventEmitter();
-ee.waitFor("ready", {duration: 100})
-.then(() => console.log("Ready!"))
-.catch(err => console.log(err);
-```
-
-```javascript
-// async/await syntax
-const ee = new EventEmitter();
-try {
- await ee.waitFor("ready", {duration: 100});
- console.log("Ready!");
-} catch(err) {
-  console.log(err);
-}
-```
-
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-**Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
-<!---->
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to wait for |
-| [options] | <code>Object</code> | <code>{}</code> |  |
-| [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
 
 
 * * *

@@ -28,14 +28,6 @@ others.
 
     * [new OutputChannel(output, number)](#new_OutputChannel_new)
 
-    * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
-
-    * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
-
-    * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
-    * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
-
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
 
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
@@ -44,6 +36,20 @@ others.
 
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
 
+    * [.number](#OutputChannel+number) : <code>number</code>
+
+    * [.octaveOffset](#OutputChannel+octaveOffset) : <code>number</code>
+
+    * [.output](#OutputChannel+output) : [<code>Output</code>](#Output)
+
+    * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
+
+    * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
+
+    * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+
+    * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+
     * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
 
     * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
@@ -51,12 +57,6 @@ others.
     * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
 
     * [.incrementRegisteredParameter(parameter, [options])](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
-    * [.number](#OutputChannel+number) : <code>number</code>
-
-    * [.octaveOffset](#OutputChannel+octaveOffset) : <code>number</code>
-
-    * [.output](#OutputChannel+output) : [<code>Output</code>](#Output)
 
     * [.playNote(note, [options])](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 
@@ -128,6 +128,107 @@ others.
 | output | [<code>Output</code>](#Output) | The output this channel belongs to |
 | number | <code>number</code> | The channel number (1-16) |
 
+
+* * *
+
+<a name="EventEmitter+eventCount"></a>
+
+## outputChannel.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## outputChannel.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventNames"></a>
+
+## outputChannel.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## outputChannel.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="OutputChannel+number"></a>
+
+## outputChannel.number : <code>number</code>
+This channel's MIDI number (1-16)
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="OutputChannel+octaveOffset"></a>
+
+## outputChannel.octaveOffset : <code>number</code>
+An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
+`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+octave (C4).
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+and with the value defined on the parent `Output` object.
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="OutputChannel+output"></a>
+
+## outputChannel.output : [<code>Output</code>](#Output)
+The parent [Output](#Output) this channel belongs to
+
+<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
+-->
+**Since**: 3.0  
+<!---->
 
 * * *
 
@@ -284,66 +385,6 @@ functions
 
 * * *
 
-<a name="EventEmitter+eventCount"></a>
-
-## outputChannel.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## outputChannel.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## outputChannel.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## outputChannel.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
 <a name="EventEmitter+getListenerCount"></a>
 
 ## outputChannel.getListenerCount(event) ⇒ <code>number</code>
@@ -448,47 +489,6 @@ names that can be used with this function:
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](#WebMidi+time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
-
-* * *
-
-<a name="OutputChannel+number"></a>
-
-## outputChannel.number : <code>number</code>
-This channel's MIDI number (1-16)
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="OutputChannel+octaveOffset"></a>
-
-## outputChannel.octaveOffset : <code>number</code>
-An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
-`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
-octave (C4).
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent `Output` object.
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Since**: 3.0  
-<!---->
-
-* * *
-
-<a name="OutputChannel+output"></a>
-
-## outputChannel.output : [<code>Output</code>](#Output)
-The parent [Output](#Output) this channel belongs to
-
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
-**Since**: 3.0  
-<!---->
 
 * * *
 

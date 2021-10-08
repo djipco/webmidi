@@ -28,29 +28,9 @@ others.
 
     * [new Output(midiOutput)](#new_Output_new)
 
-    * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
-
-    * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
-
     * [.channels](#Output+channels) : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
 
-    * [.clear()](#Output+clear) ⇒ [<code>Output</code>](#Output)
-
-    * [.close()](#Output+close) ⇒ <code>Promise.&lt;void&gt;</code>
-
     * [.connection](#Output+connection) : <code>string</code>
-
-    * [.decrementRegisteredParameter(parameter, [options])](#Output+decrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
-
-    * [.destroy()](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
-
-    * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
-
-    * ["closed"](#Output+event_closed)
-
-    * ["disconnected"](#Output+event_disconnected)
-
-    * ["opened"](#Output+event_opened)
 
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
 
@@ -60,21 +40,39 @@ others.
 
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
 
-    * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
-
-    * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-
-    * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
-
     * [.id](#Output+id) : <code>string</code>
-
-    * [.incrementRegisteredParameter(parameter, [options])](#Output+incrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
     * [.manufacturer](#Output+manufacturer) : <code>string</code>
 
     * [.name](#Output+name) : <code>string</code>
 
     * [.octaveOffset](#Output+octaveOffset) : <code>number</code>
+
+    * [.state](#Output+state) : <code>string</code>
+
+    * [.type](#Output+type) : <code>string</code>
+
+    * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
+
+    * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
+
+    * [.clear()](#Output+clear) ⇒ [<code>Output</code>](#Output)
+
+    * [.close()](#Output+close) ⇒ <code>Promise.&lt;void&gt;</code>
+
+    * [.decrementRegisteredParameter(parameter, [options])](#Output+decrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
+
+    * [.destroy()](#Output+destroy) ⇒ <code>Promise.&lt;void&gt;</code>
+
+    * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
+
+    * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
+
+    * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+
+    * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
+
+    * [.incrementRegisteredParameter(parameter, [options])](#Output+incrementRegisteredParameter) ⇒ [<code>Output</code>](#Output)
 
     * [.open()](#Output+open) ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
 
@@ -144,8 +142,6 @@ others.
 
     * [.setTuningProgram(value, [options])](#Output+setTuningProgram) ⇒ [<code>Output</code>](#Output)
 
-    * [.state](#Output+state) : <code>string</code>
-
     * [.stopNote(note, options)](#Output+stopNote) ⇒ [<code>Output</code>](#Output)
 
     * [.suspendEvent(event)](#EventEmitter+suspendEvent)
@@ -154,11 +150,15 @@ others.
 
     * [.turnSoundOff([options])](#Output+turnSoundOff) ⇒ [<code>Output</code>](#Output)
 
-    * [.type](#Output+type) : <code>string</code>
-
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
 
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
+
+    * ["closed"](#Output+event_closed)
+
+    * ["disconnected"](#Output+event_disconnected)
+
+    * ["opened"](#Output+event_opened)
 
 
 * * *
@@ -173,6 +173,168 @@ others.
 | --- | --- | --- |
 | midiOutput | <code>MIDIOutput</code> | `MIDIOutput` object as provided by the MIDI subsystem |
 
+
+* * *
+
+<a name="Output+channels"></a>
+
+## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
+channels are numbered 1 through 16.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+<!---->
+
+* * *
+
+<a name="Output+connection"></a>
+
+## output.connection : <code>string</code>
+Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventCount"></a>
+
+## output.eventCount : <code>number</code>
+The number of unique events that have registered listeners
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventMap"></a>
+
+## output.eventMap : <code>Object</code>
+An object containing a property for each event with at least one registered listener. Each
+event property contains an array of all the `Listener` objects registered for the event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventNames"></a>
+
+## output.eventNames : <code>Array.&lt;string&gt;</code>
+An array of all the unique event names for which the emitter has at least one registered
+listener.
+
+Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
+tied to a specific event.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="EventEmitter+eventsSuspended"></a>
+
+## output.eventsSuspended : <code>boolean</code>
+Whether or not the execution of function callbacks is currently suspended for this whole
+emitter
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
+<!---->
+
+* * *
+
+<a name="Output+id"></a>
+
+## output.id : <code>string</code>
+ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
+platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+the same port.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+manufacturer"></a>
+
+## output.manufacturer : <code>string</code>
+Name of the manufacturer of the device that makes this output port available.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+name"></a>
+
+## output.name : <code>string</code>
+Name of the MIDI output
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+octaveOffset"></a>
+
+## output.octaveOffset : <code>number</code>
+An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
+is placed on the 4th octave (C4).
+
+Note that this value is combined with the global offset value defined on the `WebMidi` object
+(if any).
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Since**: 3.0  
+<!---->
+
+* * *
+
+<a name="Output+state"></a>
+
+## output.state : <code>string</code>
+State of the output port: `"connected"` or `"disconnected"`.
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
+
+* * *
+
+<a name="Output+type"></a>
+
+## output.type : <code>string</code>
+Type of the output port (`"output"`)
+
+<!--**Kind**: instance property of [<code>Output</code>](#Output)  
+-->
+**Read only**: true  
+<!---->
 
 * * *
 
@@ -246,18 +408,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 * * *
 
-<a name="Output+channels"></a>
-
-## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
-Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
-channels are numbered 1 through 16.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-<!---->
-
-* * *
-
 <a name="Output+clear"></a>
 
 ## output.clear() ⇒ [<code>Output</code>](#Output)
@@ -285,18 +435,6 @@ the connection status by looking at the [connection](#Output+connection) propert
 
 <!--**Kind**: instance method of [<code>Output</code>](#Output)  
 -->
-<!---->
-
-* * *
-
-<a name="Output+connection"></a>
-
-## output.connection : <code>string</code>
-Output port's connection state: `"pending"`, `"open"` or `"closed"`.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
 <!---->
 
 * * *
@@ -397,132 +535,6 @@ functions
 
 * * *
 
-<a name="Output+event_closed"></a>
-
-## "closed"
-Event emitted when the [Output](#Output) has been closed by calling the
-[close()](#Output+close) method.
-
-<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
--->
-<!---->
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
-| type | <code>string</code> | `"closed"` |
-| target | [<code>Output</code>](#Output) | The object that triggered the event |
-
-
-* * *
-
-<a name="Output+event_disconnected"></a>
-
-## "disconnected"
-Event emitted when the [Output](#Output) becomes unavailable. This event is typically fired
-when the MIDI device is unplugged.
-
-<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
--->
-<!---->
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document). |
-| type | <code>string</code> | `"disconnected"` |
-| target | <code>Object</code> | Object with properties describing the [Output](#Output) that triggered the event. This is not the actual `Output` as it is no longer available. |
-| target.connection | <code>string</code> | `"closed"` |
-| target.id | <code>string</code> | ID of the input |
-| target.manufacturer | <code>string</code> | Manufacturer of the device that provided the input |
-| target.name | <code>string</code> | Name of the device that provided the input |
-| target.state | <code>string</code> | `"disconnected"` |
-| target.type | <code>string</code> | `"output"` |
-
-
-* * *
-
-<a name="Output+event_opened"></a>
-
-## "opened"
-Event emitted when the [Output](#Output) has been opened by calling the
-[open()](#Output+open) method.
-
-<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
--->
-<!---->
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
-| type | <code>string</code> | `"opened"` |
-| target | [<code>Output</code>](#Output) | The object that triggered the event |
-
-
-* * *
-
-<a name="EventEmitter+eventCount"></a>
-
-## output.eventCount : <code>number</code>
-The number of unique events that have registered listeners
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventMap"></a>
-
-## output.eventMap : <code>Object</code>
-An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventNames"></a>
-
-## output.eventNames : <code>Array.&lt;string&gt;</code>
-An array of all the unique event names for which the emitter has at least one registered
-listener.
-
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="EventEmitter+eventsSuspended"></a>
-
-## output.eventsSuspended : <code>boolean</code>
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
-
-* * *
-
 <a name="EventEmitter+getListenerCount"></a>
 
 ## output.getListenerCount(event) ⇒ <code>number</code>
@@ -590,20 +602,6 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 * * *
 
-<a name="Output+id"></a>
-
-## output.id : <code>string</code>
-ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
-platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-the same port.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
 <a name="Output+incrementRegisteredParameter"></a>
 
 ## output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
@@ -638,46 +636,6 @@ names that can be used with this method:
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code> | The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> |  | If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible. |
 
-
-* * *
-
-<a name="Output+manufacturer"></a>
-
-## output.manufacturer : <code>string</code>
-Name of the manufacturer of the device that makes this output port available.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+name"></a>
-
-## output.name : <code>string</code>
-Name of the MIDI output
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
-<a name="Output+octaveOffset"></a>
-
-## output.octaveOffset : <code>number</code>
-An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
-is placed on the 4th octave (C4).
-
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-(if any).
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Since**: 3.0  
-<!---->
 
 * * *
 
@@ -1760,18 +1718,6 @@ that use a numbering scheme starting at 1.
 
 * * *
 
-<a name="Output+state"></a>
-
-## output.state : <code>string</code>
-State of the output port: `"connected"` or `"disconnected"`.
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
 <a name="Output+stopNote"></a>
 
 ## output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
@@ -1855,18 +1801,6 @@ channel but will not prevent new sounds from being triggered.
 
 * * *
 
-<a name="Output+type"></a>
-
-## output.type : <code>string</code>
-Type of the output port (`"output"`)
-
-<!--**Kind**: instance property of [<code>Output</code>](#Output)  
--->
-**Read only**: true  
-<!---->
-
-* * *
-
 <a name="EventEmitter+unsuspendEvent"></a>
 
 ## output.unsuspendEvent(event)
@@ -1943,6 +1877,72 @@ try {
 | event | <code>string</code> \| [<code>ANY\_EVENT</code>](#EventEmitter.ANY_EVENT) |  | The event to wait for |
 | [options] | <code>Object</code> | <code>{}</code> |  |
 | [options.duration] | <code>number</code> | <code>Infinity</code> | The number of milliseconds to wait before the promise is automatically rejected. |
+
+
+* * *
+
+<a name="Output+event_closed"></a>
+
+## "closed"
+Event emitted when the [Output](#Output) has been closed by calling the
+[close()](#Output+close) method.
+
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"closed"` |
+| target | [<code>Output</code>](#Output) | The object that triggered the event |
+
+
+* * *
+
+<a name="Output+event_disconnected"></a>
+
+## "disconnected"
+Event emitted when the [Output](#Output) becomes unavailable. This event is typically fired
+when the MIDI device is unplugged.
+
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"disconnected"` |
+| target | <code>Object</code> | Object with properties describing the [Output](#Output) that triggered the event. This is not the actual `Output` as it is no longer available. |
+| target.connection | <code>string</code> | `"closed"` |
+| target.id | <code>string</code> | ID of the input |
+| target.manufacturer | <code>string</code> | Manufacturer of the device that provided the input |
+| target.name | <code>string</code> | Name of the device that provided the input |
+| target.state | <code>string</code> | `"disconnected"` |
+| target.type | <code>string</code> | `"output"` |
+
+
+* * *
+
+<a name="Output+event_opened"></a>
+
+## "opened"
+Event emitted when the [Output](#Output) has been opened by calling the
+[open()](#Output+open) method.
+
+<!--**Kind**: event emitted by [<code>Output</code>](#Output)  
+-->
+<!---->
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"opened"` |
+| target | [<code>Output</code>](#Output) | The object that triggered the event |
 
 
 * * *
