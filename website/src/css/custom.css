@@ -62,4 +62,16 @@ div[role=banner] {
   background-color: var(--ifm-color-primary);
 }
 
+li a.dropdown__link svg {
+  display: none;
+}
+
+li a.recommended {
+  font-weight: bold;
+}
+
+li a.dropdown__link.external svg {
+  display: inline;
+}
+
 /*# sourceMappingURL=custom.css.map */

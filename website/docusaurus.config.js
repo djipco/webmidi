@@ -50,7 +50,8 @@ module.exports = {
             },
             {
               label: "2.5.3 (stable, recommended)",
-              href: "https://djipco.github.io/webmidi/archives/api/v2/"
+              href: "https://djipco.github.io/webmidi/archives/api/v2/",
+              className: "recommended"
             },
             {
               label: "1.0.0-beta.15",
@@ -65,7 +66,8 @@ module.exports = {
           items: [
             {
               label: "GitHub Discussions",
-              href: "https://github.com/djipco/webmidi/discussions"
+              href: "https://github.com/djipco/webmidi/discussions",
+              className: "external"
             },
             {
               label: "Forum (Archived)",
