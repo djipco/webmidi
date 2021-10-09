@@ -9,7 +9,7 @@ array.
 
 **Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
-**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, <code>Input#event:unknownmidimessage</code>  
+**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, [<code>songselect</code>](#Input+event_songselect), <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, <code>Input#event:unknownmidimessage</code>  
 **License**: Apache-2.0  
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
@@ -43,6 +43,7 @@ array.
     * ["disconnected"](#Input+event_disconnected)
     * ["midimessage"](#Input+event_midimessage)
     * ["opened"](#Input+event_opened)
+    * ["songselect"](#Input+event_songselect)
 
 
 * * *
@@ -95,7 +96,7 @@ There are 6 families of events you can listen to:
 1. **MIDI System Common** Events (input-wide)
 
    * [songposition](Input#event:songposition)
-   * [songselect](Input#event:songselect)
+   * [songselect](#Input+event_songselect)
    * [sysex](Input#event:sysex)
    * [timecode](Input#event:timecode)
    * [tunerequest](Input#event:tunerequest)
@@ -215,7 +216,7 @@ There are 6 families of events you can listen to:
 1. **MIDI System Common** Events (input-wide)
 
    * [songposition](Input#event:songposition)
-   * [songselect](Input#event:songselect)
+   * [songselect](#Input+event_songselect)
    * [sysex](Input#event:sysex)
    * [timecode](Input#event:timecode)
    * [tunerequest](Input#event:tunerequest)
@@ -764,6 +765,28 @@ method.
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"opened"` |
 | target | [<code>Input</code>](#Input) | The object that triggered the event |
+
+
+* * *
+
+<a name="Input+event_songselect"></a>
+
+## "songselect"
+Input-wide (system) event emitted when a **song select** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"songselect"` |
+| song | <code>string</code> | Song (or sequence) number to select (1-128) |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
 
 
 * * *
