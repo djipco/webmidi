@@ -2,11 +2,8 @@
 
 # Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Input` class represents a single MIDI input port. This object is derived from the host's
-MIDI subsystem and should not be directly instantiated. Instead, you will a list of all available
-inputs in [WebMidi.inputs](#WebMidi+inputs).
-
-You can find a list of all currently available `Input` objects in the [inputs](#WebMidi+inputs)
-array.
+MIDI subsystem and should not be directly instantiated. Instead, you can access to inputs by
+referring to the [WebMidi.inputs](#WebMidi+inputs) array.
 
 **Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
