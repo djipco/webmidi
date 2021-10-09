@@ -1,6 +1,6 @@
 <a name="Message"></a>
 
-# Message
+# COUCOU!!Message
 The `Message` class represents a single MIDI message. It has several properties that make it
 easy to make sense of the binaru data it contains.
 
@@ -26,7 +26,7 @@ easy to make sense of the binaru data it contains.
 
 <a name="new_Message_new"></a>
 
-## new Message(data)
+## COUCOU!!new Message(data)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ easy to make sense of the binaru data it contains.
 
 <a name="Message+channel"></a>
 
-## message.channel : <code>number</code>
+## COUCOU!!message.channel : <code>number</code>
 The MIDI channel number (1-16) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
 
@@ -48,7 +48,7 @@ channel-specific messages. For system messages, this will be left undefined.
 
 <a name="Message+command"></a>
 
-## message.command : <code>number</code>
+## COUCOU!!message.command : <code>number</code>
 An integer identifying the MIDI command. For channel-specific messages, the value will be
 between 8 and 14. For system messages, the value will be between 240 and 255.
 
@@ -59,7 +59,7 @@ between 8 and 14. For system messages, the value will be between 240 and 255.
 
 <a name="Message+data"></a>
 
-## message.data : <code>Array.&lt;number&gt;</code>
+## COUCOU!!message.data : <code>Array.&lt;number&gt;</code>
 An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
 255.
 
@@ -70,7 +70,7 @@ An array containing the bytes of the MIDI message. Each byte is an integer is be
 
 <a name="Message+dataBytes"></a>
 
-## message.dataBytes : <code>Array.&lt;number&gt;</code>
+## COUCOU!!message.dataBytes : <code>Array.&lt;number&gt;</code>
 An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
 byte so only the actual data is included.
@@ -82,7 +82,7 @@ byte so only the actual data is included.
 
 <a name="Message+isChannelMessage"></a>
 
-## message.isChannelMessage : <code>boolean</code>
+## COUCOU!!message.isChannelMessage : <code>boolean</code>
 A boolean indicating whether the MIDI message is a channel-specific message.
 
 **Kind**: instance property of [<code>Message</code>](#Message)  
@@ -92,7 +92,7 @@ A boolean indicating whether the MIDI message is a channel-specific message.
 
 <a name="Message+isSystemMessage"></a>
 
-## message.isSystemMessage : <code>boolean</code>
+## COUCOU!!message.isSystemMessage : <code>boolean</code>
 A boolean indicating whether the MIDI message is a system message (not specific to a
 channel).
 
@@ -103,7 +103,7 @@ channel).
 
 <a name="Message+manufacturerId"></a>
 
-## message.manufacturerId : <code>Array.&lt;number&gt;</code>
+## COUCOU!!message.manufacturerId : <code>Array.&lt;number&gt;</code>
 When the message is a system exclusive message (sysex), this property contains an array with
 either 1 or 3 entries that identify the manufacturer targeted by the message.
 
@@ -117,7 +117,7 @@ https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 <a name="Message+rawData"></a>
 
-## message.rawData : <code>Uint8Array</code>
+## COUCOU!!message.rawData : <code>Uint8Array</code>
 A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
 255.
 
@@ -128,7 +128,7 @@ A Uint8Array containing the bytes of the MIDI message. Each byte is an integer b
 
 <a name="Message+rawDataBytes"></a>
 
-## message.rawDataBytes : <code>Uint8Array</code>
+## COUCOU!!message.rawDataBytes : <code>Uint8Array</code>
 A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
 byte so only the actual data is included.
@@ -140,7 +140,7 @@ byte so only the actual data is included.
 
 <a name="Message+statusByte"></a>
 
-## message.statusByte : <code>number</code>
+## COUCOU!!message.statusByte : <code>number</code>
 The MIDI status byte of the message as an integer between 0 and 255.
 
 **Kind**: instance property of [<code>Message</code>](#Message)  

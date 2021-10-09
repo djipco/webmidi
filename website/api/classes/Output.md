@@ -1,6 +1,6 @@
 <a name="Output"></a>
 
-# Output ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# COUCOU!!Output ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
 subsystem and cannot be instantiated directly.
 
@@ -86,7 +86,7 @@ You can find a list of all available `Output` objects in the
 
 <a name="new_Output_new"></a>
 
-## new Output(midiOutput)
+## COUCOU!!new Output(midiOutput)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -97,7 +97,7 @@ You can find a list of all available `Output` objects in the
 
 <a name="EventEmitter+addListener"></a>
 
-## output.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## COUCOU!!output.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
 that was created and attached to the event.
 
@@ -130,7 +130,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## output.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## COUCOU!!output.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](#Listener) object that was created and attached
 to the event.
@@ -163,7 +163,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="Output+clear"></a>
 
-## output.clear() ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.clear() ⇒ [<code>Output</code>](#Output)
 Clears all messages that have been queued but not yet delivered.
 
 Warning: this method has been defined in the specification but has not been implemented yet. As
@@ -179,7 +179,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 <a name="Output+close"></a>
 
-## output.close() ⇒ <code>Promise.&lt;void&gt;</code>
+## COUCOU!!output.close() ⇒ <code>Promise.&lt;void&gt;</code>
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
 until the output is opened again by calling [Output.open()](#Output+open). You can check
 the connection status by looking at the [connection](#Output+connection) property.
@@ -190,7 +190,7 @@ the connection status by looking at the [connection](#Output+connection) propert
 
 <a name="Output+decrementRegisteredParameter"></a>
 
-## output.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -229,7 +229,7 @@ names that can be used with this method:
 
 <a name="Output+destroy"></a>
 
-## output.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
+## COUCOU!!output.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
 subsystem is unlinked.
 
@@ -239,7 +239,7 @@ subsystem is unlinked.
 
 <a name="EventEmitter+emit"></a>
 
-## output.emit(event, ...args) ⇒ <code>Array</code>
+## COUCOU!!output.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -280,7 +280,7 @@ functions
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## output.getListenerCount(event) ⇒ <code>number</code>
+## COUCOU!!output.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -300,7 +300,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## output.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## COUCOU!!output.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -320,7 +320,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="EventEmitter+hasListener"></a>
 
-## output.hasListener([event], [callback]) ⇒ <code>boolean</code>
+## COUCOU!!output.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -341,7 +341,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 <a name="Output+incrementRegisteredParameter"></a>
 
-## output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>Output</code>](#Output)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this method:
 
@@ -376,7 +376,7 @@ names that can be used with this method:
 
 <a name="Output+open"></a>
 
-## output.open() ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
+## COUCOU!!output.open() ⇒ [<code>Promise.&lt;Output&gt;</code>](#Output)
 Opens the output for usage.
 
 **Kind**: instance method of [<code>Output</code>](#Output)  
@@ -386,7 +386,7 @@ Opens the output for usage.
 
 <a name="Output+playNote"></a>
 
-## output.playNote(note, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.playNote(note, [options]) ⇒ [<code>Output</code>](#Output)
 Plays a note or an array of notes on one or more channels of this output. The first parameter
 is the note to play. It can be a single value or an array of the following valid values:
 
@@ -430,7 +430,7 @@ functionally equivalent to a **note off** message.
 
 <a name="EventEmitter+removeListener"></a>
 
-## output.removeListener([event], [callback], [options])
+## COUCOU!!output.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -455,7 +455,7 @@ callback to match or one or more of the additional options.
 
 <a name="Output+resetAllControllers"></a>
 
-## output.resetAllControllers([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.resetAllControllers([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
@@ -472,7 +472,7 @@ the pitch bend, to their default value.
 
 <a name="Output+send"></a>
 
-## output.send(message, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.send(message, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -504,7 +504,7 @@ from the MIDI Manufacturers Association.
 
 <a name="Output+sendActiveSensing"></a>
 
-## output.sendActiveSensing([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendActiveSensing([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **active sensing** real-time message. This tells the device connected to this port
 that the connection is still good. Active sensing messages should be sent every 300 ms if there
 was no other activity on the MIDI port.
@@ -522,7 +522,7 @@ was no other activity on the MIDI port.
 
 <a name="Output+sendChannelMode"></a>
 
-## output.sendChannelMode(command, [value], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendChannelMode(command, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
 send can be specified numerically or by using one of the following common names:
 
@@ -570,7 +570,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 <a name="Output+sendClock"></a>
 
-## output.sendClock([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendClock([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
 for every quarter note.
 
@@ -587,7 +587,7 @@ for every quarter note.
 
 <a name="Output+sendContinue"></a>
 
-## output.sendContinue([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendContinue([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
 start, use the [sendStart()](#Output+sendStart)` method.
@@ -605,7 +605,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 <a name="Output+sendControlChange"></a>
 
-## output.sendControlChange(controller, [value], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendControlChange(controller, [value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
 control change message to send can be specified numerically (0-127) or by using one of the
 following common names:
@@ -711,7 +711,7 @@ specification.
 
 <a name="Output+sendNoteOff"></a>
 
-## output.sendNoteOff(note, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendNoteOff(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note off** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -742,7 +742,7 @@ precedence over the one specified via the method's `options` parameter.
 
 <a name="Output+sendNoteOn"></a>
 
-## output.sendNoteOn(note, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendNoteOn(note, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **note on** message for the specified notes on the specified channel(s). The first
 parameter is the note. It can be a single value or an array of the following valid values:
 
@@ -778,7 +778,7 @@ functionally equivalent to a **note off** message.
 
 <a name="Output+sendReset"></a>
 
-## output.sendReset([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendReset([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **reset** real-time message. This tells the device connected to this output that it
 should reset itself to a default state.
 
@@ -795,7 +795,7 @@ should reset itself to a default state.
 
 <a name="Output+sendStart"></a>
 
-## output.sendStart([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendStart([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
 song at beat 0. To start playback elsewhere in the song, use the
 [sendContinue()](#Output+sendContinue) method.
@@ -813,7 +813,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 <a name="Output+sendStop"></a>
 
-## output.sendStop([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendStop([options]) ⇒ [<code>Output</code>](#Output)
 Sends a **stop** real-time message. This tells the device connected to this output to stop
 playback immediately (or at the scheduled time).
 
@@ -830,7 +830,7 @@ playback immediately (or at the scheduled time).
 
 <a name="Output+sendSysex"></a>
 
-## output.sendSysex(manufacturer, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendSysex(manufacturer, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
 (*sysex*) message. The `data` parameter should only contain the data of the message. When
 sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
@@ -901,7 +901,7 @@ than 0xFF.
 
 <a name="Output+sendTimecodeQuarterFrame"></a>
 
-## output.sendTimecodeQuarterFrame(value, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendTimecodeQuarterFrame(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
 on the data. It is up to the developer to format the data according to the
 [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
@@ -920,7 +920,7 @@ on the data. It is up to the developer to format the data according to the
 
 <a name="Output+sendTuneRequest"></a>
 
-## output.sendTuneRequest([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.sendTuneRequest([options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **tune request** real-time message.
 
 **Kind**: instance method of [<code>Output</code>](#Output)  
@@ -937,7 +937,7 @@ Sends a MIDI **tune request** real-time message.
 
 <a name="Output+setChannelAftertouch"></a>
 
-## output.setChannelAftertouch([pressure], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setChannelAftertouch([pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
 aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
@@ -958,7 +958,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 <a name="Output+setKeyAftertouch"></a>
 
-## output.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setKeyAftertouch(note, [pressure], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](#Output+setChannelAftertouch).
@@ -981,7 +981,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 <a name="Output+setLocalControl"></a>
 
-## output.setLocalControl([state], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setLocalControl([state], [options]) ⇒ [<code>Output</code>](#Output)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
@@ -1002,7 +1002,7 @@ its out port.
 
 <a name="Output+setMasterTuning"></a>
 
-## output.setMasterTuning([value], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setMasterTuning([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a master tuning message to the specified channel(s). The value is decimal and must be
 larger than -65 semitones and smaller than 64 semitones.
 
@@ -1032,7 +1032,7 @@ than 64.
 
 <a name="Output+setModulationRange"></a>
 
-## output.setModulationRange([semitones], [cents], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setModulationRange([semitones], [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
 depth of their modulation wheel's range. The range can be specified with the `semitones`
 parameter, the `cents` parameter or by specifying both parameters at the same time.
@@ -1059,7 +1059,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 <a name="Output+setNonRegisteredParameter"></a>
 
-## output.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
 two-position array specifying the values of the two control bytes. The value is specified by
 passing in a single integer (most cases) or an array of two integers.
@@ -1112,7 +1112,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 <a name="Output+setOmniMode"></a>
 
-## output.setOmniMode([state], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setOmniMode([state], [options]) ⇒ [<code>Output</code>](#Output)
 Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
 instrument to respond to messages from all channels.
 
@@ -1140,7 +1140,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 <a name="Output+setPitchBend"></a>
 
-## output.setPitchBend(value, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setPitchBend(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
 
 **Kind**: instance method of [<code>Output</code>](#Output)  
@@ -1160,7 +1160,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 <a name="Output+setPitchBendRange"></a>
 
-## output.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
@@ -1188,7 +1188,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 <a name="Output+setPolyphonicMode"></a>
 
-## output.setPolyphonicMode(mode, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setPolyphonicMode(mode, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
@@ -1209,7 +1209,7 @@ multiple notes are being played.
 
 <a name="Output+setProgram"></a>
 
-## output.setProgram([program], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setProgram([program], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
@@ -1237,7 +1237,7 @@ than 0xFF.
 
 <a name="Output+setRegisteredParameter"></a>
 
-## output.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>Output</code>](#Output)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -1286,7 +1286,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 <a name="Output+setSong"></a>
 
-## output.setSong(value, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setSong(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **song select** MIDI message.
 
 **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
@@ -1312,7 +1312,7 @@ use a numbering scheme starting at 1.
 
 <a name="Output+setSongPosition"></a>
 
-## output.setSongPosition([value], [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setSongPosition([value], [options]) ⇒ [<code>Output</code>](#Output)
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
 16383) which are 16th note. Position 0 is always the start of the song.
 
@@ -1331,7 +1331,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 <a name="Output+setTuningBank"></a>
 
-## output.setTuningBank(value, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setTuningBank(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -1359,7 +1359,7 @@ that use a numbering scheme starting at 1.
 
 <a name="Output+setTuningProgram"></a>
 
-## output.setTuningProgram(value, [options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.setTuningProgram(value, [options]) ⇒ [<code>Output</code>](#Output)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -1387,7 +1387,7 @@ that use a numbering scheme starting at 1.
 
 <a name="Output+stopNote"></a>
 
-## output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
 This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 **Kind**: instance method of [<code>Output</code>](#Output)  
@@ -1403,7 +1403,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## output.suspendEvent(event)
+## COUCOU!!output.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1425,7 +1425,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="Output+turnNotesOff"></a>
 
-## output.turnNotesOff([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.turnNotesOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
@@ -1444,7 +1444,7 @@ fade out just as if their key had been released. This is different from the
 
 <a name="Output+turnSoundOff"></a>
 
-## output.turnSoundOff([options]) ⇒ [<code>Output</code>](#Output)
+## COUCOU!!output.turnSoundOff([options]) ⇒ [<code>Output</code>](#Output)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
@@ -1462,7 +1462,7 @@ channel but will not prevent new sounds from being triggered.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## output.unsuspendEvent(event)
+## COUCOU!!output.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1482,7 +1482,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## output.waitFor(event, [options])
+## COUCOU!!output.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -1538,7 +1538,7 @@ try {
 
 <a name="Output+channels"></a>
 
-## output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
+## COUCOU!!output.channels : [<code>Array.&lt;OutputChannel&gt;</code>](#OutputChannel)
 Array containing the 16 [OutputChannel](#OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
@@ -1548,7 +1548,7 @@ channels are numbered 1 through 16.
 
 <a name="Output+connection"></a>
 
-## output.connection : <code>string</code>
+## COUCOU!!output.connection : <code>string</code>
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Kind**: instance property of [<code>Output</code>](#Output)  
@@ -1558,7 +1558,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <a name="EventEmitter+eventCount"></a>
 
-## output.eventCount : <code>number</code>
+## COUCOU!!output.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -1572,7 +1572,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## output.eventMap : <code>Object</code>
+## COUCOU!!output.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -1584,7 +1584,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## output.eventNames : <code>Array.&lt;string&gt;</code>
+## COUCOU!!output.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -1599,7 +1599,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## output.eventsSuspended : <code>boolean</code>
+## COUCOU!!output.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -1610,7 +1610,7 @@ emitter
 
 <a name="Output+id"></a>
 
-## output.id : <code>string</code>
+## COUCOU!!output.id : <code>string</code>
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
@@ -1622,7 +1622,7 @@ the same port.
 
 <a name="Output+manufacturer"></a>
 
-## output.manufacturer : <code>string</code>
+## COUCOU!!output.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this output port available.
 
 **Kind**: instance property of [<code>Output</code>](#Output)  
@@ -1632,7 +1632,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 <a name="Output+name"></a>
 
-## output.name : <code>string</code>
+## COUCOU!!output.name : <code>string</code>
 Name of the MIDI output
 
 **Kind**: instance property of [<code>Output</code>](#Output)  
@@ -1642,7 +1642,7 @@ Name of the MIDI output
 
 <a name="Output+octaveOffset"></a>
 
-## output.octaveOffset : <code>number</code>
+## COUCOU!!output.octaveOffset : <code>number</code>
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
 
@@ -1656,7 +1656,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <a name="Output+state"></a>
 
-## output.state : <code>string</code>
+## COUCOU!!output.state : <code>string</code>
 State of the output port: `"connected"` or `"disconnected"`.
 
 **Kind**: instance property of [<code>Output</code>](#Output)  
@@ -1666,7 +1666,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 <a name="Output+type"></a>
 
-## output.type : <code>string</code>
+## COUCOU!!output.type : <code>string</code>
 Type of the output port (`"output"`)
 
 **Kind**: instance property of [<code>Output</code>](#Output)  
@@ -1676,7 +1676,7 @@ Type of the output port (`"output"`)
 
 <a name="Output+event_closed"></a>
 
-## "closed"
+## COUCOU!!"closed"
 Event emitted when the [Output](#Output) has been closed by calling the
 [close()](#Output+close) method.
 
@@ -1694,7 +1694,7 @@ Event emitted when the [Output](#Output) has been closed by calling the
 
 <a name="Output+event_disconnected"></a>
 
-## "disconnected"
+## COUCOU!!"disconnected"
 Event emitted when the [Output](#Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
@@ -1718,7 +1718,7 @@ when the MIDI device is unplugged.
 
 <a name="Output+event_opened"></a>
 
-## "opened"
+## COUCOU!!"opened"
 Event emitted when the [Output](#Output) has been opened by calling the
 [open()](#Output+open) method.
 
