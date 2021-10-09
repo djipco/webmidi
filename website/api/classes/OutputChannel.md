@@ -1,6 +1,6 @@
 <a name="OutputChannel"></a>
 
-# OutputChannel ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# ABCOutputChannel ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `OutputChannel` class represents a single output channel (1-16) from an output device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
@@ -110,7 +110,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 <a name="new_OutputChannel_new"></a>
 
-## new OutputChannel(output, number)
+## ABCnew OutputChannel(output, number)
 <!---->
 <!---->
 
@@ -124,7 +124,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 <a name="EventEmitter+addListener"></a>
 
-## outputChannel.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## ABCoutputChannel.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
 that was created and attached to the event.
 
@@ -159,7 +159,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## outputChannel.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## ABCoutputChannel.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](#Listener) object that was created and attached
 to the event.
@@ -194,7 +194,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="OutputChannel+decrementRegisteredParameter"></a>
 
-## outputChannel.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.decrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -234,7 +234,7 @@ names that can be used with this function:
 
 <a name="EventEmitter+emit"></a>
 
-## outputChannel.emit(event, ...args) ⇒ <code>Array</code>
+## ABCoutputChannel.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -277,7 +277,7 @@ functions
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## outputChannel.getListenerCount(event) ⇒ <code>number</code>
+## ABCoutputChannel.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -299,7 +299,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## outputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## ABCoutputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -321,7 +321,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="EventEmitter+hasListener"></a>
 
-## outputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
+## ABCoutputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -344,7 +344,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 <a name="OutputChannel+incrementRegisteredParameter"></a>
 
-## outputChannel.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.incrementRegisteredParameter(parameter, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -384,7 +384,7 @@ names that can be used with this function:
 
 <a name="OutputChannel+playNote"></a>
 
-## outputChannel.playNote(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.playNote(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
@@ -429,7 +429,7 @@ functionally equivalent to a **note off** message.
 
 <a name="EventEmitter+removeListener"></a>
 
-## outputChannel.removeListener([event], [callback], [options])
+## ABCoutputChannel.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -456,7 +456,7 @@ callback to match or one or more of the additional options.
 
 <a name="OutputChannel+resetAllControllers"></a>
 
-## outputChannel.resetAllControllers([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.resetAllControllers([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
@@ -475,7 +475,7 @@ the pitch bend, to their default value.
 
 <a name="OutputChannel+send"></a>
 
-## outputChannel.send(message, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.send(message, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -509,7 +509,7 @@ from the MIDI Manufacturers Association.
 
 <a name="OutputChannel+sendChannelMode"></a>
 
-## outputChannel.sendChannelMode(command, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.sendChannelMode(command, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel mode** message. The channel mode message to send can be specified
 numerically or by using one of the following common names:
 
@@ -552,7 +552,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 <a name="OutputChannel+sendControlChange"></a>
 
-## outputChannel.sendControlChange(controller, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.sendControlChange(controller, value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **control change** message to the channel at the scheduled time. The control
 change message to send can be specified numerically (0 to 127) or by using one of the following
 common names:
@@ -668,7 +668,7 @@ parameter.
 
 <a name="OutputChannel+sendNoteOff"></a>
 
-## outputChannel.sendNoteOff(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.sendNoteOff(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note off** message for the specified notes on the channel. The first parameter is the
 note. It can be a single value or an array of the following valid values:
 
@@ -700,7 +700,7 @@ precedence over the one specified via the method's `options` parameter.
 
 <a name="OutputChannel+sendNoteOn"></a>
 
-## outputChannel.sendNoteOn(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.sendNoteOn(note, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
 the note. It can be a single value or an array of the following valid values:
 
@@ -742,7 +742,7 @@ functionally equivalent to a **note off** message.
 
 <a name="OutputChannel+setChannelAftertouch"></a>
 
-## outputChannel.setChannelAftertouch([pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setChannelAftertouch([pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
@@ -767,7 +767,7 @@ use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
 <a name="OutputChannel+setKeyAftertouch"></a>
 
-## outputChannel.setKeyAftertouch(target, [pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setKeyAftertouch(target, [pressure], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](#Output+setChannelAftertouch).
@@ -799,7 +799,7 @@ The key can be a single value or an array of the following valid values:
 
 <a name="OutputChannel+setLocalControl"></a>
 
-## outputChannel.setLocalControl([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setLocalControl([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
@@ -820,7 +820,7 @@ its out port.
 
 <a name="OutputChannel+setMasterTuning"></a>
 
-## outputChannel.setMasterTuning([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setMasterTuning([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **master tuning** message. The value is decimal and must be larger than -65 semitones
 and smaller than 64 semitones.
 
@@ -850,7 +850,7 @@ than 64.
 
 <a name="OutputChannel+setModulationRange"></a>
 
-## outputChannel.setModulationRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setModulationRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
@@ -872,7 +872,7 @@ specifying both parameters at the same time.
 
 <a name="OutputChannel+setNonRegisteredParameter"></a>
 
-## outputChannel.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setNonRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets a non-registered parameter (NRPN) to the specified value. The NRPN is selected by passing
 in a two-position array specifying the values of the two control bytes. The value is specified
 by passing in a single integer (most cases) or an array of two integers.
@@ -919,7 +919,7 @@ For further implementation details, refer to the manufacturer's documentation.
 
 <a name="OutputChannel+setOmniMode"></a>
 
-## outputChannel.setOmniMode([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setOmniMode([state], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
 messages from all channels.
 
@@ -947,7 +947,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 <a name="OutputChannel+setPitchBend"></a>
 
-## outputChannel.setPitchBend([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setPitchBend([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **pitch bend** message at the scheduled time.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
@@ -967,7 +967,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 <a name="OutputChannel+setPitchBendRange"></a>
 
-## outputChannel.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setPitchBendRange(semitones, [cents], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
@@ -995,7 +995,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 <a name="OutputChannel+setPolyphonicMode"></a>
 
-## outputChannel.setPolyphonicMode([mode], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setPolyphonicMode([mode], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
@@ -1016,7 +1016,7 @@ multiple notes are being played.
 
 <a name="OutputChannel+setProgram"></a>
 
-## outputChannel.setProgram([program], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setProgram([program], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **program change** message at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
@@ -1044,7 +1044,7 @@ than 0xFF.
 
 <a name="OutputChannel+setRegisteredParameter"></a>
 
-## outputChannel.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setRegisteredParameter(parameter, [data], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
@@ -1094,7 +1094,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 <a name="OutputChannel+setTuningBank"></a>
 
-## outputChannel.setTuningBank(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setTuningBank(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -1122,7 +1122,7 @@ that use a numbering scheme starting at 1.
 
 <a name="OutputChannel+setTuningProgram"></a>
 
-## outputChannel.setTuningProgram(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.setTuningProgram(value, [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
@@ -1150,7 +1150,7 @@ that use a numbering scheme starting at 1.
 
 <a name="OutputChannel+stopNote"></a>
 
-## outputChannel.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
+## ABCoutputChannel.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
 This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 <!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
@@ -1168,7 +1168,7 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## outputChannel.suspendEvent(event)
+## ABCoutputChannel.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1192,7 +1192,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="OutputChannel+turnNotesOff"></a>
 
-## outputChannel.turnNotesOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.turnNotesOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
@@ -1212,7 +1212,7 @@ fade out just as if their key had been released. This is different from the
 
 <a name="OutputChannel+turnSoundOff"></a>
 
-## outputChannel.turnSoundOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
+## ABCoutputChannel.turnSoundOff([options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
@@ -1231,7 +1231,7 @@ channel but will not prevent new sounds from being triggered.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## outputChannel.unsuspendEvent(event)
+## ABCoutputChannel.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -1253,7 +1253,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## outputChannel.waitFor(event, [options])
+## ABCoutputChannel.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -1311,7 +1311,7 @@ try {
 
 <a name="EventEmitter+eventCount"></a>
 
-## outputChannel.eventCount : <code>number</code>
+## ABCoutputChannel.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -1327,7 +1327,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## outputChannel.eventMap : <code>Object</code>
+## ABCoutputChannel.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -1341,7 +1341,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## outputChannel.eventNames : <code>Array.&lt;string&gt;</code>
+## ABCoutputChannel.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -1358,7 +1358,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## outputChannel.eventsSuspended : <code>boolean</code>
+## ABCoutputChannel.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -1371,7 +1371,7 @@ emitter
 
 <a name="OutputChannel+number"></a>
 
-## outputChannel.number : <code>number</code>
+## ABCoutputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
@@ -1383,7 +1383,7 @@ This channel's MIDI number (1-16)
 
 <a name="OutputChannel+octaveOffset"></a>
 
-## outputChannel.octaveOffset : <code>number</code>
+## ABCoutputChannel.octaveOffset : <code>number</code>
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
 octave (C4).
@@ -1400,7 +1400,7 @@ and with the value defined on the parent `Output` object.
 
 <a name="OutputChannel+output"></a>
 
-## outputChannel.output : [<code>Output</code>](#Output)
+## ABCoutputChannel.output : [<code>Output</code>](#Output)
 The parent [Output](#Output) this channel belongs to
 
 <!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
