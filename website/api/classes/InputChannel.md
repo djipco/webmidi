@@ -1,6 +1,6 @@
 <a name="InputChannel"></a>
 
-# COUCOU!!InputChannel ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# InputChannel ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
@@ -68,7 +68,7 @@ property.
 
 <a name="new_InputChannel_new"></a>
 
-## COUCOU!!new InputChannel(input, number)
+## new InputChannel(input, number)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ property.
 
 <a name="EventEmitter+addListener"></a>
 
-## COUCOU!!inputChannel.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## inputChannel.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
 that was created and attached to the event.
 
@@ -113,7 +113,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## COUCOU!!inputChannel.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## inputChannel.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](#Listener) object that was created and attached
 to the event.
@@ -146,7 +146,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="InputChannel+destroy"></a>
 
-## COUCOU!!inputChannel.destroy()
+## inputChannel.destroy()
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
 
@@ -156,7 +156,7 @@ input.
 
 <a name="EventEmitter+emit"></a>
 
-## COUCOU!!inputChannel.emit(event, ...args) ⇒ <code>Array</code>
+## inputChannel.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -197,7 +197,7 @@ functions
 
 <a name="InputChannel+getCcNameByNumber"></a>
 
-## COUCOU!!inputChannel.getCcNameByNumber(number) ⇒ <code>string</code> \| <code>undefined</code>
+## inputChannel.getCcNameByNumber(number) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name of a control change message matching the specified number. Some valid control
 change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
@@ -221,7 +221,7 @@ found.
 
 <a name="InputChannel+getChannelModeByNumber"></a>
 
-## COUCOU!!inputChannel.getChannelModeByNumber(number) ⇒ <code>string</code> \| <code>false</code>
+## inputChannel.getChannelModeByNumber(number) ⇒ <code>string</code> \| <code>false</code>
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
 
@@ -239,7 +239,7 @@ found.
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## COUCOU!!inputChannel.getListenerCount(event) ⇒ <code>number</code>
+## inputChannel.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -259,7 +259,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## COUCOU!!inputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## inputChannel.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -279,7 +279,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="EventEmitter+hasListener"></a>
 
-## COUCOU!!inputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
+## inputChannel.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -300,7 +300,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 <a name="EventEmitter+removeListener"></a>
 
-## COUCOU!!inputChannel.removeListener([event], [callback], [options])
+## inputChannel.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -325,7 +325,7 @@ callback to match or one or more of the additional options.
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## COUCOU!!inputChannel.suspendEvent(event)
+## inputChannel.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -347,7 +347,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## COUCOU!!inputChannel.unsuspendEvent(event)
+## inputChannel.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -367,7 +367,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## COUCOU!!inputChannel.waitFor(event, [options])
+## inputChannel.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -423,7 +423,7 @@ try {
 
 <a name="InputChannel.EVENTS"></a>
 
-## COUCOU!!InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
+## InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
 Array of channel-specific event names that can be listened to.
 
 **Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
@@ -433,7 +433,7 @@ Array of channel-specific event names that can be listened to.
 
 <a name="EventEmitter+eventCount"></a>
 
-## COUCOU!!inputChannel.eventCount : <code>number</code>
+## inputChannel.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -447,7 +447,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## COUCOU!!inputChannel.eventMap : <code>Object</code>
+## inputChannel.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -459,7 +459,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## COUCOU!!inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
+## inputChannel.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -474,7 +474,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## COUCOU!!inputChannel.eventsSuspended : <code>boolean</code>
+## inputChannel.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -485,7 +485,7 @@ emitter
 
 <a name="InputChannel+input"></a>
 
-## COUCOU!!inputChannel.input : [<code>Input</code>](#Input)
+## inputChannel.input : [<code>Input</code>](#Input)
 The [Input](#Input) this channel belongs to
 
 **Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
@@ -495,7 +495,7 @@ The [Input](#Input) this channel belongs to
 
 <a name="InputChannel+number"></a>
 
-## COUCOU!!inputChannel.number : <code>number</code>
+## inputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
 **Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
@@ -505,7 +505,7 @@ This channel's MIDI number (1-16)
 
 <a name="InputChannel+octaveOffset"></a>
 
-## COUCOU!!inputChannel.octaveOffset : <code>number</code>
+## inputChannel.octaveOffset : <code>number</code>
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
 octave (C4).
@@ -523,7 +523,7 @@ and with the value defined on the parent `Input` object.
 
 <a name="InputChannel+parameterNumberEventsEnabled"></a>
 
-## COUCOU!!inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
+## inputChannel.parameterNumberEventsEnabled : <code>boolean</code>
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
 are composed of a sequence of specific **control change** messages. When a valid sequence of
 such control change messages is received, an `nrpn` event will fire.
@@ -538,7 +538,7 @@ all buffered control change messages will be discarded as incomplete.
 
 <a name="InputChannel+event_allnotesoff"></a>
 
-## COUCOU!!"allnotesoff"
+## "allnotesoff"
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -556,7 +556,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 <a name="InputChannel+event_allsoundoff"></a>
 
-## COUCOU!!"allsoundoff"
+## "allsoundoff"
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -574,7 +574,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 <a name="InputChannel+event_channelaftertouch"></a>
 
-## COUCOU!!"channelaftertouch"
+## "channelaftertouch"
 Event emitted when a control change MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -594,7 +594,7 @@ Event emitted when a control change MIDI message has been received.
 
 <a name="InputChannel+event_controlchange"></a>
 
-## COUCOU!!"controlchange"
+## "controlchange"
 Event emitted when a **control change** MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -617,7 +617,7 @@ Event emitted when a **control change** MIDI message has been received.
 
 <a name="InputChannel+event_keyaftertouch"></a>
 
-## COUCOU!!"keyaftertouch"
+## "keyaftertouch"
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -640,7 +640,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 <a name="InputChannel+event_localcontrol"></a>
 
-## COUCOU!!"localcontrol"
+## "localcontrol"
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (local control on) of `false` (local control
 off).
@@ -661,7 +661,7 @@ off).
 
 <a name="InputChannel+event_midimessage"></a>
 
-## COUCOU!!"midimessage"
+## "midimessage"
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -683,7 +683,7 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 <a name="InputChannel+event_monomode"></a>
 
-## COUCOU!!"monomode"
+## "monomode"
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
 poly mode on).
@@ -704,7 +704,7 @@ poly mode on).
 
 <a name="InputChannel+event_noteoff"></a>
 
-## COUCOU!!"noteoff"
+## "noteoff"
 Event emitted when a **note off** MIDI message has been received on the channel.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -725,7 +725,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 <a name="InputChannel+event_noteon"></a>
 
-## COUCOU!!"noteon"
+## "noteon"
 Event emitted when a **note on** MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -749,7 +749,7 @@ Event emitted when a **note on** MIDI message has been received.
 
 <a name="InputChannel+event_nrpndatabuttondecrement"></a>
 
-## COUCOU!!"nrpndatabuttondecrement"
+## "nrpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -771,7 +771,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 <a name="InputChannel+event_nrpndatabuttonincrement"></a>
 
-## COUCOU!!"nrpndatabuttonincrement"
+## "nrpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -793,7 +793,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 <a name="InputChannel+event_nrpndataentrycoarse"></a>
 
-## COUCOU!!"nrpndataentrycoarse"
+## "nrpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -815,7 +815,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 <a name="InputChannel+event_nrpndataentryfine"></a>
 
-## COUCOU!!"nrpndataentryfine"
+## "nrpndataentryfine"
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -837,7 +837,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 <a name="InputChannel+event_omnimode"></a>
 
-## COUCOU!!"omnimode"
+## "omnimode"
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
@@ -857,7 +857,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 <a name="InputChannel+event_pitchbend"></a>
 
-## COUCOU!!"pitchbend"
+## "pitchbend"
 Event emitted when a pitch bend MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -877,7 +877,7 @@ Event emitted when a pitch bend MIDI message has been received.
 
 <a name="InputChannel+event_programchange"></a>
 
-## COUCOU!!"programchange"
+## "programchange"
 Event emitted when a **program change** MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -897,7 +897,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 <a name="InputChannel+event_resetallcontrollers"></a>
 
-## COUCOU!!"resetallcontrollers"
+## "resetallcontrollers"
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -915,7 +915,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 <a name="InputChannel+event_rpndatabuttondecrement"></a>
 
-## COUCOU!!"rpndatabuttondecrement"
+## "rpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -937,7 +937,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 <a name="InputChannel+event_rpndatabuttonincrement"></a>
 
-## COUCOU!!"rpndatabuttonincrement"
+## "rpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -959,7 +959,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 <a name="InputChannel+event_rpndataentrycoarse"></a>
 
-## COUCOU!!"rpndataentrycoarse"
+## "rpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
@@ -981,7 +981,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 <a name="InputChannel+event_rpndataentryfine"></a>
 
-## COUCOU!!"rpndataentryfine"
+## "rpndataentryfine"
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 **Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  

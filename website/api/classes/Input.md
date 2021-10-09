@@ -1,6 +1,6 @@
 <a name="Input"></a>
 
-# COUCOU!!Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Input` class represents a single MIDI input port. This object is derived from the host's
 MIDI subsystem and cannot be instantiated directly.
 
@@ -9,7 +9,7 @@ array.
 
 **Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
-**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:unknownmidimessage</code>  
+**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), [<code>sysex</code>](#Input+event_sysex), <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, <code>Input#event:songselect</code>, <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, <code>Input#event:unknownmidimessage</code>  
 **License**: Apache-2.0  
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
@@ -43,13 +43,14 @@ array.
     * ["disconnected"](#Input+event_disconnected)
     * ["midimessage"](#Input+event_midimessage)
     * ["opened"](#Input+event_opened)
+    * ["sysex"](#Input+event_sysex)
 
 
 * * *
 
 <a name="new_Input_new"></a>
 
-## COUCOU!!new Input(midiInput)
+## new Input(midiInput)
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -60,7 +61,7 @@ array.
 
 <a name="Input+addListener"></a>
 
-## COUCOU!!input.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds an event listener that will trigger a function callback when the specified event happens.
 The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
 [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while input-wide events
@@ -96,7 +97,7 @@ There are 6 families of events you can listen to:
 
    * [songposition](Input#event:songposition)
    * [songselect](Input#event:songselect)
-   * [sysex](Input#event:sysex)
+   * [sysex](#Input+event_sysex)
    * [timecode](Input#event:timecode)
    * [tunerequest](Input#event:tunerequest)
 
@@ -179,7 +180,7 @@ There are 6 families of events you can listen to:
 
 <a name="Input+addOneTimeListener"></a>
 
-## COUCOU!!input.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
 dispatched by [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while
@@ -216,7 +217,7 @@ There are 6 families of events you can listen to:
 
    * [songposition](Input#event:songposition)
    * [songselect](Input#event:songselect)
-   * [sysex](Input#event:sysex)
+   * [sysex](#Input+event_sysex)
    * [timecode](Input#event:timecode)
    * [tunerequest](Input#event:tunerequest)
 
@@ -284,7 +285,7 @@ There are 6 families of events you can listen to:
 
 <a name="Input+close"></a>
 
-## COUCOU!!input.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
@@ -295,7 +296,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 <a name="Input+destroy"></a>
 
-## COUCOU!!input.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
+## input.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
@@ -305,7 +306,7 @@ MIDI subsystem.
 
 <a name="EventEmitter+emit"></a>
 
-## COUCOU!!input.emit(event, ...args) ⇒ <code>Array</code>
+## input.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -346,7 +347,7 @@ functions
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## COUCOU!!input.getListenerCount(event) ⇒ <code>number</code>
+## input.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -366,7 +367,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## COUCOU!!input.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -386,7 +387,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="Input+hasListener"></a>
 
-## COUCOU!!input.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
+## input.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
 Checks if the specified event type is already defined to trigger the listener function. For
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
@@ -412,7 +413,7 @@ listener defined.
 
 <a name="Input+open"></a>
 
-## COUCOU!!input.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
@@ -423,7 +424,7 @@ WebMidi is enabled.
 
 <a name="Input+removeListener"></a>
 
-## COUCOU!!input.removeListener([type], [listener], [options])
+## input.removeListener([type], [listener], [options])
 Removes the specified listener for the specified event. If no listener is specified, all
 listeners for the specified event will be removed. If no event is specified, all listeners for
 the `Input` as well as all listeners for all `InputChannels` will be removed.
@@ -448,7 +449,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## COUCOU!!input.suspendEvent(event)
+## input.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -470,7 +471,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## COUCOU!!input.unsuspendEvent(event)
+## input.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -490,7 +491,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## COUCOU!!input.waitFor(event, [options])
+## input.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -546,7 +547,7 @@ try {
 
 <a name="Input+channels"></a>
 
-## COUCOU!!input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+## input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
 Array containing the 16 [InputChannel](#InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
@@ -556,7 +557,7 @@ channels are numbered 1 through 16.
 
 <a name="Input+connection"></a>
 
-## COUCOU!!input.connection : <code>string</code>
+## input.connection : <code>string</code>
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Kind**: instance property of [<code>Input</code>](#Input)  
@@ -566,7 +567,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <a name="EventEmitter+eventCount"></a>
 
-## COUCOU!!input.eventCount : <code>number</code>
+## input.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -580,7 +581,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## COUCOU!!input.eventMap : <code>Object</code>
+## input.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -592,7 +593,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## COUCOU!!input.eventNames : <code>Array.&lt;string&gt;</code>
+## input.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -607,7 +608,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## COUCOU!!input.eventsSuspended : <code>boolean</code>
+## input.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -618,7 +619,7 @@ emitter
 
 <a name="Input+id"></a>
 
-## COUCOU!!input.id : <code>string</code>
+## input.id : <code>string</code>
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
@@ -630,7 +631,7 @@ the same port.
 
 <a name="Input+manufacturer"></a>
 
-## COUCOU!!input.manufacturer : <code>string</code>
+## input.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this input port available.
 
 **Kind**: instance property of [<code>Input</code>](#Input)  
@@ -640,7 +641,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 <a name="Input+name"></a>
 
-## COUCOU!!input.name : <code>string</code>
+## input.name : <code>string</code>
 Name of the MIDI input
 
 **Kind**: instance property of [<code>Input</code>](#Input)  
@@ -650,7 +651,7 @@ Name of the MIDI input
 
 <a name="Input+octaveOffset"></a>
 
-## COUCOU!!input.octaveOffset : <code>number</code>
+## input.octaveOffset : <code>number</code>
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
 
@@ -667,7 +668,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <a name="Input+state"></a>
 
-## COUCOU!!input.state : <code>string</code>
+## input.state : <code>string</code>
 State of the input port: `"connected"` or `"disconnected"`.
 
 **Kind**: instance property of [<code>Input</code>](#Input)  
@@ -677,7 +678,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 <a name="Input+type"></a>
 
-## COUCOU!!input.type : <code>string</code>
+## input.type : <code>string</code>
 Port type. In the case of `Input`, this is always: `"input"`.
 
 **Kind**: instance property of [<code>Input</code>](#Input)  
@@ -687,7 +688,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 <a name="Input+event_closed"></a>
 
-## COUCOU!!"closed"
+## "closed"
 Event emitted when the [Input](#Input) has been closed by calling the [close](#Input+close)
 method.
 
@@ -705,7 +706,7 @@ method.
 
 <a name="Input+event_disconnected"></a>
 
-## COUCOU!!"disconnected"
+## "disconnected"
 Event emitted when the [Input](#Input) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
@@ -729,7 +730,7 @@ when the MIDI device is unplugged.
 
 <a name="Input+event_midimessage"></a>
 
-## COUCOU!!"midimessage"
+## "midimessage"
 Event emitted when any MIDI message is received on an `Input`
 
 **Kind**: event emitted by [<code>Input</code>](#Input)  
@@ -752,7 +753,7 @@ Event emitted when any MIDI message is received on an `Input`
 
 <a name="Input+event_opened"></a>
 
-## COUCOU!!"opened"
+## "opened"
 Event emitted when the [Input](#Input) has been opened by calling the [open](#Input+open)
 method.
 
@@ -764,6 +765,34 @@ method.
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"opened"` |
 | target | [<code>Input</code>](#Input) | The object that triggered the event |
+
+
+* * *
+
+<a name="Input+event_sysex"></a>
+
+## "sysex"
+Input-wide (system) event emitted when a **system exclusive** message has been received.
+You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
+method with the `sysex` option set to `true`:
+
+```js
+WebMidi.enable({sysex: true})
+ .then(() => console.log("WebMidi has been enabled with sysex support."))
+ .catch(err => console.log("WebMidi could not be enabled."))
+```
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"sysex"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
 
 
 * * *

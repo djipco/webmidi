@@ -1,6 +1,6 @@
 <a name="Note"></a>
 
-# COUCOU!!Note
+# Note
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
 `Note` objects can be played back on a single channel by calling
@@ -40,7 +40,7 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
 <a name="new_Note_new"></a>
 
-## COUCOU!!new Note(value, [options])
+## new Note(value, [options])
 **Throws**:
 
 - <code>Error</code> Invalid note identifier
@@ -67,7 +67,7 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 
 <a name="Note+getOffsetNumber"></a>
 
-## COUCOU!!note.getOffsetNumber(offset) ⇒ <code>number</code>
+## note.getOffsetNumber(offset) ⇒ <code>number</code>
 Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
 value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
 returned. If an invalid value is supplied, 0 will be used.
@@ -84,7 +84,7 @@ returned. If an invalid value is supplied, 0 will be used.
 
 <a name="Note+accidental"></a>
 
-## COUCOU!!note.accidental : <code>string</code>
+## note.accidental : <code>string</code>
 The accidental (#, ##, b or bb) of the note
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -94,7 +94,7 @@ The accidental (#, ##, b or bb) of the note
 
 <a name="Note+attack"></a>
 
-## COUCOU!!note.attack : <code>number</code>
+## note.attack : <code>number</code>
 The attack velocity of the note as an integer between 0 and 127.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -104,7 +104,7 @@ The attack velocity of the note as an integer between 0 and 127.
 
 <a name="Note+duration"></a>
 
-## COUCOU!!note.duration : <code>number</code>
+## note.duration : <code>number</code>
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
@@ -115,7 +115,7 @@ that the note should play for.
 
 <a name="Note+identifier"></a>
 
-## COUCOU!!note.identifier : <code>string</code>
+## note.identifier : <code>string</code>
 The name, optional accidental and octave of the note, as a string.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -125,7 +125,7 @@ The name, optional accidental and octave of the note, as a string.
 
 <a name="Note+name"></a>
 
-## COUCOU!!note.name : <code>string</code>
+## note.name : <code>string</code>
 The name (letter) of the note
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -135,7 +135,7 @@ The name (letter) of the note
 
 <a name="Note+number"></a>
 
-## COUCOU!!note.number : <code>number</code>
+## note.number : <code>number</code>
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
@@ -146,7 +146,7 @@ reference for middle C.
 
 <a name="Note+octave"></a>
 
-## COUCOU!!note.octave : <code>number</code>
+## note.octave : <code>number</code>
 The octave of the note
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -156,7 +156,7 @@ The octave of the note
 
 <a name="Note+rawAttack"></a>
 
-## COUCOU!!note.rawAttack : <code>number</code>
+## note.rawAttack : <code>number</code>
 The attack velocity of the note as a positive integer between 0 and 127.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -166,7 +166,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 
 <a name="Note+rawRelease"></a>
 
-## COUCOU!!note.rawRelease : <code>number</code>
+## note.rawRelease : <code>number</code>
 The release velocity of the note as a positive integer between 0 and 127.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
@@ -176,7 +176,7 @@ The release velocity of the note as a positive integer between 0 and 127.
 
 <a name="Note+release"></a>
 
-## COUCOU!!note.release : <code>number</code>
+## note.release : <code>number</code>
 The release velocity of the note as an integer between 0 and 127.
 
 **Kind**: instance property of [<code>Note</code>](#Note)  
