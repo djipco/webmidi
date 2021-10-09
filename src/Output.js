@@ -10,10 +10,6 @@ import {Utilities} from "./Utilities.js";
  * You can find a list of all available `Output` objects in the
  * [WebMidi.outputs]{@link WebMidi#outputs} array.
  *
- * The `Output` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
- *
  * @param {MIDIOutput} midiOutput `MIDIOutput` object as provided by the MIDI subsystem
  *
  * @fires Output#opened

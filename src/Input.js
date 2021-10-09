@@ -10,16 +10,13 @@ import {Utilities} from "./Utilities.js";
  * You can find a list of all currently available `Input` objects in the {@link WebMidi#inputs}
  * array.
  *
- * The `Input` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
- *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
  * @fires Input#disconnected
  * @fires Input#closed
  * @fires Input#midimessage
+ *
  * @fires Input#sysex
  * @fires Input#timecode
  * @fires Input#songposition

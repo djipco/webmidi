@@ -11,10 +11,6 @@ import {Enumerations} from "./Enumerations.js";
  * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
  * property.
  *
- * The `InputChannel` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
- *
  * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
  *

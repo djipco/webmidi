@@ -10,10 +10,6 @@ import {Enumerations} from "./Enumerations.js";
  * All 16 `OutputChannel` objects can be found inside the parent output's
  * [channels]{@link Output#channels} property.
  *
- * The `OutputChannel` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
- *
  * @param {Output} output The output this channel belongs to
  * @param {number} number The channel number (1-16)
  *
