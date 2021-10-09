@@ -9,7 +9,7 @@ array.
 
 **Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
-**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), <code>Input#event:sysex</code>, <code>Input#event:timecode</code>, <code>Input#event:songposition</code>, [<code>songselect</code>](#Input+event_songselect), <code>Input#event:tunerequest</code>, <code>Input#event:clock</code>, <code>Input#event:start</code>, <code>Input#event:continue</code>, <code>Input#event:stop</code>, <code>Input#event:activesensing</code>, <code>Input#event:reset</code>, <code>Input#event:unknownmidimessage</code>  
+**Emits**: [<code>opened</code>](#Input+event_opened), [<code>disconnected</code>](#Input+event_disconnected), [<code>closed</code>](#Input+event_closed), [<code>midimessage</code>](#Input+event_midimessage), [<code>sysex</code>](#Input+event_sysex), [<code>timecode</code>](#Input+event_timecode), [<code>songposition</code>](#Input+event_songposition), [<code>songselect</code>](#Input+event_songselect), [<code>tunerequest</code>](#Input+event_tunerequest), [<code>clock</code>](#Input+event_clock), [<code>start</code>](#Input+event_start), [<code>continue</code>](#Input+event_continue), [<code>stop</code>](#Input+event_stop), [<code>activesensing</code>](#Input+event_activesensing), [<code>reset</code>](#Input+event_reset), [<code>unknownmidimessage</code>](#Input+event_unknownmidimessage)  
 **License**: Apache-2.0  
 
 * [Input](#Input) ⇐ [<code>EventEmitter</code>](#EventEmitter)
@@ -39,11 +39,22 @@ array.
     * [.octaveOffset](#Input+octaveOffset) : <code>number</code>
     * [.state](#Input+state) : <code>string</code>
     * [.type](#Input+type) : <code>string</code>
+    * ["activesensing"](#Input+event_activesensing)
+    * ["clock"](#Input+event_clock)
     * ["closed"](#Input+event_closed)
+    * ["continue"](#Input+event_continue)
     * ["disconnected"](#Input+event_disconnected)
     * ["midimessage"](#Input+event_midimessage)
     * ["opened"](#Input+event_opened)
+    * ["reset"](#Input+event_reset)
+    * ["songposition"](#Input+event_songposition)
     * ["songselect"](#Input+event_songselect)
+    * ["start"](#Input+event_start)
+    * ["stop"](#Input+event_stop)
+    * ["sysex"](#Input+event_sysex)
+    * ["timecode"](#Input+event_timecode)
+    * ["tunerequest"](#Input+event_tunerequest)
+    * ["unknownmidimessage"](#Input+event_unknownmidimessage)
 
 
 * * *
@@ -95,20 +106,20 @@ There are 6 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [songposition](Input#event:songposition)
+   * [songposition](#Input+event_songposition)
    * [songselect](#Input+event_songselect)
-   * [sysex](Input#event:sysex)
-   * [timecode](Input#event:timecode)
-   * [tunerequest](Input#event:tunerequest)
+   * [sysex](#Input+event_sysex)
+   * [timecode](#Input+event_timecode)
+   * [tunerequest](#Input+event_tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [clock](Input#event:clock)
-   * [start](Input#event:start)
-   * [continue](Input#event:continue)
-   * [stop](Input#event:stop)
-   * [activesensing](Input#event:activesensing)
-   * [reset](Input#event:reset)
+   * [clock](#Input+event_clock)
+   * [start](#Input+event_start)
+   * [continue](#Input+event_continue)
+   * [stop](#Input+event_stop)
+   * [activesensing](#Input+event_activesensing)
+   * [reset](#Input+event_reset)
 
 3. **State Change** Events (input-wide)
 
@@ -119,7 +130,7 @@ There are 6 families of events you can listen to:
 4. **Catch-All** Events (input-wide)
 
    * [midimessage](#Input+event_midimessage)
-   * [unknownmidimessage](Input#event:unknownmidimessage)
+   * [unknownmidimessage](#Input+event_unknownmidimessage)
 
 5. **Channel Voice** Events (channel-specific)
 
@@ -215,20 +226,20 @@ There are 6 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [songposition](Input#event:songposition)
+   * [songposition](#Input+event_songposition)
    * [songselect](#Input+event_songselect)
-   * [sysex](Input#event:sysex)
-   * [timecode](Input#event:timecode)
-   * [tunerequest](Input#event:tunerequest)
+   * [sysex](#Input+event_sysex)
+   * [timecode](#Input+event_timecode)
+   * [tunerequest](#Input+event_tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [clock](Input#event:clock)
-   * [start](Input#event:start)
-   * [continue](Input#event:continue)
-   * [stop](Input#event:stop)
-   * [activesensing](Input#event:activesensing)
-   * [reset](Input#event:reset)
+   * [clock](#Input+event_clock)
+   * [start](#Input+event_start)
+   * [continue](#Input+event_continue)
+   * [stop](#Input+event_stop)
+   * [activesensing](#Input+event_activesensing)
+   * [reset](#Input+event_reset)
 
 3. **State Change** Events (input-wide)
 
@@ -239,7 +250,7 @@ There are 6 families of events you can listen to:
 4. **Catch-All** Events (input-wide)
 
    * [midimessage](#Input+event_midimessage)
-   * [unknownmidimessage](Input#event:unknownmidimessage)
+   * [unknownmidimessage](#Input+event_unknownmidimessage)
 
 5. **Channel Voice** Events (channel-specific)
 
@@ -686,6 +697,48 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 * * *
 
+<a name="Input+event_activesensing"></a>
+
+## "activesensing"
+Input-wide (system) event emitted when an **active sensing** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"activesensing"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_clock"></a>
+
+## "clock"
+Input-wide (system) event emitted when a **timing clock** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"clock"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
 <a name="Input+event_closed"></a>
 
 ## "closed"
@@ -700,6 +753,27 @@ method.
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"closed"` |
 | target | [<code>Input</code>](#Input) | The object that triggered the event |
+
+
+* * *
+
+<a name="Input+event_continue"></a>
+
+## "continue"
+Input-wide (system) event emitted when a **continue** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"continue"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
 
 
 * * *
@@ -769,6 +843,48 @@ method.
 
 * * *
 
+<a name="Input+event_reset"></a>
+
+## "reset"
+Input-wide (system) event emitted when a **reset** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"reset"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_songposition"></a>
+
+## "songposition"
+Input-wide (system) event emitted when a **song position** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"songposition"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
 <a name="Input+event_songselect"></a>
 
 ## "songselect"
@@ -785,6 +901,141 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 | timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
 | type | <code>string</code> | `"songselect"` |
 | song | <code>string</code> | Song (or sequence) number to select (1-128) |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_start"></a>
+
+## "start"
+Input-wide (system) event emitted when a **start** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"start"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_stop"></a>
+
+## "stop"
+Input-wide (system) event emitted when a **stop** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"stop"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_sysex"></a>
+
+## "sysex"
+Input-wide (system) event emitted when a **system exclusive** message has been received.
+You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
+method with the `sysex` option set to `true`:
+
+```js
+WebMidi.enable({sysex: true})
+ .then(() => console.log("WebMidi has been enabled with sysex support."))
+ .catch(err => console.log("WebMidi could not be enabled."))
+```
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"sysex"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values. |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array. |
+
+
+* * *
+
+<a name="Input+event_timecode"></a>
+
+## "timecode"
+Input-wide (system) event emitted when a **time code quarter frame** message has been
+received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"timecode"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_tunerequest"></a>
+
+## "tunerequest"
+Input-wide (system) event emitted when a **tune request** message has been received.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"tunerequest"` |
+| event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
+| event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
+
+
+* * *
+
+<a name="Input+event_unknownmidimessage"></a>
+
+## "unknownmidimessage"
+Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+be, for example, one of the undefined/reserved messages.
+
+**Kind**: event emitted by [<code>Input</code>](#Input)  
+**Since**: 2.1  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| target | [<code>Input</code>](#Input) | The `Input` that triggered the event. |
+| message | [<code>Message</code>](#Message) | A `Message` object containing information about the incoming MIDI message. |
+| timestamp | <code>number</code> | The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document). |
+| type | <code>string</code> | `"unknownmidimessage"` |
 | event.data | <code>Array</code> | The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead). |
 | event.rawData | <code>Uint8Array</code> | The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead). |
 
