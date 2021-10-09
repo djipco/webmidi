@@ -5,23 +5,15 @@ The `Enumerations` class contains enumerations of elements used throughout the l
 enumerations are static and should be referenced using the class name. For example:
 `Enumerations.MIDI_CHANNEL_MESSAGES`.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [Enumerations](#Enumerations)
-
     * [.MIDI_CHANNEL_MESSAGES](#Enumerations.MIDI_CHANNEL_MESSAGES) : <code>enum</code>
-
     * [.MIDI_CHANNEL_MODE_MESSAGES](#Enumerations.MIDI_CHANNEL_MODE_MESSAGES) : <code>enum</code>
-
     * [.MIDI_CONTROL_CHANGE_MESSAGES](#Enumerations.MIDI_CONTROL_CHANGE_MESSAGES) : <code>enum</code>
-
     * [.MIDI_REGISTERED_PARAMETERS](#Enumerations.MIDI_REGISTERED_PARAMETERS) : <code>enum</code>
-
     * [.MIDI_SYSTEM_MESSAGES](#Enumerations.MIDI_SYSTEM_MESSAGES) : <code>enum</code>
 
 
@@ -41,10 +33,8 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 - `channelaftertouch`: 0xD (13)
 - `pitchbend`: 0xE (14)
 
-<!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
--->
+**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -62,10 +52,8 @@ Enumeration of all channel mode messages and their associated numerical value:
 - `monomodeon`: 126
 - `polymodeon`: 127
 
-<!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
--->
+**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -144,10 +132,8 @@ some control change numbers do not have a predefined purpose and are absent from
 - `monomodeon`: 126
 - `polymodeon`: 127
 
-<!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
--->
+**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -174,10 +160,8 @@ only a limited number of them:
 - `panspreadangle`: [0x3D, 0x07]
 - `rollangle`: [0x3D, 0x08]
 
-<!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
--->
+**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -216,10 +200,8 @@ simply states that they are undefined/reserved.
 - `midimessage`: 0
 - `unknownsystemmessage`: -1
 
-<!--**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
--->
+**Kind**: static enum of [<code>Enumerations</code>](#Enumerations)  
 **Read only**: true  
-<!---->
 
 * * *
 

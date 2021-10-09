@@ -7,102 +7,55 @@ object is derived from the host's MIDI subsystem and cannot be instantiated dire
 All 16 `OutputChannel` objects can be found inside the parent output's
 [channels](#Output+channels) property.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [OutputChannel](#OutputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
-
     * [new OutputChannel(output, number)](#new_OutputChannel_new)
-
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
-
     * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
-
     * [.decrementRegisteredParameter(parameter, [options])](#OutputChannel+decrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
-
     * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
-
     * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-
     * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
-
     * [.incrementRegisteredParameter(parameter, [options])](#OutputChannel+incrementRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.playNote(note, [options])](#OutputChannel+playNote) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
-
     * [.resetAllControllers([options])](#OutputChannel+resetAllControllers) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.send(message, [options])](#OutputChannel+send) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.sendChannelMode(command, value, [options])](#OutputChannel+sendChannelMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.sendControlChange(controller, value, [options])](#OutputChannel+sendControlChange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.sendNoteOff(note, [options])](#OutputChannel+sendNoteOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.sendNoteOn(note, [options])](#OutputChannel+sendNoteOn) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setChannelAftertouch([pressure], [options])](#OutputChannel+setChannelAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setKeyAftertouch(target, [pressure], [options])](#OutputChannel+setKeyAftertouch) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setLocalControl([state], [options])](#OutputChannel+setLocalControl) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setMasterTuning([value], [options])](#OutputChannel+setMasterTuning) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setModulationRange(semitones, [cents], [options])](#OutputChannel+setModulationRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setNonRegisteredParameter(parameter, [data], [options])](#OutputChannel+setNonRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setOmniMode([state], [options])](#OutputChannel+setOmniMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setPitchBend([value], [options])](#OutputChannel+setPitchBend) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setPitchBendRange(semitones, [cents], [options])](#OutputChannel+setPitchBendRange) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setPolyphonicMode([mode], [options])](#OutputChannel+setPolyphonicMode) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setProgram([program], [options])](#OutputChannel+setProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setRegisteredParameter(parameter, [data], [options])](#OutputChannel+setRegisteredParameter) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setTuningBank(value, [options])](#OutputChannel+setTuningBank) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.setTuningProgram(value, [options])](#OutputChannel+setTuningProgram) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.stopNote(note, options)](#OutputChannel+stopNote) ⇒ [<code>Output</code>](#Output)
-
     * [.suspendEvent(event)](#EventEmitter+suspendEvent)
-
     * [.turnNotesOff([options])](#OutputChannel+turnNotesOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.turnSoundOff([options])](#OutputChannel+turnSoundOff) ⇒ [<code>OutputChannel</code>](#OutputChannel)
-
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
-
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
-
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
     * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
     * [.number](#OutputChannel+number) : <code>number</code>
-
     * [.octaveOffset](#OutputChannel+octaveOffset) : <code>number</code>
-
     * [.output](#OutputChannel+output) : [<code>Output</code>](#Output)
 
 
@@ -111,8 +64,6 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 <a name="new_OutputChannel_new"></a>
 
 ## new OutputChannel(output, number)
-<!---->
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -132,8 +83,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>addListener</code>](#EventEmitter+addListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -141,7 +91,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -168,8 +117,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>addOneTimeListener</code>](#EventEmitter+addOneTimeListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -177,7 +125,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -214,14 +161,12 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - TypeError The specified registered parameter is invalid.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -256,8 +201,7 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>emit</code>](#EventEmitter+emit)  
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -265,7 +209,6 @@ functions
 
 - <code>TypeError</code> The `event` parameter must be a string.
 
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -284,11 +227,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) do no
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -306,11 +247,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -329,10 +268,8 @@ includes global listeners registered to `EventEmitter.ANY_EVENT`).
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -364,14 +301,12 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - TypeError The specified registered parameter is invalid.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -408,10 +343,8 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -438,10 +371,8 @@ first parameter.
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -460,10 +391,8 @@ callback to match or one or more of the additional options.
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -488,15 +417,13 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The first byte (status) must be an integer between 128 and 255.
 - <code>RangeError</code> Data bytes must be integers between 0 and 255.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -535,10 +462,8 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()](#Output+setOmniMode)
   - [setPolyphonicMode()](#Output+setPolyphonicMode)
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -643,8 +568,7 @@ modulationwheelfine to achieve a greater level of precision. if you want to spec
 and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
 parameter.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -653,8 +577,7 @@ parameter.
 - <code>TypeError</code> The value array must have a length of 2.
 
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
+**License**: Apache-2.0  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -682,10 +605,8 @@ note. It can be a single value or an array of the following valid values:
 When using [Note](#Note) objects, the release velocity defined in the [Note](#Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -724,10 +645,8 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -746,14 +665,12 @@ functionally equivalent to a **note off** message.
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - RangeError Invalid channel aftertouch value.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -777,14 +694,12 @@ The key can be a single value or an array of the following valid values:
  - A MIDI note number (integer between `0` and `127`)
  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - RangeError Invalid key aftertouch value.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -804,10 +719,8 @@ Turns local control on or off. Local control is usually enabled by default. If y
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -829,15 +742,13 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The value must be a decimal number between larger than -65 and smaller
 than 64.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -855,10 +766,8 @@ Sends a **modulation depth range** message to adjust the depth of the modulation
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -897,15 +806,13 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 
 For further implementation details, refer to the manufacturer's documentation.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The control value must be between 0 and 127.
 - <code>RangeError</code> The msb value must be between 0 and 127
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -925,8 +832,7 @@ messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
@@ -934,7 +840,6 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 - <code>RangeError</code> Channel mode controller numbers must be between 120 and 127.
 - <code>RangeError</code> Value must be an integer between 0 and 127.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -950,10 +855,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 ## outputChannel.setPitchBend([value], [options]) ⇒ [<code>OutputChannel</code>](#OutputChannel)
 Sends a MIDI **pitch bend** message at the scheduled time.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -973,15 +876,13 @@ adjust the range used by their pitch bend lever. The range is specified by using
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The msb value must be between 0 and 127.
 - <code>RangeError</code> The lsb value must be between 0 and 127.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1000,10 +901,8 @@ Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1023,15 +922,13 @@ Sends a MIDI **program change** message at the scheduled time.
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>TypeError</code> Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1077,10 +974,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1102,14 +997,12 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The bank value must be between 1 and 128.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1130,14 +1023,12 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
 **Throws**:
 
 - <code>RangeError</code> The program value must be between 1 and 128.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1153,10 +1044,8 @@ that use a numbering scheme starting at 1.
 ## outputChannel.stopNote(note, options) ⇒ [<code>Output</code>](#Output)
 This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **See**: [sendNoteOff](#OutputChannel+sendNoteOff)  
-<!---->
 
 | Param |
 | --- |
@@ -1178,10 +1067,8 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1197,10 +1084,8 @@ Sends an **all notes off** channel mode message. This will make all currently pl
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1216,10 +1101,8 @@ fade out just as if their key had been released. This is different from the
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Returns**: [<code>OutputChannel</code>](#OutputChannel) - Returns the `OutputChannel` object so methods can be chained.  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1239,10 +1122,8 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1295,10 +1176,8 @@ try {
 }
 ```
 
-<!--**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance method of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1317,11 +1196,9 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -1331,11 +1208,9 @@ tied to a specific event.
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -1348,11 +1223,9 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -1362,10 +1235,8 @@ tied to a specific event.
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
 
 * * *
 
@@ -1374,10 +1245,8 @@ emitter
 ## outputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 
@@ -1391,10 +1260,8 @@ octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Output` object.
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 
@@ -1403,10 +1270,8 @@ and with the value defined on the parent `Output` object.
 ## outputChannel.output : [<code>Output</code>](#Output)
 The parent [Output](#Output) this channel belongs to
 
-<!--**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
--->
+**Kind**: instance property of [<code>OutputChannel</code>](#OutputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 

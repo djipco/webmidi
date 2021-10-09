@@ -7,111 +7,60 @@ object is derived from the host's MIDI subsystem and cannot be instantiated dire
 All 16 `InputChannel` objects can be found inside the input's [channels](#Input+channels)
 property.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
 **Emits**: [<code>midimessage</code>](#InputChannel+event_midimessage), [<code>noteoff</code>](#InputChannel+event_noteoff), [<code>noteon</code>](#InputChannel+event_noteon), [<code>keyaftertouch</code>](#InputChannel+event_keyaftertouch), [<code>controlchange</code>](#InputChannel+event_controlchange), [<code>programchange</code>](#InputChannel+event_programchange), [<code>channelaftertouch</code>](#InputChannel+event_channelaftertouch), [<code>pitchbend</code>](#InputChannel+event_pitchbend), [<code>allnotesoff</code>](#InputChannel+event_allnotesoff), [<code>allsoundoff</code>](#InputChannel+event_allsoundoff), [<code>localcontrol</code>](#InputChannel+event_localcontrol), [<code>monomode</code>](#InputChannel+event_monomode), [<code>omnimode</code>](#InputChannel+event_omnimode), [<code>resetallcontrollers</code>](#InputChannel+event_resetallcontrollers), [<code>nrpndataentrycoarse</code>](#InputChannel+event_nrpndataentrycoarse), [<code>nrpndataentryfine</code>](#InputChannel+event_nrpndataentryfine), [<code>nrpndatabuttonincrement</code>](#InputChannel+event_nrpndatabuttonincrement), [<code>nrpndatabuttondecrement</code>](#InputChannel+event_nrpndatabuttondecrement), [<code>rpndataentrycoarse</code>](#InputChannel+event_rpndataentrycoarse), [<code>rpndataentryfine</code>](#InputChannel+event_rpndataentryfine), [<code>rpndatabuttonincrement</code>](#InputChannel+event_rpndatabuttonincrement), [<code>rpndatabuttondecrement</code>](#InputChannel+event_rpndatabuttondecrement)  
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [InputChannel](#InputChannel) ⇐ [<code>EventEmitter</code>](#EventEmitter)
-
     * [new InputChannel(input, number)](#new_InputChannel_new)
-
     * _instance_
-
         * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
-
         * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
-
         * [.destroy()](#InputChannel+destroy)
-
         * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
-
         * [.getCcNameByNumber(number)](#InputChannel+getCcNameByNumber) ⇒ <code>string</code> \| <code>undefined</code>
-
         * [.getChannelModeByNumber(number)](#InputChannel+getChannelModeByNumber) ⇒ <code>string</code> \| <code>false</code>
-
         * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
-
         * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-
         * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
-
         * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
-
         * [.suspendEvent(event)](#EventEmitter+suspendEvent)
-
         * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
-
         * [.waitFor(event, [options])](#EventEmitter+waitFor)
-
     * _static_
-
         * [.EVENTS](#InputChannel.EVENTS) : <code>Array.&lt;string&gt;</code>
-
     * _instance_
-
         * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
         * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
         * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
         * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
         * [.input](#InputChannel+input) : [<code>Input</code>](#Input)
-
         * [.number](#InputChannel+number) : <code>number</code>
-
         * [.octaveOffset](#InputChannel+octaveOffset) : <code>number</code>
-
         * [.parameterNumberEventsEnabled](#InputChannel+parameterNumberEventsEnabled) : <code>boolean</code>
-
         * ["allnotesoff"](#InputChannel+event_allnotesoff)
-
         * ["allsoundoff"](#InputChannel+event_allsoundoff)
-
         * ["channelaftertouch"](#InputChannel+event_channelaftertouch)
-
         * ["controlchange"](#InputChannel+event_controlchange)
-
         * ["keyaftertouch"](#InputChannel+event_keyaftertouch)
-
         * ["localcontrol"](#InputChannel+event_localcontrol)
-
         * ["midimessage"](#InputChannel+event_midimessage)
-
         * ["monomode"](#InputChannel+event_monomode)
-
         * ["noteoff"](#InputChannel+event_noteoff)
-
         * ["noteon"](#InputChannel+event_noteon)
-
         * ["nrpndatabuttondecrement"](#InputChannel+event_nrpndatabuttondecrement)
-
         * ["nrpndatabuttonincrement"](#InputChannel+event_nrpndatabuttonincrement)
-
         * ["nrpndataentrycoarse"](#InputChannel+event_nrpndataentrycoarse)
-
         * ["nrpndataentryfine"](#InputChannel+event_nrpndataentryfine)
-
         * ["omnimode"](#InputChannel+event_omnimode)
-
         * ["pitchbend"](#InputChannel+event_pitchbend)
-
         * ["programchange"](#InputChannel+event_programchange)
-
         * ["resetallcontrollers"](#InputChannel+event_resetallcontrollers)
-
         * ["rpndatabuttondecrement"](#InputChannel+event_rpndatabuttondecrement)
-
         * ["rpndatabuttonincrement"](#InputChannel+event_rpndatabuttonincrement)
-
         * ["rpndataentrycoarse"](#InputChannel+event_rpndataentrycoarse)
-
         * ["rpndataentryfine"](#InputChannel+event_rpndataentryfine)
 
 
@@ -120,8 +69,6 @@ property.
 <a name="new_InputChannel_new"></a>
 
 ## new InputChannel(input, number)
-<!---->
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -141,8 +88,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>addListener</code>](#EventEmitter+addListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -150,7 +96,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -177,8 +122,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>addOneTimeListener</code>](#EventEmitter+addOneTimeListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -186,7 +130,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -207,9 +150,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 
 * * *
 
@@ -237,8 +178,7 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>emit</code>](#EventEmitter+emit)  
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -246,7 +186,6 @@ functions
 
 - <code>TypeError</code> The `event` parameter must be a string.
 
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -264,8 +203,7 @@ change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
 In this case, the method returns `false`.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Returns**: <code>string</code> \| <code>undefined</code> - The matching control change name or `undefined` if not match was
 found.  
 **Throws**:
@@ -273,7 +211,6 @@ found.
 - <code>RangeError</code> Invalid control change number.
 
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -288,12 +225,10 @@ found.
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Returns**: <code>string</code> \| <code>false</code> - The name of the matching channel mode or `false` if not match could be
 found.  
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -311,11 +246,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) do no
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -333,11 +266,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -356,10 +287,8 @@ includes global listeners registered to `EventEmitter.ANY_EVENT`).
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -380,10 +309,8 @@ first parameter.
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -408,10 +335,8 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -430,10 +355,8 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -486,10 +409,8 @@ try {
 }
 ```
 
-<!--**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance method of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -505,10 +426,8 @@ try {
 ## InputChannel.EVENTS : <code>Array.&lt;string&gt;</code>
 Array of channel-specific event names that can be listened to.
 
-<!--**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: static property of [<code>InputChannel</code>](#InputChannel)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -520,11 +439,9 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -534,11 +451,9 @@ tied to a specific event.
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -551,11 +466,9 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -565,10 +478,8 @@ tied to a specific event.
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
 
 * * *
 
@@ -577,10 +488,8 @@ emitter
 ## inputChannel.input : [<code>Input</code>](#Input)
 The [Input](#Input) this channel belongs to
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 
@@ -589,10 +498,8 @@ The [Input](#Input) this channel belongs to
 ## inputChannel.number : <code>number</code>
 This channel's MIDI number (1-16)
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 
@@ -609,10 +516,8 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Input` object.
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 **Since**: 3.0  
-<!---->
 
 * * *
 
@@ -627,9 +532,7 @@ If an invalid or
 out-of-order control change message is received, it will fall through the collector logic and
 all buffered control change messages will be discarded as incomplete.
 
-<!--**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: instance property of [<code>InputChannel</code>](#InputChannel)  
 
 * * *
 
@@ -638,9 +541,7 @@ all buffered control change messages will be discarded as incomplete.
 ## "allnotesoff"
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -658,9 +559,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 ## "allsoundoff"
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -678,9 +577,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 ## "channelaftertouch"
 Event emitted when a control change MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -700,9 +597,7 @@ Event emitted when a control change MIDI message has been received.
 ## "controlchange"
 Event emitted when a **control change** MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -725,9 +620,7 @@ Event emitted when a **control change** MIDI message has been received.
 ## "keyaftertouch"
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -752,9 +645,7 @@ Event emitted when a "local control" channel-mode MIDI message has been received
 property of the event is set to either `true` (local control on) of `false` (local control
 off).
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -773,9 +664,7 @@ off).
 ## "midimessage"
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -799,9 +688,7 @@ Event emitted when a "mono/poly mode" MIDI message has been received. The value 
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
 poly mode on).
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -820,9 +707,7 @@ poly mode on).
 ## "noteoff"
 Event emitted when a **note off** MIDI message has been received on the channel.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -843,9 +728,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 ## "noteon"
 Event emitted when a **note on** MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -869,9 +752,7 @@ Event emitted when a **note on** MIDI message has been received.
 ## "nrpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -893,9 +774,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 ## "nrpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -917,9 +796,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 ## "nrpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -941,9 +818,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 ## "nrpndataentryfine"
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -966,9 +841,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -987,9 +860,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 ## "pitchbend"
 Event emitted when a pitch bend MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1009,9 +880,7 @@ Event emitted when a pitch bend MIDI message has been received.
 ## "programchange"
 Event emitted when a **program change** MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1031,9 +900,7 @@ Event emitted when a **program change** MIDI message has been received.
 ## "resetallcontrollers"
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1051,9 +918,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 ## "rpndatabuttondecrement"
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1075,9 +940,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 ## "rpndatabuttonincrement"
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1099,9 +962,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 ## "rpndataentrycoarse"
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |
@@ -1123,9 +984,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 ## "rpndataentryfine"
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
-<!--**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
--->
-<!---->
+**Kind**: event emitted by [<code>InputChannel</code>](#InputChannel)  
 **Properties**
 
 | Name | Type | Description |

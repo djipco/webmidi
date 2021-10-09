@@ -4,37 +4,22 @@
 The `Utilities` class contains general-purpose utility methods. All methods are static and
 should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [Utilities](#Utilities)
-
     * [.buildNote([input], [options])](#Utilities.buildNote) ⇒ [<code>Note</code>](#Note)
-
     * [.buildNoteArray([notes], [options])](#Utilities.buildNoteArray) ⇒ [<code>Array.&lt;Note&gt;</code>](#Note)
-
     * [.getNoteDetails(value)](#Utilities.getNoteDetails) ⇒ <code>Object</code>
-
     * [.getPropertyByValue(object, value)](#Utilities.getPropertyByValue) ⇒ <code>string</code>
-
     * [.guessNoteNumber(input)](#Utilities.guessNoteNumber) ⇒ <code>number</code> \| <code>false</code>
-
     * [.offsetNumber(offset)](#Utilities.offsetNumber) ⇒ <code>number</code>
-
     * [.sanitizeChannels([channel])](#Utilities.sanitizeChannels) ⇒ <code>Array</code>
-
     * [.to7Bit(value)](#Utilities.to7Bit) ⇒ <code>number</code>
-
     * [.toNormalized(value)](#Utilities.toNormalized) ⇒ <code>number</code>
-
     * [.toNoteIdentifier(The, An)](#Utilities.toNoteIdentifier) ⇒ <code>string</code>
-
     * [.toNoteNumber(identifier, [octaveOffset])](#Utilities.toNoteNumber) ⇒ <code>number</code>
-
     * [.toTimestamp([time])](#Utilities.toTimestamp) ⇒ <code>number</code> \| <code>false</code>
 
 
@@ -50,14 +35,12 @@ object, it will be returned as is.
 If the input is a note number or identifier, it is possible to specify options by providing the
 `options` parameter.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Throws**:
 
 - TypeError The input could not be parsed to a note
 
 **Since**: version 3.0.0  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -81,14 +64,12 @@ Converts an input value, which can be an unsigned integer (0-127), a note identi
 object is created with the options specified. An error will be thrown when encountering invalid
 input.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Throws**:
 
 - TypeError An element could not be parsed as a note.
 
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -114,14 +95,12 @@ letter, accidental and octave).
 When a number is specified, the translation to note is done using a value of 60 for middle C
 (C4 = middle C).
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Throws**:
 
 - TypeError Invalid note identifier
 
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -136,10 +115,8 @@ When a number is specified, the translation to note is done using a value of 60 
 Returns the name of the first property of the supplied object whose value is equal to the one
 supplied.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>string</code> - The name of the matching property  
-<!---->
 
 | Param | Type |
 | --- | --- |
@@ -161,12 +138,10 @@ If the input is an identifier, the resulting note number is offset by the `octav
 parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
 -2, the resulting MIDI note number will be 36.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> \| <code>false</code> - A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.  
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -182,14 +157,12 @@ Returns the supplied MIDI note number offset by the requested octave and semiton
 the calculated value is less than 0, 0 will be returned. If the calculated value is more than
 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> - An integer between 0 and 127  
 **Throws**:
 
 - <code>Error</code> Invalid note number
 
-<!---->
 
 | Param |
 | --- |
@@ -208,11 +181,9 @@ For backwards-compatibility, passing `undefined` as a parameter to this method r
 channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
 integers between 1 and 16 are silently ignored.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>Array</code> - An array of 0 or more valid MIDI channel numbers.  
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -231,10 +202,8 @@ restricted between 0 and 127 even if the input is greater than 1 or smaller than
 Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
 the input value cannot be converted to a number, the method returns 0.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> - A number between 0 and 1 (inclusive)  
-<!---->
 
 | Param | Description |
 | --- | --- |
@@ -253,10 +222,8 @@ smaller than 0.
 Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
 input value cannot be converted to an integer, the method returns 0.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> - A number between 0 and 1 (inclusive)  
-<!---->
 
 | Param | Description |
 | --- | --- |
@@ -271,15 +238,13 @@ input value cannot be converted to an integer, the method returns 0.
 Returns an identifier string representing a note name (with optional accidental) followed by an
 octave number. The octave can be offset by using the `octaveOffset` parameter.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Throws**:
 
 - RangeError Invalid note number
 - RangeError Invalid octaveOffset value
 
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -302,8 +267,7 @@ When converting note identifiers to numbers, C4 is considered to be middle C (MI
 
 The resulting note number can be offset by using the `octaveOffset` parameter.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> - The MIDI note number (an integer between 0 and 127).  
 **Throws**:
 
@@ -311,8 +275,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 - TypeError Invalid note identifier
 
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
+**License**: Apache-2.0  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -331,11 +294,9 @@ number, the resulting timestamp will be the sum of the current timestamp plus th
 the parameter is a positive number, it will be returned as is. Otherwise, false will be
 returned.
 
-<!--**Kind**: static method of [<code>Utilities</code>](#Utilities)  
--->
+**Kind**: static method of [<code>Utilities</code>](#Utilities)  
 **Returns**: <code>number</code> \| <code>false</code> - A positive number or `false` (if the time cannot be converted)  
 **Since**: 3.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |

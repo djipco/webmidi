@@ -10,90 +10,49 @@ instantiated. If you use the **IIFE** version, you should simply use the global 
 already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
 directly.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
 **Emits**: [<code>connected</code>](#WebMidi+event_connected), [<code>disabled</code>](#WebMidi+event_disabled), [<code>disconnected</code>](#WebMidi+event_disconnected), [<code>enabled</code>](#WebMidi+event_enabled), [<code>midiaccessgranted</code>](#WebMidi+event_midiaccessgranted)  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [WebMidi](#WebMidi) ⇐ [<code>EventEmitter</code>](#EventEmitter)
-
     * [.addListener(event, callback, [options])](#EventEmitter+addListener) ⇒ [<code>Listener</code>](#Listener)
-
     * [.addOneTimeListener(event, callback, [options])](#EventEmitter+addOneTimeListener) ⇒ [<code>Listener</code>](#Listener)
-
     * [.disable()](#WebMidi+disable) ⇒ <code>Promise.&lt;void&gt;</code>
-
     * [.emit(event, ...args)](#EventEmitter+emit) ⇒ <code>Array</code>
-
     * [.enable([options])](#WebMidi+enable) ⇒ <code>Promise.&lt;Object&gt;</code>
-
     * [.getInputById(id)](#WebMidi+getInputById) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
-
     * [.getInputByName(name)](#WebMidi+getInputByName) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
-
     * [.getListenerCount(event)](#EventEmitter+getListenerCount) ⇒ <code>number</code>
-
     * [.getListeners(event)](#EventEmitter+getListeners) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
-
     * [.getOutputById(id)](#WebMidi+getOutputById) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
-
     * [.getOutputByName(name)](#WebMidi+getOutputByName) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
-
     * [.hasListener([event], [callback])](#EventEmitter+hasListener) ⇒ <code>boolean</code>
-
     * [.removeListener([event], [callback], [options])](#EventEmitter+removeListener)
-
     * [.suspendEvent(event)](#EventEmitter+suspendEvent)
-
     * [.unsuspendEvent(event)](#EventEmitter+unsuspendEvent)
-
     * [.waitFor(event, [options])](#EventEmitter+waitFor)
-
     * [.defaults](#WebMidi+defaults) : <code>Object</code>
-
     * [.enabled](#WebMidi+enabled) : <code>boolean</code>
-
     * [.eventCount](#EventEmitter+eventCount) : <code>number</code>
-
     * [.eventMap](#EventEmitter+eventMap) : <code>Object</code>
-
     * [.eventNames](#EventEmitter+eventNames) : <code>Array.&lt;string&gt;</code>
-
     * [.eventsSuspended](#EventEmitter+eventsSuspended) : <code>boolean</code>
-
     * [.inputs](#WebMidi+inputs) : <code>Array</code>
-
     * [.interface](#WebMidi+interface) : <code>MIDIAccess</code>
-
     * [.isBrowser](#WebMidi+isBrowser) : <code>boolean</code>
-
     * [.isNode](#WebMidi+isNode) : <code>boolean</code>
-
     * [.octaveOffset](#WebMidi+octaveOffset) : <code>number</code>
-
     * [.outputs](#WebMidi+outputs) : <code>Array</code>
-
     * [.supported](#WebMidi+supported) : <code>boolean</code>
-
     * [.sysexEnabled](#WebMidi+sysexEnabled) : <code>Boolean</code>
-
     * [.time](#WebMidi+time) : <code>DOMHighResTimeStamp</code>
-
     * [.validation](#WebMidi+validation) : <code>boolean</code>
-
     * ["connected"](#WebMidi+event_connected)
-
     * ["disabled"](#WebMidi+event_disabled)
-
     * ["disconnected"](#WebMidi+event_disconnected)
-
     * ["enabled"](#WebMidi+event_enabled)
-
     * ["error"](#WebMidi+event_error)
-
     * ["midiaccessgranted"](#WebMidi+event_midiaccessgranted)
 
 
@@ -109,8 +68,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>addListener</code>](#EventEmitter+addListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -118,7 +76,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -145,8 +102,7 @@ To attach a global listener that will be triggered for any events, use `EventEmi
 as the first parameter. Note that a global listener will also be triggered by non-registered
 events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>addOneTimeListener</code>](#EventEmitter+addOneTimeListener)  
 **Returns**: [<code>Listener</code>](#Listener) - The newly created [**Listener**](#Listener) object.  
 **Throws**:
@@ -154,7 +110,6 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 - <code>TypeError</code> The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
 - <code>TypeError</code> The `callback` parameter must be a function.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -177,14 +132,12 @@ Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and
 added to [Input](#Input) objects, [Output](#Output) objects or to `WebMidi` itself are also
 destroyed.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Throws**:
 
 - Error The Web MIDI API is not supported by your environment.
 
 **Since**: 2.0.0  
-<!---->
 
 * * *
 
@@ -212,8 +165,7 @@ This function returns an array containing the return values of each of the callb
 It should be noted that the regular listeners are triggered first followed by the global
 listeners (added with `EventEmitter.ANY_EVENT`).
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>emit</code>](#EventEmitter+emit)  
 **Returns**: <code>Array</code> - An array containing the return value of each of the executed listener
 functions  
@@ -221,7 +173,6 @@ functions
 
 - <code>TypeError</code> The `event` parameter must be a string.
 
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -277,15 +228,13 @@ WebMidi.enable().then(ports => {
 })
 ```
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Returns**: <code>Promise.&lt;Object&gt;</code> - The promise is fulfilled with the `WebMidi` object  
 **Throws**:
 
 - Error The Web MIDI API is not supported in your environment.
 - Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -307,8 +256,7 @@ input is found. As per the Web MIDI API specification, IDs are strings (not inte
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Returns**: [<code>Input</code>](#Input) \| <code>false</code> - An [Input](#Input) object matching the specified ID string. If no matching
 input can be found, the method returns `false`.  
 **Throws**:
@@ -316,7 +264,6 @@ input can be found, the method returns `false`.
 - Error WebMidi is not enabled.
 
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -332,8 +279,7 @@ Returns the first [Input](#Input) object whose name **contains** the specified s
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Returns**: [<code>Input</code>](#Input) \| <code>false</code> - The [Input](#Input) that was found or `false` if no input contained the
 specified name.  
 **Throws**:
@@ -341,7 +287,6 @@ specified name.
 - <code>Error</code> WebMidi is not enabled.
 
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -359,11 +304,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) do no
 towards the remaining number for a "regular" event. To get the number of global listeners,
 specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>getListenerCount</code>](#EventEmitter+getListenerCount)  
 **Returns**: <code>number</code> - The number of listeners registered for the specified event.  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -381,11 +324,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 "regular" events. To get the list of global listeners, specifically use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>getListeners</code>](#EventEmitter+getListeners)  
 **Returns**: [<code>Array.&lt;Listener&gt;</code>](#Listener) - An array of `Listener` objects  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -404,8 +345,7 @@ integers).
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Returns**: [<code>Output</code>](#Output) \| <code>false</code> - An [Output](#Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.  
 **Throws**:
@@ -413,7 +353,6 @@ matching output can be found, the method returns `false`.
 - Error WebMidi is not enabled.
 
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -429,8 +368,7 @@ Returns the first [Output](#Output) object whose name **contains** the specified
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Returns**: [<code>Output</code>](#Output) \| <code>false</code> - The [Output](#Output) that was found or `false` if no output matched the
 specified name.  
 **Throws**:
@@ -438,7 +376,6 @@ specified name.
 - Error WebMidi is not enabled.
 
 **Since**: 2.0.0  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -457,10 +394,8 @@ includes global listeners registered to `EventEmitter.ANY_EVENT`).
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>hasListener</code>](#EventEmitter+hasListener)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -481,10 +416,8 @@ first parameter.
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>removeListener</code>](#EventEmitter+removeListener)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -509,10 +442,8 @@ at first glance, it allows the selective suspension of global listeners while le
 liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
 simply set its `eventsSuspended` property to `true`.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>suspendEvent</code>](#EventEmitter+suspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -531,10 +462,8 @@ You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` b
 but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
 it allows the selective unsuspension of global listeners while leaving other callbacks alone.
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>unsuspendEvent</code>](#EventEmitter+unsuspendEvent)  
-<!---->
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -587,10 +516,8 @@ try {
 }
 ```
 
-<!--**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance method of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>waitFor</code>](#EventEmitter+waitFor)  
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -607,9 +534,7 @@ try {
 Object containing system-wide default values that can be changed to customize how the library
 works.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -627,10 +552,8 @@ works.
 ## webMidi.enabled : <code>boolean</code>
 Indicates whether access to the host's MIDI subsystem is active or not.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -642,11 +565,9 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>eventCount</code>](#EventEmitter+eventCount)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -656,11 +577,9 @@ tied to a specific event.
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>eventMap</code>](#EventEmitter+eventMap)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -673,11 +592,9 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>eventNames</code>](#EventEmitter+eventNames)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -687,10 +604,8 @@ tied to a specific event.
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Overrides**: [<code>eventsSuspended</code>](#EventEmitter+eventsSuspended)  
-<!---->
 
 * * *
 
@@ -699,10 +614,8 @@ emitter
 ## webMidi.inputs : <code>Array</code>
 An array of all currently available MIDI inputs.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -712,10 +625,8 @@ An array of all currently available MIDI inputs.
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -726,9 +637,7 @@ Indicates whether the current environment is a browser environment or not. If yo
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 
 * * *
 
@@ -739,9 +648,7 @@ Indicates whether the current environment is Node.js or not. If you need to chec
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 
 * * *
 
@@ -759,10 +666,8 @@ By the same token, when `OutputChannel.playNote()` is called, the MIDI note numb
 will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
 of 60).
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Since**: 2.1  
-<!---->
 
 * * *
 
@@ -771,10 +676,8 @@ of 60).
 ## webMidi.outputs : <code>Array</code>
 An array of all currently available MIDI outputs.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -788,10 +691,8 @@ the `navigator.requestMIDIAccess` function is available. For example, if you hav
 WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
 not be there.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -801,10 +702,8 @@ not be there.
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -819,10 +718,8 @@ floating-point number, it has sub-millisecond accuracy. According to the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 **Read only**: true  
-<!---->
 
 * * *
 
@@ -836,9 +733,7 @@ This is an advanced setting that should be used carefully. Setting `validation` 
 improves performance but should only be done once the project has been thoroughly tested with
 validation turned on.
 
-<!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
 
 * * *
 
@@ -849,9 +744,7 @@ Event emitted when an [Input](#Input) or [Output](#Output) becomes available. Th
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -868,9 +761,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 ## "disabled"
 Event emitted once `WebMidi` has been successfully disabled.
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -889,9 +780,7 @@ Event emitted when an [Input](#Input) or [Output](#Output) becomes unavailable. 
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -914,9 +803,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 ## "enabled"
 Event emitted once `WebMidi` has been fully enabled
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -933,9 +820,7 @@ Event emitted once `WebMidi` has been fully enabled
 ## "error"
 Event emitted when an error occurs trying to enable `WebMidi`
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |
@@ -953,9 +838,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 ## "midiaccessgranted"
 Event emitted once the MIDI interface has been successfully created.
 
-<!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
--->
-<!---->
+**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
 **Properties**
 
 | Name | Type | Description |

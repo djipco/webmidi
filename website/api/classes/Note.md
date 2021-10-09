@@ -17,37 +17,22 @@ duration has elapsed by sending a **noteoff** event. By default, the duration is
 method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 [Output.stopNote()](#Output+stopNote) or similar.
 
-<!--**Kind**: global class  
--->
+**Kind**: global class  
 **Since**: 3.0.0  
-<!--**License**: Apache-2.0  
--->
-
+**License**: Apache-2.0  
 
 * [Note](#Note)
-
     * [new Note(value, [options])](#new_Note_new)
-
     * [.getOffsetNumber(offset)](#Note+getOffsetNumber) ⇒ <code>number</code>
-
     * [.accidental](#Note+accidental) : <code>string</code>
-
     * [.attack](#Note+attack) : <code>number</code>
-
     * [.duration](#Note+duration) : <code>number</code>
-
     * [.identifier](#Note+identifier) : <code>string</code>
-
     * [.name](#Note+name) : <code>string</code>
-
     * [.number](#Note+number) : <code>number</code>
-
     * [.octave](#Note+octave) : <code>number</code>
-
     * [.rawAttack](#Note+rawAttack) : <code>number</code>
-
     * [.rawRelease](#Note+rawRelease) : <code>number</code>
-
     * [.release](#Note+release) : <code>number</code>
 
 
@@ -56,7 +41,6 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 <a name="new_Note_new"></a>
 
 ## new Note(value, [options])
-<!---->
 **Throws**:
 
 - <code>Error</code> Invalid note identifier
@@ -67,7 +51,6 @@ method such as [OutputChannel.stopNote()](#OutputChannel+stopNote),
 - <code>RangeError</code> Invalid attack value
 - <code>RangeError</code> Invalid release value
 
-<!---->
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -89,10 +72,8 @@ Returns a MIDI note number offset by the integer specified in the parameter. If 
 value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
 returned. If an invalid value is supplied, 0 will be used.
 
-<!--**Kind**: instance method of [<code>Note</code>](#Note)  
--->
+**Kind**: instance method of [<code>Note</code>](#Note)  
 **Returns**: <code>number</code> - An integer between 0 and 127  
-<!---->
 
 | Param |
 | --- |
@@ -106,10 +87,8 @@ returned. If an invalid value is supplied, 0 will be used.
 ## note.accidental : <code>string</code>
 The accidental (#, ##, b or bb) of the note
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -118,10 +97,8 @@ The accidental (#, ##, b or bb) of the note
 ## note.attack : <code>number</code>
 The attack velocity of the note as an integer between 0 and 127.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -131,10 +108,8 @@ The attack velocity of the note as an integer between 0 and 127.
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -143,10 +118,8 @@ that the note should play for.
 ## note.identifier : <code>string</code>
 The name, optional accidental and octave of the note, as a string.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -155,10 +128,8 @@ The name, optional accidental and octave of the note, as a string.
 ## note.name : <code>string</code>
 The name (letter) of the note
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -168,10 +139,8 @@ The name (letter) of the note
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -180,10 +149,8 @@ reference for middle C.
 ## note.octave : <code>number</code>
 The octave of the note
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -192,10 +159,8 @@ The octave of the note
 ## note.rawAttack : <code>number</code>
 The attack velocity of the note as a positive integer between 0 and 127.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -204,10 +169,8 @@ The attack velocity of the note as a positive integer between 0 and 127.
 ## note.rawRelease : <code>number</code>
 The release velocity of the note as a positive integer between 0 and 127.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
@@ -216,10 +179,8 @@ The release velocity of the note as a positive integer between 0 and 127.
 ## note.release : <code>number</code>
 The release velocity of the note as an integer between 0 and 127.
 
-<!--**Kind**: instance property of [<code>Note</code>](#Note)  
--->
+**Kind**: instance property of [<code>Note</code>](#Note)  
 **Since**: 3.0.0  
-<!---->
 
 * * *
 
