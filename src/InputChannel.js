@@ -13,14 +13,7 @@ import {Enumerations} from "./Enumerations.js";
  *
  * The `InputChannel` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others. Check out the
- * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
- * details.
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
  *
  * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)

@@ -12,12 +12,7 @@ import {Utilities} from "./Utilities.js";
  *
  * The `Input` class extends the
  * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [getListeners()](https://djipco.github.io/djipevents/EventEmitter.html#getListeners),
- * [emit()](https://djipco.github.io/djipevents/EventEmitter.html#emit),
- * [suspendEvent()](https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent) and several
- * others.
+ * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module.
  *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
