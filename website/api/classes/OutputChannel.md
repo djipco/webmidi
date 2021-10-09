@@ -7,10 +7,6 @@ object is derived from the host's MIDI subsystem and cannot be instantiated dire
 All 16 `OutputChannel` objects can be found inside the parent output's
 [channels](#Output+channels) property.
 
-The `OutputChannel` class extends the
-[EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
-[djipevents](https://djipco.github.io/djipevents/index.html) module.
-
 <!--**Kind**: global class  
 -->
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  

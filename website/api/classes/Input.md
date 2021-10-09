@@ -7,10 +7,6 @@ MIDI subsystem and cannot be instantiated directly.
 You can find a list of all currently available `Input` objects in the [inputs](#WebMidi+inputs)
 array.
 
-The `Input` class extends the
-[EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
-[djipevents](https://djipco.github.io/djipevents/index.html) module.
-
 <!--**Kind**: global class  
 -->
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  

@@ -7,10 +7,6 @@ subsystem and cannot be instantiated directly.
 You can find a list of all available `Output` objects in the
 [WebMidi.outputs](#WebMidi+outputs) array.
 
-The `Output` class extends the
-[EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
-[djipevents](https://djipco.github.io/djipevents/index.html) module.
-
 <!--**Kind**: global class  
 -->
 **Extends**: [<code>EventEmitter</code>](#EventEmitter)  
