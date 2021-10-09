@@ -1,6 +1,6 @@
 <a name="Input"></a>
 
-# ABCInput ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# Input ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `Input` class represents a single MIDI input port. This object is derived from the host's
 MIDI subsystem and cannot be instantiated directly.
 
@@ -82,7 +82,7 @@ array.
 
 <a name="new_Input_new"></a>
 
-## ABCnew Input(midiInput)
+## new Input(midiInput)
 <!---->
 <!---->
 
@@ -95,7 +95,7 @@ array.
 
 <a name="Input+addListener"></a>
 
-## ABCinput.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds an event listener that will trigger a function callback when the specified event happens.
 The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
 [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while input-wide events
@@ -216,7 +216,7 @@ There are 6 families of events you can listen to:
 
 <a name="Input+addOneTimeListener"></a>
 
-## ABCinput.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.addOneTimeListener(event, listener, [options]) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
 dispatched by [InputChannel](#InputChannel) objects and are tied to a specific MIDI channel while
@@ -323,7 +323,7 @@ There are 6 families of events you can listen to:
 
 <a name="Input+close"></a>
 
-## ABCinput.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.close() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
@@ -336,7 +336,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 <a name="Input+destroy"></a>
 
-## ABCinput.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
+## input.destroy() ⇒ <code>Promise.&lt;void&gt;</code>
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
@@ -348,7 +348,7 @@ MIDI subsystem.
 
 <a name="EventEmitter+emit"></a>
 
-## ABCinput.emit(event, ...args) ⇒ <code>Array</code>
+## input.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -391,7 +391,7 @@ functions
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## ABCinput.getListenerCount(event) ⇒ <code>number</code>
+## input.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -413,7 +413,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## ABCinput.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## input.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -435,7 +435,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="Input+hasListener"></a>
 
-## ABCinput.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
+## input.hasListener(event, listener, [options]) ⇒ <code>Boolean</code>
 Checks if the specified event type is already defined to trigger the listener function. For
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
@@ -463,7 +463,7 @@ listener defined.
 
 <a name="Input+open"></a>
 
-## ABCinput.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
+## input.open() ⇒ [<code>Promise.&lt;Input&gt;</code>](#Input)
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
@@ -476,7 +476,7 @@ WebMidi is enabled.
 
 <a name="Input+removeListener"></a>
 
-## ABCinput.removeListener([type], [listener], [options])
+## input.removeListener([type], [listener], [options])
 Removes the specified listener for the specified event. If no listener is specified, all
 listeners for the specified event will be removed. If no event is specified, all listeners for
 the `Input` as well as all listeners for all `InputChannels` will be removed.
@@ -503,7 +503,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## ABCinput.suspendEvent(event)
+## input.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -527,7 +527,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## ABCinput.unsuspendEvent(event)
+## input.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -549,7 +549,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## ABCinput.waitFor(event, [options])
+## input.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -607,7 +607,7 @@ try {
 
 <a name="Input+channels"></a>
 
-## ABCinput.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
+## input.channels : [<code>Array.&lt;InputChannel&gt;</code>](#InputChannel)
 Array containing the 16 [InputChannel](#InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
@@ -619,7 +619,7 @@ channels are numbered 1 through 16.
 
 <a name="Input+connection"></a>
 
-## ABCinput.connection : <code>string</code>
+## input.connection : <code>string</code>
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
@@ -631,7 +631,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 <a name="EventEmitter+eventCount"></a>
 
-## ABCinput.eventCount : <code>number</code>
+## input.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -647,7 +647,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## ABCinput.eventMap : <code>Object</code>
+## input.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -661,7 +661,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## ABCinput.eventNames : <code>Array.&lt;string&gt;</code>
+## input.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -678,7 +678,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## ABCinput.eventsSuspended : <code>boolean</code>
+## input.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -691,7 +691,7 @@ emitter
 
 <a name="Input+id"></a>
 
-## ABCinput.id : <code>string</code>
+## input.id : <code>string</code>
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
@@ -705,7 +705,7 @@ the same port.
 
 <a name="Input+manufacturer"></a>
 
-## ABCinput.manufacturer : <code>string</code>
+## input.manufacturer : <code>string</code>
 Name of the manufacturer of the device that makes this input port available.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
@@ -717,7 +717,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 <a name="Input+name"></a>
 
-## ABCinput.name : <code>string</code>
+## input.name : <code>string</code>
 Name of the MIDI input
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
@@ -729,7 +729,7 @@ Name of the MIDI input
 
 <a name="Input+octaveOffset"></a>
 
-## ABCinput.octaveOffset : <code>number</code>
+## input.octaveOffset : <code>number</code>
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
 
@@ -748,7 +748,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 <a name="Input+state"></a>
 
-## ABCinput.state : <code>string</code>
+## input.state : <code>string</code>
 State of the input port: `"connected"` or `"disconnected"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
@@ -760,7 +760,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 <a name="Input+type"></a>
 
-## ABCinput.type : <code>string</code>
+## input.type : <code>string</code>
 Port type. In the case of `Input`, this is always: `"input"`.
 
 <!--**Kind**: instance property of [<code>Input</code>](#Input)  
@@ -772,7 +772,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 <a name="Input+event_closed"></a>
 
-## ABC"closed"
+## "closed"
 Event emitted when the [Input](#Input) has been closed by calling the [close](#Input+close)
 method.
 
@@ -792,7 +792,7 @@ method.
 
 <a name="Input+event_disconnected"></a>
 
-## ABC"disconnected"
+## "disconnected"
 Event emitted when the [Input](#Input) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
@@ -818,7 +818,7 @@ when the MIDI device is unplugged.
 
 <a name="Input+event_midimessage"></a>
 
-## ABC"midimessage"
+## "midimessage"
 Event emitted when any MIDI message is received on an `Input`
 
 <!--**Kind**: event emitted by [<code>Input</code>](#Input)  
@@ -843,7 +843,7 @@ Event emitted when any MIDI message is received on an `Input`
 
 <a name="Input+event_opened"></a>
 
-## ABC"opened"
+## "opened"
 Event emitted when the [Input](#Input) has been opened by calling the [open](#Input+open)
 method.
 

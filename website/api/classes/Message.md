@@ -1,6 +1,6 @@
 <a name="Message"></a>
 
-# ABCMessage
+# Message
 The `Message` class represents a single MIDI message. It has several properties that make it
 easy to make sense of the binaru data it contains.
 
@@ -40,7 +40,7 @@ easy to make sense of the binaru data it contains.
 
 <a name="new_Message_new"></a>
 
-## ABCnew Message(data)
+## new Message(data)
 <!---->
 <!---->
 
@@ -53,7 +53,7 @@ easy to make sense of the binaru data it contains.
 
 <a name="Message+channel"></a>
 
-## ABCmessage.channel : <code>number</code>
+## message.channel : <code>number</code>
 The MIDI channel number (1-16) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
 
@@ -66,7 +66,7 @@ channel-specific messages. For system messages, this will be left undefined.
 
 <a name="Message+command"></a>
 
-## ABCmessage.command : <code>number</code>
+## message.command : <code>number</code>
 An integer identifying the MIDI command. For channel-specific messages, the value will be
 between 8 and 14. For system messages, the value will be between 240 and 255.
 
@@ -79,7 +79,7 @@ between 8 and 14. For system messages, the value will be between 240 and 255.
 
 <a name="Message+data"></a>
 
-## ABCmessage.data : <code>Array.&lt;number&gt;</code>
+## message.data : <code>Array.&lt;number&gt;</code>
 An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
 255.
 
@@ -92,7 +92,7 @@ An array containing the bytes of the MIDI message. Each byte is an integer is be
 
 <a name="Message+dataBytes"></a>
 
-## ABCmessage.dataBytes : <code>Array.&lt;number&gt;</code>
+## message.dataBytes : <code>Array.&lt;number&gt;</code>
 An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
 byte so only the actual data is included.
@@ -106,7 +106,7 @@ byte so only the actual data is included.
 
 <a name="Message+isChannelMessage"></a>
 
-## ABCmessage.isChannelMessage : <code>boolean</code>
+## message.isChannelMessage : <code>boolean</code>
 A boolean indicating whether the MIDI message is a channel-specific message.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  
@@ -118,7 +118,7 @@ A boolean indicating whether the MIDI message is a channel-specific message.
 
 <a name="Message+isSystemMessage"></a>
 
-## ABCmessage.isSystemMessage : <code>boolean</code>
+## message.isSystemMessage : <code>boolean</code>
 A boolean indicating whether the MIDI message is a system message (not specific to a
 channel).
 
@@ -131,7 +131,7 @@ channel).
 
 <a name="Message+manufacturerId"></a>
 
-## ABCmessage.manufacturerId : <code>Array.&lt;number&gt;</code>
+## message.manufacturerId : <code>Array.&lt;number&gt;</code>
 When the message is a system exclusive message (sysex), this property contains an array with
 either 1 or 3 entries that identify the manufacturer targeted by the message.
 
@@ -147,7 +147,7 @@ https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 <a name="Message+rawData"></a>
 
-## ABCmessage.rawData : <code>Uint8Array</code>
+## message.rawData : <code>Uint8Array</code>
 A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
 255.
 
@@ -160,7 +160,7 @@ A Uint8Array containing the bytes of the MIDI message. Each byte is an integer b
 
 <a name="Message+rawDataBytes"></a>
 
-## ABCmessage.rawDataBytes : <code>Uint8Array</code>
+## message.rawDataBytes : <code>Uint8Array</code>
 A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
 byte so only the actual data is included.
@@ -174,7 +174,7 @@ byte so only the actual data is included.
 
 <a name="Message+statusByte"></a>
 
-## ABCmessage.statusByte : <code>number</code>
+## message.statusByte : <code>number</code>
 The MIDI status byte of the message as an integer between 0 and 255.
 
 <!--**Kind**: instance property of [<code>Message</code>](#Message)  

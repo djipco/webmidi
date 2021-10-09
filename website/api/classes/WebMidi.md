@@ -1,6 +1,6 @@
 <a name="WebMidi"></a>
 
-# ABCWebMidi ⇐ [<code>EventEmitter</code>](#EventEmitter)
+# WebMidi ⇐ [<code>EventEmitter</code>](#EventEmitter)
 The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
 simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
 
@@ -101,7 +101,7 @@ directly.
 
 <a name="EventEmitter+addListener"></a>
 
-## ABCwebMidi.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## webMidi.addListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a listener for the specified event. It returns the [**Listener**](#Listener) object
 that was created and attached to the event.
 
@@ -136,7 +136,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="EventEmitter+addOneTimeListener"></a>
 
-## ABCwebMidi.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
+## webMidi.addOneTimeListener(event, callback, [options]) ⇒ [<code>Listener</code>](#Listener)
 Adds a one-time listener for the specified event. The listener will be executed once and then
 destroyed. It returns the [**Listener**](#Listener) object that was created and attached
 to the event.
@@ -171,7 +171,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 <a name="WebMidi+disable"></a>
 
-## ABCwebMidi.disable() ⇒ <code>Promise.&lt;void&gt;</code>
+## webMidi.disable() ⇒ <code>Promise.&lt;void&gt;</code>
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 [Input](#Input) and [Output](#Output) objects that may be available. This also means that listeners
 added to [Input](#Input) objects, [Output](#Output) objects or to `WebMidi` itself are also
@@ -190,7 +190,7 @@ destroyed.
 
 <a name="EventEmitter+emit"></a>
 
-## ABCwebMidi.emit(event, ...args) ⇒ <code>Array</code>
+## webMidi.emit(event, ...args) ⇒ <code>Array</code>
 Executes the callback functions of all the `Listener` objects registered for a given event. The
 callback functions are passed the additional arguments specifed for `emit()` (if any) followed
 by the arguments present in the `arguments` property of the `Listener` object (if any). For
@@ -233,7 +233,7 @@ functions
 
 <a name="WebMidi+enable"></a>
 
-## ABCwebMidi.enable([options]) ⇒ <code>Promise.&lt;Object&gt;</code>
+## webMidi.enable([options]) ⇒ <code>Promise.&lt;Object&gt;</code>
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
 be displayed to the user.
@@ -300,7 +300,7 @@ WebMidi.enable().then(ports => {
 
 <a name="WebMidi+getInputById"></a>
 
-## ABCwebMidi.getInputById(id) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
+## webMidi.getInputById(id) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
 Returns the [Input](#Input) object that matches the specified ID string or `false` if no matching
 input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
@@ -327,7 +327,7 @@ input can be found, the method returns `false`.
 
 <a name="WebMidi+getInputByName"></a>
 
-## ABCwebMidi.getInputByName(name) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
+## webMidi.getInputByName(name) ⇒ [<code>Input</code>](#Input) \| <code>false</code>
 Returns the first [Input](#Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
@@ -352,7 +352,7 @@ specified name.
 
 <a name="EventEmitter+getListenerCount"></a>
 
-## ABCwebMidi.getListenerCount(event) ⇒ <code>number</code>
+## webMidi.getListenerCount(event) ⇒ <code>number</code>
 Returns the number of listeners registered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
@@ -374,7 +374,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 <a name="EventEmitter+getListeners"></a>
 
-## ABCwebMidi.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
+## webMidi.getListeners(event) ⇒ [<code>Array.&lt;Listener&gt;</code>](#Listener)
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
 
 Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
@@ -396,7 +396,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 <a name="WebMidi+getOutputById"></a>
 
-## ABCwebMidi.getOutputById(id) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
+## webMidi.getOutputById(id) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
 Returns the [Output](#Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
@@ -424,7 +424,7 @@ matching output can be found, the method returns `false`.
 
 <a name="WebMidi+getOutputByName"></a>
 
-## ABCwebMidi.getOutputByName(name) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
+## webMidi.getOutputByName(name) ⇒ [<code>Output</code>](#Output) \| <code>false</code>
 Returns the first [Output](#Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
@@ -449,7 +449,7 @@ specified name.
 
 <a name="EventEmitter+hasListener"></a>
 
-## ABCwebMidi.hasListener([event], [callback]) ⇒ <code>boolean</code>
+## webMidi.hasListener([event], [callback]) ⇒ <code>boolean</code>
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
 includes global listeners registered to `EventEmitter.ANY_EVENT`).
@@ -472,7 +472,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 <a name="EventEmitter+removeListener"></a>
 
-## ABCwebMidi.removeListener([event], [callback], [options])
+## webMidi.removeListener([event], [callback], [options])
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
 event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
@@ -499,7 +499,7 @@ callback to match or one or more of the additional options.
 
 <a name="EventEmitter+suspendEvent"></a>
 
-## ABCwebMidi.suspendEvent(event)
+## webMidi.suspendEvent(event)
 Suspends execution of all callbacks functions registered for the specified event type.
 
 You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -523,7 +523,7 @@ simply set its `eventsSuspended` property to `true`.
 
 <a name="EventEmitter+unsuspendEvent"></a>
 
-## ABCwebMidi.unsuspendEvent(event)
+## webMidi.unsuspendEvent(event)
 Resumes execution of all suspended callback functions registered for the specified event type.
 
 You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
@@ -545,7 +545,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 <a name="EventEmitter+waitFor"></a>
 
-## ABCwebMidi.waitFor(event, [options])
+## webMidi.waitFor(event, [options])
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
 when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
 (if you want to resolve as soon as any event is emitted).
@@ -603,7 +603,7 @@ try {
 
 <a name="WebMidi+defaults"></a>
 
-## ABCwebMidi.defaults : <code>Object</code>
+## webMidi.defaults : <code>Object</code>
 Object containing system-wide default values that can be changed to customize how the library
 works.
 
@@ -624,7 +624,7 @@ works.
 
 <a name="WebMidi+enabled"></a>
 
-## ABCwebMidi.enabled : <code>boolean</code>
+## webMidi.enabled : <code>boolean</code>
 Indicates whether access to the host's MIDI subsystem is active or not.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -636,7 +636,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 <a name="EventEmitter+eventCount"></a>
 
-## ABCwebMidi.eventCount : <code>number</code>
+## webMidi.eventCount : <code>number</code>
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
@@ -652,7 +652,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventMap"></a>
 
-## ABCwebMidi.eventMap : <code>Object</code>
+## webMidi.eventMap : <code>Object</code>
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
@@ -666,7 +666,7 @@ event property contains an array of all the `Listener` objects registered for th
 
 <a name="EventEmitter+eventNames"></a>
 
-## ABCwebMidi.eventNames : <code>Array.&lt;string&gt;</code>
+## webMidi.eventNames : <code>Array.&lt;string&gt;</code>
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
@@ -683,7 +683,7 @@ tied to a specific event.
 
 <a name="EventEmitter+eventsSuspended"></a>
 
-## ABCwebMidi.eventsSuspended : <code>boolean</code>
+## webMidi.eventsSuspended : <code>boolean</code>
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
@@ -696,7 +696,7 @@ emitter
 
 <a name="WebMidi+inputs"></a>
 
-## ABCwebMidi.inputs : <code>Array</code>
+## webMidi.inputs : <code>Array</code>
 An array of all currently available MIDI inputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -708,7 +708,7 @@ An array of all currently available MIDI inputs.
 
 <a name="WebMidi+interface"></a>
 
-## ABCwebMidi.interface : <code>MIDIAccess</code>
+## webMidi.interface : <code>MIDIAccess</code>
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
@@ -721,7 +721,7 @@ unless you know what you are doing.
 
 <a name="WebMidi+isBrowser"></a>
 
-## ABCwebMidi.isBrowser : <code>boolean</code>
+## webMidi.isBrowser : <code>boolean</code>
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
@@ -734,7 +734,7 @@ and isBrowser can both be true at the same time.
 
 <a name="WebMidi+isNode"></a>
 
-## ABCwebMidi.isNode : <code>boolean</code>
+## webMidi.isNode : <code>boolean</code>
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
@@ -747,7 +747,7 @@ isBrowser can both be true at the same time.
 
 <a name="WebMidi+octaveOffset"></a>
 
-## ABCwebMidi.octaveOffset : <code>number</code>
+## webMidi.octaveOffset : <code>number</code>
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
 
@@ -768,7 +768,7 @@ of 60).
 
 <a name="WebMidi+outputs"></a>
 
-## ABCwebMidi.outputs : <code>Array</code>
+## webMidi.outputs : <code>Array</code>
 An array of all currently available MIDI outputs.
 
 <!--**Kind**: instance property of [<code>WebMidi</code>](#WebMidi)  
@@ -780,7 +780,7 @@ An array of all currently available MIDI outputs.
 
 <a name="WebMidi+supported"></a>
 
-## ABCwebMidi.supported : <code>boolean</code>
+## webMidi.supported : <code>boolean</code>
 Indicates whether the environment provides support for the Web MIDI API or not.
 
 **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
@@ -797,7 +797,7 @@ not be there.
 
 <a name="WebMidi+sysexEnabled"></a>
 
-## ABCwebMidi.sysexEnabled : <code>Boolean</code>
+## webMidi.sysexEnabled : <code>Boolean</code>
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
@@ -810,7 +810,7 @@ enabled via the `enable()` method.
 
 <a name="WebMidi+time"></a>
 
-## ABCwebMidi.time : <code>DOMHighResTimeStamp</code>
+## webMidi.time : <code>DOMHighResTimeStamp</code>
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
 Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
@@ -828,7 +828,7 @@ browser might only be accurate to one millisecond.
 
 <a name="WebMidi+validation"></a>
 
-## ABCwebMidi.validation : <code>boolean</code>
+## webMidi.validation : <code>boolean</code>
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.
 
@@ -844,7 +844,7 @@ validation turned on.
 
 <a name="WebMidi+event_connected"></a>
 
-## ABC"connected"
+## "connected"
 Event emitted when an [Input](#Input) or [Output](#Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -865,7 +865,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 <a name="WebMidi+event_disabled"></a>
 
-## ABC"disabled"
+## "disabled"
 Event emitted once `WebMidi` has been successfully disabled.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -884,7 +884,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 <a name="WebMidi+event_disconnected"></a>
 
-## ABC"disconnected"
+## "disconnected"
 Event emitted when an [Input](#Input) or [Output](#Output) becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -911,7 +911,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 <a name="WebMidi+event_enabled"></a>
 
-## ABC"enabled"
+## "enabled"
 Event emitted once `WebMidi` has been fully enabled
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -930,7 +930,7 @@ Event emitted once `WebMidi` has been fully enabled
 
 <a name="WebMidi+event_error"></a>
 
-## ABC"error"
+## "error"
 Event emitted when an error occurs trying to enable `WebMidi`
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
@@ -950,7 +950,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 <a name="WebMidi+event_midiaccessgranted"></a>
 
-## ABC"midiaccessgranted"
+## "midiaccessgranted"
 Event emitted once the MIDI interface has been successfully created.
 
 <!--**Kind**: event emitted by [<code>WebMidi</code>](#WebMidi)  
