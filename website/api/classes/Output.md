@@ -9,12 +9,7 @@ You can find a list of all available `Output` objects in the
 
 The `Output` class extends the
 [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
-[djipevents](https://djipco.github.io/djipevents/index.html) module. This means
-it also includes methods such as
-[addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
-[removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
-[hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
-others.
+[djipevents](https://djipco.github.io/djipevents/index.html) module.
 
 <!--**Kind**: global class  
 -->
