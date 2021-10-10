@@ -54,7 +54,7 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 ## Members
 
-### `.accidental` : <code>string</code>
+### `.accidental`<span> : string</span>
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -63,7 +63,7 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 The accidental (#, ##, b or bb) of the note
 
 
-### `.attack` : <code>number</code>
+### `.attack`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -72,7 +72,7 @@ The accidental (#, ##, b or bb) of the note
 The attack velocity of the note as an integer between 0 and 127.
 
 
-### `.duration` : <code>number</code>
+### `.duration`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -82,7 +82,7 @@ The duration of the note as a positive decimal number representing the number of
 that the note should play for.
 
 
-### `.identifier` : <code>string</code>
+### `.identifier`<span> : string</span>
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -91,7 +91,7 @@ that the note should play for.
 The name, optional accidental and octave of the note, as a string.
 
 
-### `.name` : <code>string</code>
+### `.name`<span> : string</span>
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -100,7 +100,7 @@ The name, optional accidental and octave of the note, as a string.
 The name (letter) of the note
 
 
-### `.number` : <code>number</code>
+### `.number`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -110,7 +110,7 @@ The MIDI number of the note. This number is derived from the note identifier usi
 reference for middle C.
 
 
-### `.octave` : <code>number</code>
+### `.octave`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -119,7 +119,7 @@ reference for middle C.
 The octave of the note
 
 
-### `.rawAttack` : <code>number</code>
+### `.rawAttack`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -128,7 +128,7 @@ The octave of the note
 The attack velocity of the note as a positive integer between 0 and 127.
 
 
-### `.rawRelease` : <code>number</code>
+### `.rawRelease`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -137,7 +137,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 The release velocity of the note as a positive integer between 0 and 127.
 
 
-### `.release` : <code>number</code>
+### `.release`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />

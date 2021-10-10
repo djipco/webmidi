@@ -33,7 +33,7 @@ property.
 
 ## Members
 
-### `.EVENTS` : <code>Array.&lt;string&gt;</code>
+### `.EVENTS`<span> : Array.&lt;string&gt;</span>
 
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
@@ -43,7 +43,7 @@ property.
 Array of channel-specific event names that can be listened to.
 
 
-### `.input` : <code>Input</code>
+### `.input`<span> : Input</span>
 
 **Type**: Input<br />
 **Since**: 3.0<br />
@@ -52,7 +52,7 @@ Array of channel-specific event names that can be listened to.
 The {@link Input} this channel belongs to
 
 
-### `.number` : <code>number</code>
+### `.number`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -61,7 +61,7 @@ The {@link Input} this channel belongs to
 This channel's MIDI number (1-16)
 
 
-### `.octaveOffset` : <code>number</code>
+### `.octaveOffset`<span> : number</span>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -78,7 +78,7 @@ Note that this value is combined with the global offset value defined on the `We
 and with the value defined on the parent `Input` object.
 
 
-### `.parameterNumberEventsEnabled` : <code>boolean</code>
+### `.parameterNumberEventsEnabled`<span> : boolean</span>
 
 **Type**: boolean<br />
 
