@@ -233,8 +233,8 @@ export class Utilities {
    * Returns an identifier string representing a note name (with optional accidental) followed by an
    * octave number. The octave can be offset by using the `octaveOffset` parameter.
    *
-   * @param {number} The MIDI note number to convert to a note identifier
-   * @param {octaveOffset} An offset to apply to the resulting octave
+   * @param {number} number The MIDI note number to convert to a note identifier
+   * @param {number} octaveOffset An offset to apply to the resulting octave
    *
    * @returns {string}
    *
