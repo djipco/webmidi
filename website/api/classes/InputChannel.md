@@ -90,8 +90,6 @@ input.
 
 **Parameters**
 
-
-
 ### `.getCcNameByNumber(...)`
 
 Returns the name of a control change message matching the specified number. Some valid control
@@ -106,17 +104,9 @@ In this case, the method returns `false`.
 **Parameters**
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | <!--get me? |-->
-An integer representing the control change message |
-
-
-
-
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||get me?|
+|number|number|||An integer representing the control change message|
 
 ### `.getChannelModeByNumber(...)`
 
@@ -130,17 +120,9 @@ returns `false`.
 **Parameters**
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | <!--get me? |-->
-An integer representing the channel mode message. |
-
-
-
-
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||get me?|
+|number|number|||An integer representing the channel mode message.|
 
 
 ***
