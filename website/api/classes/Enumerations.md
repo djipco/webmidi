@@ -13,7 +13,7 @@ enumerations are static and should be referenced using the class name. For examp
 ## Enums
 
 ### `.MIDI_CHANNEL_MESSAGES`
-**Type**: Object.&lt;string, number&gt;
+**Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
 Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
@@ -29,7 +29,7 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 
 
 ### `.MIDI_CHANNEL_MODE_MESSAGES`
-**Type**: Object.&lt;string, number&gt;
+**Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
 Enumeration of all channel mode messages and their associated numerical value:
@@ -45,7 +45,7 @@ Enumeration of all channel mode messages and their associated numerical value:
 
 
 ### `.MIDI_CONTROL_CHANGE_MESSAGES`
-**Type**: Object.&lt;string, number&gt;
+**Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
 Enumeration of most control change messages and their associated numerical value. Note that
@@ -122,7 +122,7 @@ some control change numbers do not have a predefined purpose and are absent from
 
 
 ### `.MIDI_REGISTERED_PARAMETERS`
-**Type**: Object.&lt;string, Array.&lt;number&gt;&gt;
+**Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
 
 Enumeration of all registered parameters and their associated pair of numerical values. MIDI
@@ -147,7 +147,7 @@ only a limited number of them:
 
 
 ### `.MIDI_SYSTEM_MESSAGES`
-**Type**: Object.&lt;string, number&gt;
+**Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
 Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
