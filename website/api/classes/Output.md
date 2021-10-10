@@ -35,8 +35,6 @@ You can find a list of all available `Output` objects in the
 Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
 channels are numbered 1 through 16.
 
-
-
 ### `.connection`
 
 **Type**: string<br />
@@ -44,8 +42,6 @@ channels are numbered 1 through 16.
 
 
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
-
-
 
 ### `.id`
 
@@ -57,8 +53,6 @@ ID string of the MIDI output. The ID is host-specific. Do not expect the same ID
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
-
-
 ### `.manufacturer`
 
 **Type**: string<br />
@@ -67,8 +61,6 @@ the same port.
 
 Name of the manufacturer of the device that makes this output port available.
 
-
-
 ### `.name`
 
 **Type**: string<br />
@@ -76,8 +68,6 @@ Name of the manufacturer of the device that makes this output port available.
 
 
 Name of the MIDI output
-
-
 
 ### `.octaveOffset`
 
@@ -90,8 +80,6 @@ is placed on the 4th octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
-
-
 ### `.state`
 
 **Type**: string<br />
@@ -100,8 +88,6 @@ Note that this value is combined with the global offset value defined on the `We
 
 State of the output port: `"connected"` or `"disconnected"`.
 
-
-
 ### `.type`
 
 **Type**: string<br />
@@ -109,8 +95,6 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 
 Type of the output port (`"output"`)
-
-
 
 
 ***

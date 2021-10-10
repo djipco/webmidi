@@ -37,8 +37,6 @@ property.
 
 Array of channel-specific event names that can be listened to.
 
-
-
 ### `.input`
 
 **Type**: Input<br />
@@ -46,16 +44,12 @@ Array of channel-specific event names that can be listened to.
 
 The {@link Input} this channel belongs to
 
-
-
 ### `.number`
 
 **Type**: number<br />
 
 
 This channel's MIDI number (1-16)
-
-
 
 ### `.octaveOffset`
 
@@ -72,8 +66,6 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Input` object.
 
-
-
 ### `.parameterNumberEventsEnabled`
 
 **Type**: boolean<br />
@@ -86,8 +78,6 @@ such control change messages is received, an `nrpn` event will fire.
 If an invalid or
 out-of-order control change message is received, it will fall through the collector logic and
 all buffered control change messages will be discarded as incomplete.
-
-
 
 
 ***

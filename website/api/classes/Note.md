@@ -49,16 +49,12 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 The accidental (#, ##, b or bb) of the note
 
-
-
 ### `.attack`
 
 **Type**: number<br />
 
 
 The attack velocity of the note as an integer between 0 and 127.
-
-
 
 ### `.duration`
 
@@ -68,8 +64,6 @@ The attack velocity of the note as an integer between 0 and 127.
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
-
-
 ### `.identifier`
 
 **Type**: string<br />
@@ -77,16 +71,12 @@ that the note should play for.
 
 The name, optional accidental and octave of the note, as a string.
 
-
-
 ### `.name`
 
 **Type**: string<br />
 
 
 The name (letter) of the note
-
-
 
 ### `.number`
 
@@ -96,16 +86,12 @@ The name (letter) of the note
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
-
-
 ### `.octave`
 
 **Type**: number<br />
 
 
 The octave of the note
-
-
 
 ### `.rawAttack`
 
@@ -114,8 +100,6 @@ The octave of the note
 
 The attack velocity of the note as a positive integer between 0 and 127.
 
-
-
 ### `.rawRelease`
 
 **Type**: number<br />
@@ -123,16 +107,12 @@ The attack velocity of the note as a positive integer between 0 and 127.
 
 The release velocity of the note as a positive integer between 0 and 127.
 
-
-
 ### `.release`
 
 **Type**: number<br />
 
 
 The release velocity of the note as an integer between 0 and 127.
-
-
 
 
 ***

@@ -35,8 +35,6 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 This channel's MIDI number (1-16)
 
-
-
 ### `.octaveOffset`
 
 **Type**: number<br />
@@ -49,16 +47,12 @@ octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Output` object.
 
-
-
 ### `.output`
 
 **Type**: Output<br />
 
 
 The parent {@link Output} this channel belongs to
-
-
 
 
 ***
