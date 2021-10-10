@@ -100,6 +100,7 @@ names that can be used with this function:
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucou: TypeError The specified registered parameter is invalid.
 
@@ -136,6 +137,7 @@ names that can be used with this function:
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucou: TypeError The specified registered parameter is invalid.
 
@@ -225,6 +227,7 @@ from the MIDI Manufacturers Association.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The first byte (status) must be an integer between 128 and 255.
   * coucouRangeError: Data bytes must be integers between 0 and 255.
@@ -376,6 +379,7 @@ parameter.
 
 **Returns: ** OutputChannel<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: Controller numbers must be between 0 and 127.
   * coucouRangeError: Invalid controller name.
@@ -469,6 +473,7 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucou: RangeError Invalid channel aftertouch value.
 
@@ -497,6 +502,7 @@ The key can be a single value or an array of the following valid values:
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucou: RangeError Invalid key aftertouch value.
 
@@ -541,6 +547,7 @@ a **Master Fine Tuning** RPN messages.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The value must be a decimal number between larger than -65 and smaller
 than 64.
@@ -604,6 +611,7 @@ For further implementation details, refer to the manufacturer's documentation.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The control value must be between 0 and 127.
   * coucouRangeError: The msb value must be between 0 and 127
@@ -627,6 +635,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouTypeError: Invalid channel mode message name.
   * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
@@ -670,6 +679,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The msb value must be between 0 and 127.
   * coucouRangeError: The lsb value must be between 0 and 127.
@@ -713,6 +723,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouTypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
 than 0xFF.
@@ -786,6 +797,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The bank value must be between 1 and 128.
 
@@ -810,6 +822,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel<br />
+
 **Throws**:
   * coucouRangeError: The program value must be between 1 and 128.
 

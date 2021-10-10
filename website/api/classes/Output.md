@@ -170,6 +170,7 @@ names that can be used with this method:
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucou: TypeError The specified parameter is not available.
 
@@ -313,6 +314,7 @@ from the MIDI Manufacturers Association.
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucouRangeError: The first byte (status) must be an integer between 128 and 255.
 
@@ -375,6 +377,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucouTypeError: Invalid channel mode message name.
   * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
@@ -515,6 +518,7 @@ specification.
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucouRangeError: Controller numbers must be between 0 and 127.
   * coucouRangeError: Invalid controller name.
@@ -702,6 +706,7 @@ system exclusive messages to 64Kb or less.
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucouDOMException: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: System exclusive message is
 not allowed.
@@ -833,6 +838,7 @@ a **Master Fine Tuning** RPN messages.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: The value must be a decimal number between larger than -65 and smaller
 than 64.
@@ -858,6 +864,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: The msb value must be between 0 and 127
   * coucouRangeError: The lsb value must be between 0 and 127
@@ -909,6 +916,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 
 **Returns: ** Output<br />
+
 **Throws**:
   * coucouRangeError: The control value must be between 0 and 127.
   * coucouRangeError: The msb value must be between 0 and 127
@@ -934,6 +942,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouTypeError: Invalid channel mode message name.
   * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
@@ -981,6 +990,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: The msb value must be between 0 and 127.
   * coucouRangeError: The lsb value must be between 0 and 127.
@@ -1028,6 +1038,7 @@ that use a numbering scheme starting at 1.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouTypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
 than 0xFF.
@@ -1102,6 +1113,7 @@ use a numbering scheme starting at 1.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucou: The song number must be between 1 and 128.
 
@@ -1147,6 +1159,7 @@ that use a numbering scheme starting at 1.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: The bank value must be between 1 and 128.
 
@@ -1173,6 +1186,7 @@ that use a numbering scheme starting at 1.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucouRangeError: The program value must be between 1 and 128.
 

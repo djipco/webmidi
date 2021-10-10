@@ -36,6 +36,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Returns: ** Note<br />
 **Since**: version 3.0.0
+
 **Throws**:
   * coucou: TypeError The input could not be parsed to a note
 
@@ -66,6 +67,7 @@ input.
 
 **Returns: ** Array.&lt;Note&gt;<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucou: TypeError An element could not be parsed as a note.
 
@@ -89,6 +91,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 **Returns: ** Object<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucou: TypeError Invalid note identifier
 
@@ -148,6 +151,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
 **Returns: ** number<br />
+
 **Throws**:
   * coucouError: Invalid note number
 
@@ -229,6 +233,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 **Returns: ** string<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucou: RangeError Invalid note number
   * coucou: RangeError Invalid octaveOffset value
@@ -257,6 +262,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 **Returns: ** number<br />
 **Since**: 3.0.0
+
 **Throws**:
   * coucou: RangeError Invalid &#x27;octaveOffset&#x27; value
   * coucou: TypeError Invalid note identifier

@@ -121,6 +121,7 @@ In this case, the method returns `false`.
 
 **Returns: ** string<br />
 **Since**: 2.0.0
+
 **Throws**:
   * coucouRangeError: Invalid control change number.
 
