@@ -56,8 +56,6 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 ### `.accidental`
 
-<h3>`.accidental`</h3>
-
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
@@ -67,8 +65,6 @@ The accidental (#, ##, b or bb) of the note
 
 ### `.attack`
 
-<h3>`.attack`</h3>
-
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
@@ -77,8 +73,6 @@ The attack velocity of the note as an integer between 0 and 127.
 
 
 ### `.duration`
-
-<h3>`.duration`</h3>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -90,8 +84,6 @@ that the note should play for.
 
 ### `.identifier`
 
-<h3>`.identifier`</h3>
-
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
@@ -101,8 +93,6 @@ The name, optional accidental and octave of the note, as a string.
 
 ### `.name`
 
-<h3>`.name`</h3>
-
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
@@ -111,8 +101,6 @@ The name (letter) of the note
 
 
 ### `.number`
-
-<h3>`.number`</h3>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -124,8 +112,6 @@ reference for middle C.
 
 ### `.octave`
 
-<h3>`.octave`</h3>
-
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
@@ -134,8 +120,6 @@ The octave of the note
 
 
 ### `.rawAttack`
-
-<h3>`.rawAttack`</h3>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -146,8 +130,6 @@ The attack velocity of the note as a positive integer between 0 and 127.
 
 ### `.rawRelease`
 
-<h3>`.rawRelease`</h3>
-
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
@@ -156,8 +138,6 @@ The release velocity of the note as a positive integer between 0 and 127.
 
 
 ### `.release`
-
-<h3>`.release`</h3>
 
 **Type**: number<br />
 **Since**: 3.0.0<br />

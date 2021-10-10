@@ -33,8 +33,6 @@ You can find a list of all available `Output` objects in the
 
 ### `.channels`
 
-<h3>`.channels`</h3>
-
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
@@ -44,8 +42,6 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
-<h3>`.connection`</h3>
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -54,8 +50,6 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 ### `.id`
-
-<h3>`.id`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -68,8 +62,6 @@ the same port.
 
 ### `.manufacturer`
 
-<h3>`.manufacturer`</h3>
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -79,8 +71,6 @@ Name of the manufacturer of the device that makes this output port available.
 
 ### `.name`
 
-<h3>`.name`</h3>
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -89,8 +79,6 @@ Name of the MIDI output
 
 
 ### `.octaveOffset`
-
-<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -105,8 +93,6 @@ Note that this value is combined with the global offset value defined on the `We
 
 ### `.state`
 
-<h3>`.state`</h3>
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -115,8 +101,6 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 
 ### `.type`
-
-<h3>`.type`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />

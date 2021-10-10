@@ -35,8 +35,6 @@ property.
 
 ### `.EVENTS`
 
-<h3>`.EVENTS`</h3>
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
   **Attributes**: static
@@ -47,8 +45,6 @@ Array of channel-specific event names that can be listened to.
 
 ### `.input`
 
-<h3>`.input`</h3>
-
 **Type**: Input<br />
 **Since**: 3.0<br />
 
@@ -58,8 +54,6 @@ The {@link Input} this channel belongs to
 
 ### `.number`
 
-<h3>`.number`</h3>
-
 **Type**: number<br />
 **Since**: 3.0<br />
 
@@ -68,8 +62,6 @@ This channel's MIDI number (1-16)
 
 
 ### `.octaveOffset`
-
-<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -87,8 +79,6 @@ and with the value defined on the parent `Input` object.
 
 
 ### `.parameterNumberEventsEnabled`
-
-<h3>`.parameterNumberEventsEnabled`</h3>
 
 **Type**: boolean<br />
 

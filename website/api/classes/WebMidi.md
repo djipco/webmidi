@@ -20,8 +20,6 @@ module) version, you get an already-instantiated object.
 
 ### `.defaults`
 
-<h3>`.defaults`</h3>
-
 **Type**: Object<br />
 
 
@@ -41,8 +39,6 @@ works.
 
 ### `.enabled`
 
-<h3>`.enabled`</h3>
-
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
@@ -52,8 +48,6 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 ### `.inputs`
 
-<h3>`.inputs`</h3>
-
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
@@ -62,8 +56,6 @@ An array of all currently available MIDI inputs.
 
 
 ### `.interface`
-
-<h3>`.interface`</h3>
 
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
@@ -75,8 +67,6 @@ unless you know what you are doing.
 
 ### `.isBrowser`
 
-<h3>`.isBrowser`</h3>
-
 **Type**: boolean<br />
 
 
@@ -87,8 +77,6 @@ and isBrowser can both be true at the same time.
 
 ### `.isNode`
 
-<h3>`.isNode`</h3>
-
 **Type**: boolean<br />
 
 
@@ -98,8 +86,6 @@ isBrowser can both be true at the same time.
 
 
 ### `.octaveOffset`
-
-<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 2.1<br />
@@ -119,8 +105,6 @@ of 60).
 
 ### `.outputs`
 
-<h3>`.outputs`</h3>
-
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
@@ -129,8 +113,6 @@ An array of all currently available MIDI outputs.
 
 
 ### `.supported`
-
-<h3>`.supported`</h3>
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
@@ -146,8 +128,6 @@ not be there.
 
 ### `.sysexEnabled`
 
-<h3>`.sysexEnabled`</h3>
-
 **Type**: Boolean<br />
 **Attributes**: read-only<br />
 
@@ -157,8 +137,6 @@ enabled via the `enable()` method.
 
 
 ### `.time`
-
-<h3>`.time`</h3>
 
 **Type**: DOMHighResTimeStamp<br />
 **Attributes**: read-only<br />
@@ -174,8 +152,6 @@ browser might only be accurate to one millisecond.
 
 
 ### `.validation`
-
-<h3>`.validation`</h3>
 
 **Type**: boolean<br />
 
