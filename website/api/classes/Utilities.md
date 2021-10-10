@@ -36,6 +36,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Returns: ** Note<br />
 **Since**: version 3.0.0<br />
+**Attributes**: static
 
 **Throws**:
   * TypeError The input could not be parsed to a note
@@ -67,6 +68,7 @@ input.
 
 **Returns: ** Array.&lt;Note&gt;<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 **Throws**:
   * TypeError An element could not be parsed as a note.
@@ -91,6 +93,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 **Returns: ** Object<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 **Throws**:
   * TypeError Invalid note identifier
@@ -111,6 +114,7 @@ supplied.
 
 
 **Returns: ** string<br />
+**Attributes**: static
 
 
 ### `.guessNoteNumber(...)`
@@ -135,6 +139,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 **Returns: ** number<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 
 ### `.offsetNumber(...)`
@@ -153,6 +158,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
 **Returns: ** number<br />
+**Attributes**: static
 
 **Throws**:
   * `Error` : Invalid note number
@@ -177,6 +183,7 @@ integers between 1 and 16 are silently ignored.
 
 **Returns: ** Array<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 
 ### `.to7Bit(...)`
@@ -198,6 +205,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 **Returns: ** number<br />
+**Attributes**: static
 
 
 ### `.toNormalized(...)`
@@ -219,6 +227,7 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 **Returns: ** number<br />
+**Attributes**: static
 
 
 ### `.toNoteIdentifier(...)`
@@ -238,6 +247,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 **Returns: ** string<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 **Throws**:
   * RangeError Invalid note number
@@ -267,6 +277,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 **Returns: ** number<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 **Throws**:
   * RangeError Invalid &#x27;octaveOffset&#x27; value
@@ -291,6 +302,7 @@ returned.
 
 **Returns: ** number<br />
 **Since**: 3.0.0<br />
+**Attributes**: static
 
 
 
