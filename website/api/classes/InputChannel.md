@@ -106,7 +106,7 @@ In this case, the method returns `false`.
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||An integer representing the control change message|
+|`number`|number|||An integer representing the control change message|
 
 ### `.getChannelModeByNumber(...)`
 
@@ -122,7 +122,7 @@ returns `false`.
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||An integer representing the channel mode message.|
+|`number`|number|||An integer representing the channel mode message.|
 
 
 ***
