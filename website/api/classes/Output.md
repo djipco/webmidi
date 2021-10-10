@@ -6,9 +6,8 @@ subsystem and cannot be instantiated directly.
 You can find a list of all available `Output` objects in the
 [WebMidi.outputs]{@link WebMidi#outputs} array.
 
-
 **Extends**: [`EventEmitter`](EventEmitter)
-
+**Fires**: [`opened`](Output#event:opened), [`disconnected`](Output#event:disconnected), [`closed`](Output#event:closed)
 **Fires**: [`opened`](Output#event:opened), [`disconnected`](Output#event:disconnected), [`closed`](Output#event:closed)
 
 

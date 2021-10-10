@@ -19,8 +19,6 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 **Since**: 3.0.0
 
 
-
-
 ### `new Note(...)`
 
 

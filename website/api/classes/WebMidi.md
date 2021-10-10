@@ -8,9 +8,8 @@ instantiated. You cannot instantiate it yourself. If you use the **IIFE** versio
 simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
 module) version, you get an already-instantiated object.
 
-
 **Extends**: [`EventEmitter`](EventEmitter)
-
+**Fires**: [`connected`](WebMidi#event:connected), [`disabled`](WebMidi#event:disabled), [`disconnected`](WebMidi#event:disconnected), [`enabled`](WebMidi#event:enabled), [`midiaccessgranted`](WebMidi#event:midiaccessgranted)
 **Fires**: [`connected`](WebMidi#event:connected), [`disabled`](WebMidi#event:disabled), [`disconnected`](WebMidi#event:disconnected), [`enabled`](WebMidi#event:enabled), [`midiaccessgranted`](WebMidi#event:midiaccessgranted)
 
 ***
