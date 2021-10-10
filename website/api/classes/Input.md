@@ -538,7 +538,7 @@ Event emitted when any MIDI message is received on an `Input`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-### `"event:opened"`
+### `"opened"`
 
 Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
 method.
