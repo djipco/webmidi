@@ -289,7 +289,7 @@ input names in the same way as the Jazz-Plugin does.
 **Since**: 2.0.0
 
 **Throws**:
-  * coucou[object Object]: WebMidi is not enabled.
+  * coucouError: WebMidi is not enabled.
 
 ### `.getOutputById(...)`
 

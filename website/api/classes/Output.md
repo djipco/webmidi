@@ -316,7 +316,7 @@ from the MIDI Manufacturers Association.
 **Returns: ** Output<br />
 
 **Throws**:
-  * coucou[object Object]: The first byte (status) must be an integer between 128 and 255.
+  * coucouRangeError: The first byte (status) must be an integer between 128 and 255.
 
 ### `.sendActiveSensing(...)`
 
@@ -379,9 +379,9 @@ To make it easier, all channel mode messages have a matching helper method:
 **Returns: ** Output<br />
 
 **Throws**:
-  * coucou[object Object]: Invalid channel mode message name.
-  * coucou[object Object]: Channel mode controller numbers must be between 120 and 127.
-  * coucou[object Object]: Value must be an integer between 0 and 127.
+  * coucouTypeError: Invalid channel mode message name.
+  * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
+  * coucouRangeError: Value must be an integer between 0 and 127.
 
 ### `.sendClock(...)`
 
@@ -520,8 +520,8 @@ specification.
 **Returns: ** Output<br />
 
 **Throws**:
-  * coucou[object Object]: Controller numbers must be between 0 and 127.
-  * coucou[object Object]: Invalid controller name.
+  * coucouRangeError: Controller numbers must be between 0 and 127.
+  * coucouRangeError: Invalid controller name.
 
 ### `.sendNoteOff(...)`
 
@@ -708,9 +708,9 @@ system exclusive messages to 64Kb or less.
 **Returns: ** Output<br />
 
 **Throws**:
-  * coucou[object Object]: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: System exclusive message is
+  * coucouDOMException: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: System exclusive message is
 not allowed.
-  * coucou[object Object]: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index x is greater
+  * coucouTypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index x is greater
 than 0xFF.
 
 ### `.sendTimecodeQuarterFrame(...)`
@@ -840,7 +840,7 @@ a **Master Fine Tuning** RPN messages.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: The value must be a decimal number between larger than -65 and smaller
+  * coucouRangeError: The value must be a decimal number between larger than -65 and smaller
 than 64.
 
 ### `.setModulationRange(...)`
@@ -866,8 +866,8 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: The msb value must be between 0 and 127
-  * coucou[object Object]: The lsb value must be between 0 and 127
+  * coucouRangeError: The msb value must be between 0 and 127
+  * coucouRangeError: The lsb value must be between 0 and 127
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -918,8 +918,8 @@ For further implementation details, refer to the manufacturer"s documentation.
 **Returns: ** Output<br />
 
 **Throws**:
-  * coucou[object Object]: The control value must be between 0 and 127.
-  * coucou[object Object]: The msb value must be between 0 and 127
+  * coucouRangeError: The control value must be between 0 and 127.
+  * coucouRangeError: The msb value must be between 0 and 127
 
 ### `.setOmniMode(...)`
 
@@ -944,9 +944,9 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: Invalid channel mode message name.
-  * coucou[object Object]: Channel mode controller numbers must be between 120 and 127.
-  * coucou[object Object]: Value must be an integer between 0 and 127.
+  * coucouTypeError: Invalid channel mode message name.
+  * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
+  * coucouRangeError: Value must be an integer between 0 and 127.
 
 ### `.setPitchBend(...)`
 
@@ -992,8 +992,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: The msb value must be between 0 and 127.
-  * coucou[object Object]: The lsb value must be between 0 and 127.
+  * coucouRangeError: The msb value must be between 0 and 127.
+  * coucouRangeError: The lsb value must be between 0 and 127.
 
 ### `.setPolyphonicMode(...)`
 
@@ -1040,7 +1040,7 @@ that use a numbering scheme starting at 1.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
+  * coucouTypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
 than 0xFF.
 
 ### `.setRegisteredParameter(...)`
@@ -1161,7 +1161,7 @@ that use a numbering scheme starting at 1.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: The bank value must be between 1 and 128.
+  * coucouRangeError: The bank value must be between 1 and 128.
 
 ### `.setTuningProgram(...)`
 
@@ -1188,7 +1188,7 @@ that use a numbering scheme starting at 1.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou[object Object]: The program value must be between 1 and 128.
+  * coucouRangeError: The program value must be between 1 and 128.
 
 ### `.stopNote(...)`
 

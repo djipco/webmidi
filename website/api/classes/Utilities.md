@@ -153,7 +153,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 **Returns: ** number<br />
 
 **Throws**:
-  * coucou[object Object]: Invalid note number
+  * coucouError: Invalid note number
 
 ### `.sanitizeChannels(...)`
 

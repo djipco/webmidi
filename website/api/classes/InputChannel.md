@@ -123,7 +123,7 @@ In this case, the method returns `false`.
 **Since**: 2.0.0
 
 **Throws**:
-  * coucou[object Object]: Invalid control change number.
+  * coucouRangeError: Invalid control change number.
 
 ### `.getChannelModeByNumber(...)`
 
