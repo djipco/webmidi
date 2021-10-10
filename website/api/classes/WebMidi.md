@@ -342,7 +342,8 @@ input names in the same way as the Jazz-Plugin does.
 
 ## Events
 
-### `"connected"`<a id="event:connected"></a>
+<a id="event:connected"></a>
+### `"connected"`
 
 Event emitted when an {@link Input} or {@link Output} becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
@@ -359,7 +360,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target`** |Input|The {@link Input} or {@link Output} object that triggered the event.|
 
 
-### `"disabled"`<a id="event:disabled"></a>
+<a id="event:disabled"></a>
+### `"disabled"`
 
 Event emitted once `WebMidi` has been successfully disabled.
 
@@ -374,7 +376,8 @@ Event emitted once `WebMidi` has been successfully disabled.
   |**`type`** |string|`disabled`|
 
 
-### `"disconnected"`<a id="event:disconnected"></a>
+<a id="event:disconnected"></a>
+### `"disconnected"`
 
 Event emitted when an {@link Input} or {@link Output} becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
@@ -397,7 +400,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target.type`** |string|`input` or `output`|
 
 
-### `"enabled"`<a id="event:enabled"></a>
+<a id="event:enabled"></a>
+### `"enabled"`
 
 Event emitted once `WebMidi` has been fully enabled
 
@@ -412,7 +416,8 @@ Event emitted once `WebMidi` has been fully enabled
   |**`type`** |string|`enabled`|
 
 
-### `"error"`<a id="event:error"></a>
+<a id="event:error"></a>
+### `"error"`
 
 Event emitted when an error occurs trying to enable `WebMidi`
 
@@ -428,7 +433,8 @@ Event emitted when an error occurs trying to enable `WebMidi`
   |**`error`** |*|Actual error that occurred|
 
 
-### `"midiaccessgranted"`<a id="event:midiaccessgranted"></a>
+<a id="event:midiaccessgranted"></a>
+### `"midiaccessgranted"`
 
 Event emitted once the MIDI interface has been successfully created.
 
