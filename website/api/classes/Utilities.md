@@ -38,7 +38,7 @@ If the input is a note number or identifier, it is possible to specify options b
 **Since**: version 3.0.0
 
 **Throws**:
-  * coucou: TypeError The input could not be parsed to a note
+  * TypeError The input could not be parsed to a note
 
 ### `.buildNoteArray(...)`
 
@@ -69,7 +69,7 @@ input.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou: TypeError An element could not be parsed as a note.
+  * TypeError An element could not be parsed as a note.
 
 ### `.getNoteDetails(...)`
 
@@ -93,7 +93,7 @@ When a number is specified, the translation to note is done using a value of 60 
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou: TypeError Invalid note identifier
+  * TypeError Invalid note identifier
 
 ### `.getPropertyByValue(...)`
 
@@ -153,7 +153,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 **Returns: ** number<br />
 
 **Throws**:
-  * coucouError: Invalid note number
+  * Error: Invalid note number
 
 ### `.sanitizeChannels(...)`
 
@@ -235,8 +235,8 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou: RangeError Invalid note number
-  * coucou: RangeError Invalid octaveOffset value
+  * RangeError Invalid note number
+  * RangeError Invalid octaveOffset value
 
 ### `.toNoteNumber(...)`
 
@@ -264,8 +264,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 **Since**: 3.0.0
 
 **Throws**:
-  * coucou: RangeError Invalid &#x27;octaveOffset&#x27; value
-  * coucou: TypeError Invalid note identifier
+  * RangeError Invalid &#x27;octaveOffset&#x27; value
+  * TypeError Invalid note identifier
 
 ### `.toTimestamp(...)`
 
