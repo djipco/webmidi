@@ -13,6 +13,8 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 ### `.buildNote(...)`
 
+**Since**: version 3.0.0
+
 Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
 integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
 object, it will be returned as is.
@@ -37,6 +39,8 @@ If the input is a note number or identifier, it is possible to specify options b
 **Returns: ** Note
 
 ### `.buildNoteArray(...)`
+
+**Since**: 3.0.0
 
 Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
 {@link Note} object or an array of the previous types, to an array of {@link Note} objects.
@@ -65,6 +69,8 @@ input.
 
 ### `.getNoteDetails(...)`
 
+**Since**: 3.0.0
+
 Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
 method returns an object containing broken down details about the specified note (uppercase
 letter, accidental and octave).
@@ -85,6 +91,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 ### `.getPropertyByValue(...)`
 
+
 Returns the name of the first property of the supplied object whose value is equal to the one
 supplied.
 
@@ -101,6 +108,8 @@ supplied.
 **Returns: ** string
 
 ### `.guessNoteNumber(...)`
+
+**Since**: 3.0.0
 
 Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
 string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
@@ -124,6 +133,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 ### `.offsetNumber(...)`
 
+
 Returns the supplied MIDI note number offset by the requested octave and semitone values. If
 the calculated value is less than 0, 0 will be returned. If the calculated value is more than
 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
@@ -140,6 +150,8 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 **Returns: ** number
 
 ### `.sanitizeChannels(...)`
+
+**Since**: 3.0.0
 
 Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
 single integer or an array of integers.
@@ -161,6 +173,7 @@ integers between 1 and 16 are silently ignored.
 
 ### `.to7Bit(...)`
 
+
 Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
 The input value should be number between 0 and 1 (inclusively). The returned value is
 restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
@@ -180,6 +193,7 @@ the input value cannot be converted to a number, the method returns 0.
 **Returns: ** number
 
 ### `.toNormalized(...)`
+
 
 Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
 bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
@@ -201,6 +215,8 @@ input value cannot be converted to an integer, the method returns 0.
 
 ### `.toNoteIdentifier(...)`
 
+**Since**: 3.0.0
+
 Returns an identifier string representing a note name (with optional accidental) followed by an
 octave number. The octave can be offset by using the `octaveOffset` parameter.
 
@@ -217,6 +233,8 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 **Returns: ** string
 
 ### `.toNoteNumber(...)`
+
+**Since**: 3.0.0
 
 Returns a MIDI note number matching the identifier passed in the form of a string. The
 identifier must include the octave number. The identifier also optionally include a sharp (#),
@@ -241,6 +259,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 **Returns: ** number
 
 ### `.toTimestamp(...)`
+
+**Since**: 3.0.0
 
 Returns a valid timestamp, relative to the navigation start of the document, derived from the
 `time` parameter. If the parameter is a string starting with the "+" sign and followed by a

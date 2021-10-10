@@ -117,6 +117,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 ### `.addListener(...)`
 
+
 Adds an event listener that will trigger a function callback when the specified event happens.
 The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
 {@link InputChannel} objects and are tied to a specific MIDI channel while input-wide events
@@ -231,6 +232,7 @@ There are 6 families of events you can listen to:
 
 ### `.addOneTimeListener(...)`
 
+
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
 dispatched by {@link InputChannel} objects and are tied to a specific MIDI channel while
@@ -331,6 +333,7 @@ There are 6 families of events you can listen to:
 
 ### `.close()`
 
+
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()]{@link Input#open}.
 
@@ -340,6 +343,7 @@ the input is opened again by calling [Input.open()]{@link Input#open}.
 
 ### `.destroy()`
 
+
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
@@ -348,6 +352,7 @@ MIDI subsystem.
 **Returns: ** Promise.&lt;void&gt;
 
 ### `.hasListener(...)`
+
 
 Checks if the specified event type is already defined to trigger the listener function. For
 channel-specific events, the function will return `true` only if all channels have the listener
@@ -369,6 +374,7 @@ defined.
 
 ### `.open()`
 
+
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
@@ -377,6 +383,7 @@ WebMidi is enabled.
 **Returns: ** Promise.&lt;Input&gt;
 
 ### `.removeListener(...)`
+
 
 Removes the specified listener for the specified event. If no listener is specified, all
 listeners for the specified event will be removed. If no event is specified, all listeners for
