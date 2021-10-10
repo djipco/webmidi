@@ -170,8 +170,6 @@ validation turned on.
 
 ### `.disable()`
 
-**Since**: 2.0.0
-
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 {@link Input} and {@link Output} objects that may be available. This also means that listeners
 added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
@@ -180,9 +178,9 @@ destroyed.
 
 
 **Returns: ** Promise.&lt;void&gt;
+**Since**: 2.0.0
 
 ### `.enable(...)`
-
 
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
@@ -244,8 +242,6 @@ WebMidi.enable().then(ports => {
 
 ### `.getInputById(...)`
 
-**Since**: 2.0.0
-
 Returns the {@link Input} object that matches the specified ID string or `false` if no matching
 input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
@@ -262,10 +258,9 @@ kind of IDs as Jazz-Plugin.
 
 
 **Returns: ** Input
+**Since**: 2.0.0
 
 ### `.getInputByName(...)`
-
-**Since**: 2.0.0
 
 Returns the first {@link Input} object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
@@ -281,10 +276,9 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns: ** Input
+**Since**: 2.0.0
 
 ### `.getOutputById(...)`
-
-**Since**: 2.0.0
 
 Returns the {@link Output} object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
@@ -303,10 +297,9 @@ kind of IDs as Jazz-Plugin.
 
 
 **Returns: ** Output
+**Since**: 2.0.0
 
 ### `.getOutputByName(...)`
-
-**Since**: 2.0.0
 
 Returns the first {@link Output} object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
@@ -322,6 +315,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns: ** Output
+**Since**: 2.0.0
 
 
 ***
