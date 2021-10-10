@@ -116,7 +116,7 @@ An integer representing the control change message |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||An integer representing the control change message|
+|number|number|||get me?|
 
 ### `.getChannelModeByNumber(...)`
 
@@ -140,7 +140,7 @@ An integer representing the channel mode message. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||An integer representing the channel mode message.|
+|number|number|||get me?|
 
 
 ***

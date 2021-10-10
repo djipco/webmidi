@@ -234,11 +234,11 @@ of April 2020. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|options|Object|optional|||
-|options.callback|function|optional||A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
-|options.sysex|boolean|optional|false|Whether to enable MIDI system exclusive messages or not.|
-|options.validation|boolean|optional|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
-|options.software|boolean|optional|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+|options|Object|optional||get me?|
+|options.callback|function|optional||get me?|
+|options.sysex|boolean|optional|false|get me?|
+|options.validation|boolean|optional|true|get me?|
+|options.software|boolean|optional|false|get me?|
 
 ### `.getInputById(...)`
 
@@ -267,7 +267,7 @@ strings. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|id|string|||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
+|id|string|||get me?|
 
 ### `.getInputByName(...)`
 
@@ -293,7 +293,7 @@ those visible in the [inputs]{@link WebMidi#inputs} array). |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|name|string|||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+|name|string|||get me?|
 
 ### `.getOutputById(...)`
 
@@ -322,7 +322,7 @@ The ID string of the port. IDs can be viewed by looking at the
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|id|string|||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
+|id|string|||get me?|
 
 ### `.getOutputByName(...)`
 
@@ -348,7 +348,7 @@ those visible in the [outputs]{@link WebMidi#outputs} array). |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|name|string|||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+|name|string|||get me?|
 
 
 ***

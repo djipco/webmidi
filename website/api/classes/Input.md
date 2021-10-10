@@ -241,15 +241,15 @@ should automatically be removed. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|event|string|||The type of the event.|
-|listener|function|||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|options|Object|optional|{}||
-|options.arguments|array|optional||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|options.channels|number|optional||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|options.context|Object|optional|this|The value of `this` in the callback function.|
-|options.duration|number|optional|Infinity|The number of milliseconds before the listener automatically expires.|
-|options.prepend|boolean|optional|false|Whether the listener should be added at the beginning of the listeners array.|
-|options.remaining|boolean|optional|Infinity|The number of times after which the callback should automatically be removed.|
+|event|string|||get me?|
+|listener|function|||get me?|
+|options|Object|optional|{}|get me?|
+|options.arguments|array|optional||get me?|
+|options.channels|number|optional||get me?|
+|options.context|Object|optional|this|get me?|
+|options.duration|number|optional|Infinity|get me?|
+|options.prepend|boolean|optional|false|get me?|
+|options.remaining|boolean|optional|Infinity|get me?|
 
 ### `.addOneTimeListener(...)`
 
@@ -380,14 +380,14 @@ of the listeners array. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|event|string|||The type of the event.|
-|listener|function|||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|options|Object|optional|{}||
-|options.arguments|array|optional||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|options.channels|number|optional||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|options.context|Object|optional|this|The value of `this` in the callback function.|
-|options.duration|number|optional|Infinity|The number of milliseconds before the listener automatically expires.|
-|options.prepend|boolean|optional|false|Whether the listener should be added at the beginning of the listeners array.|
+|event|string|||get me?|
+|listener|function|||get me?|
+|options|Object|optional|{}|get me?|
+|options.arguments|array|optional||get me?|
+|options.channels|number|optional||get me?|
+|options.context|Object|optional|this|get me?|
+|options.duration|number|optional|Infinity|get me?|
+|options.prepend|boolean|optional|false|get me?|
 
 ### `.close()`
 
@@ -450,10 +450,10 @@ input-wide events. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|event|string|||The type of the event.|
-|listener|function|||The callback function to check for.|
-|options|Object|optional|{}||
-|options.channels|number|optional||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+|event|string|||get me?|
+|listener|function|||get me?|
+|options|Object|optional|{}|get me?|
+|options.channels|number|optional||get me?|
 
 ### `.open()`
 
@@ -513,12 +513,12 @@ remaining times to be executed. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|type|String|optional||The type of the event.|
-|listener|function|optional||The callback function to check for.|
-|options|Object|optional|{}||
-|options.channels|number|optional||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
-|options.context|*|optional||Only remove the listeners that have this exact context.|
-|options.remaining|number|optional||Only remove the listener if it has exactly that many remaining times to be executed.|
+|type|String|optional||get me?|
+|listener|function|optional||get me?|
+|options|Object|optional|{}|get me?|
+|options.channels|number|optional||get me?|
+|options.context|*|optional||get me?|
+|options.remaining|number|optional||get me?|
 
 
 ***

@@ -56,12 +56,12 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|input|number|optional|||
-|options|Object|optional|{}||
-|options.duration|number|optional|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|options.attack|number|optional|64|The note's attack velocity as an integer between 0 and 127.|
-|options.release|number|optional|64|The note's release velocity as an integer between 0 and 127.|
-|options.octaveOffset|number|optional|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|input|number|optional||get me?|
+|options|Object|optional|{}|get me?|
+|options.duration|number|optional|Infinity|get me?|
+|options.attack|number|optional|64|get me?|
+|options.release|number|optional|64|get me?|
+|options.octaveOffset|number|optional|0|get me?|
 
 ### `.buildNoteArray(...)`
 
@@ -117,14 +117,14 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|notes|number|optional|||
-|options|Object|optional|{}||
-|options.duration|number|optional|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|options.attack|number|optional|0.5|The note's attack velocity as a decimal number between 0 and 1.|
-|options.release|number|optional|0.5|The note's release velocity as a decimal number between 0 and 1.|
-|options.rawAttack|number|optional|64|The note's attack velocity as an integer between 0 and 127.|
-|options.rawRelease|number|optional|64|The note's release velocity as an integer between 0 and 127.|
-|options.octaveOffset|number|optional|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|notes|number|optional||get me?|
+|options|Object|optional|{}|get me?|
+|options.duration|number|optional|Infinity|get me?|
+|options.attack|number|optional|0.5|get me?|
+|options.release|number|optional|0.5|get me?|
+|options.rawAttack|number|optional|64|get me?|
+|options.rawRelease|number|optional|64|get me?|
+|options.octaveOffset|number|optional|0|get me?|
 
 ### `.getNoteDetails(...)`
 
@@ -153,7 +153,7 @@ number (0-127). |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|value|string|||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
+|value|string|||get me?|
 
 ### `.getPropertyByValue(...)`
 
@@ -179,8 +179,8 @@ supplied.
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|object|Object||||
-|value|*||||
+|object|Object|||get me?|
+|value|*|||get me?|
 
 ### `.guessNoteNumber(...)`
 
@@ -210,7 +210,7 @@ A string or number to extract the MIDI note number from. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|input|string|||A string or number to extract the MIDI note number from.|
+|input|string|||get me?|
 
 ### `.offsetNumber(...)`
 
@@ -235,7 +235,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|offset|||||
+|offset||||get me?|
 
 ### `.sanitizeChannels(...)`
 
@@ -264,7 +264,7 @@ numbers. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|channel|number|optional||An integer or an array of integers to parse as channel numbers.|
+|channel|number|optional||get me?|
 
 ### `.to7Bit(...)`
 
@@ -292,7 +292,7 @@ A positive integer between 0 and 127 (inclusive) |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|value||||A positive integer between 0 and 127 (inclusive)|
+|value||||get me?|
 
 ### `.toNormalized(...)`
 
@@ -320,7 +320,7 @@ A positive integer between 0 and 127 (inclusive) |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|value||||A positive integer between 0 and 127 (inclusive)|
+|value||||get me?|
 
 ### `.toNoteIdentifier(...)`
 
@@ -346,8 +346,8 @@ An offset to apply to the resulting octave |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|number|number|||The MIDI note number to convert to a note identifier|
-|octaveOffset|number|||An offset to apply to the resulting octave|
+|number|number|||get me?|
+|octaveOffset|number|||get me?|
 
 ### `.toNoteNumber(...)`
 
@@ -384,8 +384,8 @@ A integer to offset the octave by. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|identifier|string|||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
-|octaveOffset|number|optional|0|A integer to offset the octave by.|
+|identifier|string|||get me?|
+|octaveOffset|number|optional|0|get me?|
 
 ### `.toTimestamp(...)`
 
@@ -412,6 +412,6 @@ The time string (e.g. `"+2000"`) or number to parse |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|time|number|optional||The time string (e.g. `"+2000"`) or number to parse|
+|time|number|optional||get me?|
 
 
