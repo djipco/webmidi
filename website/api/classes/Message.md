@@ -10,11 +10,14 @@ easy to make sense of the binaru data it contains.
 
 ### `new Message(...)`
 
-**Signature**
-
-> Message(data)
 
 **Parameters**
+
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`data`** |Uint8Array||The raw data of the MIDI message as a Uint8Array of integers between 0 and 255.|
+
+
 
 ***
 

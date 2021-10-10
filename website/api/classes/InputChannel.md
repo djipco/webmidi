@@ -15,11 +15,15 @@ property.
 
 ### `new InputChannel(...)`
 
-**Signature**
-
-> InputChannel(input, number)
 
 **Parameters**
+
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`input`** |Input||The `Input` object this channel belongs to|
+|**`number`** |number||The MIDI channel's number (1-16)|
+
+
 
 ***
 

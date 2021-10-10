@@ -14,11 +14,15 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `new OutputChannel(...)`
 
-**Signature**
-
-> OutputChannel(output, number)
 
 **Parameters**
+
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`output`** |Output||The output this channel belongs to|
+|**`number`** |number||The channel number (1-16)|
+
+
 
 ***
 

@@ -14,11 +14,14 @@ You can find a list of all available `Output` objects in the
 
 ### `new Output(...)`
 
-**Signature**
-
-> Output(midiOutput)
 
 **Parameters**
+
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`midiOutput`** |MIDIOutput||`MIDIOutput` object as provided by the MIDI subsystem|
+
+
 
 ***
 
