@@ -8,7 +8,8 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 **Since**: 3.0.0
 
-**Extends**: [`EventEmitter`](EventEmitter)
+**Extends**: EventEmitter
+
 
 
 

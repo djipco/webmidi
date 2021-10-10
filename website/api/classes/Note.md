@@ -21,6 +21,7 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 
 
+
 ### `new Note(...)`
 
 
