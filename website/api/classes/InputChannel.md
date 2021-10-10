@@ -153,7 +153,8 @@ returns `false`.
 ## Events
 
 ### `"allnotesoff"`
-<a name="event:allnotesoff"></a>
+
+<a id="event:allnotesoff"></a>
 
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
@@ -170,7 +171,8 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 
 ### `"allsoundoff"`
-<a name="event:allsoundoff"></a>
+
+<a id="event:allsoundoff"></a>
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
@@ -187,7 +189,8 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 
 ### `"channelaftertouch"`
-<a name="event:channelaftertouch"></a>
+
+<a id="event:channelaftertouch"></a>
 
 Event emitted when a control change MIDI message has been received.
 
@@ -206,7 +209,8 @@ Event emitted when a control change MIDI message has been received.
 
 
 ### `"controlchange"`
-<a name="event:controlchange"></a>
+
+<a id="event:controlchange"></a>
 
 Event emitted when a **control change** MIDI message has been received.
 
@@ -228,7 +232,8 @@ Event emitted when a **control change** MIDI message has been received.
 
 
 ### `"keyaftertouch"`
-<a name="event:keyaftertouch"></a>
+
+<a id="event:keyaftertouch"></a>
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
@@ -250,7 +255,8 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 
 ### `"localcontrol"`
-<a name="event:localcontrol"></a>
+
+<a id="event:localcontrol"></a>
 
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (local control on) of `false` (local control
@@ -270,7 +276,8 @@ off).
 
 
 ### `"midimessage"`
-<a name="event:midimessage"></a>
+
+<a id="event:midimessage"></a>
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
@@ -291,7 +298,8 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 
 ### `"monomode"`
-<a name="event:monomode"></a>
+
+<a id="event:monomode"></a>
 
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
@@ -311,7 +319,8 @@ poly mode on).
 
 
 ### `"noteoff"`
-<a name="event:noteoff"></a>
+
+<a id="event:noteoff"></a>
 
 Event emitted when a **note off** MIDI message has been received on the channel.
 
@@ -331,7 +340,8 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 
 ### `"noteon"`
-<a name="event:noteon"></a>
+
+<a id="event:noteon"></a>
 
 Event emitted when a **note on** MIDI message has been received.
 
@@ -354,7 +364,8 @@ Event emitted when a **note on** MIDI message has been received.
 
 
 ### `"nrpndatabuttondecrement"`
-<a name="event:nrpndatabuttondecrement"></a>
+
+<a id="event:nrpndatabuttondecrement"></a>
 
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
@@ -375,7 +386,8 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 
 ### `"nrpndatabuttonincrement"`
-<a name="event:nrpndatabuttonincrement"></a>
+
+<a id="event:nrpndatabuttonincrement"></a>
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
@@ -396,7 +408,8 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 
 ### `"nrpndataentrycoarse"`
-<a name="event:nrpndataentrycoarse"></a>
+
+<a id="event:nrpndataentrycoarse"></a>
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
@@ -417,7 +430,8 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 
 ### `"nrpndataentryfine"`
-<a name="event:nrpndataentryfine"></a>
+
+<a id="event:nrpndataentryfine"></a>
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
@@ -438,7 +452,8 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 
 ### `"omnimode"`
-<a name="event:omnimode"></a>
+
+<a id="event:omnimode"></a>
 
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
@@ -457,7 +472,8 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 
 ### `"pitchbend"`
-<a name="event:pitchbend"></a>
+
+<a id="event:pitchbend"></a>
 
 Event emitted when a pitch bend MIDI message has been received.
 
@@ -476,7 +492,8 @@ Event emitted when a pitch bend MIDI message has been received.
 
 
 ### `"programchange"`
-<a name="event:programchange"></a>
+
+<a id="event:programchange"></a>
 
 Event emitted when a **program change** MIDI message has been received.
 
@@ -495,7 +512,8 @@ Event emitted when a **program change** MIDI message has been received.
 
 
 ### `"resetallcontrollers"`
-<a name="event:resetallcontrollers"></a>
+
+<a id="event:resetallcontrollers"></a>
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
@@ -512,7 +530,8 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 
 ### `"rpndatabuttondecrement"`
-<a name="event:rpndatabuttondecrement"></a>
+
+<a id="event:rpndatabuttondecrement"></a>
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
@@ -533,7 +552,8 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 
 ### `"rpndatabuttonincrement"`
-<a name="event:rpndatabuttonincrement"></a>
+
+<a id="event:rpndatabuttonincrement"></a>
 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
@@ -554,7 +574,8 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 
 ### `"rpndataentrycoarse"`
-<a name="event:rpndataentrycoarse"></a>
+
+<a id="event:rpndataentrycoarse"></a>
 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
@@ -575,7 +596,8 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 
 ### `"rpndataentryfine"`
-<a name="event:rpndataentryfine"></a>
+
+<a id="event:rpndataentryfine"></a>
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 

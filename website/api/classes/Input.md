@@ -423,7 +423,8 @@ By default, channel-specific listeners will be removed from all channels unless 
 ## Events
 
 ### `"activesensing"`
-<a name="event:activesensing"></a>
+
+<a id="event:activesensing"></a>
 
 Input-wide (system) event emitted when an **active sensing** message has been received.
 
@@ -443,7 +444,8 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 
 
 ### `"clock"`
-<a name="event:clock"></a>
+
+<a id="event:clock"></a>
 
 Input-wide (system) event emitted when a **timing clock** message has been received.
 
@@ -463,7 +465,8 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 
 ### `"closed"`
-<a name="event:closed"></a>
+
+<a id="event:closed"></a>
 
 Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
 method.
@@ -480,7 +483,8 @@ method.
 
 
 ### `"continue"`
-<a name="event:continue"></a>
+
+<a id="event:continue"></a>
 
 Input-wide (system) event emitted when a **continue** message has been received.
 
@@ -500,7 +504,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 
 ### `"disconnected"`
-<a name="event:disconnected"></a>
+
+<a id="event:disconnected"></a>
 
 Event emitted when the {@link Input} becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -523,7 +528,8 @@ when the MIDI device is unplugged.
 
 
 ### `"midimessage"`
-<a name="event:midimessage"></a>
+
+<a id="event:midimessage"></a>
 
 Event emitted when any MIDI message is received on an `Input`
 
@@ -545,7 +551,8 @@ Event emitted when any MIDI message is received on an `Input`
 
 
 ### `"opened"`
-<a name="event:opened"></a>
+
+<a id="event:opened"></a>
 
 Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
 method.
@@ -562,7 +569,8 @@ method.
 
 
 ### `"reset"`
-<a name="event:reset"></a>
+
+<a id="event:reset"></a>
 
 Input-wide (system) event emitted when a **reset** message has been received.
 
@@ -582,7 +590,8 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 
 ### `"songposition"`
-<a name="event:songposition"></a>
+
+<a id="event:songposition"></a>
 
 Input-wide (system) event emitted when a **song position** message has been received.
 
@@ -602,7 +611,8 @@ Input-wide (system) event emitted when a **song position** message has been rece
 
 
 ### `"songselect"`
-<a name="event:songselect"></a>
+
+<a id="event:songselect"></a>
 
 Input-wide (system) event emitted when a **song select** message has been received.
 
@@ -623,7 +633,8 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 
 ### `"start"`
-<a name="event:start"></a>
+
+<a id="event:start"></a>
 
 Input-wide (system) event emitted when a **start** message has been received.
 
@@ -643,7 +654,8 @@ Input-wide (system) event emitted when a **start** message has been received.
 
 
 ### `"stop"`
-<a name="event:stop"></a>
+
+<a id="event:stop"></a>
 
 Input-wide (system) event emitted when a **stop** message has been received.
 
@@ -663,7 +675,8 @@ Input-wide (system) event emitted when a **stop** message has been received.
 
 
 ### `"sysex"`
-<a name="event:sysex"></a>
+
+<a id="event:sysex"></a>
 
 Input-wide (system) event emitted when a **system exclusive** message has been received.
 You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
@@ -690,7 +703,8 @@ WebMidi.enable({sysex: true})
 
 
 ### `"timecode"`
-<a name="event:timecode"></a>
+
+<a id="event:timecode"></a>
 
 Input-wide (system) event emitted when a **time code quarter frame** message has been
 received.
@@ -711,7 +725,8 @@ received.
 
 
 ### `"tunerequest"`
-<a name="event:tunerequest"></a>
+
+<a id="event:tunerequest"></a>
 
 Input-wide (system) event emitted when a **tune request** message has been received.
 
@@ -731,7 +746,8 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 
 ### `"unknownmidimessage"`
-<a name="event:unknownmidimessage"></a>
+
+<a id="event:unknownmidimessage"></a>
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
 be, for example, one of the undefined/reserved messages.
