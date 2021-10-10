@@ -104,9 +104,9 @@ In this case, the method returns `false`.
 **Parameters**
 
 
-| Parameter    | Default      | Description  |
-| ------------ | ------------ | ------------ |
-|**`number`**  : number||An integer representing the control change message|
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`number`** |number||An integer representing the control change message|
 
 ### `.getChannelModeByNumber(...)`
 
@@ -120,9 +120,9 @@ returns `false`.
 **Parameters**
 
 
-| Parameter    | Default      | Description  |
-| ------------ | ------------ | ------------ |
-|**`number`**  : number||An integer representing the channel mode message.|
+| Parameter    | Type      | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|**`number`** |number||An integer representing the channel mode message.|
 
 
 ***
