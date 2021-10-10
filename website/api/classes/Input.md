@@ -194,8 +194,8 @@ There are 6 families of events you can listen to:
 
 > addListener(event, listener, options, options.arguments, options.channels, options.context, options.duration, options.prepend, options.remaining) ⇒ Array.&lt;Listener&gt;
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -295,8 +295,8 @@ There are 6 families of events you can listen to:
 
 > addOneTimeListener(event, listener, options, options.arguments, options.channels, options.context, options.duration, options.prepend) ⇒ Array.&lt;Listener&gt;
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -318,8 +318,6 @@ the input is opened again by calling [Input.open()]{@link Input#open}.
 
 > close() ⇒ Promise.&lt;Input&gt;
 
-**Parameters**
-
 ### `.destroy()`
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
@@ -328,8 +326,6 @@ MIDI subsystem.
 **Signature**
 
 > destroy() ⇒ Promise.&lt;void&gt;
-
-**Parameters**
 
 ### `.hasListener(...)`
 
@@ -341,8 +337,8 @@ defined.
 
 > hasListener(event, listener, options, options.channels) ⇒ Boolean
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -360,8 +356,6 @@ WebMidi is enabled.
 
 > open() ⇒ Promise.&lt;Input&gt;
 
-**Parameters**
-
 ### `.removeListener(...)`
 
 Removes the specified listener for the specified event. If no listener is specified, all
@@ -375,8 +369,8 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 > removeListener(type, listener, options, options.channels, options.context, options.remaining)
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

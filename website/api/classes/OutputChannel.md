@@ -80,8 +80,8 @@ names that can be used with this function:
 
 > decrementRegisteredParameter(parameter, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -114,8 +114,8 @@ names that can be used with this function:
 
 > incrementRegisteredParameter(parameter, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -152,8 +152,8 @@ functionally equivalent to a **note off** message.
 
 > playNote(note, options, options.duration, options.attack, options.rawAttack, options.release, options.rawRelease, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -175,8 +175,8 @@ the pitch bend, to their default value.
 
 > resetAllControllers(options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -201,8 +201,8 @@ from the MIDI Manufacturers Association.
 
 > send(message, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -241,8 +241,8 @@ To make it easier, all channel mode messages have a matching helper method:
 
 > sendChannelMode(command, value, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -347,8 +347,8 @@ parameter.
 
 > sendControlChange(controller, value, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -376,8 +376,8 @@ precedence over the one specified via the method's `options` parameter.
 
 > sendNoteOff(note, options, options.time, options.release, options.rawRelease) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -416,8 +416,8 @@ functionally equivalent to a **note off** message.
 
 > sendNoteOn(note, options, options.time, options.attack, options.rawAttack) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -436,8 +436,8 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
 > setChannelAftertouch(pressure, options, options.rawValue, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -461,8 +461,8 @@ The key can be a single value or an array of the following valid values:
 
 > setKeyAftertouch(target, pressure, options, options.useRawValue, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -482,8 +482,8 @@ its out port.
 
 > setLocalControl(state, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -505,8 +505,8 @@ a **Master Fine Tuning** RPN messages.
 
 > setMasterTuning(value, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -524,8 +524,8 @@ specifying both parameters at the same time.
 
 > setModulationRange(semitones, cents, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -564,8 +564,8 @@ For further implementation details, refer to the manufacturer's documentation.
 
 > setNonRegisteredParameter(parameter, data, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -585,8 +585,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 > setOmniMode(state, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -602,8 +602,8 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 > setPitchBend(value, options, options.rawValue, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -623,8 +623,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 > setPitchBendRange(semitones, cents, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -643,8 +643,8 @@ multiple notes are being played.
 
 > setPolyphonicMode(mode, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -664,8 +664,8 @@ that use a numbering scheme starting at 1.
 
 > setProgram(program, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -711,8 +711,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 > setRegisteredParameter(parameter, data, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -734,8 +734,8 @@ that use a numbering scheme starting at 1.
 
 > setTuningBank(value, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -756,8 +756,8 @@ that use a numbering scheme starting at 1.
 
 > setTuningProgram(value, options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -773,8 +773,8 @@ This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 
 > stopNote(note, options) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -791,8 +791,8 @@ fade out just as if their key had been released. This is different from the
 
 > turnNotesOff(options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -808,8 +808,8 @@ channel but will not prevent new sounds from being triggered.
 
 > turnSoundOff(options, options.time) ⇒ OutputChannel
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

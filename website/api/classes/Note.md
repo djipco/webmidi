@@ -120,8 +120,8 @@ returned. If an invalid value is supplied, 0 will be used.
 
 > getOffsetNumber(offset) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

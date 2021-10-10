@@ -88,8 +88,6 @@ input.
 
 > destroy()
 
-**Parameters**
-
 ### `.getCcNameByNumber(...)`
 
 Returns the name of a control change message matching the specified number. Some valid control
@@ -101,8 +99,8 @@ In this case, the method returns `false`.
 
 > getCcNameByNumber(number) ⇒ string
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -117,8 +115,8 @@ returns `false`.
 
 > getChannelModeByNumber(number) ⇒ string
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

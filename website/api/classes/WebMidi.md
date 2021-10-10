@@ -149,8 +149,6 @@ destroyed.
 
 > disable() ⇒ Promise.&lt;void&gt;
 
-**Parameters**
-
 ### `.enable(...)`
 
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
@@ -200,8 +198,8 @@ WebMidi.enable().then(ports => {
 
 > enable(options, options.callback, options.sysex, options.validation, options.software) ⇒ Promise.&lt;Object&gt;
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -223,8 +221,8 @@ kind of IDs as Jazz-Plugin.
 
 > getInputById(id) ⇒ Input
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -240,8 +238,8 @@ input names in the same way as the Jazz-Plugin does.
 
 > getInputByName(name) ⇒ Input
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -260,8 +258,8 @@ kind of IDs as Jazz-Plugin.
 
 > getOutputById(id) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -277,8 +275,8 @@ input names in the same way as the Jazz-Plugin does.
 
 > getOutputByName(name) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

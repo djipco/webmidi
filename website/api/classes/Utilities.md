@@ -24,8 +24,8 @@ If the input is a note number or identifier, it is possible to specify options b
 
 > buildNote(input, options, options.duration, options.attack, options.release, options.octaveOffset) ⇒ Note
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -49,8 +49,8 @@ input.
 
 > buildNoteArray(notes, options, options.duration, options.attack, options.release, options.rawAttack, options.rawRelease, options.octaveOffset) ⇒ Array.&lt;Note&gt;
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -76,8 +76,8 @@ When a number is specified, the translation to note is done using a value of 60 
 
 > getNoteDetails(value) ⇒ Object
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -92,8 +92,8 @@ supplied.
 
 > getPropertyByValue(object, value) ⇒ string
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -115,8 +115,8 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 > guessNoteNumber(input) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -132,8 +132,8 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 > offsetNumber(offset) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -152,8 +152,8 @@ integers between 1 and 16 are silently ignored.
 
 > sanitizeChannels(channel) ⇒ Array
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -172,8 +172,8 @@ the input value cannot be converted to a number, the method returns 0.
 
 > to7Bit(value) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -192,8 +192,8 @@ input value cannot be converted to an integer, the method returns 0.
 
 > toNormalized(value) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -208,8 +208,8 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 > toNoteIdentifier(number, octaveOffset) ⇒ string
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -232,8 +232,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 > toNoteNumber(identifier, octaveOffset) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -252,8 +252,8 @@ returned.
 
 > toTimestamp(time) ⇒ number
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |

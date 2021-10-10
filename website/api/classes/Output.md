@@ -106,8 +106,6 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 > clear() ⇒ Output
 
-**Parameters**
-
 ### `.close()`
 
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
@@ -117,8 +115,6 @@ the connection status by looking at the [connection]{@link Output#connection} pr
 **Signature**
 
 > close() ⇒ Promise.&lt;void&gt;
-
-**Parameters**
 
 ### `.decrementRegisteredParameter(...)`
 
@@ -145,8 +141,8 @@ names that can be used with this method:
 
 > decrementRegisteredParameter(parameter, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -163,8 +159,6 @@ subsystem is unlinked.
 **Signature**
 
 > destroy() ⇒ Promise.&lt;void&gt;
-
-**Parameters**
 
 ### `.incrementRegisteredParameter(...)`
 
@@ -191,8 +185,8 @@ names that can be used with this method:
 
 > incrementRegisteredParameter(parameter, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -208,8 +202,6 @@ Opens the output for usage.
 **Signature**
 
 > open() ⇒ Promise.&lt;Output&gt;
-
-**Parameters**
 
 ### `.playNote(...)`
 
@@ -241,8 +233,8 @@ functionally equivalent to a **note off** message.
 
 > playNote(note, options, options.channels, options.duration, options.rawValue, options.release, options.time, options.attack) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -264,8 +256,8 @@ the pitch bend, to their default value.
 
 > resetAllControllers(options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -291,8 +283,8 @@ from the MIDI Manufacturers Association.
 
 > send(message, options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -310,8 +302,8 @@ was no other activity on the MIDI port.
 
 > sendActiveSensing(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -349,8 +341,8 @@ To make it easier, all channel mode messages have a matching helper method:
 
 > sendChannelMode(command, value, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -369,8 +361,8 @@ for every quarter note.
 
 > sendClock(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -387,8 +379,8 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 
 > sendContinue(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -485,8 +477,8 @@ specification.
 
 > sendControlChange(controller, value, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -515,8 +507,8 @@ precedence over the one specified via the method's `options` parameter.
 
 > sendNoteOff(note, options, options.channels, options.rawValue, options.time, options.release) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -551,8 +543,8 @@ functionally equivalent to a **note off** message.
 
 > sendNoteOn(note, options, options.channels, options.rawValue, options.time, options.attack) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -572,8 +564,8 @@ should reset itself to a default state.
 
 > sendReset(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -590,8 +582,8 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 > sendStart(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -607,8 +599,8 @@ playback immediately (or at the scheduled time).
 
 > sendStop(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -670,8 +662,8 @@ system exclusive messages to 64Kb or less.
 
 > sendSysex(manufacturer, data, options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -690,8 +682,8 @@ on the data. It is up to the developer to format the data according to the
 
 > sendTimecodeQuarterFrame(value, options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -707,8 +699,8 @@ Sends a MIDI **tune request** real-time message.
 
 > sendTuneRequest(options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -724,8 +716,8 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 
 > setChannelAftertouch(pressure, options, options.channels, options.rawValue, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -745,8 +737,8 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 > setKeyAftertouch(note, pressure, options, options.channels, options.rawValue, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -767,8 +759,8 @@ its out port.
 
 > setLocalControl(state, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -791,8 +783,8 @@ a **Master Fine Tuning** RPN messages.
 
 > setMasterTuning(value, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -811,8 +803,8 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 > setModulationRange(semitones, cents, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -859,8 +851,8 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 > setNonRegisteredParameter(parameter, data, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -881,8 +873,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 > setOmniMode(state, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -899,8 +891,8 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 > setPitchBend(value, options, options.channels, options.rawValue, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -921,8 +913,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 > setPitchBendRange(semitones, cents, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -942,8 +934,8 @@ multiple notes are being played.
 
 > setPolyphonicMode(mode, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -964,8 +956,8 @@ that use a numbering scheme starting at 1.
 
 > setProgram(program, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1012,8 +1004,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 > setRegisteredParameter(parameter, data, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1035,8 +1027,8 @@ use a numbering scheme starting at 1.
 
 > setSong(value, options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1053,8 +1045,8 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 > setSongPosition(value, options, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1075,8 +1067,8 @@ that use a numbering scheme starting at 1.
 
 > setTuningBank(value, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1098,8 +1090,8 @@ that use a numbering scheme starting at 1.
 
 > setTuningProgram(value, options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1116,8 +1108,8 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 
 > stopNote(note, options) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1134,8 +1126,8 @@ fade out just as if their key had been released. This is different from the
 
 > turnNotesOff(options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -1152,8 +1144,8 @@ channel but will not prevent new sounds from being triggered.
 
 > turnSoundOff(options, options.channels, options.time) ⇒ Output
 
-**Parameters**
 
+**Parameters**
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
