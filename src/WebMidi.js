@@ -175,8 +175,8 @@ class WebMidi extends EventEmitter {
    *
    * @returns {Promise<Object>} The promise is fulfilled with the `WebMidi` object
    *
-   * @throws Error The Web MIDI API is not supported in your environment.
-   * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
+   * @throws {Error} The Web MIDI API is not supported in your environment.
+   * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
 
@@ -323,7 +323,7 @@ class WebMidi extends EventEmitter {
    * @async
    * @returns {Promise<void>}
    *
-   * @throws Error The Web MIDI API is not supported by your environment.
+   * @throws {Error} The Web MIDI API is not supported by your environment.
    *
    * @since 2.0.0
    */
@@ -374,7 +374,7 @@ class WebMidi extends EventEmitter {
    * @returns {Input|false} An {@link Input} object matching the specified ID string. If no matching
    * input can be found, the method returns `false`.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -435,7 +435,7 @@ class WebMidi extends EventEmitter {
    * @returns {Output|false} The {@link Output} that was found or `false` if no output matched the
    * specified name.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -469,7 +469,7 @@ class WebMidi extends EventEmitter {
    * @returns {Output|false} An {@link Output} object matching the specified ID string. If no
    * matching output can be found, the method returns `false`.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
