@@ -28,8 +28,8 @@ Note that a single device may expose several inputs.
 ## Properties
 
 ### `.channels`
-**Type**: Array.&lt;InputChannel&gt;
-**Attributes**: , 
+
+**Type**: Array.&lt;InputChannel&gt; 
 
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
@@ -37,16 +37,16 @@ channels are numbered 1 through 16.
 
 
 ### `.connection`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 
 ### `.id`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -55,24 +55,24 @@ the same port.
 
 
 ### `.manufacturer`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 Name of the manufacturer of the device that makes this input port available.
 
 
 
 ### `.name`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 Name of the MIDI input
 
 
 
 ### `.octaveOffset`
-**Type**: number
-**Attributes**: , 
+
+**Type**: number 
 
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
@@ -86,16 +86,16 @@ Note that this value is combined with the global offset value defined on the `We
 
 
 ### `.state`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 State of the input port: `"connected"` or `"disconnected"`.
 
 
 
 ### `.type`
-**Type**: string
-**Attributes**: read-only, 
+
+**Type**: string / read-only 
 
 Port type. In the case of `Input`, this is always: `"input"`.
 
