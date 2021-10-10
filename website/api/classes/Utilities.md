@@ -29,12 +29,18 @@ If the input is a note number or identifier, it is possible to specify options b
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [input] | <code>number</code> \| <code>string</code> \| <code>Note</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.duration] | <code>number</code> |  | get me? |
-| [options.attack] | <code>number</code> |  | get me? |
-| [options.release] | <code>number</code> |  | get me? |
-| [options.octaveOffset] | <code>number</code> |  | get me? |
+| [input] | <code>number</code> \| <code>string</code> \| <code>Note</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.duration] | <code>number</code> | <code>Infinity</code>
+ | get me? |
+| [options.attack] | <code>number</code> | <code>64</code>
+ | get me? |
+| [options.release] | <code>number</code> | <code>64</code>
+ | get me? |
+| [options.octaveOffset] | <code>number</code> | <code>0</code>
+ | get me? |
 
 ### `.buildNoteArray(...)`
 
@@ -54,14 +60,22 @@ input.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [notes] | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.duration] | <code>number</code> |  | get me? |
-| [options.attack] | <code>number</code> |  | get me? |
-| [options.release] | <code>number</code> |  | get me? |
-| [options.rawAttack] | <code>number</code> |  | get me? |
-| [options.rawRelease] | <code>number</code> |  | get me? |
-| [options.octaveOffset] | <code>number</code> |  | get me? |
+| [notes] | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.duration] | <code>number</code> | <code>Infinity</code>
+ | get me? |
+| [options.attack] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.release] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.rawAttack] | <code>number</code> | <code>64</code>
+ | get me? |
+| [options.rawRelease] | <code>number</code> | <code>64</code>
+ | get me? |
+| [options.octaveOffset] | <code>number</code> | <code>0</code>
+ | get me? |
 
 ### `.getNoteDetails(...)`
 
@@ -237,8 +251,10 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| identifier | <code>string</code> |  | get me? |
-| [octaveOffset] | <code>number</code> |  | get me? |
+| identifier | <code>string</code> | 
+ | get me? |
+| [octaveOffset] | <code>number</code> | <code>0</code>
+ | get me? |
 
 ### `.toTimestamp(...)`
 

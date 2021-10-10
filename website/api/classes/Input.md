@@ -199,15 +199,24 @@ There are 6 families of events you can listen to:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> |  | get me? |
-| listener | <code>function</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.arguments] | <code>array</code> |  | get me? |
-| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options.context] | <code>Object</code> |  | get me? |
-| [options.duration] | <code>number</code> |  | get me? |
-| [options.prepend] | <code>boolean</code> |  | get me? |
-| [options.remaining] | <code>boolean</code> |  | get me? |
+| event | <code>string</code> | 
+ | get me? |
+| listener | <code>function</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.arguments] | <code>array</code> | 
+ | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options.context] | <code>Object</code> | <code>this</code>
+ | get me? |
+| [options.duration] | <code>number</code> | <code>Infinity</code>
+ | get me? |
+| [options.prepend] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options.remaining] | <code>boolean</code> | <code>Infinity</code>
+ | get me? |
 
 ### `.addOneTimeListener(...)`
 
@@ -300,14 +309,22 @@ There are 6 families of events you can listen to:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> |  | get me? |
-| listener | <code>function</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.arguments] | <code>array</code> |  | get me? |
-| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options.context] | <code>Object</code> |  | get me? |
-| [options.duration] | <code>number</code> |  | get me? |
-| [options.prepend] | <code>boolean</code> |  | get me? |
+| event | <code>string</code> | 
+ | get me? |
+| listener | <code>function</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.arguments] | <code>array</code> | 
+ | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options.context] | <code>Object</code> | <code>this</code>
+ | get me? |
+| [options.duration] | <code>number</code> | <code>Infinity</code>
+ | get me? |
+| [options.prepend] | <code>boolean</code> | <code>false</code>
+ | get me? |
 
 ### `.close()`
 
@@ -346,10 +363,14 @@ defined.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| event | <code>string</code> |  | get me? |
-| listener | <code>function</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| event | <code>string</code> | 
+ | get me? |
+| listener | <code>function</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
 
 ### `.open()`
 
@@ -380,12 +401,18 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [type] | <code>String</code> |  | get me? |
-| [listener] | <code>function</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options.context] | <code>\*</code> |  | get me? |
-| [options.remaining] | <code>number</code> |  | get me? |
+| [type] | <code>String</code> | 
+ | get me? |
+| [listener] | <code>function</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options.context] | <code>\*</code> | 
+ | get me? |
+| [options.remaining] | <code>number</code> | 
+ | get me? |
 
 
 ***

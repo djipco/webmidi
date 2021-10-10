@@ -205,11 +205,16 @@ WebMidi.enable().then(ports => {
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> |  | get me? |
-| [options.callback] | <code>function</code> |  | get me? |
-| [options.sysex] | <code>boolean</code> |  | get me? |
-| [options.validation] | <code>boolean</code> |  | get me? |
-| [options.software] | <code>boolean</code> |  | get me? |
+| [options] | <code>Object</code> | 
+ | get me? |
+| [options.callback] | <code>function</code> | 
+ | get me? |
+| [options.sysex] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options.validation] | <code>boolean</code> | <code>true</code>
+ | get me? |
+| [options.software] | <code>boolean</code> | <code>false</code>
+ | get me? |
 
 ### `.getInputById(...)`
 

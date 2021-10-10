@@ -85,9 +85,12 @@ names that can be used with this function:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.incrementRegisteredParameter(...)`
 
@@ -119,9 +122,12 @@ names that can be used with this function:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.playNote(...)`
 
@@ -157,14 +163,22 @@ functionally equivalent to a **note off** message.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.duration] | <code>number</code> |  | get me? |
-| [options.attack] | <code>number</code> |  | get me? |
-| [options.rawAttack] | <code>number</code> |  | get me? |
-| [options.release] | <code>number</code> |  | get me? |
-| [options.rawRelease] | <code>number</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.duration] | <code>number</code> | 
+ | get me? |
+| [options.attack] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.rawAttack] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.release] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.rawRelease] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.resetAllControllers(...)`
 
@@ -180,8 +194,10 @@ the pitch bend, to their default value.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.send(...)`
 
@@ -206,9 +222,12 @@ from the MIDI Manufacturers Association.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.sendChannelMode(...)`
 
@@ -246,10 +265,14 @@ To make it easier, all channel mode messages have a matching helper method:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| command | <code>number</code> \| <code>string</code> |  | get me? |
-| value | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| command | <code>number</code> \| <code>string</code> | 
+ | get me? |
+| value | <code>number</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.sendControlChange(...)`
 
@@ -352,10 +375,14 @@ parameter.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| controller | <code>number</code> \| <code>string</code> |  | get me? |
-| value | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| controller | <code>number</code> \| <code>string</code> | 
+ | get me? |
+| value | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.sendNoteOff(...)`
 
@@ -381,11 +408,16 @@ precedence over the one specified via the method's `options` parameter.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
-| [options.release] | <code>number</code> |  | get me? |
-| [options.rawRelease] | <code>number</code> |  | get me? |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
+| [options.release] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.rawRelease] | <code>number</code> | <code>64</code>
+ | get me? |
 
 ### `.sendNoteOn(...)`
 
@@ -421,11 +453,16 @@ functionally equivalent to a **note off** message.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
-| [options.attack] | <code>number</code> |  | get me? |
-| [options.rawAttack] | <code>number</code> |  | get me? |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
+| [options.attack] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options.rawAttack] | <code>number</code> | <code>64</code>
+ | get me? |
 
 ### `.setChannelAftertouch(...)`
 
@@ -441,10 +478,14 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [pressure] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.rawValue] | <code>boolean</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [pressure] | <code>number</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.rawValue] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setKeyAftertouch(...)`
 
@@ -466,11 +507,16 @@ The key can be a single value or an array of the following valid values:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| target | <code>number</code> \| <code>string</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> |  | get me? |
-| [pressure] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.useRawValue] | <code>boolean</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| target | <code>number</code> \| <code>string</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> | 
+ | get me? |
+| [pressure] | <code>number</code> | <code>0.5</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.useRawValue] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setLocalControl(...)`
 
@@ -487,9 +533,12 @@ its out port.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [state] | <code>boolean</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [state] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setMasterTuning(...)`
 
@@ -510,9 +559,12 @@ a **Master Fine Tuning** RPN messages.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [value] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [value] | <code>number</code> | <code>0.0</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setModulationRange(...)`
 
@@ -529,10 +581,14 @@ specifying both parameters at the same time.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| semitones | <code>number</code> |  | get me? |
-| [cents] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| semitones | <code>number</code> | 
+ | get me? |
+| [cents] | <code>number</code> | <code>0</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -569,10 +625,14 @@ For further implementation details, refer to the manufacturer's documentation.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| parameter | <code>Array.&lt;number&gt;</code> |  | get me? |
-| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| parameter | <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | <code>[]</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setOmniMode(...)`
 
@@ -590,9 +650,12 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [state] | <code>boolean</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [state] | <code>boolean</code> | <code>true</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setPitchBend(...)`
 
@@ -607,10 +670,14 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [value] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.rawValue] | <code>boolean</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [value] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.rawValue] | <code>boolean</code> | <code>false</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setPitchBendRange(...)`
 
@@ -628,10 +695,14 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| semitones | <code>number</code> |  | get me? |
-| [cents] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| semitones | <code>number</code> | 
+ | get me? |
+| [cents] | <code>number</code> | <code>0</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setPolyphonicMode(...)`
 
@@ -648,9 +719,12 @@ multiple notes are being played.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [mode] | <code>string</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [mode] | <code>string</code> | <code>&quot;poly&quot;</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setProgram(...)`
 
@@ -669,9 +743,12 @@ that use a numbering scheme starting at 1.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [program] | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [program] | <code>number</code> | <code>1</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setRegisteredParameter(...)`
 
@@ -716,10 +793,14 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| parameter | <code>string</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| parameter | <code>string</code> \| <code>Array.&lt;number&gt;</code> | 
+ | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | <code>[]</code>
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setTuningBank(...)`
 
@@ -739,9 +820,12 @@ that use a numbering scheme starting at 1.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| value | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| value | <code>number</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.setTuningProgram(...)`
 
@@ -761,9 +845,12 @@ that use a numbering scheme starting at 1.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| value | <code>number</code> |  | get me? |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| value | <code>number</code> | 
+ | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.stopNote(...)`
 
@@ -796,8 +883,10 @@ fade out just as if their key had been released. This is different from the
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 ### `.turnSoundOff(...)`
 
@@ -813,7 +902,9 @@ channel but will not prevent new sounds from being triggered.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>Object</code> |  | get me? |
-| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options] | <code>Object</code> | <code>{}</code>
+ | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> | 
+ | get me? |
 
 
