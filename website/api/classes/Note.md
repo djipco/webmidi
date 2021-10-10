@@ -156,6 +156,6 @@ returned. If an invalid value is supplied, 0 will be used.
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 
 

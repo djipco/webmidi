@@ -227,7 +227,7 @@ There are 6 families of events you can listen to:
 
 
 
-**Returns: ** Array.&lt;Listener&gt;
+**Returns: ** Array.&lt;Listener&gt;<br />
 **Throws**:
   * coucouError: For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
@@ -329,7 +329,7 @@ There are 6 families of events you can listen to:
 
 
 
-**Returns: ** Array.&lt;Listener&gt;
+**Returns: ** Array.&lt;Listener&gt;<br />
 **Throws**:
   * coucouError: For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
@@ -340,7 +340,7 @@ the input is opened again by calling [Input.open()]{@link Input#open}.
 
 
 
-**Returns: ** Promise.&lt;Input&gt;
+**Returns: ** Promise.&lt;Input&gt;<br />
 
 ### `.destroy()`
 
@@ -349,7 +349,7 @@ MIDI subsystem.
 
 
 
-**Returns: ** Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;<br />
 
 ### `.hasListener(...)`
 
@@ -369,7 +369,7 @@ defined.
 
 
 
-**Returns: ** Boolean
+**Returns: ** Boolean<br />
 **Throws**:
   * coucou: Error For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
@@ -380,7 +380,7 @@ WebMidi is enabled.
 
 
 
-**Returns: ** Promise.&lt;Input&gt;
+**Returns: ** Promise.&lt;Input&gt;<br />
 
 ### `.removeListener(...)`
 

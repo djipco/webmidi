@@ -177,7 +177,7 @@ destroyed.
 
 
 
-**Returns: ** Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;<br />
 **Since**: 2.0.0
 **Throws**:
   * coucou: Error The Web MIDI API is not supported by your environment.
@@ -240,7 +240,7 @@ WebMidi.enable().then(ports => {
 
 
 
-**Returns: ** Promise.&lt;Object&gt;
+**Returns: ** Promise.&lt;Object&gt;<br />
 **Throws**:
   * coucou: Error The Web MIDI API is not supported in your environment.
   * coucou: Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
@@ -262,7 +262,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-**Returns: ** Input
+**Returns: ** Input<br />
 **Since**: 2.0.0
 **Throws**:
   * coucou: Error WebMidi is not enabled.
@@ -282,7 +282,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-**Returns: ** Input
+**Returns: ** Input<br />
 **Since**: 2.0.0
 **Throws**:
   * coucouError: WebMidi is not enabled.
@@ -305,7 +305,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 2.0.0
 **Throws**:
   * coucou: Error WebMidi is not enabled.
@@ -325,7 +325,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 2.0.0
 **Throws**:
   * coucou: Error WebMidi is not enabled.

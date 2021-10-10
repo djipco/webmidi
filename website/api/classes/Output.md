@@ -124,7 +124,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.close()`
 
@@ -134,7 +134,7 @@ the connection status by looking at the [connection]{@link Output#connection} pr
 
 
 
-**Returns: ** Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;<br />
 
 ### `.decrementRegisteredParameter(...)`
 
@@ -169,7 +169,7 @@ names that can be used with this method:
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucou: TypeError The specified parameter is not available.
 
@@ -180,7 +180,7 @@ subsystem is unlinked.
 
 
 
-**Returns: ** Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;<br />
 
 ### `.incrementRegisteredParameter(...)`
 
@@ -215,7 +215,7 @@ names that can be used with this method:
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.open()`
 
@@ -223,7 +223,7 @@ Opens the output for usage.
 
 
 
-**Returns: ** Promise.&lt;Output&gt;
+**Returns: ** Promise.&lt;Output&gt;<br />
 
 ### `.playNote(...)`
 
@@ -267,7 +267,7 @@ functionally equivalent to a **note off** message.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.resetAllControllers(...)`
 
@@ -285,7 +285,7 @@ the pitch bend, to their default value.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.send(...)`
 
@@ -312,7 +312,7 @@ from the MIDI Manufacturers Association.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucouRangeError: The first byte (status) must be an integer between 128 and 255.
 
@@ -332,7 +332,7 @@ was no other activity on the MIDI port.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendChannelMode(...)`
 
@@ -374,7 +374,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucouTypeError: Invalid channel mode message name.
   * coucouRangeError: Channel mode controller numbers must be between 120 and 127.
@@ -395,7 +395,7 @@ for every quarter note.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendContinue(...)`
 
@@ -413,7 +413,7 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendControlChange(...)`
 
@@ -514,7 +514,7 @@ specification.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucouRangeError: Controller numbers must be between 0 and 127.
   * coucouRangeError: Invalid controller name.
@@ -548,7 +548,7 @@ precedence over the one specified via the method's `options` parameter.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendNoteOn(...)`
 
@@ -584,7 +584,7 @@ functionally equivalent to a **note off** message.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendReset(...)`
 
@@ -601,7 +601,7 @@ should reset itself to a default state.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendStart(...)`
 
@@ -619,7 +619,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendStop(...)`
 
@@ -636,7 +636,7 @@ playback immediately (or at the scheduled time).
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendSysex(...)`
 
@@ -701,7 +701,7 @@ system exclusive messages to 64Kb or less.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucouDOMException: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: System exclusive message is
 not allowed.
@@ -725,7 +725,7 @@ on the data. It is up to the developer to format the data according to the
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.sendTuneRequest(...)`
 
@@ -741,7 +741,7 @@ Sends a MIDI **tune request** real-time message.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setChannelAftertouch(...)`
@@ -762,7 +762,7 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setKeyAftertouch(...)`
@@ -785,7 +785,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setLocalControl(...)`
@@ -806,7 +806,7 @@ its out port.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setMasterTuning(...)`
@@ -831,7 +831,7 @@ a **Master Fine Tuning** RPN messages.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouRangeError: The value must be a decimal number between larger than -65 and smaller
@@ -856,7 +856,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouRangeError: The msb value must be between 0 and 127
@@ -908,7 +908,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Throws**:
   * coucouRangeError: The control value must be between 0 and 127.
   * coucouRangeError: The msb value must be between 0 and 127
@@ -932,7 +932,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouTypeError: Invalid channel mode message name.
@@ -956,7 +956,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setPitchBendRange(...)`
@@ -979,7 +979,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouRangeError: The msb value must be between 0 and 127.
@@ -1003,7 +1003,7 @@ multiple notes are being played.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setProgram(...)`
@@ -1026,7 +1026,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouTypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
@@ -1079,7 +1079,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.setSong(...)`
 
@@ -1100,7 +1100,7 @@ use a numbering scheme starting at 1.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucou: The song number must be between 1 and 128.
@@ -1121,7 +1121,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.setTuningBank(...)`
@@ -1145,7 +1145,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouRangeError: The bank value must be between 1 and 128.
@@ -1171,7 +1171,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 **Throws**:
   * coucouRangeError: The program value must be between 1 and 128.
@@ -1190,7 +1190,7 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 
 ### `.turnNotesOff(...)`
 
@@ -1209,7 +1209,7 @@ fade out just as if their key had been released. This is different from the
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 ### `.turnSoundOff(...)`
@@ -1228,7 +1228,7 @@ channel but will not prevent new sounds from being triggered.
 
 
 
-**Returns: ** Output
+**Returns: ** Output<br />
 **Since**: 3.0.0
 
 

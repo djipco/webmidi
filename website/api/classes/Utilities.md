@@ -34,7 +34,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 
 
-**Returns: ** Note
+**Returns: ** Note<br />
 **Since**: version 3.0.0
 **Throws**:
   * coucou: TypeError The input could not be parsed to a note
@@ -64,7 +64,7 @@ input.
 
 
 
-**Returns: ** Array.&lt;Note&gt;
+**Returns: ** Array.&lt;Note&gt;<br />
 **Since**: 3.0.0
 **Throws**:
   * coucou: TypeError An element could not be parsed as a note.
@@ -87,7 +87,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 
 
-**Returns: ** Object
+**Returns: ** Object<br />
 **Since**: 3.0.0
 **Throws**:
   * coucou: TypeError Invalid note identifier
@@ -107,7 +107,7 @@ supplied.
 
 
 
-**Returns: ** string
+**Returns: ** string<br />
 
 ### `.guessNoteNumber(...)`
 
@@ -129,7 +129,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 **Since**: 3.0.0
 
 ### `.offsetNumber(...)`
@@ -147,7 +147,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 **Throws**:
   * coucouError: Invalid note number
 
@@ -169,7 +169,7 @@ integers between 1 and 16 are silently ignored.
 
 
 
-**Returns: ** Array
+**Returns: ** Array<br />
 **Since**: 3.0.0
 
 ### `.to7Bit(...)`
@@ -190,7 +190,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 
 ### `.toNormalized(...)`
 
@@ -210,7 +210,7 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 
 ### `.toNoteIdentifier(...)`
 
@@ -227,7 +227,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 
 
-**Returns: ** string
+**Returns: ** string<br />
 **Since**: 3.0.0
 **Throws**:
   * coucou: RangeError Invalid note number
@@ -255,7 +255,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 **Since**: 3.0.0
 **Throws**:
   * coucou: RangeError Invalid &#x27;octaveOffset&#x27; value
@@ -278,7 +278,7 @@ returned.
 
 
 
-**Returns: ** number
+**Returns: ** number<br />
 **Since**: 3.0.0
 
 
