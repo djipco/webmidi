@@ -205,11 +205,11 @@ WebMidi.enable().then(ports => {
 
 | Parameter    | Attributes   | Description  |
 | ------------ | ------------ | ------------ |
-  |**`options`** : `Object`|<br />Default: <br />optional||
-  |**`options.callback`** : `function`|<br />Default: <br />optional|A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
-  |**`options.sysex`** : `boolean`|<br />Default: false<br />optional|Whether to enable MIDI system exclusive messages or not.|
-  |**`options.validation`** : `boolean`|<br />Default: true<br />optional|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
-  |**`options.software`** : `boolean`|<br />Default: false<br />optional|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+  |**`options`** : Object|<br />Default: <br />optional||
+  |**`options.callback`** : function|<br />Default: <br />optional|A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
+  |**`options.sysex`** : boolean|<br />Default: false<br />optional|Whether to enable MIDI system exclusive messages or not.|
+  |**`options.validation`** : boolean|<br />Default: true<br />optional|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
+  |**`options.software`** : boolean|<br />Default: false<br />optional|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
 
 ### `.getInputById(...)`
 
@@ -228,7 +228,7 @@ kind of IDs as Jazz-Plugin.
 
 | Parameter    | Attributes   | Description  |
 | ------------ | ------------ | ------------ |
-  |**`id`** : `string`|<br />Default: <br />mandatory|The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
+  |**`id`** : string|<br />Default: <br />mandatory|The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
 
 ### `.getInputByName(...)`
 
@@ -245,7 +245,7 @@ input names in the same way as the Jazz-Plugin does.
 
 | Parameter    | Attributes   | Description  |
 | ------------ | ------------ | ------------ |
-  |**`name`** : `string`|<br />Default: <br />mandatory|The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+  |**`name`** : string|<br />Default: <br />mandatory|The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
 
 ### `.getOutputById(...)`
 
@@ -265,7 +265,7 @@ kind of IDs as Jazz-Plugin.
 
 | Parameter    | Attributes   | Description  |
 | ------------ | ------------ | ------------ |
-  |**`id`** : `string`|<br />Default: <br />mandatory|The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
+  |**`id`** : string|<br />Default: <br />mandatory|The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
 
 ### `.getOutputByName(...)`
 
@@ -282,7 +282,7 @@ input names in the same way as the Jazz-Plugin does.
 
 | Parameter    | Attributes   | Description  |
 | ------------ | ------------ | ------------ |
-  |**`name`** : `string`|<br />Default: <br />mandatory|The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+  |**`name`** : string|<br />Default: <br />mandatory|The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
 
 
 ***
