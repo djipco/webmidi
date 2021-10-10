@@ -201,13 +201,13 @@ There are 6 families of events you can listen to:
 | ------------ | ------------ | ------------ | ------------ |
 |**`event`** |string||The type of the event.|
 |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|[ **`options`** ] |Object|{}||
-|[ **`options.arguments`** ] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|[ **`options.channels`** ] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|[ **`options.context`** ] |Object|this|The value of `this` in the callback function.|
-|[ **`options.duration`** ] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-|[ **`options.prepend`** ] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
-|[ **`options.remaining`** ] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
+|[**`options`**] |Object|{}||
+|[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+|[**`options.context`**] |Object|this|The value of `this` in the callback function.|
+|[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
+|[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+|[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
 
 ### `.addOneTimeListener(...)`
 
@@ -302,12 +302,12 @@ There are 6 families of events you can listen to:
 | ------------ | ------------ | ------------ | ------------ |
 |**`event`** |string||The type of the event.|
 |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|[ **`options`** ] |Object|{}||
-|[ **`options.arguments`** ] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|[ **`options.channels`** ] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|[ **`options.context`** ] |Object|this|The value of `this` in the callback function.|
-|[ **`options.duration`** ] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-|[ **`options.prepend`** ] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+|[**`options`**] |Object|{}||
+|[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+|[**`options.context`**] |Object|this|The value of `this` in the callback function.|
+|[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
+|[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
 
 ### `.close()`
 
@@ -348,8 +348,8 @@ defined.
 | ------------ | ------------ | ------------ | ------------ |
 |**`event`** |string||The type of the event.|
 |**`listener`** |function||The callback function to check for.|
-|[ **`options`** ] |Object|{}||
-|[ **`options.channels`** ] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+|[**`options`**] |Object|{}||
+|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
 
 ### `.open()`
 
@@ -380,12 +380,12 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|[ **`type`** ] |String||The type of the event.|
-|[ **`listener`** ] |function||The callback function to check for.|
-|[ **`options`** ] |Object|{}||
-|[ **`options.channels`** ] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
-|[ **`options.context`** ] |*||Only remove the listeners that have this exact context.|
-|[ **`options.remaining`** ] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+|[**`type`**] |String||The type of the event.|
+|[**`listener`**] |function||The callback function to check for.|
+|[**`options`**] |Object|{}||
+|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
+|[**`options.context`**] |*||Only remove the listeners that have this exact context.|
+|[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
 
 
 ***
