@@ -32,7 +32,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 ## Members
 
-### `.channels` {#"event:abc"}
+### `.channels` {#event}
 
 **Type**: Array.&lt;InputChannel&gt;<br />
 
@@ -41,7 +41,7 @@ Array containing the 16 [`InputChannel`](InputChannel) objects available for thi
 channels are numbered 1 through 16.
 
 
-### `.connection` {#"event:abc"}
+### `.connection` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -50,7 +50,7 @@ channels are numbered 1 through 16.
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
-### `.id` {#"event:abc"}
+### `.id` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -61,7 +61,7 @@ platforms. For example, Google Chrome and the Jazz-Plugin report completely diff
 the same port.
 
 
-### `.manufacturer` {#"event:abc"}
+### `.manufacturer` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -70,7 +70,7 @@ the same port.
 Name of the manufacturer of the device that makes this input port available.
 
 
-### `.name` {#"event:abc"}
+### `.name` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -79,7 +79,7 @@ Name of the manufacturer of the device that makes this input port available.
 Name of the MIDI input
 
 
-### `.octaveOffset` {#"event:abc"}
+### `.octaveOffset` {#event}
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -95,7 +95,7 @@ Note that this value is combined with the global offset value defined on the `We
 (if any).
 
 
-### `.state` {#"event:abc"}
+### `.state` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -104,7 +104,7 @@ Note that this value is combined with the global offset value defined on the `We
 State of the input port: `"connected"` or `"disconnected"`.
 
 
-### `.type` {#"event:abc"}
+### `.type` {#event}
 
 **Type**: string<br />
 **Attributes**: read-only<br />
