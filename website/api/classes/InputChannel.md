@@ -160,8 +160,8 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"allnotesoff"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -176,8 +176,8 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"allsoundoff"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -192,8 +192,8 @@ Event emitted when a control change MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"channelaftertouch"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -210,8 +210,8 @@ Event emitted when a **control change** MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"controlchange"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -231,8 +231,8 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"keyaftertouch"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -254,8 +254,8 @@ off).
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"localcontrol"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -271,8 +271,8 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`target`** |Input|The `InputChannel` that triggered the event.|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -293,8 +293,8 @@ poly mode on).
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"monomode"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -310,8 +310,8 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"noteoff"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -329,8 +329,8 @@ Event emitted when a **note on** MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"noteon"`|
   |**`channel`** |InputChannel|The `InputChannel` object that triggered the event.|
   |**`event.data`** |Array|The MIDI message as an array of 8 bit values.|
@@ -351,8 +351,8 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"nrpndatabuttondecrement"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -371,8 +371,8 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"nrpndatabuttonincrement"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -391,8 +391,8 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"nrpndataentrycoarse"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -411,8 +411,8 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"nrpndataentryfine"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -432,8 +432,8 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"omnimode"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -449,8 +449,8 @@ Event emitted when a pitch bend MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"pitchbend"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -467,8 +467,8 @@ Event emitted when a **program change** MIDI message has been received.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"programchange"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -485,8 +485,8 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"resetallcontrollers"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
@@ -501,8 +501,8 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"rpndatabuttondecrement"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -521,8 +521,8 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"rpndatabuttonincrement"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -541,8 +541,8 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"rpndataentrycoarse"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -561,8 +561,8 @@ Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"rpndataentryfine"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|

@@ -352,8 +352,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`connected`|
   |**`target`** |Input|The {@link Input} or {@link Output} object that triggered the event.|
@@ -367,8 +367,8 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`disabled`|
@@ -384,8 +384,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
   |**`target`** |Object|Object with properties describing the {@link Input} or {@Output} that triggered the event.|
@@ -405,8 +405,8 @@ Event emitted once `WebMidi` has been fully enabled
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`enabled`|
@@ -420,8 +420,8 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`error`|
@@ -436,8 +436,8 @@ Event emitted once the MIDI interface has been successfully created.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`midiaccessgranted`|

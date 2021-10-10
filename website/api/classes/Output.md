@@ -1288,8 +1288,8 @@ Event emitted when the {@link Output} has been closed by calling the
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"closed"`|
   |**`target`** |Output|The object that triggered the event|
@@ -1304,8 +1304,8 @@ when the MIDI device is unplugged.
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"disconnected"`|
   |**`target`** |Object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
@@ -1326,8 +1326,8 @@ Event emitted when the {@link Output} has been opened by calling the
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"opened"`|
   |**`target`** |Output|The object that triggered the event|
