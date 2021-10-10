@@ -133,8 +133,6 @@ names that can be used with this method:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -144,6 +142,8 @@ names that can be used with this method:
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.destroy()`
 
@@ -173,8 +173,6 @@ names that can be used with this method:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -184,6 +182,8 @@ names that can be used with this method:
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.open()`
 
@@ -217,8 +217,6 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -233,12 +231,12 @@ functionally equivalent to a **note off** message.
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 |[**`options.attack`**] |number|0.5|The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
+**Returns: ** Output
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -248,6 +246,8 @@ the pitch bend, to their default value.
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.send(...)`
 
@@ -263,8 +263,6 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
 from the MIDI Manufacturers Association.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -274,13 +272,13 @@ from the MIDI Manufacturers Association.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.sendActiveSensing(...)`
 
 Sends an **active sensing** real-time message. This tells the device connected to this port
 that the connection is still good. Active sensing messages should be sent every 300 ms if there
 was no other activity on the MIDI port.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -289,6 +287,8 @@ was no other activity on the MIDI port.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendChannelMode(...)`
 
@@ -317,8 +317,6 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()]{@link OutputChannel#setOmniMode}
   - [setPolyphonicMode()]{@link OutputChannel#setPolyphonicMode}
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -330,12 +328,12 @@ To make it easier, all channel mode messages have a matching helper method:
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.sendClock(...)`
 
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
 for every quarter note.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -344,6 +342,8 @@ for every quarter note.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendContinue(...)`
 
@@ -351,8 +351,6 @@ Sends a **continue** real-time message. This resumes song playback where it was 
 stopped or where it was last cued with a song position message. To start playback from the
 start, use the [sendStart()]{@link Output#sendStart}` method.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -360,6 +358,8 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendControlChange(...)`
 
@@ -447,8 +447,6 @@ Change Messages" from the [MIDI Messages](
 https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
 specification.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -459,6 +457,8 @@ specification.
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendNoteOff(...)`
 
@@ -475,8 +475,6 @@ parameter is the note. It can be a single value or an array of the following val
 When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
 precedence over the one specified via the method's `options` parameter.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -488,6 +486,8 @@ precedence over the one specified via the method's `options` parameter.
 |[**`options.rawValue`**] |boolean|false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 |[**`options.release`**] |number|0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
+
+**Returns: ** Output
 
 ### `.sendNoteOn(...)`
 
@@ -509,8 +509,6 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -523,12 +521,12 @@ functionally equivalent to a **note off** message.
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 |[**`options.attack`**] |number|0.5|The velocity at which to play the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
+**Returns: ** Output
+
 ### `.sendReset(...)`
 
 Sends a **reset** real-time message. This tells the device connected to this output that it
 should reset itself to a default state.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -537,6 +535,8 @@ should reset itself to a default state.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendStart(...)`
 
@@ -544,8 +544,6 @@ Sends a **start** real-time message. A MIDI Start message starts the playback of
 song at beat 0. To start playback elsewhere in the song, use the
 [sendContinue()]{@link Output#sendContinue} method.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -553,14 +551,14 @@ song at beat 0. To start playback elsewhere in the song, use the
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendStop(...)`
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
 playback immediately (or at the scheduled time).
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -568,6 +566,8 @@ playback immediately (or at the scheduled time).
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.sendSysex(...)`
 
@@ -620,8 +620,6 @@ WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -632,13 +630,13 @@ system exclusive messages to 64Kb or less.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.sendTimecodeQuarterFrame(...)`
 
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
 on the data. It is up to the developer to format the data according to the
 [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -649,11 +647,11 @@ on the data. It is up to the developer to format the data according to the
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.sendTuneRequest(...)`
 
 Sends a MIDI **tune request** real-time message.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -663,12 +661,12 @@ Sends a MIDI **tune request** real-time message.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
 aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -681,13 +679,13 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setKeyAftertouch(...)`
 
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -701,13 +699,13 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -719,6 +717,8 @@ its out port.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setMasterTuning(...)`
 
 Sends a master tuning message to the specified channel(s). The value is decimal and must be
@@ -728,8 +728,6 @@ Because of the way the MIDI specification works, the decimal portion of the valu
 encoded with a resolution of 14bit. The integer portion must be between -64 and 63
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -741,13 +739,13 @@ a **Master Fine Tuning** RPN messages.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setModulationRange(...)`
 
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
 depth of their modulation wheel's range. The range can be specified with the `semitones`
 parameter, the `cents` parameter or by specifying both parameters at the same time.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -759,6 +757,8 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -793,8 +793,6 @@ WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
 
 For further implementation details, refer to the manufacturer"s documentation.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -806,14 +804,14 @@ For further implementation details, refer to the manufacturer"s documentation.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setOmniMode(...)`
 
 Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
 instrument to respond to messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -825,11 +823,11 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setPitchBend(...)`
 
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -842,14 +840,14 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setPitchBendRange(...)`
 
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -862,13 +860,13 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setPolyphonicMode(...)`
 
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -880,6 +878,8 @@ multiple notes are being played.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setProgram(...)`
 
 Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
@@ -887,8 +887,6 @@ Sends a MIDI **program change** message to the specified channel(s) at the sched
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -899,6 +897,8 @@ that use a numbering scheme starting at 1.
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.setRegisteredParameter(...)`
 
@@ -934,8 +934,6 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -947,6 +945,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setSong(...)`
 
 Sends a **song select** MIDI message.
@@ -954,8 +954,6 @@ Sends a **song select** MIDI message.
 **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices that
 use a numbering scheme starting at 1.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -966,12 +964,12 @@ use a numbering scheme starting at 1.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setSongPosition(...)`
 
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
 16383) which are 16th note. Position 0 is always the start of the song.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -982,6 +980,8 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setTuningBank(...)`
 
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -990,8 +990,6 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -1003,6 +1001,8 @@ that use a numbering scheme starting at 1.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.setTuningProgram(...)`
 
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -1011,8 +1011,6 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -1024,11 +1022,11 @@ that use a numbering scheme starting at 1.
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** Output
+
 ### `.stopNote(...)`
 
 This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -1038,14 +1036,14 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 |**`note`** ||||
 |**`options`** ||||
 
+**Returns: ** Output
+
 ### `.turnNotesOff(...)`
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()]{@link Output#turnSoundOff} method which mutes all sounds immediately.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -1054,14 +1052,14 @@ fade out just as if their key had been released. This is different from the
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -1070,6 +1068,8 @@ channel but will not prevent new sounds from being triggered.
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** Output
 
 
 ***

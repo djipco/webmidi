@@ -93,8 +93,6 @@ change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
 In this case, the method returns `false`.
 
-**Returns: ** string
-
 
 **Parameters**
 
@@ -102,12 +100,12 @@ In this case, the method returns `false`.
 | ------------ | ------------ | ------------ | ------------ |
 |**`number`** |number||An integer representing the control change message|
 
+**Returns: ** string
+
 ### `.getChannelModeByNumber(...)`
 
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
-
-**Returns: ** string
 
 
 **Parameters**
@@ -115,6 +113,8 @@ returns `false`.
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
 |**`number`** |number||An integer representing the channel mode message.|
+
+**Returns: ** string
 
 
 ***

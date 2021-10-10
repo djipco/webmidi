@@ -192,8 +192,6 @@ WebMidi.enable().then(ports => {
 })
 ```
 
-**Returns: ** Promise.&lt;Object&gt;
-
 
 **Parameters**
 
@@ -205,6 +203,8 @@ WebMidi.enable().then(ports => {
 |[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
 |[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
 
+**Returns: ** Promise.&lt;Object&gt;
+
 ### `.getInputById(...)`
 
 Returns the {@link Input} object that matches the specified ID string or `false` if no matching
@@ -213,8 +213,6 @@ input is found. As per the Web MIDI API specification, IDs are strings (not inte
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Returns: ** Input
-
 
 **Parameters**
 
@@ -222,13 +220,13 @@ kind of IDs as Jazz-Plugin.
 | ------------ | ------------ | ------------ | ------------ |
 |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
 
+**Returns: ** Input
+
 ### `.getInputByName(...)`
 
 Returns the first {@link Input} object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
-
-**Returns: ** Input
 
 
 **Parameters**
@@ -236,6 +234,8 @@ input names in the same way as the Jazz-Plugin does.
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
 |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+
+**Returns: ** Input
 
 ### `.getOutputById(...)`
 
@@ -246,8 +246,6 @@ integers).
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Returns: ** Output
-
 
 **Parameters**
 
@@ -255,13 +253,13 @@ kind of IDs as Jazz-Plugin.
 | ------------ | ------------ | ------------ | ------------ |
 |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
 
+**Returns: ** Output
+
 ### `.getOutputByName(...)`
 
 Returns the first {@link Output} object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -269,6 +267,8 @@ input names in the same way as the Jazz-Plugin does.
 | Parameter    | Type      | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
 |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+
+**Returns: ** Output
 
 
 ***

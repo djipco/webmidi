@@ -190,8 +190,6 @@ There are 6 families of events you can listen to:
    * rpndatabuttonincrement
    * rpndatabuttondecrement
 
-**Returns: ** Array.&lt;Listener&gt;
-
 
 **Parameters**
 
@@ -206,6 +204,8 @@ There are 6 families of events you can listen to:
 |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
 |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
 |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
+
+**Returns: ** Array.&lt;Listener&gt;
 
 ### `.addOneTimeListener(...)`
 
@@ -289,8 +289,6 @@ There are 6 families of events you can listen to:
    * omnimode
    * resetallcontrollers
 
-**Returns: ** Array.&lt;Listener&gt;
-
 
 **Parameters**
 
@@ -304,6 +302,8 @@ There are 6 families of events you can listen to:
 |[**`options.context`**] |Object|this|The value of `this` in the callback function.|
 |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
 |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+
+**Returns: ** Array.&lt;Listener&gt;
 
 ### `.close()`
 
@@ -325,8 +325,6 @@ Checks if the specified event type is already defined to trigger the listener fu
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
 
-**Returns: ** Boolean
-
 
 **Parameters**
 
@@ -336,6 +334,8 @@ defined.
 |**`listener`** |function||The callback function to check for.|
 |[**`options`**] |Object|{}||
 |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+
+**Returns: ** Boolean
 
 ### `.open()`
 
@@ -354,8 +354,6 @@ By default, channel-specific listeners will be removed from all channels unless 
 `options.channel` narrows it down.
 
 
-
-
 **Parameters**
 
 | Parameter    | Type      | Default      | Description  |
@@ -366,6 +364,8 @@ By default, channel-specific listeners will be removed from all channels unless 
 |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
 |[**`options.context`**] |*||Only remove the listeners that have this exact context.|
 |[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+
+
 
 
 ***

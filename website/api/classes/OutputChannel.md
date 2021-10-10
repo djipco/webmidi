@@ -76,8 +76,6 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -86,6 +84,8 @@ names that can be used with this function:
 |**`parameter`** |String||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.incrementRegisteredParameter(...)`
 
@@ -108,8 +108,6 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -118,6 +116,8 @@ names that can be used with this function:
 |**`parameter`** |String||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.playNote(...)`
 
@@ -144,8 +144,6 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -160,12 +158,12 @@ functionally equivalent to a **note off** message.
 |[**`options.rawRelease`**] |number|0.5|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -174,6 +172,8 @@ the pitch bend, to their default value.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.send(...)`
 
@@ -189,8 +189,6 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
 from the MIDI Manufacturers Association.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -199,6 +197,8 @@ from the MIDI Manufacturers Association.
 |**`message`** |Array.&lt;number&gt;||An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object.|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.sendChannelMode(...)`
 
@@ -227,8 +227,6 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()]{@link Output#setOmniMode}
   - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -238,6 +236,8 @@ To make it easier, all channel mode messages have a matching helper method:
 |**`value`** |number||The value to send (integer between 0-127).|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.sendControlChange(...)`
 
@@ -331,8 +331,6 @@ modulationwheelfine to achieve a greater level of precision. if you want to spec
 and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
 parameter.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -342,6 +340,8 @@ parameter.
 |**`value`** |number||The value to send (0-127). You can also use a two-position array for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first controller)|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.sendNoteOff(...)`
 
@@ -358,8 +358,6 @@ note. It can be a single value or an array of the following valid values:
 When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
 precedence over the one specified via the method's `options` parameter.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -370,6 +368,8 @@ precedence over the one specified via the method's `options` parameter.
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 |[**`options.release`**] |number|0.5|The velocity at which to release the note (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
 |[**`options.rawRelease`**] |number|64|The velocity at which to release the note (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `64`.|
+
+**Returns: ** OutputChannel
 
 ### `.sendNoteOn(...)`
 
@@ -396,8 +396,6 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -409,12 +407,12 @@ functionally equivalent to a **note off** message.
 |[**`options.attack`**] |number|0.5|The velocity at which to play the note (between `0` and `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
 |[**`options.rawAttack`**] |number|64|The velocity at which to release the note (between `0` and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `64`.|
 
+**Returns: ** OutputChannel
+
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -425,6 +423,8 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 |[**`options`**] |Object|{}||
 |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.setKeyAftertouch(...)`
 
@@ -437,8 +437,6 @@ The key can be a single value or an array of the following valid values:
  - A MIDI note number (integer between `0` and `127`)
  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -450,13 +448,13 @@ The key can be a single value or an array of the following valid values:
 |[**`options.useRawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -466,6 +464,8 @@ its out port.
 |[**`state`**] |boolean|false|Whether to activate local control (`true`) or disable it (`false`).|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.setMasterTuning(...)`
 
@@ -477,8 +477,6 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -488,13 +486,13 @@ a **Master Fine Tuning** RPN messages.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setModulationRange(...)`
 
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -505,6 +503,8 @@ specifying both parameters at the same time.
 |[**`cents`**] |number|0|The desired adjustment value in cents (integer between 0 and 127).|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -532,8 +532,6 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 
 For further implementation details, refer to the manufacturer's documentation.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -544,14 +542,14 @@ For further implementation details, refer to the manufacturer's documentation.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setOmniMode(...)`
 
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
 messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -562,11 +560,11 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setPitchBend(...)`
 
 Sends a MIDI **pitch bend** message at the scheduled time.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -578,14 +576,14 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setPitchBendRange(...)`
 
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -597,13 +595,13 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setPolyphonicMode(...)`
 
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -614,6 +612,8 @@ multiple notes are being played.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setProgram(...)`
 
 Sends a MIDI **program change** message at the scheduled time.
@@ -621,8 +621,6 @@ Sends a MIDI **program change** message at the scheduled time.
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -632,6 +630,8 @@ that use a numbering scheme starting at 1.
 |[**`program`**] |number|1|The MIDI patch (program) number (1-128)|
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.setRegisteredParameter(...)`
 
@@ -667,8 +667,6 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -679,6 +677,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setTuningBank(...)`
 
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -687,8 +687,6 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -699,6 +697,8 @@ that use a numbering scheme starting at 1.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.setTuningProgram(...)`
 
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -707,8 +707,6 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
-**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -719,11 +717,11 @@ that use a numbering scheme starting at 1.
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
+**Returns: ** OutputChannel
+
 ### `.stopNote(...)`
 
 This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
-
-**Returns: ** Output
 
 
 **Parameters**
@@ -733,14 +731,14 @@ This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 |**`note`** ||||
 |**`options`** ||||
 
+**Returns: ** Output
+
 ### `.turnNotesOff(...)`
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -748,14 +746,14 @@ fade out just as if their key had been released. This is different from the
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-**Returns: ** OutputChannel
-
 
 **Parameters**
 
@@ -763,5 +761,7 @@ channel but will not prevent new sounds from being triggered.
 | ------------ | ------------ | ------------ | ------------ |
 |[**`options`**] |Object|{}||
 |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+**Returns: ** OutputChannel
 
 
