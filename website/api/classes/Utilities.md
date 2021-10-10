@@ -56,7 +56,15 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|input|number||||
+|options|Object|{}|{}||
+|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should
+be explicitly stopped.|
+|options.attack|number|64|64|The note&#x27;s attack velocity as an integer between 0 and 127.|
+|options.release|number|64|64|The note&#x27;s release velocity as an integer between 0 and
+127.|
+|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only
+used when the input value is a note identifier.**|
 
 ### `.buildNoteArray(...)`
 
@@ -112,7 +120,20 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|notes|number||||
+|options|Object|{}|{}||
+|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should
+be explicitly stopped.|
+|options.attack|number|0.5|0.5|The note&#x27;s attack velocity as a decimal number between 0
+and 1.|
+|options.release|number|0.5|0.5|The note&#x27;s release velocity as a decimal number between 0
+and 1.|
+|options.rawAttack|number|64|64|The note&#x27;s attack velocity as an integer between 0 and
+127.|
+|options.rawRelease|number|64|64|The note&#x27;s release velocity as an integer between 0 and
+127.|
+|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only
+used when the input value is a note identifier.**|
 
 ### `.getNoteDetails(...)`
 
@@ -141,7 +162,8 @@ number (0-127). |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|value|string|||A note identifier A  atring (&quot;C#4&quot;, &quot;Gb-1&quot;, etc.) or a MIDI note
+number (0-127).|
 
 ### `.getPropertyByValue(...)`
 
@@ -167,7 +189,8 @@ supplied.
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|object|Object||||
+|value|*||||
 
 ### `.guessNoteNumber(...)`
 
@@ -197,7 +220,7 @@ A string or number to extract the MIDI note number from. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|input|string|||A string or number to extract the MIDI note number from.|
 
 ### `.offsetNumber(...)`
 
@@ -222,7 +245,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|offset|||||
 
 ### `.sanitizeChannels(...)`
 
@@ -251,7 +274,8 @@ numbers. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|channel|number|||An integer or an array of integers to parse as channel
+numbers.|
 
 ### `.to7Bit(...)`
 
@@ -279,7 +303,7 @@ A positive integer between 0 and 127 (inclusive) |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|value||||A positive integer between 0 and 127 (inclusive)|
 
 ### `.toNormalized(...)`
 
@@ -307,7 +331,7 @@ A positive integer between 0 and 127 (inclusive) |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|value||||A positive integer between 0 and 127 (inclusive)|
 
 ### `.toNoteIdentifier(...)`
 
@@ -333,7 +357,8 @@ An offset to apply to the resulting octave |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|number|number|||The MIDI note number to convert to a note identifier|
+|octaveOffset|number|||An offset to apply to the resulting octave|
 
 ### `.toNoteNumber(...)`
 
@@ -370,7 +395,10 @@ A integer to offset the octave by. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|identifier|string|||The identifier in the form of a letter, followed by an optional &quot;#&quot;,
+&quot;##&quot;, &quot;b&quot; or &quot;bb&quot; followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+Abb4, B##6, etc.|
+|octaveOffset|number|0|0|A integer to offset the octave by.|
 
 ### `.toTimestamp(...)`
 
@@ -397,6 +425,6 @@ The time string (e.g. `"+2000"`) or number to parse |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-
+|time|number|||The time string (e.g. &#x60;&quot;+2000&quot;&#x60;) or number to parse|
 
 
