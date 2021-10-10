@@ -334,7 +334,7 @@ input names in the same way as the Jazz-Plugin does.
 **Since**: 2.0.0
 
 **Throws**:
-  * Error WebMidi is not enabled.
+  * Error: Error WebMidi is not enabled.
 
 
 ***
