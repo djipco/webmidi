@@ -30,6 +30,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `.number`
 **Type**: number
+**Attributes**: , 
 
 This channel's MIDI number (1-16)
 
@@ -37,6 +38,7 @@ This channel's MIDI number (1-16)
 
 ### `.octaveOffset`
 **Type**: number
+**Attributes**: , 
 
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -49,6 +51,7 @@ and with the value defined on the parent `Output` object.
 
 ### `.output`
 **Type**: Output
+**Attributes**: , 
 
 The parent {@link Output} this channel belongs to
 
