@@ -26,6 +26,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 
 
+
 ***
 
 ## Members
@@ -184,6 +185,7 @@ functionally equivalent to a **note off** message.
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -200,6 +202,7 @@ the pitch bend, to their default value.
 
 
 **Returns: ** OutputChannel<br />
+
 
 ### `.send(...)`
 
@@ -272,6 +275,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 **Returns: ** OutputChannel<br />
+
 
 ### `.sendControlChange(...)`
 
@@ -415,6 +419,7 @@ precedence over the one specified via the method's `options` parameter.
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.sendNoteOn(...)`
 
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
@@ -454,6 +459,7 @@ functionally equivalent to a **note off** message.
 
 
 **Returns: ** OutputChannel<br />
+
 
 ### `.setChannelAftertouch(...)`
 
@@ -525,6 +531,7 @@ its out port.
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.setMasterTuning(...)`
 
 Sends a **master tuning** message. The value is decimal and must be larger than -65 semitones
@@ -571,6 +578,7 @@ specifying both parameters at the same time.
 
 
 **Returns: ** OutputChannel<br />
+
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -659,6 +667,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.setPitchBendRange(...)`
 
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
@@ -702,6 +711,7 @@ multiple notes are being played.
 
 
 **Returns: ** OutputChannel<br />
+
 
 ### `.setProgram(...)`
 
@@ -776,6 +786,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.setTuningBank(...)`
 
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -842,6 +853,7 @@ This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 
 **Returns: ** Output<br />
 
+
 ### `.turnNotesOff(...)`
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
@@ -860,6 +872,7 @@ fade out just as if their key had been released. This is different from the
 
 **Returns: ** OutputChannel<br />
 
+
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
@@ -876,5 +889,6 @@ channel but will not prevent new sounds from being triggered.
 
 
 **Returns: ** OutputChannel<br />
+
 
 

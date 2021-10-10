@@ -27,6 +27,7 @@ property.
 
 
 
+
 ***
 
 ## Members
@@ -103,6 +104,7 @@ input.
 
 
 
+
 ### `.getCcNameByNumber(...)`
 
 Returns the name of a control change message matching the specified number. Some valid control
@@ -141,6 +143,7 @@ returns `false`.
 
 **Returns: ** string<br />
 **Since**: 2.0.0
+
 
 
 ***

@@ -25,6 +25,7 @@ Note that a single device may expose several inputs.
 
 
 
+
 ***
 
 ## Members
@@ -344,6 +345,7 @@ the input is opened again by calling [Input.open()]{@link Input#open}.
 
 **Returns: ** Promise.&lt;Input&gt;<br />
 
+
 ### `.destroy()`
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
@@ -352,6 +354,7 @@ MIDI subsystem.
 
 
 **Returns: ** Promise.&lt;void&gt;<br />
+
 
 ### `.hasListener(...)`
 
@@ -385,6 +388,7 @@ WebMidi is enabled.
 
 **Returns: ** Promise.&lt;Input&gt;<br />
 
+
 ### `.removeListener(...)`
 
 Removes the specified listener for the specified event. If no listener is specified, all
@@ -405,6 +409,7 @@ By default, channel-specific listeners will be removed from all channels unless 
     |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
     |[**`options.context`**] |*||Only remove the listeners that have this exact context.|
     |[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+
 
 
 

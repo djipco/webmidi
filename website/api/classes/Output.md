@@ -25,6 +25,7 @@ You can find a list of all available `Output` objects in the
 
 
 
+
 ***
 
 ## Members
@@ -126,6 +127,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 **Returns: ** Output<br />
 
+
 ### `.close()`
 
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
@@ -135,6 +137,7 @@ the connection status by looking at the [connection]{@link Output#connection} pr
 
 
 **Returns: ** Promise.&lt;void&gt;<br />
+
 
 ### `.decrementRegisteredParameter(...)`
 
@@ -183,6 +186,7 @@ subsystem is unlinked.
 
 **Returns: ** Promise.&lt;void&gt;<br />
 
+
 ### `.incrementRegisteredParameter(...)`
 
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -218,6 +222,7 @@ names that can be used with this method:
 
 **Returns: ** Output<br />
 
+
 ### `.open()`
 
 Opens the output for usage.
@@ -225,6 +230,7 @@ Opens the output for usage.
 
 
 **Returns: ** Promise.&lt;Output&gt;<br />
+
 
 ### `.playNote(...)`
 
@@ -270,6 +276,7 @@ functionally equivalent to a **note off** message.
 
 **Returns: ** Output<br />
 
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -287,6 +294,7 @@ the pitch bend, to their default value.
 
 
 **Returns: ** Output<br />
+
 
 ### `.send(...)`
 
@@ -335,6 +343,7 @@ was no other activity on the MIDI port.
 
 
 **Returns: ** Output<br />
+
 
 ### `.sendChannelMode(...)`
 
@@ -400,6 +409,7 @@ for every quarter note.
 
 **Returns: ** Output<br />
 
+
 ### `.sendContinue(...)`
 
 Sends a **continue** real-time message. This resumes song playback where it was previously
@@ -417,6 +427,7 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 
 
 **Returns: ** Output<br />
+
 
 ### `.sendControlChange(...)`
 
@@ -554,6 +565,7 @@ precedence over the one specified via the method's `options` parameter.
 
 **Returns: ** Output<br />
 
+
 ### `.sendNoteOn(...)`
 
 Sends a **note on** message for the specified notes on the specified channel(s). The first
@@ -590,6 +602,7 @@ functionally equivalent to a **note off** message.
 
 **Returns: ** Output<br />
 
+
 ### `.sendReset(...)`
 
 Sends a **reset** real-time message. This tells the device connected to this output that it
@@ -606,6 +619,7 @@ should reset itself to a default state.
 
 
 **Returns: ** Output<br />
+
 
 ### `.sendStart(...)`
 
@@ -625,6 +639,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 **Returns: ** Output<br />
 
+
 ### `.sendStop(...)`
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
@@ -641,6 +656,7 @@ playback immediately (or at the scheduled time).
 
 
 **Returns: ** Output<br />
+
 
 ### `.sendSysex(...)`
 
@@ -732,6 +748,7 @@ on the data. It is up to the developer to format the data according to the
 
 **Returns: ** Output<br />
 
+
 ### `.sendTuneRequest(...)`
 
 Sends a MIDI **tune request** real-time message.
@@ -748,6 +765,7 @@ Sends a MIDI **tune request** real-time message.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 ### `.setChannelAftertouch(...)`
 
@@ -769,6 +787,7 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 ### `.setKeyAftertouch(...)`
 
@@ -793,6 +812,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 **Returns: ** Output<br />
 **Since**: 3.0.0
 
+
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
@@ -813,6 +833,7 @@ its out port.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 ### `.setMasterTuning(...)`
 
@@ -968,6 +989,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 **Returns: ** Output<br />
 **Since**: 3.0.0
 
+
 ### `.setPitchBendRange(...)`
 
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
@@ -1015,6 +1037,7 @@ multiple notes are being played.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 ### `.setProgram(...)`
 
@@ -1092,6 +1115,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 **Returns: ** Output<br />
 
+
 ### `.setSong(...)`
 
 Sends a **song select** MIDI message.
@@ -1135,6 +1159,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 ### `.setTuningBank(...)`
 
@@ -1206,6 +1231,7 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 
 **Returns: ** Output<br />
 
+
 ### `.turnNotesOff(...)`
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
@@ -1226,6 +1252,7 @@ fade out just as if their key had been released. This is different from the
 **Returns: ** Output<br />
 **Since**: 3.0.0
 
+
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
@@ -1244,6 +1271,7 @@ channel but will not prevent new sounds from being triggered.
 
 **Returns: ** Output<br />
 **Since**: 3.0.0
+
 
 
 ***

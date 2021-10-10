@@ -112,6 +112,7 @@ supplied.
 
 **Returns: ** string<br />
 
+
 ### `.guessNoteNumber(...)`
 
 Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
@@ -134,6 +135,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 **Returns: ** number<br />
 **Since**: 3.0.0
+
 
 ### `.offsetNumber(...)`
 
@@ -176,6 +178,7 @@ integers between 1 and 16 are silently ignored.
 **Returns: ** Array<br />
 **Since**: 3.0.0
 
+
 ### `.to7Bit(...)`
 
 Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
@@ -196,6 +199,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 **Returns: ** number<br />
 
+
 ### `.toNormalized(...)`
 
 Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
@@ -215,6 +219,7 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 **Returns: ** number<br />
+
 
 ### `.toNoteIdentifier(...)`
 
@@ -286,5 +291,6 @@ returned.
 
 **Returns: ** number<br />
 **Since**: 3.0.0
+
 
 

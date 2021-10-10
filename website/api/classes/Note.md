@@ -40,6 +40,15 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 
 
+**Throws**:
+  * `Error` : Invalid note identifier
+  * `RangeError` : Invalid name value
+  * `RangeError` : Invalid accidental value
+  * `RangeError` : Invalid octave value
+  * `RangeError` : Invalid duration value
+  * `RangeError` : Invalid attack value
+  * `RangeError` : Invalid release value
+
 ***
 
 ## Members
@@ -157,5 +166,6 @@ returned. If an invalid value is supplied, 0 will be used.
 
 
 **Returns: ** number<br />
+
 
 
