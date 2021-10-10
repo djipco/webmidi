@@ -36,6 +36,7 @@ property.
 
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
+  **Attributes**: static
 
 
 Array of channel-specific event names that can be listened to.
@@ -44,7 +45,7 @@ Array of channel-specific event names that can be listened to.
 ### `.input`
 
 **Type**: Input<br />
-**Since**: 3.0
+**Since**: 3.0<br />
 
 
 The {@link Input} this channel belongs to
@@ -53,7 +54,7 @@ The {@link Input} this channel belongs to
 ### `.number`
 
 **Type**: number<br />
-**Since**: 3.0
+**Since**: 3.0<br />
 
 
 This channel's MIDI number (1-16)
@@ -62,7 +63,7 @@ This channel's MIDI number (1-16)
 ### `.octaveOffset`
 
 **Type**: number<br />
-**Since**: 3.0
+**Since**: 3.0<br />
 
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,

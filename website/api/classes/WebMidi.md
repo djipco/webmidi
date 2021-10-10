@@ -87,7 +87,7 @@ isBrowser can both be true at the same time.
 ### `.octaveOffset`
 
 **Type**: number<br />
-**Since**: 2.1
+**Since**: 2.1<br />
 
 
 An integer to offset the octave of notes received from external devices or sent to external

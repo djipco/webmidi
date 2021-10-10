@@ -80,7 +80,7 @@ Name of the MIDI output
 ### `.octaveOffset`
 
 **Type**: number<br />
-**Since**: 3.0
+**Since**: 3.0<br />
 
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
