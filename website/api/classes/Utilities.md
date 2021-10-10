@@ -58,13 +58,10 @@ used when the input value is a note identifier.** |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |input|number||||
 |options|Object|{}|{}||
-|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should
-be explicitly stopped.|
+|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should be explicitly stopped.|
 |options.attack|number|64|64|The note's attack velocity as an integer between 0 and 127.|
-|options.release|number|64|64|The note's release velocity as an integer between 0 and
-127.|
-|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only
-used when the input value is a note identifier.**|
+|options.release|number|64|64|The note's release velocity as an integer between 0 and 127.|
+|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.buildNoteArray(...)`
 
@@ -122,18 +119,12 @@ used when the input value is a note identifier.** |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |notes|number||||
 |options|Object|{}|{}||
-|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should
-be explicitly stopped.|
-|options.attack|number|0.5|0.5|The note's attack velocity as a decimal number between 0
-and 1.|
-|options.release|number|0.5|0.5|The note's release velocity as a decimal number between 0
-and 1.|
-|options.rawAttack|number|64|64|The note's attack velocity as an integer between 0 and
-127.|
-|options.rawRelease|number|64|64|The note's release velocity as an integer between 0 and
-127.|
-|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only
-used when the input value is a note identifier.**|
+|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+|options.attack|number|0.5|0.5|The note's attack velocity as a decimal number between 0 and 1.|
+|options.release|number|0.5|0.5|The note's release velocity as a decimal number between 0 and 1.|
+|options.rawAttack|number|64|64|The note's attack velocity as an integer between 0 and 127.|
+|options.rawRelease|number|64|64|The note's release velocity as an integer between 0 and 127.|
+|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.getNoteDetails(...)`
 
@@ -162,8 +153,7 @@ number (0-127). |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|value|string|||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
-number (0-127).|
+|value|string|||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
 
 ### `.getPropertyByValue(...)`
 
@@ -274,8 +264,7 @@ numbers. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|channel|number|||An integer or an array of integers to parse as channel
-numbers.|
+|channel|number|||An integer or an array of integers to parse as channel numbers.|
 
 ### `.to7Bit(...)`
 
@@ -395,9 +384,7 @@ A integer to offset the octave by. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|identifier|string|||The identifier in the form of a letter, followed by an optional "#",
-"##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
-Abb4, B##6, etc.|
+|identifier|string|||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
 |octaveOffset|number|0|0|A integer to offset the octave by.|
 
 ### `.toTimestamp(...)`
