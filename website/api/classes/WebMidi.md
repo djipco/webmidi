@@ -202,6 +202,15 @@ WebMidi.enable().then(ports => {
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.callback] | <code>function</code> |  | get me? |
+| [options.sysex] | <code>boolean</code> |  | get me? |
+| [options.validation] | <code>boolean</code> |  | get me? |
+| [options.software] | <code>boolean</code> |  | get me? |
+
 ### `.getInputById(...)`
 
 Returns the {@link Input} object that matches the specified ID string or `false` if no matching
@@ -216,6 +225,11 @@ kind of IDs as Jazz-Plugin.
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | get me? |
+
 ### `.getInputByName(...)`
 
 Returns the first {@link Input} object whose name **contains** the specified string. Note that
@@ -227,6 +241,11 @@ input names in the same way as the Jazz-Plugin does.
 > getInputByName(name) ⇒ Input
 
 **Parameters**
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | get me? |
 
 ### `.getOutputById(...)`
 
@@ -243,6 +262,11 @@ kind of IDs as Jazz-Plugin.
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | get me? |
+
 ### `.getOutputByName(...)`
 
 Returns the first {@link Output} object whose name **contains** the specified string. Note that
@@ -254,6 +278,11 @@ input names in the same way as the Jazz-Plugin does.
 > getOutputByName(name) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | get me? |
 
 
 ***

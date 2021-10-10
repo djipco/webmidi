@@ -82,6 +82,13 @@ names that can be used with this function:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.incrementRegisteredParameter(...)`
 
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -108,6 +115,13 @@ names that can be used with this function:
 > incrementRegisteredParameter(parameter, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.playNote(...)`
 
@@ -140,6 +154,18 @@ functionally equivalent to a **note off** message.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+| [options.rawAttack] | <code>number</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
+| [options.rawRelease] | <code>number</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -150,6 +176,12 @@ the pitch bend, to their default value.
 > resetAllControllers(options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.send(...)`
 
@@ -170,6 +202,13 @@ from the MIDI Manufacturers Association.
 > send(message, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendChannelMode(...)`
 
@@ -203,6 +242,14 @@ To make it easier, all channel mode messages have a matching helper method:
 > sendChannelMode(command, value, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| command | <code>number</code> \| <code>string</code> |  | get me? |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendControlChange(...)`
 
@@ -302,6 +349,14 @@ parameter.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| controller | <code>number</code> \| <code>string</code> |  | get me? |
+| value | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendNoteOff(...)`
 
 Sends a **note off** message for the specified notes on the channel. The first parameter is the
@@ -322,6 +377,15 @@ precedence over the one specified via the method's `options` parameter.
 > sendNoteOff(note, options, options.time, options.release, options.rawRelease) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
+| [options.rawRelease] | <code>number</code> |  | get me? |
 
 ### `.sendNoteOn(...)`
 
@@ -354,6 +418,15 @@ functionally equivalent to a **note off** message.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+| [options.rawAttack] | <code>number</code> |  | get me? |
+
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
@@ -364,6 +437,14 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 > setChannelAftertouch(pressure, options, options.rawValue, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [pressure] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setKeyAftertouch(...)`
 
@@ -382,6 +463,15 @@ The key can be a single value or an array of the following valid values:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| target | <code>number</code> \| <code>string</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> |  | get me? |
+| [pressure] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.useRawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
@@ -393,6 +483,13 @@ its out port.
 > setLocalControl(state, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [state] | <code>boolean</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setMasterTuning(...)`
 
@@ -410,6 +507,13 @@ a **Master Fine Tuning** RPN messages.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [value] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setModulationRange(...)`
 
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
@@ -421,6 +525,14 @@ specifying both parameters at the same time.
 > setModulationRange(semitones, cents, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| semitones | <code>number</code> |  | get me? |
+| [cents] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -454,6 +566,14 @@ For further implementation details, refer to the manufacturer's documentation.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>Array.&lt;number&gt;</code> |  | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setOmniMode(...)`
 
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
@@ -467,6 +587,13 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [state] | <code>boolean</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setPitchBend(...)`
 
 Sends a MIDI **pitch bend** message at the scheduled time.
@@ -476,6 +603,14 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 > setPitchBend(value, options, options.rawValue, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [value] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setPitchBendRange(...)`
 
@@ -490,6 +625,14 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| semitones | <code>number</code> |  | get me? |
+| [cents] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setPolyphonicMode(...)`
 
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
@@ -501,6 +644,13 @@ multiple notes are being played.
 > setPolyphonicMode(mode, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [mode] | <code>string</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setProgram(...)`
 
@@ -515,6 +665,13 @@ that use a numbering scheme starting at 1.
 > setProgram(program, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [program] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setRegisteredParameter(...)`
 
@@ -556,6 +713,14 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>string</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setTuningBank(...)`
 
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -570,6 +735,13 @@ that use a numbering scheme starting at 1.
 > setTuningBank(value, options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setTuningProgram(...)`
 
@@ -586,6 +758,13 @@ that use a numbering scheme starting at 1.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.stopNote(...)`
 
 This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
@@ -595,6 +774,12 @@ This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 > stopNote(note, options) ⇒ Output
 
 **Parameters**
+
+
+| Param |
+| --- |
+| note | 
+| options | 
 
 ### `.turnNotesOff(...)`
 
@@ -608,6 +793,12 @@ fade out just as if their key had been released. This is different from the
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
@@ -618,5 +809,11 @@ channel but will not prevent new sounds from being triggered.
 > turnSoundOff(options, options.time) ⇒ OutputChannel
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 

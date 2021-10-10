@@ -147,6 +147,14 @@ names that can be used with this method:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.destroy()`
 
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
@@ -184,6 +192,14 @@ names that can be used with this method:
 > incrementRegisteredParameter(parameter, options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.open()`
 
@@ -227,6 +243,18 @@ functionally equivalent to a **note off** message.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -237,6 +265,13 @@ the pitch bend, to their default value.
 > resetAllControllers(options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.send(...)`
 
@@ -258,6 +293,13 @@ from the MIDI Manufacturers Association.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendActiveSensing(...)`
 
 Sends an **active sensing** real-time message. This tells the device connected to this port
@@ -269,6 +311,12 @@ was no other activity on the MIDI port.
 > sendActiveSensing(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendChannelMode(...)`
 
@@ -303,6 +351,15 @@ To make it easier, all channel mode messages have a matching helper method:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| command | <code>number</code> \| <code>string</code> |  | get me? |
+| [value] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendClock(...)`
 
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
@@ -313,6 +370,12 @@ for every quarter note.
 > sendClock(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendContinue(...)`
 
@@ -325,6 +388,12 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 > sendContinue(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendControlChange(...)`
 
@@ -418,6 +487,15 @@ specification.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| controller | <code>number</code> \| <code>string</code> |  | get me? |
+| [value] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendNoteOff(...)`
 
 Sends a **note off** message for the specified notes on the specified channel(s). The first
@@ -438,6 +516,16 @@ precedence over the one specified via the method's `options` parameter.
 > sendNoteOff(note, options, options.channels, options.rawValue, options.time, options.release) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
 
 ### `.sendNoteOn(...)`
 
@@ -465,6 +553,16 @@ functionally equivalent to a **note off** message.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+
 ### `.sendReset(...)`
 
 Sends a **reset** real-time message. This tells the device connected to this output that it
@@ -475,6 +573,12 @@ should reset itself to a default state.
 > sendReset(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendStart(...)`
 
@@ -488,6 +592,12 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendStop(...)`
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
@@ -498,6 +608,12 @@ playback immediately (or at the scheduled time).
 > sendStop(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.sendSysex(...)`
 
@@ -556,6 +672,14 @@ system exclusive messages to 64Kb or less.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| manufacturer | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [data] | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendTimecodeQuarterFrame(...)`
 
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
@@ -568,6 +692,13 @@ on the data. It is up to the developer to format the data according to the
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.sendTuneRequest(...)`
 
 Sends a MIDI **tune request** real-time message.
@@ -577,6 +708,12 @@ Sends a MIDI **tune request** real-time message.
 > sendTuneRequest(options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setChannelAftertouch(...)`
 
@@ -588,6 +725,15 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 > setChannelAftertouch(pressure, options, options.channels, options.rawValue, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [pressure] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setKeyAftertouch(...)`
 
@@ -601,6 +747,16 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| note | <code>number</code> \| <code>string</code> \| <code>Array</code> |  | get me? |
+| [pressure] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
@@ -612,6 +768,14 @@ its out port.
 > setLocalControl(state, options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [state] | <code>boolean</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setMasterTuning(...)`
 
@@ -629,6 +793,14 @@ a **Master Fine Tuning** RPN messages.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [value] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setModulationRange(...)`
 
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
@@ -640,6 +812,15 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 > setModulationRange(semitones, cents, options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [semitones] | <code>number</code> |  | get me? |
+| [cents] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -680,6 +861,15 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>Array.&lt;number&gt;</code> |  | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setOmniMode(...)`
 
 Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
@@ -693,6 +883,14 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [state] | <code>boolean</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setPitchBend(...)`
 
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
@@ -702,6 +900,15 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 > setPitchBend(value, options, options.channels, options.rawValue, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.rawValue] | <code>boolean</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setPitchBendRange(...)`
 
@@ -716,6 +923,15 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| semitones | <code>number</code> |  | get me? |
+| [cents] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setPolyphonicMode(...)`
 
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
@@ -727,6 +943,14 @@ multiple notes are being played.
 > setPolyphonicMode(mode, options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| mode | <code>string</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setProgram(...)`
 
@@ -741,6 +965,14 @@ that use a numbering scheme starting at 1.
 > setProgram(program, options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [program] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setRegisteredParameter(...)`
 
@@ -782,6 +1014,15 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| parameter | <code>string</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setSong(...)`
 
 Sends a **song select** MIDI message.
@@ -796,6 +1037,13 @@ use a numbering scheme starting at 1.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setSongPosition(...)`
 
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
@@ -806,6 +1054,13 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 > setSongPosition(value, options, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [value] | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 ### `.setTuningBank(...)`
 
@@ -822,6 +1077,14 @@ that use a numbering scheme starting at 1.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.setTuningProgram(...)`
 
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -837,6 +1100,14 @@ that use a numbering scheme starting at 1.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| value | <code>number</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.stopNote(...)`
 
 This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
@@ -846,6 +1117,12 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 > stopNote(note, options) ⇒ Output
 
 **Parameters**
+
+
+| Param |
+| --- |
+| note | 
+| options | 
 
 ### `.turnNotesOff(...)`
 
@@ -859,6 +1136,13 @@ fade out just as if their key had been released. This is different from the
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
+
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
@@ -869,6 +1153,13 @@ channel but will not prevent new sounds from being triggered.
 > turnSoundOff(options, options.channels, options.time) ⇒ Output
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> |  | get me? |
+| [options.time] | <code>number</code> \| <code>string</code> |  | get me? |
 
 
 ***

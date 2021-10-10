@@ -103,6 +103,11 @@ In this case, the method returns `false`.
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | get me? |
+
 ### `.getChannelModeByNumber(...)`
 
 Returns the channel mode name matching the specified number. If no match is found, the function
@@ -113,6 +118,11 @@ returns `false`.
 > getChannelModeByNumber(number) ⇒ string
 
 **Parameters**
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | get me? |
 
 
 ***

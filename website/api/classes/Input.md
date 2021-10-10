@@ -196,6 +196,19 @@ There are 6 families of events you can listen to:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| event | <code>string</code> |  | get me? |
+| listener | <code>function</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.arguments] | <code>array</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options.context] | <code>Object</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.prepend] | <code>boolean</code> |  | get me? |
+| [options.remaining] | <code>boolean</code> |  | get me? |
+
 ### `.addOneTimeListener(...)`
 
 Adds a one-time event listener that will trigger a function callback when the specified event
@@ -284,6 +297,18 @@ There are 6 families of events you can listen to:
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| event | <code>string</code> |  | get me? |
+| listener | <code>function</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.arguments] | <code>array</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options.context] | <code>Object</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.prepend] | <code>boolean</code> |  | get me? |
+
 ### `.close()`
 
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
@@ -318,6 +343,14 @@ defined.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| event | <code>string</code> |  | get me? |
+| listener | <code>function</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+
 ### `.open()`
 
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
@@ -343,6 +376,16 @@ By default, channel-specific listeners will be removed from all channels unless 
 > removeListener(type, listener, options, options.channels, options.context, options.remaining)
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [type] | <code>String</code> |  | get me? |
+| [listener] | <code>function</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> |  | get me? |
+| [options.context] | <code>\*</code> |  | get me? |
+| [options.remaining] | <code>number</code> |  | get me? |
 
 
 ***

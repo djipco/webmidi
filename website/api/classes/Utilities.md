@@ -26,6 +26,16 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [input] | <code>number</code> \| <code>string</code> \| <code>Note</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
+| [options.octaveOffset] | <code>number</code> |  | get me? |
+
 ### `.buildNoteArray(...)`
 
 Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
@@ -40,6 +50,18 @@ input.
 > buildNoteArray(notes, options, options.duration, options.attack, options.release, options.rawAttack, options.rawRelease, options.octaveOffset) ⇒ Array.&lt;Note&gt;
 
 **Parameters**
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [notes] | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> |  | get me? |
+| [options] | <code>Object</code> |  | get me? |
+| [options.duration] | <code>number</code> |  | get me? |
+| [options.attack] | <code>number</code> |  | get me? |
+| [options.release] | <code>number</code> |  | get me? |
+| [options.rawAttack] | <code>number</code> |  | get me? |
+| [options.rawRelease] | <code>number</code> |  | get me? |
+| [options.octaveOffset] | <code>number</code> |  | get me? |
 
 ### `.getNoteDetails(...)`
 
@@ -56,6 +78,11 @@ When a number is specified, the translation to note is done using a value of 60 
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> \| <code>number</code> | get me? |
+
 ### `.getPropertyByValue(...)`
 
 Returns the name of the first property of the supplied object whose value is equal to the one
@@ -66,6 +93,12 @@ supplied.
 > getPropertyByValue(object, value) ⇒ string
 
 **Parameters**
+
+
+| Param | Type |
+| --- | --- |
+| object | <code>Object</code> | 
+| value | <code>\*</code> | 
 
 ### `.guessNoteNumber(...)`
 
@@ -84,6 +117,11 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| input | <code>string</code> \| <code>number</code> | get me? |
+
 ### `.offsetNumber(...)`
 
 Returns the supplied MIDI note number offset by the requested octave and semitone values. If
@@ -95,6 +133,11 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 > offsetNumber(offset) ⇒ number
 
 **Parameters**
+
+
+| Param |
+| --- |
+| offset | 
 
 ### `.sanitizeChannels(...)`
 
@@ -111,6 +154,11 @@ integers between 1 and 16 are silently ignored.
 
 **Parameters**
 
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [channel] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | get me? |
+
 ### `.to7Bit(...)`
 
 Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
@@ -125,6 +173,11 @@ the input value cannot be converted to a number, the method returns 0.
 > to7Bit(value) ⇒ number
 
 **Parameters**
+
+
+| Param | Description |
+| --- | --- |
+| value | get me? |
 
 ### `.toNormalized(...)`
 
@@ -141,6 +194,11 @@ input value cannot be converted to an integer, the method returns 0.
 
 **Parameters**
 
+
+| Param | Description |
+| --- | --- |
+| value | get me? |
+
 ### `.toNoteIdentifier(...)`
 
 Returns an identifier string representing a note name (with optional accidental) followed by an
@@ -151,6 +209,12 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 > toNoteIdentifier(number, octaveOffset) ⇒ string
 
 **Parameters**
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | get me? |
+| octaveOffset | <code>number</code> | get me? |
 
 ### `.toNoteNumber(...)`
 
@@ -170,6 +234,12 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 **Parameters**
 
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| identifier | <code>string</code> |  | get me? |
+| [octaveOffset] | <code>number</code> |  | get me? |
+
 ### `.toTimestamp(...)`
 
 Returns a valid timestamp, relative to the navigation start of the document, derived from the
@@ -183,5 +253,10 @@ returned.
 > toTimestamp(time) ⇒ number
 
 **Parameters**
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [time] | <code>number</code> \| <code>string</code> | get me? |
 
 
