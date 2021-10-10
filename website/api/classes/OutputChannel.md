@@ -33,7 +33,6 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 ### `.number`
 
 **Type**: number<br />
-<br />
 **Since**: 3.0
 
 
@@ -43,7 +42,6 @@ This channel's MIDI number (1-16)
 ### `.octaveOffset`
 
 **Type**: number<br />
-<br />
 **Since**: 3.0
 
 
@@ -58,7 +56,6 @@ and with the value defined on the parent `Output` object.
 ### `.output`
 
 **Type**: Output<br />
-<br />
 **Since**: 3.0
 
 

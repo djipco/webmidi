@@ -39,7 +39,7 @@ works.
 ### `.enabled`
 
 **Type**: boolean<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Indicates whether access to the host's MIDI subsystem is active or not.
@@ -48,7 +48,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 ### `.inputs`
 
 **Type**: Array<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 An array of all currently available MIDI inputs.
@@ -57,7 +57,7 @@ An array of all currently available MIDI inputs.
 ### `.interface`
 
 **Type**: MIDIAccess<br />
-**Attributes**: read-only, nullable
+**Attributes**: read-only, nullable<br />
 
 
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
@@ -87,7 +87,6 @@ isBrowser can both be true at the same time.
 ### `.octaveOffset`
 
 **Type**: number<br />
-<br />
 **Since**: 2.1
 
 
@@ -106,7 +105,7 @@ of 60).
 ### `.outputs`
 
 **Type**: Array<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 An array of all currently available MIDI outputs.
@@ -115,7 +114,7 @@ An array of all currently available MIDI outputs.
 ### `.supported`
 
 **Type**: boolean<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Indicates whether the environment provides support for the Web MIDI API or not.
@@ -129,7 +128,7 @@ not be there.
 ### `.sysexEnabled`
 
 **Type**: Boolean<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
@@ -139,7 +138,7 @@ enabled via the `enable()` method.
 ### `.time`
 
 **Type**: DOMHighResTimeStamp<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 The elapsed time, in milliseconds, since the time

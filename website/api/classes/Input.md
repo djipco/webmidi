@@ -41,7 +41,7 @@ channels are numbered 1 through 16.
 ### `.connection`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
@@ -50,7 +50,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 ### `.id`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
@@ -61,7 +61,7 @@ the same port.
 ### `.manufacturer`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Name of the manufacturer of the device that makes this input port available.
@@ -70,7 +70,7 @@ Name of the manufacturer of the device that makes this input port available.
 ### `.name`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Name of the MIDI input
@@ -79,7 +79,6 @@ Name of the MIDI input
 ### `.octaveOffset`
 
 **Type**: number<br />
-<br />
 **Since**: 3.0
 
 
@@ -96,7 +95,7 @@ Note that this value is combined with the global offset value defined on the `We
 ### `.state`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 State of the input port: `"connected"` or `"disconnected"`.
@@ -105,7 +104,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 ### `.type`
 
 **Type**: string<br />
-**Attributes**: read-only
+**Attributes**: read-only<br />
 
 
 Port type. In the case of `Input`, this is always: `"input"`.
