@@ -1,13 +1,13 @@
 // Imports
 const fs = require("fs-extra");
-const fsPromises = require("fs").promises;
+// const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const path = require("path");
 const process = require("process");
 const jsdoc2md = require("jsdoc-to-markdown");
-const os = require("os");
-const replace = require("replace-in-file");
-const rimraf = require("@alexbinary/rimraf");
+// const os = require("os");
+// const replace = require("replace-in-file");
+// const rimraf = require("@alexbinary/rimraf");
 const moment = require("moment");
 const Handlebars = require("handlebars");
 
