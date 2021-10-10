@@ -121,6 +121,8 @@ In this case, the method returns `false`.
 
 **Returns: ** string
 **Since**: 2.0.0
+**Throws**:
+  * RangeError: Invalid control change number.
 
 ### `.getChannelModeByNumber(...)`
 

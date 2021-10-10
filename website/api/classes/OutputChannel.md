@@ -100,6 +100,8 @@ names that can be used with this function:
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * : TypeError The specified registered parameter is invalid.
 
 ### `.incrementRegisteredParameter(...)`
 
@@ -134,6 +136,8 @@ names that can be used with this function:
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * : TypeError The specified registered parameter is invalid.
 
 ### `.playNote(...)`
 
@@ -221,6 +225,9 @@ from the MIDI Manufacturers Association.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The first byte (status) must be an integer between 128 and 255.
+  * RangeError: Data bytes must be integers between 0 and 255.
 
 ### `.sendChannelMode(...)`
 
@@ -369,6 +376,10 @@ parameter.
 
 **Returns: ** OutputChannel
 **Since**: 3.0.0
+**Throws**:
+  * RangeError: Controller numbers must be between 0 and 127.
+  * RangeError: Invalid controller name.
+  * TypeError: The value array must have a length of 2.
 
 ### `.sendNoteOff(...)`
 
@@ -458,6 +469,8 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * : RangeError Invalid channel aftertouch value.
 
 ### `.setKeyAftertouch(...)`
 
@@ -484,6 +497,8 @@ The key can be a single value or an array of the following valid values:
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * : RangeError Invalid key aftertouch value.
 
 ### `.setLocalControl(...)`
 
@@ -526,6 +541,9 @@ a **Master Fine Tuning** RPN messages.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The value must be a decimal number between larger than -65 and smaller
+than 64.
 
 ### `.setModulationRange(...)`
 
@@ -586,6 +604,9 @@ For further implementation details, refer to the manufacturer's documentation.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The control value must be between 0 and 127.
+  * RangeError: The msb value must be between 0 and 127
 
 ### `.setOmniMode(...)`
 
@@ -606,6 +627,10 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * TypeError: Invalid channel mode message name.
+  * RangeError: Channel mode controller numbers must be between 120 and 127.
+  * RangeError: Value must be an integer between 0 and 127.
 
 ### `.setPitchBend(...)`
 
@@ -645,6 +670,9 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The msb value must be between 0 and 127.
+  * RangeError: The lsb value must be between 0 and 127.
 
 ### `.setPolyphonicMode(...)`
 
@@ -685,6 +713,9 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * TypeError: Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
+than 0xFF.
 
 ### `.setRegisteredParameter(...)`
 
@@ -755,6 +786,8 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The bank value must be between 1 and 128.
 
 ### `.setTuningProgram(...)`
 
@@ -777,6 +810,8 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** OutputChannel
+**Throws**:
+  * RangeError: The program value must be between 1 and 128.
 
 ### `.stopNote(...)`
 
