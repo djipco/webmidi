@@ -123,7 +123,7 @@ In this case, the method returns `false`.
 **Since**: 2.0.0
 
 **Throws**:
-  * RangeError: Invalid control change number.
+  * `RangeError` : Invalid control change number.
 
 ### `.getChannelModeByNumber(...)`
 

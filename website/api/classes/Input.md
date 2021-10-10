@@ -230,7 +230,7 @@ There are 6 families of events you can listen to:
 **Returns: ** Array.&lt;Listener&gt;<br />
 
 **Throws**:
-  * Error: For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
 ### `.addOneTimeListener(...)`
 
@@ -333,7 +333,7 @@ There are 6 families of events you can listen to:
 **Returns: ** Array.&lt;Listener&gt;<br />
 
 **Throws**:
-  * Error: For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
 ### `.close()`
 
