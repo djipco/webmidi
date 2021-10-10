@@ -151,13 +151,24 @@ names that can be used with this method:
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+A string identifying the parameter"s name (see above) or a
+two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+parameter. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.destroy()`
 
@@ -201,13 +212,24 @@ names that can be used with this method:
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | parameter | <code>String</code> \| <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+A string identifying the parameter's name (see above) or a
+two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+parameter. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.open()`
 
@@ -255,21 +277,46 @@ functionally equivalent to a **note off** message.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+The note(s) to play. The notes can be
+specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+{@link Note} object or an array of the previous types. When using a note name, octave range
+must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+note is G9 (MIDI note number 127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
+also be used to use all channels (default). |
 | [options.duration] | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The number of milliseconds (integer) after which a
+**note off** message will be scheduled. If left undefined, only a **note on** message is sent. |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+Controls whether the attack and release velocities
+are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1`
+(`false`, default). |
 | [options.release] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The velocity at which to release the note (between `0`
+and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+This is only used with the **note off** event triggered when `options.duration` is set. |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 | [options.attack] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The attack velocity to use when playing the note (between
+`0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
 ### `.resetAllControllers(...)`
 
@@ -286,11 +333,19 @@ the pitch bend, to their default value.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.send(...)`
 
@@ -316,11 +371,20 @@ from the MIDI Manufacturers Association.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | message | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> \| <code>Message</code> | 
- | get me? |
+ | <!--get me? |-->
+An array of 8bit unsigned integers, a `Uint8Array`
+object (not available in Node.js) containing the message bytes or a `Message` object. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a positive
+number
+([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
+operation will be carried out as soon as possible. |
 
 ### `.sendActiveSensing(...)`
 
@@ -338,9 +402,14 @@ was no other activity on the MIDI port.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendChannelMode(...)`
 
@@ -379,15 +448,26 @@ To make it easier, all channel mode messages have a matching helper method:
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | command | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+The numerical identifier of the channel mode message (integer
+between 120-127) or its name as a string. |
 | [value] | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The value to send (integer between 0-127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendClock(...)`
 
@@ -404,9 +484,14 @@ for every quarter note.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendContinue(...)`
 
@@ -424,9 +509,14 @@ start, use the [sendStart()]{@link Output#sendStart}` method.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendControlChange(...)`
 
@@ -524,15 +614,25 @@ specification.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | controller | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+The MIDI controller name or number (0-127). |
 | [value] | <code>number</code> | <code>0</code>
- | get me? |
+ | <!--get me? |-->
+The value to send (0-127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendNoteOff(...)`
 
@@ -559,17 +659,36 @@ precedence over the one specified via the method's `options` parameter.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+The note(s) to stop. The notes can be
+specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+{@link Note} object or an array of the previous types. When using a note name, octave range
+must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+note is G9 (MIDI note number 127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+Controls whether the release velocity is set using
+integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 | [options.release] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The velocity at which to release the note (between `0`
+and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
 ### `.sendNoteOn(...)`
 
@@ -601,17 +720,36 @@ functionally equivalent to a **note off** message.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | note | <code>number</code> \| <code>string</code> \| <code>Note</code> \| <code>Array.&lt;number&gt;</code> \| <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;Note&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+The note(s) to play. The notes can be
+specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
+{@link Note} object or an array of the previous types. When using a note name, octave range
+must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+note is G9 (MIDI note number 127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+Controls whether the attack velocity is set using
+integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 | [options.attack] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The velocity at which to play the note (between `0` and
+`1`). If the `rawValue` option is `true`, the value should be specified as an integer
+between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. |
 
 ### `.sendReset(...)`
 
@@ -628,9 +766,14 @@ should reset itself to a default state.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendStart(...)`
 
@@ -648,9 +791,14 @@ song at beat 0. To start playback elsewhere in the song, use the
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendStop(...)`
 
@@ -667,9 +815,14 @@ playback immediately (or at the scheduled time).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendSysex(...)`
 
@@ -732,13 +885,25 @@ system exclusive messages to 64Kb or less.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | manufacturer | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+An unsigned integer or an array of three unsigned
+integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers
+Association* maintains a full list of
+[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
+. |
 | [data] | <code>Array.&lt;number&gt;</code> \| <code>Uint8Array</code> | <code>[]</code>
- | get me? |
+ | <!--get me? |-->
+A Uint8Array or an array of unsigned integers between 0
+and 127. This is the data you wish to transfer. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendTimecodeQuarterFrame(...)`
 
@@ -756,11 +921,17 @@ on the data. It is up to the developer to format the data according to the
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The quarter frame message content (integer between 0 and 127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.sendTuneRequest(...)`
 
@@ -776,9 +947,14 @@ Sends a MIDI **tune request** real-time message.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setChannelAftertouch(...)`
 
@@ -795,15 +971,28 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [pressure] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The pressure level (between 0 and 1). An invalid pressure value
+will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
+pressure can be defined by using an integer between 0 and 127. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+A boolean indicating whether the value should be
+considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setKeyAftertouch(...)`
 
@@ -821,17 +1010,36 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | note | <code>number</code> \| <code>string</code> \| <code>Array</code> | 
- | get me? |
+ | <!--get me? |-->
+The note for which you are sending an aftertouch value. The
+notes can be specified in one of two ways. The first way is by using the MIDI note number (an
+integer between 0 and 127). The second way is by using the note name followed by the octave
+(C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
+note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
+an array of note names and/or numbers. |
 | [pressure] | <code>number</code> | <code>0.5</code>
- | get me? |
+ | <!--get me? |-->
+The pressure level (between 0 and 1). An invalid pressure value
+will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
+pressure can be defined by using an integer between 0 and 127. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+A boolean indicating whether the value should be
+considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127. |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setLocalControl(...)`
 
@@ -849,13 +1057,23 @@ its out port.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [state] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+Whether to activate local control (`true`) or disable it
+(`false`). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setMasterTuning(...)`
 
@@ -877,13 +1095,22 @@ a **Master Fine Tuning** RPN messages.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [value] | <code>number</code> | <code>0.0</code>
- | get me? |
+ | <!--get me? |-->
+The desired decimal adjustment value in semitones (-65 < x < 64) |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setModulationRange(...)`
 
@@ -901,15 +1128,26 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [semitones] | <code>number</code> | <code>0</code>
- | get me? |
+ | <!--get me? |-->
+The desired adjustment value in semitones (integer between
+0 and 127). |
 | [cents] | <code>number</code> | <code>0</code>
- | get me? |
+ | <!--get me? |-->
+The desired adjustment value in cents (integer between 0 and 127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -954,15 +1192,27 @@ For further implementation details, refer to the manufacturer"s documentation.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | parameter | <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+A two-position array specifying the two control bytes (0x63,
+0x62) that identify the non-registered parameter. |
 | [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | <code>[]</code>
- | get me? |
+ | <!--get me? |-->
+An integer or an array of integers with a length of 1 or 2
+specifying the desired data. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setOmniMode(...)`
 
@@ -981,13 +1231,22 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [state] | <code>boolean</code> | 
- | get me? |
+ | <!--get me? |-->
+Whether to activate OMNI mode (`true`) or not (`false`). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setPitchBend(...)`
 
@@ -1003,15 +1262,40 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+The intensity of the bend (between -1.0 and 1.0). A value of
+zero means no bend. The resulting bend is relative to the pitch bend range that has been
+defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
+. So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
+-1 will bend the note 1 octave below its nominal value.
+
+If an invalid value is specified, the nearest valid value will be used instead.
+
+If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
+using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
+representing, respectively, the MSB (most significant byte) and the LSB (least significant
+byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64`
+bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
+(1/100 of a semitone). An LSB of `64` also means no bend. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.rawValue] | <code>boolean</code> | <code>false</code>
- | get me? |
+ | <!--get me? |-->
+A boolean indicating whether the value should be
+considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
+an array of 2 integers if using both MSB and LSB). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setPitchBendRange(...)`
 
@@ -1030,15 +1314,27 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | semitones | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The desired adjustment value in semitones (between 0 and 127). While
+nothing imposes that in the specification, it is very common for manufacturers to limit the
+range to 2 octaves (-12 semitones to 12 semitones). |
 | [cents] | <code>number</code> | <code>0</code>
- | get me? |
+ | <!--get me? |-->
+The desired adjustment value in cents (integer between 0-127). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setPolyphonicMode(...)`
 
@@ -1056,13 +1352,22 @@ multiple notes are being played.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | mode | <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+The mode to use: `"mono"` or `"poly"`. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setProgram(...)`
 
@@ -1082,13 +1387,22 @@ that use a numbering scheme starting at 1.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [program] | <code>number</code> | <code>1</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI patch (program) number (1-128) |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setRegisteredParameter(...)`
 
@@ -1134,15 +1448,28 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | parameter | <code>string</code> \| <code>Array.&lt;number&gt;</code> | 
- | get me? |
+ | <!--get me? |-->
+A string identifying the parameter's name (see above) or a
+two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
+registered parameter. |
 | [data] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | <code>[]</code>
- | get me? |
+ | <!--get me? |-->
+A single integer or an array of integers with a maximum
+length of 2 specifying the desired data. |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setSong(...)`
 
@@ -1162,11 +1489,17 @@ use a numbering scheme starting at 1.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The number of the song to select (integer between 1 and 128). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setSongPosition(...)`
 
@@ -1183,11 +1516,17 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [value] | <code>number</code> | <code>0</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI beat to cue to (integer between 0 and 16383). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setTuningBank(...)`
 
@@ -1208,13 +1547,22 @@ that use a numbering scheme starting at 1.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The desired tuning bank (1-128). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.setTuningProgram(...)`
 
@@ -1235,13 +1583,22 @@ that use a numbering scheme starting at 1.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | value | <code>number</code> | 
- | get me? |
+ | <!--get me? |-->
+The desired tuning program (1-128). |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.stopNote(...)`
 
@@ -1256,8 +1613,10 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 
 | Param |
 | --- |
-| note | 
-| options | 
+| note | <!---->
+
+| options | <!---->
+
 
 ### `.turnNotesOff(...)`
 
@@ -1275,11 +1634,19 @@ fade out just as if their key had been released. This is different from the
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 ### `.turnSoundOff(...)`
 
@@ -1296,11 +1663,19 @@ channel but will not prevent new sounds from being triggered.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | <code>{}</code>
- | get me? |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> \| <code>&quot;all&quot;</code> | <code>&quot;all&quot;</code>
- | get me? |
+ | <!--get me? |-->
+The MIDI channel number (between `1`
+and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
+use all channels (default). |
 | [options.time] | <code>number</code> \| <code>string</code> | 
- | get me? |
+ | <!--get me? |-->
+If `time` is a string prefixed with `"+"` and followed by
+a number, the message will be delayed by that many milliseconds. If the value is a number
+(DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
+in the past, the operation will be carried out as soon as possible. |
 
 
 ***
