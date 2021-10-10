@@ -31,7 +31,7 @@ You can find a list of all available `Output` objects in the
 
 ## Members
 
-### `.channels` {#event&#53;abc}
+### `.channels`
 
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
@@ -40,7 +40,7 @@ Array containing the 16 {@link OutputChannel} objects available for this `Output
 channels are numbered 1 through 16.
 
 
-### `.connection` {#event&#53;abc}
+### `.connection`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -49,7 +49,7 @@ channels are numbered 1 through 16.
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
-### `.id` {#event&#53;abc}
+### `.id`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -60,7 +60,7 @@ platforms. For example, Google Chrome and the Jazz-Plugin report completely diff
 the same port.
 
 
-### `.manufacturer` {#event&#53;abc}
+### `.manufacturer`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -69,7 +69,7 @@ the same port.
 Name of the manufacturer of the device that makes this output port available.
 
 
-### `.name` {#event&#53;abc}
+### `.name`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -78,7 +78,7 @@ Name of the manufacturer of the device that makes this output port available.
 Name of the MIDI output
 
 
-### `.octaveOffset` {#event&#53;abc}
+### `.octaveOffset`
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -91,7 +91,7 @@ Note that this value is combined with the global offset value defined on the `We
 (if any).
 
 
-### `.state` {#event&#53;abc}
+### `.state`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -100,7 +100,7 @@ Note that this value is combined with the global offset value defined on the `We
 State of the output port: `"connected"` or `"disconnected"`.
 
 
-### `.type` {#event&#53;abc}
+### `.type`
 
 **Type**: string<br />
 **Attributes**: read-only<br />
