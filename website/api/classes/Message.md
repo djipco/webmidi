@@ -25,7 +25,10 @@ easy to make sense of the binaru data it contains.
 
 ### `.channel`
 
-**Type**: number / read-only 
+**Type**: number
+
+**Attributes**: read-only
+
 
 The MIDI channel number (1-16) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
@@ -34,7 +37,10 @@ channel-specific messages. For system messages, this will be left undefined.
 
 ### `.command`
 
-**Type**: number / read-only 
+**Type**: number
+
+**Attributes**: read-only
+
 
 An integer identifying the MIDI command. For channel-specific messages, the value will be
 between 8 and 14. For system messages, the value will be between 240 and 255.
@@ -43,7 +49,10 @@ between 8 and 14. For system messages, the value will be between 240 and 255.
 
 ### `.data`
 
-**Type**: Array.&lt;number&gt; / read-only 
+**Type**: Array.&lt;number&gt;
+
+**Attributes**: read-only
+
 
 An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
 255.
@@ -52,7 +61,10 @@ An array containing the bytes of the MIDI message. Each byte is an integer is be
 
 ### `.dataBytes`
 
-**Type**: Array.&lt;number&gt; / read-only 
+**Type**: Array.&lt;number&gt;
+
+**Attributes**: read-only
+
 
 An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
@@ -62,7 +74,10 @@ byte so only the actual data is included.
 
 ### `.isChannelMessage`
 
-**Type**: boolean / read-only 
+**Type**: boolean
+
+**Attributes**: read-only
+
 
 A boolean indicating whether the MIDI message is a channel-specific message.
 
@@ -70,7 +85,10 @@ A boolean indicating whether the MIDI message is a channel-specific message.
 
 ### `.isSystemMessage`
 
-**Type**: boolean / read-only 
+**Type**: boolean
+
+**Attributes**: read-only
+
 
 A boolean indicating whether the MIDI message is a system message (not specific to a
 channel).
@@ -79,7 +97,10 @@ channel).
 
 ### `.manufacturerId`
 
-**Type**: Array.&lt;number&gt; / read-only 
+**Type**: Array.&lt;number&gt;
+
+**Attributes**: read-only
+
 
 When the message is a system exclusive message (sysex), this property contains an array with
 either 1 or 3 entries that identify the manufacturer targeted by the message.
@@ -91,7 +112,10 @@ https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 ### `.rawData`
 
-**Type**: Uint8Array / read-only 
+**Type**: Uint8Array
+
+**Attributes**: read-only
+
 
 A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
 255.
@@ -100,7 +124,10 @@ A Uint8Array containing the bytes of the MIDI message. Each byte is an integer b
 
 ### `.rawDataBytes`
 
-**Type**: Uint8Array / read-only 
+**Type**: Uint8Array
+
+**Attributes**: read-only
+
 
 A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
 message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
@@ -110,7 +137,10 @@ byte so only the actual data is included.
 
 ### `.statusByte`
 
-**Type**: number / read-only 
+**Type**: number
+
+**Attributes**: read-only
+
 
 The MIDI status byte of the message as an integer between 0 and 255.
 

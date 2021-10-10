@@ -19,7 +19,9 @@ module) version, you get an already-instantiated object.
 
 ### `.defaults`
 
-**Type**: Object 
+**Type**: Object
+
+
 
 Object containing system-wide default values that can be changed to customize how the library
 works.
@@ -28,7 +30,10 @@ defaults.note, defaults.note.attack, defaults.note.release, defaults.note.durati
 
 ### `.enabled`
 
-**Type**: boolean / read-only 
+**Type**: boolean
+
+**Attributes**: read-only
+
 
 Indicates whether access to the host's MIDI subsystem is active or not.
 
@@ -36,7 +41,10 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 ### `.inputs`
 
-**Type**: Array / read-only 
+**Type**: Array
+
+**Attributes**: read-only
+
 
 An array of all currently available MIDI inputs.
 
@@ -44,7 +52,10 @@ An array of all currently available MIDI inputs.
 
 ### `.interface`
 
-**Type**: MIDIAccess / read-only / nullable
+**Type**: MIDIAccess
+
+**Attributes**: read-only nullable
+
 
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
@@ -53,7 +64,9 @@ unless you know what you are doing.
 
 ### `.isBrowser`
 
-**Type**: boolean 
+**Type**: boolean
+
+
 
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
@@ -63,7 +76,9 @@ and isBrowser can both be true at the same time.
 
 ### `.isNode`
 
-**Type**: boolean 
+**Type**: boolean
+
+
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
@@ -73,7 +88,9 @@ isBrowser can both be true at the same time.
 
 ### `.octaveOffset`
 
-**Type**: number 
+**Type**: number
+
+
 
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
@@ -90,7 +107,10 @@ of 60).
 
 ### `.outputs`
 
-**Type**: Array / read-only 
+**Type**: Array
+
+**Attributes**: read-only
+
 
 An array of all currently available MIDI outputs.
 
@@ -98,7 +118,10 @@ An array of all currently available MIDI outputs.
 
 ### `.supported`
 
-**Type**: boolean / read-only 
+**Type**: boolean
+
+**Attributes**: read-only
+
 
 Indicates whether the environment provides support for the Web MIDI API or not.
 
@@ -111,7 +134,10 @@ not be there.
 
 ### `.sysexEnabled`
 
-**Type**: Boolean / read-only 
+**Type**: Boolean
+
+**Attributes**: read-only
+
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
@@ -120,7 +146,10 @@ enabled via the `enable()` method.
 
 ### `.time`
 
-**Type**: DOMHighResTimeStamp / read-only 
+**Type**: DOMHighResTimeStamp
+
+**Attributes**: read-only
+
 
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
@@ -134,7 +163,9 @@ browser might only be accurate to one millisecond.
 
 ### `.validation`
 
-**Type**: boolean 
+**Type**: boolean
+
+
 
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.

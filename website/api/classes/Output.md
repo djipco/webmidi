@@ -29,7 +29,9 @@ You can find a list of all available `Output` objects in the
 
 ### `.channels`
 
-**Type**: Array.&lt;OutputChannel&gt; 
+**Type**: Array.&lt;OutputChannel&gt;
+
+
 
 Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
 channels are numbered 1 through 16.
@@ -38,7 +40,10 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
@@ -46,7 +51,10 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 ### `.id`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -56,7 +64,10 @@ the same port.
 
 ### `.manufacturer`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 Name of the manufacturer of the device that makes this output port available.
 
@@ -64,7 +75,10 @@ Name of the manufacturer of the device that makes this output port available.
 
 ### `.name`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 Name of the MIDI output
 
@@ -72,7 +86,9 @@ Name of the MIDI output
 
 ### `.octaveOffset`
 
-**Type**: number 
+**Type**: number
+
+
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
@@ -84,7 +100,10 @@ Note that this value is combined with the global offset value defined on the `We
 
 ### `.state`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 State of the output port: `"connected"` or `"disconnected"`.
 
@@ -92,7 +111,10 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 ### `.type`
 
-**Type**: string / read-only 
+**Type**: string
+
+**Attributes**: read-only
+
 
 Type of the output port (`"output"`)
 
