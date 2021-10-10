@@ -29,12 +29,12 @@ If the input is a note number or identifier, it is possible to specify options b
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|**`input`** (optional)|number|||
-|**`options`** (optional)|Object|{}||
-|**`options.duration`** (optional)|number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|**`options.attack`** (optional)|number|64|The note's attack velocity as an integer between 0 and 127.|
-|**`options.release`** (optional)|number|64|The note's release velocity as an integer between 0 and 127.|
-|**`options.octaveOffset`** (optional)|number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|**`input`**<br />(optional)|number|||
+|**`options`**<br />(optional)|Object|{}||
+|**`options.duration`**<br />(optional)|number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+|**`options.attack`**<br />(optional)|number|64|The note's attack velocity as an integer between 0 and 127.|
+|**`options.release`**<br />(optional)|number|64|The note's release velocity as an integer between 0 and 127.|
+|**`options.octaveOffset`**<br />(optional)|number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.buildNoteArray(...)`
 
@@ -54,14 +54,14 @@ input.
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|**`notes`** (optional)|number|||
-|**`options`** (optional)|Object|{}||
-|**`options.duration`** (optional)|number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|**`options.attack`** (optional)|number|0.5|The note's attack velocity as a decimal number between 0 and 1.|
-|**`options.release`** (optional)|number|0.5|The note's release velocity as a decimal number between 0 and 1.|
-|**`options.rawAttack`** (optional)|number|64|The note's attack velocity as an integer between 0 and 127.|
-|**`options.rawRelease`** (optional)|number|64|The note's release velocity as an integer between 0 and 127.|
-|**`options.octaveOffset`** (optional)|number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|**`notes`**<br />(optional)|number|||
+|**`options`**<br />(optional)|Object|{}||
+|**`options.duration`**<br />(optional)|number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+|**`options.attack`**<br />(optional)|number|0.5|The note's attack velocity as a decimal number between 0 and 1.|
+|**`options.release`**<br />(optional)|number|0.5|The note's release velocity as a decimal number between 0 and 1.|
+|**`options.rawAttack`**<br />(optional)|number|64|The note's attack velocity as an integer between 0 and 127.|
+|**`options.rawRelease`**<br />(optional)|number|64|The note's release velocity as an integer between 0 and 127.|
+|**`options.octaveOffset`**<br />(optional)|number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.getNoteDetails(...)`
 
@@ -157,7 +157,7 @@ integers between 1 and 16 are silently ignored.
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|**`channel`** (optional)|number||An integer or an array of integers to parse as channel numbers.|
+|**`channel`**<br />(optional)|number||An integer or an array of integers to parse as channel numbers.|
 
 ### `.to7Bit(...)`
 
@@ -238,7 +238,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
 |**`identifier`**|string||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
-|**`octaveOffset`** (optional)|number|0|A integer to offset the octave by.|
+|**`octaveOffset`**<br />(optional)|number|0|A integer to offset the octave by.|
 
 ### `.toTimestamp(...)`
 
@@ -257,6 +257,6 @@ returned.
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|**`time`** (optional)|number||The time string (e.g. `"+2000"`) or number to parse|
+|**`time`**<br />(optional)|number||The time string (e.g. `"+2000"`) or number to parse|
 
 
