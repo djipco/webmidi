@@ -29,7 +29,7 @@ Note that a single device may expose several inputs.
 
 ### `.channels`
 
-**Type**: Array.&lt;InputChannel&gt;
+**Type**: Array.&lt;InputChannel&gt;<br />
 
 
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
@@ -39,7 +39,7 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -49,7 +49,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 ### `.id`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -61,7 +61,7 @@ the same port.
 
 ### `.manufacturer`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -71,7 +71,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 ### `.name`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -81,7 +81,7 @@ Name of the MIDI input
 
 ### `.octaveOffset`
 
-**Type**: number
+**Type**: number<br />
 
 
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
@@ -97,7 +97,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 ### `.state`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -107,7 +107,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 ### `.type`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 

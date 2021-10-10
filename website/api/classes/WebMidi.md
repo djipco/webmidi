@@ -19,7 +19,7 @@ module) version, you get an already-instantiated object.
 
 ### `.defaults`
 
-**Type**: Object
+**Type**: Object<br />
 
 
 Object containing system-wide default values that can be changed to customize how the library
@@ -29,7 +29,7 @@ defaults.note, defaults.note.attack, defaults.note.release, defaults.note.durati
 
 ### `.enabled`
 
-**Type**: boolean
+**Type**: boolean<br />
 **Attributes**: read-only
 
 
@@ -39,7 +39,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 ### `.inputs`
 
-**Type**: Array
+**Type**: Array<br />
 **Attributes**: read-only
 
 
@@ -49,7 +49,7 @@ An array of all currently available MIDI inputs.
 
 ### `.interface`
 
-**Type**: MIDIAccess
+**Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable
 
 
@@ -60,7 +60,7 @@ unless you know what you are doing.
 
 ### `.isBrowser`
 
-**Type**: boolean
+**Type**: boolean<br />
 
 
 Indicates whether the current environment is a browser environment or not. If you need to check
@@ -71,7 +71,7 @@ and isBrowser can both be true at the same time.
 
 ### `.isNode`
 
-**Type**: boolean
+**Type**: boolean<br />
 
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
@@ -82,7 +82,7 @@ isBrowser can both be true at the same time.
 
 ### `.octaveOffset`
 
-**Type**: number
+**Type**: number<br />
 
 
 An integer to offset the octave of notes received from external devices or sent to external
@@ -100,7 +100,7 @@ of 60).
 
 ### `.outputs`
 
-**Type**: Array
+**Type**: Array<br />
 **Attributes**: read-only
 
 
@@ -110,7 +110,7 @@ An array of all currently available MIDI outputs.
 
 ### `.supported`
 
-**Type**: boolean
+**Type**: boolean<br />
 **Attributes**: read-only
 
 
@@ -125,7 +125,7 @@ not be there.
 
 ### `.sysexEnabled`
 
-**Type**: Boolean
+**Type**: Boolean<br />
 **Attributes**: read-only
 
 
@@ -136,7 +136,7 @@ enabled via the `enable()` method.
 
 ### `.time`
 
-**Type**: DOMHighResTimeStamp
+**Type**: DOMHighResTimeStamp<br />
 **Attributes**: read-only
 
 
@@ -152,7 +152,7 @@ browser might only be accurate to one millisecond.
 
 ### `.validation`
 
-**Type**: boolean
+**Type**: boolean<br />
 
 
 Indicates whether argument validation and backwards-compatibility checks are performed

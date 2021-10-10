@@ -29,7 +29,7 @@ You can find a list of all available `Output` objects in the
 
 ### `.channels`
 
-**Type**: Array.&lt;OutputChannel&gt;
+**Type**: Array.&lt;OutputChannel&gt;<br />
 
 
 Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
@@ -39,7 +39,7 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -49,7 +49,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 ### `.id`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -61,7 +61,7 @@ the same port.
 
 ### `.manufacturer`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -71,7 +71,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 ### `.name`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -81,7 +81,7 @@ Name of the MIDI output
 
 ### `.octaveOffset`
 
-**Type**: number
+**Type**: number<br />
 
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
@@ -94,7 +94,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 ### `.state`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
@@ -104,7 +104,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 ### `.type`
 
-**Type**: string
+**Type**: string<br />
 **Attributes**: read-only
 
 
