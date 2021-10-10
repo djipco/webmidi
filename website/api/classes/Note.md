@@ -125,6 +125,6 @@ returned. If an invalid value is supplied, 0 will be used.
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|**`offset`**||||
+  |**`offset`**<br />mandatory||||
 
 
