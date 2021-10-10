@@ -200,32 +200,48 @@ There are 6 families of events you can listen to:
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | event | <code>string</code> | 
- | The type of the event. |
+ | <!--get me? |-->
+The type of the event. |
 | listener | <code>function</code> | 
- | A callback function to execute when the specified event is detected.
+ | <!--get me? |-->
+A callback function to execute when the specified event is detected.
 This function will receive an event parameter object. For details on this object's properties,
 check out the documentation for the various events (links above). |
 | [options] | <code>Object</code> | <code>{}</code>
- |  |
+ | <!--get me? |-->
+ |
 | [options.arguments] | <code>array</code> | 
- | An array of arguments which will be passed separately to the
+ | <!--get me? |-->
+An array of arguments which will be passed separately to the
 callback function. This array is stored in the `arguments` property of the `Listener` object
 and can be retrieved or modified as desired. |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | An integer between 1 and 16 or an array of
+ | <!--get me? |-->
+An integer between 1 and 16 or an array of
 such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
 input-wide events. |
 | [options.context] | <code>Object</code> | <code>this</code>
- | The value of `this` in the callback function. |
+ | <!--get me? |-->
+The value of `this` in the callback function. |
 | [options.duration] | <code>number</code> | <code>Infinity</code>
- | The number of milliseconds before the listener
+ | <!--get me? |-->
+The number of milliseconds before the listener
 automatically expires. |
 | [options.prepend] | <code>boolean</code> | <code>false</code>
- | Whether the listener should be added at the beginning
+ | <!--get me? |-->
+Whether the listener should be added at the beginning
 of the listeners array. |
 | [options.remaining] | <code>boolean</code> | <code>Infinity</code>
- | The number of times after which the callback
+ | <!--get me? |-->
+The number of times after which the callback
 should automatically be removed. |
+
+
+
+
+| Parameter    | Type         | Attributes   | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+
 
 ### `.addOneTimeListener(...)`
 
@@ -319,29 +335,44 @@ There are 6 families of events you can listen to:
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | event | <code>string</code> | 
- | The type of the event. |
+ | <!--get me? |-->
+The type of the event. |
 | listener | <code>function</code> | 
- | A callback function to execute when the specified event is detected.
+ | <!--get me? |-->
+A callback function to execute when the specified event is detected.
 This function will receive an event parameter object. For details on this object's properties,
 check out the documentation for the various events (links above). |
 | [options] | <code>Object</code> | <code>{}</code>
- |  |
+ | <!--get me? |-->
+ |
 | [options.arguments] | <code>array</code> | 
- | An array of arguments which will be passed separately to the
+ | <!--get me? |-->
+An array of arguments which will be passed separately to the
 callback function. This array is stored in the `arguments` property of the `Listener` object
 and can be retrieved or modified as desired. |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | An integer between 1 and 16 or an array of
+ | <!--get me? |-->
+An integer between 1 and 16 or an array of
 such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
 input-wide events. |
 | [options.context] | <code>Object</code> | <code>this</code>
- | The value of `this` in the callback function. |
+ | <!--get me? |-->
+The value of `this` in the callback function. |
 | [options.duration] | <code>number</code> | <code>Infinity</code>
- | The number of milliseconds before the listener
+ | <!--get me? |-->
+The number of milliseconds before the listener
 automatically expires. |
 | [options.prepend] | <code>boolean</code> | <code>false</code>
- | Whether the listener should be added at the beginning
+ | <!--get me? |-->
+Whether the listener should be added at the beginning
 of the listeners array. |
+
+
+
+
+| Parameter    | Type         | Attributes   | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+
 
 ### `.close()`
 
@@ -354,6 +385,8 @@ the input is opened again by calling [Input.open()]{@link Input#open}.
 
 **Parameters**
 
+
+
 ### `.destroy()`
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
@@ -364,6 +397,8 @@ MIDI subsystem.
 > destroy() ⇒ Promise.&lt;void&gt;
 
 **Parameters**
+
+
 
 ### `.hasListener(...)`
 
@@ -381,15 +416,26 @@ defined.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | event | <code>string</code> | 
- | The type of the event. |
+ | <!--get me? |-->
+The type of the event. |
 | listener | <code>function</code> | 
- | The callback function to check for. |
+ | <!--get me? |-->
+The callback function to check for. |
 | [options] | <code>Object</code> | <code>{}</code>
- |  |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | An integer between 1 and 16 or an array of
+ | <!--get me? |-->
+An integer between 1 and 16 or an array of
 such integers representing the MIDI channel(s) to check. This parameter is ignored for
 input-wide events. |
+
+
+
+
+| Parameter    | Type         | Attributes   | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+
 
 ### `.open()`
 
@@ -401,6 +447,8 @@ WebMidi is enabled.
 > open() ⇒ Promise.&lt;Input&gt;
 
 **Parameters**
+
+
 
 ### `.removeListener(...)`
 
@@ -421,20 +469,33 @@ By default, channel-specific listeners will be removed from all channels unless 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [type] | <code>String</code> | 
- | The type of the event. |
+ | <!--get me? |-->
+The type of the event. |
 | [listener] | <code>function</code> | 
- | The callback function to check for. |
+ | <!--get me? |-->
+The callback function to check for. |
 | [options] | <code>Object</code> | <code>{}</code>
- |  |
+ | <!--get me? |-->
+ |
 | [options.channels] | <code>number</code> \| <code>Array.&lt;number&gt;</code> | 
- | An integer between 1 and 16 or an array of
+ | <!--get me? |-->
+An integer between 1 and 16 or an array of
 such integers representing the MIDI channel(s) to match. This parameter is ignored for
 input-wide events. |
 | [options.context] | <code>\*</code> | 
- | Only remove the listeners that have this exact context. |
+ | <!--get me? |-->
+Only remove the listeners that have this exact context. |
 | [options.remaining] | <code>number</code> | 
- | Only remove the listener if it has exactly that many
+ | <!--get me? |-->
+Only remove the listener if it has exactly that many
 remaining times to be executed. |
+
+
+
+
+| Parameter    | Type         | Attributes   | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+
 
 
 ***
