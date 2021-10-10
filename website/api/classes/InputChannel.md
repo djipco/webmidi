@@ -33,7 +33,7 @@ property.
 
 **Type**: Array.&lt;string&gt;
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Array of channel-specific event names that can be listened to.

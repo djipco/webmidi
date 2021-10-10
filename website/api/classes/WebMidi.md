@@ -32,7 +32,7 @@ defaults.note, defaults.note.attack, defaults.note.release, defaults.note.durati
 
 **Type**: boolean
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Indicates whether access to the host's MIDI subsystem is active or not.
@@ -43,7 +43,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 **Type**: Array
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 An array of all currently available MIDI inputs.
@@ -54,7 +54,7 @@ An array of all currently available MIDI inputs.
 
 **Type**: MIDIAccess
 
-**Attributes**: read-only nullable
+  **Attributes**: read-only, nullable
 
 
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
@@ -109,7 +109,7 @@ of 60).
 
 **Type**: Array
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 An array of all currently available MIDI outputs.
@@ -120,7 +120,7 @@ An array of all currently available MIDI outputs.
 
 **Type**: boolean
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Indicates whether the environment provides support for the Web MIDI API or not.
@@ -136,7 +136,7 @@ not be there.
 
 **Type**: Boolean
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
@@ -148,7 +148,7 @@ enabled via the `enable()` method.
 
 **Type**: DOMHighResTimeStamp
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 The elapsed time, in milliseconds, since the time

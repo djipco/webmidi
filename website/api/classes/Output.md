@@ -42,7 +42,7 @@ channels are numbered 1 through 16.
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
@@ -53,7 +53,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
@@ -66,7 +66,7 @@ the same port.
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Name of the manufacturer of the device that makes this output port available.
@@ -77,7 +77,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Name of the MIDI output
@@ -102,7 +102,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 State of the output port: `"connected"` or `"disconnected"`.
@@ -113,7 +113,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 **Type**: string
 
-**Attributes**: read-only
+  **Attributes**: read-only
 
 
 Type of the output port (`"output"`)
