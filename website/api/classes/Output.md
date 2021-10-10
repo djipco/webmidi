@@ -1091,13 +1091,14 @@ Event emitted when the {@link Output} has been closed by calling the
 [close()]{@link Output#close} method.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`type`** |string|`"closed"`|
-|**`target`** |Output|The object that triggered the event|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"closed"`|
+  |**`target`** |Output|The object that triggered the event|
+
 
 ### `"disconnected"`
 
@@ -1105,19 +1106,20 @@ Event emitted when the {@link Output} becomes unavailable. This event is typical
 when the MIDI device is unplugged.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
-|**`type`** |string|`"disconnected"`|
-|**`target`** |Object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
-|**`target.connection`** |string|`"closed"`|
-|**`target.id`** |string|ID of the input|
-|**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-|**`target.name`** |string|Name of the device that provided the input|
-|**`target.state`** |string|`"disconnected"`|
-|**`target.type`** |string|`"output"`|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"disconnected"`|
+  |**`target`** |Object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
+  |**`target.connection`** |string|`"closed"`|
+  |**`target.id`** |string|ID of the input|
+  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
+  |**`target.name`** |string|Name of the device that provided the input|
+  |**`target.state`** |string|`"disconnected"`|
+  |**`target.type`** |string|`"output"`|
+
 
 ### `"opened"`
 
@@ -1125,12 +1127,13 @@ Event emitted when the {@link Output} has been opened by calling the
 [open()]{@link Output#open} method.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`type`** |string|`"opened"`|
-|**`target`** |Output|The object that triggered the event|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"opened"`|
+  |**`target`** |Output|The object that triggered the event|
+
 
 

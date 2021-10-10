@@ -131,82 +131,87 @@ returns `false`.
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"allnotesoff"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"allnotesoff"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+
 
 ### `"allsoundoff"`
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"allsoundoff"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"allsoundoff"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+
 
 ### `"channelaftertouch"`
 
 Event emitted when a control change MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"channelaftertouch"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |number|The value expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+  |**`type`** |string|`"channelaftertouch"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
 
 ### `"controlchange"`
 
 Event emitted when a **control change** MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"controlchange"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`controller`** |Object||
-|**`controller.number`** |Object|The number of the controller.|
-|**`controller.name`** |Object|The usual name or function of the controller.|
-|**`value`** |number|The value expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+  |**`type`** |string|`"controlchange"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |Object||
+  |**`controller.number`** |Object|The number of the controller.|
+  |**`controller.name`** |Object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
 
 ### `"keyaftertouch"`
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"keyaftertouch"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`identifier`** |string|The note identifier of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
-|**`key`** |number|The MIDI note number of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
-|**`rawKey`** |number|The MIDI note number of the key to apply the aftertouch to. This excludes any octave offset defined at the channel, input or global level.|
-|**`value`** |number|The aftertouch amount expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The aftertouch amount expressed as an integer (between 0 and 127).|
+  |**`type`** |string|`"keyaftertouch"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`identifier`** |string|The note identifier of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
+  |**`key`** |number|The MIDI note number of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
+  |**`rawKey`** |number|The MIDI note number of the key to apply the aftertouch to. This excludes any octave offset defined at the channel, input or global level.|
+  |**`value`** |number|The aftertouch amount expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The aftertouch amount expressed as an integer (between 0 and 127).|
+
 
 ### `"localcontrol"`
 
@@ -215,33 +220,35 @@ property of the event is set to either `true` (local control on) of `false` (loc
 off).
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"localcontrol"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
+  |**`type`** |string|`"localcontrol"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
+
 
 ### `"midimessage"`
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`target`** |Input|The `InputChannel` that triggered the event.|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`type`** |string|`"midimessage"`|
-|**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-|**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
-|**`event.statusByte`** |number|The message's status byte  (deprecated, use the `message` object instead).|
-|**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
+  |**`target`** |Input|The `InputChannel` that triggered the event.|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"midimessage"`|
+  |**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
+  |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
+  |**`event.statusByte`** |number|The message's status byte  (deprecated, use the `message` object instead).|
+  |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
+
 
 ### `"monomode"`
 
@@ -250,124 +257,131 @@ the event is set to either `true` (mono mode on / poly mode off) or `false` (mon
 poly mode on).
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"monomode"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+  |**`type`** |string|`"monomode"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+
 
 ### `"noteoff"`
 
 Event emitted when a **note off** MIDI message has been received on the channel.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"noteoff"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`note`** |Object|A {@link Note} object containing information such as note name, octave and release velocity.|
-|**`value`** |number|The release velocity amount expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The release velocity amount expressed as an integer (between 0 and 127).|
+  |**`type`** |string|`"noteoff"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`note`** |Object|A {@link Note} object containing information such as note name, octave and release velocity.|
+  |**`value`** |number|The release velocity amount expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The release velocity amount expressed as an integer (between 0 and 127).|
+
 
 ### `"noteon"`
 
 Event emitted when a **note on** MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"noteon"`|
-|**`channel`** |InputChannel|The `InputChannel` object that triggered the event.|
-|**`event.data`** |Array|The MIDI message as an array of 8 bit values.|
-|**`input`** |InputChannel|The `Input` object where through which the message was received.|
-|**`event.rawData`** |Uint8Array|The raw MIDI message as a `Uint8Array`.|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`note`** |Object|A {@link Note} object containing information such as note name, octave and attack velocity.|
-|**`value`** |number|The attack velocity amount expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
+  |**`type`** |string|`"noteon"`|
+  |**`channel`** |InputChannel|The `InputChannel` object that triggered the event.|
+  |**`event.data`** |Array|The MIDI message as an array of 8 bit values.|
+  |**`input`** |InputChannel|The `Input` object where through which the message was received.|
+  |**`event.rawData`** |Uint8Array|The raw MIDI message as a `Uint8Array`.|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`note`** |Object|A {@link Note} object containing information such as note name, octave and attack velocity.|
+  |**`value`** |number|The attack velocity amount expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
+
 
 ### `"nrpndatabuttondecrement"`
 
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"nrpndatabuttondecrement"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |number|The non-registered parameter number (0-16383)|
-|**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"nrpndatabuttondecrement"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |number|The non-registered parameter number (0-16383)|
+  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"nrpndatabuttonincrement"`
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"nrpndatabuttonincrement"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |number|The non-registered parameter number (0-16383)|
-|**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"nrpndatabuttonincrement"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |number|The non-registered parameter number (0-16383)|
+  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"nrpndataentrycoarse"`
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"nrpndataentrycoarse"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |number|The non-registered parameter number (0-16383)|
-|**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"nrpndataentrycoarse"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |number|The non-registered parameter number (0-16383)|
+  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"nrpndataentryfine"`
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"nrpndataentryfine"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |number|The non-registered parameter number (0-16383)|
-|**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"nrpndataentryfine"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |number|The non-registered parameter number (0-16383)|
+  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"omnimode"`
 
@@ -375,132 +389,140 @@ Event emitted when an "omni mode" channel-mode MIDI message has been received. T
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"omnimode"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+  |**`type`** |string|`"omnimode"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+
 
 ### `"pitchbend"`
 
 Event emitted when a pitch bend MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"pitchbend"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |number|The value expressed as a float between 0 and 1.|
-|**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
+  |**`type`** |string|`"pitchbend"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
+
 
 ### `"programchange"`
 
 Event emitted when a **program change** MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"programchange"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`value`** |number|The value expressed as an integer between 1 and 128.|
-|**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
+  |**`type`** |string|`"programchange"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`value`** |number|The value expressed as an integer between 1 and 128.|
+  |**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
+
 
 ### `"resetallcontrollers"`
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"resetallcontrollers"`|
-|**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-|**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`"resetallcontrollers"`|
+  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+
 
 ### `"rpndatabuttondecrement"`
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"rpndatabuttondecrement"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |string|The registered parameter's name|
-|**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"rpndatabuttondecrement"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"rpndatabuttonincrement"`
 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"rpndatabuttonincrement"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |string|The registered parameter's name|
-|**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"rpndatabuttonincrement"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"rpndataentrycoarse"`
 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"rpndataentrycoarse"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |string|The registered parameter's name|
-|**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"rpndataentrycoarse"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 ### `"rpndataentryfine"`
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
 
-**Properties**
+**Event Properties**
 
 | Property     | Type         | Description  |
 | ------------ | ------------ | ------------ |
-|**`type`** |string|`"rpndataentryfine"`|
-|**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-|**`parameter`** |string|The registered parameter's name|
-|**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-|**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-|**`value`** |number|The received value as a normalized number between 0 and 1.|
-|**`rawValue`** |number|The value as received (0-127)|
+  |**`type`** |string|`"rpndataentryfine"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
 
 
