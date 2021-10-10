@@ -1,0 +1,16 @@
+{{#if this}}
+***
+
+## Enums
+
+{{#each this}}
+### `.{{this.name}}`
+**Type**: {{this.type.names.[0]}}
+
+{{{this.description}}}
+
+{{#each this.properties}}{{this.name}}{{#unless @last}}, {{/unless}}{{/each}}
+
+{{/each}}
+
+{{/if}}

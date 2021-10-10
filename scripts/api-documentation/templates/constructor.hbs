@@ -1,0 +1,11 @@
+{{#if this}}
+
+### `new {{this.longname}}({{#if params}}...{{/if}})`
+
+**Signature**
+
+> {{this.longname}}({{#each params}}{{this.name}}{{#unless @last}}, {{/unless}}{{/each}}){{#if this.returns}} ⇒ {{this.returns.[0].type.names.[0]}}{{/if}}
+
+**Parameters**
+
+{{/if}}

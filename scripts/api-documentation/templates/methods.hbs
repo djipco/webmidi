@@ -1,0 +1,19 @@
+{{#if this}}
+***
+
+## Methods
+
+{{#each this}}
+### `.{{this.name}}({{#if params}}...{{/if}})`
+
+{{{this.description}}}
+
+**Signature**
+
+> {{this.name}}({{#each params}}{{this.name}}{{#unless @last}}, {{/unless}}{{/each}}){{#if this.returns}} ⇒ {{this.returns.[0].type.names.[0]}}{{/if}}
+
+**Parameters**
+
+{{/each}}
+
+{{/if}}

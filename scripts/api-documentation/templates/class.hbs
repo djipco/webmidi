@@ -1,0 +1,21 @@
+{{! Class name }}
+# {{name}}
+
+{{! Class description }}
+{{{description}}}
+
+{{! Since }}
+{{#if since}}
+**Since**: {{since}}
+{{/if}}
+
+{{! Extends }}
+{{#if augments}}
+**Extends**: {{#each augments}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
+{{/if}}
+
+{{! Fires }}
+{{#if fires}}
+**Fires**: {{#each fires}}[`{{getEventName this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
+{{/if}}
+
