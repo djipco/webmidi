@@ -1091,12 +1091,14 @@ Type: Object
 Event emitted when the {@link Output} has been closed by calling the
 [close()]{@link Output#close} method.
 
-**timestamp**:number
 
-**type**:string
+**Properties**
 
-**target**:Output
-
+| Property     | Type         | Description  |
+| ------------ | ------------ | ------------ |
+|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+|**`type`** |string|`"closed"`|
+|**`target`** |Output|The object that triggered the event|
 
 ### `"disconnected"`
 Type: Object
@@ -1104,24 +1106,20 @@ Type: Object
 Event emitted when the {@link Output} becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
-**timestamp**:number
 
-**type**:string
+**Properties**
 
-**target**:Object
-
-**target.connection**:string
-
-**target.id**:string
-
-**target.manufacturer**:string
-
-**target.name**:string
-
-**target.state**:string
-
-**target.type**:string
-
+| Property     | Type         | Description  |
+| ------------ | ------------ | ------------ |
+|**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
+|**`type`** |string|`"disconnected"`|
+|**`target`** |Object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
+|**`target.connection`** |string|`"closed"`|
+|**`target.id`** |string|ID of the input|
+|**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
+|**`target.name`** |string|Name of the device that provided the input|
+|**`target.state`** |string|`"disconnected"`|
+|**`target.type`** |string|`"output"`|
 
 ### `"opened"`
 Type: Object
@@ -1129,11 +1127,13 @@ Type: Object
 Event emitted when the {@link Output} has been opened by calling the
 [open()]{@link Output#open} method.
 
-**timestamp**:number
 
-**type**:string
+**Properties**
 
-**target**:Output
-
+| Property     | Type         | Description  |
+| ------------ | ------------ | ------------ |
+|**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+|**`type`** |string|`"opened"`|
+|**`target`** |Output|The object that triggered the event|
 
 
