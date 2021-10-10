@@ -5,7 +5,10 @@
 
 {{#each this}}
 ### `.{{this.name}}`
-**Type**: {{this.type.names.[0]}}
+**Type**: {{this.type.names.[0]}}<br />
+{{#if (eq this.scope "static")}}
+**Attributes**: static
+{{/if}}
 
 {{{this.description}}}
 

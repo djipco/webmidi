@@ -1,13 +1,9 @@
 // Imports
 const fs = require("fs-extra");
-// const fsPromises = require("fs").promises;
 const git = require("simple-git/promise")();
 const path = require("path");
 const process = require("process");
 const jsdoc2md = require("jsdoc-to-markdown");
-// const os = require("os");
-// const replace = require("replace-in-file");
-// const rimraf = require("@alexbinary/rimraf");
 const moment = require("moment");
 const Handlebars = require("handlebars");
 
@@ -36,29 +32,21 @@ async function generate() {
     gt: (v1, v2) => v1 > v2,
     lte: (v1, v2) => v1 <= v2,
     gte: (v1, v2) => v1 >= v2,
-    and() {
-      return Array.prototype.every.call(arguments, Boolean);
-    },
-    or() {
-      return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
-    }
+    and() { return Array.prototype.every.call(arguments, Boolean); },
+    or() { return Array.prototype.slice.call(arguments, 0, -1).some(Boolean); }
   });
 
   // Register partials
   // let partialFile = path.resolve(TEMPLATE_DIR, "partials/params.hbs");
   // let partial = Handlebars.compile(fs.readFileSync(partialFile, "utf-8"));
   // Handlebars.registerPartial("params", partial);
-  //
-  // partialFile = path.resolve(TEMPLATE_DIR, "partials/properties.hbs");
-  // partial = Handlebars.compile(fs.readFileSync(partialFile, "utf-8"));
-  // Handlebars.registerPartial("properties", partial);
 
   files.forEach(filepath => {
 
     // Parse file and gather output
     const output = parseFile(filepath);
 
-    // Save markdown files (exceptn for djipevents)
+    // Save markdown files (except for djipevents)
     const basename = path.basename(filepath, ".js");
     if (basename !== path.basename(DJIPEVENTS, ".js")) {
       fs.writeFileSync(path.resolve(TARGET_PATH, `${basename}.md`), output);
@@ -99,7 +87,6 @@ function parseFile(filepath) {
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/class.hbs`), {encoding: "utf-8"});
   output += Handlebars.compile(hbs)(filtered);
 
-
   // Constructor
   filtered = data.filter(el => el.kind === "constructor")[0];
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/constructor.hbs`), {encoding: "utf-8"});
@@ -114,13 +101,6 @@ function parseFile(filepath) {
   filtered = data.filter(el => el.kind === "function" && el.access !== "private");
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/methods.hbs`), {encoding: "utf-8"});
   output += Handlebars.compile(hbs)(filtered);
-
-  // console.log(filtered.exceptions);
-  filtered.forEach(item => {
-    if (item.exceptions) {
-      item.exceptions.forEach(exception => console.log(exception.type));
-    }
-  });
 
   // Events
   filtered = data.filter(el => el.kind === "event" && el.access !== "private");
@@ -148,7 +128,6 @@ function stripNewlines (input) {
   if (input) return input.replace(/[\r\n]+/g, " ");
 }
 
-//
 // function tableHead () {
 //
 //   var args = arrayify(arguments);
@@ -281,9 +260,4 @@ function stripNewlines (input) {
 // function escape (input) {
 //   if (typeof input !== 'string') return null
 //   return input.replace(/([\*|_])/g, '\\$1')
-// }
-//
-//
-// function equal (arg1, arg2) {
-//   return arg1 === arg2
 // }

@@ -4,8 +4,10 @@
 ## Events
 
 {{#each this}}
-### `"{{this.name}}"`
+{{! Name and anchor }}
+### `"{{this.name}}"`<a id="event:{{this.name}}"></a>
 
+{{! Description }}
 {{{this.description}}}
 
 {{! Since }}
@@ -17,8 +19,8 @@
 
 **Event Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
 {{#each properties}}
   |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
 {{/each}}

@@ -23,7 +23,10 @@
 
 {{#if this.returns}}**Returns: ** {{this.returns.[0].type.names.[0]}}<br />{{/if}}
 {{#if this.since}}
-**Since**: {{this.since}}
+**Since**: {{this.since}}<br />
+{{/if}}
+{{#if (eq this.scope "static")}}
+**Attributes**: static
 {{/if}}
 
 {{#if this.exceptions}}

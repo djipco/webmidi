@@ -4,11 +4,12 @@ import {InputChannel} from "./InputChannel.js";
 import {Utilities} from "./Utilities.js";
 
 /**
- * The `Input` class represents a single MIDI input port. This object is derived from the host's
- * MIDI subsystem and should not be directly instantiated. Instead, you can access to inputs by
- * referring to the [`WebMidi.inputs`](WebMidi#inputs) array.
+ * The `Input` class represents a single MIDI input port. This object is automatically instantiated
+ * by the library according to the host's MIDI subsystem and should not be directly instantiated.
+ * Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
+ * array.
  *
- * Note that a single device may expose several inputs.
+ * Note that a single device may expose several inputs and/or outputs.
  *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
