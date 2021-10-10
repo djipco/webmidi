@@ -27,7 +27,6 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 - `pitchbend`: 0xE (14)
 
 
-
 ### `.MIDI_CHANNEL_MODE_MESSAGES`
 **Type**: Object.&lt;string, number&gt;
 
@@ -41,7 +40,6 @@ Enumeration of all channel mode messages and their associated numerical value:
 - `omnimodeon`: 125
 - `monomodeon`: 126
 - `polymodeon`: 127
-
 
 
 ### `.MIDI_CONTROL_CHANGE_MESSAGES`
@@ -120,7 +118,6 @@ some control change numbers do not have a predefined purpose and are absent from
 - `polymodeon`: 127
 
 
-
 ### `.MIDI_REGISTERED_PARAMETERS`
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;
 
@@ -143,7 +140,6 @@ only a limited number of them:
 - `referencedistanceratio`: [0x3D, 0x06]
 - `panspreadangle`: [0x3D, 0x07]
 - `rollangle`: [0x3D, 0x08]
-
 
 
 ### `.MIDI_SYSTEM_MESSAGES`
@@ -180,7 +176,6 @@ simply states that they are undefined/reserved.
 
 - `midimessage`: 0
 - `unknownsystemmessage`: -1
-
 
 
 

@@ -26,14 +26,15 @@ Object containing system-wide default values that can be changed to customize ho
 works.
 
 
-**Properties**
+  **Properties**
 
-| Property     | Type         | Description  |
-| ------------ | ------------ | ------------ |
-|**`defaults.note`** |object|Default values relating to note|
-|**`defaults.note.attack`** |number|A number between 0 and 127 representing the default attack velocity of notes. Initial value is 64.|
-|**`defaults.note.release`** |number|A number between 0 and 127 representing the default release velocity of notes. Initial value is 64.|
-|**`defaults.note.duration`** |number|A number representing the default duration of notes (in seconds). Initial value is Infinity.|
+  | Property     | Type         | Description  |
+  | ------------ | ------------ | ------------ |
+    |**`defaults.note`** |object|Default values relating to note|
+    |**`defaults.note.attack`** |number|A number between 0 and 127 representing the default attack velocity of notes. Initial value is 64.|
+    |**`defaults.note.release`** |number|A number between 0 and 127 representing the default release velocity of notes. Initial value is 64.|
+    |**`defaults.note.duration`** |number|A number representing the default duration of notes (in seconds). Initial value is Infinity.|
+
 
 ### `.enabled`
 
@@ -43,6 +44,7 @@ works.
 
 Indicates whether access to the host's MIDI subsystem is active or not.
 
+
 ### `.inputs`
 
 **Type**: Array<br />
@@ -50,6 +52,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 
 An array of all currently available MIDI inputs.
+
 
 ### `.interface`
 
@@ -60,6 +63,7 @@ An array of all currently available MIDI inputs.
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
+
 ### `.isBrowser`
 
 **Type**: boolean<br />
@@ -69,6 +73,7 @@ Indicates whether the current environment is a browser environment or not. If yo
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
 
+
 ### `.isNode`
 
 **Type**: boolean<br />
@@ -77,6 +82,7 @@ and isBrowser can both be true at the same time.
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
+
 
 ### `.octaveOffset`
 
@@ -94,6 +100,7 @@ By the same token, when `OutputChannel.playNote()` is called, the MIDI note numb
 will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
 of 60).
 
+
 ### `.outputs`
 
 **Type**: Array<br />
@@ -101,6 +108,7 @@ of 60).
 
 
 An array of all currently available MIDI outputs.
+
 
 ### `.supported`
 
@@ -115,6 +123,7 @@ the `navigator.requestMIDIAccess` function is available. For example, if you hav
 WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
 not be there.
 
+
 ### `.sysexEnabled`
 
 **Type**: Boolean<br />
@@ -123,6 +132,7 @@ not be there.
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
+
 
 ### `.time`
 
@@ -138,6 +148,7 @@ floating-point number, it has sub-millisecond accuracy. According to the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
 
+
 ### `.validation`
 
 **Type**: boolean<br />
@@ -151,6 +162,7 @@ improves performance but should only be done once the project has been thoroughl
 validation turned on.
 
 
+
 ***
 
 ## Methods
@@ -161,6 +173,8 @@ Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and
 {@link Input} and {@link Output} objects that may be available. This also means that listeners
 added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
 destroyed.
+
+
 
 **Returns: ** Promise.&lt;void&gt;
 
@@ -210,15 +224,17 @@ WebMidi.enable().then(ports => {
 ```
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|[**`options`**] |Object|||
-|[**`options.callback`**] |function||A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
-|[**`options.sysex`**] |boolean|false|Whether to enable MIDI system exclusive messages or not.|
-|[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
-|[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`options`**] |Object|||
+    |[**`options.callback`**] |function||A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
+    |[**`options.sysex`**] |boolean|false|Whether to enable MIDI system exclusive messages or not.|
+    |[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
+    |[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+
+
 
 **Returns: ** Promise.&lt;Object&gt;
 
@@ -231,11 +247,13 @@ Please note that IDs change from one host to another. For example, Chrome does n
 kind of IDs as Jazz-Plugin.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
+
+
 
 **Returns: ** Input
 
@@ -246,11 +264,13 @@ the port names change from one environment to another. For example, Chrome does 
 input names in the same way as the Jazz-Plugin does.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+
+
 
 **Returns: ** Input
 
@@ -264,11 +284,13 @@ Please note that IDs change from one host to another. For example, Chrome does n
 kind of IDs as Jazz-Plugin.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
+
+
 
 **Returns: ** Output
 
@@ -279,11 +301,13 @@ the port names change from one environment to another. For example, Chrome does 
 input names in the same way as the Jazz-Plugin does.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+
+
 
 **Returns: ** Output
 

@@ -16,12 +16,14 @@ property.
 ### `new InputChannel(...)`
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`input`** |Input||The `Input` object this channel belongs to|
-|**`number`** |number||The MIDI channel's number (1-16)|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`input`** |Input||The `Input` object this channel belongs to|
+    |**`number`** |number||The MIDI channel's number (1-16)|
+
+
 
 
 
@@ -37,6 +39,7 @@ property.
 
 Array of channel-specific event names that can be listened to.
 
+
 ### `.input`
 
 **Type**: Input<br />
@@ -44,12 +47,14 @@ Array of channel-specific event names that can be listened to.
 
 The {@link Input} this channel belongs to
 
+
 ### `.number`
 
 **Type**: number<br />
 
 
 This channel's MIDI number (1-16)
+
 
 ### `.octaveOffset`
 
@@ -66,6 +71,7 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Input` object.
 
+
 ### `.parameterNumberEventsEnabled`
 
 **Type**: boolean<br />
@@ -80,6 +86,7 @@ out-of-order control change message is received, it will fall through the collec
 all buffered control change messages will be discarded as incomplete.
 
 
+
 ***
 
 ## Methods
@@ -91,6 +98,8 @@ input.
 
 
 
+
+
 ### `.getCcNameByNumber(...)`
 
 Returns the name of a control change message matching the specified number. Some valid control
@@ -99,11 +108,13 @@ change numbers do not have a specific name or purpose assigned in the MIDI
 In this case, the method returns `false`.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`number`** |number||An integer representing the control change message|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`number`** |number||An integer representing the control change message|
+
+
 
 **Returns: ** string
 
@@ -113,11 +124,13 @@ Returns the channel mode name matching the specified number. If no match is foun
 returns `false`.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`number`** |number||An integer representing the channel mode message.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`number`** |number||An integer representing the channel mode message.|
+
+
 
 **Returns: ** string
 

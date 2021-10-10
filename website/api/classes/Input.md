@@ -15,11 +15,13 @@ Note that a single device may expose several inputs.
 ### `new Input(...)`
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`midiInput`** |MIDIInput||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`midiInput`** |MIDIInput||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
+
+
 
 
 
@@ -35,6 +37,7 @@ Note that a single device may expose several inputs.
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
+
 ### `.connection`
 
 **Type**: string<br />
@@ -42,6 +45,7 @@ channels are numbered 1 through 16.
 
 
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
+
 
 ### `.id`
 
@@ -53,6 +57,7 @@ ID string of the MIDI port. The ID is host-specific. Do not expect the same ID o
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
+
 ### `.manufacturer`
 
 **Type**: string<br />
@@ -61,6 +66,7 @@ the same port.
 
 Name of the manufacturer of the device that makes this input port available.
 
+
 ### `.name`
 
 **Type**: string<br />
@@ -68,6 +74,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 
 Name of the MIDI input
+
 
 ### `.octaveOffset`
 
@@ -83,6 +90,7 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
+
 ### `.state`
 
 **Type**: string<br />
@@ -91,6 +99,7 @@ Note that this value is combined with the global offset value defined on the `We
 
 State of the input port: `"connected"` or `"disconnected"`.
 
+
 ### `.type`
 
 **Type**: string<br />
@@ -98,6 +107,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 
 Port type. In the case of `Input`, this is always: `"input"`.
+
 
 
 ***
@@ -200,19 +210,21 @@ There are 6 families of events you can listen to:
    * rpndatabuttondecrement
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`event`** |string||The type of the event.|
-|**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|[**`options`**] |Object|{}||
-|[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|[**`options.context`**] |Object|this|The value of `this` in the callback function.|
-|[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-|[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
-|[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`event`** |string||The type of the event.|
+    |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+    |[**`options`**] |Object|{}||
+    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] |Object|this|The value of `this` in the callback function.|
+    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+    |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
+
+
 
 **Returns: ** Array.&lt;Listener&gt;
 
@@ -299,18 +311,20 @@ There are 6 families of events you can listen to:
    * resetallcontrollers
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`event`** |string||The type of the event.|
-|**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|[**`options`**] |Object|{}||
-|[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|[**`options.context`**] |Object|this|The value of `this` in the callback function.|
-|[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-|[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`event`** |string||The type of the event.|
+    |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+    |[**`options`**] |Object|{}||
+    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] |Object|this|The value of `this` in the callback function.|
+    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+
+
 
 **Returns: ** Array.&lt;Listener&gt;
 
@@ -319,12 +333,16 @@ There are 6 families of events you can listen to:
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()]{@link Input#open}.
 
+
+
 **Returns: ** Promise.&lt;Input&gt;
 
 ### `.destroy()`
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
+
+
 
 **Returns: ** Promise.&lt;void&gt;
 
@@ -335,14 +353,16 @@ channel-specific events, the function will return `true` only if all channels ha
 defined.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`event`** |string||The type of the event.|
-|**`listener`** |function||The callback function to check for.|
-|[**`options`**] |Object|{}||
-|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`event`** |string||The type of the event.|
+    |**`listener`** |function||The callback function to check for.|
+    |[**`options`**] |Object|{}||
+    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+
+
 
 **Returns: ** Boolean
 
@@ -350,6 +370,8 @@ defined.
 
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
+
+
 
 **Returns: ** Promise.&lt;Input&gt;
 
@@ -363,16 +385,18 @@ By default, channel-specific listeners will be removed from all channels unless 
 `options.channel` narrows it down.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|[**`type`**] |String||The type of the event.|
-|[**`listener`**] |function||The callback function to check for.|
-|[**`options`**] |Object|{}||
-|[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
-|[**`options.context`**] |*||Only remove the listeners that have this exact context.|
-|[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`type`**] |String||The type of the event.|
+    |[**`listener`**] |function||The callback function to check for.|
+    |[**`options`**] |Object|{}||
+    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] |*||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+
+
 
 
 

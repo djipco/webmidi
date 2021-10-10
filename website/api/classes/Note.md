@@ -24,17 +24,19 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 ### `new Note(...)`
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`value`** |string||The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).|
-|[**`options`**] |Object|{}||
-|[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|[**`options.attack`**] |number|0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
-|[**`options.release`**] |number|0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
-|[**`options.rawAttack`**] |number|64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
-|[**`options.rawRelease`**] |number|64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`value`** |string||The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).|
+    |[**`options`**] |Object|{}||
+    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+    |[**`options.attack`**] |number|0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.release`**] |number|0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+    |[**`options.rawAttack`**] |number|64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.rawRelease`**] |number|64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+
+
 
 
 
@@ -49,12 +51,14 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 The accidental (#, ##, b or bb) of the note
 
+
 ### `.attack`
 
 **Type**: number<br />
 
 
 The attack velocity of the note as an integer between 0 and 127.
+
 
 ### `.duration`
 
@@ -64,6 +68,7 @@ The attack velocity of the note as an integer between 0 and 127.
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
+
 ### `.identifier`
 
 **Type**: string<br />
@@ -71,12 +76,14 @@ that the note should play for.
 
 The name, optional accidental and octave of the note, as a string.
 
+
 ### `.name`
 
 **Type**: string<br />
 
 
 The name (letter) of the note
+
 
 ### `.number`
 
@@ -86,12 +93,14 @@ The name (letter) of the note
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
+
 ### `.octave`
 
 **Type**: number<br />
 
 
 The octave of the note
+
 
 ### `.rawAttack`
 
@@ -100,6 +109,7 @@ The octave of the note
 
 The attack velocity of the note as a positive integer between 0 and 127.
 
+
 ### `.rawRelease`
 
 **Type**: number<br />
@@ -107,12 +117,14 @@ The attack velocity of the note as a positive integer between 0 and 127.
 
 The release velocity of the note as a positive integer between 0 and 127.
 
+
 ### `.release`
 
 **Type**: number<br />
 
 
 The release velocity of the note as an integer between 0 and 127.
+
 
 
 ***
@@ -126,11 +138,13 @@ value is less than 0, 0 will be returned. If the calculated value is more than 1
 returned. If an invalid value is supplied, 0 will be used.
 
 
-**Parameters**
+  **Parameters**
 
-| Parameter    | Type      | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ |
-|**`offset`** ||||
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`offset`** ||||
+
+
 
 **Returns: ** number
 
