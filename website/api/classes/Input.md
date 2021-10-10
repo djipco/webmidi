@@ -229,7 +229,7 @@ There are 6 families of events you can listen to:
 
 **Returns: ** Array.&lt;Listener&gt;
 **Throws**:
-  * Error: For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * coucouError: For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
 ### `.addOneTimeListener(...)`
 
@@ -331,7 +331,7 @@ There are 6 families of events you can listen to:
 
 **Returns: ** Array.&lt;Listener&gt;
 **Throws**:
-  * Error: For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * coucouError: For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
 ### `.close()`
 
@@ -371,7 +371,7 @@ defined.
 
 **Returns: ** Boolean
 **Throws**:
-  * : Error For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * coucou: Error For channel-specific events, &#x27;options.channels&#x27; must be defined.
 
 ### `.open()`
 
