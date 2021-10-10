@@ -123,8 +123,8 @@ returned. If an invalid value is supplied, 0 will be used.
 **Parameters**
 
 
-| Parameter    | Type         | Attributes   | Default      | Description  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-|`offset`|||||
+| Parameter    | Type         | Default      | Description  |
+| ------------ | ------------ | ------------ | ------------ |
+|`offset`||||
 
 
