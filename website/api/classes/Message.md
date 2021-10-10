@@ -23,7 +23,7 @@ easy to make sense of the binaru data it contains.
 
 ***
 
-## Properties
+## Members
 
 ### `.channel`
 

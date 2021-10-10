@@ -42,11 +42,13 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 ***
 
-## Properties
+## Members
 
 ### `.accidental`
 
 **Type**: string<br />
+<br />
+**Since**: 3.0.0
 
 
 The accidental (#, ##, b or bb) of the note
@@ -55,6 +57,8 @@ The accidental (#, ##, b or bb) of the note
 ### `.attack`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The attack velocity of the note as an integer between 0 and 127.
@@ -63,6 +67,8 @@ The attack velocity of the note as an integer between 0 and 127.
 ### `.duration`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The duration of the note as a positive decimal number representing the number of milliseconds
@@ -72,6 +78,8 @@ that the note should play for.
 ### `.identifier`
 
 **Type**: string<br />
+<br />
+**Since**: 3.0.0
 
 
 The name, optional accidental and octave of the note, as a string.
@@ -80,6 +88,8 @@ The name, optional accidental and octave of the note, as a string.
 ### `.name`
 
 **Type**: string<br />
+<br />
+**Since**: 3.0.0
 
 
 The name (letter) of the note
@@ -88,6 +98,8 @@ The name (letter) of the note
 ### `.number`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
@@ -97,6 +109,8 @@ reference for middle C.
 ### `.octave`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The octave of the note
@@ -105,6 +119,8 @@ The octave of the note
 ### `.rawAttack`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The attack velocity of the note as a positive integer between 0 and 127.
@@ -113,6 +129,8 @@ The attack velocity of the note as a positive integer between 0 and 127.
 ### `.rawRelease`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The release velocity of the note as a positive integer between 0 and 127.
@@ -121,6 +139,8 @@ The release velocity of the note as a positive integer between 0 and 127.
 ### `.release`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0.0
 
 
 The release velocity of the note as an integer between 0 and 127.

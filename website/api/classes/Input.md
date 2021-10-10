@@ -27,7 +27,7 @@ Note that a single device may expose several inputs.
 
 ***
 
-## Properties
+## Members
 
 ### `.channels`
 
@@ -79,6 +79,8 @@ Name of the MIDI input
 ### `.octaveOffset`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
@@ -409,6 +411,8 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 Input-wide (system) event emitted when an **active sensing** message has been received.
 
+**Since**: 2.1
+
 
 **Event Properties**
 
@@ -425,6 +429,8 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 ### `"clock"`
 
 Input-wide (system) event emitted when a **timing clock** message has been received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -445,6 +451,7 @@ Event emitted when the {@link Input} has been closed by calling the {@link Input
 method.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -457,6 +464,8 @@ method.
 ### `"continue"`
 
 Input-wide (system) event emitted when a **continue** message has been received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -477,6 +486,7 @@ Event emitted when the {@link Input} becomes unavailable. This event is typicall
 when the MIDI device is unplugged.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -495,6 +505,8 @@ when the MIDI device is unplugged.
 ### `"midimessage"`
 
 Event emitted when any MIDI message is received on an `Input`
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -517,6 +529,7 @@ Event emitted when the {@link Input} has been opened by calling the {@link Input
 method.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -529,6 +542,8 @@ method.
 ### `"reset"`
 
 Input-wide (system) event emitted when a **reset** message has been received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -547,6 +562,8 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 Input-wide (system) event emitted when a **song position** message has been received.
 
+**Since**: 2.1
+
 
 **Event Properties**
 
@@ -563,6 +580,8 @@ Input-wide (system) event emitted when a **song position** message has been rece
 ### `"songselect"`
 
 Input-wide (system) event emitted when a **song select** message has been received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -582,6 +601,8 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 Input-wide (system) event emitted when a **start** message has been received.
 
+**Since**: 2.1
+
 
 **Event Properties**
 
@@ -598,6 +619,8 @@ Input-wide (system) event emitted when a **start** message has been received.
 ### `"stop"`
 
 Input-wide (system) event emitted when a **stop** message has been received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -625,6 +648,7 @@ WebMidi.enable({sysex: true})
 ```
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -641,6 +665,8 @@ WebMidi.enable({sysex: true})
 
 Input-wide (system) event emitted when a **time code quarter frame** message has been
 received.
+
+**Since**: 2.1
 
 
 **Event Properties**
@@ -659,6 +685,8 @@ received.
 
 Input-wide (system) event emitted when a **tune request** message has been received.
 
+**Since**: 2.1
+
 
 **Event Properties**
 
@@ -676,6 +704,8 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
 be, for example, one of the undefined/reserved messages.
+
+**Since**: 2.1
 
 
 **Event Properties**

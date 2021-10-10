@@ -27,7 +27,7 @@ You can find a list of all available `Output` objects in the
 
 ***
 
-## Properties
+## Members
 
 ### `.channels`
 
@@ -79,6 +79,8 @@ Name of the MIDI output
 ### `.octaveOffset`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
@@ -1183,6 +1185,7 @@ Event emitted when the {@link Output} has been closed by calling the
 [close()]{@link Output#close} method.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -1196,6 +1199,7 @@ Event emitted when the {@link Output} has been closed by calling the
 
 Event emitted when the {@link Output} becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
+
 
 
 **Event Properties**
@@ -1217,6 +1221,7 @@ when the MIDI device is unplugged.
 
 Event emitted when the {@link Output} has been opened by calling the
 [open()]{@link Output#open} method.
+
 
 
 **Event Properties**

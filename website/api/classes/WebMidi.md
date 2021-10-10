@@ -15,7 +15,7 @@ module) version, you get an already-instantiated object.
 
 ***
 
-## Properties
+## Members
 
 ### `.defaults`
 
@@ -87,6 +87,8 @@ isBrowser can both be true at the same time.
 ### `.octaveOffset`
 
 **Type**: number<br />
+<br />
+**Since**: 2.1
 
 
 An integer to offset the octave of notes received from external devices or sent to external
@@ -323,6 +325,7 @@ typically fired whenever a MIDI device is plugged in. Please note that it may fi
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -335,6 +338,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 ### `"disabled"`
 
 Event emitted once `WebMidi` has been successfully disabled.
+
 
 
 **Event Properties**
@@ -351,6 +355,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 Event emitted when an {@link Input} or {@link Output} becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
+
 
 
 **Event Properties**
@@ -373,6 +378,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 Event emitted once `WebMidi` has been fully enabled
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -385,6 +391,7 @@ Event emitted once `WebMidi` has been fully enabled
 ### `"error"`
 
 Event emitted when an error occurs trying to enable `WebMidi`
+
 
 
 **Event Properties**
@@ -400,6 +407,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
 ### `"midiaccessgranted"`
 
 Event emitted once the MIDI interface has been successfully created.
+
 
 
 **Event Properties**

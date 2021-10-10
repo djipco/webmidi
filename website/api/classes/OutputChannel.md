@@ -28,11 +28,13 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ***
 
-## Properties
+## Members
 
 ### `.number`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 This channel's MIDI number (1-16)
@@ -41,6 +43,8 @@ This channel's MIDI number (1-16)
 ### `.octaveOffset`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
@@ -54,6 +58,8 @@ and with the value defined on the parent `Output` object.
 ### `.output`
 
 **Type**: Output<br />
+<br />
+**Since**: 3.0
 
 
 The parent {@link Output} this channel belongs to

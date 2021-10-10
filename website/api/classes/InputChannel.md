@@ -29,7 +29,7 @@ property.
 
 ***
 
-## Properties
+## Members
 
 ### `.EVENTS`
 
@@ -43,6 +43,8 @@ Array of channel-specific event names that can be listened to.
 ### `.input`
 
 **Type**: Input<br />
+<br />
+**Since**: 3.0
 
 
 The {@link Input} this channel belongs to
@@ -51,6 +53,8 @@ The {@link Input} this channel belongs to
 ### `.number`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 This channel's MIDI number (1-16)
@@ -59,6 +63,8 @@ This channel's MIDI number (1-16)
 ### `.octaveOffset`
 
 **Type**: number<br />
+<br />
+**Since**: 3.0
 
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
@@ -144,6 +150,7 @@ returns `false`.
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -157,6 +164,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 ### `"allsoundoff"`
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
+
 
 
 **Event Properties**
@@ -174,6 +182,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 Event emitted when a control change MIDI message has been received.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -189,6 +198,7 @@ Event emitted when a control change MIDI message has been received.
 ### `"controlchange"`
 
 Event emitted when a **control change** MIDI message has been received.
+
 
 
 **Event Properties**
@@ -209,6 +219,7 @@ Event emitted when a **control change** MIDI message has been received.
 ### `"keyaftertouch"`
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
+
 
 
 **Event Properties**
@@ -233,6 +244,7 @@ property of the event is set to either `true` (local control on) of `false` (loc
 off).
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -247,6 +259,7 @@ off).
 ### `"midimessage"`
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
+
 
 
 **Event Properties**
@@ -270,6 +283,7 @@ the event is set to either `true` (mono mode on / poly mode off) or `false` (mon
 poly mode on).
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -284,6 +298,7 @@ poly mode on).
 ### `"noteoff"`
 
 Event emitted when a **note off** MIDI message has been received on the channel.
+
 
 
 **Event Properties**
@@ -302,6 +317,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 ### `"noteon"`
 
 Event emitted when a **note on** MIDI message has been received.
+
 
 
 **Event Properties**
@@ -325,6 +341,7 @@ Event emitted when a **note on** MIDI message has been received.
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -342,6 +359,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 ### `"nrpndatabuttonincrement"`
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
+
 
 
 **Event Properties**
@@ -363,6 +381,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -380,6 +399,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 ### `"nrpndataentryfine"`
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
+
 
 
 **Event Properties**
@@ -402,6 +422,7 @@ Event emitted when an "omni mode" channel-mode MIDI message has been received. T
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -416,6 +437,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 ### `"pitchbend"`
 
 Event emitted when a pitch bend MIDI message has been received.
+
 
 
 **Event Properties**
@@ -435,6 +457,7 @@ Event emitted when a pitch bend MIDI message has been received.
 Event emitted when a **program change** MIDI message has been received.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -452,6 +475,7 @@ Event emitted when a **program change** MIDI message has been received.
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -465,6 +489,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 ### `"rpndatabuttondecrement"`
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
+
 
 
 **Event Properties**
@@ -486,6 +511,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -505,6 +531,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
 
+
 **Event Properties**
 
 | Property     | Type         | Description  |
@@ -522,6 +549,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 ### `"rpndataentryfine"`
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
+
 
 
 **Event Properties**
