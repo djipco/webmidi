@@ -18,7 +18,9 @@ module) version, you get an already-instantiated object.
 
 ## Members
 
-### `.defaults`     <span> : Object</span>
+### `.defaults`
+
+<h3>`.defaults`</h3>
 
 **Type**: Object<br />
 
@@ -37,7 +39,9 @@ works.
     |**`defaults.note.duration`** |number|A number representing the default duration of notes (in seconds). Initial value is Infinity.|
 
 
-### `.enabled`     <span> : boolean</span>
+### `.enabled`
+
+<h3>`.enabled`</h3>
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
@@ -46,7 +50,9 @@ works.
 Indicates whether access to the host's MIDI subsystem is active or not.
 
 
-### `.inputs`     <span> : Array</span>
+### `.inputs`
+
+<h3>`.inputs`</h3>
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
@@ -55,7 +61,9 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 An array of all currently available MIDI inputs.
 
 
-### `.interface`     <span> : MIDIAccess</span>
+### `.interface`
+
+<h3>`.interface`</h3>
 
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
@@ -65,7 +73,9 @@ The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be u
 unless you know what you are doing.
 
 
-### `.isBrowser`     <span> : boolean</span>
+### `.isBrowser`
+
+<h3>`.isBrowser`</h3>
 
 **Type**: boolean<br />
 
@@ -75,7 +85,9 @@ if we are in Node.js, use isNode. In certain environments (such as Electron and 
 and isBrowser can both be true at the same time.
 
 
-### `.isNode`     <span> : boolean</span>
+### `.isNode`
+
+<h3>`.isNode`</h3>
 
 **Type**: boolean<br />
 
@@ -85,7 +97,9 @@ browser, use isBrowser. In certain environments (such as Electron and NW.js) isN
 isBrowser can both be true at the same time.
 
 
-### `.octaveOffset`     <span> : number</span>
+### `.octaveOffset`
+
+<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 2.1<br />
@@ -103,7 +117,9 @@ will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will
 of 60).
 
 
-### `.outputs`     <span> : Array</span>
+### `.outputs`
+
+<h3>`.outputs`</h3>
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
@@ -112,7 +128,9 @@ of 60).
 An array of all currently available MIDI outputs.
 
 
-### `.supported`     <span> : boolean</span>
+### `.supported`
+
+<h3>`.supported`</h3>
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
@@ -126,7 +144,9 @@ WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual
 not be there.
 
 
-### `.sysexEnabled`     <span> : Boolean</span>
+### `.sysexEnabled`
+
+<h3>`.sysexEnabled`</h3>
 
 **Type**: Boolean<br />
 **Attributes**: read-only<br />
@@ -136,7 +156,9 @@ Indicates whether MIDI system exclusive messages have been activated when WebMid
 enabled via the `enable()` method.
 
 
-### `.time`     <span> : DOMHighResTimeStamp</span>
+### `.time`
+
+<h3>`.time`</h3>
 
 **Type**: DOMHighResTimeStamp<br />
 **Attributes**: read-only<br />
@@ -151,7 +173,9 @@ time should be accurate to 5 µs (microseconds). However, due to various constra
 browser might only be accurate to one millisecond.
 
 
-### `.validation`     <span> : boolean</span>
+### `.validation`
+
+<h3>`.validation`</h3>
 
 **Type**: boolean<br />
 

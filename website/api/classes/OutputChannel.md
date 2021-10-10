@@ -32,7 +32,9 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ## Members
 
-### `.number`     <span> : number</span>
+### `.number`
+
+<h3>`.number`</h3>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -41,7 +43,9 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 This channel's MIDI number (1-16)
 
 
-### `.octaveOffset`     <span> : number</span>
+### `.octaveOffset`
+
+<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -55,7 +59,9 @@ Note that this value is combined with the global offset value defined on the `We
 and with the value defined on the parent `Output` object.
 
 
-### `.output`     <span> : Output</span>
+### `.output`
+
+<h3>`.output`</h3>
 
 **Type**: Output<br />
 **Since**: 3.0<br />

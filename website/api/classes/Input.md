@@ -32,7 +32,9 @@ Note that a single device may expose several inputs and/or outputs.
 
 ## Members
 
-### `.channels`     <span> : Array.&lt;InputChannel&gt;</span>
+### `.channels`
+
+<h3>`.channels`</h3>
 
 **Type**: Array.&lt;InputChannel&gt;<br />
 
@@ -41,7 +43,9 @@ Array containing the 16 [`InputChannel`](InputChannel) objects available for thi
 channels are numbered 1 through 16.
 
 
-### `.connection`     <span> : string</span>
+### `.connection`
+
+<h3>`.connection`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -50,7 +54,9 @@ channels are numbered 1 through 16.
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
-### `.id`     <span> : string</span>
+### `.id`
+
+<h3>`.id`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -61,7 +67,9 @@ platforms. For example, Google Chrome and the Jazz-Plugin report completely diff
 the same port.
 
 
-### `.manufacturer`     <span> : string</span>
+### `.manufacturer`
+
+<h3>`.manufacturer`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -70,7 +78,9 @@ the same port.
 Name of the manufacturer of the device that makes this input port available.
 
 
-### `.name`     <span> : string</span>
+### `.name`
+
+<h3>`.name`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -79,7 +89,9 @@ Name of the manufacturer of the device that makes this input port available.
 Name of the MIDI input
 
 
-### `.octaveOffset`     <span> : number</span>
+### `.octaveOffset`
+
+<h3>`.octaveOffset`</h3>
 
 **Type**: number<br />
 **Since**: 3.0<br />
@@ -95,7 +107,9 @@ Note that this value is combined with the global offset value defined on the `We
 (if any).
 
 
-### `.state`     <span> : string</span>
+### `.state`
+
+<h3>`.state`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
@@ -104,7 +118,9 @@ Note that this value is combined with the global offset value defined on the `We
 State of the input port: `"connected"` or `"disconnected"`.
 
 
-### `.type`     <span> : string</span>
+### `.type`
+
+<h3>`.type`</h3>
 
 **Type**: string<br />
 **Attributes**: read-only<br />
