@@ -56,12 +56,12 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|input|number||||
-|options|Object|{}|{}||
-|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|options.attack|number|64|64|The note's attack velocity as an integer between 0 and 127.|
-|options.release|number|64|64|The note's release velocity as an integer between 0 and 127.|
-|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|input|number|optional|||
+|options|Object|optional|{}||
+|options.duration|number|optional|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+|options.attack|number|optional|64|The note's attack velocity as an integer between 0 and 127.|
+|options.release|number|optional|64|The note's release velocity as an integer between 0 and 127.|
+|options.octaveOffset|number|optional|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.buildNoteArray(...)`
 
@@ -117,14 +117,14 @@ used when the input value is a note identifier.** |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|notes|number||||
-|options|Object|{}|{}||
-|options.duration|number|Infinity|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-|options.attack|number|0.5|0.5|The note's attack velocity as a decimal number between 0 and 1.|
-|options.release|number|0.5|0.5|The note's release velocity as a decimal number between 0 and 1.|
-|options.rawAttack|number|64|64|The note's attack velocity as an integer between 0 and 127.|
-|options.rawRelease|number|64|64|The note's release velocity as an integer between 0 and 127.|
-|options.octaveOffset|number|0|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+|notes|number|optional|||
+|options|Object|optional|{}||
+|options.duration|number|optional|Infinity|The number of milliseconds before the note should be explicitly stopped.|
+|options.attack|number|optional|0.5|The note's attack velocity as a decimal number between 0 and 1.|
+|options.release|number|optional|0.5|The note's release velocity as a decimal number between 0 and 1.|
+|options.rawAttack|number|optional|64|The note's attack velocity as an integer between 0 and 127.|
+|options.rawRelease|number|optional|64|The note's release velocity as an integer between 0 and 127.|
+|options.octaveOffset|number|optional|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 ### `.getNoteDetails(...)`
 
@@ -264,7 +264,7 @@ numbers. |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|channel|number|||An integer or an array of integers to parse as channel numbers.|
+|channel|number|optional||An integer or an array of integers to parse as channel numbers.|
 
 ### `.to7Bit(...)`
 
@@ -385,7 +385,7 @@ A integer to offset the octave by. |
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |identifier|string|||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
-|octaveOffset|number|0|0|A integer to offset the octave by.|
+|octaveOffset|number|optional|0|A integer to offset the octave by.|
 
 ### `.toTimestamp(...)`
 
@@ -412,6 +412,6 @@ The time string (e.g. `"+2000"`) or number to parse |
 
 | Parameter    | Type         | Attributes   | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|time|number|||The time string (e.g. `"+2000"`) or number to parse|
+|time|number|optional||The time string (e.g. `"+2000"`) or number to parse|
 
 
