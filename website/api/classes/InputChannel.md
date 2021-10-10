@@ -153,6 +153,7 @@ returns `false`.
 ## Events
 
 <a id="event:allnotesoff"></a>
+
 ### `"allnotesoff"`
 
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
@@ -170,6 +171,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 
 <a id="event:allsoundoff"></a>
+
 ### `"allsoundoff"`
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
@@ -187,6 +189,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 
 <a id="event:channelaftertouch"></a>
+
 ### `"channelaftertouch"`
 
 Event emitted when a control change MIDI message has been received.
@@ -206,6 +209,7 @@ Event emitted when a control change MIDI message has been received.
 
 
 <a id="event:controlchange"></a>
+
 ### `"controlchange"`
 
 Event emitted when a **control change** MIDI message has been received.
@@ -228,6 +232,7 @@ Event emitted when a **control change** MIDI message has been received.
 
 
 <a id="event:keyaftertouch"></a>
+
 ### `"keyaftertouch"`
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
@@ -250,6 +255,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 
 <a id="event:localcontrol"></a>
+
 ### `"localcontrol"`
 
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
@@ -270,6 +276,7 @@ off).
 
 
 <a id="event:midimessage"></a>
+
 ### `"midimessage"`
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
@@ -291,6 +298,7 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 
 <a id="event:monomode"></a>
+
 ### `"monomode"`
 
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
@@ -311,6 +319,7 @@ poly mode on).
 
 
 <a id="event:noteoff"></a>
+
 ### `"noteoff"`
 
 Event emitted when a **note off** MIDI message has been received on the channel.
@@ -331,6 +340,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 
 <a id="event:noteon"></a>
+
 ### `"noteon"`
 
 Event emitted when a **note on** MIDI message has been received.
@@ -354,6 +364,7 @@ Event emitted when a **note on** MIDI message has been received.
 
 
 <a id="event:nrpndatabuttondecrement"></a>
+
 ### `"nrpndatabuttondecrement"`
 
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
@@ -375,6 +386,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 
 <a id="event:nrpndatabuttonincrement"></a>
+
 ### `"nrpndatabuttonincrement"`
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
@@ -396,6 +408,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 
 <a id="event:nrpndataentrycoarse"></a>
+
 ### `"nrpndataentrycoarse"`
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
@@ -417,6 +430,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 
 <a id="event:nrpndataentryfine"></a>
+
 ### `"nrpndataentryfine"`
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
@@ -438,6 +452,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 
 <a id="event:omnimode"></a>
+
 ### `"omnimode"`
 
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
@@ -457,6 +472,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 
 <a id="event:pitchbend"></a>
+
 ### `"pitchbend"`
 
 Event emitted when a pitch bend MIDI message has been received.
@@ -476,6 +492,7 @@ Event emitted when a pitch bend MIDI message has been received.
 
 
 <a id="event:programchange"></a>
+
 ### `"programchange"`
 
 Event emitted when a **program change** MIDI message has been received.
@@ -495,6 +512,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 
 <a id="event:resetallcontrollers"></a>
+
 ### `"resetallcontrollers"`
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
@@ -512,6 +530,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 
 <a id="event:rpndatabuttondecrement"></a>
+
 ### `"rpndatabuttondecrement"`
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
@@ -533,6 +552,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 
 <a id="event:rpndatabuttonincrement"></a>
+
 ### `"rpndatabuttonincrement"`
 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
@@ -554,6 +574,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 
 <a id="event:rpndataentrycoarse"></a>
+
 ### `"rpndataentrycoarse"`
 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
@@ -575,6 +596,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 
 <a id="event:rpndataentryfine"></a>
+
 ### `"rpndataentryfine"`
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
