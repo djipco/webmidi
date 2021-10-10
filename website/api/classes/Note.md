@@ -125,7 +125,6 @@ returned. If an invalid value is supplied, 0 will be used.
 
 | Param |
 | --- |
-| offset | <!---->
-
+| offset | 
 
 

@@ -206,24 +206,19 @@ WebMidi.enable().then(ports => {
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>Object</code> | 
- | <!--get me? |-->
- |
+ |  |
 | [options.callback] | <code>function</code> | 
- | <!--get me? |-->
-A function to execute once the operation completes. This
+ | A function to execute once the operation completes. This
 function will receive an `Error` object if enabling the Web MIDI API failed. |
 | [options.sysex] | <code>boolean</code> | <code>false</code>
- | <!--get me? |-->
-Whether to enable MIDI system exclusive messages or not. |
+ | Whether to enable MIDI system exclusive messages or not. |
 | [options.validation] | <code>boolean</code> | <code>true</code>
- | <!--get me? |-->
-Whether to enable library-wide validation of method
+ | Whether to enable library-wide validation of method
 arguments and setter values. This is an advanced setting that should be used carefully. Setting
 `validation` to `false` improves performance but should only be done once the project has been
 thoroughly tested with validation turned on. |
 | [options.software] | <code>boolean</code> | <code>false</code>
- | <!--get me? |-->
-Whether to request access to software synthesizers on
+ | Whether to request access to software synthesizers on
 the host system. This is part of the spec but has not yet been implemented by most browsers as
 of April 2020. |
 
@@ -244,8 +239,7 @@ kind of IDs as Jazz-Plugin.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>string</code> | <!--get me? |-->
-The ID string of the input. IDs can be viewed by looking at the
+| id | <code>string</code> | The ID string of the input. IDs can be viewed by looking at the
 [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are
 strings. |
 
@@ -264,8 +258,7 @@ input names in the same way as the Jazz-Plugin does.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>string</code> | <!--get me? |-->
-The non-empty string to look for within the name of MIDI inputs (such as
+| name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as
 those visible in the [inputs]{@link WebMidi#inputs} array). |
 
 ### `.getOutputById(...)`
@@ -286,8 +279,7 @@ kind of IDs as Jazz-Plugin.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>string</code> | <!--get me? |-->
-The ID string of the port. IDs can be viewed by looking at the
+| id | <code>string</code> | The ID string of the port. IDs can be viewed by looking at the
 [outputs]{@link WebMidi#outputs} array. |
 
 ### `.getOutputByName(...)`
@@ -305,8 +297,7 @@ input names in the same way as the Jazz-Plugin does.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>string</code> | <!--get me? |-->
-The non-empty string to look for within the name of MIDI inputs (such as
+| name | <code>string</code> | The non-empty string to look for within the name of MIDI inputs (such as
 those visible in the [outputs]{@link WebMidi#outputs} array). |
 
 

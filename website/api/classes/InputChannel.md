@@ -106,8 +106,7 @@ In this case, the method returns `false`.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| number | <code>number</code> | <!--get me? |-->
-An integer representing the control change message |
+| number | <code>number</code> | An integer representing the control change message |
 
 ### `.getChannelModeByNumber(...)`
 
@@ -123,8 +122,7 @@ returns `false`.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| number | <code>number</code> | <!--get me? |-->
-An integer representing the channel mode message. |
+| number | <code>number</code> | An integer representing the channel mode message. |
 
 
 ***
