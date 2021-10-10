@@ -127,7 +127,6 @@ returns `false`.
 ## Events
 
 ### `"allnotesoff"`
-Type: Object
 
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
@@ -142,7 +141,6 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 ### `"allsoundoff"`
-Type: Object
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
@@ -157,7 +155,6 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 ### `"channelaftertouch"`
-Type: Object
 
 Event emitted when a control change MIDI message has been received.
 
@@ -174,7 +171,6 @@ Event emitted when a control change MIDI message has been received.
 |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 ### `"controlchange"`
-Type: Object
 
 Event emitted when a **control change** MIDI message has been received.
 
@@ -194,7 +190,6 @@ Event emitted when a **control change** MIDI message has been received.
 |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 ### `"keyaftertouch"`
-Type: Object
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
@@ -214,7 +209,6 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 |**`rawValue`** |number|The aftertouch amount expressed as an integer (between 0 and 127).|
 
 ### `"localcontrol"`
-Type: Object
 
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (local control on) of `false` (local control
@@ -232,7 +226,6 @@ off).
 |**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
 
 ### `"midimessage"`
-Type: Object
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
@@ -251,7 +244,6 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 ### `"monomode"`
-Type: Object
 
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
@@ -269,7 +261,6 @@ poly mode on).
 |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
 ### `"noteoff"`
-Type: Object
 
 Event emitted when a **note off** MIDI message has been received on the channel.
 
@@ -287,7 +278,6 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 |**`rawValue`** |number|The release velocity amount expressed as an integer (between 0 and 127).|
 
 ### `"noteon"`
-Type: Object
 
 Event emitted when a **note on** MIDI message has been received.
 
@@ -308,7 +298,6 @@ Event emitted when a **note on** MIDI message has been received.
 |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 ### `"nrpndatabuttondecrement"`
-Type: Object
 
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
@@ -327,7 +316,6 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"nrpndatabuttonincrement"`
-Type: Object
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
@@ -346,7 +334,6 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"nrpndataentrycoarse"`
-Type: Object
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
@@ -365,7 +352,6 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"nrpndataentryfine"`
-Type: Object
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
@@ -384,7 +370,6 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"omnimode"`
-Type: Object
 
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
@@ -401,7 +386,6 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
 ### `"pitchbend"`
-Type: Object
 
 Event emitted when a pitch bend MIDI message has been received.
 
@@ -418,7 +402,6 @@ Event emitted when a pitch bend MIDI message has been received.
 |**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
 
 ### `"programchange"`
-Type: Object
 
 Event emitted when a **program change** MIDI message has been received.
 
@@ -435,7 +418,6 @@ Event emitted when a **program change** MIDI message has been received.
 |**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
 
 ### `"resetallcontrollers"`
-Type: Object
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
@@ -450,7 +432,6 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 ### `"rpndatabuttondecrement"`
-Type: Object
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
@@ -469,7 +450,6 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"rpndatabuttonincrement"`
-Type: Object
 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
@@ -488,7 +468,6 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"rpndataentrycoarse"`
-Type: Object
 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
@@ -507,7 +486,6 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 |**`rawValue`** |number|The value as received (0-127)|
 
 ### `"rpndataentryfine"`
-Type: Object
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
