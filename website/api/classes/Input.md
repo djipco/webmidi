@@ -423,6 +423,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 ## Events
 
 <a id="event:activesensing"></a>
+
 ### `"activesensing"`
 
 Input-wide (system) event emitted when an **active sensing** message has been received.
@@ -443,6 +444,7 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 
 
 <a id="event:clock"></a>
+
 ### `"clock"`
 
 Input-wide (system) event emitted when a **timing clock** message has been received.
@@ -463,6 +465,7 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 
 <a id="event:closed"></a>
+
 ### `"closed"`
 
 Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
@@ -480,6 +483,7 @@ method.
 
 
 <a id="event:continue"></a>
+
 ### `"continue"`
 
 Input-wide (system) event emitted when a **continue** message has been received.
@@ -500,6 +504,7 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 
 <a id="event:disconnected"></a>
+
 ### `"disconnected"`
 
 Event emitted when the {@link Input} becomes unavailable. This event is typically fired
@@ -523,6 +528,7 @@ when the MIDI device is unplugged.
 
 
 <a id="event:midimessage"></a>
+
 ### `"midimessage"`
 
 Event emitted when any MIDI message is received on an `Input`
@@ -545,6 +551,7 @@ Event emitted when any MIDI message is received on an `Input`
 
 
 <a id="event:opened"></a>
+
 ### `"opened"`
 
 Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
@@ -562,6 +569,7 @@ method.
 
 
 <a id="event:reset"></a>
+
 ### `"reset"`
 
 Input-wide (system) event emitted when a **reset** message has been received.
@@ -582,6 +590,7 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 
 <a id="event:songposition"></a>
+
 ### `"songposition"`
 
 Input-wide (system) event emitted when a **song position** message has been received.
@@ -602,6 +611,7 @@ Input-wide (system) event emitted when a **song position** message has been rece
 
 
 <a id="event:songselect"></a>
+
 ### `"songselect"`
 
 Input-wide (system) event emitted when a **song select** message has been received.
@@ -623,6 +633,7 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 
 <a id="event:start"></a>
+
 ### `"start"`
 
 Input-wide (system) event emitted when a **start** message has been received.
@@ -643,6 +654,7 @@ Input-wide (system) event emitted when a **start** message has been received.
 
 
 <a id="event:stop"></a>
+
 ### `"stop"`
 
 Input-wide (system) event emitted when a **stop** message has been received.
@@ -663,6 +675,7 @@ Input-wide (system) event emitted when a **stop** message has been received.
 
 
 <a id="event:sysex"></a>
+
 ### `"sysex"`
 
 Input-wide (system) event emitted when a **system exclusive** message has been received.
@@ -690,6 +703,7 @@ WebMidi.enable({sysex: true})
 
 
 <a id="event:timecode"></a>
+
 ### `"timecode"`
 
 Input-wide (system) event emitted when a **time code quarter frame** message has been
@@ -711,6 +725,7 @@ received.
 
 
 <a id="event:tunerequest"></a>
+
 ### `"tunerequest"`
 
 Input-wide (system) event emitted when a **tune request** message has been received.
@@ -731,6 +746,7 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 
 <a id="event:unknownmidimessage"></a>
+
 ### `"unknownmidimessage"`
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
