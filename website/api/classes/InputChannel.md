@@ -32,8 +32,7 @@ property.
 ### `.EVENTS`
 
 **Type**: Array.&lt;string&gt;
-
-  **Attributes**: read-only
+**Attributes**: read-only
 
 
 Array of channel-specific event names that can be listened to.
@@ -45,7 +44,6 @@ Array of channel-specific event names that can be listened to.
 **Type**: Input
 
 
-
 The {@link Input} this channel belongs to
 
 
@@ -55,7 +53,6 @@ The {@link Input} this channel belongs to
 **Type**: number
 
 
-
 This channel's MIDI number (1-16)
 
 
@@ -63,7 +60,6 @@ This channel's MIDI number (1-16)
 ### `.octaveOffset`
 
 **Type**: number
-
 
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
@@ -81,7 +77,6 @@ and with the value defined on the parent `Input` object.
 ### `.parameterNumberEventsEnabled`
 
 **Type**: boolean
-
 
 
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
