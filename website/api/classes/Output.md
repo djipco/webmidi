@@ -1279,7 +1279,7 @@ channel but will not prevent new sounds from being triggered.
 
 ## Events
 
-<h3 id="event:closed">`"closed"`</h3>
+  <h3 id="event:closed"><code>"closed"</code></h3>
 
 Event emitted when the {@link Output} has been closed by calling the
 [close()]{@link Output#close} method.
@@ -1295,7 +1295,7 @@ Event emitted when the {@link Output} has been closed by calling the
   |**`target`** |Output|The object that triggered the event|
 
 
-<h3 id="event:disconnected">`"disconnected"`</h3>
+  <h3 id="event:disconnected"><code>"disconnected"</code></h3>
 
 Event emitted when the {@link Output} becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -1317,7 +1317,7 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"output"`|
 
 
-<h3 id="event:opened">`"opened"`</h3>
+  <h3 id="event:opened"><code>"opened"</code></h3>
 
 Event emitted when the {@link Output} has been opened by calling the
 [open()]{@link Output#open} method.
