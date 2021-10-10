@@ -6,6 +6,8 @@ easy to make sense of the binaru data it contains.
 **Since**: 3.0.0
 
 
+
+
 ### `new Message(...)`
 
 

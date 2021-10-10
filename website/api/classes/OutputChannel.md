@@ -7,7 +7,9 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 [channels]{@link Output#channels} property.
 
 **Since**: 3.0.0
+
 **Extends**: [`EventEmitter`](EventEmitter)
+
 
 
 ### `new OutputChannel(...)`

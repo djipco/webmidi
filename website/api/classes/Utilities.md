@@ -5,6 +5,8 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 **Since**: 3.0.0
 
+
+
 ***
 
 ## Methods
