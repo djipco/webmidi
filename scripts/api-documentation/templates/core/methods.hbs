@@ -1,0 +1,38 @@
+{{#if this}}
+***
+
+## Methods
+
+{{#each this}}
+### `.{{this.name}}({{#if params}}...{{/if}})`
+
+{{{this.description}}}
+
+{{#if params}}
+
+  **Parameters**
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+  {{#each params}}
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} |{{this.type.names.[0]}}|{{this.defaultvalue}}|{{{stripNewlines this.description}}}|
+  {{/each}}
+
+{{/if}}
+
+
+{{#if this.returns}}**Returns: ** {{this.returns.[0].type.names.[0]}}<br />{{/if}}
+{{#if this.since}}
+**Since**: {{this.since}}
+{{/if}}
+
+{{#if this.exceptions}}
+**Throws**:
+{{#each this.exceptions}}
+  * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
+{{/each}}
+{{/if}}
+
+{{/each}}
+
+{{/if}}

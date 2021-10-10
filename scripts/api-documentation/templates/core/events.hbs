@@ -1,0 +1,30 @@
+{{#if this}}
+***
+
+## Events
+
+{{#each this}}
+### `"{{this.name}}"`
+
+{{{this.description}}}
+
+{{! Since }}
+{{#if since}}
+**Since**: {{since}}
+{{/if}}
+
+{{#if properties}}
+
+**Event Properties**
+
+| Property     | Type         | Description  |
+| ------------ | ------------ | ------------ |
+{{#each properties}}
+  |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
+{{/each}}
+
+{{/if}}
+
+{{/each}}
+
+{{/if}}

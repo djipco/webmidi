@@ -1,0 +1,34 @@
+{{#if this}}
+***
+
+## Members
+
+{{#each this}}
+### `.{{this.name}}`
+
+**Type**: {{this.type.names.[0]}}<br />
+{{#if (or this.readonly this.nullable)}}
+**Attributes**: {{#if this.readonly}}read-only{{#if this.nullable}}, nullable{{/if}}{{else}}{{#if this.nullable}}nullable{{/if}}{{/if}}<br />
+{{/if}}
+{{#if this.since}}
+**Since**: {{this.since}}
+{{/if}}
+
+
+{{{this.description}}}
+
+{{#if properties}}
+
+  **Properties**
+
+  | Property     | Type         | Description  |
+  | ------------ | ------------ | ------------ |
+  {{#each properties}}
+    |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
+  {{/each}}
+
+{{/if}}
+
+{{/each}}
+
+{{/if}}

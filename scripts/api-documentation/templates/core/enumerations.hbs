@@ -1,0 +1,26 @@
+{{#if this}}
+***
+
+## Enums
+
+{{#each this}}
+### `.{{this.name}}`
+**Type**: {{this.type.names.[0]}}
+
+{{{this.description}}}
+
+{{#if properties}}
+
+  **Properties**
+
+  | Property     | Type         | Description  |
+  | ------------ | ------------ | ------------ |
+  {{#each properties}}
+    |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
+  {{/each}}
+
+{{/if}}
+
+{{/each}}
+
+{{/if}}
