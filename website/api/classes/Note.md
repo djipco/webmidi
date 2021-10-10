@@ -116,9 +116,7 @@ Returns a MIDI note number offset by the integer specified in the parameter. If 
 value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
 returned. If an invalid value is supplied, 0 will be used.
 
-**Signature**
-
-> getOffsetNumber(offset) ⇒ number
+**Returns: ** number
 
 
 **Parameters**

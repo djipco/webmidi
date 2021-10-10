@@ -20,9 +20,7 @@ object, it will be returned as is.
 If the input is a note number or identifier, it is possible to specify options by providing the
 `options` parameter.
 
-**Signature**
-
-> buildNote(input, options, options.duration, options.attack, options.release, options.octaveOffset) ⇒ Note
+**Returns: ** Note
 
 
 **Parameters**
@@ -45,9 +43,7 @@ Converts an input value, which can be an unsigned integer (0-127), a note identi
 object is created with the options specified. An error will be thrown when encountering invalid
 input.
 
-**Signature**
-
-> buildNoteArray(notes, options, options.duration, options.attack, options.release, options.rawAttack, options.rawRelease, options.octaveOffset) ⇒ Array.&lt;Note&gt;
+**Returns: ** Array.&lt;Note&gt;
 
 
 **Parameters**
@@ -72,9 +68,7 @@ letter, accidental and octave).
 When a number is specified, the translation to note is done using a value of 60 for middle C
 (C4 = middle C).
 
-**Signature**
-
-> getNoteDetails(value) ⇒ Object
+**Returns: ** Object
 
 
 **Parameters**
@@ -88,9 +82,7 @@ When a number is specified, the translation to note is done using a value of 60 
 Returns the name of the first property of the supplied object whose value is equal to the one
 supplied.
 
-**Signature**
-
-> getPropertyByValue(object, value) ⇒ string
+**Returns: ** string
 
 
 **Parameters**
@@ -111,9 +103,7 @@ If the input is an identifier, the resulting note number is offset by the `octav
 parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
 -2, the resulting MIDI note number will be 36.
 
-**Signature**
-
-> guessNoteNumber(input) ⇒ number
+**Returns: ** number
 
 
 **Parameters**
@@ -128,9 +118,7 @@ Returns the supplied MIDI note number offset by the requested octave and semiton
 the calculated value is less than 0, 0 will be returned. If the calculated value is more than
 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
 
-**Signature**
-
-> offsetNumber(offset) ⇒ number
+**Returns: ** number
 
 
 **Parameters**
@@ -148,9 +136,7 @@ For backwards-compatibility, passing `undefined` as a parameter to this method r
 channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
 integers between 1 and 16 are silently ignored.
 
-**Signature**
-
-> sanitizeChannels(channel) ⇒ Array
+**Returns: ** Array
 
 
 **Parameters**
@@ -168,9 +154,7 @@ restricted between 0 and 127 even if the input is greater than 1 or smaller than
 Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
 the input value cannot be converted to a number, the method returns 0.
 
-**Signature**
-
-> to7Bit(value) ⇒ number
+**Returns: ** number
 
 
 **Parameters**
@@ -188,9 +172,7 @@ smaller than 0.
 Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
 input value cannot be converted to an integer, the method returns 0.
 
-**Signature**
-
-> toNormalized(value) ⇒ number
+**Returns: ** number
 
 
 **Parameters**
@@ -204,9 +186,7 @@ input value cannot be converted to an integer, the method returns 0.
 Returns an identifier string representing a note name (with optional accidental) followed by an
 octave number. The octave can be offset by using the `octaveOffset` parameter.
 
-**Signature**
-
-> toNoteIdentifier(number, octaveOffset) ⇒ string
+**Returns: ** string
 
 
 **Parameters**
@@ -228,9 +208,7 @@ When converting note identifiers to numbers, C4 is considered to be middle C (MI
 
 The resulting note number can be offset by using the `octaveOffset` parameter.
 
-**Signature**
-
-> toNoteNumber(identifier, octaveOffset) ⇒ number
+**Returns: ** number
 
 
 **Parameters**
@@ -248,9 +226,7 @@ number, the resulting timestamp will be the sum of the current timestamp plus th
 the parameter is a positive number, it will be returned as is. Otherwise, false will be
 returned.
 
-**Signature**
-
-> toTimestamp(time) ⇒ number
+**Returns: ** number
 
 
 **Parameters**

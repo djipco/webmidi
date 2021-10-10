@@ -145,9 +145,7 @@ Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and
 added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
 destroyed.
 
-**Signature**
-
-> disable() ⇒ Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;
 
 ### `.enable(...)`
 
@@ -194,9 +192,7 @@ WebMidi.enable().then(ports => {
 })
 ```
 
-**Signature**
-
-> enable(options, options.callback, options.sysex, options.validation, options.software) ⇒ Promise.&lt;Object&gt;
+**Returns: ** Promise.&lt;Object&gt;
 
 
 **Parameters**
@@ -217,9 +213,7 @@ input is found. As per the Web MIDI API specification, IDs are strings (not inte
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Signature**
-
-> getInputById(id) ⇒ Input
+**Returns: ** Input
 
 
 **Parameters**
@@ -234,9 +228,7 @@ Returns the first {@link Input} object whose name **contains** the specified str
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-**Signature**
-
-> getInputByName(name) ⇒ Input
+**Returns: ** Input
 
 
 **Parameters**
@@ -254,9 +246,7 @@ integers).
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
-**Signature**
-
-> getOutputById(id) ⇒ Output
+**Returns: ** Output
 
 
 **Parameters**
@@ -271,9 +261,7 @@ Returns the first {@link Output} object whose name **contains** the specified st
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
-**Signature**
-
-> getOutputByName(name) ⇒ Output
+**Returns: ** Output
 
 
 **Parameters**

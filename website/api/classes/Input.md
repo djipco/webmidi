@@ -190,9 +190,7 @@ There are 6 families of events you can listen to:
    * rpndatabuttonincrement
    * rpndatabuttondecrement
 
-**Signature**
-
-> addListener(event, listener, options, options.arguments, options.channels, options.context, options.duration, options.prepend, options.remaining) ⇒ Array.&lt;Listener&gt;
+**Returns: ** Array.&lt;Listener&gt;
 
 
 **Parameters**
@@ -291,9 +289,7 @@ There are 6 families of events you can listen to:
    * omnimode
    * resetallcontrollers
 
-**Signature**
-
-> addOneTimeListener(event, listener, options, options.arguments, options.channels, options.context, options.duration, options.prepend) ⇒ Array.&lt;Listener&gt;
+**Returns: ** Array.&lt;Listener&gt;
 
 
 **Parameters**
@@ -314,18 +310,14 @@ There are 6 families of events you can listen to:
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()]{@link Input#open}.
 
-**Signature**
-
-> close() ⇒ Promise.&lt;Input&gt;
+**Returns: ** Promise.&lt;Input&gt;
 
 ### `.destroy()`
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
-**Signature**
-
-> destroy() ⇒ Promise.&lt;void&gt;
+**Returns: ** Promise.&lt;void&gt;
 
 ### `.hasListener(...)`
 
@@ -333,9 +325,7 @@ Checks if the specified event type is already defined to trigger the listener fu
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
 
-**Signature**
-
-> hasListener(event, listener, options, options.channels) ⇒ Boolean
+**Returns: ** Boolean
 
 
 **Parameters**
@@ -352,9 +342,7 @@ defined.
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
-**Signature**
-
-> open() ⇒ Promise.&lt;Input&gt;
+**Returns: ** Promise.&lt;Input&gt;
 
 ### `.removeListener(...)`
 
@@ -365,9 +353,7 @@ the `Input` as well as all listeners for all `InputChannels` will be removed.
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
 
-**Signature**
 
-> removeListener(type, listener, options, options.channels, options.context, options.remaining)
 
 
 **Parameters**

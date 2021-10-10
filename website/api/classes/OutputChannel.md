@@ -76,9 +76,7 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Signature**
-
-> decrementRegisteredParameter(parameter, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -110,9 +108,7 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Signature**
-
-> incrementRegisteredParameter(parameter, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -148,9 +144,7 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Signature**
-
-> playNote(note, options, options.duration, options.attack, options.rawAttack, options.release, options.rawRelease, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -171,9 +165,7 @@ functionally equivalent to a **note off** message.
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
-**Signature**
-
-> resetAllControllers(options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -197,9 +189,7 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
 from the MIDI Manufacturers Association.
 
-**Signature**
-
-> send(message, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -237,9 +227,7 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()]{@link Output#setOmniMode}
   - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
 
-**Signature**
-
-> sendChannelMode(command, value, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -343,9 +331,7 @@ modulationwheelfine to achieve a greater level of precision. if you want to spec
 and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
 parameter.
 
-**Signature**
-
-> sendControlChange(controller, value, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -372,9 +358,7 @@ note. It can be a single value or an array of the following valid values:
 When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
 precedence over the one specified via the method's `options` parameter.
 
-**Signature**
-
-> sendNoteOff(note, options, options.time, options.release, options.rawRelease) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -412,9 +396,7 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-**Signature**
-
-> sendNoteOn(note, options, options.time, options.attack, options.rawAttack) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -432,9 +414,7 @@ functionally equivalent to a **note off** message.
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
-**Signature**
-
-> setChannelAftertouch(pressure, options, options.rawValue, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -457,9 +437,7 @@ The key can be a single value or an array of the following valid values:
  - A MIDI note number (integer between `0` and `127`)
  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
 
-**Signature**
-
-> setKeyAftertouch(target, pressure, options, options.useRawValue, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -478,9 +456,7 @@ Turns local control on or off. Local control is usually enabled by default. If y
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
 
-**Signature**
-
-> setLocalControl(state, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -501,9 +477,7 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-**Signature**
-
-> setMasterTuning(value, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -520,9 +494,7 @@ Sends a **modulation depth range** message to adjust the depth of the modulation
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
 
-**Signature**
-
-> setModulationRange(semitones, cents, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -560,9 +532,7 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 
 For further implementation details, refer to the manufacturer's documentation.
 
-**Signature**
-
-> setNonRegisteredParameter(parameter, data, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -581,9 +551,7 @@ messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
 
-**Signature**
-
-> setOmniMode(state, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -598,9 +566,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 Sends a MIDI **pitch bend** message at the scheduled time.
 
-**Signature**
-
-> setPitchBend(value, options, options.rawValue, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -619,9 +585,7 @@ adjust the range used by their pitch bend lever. The range is specified by using
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
-**Signature**
-
-> setPitchBendRange(semitones, cents, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -639,9 +603,7 @@ Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
 
-**Signature**
-
-> setPolyphonicMode(mode, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -660,9 +622,7 @@ Sends a MIDI **program change** message at the scheduled time.
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Signature**
-
-> setProgram(program, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -707,9 +667,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-**Signature**
-
-> setRegisteredParameter(parameter, data, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -730,9 +688,7 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Signature**
-
-> setTuningBank(value, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -752,9 +708,7 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-**Signature**
-
-> setTuningProgram(value, options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -769,9 +723,7 @@ that use a numbering scheme starting at 1.
 
 This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 
-**Signature**
-
-> stopNote(note, options) ⇒ Output
+**Returns: ** Output
 
 
 **Parameters**
@@ -787,9 +739,7 @@ Sends an **all notes off** channel mode message. This will make all currently pl
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
 
-**Signature**
-
-> turnNotesOff(options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
@@ -804,9 +754,7 @@ fade out just as if their key had been released. This is different from the
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-**Signature**
-
-> turnSoundOff(options, options.time) ⇒ OutputChannel
+**Returns: ** OutputChannel
 
 
 **Parameters**
