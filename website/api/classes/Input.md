@@ -422,9 +422,9 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 ## Events
 
-<a id="event:activesensing"></a>
-
 ### `"activesensing"`
+
+<a id="event:activesensing"></a>
 
 Input-wide (system) event emitted when an **active sensing** message has been received.
 
@@ -443,9 +443,9 @@ Input-wide (system) event emitted when an **active sensing** message has been re
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:clock"></a>
-
 ### `"clock"`
+
+<a id="event:clock"></a>
 
 Input-wide (system) event emitted when a **timing clock** message has been received.
 
@@ -464,9 +464,9 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:closed"></a>
-
 ### `"closed"`
+
+<a id="event:closed"></a>
 
 Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
 method.
@@ -482,9 +482,9 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-<a id="event:continue"></a>
-
 ### `"continue"`
+
+<a id="event:continue"></a>
 
 Input-wide (system) event emitted when a **continue** message has been received.
 
@@ -503,9 +503,9 @@ Input-wide (system) event emitted when a **continue** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:disconnected"></a>
-
 ### `"disconnected"`
+
+<a id="event:disconnected"></a>
 
 Event emitted when the {@link Input} becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -527,9 +527,9 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"input"`|
 
 
-<a id="event:midimessage"></a>
-
 ### `"midimessage"`
+
+<a id="event:midimessage"></a>
 
 Event emitted when any MIDI message is received on an `Input`
 
@@ -550,9 +550,9 @@ Event emitted when any MIDI message is received on an `Input`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-<a id="event:opened"></a>
-
 ### `"opened"`
+
+<a id="event:opened"></a>
 
 Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
 method.
@@ -568,9 +568,9 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-<a id="event:reset"></a>
-
 ### `"reset"`
+
+<a id="event:reset"></a>
 
 Input-wide (system) event emitted when a **reset** message has been received.
 
@@ -589,9 +589,9 @@ Input-wide (system) event emitted when a **reset** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:songposition"></a>
-
 ### `"songposition"`
+
+<a id="event:songposition"></a>
 
 Input-wide (system) event emitted when a **song position** message has been received.
 
@@ -610,9 +610,9 @@ Input-wide (system) event emitted when a **song position** message has been rece
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:songselect"></a>
-
 ### `"songselect"`
+
+<a id="event:songselect"></a>
 
 Input-wide (system) event emitted when a **song select** message has been received.
 
@@ -632,9 +632,9 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:start"></a>
-
 ### `"start"`
+
+<a id="event:start"></a>
 
 Input-wide (system) event emitted when a **start** message has been received.
 
@@ -653,9 +653,9 @@ Input-wide (system) event emitted when a **start** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:stop"></a>
-
 ### `"stop"`
+
+<a id="event:stop"></a>
 
 Input-wide (system) event emitted when a **stop** message has been received.
 
@@ -674,9 +674,9 @@ Input-wide (system) event emitted when a **stop** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:sysex"></a>
-
 ### `"sysex"`
+
+<a id="event:sysex"></a>
 
 Input-wide (system) event emitted when a **system exclusive** message has been received.
 You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
@@ -702,9 +702,9 @@ WebMidi.enable({sysex: true})
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array.|
 
 
-<a id="event:timecode"></a>
-
 ### `"timecode"`
+
+<a id="event:timecode"></a>
 
 Input-wide (system) event emitted when a **time code quarter frame** message has been
 received.
@@ -724,9 +724,9 @@ received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:tunerequest"></a>
-
 ### `"tunerequest"`
+
+<a id="event:tunerequest"></a>
 
 Input-wide (system) event emitted when a **tune request** message has been received.
 
@@ -745,9 +745,9 @@ Input-wide (system) event emitted when a **tune request** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-<a id="event:unknownmidimessage"></a>
-
 ### `"unknownmidimessage"`
+
+<a id="event:unknownmidimessage"></a>
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
 be, for example, one of the undefined/reserved messages.
