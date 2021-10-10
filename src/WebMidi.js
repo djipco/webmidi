@@ -18,10 +18,9 @@ global["navigator"] = require("jzz");
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
  * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
- * instantiated. If you use the **IIFE** version, you should simply use the global object called
- * `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an
- * already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
- * directly.
+ * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+ * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+ * module) version, you get an already-instantiated object.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disabled
