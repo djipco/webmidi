@@ -148,7 +148,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 **Signature**
 
-> toNoteIdentifier(The, An) ⇒ string
+> toNoteIdentifier(number, octaveOffset) ⇒ string
 
 **Parameters**
 
