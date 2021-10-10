@@ -382,7 +382,7 @@ parameter.
 
 
 **Returns: ** OutputChannel<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : Controller numbers must be between 0 and 127.

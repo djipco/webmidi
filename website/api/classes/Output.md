@@ -764,7 +764,7 @@ Sends a MIDI **tune request** real-time message.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setChannelAftertouch(...)`
@@ -786,7 +786,7 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setKeyAftertouch(...)`
@@ -810,7 +810,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setLocalControl(...)`
@@ -832,7 +832,7 @@ its out port.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setMasterTuning(...)`
@@ -858,7 +858,7 @@ a **Master Fine Tuning** RPN messages.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The value must be a decimal number between larger than -65 and smaller
@@ -884,7 +884,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127
@@ -962,7 +962,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `TypeError` : Invalid channel mode message name.
@@ -987,7 +987,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setPitchBendRange(...)`
@@ -1011,7 +1011,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127.
@@ -1036,7 +1036,7 @@ multiple notes are being played.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setProgram(...)`
@@ -1060,7 +1060,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `TypeError` : Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
@@ -1136,7 +1136,7 @@ use a numbering scheme starting at 1.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * The song number must be between 1 and 128.
@@ -1158,7 +1158,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.setTuningBank(...)`
@@ -1183,7 +1183,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The bank value must be between 1 and 128.
@@ -1210,7 +1210,7 @@ that use a numbering scheme starting at 1.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The program value must be between 1 and 128.
@@ -1250,7 +1250,7 @@ fade out just as if their key had been released. This is different from the
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.turnSoundOff(...)`
@@ -1270,7 +1270,7 @@ channel but will not prevent new sounds from being triggered.
 
 
 **Returns: ** Output<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 

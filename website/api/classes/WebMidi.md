@@ -178,7 +178,7 @@ destroyed.
 
 
 **Returns: ** Promise.&lt;void&gt;<br />
-**Since**: 2.0.0
+**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported by your environment.
@@ -265,7 +265,7 @@ kind of IDs as Jazz-Plugin.
 
 
 **Returns: ** Input<br />
-**Since**: 2.0.0
+**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : WebMidi is not enabled.
@@ -286,7 +286,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns: ** Input<br />
-**Since**: 2.0.0
+**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : WebMidi is not enabled.
@@ -310,7 +310,7 @@ kind of IDs as Jazz-Plugin.
 
 
 **Returns: ** Output<br />
-**Since**: 2.0.0
+**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : WebMidi is not enabled.
@@ -331,7 +331,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns: ** Output<br />
-**Since**: 2.0.0
+**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : WebMidi is not enabled.

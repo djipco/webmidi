@@ -35,7 +35,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 
 **Returns: ** Note<br />
-**Since**: version 3.0.0
+**Since**: version 3.0.0<br />
 
 **Throws**:
   * TypeError The input could not be parsed to a note
@@ -66,7 +66,7 @@ input.
 
 
 **Returns: ** Array.&lt;Note&gt;<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * TypeError An element could not be parsed as a note.
@@ -90,7 +90,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 
 **Returns: ** Object<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * TypeError Invalid note identifier
@@ -134,7 +134,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 
 **Returns: ** number<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.offsetNumber(...)`
@@ -176,7 +176,7 @@ integers between 1 and 16 are silently ignored.
 
 
 **Returns: ** Array<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 ### `.to7Bit(...)`
@@ -237,7 +237,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 
 **Returns: ** string<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * RangeError Invalid note number
@@ -266,7 +266,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 
 **Returns: ** number<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 **Throws**:
   * RangeError Invalid &#x27;octaveOffset&#x27; value
@@ -290,7 +290,7 @@ returned.
 
 
 **Returns: ** number<br />
-**Since**: 3.0.0
+**Since**: 3.0.0<br />
 
 
 
