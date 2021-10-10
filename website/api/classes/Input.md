@@ -199,15 +199,15 @@ There are 6 families of events you can listen to:
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|`event`|string||The type of the event.|
-|`listener`|function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|`options` (optional)|Object|{}||
-|`options.arguments` (optional)|array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|`options.channels` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|`options.context` (optional)|Object|this|The value of `this` in the callback function.|
-|`options.duration` (optional)|number|Infinity|The number of milliseconds before the listener automatically expires.|
-|`options.prepend` (optional)|boolean|false|Whether the listener should be added at the beginning of the listeners array.|
-|`options.remaining` (optional)|boolean|Infinity|The number of times after which the callback should automatically be removed.|
+|`**event**`|string||The type of the event.|
+|`**listener**`|function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+|`**options**` (optional)|Object|{}||
+|`**options.arguments**` (optional)|array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+|`**options.channels**` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+|`**options.context**` (optional)|Object|this|The value of `this` in the callback function.|
+|`**options.duration**` (optional)|number|Infinity|The number of milliseconds before the listener automatically expires.|
+|`**options.prepend**` (optional)|boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+|`**options.remaining**` (optional)|boolean|Infinity|The number of times after which the callback should automatically be removed.|
 
 ### `.addOneTimeListener(...)`
 
@@ -300,14 +300,14 @@ There are 6 families of events you can listen to:
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|`event`|string||The type of the event.|
-|`listener`|function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-|`options` (optional)|Object|{}||
-|`options.arguments` (optional)|array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-|`options.channels` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-|`options.context` (optional)|Object|this|The value of `this` in the callback function.|
-|`options.duration` (optional)|number|Infinity|The number of milliseconds before the listener automatically expires.|
-|`options.prepend` (optional)|boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+|`**event**`|string||The type of the event.|
+|`**listener**`|function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+|`**options**` (optional)|Object|{}||
+|`**options.arguments**` (optional)|array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+|`**options.channels**` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+|`**options.context**` (optional)|Object|this|The value of `this` in the callback function.|
+|`**options.duration**` (optional)|number|Infinity|The number of milliseconds before the listener automatically expires.|
+|`**options.prepend**` (optional)|boolean|false|Whether the listener should be added at the beginning of the listeners array.|
 
 ### `.close()`
 
@@ -346,10 +346,10 @@ defined.
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|`event`|string||The type of the event.|
-|`listener`|function||The callback function to check for.|
-|`options` (optional)|Object|{}||
-|`options.channels` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+|`**event**`|string||The type of the event.|
+|`**listener**`|function||The callback function to check for.|
+|`**options**` (optional)|Object|{}||
+|`**options.channels**` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
 
 ### `.open()`
 
@@ -380,12 +380,12 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 | Parameter    | Type         | Default      | Description  |
 | ------------ | ------------ | ------------ | ------------ |
-|`type` (optional)|String||The type of the event.|
-|`listener` (optional)|function||The callback function to check for.|
-|`options` (optional)|Object|{}||
-|`options.channels` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
-|`options.context` (optional)|*||Only remove the listeners that have this exact context.|
-|`options.remaining` (optional)|number||Only remove the listener if it has exactly that many remaining times to be executed.|
+|`**type**` (optional)|String||The type of the event.|
+|`**listener**` (optional)|function||The callback function to check for.|
+|`**options**` (optional)|Object|{}||
+|`**options.channels**` (optional)|number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
+|`**options.context**` (optional)|*||Only remove the listeners that have this exact context.|
+|`**options.remaining**` (optional)|number||Only remove the listener if it has exactly that many remaining times to be executed.|
 
 
 ***
