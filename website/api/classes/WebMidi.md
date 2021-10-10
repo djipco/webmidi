@@ -236,11 +236,11 @@ of April 2020. |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |options|Object||||
 |options.callback|function|||A function to execute once the operation completes. This
-function will receive an &#x60;Error&#x60; object if enabling the Web MIDI API failed.|
+function will receive an `Error` object if enabling the Web MIDI API failed.|
 |options.sysex|boolean|false|false|Whether to enable MIDI system exclusive messages or not.|
 |options.validation|boolean|true|true|Whether to enable library-wide validation of method
 arguments and setter values. This is an advanced setting that should be used carefully. Setting
-&#x60;validation&#x60; to &#x60;false&#x60; improves performance but should only be done once the project has been
+`validation` to `false` improves performance but should only be done once the project has been
 thoroughly tested with validation turned on.|
 |options.software|boolean|false|false|Whether to request access to software synthesizers on
 the host system. This is part of the spec but has not yet been implemented by most browsers as
