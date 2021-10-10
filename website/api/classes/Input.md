@@ -5,7 +5,7 @@ by the library according to the host's MIDI subsystem and should not be directly
 Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
 array.
 
-Note that a single device may expose several inputs.
+Note that a single device may expose several inputs and/or outputs.
 
 
 **Extends**: EventEmitter
@@ -538,7 +538,7 @@ Event emitted when any MIDI message is received on an `Input`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-### `"opened"`
+### `"event:opened"`
 
 Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
 method.
