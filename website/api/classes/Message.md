@@ -27,7 +27,7 @@ easy to make sense of the binaru data it contains.
 
 ## Members
 
-### `.channel` {#coucou}
+### `.channel` {#event:abc}
 
 **Type**: number<br />
 **Attributes**: read-only<br />
@@ -37,7 +37,7 @@ The MIDI channel number (1-16) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
 
 
-### `.command` {#coucou}
+### `.command` {#event:abc}
 
 **Type**: number<br />
 **Attributes**: read-only<br />
@@ -47,7 +47,7 @@ An integer identifying the MIDI command. For channel-specific messages, the valu
 between 8 and 14. For system messages, the value will be between 240 and 255.
 
 
-### `.data` {#coucou}
+### `.data` {#event:abc}
 
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only<br />
@@ -57,7 +57,7 @@ An array containing the bytes of the MIDI message. Each byte is an integer is be
 255.
 
 
-### `.dataBytes` {#coucou}
+### `.dataBytes` {#event:abc}
 
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only<br />
@@ -68,7 +68,7 @@ message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sys
 byte so only the actual data is included.
 
 
-### `.isChannelMessage` {#coucou}
+### `.isChannelMessage` {#event:abc}
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
@@ -77,7 +77,7 @@ byte so only the actual data is included.
 A boolean indicating whether the MIDI message is a channel-specific message.
 
 
-### `.isSystemMessage` {#coucou}
+### `.isSystemMessage` {#event:abc}
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
@@ -87,7 +87,7 @@ A boolean indicating whether the MIDI message is a system message (not specific 
 channel).
 
 
-### `.manufacturerId` {#coucou}
+### `.manufacturerId` {#event:abc}
 
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only<br />
@@ -100,7 +100,7 @@ To know how to translate these entries into manufacturer names, check out the of
 https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 
 
-### `.rawData` {#coucou}
+### `.rawData` {#event:abc}
 
 **Type**: Uint8Array<br />
 **Attributes**: read-only<br />
@@ -110,7 +110,7 @@ A Uint8Array containing the bytes of the MIDI message. Each byte is an integer b
 255.
 
 
-### `.rawDataBytes` {#coucou}
+### `.rawDataBytes` {#event:abc}
 
 **Type**: Uint8Array<br />
 **Attributes**: read-only<br />
@@ -121,7 +121,7 @@ message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the 
 byte so only the actual data is included.
 
 
-### `.statusByte` {#coucou}
+### `.statusByte` {#event:abc}
 
 **Type**: number<br />
 **Attributes**: read-only<br />
