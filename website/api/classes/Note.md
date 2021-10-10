@@ -54,7 +54,7 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 
 ## Members
 
-### `.accidental`{#event}
+### `.accidental` {#coucou}
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -63,7 +63,7 @@ method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
 The accidental (#, ##, b or bb) of the note
 
 
-### `.attack`{#event}
+### `.attack` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -72,7 +72,7 @@ The accidental (#, ##, b or bb) of the note
 The attack velocity of the note as an integer between 0 and 127.
 
 
-### `.duration`{#event}
+### `.duration` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -82,7 +82,7 @@ The duration of the note as a positive decimal number representing the number of
 that the note should play for.
 
 
-### `.identifier`{#event}
+### `.identifier` {#coucou}
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -91,7 +91,7 @@ that the note should play for.
 The name, optional accidental and octave of the note, as a string.
 
 
-### `.name`{#event}
+### `.name` {#coucou}
 
 **Type**: string<br />
 **Since**: 3.0.0<br />
@@ -100,7 +100,7 @@ The name, optional accidental and octave of the note, as a string.
 The name (letter) of the note
 
 
-### `.number`{#event}
+### `.number` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -110,7 +110,7 @@ The MIDI number of the note. This number is derived from the note identifier usi
 reference for middle C.
 
 
-### `.octave`{#event}
+### `.octave` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -119,7 +119,7 @@ reference for middle C.
 The octave of the note
 
 
-### `.rawAttack`{#event}
+### `.rawAttack` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -128,7 +128,7 @@ The octave of the note
 The attack velocity of the note as a positive integer between 0 and 127.
 
 
-### `.rawRelease`{#event}
+### `.rawRelease` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
@@ -137,7 +137,7 @@ The attack velocity of the note as a positive integer between 0 and 127.
 The release velocity of the note as a positive integer between 0 and 127.
 
 
-### `.release`{#event}
+### `.release` {#coucou}
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
