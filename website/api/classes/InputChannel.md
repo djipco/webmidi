@@ -338,7 +338,7 @@ Event emitted when a **note on** MIDI message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a `Uint8Array`.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`note`** |Object|A [`Note`](Note) object containing information such as note name, octave and attack velocity.|
+  |**`note`** |Note|A [`Note`](Note) object containing information such as note name, octave and attack velocity.|
   |**`value`** |number|The attack velocity amount expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
