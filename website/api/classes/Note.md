@@ -148,7 +148,7 @@ returned. If an invalid value is supplied, 0 will be used.
 
   **Parameters**
 
-  > `new Note#getOffsetNumber(offset)`
+  > `getOffsetNumber(offset)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

@@ -221,7 +221,7 @@ WebMidi.enable().then(ports => {
 
   **Parameters**
 
-  > `new WebMidi#enable([options])`
+  > `enable([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -250,7 +250,7 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > `new WebMidi#getInputById(id)`
+  > `getInputById(id)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -273,7 +273,7 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > `new WebMidi#getInputByName(name)`
+  > `getInputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -299,7 +299,7 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > `new WebMidi#getOutputById(id)`
+  > `getOutputById(id)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -322,7 +322,7 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > `new WebMidi#getOutputByName(name)`
+  > `getOutputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

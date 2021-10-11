@@ -154,7 +154,7 @@ names that can be used with this method:
 
   **Parameters**
 
-  > `new Output#decrementRegisteredParameter(parameter, [options])`
+  > `decrementRegisteredParameter(parameter, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -204,7 +204,7 @@ names that can be used with this method:
 
   **Parameters**
 
-  > `new Output#incrementRegisteredParameter(parameter, [options])`
+  > `incrementRegisteredParameter(parameter, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -256,7 +256,7 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
-  > `new Output#playNote(note, [options])`
+  > `playNote(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -282,7 +282,7 @@ the pitch bend, to their default value.
 
   **Parameters**
 
-  > `new Output#resetAllControllers([options])`
+  > `resetAllControllers([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -312,7 +312,7 @@ from the MIDI Manufacturers Association.
 
   **Parameters**
 
-  > `new Output#send(message, [options])`
+  > `send(message, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -336,7 +336,7 @@ was no other activity on the MIDI port.
 
   **Parameters**
 
-  > `new Output#sendActiveSensing([options])`
+  > `sendActiveSensing([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -378,7 +378,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
   **Parameters**
 
-  > `new Output#sendChannelMode(command, [value], [options])`
+  > `sendChannelMode(command, [value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -405,7 +405,7 @@ for every quarter note.
 
   **Parameters**
 
-  > `new Output#sendClock([options])`
+  > `sendClock([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -426,7 +426,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
   **Parameters**
 
-  > `new Output#sendContinue([options])`
+  > `sendContinue([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -527,7 +527,7 @@ specification.
 
   **Parameters**
 
-  > `new Output#sendControlChange(controller, [value], [options])`
+  > `sendControlChange(controller, [value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -563,7 +563,7 @@ precedence over the one specified via the method's `options` parameter.
 
   **Parameters**
 
-  > `new Output#sendNoteOff(note, [options])`
+  > `sendNoteOff(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -602,7 +602,7 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
-  > `new Output#sendNoteOn(note, [options])`
+  > `sendNoteOn(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -626,7 +626,7 @@ should reset itself to a default state.
 
   **Parameters**
 
-  > `new Output#sendReset([options])`
+  > `sendReset([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -647,7 +647,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
   **Parameters**
 
-  > `new Output#sendStart([options])`
+  > `sendStart([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -667,7 +667,7 @@ playback immediately (or at the scheduled time).
 
   **Parameters**
 
-  > `new Output#sendStop([options])`
+  > `sendStop([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -732,7 +732,7 @@ system exclusive messages to 64Kb or less.
 
   **Parameters**
 
-  > `new Output#sendSysex(manufacturer, [data], [options])`
+  > `sendSysex(manufacturer, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -760,7 +760,7 @@ on the data. It is up to the developer to format the data according to the
 
   **Parameters**
 
-  > `new Output#sendTimecodeQuarterFrame(value, [options])`
+  > `sendTimecodeQuarterFrame(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -780,7 +780,7 @@ Sends a MIDI **tune request** real-time message.
 
   **Parameters**
 
-  > `new Output#sendTuneRequest([options])`
+  > `sendTuneRequest([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -801,7 +801,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
   **Parameters**
 
-  > `new Output#setChannelAftertouch([pressure], [options])`
+  > `setChannelAftertouch([pressure], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -826,7 +826,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
   **Parameters**
 
-  > `new Output#setKeyAftertouch(note, [pressure], [options])`
+  > `setKeyAftertouch(note, [pressure], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -852,7 +852,7 @@ its out port.
 
   **Parameters**
 
-  > `new Output#setLocalControl([state], [options])`
+  > `setLocalControl([state], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -880,7 +880,7 @@ a **Master Fine Tuning** RPN messages.
 
   **Parameters**
 
-  > `new Output#setMasterTuning([value], [options])`
+  > `setMasterTuning([value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -907,7 +907,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
   **Parameters**
 
-  > `new Output#setModulationRange([semitones], [cents], [options])`
+  > `setModulationRange([semitones], [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -962,7 +962,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
   **Parameters**
 
-  > `new Output#setNonRegisteredParameter(parameter, [data], [options])`
+  > `setNonRegisteredParameter(parameter, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -990,7 +990,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
   **Parameters**
 
-  > `new Output#setOmniMode([state], [options])`
+  > `setOmniMode([state], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1016,7 +1016,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
   **Parameters**
 
-  > `new Output#setPitchBend(value, [options])`
+  > `setPitchBend(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1042,7 +1042,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
   **Parameters**
 
-  > `new Output#setPitchBendRange(semitones, [cents], [options])`
+  > `setPitchBendRange(semitones, [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1070,7 +1070,7 @@ multiple notes are being played.
 
   **Parameters**
 
-  > `new Output#setPolyphonicMode(mode, [options])`
+  > `setPolyphonicMode(mode, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1096,7 +1096,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new Output#setProgram([program], [options])`
+  > `setProgram([program], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1151,7 +1151,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
   **Parameters**
 
-  > `new Output#setRegisteredParameter(parameter, [data], [options])`
+  > `setRegisteredParameter(parameter, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1177,7 +1177,7 @@ use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new Output#setSong(value, [options])`
+  > `setSong(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1201,7 +1201,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
   **Parameters**
 
-  > `new Output#setSongPosition([value], [options])`
+  > `setSongPosition([value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1227,7 +1227,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new Output#setTuningBank(value, [options])`
+  > `setTuningBank(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1256,7 +1256,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new Output#setTuningProgram(value, [options])`
+  > `setTuningProgram(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1280,7 +1280,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
   **Parameters**
 
-  > `new Output#stopNote(note, options)`
+  > `stopNote(note, options)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1301,7 +1301,7 @@ fade out just as if their key had been released. This is different from the
 
   **Parameters**
 
-  > `new Output#turnNotesOff([options])`
+  > `turnNotesOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1323,7 +1323,7 @@ channel but will not prevent new sounds from being triggered.
 
   **Parameters**
 
-  > `new Output#turnSoundOff([options])`
+  > `turnSoundOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

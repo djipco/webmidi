@@ -206,7 +206,7 @@ There are 6 families of events you can listen to:
 
   **Parameters**
 
-  > `new Input#addListener(event, listener, [options])`
+  > `addListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -312,7 +312,7 @@ There are 6 families of events you can listen to:
 
   **Parameters**
 
-  > `new Input#addOneTimeListener(event, listener, [options])`
+  > `addOneTimeListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -361,7 +361,7 @@ defined.
 
   **Parameters**
 
-  > `new Input#hasListener(event, listener, [options])`
+  > `hasListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -399,7 +399,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 
   **Parameters**
 
-  > `new Input#removeListener([type], [listener], [options])`
+  > `removeListener([type], [listener], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

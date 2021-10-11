@@ -110,7 +110,7 @@ In this case, the method returns `false`.
 
   **Parameters**
 
-  > `new InputChannel#getCcNameByNumber(number)`
+  > `getCcNameByNumber(number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -132,7 +132,7 @@ returns `false`.
 
   **Parameters**
 
-  > `new InputChannel#getChannelModeByNumber(number)`
+  > `getChannelModeByNumber(number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

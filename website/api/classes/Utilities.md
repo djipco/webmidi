@@ -23,7 +23,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
   **Parameters**
 
-  > `new Utilities.buildNote([input], [options])`
+  > `buildNote([input], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -55,7 +55,7 @@ input.
 
   **Parameters**
 
-  > `new Utilities.buildNoteArray([notes], [options])`
+  > `buildNoteArray([notes], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -89,7 +89,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
   **Parameters**
 
-  > `new Utilities.getNoteDetails(value)`
+  > `getNoteDetails(value)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -112,7 +112,7 @@ supplied.
 
   **Parameters**
 
-  > `new Utilities.getPropertyByValue(object, value)`
+  > `getPropertyByValue(object, value)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -139,7 +139,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
   **Parameters**
 
-  > `new Utilities.guessNoteNumber(input)`
+  > `guessNoteNumber(input)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -161,7 +161,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
   **Parameters**
 
-  > `new Utilities.offsetNumber(offset)`
+  > `offsetNumber(offset)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -187,7 +187,7 @@ integers between 1 and 16 are silently ignored.
 
   **Parameters**
 
-  > `new Utilities.sanitizeChannels([channel])`
+  > `sanitizeChannels([channel])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -212,7 +212,7 @@ the input value cannot be converted to a number, the method returns 0.
 
   **Parameters**
 
-  > `new Utilities.to7Bit(value)`
+  > `to7Bit(value)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -236,7 +236,7 @@ input value cannot be converted to an integer, the method returns 0.
 
   **Parameters**
 
-  > `new Utilities.toNormalized(value)`
+  > `toNormalized(value)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -256,7 +256,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
   **Parameters**
 
-  > `new Utilities.toNoteIdentifier(number, octaveOffset)`
+  > `toNoteIdentifier(number, octaveOffset)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -288,7 +288,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
   **Parameters**
 
-  > `new Utilities.toNoteNumber(identifier, [octaveOffset])`
+  > `toNoteNumber(identifier, [octaveOffset])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -316,7 +316,7 @@ returned.
 
   **Parameters**
 
-  > `new Utilities.toTimestamp([time])`
+  > `toTimestamp([time])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

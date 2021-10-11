@@ -88,7 +88,7 @@ names that can be used with this function:
 
   **Parameters**
 
-  > `new OutputChannel#decrementRegisteredParameter(parameter, [options])`
+  > `decrementRegisteredParameter(parameter, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -127,7 +127,7 @@ names that can be used with this function:
 
   **Parameters**
 
-  > `new OutputChannel#incrementRegisteredParameter(parameter, [options])`
+  > `incrementRegisteredParameter(parameter, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -170,7 +170,7 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
-  > `new OutputChannel#playNote(note, [options])`
+  > `playNote(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -196,7 +196,7 @@ the pitch bend, to their default value.
 
   **Parameters**
 
-  > `new OutputChannel#resetAllControllers([options])`
+  > `resetAllControllers([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -225,7 +225,7 @@ from the MIDI Manufacturers Association.
 
   **Parameters**
 
-  > `new OutputChannel#send(message, [options])`
+  > `send(message, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -271,7 +271,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
   **Parameters**
 
-  > `new OutputChannel#sendChannelMode(command, value, [options])`
+  > `sendChannelMode(command, value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -380,7 +380,7 @@ parameter.
 
   **Parameters**
 
-  > `new OutputChannel#sendControlChange(controller, value, [options])`
+  > `sendControlChange(controller, value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -417,7 +417,7 @@ precedence over the one specified via the method's `options` parameter.
 
   **Parameters**
 
-  > `new OutputChannel#sendNoteOff(note, [options])`
+  > `sendNoteOff(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -460,7 +460,7 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
-  > `new OutputChannel#sendNoteOn(note, [options])`
+  > `sendNoteOn(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -483,7 +483,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
   **Parameters**
 
-  > `new OutputChannel#setChannelAftertouch([pressure], [options])`
+  > `setChannelAftertouch([pressure], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -513,7 +513,7 @@ The key can be a single value or an array of the following valid values:
 
   **Parameters**
 
-  > `new OutputChannel#setKeyAftertouch(target, [pressure], [options])`
+  > `setKeyAftertouch(target, [pressure], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -539,7 +539,7 @@ its out port.
 
   **Parameters**
 
-  > `new OutputChannel#setLocalControl([state], [options])`
+  > `setLocalControl([state], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -565,7 +565,7 @@ a **Master Fine Tuning** RPN messages.
 
   **Parameters**
 
-  > `new OutputChannel#setMasterTuning([value], [options])`
+  > `setMasterTuning([value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -590,7 +590,7 @@ specifying both parameters at the same time.
 
   **Parameters**
 
-  > `new OutputChannel#setModulationRange(semitones, [cents], [options])`
+  > `setModulationRange(semitones, [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -633,7 +633,7 @@ For further implementation details, refer to the manufacturer's documentation.
 
   **Parameters**
 
-  > `new OutputChannel#setNonRegisteredParameter(parameter, [data], [options])`
+  > `setNonRegisteredParameter(parameter, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -660,7 +660,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
   **Parameters**
 
-  > `new OutputChannel#setOmniMode([state], [options])`
+  > `setOmniMode([state], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -684,7 +684,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
   **Parameters**
 
-  > `new OutputChannel#setPitchBend([value], [options])`
+  > `setPitchBend([value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -708,7 +708,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
   **Parameters**
 
-  > `new OutputChannel#setPitchBendRange(semitones, [cents], [options])`
+  > `setPitchBendRange(semitones, [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -734,7 +734,7 @@ multiple notes are being played.
 
   **Parameters**
 
-  > `new OutputChannel#setPolyphonicMode([mode], [options])`
+  > `setPolyphonicMode([mode], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -758,7 +758,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new OutputChannel#setProgram([program], [options])`
+  > `setProgram([program], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -811,7 +811,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
   **Parameters**
 
-  > `new OutputChannel#setRegisteredParameter(parameter, [data], [options])`
+  > `setRegisteredParameter(parameter, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -837,7 +837,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new OutputChannel#setTuningBank(value, [options])`
+  > `setTuningBank(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -864,7 +864,7 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
-  > `new OutputChannel#setTuningProgram(value, [options])`
+  > `setTuningProgram(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -886,7 +886,7 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
   **Parameters**
 
-  > `new OutputChannel#stopNote(note, options)`
+  > `stopNote(note, options)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -907,7 +907,7 @@ fade out just as if their key had been released. This is different from the
 
   **Parameters**
 
-  > `new OutputChannel#turnNotesOff([options])`
+  > `turnNotesOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -927,7 +927,7 @@ channel but will not prevent new sounds from being triggered.
 
   **Parameters**
 
-  > `new OutputChannel#turnSoundOff([options])`
+  > `turnSoundOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
