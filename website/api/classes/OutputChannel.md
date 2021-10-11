@@ -50,7 +50,7 @@ An integer to offset the reported octave of outgoing note-specific messages (`no
 octave (C4).
 
 Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent [`Output`](`Output`) object.
+and with the value defined on the parent [Output](Output) object.
 
 
 ### `.output`
