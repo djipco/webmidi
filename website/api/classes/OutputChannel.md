@@ -34,16 +34,13 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `.number`
 
+This channel's MIDI number (1-16)
+
 **Type**: number<br />
 **Since**: 3.0<br />
-
-This channel's MIDI number (1-16)
 
 
 ### `.octaveOffset`
-
-**Type**: number<br />
-**Since**: 3.0<br />
 
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -52,13 +49,16 @@ octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent [Output](Output) object.
 
+**Type**: number<br />
+**Since**: 3.0<br />
+
 
 ### `.output`
 
+The parent [Output](Output) this channel belongs to
+
 **Type**: Output<br />
 **Since**: 3.0<br />
-
-The parent [Output](Output) this channel belongs to
 
 
 

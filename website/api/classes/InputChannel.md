@@ -35,33 +35,30 @@ property.
 
 ### `.EVENTS`
 
+Array of channel-specific event names that can be listened to.
+
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
   **Attributes**: static
 
-Array of channel-specific event names that can be listened to.
-
 
 ### `.input`
+
+The [`Input`](Input) this channel belongs to
 
 **Type**: Input<br />
 **Since**: 3.0<br />
 
-The [`Input`](Input) this channel belongs to
-
 
 ### `.number`
 
+This channel's MIDI number (1-16)
+
 **Type**: number<br />
 **Since**: 3.0<br />
-
-This channel's MIDI number (1-16)
 
 
 ### `.octaveOffset`
-
-**Type**: number<br />
-**Since**: 3.0<br />
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -73,10 +70,11 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Input` object.
 
+**Type**: number<br />
+**Since**: 3.0<br />
+
 
 ### `.parameterNumberEventsEnabled`
-
-**Type**: boolean<br />
 
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
 are composed of a sequence of specific **control change** messages. When a valid sequence of
@@ -85,6 +83,8 @@ such control change messages is received, an `nrpn` event will fire.
 If an invalid or
 out-of-order control change message is received, it will fall through the collector logic and
 all buffered control change messages will be discarded as incomplete.
+
+**Type**: boolean<br />
 
 
 

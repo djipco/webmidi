@@ -33,50 +33,47 @@ You can find a list of all available `Output` objects in the
 
 ### `.channels`
 
-**Type**: Array.&lt;OutputChannel&gt;<br />
-
 Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
+
+**Type**: Array.&lt;OutputChannel&gt;<br />
 
 
 ### `.connection`
 
+Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+
 **Type**: string<br />
 **Attributes**: read-only<br />
-
-Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 ### `.id`
-
-**Type**: string<br />
-**Attributes**: read-only<br />
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
-
-### `.manufacturer`
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
+
+### `.manufacturer`
+
 Name of the manufacturer of the device that makes this output port available.
+
+**Type**: string<br />
+**Attributes**: read-only<br />
 
 
 ### `.name`
 
+Name of the MIDI output
+
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-Name of the MIDI output
-
 
 ### `.octaveOffset`
-
-**Type**: number<br />
-**Since**: 3.0<br />
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
@@ -84,21 +81,24 @@ is placed on the 4th octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
+**Type**: number<br />
+**Since**: 3.0<br />
+
 
 ### `.state`
 
+State of the output port: `"connected"` or `"disconnected"`.
+
 **Type**: string<br />
 **Attributes**: read-only<br />
-
-State of the output port: `"connected"` or `"disconnected"`.
 
 
 ### `.type`
 
+Type of the output port (`"output"`)
+
 **Type**: string<br />
 **Attributes**: read-only<br />
-
-Type of the output port (`"output"`)
 
 
 
